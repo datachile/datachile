@@ -1,0 +1,30 @@
+{
+  "name": "data-chile-site",
+  "version": "1.0.0",
+  "description": "Front-end for Data Chile",
+  "main": "index.js",
+  "scripts": {
+    "dev": "canon-dev",
+    "build": "canon-build",
+    "start": "canon-start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datawheel/data-africa-site.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/datawheel/data-africa-site/issues"
+  },
+  "homepage": "https://github.com/datawheel/data-africa-site#readme",
+  "dependencies": {
+    "d3-format": "^1.0.2",
+    "d3-scale": "^1.0.4",
+    "d3-time-format": "^2.0.2",
+    "datawheel-canon": "^0.2.3",
+    "mondrian-rest-client": "github:datawheel/mondrian-rest-client",
+    "normalize.css": "^5.0.0",
+    "pluralize": "^3.1.0"
+  }
+}

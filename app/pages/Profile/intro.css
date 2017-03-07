@@ -1,0 +1,106 @@
+.profile {
+  font-family: var(--font-family);
+
+  & .intro {
+    color: white;
+    margin: 0 auto;
+    position: relative;
+    width: 100vw;
+
+    & .splash {
+      background-size: cover;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: var(--background);
+
+      & .gradient {
+        background: linear-gradient(0deg, var(--dark), color(var(--dark) alpha(-50%)));
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+    }
+
+    & .header {
+      display: flex;
+      margin: 0 auto;
+      justify-content: center;
+      width: 80%;
+    }
+
+    & .viz {
+      box-sizing: border-box;
+      display: inline-block;
+      flex: 1;
+      margin: 100px 25px;
+      vertical-align: top;
+    }
+
+    & .meta {
+      box-sizing: border-box;
+      display: inline-block;
+      flex: 1;
+      margin: 100px 25px;
+      vertical-align: top;
+
+      & .title {
+        font-size: 56px;
+      }
+
+      & .stat {
+        margin: 25px 0;
+
+        & .label {
+          font-size: 12px;
+          font-weight: 600;
+          margin-left: 2px;
+          text-transform: uppercase;
+        }
+
+        & .value {
+          font-size: 32px;
+          font-weight: 300;
+        }
+
+      }
+
+    }
+
+    & .subnav {
+      margin: 0 auto;
+      padding: 25px;
+      text-align: center;
+
+      & .sublink {
+        color: white;
+        display: inline-block;
+        font-size: 12px;
+        margin: 25px;
+        opacity: 0.5;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        & img {
+          display: block;
+          margin: 5px auto;
+        }
+
+      }
+
+    }
+
+  }
+
+}

@@ -1,0 +1,23 @@
+footer {
+
+  background-color: white;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  padding: 25px;
+  text-align: center;
+  width: 100%;
+
+  & img {
+    margin: 0 25px;
+    vertical-align: middle;
+  }
+
+  & .ifpri {
+    width: 100px;
+  }
+
+  & .datawheel {
+    width: 150px;
+  }
+
+}

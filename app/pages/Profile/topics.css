@@ -1,0 +1,18 @@
+.topicTitle {
+  margin: 64px calc(var(--gutter) / 2);
+  text-align: center;
+
+  & .icon {
+    background-color: var(--light);
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    border-radius: 35px;
+    display: block;
+    height: 65px;
+    margin: 0 auto 16px;
+    padding: 5px;
+    width: 65px;
+  }
+
+}

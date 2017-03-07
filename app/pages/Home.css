@@ -1,0 +1,22 @@
+.home {
+
+  & .title {
+    color: white;
+    font-size: 46px;
+    font-weight: 400;
+    margin: 37vh 0;
+    opacity: 0.5;
+    text-align: center;
+  }
+
+  & .splash {
+    background-color: var(--dark);
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: -1;
+  }
+
+}
