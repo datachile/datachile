@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <div className="home">
-        <h1 className="title">Coming Soon</h1>
+        <h1 className="title"><img src="/images/logos/logo-datachile-single.svg" /></h1>
         <div className="splash"></div>
       </div>
     );

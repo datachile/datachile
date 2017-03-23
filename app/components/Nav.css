@@ -1,11 +1,9 @@
 .nav {
-  font-family: var(--font-family);
-  margin: 0 auto;
+  margin: 20px auto;
   position: absolute;
   left: 10%;
   top: 0;
   width: 80%;
-  z-index: var(--foreground);
 
   & .search-btn {
     display: inline-block;
@@ -22,8 +20,7 @@
 
   & .logo {
     display: inline-block;
-    font-weight: 600;
-    margin: 25px 15px;
+    margin: 15px 15px 0px 0px;
     text-decoration: none;
     text-transform: uppercase;
 
@@ -31,7 +28,7 @@
       color: white;
     }
 
-    & .africa {
+    & .chile {
       color: var(--light);
       margin-left: 5px;
     }

@@ -1,23 +1,28 @@
 footer {
 
-  background-color: white;
+  background-color: #1e1f30;
   box-sizing: border-box;
-  font-family: var(--font-family);
   padding: 25px;
   text-align: center;
   width: 100%;
 
   & img {
-    margin: 0 25px;
+    margin: 25px;
     vertical-align: middle;
   }
 
-  & .ifpri {
-    width: 100px;
+  & .logo {
+    
   }
 
-  & .datawheel {
-    width: 150px;
+  & .logo-datawheel {
+    width: 200px;
+  }
+
+  & .collaboration{
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
   }
 
 }

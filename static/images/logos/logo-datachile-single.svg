@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="56px" height="45px" viewBox="0 0 56 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.906 33 26.598 33 13.752 0.407"></polygon>
+        <polygon id="path-3" points="29.74 33 55.444 33 43.514 -11.934"></polygon>
+        <polygon id="path-5" points="19.462 29 49.645 29 43.514 -11.359"></polygon>
+        <polygon id="path-7" points="16.991 9 11.72 33 26.215 33 31.565 9"></polygon>
+        <polygon id="path-9" points="31.546 9 26.21 33 41.134 33 46.404 9"></polygon>
+    </defs>
+    <g id="Home-bg1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-background1" transform="translate(-620.000000, -327.000000)">
+            <g id="Contenido-principal" transform="translate(7.000000, 0.000000)">
+                <g id="Group" transform="translate(613.000000, 339.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-448"></g>
+                    <polygon id="Fill-447" fill="#E4E6EB" mask="url(#mask-2)" points="-7 40 34 40 34 -7 -7 -7"></polygon>
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Clip-451"></g>
+                    <polygon id="Fill-450" fill="#E4E6EB" mask="url(#mask-4)" points="22 40 63 40 63 -19 22 -19"></polygon>
+                    <mask id="mask-6" fill="white">
+                        <use xlink:href="#path-5"></use>
+                    </mask>
+                    <g id="Clip-454"></g>
+                    <polygon id="Fill-453" fill="#CCCFD6" mask="url(#mask-6)" points="12 36 57 36 57 -19 12 -19"></polygon>
+                    <mask id="mask-8" fill="white">
+                        <use xlink:href="#path-7"></use>
+                    </mask>
+                    <g id="Clip-457"></g>
+                    <polygon id="Fill-456" fill="#3065C4" mask="url(#mask-8)" points="5 40 38 40 38 2 5 2"></polygon>
+                    <mask id="mask-10" fill="white">
+                        <use xlink:href="#path-9"></use>
+                    </mask>
+                    <g id="Clip-460"></g>
+                    <polygon id="Fill-459" fill="#E80C3B" mask="url(#mask-10)" points="20 40 54 40 54 2 20 2"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

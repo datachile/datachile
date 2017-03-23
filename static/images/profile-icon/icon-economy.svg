@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="30px" height="25px" viewBox="0 0 30 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-economy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 13.64 27.999 13.64 27.999 0.641 0 0.641"></polygon>
+        <polygon id="path-3" points="-0.998 -6.358 -0.998 3.08 10.001 5.001 10.001 1.641 18 1.641 18 5.049 29.001 3.08 29.001 -6.358"></polygon>
+        <path d="M5.485,-7.645 C4.667,-7.493 3,-7.221 3,-7.221 L3,-5.644 C3,-5.644 5.325,-5.504 6.14,-5.653 C8.023,-6.002 8.086,-8.115 13.33,-8.115 C18.576,-8.115 18.808,-6.002 20.691,-5.653 C21.509,-5.504 24,-5.644 24,-5.644 L24,-7.221 C24,-7.221 22.34,-7.493 21.525,-7.645 C19.642,-7.991 19.063,-10.646 13.422,-10.646 C7.604,-10.646 7.368,-7.991 5.485,-7.645 Z" id="path-5"></path>
+        <path d="M7.998,5.506 L10.708,5.792 C10.902,6.909 12.069,7.772 13.47,7.772 C14.871,7.772 16.069,6.909 16.263,5.792 L19,5.506 L19,2.366 L7.998,2.328 L7.998,5.506 Z" id="path-7"></path>
+    </defs>
+    <g id="National-profile-economy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Profile-section-economy" transform="translate(-308.000000, -753.000000)">
+            <g id="Topicos" transform="translate(4.000000, 694.000000)">
+                <g id="icon-economy" transform="translate(305.000000, 70.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-88"></g>
+                    <polygon id="Fill-87" fill="#CAD3E4" fill-rule="evenodd" mask="url(#mask-2)" points="-7 20.64 34 20.64 34 -6.36 -7 -6.36"></polygon>
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Clip-94"></g>
+                    <polygon id="Fill-93" fill="#FFFFFF" fill-rule="evenodd" mask="url(#mask-4)" points="-9 11.64 36 11.64 36 -13.36 -9 -13.36"></polygon>
+                    <mask id="mask-6" fill="white">
+                        <use xlink:href="#path-5"></use>
+                    </mask>
+                    <g id="Clip-91"></g>
+                    <polygon id="Fill-90" fill="#CAD3E4" fill-rule="evenodd" mask="url(#mask-6)" points="-4 0.64 31 0.64 31 -18.36 -4 -18.36"></polygon>
+                    <mask id="mask-8" fill="white">
+                        <use xlink:href="#path-7"></use>
+                    </mask>
+                    <g id="Clip-97"></g>
+                    <polygon id="Fill-96" fill="#ED375D" fill-rule="evenodd" mask="url(#mask-8)" points="1 14.64 26 14.64 26 -5.36 1 -5.36"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
