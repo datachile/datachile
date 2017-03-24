@@ -1058,7 +1058,7 @@
   },
   {
     "key": 8,
-    "background": "biobio_08301.jpg",
+    "background": "biobio.jpg",
     "children": [
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[ALTO BIO BIO]",
@@ -2067,7 +2067,7 @@
   },
   {
     "key": 13,
-    "background": "region-metropolitana-santiago_13.jpg",
+    "background": "region-metropolitana-santiago.jpg",
     "children": [
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[ALHU\u00c9]",
@@ -2455,7 +2455,7 @@
   },
   {
     "key": 14,
-    "background": "los-rios_142.jpg",
+    "background": "los-rios.jpg",
     "children": [
       {
         "full_name": "[Tax Geography].[Los R\u00edos].[CORRAL]",

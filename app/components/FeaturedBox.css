@@ -1,0 +1,45 @@
+.tile {
+  align-items: center;
+  background-position: 50%;
+  background-size: auto 200%;
+  color: white;
+  display: flex;
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  height: 100px;
+  margin: var(--gutter);
+  min-width: 200px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-position 0.2s;
+  width: 33%;
+
+  & .name {
+    flex: 1;
+    z-index: var(--foreground);
+  }
+
+  &:after {
+    background-color: rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: background-color 0.2s;
+    width: 100%;
+  }
+
+  &:hover {
+    background-position: 50% 25%;
+
+    &:after {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+  }
+
+}

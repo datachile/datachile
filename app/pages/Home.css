@@ -1,22 +1,129 @@
-.home {
-
-  & .title {
-    color: white;
-    font-size: 46px;
-    font-weight: 400;
-    margin: 37vh 0;
-    opacity: 0.5;
-    text-align: center;
+body {
+  
+  @media only screen and (max-width : var(--break-lg)) {
+  
   }
 
+  @media only screen and (max-width : var(--break-md)) {
+  
+  }
+
+  @media only screen and (max-width : var(--break-sm)) {
+
+  }
+
+  @media only screen and (max-width : var(--break-xs)) {
+
+  }
+
+  @media only screen and (max-width : var(--break-xxs)) {
+
+  }
+}
+.home {
+  font-family: var(--font-family);
+  margin: 0 auto;
+  max-width: var(--width);
+  padding: var(--nav-height) var(--gutter) 0;
+  width: 100%;
+
   & .splash {
-    background-color: var(--dark);
-    height: 100vh;
+    height: 800px;
     left: 0;
     position: absolute;
     top: 0;
-    width: 100vw;
-    z-index: -1;
+    width: 100%;
+    z-index: var(--background);
+
+    & .image {
+      background-image: url("/images/profile-bg/chile.jpg");
+      background-position: 50%;
+      background-size: cover;
+      height: 800px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    & .gradient {
+      background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 89%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.3) 89%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.3) 89%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+  }
+
+  & .intro {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 100px;
+
+    & .text {
+      flex: 1;
+
+      & .title {
+        color: white;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 64px 0px;
+        text-align: center;
+      }
+
+      & .lead {
+        color: white;
+        text-align: center;
+      }
+
+      & .search-start {
+        background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.0));
+        border: 2px solid var(--accent);
+        border-radius: 100px;
+        color: white;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: var(--gutter);
+        padding: 8px 20px;
+      }
+
+    }
+
+  }
+
+  & .tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: calc(var(--gutter) * 6);
+    width: 100%;
+
+    & .title {
+      color: white;
+      flex: none;
+      font-size: 12px;
+      font-weight: normal;
+      text-align: center;
+      text-transform: uppercase;
+      width: 100%;
+    }
+
+    & .spacer {
+      flex: 1;
+      height: 100px;
+      margin: var(--gutter);
+      min-width: 200px;
+      width: 200px;
+    }
+
   }
 
 }
