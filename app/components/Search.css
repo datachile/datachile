@@ -1,44 +1,59 @@
 .search {
 
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: var(--dark);
   height: 100vh;
   left: 0;
   position: absolute;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: var(--cover);
 
-  & .close {
-    color: white;
-    font-size: 32px;
-    opacity: 0.5;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    transition: opacity 0.2s;
+  & .input {
+    margin: 128px auto 25px;
+    max-width: 1120px;
+    position: relative;
+    width: 100%;
 
-    &:hover {
-      cursor: pointer;
-      opacity: 1;
+    & .icon {
+      display: inline-block;
+      position: absolute;
+      width: 32px;
     }
 
-  }
+    & input {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 2px solid white;
+      color: white;
+      display: inline-block;
+      font-family: "Work Sans";
+      font-size: 32px;
+      font-weight: 400;
+      max-width: 600px;
+      opacity: 0.6;
+      padding: 0 16px 8px 48px;
+      transition: opacity 0.2s;
+      width: 100%;
 
-  & input {
-    display: block;
-    font-family: "Source Sans Pro";
-    font-size: 16px;
-    margin: 100px auto 25px;
-    max-width: 600px;
-    padding: 10px;
-    width: 100%;
+      &::placeholder {
+        color: white;
+      }
+
+      &:focus {
+        opacity: 1;
+        outline: none;
+      }
+
+    }
+
   }
 
   & .results {
     display: block;
     list-style: none;
     margin: 25px auto;
-    max-width: 600px;
+    max-width: var(--width);
+    padding: 0;
     width: 100%;
 
     & .result {
@@ -47,7 +62,8 @@
       & a {
         color: white;
         display: block;
-        opacity: 0.5;
+        font-size: 24px;
+        opacity: 0.8;
         text-decoration: none;
         transition: opacity 0.2s;
 

@@ -9,16 +9,23 @@
   font-weight: 600;
   height: 100px;
   margin: var(--gutter);
-  min-width: 200px;
+  min-width: 25%;
   position: relative;
   text-align: center;
   text-decoration: none;
   transition: background-position 0.2s;
-  width: 33%;
+  flex-direction: column;
+  justify-content: center;
 
   & .name {
-    flex: 1;
+    
     z-index: var(--foreground);
+  }
+
+  & .type {
+    
+    z-index: var(--foreground);
+    opacity: 0.5
   }
 
   &:after {
