@@ -1,0 +1,125 @@
+.not-found {
+    & .glossary {
+      & .definition {
+        margin-top: 0px;
+      }
+
+      & .term {
+        font-weight: bold;
+        margin: 0px;
+        padding: 0px;
+      }
+  }
+
+  & .intro {
+    font-family: var(--font-family);
+    margin: 0 auto;
+    max-width: var(--width);
+    padding: 0 var(--gutter);
+    width: 100%;
+
+    & .splash {
+      height: 800px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: var(--background);
+
+      & .image {
+        background-image: url("/images/geo/040AF00133.jpg");
+        background-position: 50%;
+        background-size: cover;
+        filter: saturate(150%) contrast(130%);
+        height: 800px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      & .gradient {
+        background: linear-gradient(0deg, var(--dark), rgba(0, 0, 0, 0.6));
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+    }
+    & .header {
+      display: flex;
+      margin: 0 auto;
+      justify-content: center;
+      width: 80%;
+
+      & .meta {
+        box-sizing: border-box;
+        clear:both;
+        display: block;
+        flex: 1;
+        margin: 100px 24px 24px;
+        vertical-align: top;
+
+        & .title {
+          color:white;
+          font-size: 56px;
+          font-weight:600;
+          text-align: center;
+        }
+
+      }
+
+    }
+    & .sublinks {
+      color: white;
+      margin: 24px;
+      padding: 0 25px;
+      text-align: center;
+
+      & .sublink {
+        color: white;
+        display: inline-block;
+        font-size: 12px;
+        margin: 25px;
+        opacity: 0.5;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: opacity 0.2s;
+        width: 120px;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        & img {
+          display: block;
+          margin: 5px auto;
+        }
+
+      }
+
+    }
+
+  }
+  & .topic-title {
+    padding-bottom:16px;
+  }
+  & .section {
+    background-color: white;
+
+    & .paragraph {
+      font-family: var(--font-family);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: var(--gutter) auto;
+      max-width: var(--width);
+      width: 60%;
+    }
+
+  }
+
+}

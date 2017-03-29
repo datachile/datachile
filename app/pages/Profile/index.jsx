@@ -4,7 +4,7 @@ import {fetchStats} from "actions/profile";
 import {Profile, Stat, TopicTitle} from "datawheel-canon";
 import d3plus from "helpers/d3plus";
 
-import { GEO } from "helpers/dictionary";
+import { GEOMAP } from "helpers/dictionary";
 
 import "./intro.css";
 import "./topics.css";
@@ -35,9 +35,9 @@ class GeoProfile extends Profile {
 
     const { region, comuna } = this.props.routeParams;
 
+    const geo = (comuna)?GEOMAP.getRegion(comuna):GEOMAP.getRegion(region);
+
     // TODO check for 404
-    const geo = GEO.getRegion(region);
-    // TODO get comuna if comuna != null
 
     const {attrs, focus, stats} = this.props;
 
@@ -47,53 +47,48 @@ class GeoProfile extends Profile {
             <div className="intro">
 
                 <div className="splash">
+                    <div className="image" style={{backgroundImage: `url('/images/profile-bg/${geo.background}')`}} ></div>
                     <div className="gradient"></div>
                 </div>
 
                 <div className="header">
                     <div className="meta">
+                        <div className="subtitle">{ geo.type }</div>
                         <div className="title">{ geo.caption }</div>
-                        { /* }
-                        { stats.map(stat => <Stat key={ stat.key } label={ stat.label } value={ stat.attr ? attrs[stat.attr][stat.value].name : stat.value } />) }
-                        { */ }
+                        {geo.parent &&
+                          <div className="parent">Región {geo.parent.caption}</div>
+                        }
                     </div>
                 </div>
 
                 <div className="subnav">
-                    <a className="sublink" href="#introduction">
-                        <img className="icon" src="/images/topics/introduction.svg" />
-                        Introduction
+                    <a className="sublink" href="#economy">
+                        <img className="icon" src="/images/profile-icon/icon-economy.svg" />
+                        Economy
                     </a>
-                    <a className="sublink" href="#agriculture">
-                        <img className="icon" src="/images/topics/agriculture.svg" />
-                        Agriculture
+                    <a className="sublink" href="#innovation">
+                        <img className="icon" src="/images/profile-icon/icon-innovation.svg" />
+                        Innovation
                     </a>
-                    <a className="sublink" href="#climate">
-                        <img className="icon" src="/images/topics/climate.svg" />
-                        Climate
+                    <a className="sublink" href="#education">
+                        <img className="icon" src="/images/profile-icon/icon-education.svg" />
+                        Education
                     </a>
-                    <a className="sublink" href="#health">
-                        <img className="icon" src="/images/topics/health.svg" />
-                        Health
+                    <a className="sublink" href="#environment">
+                        <img className="icon" src="/images/profile-icon/icon-environment.svg" />
+                        Environment
                     </a>
-                    <a className="sublink" href="#poverty">
-                        <img className="icon" src="/images/topics/poverty.svg" />
-                        Poverty
-                    </a>
+                    <a className="sublink" href="#demographics">
+                        <img className="icon" src="/images/profile-icon/icon-demographics.svg" />
+                        Demographics
+                    </a>                
+
                 </div>
 
             </div>
 
-            { /* }
-            <TopicTitle slug="introduction">
-                <div className="icon" style={{backgroundImage: "url('/images/topics/introduction.svg')"}}></div>
-                Introduction
-            </TopicTitle>
-            <IntroParagraph profile={} />
-            { */ }
-
             <TopicTitle slug="economy">
-                <div className="icon" style={{backgroundImage: "url('/images/topics/agriculture.svg')"}}></div>
+                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-economy.svg')"}}></div>
                 Economy
             </TopicTitle>
             <ExportsByProduct />
@@ -101,6 +96,10 @@ class GeoProfile extends Profile {
             <ImportsByOrigin />
             <OutputByIndustry />
             <TradeBalance />
+            <TopicTitle slug="innovation">
+                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-innovation.svg')"}}></div>
+                Innovation
+            </TopicTitle>
         </div>
     );
   }

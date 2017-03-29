@@ -8,16 +8,29 @@
     width: 100vw;
 
     & .splash {
-      background-size: cover;
-      bottom: 0;
+      height: 800px;
       left: 0;
       position: absolute;
       top: 0;
       width: 100%;
       z-index: var(--background);
 
+      & .image {
+        background-position: 50%;
+        background-size: cover;
+        filter: saturate(150%) contrast(130%);
+        height: 800px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
       & .gradient {
-        background: linear-gradient(0deg, var(--dark), color(var(--dark) alpha(-50%)));
+        background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 80%, rgba(255,255,255,0.5) 90%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 80%,rgba(255,255,255,0.5) 90%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 80%,rgba(255,255,255,0.5) 90%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#ffffff',GradientType=0 );
         bottom: 0;
         left: 0;
         position: absolute;
@@ -51,6 +64,16 @@
 
       & .title {
         font-size: 56px;
+        margin-bottom: 20px;
+      }
+
+      & .subtitle {
+        text-transform: uppercase;
+      }
+
+      & .parent {
+        text-transform: uppercase;
+        color: #aaa;
       }
 
       & .stat {

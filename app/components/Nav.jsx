@@ -12,9 +12,7 @@ class Nav extends Component {
         <Link className="logo" to="/">
           <img src="/images/logos/logo-datachile.svg"/>
         </Link>
-        <Link className="link" to="/profile">Profiles</Link>
-        <Link className="link" to="/">Topics</Link>
-        <Link className="link" to="/">About</Link>
+        <Link className="link" to="/about">About</Link>
         <a className="link" onClick={ this.props.activateSearch }>Search</a>
       </nav>
     );

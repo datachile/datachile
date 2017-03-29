@@ -7,6 +7,7 @@ import App from "components/App";
 import Home from "pages/Home";
 import Profile from "pages/Profile";
 import NotFound from "pages/NotFound";
+import About from "pages/About";
 
 export default function RouteCreate() {
 
@@ -15,6 +16,7 @@ export default function RouteCreate() {
       <IndexRoute component={Home} />
       <Route path="geo/:region" component={Profile}  />
       <Route path="geo/:region/:comuna" component={Profile}  />
+      <Route path="about" component={About} />
       <Route path="*" component={NotFound} status={404} />
     </Route>
   );
