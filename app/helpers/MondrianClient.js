@@ -1,8 +1,5 @@
 import { Client as MondrianClient } from 'mondrian-rest-client';
+import {API} from ".env";
 
-//const ENDPOINT = "http://hermes:5000";
-const ENDPOINT = "http://localhost:9292";
-//const ENDPOINT = "http://chilecube.datawheel.us";
-
-const client = new MondrianClient(ENDPOINT);
+const client = new MondrianClient(API);
 export default client;
