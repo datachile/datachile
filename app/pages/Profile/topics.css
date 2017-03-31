@@ -1,6 +1,11 @@
 .topicTitle {
   margin: 64px calc(var(--gutter) / 2);
   text-align: center;
+  font-family: var(--font-family-antonio);
+  font-weight: 400;
+  font-size: 30px;
+  color: var(--color-title);
+  letter-spacing: 0;
 
   & .icon {
     background-color: var(--light);
@@ -16,3 +21,23 @@
   }
 
 }
+
+section {
+  & h4.sectionTitle{
+    & a{
+      font-family: var(--font-family-antonio);
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--color-title);
+      letter-spacing: 0;
+    }
+  }
+  & article{
+    font-family: var(--font-family-chivo);
+    font-weight: 300;
+    font-size: 12pt;
+    color: var(--color-p);
+    line-height: 21px;
+  }
+}
+

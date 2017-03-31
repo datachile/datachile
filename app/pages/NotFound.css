@@ -12,7 +12,7 @@
   }
 
   & .intro {
-    font-family: var(--font-family);
+    font-family: var(--font-family-chivo);
     margin: 0 auto;
     max-width: var(--width);
     padding: 0 var(--gutter);
@@ -111,7 +111,7 @@
     background-color: white;
 
     & .paragraph {
-      font-family: var(--font-family);
+      font-family: var(--font-family-chivo);
       font-size: 20px;
       font-weight: 400;
       line-height: 1.5;

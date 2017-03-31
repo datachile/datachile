@@ -56,7 +56,7 @@ class GeoProfile extends Profile {
                         <div className="subtitle">{ geo.type }</div>
                         <div className="title">{ geo.caption }</div>
                         {geo.parent &&
-                          <div className="parent">Región {geo.parent.caption}</div>
+                          <div className="parent">{geo.parent.caption}</div>
                         }
                     </div>
                 </div>

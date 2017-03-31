@@ -1,5 +1,5 @@
 .profile {
-  font-family: var(--font-family);
+  font-family: var(--font-family-chivo);
 
   & .intro {
     color: white;
@@ -63,17 +63,26 @@
       vertical-align: top;
 
       & .title {
-        font-size: 56px;
-        margin-bottom: 20px;
+        font-family: var(--font-family-chivo);
+        font-weight: 300;
+        font-size: 45pt;
+        color: var(--snow);
       }
 
       & .subtitle {
         text-transform: uppercase;
+        font-family: var(--font-family-chivo);
+        font-weight: 300;
+        font-size: 14pt;
+        color: var(--snow);
       }
 
       & .parent {
         text-transform: uppercase;
-        color: #aaa;
+        font-family: var(--font-family-chivo);
+        font-weight: 300;
+        font-size: 14pt;
+        color: var(--snow);
       }
 
       & .stat {

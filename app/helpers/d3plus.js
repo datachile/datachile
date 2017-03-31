@@ -10,13 +10,13 @@ const axisConfig = {
   shapeConfig: {
     fill: "#979797",
     fontColor: "rgba(0, 0, 0, 0.8)",
-    fontFamily: () => "Work Sans",
+    fontFamily: () => "Chivo",
     fontSize: () => 12,
     stroke: "#979797"
   },
   tickSize: 0,
   titleConfig: {
-    fontFamily: "Work Sans",
+    fontFamily: "Chivo",
     fontSize: "14px",
     fontWeight: 600,
     textTransform: "uppercase"
@@ -27,7 +27,7 @@ export default {
   legendConfig: {
     shapeConfig: {
       fontColor: "rgba(0, 0, 0, 0.8)",
-      fontFamily: "Work Sans",
+      fontFamily: "Chivo",
       fontResize: false,
       fontSize: 12,
       fontWeight: 400,
@@ -38,7 +38,7 @@ export default {
   },
   shapeConfig: {
     fontColor: "rgba(0, 0, 0, 0.4)",
-    fontFamily: "Work Sans",
+    fontFamily: "Chivo",
     fontWeight: 600
   },
   xConfig: axisConfig,

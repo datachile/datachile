@@ -26,7 +26,7 @@
       border-bottom: 2px solid white;
       color: white;
       display: inline-block;
-      font-family: "Work Sans";
+      font-family: var(--font-family-chivo);
       font-size: 32px;
       font-weight: 400;
       max-width: 600px;

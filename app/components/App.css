@@ -1,0 +1,97 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i');
+
+@font-face {
+  font-family: Antonio;
+  src: url('/fonts/antonio/Antonio-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: Antonio;
+  src: url("/fonts/antonio/Antonio-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Antonio;
+  src: url('/fonts/antonio/Antonio-Bold.ttf');
+  font-weight: 700;
+}
+
+/*
+CHIVO -> var(--font-family-chivo)
+light 300
+light 300 Italic
+regular 400
+regular 400 Italic
+bold 700
+bold 700 Italic
+black 900
+black 900 Italic
+
+ANTONIO -> var(--font-family-antonio)
+light 300
+regular 400
+bold 700
+*/
+
+/*BASICS mixins */
+
+/*
+@mixin h1(){
+	font-family: var(--font-family-antonio);
+	font-weight: 400;
+	font-size: 36px;
+	color: var(--color-title);
+	letter-spacing: 0;
+}
+
+@mixin h2(){
+	font-family: var(--font-family-antonio);
+	font-weight: 400;
+	font-size: 30px;
+	color: var(--color-title);
+	letter-spacing: 0;
+}
+
+@mixin h3(){
+	font-family: var(--font-family-antonio);
+	font-weight: 400;
+	font-size: 24px;
+	color: var(--color-title);
+	letter-spacing: 0;
+}
+
+@mixin h3(){
+	font-family: var(--font-family-antonio);
+	font-weight: 400;
+	font-size: 18px;
+	color: var(--color-title);
+	letter-spacing: 0;
+}
+
+@mixin h4(){
+	font-family: var(--font-family-antonio);
+	font-weight: 400;
+	font-size: 14px;
+	color: var(--color-title);
+	letter-spacing: 0;
+}
+
+@mixin h5(){
+	font-family: var(--font-family-antonio);
+	font-weight: 400;
+	font-size: 12px;
+	color: var(--color-title);
+	letter-spacing: 0;
+}
+*/
+
+/* Simple paragraph */
+/*@mixin paragraph($radius) {
+	font-family: var(--font-family-chivo);
+	font-weight: 300;
+	font-size: 12pt;
+	color: var(--color-p);
+	line-height: 21px;
+}
+*/

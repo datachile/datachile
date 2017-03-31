@@ -2,3 +2,4 @@ node_modules/*
 static/assets/*
 */**/.DS_Store
 app/.env.js
+.DS_Store

@@ -7,6 +7,7 @@ import Search from "components/Search";
 
 import "normalize.css/normalize.css";
 
+import "./App.css";
 
 class App extends Component {
 
