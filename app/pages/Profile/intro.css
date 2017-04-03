@@ -6,6 +6,7 @@
     margin: 0 auto;
     position: relative;
     width: 100vw;
+    overflow: hidden;
 
     & .splash {
       height: 800px;
@@ -112,13 +113,16 @@
       & .sublink {
         color: white;
         display: inline-block;
-        font-size: 12px;
+        font-size: 10pt;
+        letter-spacing: 0.05pt;
         margin: 25px;
-        opacity: 0.5;
         text-align: center;
         text-decoration: none;
         text-transform: uppercase;
+        opacity: 0.7;
         transition: opacity 0.2s;
+        font-family: var(--font-family-antonio);
+        font-weight: 400;
 
         &:hover {
           opacity: 1;

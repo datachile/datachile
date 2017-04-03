@@ -1,53 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="42px" height="22px" viewBox="0 0 42 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="38px" height="26px" viewBox="0 0 38 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
-    <title>icon-education</title>
+    <title>icon-educacion</title>
     <desc>Created with Sketch.</desc>
-    <defs>
-        <path d="M0.001,0.64 L0.001,12.472 C0.001,13.775 4.182,14.833 10,14.833 C15.82,14.833 19.999,13.775 19.999,12.472 L19.999,0.64 L0.001,0.64 Z" id="path-1"></path>
-        <path d="M0.001,0.641 L0.001,12.473 C0.001,13.776 4.183,14.832 10,14.832 C15.819,14.832 19.999,13.776 19.999,12.473 L19.999,0.641 L0.001,0.641 Z" id="path-3"></path>
-        <polygon id="path-5" points="-10 2.25915322 11.277 9.675 32 2.5915261 32 1.88828512 11.277 -5.529 -10 2.23632118 -10 2.25915322"></polygon>
-        <polygon id="path-7" points="-10 2.236 -10 2.259 11.277 9.676 32 2.592 32 1.888 11.277 -5.528"></polygon>
-        <polygon id="path-9" points="27 3.498 27 15.553 28.999 13.925 28.999 2.417 24.769 0.645"></polygon>
-        <polygon id="path-11" points="27 3.498 27 15.553 29 13.925 29 2.417 24.768 0.645"></polygon>
-    </defs>
-    <g id="National-profile-economy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Profile-section-economy" transform="translate(-552.000000, -755.000000)">
-            <g id="Topicos" transform="translate(4.000000, 694.000000)">
-                <g id="icon-education" transform="translate(558.000000, 67.000000)">
-                    <path d="M0,12.4707 C0,13.7757 4.182,14.8327 10,14.8327 C15.819,14.8327 20,13.7757 20,12.4707 L20,0.6397 L0,0.6397 L0,12.4707 Z" id="Fill-63" fill="#F2F2F2" fill-rule="evenodd"></path>
-                    <mask id="mask-2" fill="white">
-                        <use xlink:href="#path-1"></use>
-                    </mask>
-                    <g id="Clip-66"></g>
-                    <polygon id="Fill-65" fill="#F2F2F2" fill-rule="evenodd" mask="url(#mask-2)" points="-10 15.64 32 15.64 32 -7.36 -10 -7.36"></polygon>
-                    <polygon id="Fill-71" fill="#CCCCCC" fill-rule="evenodd" mask="url(#mask-2)" points="-10.0312 2.248 11.2758 -5.528 33.0048 2.248 11.2758 9.673"></polygon>
-                    <mask id="mask-4" fill="white">
-                        <use xlink:href="#path-3"></use>
-                    </mask>
-                    <g id="Clip-69"></g>
-                    <polygon id="Fill-68" fill="#F2F2F2" fill-rule="evenodd" mask="url(#mask-4)" points="-6 20.64 28 20.64 28 -5.36 -6 -5.36"></polygon>
-                    <mask id="mask-6" fill="white">
-                        <use xlink:href="#path-5"></use>
-                    </mask>
-                    <g id="Clip-74"></g>
-                    <polygon id="Fill-73" fill="#CCCCCC" fill-rule="evenodd" mask="url(#mask-6)" points="-10 15.64 32 15.64 32 -7.36 -10 -7.36"></polygon>
-                    <mask id="mask-8" fill="white">
-                        <use xlink:href="#path-7"></use>
-                    </mask>
-                    <g id="Clip-77"></g>
-                    <polygon id="Fill-76" fill="#CCCCCC" fill-rule="evenodd" mask="url(#mask-8)" points="-16 15.64 40 15.64 40 -12.36 -16 -12.36"></polygon>
-                    <polygon id="Fill-79" fill="#666666" fill-rule="evenodd" mask="url(#mask-8)" points="27 15.5527 29 13.9247 29 2.4167 24.769 0.6447 27 3.4967"></polygon>
-                    <mask id="mask-10" fill="white">
-                        <use xlink:href="#path-9"></use>
-                    </mask>
-                    <g id="Clip-82"></g>
-                    <polygon id="Fill-81" fill="#666666" fill-rule="evenodd" mask="url(#mask-10)" points="-10 15.64 32 15.64 32 -7.36 -10 -7.36"></polygon>
-                    <mask id="mask-12" fill="white">
-                        <use xlink:href="#path-11"></use>
-                    </mask>
-                    <g id="Clip-85"></g>
-                    <polygon id="Fill-84" fill="#666666" fill-rule="evenodd" mask="url(#mask-12)" points="19 21.64 36 21.64 36 -6.36 19 -6.36"></polygon>
+    <defs></defs>
+    <g id="Menu-topics" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="menu-topics" transform="translate(-248.000000, -107.000000)" fill="#FFFFFF">
+            <g id="Set-iconos">
+                <g id="icon-educacion" transform="translate(248.000000, 107.000000)">
+                    <path d="M19.4102,16.3623 L2.9512,8.8623 L19.4102,1.3633 L35.8712,8.8623 L19.4102,16.3623 Z M29.0002,21.1073 C29.0002,21.1373 28.4122,24.1893 19.5002,24.1893 C10.5882,24.1893 10.0002,21.1373 10.0002,21.1233 L10.0002,13.5213 L19.0492,17.5953 C19.1292,17.6333 19.2702,17.6503 19.3562,17.6503 C19.4442,17.6503 19.7542,17.6333 19.8342,17.5953 L29.0002,13.5233 L29.0002,21.1073 Z M37.6032,8.3063 L19.6632,0.1333 C19.5012,0.0603 19.3172,0.0603 19.1552,0.1333 L1.2172,8.3063 C0.9982,8.4043 0.8582,8.6243 0.8582,8.8623 C0.8582,9.1033 0.9982,9.3203 1.2172,9.4213 L9.0232,12.9753 C9.0052,13.0323 9.0002,13.0923 9.0002,13.1543 L9.0002,21.1233 C9.0002,21.5633 9.3702,25.4153 19.5002,25.4153 C29.6292,25.4153 30.0002,21.5633 30.0002,21.1233 L30.0002,13.1543 C30.0002,13.0923 30.1482,13.0323 30.1312,12.9753 L34.0002,11.2863 L34.0002,20.1013 C33.0002,20.1013 33.1422,20.7113 33.1422,21.0503 C33.1422,21.3903 33.1712,22.0003 33.5102,22.0003 L34.7362,22.0003 C35.0762,22.0003 35.4812,21.3903 35.4812,21.0503 C35.4812,20.7113 35.0002,20.1013 35.0002,20.1013 L35.0002,10.7273 L37.7372,9.4213 C37.9552,9.3203 38.0302,9.1033 38.0302,8.8623 C38.0282,8.6243 37.8222,8.4043 37.6032,8.3063 L37.6032,8.3063 Z" id="Fill-3"></path>
                 </g>
             </g>
         </g>

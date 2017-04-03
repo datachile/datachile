@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import { GEO } from "helpers/dictionary";
 import { GEOMAP } from "helpers/dictionary";
 import FeaturedBox from "components/FeaturedBox";
+import Search from "components/Search";
 
 import "./Home.css";
 
@@ -24,17 +25,18 @@ class Home extends Component {
           <div className="text">
             <h2 className="title">
               <img src="/images/logos/logo-datachile-single.svg" />
-            <span>Data<strong>Chile</strong></span>
+              <span>Data<strong>Chile</strong></span>
             </h2>
-      <p className="lead">Interactive data visualization platform about Chilean public data</p>
+            <p className="lead">Interactive data visualization platform about Chilean public data</p>
           </div>
+          <Search className="search-home" local={ true } limit={ 5 } />
         </div>
         <div className="tiles">
           <h3 className="title">Featured profiles</h3>
           
           {
             featured.map(f =>
-                <FeaturedBox id={f.key} item={f} />
+                <FeaturedBox key={f.key} item={f} />
             )
           }
 

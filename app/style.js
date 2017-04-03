@@ -4,9 +4,9 @@ module.exports = {
   "color-p": "#6E7370",
 
   "snow": "#ffffff",
-  "dark": "#232B20",
-  "light": "#757E6F",
-  "accent": "#74E19A",
+  "dark": "#02132B",
+  "light": "#082138",
+  "accent": "#4B71B5",
 
   "section-article-large": "600px",
   "section-article-small": "300px",

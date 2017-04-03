@@ -81,7 +81,15 @@ class GeoProfile extends Profile {
                     <a className="sublink" href="#demographics">
                         <img className="icon" src="/images/profile-icon/icon-demographics.svg" />
                         Demographics
-                    </a>                
+                    </a>
+                    <a className="sublink" href="#health">
+                        <img className="icon" src="/images/profile-icon/icon-health.svg" />
+                        Health
+                    </a>
+                    <a className="sublink" href="#politics">
+                        <img className="icon" src="/images/profile-icon/icon-politics.svg" />
+                        Politics
+                    </a>
 
                 </div>
 
@@ -91,15 +99,55 @@ class GeoProfile extends Profile {
                 <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-economy.svg')"}}></div>
                 Economy
             </TopicTitle>
+
             <ExportsByProduct />
             <ExportsByDestination />
             <ImportsByOrigin />
             <OutputByIndustry />
             <TradeBalance />
+            
             <TopicTitle slug="innovation">
                 <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-innovation.svg')"}}></div>
                 Innovation
             </TopicTitle>
+
+            <p className="soon">Soon...</p>
+
+            <TopicTitle slug="education">
+                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-education.svg')"}}></div>
+                Education
+            </TopicTitle>
+
+            <p className="soon">Soon...</p>
+
+            <TopicTitle slug="environment">
+                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-environment.svg')"}}></div>
+                Environment
+            </TopicTitle>
+
+            <p className="soon">Soon...</p>
+
+            <TopicTitle slug="demographics">
+                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-demographics.svg')"}}></div>
+                Demographics
+            </TopicTitle>
+
+            <p className="soon">Soon...</p>
+
+            <TopicTitle slug="health">
+                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-health.svg')"}}></div>
+                Health
+            </TopicTitle>
+
+            <p className="soon">Soon...</p>
+
+            <TopicTitle slug="politics">
+                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-politics.svg')"}}></div>
+                Politics
+            </TopicTitle>
+
+            <p className="soon">Soon...</p>
+
         </div>
     );
   }

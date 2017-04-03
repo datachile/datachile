@@ -6,7 +6,12 @@
   font-size: 30px;
   color: var(--color-title);
   letter-spacing: 0;
-
+  & :focus{
+    outline:none;
+  }
+  a{
+    
+  }
   & .icon {
     background-color: var(--light);
     background-position: center;
@@ -24,6 +29,9 @@
 
 section {
   & h4.sectionTitle{
+    & :focus{
+      outline:none;
+    }
     & a{
       font-family: var(--font-family-antonio);
       font-weight: 400;
@@ -39,5 +47,12 @@ section {
     color: var(--color-p);
     line-height: 21px;
   }
+}
+
+p.soon{
+  text-align: center;
+  font-family: var(--font-family-antonio);
+  font-weight: 400;
+  font-size: 14px;
 }
 

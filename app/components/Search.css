@@ -1,37 +1,37 @@
-.search {
-
-  background-color: var(--dark);
-  height: 100vh;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
+.search-nav {
+  overflow: hidden;
+  right: 133px;
+  top: 13px;
+  transition: opacity 0.5s, width 0.5s;
   z-index: var(--cover);
+  opacity: 1;
+  width: 250px;
+
+  &.active {
+  }
 
   & .input {
-    margin: 128px auto 25px;
-    max-width: 1120px;
-    position: relative;
-    width: 100%;
+    
 
     & .icon {
       display: inline-block;
       position: absolute;
-      width: 32px;
+      margin-top: 8px;
+      width: 16px;
     }
 
     & input {
       background-color: transparent;
       border: 0;
-      border-bottom: 2px solid white;
+      border-bottom: 1px solid white;
+      box-sizing: border-box;
       color: white;
       display: inline-block;
-      font-family: var(--font-family-chivo);
-      font-size: 32px;
       font-weight: 400;
+      font-size: 12px;
       max-width: 600px;
-      opacity: 0.6;
-      padding: 0 16px 8px 48px;
+      opacity: 0.8;
+      padding: 5px 10px;
       transition: opacity 0.2s;
       width: 100%;
 
@@ -42,6 +42,7 @@
       &:focus {
         opacity: 1;
         outline: none;
+        opacity: 1;
       }
 
     }
@@ -49,27 +50,28 @@
   }
 
   & .results {
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
     display: block;
     list-style: none;
-    margin: 25px auto;
-    max-width: var(--width);
+    margin: 0;
     padding: 0;
     width: 100%;
 
     & .result {
-      margin: 10px 0;
+      background-color: white;
+      opacity: 0.6;
+      padding: 8px 16px 8px 32px;
+      transition: opacity 0.2s;
 
       & a {
-        color: white;
+        color: black;
         display: block;
-        font-size: 24px;
-        opacity: 0.8;
+        font-size: 16px;
         text-decoration: none;
-        transition: opacity 0.2s;
 
       }
 
-      &:hover a, &.highlighted a {
+      &:hover, &.highlighted {
         opacity: 1;
       }
 
