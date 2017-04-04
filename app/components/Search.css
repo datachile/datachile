@@ -1,11 +1,12 @@
 .search-nav {
   overflow: hidden;
-  right: 133px;
+  right: 0px;
   top: 13px;
   transition: opacity 0.5s, width 0.5s;
   z-index: var(--cover);
   opacity: 1;
   width: 250px;
+  position: absolute;
 
   &.active {
   }

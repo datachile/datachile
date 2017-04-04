@@ -118,3 +118,87 @@ body {
   }
 
 }
+
+.search-home {
+  position: relative;
+  width: 300px;
+  z-index: var(--cover);
+
+  & .input {
+    width: 100%;
+
+    & .icon {
+      display: inline-block;
+      position: absolute;
+      margin: 9px 2px;
+      width: 36px;
+    }
+
+    & input {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 2px solid var(--accent);
+      box-sizing: border-box;
+      color: white;
+      display: inline-block;
+      font-family: "Work Sans";
+      font-size: 32px;
+      font-weight: 400;
+      max-width: 600px;
+      padding: 8px 0 8px 48px;
+      width: 100%;
+
+      &::placeholder {
+        color: white;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+    }
+
+  }
+
+  & .results {
+    display: block;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    top: 54px;
+    transition: opacity 0.2s;
+    width: 100%;
+
+    & .result {
+      opacity: 0.6;
+      padding: 8px 0 8px 48px;
+      transition: opacity 0.2s;
+
+      & a {
+        color: white;
+        display: block;
+        font-size: 32px;
+        text-decoration: none;
+
+      }
+
+      &:hover, &.highlighted {
+        opacity: 1;
+      }
+
+    }
+
+  }
+
+  &.active {
+
+    & .results {
+      opacity: 1;
+    }
+
+  }
+
+}

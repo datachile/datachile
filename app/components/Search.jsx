@@ -4,7 +4,7 @@ import {toggleSearch} from "actions/index";
 import "./Search.css";
 
 import {API} from ".env";
-import axios from "axios";
+import { GEOARRAY } from "helpers/dictionary";
 
 import {strip} from "d3plus-text";
 import {dataFold} from "d3plus-viz";
@@ -27,12 +27,13 @@ class Search extends Component {
     if (userQuery.length === 0) this.setState({active: true, results: []});
     // else if (userQuery.length < 3) return;
     else {
-      axios.get(`${API}attrs/search/?q=${strip(userQuery)}`)
-        .then(res => {
-          let results = dataFold(res.data);
-          if (limit) results = results.slice(0, limit);
-          this.setState({active: true, results});
-        });
+      let results = GEOARRAY.filter(e => {
+        return e.name.toLowerCase().indexOf(userQuery.toLowerCase())>-1;
+      })
+      .sort((a,b) => {return a.name.toLowerCase()>b.name.toLowerCase()});
+
+      if (limit) results = results.slice(0, limit);
+      this.setState({active: true, results});
     }
 
   }
@@ -118,8 +119,8 @@ class Search extends Component {
         </div>
         <ul className="results">
           { results.map(result =>
-            <li key={ result.id } className="result">
-              <a href={ `/profile/${result.id}` }>{ result.name }</a>
+            <li key={ result.key } className="result">
+              <a href={ result.url }>{ result.name }</a>
             </li>
           )}
         </ul>
