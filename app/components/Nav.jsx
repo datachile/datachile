@@ -14,10 +14,9 @@ class Nav extends Component {
           <Link className="logo" to="/">
             <img src="/images/logos/logo-datachile.svg"/>
           </Link>
-          <Link className="link" to="/about">About</Link>
         </div>
-        <div className="nav-search">
-          <Search className="search-nav" local={ true } limit={ 5 } />
+        <div className="nav-links">
+          <Link className="link" to="/about">About</Link>
         </div>
       </nav>
     );

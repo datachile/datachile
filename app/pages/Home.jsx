@@ -24,15 +24,16 @@ class Home extends Component {
         <div className="intro">
           <div className="text">
             <h2 className="title">
-              <img src="/images/logos/logo-datachile-single.svg" />
-              <span>Data<strong>Chile</strong></span>
+              <span>Data Chile</span>
             </h2>
             <p className="lead">Interactive data visualization platform about Chilean public data</p>
           </div>
-          <Search className="search-home" local={ true } limit={ 5 } />
+          <div className="search-home-wrapper">
+            <Search className="search-home" local={ true } limit={ 5 } />
+          </div>
         </div>
         <div className="tiles">
-          <h3 className="title">Featured profiles</h3>
+          <h3 className="title">Explore reatured profiles</h3>
           
           {
             featured.map(f =>

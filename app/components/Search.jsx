@@ -113,14 +113,14 @@ class Search extends Component {
     }
 
     return (
-      <div className={ `${className} ${ enabled ? "active" : "" }` }>
+      <div className={ `${className} ${ enabled ? "active" : "" } search-component` }>
         <div className="input">
           <input type="text" ref="input" onChange={ this.onChange.bind(this) } placeholder="Enter a location" />
         </div>
         <ul className="results">
           { results.map(result =>
             <li key={ result.key } className="result">
-              <a href={ result.url }>{ result.name }</a>
+              <a href={ result.url }>{ result.name }   |   { result.type }</a>
             </li>
           )}
         </ul>

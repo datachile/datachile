@@ -7,6 +7,9 @@ module.exports = {
   "dark": "#02132B",
   "light": "#082138",
   "accent": "#4B71B5",
+  "near-black": "#1A1B2D",
+
+  "border-radius": "6px",
 
   "section-article-large": "600px",
   "section-article-small": "300px",

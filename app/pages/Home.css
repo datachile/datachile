@@ -36,7 +36,7 @@ body {
     z-index: var(--background);
 
     & .image {
-      background-image: url("/images/profile-bg/chile.jpg");
+      background-image: url("/images/profile-bg/home.png");
       background-position: 50%;
       background-size: cover;
       height: 800px;
@@ -47,10 +47,7 @@ body {
     }
 
     & .gradient {
-      background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 89%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.3) 89%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.3) 89%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+      background-image: linear-gradient(-180deg, rgba(26,27,44,0.00) 0%, rgba(0,0,1,0.48) 92%, rgba(0,0,0,1) 100%);
       bottom: 0;
       left: 0;
       position: absolute;
@@ -62,28 +59,33 @@ body {
 
   & .intro {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     padding-top: 100px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     & .text {
-      flex: 1;
+      flex: 0.3;
 
       & .title {
-        color: white;
-        font-size: 40px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 1.3;
-        margin: 64px 0px;
-        text-align: center;
+        color: var(--snow);
+        font-size: 45px;
+        font-weight: 300;
+        margin: 10px 0px;
+        font-family: var(--font-family-chivo);
       }
 
       & .lead {
         color: white;
-        text-align: center;
+        font-family: var(--font-family-chivo);
+        font-weight: 300;
+        font-size: 14px;
+        color: var(--snow);
+        letter-spacing: 0.06px;
+        line-height: 19px;
+        text-transform: uppercase;
+
       }
 
     }
@@ -98,13 +100,14 @@ body {
     width: 100%;
 
     & .title {
-      color: white;
       flex: none;
-      font-size: 12px;
-      font-weight: normal;
-      text-align: center;
+      font-weight: 400;
       text-transform: uppercase;
       width: 100%;
+      font-family: var(--font-family-antonio);
+      font-size: 24px;
+      color: var(--snow);
+      letter-spacing: 0.05px;
     }
 
     & .spacer {
@@ -119,86 +122,9 @@ body {
 
 }
 
-.search-home {
-  position: relative;
-  width: 300px;
-  z-index: var(--cover);
-
-  & .input {
-    width: 100%;
-
-    & .icon {
-      display: inline-block;
-      position: absolute;
-      margin: 9px 2px;
-      width: 36px;
-    }
-
-    & input {
-      background-color: transparent;
-      border: 0;
-      border-bottom: 2px solid var(--accent);
-      box-sizing: border-box;
-      color: white;
-      display: inline-block;
-      font-family: "Work Sans";
-      font-size: 32px;
-      font-weight: 400;
-      max-width: 600px;
-      padding: 8px 0 8px 48px;
-      width: 100%;
-
-      &::placeholder {
-        color: white;
-      }
-
-      &:focus {
-        outline: none;
-      }
-
-    }
-
-  }
-
-  & .results {
-    display: block;
-    left: 0;
-    list-style: none;
-    margin: 0;
-    opacity: 0;
-    padding: 0;
-    position: absolute;
-    top: 54px;
-    transition: opacity 0.2s;
-    width: 100%;
-
-    & .result {
-      opacity: 0.6;
-      padding: 8px 0 8px 48px;
-      transition: opacity 0.2s;
-
-      & a {
-        color: white;
-        display: block;
-        font-size: 32px;
-        text-decoration: none;
-
-      }
-
-      &:hover, &.highlighted {
-        opacity: 1;
-      }
-
-    }
-
-  }
-
-  &.active {
-
-    & .results {
-      opacity: 1;
-    }
-
-  }
-
+.search-home-wrapper{
+  flex:0.6;
+  background-color: var(--near-black);
+  border-radius: var(--border-radius);
+  padding: 15px 20px;
 }
