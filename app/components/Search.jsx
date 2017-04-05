@@ -28,7 +28,7 @@ class Search extends Component {
     // else if (userQuery.length < 3) return;
     else {
       let results = GEOARRAY.filter(e => {
-        return e.name.toLowerCase().indexOf(userQuery.toLowerCase())>-1;
+        return e.name.toLowerCase().indexOf(userQuery.toLowerCase())>-1 || e.clean.toLowerCase().indexOf(userQuery.toLowerCase())>-1;
       })
       .sort((a,b) => {return a.name.toLowerCase()>b.name.toLowerCase()});
 

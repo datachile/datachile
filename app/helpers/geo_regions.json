@@ -12,8 +12,8 @@
       },
       {
         "full_name": "[Tax Geography].[Tarapac\u00e1].[CAI\u00d1A]",
-        "caption": "CAMI\u00d1A",
-        "name": "CAMI\u00d1A",
+        "caption": "Cami\u00f1a",
+        "name": "Cami\u00f1a",
         "key": 26,
         "slug": "camina"
       },
@@ -78,8 +78,8 @@
       },
       {
         "full_name": "[Tax Geography].[Antofagasta].[MAR\u00cdA ELENA]",
-        "caption": "MAR\u00cdA ELENA",
-        "name": "MAR\u00cdA ELENA",
+        "caption": "Mar\u00eda Elena",
+        "name": "Mar\u00eda Elena",
         "key": 165,
         "slug": "maria-elena"
       },
@@ -92,8 +92,8 @@
       },
       {
         "full_name": "[Tax Geography].[Antofagasta].[OLLAG\u00dcE]",
-        "caption": "OLLAG\u00dcE",
-        "name": "OLLAG\u00dcE",
+        "caption": "Ollag\u00fce",
+        "name": "Ollag\u00fce",
         "key": 189,
         "slug": "ollague"
       },
@@ -151,15 +151,15 @@
       },
       {
         "full_name": "[Tax Geography].[Atacama].[CHA\u00d1ARAL]",
-        "caption": "CHA\u00d1ARAL",
-        "name": "CHA\u00d1ARAL",
+        "caption": "Cha\u00f1aral",
+        "name": "Cha\u00f1aral",
         "key": 39,
         "slug": "chanaral"
       },
       {
         "full_name": "[Tax Geography].[Atacama].[COPIAP\u00d3]",
-        "caption": "COPIAP\u00d3",
-        "name": "COPIAP\u00d3",
+        "caption": "Copiap\u00f3",
+        "name": "Copiap\u00f3",
         "key": 68,
         "slug": "copiapo"
       },
@@ -224,8 +224,8 @@
       },
       {
         "full_name": "[Tax Geography].[Coquimbo].[COMBARBAL\u00c1]",
-        "caption": "COMBARBAL\u00c1",
-        "name": "COMBARBAL\u00c1",
+        "caption": "Combarbal\u00ce1",
+        "name": "Combarbal\u00e1",
         "key": 62,
         "slug": "combarbala"
       },
@@ -294,8 +294,8 @@
       },
       {
         "full_name": "[Tax Geography].[Coquimbo].[RIO HURTADO]",
-        "caption": "Rio Hurtado",
-        "name": "Rio Hurtado",
+        "caption": "R\u00edo Hurtado",
+        "name": "R\u00edo Hurtado",
         "key": 271,
         "slug": "rio-hurtado"
       },
@@ -308,8 +308,8 @@
       },
       {
         "full_name": "[Tax Geography].[Coquimbo].[VICU\u00d1A]",
-        "caption": "VICU\u00d1A",
-        "name": "VICU\u00d1A",
+        "caption": "Vicu\u00f1a",
+        "name": "Vicu\u00f1a",
         "key": 334,
         "slug": "vicuna"
       }
@@ -374,8 +374,8 @@
       },
       {
         "full_name": "[Tax Geography].[Valpara\u00edso].[CON C\u00d3N]",
-        "caption": "CON C\u00d3N",
-        "name": "CON C\u00d3N",
+        "caption": "Con C\u00f3n",
+        "name": "Con C\u00f3n",
         "key": 63,
         "slug": "con-con"
       },
@@ -458,8 +458,8 @@
       },
       {
         "full_name": "[Tax Geography].[Valpara\u00edso].[OLMU\u00c9]",
-        "caption": "OLMU\u00c9",
-        "name": "OLMU\u00c9",
+        "caption": "Olmu\u00e9",
+        "name": "Olmu\u00e9",
         "key": 190,
         "slug": "olmue"
       },
@@ -486,8 +486,8 @@
       },
       {
         "full_name": "[Tax Geography].[Valpara\u00edso].[PUCHUNCAV\u00cd]",
-        "caption": "PUCHUNCAV\u00cd",
-        "name": "PUCHUNCAV\u00cd",
+        "caption": "Puchuncav\u00ed",
+        "name": "Puchuncav\u00ed",
         "key": 229,
         "slug": "puchuncavi"
       },
@@ -507,8 +507,8 @@
       },
       {
         "full_name": "[Tax Geography].[Valpara\u00edso].[QUILPU\u00c9]",
-        "caption": "QUILPU\u00c9",
-        "name": "QUILPU\u00c9",
+        "caption": "Quilpu\u00e9",
+        "name": "Quilpu\u00e9",
         "key": 253,
         "slug": "quilpue"
       },
@@ -577,8 +577,8 @@
       },
       {
         "full_name": "[Tax Geography].[Valpara\u00edso].[VI\u00d1A DEL MAR]",
-        "caption": "VI\u00d1A DEL MAR",
-        "name": "VI\u00d1A DEL MAR",
+        "caption": "Vi\u00f1a de mar",
+        "name": "Vi\u00f1a de mar",
         "key": 339,
         "slug": "vina-del-mar"
       },
@@ -601,8 +601,8 @@
     "children": [
       {
         "full_name": "[Tax Geography].[O'Higgins].[CH\u00c9PICA]",
-        "caption": "CH\u00c9PICA",
-        "name": "CH\u00c9PICA",
+        "caption": "Ch\u00e9pica",
+        "name": "Ch\u00e9pica",
         "key": 40,
         "slug": "chepica"
       },
@@ -636,8 +636,8 @@
       },
       {
         "full_name": "[Tax Geography].[O'Higgins].[DO\u00d1IHUE]",
-        "caption": "DO\u00d1IHUE",
-        "name": "DO\u00d1IHUE",
+        "caption": "Do\u00f1ihue",
+        "name": "Do\u00f1ihue",
         "key": 82,
         "slug": "donihue"
       },
@@ -678,8 +678,8 @@
       },
       {
         "full_name": "[Tax Geography].[O'Higgins].[MACHAL\u00cd]",
-        "caption": "MACHAL\u00cd",
-        "name": "MACHAL\u00cd",
+        "caption": "Machal\u00ed",
+        "name": "Machal\u00ed",
         "key": 159,
         "slug": "machali"
       },
@@ -692,8 +692,8 @@
       },
       {
         "full_name": "[Tax Geography].[O'Higgins].[MARCHIG\u00dcE]",
-        "caption": "MARCHIG\u00dcE",
-        "name": "MARCHIG\u00dcE",
+        "caption": "Marchig\u00fce",
+        "name": "Marchig\u00fce",
         "key": 164,
         "slug": "marchigue"
       },
@@ -856,15 +856,15 @@
       },
       {
         "full_name": "[Tax Geography].[Maule].[COLB\u00daN]",
-        "caption": "COLB\u00daN",
-        "name": "COLB\u00daN",
+        "caption": "Colb\u00fan",
+        "name": "Colb\u00fan",
         "key": 57,
         "slug": "colbun"
       },
       {
         "full_name": "[Tax Geography].[Maule].[CONSTITUCI\u00d3N]",
-        "caption": "CONSTITUCI\u00d3N",
-        "name": "CONSTITUCI\u00d3N",
+        "caption": "Consituci\u00f3n",
+        "name": "Consituci\u00f3n",
         "key": 66,
         "slug": "constitucion"
       },
@@ -877,8 +877,8 @@
       },
       {
         "full_name": "[Tax Geography].[Maule].[CURIC\u00d3]",
-        "caption": "CURIC\u00d3",
-        "name": "CURIC\u00d3",
+        "caption": "Curic\u00f3",
+        "name": "Curic\u00f3",
         "key": 79,
         "slug": "curico"
       },
@@ -891,15 +891,15 @@
       },
       {
         "full_name": "[Tax Geography].[Maule].[HUALA\u00d1\u00c9]",
-        "caption": "HUALA\u00d1\u00c9",
-        "name": "HUALA\u00d1\u00c9",
+        "caption": "Haula\u00f1\u00e9",
+        "name": "Haula\u00f1\u00e9",
         "key": 105,
         "slug": "hualane"
       },
       {
         "full_name": "[Tax Geography].[Maule].[LICANT\u00c9N]",
-        "caption": "LICANT\u00c9N",
-        "name": "LICANT\u00c9N",
+        "caption": "Licant\u00e9n",
+        "name": "Licant\u00e9n",
         "key": 137,
         "slug": "licanten"
       },
@@ -912,8 +912,8 @@
       },
       {
         "full_name": "[Tax Geography].[Maule].[LONGAV\u00cd]",
-        "caption": "LONGAV\u00cd",
-        "name": "LONGAV\u00cd",
+        "caption": "Longav\u00ed",
+        "name": "Longav\u00ed",
         "key": 148,
         "slug": "longavi"
       },
@@ -975,8 +975,8 @@
       },
       {
         "full_name": "[Tax Geography].[Maule].[RIO CLARO]",
-        "caption": "Rio Claro",
-        "name": "Rio Claro",
+        "caption": "R\u00edo Claro",
+        "name": "R\u00edo Claro",
         "key": 270,
         "slug": "rio-claro"
       },
@@ -1031,8 +1031,8 @@
       },
       {
         "full_name": "[Tax Geography].[Maule].[VICHUQU\u00c9N]",
-        "caption": "VICHUQU\u00c9N",
-        "name": "VICHUQU\u00c9N",
+        "caption": "Vichuqu\u00e9n",
+        "name": "Vichuqu\u00e9n",
         "key": 332,
         "slug": "vichuquen"
       },
@@ -1062,8 +1062,8 @@
     "children": [
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[ALTO BIO BIO]",
-        "caption": "Alto Bio Bio",
-        "name": "Alto Bio Bio",
+        "caption": "Alto Biob\u00edo",
+        "name": "Alto Biob\u00edo",
         "key": 3,
         "slug": "alto-bio-bio"
       },
@@ -1097,8 +1097,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[CA\u00d1ETE]",
-        "caption": "CA\u00d1ETE",
-        "name": "CA\u00d1ETE",
+        "caption": "Ca\u00f1ete",
+        "name": "Ca\u00f1ete",
         "key": 28,
         "slug": "canete"
       },
@@ -1111,15 +1111,15 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[CHILL\u00c1N]",
-        "caption": "CHILL\u00c1N",
-        "name": "CHILL\u00c1N",
+        "caption": "Chill\u00e1n",
+        "name": "Chill\u00e1n",
         "key": 43,
         "slug": "chillan"
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[CHILL\u00c1N VIEJO]",
-        "caption": "CHILL\u00c1N VIEJO",
-        "name": "CHILL\u00c1N VIEJO",
+        "caption": "Chill\u00e1n viejo",
+        "name": "Chill\u00e1n viejo",
         "key": 44,
         "slug": "chillan-viejo"
       },
@@ -1146,8 +1146,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[CONCEPCI\u00d3N]",
-        "caption": "CONCEPCI\u00d3N",
-        "name": "CONCEPCI\u00d3N",
+        "caption": "Concepci\u00f3n",
+        "name": "Concepci\u00f3n",
         "key": 64,
         "slug": "concepcion"
       },
@@ -1188,8 +1188,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[HUALP\u00c9N]",
-        "caption": "HUALP\u00c9N",
-        "name": "HUALP\u00c9N",
+        "caption": "Hualp\u00e9n",
+        "name": "Hualp\u00e9n",
         "key": 106,
         "slug": "hualpen"
       },
@@ -1237,8 +1237,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[MULCH\u00c9N]",
-        "caption": "MULCH\u00c9N",
-        "name": "MULCH\u00c9N",
+        "caption": "Mulch\u00e9n",
+        "name": "Mulch\u00e9n",
         "key": 176,
         "slug": "mulchen"
       },
@@ -1265,8 +1265,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[\u00d1IQU\u00c9N]",
-        "caption": "\u00d1IQU\u00c9N",
-        "name": "\u00d1IQU\u00c9N",
+        "caption": "\u00f1iqu\u00e9n",
+        "name": "\u00f1iqu\u00e9n",
         "key": 185,
         "slug": "niquen"
       },
@@ -1314,8 +1314,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[QUILL\u00d3N]",
-        "caption": "QUILL\u00d3N",
-        "name": "QUILL\u00d3N",
+        "caption": "Quill\u00f3N",
+        "name": "Quill\u00f3N",
         "key": 251,
         "slug": "quillon"
       },
@@ -1342,8 +1342,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[SAN FABI\u00c1N]",
-        "caption": "SAN FABI\u00c1N",
-        "name": "SAN FABI\u00c1N",
+        "caption": "San Fabi\u00e1n",
+        "name": "San Fabi\u00e1n",
         "key": 284,
         "slug": "san-fabian"
       },
@@ -1356,8 +1356,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[SAN NICOL\u00c1S]",
-        "caption": "SAN NICOL\u00c1S",
-        "name": "SAN NICOL\u00c1S",
+        "caption": "San Nicol\u00e1s",
+        "name": "San Nicol\u00e1s",
         "key": 294,
         "slug": "san-nicolas"
       },
@@ -1377,8 +1377,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[SANTA B\u00c1RBARA]",
-        "caption": "SANTA B\u00c1RBARA",
-        "name": "SANTA B\u00c1RBARA",
+        "caption": "Santa B\u00e1rbara",
+        "name": "Santa B\u00e1rbara",
         "key": 303,
         "slug": "santa-barbara"
       },
@@ -1405,8 +1405,8 @@
       },
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[TOM\u00c9]",
-        "caption": "TOM\u00c9",
-        "name": "TOM\u00c9",
+        "caption": "Tom\u00e9",
+        "name": "Tom\u00e9",
         "key": 323,
         "slug": "tome"
       },
@@ -1485,8 +1485,8 @@
       },
       {
         "full_name": "[Tax Geography].[Araucan\u00eda].[CURACAUT\u00cdN]",
-        "caption": "CURACAUT\u00cdN",
-        "name": "CURACAUT\u00cdN",
+        "caption": "Curacaut\u00edn",
+        "name": "Curacaut\u00edn",
         "key": 73,
         "slug": "curacautin"
       },
@@ -1590,22 +1590,22 @@
       },
       {
         "full_name": "[Tax Geography].[Araucan\u00eda].[PITRUFQU\u00c9N]",
-        "caption": "PITRUFQU\u00c9N",
-        "name": "PITRUFQU\u00c9N",
+        "caption": "Pitrufqu\u00e9n",
+        "name": "Pitrufqu\u00e9n",
         "key": 222,
         "slug": "pitrufquen"
       },
       {
         "full_name": "[Tax Geography].[Araucan\u00eda].[PUC\u00d3N]",
-        "caption": "PUC\u00d3N",
-        "name": "PUC\u00d3N",
+        "caption": "Puc\u00f3n",
+        "name": "Puc\u00f3n",
         "key": 230,
         "slug": "pucon"
       },
       {
         "full_name": "[Tax Geography].[Araucan\u00eda].[PUR\u00c9N]",
-        "caption": "PUR\u00c9N",
-        "name": "PUR\u00c9N",
+        "caption": "Pur\u00e9n",
+        "name": "Pur\u00e9n",
         "key": 240,
         "slug": "puren"
       },
@@ -1639,15 +1639,15 @@
       },
       {
         "full_name": "[Tax Geography].[Araucan\u00eda].[TOLT\u00c9N]",
-        "caption": "TOLT\u00c9N",
-        "name": "TOLT\u00c9N",
+        "caption": "Tolt\u00e9n",
+        "name": "Tolt\u00e9n",
         "key": 322,
         "slug": "tolten"
       },
       {
         "full_name": "[Tax Geography].[Araucan\u00eda].[TRAIGU\u00c9N]",
-        "caption": "TRAIGU\u00c9N",
-        "name": "TRAIGU\u00c9N",
+        "caption": "Traigu\u00e9n",
+        "name": "Traigu\u00e9n",
         "key": 326,
         "slug": "traiguen"
       },
@@ -1660,8 +1660,8 @@
       },
       {
         "full_name": "[Tax Geography].[Araucan\u00eda].[VILC\u00daN]",
-        "caption": "VILC\u00daN",
-        "name": "VILC\u00daN",
+        "caption": "Vilc\u00fan",
+        "name": "Vilc\u00fan",
         "key": 335,
         "slug": "vilcun"
       },
@@ -1705,8 +1705,8 @@
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[CHAIT\u00c9N]",
-        "caption": "CHAIT\u00c9N",
-        "name": "CHAIT\u00c9N",
+        "caption": "Chait\u00e9n",
+        "name": "Chait\u00e9n",
         "key": 37,
         "slug": "chaiten"
       },
@@ -1719,15 +1719,15 @@
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[COCHAM\u00d3]",
-        "caption": "COCHAM\u00d3",
-        "name": "COCHAM\u00d3",
+        "caption": "Cocham\u00f3",
+        "name": "Cocham\u00f3",
         "key": 50,
         "slug": "cochamo"
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[CURACO DE V\u00c9LEZ]",
-        "caption": "CURACO DE V\u00c9LEZ",
-        "name": "CURACO DE V\u00c9LEZ",
+        "caption": "Curaco de V\u00e9lez",
+        "name": "Curaco de V\u00e9lez",
         "key": 75,
         "slug": "curaco-de-velez"
       },
@@ -1754,15 +1754,15 @@
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[FUTALEUF\u00da]",
-        "caption": "FUTALEUF\u00da",
-        "name": "FUTALEUF\u00da",
+        "caption": "Futaleuf\u00fa",
+        "name": "Futaleuf\u00fa",
         "key": 96,
         "slug": "futaleufu"
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[HUALAIHU\u00c9]",
-        "caption": "HUALAIHU\u00c9",
-        "name": "HUALAIHU\u00c9",
+        "caption": "Hualaihu\u00e9",
+        "name": "Hualaihu\u00e9",
         "key": 104,
         "slug": "hualaihue"
       },
@@ -1782,8 +1782,8 @@
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[MAULL\u00cdN]",
-        "caption": "MAULL\u00cdN",
-        "name": "MAULL\u00cdN",
+        "caption": "Maull\u00edn",
+        "name": "Maull\u00edn",
         "key": 169,
         "slug": "maullin"
       },
@@ -1824,8 +1824,8 @@
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[PUQUELD\u00d3N]",
-        "caption": "PUQUELD\u00d3N",
-        "name": "PUQUELD\u00d3N",
+        "caption": "Puqueld\u00f3n",
+        "name": "Puqueld\u00f3n",
         "key": 239,
         "slug": "puqueldon"
       },
@@ -1845,15 +1845,15 @@
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[QUEIL\u00c9N]",
-        "caption": "QUEIL\u00c9N",
-        "name": "QUEIL\u00c9N",
+        "caption": "Queil\u00e9n",
+        "name": "Queil\u00e9n",
         "key": 245,
         "slug": "queilen"
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[QUELL\u00d3N]",
-        "caption": "QUELL\u00d3N",
-        "name": "QUELL\u00d3N",
+        "caption": "Quell\u00f3n",
+        "name": "Quell\u00f3n",
         "key": 246,
         "slug": "quellon"
       },
@@ -1873,8 +1873,8 @@
       },
       {
         "full_name": "[Tax Geography].[Los Lagos].[RIO NEGRO]",
-        "caption": "Rio Negro",
-        "name": "Rio Negro",
+        "caption": "R\u00edo Negro",
+        "name": "R\u00edo Negro",
         "key": 273,
         "slug": "rio-negro"
       },
@@ -1904,8 +1904,8 @@
     "children": [
       {
         "full_name": "[Tax Geography].[Ays\u00e9n].[AYS\u00c9N]",
-        "caption": "AYS\u00c9N",
-        "name": "AYS\u00c9N",
+        "caption": "Ays\u00e9n",
+        "name": "Ays\u00e9n",
         "key": 13,
         "slug": "aysen"
       },
@@ -1960,8 +1960,8 @@
       },
       {
         "full_name": "[Tax Geography].[Ays\u00e9n].[RIO IBA\u00d1EZ]",
-        "caption": "RIO IBA\u00d1EZ",
-        "name": "RIO IBA\u00d1EZ",
+        "caption": "R\u00edo Iba\u00f1ez",
+        "name": "R\u00edo Iba\u00f1ez",
         "key": 272,
         "slug": "rio-ibanez"
       },
@@ -2026,8 +2026,8 @@
       },
       {
         "full_name": "[Tax Geography].[Magallanes].[RIO VERDE]",
-        "caption": "Rio Verde",
-        "name": "Rio Verde",
+        "caption": "R\u00edo Verde",
+        "name": "R\u00edo Verde",
         "key": 274,
         "slug": "rio-verde"
       },
@@ -2054,8 +2054,8 @@
       },
       {
         "full_name": "[Tax Geography].[Magallanes].[ANT\u00c1RTICA]",
-        "caption": "ANT\u00c1RTICA",
-        "name": "ANT\u00c1RTICA",
+        "caption": "Ant\u00e1rtica",
+        "name": "Ant\u00e1rtica",
         "key": 345,
         "slug": "antartica"
       }
@@ -2071,8 +2071,8 @@
     "children": [
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[ALHU\u00c9]",
-        "caption": "ALHU\u00c9",
-        "name": "ALHU\u00c9",
+        "caption": "Alhu\u00e9",
+        "name": "Alhu\u00e9",
         "key": 2,
         "slug": "alhue"
       },
@@ -2113,15 +2113,15 @@
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[CONCHAL\u00cd]",
-        "caption": "CONCHAL\u00cd",
-        "name": "CONCHAL\u00cd",
+        "caption": "Conchal\u00ed",
+        "name": "Conchal\u00ed",
         "key": 65,
         "slug": "conchali"
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[CURACAV\u00cd]",
-        "caption": "CURACAV\u00cd",
-        "name": "CURACAV\u00cd",
+        "caption": "Curacav\u00ed",
+        "name": "Curacav\u00ed",
         "key": 74,
         "slug": "curacavi"
       },
@@ -2239,15 +2239,15 @@
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[MAIP\u00da]",
-        "caption": "MAIP\u00da",
-        "name": "MAIP\u00da",
+        "caption": "Maip\u00fa",
+        "name": "Maip\u00fa",
         "key": 162,
         "slug": "maipu"
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[MARIA PINTO]",
-        "caption": "Maria Pinto",
-        "name": "Maria Pinto",
+        "caption": "Mar\u00faa Pinto",
+        "name": "Mar\u00faa Pinto",
         "key": 166,
         "slug": "maria-pinto"
       },
@@ -2260,8 +2260,8 @@
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[\u00d1U\u00d1OA]",
-        "caption": "\u00d1U\u00d1OA",
-        "name": "\u00d1U\u00d1OA",
+        "caption": "\u00d1u\u00f1oa",
+        "name": "\u00d1u\u00f1oa",
         "key": 186,
         "slug": "nunoa"
       },
@@ -2288,15 +2288,15 @@
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[PE\u00d1AFLOR]",
-        "caption": "PE\u00d1AFLOR",
-        "name": "PE\u00d1AFLOR",
+        "caption": "Pe\u00f1aflor",
+        "name": "Pe\u00f1aflor",
         "key": 211,
         "slug": "penaflor"
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[PE\u00d1ALOL\u00c9N]",
-        "caption": "PE\u00d1ALOL\u00c9N",
-        "name": "PE\u00d1ALOL\u00c9N",
+        "caption": "Pe\u00f1alol\u00e9n",
+        "name": "Pe\u00f1alol\u00e9n",
         "key": 212,
         "slug": "penalolen"
       },
@@ -2365,15 +2365,15 @@
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[SAN JOAQU\u00cdN]",
-        "caption": "SAN JOAQU\u00cdN",
-        "name": "SAN JOAQU\u00cdN",
+        "caption": "San Joaqu\u00edn",
+        "name": "San Joaqu\u00edn",
         "key": 290,
         "slug": "san-joaquin"
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[SAN JOS\u00c9 DE MAIPO]",
-        "caption": "SAN JOS\u00c9 DE MAIPO",
-        "name": "SAN JOS\u00c9 DE MAIPO",
+        "caption": "San Jos\u00e9 de Maipo",
+        "name": "San Jos\u00e9 de Maipo",
         "key": 291,
         "slug": "san-jose-de-maipo"
       },
@@ -2393,8 +2393,8 @@
       },
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[SAN RAM\u00d3N]",
-        "caption": "SAN RAM\u00d3N",
-        "name": "SAN RAM\u00d3N",
+        "caption": "San Ram\u00f3n",
+        "name": "San Ram\u00f3n",
         "key": 300,
         "slug": "san-ramon"
       },
@@ -2448,10 +2448,10 @@
         "slug": "santiago-sur"
       }
     ],
-    "caption": "Region Metropolitana Santiago",
+    "caption": "Metropolitana",
     "full_name": "[Tax Geography].[Region Metropolitana Santiago]",
     "slug": "region-metropolitana-santiago",
-    "name": "Region Metropolitana Santiago"
+    "name": "Metropolitana"
   },
   {
     "key": 14,
@@ -2473,8 +2473,8 @@
       },
       {
         "full_name": "[Tax Geography].[Los R\u00edos].[LA UNI\u00d3N]",
-        "caption": "LA UNI\u00d3N",
-        "name": "LA UNI\u00d3N",
+        "caption": "La Uni\u00f3n",
+        "name": "La Uni\u00f3n",
         "key": 127,
         "slug": "la-union"
       },
@@ -2501,8 +2501,8 @@
       },
       {
         "full_name": "[Tax Geography].[Los R\u00edos].[M\u00c1FIL]",
-        "caption": "M\u00c1FIL",
-        "name": "M\u00c1FIL",
+        "caption": "M\u00e1fil",
+        "name": "M\u00e1fil",
         "key": 161,
         "slug": "mafil"
       },
@@ -2529,8 +2529,8 @@
       },
       {
         "full_name": "[Tax Geography].[Los R\u00edos].[RIO BUENO]",
-        "caption": "Rio Bueno",
-        "name": "Rio Bueno",
+        "caption": "R\u00edo Bueno",
+        "name": "R\u00edo Bueno",
         "key": 269,
         "slug": "rio-bueno"
       },

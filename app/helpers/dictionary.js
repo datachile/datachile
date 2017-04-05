@@ -1,3 +1,5 @@
+import { FORMATTERS } from "helpers/formatters";
+
 const chile = {
 		"key": 9999,
     	"background": "chile3.png",
@@ -5,6 +7,7 @@ const chile = {
 	    "full_name": "[Tax Geography].[Chile]",
 	    "slug": "chile",
 	    "name": "Chile",
+	    "clean": "Chile",
 	    "type": "pais",
 	    "parent": false,
 	    "url": '/geo/chile'
@@ -22,6 +25,7 @@ GEO.forEach(r => {
 		r.type = 'region'
 		r.parent = false
 		r.url = '/geo/'+r.slug
+		r.clean = FORMATTERS.cleanString(r.name)
 		GEOMAP[r.slug] = r
 		GEOARRAY.push(r)
 		r.children.forEach(c => {
@@ -31,6 +35,7 @@ GEO.forEach(r => {
 			c.parent = r
 			c.background = parent.background
 			c.url = '/geo/'+parent.slug+'/'+c.slug
+			c.clean = FORMATTERS.cleanString(c.name)
 			GEOMAP[c.slug] = c
 			GEOARRAY.push(c)
 		})
