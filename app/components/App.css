@@ -95,3 +95,15 @@ bold 700
 	line-height: 21px;
 }
 */
+
+
+/* global classes */
+.full-container{
+	width: 100%;
+}
+
+.dc-container{
+  margin: 0 auto;
+  max-width: var(--width);
+  width: 100%;
+}

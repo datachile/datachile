@@ -10,13 +10,18 @@ class Nav extends Component {
   render() {
     return (
       <nav className="nav">
-        <div className="nav-links">
-          <Link className="logo" to="/">
-            <img src="/images/logos/logo-datachile.svg"/>
-          </Link>
-        </div>
-        <div className="nav-links">
-          <Link className="link" to="/about">About</Link>
+        <div className="dc-container nav-container">
+          <div className="nav-links">
+            <Link className="logo" to="/">
+              <img src="/images/logos/logo-datachile.svg"/>
+            </Link>
+          </div>
+          <div className="nav-links">
+            <Link className="link" to="/">Home</Link>
+            <Link className="link" to="/explore">Explore</Link>
+            <Link className="link" to="/profile">Profile</Link>
+            <Link className="link" to="/topics">Topics</Link>
+          </div>
         </div>
       </nav>
     );

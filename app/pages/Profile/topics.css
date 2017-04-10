@@ -6,6 +6,7 @@
   font-size: 30px;
   color: var(--color-title);
   letter-spacing: 0;
+  background-color: var(--snow);
   & :focus{
     outline:none;
   }

@@ -4,7 +4,7 @@ module.exports = {
   "color-p": "#6E7370",
 
   "snow": "#ffffff",
-  "dark": "#02132B",
+  "dark": "#191928",
   "light": "#082138",
   "accent": "#4B71B5",
   "near-black": "#1A1B2D",

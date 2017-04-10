@@ -21,7 +21,7 @@ class Home extends Component {
           <div className="image"></div>
           <div className="gradient"></div>
         </div>
-        <div className="intro">
+        <div className="intro dc-container">
           <div className="text">
             <h2 className="title">
               <span>Data Chile</span>
@@ -32,18 +32,17 @@ class Home extends Component {
             <Search className="search-home" local={ true } limit={ 5 } />
           </div>
         </div>
+        <h3 className="title-tiles dc-container">Explore reatured profiles</h3>
         <div className="tiles">
-          <h3 className="title">Explore reatured profiles</h3>
-          
-          {
-            featured.map(f =>
-                <FeaturedBox key={f.key} item={f} />
-            )
-          }
+          <div className="dc-container">
+            
+            {
+              featured.map(f =>
+                  <FeaturedBox key={f.key} item={f} />
+              )
+            }
+          </div>
 
-          <div className="spacer"></div>
-          <div className="spacer"></div>
-          <div className="spacer"></div>
         </div>
       </div>
     );

@@ -22,10 +22,6 @@ body {
 }
 .home {
   font-family: var(--font-family-chivo);
-  margin: 0 auto;
-  max-width: var(--width);
-  padding: var(--nav-height) var(--gutter) 0;
-  width: 100%;
 
   & .splash {
     height: 800px;
@@ -47,7 +43,7 @@ body {
     }
 
     & .gradient {
-      background-image: linear-gradient(-180deg, rgba(26,27,44,0.00) 0%, rgba(0,0,1,0.48) 92%, rgba(0,0,0,1) 100%);
+      background-color: rgba(25, 25, 40,0.5);
       bottom: 0;
       left: 0;
       position: absolute;
@@ -61,7 +57,8 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding-top: 100px;
+    padding-top: 300px;
+    padding-bottom: 100px;
     justify-content: space-between;
     align-items: center;
 
@@ -92,15 +89,7 @@ body {
 
   }
 
-  & .tiles {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: calc(var(--gutter) * 6);
-    width: 100%;
-
-    & .title {
-      flex: none;
+  & .title-tiles {
       font-weight: 400;
       text-transform: uppercase;
       width: 100%;
@@ -108,14 +97,16 @@ body {
       font-size: 24px;
       color: var(--snow);
       letter-spacing: 0.05px;
+      margin-bottom: 40px; 
     }
 
-    & .spacer {
-      flex: 1;
-      height: 100px;
-      margin: var(--gutter);
-      min-width: 200px;
-      width: 200px;
+  & .tiles {
+    /*margin-top: calc(var(--gutter) * 6);*/
+    background-color: var(--dark);
+    & .dc-container{    
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
 
   }

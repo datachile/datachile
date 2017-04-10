@@ -1,50 +1,53 @@
 .nav {
-  margin: 20px auto;
+  width: 100%;
+
+  margin: 60px auto;
   position: absolute;
-  left: 10%;
+  left: 0;
   top: 0;
-  width: 80%;
   z-index: 100;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 
-  & .nav-links{
-    display: flex;
-    align-items: center;
-    & .logo {
-      display: inline-block;
-      margin-right: 30px;
-      text-decoration: none;
-      text-transform: uppercase;
+  & .nav-container{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+     & .nav-links{
+      display: flex;
+      align-items: center;
+      & .logo {
+        display: inline-block;
+        margin-right: 30px;
+        text-decoration: none;
+        text-transform: uppercase;
 
-      & .data {
-        color: white;
+        & .data {
+          color: white;
+        }
+
+        & .chile {
+          color: var(--light);
+          margin-left: 5px;
+        }
+
       }
 
-      & .chile {
-        color: var(--light);
-        margin-left: 5px;
-      }
+      & .link {
+        cursor: pointer;
+        display: inline-block;
+        margin: 10px 20px;
+        opacity: 0.8;
+        text-decoration: none;
+        transition: opacity 0.2s;
+        font-family: var(--font-family-chivo);
+        font-weight: 400;
+        font-size: 12px;
+        color: var(--snow);
+        letter-spacing: 0.08px;
+        text-transform: uppercase;
 
-    }
-
-    & .link {
-      cursor: pointer;
-      display: inline-block;
-      margin: 10px 20px;
-      opacity: 0.8;
-      text-decoration: none;
-      transition: opacity 0.2s;
-      font-family: var(--font-family-chivo);
-      font-weight: 400;
-      font-size: 12px;
-      color: var(--snow);
-      letter-spacing: 0.08px;
-      text-transform: uppercase;
-
-      &:hover {
-        opacity: 1;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }

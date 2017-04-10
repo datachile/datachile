@@ -1,3 +1,6 @@
+body {
+    background-color: var(--snow);
+}
 .about {
     & .glossary {
       & .definition {

@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     const {children, searchActive} = this.props;
     return (
-        <div className="container">
+        <div className="full-container">
           { searchActive ? <Search /> : null }
           <Nav />
           { children }
