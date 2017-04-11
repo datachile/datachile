@@ -14,6 +14,7 @@
      & .nav-links{
       display: flex;
       align-items: center;
+      padding: 0px var(--gutter);
       & .logo {
         display: inline-block;
         margin-right: 30px;

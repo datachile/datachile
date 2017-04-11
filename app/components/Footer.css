@@ -3,14 +3,13 @@ footer {
   background-color: var(--dark);
 
   & .footer-container{
-      padding: var(--gutter) 0px;
       flex-wrap: wrap;
       justify-content: space-between;
   
       & .logos {
 
         box-sizing: border-box;
-        padding: 25px;
+        padding: var(--gutter);
         text-align: center;
         width: 100%;
 
@@ -36,9 +35,10 @@ footer {
       }
 
       & .nav-links {
+        padding: var(--gutter);
         display: flex;
         justify-content: flex-end;
-        flex-direction: wrap;
+        flex-wrap: wrap;
         & .link{
           font-family: var(--font-family-chivo);
           font-weight: 300;

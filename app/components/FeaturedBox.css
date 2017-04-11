@@ -4,12 +4,9 @@
   background-size: auto 200%;
   color: white;
   display: flex;
-  flex: 1;
+  flex: 1 1 250px;
   font-size: 16px;
   font-weight: 600;
-  margin: 15px;
-  min-width: 25%;
-  position: relative;
   text-align: center;
   text-decoration: none;
   transition: background-position 0.2s;
@@ -18,6 +15,7 @@
   min-height: 200px;
   position: relative;
   align-content: stretch;
+  margin: var(--gutter);
 
   & .tile-filter{
     position: absolute;

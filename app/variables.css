@@ -1,0 +1,13 @@
+:root {
+  --break-xxs: 320px;
+  --break-xs: 480px;
+  --break-sm: 768px;
+  --break-md: 992px;
+  --break-lg: 1200px;
+}
+
+@custom-media --xxsmall (max-width: 320px);
+@custom-media --xsmall (max-width: 480px);
+@custom-media --small (max-width: 768px);
+@custom-media --medium (max-width: 992px);
+@custom-media --large (max-width: 1200px);

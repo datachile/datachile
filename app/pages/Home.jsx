@@ -32,15 +32,18 @@ class Home extends Component {
             <Search className="search-home" local={ true } limit={ 5 } />
           </div>
         </div>
-        <h3 className="title-tiles dc-container">Explore reatured profiles</h3>
+        <div className="dc-container">
+          <h3 className="title-tiles">Explore reatured profiles</h3>
+        </div>
         <div className="tiles">
           <div className="dc-container">
-            
-            {
-              featured.map(f =>
-                  <FeaturedBox key={f.key} item={f} />
-              )
-            }
+            <div className="tiles-container">
+              {
+                featured.map(f =>
+                    <FeaturedBox key={f.key} item={f} />
+                )
+              }
+            </div>
           </div>
 
         </div>
