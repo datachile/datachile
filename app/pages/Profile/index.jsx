@@ -1,8 +1,9 @@
 import React, { PropTypes } from "react";
 import {connect} from "react-redux";
 import {fetchStats} from "actions/profile";
-import {Profile, TopicTitle} from "datawheel-canon";
+import {Profile} from "datawheel-canon";
 import SourceNote from "components/SourceNote";
+import TopicBlock from "components/TopicBlock";
 import d3plus from "helpers/d3plus";
 
 import { GEOMAP } from "helpers/dictionary";
@@ -137,58 +138,39 @@ class GeoProfile extends Profile {
 
             </div>
 
-            <TopicTitle slug="economy">
-                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-economy.svg')"}}></div>
-                Economy
-            </TopicTitle>
+            <TopicBlock slug="economy" name="Economy" targets={['Exports By Product','Exports By Destination','Imports By Origin','Output By Industry','Trade Balance']}>
+    
+                <ExportsByProduct />
+                <ExportsByDestination />
+                <ImportsByOrigin />
+                <OutputByIndustry />
+                <TradeBalance />
 
-            <ExportsByProduct />
-            <ExportsByDestination />
-            <ImportsByOrigin />
-            <OutputByIndustry />
-            <TradeBalance />
-            
-            <TopicTitle slug="innovation">
-                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-innovation.svg')"}}></div>
-                Innovation
-            </TopicTitle>
+            </TopicBlock>
 
-            <p className="soon">Soon...</p>
+            <TopicBlock slug="innovation" name="Innovation" targets={[]}>
+                <p className="soon">Soon...</p>
+            </TopicBlock>
 
-            <TopicTitle slug="education">
-                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-education.svg')"}}></div>
-                Education
-            </TopicTitle>
+            <TopicBlock slug="education" name="Education" targets={[]}>
+                <p className="soon">Soon...</p>
+            </TopicBlock>
 
-            <p className="soon">Soon...</p>
+            <TopicBlock slug="environment" name="Environment" targets={[]}>
+                <p className="soon">Soon...</p>
+            </TopicBlock>
 
-            <TopicTitle slug="environment">
-                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-environment.svg')"}}></div>
-                Environment
-            </TopicTitle>
+            <TopicBlock slug="demographics" name="Demographics" targets={[]}>
+                <p className="soon">Soon...</p>
+            </TopicBlock>
 
-            <p className="soon">Soon...</p>
+            <TopicBlock slug="health" name="Health" targets={[]}>
+                <p className="soon">Soon...</p>
+            </TopicBlock>
 
-            <TopicTitle slug="demographics">
-                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-demographics.svg')"}}></div>
-                Demographics
-            </TopicTitle>
-
-            <p className="soon">Soon...</p>
-
-            <TopicTitle slug="health">
-                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-health.svg')"}}></div>
-                Health
-            </TopicTitle>
-
-            <p className="soon">Soon...</p>
-
-            <TopicTitle slug="politics">
-                <div className="icon" style={{backgroundImage: "url('/images/profile-icon/icon-politics.svg')"}}></div>
-                Politics
-            </TopicTitle>
-
-            <p className="soon">Soon...</p>
+            <TopicBlock slug="politics" name="Politics" targets={[]}>
+                <p className="soon">Soon...</p>
+            </TopicBlock>
 
         </div>
     );
