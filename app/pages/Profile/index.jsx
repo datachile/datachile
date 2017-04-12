@@ -1,7 +1,8 @@
 import React, { PropTypes } from "react";
 import {connect} from "react-redux";
 import {fetchStats} from "actions/profile";
-import {Profile, Stat, TopicTitle} from "datawheel-canon";
+import {Profile, TopicTitle} from "datawheel-canon";
+import SourceNote from "components/SourceNote";
 import d3plus from "helpers/d3plus";
 
 import { GEOMAP } from "helpers/dictionary";
@@ -41,11 +42,10 @@ class GeoProfile extends Profile {
 
     const stats = {
         population: '17.5M',
-        population_updated_at: 2013,
         age_avg: 300.000,
-        age_avg_updated_at: 2013,
         income_avg: 31.5,
-        income_avg_updated_at: 2013
+        source: 'INE Censo',
+        source_year: 2013
     }
 
     const {attrs, focus} = this.props;
@@ -71,15 +71,15 @@ class GeoProfile extends Profile {
                             <div className="subtitle">{ geo.type }</div>
                             <div className="stat">
                                 <div className="value">{ stats.population }</div>
-                                <div className="label">Population  ({ stats.population_updated_at })</div>
+                                <div className="label">Population</div>
                             </div>
                             <div className="stat">
                                 <div className="value">${ stats.income_avg }</div>
-                                <div className="label">Average Household ({ stats.income_avg_updated_at })</div>
+                                <div className="label">Average Household</div>
                             </div>
                             <div className="stat">
                                 <div className="value">{ stats.age_avg } years</div>
-                                <div className="label">Average age ({ stats.age_avg_updated_at })</div>
+                                <div className="label">Average age</div>
                             </div>
                         </div>
 
@@ -89,37 +89,51 @@ class GeoProfile extends Profile {
                     </div>
                 </div>
 
-                <div className="subnav">
-                    <a className="sublink" href="#economy">
-                        <img className="icon" src="/images/profile-icon/icon-economy.svg" />
-                        Economy
-                    </a>
-                    <a className="sublink" href="#innovation">
-                        <img className="icon" src="/images/profile-icon/icon-innovation.svg" />
-                        Innovation
-                    </a>
-                    <a className="sublink" href="#education">
-                        <img className="icon" src="/images/profile-icon/icon-education.svg" />
-                        Education
-                    </a>
-                    <a className="sublink" href="#environment">
-                        <img className="icon" src="/images/profile-icon/icon-environment.svg" />
-                        Environment
-                    </a>
-                    <a className="sublink" href="#demographics">
-                        <img className="icon" src="/images/profile-icon/icon-demographics.svg" />
-                        Demographics
-                    </a>
-                    <a className="sublink" href="#health">
-                        <img className="icon" src="/images/profile-icon/icon-health.svg" />
-                        Health
-                    </a>
-                    <a className="sublink" href="#politics">
-                        <img className="icon" src="/images/profile-icon/icon-politics.svg" />
-                        Politics
-                    </a>
+                <div className="dc-container">
+                    <div className="subnav">
+                        <a className="sublink" href="#economy">
+                            <img className="icon" src="/images/profile-icon/icon-economy.svg" />
+                            Economy
+                        </a>
+                        <a className="sublink" href="#innovation">
+                            <img className="icon" src="/images/profile-icon/icon-innovation.svg" />
+                            Innovation
+                        </a>
+                        <a className="sublink" href="#education">
+                            <img className="icon" src="/images/profile-icon/icon-education.svg" />
+                            Education
+                        </a>
+                        <a className="sublink" href="#environment">
+                            <img className="icon" src="/images/profile-icon/icon-environment.svg" />
+                            Environment
+                        </a>
+                        <a className="sublink" href="#demographics">
+                            <img className="icon" src="/images/profile-icon/icon-demographics.svg" />
+                            Demographics
+                        </a>
+                        <a className="sublink" href="#health">
+                            <img className="icon" src="/images/profile-icon/icon-health.svg" />
+                            Health
+                        </a>
+                        <a className="sublink" href="#politics">
+                            <img className="icon" src="/images/profile-icon/icon-politics.svg" />
+                            Politics
+                        </a>
 
+                    </div>
                 </div>
+
+                <div className="dc-container">
+                    <div className="sources">
+                        <SourceNote icon="/images/icons/icon-source.svg">
+                            <strong>Data source:</strong> {stats.source} - {stats.source_year}
+                        </SourceNote>
+                        <SourceNote icon="/images/icons/icon-camera-source.svg">
+                            <strong>Pic by:</strong> {geo.background_source}
+                        </SourceNote>
+                    </div>
+                </div>
+
 
             </div>
 

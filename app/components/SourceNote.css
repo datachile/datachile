@@ -1,0 +1,19 @@
+.source-note {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0px;
+  & .source-note-img {
+    margin-right: 10px;
+  }
+  & .source-note-txt {
+    margin-top: 2px;
+    font-family: var(--font-family-chivo);
+    font-weight: 400;
+    font-size: 9px;
+    color: #E5E5E5;
+    letter-spacing: 0.05px;
+    & strong{
+      font-weight: 700;
+    }
+  }
+}

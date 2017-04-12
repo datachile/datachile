@@ -2,6 +2,7 @@
   {
     "key": 1,
     "background": "tarapaca_011.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Tarapac\u00e1].[ALTO HOSPICIO]",
@@ -61,6 +62,7 @@
   {
     "key": 2,
     "background": "antofagasta_022.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Antofagasta].[ANTOFAGASTA]",
@@ -134,6 +136,7 @@
   {
     "key": 3,
     "background": "atacama_03101.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Atacama].[ALTO DEL CARMEN]",
@@ -207,6 +210,7 @@
   {
     "key": 4,
     "background": "coquimbo_04.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Coquimbo].[ANDACOLLO]",
@@ -322,6 +326,7 @@
   {
     "key": 5,
     "background": "valparaiso_05101.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Valpara\u00edso].[ALGARROBO]",
@@ -598,6 +603,7 @@
   {
     "key": 6,
     "background": "o-higgins_06108.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[O'Higgins].[CH\u00c9PICA]",
@@ -839,6 +845,7 @@
   {
     "key": 7,
     "background": "maule_07.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Maule].[CAUQUENES]",
@@ -1059,6 +1066,7 @@
   {
     "key": 8,
     "background": "biobio.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Biob\u00edo].[ALTO BIO BIO]",
@@ -1447,6 +1455,7 @@
   {
     "key": 9,
     "background": "araucania_091.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Araucan\u00eda].[ANGOL]",
@@ -1681,6 +1690,7 @@
   {
     "key": 10,
     "background": "los-lagos_10301.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Los Lagos].[ANCUD]",
@@ -1901,6 +1911,7 @@
   {
     "key": 11,
     "background": "aysen_11.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Ays\u00e9n].[AYS\u00c9N]",
@@ -1981,6 +1992,7 @@
   {
     "key": 12,
     "background": "magallanes_12.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Magallanes].[CABO DE HORNOS]",
@@ -2068,6 +2080,7 @@
   {
     "key": 13,
     "background": "region-metropolitana-santiago.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Region Metropolitana Santiago].[ALHU\u00c9]",
@@ -2456,6 +2469,7 @@
   {
     "key": 14,
     "background": "los-rios.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Los R\u00edos].[CORRAL]",
@@ -2550,6 +2564,7 @@
   {
     "key": 15,
     "background": "arica-y-parinacota_152.jpg",
+    "background_source":"Author example",
     "children": [
       {
         "full_name": "[Tax Geography].[Arica y Parinacota].[ARICA]",

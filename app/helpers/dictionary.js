@@ -3,6 +3,7 @@ import { FORMATTERS } from "helpers/formatters";
 const chile = {
 		"key": 9999,
     	"background": "chile3.png",
+    	"background_source": "Author example",
 		"caption": "Chile",
 	    "full_name": "[Tax Geography].[Chile]",
 	    "slug": "chile",
@@ -36,6 +37,7 @@ GEO.forEach(r => {
 			c.type = 'comuna'
 			c.parent = r
 			c.background = parent.background
+			c.background_source = parent.background_source
 			c.url = '/geo/'+parent.slug+'/'+c.slug
 			c.map = 'map-'+parent.slug+'.svg'
 			c.clean = FORMATTERS.cleanString(c.name)

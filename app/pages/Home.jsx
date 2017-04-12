@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import { GEO } from "helpers/dictionary";
 import { GEOMAP } from "helpers/dictionary";
 import FeaturedBox from "components/FeaturedBox";
+import SourceNote from "components/SourceNote";
 import Search from "components/Search";
 
 import "./Home.css";
@@ -43,6 +44,11 @@ class Home extends Component {
                     <FeaturedBox key={f.key} item={f} />
                 )
               }
+            </div>
+            <div className="source-container">
+              <SourceNote icon="/images/icons/icon-camera-source.svg">
+                  <strong>Pic by:</strong> Example Author
+              </SourceNote>
             </div>
           </div>
 

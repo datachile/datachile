@@ -133,6 +133,9 @@ body {
         flex-wrap: wrap;
         justify-content: space-between;
       }
+      & .source-container{
+        padding: var(--gutter);
+      }
     }
 
   }
