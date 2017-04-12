@@ -45,44 +45,37 @@
       display: flex;
       margin: 0 auto;
       justify-content: center;
-      width: 80%;
-    }
-
-    & .viz {
-      box-sizing: border-box;
-      display: inline-block;
-      flex: 1;
-      margin: 100px 25px;
-      vertical-align: top;
+      margin-top: 200px;
     }
 
     & .meta {
       box-sizing: border-box;
       display: inline-block;
-      flex: 1;
-      margin: 100px 25px;
+      flex: 0.4;
       vertical-align: top;
-
+      margin: var(--gutter);
       & .title {
         font-family: var(--font-family-chivo);
         font-weight: 300;
-        font-size: 45pt;
+        font-size: 45px;
         color: var(--snow);
+        margin: 10px 0px;
       }
 
       & .subtitle {
         text-transform: uppercase;
         font-family: var(--font-family-chivo);
         font-weight: 300;
-        font-size: 14pt;
+        font-size: 14px;
         color: var(--snow);
+        margin-bottom: 40px;
       }
 
       & .parent {
         text-transform: uppercase;
         font-family: var(--font-family-chivo);
         font-weight: 300;
-        font-size: 14pt;
+        font-size: 14px;
         color: var(--snow);
       }
 
@@ -90,19 +83,29 @@
         margin: 25px 0;
 
         & .label {
-          font-size: 12px;
-          font-weight: 600;
-          margin-left: 2px;
-          text-transform: uppercase;
+          font-family: var(--font-family-chivo);
+          font-weight: 300;
+          font-size: 13px;
+          color: #FFFFFF;
+          letter-spacing: -0.05px;
         }
 
         & .value {
-          font-size: 32px;
-          font-weight: 300;
+          font-family: var(--font-family-antonio);
+          font-weight: 400;
+          font-size: 21px;
+          color: var(--snow);
+          letter-spacing: 0.05px;
+          margin-bottom: 10px;
         }
 
       }
 
+    }
+
+    & .map{
+      flex: 0.6;
+      align-self: center;
     }
 
     & .subnav {
@@ -123,6 +126,7 @@
         transition: opacity 0.2s;
         font-family: var(--font-family-antonio);
         font-weight: 400;
+        cursor: pointer;
 
         &:hover {
           opacity: 1;

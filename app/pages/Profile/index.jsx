@@ -39,7 +39,16 @@ class GeoProfile extends Profile {
 
     // TODO check for 404
 
-    const {attrs, focus, stats} = this.props;
+    const stats = {
+        population: '17.5M',
+        population_updated_at: 2013,
+        age_avg: 300.000,
+        age_avg_updated_at: 2013,
+        income_avg: 31.5,
+        income_avg_updated_at: 2013
+    }
+
+    const {attrs, focus} = this.props;
 
     return (
         <div className="profile">
@@ -51,13 +60,32 @@ class GeoProfile extends Profile {
                     <div className="gradient"></div>
                 </div>
 
-                <div className="header">
-                    <div className="meta">
-                        <div className="subtitle">{ geo.type }</div>
-                        <div className="title">{ geo.caption }</div>
-                        {geo.parent &&
-                          <div className="parent">{geo.parent.caption}</div>
-                        }
+                <div className="dc-container">
+                    <div className="header">
+                        
+                        <div className="meta">
+                            {geo.parent &&
+                              <div className="parent">{geo.parent.caption}</div>
+                            }
+                            <div className="title">{ geo.caption }</div>
+                            <div className="subtitle">{ geo.type }</div>
+                            <div className="stat">
+                                <div className="value">{ stats.population }</div>
+                                <div className="label">Population  ({ stats.population_updated_at })</div>
+                            </div>
+                            <div className="stat">
+                                <div className="value">${ stats.income_avg }</div>
+                                <div className="label">Average Household ({ stats.income_avg_updated_at })</div>
+                            </div>
+                            <div className="stat">
+                                <div className="value">{ stats.age_avg } years</div>
+                                <div className="label">Average age ({ stats.age_avg_updated_at })</div>
+                            </div>
+                        </div>
+
+                        <div className="map">
+                            <img src={'/images/maps/'+geo.map}/>
+                        </div>
                     </div>
                 </div>
 
