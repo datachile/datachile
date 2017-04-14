@@ -1,12 +1,12 @@
 import React, { PropTypes } from "react";
 import {connect} from "react-redux";
 import {fetchStats} from "actions/profile";
-import {Profile} from "datawheel-canon";
+import {Profile, Stat} from "datawheel-canon";
 import SourceNote from "components/SourceNote";
 import TopicBlock from "components/TopicBlock";
 import d3plus from "helpers/d3plus";
 
-import { GEOMAP } from "helpers/dictionary";
+import { GEOMAP } from "helpers/GeoData";
 
 import "./intro.css";
 import "./topics.css";
@@ -17,6 +17,8 @@ import ExportsByDestination from './economy/ExportsByDestination';
 import ImportsByOrigin from './economy/ImportsByOrigin';
 import OutputByIndustry from './economy/OutputByIndustry';
 import TradeBalance from './economy/TradeBalance';
+
+import {translate} from "react-i18next";
 
 class GeoProfile extends Profile {
 
@@ -49,7 +51,23 @@ class GeoProfile extends Profile {
         source_year: 2013
     }
 
-    const {attrs, focus} = this.props;
+    const {attrs, focus, t} = this.props;
+
+    var type = '';
+    switch(geo.type){
+        case 'country':{
+            type = t('Country');
+            break;
+        }
+        case 'region':{
+            type = t('Region');
+            break;
+        }
+        case 'comuna':{
+            type = t('Comuna');
+            break;
+        }
+    }
 
     return (
         <div className="profile">
@@ -69,19 +87,10 @@ class GeoProfile extends Profile {
                               <div className="parent">{geo.parent.caption}</div>
                             }
                             <div className="title">{ geo.caption }</div>
-                            <div className="subtitle">{ geo.type }</div>
-                            <div className="stat">
-                                <div className="value">{ stats.population }</div>
-                                <div className="label">Population</div>
-                            </div>
-                            <div className="stat">
-                                <div className="value">${ stats.income_avg }</div>
-                                <div className="label">Average Household</div>
-                            </div>
-                            <div className="stat">
-                                <div className="value">{ stats.age_avg } years</div>
-                                <div className="label">Average age</div>
-                            </div>
+                            <div className="subtitle">{ type }</div>
+                            <Stat value={ stats.population } label={ t('Population') } />
+                            <Stat value={ '$' + stats.income_avg } label={ t('Average Household') } />
+                            <Stat value={ stats.age_avg +' '+ t('years')} label={ t('Average age') } />
                         </div>
 
                         <div className="map">
@@ -94,31 +103,31 @@ class GeoProfile extends Profile {
                     <div className="subnav">
                         <a className="sublink" href="#economy">
                             <img className="icon" src="/images/profile-icon/icon-economy.svg" />
-                            Economy
+                            { t('Economy') }
                         </a>
                         <a className="sublink" href="#innovation">
                             <img className="icon" src="/images/profile-icon/icon-innovation.svg" />
-                            Innovation
+                            { t('Innovation') }
                         </a>
                         <a className="sublink" href="#education">
                             <img className="icon" src="/images/profile-icon/icon-education.svg" />
-                            Education
+                            { t('Education') }
                         </a>
                         <a className="sublink" href="#environment">
                             <img className="icon" src="/images/profile-icon/icon-environment.svg" />
-                            Environment
+                            { t('Environment') }
                         </a>
                         <a className="sublink" href="#demographics">
                             <img className="icon" src="/images/profile-icon/icon-demographics.svg" />
-                            Demographics
+                            { t('Demographics') }
                         </a>
                         <a className="sublink" href="#health">
                             <img className="icon" src="/images/profile-icon/icon-health.svg" />
-                            Health
+                            { t('Health') }
                         </a>
                         <a className="sublink" href="#politics">
                             <img className="icon" src="/images/profile-icon/icon-politics.svg" />
-                            Politics
+                            { t('Politics') }
                         </a>
 
                     </div>
@@ -127,10 +136,10 @@ class GeoProfile extends Profile {
                 <div className="dc-container">
                     <div className="sources">
                         <SourceNote icon="/images/icons/icon-source.svg">
-                            <strong>Data source:</strong> {stats.source} - {stats.source_year}
+                            <strong>{ t("Data source") }:</strong> {stats.source} - {stats.source_year}
                         </SourceNote>
                         <SourceNote icon="/images/icons/icon-camera-source.svg">
-                            <strong>Pic by:</strong> {geo.background_source}
+                            <strong>{ t("Pic by") }:</strong> {geo.background_source}
                         </SourceNote>
                     </div>
                 </div>
@@ -138,7 +147,13 @@ class GeoProfile extends Profile {
 
             </div>
 
-            <TopicBlock slug="economy" name="Economy" targets={['Exports By Product','Exports By Destination','Imports By Origin','Output By Industry','Trade Balance']}>
+            <TopicBlock slug="economy" name={ t('Economy') } targets={[
+                        [t('Exports By Product'),'ExportsByProduct'],
+                        [t('Exports By Destination'),'ExportsByDestination'],
+                        [t('Imports By Origin Country'),'ImportsByOrigin'],
+                        [t('Output By Industry'),'OutputByIndustry'],
+                        [t('Trade Balance'),'TradeBalance']
+                        ]}>
     
                 <ExportsByProduct />
                 <ExportsByDestination />
@@ -148,28 +163,28 @@ class GeoProfile extends Profile {
 
             </TopicBlock>
 
-            <TopicBlock slug="innovation" name="Innovation" targets={[]}>
-                <p className="soon">Soon...</p>
+            <TopicBlock slug="innovation" name={ t('Innovation') } targets={[]}>
+                <p className="soon">{ t('Soon') }</p>
             </TopicBlock>
 
-            <TopicBlock slug="education" name="Education" targets={[]}>
-                <p className="soon">Soon...</p>
+            <TopicBlock slug="education" name={ t('Education') } targets={[]}>
+                <p className="soon">{ t('Soon') }</p>
             </TopicBlock>
 
-            <TopicBlock slug="environment" name="Environment" targets={[]}>
-                <p className="soon">Soon...</p>
+            <TopicBlock slug="environment" name={ t('Environment') } targets={[]}>
+                <p className="soon">{ t('Soon') }</p>
             </TopicBlock>
 
-            <TopicBlock slug="demographics" name="Demographics" targets={[]}>
-                <p className="soon">Soon...</p>
+            <TopicBlock slug="demographics" name={ t('Demographics') } targets={[]}>
+                <p className="soon">{ t('Soon') }</p>
             </TopicBlock>
 
-            <TopicBlock slug="health" name="Health" targets={[]}>
-                <p className="soon">Soon...</p>
+            <TopicBlock slug="health" name={ t('Health') } targets={[]}>
+                <p className="soon">{ t('Soon') }</p>
             </TopicBlock>
 
-            <TopicBlock slug="politics" name="Politics" targets={[]}>
-                <p className="soon">Soon...</p>
+            <TopicBlock slug="politics" name={ t('Politics') } targets={[]}>
+                <p className="soon">{ t('Soon') }</p>
             </TopicBlock>
 
         </div>
@@ -178,9 +193,9 @@ class GeoProfile extends Profile {
 }
 
 
-export default connect(state => ({
+export default translate()(connect(state => ({
   attrs: state.attrs,
   data: state.profile.data,
   focus: state.focus,
   stats: state.profile.stats
-}), {})(GeoProfile);
+}), {})(GeoProfile));

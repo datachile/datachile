@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import { GEO } from "helpers/dictionary";
-import { GEOMAP } from "helpers/dictionary";
+import { GEOMAP } from "helpers/GeoData";
 import FeaturedBox from "components/FeaturedBox";
 import SourceNote from "components/SourceNote";
 import Search from "components/Search";
+import {translate} from "react-i18next";
 
 import "./Home.css";
 
@@ -12,7 +13,7 @@ class Home extends Component {
 
   render() {
 
-    const {attrs, focus, message} = this.props;
+    const {attrs, focus, message, t} = this.props;
 
     const featured = focus.map(f => GEOMAP.getRegion(f));
 
@@ -27,14 +28,14 @@ class Home extends Component {
             <h2 className="title">
               <span>Data Chile</span>
             </h2>
-            <p className="lead">Interactive data visualization platform about Chilean public data</p>
+            <p className="lead">{ t("Interactive data visualization platform about Chilean public data") }</p>
           </div>
           <div className="search-home-wrapper">
             <Search className="search-home" local={ true } limit={ 5 } />
           </div>
         </div>
         <div className="dc-container">
-          <h3 className="title-tiles">Explore reatured profiles</h3>
+          <h3 className="title-tiles">{ t("Explore featured profiles") }</h3>
         </div>
         <div className="tiles">
           <div className="dc-container">
@@ -47,7 +48,7 @@ class Home extends Component {
             </div>
             <div className="source-container">
               <SourceNote icon="/images/icons/icon-camera-source.svg">
-                  <strong>Pic by:</strong> Example Author
+                  <strong>{ t("Pic by") }:</strong> Example Author
               </SourceNote>
             </div>
           </div>
@@ -58,7 +59,7 @@ class Home extends Component {
   }
 }
 
-export default connect(state => ({
+export default translate()(connect(state => ({
     attrs: state.attrs.geo,
     focus: state.focus
-}), {})(Home);
+}), {})(Home));

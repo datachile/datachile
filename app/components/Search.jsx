@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {toggleSearch} from "actions/index";
+import {translate} from "react-i18next";
 import "./Search.css";
 
 import {API} from ".env";
-import { GEOARRAY } from "helpers/dictionary";
+import { GEOARRAY } from "helpers/GeoData";
 
 import {strip} from "d3plus-text";
 import {dataFold} from "d3plus-viz";
@@ -103,7 +104,7 @@ class Search extends Component {
 
   render() {
 
-    const {className, searchActive, local} = this.props;
+    const {className, searchActive, local, t} = this.props;
     const {active, results} = this.state;
     const enabled = local ? active : searchActive;
 
@@ -115,7 +116,7 @@ class Search extends Component {
     return (
       <div className={ `${className} ${ enabled ? "active" : "" } search-component` }>
         <div className="input">
-          <input type="text" ref="input" onChange={ this.onChange.bind(this) } placeholder="Enter a location" />
+          <input type="text" ref="input" onChange={ this.onChange.bind(this) } placeholder={ t("Enter a location") } />
         </div>
         <ul className="results">
           { results.map(result =>
@@ -134,6 +135,7 @@ Search.defaultProps = {
   className: "search-nav"
 };
 
-export default connect(state => ({
+
+export default translate()(connect(state => ({
   searchActive: state.search.searchActive
-}), {toggleSearch})(Search);
+}), {toggleSearch})(Search));

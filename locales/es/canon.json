@@ -1,0 +1,54 @@
+{
+  "%B %d, %Y": "",
+  ",": {
+    "0f": ""
+  },
+  ",f": "",
+  "": {
+    "2": "",
+    "0%": "",
+    "2%": "",
+    "3g": ""
+  },
+
+  "Enter a location": "Busca un lugar",
+  "Explore": "Explorar",
+  "Explore featured profiles": "Explorar perfiles destacados",
+  
+  "Interactive data visualization platform about Chilean public data": "Plataforma interactiva de visualización de datos sobre información pública de Chile",
+  "Pic by": "Foto de",
+
+  "Home": "Inicio",
+  "Profiles": "Perfiles",
+  "Topics": "Temas",
+  "About": "Acerca",
+  "Contact": "Contacto",
+
+  "Country": "País",
+  "Region": "Región",
+  "Comuna": "Comuna",
+
+  "Created in collaboration": "Creado en colaboración",
+
+  "Population": "Población",
+  "Average Household": "Ingreso en hogar promedio",
+  "Average age": "Edad promedio",
+
+  "Data source": "Fuente",
+
+  "Economy": "Economía",
+  "Innovation": "Innovación",
+  "Education": "Educación",
+  "Environment": "Ambiente",
+  "Demographics": "Demografía",
+  "Health": "Salud",
+  "Politics": "Política",
+
+  "Exports By Product": "Exportación por producto",
+  "Exports By Destination": "Exportación por destino",
+  "Imports By Origin Coutry": "Importación por origen",
+  "Output By Industry": "Producción por industria",
+  "Trade Balance": "Balanza comercial",
+
+  "Click to Highlight": "Clic para resaltar",
+}

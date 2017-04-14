@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
 import {Link} from "react-router";
-import {toggleSearch} from "actions/index";
-import Search from "components/Search";
+import {translate} from "react-i18next";
 import "./Nav.css";
 
 class Nav extends Component {
 
   render() {
+    const {t} = this.props;
+
     return (
       <nav className="nav">
         <div className="dc-container nav-container">
@@ -17,10 +17,10 @@ class Nav extends Component {
             </Link>
           </div>
           <div className="nav-links">
-            <Link className="link" to="/">Home</Link>
-            <Link className="link" to="/explore">Explore</Link>
-            <Link className="link" to="/profile">Profile</Link>
-            <Link className="link" to="/topics">Topics</Link>
+            <Link className="link" to="/">{ t("Home") }</Link>
+            <Link className="link" to="/explore">{ t("Explore") }</Link>
+            <Link className="link" to="/profiles">{ t("Profiles") }</Link>
+            <Link className="link" to="/topics">{ t("Topics") }</Link>
           </div>
         </div>
       </nav>
@@ -28,4 +28,4 @@ class Nav extends Component {
   }
 }
 
-export default connect(() => ({}), {toggleSearch})(Nav);
+export default translate()(Nav);

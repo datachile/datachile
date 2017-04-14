@@ -3,9 +3,10 @@ import {SectionColumns, SectionTitle} from "datawheel-canon";
 
 import { Treemap } from "d3plus-react";
 import mondrianClient from 'helpers/MondrianClient';
-import { GEO } from "helpers/dictionary";
+import { GEO } from "helpers/GeoData";
+import {translate} from "react-i18next";
 
-export default class ExportsByDestination extends SectionColumns {
+export default translate()(class ExportsByDestination extends SectionColumns {
 
   static need = [
     (params) => {
@@ -32,10 +33,11 @@ export default class ExportsByDestination extends SectionColumns {
   ];
 
     render() {
+        const {t} = this.props;
         const data = this.context.data.exports_country.data;
         return (
             <SectionColumns>
-                <SectionTitle>Exports by Country</SectionTitle>
+                <SectionTitle>{ t('Exports By Destination') }</SectionTitle>
                 <article>Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.</article>
                 <Treemap config={{
                     height: 552,
@@ -48,4 +50,4 @@ export default class ExportsByDestination extends SectionColumns {
             </SectionColumns>
         );
     }
-}
+})

@@ -31,9 +31,6 @@ export const FORMATTERS = {
   shareWhole: format(".0%"),
   year: y => y < 0 ? `${Math.abs(y)} BC` : y,
   roman: function(num) {
-    if(num==9999){
-      return 'NACIONAL';
-    }  
     var result = '';
     var decimal = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
     var roman = ["M", "CM","D","CD","C", "XC", "L", "XL", "X","IX","V","IV","I"];
@@ -43,7 +40,7 @@ export const FORMATTERS = {
           num -= decimal[i];
         }
       }
-      return result + ' REGION';
+      return result;
   },
   cleanString: function(str) {
 

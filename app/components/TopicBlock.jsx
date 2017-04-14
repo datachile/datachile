@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Link} from "react-router";
 import "./TopicBlock.css";
 
 
@@ -16,7 +17,7 @@ class TopicBlock extends Component {
         				<div className="topic-go-to-targets">
         					{
 				                targets.map(t =>
-        							<a href={ '#' + t.replace(/ /g, '') }>{ t }</a>
+        							<Link key={t[1]} href={ '#' + t[1] }>{ t[0] }</Link>
 				                )
 				            }
         				</div>
