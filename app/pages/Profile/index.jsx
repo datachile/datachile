@@ -4,6 +4,7 @@ import {fetchStats} from "actions/profile";
 import {Profile, Stat} from "datawheel-canon";
 import SourceNote from "components/SourceNote";
 import TopicBlock from "components/TopicBlock";
+import NavFixed from "components/NavFixed";
 import d3plus from "helpers/d3plus";
 
 import { GEOMAP } from "helpers/GeoData";
@@ -20,7 +21,46 @@ import TradeBalance from './economy/TradeBalance';
 
 import {translate} from "react-i18next";
 
+const topics = [
+  {
+    slug: "economy",
+    title: 'Economy'
+  },
+  {
+    slug: "innovation",
+    title: "Innovation"
+  },
+  {
+    slug: "education",
+    title: "Education"
+  },
+  {
+    slug: "environment",
+    title: "Environment"
+  },
+  {
+    slug: "demographics",
+    title: "Demographics"
+  },
+  {
+    slug: "health",
+    title: "Health"
+  },
+  {
+    slug: "politics",
+    title: "Politics"
+  }
+];
+
 class GeoProfile extends Profile {
+
+  constructor() {
+    super();
+    this.state = {
+      subnav: false,
+      activeSub: false
+    };
+  };
 
   static contextTypes = {
     apiClient: PropTypes.object
@@ -35,7 +75,28 @@ class GeoProfile extends Profile {
       TradeBalance
   ];
 
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll.bind(this));
+  }
+
+  handleScroll() {
+    const {activeSub, subnav} = this.state;
+    const newSub = this.refs.sublinks.getBoundingClientRect().top <= 0;
+
+    let newActive = false;
+    for (let i = 0; i < topics.length; i++) {
+      const top = document.getElementById(topics[i].slug).getBoundingClientRect().top;
+      if (top <= 0) newActive = topics[i].slug;
+    }
+    if (subnav !== newSub || newActive !== activeSub) {
+      this.setState({activeSub: newActive, subnav: newSub});
+    }
+
+  }
+
   render() {
+
+    const { subnav, activeSub } = this.state;
 
     const { region, comuna } = this.props.routeParams;
 
@@ -72,6 +133,8 @@ class GeoProfile extends Profile {
     return (
         <div className="profile">
 
+            <NavFixed topics={ topics } visible={ subnav } activeSub={ activeSub } geo={ geo } type={ type } />
+
             <div className="intro">
 
                 <div className="splash">
@@ -99,37 +162,16 @@ class GeoProfile extends Profile {
                     </div>
                 </div>
 
-                <div className="dc-container">
+                <div ref="sublinks" className="dc-container">
                     <div className="subnav">
-                        <a className="sublink" href="#economy">
-                            <img className="icon" src="/images/profile-icon/icon-economy.svg" />
-                            { t('Economy') }
-                        </a>
-                        <a className="sublink" href="#innovation">
-                            <img className="icon" src="/images/profile-icon/icon-innovation.svg" />
-                            { t('Innovation') }
-                        </a>
-                        <a className="sublink" href="#education">
-                            <img className="icon" src="/images/profile-icon/icon-education.svg" />
-                            { t('Education') }
-                        </a>
-                        <a className="sublink" href="#environment">
-                            <img className="icon" src="/images/profile-icon/icon-environment.svg" />
-                            { t('Environment') }
-                        </a>
-                        <a className="sublink" href="#demographics">
-                            <img className="icon" src="/images/profile-icon/icon-demographics.svg" />
-                            { t('Demographics') }
-                        </a>
-                        <a className="sublink" href="#health">
-                            <img className="icon" src="/images/profile-icon/icon-health.svg" />
-                            { t('Health') }
-                        </a>
-                        <a className="sublink" href="#politics">
-                            <img className="icon" src="/images/profile-icon/icon-politics.svg" />
-                            { t('Politics') }
-                        </a>
-
+                      {
+                        topics.map(topic =>
+                          <a key={ topic.slug } className="sublink" href={ `#${topic.slug}` }>
+                              <img className="icon" src={ `/images/profile-icon/icon-${topic.slug}.svg`} />
+                              { topic.title }
+                          </a>
+                        )
+                      }
                     </div>
                 </div>
 

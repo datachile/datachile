@@ -8,6 +8,7 @@ module.exports = {
   "light": "#082138",
   "accent": "#4B71B5",
   "near-black": "#1A1B2D",
+  "nice-blue": "#708BBB",
 
   "border-radius": "6px",
 
