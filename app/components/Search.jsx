@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {toggleSearch} from "actions/index";
 import {translate} from "react-i18next";
+import {Link, browserHistory} from "react-router";
 import "./Search.css";
 
 import {API} from ".env";
@@ -68,10 +69,11 @@ class Search extends Component {
         const highlighted = document.querySelector(".highlighted");
 
         if (key === ENTER && highlighted) {
-          this.refs.input.value = highlighted.querySelector("a").innerHTML;
+          //this.refs.input.value = highlighted.querySelector("a").innerHTML;
           toggle();
           setTimeout(() => {
-            window.location = highlighted.querySelector("a").href;
+            browserHistory.push(highlighted.querySelector("a").href);
+            //window.location = highlighted.querySelector("a").href;
           }, 500);
         }
         else if (key === DOWN || key === UP) {
@@ -121,7 +123,7 @@ class Search extends Component {
         <ul className="results">
           { results.map(result =>
             <li key={ result.key } className="result">
-              <a href={ result.url }>{ result.name }   |   { result.type }</a>
+              <Link to={ result.url }>{ result.name }   |   { result.type }</Link>
             </li>
           )}
         </ul>
