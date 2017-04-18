@@ -35,5 +35,5 @@ npm run dev
 http://localhost:3300
 ```
 
-* Do you job. :D
+* Do your job. :D
 

@@ -11,8 +11,7 @@ const chile = {
       "clean": "Chile",
       "type": "country",
       "parent": false,
-      "url": '/geo/chile',
-      "map": 'map-chile.svg'
+      "url": '/geo/chile'
   }
 
 export const GEO = require('./geo_regions.json');
@@ -27,7 +26,6 @@ GEO.forEach(r => {
     r.type = 'region'
     r.parent = false
     r.url = '/geo/'+r.slug
-    r.map = 'map-'+r.slug+'.svg'
     r.clean = FORMATTERS.cleanString(r.name)
     GEOMAP[r.slug] = r
     GEOARRAY.push(r)
@@ -39,7 +37,6 @@ GEO.forEach(r => {
       c.background = parent.background
       c.background_source = parent.background_source
       c.url = '/geo/'+parent.slug+'/'+c.slug
-      c.map = 'map-'+parent.slug+'.svg'
       c.clean = FORMATTERS.cleanString(c.name)
       GEOMAP[c.slug] = c
       GEOARRAY.push(c)

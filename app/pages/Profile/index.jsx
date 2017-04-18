@@ -131,11 +131,12 @@ class GeoProfile extends Profile {
         }
     }
 
+    const key = (geo.parent)?geo.parent.key:geo.key;
+
     function fillShape(d) {
       if(geo.slug=='chile'){
         return "rgba(255, 255, 255, 1)";
       }
-      var key = (geo.parent)?geo.parent.key:geo.key;
       return (parseInt(d.id)==parseInt(key))? "rgba(255, 255, 255, 1)":"rgba(255, 255, 255, 0.35)";
     }
 
@@ -165,7 +166,7 @@ class GeoProfile extends Profile {
                             <Stat value={ stats.age_avg +' '+ t('years')} label={ t('Average age') } />
                         </div>
 
-                        <div className="map">
+                        <div className="map-region">
                             <Geomap config={{
                               downloadButton: false,
                               groupBy: "id",
@@ -198,11 +199,55 @@ class GeoProfile extends Profile {
                                 html: d => `${d.properties.Region}<img class='link-arrow' src='/images/nav/link-arrow.svg' />`
                               },
                               topojson: "/geo/regiones.json",
-                              topojsonId: d => d.id,
+                              topojsonId: "id",
                               topojsonKey: "regiones",
                               width: 200,
                               zoom: false
                             }} />
+
+                          </div>
+                          <div className="map-comuna">
+                            <div className="map-comuna-circle">
+                              <Geomap config={{
+                                downloadButton: false,
+                                groupBy: "id",
+                                height: 400,
+                                label: d => d.properties.Region,
+                                legend: true,
+                                ocean: "transparent",
+                                on: {
+                                  "click.shape": d => {
+                                    if (d) window.location = `/profile/${d.id}`;
+                                  }
+                                },
+                                padding: 20,
+                                shapeConfig: {
+                                  hoverOpacity: 1,
+                                  Path: {
+                                    fill: fillShape,
+                                    stroke: "rgba(255, 255, 255, 0.75)"
+                                  }
+                                },
+                                tiles: false,
+                                tooltipConfig: {
+                                  background: "white",
+                                  body: "dale!!",
+                                  footer: "",
+                                  footerStyle: {
+                                    "margin-top": 0
+                                  },
+                                  padding: "12px",
+                                  html: d => `${d.properties.Region}<img class='link-arrow' src='/images/nav/link-arrow.svg' />`
+                                },
+                                topojson: "/geo/regiones.json",
+                                topojsonId: d => d.id,
+                                topojsonKey: "regiones",
+                                fitKey: "id",
+                                fitFilter: [parseInt(key)],
+                                width: 400,
+                                zoom: false
+                              }} />
+                            </div>
                         </div>
                     </div>
                 </div>

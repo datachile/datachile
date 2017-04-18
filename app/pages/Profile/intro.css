@@ -100,9 +100,29 @@
 
     }
 
-    & .map{
-      flex: 0.7;
+    & .map-region{
+      flex: 0.2;
       align-self: center;
+    }
+
+    & .map-comuna{
+      flex: 0.5;
+      align-self: center;
+      & .map-comuna-circle{
+        border-radius: 50%;
+        width: 400px;
+        padding-top: 400px;
+        position: relative;
+        border: 2px solid white;
+        overflow: hidden;
+        & .viz{
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+        }
+      }
     }
 
     & .subnav {
