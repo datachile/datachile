@@ -6,6 +6,7 @@ import SourceNote from "components/SourceNote";
 import TopicBlock from "components/TopicBlock";
 import NavFixed from "components/NavFixed";
 import d3plus from "helpers/d3plus";
+import {Geomap} from "d3plus-react";
 
 import { GEOMAP } from "helpers/GeoData";
 
@@ -130,6 +131,14 @@ class GeoProfile extends Profile {
         }
     }
 
+    function fillShape(d) {
+      if(geo.slug=='chile'){
+        return "rgba(255, 255, 255, 1)";
+      }
+      var key = (geo.parent)?geo.parent.key:geo.key;
+      return (parseInt(d.id)==parseInt(key))? "rgba(255, 255, 255, 1)":"rgba(255, 255, 255, 0.35)";
+    }
+
     return (
         <div className="profile">
 
@@ -157,7 +166,43 @@ class GeoProfile extends Profile {
                         </div>
 
                         <div className="map">
-                            <img src={'/images/maps/'+geo.map}/>
+                            <Geomap config={{
+                              downloadButton: false,
+                              groupBy: "id",
+                              height: 500,
+                              label: d => d.properties.Region,
+                              legend: true,
+                              ocean: "transparent",
+                              on: {
+                                "click.shape": d => {
+                                  if (d) window.location = `/profile/${d.id}`;
+                                }
+                              },
+                              padding: 10,
+                              shapeConfig: {
+                                hoverOpacity: 1,
+                                Path: {
+                                  fill: fillShape,
+                                  stroke: "rgba(255, 255, 255, 0.75)"
+                                }
+                              },
+                              tiles: false,
+                              tooltipConfig: {
+                                background: "white",
+                                body: "dale!!",
+                                footer: "",
+                                footerStyle: {
+                                  "margin-top": 0
+                                },
+                                padding: "12px",
+                                html: d => `${d.properties.Region}<img class='link-arrow' src='/images/nav/link-arrow.svg' />`
+                              },
+                              topojson: "/geo/regiones.json",
+                              topojsonId: d => d.id,
+                              topojsonKey: "regiones",
+                              width: 200,
+                              zoom: false
+                            }} />
                         </div>
                     </div>
                 </div>

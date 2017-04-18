@@ -48,7 +48,7 @@
     & .meta {
       box-sizing: border-box;
       display: inline-block;
-      flex: 0.4;
+      flex: 0.3;
       vertical-align: top;
       margin: var(--gutter);
       & .title {
@@ -101,7 +101,7 @@
     }
 
     & .map{
-      flex: 0.6;
+      flex: 0.7;
       align-self: center;
     }
 
