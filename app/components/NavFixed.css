@@ -1,6 +1,5 @@
 .nav-fixed {
   width: 100%;
-  background-color: #ccc;
   position: fixed;
   left: 0;
   top: 0;
@@ -13,6 +12,7 @@
   }
 
   & .nav-topic{
+    background-color: #ccc;
     & .dc-container{
       display: flex;
       flex-direction: row;
@@ -25,6 +25,7 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        justify-content: center;
         & .label{
           font-family: var(--font-family-chivo);
           font-weight: 700;
@@ -80,6 +81,8 @@
   }
 
   & .nav-geo{
+    z-index: 10;
+    position: relative;
     background-color: var(--near-black);
     padding: 25px 0px;
     & .dc-container{
@@ -96,6 +99,10 @@
           font-weight: 400;
           font-size: 18px;
           letter-spacing: 0.03px;
+          cursor: pointer;
+          &:hover{
+            text-decoration:underline;
+          }
         }
         & .datachile{
           color: var(--snow);
@@ -111,6 +118,77 @@
       & .nav-search{
         margin-right: var(--gutter);
       }
+    }
+  }
+
+  & .nav-selection{
+    background-color: var(--nice-blue);
+    position: relative;
+    opacity: 1;
+    top: -79px;
+    transition: all 400ms;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    &.hidden{
+      opacity: 0;
+      top: -1000px;
+      height: 0px;
+    }
+    & .map-regions{
+      margin: var(--gutter) calc(var(--gutter)/2);
+      flex:0.35;
+      display: flex;
+      flex-direction: row;
+      & .map-viz{
+
+      }
+      & .region-list{
+        & ul{
+          list-style: none;
+          padding: 0px;
+          & li{
+            transition: all 500ms;
+            background-color: transparent;
+            color:var(--snow);
+            &.selected{
+              background-color: var(--snow);
+              color: var(--near-black);
+            }
+          }
+        }
+      }
+    }
+    & .comunas{
+      margin: var(--gutter) calc(var(--gutter)/2);
+      flex:0.35;
+      & ul{
+        list-style: none;
+        padding: 0px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: flex-start;
+        & li{
+          flex:0.5 0.5 50%;
+          background-color: transparent;
+          color:var(--snow);
+          & a{
+            color: var(--near-black);
+            text-decoration: none;
+          }
+          &:hover{
+            background-color: var(--snow);
+            color: var(--near-black);
+          }
+        }
+      }
+    }
+    & .profiles{
+      margin: var(--gutter) calc(var(--gutter)/2);
+      flex:0.30;
     }
   }
 

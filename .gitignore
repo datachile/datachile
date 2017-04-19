@@ -3,3 +3,4 @@ static/assets/*
 */**/.DS_Store
 app/.env.js
 .DS_Store
+npm-debug.log

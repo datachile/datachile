@@ -252,7 +252,7 @@ class GeoProfile extends Profile {
                     </div>
                 </div>
 
-                <div ref="sublinks" className="dc-container">
+                <div id="sublinks" ref="sublinks" className="dc-container">
                     <div className="subnav">
                       {
                         topics.map(topic =>

@@ -31,7 +31,7 @@ GEO.forEach(r => {
     GEOARRAY.push(r)
     r.children.forEach(c => {
       const parent = r
-      delete parent.children
+//      delete parent.children
       c.type = 'comuna'
       c.parent = r
       c.background = parent.background
