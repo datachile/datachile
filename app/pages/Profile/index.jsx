@@ -135,7 +135,7 @@ class GeoProfile extends Profile {
 
     function fillShape(d) {
       if(geo.slug=='chile'){
-        return "rgba(255, 255, 255, 1)";
+        return "rgba(255, 255, 255, 0.5)";
       }
       return (parseInt(d.id)==parseInt(key))? "rgba(255, 255, 255, 1)":"rgba(255, 255, 255, 0.35)";
     }

@@ -20,9 +20,16 @@ class NavFixed extends Component {
 
     this.showNavSelection = this.showNavSelection.bind(this);
     this.hideNavSelection = this.hideNavSelection.bind(this);
+    this.toggleNavSelection = this.toggleNavSelection.bind(this);
     this.regionOver = this.regionOver.bind(this);
     this.regionOut = this.regionOut.bind(this);
   };
+
+  toggleNavSelection() {
+    this.setState({
+      open: !this.state.open
+    });
+  }
 
   showNavSelection() {
     this.setState({
@@ -49,6 +56,12 @@ class NavFixed extends Component {
     });*/
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.visible == false) {
+      this.hideNavSelection();
+    }
+  }
+
   render() {
     const {t,topics,visible,activeSub,geo,type,focus} = this.props;
 
@@ -72,7 +85,7 @@ class NavFixed extends Component {
               <img src="/images/icons/icon-menu.svg" />
             </div>
             <div className="nav-titles">
-              <span className="datachile">DataChile:</span> <a className="geo-title" onClick={this.showNavSelection}>{ geo.caption } { type } <span>&#x25BC;</span></a>
+              <span className="datachile">DataChile:</span> <a className="geo-title" onClick={this.toggleNavSelection}>{ geo.caption } { type } <span className={ `${ open ? "" : " hidden" }` }>&#9650;</span> <span className={ `${ open ? " hidden" : "" }` }>&#x25BC;</span></a>
             </div>
             <div className="nav-search">
               <img src="/images/icons/icon-lupa-header.svg" />
