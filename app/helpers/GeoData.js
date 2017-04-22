@@ -38,7 +38,7 @@ GEO.forEach(r => {
       c.background_source = parent.background_source
       c.url = '/geo/'+parent.slug+'/'+c.slug
       c.clean = FORMATTERS.cleanString(c.name)
-      GEOMAP[c.slug] = c
+      GEOMAP[r.slug+'.'+c.slug] = c
       GEOARRAY.push(c)
     })
   }

@@ -7,6 +7,7 @@ import TopicBlock from "components/TopicBlock";
 import NavFixed from "components/NavFixed";
 import d3plus from "helpers/d3plus";
 import {Geomap} from "d3plus-react";
+import SvgMap from "components/SvgMap";
 
 import { GEOMAP } from "helpers/GeoData";
 
@@ -101,7 +102,7 @@ class GeoProfile extends Profile {
 
     const { region, comuna } = this.props.routeParams;
 
-    const geo = (comuna)?GEOMAP.getRegion(comuna):GEOMAP.getRegion(region);
+    const geo = (comuna)?GEOMAP.getRegion(region+'.'+comuna):GEOMAP.getRegion(region);
 
     // TODO check for 404
 
@@ -132,6 +133,7 @@ class GeoProfile extends Profile {
     }
 
     const key = (geo.parent)?geo.parent.key:geo.key;
+    const slug = (geo.parent)?geo.parent.slug:geo.slug;
 
     function fillShape(d) {
       if(geo.slug=='chile'){
@@ -207,47 +209,9 @@ class GeoProfile extends Profile {
 
                           </div>
                           <div className="map-comuna">
-                            <div className="map-comuna-circle">
-                              <Geomap config={{
-                                downloadButton: false,
-                                groupBy: "id",
-                                height: 400,
-                                label: d => d.properties.Region,
-                                legend: true,
-                                ocean: "transparent",
-                                on: {
-                                  "click.shape": d => {
-                                    if (d) window.location = `/profile/${d.id}`;
-                                  }
-                                },
-                                padding: 20,
-                                shapeConfig: {
-                                  hoverOpacity: 1,
-                                  Path: {
-                                    fill: fillShape,
-                                    stroke: "rgba(255, 255, 255, 0.75)"
-                                  }
-                                },
-                                tiles: false,
-                                tooltipConfig: {
-                                  background: "white",
-                                  body: "dale!!",
-                                  footer: "",
-                                  footerStyle: {
-                                    "margin-top": 0
-                                  },
-                                  padding: "12px",
-                                  html: d => `${d.properties.Region}<img class='link-arrow' src='/images/nav/link-arrow.svg' />`
-                                },
-                                topojson: "/geo/regiones.json",
-                                topojsonId: d => d.id,
-                                topojsonKey: "regiones",
-                                fitKey: "id",
-                                fitFilter: [parseInt(key)],
-                                width: 400,
-                                zoom: false
-                              }} />
-                            </div>
+                            { slug!='chile' &&
+                              <SvgMap slug={slug} active={(geo.parent)?geo.slug:false} />
+                            }
                         </div>
                     </div>
                 </div>

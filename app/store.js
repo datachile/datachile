@@ -1,3 +1,3 @@
 module.exports = {
-	focus: ["chile","iquique","vitacura","region-metropolitana-santiago","los-rios","concepcion"]
+	focus: ["chile","tarapaca.iquique","los-rios","region-metropolitana-santiago.vitacura","valparaiso.valparaiso","atacama"]
 };

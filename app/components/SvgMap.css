@@ -1,0 +1,61 @@
+.svg-map {
+  width: 100%;
+  & svg{
+    & path.region {
+      opacity: 1;
+      stroke-width: 1;
+      stroke-opacity: 1;
+      fill: rgba(255, 255, 255, 0.34902);
+      fill-opacity:1;
+      stroke: rgba(255, 255, 255, 0.74902);
+      cursor: pointer;
+      transition: fill .4s ease;
+      &.hover{
+        fill:var(--near-black);
+        cursor: pointer;
+      }
+    }
+    & g {
+      pointer-events: all;
+    }
+    & path.comuna {
+      fill:var(--near-black);
+      fill-opacity:0.2;
+      stroke:var(--snow);
+      cursor: pointer;
+      transition: fill .4s ease, opacity .4s ease;
+      &.selected{
+        fill:var(--snow);
+        fill-opacity:1;
+        cursor: pointer;
+      }
+      &.hover{
+        fill:var(--near-black);
+        fill-opacity:1;
+        cursor: pointer;
+      }
+    }
+    & path.limite {
+      fill:none;
+      stroke:var(--snow);
+      pointer-events: none;
+    }
+    & circle.border-circle, & clipPath{
+      fill: none;
+      stroke: var(--snow);
+      pointer-events: none;
+    }
+  }
+  & #svg-map-tooltip{
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    padding: 10px;
+    font: 12px sans-serif;
+    background: var(--snow);
+    border: 0px;
+    pointer-events: none;
+    font-family: var(--font-family-chivo);
+    color: var(--near-black);
+  }
+}
