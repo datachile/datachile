@@ -2,17 +2,17 @@
   width: 100%;
   & svg{
     & path.region {
-      opacity: 1;
       stroke-width: 1;
       stroke-opacity: 1;
-      fill: rgba(255, 255, 255, 0.34902);
-      fill-opacity:1;
-      stroke: rgba(255, 255, 255, 0.74902);
+      stroke: var(--snow);
+
+      fill: var(--snow);
+      fill-opacity:0.7;
+
       cursor: pointer;
-      transition: fill .4s ease;
+      transition: fill-opacity .4s ease;
       &.hover{
-        fill:var(--near-black);
-        cursor: pointer;
+        fill-opacity:1;
       }
     }
     & g {
@@ -30,7 +30,7 @@
         cursor: pointer;
       }
       &.hover{
-        fill:var(--near-black);
+        fill:var(--snow);
         fill-opacity:1;
         cursor: pointer;
       }
@@ -53,7 +53,7 @@
     padding: 10px;
     font: 12px sans-serif;
     background: var(--snow);
-    border: 0px;
+    border: 1px solid var(--near-black);
     pointer-events: none;
     font-family: var(--font-family-chivo);
     color: var(--near-black);
