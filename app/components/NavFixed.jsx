@@ -6,6 +6,7 @@ import {Geomap} from "d3plus-react";
 import FeaturedBox from "components/FeaturedBox";
 import {GEO,GEOMAP} from "helpers/GeoData";
 import { FORMATTERS } from "helpers/formatters";
+import SvgImage from "components/SvgImage";
 import "./NavFixed.css";
 
 class NavFixed extends Component {
@@ -144,7 +145,7 @@ class NavFixed extends Component {
               {
                 topics.map(topic =>
                   <a key={ topic.slug } className={`topic-link${ topic.slug==activeSub ? " active" : "" }`} href={ `#${topic.slug}` }>
-                      <img className="icon" src={ `/images/profile-icon/icon-${topic.slug}.svg`} />
+                      <SvgImage src={ `/images/profile-icon/icon-${topic.slug}.svg`}></SvgImage>
                       { topic.title }
                   </a>
                 )

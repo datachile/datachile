@@ -1,11 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="25px" height="33px" viewBox="0 0 25 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
-    <title>icon-politica</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
     <g id="Menu-topics" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="menu-topics" transform="translate(-656.000000, -103.000000)" fill="#FFFFFF">
+        <g id="menu-topics" transform="translate(-656.000000, -103.000000)" class="fill-color">
             <g id="Set-iconos">
                 <g id="icon-politica" transform="translate(656.000000, 103.000000)">
                     <path d="M20.688,11.4092 C21.167,11.4092 21.486,11.0902 21.486,10.6102 C21.486,10.1322 21.167,9.8122 20.688,9.8122 L14.938,9.8122 C14.459,9.8122 14.14,10.1322 14.14,10.6102 C14.14,11.0902 14.459,11.4092 14.938,11.4092 L20.688,11.4092 Z" id="Fill-23"></path>

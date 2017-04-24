@@ -13,7 +13,8 @@
   }
 
   & .nav-topic{
-    background-color: #ccc;
+    background-color: var(--snow);
+    border-bottom: 1px solid var(--nice-blue);
     & .dc-container{
       display: flex;
       flex-direction: row;
@@ -47,7 +48,7 @@
         margin: 0 var(--gutter);
         text-align: right;
         & .topic-link{
-          color: var(--light);
+          color: var(--gray-light);
           display: inline-block;
           font-size: 10px;
           letter-spacing: 0.05px;
@@ -63,19 +64,44 @@
           border-bottom: 2px solid white;
           padding-bottom: 10px;
 
-          &:hover {
-            opacity: 1;
-          }
-
-          & img {
+          & .svg-image {
             display: block;
             margin: 0px auto 10px auto;
+            & .fill-color {
+              fill: var(--gray-light);
+            }
+            & .stroke-color{
+              stroke: var(--gray-light);
+            }
           }
 
           &.active{
             border-bottom-color: var(--nice-blue);
             color: var(--nice-blue);
+            & .svg-image{
+              & .fill-color {
+                fill: var(--nice-blue);
+              }
+              & .stroke-color{
+                stroke:var(--nice-blue);
+              }
+            }
           }
+
+          &:hover {
+            border-bottom-color: var(--nice-blue);
+            color: var(--nice-blue);
+            opacity: 1;
+            & .svg-image{
+              & .fill-color {
+                fill: var(--nice-blue);
+              }
+              & .stroke-color{
+                stroke:var(--nice-blue);
+              }
+            }
+          }
+
         }
       }
     }

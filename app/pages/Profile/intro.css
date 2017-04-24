@@ -134,9 +134,15 @@
           opacity: 1;
         }
 
-        & img {
+        & .svg-image {
           display: block;
           margin: 10px auto;
+          & .fill-color{
+            fill:var(--snow);
+          }
+          & .stroke-color{
+            stroke:var(--snow);
+          }
         }
 
       }

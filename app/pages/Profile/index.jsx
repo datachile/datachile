@@ -8,6 +8,7 @@ import NavFixed from "components/NavFixed";
 import d3plus from "helpers/d3plus";
 import {Geomap} from "d3plus-react";
 import SvgMap from "components/SvgMap";
+import SvgImage from "components/SvgImage";
 import { browserHistory } from 'react-router';
 
 import { GEOMAP, GEO } from "helpers/GeoData";
@@ -140,8 +141,6 @@ class GeoProfile extends Profile {
       return d.parent==false && d.slug != 'chile';
     });
 
-    console.info(onlyRegions);
-
     function fillShape(d) {
       if(geo.slug=='chile'){
         return "rgba(255, 255, 255, 0.5)";
@@ -229,7 +228,7 @@ class GeoProfile extends Profile {
                       {
                         topics.map(topic =>
                           <a key={ topic.slug } className="sublink" href={ `#${topic.slug}` }>
-                              <img className="icon" src={ `/images/profile-icon/icon-${topic.slug}.svg`} />
+                              <SvgImage src={ `/images/profile-icon/icon-${topic.slug}.svg` }></SvgImage>
                               { topic.title }
                           </a>
                         )
