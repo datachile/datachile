@@ -40,19 +40,20 @@ class SvgMap extends Component {
       loadSvgAsString('/images/maps/zoom/'+nextProps.slug+'.svg').get(this.callbackSvg);
     }
     if (nextProps.active !== this.props.active) {
-      this.prepareSelected();
+      this.prepareSelected(nextProps.active);
     }
   };
 
-  prepareSelected(){
+
+  prepareSelected(active){
     selectAll('.svg-map .comuna').classed('selected',false);
-    select('.svg-map .comuna#'+this.props.active).classed('selected',true);
+    select('.svg-map .comuna#'+active).classed('selected',true);
     select('.svg-map #svg-map-tooltip').style('opacity',0);
   }
 
   launchEvents() {
     
-    this.prepareSelected();
+    this.prepareSelected(this.props.active);
 
     var slug = this.props.slug;
 
@@ -114,8 +115,6 @@ class SvgMap extends Component {
 
   render() {
     const {t,slug,active} = this.props;
-
-    this.prepareSelected();
 
     return (
         <div className="svg-map">
