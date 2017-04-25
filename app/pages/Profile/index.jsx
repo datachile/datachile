@@ -4,6 +4,17 @@ import {fetchStats} from "actions/profile";
 import {Profile, Stat} from "datawheel-canon";
 import SourceNote from "components/SourceNote";
 import TopicBlock from "components/TopicBlock";
+
+import ForeignTrade from "./economy/ForeignTrade";
+import Industry from "./economy/Industry";
+
+import ExportsByProduct from './economy/foreign-trade/ExportsByProduct';
+import ExportsByDestination from './economy/foreign-trade/ExportsByDestination';
+import ImportsByOrigin from './economy/foreign-trade/ImportsByOrigin';
+import TradeBalance from './economy/foreign-trade/TradeBalance';
+
+import OutputByIndustry from './economy/industry/OutputByIndustry';
+
 import NavFixed from "components/NavFixed";
 import d3plus from "helpers/d3plus";
 import {Geomap} from "d3plus-react";
@@ -17,11 +28,7 @@ import "./intro.css";
 import "./topics.css";
 
 import IntroParagraph from "./splash/IntroParagraph";
-import ExportsByProduct from './economy/ExportsByProduct';
-import ExportsByDestination from './economy/ExportsByDestination';
-import ImportsByOrigin from './economy/ImportsByOrigin';
-import OutputByIndustry from './economy/OutputByIndustry';
-import TradeBalance from './economy/TradeBalance';
+
 
 import {translate} from "react-i18next";
 
@@ -66,18 +73,19 @@ class GeoProfile extends Profile {
     };
   };
 
-  static contextTypes = {
-    apiClient: PropTypes.object
-  };
-  static defaultProps = { d3plus };
-
   static need = [
       ExportsByProduct,
       ExportsByDestination,
       ImportsByOrigin,
-      OutputByIndustry,
-      TradeBalance
+      TradeBalance,
+
+      OutputByIndustry
   ];
+
+  static contextTypes = {
+    apiClient: PropTypes.object
+  };
+  static defaultProps = { d3plus };
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll.bind(this));
@@ -251,18 +259,17 @@ class GeoProfile extends Profile {
             </div>
 
             <TopicBlock slug="economy" name={ t('Economy') } targets={[
-                        [t('Exports By Product'),'ExportsByProduct'],
-                        [t('Exports By Destination'),'ExportsByDestination'],
-                        [t('Imports By Origin Country'),'ImportsByOrigin'],
-                        [t('Output By Industry'),'OutputByIndustry'],
-                        [t('Trade Balance'),'TradeBalance']
+                        [t('Foreign Trade'),'ForeignTrade'],
+                        [t('Industry'),'Industry'],
+                        [t('Poverty'),'Poverty'],
+                        [t('Salaries'),'Salaries'],
+                        [t('Activities'),'Activities'],
+                        [t('Unemployment'),'Unemployment'],
                         ]}>
-    
-                <ExportsByProduct />
-                <ExportsByDestination />
-                <ImportsByOrigin />
-                <OutputByIndustry />
-                <TradeBalance />
+
+              
+              <ForeignTrade/>
+              <Industry/>
 
             </TopicBlock>
 

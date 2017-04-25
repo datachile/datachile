@@ -11,6 +11,7 @@ module.exports = {
   "nice-blue": "#708BBB",
 
   "gray-light": "#D8D8D8",
+  "gray-dark": "#B3B3B3",
 
   "border-radius": "6px",
 
