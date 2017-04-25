@@ -58,6 +58,7 @@
   & section.section {
     padding: calc(var(--gutter)*3) var(--gutter);
     & h4.section-title{
+      margin:var(--gutter) 0;
       & :focus{
         outline:none;
       }
@@ -74,6 +75,10 @@
       font-size: 14px;
       color: var(--color-p);
       line-height: 22px;
+      margin-left: 0px;
+    }
+    & .viz{
+      margin-right: 0;
     }
   }
 
