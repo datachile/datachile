@@ -41,10 +41,11 @@ export default translate()(class TradeBalance extends SectionColumns {
     }
   ];
 
-  render() {
-    const data = melt(this.context.data.trade_balance,
-                      ['ID Year'],
-                      ['FOB', 'CIF', 'Trade Balance']);
+    render() {
+        console.log("trade_balance", this.context.data);
+        const data = melt(this.context.data.trade_balance,
+                          ['ID Year'],
+                          ['FOB', 'CIF', 'Trade Balance']);
     const {t} = this.props;
     return (
       <SectionColumns>

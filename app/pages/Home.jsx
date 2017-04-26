@@ -13,7 +13,7 @@ class Home extends Component {
 
   render() {
 
-    const {attrs, focus, message, t} = this.props;
+    const {focus, message, t} = this.props;
 
     const featured = focus.map(f => GEOMAP.getRegion(f));
 
@@ -60,6 +60,5 @@ class Home extends Component {
 }
 
 export default translate()(connect(state => ({
-    attrs: state.attrs.geo,
     focus: state.focus
 }), {})(Home));

@@ -23,7 +23,7 @@ export default translate()(class ExportsByDestination extends SectionColumns {
                   .measure('FOB US'),
                 'jsonrecords')
         )
-        .then(res => ({ key: 'exports_country', data: res.data }));
+        .then(res => ({ key: 'exports_country', data: res.data.data }));
 
       return {
         type: "GET_DATA",
@@ -34,7 +34,7 @@ export default translate()(class ExportsByDestination extends SectionColumns {
 
     render() {
         const {t} = this.props;
-        const data = this.context.data.exports_country.data;
+        const data = this.context.data.exports_country;
         return (
             <SectionColumns>
                 <SectionTitle>{ t('Exports By Destination') }</SectionTitle>
