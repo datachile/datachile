@@ -5,7 +5,7 @@ module.exports = {
 
   "snow": "#ffffff",
   "dark": "#191928",
-  "light": "#082138",
+  "light": "#fff",
   "accent": "#4B71B5",
   "near-black": "#1A1B2D",
   "nice-blue": "#708BBB",
@@ -21,6 +21,7 @@ module.exports = {
   "nav-height": "60px",
 
   "font-family": 'Chivo',
+  "section-title-family": "'Chivo', sans-serif",
   "font-family-chivo": "'Chivo', sans-serif",
   "font-family-antonio": "'Antonio', sans-serif",
 
