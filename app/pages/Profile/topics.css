@@ -1,5 +1,8 @@
 .sub-topic-block{
-
+  & .sub-topic-anchor{
+    position: relative;
+    top:-140px;
+  }
   & .sub-topic-header{
     padding: calc(var(--gutter)*3) var(--gutter);
     display: flex;

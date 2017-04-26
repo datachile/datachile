@@ -20,7 +20,8 @@ class ForeingTrade extends Component {
     const {t} = this.props;
 
     return (
-        <div className="sub-topic-block" name="ForeignTrade" id="ForeignTrade">
+        <div className="sub-topic-block" name="ForeignTrade">
+            <a className="sub-topic-anchor" id="ForeignTrade"></a>
             <div className="dc-container">
                 
                 <div className="sub-topic-header">

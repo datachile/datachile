@@ -14,7 +14,8 @@ class Industry extends Component {
     const {t} = this.props;
 
     return (
-        <div className="sub-topic-block" name="Industry" id="Industry">
+        <div className="sub-topic-block" name="Industry">
+            <a className="sub-topic-anchor" id="Industry"></a>
             <div className="dc-container">
                 
                 <div className="sub-topic-header">

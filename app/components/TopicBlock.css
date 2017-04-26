@@ -1,4 +1,8 @@
 .topic-block {
+  & .topic-anchor{
+    position: relative;
+    top:-140px;
+  }
   & .topic-header{
   	min-height: 300px;
   	background-size: cover;

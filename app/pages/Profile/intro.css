@@ -9,7 +9,7 @@
     overflow: hidden;
 
     & .splash {
-      height: 800px;
+      height: 100%;
       left: 0;
       position: absolute;
       top: 0;
@@ -20,7 +20,7 @@
         background-position: 50%;
         background-size: cover;
         filter: saturate(150%) contrast(130%);
-        height: 800px;
+        height: 100%;
         left: 0;
         position: absolute;
         top: 0;

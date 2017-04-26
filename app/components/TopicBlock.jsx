@@ -8,7 +8,8 @@ class TopicBlock extends Component {
   render() {
     const {children, slug, name, targets} = this.props;
     return (
-        <div className="topic-block" name={ slug } id={ slug }>
+        <div className="topic-block" name={ slug } >
+            <a className="topic-anchor" id={ slug }></a>
         	<div className="topic-header" style={{backgroundImage: `url('/images/profile-section-header/${slug}.png')`}}>
         		<div className="dc-container">
         			<div className="topic-name">{ name}</div>
