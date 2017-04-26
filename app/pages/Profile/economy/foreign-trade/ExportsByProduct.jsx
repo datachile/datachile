@@ -35,6 +35,7 @@ export default translate()(class ExportsByProduct extends SectionColumns {
   ];
 
     render() {
+        console.log('ctxt', this.context);
         const {t} = this.props;
         const data = this.context.data.exports_product;
         return (

@@ -23,7 +23,7 @@ export default translate()(class ImportsByOrigin extends SectionColumns {
                             .measure('CIF US'),
                         'jsonrecords')
                 )
-                .then(res => ({ key: 'imports_origin', data: res.data }));
+                .then(res => ({ key: 'imports_origin', data: res.data.data }));
 
             return {
                 type: "GET_DATA",
@@ -33,7 +33,7 @@ export default translate()(class ImportsByOrigin extends SectionColumns {
     ];
 
     render() {
-        const data = this.context.data.imports_origin.data;
+        const data = this.context.data.imports_origin;
         const {t} = this.props;
         return (
             <SectionColumns>

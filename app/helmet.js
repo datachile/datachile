@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
   link: [
     {rel: "icon", href: "/images/favicon.ico?v=2"},
     {rel: "stylesheet", href: "/images/css/reset.css"}
@@ -14,5 +14,3 @@ const config = {
     {name: "apple-mobile-web-app-title", content: "Data Chile"}
   ]
 };
-
-export default config;
