@@ -248,7 +248,7 @@
   }
 
   & .nav-selection{
-    background-color: var(--nice-blue);
+    background-color: var(--near-black);
     position: absolute;
     opacity: 1;
     top: 0px;
@@ -256,15 +256,30 @@
     display: flex;
     flex-direction: row;
     height: auto;
+    padding-bottom: calc(var(--gutter)/2);
     &.hidden{
       opacity: 0;
       top: -1000px;
       height: 0px;
       pointer-events: none;
     }
+    & h3{
+      font-family: var(--font-family-antonio);
+      font-weight: 400;
+      letter-spacing: 0.03px;
+      color: var(--snow);
+      & a{
+        color: var(--nice-blue);
+        text-decoration: none;
+        &:hover{
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
     & .map-regions{
-      margin: var(--gutter) calc(var(--gutter)/2);
       flex:0.35;
+      padding-right: calc(var(--gutter)/2);
       display: flex;
       flex-direction: row;
       & .map-viz{
@@ -278,6 +293,12 @@
             transition: all 500ms;
             background-color: transparent;
             color:var(--snow);
+            font-family: var(--font-family-antonio);
+            font-weight: 400;
+            letter-spacing: 0.03px;
+            margin: 0px;
+            padding: 1px 3px;
+            font-size: 15px;
             &.selected{
               background-color: var(--snow);
               color: var(--near-black);
@@ -287,8 +308,8 @@
       }
     }
     & .comunas{
-      margin: var(--gutter) calc(var(--gutter)/2);
       flex:0.35;
+      padding: 0 calc(var(--gutter)/2);
       & ul{
         list-style: none;
         padding: 0px;
@@ -299,23 +320,40 @@
         align-items: flex-start;
         align-content: flex-start;
         & li{
-          flex:0.5 0.5 50%;
+          flex:0.5 0.5 48%;
           background-color: transparent;
-          color:var(--snow);
+          margin: 0px;
+          padding: 1px 3px;
+          font-size: 15px;
           & a{
-            color: var(--near-black);
+            color: var(--nice-blue);
+            font-family: var(--font-family-antonio);
+            font-weight: 400;
+            letter-spacing: 0.03px;
             text-decoration: none;
           }
-          &:hover{
+          &.selected{
             background-color: var(--snow);
             color: var(--near-black);
+          }
+          &:hover{
+            text-decoration: underline;
+            cursor: pointer;
           }
         }
       }
     }
     & .profiles{
-      margin: var(--gutter) calc(var(--gutter)/2);
       flex:0.30;
+      padding: 0 calc(var(--gutter));
+      & h3{
+        & a{
+          float: right;
+        }
+      }
+      & .tile{
+        margin: calc(var(--gutter)/2) 0px;
+      }
     }
   }
 

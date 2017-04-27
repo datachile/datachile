@@ -17,7 +17,8 @@ class NavFixed extends Component {
       open_selector: false,
       open_menu: false,
       default_region: props.geo,
-      selected_region: props.geo
+      selected_region: (props.geo.parent)?props.geo.parent:props.geo,
+      selected_comuna: (props.geo.parent)?props.geo:false,
     };
 
     this.showNavSelection = this.showNavSelection.bind(this);
@@ -97,7 +98,7 @@ class NavFixed extends Component {
 
     const { open_selector,open_menu,selected_region} = this.state;
 
-    const featured = focus.map(f => GEOMAP.getRegion(f));
+    const featured = focus.slice(0, 2).map(f => GEOMAP.getRegion(f));
 
     function fillShape(d) {
       if(selected_region.slug=='chile'){
@@ -173,9 +174,6 @@ class NavFixed extends Component {
             <div className={ `nav-selection dc-container ${ open_selector ? "" : " hidden" }` } >
               <div className="map-regions">
                 <div className="map-viz">
-                  <div className="national-link">
-                    <Link to="/geo/chile">Chile</Link>
-                  </div>
                   <Geomap config={{
                     downloadButton: false,
                     groupBy: "id",
@@ -215,7 +213,7 @@ class NavFixed extends Component {
                   }} />
                 </div>
                 <div className="region-list">
-                  <h3>{t('Regions of Chile')}</h3>
+                  <h3>{t('Regions of')} <Link to="/geo/chile">Chile</Link></h3>
                   <ul>
                     {
                       GEO.map(region =>
@@ -232,7 +230,7 @@ class NavFixed extends Component {
                 <ul>
                 {
                   this.state.selected_region.children && this.state.selected_region.children.map(comuna =>
-                    <li key={ comuna.slug } className={`comuna-link`} >
+                    <li key={ comuna.slug } className={`comuna-link${ ( (this.state.selected_comuna) && (comuna.key==this.state.selected_comuna.key)) ? " selected" : "" }`} >
                         <Link to={comuna.url}>{ comuna.name }</Link>
                     </li>
                   )
@@ -240,8 +238,7 @@ class NavFixed extends Component {
                 </ul>
               </div>
               <div className="profiles">
-                <h3>{t('Featured profiles')}</h3>
-                <a onClick={this.hideNavSelection}>x</a>
+                <h3>{t('Featured profiles')} <a onClick={this.hideNavSelection}>x</a></h3>
                 {
                   featured.map(f =>
                       <FeaturedBox key={f.key} item={f} />
