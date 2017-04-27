@@ -17,14 +17,16 @@ export default translate()(class TradeBalance extends SectionColumns {
       const prm = mondrianClient
         .cube('exports_and_imports')
         .then(cube => {
-          return mondrianClient.query(
-            cube.query
-              .drilldown('Date', 'Year')
-              .cut(`[Geography].[Region].&[${geo.key}]`)
-              .measure('FOB')
-              .measure('CIF')
-              .measure('Trade Balance'),
-            'jsonrecords')
+            var q = cube.query
+                        .drilldown('Date', 'Year')
+                        .measure('FOB')
+                        .measure('CIF')
+                        .measure('Trade Balance');
+
+            if (q !== undefined ) {
+              q = q.cut(`[Geography].[Region].&[${geo.key}]`);
+            }
+            return mondrianClient.query(q, 'jsonrecords');
         }
         )
         .then(res => {

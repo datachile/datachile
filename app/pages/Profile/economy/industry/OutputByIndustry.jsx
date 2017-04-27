@@ -14,16 +14,17 @@ export default translate()(class OutputByIndustry extends SectionColumns {
       const geo = GEO.getRegion(params.region);
       const prm = mondrianClient
         .cube('tax_data')
-        .then(cube =>
-          mondrianClient.query(
-            cube.query
-              .option('parents', true)
-              .drilldown('ISICrev4', 'Level 2')
-              .drilldown('Date', 'Year')
-              .cut(`[Tax Geography].[Region].&[${geo.key}]`)
-              .measure('Output'),
-            'jsonrecords')
-        )
+        .then(cube => {
+            var q = cube.query
+                .option('parents', true)
+                .drilldown('ISICrev4', 'Level 2')
+                .drilldown('Date', 'Year')
+                .measure('Output');
+            if (geo !== undefined) {
+                q = q.cut(`[Tax Geography].[Region].&[${geo.key}]`);
+            }
+            return mondrianClient.query(q, 'jsonrecords');
+        })
         .then(res => ({ key: 'industry_output', data: res.data }));
 
       return {

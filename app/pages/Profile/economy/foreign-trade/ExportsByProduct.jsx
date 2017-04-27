@@ -11,20 +11,21 @@ export default translate()(class ExportsByProduct extends SectionColumns {
 
 
   static need = [
-    (params) => {
+      (params) => {
         const geo = GEO.getRegion(params.region);
         const prm = mondrianClient
         .cube('exports')
-        .then(cube =>
-            mondrianClient.query(
-                cube.query
-                  .option('parents', true)
-                  .drilldown('Export HS', 'HS2')
-                  .drilldown('Date', 'Year')
-                  .cut(`[Geography].[Region].&[${geo.key}]`)
-                  .measure('FOB US'),
-                'jsonrecords')
-        )
+        .then(cube => {
+          var q = cube.query
+                    .option('parents', true)
+                    .drilldown('Export HS', 'HS2')
+                    .drilldown('Date', 'Year')
+                    .measure('FOB US');
+          if (geo !== undefined) {
+              q = q.cut(`[Geography].[Region].&[${geo.key}]`);
+          }
+          return mondrianClient.query(q, 'jsonrecords');
+        })
         .then(res => ({ key: 'exports_product', data: res.data.data }));
 
       return {
@@ -35,7 +36,6 @@ export default translate()(class ExportsByProduct extends SectionColumns {
   ];
 
     render() {
-        console.log('ctxt', this.context);
         const {t} = this.props;
         const data = this.context.data.exports_product;
         return (

@@ -12,16 +12,20 @@ export default translate()(class ExportsByDestination extends SectionColumns {
     (params) => {
         const geo = GEO.getRegion(params.region);
         const prm = mondrianClient
-        .cube('exports')
-        .then(cube => 
-            mondrianClient.query(
-                cube.query
-                  .option('parents', true)
-                  .drilldown('Destination Country', 'Country')
-                  .drilldown('Date', 'Year')
-                  .cut(`[Geography].[Region].&[${geo.key}]`)
-                  .measure('FOB US'),
-                'jsonrecords')
+            .cube('exports')
+            .then(cube => {
+                var q = cube.query
+                         .option('parents', true)
+                         .drilldown('Destination Country', 'Country')
+                         .drilldown('Date', 'Year')
+                         .measure('FOB US');
+
+                if (geo !== undefined) {
+                    q = q.cut(`[Geography].[Region].&[${geo.key}]`)
+                }
+
+                return mondrianClient.query(q, 'jsonrecords');
+            }
         )
         .then(res => ({ key: 'exports_country', data: res.data.data }));
 

@@ -13,15 +13,19 @@ export default translate()(class ImportsByOrigin extends SectionColumns {
             const geo = GEO.getRegion(params.region);
             const prm = mondrianClient
                 .cube('imports')
-                .then(cube => 
-                    mondrianClient.query(
-                        cube.query
-                            .option('parents', true)
-                            .drilldown('Origin Country', 'Country')
-                            .drilldown('Date', 'Year')
-                            .cut(`[Geography].[Region].&[${geo.key}]`)
-                            .measure('CIF US'),
-                        'jsonrecords')
+                .then(cube => {
+                    var q = cube.query
+                        .option('parents', true)
+                        .drilldown('Origin Country', 'Country')
+                        .drilldown('Date', 'Year')
+                        .measure('CIF US');
+                    if (geo !== undefined) {
+                        q = q.cut(`[Geography].[Region].&[${geo.key}]`);
+                    }
+                    return mondrianClient.query(
+                        q,
+                        'jsonrecords');
+                }
                 )
                 .then(res => ({ key: 'imports_origin', data: res.data.data }));
 
