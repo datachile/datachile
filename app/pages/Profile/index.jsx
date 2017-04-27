@@ -95,8 +95,11 @@ class GeoProfile extends Component {
   }
 
   handleScroll() {
+
+    if (!this.subLinks) return;
+
     const {activeSub, subnav} = this.state;
-    const newSub = this.refs.sublinks.getBoundingClientRect().top <= 0;
+    const newSub = this.subLinks.getBoundingClientRect().top <= 0;
 
     let newActive = false;
     for (let i = 0; i < topics.length; i++) {
@@ -234,7 +237,7 @@ class GeoProfile extends Component {
                           </div>
                       </div>
 
-                      <div id="sublinks" ref="sublinks" className="dc-container">
+                      <div id="sublinks" ref={(sl) => this.subLinks = sl } className="dc-container">
                           <div className="subnav">
                               {
                                   topics.map(topic =>
