@@ -2,7 +2,7 @@ import React from "react";
 import {SectionColumns, SectionTitle} from "datawheel-canon";
 
 import { Treemap } from "d3plus-react";
-import mondrianClient from 'helpers/MondrianClient';
+import mondrianClient, { geoCut } from 'helpers/MondrianClient';
 import { GEO } from "helpers/GeoData";
 import { ordinalColorScale } from 'helpers/colors';
 import {translate} from "react-i18next";
@@ -11,19 +11,19 @@ export default translate()(class OutputByIndustry extends SectionColumns {
 
   static need = [
     (params) => {
-      const geo = GEO.getRegion(params.region);
+      const geo = GEO.getGeo(params.region, params.comuna);
       const prm = mondrianClient
         .cube('tax_data')
         .then(cube => {
-            var q = cube.query
-                .option('parents', true)
-                .drilldown('ISICrev4', 'Level 2')
-                .drilldown('Date', 'Year')
-                .measure('Output');
-            if (geo !== undefined) {
-                q = q.cut(`[Tax Geography].[Region].&[${geo.key}]`);
-            }
-            return mondrianClient.query(q, 'jsonrecords');
+          var q = geoCut(geo,
+                         'Tax Geography',
+                         cube.query
+                             .option('parents', true)
+                             .drilldown('ISICrev4', 'Level 2')
+                             .drilldown('Date', 'Year')
+                             .measure('Output'));
+
+          return mondrianClient.query(q, 'jsonrecords');
         })
         .then(res => ({ key: 'industry_output', data: res.data }));
 
@@ -52,7 +52,6 @@ export default translate()(class OutputByIndustry extends SectionColumns {
             fill: d => ordinalColorScale(d['ID Level 1'])
           }
         }} />
-
       </SectionColumns>
     );
   }

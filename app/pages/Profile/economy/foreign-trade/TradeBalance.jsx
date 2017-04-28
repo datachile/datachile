@@ -1,34 +1,32 @@
 import React from "react";
-import {SectionColumns, SectionTitle} from "datawheel-canon";
+import { SectionColumns, SectionTitle } from "datawheel-canon";
 
 import { LinePlot } from "d3plus-react";
-import mondrianClient from 'helpers/MondrianClient';
+import mondrianClient, { geoCut } from 'helpers/MondrianClient';
 import { GEO } from "helpers/GeoData";
 import { ordinalColorScale } from 'helpers/colors';
 import { melt } from 'helpers/dataUtils';
 
-import {translate} from "react-i18next";
+import { translate } from "react-i18next";
 
 export default translate()(class TradeBalance extends SectionColumns {
 
   static need = [
     (params) => {
-      const geo = GEO.getRegion(params.region);
+      const geo = GEO.getGeo(params.region, params.comuna);
       const prm = mondrianClient
         .cube('exports_and_imports')
         .then(cube => {
-            var q = cube.query
-                        .drilldown('Date', 'Year')
-                        .measure('FOB')
-                        .measure('CIF')
-                        .measure('Trade Balance');
+          var q = geoCut(geo,
+            'Geography',
+            cube.query
+            .drilldown('Date', 'Year')
+            .measure('FOB')
+            .measure('CIF')
+            .measure('Trade Balance'));
 
-            if (q !== undefined ) {
-              q = q.cut(`[Geography].[Region].&[${geo.key}]`);
-            }
-            return mondrianClient.query(q, 'jsonrecords');
-        }
-        )
+          return mondrianClient.query(q, 'jsonrecords');
+        })
         .then(res => {
           return {
             key: 'trade_balance',
@@ -43,12 +41,9 @@ export default translate()(class TradeBalance extends SectionColumns {
     }
   ];
 
-    render() {
-        console.log("trade_balance", this.context.data);
-        const data = melt(this.context.data.trade_balance,
-                          ['ID Year'],
-                          ['FOB', 'CIF', 'Trade Balance']);
-    const {t} = this.props;
+  render() {
+    const data = melt(this.context.data.trade_balance, ['ID Year'], ['FOB', 'CIF', 'Trade Balance']);
+    const { t } = this.props;
     return (
       <SectionColumns>
         <SectionTitle>{ t('Trade Balance') }</SectionTitle>
