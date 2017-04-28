@@ -11,7 +11,6 @@ const client = new MondrianClient(API);
  * @param {} query
  */
 function geoCut(geo, dimensionName, query) {
-  console.info('GEO', geo);
   if (geo === undefined) {
     return query; // no region provided, don't cut
   }
