@@ -1,7 +1,7 @@
 import { Client as MondrianClient } from 'mondrian-rest-client';
-import {API} from ".env";
+import {CANON_API} from ".env";
 
-const client = new MondrianClient(API);
+const client = new MondrianClient(CANON_API);
 
 /**
  * Returns the provided query with the appropiate cut
