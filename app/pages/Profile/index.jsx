@@ -82,7 +82,6 @@ class GeoProfile extends Component {
       ExportsByDestination,
       ImportsByOrigin,
       TradeBalance,
-
       OutputByIndustry
   ];
 
