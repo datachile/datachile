@@ -12,6 +12,10 @@ import Explore from "pages/Explore";
 
 import GeoProfile from "pages/GeoProfile";
 import CountryProfile from "pages/CountryProfile";
+import InstitutionProfile from "pages/InstitutionProfile";
+import CareerProfile from "pages/CareerProfile";
+import ProductProfile from "pages/ProductProfile";
+import IndustryProfile from "pages/IndustryProfile";
 
 export default function RouteCreate() {
 
@@ -25,6 +29,10 @@ export default function RouteCreate() {
       <Route path="geo/:region/:comuna" component={GeoProfile}  />
       
       <Route path="countries/:country" component={CountryProfile}  />
+      <Route path="institutions/:institution" component={InstitutionProfile}  />
+      <Route path="careers/:career" component={CareerProfile}  />
+      <Route path="products/:product" component={ProductProfile}  />
+      <Route path="industries/:industry" component={IndustryProfile}  />
 
       <Route path="about" component={About} />
       <Route path="*" component={NotFound} status={404} />
