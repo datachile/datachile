@@ -227,7 +227,7 @@ class Explore extends Component {
 
                                 <ul>
                                   { 
-                                    members.map(m =>
+                                    members && members.map(m =>
                                       <li><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.name }</Link></li>
                                     )
                                   }

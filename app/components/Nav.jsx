@@ -19,8 +19,6 @@ class Nav extends Component {
           <div className="nav-links">
             <Link className="link" to="/">{ t("Home") }</Link>
             <Link className="link" to="/explore">{ t("Explore") }</Link>
-            <Link className="link" to="/profiles">{ t("Profiles") }</Link>
-            <Link className="link" to="/topics">{ t("Topics") }</Link>
           </div>
         </div>
       </nav>
