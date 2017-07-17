@@ -3,15 +3,15 @@ import {SectionColumns, SectionTitle} from "datawheel-canon";
 
 import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from 'helpers/MondrianClient';
-import { GEO } from "helpers/GeoData";
+import { getGeoObject } from 'helpers/dataUtils';
 import { ordinalColorScale } from 'helpers/colors';
 import {translate} from "react-i18next";
 
 export default translate()(class OutputByIndustry extends SectionColumns {
 
   static need = [
-    (params) => {
-      const geo = GEO.getGeo(params.region, params.comuna);
+    (params,store) => {
+      const geo = getGeoObject(params)
       const prm = mondrianClient
         .cube('tax_data')
         .then(cube => {
@@ -21,7 +21,8 @@ export default translate()(class OutputByIndustry extends SectionColumns {
                              .option('parents', true)
                              .drilldown('ISICrev4', 'Level 2')
                              .drilldown('Date', 'Year')
-                             .measure('Output'));
+                             .measure('Output'),
+                            store.i18n.locale);
 
           return mondrianClient.query(q, 'jsonrecords');
         })

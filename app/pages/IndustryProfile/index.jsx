@@ -22,7 +22,9 @@ class IndustryProfile extends Component {
 
   static need = [
       (params) => {
-        const id = params.industry.split('-')[0];
+
+        var parts = params.industry.split('-');
+        const id = parts[parts.length-1];
 
         var prm;
 

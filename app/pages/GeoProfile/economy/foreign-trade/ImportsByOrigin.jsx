@@ -3,24 +3,25 @@ import { SectionColumns, SectionTitle } from "datawheel-canon";
 
 import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from 'helpers/MondrianClient';
-import { GEO } from "helpers/GeoData";
+import { getGeoObject } from 'helpers/dataUtils';
 import { translate } from "react-i18next";
 
 export default translate()(class ImportsByOrigin extends SectionColumns {
 
   static need = [
-    (params) => {
-      const geo = GEO.getGeo(params.region, params.comuna);
+    (params,store) => {
+      const geo = getGeoObject(params)
       const prm = mondrianClient
         .cube('imports')
         .then(cube => {
           var q = geoCut(geo,
             'Geography',
             cube.query
-            .option('parents', true)
-            .drilldown('Origin Country', 'Country')
-            .drilldown('Date', 'Year')
-            .measure('CIF US'));
+              .option('parents', true)
+              .drilldown('Origin Country', 'Country')
+              .drilldown('Date', 'Year')
+              .measure('CIF US'),
+            store.i18n.locale);
 
           return mondrianClient.query(q, 'jsonrecords');
         })

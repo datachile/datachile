@@ -20,8 +20,18 @@ function slugifyStr(str){
   return str;
 }
 
-export function slugifyItem(prefix,id,name) {
-  return '/'+prefix+'/'+id+'-'+slugifyStr(name);
+export function slugifyItem(prefix,id1,name1,id2,name2) {
+  var link = '/'+prefix+'/'+slugifyStr(name1);
+
+  if(id1){
+    link += '-'+id1;
+  }
+
+  if(id2){
+    link += '/'+slugifyStr(name2)+'-'+id2;
+  }
+
+  return link;
 }
 
 function abbreviate(n) {

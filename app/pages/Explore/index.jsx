@@ -10,11 +10,9 @@ import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
 import { browserHistory } from 'react-router';
 
-import {slugifyItem} from "helpers/formatters";
+import { slugifyItem } from "helpers/formatters";
 
 import mondrianClient from 'helpers/MondrianClient';
-
-import { GEOMAP, GEO } from "helpers/GeoData";
 
 import {translate} from "react-i18next";
 
@@ -42,6 +40,24 @@ class Explore extends Component {
                 type = '';
                 break;
             }
+            case 'geo':{
+                prm = mondrianClient
+                  .cube('exports')
+                  .then(cube => {
+
+                    return cube.dimensionsByName['Geography']
+                      .hierarchies[0]
+                      .getLevel('Region');
+
+                  })
+                  .then(level => {
+                    return mondrianClient.members(level,true)
+                  })
+                  .then(res => {
+                    return { key: 'members', data: res }
+                  });
+                break;
+            }
             case 'countries':{
                 prm = mondrianClient
                   .cube('exports')
@@ -49,14 +65,14 @@ class Explore extends Component {
 
                     return cube.dimensionsByName['Destination Country']
                       .hierarchies[0]
-                      .getLevel('Country');
+                      .getLevel('Region');
 
                   })
                   .then(level => {
-                    return mondrianClient.members(level)
+                    return mondrianClient.members(level,true)
                   })
-                  .then(res => ({ 
-                    key: 'members', data: res }
+                  .then(res => (
+                    { key: 'members', data: res }
                   ));
                 break;
             }
@@ -71,7 +87,7 @@ class Explore extends Component {
 
                   })
                   .then(level => {
-                    return mondrianClient.members(level)
+                    return mondrianClient.members(level,true)
                   })
                   .then(res => ({ 
                     key: 'members', data: res }
@@ -89,7 +105,7 @@ class Explore extends Component {
 
                   })
                   .then(level => {
-                    return mondrianClient.members(level)
+                    return mondrianClient.members(level,true)
                   })
                   .then(res => ({ 
                     key: 'members', data: res }
@@ -107,7 +123,7 @@ class Explore extends Component {
 
                   })
                   .then(level => {
-                    return mondrianClient.members(level)
+                    return mondrianClient.members(level,true)
                   })
                   .then(res => ({ 
                     key: 'members', data: res }
@@ -125,7 +141,7 @@ class Explore extends Component {
 
                   })
                   .then(level => {
-                    return mondrianClient.members(level)
+                    return mondrianClient.members(level,true)
                   })
                   .then(res => ({ 
                     key: 'members', data: res }
@@ -158,6 +174,7 @@ class Explore extends Component {
     const members = this.props.data.members;
 
     var type = '';
+    var mainLink = false;
     switch(entity){
         case undefined:{
             type = '';
@@ -183,13 +200,18 @@ class Explore extends Component {
             type = t('Industries');
             break;
         }
+        case 'geo':{
+            type = t('Geo');
+            mainLink = true;
+            break;
+        }
         default: {
             browserHistory.push('/explore');
         }
     }
 
       return (
-          <CanonComponent data={this.props.data} d3plus={d3plus}>
+          <CanonComponent id="explore" data={this.props.data} d3plus={d3plus}>
               <div className="explore">
 
                   <div className="intro">
@@ -209,6 +231,7 @@ class Explore extends Component {
                             {!entity &&
                              <div className="">
                                <ul>
+                                <li><Link className="link" to="/explore/geo">{ t("Geo") }</Link></li>
                                 <li><Link className="link" to="/explore/countries">{ t("Countries") }</Link></li>
                                 <li><Link className="link" to="/explore/institutions">{ t("Institutions") }</Link></li>
                                 <li><Link className="link" to="/explore/careers">{ t("Careers") }</Link></li>
@@ -225,13 +248,23 @@ class Explore extends Component {
                                   <li><Link className="link" to="/explore">{ t("Explore") }</Link></li>
                                 </ul>
 
-                                <ul>
+                                <div>
                                   { 
                                     members && members.map(m =>
-                                      <li><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.name }</Link></li>
+                                      <div>
+                                        <h3><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.name }</Link></h3>
+                                        
+                                        <ul>
+                                          { 
+                                            m.children && m.children.map(c =>
+                                              <li><Link className="link" to={ slugifyItem(entity,m.key,m.name,c.key,c.name) }>{ c.name }</Link></li>
+                                            )
+                                          }
+                                        </ul>
+                                      </div>
                                     )
                                   }
-                                </ul>
+                                </div>
 
                              </div>
                             }

@@ -22,7 +22,9 @@ class InstitutionProfile extends Component {
 
   static need = [
       (params) => {
-        const id = params.institution.split('-')[0];
+
+        var parts = params.institution.split('-');
+        const id = parts[parts.length-1];
 
         var prm;
 

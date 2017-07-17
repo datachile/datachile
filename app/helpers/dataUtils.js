@@ -13,3 +13,32 @@ export function melt(data, id_vars, value_vars) {
 
   return rv;
 }
+
+export function getGeoType(params) {
+  return (params.region==='chile')?'country':(params.comuna)?'comuna':'region';
+}
+
+export function getGeoObject(params) {
+  var geo = {
+    type: getGeoType(params)
+  };
+  switch(geo.type){
+        case 'country':{
+            geo.key = 'chile';
+            geo.name = 'Chile';
+            break;
+        }
+        case 'region':{
+            const parts = params.region.split('-');
+            geo.key = parseInt(parts[parts.length-1])
+            break;
+        }
+        case 'comuna':{
+            const parts = params.comuna.split('-');
+            geo.key = parseInt(parts[parts.length-1]);
+            break;
+        }
+    }
+  
+  return geo;
+}

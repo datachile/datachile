@@ -3,15 +3,18 @@ import {SectionColumns, SectionTitle} from "datawheel-canon";
 
 import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from 'helpers/MondrianClient';
-import { GEO } from "helpers/GeoData";
+
 import { ordinalColorScale } from 'helpers/colors';
+import { getGeoObject } from 'helpers/dataUtils';
 import {translate} from "react-i18next";
 
 export default translate()(class ExportsByProduct extends SectionColumns {
 
     static need = [
-        (params) => {
-            const geo = GEO.getGeo(params.region, params.comuna);
+        (params,store) => {
+
+            const geo = getGeoObject(params)
+            
             const prm = mondrianClient
                 .cube('exports')
                 .then(cube => {
@@ -21,7 +24,8 @@ export default translate()(class ExportsByProduct extends SectionColumns {
                                        .option('parents', true)
                                        .drilldown('Export HS', 'HS2')
                                        .drilldown('Date', 'Year')
-                                       .measure('FOB US'));
+                                       .measure('FOB US'),
+                                    store.i18n.locale);
 
                     return mondrianClient.query(q, 'jsonrecords');
                 })
@@ -37,6 +41,7 @@ export default translate()(class ExportsByProduct extends SectionColumns {
     render() {
         const {t} = this.props;
         const data = this.context.data.exports_product;
+
         return (
             <SectionColumns>
                 <SectionTitle>{ t('Exports By Product') }</SectionTitle>

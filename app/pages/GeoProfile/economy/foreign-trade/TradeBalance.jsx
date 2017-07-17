@@ -3,27 +3,28 @@ import { SectionColumns, SectionTitle } from "datawheel-canon";
 
 import { LinePlot } from "d3plus-react";
 import mondrianClient, { geoCut } from 'helpers/MondrianClient';
-import { GEO } from "helpers/GeoData";
+
 import { ordinalColorScale } from 'helpers/colors';
-import { melt } from 'helpers/dataUtils';
+import { melt,getGeoObject } from 'helpers/dataUtils';
 
 import { translate } from "react-i18next";
 
 export default translate()(class TradeBalance extends SectionColumns {
 
   static need = [
-    (params) => {
-      const geo = GEO.getGeo(params.region, params.comuna);
+    (params,store) => {
+      const geo = getGeoObject(params)
       const prm = mondrianClient
         .cube('exports_and_imports')
         .then(cube => {
           var q = geoCut(geo,
             'Geography',
             cube.query
-            .drilldown('Date', 'Year')
-            .measure('FOB')
-            .measure('CIF')
-            .measure('Trade Balance'));
+              .drilldown('Date', 'Year')
+              .measure('FOB')
+              .measure('CIF')
+              .measure('Trade Balance'),
+            store.i18n.locale);
 
           return mondrianClient.query(q, 'jsonrecords');
         })

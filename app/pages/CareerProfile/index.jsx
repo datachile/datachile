@@ -22,7 +22,8 @@ class CareerProfile extends Component {
 
   static need = [
       (params) => {
-        const id = params.career.split('-')[0];
+        var parts = params.career.split('-');
+        const id = parts[parts.length-1];
 
         var prm;
 

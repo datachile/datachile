@@ -22,7 +22,8 @@ class CountryProfile extends Component {
 
   static need = [
       (params) => {
-        const id = params.country.split('-')[0];
+        var parts = params.country.split('-');
+        const id = parts[parts.length-1];
 
         var prm;
 
@@ -69,7 +70,7 @@ class CountryProfile extends Component {
               <div className="country-profile">
 
                 <div className="dc-container">
-                  <h1>{ country } { countryObj.name }</h1>
+                  <h1>{ countryObj.name }</h1>
                   <br/>
                   <br/>
                   <br/>
