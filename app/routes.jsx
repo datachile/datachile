@@ -25,14 +25,13 @@ export default function RouteCreate() {
       
       <Route path="explore(/:entity)" component={Explore}  />
 
-      <Route path="geo/:region" component={GeoProfile}  />
-      <Route path="geo/:region/:comuna" component={GeoProfile}  />
+      <Route path="geo/:region(/:comuna)" component={GeoProfile}  />
       
-      <Route path="countries/:country" component={CountryProfile}  />
-      <Route path="institutions/:institution" component={InstitutionProfile}  />
+      <Route path="countries/:level1(/:level2)" component={CountryProfile}  />
+      <Route path="institutions/:level1(/:level2)" component={InstitutionProfile}  />
       <Route path="careers/:career" component={CareerProfile}  />
-      <Route path="products/:product" component={ProductProfile}  />
-      <Route path="industries/:industry" component={IndustryProfile}  />
+      <Route path="products/:level1(/:level2)" component={ProductProfile}  />
+      <Route path="industries/:level1(/:level2)" component={IndustryProfile}  />
 
       <Route path="about" component={About} />
       <Route path="*" component={NotFound} status={404} />

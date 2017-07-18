@@ -72,7 +72,9 @@ class CareerProfile extends Component {
               <div className="career-profile">
 
                 <div className="dc-container">
-                  <h1>{ careerObj.name }</h1>
+                  { careerObj &&  
+                    <h1>{ careerObj.name }</h1>
+                  }
                   <br/>
                   <br/>
                   <br/>

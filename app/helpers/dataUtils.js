@@ -42,3 +42,18 @@ export function getGeoObject(params) {
   
   return geo;
 }
+
+export function getLevelObject(params) {
+  var parts = params.level1.split('-');
+  var r = {
+    level1: parts[parts.length-1],
+    level2: false
+  }
+  
+  if(params.level2){
+    parts = params.level2.split('-');
+    r.level2 = parts[parts.length-1];
+  }
+
+  return r;
+}

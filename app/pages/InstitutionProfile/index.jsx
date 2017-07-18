@@ -5,8 +5,11 @@ import {Link} from "react-router";
 
 import { browserHistory } from 'react-router';
 import d3plus from "helpers/d3plus";
+import { slugifyItem } from "helpers/formatters";
 
 import mondrianClient from 'helpers/MondrianClient';
+
+import { getLevelObject } from "helpers/dataUtils";
 
 import {translate} from "react-i18next";
 
@@ -23,24 +26,24 @@ class InstitutionProfile extends Component {
   static need = [
       (params) => {
 
-        var parts = params.institution.split('-');
-        const id = parts[parts.length-1];
+        var ids = getLevelObject(params);
 
         var prm;
 
-        if(id){
+        if(ids.level1 || ids.level2){
 
           prm = mondrianClient
                   .cube('education_employability')
                   .then(cube => {
 
-                    return cube.dimensionsByName['Institution']
-                      .hierarchies[0]
-                      .getLevel('Institution');
+                    var h = cube.dimensionsByName['Institution']
+                      .hierarchies[0];
+
+                    return (ids.level2)?h.getLevel('Institution'):h.getLevel('Institution Type')
 
                   })
                   .then(level => {
-                    return mondrianClient.member(level,id)
+                    return mondrianClient.member(level,(ids.level2)?ids.level2:ids.level1)
                   })
                   .then(res => ({ 
                     key: 'institution', data: res }
@@ -66,14 +69,25 @@ class InstitutionProfile extends Component {
 
     const {focus, t} = this.props;
 
-    const institutionObj = this.props.data.institution;
+    const { industry } = this.props.routeParams;
+    const obj = this.props.data.institution;
+
+    const ancestor = (obj && obj.ancestors)?(obj.ancestors.length>1)?obj.ancestors[0]:false:false;
 
       return (
           <CanonComponent data={ this.props.data } d3plus={ d3plus }>
               <div className="institution-profile">
 
                 <div className="dc-container">
-                  <h1>{ institutionObj.name }</h1>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  {obj &&
+                    <h1>{ obj.caption }</h1>
+                  }
+                  {ancestor && <h3><Link className="link" to={ slugifyItem('institutions',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></h3> }
                   <br/>
                   <br/>
                   <br/>
