@@ -65,7 +65,7 @@ class Explore extends Component {
 
                     return cube.dimensionsByName['Destination Country']
                       .hierarchies[0]
-                      .getLevel('Region');
+                      .getLevel('Subregion');
 
                   })
                   .then(level => {
@@ -83,7 +83,7 @@ class Explore extends Component {
 
                     return cube.dimensionsByName['Institution']
                       .hierarchies[0]
-                      .getLevel('Institution');
+                      .getLevel('Institution Type');
 
                   })
                   .then(level => {

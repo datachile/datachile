@@ -5,7 +5,6 @@ import {translate} from "react-i18next";
 import {Link, browserHistory} from "react-router";
 import "./Search.css";
 
-import {API} from ".env";
 import { GEOARRAY } from "helpers/GeoData";
 
 import {strip} from "d3plus-text";

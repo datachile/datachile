@@ -1,7 +1,6 @@
 import { Client as MondrianClient } from 'mondrian-rest-client';
-import {CANON_API,CANON_LANGUAGE_DEFAULT} from ".env";
 
-const client = new MondrianClient(CANON_API);
+const client = new MondrianClient(process.env.CANON_API);
 
 /**
  * Returns the provided query with the appropiate cut
@@ -10,7 +9,7 @@ const client = new MondrianClient(CANON_API);
  * @param {} dimensionName
  * @param {} query
  */
-function geoCut(geo, dimensionName, query, lang=CANON_LANGUAGE_DEFAULT) {
+function geoCut(geo, dimensionName, query, lang=process.env.CANON_LANGUAGE_DEFAULT) {
   
   console.log('LANG',lang);
   //if(lang!=CANON_LANGUAGE_DEFAULT){

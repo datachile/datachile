@@ -1,6 +1,6 @@
 node_modules/*
 static/assets/*
 */**/.DS_Store
-app/.env.js
+.env
 .DS_Store
 npm-debug.log
