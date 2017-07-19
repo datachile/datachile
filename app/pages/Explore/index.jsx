@@ -28,7 +28,7 @@ class Explore extends Component {
   };
 
   static need = [
-    (params) => {
+    (params,store) => {
       const entity = params.entity;
 
       var prm;
@@ -69,7 +69,14 @@ class Explore extends Component {
 
                   })
                   .then(level => {
-                    return mondrianClient.members(level,true)
+                    var m = mondrianClient.members(level,true)
+                    if(store.i18n.locale=="es"){
+                      const es = level.annotations['es_caption']
+                      if(es){
+                        m.caption(level.hierarchy.dimension.name,level.name,es);
+                      }
+                    }
+                    return m;
                   })
                   .then(res => (
                     { key: 'members', data: res }
@@ -257,7 +264,7 @@ class Explore extends Component {
                                         <ul>
                                           { 
                                             m.children && m.children.map(c =>
-                                              <li><Link className="link" to={ slugifyItem(entity,m.key,m.name,c.key,c.name) }>{ c.name }</Link></li>
+                                              <li><Link className="link" to={ slugifyItem(entity,m.key,m.name,c.key,c.name) }>{ c.name } - {c.key}</Link></li>
                                             )
                                           }
                                         </ul>

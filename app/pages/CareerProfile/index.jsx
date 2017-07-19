@@ -39,7 +39,9 @@ class CareerProfile extends Component {
 
                   })
                   .then(level => {
-                    return mondrianClient.member(level,id)
+                    var m = mondrianClient.member(level,id)
+                    
+                    return m
                   })
                   .then(res => ({ 
                     key: 'career', data: res }

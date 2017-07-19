@@ -150,10 +150,6 @@ class GeoProfile extends Component {
       OutputByIndustry
   ];
 
-  static contextTypes = {
-    apiClient: PropTypes.object
-  };
-
   componentDidMount() {
     //window.addEventListener("scroll", this.handleScroll.bind(this));
   }
@@ -197,7 +193,6 @@ class GeoProfile extends Component {
         source_year: 2013
     }
 
-
     var type = '';
     switch(geoObj.type){
         case 'country':{
@@ -214,27 +209,104 @@ class GeoProfile extends Component {
         }
     }
 
-    /*const key = (geo.parent)?geo.parent.key:geo.key;
-    const slug = (geo.parent)?geo.parent.slug:geo.slug;*/
-
-    /*const onlyRegions = GEO.filter(function(d){
-      return d.parent==false && d.slug != 'chile';
-    });
-
     function fillShape(d) {
-      if(geo.slug=='chile'){
-        return "rgba(255, 255, 255, 0.5)";
+      var c = "rgba(255, 255, 255, 0.35)";
+      switch(geoObj.type){
+          case 'country':{
+              c = "rgba(255, 255, 255, 0.5)";
+              break;
+          }
+          case 'region':{
+              if(parseInt(d.id)==parseInt(geoObj.key)){
+                c = "rgba(255, 255, 255, 1)";
+              }
+              break;
+          }
+          case 'comuna':{
+              if(parseInt(d.id)==parseInt(ancestor.key)){
+                c = "rgba(255, 255, 255, 1)";
+              }
+              break;
+          }
       }
-      return (parseInt(d.id)==parseInt(key))? "rgba(255, 255, 255, 1)":"rgba(255, 255, 255, 0.35)";
-    }*/
+
+      return c;
+    }
 
       return (
           <CanonComponent data={this.props.data} d3plus={d3plus}>
               <div className="profile">
-                  <p><Link className="link" to="/explore/geo">{t('Explore')}</Link></p>
-                  <h3>{ geoObj.type }</h3>
-                  <h1>{ geo.name }</h1>
-                  {ancestor && <h3><Link className="link" to={ slugifyItem('geo',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></h3> }
+                  
+                <div className="intro">
+
+                      <div className="splash">
+                          <div className="image" style={{backgroundImage: `url('/images/profile-bg/${geoObj.image}')`}} ></div>
+                          <div className="gradient"></div>
+                      </div>
+
+                      <div className="dc-container">
+                          <div className="header">
+                              
+                              <div className="meta">
+                                  {ancestor && 
+                                    <div className="parent"><Link className="link" to={ slugifyItem('geo',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></div> 
+                                  }
+                                  <div className="title">{ geo.caption }</div>
+                                  <div className="subtitle">{ geoObj.type } <Link className="link" to="/explore/geo">{t('Explore')}</Link></div>
+                                  <Stat value={ stats.population } label={ t('Population') } />
+                                  <Stat value={ '$' + stats.income_avg } label={ t('Average Household') } />
+                                  <Stat value={ stats.age_avg +' '+ t('years')} label={ t('Average age') } />
+                              </div>
+
+                              <div className="map-region">
+                                <Geomap config={{
+                                      data: [],
+                                      downloadButton: false,
+                                      groupBy: "key",
+                                      height: 500,
+                                      label: d => 'Región '+d.properties.Region,
+                                      legend: false,
+                                      ocean: "transparent",
+                                      on: {
+                                          "click.shape": function(d) {
+                                              browserHistory.push(slugifyItem('geo',d.id,d.properties.Region));
+                                          }
+                                      },
+                                      padding: 10,
+                                      shapeConfig: {
+                                          hoverOpacity: 1,
+                                          Path: {
+                                              fill: fillShape,
+                                              stroke: "rgba(255, 255, 255, 0.75)"
+                                          }
+                                      },
+                                      tiles: false,
+                                      tooltipConfig: {
+                                          background: "white",
+                                          footer: "",
+                                          footerStyle: {
+                                              "margin-top": 0
+                                          },
+                                          padding: "12px",
+                                          body: d => `${d.properties.Region}`
+                                      },
+                                      topojson: "/geo/regiones.json",
+                                      topojsonId: "id",
+                                      topojsonKey: "regiones",
+                                      width: 200,
+                                      zoom: false
+                                  }} />
+                              </div>
+                              <div className="map-comuna">
+                                 { geoObj.type!='country' &&
+                                    <SvgMap region={(geoObj.type=='region')?geo:ancestor} active={(geoObj.type=='comuna')?geo:false} />
+                                  }
+                              </div>
+                          </div>
+                      </div>
+                  
+                  </div>
+
 
 
                   <ExportsByProduct/>

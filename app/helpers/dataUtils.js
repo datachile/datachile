@@ -26,16 +26,21 @@ export function getGeoObject(params) {
         case 'country':{
             geo.key = 'chile';
             geo.name = 'Chile';
+            geo.caption = 'Chile';
+            geo.image = 'chile.jpg';
             break;
         }
         case 'region':{
             const parts = params.region.split('-');
             geo.key = parseInt(parts[parts.length-1])
+            geo.image = geo.type+'-'+geo.key+'.jpg'
             break;
         }
         case 'comuna':{
-            const parts = params.comuna.split('-');
-            geo.key = parseInt(parts[parts.length-1]);
+            const partsR = params.region.split('-');
+            const partsC = params.comuna.split('-');
+            geo.key = parseInt(partsC[partsC.length-1]);
+            geo.image = 'region-'+partsR[partsR.length-1]+'.jpg'
             break;
         }
     }

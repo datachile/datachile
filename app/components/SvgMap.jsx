@@ -5,6 +5,7 @@ import {text as loadSvgAsString} from 'd3-request';
 import {select,selectAll,event} from 'd3-selection';
 import { browserHistory } from 'react-router';
 import { GEOMAP } from "helpers/GeoData";
+import { slugifyItem } from "helpers/formatters";
 import "./SvgMap.css";
 
 
@@ -32,41 +33,44 @@ class SvgMap extends Component {
   };
 
   componentDidMount() {
-    loadSvgAsString('/images/maps/zoom/'+this.props.slug+'.svg').get(this.callbackSvg);
+    loadSvgAsString('/images/maps/zoom/comunas-'+this.props.region.key+'.svg').get(this.callbackSvg);
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.slug !== this.props.slug) {
-      loadSvgAsString('/images/maps/zoom/'+nextProps.slug+'.svg').get(this.callbackSvg);
+    if (nextProps.region.key !== this.props.region.key) {
+      loadSvgAsString('/images/maps/zoom/comunas-'+this.props.region.key+'.svg').get(this.callbackSvg);
     }
-    if (nextProps.active !== this.props.active) {
-      this.prepareSelected(nextProps.active);
+    if (nextProps.active.key !== this.props.active.key) {
+      this.prepareSelected(nextProps.active.key);
     }
   };
 
 
   prepareSelected(active){
+    console.log(active);
     selectAll('.svg-map .comuna').classed('selected',false);
-    select('.svg-map .comuna#'+active).classed('selected',true);
+    select('.svg-map .comuna#c'+active).classed('selected',true);
     select('.svg-map #svg-map-tooltip').style('opacity',0);
   }
 
   launchEvents() {
     
-    this.prepareSelected(this.props.active);
+    this.prepareSelected(this.props.active.key);
 
     var slug = this.props.slug;
 
     var tooltip = select('.svg-map #svg-map-tooltip');
 
+    var region = this.props.region;
+
     selectAll('.svg-map .comuna')
       .on('mouseover', function(d,a){
-        var id = select(this).classed('hover',true).attr('id');
-        var data = GEOMAP.getRegion(slug+'.'+id);
+        var d = select(this);
+        var id = d.classed('hover',true).attr('id');
         tooltip.transition()
            .duration(200)
            .style("opacity", .9);
-        tooltip.html('Comuna '+data.name)
+        tooltip.html('Comuna '+d.attr('name'))
          .style("left", (event.pageX) + "px")
          .style("top", (event.pageY - 28) + "px");
       })
@@ -82,17 +86,18 @@ class SvgMap extends Component {
          .style("top", (event.pageY - 28) + "px");
       })
       .on('click',function(){
-        browserHistory.push('/geo/'+slug+'/'+select(this).attr('id'));
+        var d = select(this);
+        browserHistory.push(slugifyItem('geo',region.key,region.name,d.attr('id').replace('c',''),d.attr('name')));
       });
 
     selectAll('.svg-map .region')
       .on('mouseover', function(d,a){
-        var id = select(this).classed('hover',true).attr('id');
-        var data = GEOMAP.getRegion(id);
+        var d = select(this);
+        var id = d.classed('hover',true).attr('id');
         tooltip.transition()
            .duration(200)
            .style("opacity", .9);
-        tooltip.html('Región '+data.name)
+        tooltip.html('Región '+d.attr('name'))
          .style("left", (event.pageX) + "px")
          .style("top", (event.pageY - 28) + "px");
       })
@@ -108,7 +113,8 @@ class SvgMap extends Component {
          .style("top", (event.pageY - 28) + "px");
       })
       .on('click',function(){
-        browserHistory.push('/geo/'+select(this).attr('id'));
+        var d = select(this);
+        browserHistory.push(slugifyItem('geo',d.attr('id'),d.attr('name')));
       });
 
   };
