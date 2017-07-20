@@ -6,9 +6,15 @@ import {Link} from "react-router";
 import { browserHistory } from 'react-router';
 import d3plus from "helpers/d3plus";
 
+import { slugifyItem } from "helpers/formatters";
+
 import mondrianClient from 'helpers/MondrianClient';
 
+import { getLevelObject } from "helpers/dataUtils";
+
 import {translate} from "react-i18next";
+
+import "./intro.css";
 
 class CareerProfile extends Component {
 
@@ -22,26 +28,24 @@ class CareerProfile extends Component {
 
   static need = [
       (params) => {
-        var parts = params.career.split('-');
-        const id = parts[parts.length-1];
+
+        var ids = getLevelObject(params);
 
         var prm;
 
-        if(id){
-
+        if(ids.level1 || ids.level2){
           prm = mondrianClient
                   .cube('education_employability')
                   .then(cube => {
 
-                    return cube.dimensionsByName['Careers']
-                      .hierarchies[0]
-                      .getLevel('Career');
+                    var h = cube.dimensionsByName['Careers']
+                      .hierarchies[0];
+
+                    return (ids.level2)?h.getLevel('Career'):h.getLevel('Career Group')
 
                   })
                   .then(level => {
-                    var m = mondrianClient.member(level,id)
-                    
-                    return m
+                    return mondrianClient.member(level,(ids.level2)?ids.level2:ids.level1)
                   })
                   .then(res => ({ 
                     key: 'career', data: res }
@@ -63,29 +67,37 @@ class CareerProfile extends Component {
 
     const { subnav, activeSub } = this.state;
 
-    const { career } = this.props.routeParams;
-
     const {focus, t} = this.props;
 
-    const careerObj = this.props.data.career;
+    const obj = this.props.data.career;
+    const ancestor = (obj && obj.ancestors)?(obj.ancestors.length>1)?obj.ancestors[0]:false:false;
 
       return (
           <CanonComponent data={ this.props.data } d3plus={ d3plus }>
               <div className="career-profile">
 
-                <div className="dc-container">
-                  { careerObj &&  
-                    <h1>{ careerObj.name }</h1>
-                  }
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <ul>
-                    <li><Link className="link" to="/explore/careers">{ t("Explore careers") }</Link></li>
-                  </ul>
-                </div>
+                <div className="intro">
 
+                      <div className="splash">
+                          <div className="image" style={{backgroundImage: `url('/images/profile-bg/chile.jpg')`}} ></div>
+                          <div className="gradient"></div>
+                      </div>
+
+                      <div className="dc-container">
+                          <div className="header">
+                            <div className="meta">
+                                  {ancestor && 
+                                    <div className="parent"><Link className="link" to={ slugifyItem('careers',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></div> 
+                                  }
+                                  {obj &&
+                                    <div className="title">{ obj.caption }</div>
+                                  }
+                                  <div className="subtitle">{ (ancestor)?t('Career'):t('Field of Science')} <Link className="link" to="/explore/careers">{t('Explore careers')}</Link></div>
+                              </div>
+                          </div>
+                      </div>
+
+                </div>
               </div>
           </CanonComponent>
       );

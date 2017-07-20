@@ -108,7 +108,7 @@ class Explore extends Component {
 
                     return cube.dimensionsByName['Careers']
                       .hierarchies[0]
-                      .getLevel('Career');
+                      .getLevel('Career Group');
 
                   })
                   .then(level => {

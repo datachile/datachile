@@ -29,7 +29,7 @@ export default function RouteCreate() {
       
       <Route path="countries/:level1(/:level2)" component={CountryProfile}  />
       <Route path="institutions/:level1(/:level2)" component={InstitutionProfile}  />
-      <Route path="careers/:career" component={CareerProfile}  />
+      <Route path="careers/:level1(/:level2)" component={CareerProfile}  />
       <Route path="products/:level1(/:level2)" component={ProductProfile}  />
       <Route path="industries/:level1(/:level2)" component={IndustryProfile}  />
 
