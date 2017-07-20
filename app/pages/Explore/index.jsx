@@ -265,12 +265,12 @@ class Explore extends Component {
                         { 
                           members && members.map(m =>
                             <div>
-                              <h3 className="list-title"><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.name }</Link></h3>
+                              <h3 className="list-title"><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.key } - { m.name }</Link></h3>
                               
                               <ul className="explore-list">
                                 { 
                                   m.children && m.children.map(c =>
-                                    <li><Link className="link" to={ slugifyItem(entity,m.key,m.name,c.key,c.name) }>{ c.name }</Link></li>
+                                    <li><Link className="link" to={ slugifyItem(entity,m.key,m.name,c.key,c.name) }>{ c.key } - { c.name }</Link></li>
                                   )
                                 }
                               </ul>
