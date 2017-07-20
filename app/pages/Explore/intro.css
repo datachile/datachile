@@ -1,0 +1,127 @@
+.explore-page {
+  font-family: var(--font-family-chivo);
+
+  & .intro {
+    color: white;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    & .splash {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: var(--background);
+
+      & .image {
+        background-position: 50%;
+        background-size: cover;
+        filter: saturate(150%) contrast(130%);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      & .gradient {
+        background-color: rgba(0,0,0,0.5);
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+    }
+
+    & .header {
+      display: flex;
+      margin: 0 auto;
+      justify-content: center;
+      margin-top: 200px;
+    }
+
+    & .meta {
+      box-sizing: border-box;
+      display: inline-block;
+      flex: 0.3;
+      vertical-align: top;
+      margin: var(--gutter);
+      & .title {
+        font-family: var(--font-family-chivo);
+        font-weight: 300;
+        font-size: 45px;
+        color: var(--snow);
+        margin: 10px 0px;
+      }
+
+      & .subtitle {
+        text-transform: uppercase;
+        font-family: var(--font-family-chivo);
+        font-weight: 300;
+        font-size: 14px;
+        color: var(--snow);
+        margin-bottom: 40px;
+        & a {
+          color: var(--snow);
+        }
+      }
+
+      & .parent {
+        text-transform: uppercase;
+        font-family: var(--font-family-chivo);
+        font-weight: 300;
+        font-size: 14px;
+        color: var(--snow);
+        & a {
+          color: var(--snow);
+        }
+      }
+
+    }
+
+    
+
+  }
+
+  & h3.list-title {
+    margin: 10px;
+    & .link{
+      color: var(--near-black);
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+  & .explore-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    & li{
+      margin: 5px;
+      display: flex;
+      & .link {
+        padding: 10px;
+        background-color: var(--near-black);
+        color: var(--snow);
+        text-decoration: none;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+
+
+}
