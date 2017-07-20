@@ -23,7 +23,7 @@ import { browserHistory } from 'react-router';
 import {Link} from "react-router";
 import { slugifyItem } from "helpers/formatters";
 
-import mondrianClient from 'helpers/MondrianClient';
+import mondrianClient, { geoCut } from 'helpers/MondrianClient';
 
 import { getGeoObject } from 'helpers/dataUtils';
 
@@ -143,6 +143,30 @@ class GeoProfile extends Component {
           promise: prm
         };
       },
+      (params,store) => {
+        const geo = getGeoObject(params)
+        const prm = mondrianClient
+          .cube('population_estimate')
+          .then(cube => {
+            var q = geoCut(geo,
+              'Geography',
+              cube.query
+                .drilldown('Date', 'Year')
+                .measure('Population'),
+              store.i18n.locale);
+
+              q.cut(`[Date].[Year].&[${store.population_year}]`);
+            return mondrianClient.query(q, 'jsonrecords');
+          })
+          .then(res => {
+            return { key: 'population', data: res.data.data[0].Population };
+          });
+
+        return {
+          type: "GET_DATA",
+          promise: prm
+        };
+      },
       ExportsByProduct,
       ExportsByDestination,
       ImportsByOrigin,
@@ -175,7 +199,7 @@ class GeoProfile extends Component {
 
     const {focus, t} = this.props;
     
-    const { subnav, activeSub } = this.state;
+    const { subnav, activeSub, population_year } = this.state;
 
     const geoObj = getGeoObject(this.props.routeParams)
 
@@ -186,11 +210,12 @@ class GeoProfile extends Component {
     // TODO check for 404
 
     const stats = {
-        population: '17.5M',
-        age_avg: 300.000,
-        income_avg: 31.5,
+        population: this.props.data.population,
+        population_year: population_year,
+        population_source: 'INE projection',
+        age_avg: '',
+        income_avg: '',
         source: 'INE Censo',
-        source_year: 2013
     }
 
     var type = '';
@@ -253,7 +278,12 @@ class GeoProfile extends Component {
                                   }
                                   <div className="title">{ geo.caption }</div>
                                   <div className="subtitle">{ geoObj.type } <Link className="link" to="/explore/geo">{t('Explore')}</Link></div>
-                                  <Stat value={ stats.population } label={ t('Population') } />
+                                  { stats.population && 
+                                    <div>
+                                      <Stat value={ stats.population } label={ t('Population') } />
+                                      <p>{ stats.population_year } - { stats.population_source }</p>
+                                    </div>
+                                  }
                                   <Stat value={ '$' + stats.income_avg } label={ t('Average Household') } />
                                   <Stat value={ stats.age_avg +' '+ t('years')} label={ t('Average age') } />
                               </div>
@@ -307,16 +337,10 @@ class GeoProfile extends Component {
                   
                   </div>
 
-
-
                   <ExportsByProduct/>
-
                   <ExportsByDestination/>
-                  
                   <ImportsByOrigin/>
-
                   <TradeBalance/>
-
                   <OutputByIndustry/>
 
               </div>
@@ -328,6 +352,6 @@ class GeoProfile extends Component {
 
 export default translate()(connect(state => ({
   data: state.data,
-  focus: state.focus,
+  population_year: state.population_year,
   stats: state.stats
 }), {})(GeoProfile));

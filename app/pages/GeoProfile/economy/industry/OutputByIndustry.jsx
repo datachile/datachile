@@ -24,9 +24,8 @@ export default translate()(class OutputByIndustry extends SectionColumns {
                              .measure('Output'),
                             store.i18n.locale);
 
-          return mondrianClient.query(q, 'jsonrecords');
-        })
-        .then(res => ({ key: 'industry_output', data: res.data }));
+          return { key: 'path_industry_output', data: 'http://localhost:9292'+q.path('jsonrecords') };
+        });
 
       return {
         type: "GET_DATA",
@@ -36,7 +35,7 @@ export default translate()(class OutputByIndustry extends SectionColumns {
   ];
 
   render() {
-    const data = this.context.data.industry_output.data;
+    const path = this.context.data.path_industry_output;
     const {t} = this.props;
     return (
       <SectionColumns>
@@ -44,7 +43,7 @@ export default translate()(class OutputByIndustry extends SectionColumns {
         <article>Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.</article>
         <Treemap config={{
           height: 552,
-          data: data,
+          data: path,
           groupBy: ["ID Level 1", "ID Level 2"],
           label: d => d["Level 2"] instanceof Array ? d["Level 1"] : d["Level 2"],
           sum: d => d["Output"],
@@ -52,7 +51,8 @@ export default translate()(class OutputByIndustry extends SectionColumns {
           shapeConfig: {
             fill: d => ordinalColorScale(d['ID Level 1'])
           }
-        }} />
+        }} 
+        dataFormat={ (data) => data.data }/>
       </SectionColumns>
     );
   }

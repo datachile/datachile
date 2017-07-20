@@ -14,6 +14,8 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import {translate} from "react-i18next";
 
+import "./intro.css";
+
 class ProductProfile extends Component {
 
   constructor() {
@@ -77,25 +79,28 @@ class ProductProfile extends Component {
           <CanonComponent data={ this.props.data } d3plus={ d3plus }>
               <div className="product-profile">
 
-                <div className="dc-container">
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  {obj &&
-                    <h1>{ obj.caption }</h1>
-                  }
-                  {ancestor && <h3><Link className="link" to={ slugifyItem('products',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></h3> }
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <ul>
-                    <li><Link className="link" to="/explore/products">{ t("Explore products") }</Link></li>
-                  </ul>
-                </div>
+                <div className="intro">
 
+                      <div className="splash">
+                          <div className="image" style={{backgroundImage: `url('/images/profile-bg/chile.jpg')`}} ></div>
+                          <div className="gradient"></div>
+                      </div>
+
+                      <div className="dc-container">
+                          <div className="header">
+                            <div className="meta">
+                                  {ancestor && 
+                                    <div className="parent"><Link className="link" to={ slugifyItem('products',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></div> 
+                                  }
+                                  {obj &&
+                                    <div className="title">{ obj.caption }</div>
+                                  }
+                                  <div className="subtitle">{ (ancestor)?t('Product'):t('Product type')} <Link className="link" to="/explore/products">{t('Explore products')}</Link></div>
+                              </div>
+                          </div>
+                      </div>
+
+                </div>
               </div>
           </CanonComponent>
       );

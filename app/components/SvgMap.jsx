@@ -47,7 +47,6 @@ class SvgMap extends Component {
 
 
   prepareSelected(active){
-    console.log(active);
     selectAll('.svg-map .comuna').classed('selected',false);
     select('.svg-map .comuna#c'+active).classed('selected',true);
     select('.svg-map #svg-map-tooltip').style('opacity',0);
