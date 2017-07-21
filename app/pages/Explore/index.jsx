@@ -10,9 +10,11 @@ import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
 import { browserHistory } from 'react-router';
 
+import { ingestChildren } from "helpers/dataUtils";
+
 import { slugifyItem } from "helpers/formatters";
 
-import mondrianClient, { getLocaleCaption } from 'helpers/MondrianClient';
+import mondrianClient, { getMembersQuery, getMemberQuery } from 'helpers/MondrianClient';
 
 import {translate} from "react-i18next";
 
@@ -42,112 +44,63 @@ class Explore extends Component {
                 break;
             }
             case 'geo':{
-                prm = mondrianClient
-                  .cube('exports')
-                  .then(cube => {
+                var prm1 = getMembersQuery('exports','Geography','Region',store.i18n.locale,false);
+                var prm2 = getMembersQuery('exports','Geography','Comuna',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Geography']
-                      .hierarchies[0]
-                      .getLevel('Region');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level,true)
-                  })
-                  .then(res => {
-                    return { key: 'members', data: res }
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
                   });
                 break;
             }
             case 'countries':{
-                prm = mondrianClient
-                  .cube('exports')
-                  .then(cube => {
+                var prm1 = getMembersQuery('exports','Destination Country','Subregion',store.i18n.locale,false);
+                var prm2 = getMembersQuery('exports','Destination Country','Country',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Destination Country']
-                      .hierarchies[0]
-                      .getLevel('Subregion');
-
-                  })
-                  .then(level => {
-                    console.log(getLocaleCaption(level,store.i18n.locale));
-                    return mondrianClient.members(level,true,getLocaleCaption(level,store.i18n.locale))
-                  })
-                  .then(res => (
-                    { key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
             case 'institutions':{
-                prm = mondrianClient
-                  .cube('education_employability')
-                  .then(cube => {
+                var prm1 = getMembersQuery('education_employability','Institution','Institution Type',store.i18n.locale,false);
+                var prm2 = getMembersQuery('education_employability','Institution','Institution',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Institution']
-                      .hierarchies[0]
-                      .getLevel('Institution Type');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level,true)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
             case 'careers':{
-                prm = mondrianClient
-                  .cube('education_employability')
-                  .then(cube => {
+                var prm1 = getMembersQuery('education_employability','Careers','Career Group',store.i18n.locale,false);
+                var prm2 = getMembersQuery('education_employability','Careers','Career',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Careers']
-                      .hierarchies[0]
-                      .getLevel('Career Group');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level,true)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
             case 'products':{
-                prm = mondrianClient
-                  .cube('exports')
-                  .then(cube => {
+                var prm1 = getMembersQuery('exports','Export HS','HS0',store.i18n.locale,false);
+                var prm2 = getMembersQuery('exports','Export HS','HS2',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Export HS']
-                      .hierarchies[0]
-                      .getLevel('HS0');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level,true)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
             case 'industries':{
-                prm = mondrianClient
-                  .cube('tax_data')
-                  .then(cube => {
+                var prm1 = getMembersQuery('tax_data','ISICrev4','Level 1',store.i18n.locale,false);
+                var prm2 = getMembersQuery('tax_data','ISICrev4','Level 2',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['ISICrev4']
-                      .hierarchies[0]
-                      .getLevel('Level 1');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level,true)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
         }
@@ -171,7 +124,7 @@ class Explore extends Component {
 
     const { entity } = this.props.routeParams;
 
-    const {focus, t} = this.props;
+    const {focus, t, } = this.props;
 
     const members = this.props.data.members;
 
@@ -259,12 +212,12 @@ class Explore extends Component {
                         { 
                           members && members.map(m =>
                             <div>
-                              <h3 className="list-title"><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.key } - { m.name }</Link></h3>
+                              <h3 className="list-title"><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.caption }</Link></h3>
                               
                               <ul className="explore-list">
                                 { 
                                   m.children && m.children.map(c =>
-                                    <li><Link className="link" to={ slugifyItem(entity,m.key,m.name,c.key,c.name) }>{ c.key } - { c.name }</Link></li>
+                                    <li><Link className="link" to={ slugifyItem(entity,m.key,m.name,c.key,c.name) }>{ c.caption }</Link></li>
                                   )
                                 }
                               </ul>

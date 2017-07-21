@@ -48,6 +48,22 @@ export function getGeoObject(params) {
   return geo;
 }
 
+export function ingestChildren(parents,children){
+    return parents.map(p => {
+      p.children = children.filter(c => { return c.parentName == p.fullName });
+      return p;
+    });
+
+}
+
+export function ingestParent(parent,children){
+    if(children){
+      children.parent=parent;
+      return children
+    }
+    return parent;
+}
+
 export function getLevelObject(params) {
   var parts = params.level1.split('-');
   var r = {

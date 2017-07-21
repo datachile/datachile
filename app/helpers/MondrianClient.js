@@ -1,7 +1,7 @@
 import { Client as MondrianClient } from 'mondrian-rest-client';
 
 //const client = new MondrianClient(process.env.CANON_API);
-const client = new MondrianClient("http://localhost:9292");
+const client = new MondrianClient("http://chilecube.datawheel.us/");
 
 /**
  * Returns the provided query with the appropiate cut
@@ -42,13 +42,42 @@ function geoCut(geo, dimensionName, query, lang="en") {
 };
 
 function getLocaleCaption(level,locale="en"){
-  console.log(level,locale);
-  const caption = level.annotations[locale+'_caption']
+  const caption = level.annotations[locale.substring(0,2)+'_caption']
   if(caption){
     return caption
   }
   return null;
 }
 
-export { geoCut,getLocaleCaption };
+function getMembersQuery(cube,dimension,level,locale="en",children=false){
+  return client
+            .cube(cube)
+            .then(cube => {
+              return cube.dimensionsByName[dimension]
+                .hierarchies[0]
+                .getLevel(level);
+            })
+            .then(level => {
+              return client.members(level,children,getLocaleCaption(level,locale))
+            });
+}
+
+function getMemberQuery(cube,dimension,level,key,locale="en"){
+  return client
+        .cube(cube)
+        .then(cube => {
+          var h = cube.dimensionsByName[dimension]
+            .hierarchies[0];
+
+          return h.getLevel(level)
+        })
+        .then(level => {
+          return client.member(level,key,false,getLocaleCaption(level,locale))
+        })
+
+}
+
+
+
+export { geoCut,getLocaleCaption,getMembersQuery,getMemberQuery };
 export default client;

@@ -87,7 +87,7 @@ class CareerProfile extends Component {
                           <div className="header">
                             <div className="meta">
                                   {ancestor && 
-                                    <div className="parent"><Link className="link" to={ slugifyItem('careers',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></div> 
+                                    <div className="parent"><Link className="link" to={ slugifyItem('careers',ancestor.key,ancestor.name) }>{ ancestor.caption }</Link></div> 
                                   }
                                   {obj &&
                                     <div className="title">{ obj.caption }</div>
