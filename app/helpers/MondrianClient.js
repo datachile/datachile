@@ -41,5 +41,14 @@ function geoCut(geo, dimensionName, query, lang="en") {
 
 };
 
-export { geoCut };
+function getLocaleCaption(level,locale="en"){
+  console.log(level,locale);
+  const caption = level.annotations[locale+'_caption']
+  if(caption){
+    return caption
+  }
+  return null;
+}
+
+export { geoCut,getLocaleCaption };
 export default client;

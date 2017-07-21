@@ -12,7 +12,7 @@ import { browserHistory } from 'react-router';
 
 import { slugifyItem } from "helpers/formatters";
 
-import mondrianClient from 'helpers/MondrianClient';
+import mondrianClient, { getLocaleCaption } from 'helpers/MondrianClient';
 
 import {translate} from "react-i18next";
 
@@ -70,14 +70,8 @@ class Explore extends Component {
 
                   })
                   .then(level => {
-                    var m = mondrianClient.members(level,true)
-                    if(store.i18n.locale=="es"){
-                      const es = level.annotations['es_caption']
-                      if(es){
-                        m.caption(level.hierarchy.dimension.name,level.name,es);
-                      }
-                    }
-                    return m;
+                    console.log(getLocaleCaption(level,store.i18n.locale));
+                    return mondrianClient.members(level,true,getLocaleCaption(level,store.i18n.locale))
                   })
                   .then(res => (
                     { key: 'members', data: res }
