@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datawheel/data-africa-site.git"
+    "url": "git+https://github.com/datawheel/datachile.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/datawheel/data-africa-site/issues"
+    "url": "https://github.com/datawheel/datachile/issues"
   },
-  "homepage": "https://github.com/datawheel/data-africa-site#readme",
+  "homepage": "https://github.com/datawheel/datachile#readme",
   "dependencies": {
     "d3-format": "^1.0.2",
     "d3-scale": "^1.0.4",

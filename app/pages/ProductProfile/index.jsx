@@ -6,9 +6,15 @@ import {Link} from "react-router";
 import { browserHistory } from 'react-router';
 import d3plus from "helpers/d3plus";
 
+import { slugifyItem } from "helpers/formatters";
+
 import mondrianClient from 'helpers/MondrianClient';
 
+import { getLevelObject } from "helpers/dataUtils";
+
 import {translate} from "react-i18next";
+
+import "./intro.css";
 
 class ProductProfile extends Component {
 
@@ -22,23 +28,25 @@ class ProductProfile extends Component {
 
   static need = [
       (params) => {
-        const id = params.product.split('-')[0];
 
+        var ids = getLevelObject(params);
+        
         var prm;
 
-        if(id){
+        if(ids.level1 || ids.level2){
 
-          prm = mondrianClient
+            prm = mondrianClient
                   .cube('exports')
                   .then(cube => {
 
-                    return cube.dimensionsByName['Export HS']
-                      .hierarchies[0]
-                      .getLevel('HS0');
+                    var h = cube.dimensionsByName['Export HS']
+                      .hierarchies[0];
+
+                    return (ids.level2)?h.getLevel('HS2'):h.getLevel('HS0')
 
                   })
                   .then(level => {
-                    return mondrianClient.member(level,id)
+                    return mondrianClient.member(level,(ids.level2)?ids.level2:ids.level1)
                   })
                   .then(res => ({ 
                     key: 'product', data: res }
@@ -60,27 +68,39 @@ class ProductProfile extends Component {
 
     const { subnav, activeSub } = this.state;
 
-    const { country } = this.props.routeParams;
-
     const {focus, t} = this.props;
 
-    const productObj = this.props.data.product;
+    const { industry } = this.props.routeParams;
+    const obj = this.props.data.product;
+
+    const ancestor = (obj && obj.ancestors)?(obj.ancestors.length>1)?obj.ancestors[0]:false:false;
 
       return (
           <CanonComponent data={ this.props.data } d3plus={ d3plus }>
               <div className="product-profile">
 
-                <div className="dc-container">
-                  <h1>{ productObj.name }</h1>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <ul>
-                    <li><Link className="link" to="/explore/products">{ t("Explore products") }</Link></li>
-                  </ul>
-                </div>
+                <div className="intro">
 
+                      <div className="splash">
+                          <div className="image" style={{backgroundImage: `url('/images/profile-bg/chile.jpg')`}} ></div>
+                          <div className="gradient"></div>
+                      </div>
+
+                      <div className="dc-container">
+                          <div className="header">
+                            <div className="meta">
+                                  {ancestor && 
+                                    <div className="parent"><Link className="link" to={ slugifyItem('products',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></div> 
+                                  }
+                                  {obj &&
+                                    <div className="title">{ obj.caption }</div>
+                                  }
+                                  <div className="subtitle">{ (ancestor)?t('Product'):t('Product type')} <Link className="link" to="/explore/products">{t('Explore products')}</Link></div>
+                              </div>
+                          </div>
+                      </div>
+
+                </div>
               </div>
           </CanonComponent>
       );

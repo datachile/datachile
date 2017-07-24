@@ -6,7 +6,16 @@ import "./Nav.css";
 class Nav extends Component {
 
   render() {
-    const {t} = this.props;
+    const {t,i18n,location} = this.props;
+
+    /*
+    The current hostname for server side is missing
+    const currentLang = i18n.language.split('-')[0];
+    const otherLang = (currentLang==='es')?'en':'es';
+
+    var url = (window.location)?window.location.href:this.props.location;
+    url = url.replace(currentLang,otherLang);
+  */
 
     return (
       <nav className="nav">

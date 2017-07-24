@@ -10,14 +10,15 @@ import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
 import { browserHistory } from 'react-router';
 
-import {slugifyItem} from "helpers/formatters";
+import { ingestChildren } from "helpers/dataUtils";
 
-import mondrianClient from 'helpers/MondrianClient';
+import { slugifyItem } from "helpers/formatters";
 
-import { GEOMAP, GEO } from "helpers/GeoData";
+import mondrianClient, { getMembersQuery, getMemberQuery } from 'helpers/MondrianClient';
 
 import {translate} from "react-i18next";
 
+import "./intro.css";
 
 class Explore extends Component {
 
@@ -30,7 +31,7 @@ class Explore extends Component {
   };
 
   static need = [
-    (params) => {
+    (params,store) => {
       const entity = params.entity;
 
       var prm;
@@ -42,94 +43,64 @@ class Explore extends Component {
                 type = '';
                 break;
             }
+            case 'geo':{
+                var prm1 = getMembersQuery('exports','Geography','Region',store.i18n.locale,false);
+                var prm2 = getMembersQuery('exports','Geography','Comuna',store.i18n.locale,false);
+
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
+                break;
+            }
             case 'countries':{
-                prm = mondrianClient
-                  .cube('exports')
-                  .then(cube => {
+                var prm1 = getMembersQuery('exports','Destination Country','Subregion',store.i18n.locale,false);
+                var prm2 = getMembersQuery('exports','Destination Country','Country',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Destination Country']
-                      .hierarchies[0]
-                      .getLevel('Country');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
             case 'institutions':{
-                prm = mondrianClient
-                  .cube('education_employability')
-                  .then(cube => {
+                var prm1 = getMembersQuery('education_employability','Institution','Institution Type',store.i18n.locale,false);
+                var prm2 = getMembersQuery('education_employability','Institution','Institution',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Institution']
-                      .hierarchies[0]
-                      .getLevel('Institution');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
             case 'careers':{
-                prm = mondrianClient
-                  .cube('education_employability')
-                  .then(cube => {
+                var prm1 = getMembersQuery('education_employability','Careers','Career Group',store.i18n.locale,false);
+                var prm2 = getMembersQuery('education_employability','Careers','Career',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Careers']
-                      .hierarchies[0]
-                      .getLevel('Career');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
             case 'products':{
-                prm = mondrianClient
-                  .cube('exports')
-                  .then(cube => {
+                var prm1 = getMembersQuery('exports','Export HS','HS0',store.i18n.locale,false);
+                var prm2 = getMembersQuery('exports','Export HS','HS2',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['Export HS']
-                      .hierarchies[0]
-                      .getLevel('HS0');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
             case 'industries':{
-                prm = mondrianClient
-                  .cube('tax_data')
-                  .then(cube => {
+                var prm1 = getMembersQuery('tax_data','ISICrev4','Level 1',store.i18n.locale,false);
+                var prm2 = getMembersQuery('tax_data','ISICrev4','Level 2',store.i18n.locale,false);
 
-                    return cube.dimensionsByName['ISICrev4']
-                      .hierarchies[0]
-                      .getLevel('Level 1');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.members(level)
-                  })
-                  .then(res => ({ 
-                    key: 'members', data: res }
-                  ));
+                prm = Promise.all([prm1,prm2])
+                  .then((res) => {
+                    return { key: 'members', data: ingestChildren(res[0],res[1]) };
+                  });
                 break;
             }
         }
@@ -153,11 +124,12 @@ class Explore extends Component {
 
     const { entity } = this.props.routeParams;
 
-    const {focus, t} = this.props;
+    const {focus, t, } = this.props;
 
     const members = this.props.data.members;
 
     var type = '';
+    var mainLink = false;
     switch(entity){
         case undefined:{
             type = '';
@@ -183,62 +155,80 @@ class Explore extends Component {
             type = t('Industries');
             break;
         }
+        case 'geo':{
+            type = t('Geo');
+            mainLink = true;
+            break;
+        }
         default: {
             browserHistory.push('/explore');
         }
     }
 
       return (
-          <CanonComponent data={this.props.data} d3plus={d3plus}>
-              <div className="explore">
+          <CanonComponent id="explore" data={this.props.data} d3plus={d3plus}>
+              <div className="explore-page">
 
-                  <div className="intro">
+                <div className="intro">
 
                       <div className="splash">
-                          <div className="image"></div>
+                          <div className="image" style={{backgroundImage: `url('/images/profile-bg/chile2.jpg')`}} ></div>
                           <div className="gradient"></div>
                       </div>
 
                       <div className="dc-container">
-                            <h1>{t('Explore')} { type }</h1>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            
-                            {!entity &&
-                             <div className="">
-                               <ul>
-                                <li><Link className="link" to="/explore/countries">{ t("Countries") }</Link></li>
-                                <li><Link className="link" to="/explore/institutions">{ t("Institutions") }</Link></li>
-                                <li><Link className="link" to="/explore/careers">{ t("Careers") }</Link></li>
-                                <li><Link className="link" to="/explore/products">{ t("Products") }</Link></li>
-                                <li><Link className="link" to="/explore/industries">{ t("Industries") }</Link></li>
-                               </ul>
-                             </div>
-                            }
-
-                            {entity &&
-                             <div className="">
-                                
-                                <ul>
-                                  <li><Link className="link" to="/explore">{ t("Explore") }</Link></li>
-                                </ul>
-
-                                <ul>
-                                  { 
-                                    members && members.map(m =>
-                                      <li><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.name }</Link></li>
-                                    )
+                          <div className="header">
+                            <div className="meta">
+                                  <div className="title">{t('Explore')} { type }</div>
+                                  <div className="subtitle">
+                                  {entity &&
+                                    <Link className="link" to="/explore">{t('Explore')}</Link>
                                   }
-                                </ul>
-
-                             </div>
-                            }
+                                  </div>
+                              </div>
+                          </div>
                       </div>
 
+                </div>
 
-                  </div>
+                <div>
+                  {!entity &&
+                     <div className="">
+                       <ul className="explore-list">
+                        <li><Link className="link" to="/explore/geo">{ t("Geo") }</Link></li>
+                        <li><Link className="link" to="/explore/countries">{ t("Countries") }</Link></li>
+                        <li><Link className="link" to="/explore/institutions">{ t("Institutions") }</Link></li>
+                        <li><Link className="link" to="/explore/careers">{ t("Careers") }</Link></li>
+                        <li><Link className="link" to="/explore/products">{ t("Products") }</Link></li>
+                        <li><Link className="link" to="/explore/industries">{ t("Industries") }</Link></li>
+                       </ul>
+                     </div>
+                    }
+
+                  {entity &&
+                   <div className="">
+                      
+                      <div>
+                        { 
+                          members && members.map(m =>
+                            <div>
+                              <h3 className="list-title"><Link className="link" to={ slugifyItem(entity,m.key,m.name) }>{ m.caption }</Link></h3>
+                              
+                              <ul className="explore-list">
+                                { 
+                                  m.children && m.children.map(c =>
+                                    <li><Link className="link" to={ slugifyItem(entity,m.key,m.name,c.key,c.name) }>{ c.caption }</Link></li>
+                                  )
+                                }
+                              </ul>
+                            </div>
+                          )
+                        }
+                      </div>
+
+                   </div>
+                  }
+                </div>
 
               </div>
           </CanonComponent>

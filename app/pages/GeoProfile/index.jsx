@@ -11,7 +11,6 @@ import ExportsByProduct from './economy/foreign-trade/ExportsByProduct';
 import ExportsByDestination from './economy/foreign-trade/ExportsByDestination';
 import ImportsByOrigin from './economy/foreign-trade/ImportsByOrigin';
 import TradeBalance from './economy/foreign-trade/TradeBalance';
-
 import OutputByIndustry from './economy/industry/OutputByIndustry';
 
 import NavFixed from "components/NavFixed";
@@ -21,7 +20,12 @@ import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
 import { browserHistory } from 'react-router';
 
-import { GEOMAP, GEO } from "helpers/GeoData";
+import {Link} from "react-router";
+import { slugifyItem } from "helpers/formatters";
+
+import mondrianClient, { geoCut } from 'helpers/MondrianClient';
+
+import { getGeoObject } from 'helpers/dataUtils';
 
 import "./intro.css";
 import "./topics.css";
@@ -67,6 +71,11 @@ const Stat = (props) => (
     </div>
 );
 
+const chileObj = {
+  name:'Chile',
+  id:'chile'
+};
+
 class GeoProfile extends Component {
 
   constructor() {
@@ -78,6 +87,86 @@ class GeoProfile extends Component {
   };
 
   static need = [
+      (params) => {
+
+        const geoObj = getGeoObject(params)
+
+        var prm;
+
+        switch(geoObj.type){
+            case 'country':{
+                prm = new Promise((resolve, reject) => {
+                    resolve({ key: 'geo', data: geoObj });
+                  });
+                break;
+            }
+            case 'region':{
+                prm = mondrianClient
+                  .cube('exports')
+                  .then(cube => {
+
+                    return cube.dimensionsByName['Geography']
+                      .hierarchies[0]
+                      .getLevel('Region');
+
+                  })
+                  .then(level => {
+                    return mondrianClient.member(level,geoObj.key)
+                  })
+                  .then(res => {
+                    return { key: 'geo', data: res }
+                  });
+                break;
+            }
+            case 'comuna':{                
+                prm = mondrianClient
+                  .cube('exports')
+                  .then(cube => {
+
+                    return cube.dimensionsByName['Geography']
+                      .hierarchies[0]
+                      .getLevel('Comuna');
+
+                  })
+                  .then(level => {
+                    return mondrianClient.member(level,geoObj.key)
+                  })
+                  .then(res => {
+                    return { key: 'geo', data: res }
+                  });
+                break;
+            }
+        }
+
+        return {
+          type: "GET_DATA",
+          promise: prm
+        };
+      },
+      (params,store) => {
+        const geo = getGeoObject(params)
+        const prm = mondrianClient
+          .cube('population_estimate')
+          .then(cube => {
+            var q = geoCut(geo,
+              'Geography',
+              cube.query
+                .drilldown('Date', 'Year')
+                .measure('Population'),
+              store.i18n.locale);
+
+              q.cut(`[Date].[Year].&[${store.population_year}]`);
+            return mondrianClient.query(q, 'jsonrecords');
+          })
+          .then(res => {
+            return { key: 'population', data: res.data.data[0].Population };
+          });
+
+        return {
+          type: "GET_DATA",
+          promise: prm
+        };
+      },
       ExportsByProduct,
       ExportsByDestination,
       ImportsByOrigin,
@@ -85,17 +174,13 @@ class GeoProfile extends Component {
       OutputByIndustry
   ];
 
-  static contextTypes = {
-    apiClient: PropTypes.object
-  };
-
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll.bind(this));
+    //window.addEventListener("scroll", this.handleScroll.bind(this));
   }
 
   handleScroll() {
 
-    if (!this.subLinks) return;
+    /*if (!this.subLinks) return;
 
     const {activeSub, subnav} = this.state;
     const newSub = this.subLinks.getBoundingClientRect().top <= 0;
@@ -107,31 +192,34 @@ class GeoProfile extends Component {
     }
     if (subnav !== newSub || newActive !== activeSub) {
       this.setState({activeSub: newActive, subnav: newSub});
-    }
+    }*/
   }
 
   render() {
 
-    const { subnav, activeSub } = this.state;
+    const {focus, t} = this.props;
+    
+    const { subnav, activeSub, population_year } = this.state;
 
-    const { region, comuna } = this.props.routeParams;
+    const geoObj = getGeoObject(this.props.routeParams)
 
-    const geo = (comuna)?GEOMAP.getRegion(region+'.'+comuna):GEOMAP.getRegion(region);
+    const geo = this.props.data.geo;
+
+    const ancestor = (geo.ancestors && geo.ancestors.length>1)?geo.ancestors[0]:(geoObj.type=='region')?chileObj:false;
 
     // TODO check for 404
 
     const stats = {
-        population: '17.5M',
-        age_avg: 300.000,
-        income_avg: 31.5,
+        population: this.props.data.population,
+        population_year: population_year,
+        population_source: 'INE projection',
+        age_avg: '',
+        income_avg: '',
         source: 'INE Censo',
-        source_year: 2013
     }
 
-    const {focus, t} = this.props;
-
     var type = '';
-    switch(geo.type){
+    switch(geoObj.type){
         case 'country':{
             type = t('Country');
             break;
@@ -146,30 +234,38 @@ class GeoProfile extends Component {
         }
     }
 
-    const key = (geo.parent)?geo.parent.key:geo.key;
-    const slug = (geo.parent)?geo.parent.slug:geo.slug;
-
-    const onlyRegions = GEO.filter(function(d){
-      return d.parent==false && d.slug != 'chile';
-    });
-
     function fillShape(d) {
-      if(geo.slug=='chile'){
-        return "rgba(255, 255, 255, 0.5)";
+      var c = "rgba(255, 255, 255, 0.35)";
+      switch(geoObj.type){
+          case 'country':{
+              c = "rgba(255, 255, 255, 0.5)";
+              break;
+          }
+          case 'region':{
+              if(parseInt(d.id)==parseInt(geoObj.key)){
+                c = "rgba(255, 255, 255, 1)";
+              }
+              break;
+          }
+          case 'comuna':{
+              if(parseInt(d.id)==parseInt(ancestor.key)){
+                c = "rgba(255, 255, 255, 1)";
+              }
+              break;
+          }
       }
-      return (parseInt(d.id)==parseInt(key))? "rgba(255, 255, 255, 1)":"rgba(255, 255, 255, 0.35)";
+
+      return c;
     }
 
       return (
           <CanonComponent data={this.props.data} d3plus={d3plus}>
               <div className="profile">
-
-                  <NavFixed topics={ topics } visible={ subnav } activeSub={ activeSub } geo={ geo } type={ type } />
-
-                  <div className="intro">
+                  
+                <div className="intro">
 
                       <div className="splash">
-                          <div className="image" style={{backgroundImage: `url('/images/profile-bg/${geo.background}')`}} ></div>
+                          <div className="image" style={{backgroundImage: `url('/images/profile-bg/${geoObj.image}')`}} ></div>
                           <div className="gradient"></div>
                       </div>
 
@@ -177,28 +273,33 @@ class GeoProfile extends Component {
                           <div className="header">
                               
                               <div className="meta">
-                                  {geo.parent &&
-                                   <div className="parent">{geo.parent.caption}</div>
+                                  {ancestor && 
+                                    <div className="parent"><Link className="link" to={ slugifyItem('geo',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></div> 
                                   }
-              <div className="title">{ geo.caption }</div>
-              <div className="subtitle">{ type }</div>
-              <Stat value={ stats.population } label={ t('Population') } />
-              <Stat value={ '$' + stats.income_avg } label={ t('Average Household') } />
-              <Stat value={ stats.age_avg +' '+ t('years')} label={ t('Average age') } />
+                                  <div className="title">{ geo.caption }</div>
+                                  <div className="subtitle">{ geoObj.type } <Link className="link" to="/explore/geo">{t('Explore')}</Link></div>
+                                  { stats.population && 
+                                    <div>
+                                      <Stat value={ stats.population } label={ t('Population') } />
+                                      <p>{ stats.population_year } - { stats.population_source }</p>
+                                    </div>
+                                  }
+                                  <Stat value={ '$' + stats.income_avg } label={ t('Average Household') } />
+                                  <Stat value={ stats.age_avg +' '+ t('years')} label={ t('Average age') } />
                               </div>
 
                               <div className="map-region">
-                                  <Geomap config={{
-                                      data: onlyRegions,
+                                <Geomap config={{
+                                      data: [],
                                       downloadButton: false,
                                       groupBy: "key",
                                       height: 500,
-                                      label: d => 'Región '+d.name,
+                                      label: d => 'Región '+d.properties.Region,
                                       legend: false,
                                       ocean: "transparent",
                                       on: {
                                           "click.shape": function(d) {
-                                              browserHistory.push('/geo/'+d.slug);
+                                              browserHistory.push(slugifyItem('geo',d.id,d.properties.Region));
                                           }
                                       },
                                       padding: 10,
@@ -212,13 +313,12 @@ class GeoProfile extends Component {
                                       tiles: false,
                                       tooltipConfig: {
                                           background: "white",
-                                          body: "",
                                           footer: "",
                                           footerStyle: {
                                               "margin-top": 0
                                           },
                                           padding: "12px",
-                                          html: d => `${d.properties.Region}`
+                                          body: d => `${d.properties.Region}`
                                       },
                                       topojson: "/geo/regiones.json",
                                       topojsonId: "id",
@@ -226,81 +326,22 @@ class GeoProfile extends Component {
                                       width: 200,
                                       zoom: false
                                   }} />
-
                               </div>
                               <div className="map-comuna">
-                                  { slug!='chile' &&
-                                    <SvgMap slug={slug} active={(geo.parent)?geo.slug:false} />
+                                 { geoObj.type!='country' &&
+                                    <SvgMap region={(geoObj.type=='region')?geo:ancestor} active={(geoObj.type=='comuna')?geo:false} />
                                   }
                               </div>
                           </div>
                       </div>
-
-                      <div id="sublinks" ref={(sl) => this.subLinks = sl } className="dc-container">
-                          <div className="subnav">
-                              {
-                                  topics.map(topic =>
-                                      <a key={ topic.slug } className="sublink" href={ `#${topic.slug}` }>
-                                          <SvgImage src={ `/images/profile-icon/icon-${topic.slug}.svg` }></SvgImage>
-                                          { topic.title }
-                                      </a>
-                                  )
-                              }
-                          </div>
-                      </div>
-
-                      <div className="dc-container">
-                          <div className="sources">
-                              <SourceNote icon="/images/icons/icon-source.svg">
-                                  <strong>{ t("Data source") }:</strong> {stats.source} - {stats.source_year}
-                              </SourceNote>
-                              <SourceNote icon="/images/icons/icon-camera-source.svg">
-                                  <strong>{ t("Pic by") }:</strong> {geo.background_source}
-                              </SourceNote>
-                          </div>
-                      </div>
-
-
+                  
                   </div>
 
-                  <TopicBlock slug="economy" name={ t('Economy') } targets={[
-                      [t('Foreign Trade'),'ForeignTrade'],
-                      [t('Industry'),'Industry'],
-                      [t('Poverty'),'Poverty'],
-                      [t('Salaries'),'Salaries'],
-                      [t('Activities'),'Activities'],
-                      [t('Unemployment'),'Unemployment'],
-                  ]}>
-
-                      
-                      <ForeignTrade/>
-                      <Industry/>
-
-                  </TopicBlock>
-
-                  <TopicBlock slug="innovation" name={ t('Innovation') } targets={[]}>
-                      <p className="soon">{ t('Soon') }</p>
-                  </TopicBlock>
-
-                  <TopicBlock slug="education" name={ t('Education') } targets={[]}>
-                      <p className="soon">{ t('Soon') }</p>
-                  </TopicBlock>
-
-                  <TopicBlock slug="environment" name={ t('Environment') } targets={[]}>
-                      <p className="soon">{ t('Soon') }</p>
-                  </TopicBlock>
-
-                  <TopicBlock slug="demographics" name={ t('Demographics') } targets={[]}>
-                      <p className="soon">{ t('Soon') }</p>
-                  </TopicBlock>
-
-                  <TopicBlock slug="health" name={ t('Health') } targets={[]}>
-                      <p className="soon">{ t('Soon') }</p>
-                  </TopicBlock>
-
-                  <TopicBlock slug="politics" name={ t('Politics') } targets={[]}>
-                      <p className="soon">{ t('Soon') }</p>
-                  </TopicBlock>
+                  <ExportsByProduct/>
+                  <ExportsByDestination/>
+                  <ImportsByOrigin/>
+                  <TradeBalance/>
+                  <OutputByIndustry/>
 
               </div>
           </CanonComponent>
@@ -311,6 +352,6 @@ class GeoProfile extends Component {
 
 export default translate()(connect(state => ({
   data: state.data,
-  focus: state.focus,
+  population_year: state.population_year,
   stats: state.stats
 }), {})(GeoProfile));

@@ -11,5 +11,6 @@ const searchActive = (state = false, action) => {
 
 export default {
   focus: (state = {}) => state,
+  population_year: (state = {}) => state,
   search: combineReducers({searchActive})
 };

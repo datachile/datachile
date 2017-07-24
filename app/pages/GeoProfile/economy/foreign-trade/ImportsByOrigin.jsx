@@ -3,28 +3,28 @@ import { SectionColumns, SectionTitle } from "datawheel-canon";
 
 import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from 'helpers/MondrianClient';
-import { GEO } from "helpers/GeoData";
+import { getGeoObject } from 'helpers/dataUtils';
 import { translate } from "react-i18next";
 
 export default translate()(class ImportsByOrigin extends SectionColumns {
 
   static need = [
-    (params) => {
-      const geo = GEO.getGeo(params.region, params.comuna);
+    (params,store) => {
+      const geo = getGeoObject(params)
       const prm = mondrianClient
         .cube('imports')
         .then(cube => {
           var q = geoCut(geo,
             'Geography',
             cube.query
-            .option('parents', true)
-            .drilldown('Origin Country', 'Country')
-            .drilldown('Date', 'Year')
-            .measure('CIF US'));
+              .option('parents', true)
+              .drilldown('Origin Country', 'Country')
+              .drilldown('Date', 'Year')
+              .measure('CIF US'),
+            store.i18n.locale);
 
-          return mondrianClient.query(q, 'jsonrecords');
-        })
-        .then(res => ({ key: 'imports_origin', data: res.data.data }));
+          return { key: 'path_imports_by_origin', data: 'http://localhost:9292'+q.path('jsonrecords') };
+        });
 
       return {
         type: "GET_DATA",
@@ -34,20 +34,22 @@ export default translate()(class ImportsByOrigin extends SectionColumns {
   ];
 
   render() {
-    const data = this.context.data.imports_origin;
     const { t } = this.props;
+    const path = this.context.data.path_imports_by_origin;
+
     return (
       <SectionColumns>
                 <SectionTitle>{ t('Imports by Origin Country') }</SectionTitle>
                 <article>Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.</article>
                 <Treemap config={{
                     height: 552,
-                    data: data,
+                    data: path,
                     groupBy: ["ID Region", "ID Country"],
                     label: d => d["Country"] instanceof Array ? d["Region"] : d["Country"],
                     sum: d => d["CIF US"],
                     time: 'ID Year'
-                }} />
+                }} 
+                dataFormat={ (data) => data.data } />
             </SectionColumns>
     );
   }

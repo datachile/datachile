@@ -3,15 +3,18 @@ import {SectionColumns, SectionTitle} from "datawheel-canon";
 
 import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from 'helpers/MondrianClient';
-import { GEO } from "helpers/GeoData";
+
 import { ordinalColorScale } from 'helpers/colors';
+import { getGeoObject } from 'helpers/dataUtils';
 import {translate} from "react-i18next";
 
 export default translate()(class ExportsByProduct extends SectionColumns {
 
     static need = [
-        (params) => {
-            const geo = GEO.getGeo(params.region, params.comuna);
+        (params,store) => {
+
+            const geo = getGeoObject(params)
+            
             const prm = mondrianClient
                 .cube('exports')
                 .then(cube => {
@@ -21,11 +24,11 @@ export default translate()(class ExportsByProduct extends SectionColumns {
                                        .option('parents', true)
                                        .drilldown('Export HS', 'HS2')
                                        .drilldown('Date', 'Year')
-                                       .measure('FOB US'));
+                                       .measure('FOB US'),
+                                    store.i18n.locale);
 
-                    return mondrianClient.query(q, 'jsonrecords');
-                })
-                .then(res => ({ key: 'exports_product', data: res.data.data }));
+                    return { key: 'path_exports_by_product', data: 'http://localhost:9292'+q.path('jsonrecords') };
+                });
 
             return {
                 type: "GET_DATA",
@@ -36,14 +39,15 @@ export default translate()(class ExportsByProduct extends SectionColumns {
 
     render() {
         const {t} = this.props;
-        const data = this.context.data.exports_product;
+        const path = this.context.data.path_exports_by_product;
+
         return (
             <SectionColumns>
                 <SectionTitle>{ t('Exports By Product') }</SectionTitle>
-                <article>Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.</article>
+                <article>{ t('English text with param {{pepe}}',{pepe:'DALE PALA'}) }</article>
                 <Treemap config={{
                     height: 552,
-                    data: data,
+                    data: path,
                     groupBy: ["ID HS0", "ID HS2"],
                     label: d => d["HS2"] instanceof Array ? d["HS0"] : d["HS2"],
                     sum: d => d["FOB US"],
@@ -51,7 +55,8 @@ export default translate()(class ExportsByProduct extends SectionColumns {
                     shapeConfig: {
                         fill: d => ordinalColorScale(d['ID HS0'])
                     }
-                }} />
+                }}
+                dataFormat={ (data) => data.data } />
 
             </SectionColumns>
         );

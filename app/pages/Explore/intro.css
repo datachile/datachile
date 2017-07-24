@@ -1,4 +1,4 @@
-.institution-profile {
+.explore-page {
   font-family: var(--font-family-chivo);
 
   & .intro {
@@ -82,83 +82,46 @@
         }
       }
 
-      & .stat {
-        margin: 25px 0;
-
-        & .label {
-          font-family: var(--font-family-chivo);
-          font-weight: 300;
-          font-size: 13px;
-          color: #FFFFFF;
-          letter-spacing: -0.05px;
-        }
-
-        & .value {
-          font-family: var(--font-family-antonio);
-          font-weight: 400;
-          font-size: 21px;
-          color: var(--snow);
-          letter-spacing: 0.05px;
-          margin-bottom: 10px;
-        }
-
-      }
-
     }
 
-    & .map-region{
-      flex: 0.2;
-      align-self: center;
-    }
-
-    & .map-comuna{
-      flex: 0.35;
-      align-self: center;
-      pointer-events: all;
-    }
-
-    & .subnav {
-      margin: 0 var(--gutter);
-      text-align: right;
-
-      & .sublink {
-        color: white;
-        display: inline-block;
-        font-size: 10px;
-        letter-spacing: 0.05px;
-        margin: 0px 25px;
-        text-align: center;
-        text-decoration: none;
-        text-transform: uppercase;
-        opacity: 0.9;
-        transition: opacity 0.2s;
-        font-family: var(--font-family-chivo);
-        font-weight: 400;
-        cursor: pointer;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        & .svg-image {
-          display: block;
-          margin: 10px auto;
-          & .fill-color{
-            fill:var(--snow);
-          }
-          & .stroke-color{
-            stroke:var(--snow);
-          }
-        }
-
-      }
-
-    }
-
-    & .sources {
-      padding: var(--gutter);
-    }
+    
 
   }
+
+  & h3.list-title {
+    margin: 10px;
+    & .link{
+      color: var(--near-black);
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+  & .explore-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    & li{
+      margin: 5px;
+      display: flex;
+      & .link {
+        padding: 10px;
+        background-color: var(--near-black);
+        color: var(--snow);
+        text-decoration: none;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+
 
 }

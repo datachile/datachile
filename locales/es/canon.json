@@ -25,8 +25,21 @@
   "Contact": "Contacto",
 
   "Country": "País",
+  "Countries": "Paises",
   "Region": "Región",
+  "Regions": "Regiones",
   "Comuna": "Comuna",
+  "Comunas": "Comunas",
+  "Institution": "Institución",
+  "Institutions": "Instituciones",
+  "Institution": "Institución",
+  "Institutions": "Instituciones",
+  "Career": "Carrera",
+  "Careers": "Carreras",
+  "Product": "Products",
+  "Products": "Productos",
+  "Industry": "Industria",
+  "Industries": "Industrias",
 
   "Created in collaboration": "Creado en colaboración",
 
@@ -50,5 +63,5 @@
   "Output By Industry": "Producción por industria",
   "Trade Balance": "Balanza comercial",
 
-  "Click to Highlight": "Clic para resaltar",
+  "Click to Highlight": "Clic para resaltar"
 }

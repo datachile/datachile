@@ -66,6 +66,9 @@
         font-size: 14px;
         color: var(--snow);
         margin-bottom: 40px;
+        & a {
+          color: var(--snow);
+        }
       }
 
       & .parent {
@@ -74,6 +77,9 @@
         font-weight: 300;
         font-size: 14px;
         color: var(--snow);
+        & a {
+          color: var(--snow);
+        }
       }
 
       & .stat {
