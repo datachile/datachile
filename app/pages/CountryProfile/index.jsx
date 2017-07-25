@@ -80,7 +80,7 @@ class CountryProfile extends Component {
                                   {obj &&
                                     <div className="title">{ obj.caption }</div>
                                   }
-                                  <div className="subtitle">{ (obj.parent)?t('Country'):t('Zone')} <Link className="link" to="/explore/countries">{t('Explore countries')}</Link></div>
+                                  <div className="subtitle">{ (obj.parent)?t('Country'):t('Zone')} <Link className="link" to="/explore/countries">{t('Explore')} {t('Countries')}</Link></div>
                               </div>
                           </div>
                       </div>

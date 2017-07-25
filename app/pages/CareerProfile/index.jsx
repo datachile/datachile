@@ -8,9 +8,9 @@ import d3plus from "helpers/d3plus";
 
 import { slugifyItem } from "helpers/formatters";
 
-import mondrianClient from 'helpers/MondrianClient';
+import mondrianClient, { getMembersQuery, getMemberQuery } from 'helpers/MondrianClient';
 
-import { getLevelObject } from "helpers/dataUtils";
+import { getLevelObject,ingestParent } from "helpers/dataUtils";
 
 import {translate} from "react-i18next";
 
@@ -27,30 +27,20 @@ class CareerProfile extends Component {
   };
 
   static need = [
-      (params) => {
+      (params,store) => {
 
         var ids = getLevelObject(params);
 
-        var prm;
-
-        if(ids.level1 || ids.level2){
-          prm = mondrianClient
-                  .cube('education_employability')
-                  .then(cube => {
-
-                    var h = cube.dimensionsByName['Careers']
-                      .hierarchies[0];
-
-                    return (ids.level2)?h.getLevel('Career'):h.getLevel('Career Group')
-
-                  })
-                  .then(level => {
-                    return mondrianClient.member(level,(ids.level2)?ids.level2:ids.level1)
-                  })
-                  .then(res => ({ 
-                    key: 'career', data: res }
-                  ));
+        var prms = [getMemberQuery('education_employability','Careers','Career Group',ids.level1,store.i18n.locale)];
+        
+        if(ids.level2){
+          prms.push(getMemberQuery('education_employability','Careers','Career',ids.level2,store.i18n.locale));
         }
+
+        var prm = Promise.all(prms)
+          .then((res) => {
+            return { key: 'career', data: ingestParent(res[0],res[1]) };
+          });
 
         return {
           type: "GET_DATA",
@@ -70,7 +60,6 @@ class CareerProfile extends Component {
     const {focus, t} = this.props;
 
     const obj = this.props.data.career;
-    const ancestor = (obj && obj.ancestors)?(obj.ancestors.length>1)?obj.ancestors[0]:false:false;
 
       return (
           <CanonComponent data={ this.props.data } d3plus={ d3plus }>
@@ -86,13 +75,13 @@ class CareerProfile extends Component {
                       <div className="dc-container">
                           <div className="header">
                             <div className="meta">
-                                  {ancestor && 
-                                    <div className="parent"><Link className="link" to={ slugifyItem('careers',ancestor.key,ancestor.name) }>{ ancestor.caption }</Link></div> 
+                                  {obj && obj.parent && 
+                                    <div className="parent"><Link className="link" to={ slugifyItem('careers',obj.parent.key,obj.parent.name) }>{ obj.parent.caption }</Link></div> 
                                   }
                                   {obj &&
                                     <div className="title">{ obj.caption }</div>
                                   }
-                                  <div className="subtitle">{ (ancestor)?t('Career'):t('Field of Science')} <Link className="link" to="/explore/careers">{t('Explore careers')}</Link></div>
+                                  <div className="subtitle">{ (obj.parent)?t('Career'):t('Field of Science')} <Link className="link" to="/explore/careers">{t('Explore')} {t('Careers')}</Link></div>
                               </div>
                           </div>
                       </div>

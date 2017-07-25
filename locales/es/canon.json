@@ -26,20 +26,29 @@
 
   "Country": "País",
   "Countries": "Paises",
+  "Zone": "Zona",
+  
   "Region": "Región",
   "Regions": "Regiones",
+  
   "Comuna": "Comuna",
   "Comunas": "Comunas",
+
   "Institution": "Institución",
   "Institutions": "Instituciones",
-  "Institution": "Institución",
-  "Institutions": "Instituciones",
+  "Institution Type": "Tipo de Institución",
+  
   "Career": "Carrera",
   "Careers": "Carreras",
+  "Field of Science": "Área de Conocimiento",
+
   "Product": "Products",
   "Products": "Productos",
+  "Product Type": "Tipo de Producto",
+
   "Industry": "Industria",
   "Industries": "Industrias",
+  "Industry Type": "Tipo de Industria",
 
   "Created in collaboration": "Creado en colaboración",
 
