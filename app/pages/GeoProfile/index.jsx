@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import SourceNote from "components/SourceNote";
 import TopicBlock from "components/TopicBlock";
@@ -7,35 +7,35 @@ import TopicBlock from "components/TopicBlock";
 import ForeignTrade from "./economy/ForeignTrade";
 import Industry from "./economy/Industry";
 
-import ExportsByProduct from './economy/foreign-trade/ExportsByProduct';
-import ExportsByDestination from './economy/foreign-trade/ExportsByDestination';
-import ImportsByOrigin from './economy/foreign-trade/ImportsByOrigin';
-import TradeBalance from './economy/foreign-trade/TradeBalance';
-import OutputByIndustry from './economy/industry/OutputByIndustry';
+import ExportsByProduct from "./economy/foreign-trade/ExportsByProduct";
+import ExportsByDestination from "./economy/foreign-trade/ExportsByDestination";
+import ImportsByOrigin from "./economy/foreign-trade/ImportsByOrigin";
+import TradeBalance from "./economy/foreign-trade/TradeBalance";
+import OutputByIndustry from "./economy/industry/OutputByIndustry";
 
 import NavFixed from "components/NavFixed";
 import d3plus from "helpers/d3plus";
-import {Geomap} from "d3plus-react";
+import { Geomap } from "d3plus-react";
 import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
-import { browserHistory } from 'react-router';
+import { browserHistory } from "react-router";
 
-import {Link} from "react-router";
+import { Link } from "react-router";
 import { slugifyItem } from "helpers/formatters";
 
-import mondrianClient, { geoCut } from 'helpers/MondrianClient';
+import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
-import { getGeoObject } from 'helpers/dataUtils';
+import { getGeoObject } from "helpers/dataUtils";
 
 import "./intro.css";
 import "./topics.css";
 
-import {translate} from "react-i18next";
+import { translate } from "react-i18next";
 
 const topics = [
   {
     slug: "economy",
-    title: 'Economy'
+    title: "Economy"
   },
   {
     slug: "innovation",
@@ -63,115 +63,111 @@ const topics = [
   }
 ];
 
-
-const Stat = (props) => (
-    <div className="stat">
-        <div className="label">{ props.label }</div>
-        <div className="value">{ props.value }</div>
+const Stat = props =>
+  <div className="stat">
+    <div className="label">
+      {props.label}
     </div>
-);
+    <div className="value">
+      {props.value}
+    </div>
+  </div>;
 
 const chileObj = {
-  name:'Chile',
-  id:'chile'
+  name: "Chile",
+  id: "chile"
 };
 
 class GeoProfile extends Component {
-
   constructor() {
     super();
     this.state = {
       subnav: false,
       activeSub: false
     };
-  };
+  }
 
   static need = [
-      (params) => {
+    params => {
+      const geoObj = getGeoObject(params);
 
-        const geoObj = getGeoObject(params)
+      var prm;
 
-        var prm;
-
-        switch(geoObj.type){
-            case 'country':{
-                prm = new Promise((resolve, reject) => {
-                    resolve({ key: 'geo', data: geoObj });
-                  });
-                break;
-            }
-            case 'region':{
-                prm = mondrianClient
-                  .cube('exports')
-                  .then(cube => {
-
-                    return cube.dimensionsByName['Geography']
-                      .hierarchies[0]
-                      .getLevel('Region');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.member(level,geoObj.key)
-                  })
-                  .then(res => {
-                    return { key: 'geo', data: res }
-                  });
-                break;
-            }
-            case 'comuna':{                
-                prm = mondrianClient
-                  .cube('exports')
-                  .then(cube => {
-
-                    return cube.dimensionsByName['Geography']
-                      .hierarchies[0]
-                      .getLevel('Comuna');
-
-                  })
-                  .then(level => {
-                    return mondrianClient.member(level,geoObj.key)
-                  })
-                  .then(res => {
-                    return { key: 'geo', data: res }
-                  });
-                break;
-            }
-        }
-
-        return {
-          type: "GET_DATA",
-          promise: prm
-        };
-      },
-      (params,store) => {
-        const geo = getGeoObject(params)
-        const prm = mondrianClient
-          .cube('population_estimate')
-          .then(cube => {
-            var q = geoCut(geo,
-              'Geography',
-              cube.query
-                .drilldown('Date', 'Year')
-                .measure('Population'),
-              store.i18n.locale);
-
-              q.cut(`[Date].[Year].&[${store.population_year}]`);
-            return mondrianClient.query(q, 'jsonrecords');
-          })
-          .then(res => {
-            return { key: 'population', data: res.data.data[0].Population };
+      switch (geoObj.type) {
+        case "country": {
+          prm = new Promise((resolve, reject) => {
+            resolve({ key: "geo", data: geoObj });
           });
+          break;
+        }
+        case "region": {
+          prm = mondrianClient
+            .cube("exports")
+            .then(cube => {
+              return cube.dimensionsByName["Geography"].hierarchies[0].getLevel(
+                "Region"
+              );
+            })
+            .then(level => {
+              return mondrianClient.member(level, geoObj.key);
+            })
+            .then(res => {
+              return { key: "geo", data: res };
+            });
+          break;
+        }
+        case "comuna": {
+          prm = mondrianClient
+            .cube("exports")
+            .then(cube => {
+              return cube.dimensionsByName["Geography"].hierarchies[0].getLevel(
+                "Comuna"
+              );
+            })
+            .then(level => {
+              return mondrianClient.member(level, geoObj.key);
+            })
+            .then(res => {
+              return { key: "geo", data: res };
+            });
+          break;
+        }
+      }
 
-        return {
-          type: "GET_DATA",
-          promise: prm
-        };
-      },
-      ExportsByProduct,
-      ExportsByDestination,
-      ImportsByOrigin,
-      TradeBalance,
-      OutputByIndustry
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const prm = mondrianClient
+        .cube("population_estimate")
+        .then(cube => {
+          var q = geoCut(
+            geo,
+            "Geography",
+            cube.query.drilldown("Date", "Year").measure("Population"),
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${store.population_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return { key: "population", data: res.data.data[0].Population };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    ExportsByProduct,
+    ExportsByDestination,
+    ImportsByOrigin,
+    TradeBalance,
+    OutputByIndustry
   ];
 
   componentDidMount() {
@@ -179,7 +175,6 @@ class GeoProfile extends Component {
   }
 
   handleScroll() {
-
     /*if (!this.subLinks) return;
 
     const {activeSub, subnav} = this.state;
@@ -196,162 +191,194 @@ class GeoProfile extends Component {
   }
 
   render() {
+    const { focus, t } = this.props;
 
-    const {focus, t} = this.props;
-    
     const { subnav, activeSub, population_year } = this.state;
 
-    const geoObj = getGeoObject(this.props.routeParams)
+    const geoObj = getGeoObject(this.props.routeParams);
 
     const geo = this.props.data.geo;
 
-    const ancestor = (geo.ancestors && geo.ancestors.length>1)?geo.ancestors[0]:(geoObj.type=='region')?chileObj:false;
+    const ancestor =
+      geo && geo.ancestors && geo.ancestors.length > 1
+        ? geo.ancestors[0]
+        : geoObj.type == "region" ? chileObj : false;
 
     // TODO check for 404
 
     const stats = {
-        population: this.props.data.population,
-        population_year: population_year,
-        population_source: 'INE projection',
-        age_avg: '',
-        income_avg: '',
-        source: 'INE Censo',
-    }
+      population: this.props.data.population,
+      population_year: population_year,
+      population_source: "INE projection",
+      age_avg: "",
+      income_avg: "",
+      source: "INE Censo"
+    };
 
-    var type = '';
-    switch(geoObj.type){
-        case 'country':{
-            type = t('Country');
-            break;
-        }
-        case 'region':{
-            type = t('Region');
-            break;
-        }
-        case 'comuna':{
-            type = t('Comuna');
-            break;
-        }
+    var type = "";
+    switch (geoObj.type) {
+      case "country": {
+        type = t("Country");
+        break;
+      }
+      case "region": {
+        type = t("Region");
+        break;
+      }
+      case "comuna": {
+        type = t("Comuna");
+        break;
+      }
     }
 
     function fillShape(d) {
       var c = "rgba(255, 255, 255, 0.35)";
-      switch(geoObj.type){
-          case 'country':{
-              c = "rgba(255, 255, 255, 0.5)";
-              break;
+      switch (geoObj.type) {
+        case "country": {
+          c = "rgba(255, 255, 255, 0.5)";
+          break;
+        }
+        case "region": {
+          if (parseInt(d.id) == parseInt(geoObj.key)) {
+            c = "rgba(255, 255, 255, 1)";
           }
-          case 'region':{
-              if(parseInt(d.id)==parseInt(geoObj.key)){
-                c = "rgba(255, 255, 255, 1)";
-              }
-              break;
+          break;
+        }
+        case "comuna": {
+          if (parseInt(d.id) == parseInt(ancestor.key)) {
+            c = "rgba(255, 255, 255, 1)";
           }
-          case 'comuna':{
-              if(parseInt(d.id)==parseInt(ancestor.key)){
-                c = "rgba(255, 255, 255, 1)";
-              }
-              break;
-          }
+          break;
+        }
       }
 
       return c;
     }
 
-      return (
-          <CanonComponent data={this.props.data} d3plus={d3plus}>
-              <div className="profile">
-                  
-                <div className="intro">
+    return (
+      <CanonComponent data={this.props.data} d3plus={d3plus}>
+        <div className="profile">
+          <div className="intro">
+            <div className="splash">
+              <div
+                className="image"
+                style={{
+                  backgroundImage: `url('/images/profile-bg/${geoObj.image}')`
+                }}
+              />
+              <div className="gradient" />
+            </div>
 
-                      <div className="splash">
-                          <div className="image" style={{backgroundImage: `url('/images/profile-bg/${geoObj.image}')`}} ></div>
-                          <div className="gradient"></div>
-                      </div>
-
-                      <div className="dc-container">
-                          <div className="header">
-                              
-                              <div className="meta">
-                                  {ancestor && 
-                                    <div className="parent"><Link className="link" to={ slugifyItem('geo',ancestor.key,ancestor.name) }>{ ancestor.name }</Link></div> 
-                                  }
-                                  <div className="title">{ geo.caption }</div>
-                                  <div className="subtitle">{ geoObj.type } <Link className="link" to="/explore/geo">{t('Explore')}</Link></div>
-                                  { stats.population && 
-                                    <div>
-                                      <Stat value={ stats.population } label={ t('Population') } />
-                                      <p>{ stats.population_year } - { stats.population_source }</p>
-                                    </div>
-                                  }
-                                  <Stat value={ '$' + stats.income_avg } label={ t('Average Household') } />
-                                  <Stat value={ stats.age_avg +' '+ t('years')} label={ t('Average age') } />
-                              </div>
-
-                              <div className="map-region">
-                                <Geomap config={{
-                                      data: [],
-                                      downloadButton: false,
-                                      groupBy: "key",
-                                      height: 500,
-                                      label: d => 'Región '+d.properties.Region,
-                                      legend: false,
-                                      ocean: "transparent",
-                                      on: {
-                                          "click.shape": function(d) {
-                                              browserHistory.push(slugifyItem('geo',d.id,d.properties.Region));
-                                          }
-                                      },
-                                      padding: 10,
-                                      shapeConfig: {
-                                          hoverOpacity: 1,
-                                          Path: {
-                                              fill: fillShape,
-                                              stroke: "rgba(255, 255, 255, 0.75)"
-                                          }
-                                      },
-                                      tiles: false,
-                                      tooltipConfig: {
-                                          background: "white",
-                                          footer: "",
-                                          footerStyle: {
-                                              "margin-top": 0
-                                          },
-                                          padding: "12px",
-                                          body: d => `${d.properties.Region}`
-                                      },
-                                      topojson: "/geo/regiones.json",
-                                      topojsonId: "id",
-                                      topojsonKey: "regiones",
-                                      width: 200,
-                                      zoom: false
-                                  }} />
-                              </div>
-                              <div className="map-comuna">
-                                 { geoObj.type!='country' &&
-                                    <SvgMap region={(geoObj.type=='region')?geo:ancestor} active={(geoObj.type=='comuna')?geo:false} />
-                                  }
-                              </div>
-                          </div>
-                      </div>
-                  
+            <div className="dc-container">
+              <div className="header">
+                <div className="meta">
+                  {ancestor &&
+                    <div className="parent">
+                      <Link
+                        className="link"
+                        to={slugifyItem("geo", ancestor.key, ancestor.name)}>
+                        {ancestor.name}
+                      </Link>
+                    </div>}
+                  {geo &&
+                    <div className="title">
+                      {geo.caption}
+                    </div>}
+                  <div className="subtitle">
+                    {geoObj.type}{" "}
+                    <Link className="link" to="/explore/geo">
+                      {t("Explore")}
+                    </Link>
                   </div>
+                  {stats.population &&
+                    <div>
+                      <Stat value={stats.population} label={t("Population")} />
+                      <p>
+                        {stats.population_year} - {stats.population_source}
+                      </p>
+                    </div>}
+                  <Stat
+                    value={"$" + stats.income_avg}
+                    label={t("Average Household")}
+                  />
+                  <Stat
+                    value={stats.age_avg + " " + t("years")}
+                    label={t("Average age")}
+                  />
+                </div>
 
-                  <ExportsByProduct/>
-                  <ExportsByDestination/>
-                  <ImportsByOrigin/>
-                  <TradeBalance/>
-                  <OutputByIndustry/>
-
+                <div className="map-region">
+                  <Geomap
+                    config={{
+                      data: [],
+                      downloadButton: false,
+                      groupBy: "key",
+                      height: 500,
+                      label: d => "Región " + d.properties.Region,
+                      legend: false,
+                      ocean: "transparent",
+                      on: {
+                        "click.shape": function(d) {
+                          browserHistory.push(
+                            slugifyItem("geo", d.id, d.properties.Region)
+                          );
+                        }
+                      },
+                      padding: 10,
+                      shapeConfig: {
+                        hoverOpacity: 1,
+                        Path: {
+                          fill: fillShape,
+                          stroke: "rgba(255, 255, 255, 0.75)"
+                        }
+                      },
+                      tiles: false,
+                      tooltipConfig: {
+                        background: "white",
+                        footer: "",
+                        footerStyle: {
+                          "margin-top": 0
+                        },
+                        padding: "12px",
+                        body: d => `${d.properties.Region}`
+                      },
+                      topojson: "/geo/regiones.json",
+                      topojsonId: "id",
+                      topojsonKey: "regiones",
+                      width: 200,
+                      zoom: false
+                    }}
+                  />
+                </div>
+                <div className="map-comuna">
+                  {geoObj.type != "country" &&
+                    <SvgMap
+                      region={geoObj.type == "region" ? geo : ancestor}
+                      active={geoObj.type == "comuna" ? geo : false}
+                    />}
+                </div>
               </div>
-          </CanonComponent>
-      );
+            </div>
+          </div>
+
+          <ExportsByProduct />
+          <ExportsByDestination />
+          <ImportsByOrigin />
+          <TradeBalance />
+          <OutputByIndustry />
+        </div>
+      </CanonComponent>
+    );
   }
 }
 
-
-export default translate()(connect(state => ({
-  data: state.data,
-  population_year: state.population_year,
-  stats: state.stats
-}), {})(GeoProfile));
+export default translate()(
+  connect(
+    state => ({
+      data: state.data,
+      population_year: state.population_year,
+      stats: state.stats
+    }),
+    {}
+  )(GeoProfile)
+);

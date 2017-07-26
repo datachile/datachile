@@ -14,7 +14,7 @@
   "Enter a location": "Busca un lugar",
   "Explore": "Explorar",
   "Explore featured profiles": "Explorar perfiles destacados",
-  
+
   "Interactive data visualization platform about Chilean public data": "Plataforma interactiva de visualización de datos sobre información pública de Chile",
   "Pic by": "Foto de",
 
@@ -27,17 +27,17 @@
   "Country": "País",
   "Countries": "Paises",
   "Zone": "Zona",
-  
+
   "Region": "Región",
   "Regions": "Regiones",
-  
+
   "Comuna": "Comuna",
   "Comunas": "Comunas",
 
   "Institution": "Institución",
   "Institutions": "Instituciones",
   "Institution Type": "Tipo de Institución",
-  
+
   "Career": "Carrera",
   "Careers": "Carreras",
   "Field of Science": "Área de Conocimiento",
@@ -67,6 +67,7 @@
   "Politics": "Política",
 
   "Exports By Product": "Exportación por producto",
+  "English text with param {{dato}}": "Texto en español con param {{dato}}",
   "Exports By Destination": "Exportación por destino",
   "Imports By Origin Country": "Importación por país de origen",
   "Output By Industry": "Producción por industria",
