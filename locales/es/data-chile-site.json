@@ -1,4 +1,6 @@
 {
+  "lang_en": "Inglés",
+  "lang_es": "Español",
   "%B %d, %Y": "",
   ",": {
     "0f": ""
@@ -67,7 +69,13 @@
   "Politics": "Política",
 
   "Exports By Product": "Exportación por producto",
-  "English text with param {{dato}}": "Texto en español con param {{dato}}",
+
+  "In {{latest_year}}, <a href=\"#\">{{geo.caption}}</a> exported <i>{{trade_volume}}</i>": "En {{latest_year}}, <a href=\"#\">{{geo.caption}}</a> exportó <i>{{trade_volume}}</i>",
+  "making it the {{rank}}th largest exporter in Chile": "llevándolo al puesto número {{rank}} de los mayores exportadores en Chile",
+  "During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{trade_last_year}}</i> in {{last_year}}": "Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual de {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}",
+  "The most recent exports are led by <a href=\"#\">{{trade_first_product}}</a> which represent {{trade_first_share}} of the total exports of {{geo.caption}}, followed by <a href=\"#\">{{trade_second_product}}</a>, which account for {{trade_second_share}}": "Las principales exportaciones más recientes son <a href=\"#\">{{trade_first_product}}</a> que representan {{trade_first_share}} de las exportaciones de {{geo.caption}}, seguidas por <a href=\"#\">{{trade_second_product}}</a>, que representan el {{trade_second_share}}",
+  "Top Exported Product in {{latest_year}}": "Principal producto exportado en {{latest_year}}",
+
   "Exports By Destination": "Exportación por destino",
   "Imports By Origin Country": "Importación por país de origen",
   "Output By Industry": "Producción por industria",
