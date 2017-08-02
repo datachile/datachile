@@ -83,10 +83,12 @@ export default translate()(
             text_data.geo = this.context.data.geo;
             text_data.escapeInterpolation = true;
 
+            console.log("DATA FINAL", text_data);
+
             return (
                 <SectionColumns>
                     <SectionTitle>
-                        {t("Exports By Product")}
+                        {t("Exports by Product")}
                     </SectionTitle>
                     <article>
                         {t(

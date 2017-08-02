@@ -24,6 +24,7 @@
     "d3-scale": "^1.0.4",
     "d3-time-format": "^2.0.2",
     "datawheel-canon": "^0.9.4",
+    "lodash": "^4.17.4",
     "mondrian-rest-client": "github:datawheel/mondrian-rest-client",
     "normalize.css": "^5.0.0",
     "pluralize": "^3.1.0"

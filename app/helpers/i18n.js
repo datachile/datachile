@@ -1,3 +1,4 @@
+import _ from "lodash";
 /*def trade_by_time_and_product(aggregation, trade_measure, show_rank=True):
    dataframe = aggregation.to_pandas()
 
@@ -42,8 +43,26 @@ function trade_by_time_and_product(
     trade_measure,
     show_rank = true
 ) {
+    console.log("PARAMS", aggregation, trade_measure, show_rank);
+
+    const max_year = _.maxBy(aggregation, function(o) {
+        return o["ID Year"];
+    })["ID Year"];
+
+    /*
+    max_year = dataframe.index.get_level_values('ID Year').max()
+    by_date = dataframe.sum(level='ID Year')
+    first_year = dataframe.index.get_level_values('ID Year').min()
+    trade_first_year = by_date.loc[first_year][trade_measure]
+    trade_last_year = by_date.loc[max_year][trade_measure]
+    annualized_rate = annualized_growth(trade_last_year, trade_first_year,
+                                        max_year, first_year)
+    top_trade_latest_year = dataframe.loc[max_year].sort_values(trade_measure,
+                                                         ascending=False)
+    */
+
     var p_text_values = {
-        latest_year: 0,
+        latest_year: max_year,
         rank: 0,
         trade_volume: 0,
         first_year: 0,

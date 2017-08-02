@@ -68,7 +68,7 @@
   "Health": "Salud",
   "Politics": "Política",
 
-  "Exports By Product": "Exportación por producto",
+  "Exports by Product": "Exportación por producto",
 
   "In {{latest_year}}, <a href=\"#\">{{geo.caption}}</a> exported <i>{{trade_volume}}</i>": "En {{latest_year}}, <a href=\"#\">{{geo.caption}}</a> exportó <i>{{trade_volume}}</i>",
   "making it the {{rank}}th largest exporter in Chile": "llevándolo al puesto número {{rank}} de los mayores exportadores en Chile",
@@ -76,9 +76,9 @@
   "The most recent exports are led by <a href=\"#\">{{trade_first_product}}</a> which represent {{trade_first_share}} of the total exports of {{geo.caption}}, followed by <a href=\"#\">{{trade_second_product}}</a>, which account for {{trade_second_share}}": "Las principales exportaciones más recientes son <a href=\"#\">{{trade_first_product}}</a> que representan {{trade_first_share}} de las exportaciones de {{geo.caption}}, seguidas por <a href=\"#\">{{trade_second_product}}</a>, que representan el {{trade_second_share}}",
   "Top Exported Product in {{latest_year}}": "Principal producto exportado en {{latest_year}}",
 
-  "Exports By Destination": "Exportación por destino",
-  "Imports By Origin Country": "Importación por país de origen",
-  "Output By Industry": "Producción por industria",
+  "Exports by Destination": "Exportación por destino",
+  "Imports by Origin Country": "Importación por país de origen",
+  "Output by Industry": "Producción por industria",
   "Trade Balance": "Balanza comercial",
 
   "Click to Highlight": "Clic para resaltar"
