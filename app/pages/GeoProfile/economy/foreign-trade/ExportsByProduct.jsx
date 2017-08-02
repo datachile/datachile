@@ -58,13 +58,14 @@ export default translate()(
                         return mondrianClient.query(q, "jsonrecords");
                     })
                     .then(res => {
+                        const result = trade_by_time_and_product(
+                            res.data.data,
+                            "FOB US",
+                            geo.type != "country"
+                        );
                         return {
                             key: "text_data_exports_by_product",
-                            data: trade_by_time_and_product(
-                                res.data.data,
-                                "FOB US",
-                                geo.type != "country"
-                            )
+                            data: result
                         };
                     });
 
@@ -80,9 +81,10 @@ export default translate()(
             const path = this.context.data.path_exports_by_product;
 
             const text_data = this.context.data.text_data_exports_by_product;
-            text_data.geo = this.context.data.geo;
-            text_data.escapeInterpolation = true;
-
+            if (text_data) {
+                text_data.geo = this.context.data.geo;
+                text_data.escapeInterpolation = true;
+            }
             console.log("DATA FINAL", text_data);
 
             return (
