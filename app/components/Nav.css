@@ -7,11 +7,11 @@
   top: 0;
   z-index: 100;
 
-  & .nav-container{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-     & .nav-links{
+  & .nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    & .nav-links {
       display: flex;
       align-items: center;
       padding: 0px var(--gutter);
@@ -29,7 +29,6 @@
           color: var(--light);
           margin-left: 5px;
         }
-
       }
 
       & .link {
@@ -50,7 +49,31 @@
           opacity: 1;
         }
       }
+      & .lang-selector {
+        & span {
+          display: inline-block;
+          margin: 10px 2px;
+          opacity: 0.8;
+          text-decoration: none;
+          transition: opacity 0.2s;
+          font-family: var(--font-family-chivo);
+          font-weight: 400;
+          font-size: 10px;
+          color: var(--snow);
+          letter-spacing: 0.08px;
+          text-transform: uppercase;
+          &.lang-current {
+            color: var(--snow);
+            text-decoration: underline;
+          }
+          &.lang-other {
+            & a {
+              color: var(--snow);
+            }
+            text-decoration: none;
+          }
+        }
+      }
     }
   }
-
 }

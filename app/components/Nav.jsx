@@ -19,12 +19,9 @@ class Nav extends Component {
 
     var url = location.href;
     if (canUseDOM) {
-      console.log("window existe!!!");
       url = window.location.href;
     }
     url = url.replace(currentLang, otherLang);
-
-    console.log(currentLang, otherLang, url);
 
     return (
       <nav className="nav">
@@ -42,10 +39,11 @@ class Nav extends Component {
               {t("Explore")}
             </Link>
             <div className="lang-selector">
-              <span>
+              <span className="lang-current">
                 {t("lang_" + currentLang)}
               </span>
-              <span>
+              <span> | </span>
+              <span className="lang-other">
                 <a href={url}>
                   {t("lang_" + otherLang)}
                 </a>
