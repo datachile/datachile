@@ -27,6 +27,7 @@
     "lodash": "^4.17.4",
     "mondrian-rest-client": "github:datawheel/mondrian-rest-client",
     "normalize.css": "^5.0.0",
+    "numeral": "^2.0.6",
     "pluralize": "^3.1.0"
   }
 }

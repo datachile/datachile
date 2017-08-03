@@ -6,7 +6,7 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import { ordinalColorScale } from "helpers/colors";
 import { getGeoObject } from "helpers/dataUtils";
-import { trade_by_time_and_product } from "helpers/i18n";
+import { trade_by_time_and_product } from "helpers/aggregations";
 
 import { translate } from "react-i18next";
 
@@ -61,7 +61,8 @@ export default translate()(
                         const result = trade_by_time_and_product(
                             res.data.data,
                             "FOB US",
-                            geo.type != "country"
+                            geo.type != "country",
+                            store.i18n.locale
                         );
                         return {
                             key: "text_data_exports_by_product",
@@ -83,36 +84,33 @@ export default translate()(
             const text_data = this.context.data.text_data_exports_by_product;
             if (text_data) {
                 text_data.geo = this.context.data.geo;
-                text_data.escapeInterpolation = true;
+                text_data.increased_or_decreased = t(
+                    text_data.increased_or_decreased
+                );
             }
             console.log("DATA FINAL", text_data);
 
             return (
                 <SectionColumns>
                     <SectionTitle>
-                        {t("Exports by Product")}
+                        {t("export_by_product.title")}
                     </SectionTitle>
                     <article>
-                        {t(
-                            'In {{latest_year}}, <a href="#">{{geo.caption}}</a> exported <i>{{trade_volume}}</i>',
-                            text_data
-                        )}
-                        {t(
-                            "making it the {{rank}}th largest exporter in Chile",
-                            text_data
-                        )}
-                        {t(
-                            "During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}",
-                            text_data
-                        )}
-                        {t(
-                            'The most recent exports are led by <a href="#">{{trade_first_product}}</a> which represent {{trade_first_share}} of the total exports of {{geo.caption}}, followed by <a href="#">{{trade_second_product}}</a>, which account for {{trade_second_share}}',
-                            text_data
-                        )}
-                        {t(
-                            "Top Exported Product in {{latest_year}}",
-                            text_data
-                        )}
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: t("export_by_product.line1", text_data)
+                            }}
+                        />
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: t("export_by_product.line2", text_data)
+                            }}
+                        />
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: t("export_by_product.line3", text_data)
+                            }}
+                        />
                     </article>
                     <Treemap
                         config={{

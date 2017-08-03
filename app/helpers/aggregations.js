@@ -1,4 +1,6 @@
 import _ from "lodash";
+import { numeral } from "helpers/formatters";
+import { slugifyItem } from "helpers/formatters";
 
 function annualized_growth(last_v, first_v, last_time, first_time) {
     var temp = parseFloat(last_time) - parseFloat(first_time);
@@ -13,7 +15,8 @@ function annualized_growth(last_v, first_v, last_time, first_time) {
 function trade_by_time_and_product(
     aggregation,
     trade_measure,
-    show_rank = true
+    show_rank = true,
+    locale = "en"
 ) {
     const max_year = _.maxBy(aggregation, function(o) {
         return o["ID Year"];
@@ -58,27 +61,41 @@ function trade_by_time_and_product(
 
     var p_text_values = {
         latest_year: max_year,
-        rank: current_trade_array[0]["Geo Rank Across Time"],
-        trade_volume: total_trade_latest_year,
+        rank: numeral(
+            current_trade_array[0]["Geo Rank Across Time"],
+            locale
+        ).format("0o"),
+        trade_volume: numeral(total_trade_latest_year, locale).format(
+            "($ 0.00 a)"
+        ),
         first_year: first_year,
-        trade_first_year: trade_first_year,
+        trade_first_year: numeral(trade_first_year, locale).format(
+            "($ 0.00 a)"
+        ),
         last_year: max_year,
-        trade_last_year: trade_last_year,
-        annualized_rate: annualized_rate,
+        trade_last_year: numeral(trade_last_year, locale).format("($ 0.00 a)"),
+        annualized_rate: numeral(annualized_rate, locale).format("0%"),
         increased_or_decreased: annualized_rate > 0 ? "increased" : "decreased",
         trade_first_product: top_trade_latest_year[0].HS2,
+        trade_first_product_link: top_trade_latest_year[0]["ID HS2"],
         trade_first_val: parseInt(top_trade_latest_year[0][trade_measure]),
-        trade_first_share:
+        trade_first_share: numeral(
             parseInt(top_trade_latest_year[0][trade_measure]) /
-            total_trade_latest_year,
+                total_trade_latest_year,
+            locale
+        ).format("0%"),
         number_of_years: max_year - first_year
     };
 
     if (top_trade_latest_year.length > 2) {
         p_text_values.trade_second_product = top_trade_latest_year[1].HS2;
-        p_text_values.trade_second_share =
+        p_text_values.trade_second_product_link =
+            top_trade_latest_year[1]["ID HS2"];
+        p_text_values.trade_second_share = numeral(
             parseInt(top_trade_latest_year[1][trade_measure]) /
-            total_trade_latest_year;
+                total_trade_latest_year,
+            locale
+        ).format("0%");
     } else {
         p_text_values.trade_second_product = "-";
         p_text_values.trade_second_share = "-";

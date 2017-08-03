@@ -1,4 +1,11 @@
 {
-  "lang_en": "English",
-  "lang_es": "Spanish"
+	"lang_en": "English",
+	"lang_es": "Spanish",
+
+	"export_by_product": {
+		"title": "Exports by product",
+		"line1": "In {{latest_year}}, {{geo.caption}} exported <i>{{trade_volume}}</i> making it the {{rank}} largest exporter in Chile. ",
+		"line2": "During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. ",
+		"line3": "The most recent exports are led by <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> which represent {{trade_first_share}} of the total exports of {{geo.caption}}, followed by <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a>, which account for {{trade_second_share}} Top Exported Product in {{latest_year}}"
+	}
 }
