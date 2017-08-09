@@ -1,17 +1,8 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { SectionColumns, CanonComponent } from "datawheel-canon";
+
 import SourceNote from "components/SourceNote";
-import TopicBlock from "components/TopicBlock";
-
-import ForeignTrade from "./economy/ForeignTrade";
-import Industry from "./economy/Industry";
-
-import ExportsByProduct from "./economy/foreign-trade/ExportsByProduct";
-import ExportsByDestination from "./economy/foreign-trade/ExportsByDestination";
-import ImportsByOrigin from "./economy/foreign-trade/ImportsByOrigin";
-import TradeBalance from "./economy/foreign-trade/TradeBalance";
-import OutputByIndustry from "./economy/industry/OutputByIndustry";
 
 import NavFixed from "components/NavFixed";
 import d3plus from "helpers/d3plus";
@@ -26,11 +17,23 @@ import { slugifyItem } from "helpers/formatters";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import { getGeoObject } from "helpers/dataUtils";
+import { translate } from "react-i18next";
+
+/*Economy*/
+import Economy from "./economy/Economy";
+
+import IndustrySlide from "./economy/industry/IndustrySlide";
+import OutputByIndustry from "./economy/industry/charts/OutputByIndustry";
+
+import TradeSlide from "./economy/trade/TradeSlide";
+import ExportsByProduct from "./economy/trade/charts/ExportsByProduct";
+import ExportsByDestination from "./economy/trade/charts/ExportsByDestination";
+import ImportsByOrigin from "./economy/trade/charts/ImportsByOrigin";
+import TradeBalance from "./economy/trade/charts/TradeBalance";
+/*end Economy*/
 
 import "./intro.css";
 import "./topics.css";
-
-import { translate } from "react-i18next";
 
 const topics = [
   {
@@ -163,11 +166,15 @@ class GeoProfile extends Component {
         promise: prm
       };
     },
+    Economy,
+    IndustrySlide,
+    OutputByIndustry,
+
+    TradeSlide,
     ExportsByProduct,
     ExportsByDestination,
     ImportsByOrigin,
-    TradeBalance,
-    OutputByIndustry
+    TradeBalance
   ];
 
   componentDidMount() {
@@ -203,8 +210,6 @@ class GeoProfile extends Component {
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
         : geoObj.type == "region" ? chileObj : false;
-
-    // TODO check for 404
 
     const stats = {
       population: this.props.data.population,
@@ -361,11 +366,28 @@ class GeoProfile extends Component {
             </div>
           </div>
 
-          <ExportsByProduct />
-          <ExportsByDestination />
-          <ImportsByOrigin />
-          <TradeBalance />
-          <OutputByIndustry />
+          <Economy>
+            <div>
+              <TradeSlide>
+                <SectionColumns>
+                  <ExportsByProduct />
+                  <ExportsByDestination />
+                </SectionColumns>
+                <SectionColumns>
+                  <ImportsByOrigin />
+                  <TradeBalance />
+                </SectionColumns>
+              </TradeSlide>
+            </div>
+
+            <div>
+              <IndustrySlide>
+                <SectionColumns>
+                  <OutputByIndustry />
+                </SectionColumns>
+              </IndustrySlide>
+            </div>
+          </Economy>
         </div>
       </CanonComponent>
     );
@@ -376,8 +398,7 @@ export default translate()(
   connect(
     state => ({
       data: state.data,
-      population_year: state.population_year,
-      stats: state.stats
+      population_year: state.population_year
     }),
     {}
   )(GeoProfile)
