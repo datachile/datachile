@@ -14,7 +14,8 @@ class TopicSlider extends Component {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      adaptiveHeight: true
+      adaptiveHeight: true,
+      lazyLoad: true
     };
 
     return (

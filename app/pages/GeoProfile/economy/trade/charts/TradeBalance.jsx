@@ -28,7 +28,7 @@ export default translate()(
 
           return {
             key: "path_trade_balance",
-            data: "http://localhost:9292" + q.path("jsonrecords")
+            data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
 

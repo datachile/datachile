@@ -26,7 +26,7 @@ class OutputByIndustry extends Section {
 
         return {
           key: "path_industry_output",
-          data: "http://localhost:9292" + q.path("jsonrecords")
+          data: store.env.CANON_API + q.path("jsonrecords")
         };
       });
 

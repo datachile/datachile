@@ -25,7 +25,7 @@ export default translate()(
 
           return {
             key: "path_imports_by_origin",
-            data: "http://localhost:9292" + q.path("jsonrecords")
+            data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
 
