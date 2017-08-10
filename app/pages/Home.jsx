@@ -10,69 +10,7 @@ import { translate } from "react-i18next";
 import "./Home.css";
 
 class Home extends Component {
-  static need = [
-    (params, store) => {
-      /*const geoObj = getGeoObject(params);
-
-      var prm = Promise.all(prms)
-          .then((res) => {
-            return { key: 'featured', data: ingestParent(res[0],res[1]) };
-          });
-
-        return {
-          type: "GET_DATA",
-          promise: prm
-        };*/
-
-      /*var prm;
-
-      switch (geoObj.type) {
-        case "country": {
-          prm = new Promise((resolve, reject) => {
-            resolve({ key: "geo", data: geoObj });
-          });
-          break;
-        }
-        case "region": {
-          prm = mondrianClient
-            .cube("exports")
-            .then(cube => {
-              return cube.dimensionsByName["Geography"].hierarchies[0].getLevel(
-                "Region"
-              );
-            })
-            .then(level => {
-              return mondrianClient.member(level, geoObj.key);
-            })
-            .then(res => {
-              return { key: "geo", data: res };
-            });
-          break;
-        }
-        case "comuna": {
-          prm = mondrianClient
-            .cube("exports")
-            .then(cube => {
-              return cube.dimensionsByName["Geography"].hierarchies[0].getLevel(
-                "Comuna"
-              );
-            })
-            .then(level => {
-              return mondrianClient.member(level, geoObj.key);
-            })
-            .then(res => {
-              return { key: "geo", data: res };
-            });
-          break;
-        }
-      }*/
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
-  ];
+  static need = [];
 
   render() {
     const { focus, message, t } = this.props;
