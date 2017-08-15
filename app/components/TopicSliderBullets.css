@@ -1,0 +1,22 @@
+.topic-slider-bullets {
+	& ul {
+		padding: 0px;
+		margin: 0px;
+		& li.bullet {
+			list-style-type: none;
+			display: inline-block;
+			&.selected {
+				& a {
+					background-color: black;
+				}
+			}
+			& a {
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 2px solid black;
+				display: inline-block;
+			}
+		}
+	}
+}
