@@ -89,6 +89,8 @@ extrabold 800
 */
 
 /* global classes */
+@lost flexbox flex;
+
 .main-container {
 	lost-flex-container: column;
 }

@@ -379,28 +379,30 @@ class GeoProfile extends Component {
             </div>
           </div>
 
-          <Economy>
-            <div>
-              <TradeSlide>
-                <SectionColumns>
-                  <ExportsByProduct />
-                  <ExportsByDestination />
-                </SectionColumns>
-                <SectionColumns>
-                  <ImportsByOrigin />
-                  <TradeBalance />
-                </SectionColumns>
-              </TradeSlide>
-            </div>
+          <div class="topics-container">
+            <Economy>
+              <div>
+                <TradeSlide>
+                  <SectionColumns>
+                    <ExportsByProduct />
+                    <ExportsByDestination />
+                  </SectionColumns>
+                  <SectionColumns>
+                    <ImportsByOrigin />
+                    <TradeBalance />
+                  </SectionColumns>
+                </TradeSlide>
+              </div>
 
-            <div>
-              <IndustrySlide>
-                <SectionColumns>
-                  <OutputByIndustry />
-                </SectionColumns>
-              </IndustrySlide>
-            </div>
-          </Economy>
+              <div>
+                <IndustrySlide>
+                  <SectionColumns>
+                    <OutputByIndustry />
+                  </SectionColumns>
+                </IndustrySlide>
+              </div>
+            </Economy>
+          </div>
         </div>
       </CanonComponent>
     );

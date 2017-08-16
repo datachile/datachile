@@ -33,12 +33,21 @@ class Economy extends Component {
       { name: t("Industry"), slides: [1] }
     ];
 
+    const selectedSection = _.find(sections, function(s) {
+      return _.indexOf(s.slides, selected) > -1;
+    });
+
     return (
-      <div className="topic-block" name="Economy">
-        <a className="topic-anchor" id="Economy" />
+      <div className="topic-block" id="Economy">
         <div className="topic-header">
           <div className="topic-title">
-            {t("Economy")}
+            <h2>
+              {t("Economy")}
+              <small>
+                <span className="pipe">|</span>
+                {selectedSection.name}
+              </small>
+            </h2>
             <TopicSliderBullets
               name="economy"
               slides={children}

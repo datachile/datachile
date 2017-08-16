@@ -13,15 +13,18 @@ class TopicSliderSections extends Component {
         <ul id={name + "-sections"}>
           {sections &&
             sections.map((s, ix) =>
-              <li
-                className={
-                  "section " +
-                  (_.indexOf(s.slides, selected) > -1 ? "selected" : "")
-                }>
-                <a onClick={() => goTo(s.slides[0])}>
-                  {s.name}
-                </a>
-              </li>
+              <span>
+                <li
+                  className={
+                    "section-item " +
+                    (_.indexOf(s.slides, selected) > -1 ? "selected" : "")
+                  }>
+                  <a onClick={() => goTo(s.slides[0])}>
+                    {s.name}
+                  </a>
+                </li>
+                <span className="pipe">|</span>
+              </span>
             )}
         </ul>
       </div>

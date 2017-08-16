@@ -62,21 +62,23 @@ class TradeSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">Trade</div>
           <div className="topic-slide-text">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: t("export_by_product.line1", text_data)
-              }}
-            />
-            <div
-              dangerouslySetInnerHTML={{
-                __html: t("export_by_product.line2", text_data)
-              }}
-            />
-            <div
-              dangerouslySetInnerHTML={{
-                __html: t("export_by_product.line3", text_data)
-              }}
-            />
+            <p>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t("export_by_product.line1", text_data)
+                }}
+              />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t("export_by_product.line2", text_data)
+                }}
+              />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t("export_by_product.line3", text_data)
+                }}
+              />
+            </p>
           </div>
           <div className="topic-slide-data">mini datitos</div>
         </div>

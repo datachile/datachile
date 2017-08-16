@@ -1,19 +1,39 @@
 .topic-slider-sections {
+  margin: 0 var(--gutter) var(--gutter) var(--gutter);
   & ul {
     padding: 0px;
     margin: 0px;
-    & li.section {
+    & .pipe {
+      font-family: var(--font-family-title);
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--snow);
+      margin: 0 10px 0px 0;
+    }
+    & li.section-item {
       list-style-type: none;
       display: inline-block;
+      & a {
+        font-family: var(--font-family-title);
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 300;
+        color: var(--snow);
+        letter-spacing: 1px;
+        text-decoration: none;
+        margin: 0 10px 0px 0;
+      }
       &.selected {
         & a {
-          color: black;
-          text-decoration: none;
+          border-bottom: 1px solid var(--snow);
+          font-weight: 800;
+          padding-bottom: 5px;
         }
       }
-      & a {
-        color: blue;
-        text-decoration: underline;
+      &:last-child {
+        & .pipe {
+          display: none;
+        }
       }
     }
   }
