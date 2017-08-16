@@ -1,52 +1,53 @@
 .svg-map {
   width: 100%;
-  & svg{
+  & svg {
     & path.region {
       stroke-width: 1;
       stroke-opacity: 1;
       stroke: var(--snow);
 
       fill: var(--snow);
-      fill-opacity:0.7;
+      fill-opacity: 0.7;
 
       cursor: pointer;
       transition: fill-opacity .4s ease;
-      &.hover{
-        fill-opacity:1;
+      &.hover {
+        fill-opacity: 1;
       }
     }
     & g {
       pointer-events: all;
     }
     & path.comuna {
-      fill:var(--near-black);
-      fill-opacity:0.2;
-      stroke:var(--snow);
+      fill: var(--near-black);
+      fill-opacity: 0.2;
+      stroke: var(--snow);
       cursor: pointer;
       transition: fill .4s ease, opacity .4s ease;
-      &.selected{
-        fill:var(--snow);
-        fill-opacity:1;
+      &.selected {
+        fill: var(--snow);
+        fill-opacity: 1;
         cursor: pointer;
       }
-      &.hover{
-        fill:var(--snow);
-        fill-opacity:1;
+      &.hover {
+        fill: var(--snow);
+        fill-opacity: 1;
         cursor: pointer;
       }
     }
     & path.limite {
-      fill:none;
-      stroke:var(--snow);
+      fill: none;
+      stroke: var(--snow);
       pointer-events: none;
     }
-    & circle.border-circle, & clipPath{
+    & circle.border-circle,
+    & clipPath {
       fill: none;
       stroke: var(--snow);
       pointer-events: none;
     }
   }
-  & #svg-map-tooltip{
+  & #svg-map-tooltip {
     opacity: 0;
     position: absolute;
     text-align: center;
@@ -55,7 +56,7 @@
     background: var(--snow);
     border: 1px solid var(--near-black);
     pointer-events: none;
-    font-family: var(--font-family-chivo);
+    font-family: var(--font-family-text);
     color: var(--near-black);
   }
 }

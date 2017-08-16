@@ -2,59 +2,54 @@ footer {
   width: 100%;
   background-color: var(--dark);
 
-  & .footer-container{
-      flex-wrap: wrap;
-      justify-content: space-between;
-  
-      & .logos {
+  & .footer-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-        box-sizing: border-box;
-        padding: var(--gutter);
+    & .logos {
+      box-sizing: border-box;
+      padding: var(--gutter);
+      text-align: center;
+      width: 100%;
+
+      & img {
+        margin: 25px;
+        vertical-align: middle;
+      }
+
+      & .logo {
+      }
+
+      & .logo-datawheel {
+        width: 200px;
+      }
+
+      & .collaboration {
         text-align: center;
-        width: 100%;
-
-        & img {
-          margin: 25px;
-          vertical-align: middle;
-        }
-
-        & .logo {
-          
-        }
-
-        & .logo-datawheel {
-          width: 200px;
-        }
-
-        & .collaboration{
-          text-align: center;
-          text-transform: uppercase;
-          color: white;
-        }
-      
+        text-transform: uppercase;
+        color: white;
       }
+    }
 
-      & .nav-links {
-        padding: var(--gutter);
-        display: flex;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-        & .link{
-          font-family: var(--font-family-chivo);
-          font-weight: 300;
-          font-size: 12px;
-          color: var(--snow);
-          letter-spacing: 0.08px;
-          padding: 40px 10px;
-          text-transform: uppercase;
-          text-decoration: none;
-          cursor: pointer;
-        }
-        & .link-dot{
-          font-weight: 400;
-        }
+    & .nav-links  {
+      padding: var(--gutter);
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      & .link {
+        font-family: var(--font-family-text);
+        font-weight: 300;
+        font-size: 12px;
+        color: var(--snow);
+        letter-spacing: 0.08px;
+        padding: 40px 10px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
       }
+      & .link-dot {
+        font-weight: 400;
+      }
+    }
   }
-
-
 }

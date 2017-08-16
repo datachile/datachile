@@ -1,19 +1,40 @@
 .nav {
   width: 100%;
-
-  margin: 60px auto;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 100;
+  margin: 30px auto;
 
   & .nav-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    & .nav-links {
+    & .nav-title {
+      & h1 {
+        text-transform: uppercase;
+        color: var(--snow);
+        font-family: var(--font-family-title);
+        font-weight: 300;
+        font-size: 50px;
+      }
+    }
+    & .nav-meta {
       display: flex;
       align-items: center;
+      & .type,
+      & .parent {
+        width: 100%;
+        margin: 0px 5px;
+        & a {
+          color: var(--snow);
+          text-decoration: underline;
+          font-family: var(--font-family-title);
+          font-weight: 300;
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+      }
+    }
+    & .nav-links {
+      display: flex;
+      align-items: flex-start;
       padding: 0px var(--gutter);
       & .logo {
         display: inline-block;
@@ -38,7 +59,7 @@
         opacity: 0.8;
         text-decoration: none;
         transition: opacity 0.2s;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 400;
         font-size: 12px;
         color: var(--snow);
@@ -56,7 +77,7 @@
           opacity: 0.8;
           text-decoration: none;
           transition: opacity 0.2s;
-          font-family: var(--font-family-chivo);
+          font-family: var(--font-family-text);
           font-weight: 400;
           font-size: 10px;
           color: var(--snow);

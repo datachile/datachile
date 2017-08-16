@@ -1,44 +1,36 @@
 /* FONTS */
-@import url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Yantramanav:300,400,500,700');
 
 @font-face {
-  font-family: Antonio;
-  src: url('/fonts/antonio/Antonio-Light.ttf');
-  font-weight: 300;
+	font-family: Gilroy;
+	src: url('/fonts/gilroy/Gilroy-Light.otf');
+	font-weight: 300;
 }
 @font-face {
-  font-family: Antonio;
-  src: url("/fonts/antonio/Antonio-Regular.ttf");
-  font-weight: 400;
-}
-@font-face {
-  font-family: Antonio;
-  src: url('/fonts/antonio/Antonio-Bold.ttf');
-  font-weight: 700;
+	font-family: Gilroy;
+	src: url('/fonts/gilroy/Gilroy-ExtraBold.otf');
+	font-weight: 800;
 }
 
 /*
-CHIVO -> var(--font-family-chivo)
+Yantramanav -> var(--font-family-text)
+font-family: 'Yantramanav', sans-serif;
 light 300
-light 300 Italic
 regular 400
-regular 400 Italic
+medium 500
 bold 700
-bold 700 Italic
-black 900
-black 900 Italic
 
-ANTONIO -> var(--font-family-antonio)
+ANTONIO -> var(--font-family-title)
+font-family: 'Gilroy', sans-serif;
 light 300
-regular 400
-bold 700
+extrabold 800
 */
 
 /*BASICS mixins */
 
 /*
 @mixin h1(){
-	font-family: var(--font-family-antonio);
+	font-family: var(--font-family-title);
 	font-weight: 400;
 	font-size: 36px;
 	color: var(--color-title);
@@ -46,7 +38,7 @@ bold 700
 }
 
 @mixin h2(){
-	font-family: var(--font-family-antonio);
+	font-family: var(--font-family-title);
 	font-weight: 400;
 	font-size: 30px;
 	color: var(--color-title);
@@ -54,7 +46,7 @@ bold 700
 }
 
 @mixin h3(){
-	font-family: var(--font-family-antonio);
+	font-family: var(--font-family-title);
 	font-weight: 400;
 	font-size: 24px;
 	color: var(--color-title);
@@ -62,7 +54,7 @@ bold 700
 }
 
 @mixin h3(){
-	font-family: var(--font-family-antonio);
+	font-family: var(--font-family-title);
 	font-weight: 400;
 	font-size: 18px;
 	color: var(--color-title);
@@ -70,7 +62,7 @@ bold 700
 }
 
 @mixin h4(){
-	font-family: var(--font-family-antonio);
+	font-family: var(--font-family-title);
 	font-weight: 400;
 	font-size: 14px;
 	color: var(--color-title);
@@ -78,7 +70,7 @@ bold 700
 }
 
 @mixin h5(){
-	font-family: var(--font-family-antonio);
+	font-family: var(--font-family-title);
 	font-weight: 400;
 	font-size: 12px;
 	color: var(--color-title);
@@ -88,7 +80,7 @@ bold 700
 
 /* Simple paragraph */
 /*@mixin paragraph($radius) {
-	font-family: var(--font-family-chivo);
+	font-family: var(--font-family-text);
 	font-weight: 300;
 	font-size: 12pt;
 	color: var(--color-p);
@@ -96,14 +88,8 @@ bold 700
 }
 */
 
-
 /* global classes */
-.full-container{
-	width: 100%;
+.main-container {
+	lost-flex-container: column;
 }
 
-.dc-container{
-  margin: 0 auto;
-  max-width: var(--width);
-  width: 100%;
-}

@@ -1,5 +1,5 @@
 .explore-page {
-  font-family: var(--font-family-chivo);
+  font-family: var(--font-family-text);
 
   & .intro {
     color: white;
@@ -28,14 +28,13 @@
       }
 
       & .gradient {
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         bottom: 0;
         left: 0;
         position: absolute;
         top: 0;
         width: 100%;
       }
-
     }
 
     & .header {
@@ -52,7 +51,7 @@
       vertical-align: top;
       margin: var(--gutter);
       & .title {
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 45px;
         color: var(--snow);
@@ -61,7 +60,7 @@
 
       & .subtitle {
         text-transform: uppercase;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 14px;
         color: var(--snow);
@@ -73,7 +72,7 @@
 
       & .parent {
         text-transform: uppercase;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 14px;
         color: var(--snow);
@@ -81,18 +80,14 @@
           color: var(--snow);
         }
       }
-
     }
-
-    
-
   }
 
   & h3.list-title {
     margin: 10px;
-    & .link{
+    & .link {
       color: var(--near-black);
-      &:hover{
+      &:hover {
         text-decoration: none;
       }
     }
@@ -107,7 +102,7 @@
     list-style-type: none;
     margin: 0px;
     padding: 0px;
-    & li{
+    & li {
       margin: 5px;
       display: flex;
       & .link {
@@ -115,13 +110,10 @@
         background-color: var(--near-black);
         color: var(--snow);
         text-decoration: none;
-        &:hover{
+        &:hover {
           text-decoration: underline;
         }
       }
     }
   }
-
-
-
 }

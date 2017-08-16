@@ -18,10 +18,10 @@ section-article-small: "300px"
 
 nav-height: "60px"
 
-font-family: 'Chivo'
-section-title-family: "'Chivo', sans-serif"
-font-family-chivo: "'Chivo', sans-serif"
-font-family-antonio: "'Antonio', sans-serif"
+font-family: 'Gilroy'
+section-title-family: "'Gilroy', sans-serif"
+font-family-title: "'Gilroy', sans-serif"
+font-family-text: "'Yantramanav', sans-serif"
 
 background: "-10"
 foreground: "10"

@@ -17,26 +17,30 @@
   align-content: stretch;
   margin: var(--gutter);
 
-  & .tile-filter{
+  & .tile-filter {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(-180deg, rgba(26,27,44,0.10) 50%, #000000 100%);
-    border: 1px solid #E6E6E6;
+    background-image: linear-gradient(
+      -180deg,
+      rgba(26, 27, 44, 0.10) 50%,
+      #000000 100%
+    );
+    border: 1px solid #e6e6e6;
   }
 
-  & .col-r{
+  & .col-r {
     display: flex;
     flex: 0.5;
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
     align-self: stretch;
-    
+
     padding: 10px;
     & .type {
       z-index: var(--foreground);
-      font-family: var(--font-family-chivo);
+      font-family: var(--font-family-text);
       text-transform: uppercase;
       font-weight: 300;
       font-size: 11px;
@@ -45,7 +49,7 @@
     }
   }
 
-  & .col-l{
+  & .col-l {
     display: flex;
     flex: 0.5;
     flex-direction: column;
@@ -58,7 +62,7 @@
       margin: 10px 0px;
       background-color: var(--accent);
       text-transform: uppercase;
-      font-family: var(--font-family-chivo);
+      font-family: var(--font-family-text);
       font-size: 16px;
       font-weight: 300;
       color: var(--snow);
@@ -69,7 +73,7 @@
     }
     & .region {
       z-index: var(--foreground);
-      font-family: var(--font-family-chivo);
+      font-family: var(--font-family-text);
       text-transform: uppercase;
       font-weight: 300;
       font-size: 11px;
@@ -77,9 +81,6 @@
       letter-spacing: -0.38px;
     }
   }
-
-
-
 
   &:after {
     background-color: rgba(0, 0, 0, 0.3);
@@ -99,7 +100,5 @@
     &:after {
       background-color: rgba(0, 0, 0, 0.2);
     }
-
   }
-
 }

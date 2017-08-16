@@ -1,8 +1,7 @@
 @import "variables.css";
 
 body {
-  
- /* @media only screen and (max-width : var(--break-lg)) {
+  /* @media only screen and (max-width : var(--break-lg)) {
   
   }
 
@@ -24,7 +23,7 @@ body {
 }
 
 .home {
-  font-family: var(--font-family-chivo);
+  font-family: var(--font-family-text);
 
   & .splash {
     height: 800px;
@@ -46,14 +45,13 @@ body {
     }
 
     & .gradient {
-      background-color: rgba(25, 25, 40,0.5);
+      background-color: rgba(25, 25, 40, 0.5);
       bottom: 0;
       left: 0;
       position: absolute;
       top: 0;
       width: 100%;
     }
-
   }
 
   & .intro {
@@ -74,36 +72,34 @@ body {
         font-size: 45px;
         font-weight: 300;
         margin: 10px 0px;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
       }
 
       & .lead {
         color: white;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 14px;
         color: var(--snow);
         letter-spacing: 0.06px;
         line-height: 19px;
         text-transform: uppercase;
-
       }
 
       @media only screen and (--small) {
-        flex:1;
+        flex: 1;
       }
-
     }
 
-    & .search-home-wrapper{
-      flex:0.6;
+    & .search-home-wrapper {
+      flex: 0.6;
       background-color: var(--near-black);
       border-radius: var(--border-radius);
       padding: 15px 20px;
       margin: 0px var(--gutter);
-      
+
       @media only screen and (--small) {
-        flex:1;
+        flex: 1;
       }
     }
 
@@ -111,33 +107,30 @@ body {
       flex-direction: column;
       align-items: stretch;
     }
-
   }
 
   & .title-tiles {
-      font-weight: 400;
-      text-transform: uppercase;
-      font-family: var(--font-family-antonio);
-      font-size: 24px;
-      color: var(--snow);
-      letter-spacing: 0.05px;
-      margin-bottom: 40px;
-      padding: 0px var(--gutter);
-    }
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: var(--font-family-title);
+    font-size: 24px;
+    color: var(--snow);
+    letter-spacing: 0.05px;
+    margin-bottom: 40px;
+    padding: 0px var(--gutter);
+  }
 
   & .tiles {
     background-color: var(--dark);
-    & .dc-container{    
-      & .tiles-container{
+    & .dc-container {
+      & .tiles-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
       }
-      & .source-container{
+      & .source-container {
         padding: var(--gutter);
       }
     }
-
   }
-
 }

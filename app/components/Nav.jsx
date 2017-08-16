@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
+import { slugifyItem } from "helpers/formatters";
 import "./Nav.css";
 
 class Nav extends Component {
   render() {
-    const { t, i18n, location } = this.props;
+    const { t, i18n, location, title, type, ancestor, explore } = this.props;
 
     const currentLang = i18n.language.split("-")[0];
     const otherLang = currentLang === "es" ? "en" : "es";
@@ -25,27 +26,46 @@ class Nav extends Component {
 
     return (
       <nav className="nav">
-        <div className="dc-container nav-container">
+        <div className="nav-container">
           <div className="nav-links">
             <Link className="logo" to="/">
               <img src="/images/logos/logo-datachile.svg" />
             </Link>
-          </div>
-          <div className="nav-links">
-            <Link className="link" to="/">
-              {t("Home")}
-            </Link>
             <Link className="link" to="/explore">
               {t("Explore")}
             </Link>
+          </div>
+          <div className="nav-title">
+            <h1>
+              {title}
+            </h1>
+          </div>
+          <div className="nav-meta">
+            <div className="type">
+              {explore &&
+                type &&
+                <Link className="link" to={explore}>
+                  {type}
+                </Link>}
+            </div>
+            {ancestor &&
+              <div className="parent">
+                <Link
+                  className="link"
+                  to={slugifyItem("geo", ancestor.key, ancestor.name)}>
+                  {ancestor.name}
+                </Link>
+              </div>}
+          </div>
+          <div className="nav-links">
             <div className="lang-selector">
               <span className="lang-current">
-                {t("lang_" + currentLang)}
+                {currentLang}
               </span>
               <span> | </span>
               <span className="lang-other">
                 <a href={url}>
-                  {t("lang_" + otherLang)}
+                  {otherLang}
                 </a>
               </span>
             </div>

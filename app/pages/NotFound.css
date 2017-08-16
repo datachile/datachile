@@ -1,18 +1,18 @@
 .not-found {
-    & .glossary {
-      & .definition {
-        margin-top: 0px;
-      }
+  & .glossary {
+    & .definition {
+      margin-top: 0px;
+    }
 
-      & .term {
-        font-weight: bold;
-        margin: 0px;
-        padding: 0px;
-      }
+    & .term {
+      font-weight: bold;
+      margin: 0px;
+      padding: 0px;
+    }
   }
 
   & .intro {
-    font-family: var(--font-family-chivo);
+    font-family: var(--font-family-text);
     margin: 0 auto;
     max-width: var(--width);
     padding: 0 var(--gutter);
@@ -46,7 +46,6 @@
         top: 0;
         width: 100%;
       }
-
     }
     & .header {
       display: flex;
@@ -56,21 +55,19 @@
 
       & .meta {
         box-sizing: border-box;
-        clear:both;
+        clear: both;
         display: block;
         flex: 1;
         margin: 100px 24px 24px;
         vertical-align: top;
 
         & .title {
-          color:white;
+          color: white;
           font-size: 56px;
-          font-weight:600;
+          font-weight: 600;
           text-align: center;
         }
-
       }
-
     }
     & .sublinks {
       color: white;
@@ -98,20 +95,17 @@
           display: block;
           margin: 5px auto;
         }
-
       }
-
     }
-
   }
   & .topic-title {
-    padding-bottom:16px;
+    padding-bottom: 16px;
   }
   & .section {
     background-color: white;
 
     & .paragraph {
-      font-family: var(--font-family-chivo);
+      font-family: var(--font-family-text);
       font-size: 20px;
       font-weight: 400;
       line-height: 1.5;
@@ -119,7 +113,5 @@
       max-width: var(--width);
       width: 60%;
     }
-
   }
-
 }

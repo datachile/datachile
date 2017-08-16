@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
+import Nav from "components/Nav";
 
 import SourceNote from "components/SourceNote";
 
@@ -143,6 +144,7 @@ class GeoProfile extends Component {
       };
     },
     (params, store) => {
+      console.log("store", store);
       const geo = getGeoObject(params);
       const prm = mondrianClient
         .cube("population_estimate")
@@ -158,7 +160,14 @@ class GeoProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          return { key: "population", data: res.data.data[0].Population };
+          return {
+            key: "population",
+            data: {
+              value: res.data.data[0].Population,
+              year: store.population_year,
+              source: "INE projection"
+            }
+          };
         });
 
       return {
@@ -200,7 +209,7 @@ class GeoProfile extends Component {
   render() {
     const { focus, t } = this.props;
 
-    const { subnav, activeSub, population_year } = this.state;
+    const { subnav, activeSub } = this.state;
 
     const geoObj = getGeoObject(this.props.routeParams);
 
@@ -211,13 +220,12 @@ class GeoProfile extends Component {
         ? geo.ancestors[0]
         : geoObj.type == "region" ? chileObj : false;
 
+    console.log(this.props.data.population);
+
     const stats = {
       population: this.props.data.population,
-      population_year: population_year,
-      population_source: "INE projection",
-      age_avg: "",
-      income_avg: "",
-      source: "INE Censo"
+      income: this.props.data.population,
+      psu: this.props.data.population
     };
 
     var type = "";
@@ -237,21 +245,21 @@ class GeoProfile extends Component {
     }
 
     function fillShape(d) {
-      var c = "rgba(255, 255, 255, 0.35)";
+      var c = "rgba(255, 255, 255, 0.75)";
       switch (geoObj.type) {
         case "country": {
-          c = "rgba(255, 255, 255, 0.5)";
+          c = "rgba(255, 255, 255, 1)";
           break;
         }
         case "region": {
           if (parseInt(d.id) == parseInt(geoObj.key)) {
-            c = "rgba(255, 255, 255, 1)";
+            c = "rgba(30,144,255,1)";
           }
           break;
         }
         case "comuna": {
           if (parseInt(d.id) == parseInt(ancestor.key)) {
-            c = "rgba(255, 255, 255, 1)";
+            c = "rgba(30,144,255,1)";
           }
           break;
         }
@@ -264,6 +272,12 @@ class GeoProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus}>
         <div className="profile">
           <div className="intro">
+            <Nav
+              title={geo.caption}
+              type={geoObj.type}
+              ancestor={ancestor}
+              explore={"/explore/geo"}
+            />
             <div className="splash">
               <div
                 className="image"
@@ -274,44 +288,50 @@ class GeoProfile extends Component {
               <div className="gradient" />
             </div>
 
-            <div className="dc-container">
-              <div className="header">
-                <div className="meta">
-                  {ancestor &&
-                    <div className="parent">
-                      <Link
-                        className="link"
-                        to={slugifyItem("geo", ancestor.key, ancestor.name)}>
-                        {ancestor.name}
-                      </Link>
-                    </div>}
-                  {geo &&
-                    <div className="title">
-                      {geo.caption}
-                    </div>}
-                  <div className="subtitle">
-                    {geoObj.type}{" "}
-                    <Link className="link" to="/explore/geo">
-                      {t("Explore")}
-                    </Link>
-                  </div>
-                  {stats.population &&
-                    <div>
-                      <Stat value={stats.population} label={t("Population")} />
-                      <p>
-                        {stats.population_year} - {stats.population_source}
-                      </p>
-                    </div>}
-                  <Stat
-                    value={"$" + stats.income_avg}
-                    label={t("Average Household")}
-                  />
-                  <Stat
-                    value={stats.age_avg + " " + t("years")}
-                    label={t("Average age")}
-                  />
-                </div>
+            <div className="header">
+              <div className="meta">
+                {stats.population &&
+                  <div className="stat-group">
+                    <Stat
+                      value={stats.population.value + " " + t("habitants")}
+                      label={t("Population")}
+                    />
+                    <span className="source">
+                      {stats.population.year} - {stats.population.source}
+                    </span>
+                  </div>}
+                {stats.income &&
+                  <div className="stat-group">
+                    <Stat
+                      value={"$" + stats.income.value}
+                      label={t("Income")}
+                    />
+                    <span className="source">
+                      {stats.income.year} - {stats.income.source}
+                    </span>
+                  </div>}
+                {stats.psu &&
+                  <div className="stat-group">
+                    <Stat
+                      value={stats.psu.value + " " + t("points")}
+                      label={t("PSU")}
+                    />
+                    <span className="source">
+                      {stats.psu.year} - {stats.psu.source}
+                    </span>
+                  </div>}
+              </div>
 
+              <div className="candidates">
+                <p>cara de los candidatos</p>
+              </div>
+
+              <div className="map-comuna">
+                {geoObj.type != "country" &&
+                  <SvgMap
+                    region={geoObj.type == "region" ? geo : ancestor}
+                    active={geoObj.type == "comuna" ? geo : false}
+                  />}
                 <div className="map-region">
                   <Geomap
                     config={{
@@ -334,7 +354,7 @@ class GeoProfile extends Component {
                         hoverOpacity: 1,
                         Path: {
                           fill: fillShape,
-                          stroke: "rgba(255, 255, 255, 0.75)"
+                          stroke: "rgba(255, 255, 255, 1)"
                         }
                       },
                       tiles: false,
@@ -354,13 +374,6 @@ class GeoProfile extends Component {
                       zoom: false
                     }}
                   />
-                </div>
-                <div className="map-comuna">
-                  {geoObj.type != "country" &&
-                    <SvgMap
-                      region={geoObj.type == "region" ? geo : ancestor}
-                      active={geoObj.type == "comuna" ? geo : false}
-                    />}
                 </div>
               </div>
             </div>

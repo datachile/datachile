@@ -1,5 +1,5 @@
 .product-profile {
-  font-family: var(--font-family-chivo);
+  font-family: var(--font-family-text);
 
   & .intro {
     color: white;
@@ -28,14 +28,13 @@
       }
 
       & .gradient {
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         bottom: 0;
         left: 0;
         position: absolute;
         top: 0;
         width: 100%;
       }
-
     }
 
     & .header {
@@ -52,7 +51,7 @@
       vertical-align: top;
       margin: var(--gutter);
       & .title {
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 45px;
         color: var(--snow);
@@ -61,7 +60,7 @@
 
       & .subtitle {
         text-transform: uppercase;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 14px;
         color: var(--snow);
@@ -73,7 +72,7 @@
 
       & .parent {
         text-transform: uppercase;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 14px;
         color: var(--snow);
@@ -86,32 +85,30 @@
         margin: 25px 0;
 
         & .label {
-          font-family: var(--font-family-chivo);
+          font-family: var(--font-family-text);
           font-weight: 300;
           font-size: 13px;
-          color: #FFFFFF;
+          color: #ffffff;
           letter-spacing: -0.05px;
         }
 
         & .value {
-          font-family: var(--font-family-antonio);
+          font-family: var(--font-family-title);
           font-weight: 400;
           font-size: 21px;
           color: var(--snow);
           letter-spacing: 0.05px;
           margin-bottom: 10px;
         }
-
       }
-
     }
 
-    & .map-region{
+    & .map-region {
       flex: 0.2;
       align-self: center;
     }
 
-    & .map-comuna{
+    & .map-comuna {
       flex: 0.35;
       align-self: center;
       pointer-events: all;
@@ -132,7 +129,7 @@
         text-transform: uppercase;
         opacity: 0.9;
         transition: opacity 0.2s;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 400;
         cursor: pointer;
 
@@ -143,22 +140,18 @@
         & .svg-image {
           display: block;
           margin: 10px auto;
-          & .fill-color{
-            fill:var(--snow);
+          & .fill-color {
+            fill: var(--snow);
           }
-          & .stroke-color{
-            stroke:var(--snow);
+          & .stroke-color {
+            stroke: var(--snow);
           }
         }
-
       }
-
     }
 
     & .sources {
       padding: var(--gutter);
     }
-
   }
-
 }

@@ -1,7 +1,4 @@
 {
-	"lang_en": "English",
-	"lang_es": "Spanish",
-
 	"export_by_product": {
 		"title": "Exports by product",
 		"line1": "In {{latest_year}}, {{geo.caption}} exported <i>{{trade_volume}}</i> making it the {{rank}} largest exporter in Chile. ",

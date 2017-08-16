@@ -1,8 +1,8 @@
 .profile {
-  font-family: var(--font-family-chivo);
+  font-family: var(--font-family-text);
 
   & .intro {
-    color: white;
+    color: var(--snow);
     margin: 0 auto;
     position: relative;
     width: 100%;
@@ -19,7 +19,7 @@
       & .image {
         background-position: 50%;
         background-size: cover;
-        filter: saturate(150%) contrast(130%);
+        filter: saturate(80%) contrast(130%);
         height: 100%;
         left: 0;
         position: absolute;
@@ -28,14 +28,13 @@
       }
 
       & .gradient {
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         bottom: 0;
         left: 0;
         position: absolute;
         top: 0;
         width: 100%;
       }
-
     }
 
     & .header {
@@ -48,11 +47,11 @@
     & .meta {
       box-sizing: border-box;
       display: inline-block;
-      flex: 0.3;
+      lost-column: 1/3;
       vertical-align: top;
-      margin: var(--gutter);
+      padding: 0px var(--gutter);
       & .title {
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 45px;
         color: var(--snow);
@@ -61,7 +60,7 @@
 
       & .subtitle {
         text-transform: uppercase;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 14px;
         color: var(--snow);
@@ -73,7 +72,7 @@
 
       & .parent {
         text-transform: uppercase;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 300;
         font-size: 14px;
         color: var(--snow);
@@ -82,39 +81,50 @@
         }
       }
 
-      & .stat {
-        margin: 25px 0;
+      & .stat-group {
+        margin-bottom: 30px;
+        & .stat {
+          & .label {
+            font-family: var(--font-family-text);
+            font-weight: 300;
+            font-size: 13px;
+            color: #ffffff;
+            letter-spacing: -0.05px;
+          }
 
-        & .label {
-          font-family: var(--font-family-chivo);
-          font-weight: 300;
-          font-size: 13px;
-          color: #FFFFFF;
-          letter-spacing: -0.05px;
+          & .value {
+            font-family: var(--font-family-title);
+            font-weight: 400;
+            font-size: 21px;
+            color: var(--snow);
+            letter-spacing: 0.05px;
+          }
         }
-
-        & .value {
-          font-family: var(--font-family-antonio);
-          font-weight: 400;
-          font-size: 21px;
-          color: var(--snow);
-          letter-spacing: 0.05px;
-          margin-bottom: 10px;
+        & .source {
+          font-size: 10px;
         }
-
       }
-
     }
 
-    & .map-region{
-      flex: 0.2;
-      align-self: center;
+    & .candidates {
+      lost-column: 1/3;
     }
 
-    & .map-comuna{
-      flex: 0.35;
+    & .map-region {
+      position: absolute;
+      z-index: 1000;
+      right: 0;
+      top: 0;
+      pointer-events: none;
+    }
+
+    & .map-comuna {
+      lost-column: 1/3;
       align-self: center;
       pointer-events: all;
+      position: relative;
+      min-height: 500px;
+      padding-right: 60px;
     }
 
     & .subnav {
@@ -132,7 +142,7 @@
         text-transform: uppercase;
         opacity: 0.9;
         transition: opacity 0.2s;
-        font-family: var(--font-family-chivo);
+        font-family: var(--font-family-text);
         font-weight: 400;
         cursor: pointer;
 
@@ -143,22 +153,18 @@
         & .svg-image {
           display: block;
           margin: 10px auto;
-          & .fill-color{
-            fill:var(--snow);
+          & .fill-color {
+            fill: var(--snow);
           }
-          & .stroke-color{
-            stroke:var(--snow);
+          & .stroke-color {
+            stroke: var(--snow);
           }
         }
-
       }
-
     }
 
     & .sources {
       padding: var(--gutter);
     }
-
   }
-
 }

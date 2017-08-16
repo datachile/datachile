@@ -7,12 +7,12 @@
   }
   & .source-note-txt {
     margin-top: 2px;
-    font-family: var(--font-family-chivo);
+    font-family: var(--font-family-text);
     font-weight: 400;
     font-size: 9px;
-    color: #E5E5E5;
+    color: #e5e5e5;
     letter-spacing: 0.05px;
-    & strong{
+    & strong {
       font-weight: 700;
     }
   }
