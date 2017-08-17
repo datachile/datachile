@@ -6,6 +6,7 @@ import { melt, getGeoObject } from "helpers/dataUtils";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
+import FeaturedDatum from "components/FeaturedDatum";
 import TopicSlider from "components/TopicSlider";
 
 class TradeSlide extends Section {
@@ -57,6 +58,8 @@ class TradeSlide extends Section {
       text_data.increased_or_decreased = t(text_data.increased_or_decreased);
     }
 
+    console.log(text_data);
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -80,7 +83,29 @@ class TradeSlide extends Section {
               />
             </p>
           </div>
-          <div className="topic-slide-data">mini datitos</div>
+          <div className="topic-slide-data">
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="industria"
+              datum={text_data.trade_volume}
+              title={t("Trade volume")}
+              subtitle={text_data.first_year + " - " + text_data.last_year}
+            />
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="empleo"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
+            />
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="industria"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
+            />
+          </div>
         </div>
         <div className="topic-slide-charts">
           {children}

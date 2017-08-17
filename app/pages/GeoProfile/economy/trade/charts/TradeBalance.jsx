@@ -40,11 +40,14 @@ export default translate()(
     ];
 
     render() {
-      const { t } = this.props;
+      const { t, className } = this.props;
       const path = this.context.data.path_trade_balance;
 
       return (
-        <div className="lost-1-2">
+        <div className={className}>
+          <h3 className="chart-title">
+            {t("Trade Balance")}
+          </h3>
           <LinePlot
             config={{
               data: path,

@@ -39,9 +39,12 @@ class OutputByIndustry extends Section {
 
   render() {
     const path = this.context.data.path_industry_output;
-    const { t } = this.props;
+    const { t, className } = this.props;
     return (
-      <div className="lost-1-2">
+      <div className={className}>
+        <h3 className="chart-title">
+          {t("Output By Industry")}
+        </h3>
         <Treemap
           config={{
             height: 552,

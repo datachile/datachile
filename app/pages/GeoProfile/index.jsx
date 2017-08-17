@@ -384,12 +384,12 @@ class GeoProfile extends Component {
               <div>
                 <TradeSlide>
                   <SectionColumns>
-                    <ExportsByProduct />
-                    <ExportsByDestination />
+                    <ExportsByProduct className="lost-1-2" />
+                    <ExportsByDestination className="lost-1-2" />
                   </SectionColumns>
                   <SectionColumns>
-                    <ImportsByOrigin />
-                    <TradeBalance />
+                    <ImportsByOrigin className="lost-1-2" />
+                    <TradeBalance className="lost-1-2" />
                   </SectionColumns>
                 </TradeSlide>
               </div>
@@ -397,7 +397,7 @@ class GeoProfile extends Component {
               <div>
                 <IndustrySlide>
                   <SectionColumns>
-                    <OutputByIndustry />
+                    <OutputByIndustry className="lost-1-2" />
                   </SectionColumns>
                 </IndustrySlide>
               </div>

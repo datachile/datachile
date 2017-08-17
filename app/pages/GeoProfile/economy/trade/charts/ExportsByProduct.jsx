@@ -42,12 +42,15 @@ export default translate()(
         ];
 
         render() {
-            const { t } = this.props;
+            const { t, className } = this.props;
 
             const path = this.context.data.path_exports_by_product;
 
             return (
-                <div className="lost-1-2">
+                <div className={className}>
+                    <h3 className="chart-title">
+                        {t("Exports By Product")}
+                    </h3>
                     <Treemap
                         config={{
                             height: 552,
