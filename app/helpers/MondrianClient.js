@@ -26,8 +26,10 @@ function geoCut(geo, dimensionName, query, lang = "en") {
   if (geo.type === "country") {
     return query; // no region provided, don't cut
   } else if (geo.type === "region") {
+    query.drilldown(dimensionName, "Region");
     return query.cut(`[${dimensionName}].[Region].&[${geo.key}]`);
   } else if (geo.type === "comuna") {
+    query.drilldown(dimensionName, "Comuna");
     return query.cut(`[${dimensionName}].[Comuna].&[${geo.key}]`);
   } else {
     throw new Error(`Geo '${geo}' unknown`);

@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import FeaturedDatum from "components/FeaturedDatum";
 import OutputByIndustry from "./charts/OutputByIndustry";
 
 class IndustrySlide extends Section {
@@ -26,7 +27,29 @@ class IndustrySlide extends Section {
             Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
             euismod tellus id erat.
           </div>
-          <div className="topic-slide-data">mini datitos</div>
+          <div className="topic-slide-data">
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="empleo"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
+            />
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="empleo"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
+            />
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="industria"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
+            />
+          </div>
         </div>
         <div className="topic-slide-charts">
           {children}

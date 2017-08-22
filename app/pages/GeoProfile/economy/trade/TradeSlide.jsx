@@ -7,7 +7,6 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
 import FeaturedDatum from "components/FeaturedDatum";
-import TopicSlider from "components/TopicSlider";
 
 class TradeSlide extends Section {
   static need = [
@@ -57,8 +56,6 @@ class TradeSlide extends Section {
       text_data.geo = this.context.data.geo;
       text_data.increased_or_decreased = t(text_data.increased_or_decreased);
     }
-
-    console.log(text_data);
 
     return (
       <div className="topic-slide-block">

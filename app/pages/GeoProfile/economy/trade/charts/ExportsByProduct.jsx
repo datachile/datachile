@@ -60,6 +60,9 @@ export default translate()(
                                 d["HS2"] instanceof Array ? d["HS0"] : d["HS2"],
                             sum: d => d["FOB US"],
                             time: "ID Year",
+                            legendConfig: {
+                                label: false
+                            },
                             shapeConfig: {
                                 fill: d => ordinalColorScale(d["ID HS0"])
                             }

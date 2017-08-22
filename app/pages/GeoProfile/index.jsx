@@ -1,24 +1,21 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
-import Nav from "components/Nav";
-
-import SourceNote from "components/SourceNote";
-
-import NavFixed from "components/NavFixed";
-import d3plus from "helpers/d3plus";
 import { Geomap } from "d3plus-react";
+import { Link, browserHistory } from "react-router";
+import { translate } from "react-i18next";
+
+import d3plus from "helpers/d3plus";
+import { numeral, slugifyItem } from "helpers/formatters";
+import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { getGeoObject } from "helpers/dataUtils";
+
+import Nav from "components/Nav";
+import NavFixed from "components/NavFixed";
+import SourceNote from "components/SourceNote";
+import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
-import { browserHistory } from "react-router";
-
-import { Link } from "react-router";
-import { slugifyItem } from "helpers/formatters";
-
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-
-import { getGeoObject } from "helpers/dataUtils";
-import { translate } from "react-i18next";
 
 /*Economy*/
 import Economy from "./economy/Economy";
@@ -144,7 +141,6 @@ class GeoProfile extends Component {
       };
     },
     (params, store) => {
-      console.log("store", store);
       const geo = getGeoObject(params);
       const prm = mondrianClient
         .cube("population_estimate")
@@ -164,6 +160,7 @@ class GeoProfile extends Component {
             key: "population",
             data: {
               value: res.data.data[0].Population,
+              decile: 10,
               year: store.population_year,
               source: "INE projection"
             }
@@ -175,6 +172,44 @@ class GeoProfile extends Component {
         promise: prm
       };
     },
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const prm = mondrianClient
+        .cube("nesi_income")
+        .then(cube => {
+          var q = geoCut(
+            geo,
+            "Geography",
+            cube.query
+              .drilldown("Date", "Year")
+              .measure("Income")
+              .measure("Median Income")
+              .measure("Weighted Median Income Rank")
+              .measure("Weighted Median Income Decile"),
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${store.income_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "income",
+            data: {
+              value: res.data.data[0]["Median Income"],
+              decile: res.data.data[0]["Weighted Median Income Decile"],
+              year: store.income_year,
+              source: "NESI"
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+
     Economy,
     IndustrySlide,
     OutputByIndustry,
@@ -207,7 +242,7 @@ class GeoProfile extends Component {
   }
 
   render() {
-    const { focus, t } = this.props;
+    const { focus, t, i18n } = this.props;
 
     const { subnav, activeSub } = this.state;
 
@@ -215,16 +250,25 @@ class GeoProfile extends Component {
 
     const geo = this.props.data.geo;
 
+    const locale = i18n.language.split("-")[0];
+
     const ancestor =
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
         : geoObj.type == "region" ? chileObj : false;
 
-    console.log(this.props.data.population);
-
+    /*
+    Format
+      {
+        value: 200100,
+        decile: 3.1,
+        year: 2015,
+        source: "NESI"
+      }
+    */
     const stats = {
       population: this.props.data.population,
-      income: this.props.data.population,
+      income: this.props.data.income,
       psu: this.props.data.population
     };
 
@@ -291,35 +335,40 @@ class GeoProfile extends Component {
             <div className="header">
               <div className="meta">
                 {stats.population &&
-                  <div className="stat-group">
-                    <Stat
-                      value={stats.population.value + " " + t("habitants")}
-                      label={t("Population")}
-                    />
-                    <span className="source">
-                      {stats.population.year} - {stats.population.source}
-                    </span>
-                  </div>}
+                  <FeaturedDatumSplash
+                    title={t("Population")}
+                    icon="poblacion"
+                    decile={stats.population.decile}
+                    datum={numeral(stats.population.value, locale).format(
+                      "(0,0)"
+                    )}
+                    source={
+                      stats.population.year + " - " + stats.population.source
+                    }
+                    className=""
+                  />}
                 {stats.income &&
-                  <div className="stat-group">
-                    <Stat
-                      value={"$" + stats.income.value}
-                      label={t("Income")}
-                    />
-                    <span className="source">
-                      {stats.income.year} - {stats.income.source}
-                    </span>
-                  </div>}
-                {stats.psu &&
-                  <div className="stat-group">
-                    <Stat
-                      value={stats.psu.value + " " + t("points")}
-                      label={t("PSU")}
-                    />
-                    <span className="source">
-                      {stats.psu.year} - {stats.psu.source}
-                    </span>
-                  </div>}
+                  <FeaturedDatumSplash
+                    title={t("Income")}
+                    icon="ingreso"
+                    decile={stats.income.decile}
+                    datum={numeral(stats.income.value, locale).format(
+                      "($ 0,0)"
+                    )}
+                    source={stats.income.year + " - " + stats.income.source}
+                    className=""
+                  />}
+                {stats.income &&
+                  <FeaturedDatumSplash
+                    title={t("PSU")}
+                    icon="psu"
+                    decile={9.2}
+                    datum={
+                      numeral(stats.psu.value, locale).format("(0,0)") + "pts"
+                    }
+                    source={stats.psu.year + " - " + stats.psu.source}
+                    className=""
+                  />}
               </div>
 
               <div className="candidates">
@@ -379,7 +428,7 @@ class GeoProfile extends Component {
             </div>
           </div>
 
-          <div class="topics-container">
+          <div className="topics-container">
             <Economy>
               <div>
                 <TradeSlide>
@@ -413,7 +462,8 @@ export default translate()(
   connect(
     state => ({
       data: state.data,
-      population_year: state.population_year
+      population_year: state.population_year,
+      income_year: state.income_year
     }),
     {}
   )(GeoProfile)
