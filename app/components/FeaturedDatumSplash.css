@@ -20,7 +20,13 @@
   & .featured-datum-splash-icons {
     lost-flex-container: row;
     color: var(--snow);
+    margin: 5px 0px;
     & .svg-image {
+      margin-right: 10px;
+      & svg {
+        max-width: 50px;
+        max-height: 50px;
+      }
       &.full {
       }
       &.half {
@@ -35,5 +41,6 @@
     letter-spacing: 0.08px;
     color: var(--snow);
     font-weight: 300;
+    margin-bottom: 20px;
   }
 }

@@ -8,5 +8,6 @@ module.exports = {
 		"atacama"
 	],
 	population_year: 2017,
-	income_year: 2015
+	income_year: 2015,
+	psu_year: 2016
 };

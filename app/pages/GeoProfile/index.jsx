@@ -148,7 +148,12 @@ class GeoProfile extends Component {
           var q = geoCut(
             geo,
             "Geography",
-            cube.query.drilldown("Date", "Year").measure("Population"),
+            cube.query
+              .drilldown("Date", "Year")
+              .measure("Number of records")
+              .measure("Population")
+              .measure("Population Rank")
+              .measure("Population Rank Decile"),
             store.i18n.locale
           );
 
@@ -159,8 +164,8 @@ class GeoProfile extends Component {
           return {
             key: "population",
             data: {
-              value: res.data.data[0].Population,
-              decile: 10,
+              value: res.data.data[0]["Population"],
+              decile: res.data.data[0]["Population Rank Decile"],
               year: store.population_year,
               source: "INE projection"
             }
@@ -199,7 +204,44 @@ class GeoProfile extends Component {
               value: res.data.data[0]["Median Income"],
               decile: res.data.data[0]["Weighted Median Income Decile"],
               year: store.income_year,
-              source: "NESI"
+              source: "NESI Survey"
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const prm = mondrianClient
+        .cube("psu")
+        .then(cube => {
+          var q = geoCut(
+            geo,
+            "Geography",
+            cube.query
+              .drilldown("Date", "Year")
+              .measure("Number of records")
+              .measure("PSU Rank")
+              .measure("PSU Average")
+              .measure("PSU Rank Decile"),
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${store.psu_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "psu",
+            data: {
+              value: res.data.data[0]["PSU Average"],
+              decile: res.data.data[0]["PSU Rank Decile"],
+              year: store.psu_year,
+              source: "PSU data"
             }
           };
         });
@@ -269,7 +311,7 @@ class GeoProfile extends Component {
     const stats = {
       population: this.props.data.population,
       income: this.props.data.income,
-      psu: this.props.data.population
+      psu: this.props.data.psu
     };
 
     var type = "";
@@ -463,7 +505,8 @@ export default translate()(
     state => ({
       data: state.data,
       population_year: state.population_year,
-      income_year: state.income_year
+      income_year: state.income_year,
+      psu_year: state.psu_year
     }),
     {}
   )(GeoProfile)

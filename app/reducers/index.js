@@ -13,5 +13,6 @@ export default {
 	focus: (state = {}) => state,
 	population_year: (state = {}) => state,
 	income_year: (state = {}) => state,
+	psu_year: (state = {}) => state,
 	search: combineReducers({ searchActive })
 };
