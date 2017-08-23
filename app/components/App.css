@@ -102,3 +102,7 @@ extrabold 800
 .lost-1-3 {
 	lost-column: 1/3 flex;
 }
+
+.lost-1-4 {
+	lost-column: 1/4 flex;
+}

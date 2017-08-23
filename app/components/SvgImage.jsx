@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { text as loadSvgAsString } from "d3-request";
 import { select, selectAll, event } from "d3-selection";
 import { translate } from "react-i18next";
+import SVGCache from "helpers/svg";
 
 class SvgImage extends Component {
   constructor(props) {
     super(props);
+    this.cache = SVGCache.instance;
     this.state = {
       svgFile: ""
     };
@@ -15,6 +17,7 @@ class SvgImage extends Component {
 
   callbackSvg(error, xml) {
     if (error) throw error;
+    this.cache.setSvg(this.props.src, xml);
     this.setState(
       {
         svgFile: xml
@@ -24,7 +27,12 @@ class SvgImage extends Component {
   }
 
   componentDidMount() {
-    loadSvgAsString(this.props.src).get(this.callbackSvg);
+    var cached = this.cache.getSvg(this.props.src);
+    if (cached) {
+      this.callbackSvg(false, cached);
+    } else {
+      loadSvgAsString(this.props.src).get(this.callbackSvg);
+    }
   }
 
   /*componentWillReceiveProps(nextProps) {

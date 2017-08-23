@@ -16,6 +16,7 @@ import SourceNote from "components/SourceNote";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
+import AuthoritiesBlock from "components/AuthoritiesBlock";
 
 /*Economy*/
 import Economy from "./economy/Economy";
@@ -414,7 +415,7 @@ class GeoProfile extends Component {
               </div>
 
               <div className="candidates">
-                <p>cara de los candidatos</p>
+                <AuthoritiesBlock geo={geoObj} ancestor={ancestor} />
               </div>
 
               <div className="map-comuna">

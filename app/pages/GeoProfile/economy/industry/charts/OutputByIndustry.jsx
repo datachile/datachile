@@ -47,7 +47,7 @@ class OutputByIndustry extends Section {
         </h3>
         <Treemap
           config={{
-            height: 552,
+            height: 500,
             data: path,
             groupBy: ["ID Level 1", "ID Level 2"],
             label: d =>

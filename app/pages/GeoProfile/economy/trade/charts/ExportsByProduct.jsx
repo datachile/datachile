@@ -53,7 +53,7 @@ export default translate()(
                     </h3>
                     <Treemap
                         config={{
-                            height: 552,
+                            height: 500,
                             data: path,
                             groupBy: ["ID HS0", "ID HS2"],
                             label: d =>

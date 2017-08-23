@@ -1,0 +1,11 @@
+.splash-authorities {
+  lost-flex-container: column;
+  & .splash-authorities-president {
+    lost-flex-container: row;
+    justify-content: center;
+  }
+  & .splash-authorities-senators {
+    lost-flex-container: row;
+    justify-content: center;
+  }
+}

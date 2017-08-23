@@ -50,6 +50,7 @@ export default translate()(
           </h3>
           <LinePlot
             config={{
+              height: 500,
               data: path,
               groupBy: "variable",
               x: "ID Year",
