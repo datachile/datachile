@@ -1,0 +1,33 @@
+.topic-menu {
+	lost-flex-container: row;
+	justify-content: center;
+	& .topic-link {
+		text-align: center;
+		lost-flex-container: column;
+		justify-content: space-between;
+		padding: 15px var(--gutter);
+		& span {
+			color: var(--snow);
+			text-transform: uppercase;
+			font-size: 12px;
+		}
+		& .svg-image {
+			& path  {
+				fill: var(--snow);
+				stroke: var(--snow);
+			}
+		}
+		&:hover {
+			text-decoration: none;
+			& span {
+				color: var(--accent);
+			}
+			& .svg-image {
+				& path  {
+					fill: var(--accent);
+					stroke: var(--accent);
+				}
+			}
+		}
+	}
+}

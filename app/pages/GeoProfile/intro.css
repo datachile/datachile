@@ -131,6 +131,25 @@
       padding-right: 60px;
     }
 
+    & .topics-selector-container {
+    }
+
+    & .arrow-container {
+      lost-flex-container: row;
+      justify-content: center;
+      & a {
+        padding: var(--gutter) 0;
+        & path  {
+          fill: var(--snow);
+        }
+        &:hover {
+          & path  {
+            fill: var(--accent);
+          }
+        }
+      }
+    }
+
     & .subnav {
       margin: 0 var(--gutter);
       text-align: right;

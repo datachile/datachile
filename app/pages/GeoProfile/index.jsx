@@ -17,6 +17,7 @@ import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
 import AuthoritiesBlock from "components/AuthoritiesBlock";
+import TopicMenu from "components/TopicMenu";
 
 /*Economy*/
 import Economy from "./economy/Economy";
@@ -33,47 +34,6 @@ import TradeBalance from "./economy/trade/charts/TradeBalance";
 
 import "./intro.css";
 import "./topics.css";
-
-const topics = [
-  {
-    slug: "economy",
-    title: "Economy"
-  },
-  {
-    slug: "innovation",
-    title: "Innovation"
-  },
-  {
-    slug: "education",
-    title: "Education"
-  },
-  {
-    slug: "environment",
-    title: "Environment"
-  },
-  {
-    slug: "demographics",
-    title: "Demographics"
-  },
-  {
-    slug: "health",
-    title: "Health"
-  },
-  {
-    slug: "politics",
-    title: "Politics"
-  }
-];
-
-const Stat = props =>
-  <div className="stat">
-    <div className="label">
-      {props.label}
-    </div>
-    <div className="value">
-      {props.value}
-    </div>
-  </div>;
 
 const chileObj = {
   name: "Chile",
@@ -300,8 +260,35 @@ class GeoProfile extends Component {
         ? geo.ancestors[0]
         : geoObj.type == "region" ? chileObj : false;
 
+    const topics = [
+      {
+        slug: "economy",
+        title: t("Economy")
+      },
+      {
+        slug: "education",
+        title: t("Education")
+      },
+      {
+        slug: "environment",
+        title: t("Environment")
+      },
+      {
+        slug: "demographics",
+        title: t("Demographics")
+      },
+      {
+        slug: "health",
+        title: t("Health")
+      },
+      {
+        slug: "politics",
+        title: t("Politics")
+      }
+    ];
+
     /*
-    Format
+    stats format
       {
         value: 200100,
         decile: 3.1,
@@ -468,6 +455,16 @@ class GeoProfile extends Component {
                   />
                 </div>
               </div>
+            </div>
+
+            <div className="topics-selector-container">
+              <TopicMenu topics={topics} />
+            </div>
+
+            <div className="arrow-container">
+              <a href="#economy">
+                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+              </a>
             </div>
           </div>
 

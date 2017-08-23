@@ -38,7 +38,7 @@ class Economy extends Component {
     });
 
     return (
-      <div className="topic-block" id="Economy">
+      <div className="topic-block" id="economy">
         <div className="topic-header">
           <div className="topic-title">
             <h2>
