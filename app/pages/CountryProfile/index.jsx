@@ -73,17 +73,18 @@ class CountryProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus}>
         <div className="country-profile">
           <div className="intro">
-            <Nav
-              title={obj.caption}
-              type={obj.parent ? t("Country") : t("Zone")}
-              exploreLink={"/explore/countries"}
-              ancestor={obj.parent ? obj.parent.caption : ""}
-              ancestorLink={
-                obj.parent
-                  ? slugifyItem("countries", obj.parent.key, obj.parent.name)
-                  : ""
-              }
-            />
+            {obj &&
+              <Nav
+                title={obj.caption}
+                type={obj.parent ? t("Country") : t("Zone")}
+                exploreLink={"/explore/countries"}
+                ancestor={obj.parent ? obj.parent.caption : ""}
+                ancestorLink={
+                  obj.parent
+                    ? slugifyItem("countries", obj.parent.key, obj.parent.name)
+                    : ""
+                }
+              />}
             <div className="splash">
               <div
                 className="image"

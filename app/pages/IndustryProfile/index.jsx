@@ -80,17 +80,18 @@ class IndustryProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus}>
         <div className="industry-profile">
           <div className="intro">
-            <Nav
-              title={obj.caption}
-              type={obj.parent ? t("Industry") : t("Industry Type")}
-              exploreLink={"/explore/industries"}
-              ancestor={obj.parent ? obj.parent.caption : ""}
-              ancestorLink={
-                obj.parent
-                  ? slugifyItem("industries", obj.parent.key, obj.parent.name)
-                  : ""
-              }
-            />
+            {obj &&
+              <Nav
+                title={obj.caption}
+                type={obj.parent ? t("Industry") : t("Industry Type")}
+                exploreLink={"/explore/industries"}
+                ancestor={obj.parent ? obj.parent.caption : ""}
+                ancestorLink={
+                  obj.parent
+                    ? slugifyItem("industries", obj.parent.key, obj.parent.name)
+                    : ""
+                }
+              />}
             <div className="splash">
               <div
                 className="image"

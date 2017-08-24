@@ -366,13 +366,19 @@ class GeoProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus}>
         <div className="profile">
           <div className="intro">
-            <Nav
-              title={geo.caption}
-              type={geoObj.type}
-              exploreLink={"/explore/geo"}
-              ancestor={ancestor.caption}
-              ancestorLink={slugifyItem("geo", ancestor.key, ancestor.name)}
-            />
+            {geo &&
+              geoObj &&
+              <Nav
+                title={geo.caption}
+                type={geoObj.type}
+                exploreLink={"/explore/geo"}
+                ancestor={ancestor ? ancestor.caption : ""}
+                ancestorLink={slugifyItem(
+                  "geo",
+                  ancestor ? ancestor.key : "",
+                  ancestor ? ancestor.name : ""
+                )}
+              />}
             <div className="splash">
               <div
                 className="image"

@@ -81,17 +81,22 @@ class InstitutionProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus}>
         <div className="institution-profile">
           <div className="intro">
-            <Nav
-              title={obj.caption}
-              type={obj.parent ? t("Institution") : t("Institution Type")}
-              exploreLink={"/explore/institutions"}
-              ancestor={obj.parent ? obj.parent.caption : ""}
-              ancestorLink={
-                obj.parent
-                  ? slugifyItem("institutions", obj.parent.key, obj.parent.name)
-                  : ""
-              }
-            />
+            {obj &&
+              <Nav
+                title={obj.caption}
+                type={obj.parent ? t("Institution") : t("Institution Type")}
+                exploreLink={"/explore/institutions"}
+                ancestor={obj.parent ? obj.parent.caption : ""}
+                ancestorLink={
+                  obj.parent
+                    ? slugifyItem(
+                        "institutions",
+                        obj.parent.key,
+                        obj.parent.name
+                      )
+                    : ""
+                }
+              />}
             <div className="splash">
               <div
                 className="image"

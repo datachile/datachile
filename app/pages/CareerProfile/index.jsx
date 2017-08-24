@@ -80,17 +80,18 @@ class CareerProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus}>
         <div className="career-profile">
           <div className="intro">
-            <Nav
-              title={obj.caption}
-              type={obj.parent ? t("Career") : t("Field of Science")}
-              exploreLink={"/explore/careers"}
-              ancestor={obj.parent ? obj.parent.caption : ""}
-              ancestorLink={
-                obj.parent
-                  ? slugifyItem("careers", obj.parent.key, obj.parent.name)
-                  : ""
-              }
-            />
+            {obj &&
+              <Nav
+                title={obj.caption}
+                type={obj.parent ? t("Career") : t("Field of Science")}
+                exploreLink={"/explore/careers"}
+                ancestor={obj.parent ? obj.parent.caption : ""}
+                ancestorLink={
+                  obj.parent
+                    ? slugifyItem("careers", obj.parent.key, obj.parent.name)
+                    : ""
+                }
+              />}
             <div className="splash">
               <div
                 className="image"

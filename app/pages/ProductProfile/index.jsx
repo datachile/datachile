@@ -81,17 +81,18 @@ class ProductProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus}>
         <div className="product-profile">
           <div className="intro">
-            <Nav
-              title={obj.caption}
-              type={obj.parent ? t("Product") : t("Product Type")}
-              exploreLink={"/explore/products"}
-              ancestor={obj.parent ? obj.parent.caption : ""}
-              ancestorLink={
-                obj.parent
-                  ? slugifyItem("products", obj.parent.key, obj.parent.name)
-                  : ""
-              }
-            />
+            {obj &&
+              <Nav
+                title={obj.caption}
+                type={obj.parent ? t("Product") : t("Product Type")}
+                exploreLink={"/explore/products"}
+                ancestor={obj.parent ? obj.parent.caption : ""}
+                ancestorLink={
+                  obj.parent
+                    ? slugifyItem("products", obj.parent.key, obj.parent.name)
+                    : ""
+                }
+              />}
             <div className="splash">
               <div
                 className="image"
