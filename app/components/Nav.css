@@ -7,12 +7,15 @@
     flex-wrap: wrap;
     justify-content: space-between;
     & .nav-title {
+      max-width: 50%;
       & h1 {
         text-transform: uppercase;
         color: var(--snow);
         font-family: var(--font-family-title);
         font-weight: 300;
         font-size: 50px;
+        line-height: 1;
+        text-align: right;
       }
     }
     & .nav-meta {

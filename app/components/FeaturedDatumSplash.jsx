@@ -22,9 +22,6 @@ class FeaturedDatumSplash extends Component {
                 <h4 className="featured-datum-splash-title">
                     {title}
                 </h4>
-                <h6 className="featured-datum-splash-source">
-                    {source}
-                </h6>
                 <div className="featured-datum-splash-icons">
                     {[...Array(full)].map((x, i) =>
                         <SvgImage
@@ -49,6 +46,9 @@ class FeaturedDatumSplash extends Component {
                         {datum}
                     </p>
                 </div>
+                <h6 className="featured-datum-splash-source">
+                    {source}
+                </h6>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 .featured-datum-splash {
   lost-flex-container: column;
   color: var(--snow);
+  padding-bottom: 60px;
   & .featured-datum-splash-title {
     font-family: var(--font-family-title);
     text-transform: uppercase;
@@ -16,11 +17,12 @@
     letter-spacing: -0.01px;
     color: var(--snow);
     font-weight: 300;
+    margin-bottom: 0px;
   }
   & .featured-datum-splash-icons {
     lost-flex-container: row;
     color: var(--snow);
-    margin: 5px 0px;
+    margin: 0px;
     & .svg-image {
       margin-right: 10px;
       & svg {
@@ -41,6 +43,10 @@
     letter-spacing: 0.08px;
     color: var(--snow);
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
+
+    & p {
+      margin-bottom: 0px;
+    }
   }
 }

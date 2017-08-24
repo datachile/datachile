@@ -7,7 +7,18 @@ import "./Nav.css";
 
 class Nav extends Component {
   render() {
-    const { t, i18n, location, title, type, ancestor, explore } = this.props;
+    const {
+      t,
+      i18n,
+      location,
+      title,
+      type,
+      ancestor,
+      exploreLink,
+      ancestorLink
+    } = this.props;
+
+    console.log(ancestor);
 
     const currentLang = i18n.language.split("-")[0];
     const otherLang = currentLang === "es" ? "en" : "es";
@@ -42,18 +53,21 @@ class Nav extends Component {
           </div>
           <div className="nav-meta">
             <div className="type">
-              {explore &&
-                type &&
-                <Link className="link" to={explore}>
+              {type &&
+                exploreLink &&
+                <Link className="link" to={exploreLink}>
                   {type}
                 </Link>}
+              {type &&
+                !exploreLink &&
+                <span>
+                  {type}
+                </span>}
             </div>
             {ancestor &&
               <div className="parent">
-                <Link
-                  className="link"
-                  to={slugifyItem("geo", ancestor.key, ancestor.name)}>
-                  {ancestor.name}
+                <Link className="link" to={ancestorLink}>
+                  {ancestor}
                 </Link>
               </div>}
           </div>

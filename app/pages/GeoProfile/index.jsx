@@ -349,8 +349,9 @@ class GeoProfile extends Component {
             <Nav
               title={geo.caption}
               type={geoObj.type}
-              ancestor={ancestor}
-              explore={"/explore/geo"}
+              exploreLink={"/explore/geo"}
+              ancestor={ancestor.caption}
+              ancestorLink={slugifyItem("geo", ancestor.key, ancestor.name)}
             />
             <div className="splash">
               <div

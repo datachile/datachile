@@ -4,6 +4,7 @@ import { GEO } from "helpers/dictionary";
 import { GEOMAP } from "helpers/GeoData";
 import FeaturedBox from "components/FeaturedBox";
 import SourceNote from "components/SourceNote";
+import Nav from "components/Nav";
 import Search from "components/Search";
 import { translate } from "react-i18next";
 
@@ -19,11 +20,12 @@ class Home extends Component {
 
     return (
       <div className="home">
+        <Nav />
         <div className="splash">
           <div className="image" />
           <div className="gradient" />
         </div>
-        <div className="intro dc-container">
+        <div className="intro">
           <div className="text">
             <h2 className="title">
               <span>Data Chile</span>
