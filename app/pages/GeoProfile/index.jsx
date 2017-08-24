@@ -32,6 +32,17 @@ import ImportsByOrigin from "./economy/trade/charts/ImportsByOrigin";
 import TradeBalance from "./economy/trade/charts/TradeBalance";
 /*end Economy*/
 
+/*Education*/
+import Education from "./education/Education";
+
+import EnrollmentSlide from "./education/enrollment/EnrollmentSlide";
+import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollment";
+
+import PerformanceSlide from "./education/performance/PerformanceSlide";
+import PerformanceByType from "./education/performance/charts/PerformanceByType";
+
+/*end Education*/
+
 import "./intro.css";
 import "./topics.css";
 
@@ -214,6 +225,7 @@ class GeoProfile extends Component {
     },
 
     Economy,
+
     IndustrySlide,
     OutputByIndustry,
 
@@ -221,7 +233,15 @@ class GeoProfile extends Component {
     ExportsByProduct,
     ExportsByDestination,
     ImportsByOrigin,
-    TradeBalance
+    TradeBalance,
+
+    Education,
+
+    PerformanceSlide,
+    PerformanceByType,
+
+    EnrollmentSlide,
+    CollegeByEnrollment
   ];
 
   componentDidMount() {
@@ -492,6 +512,23 @@ class GeoProfile extends Component {
                 </IndustrySlide>
               </div>
             </Economy>
+
+            <Education>
+              <div>
+                <EnrollmentSlide>
+                  <SectionColumns>
+                    <CollegeByEnrollment className="lost-1" />
+                  </SectionColumns>
+                </EnrollmentSlide>
+              </div>
+              <div>
+                <PerformanceSlide>
+                  <SectionColumns>
+                    <PerformanceByType className="lost-1" />
+                  </SectionColumns>
+                </PerformanceSlide>
+              </div>
+            </Education>
           </div>
         </div>
       </CanonComponent>

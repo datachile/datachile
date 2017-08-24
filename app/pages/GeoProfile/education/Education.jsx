@@ -7,7 +7,7 @@ import TopicSlider from "components/TopicSlider";
 import TopicSliderBullets from "components/TopicSliderBullets";
 import TopicSliderSections from "components/TopicSliderSections";
 
-class Economy extends Component {
+class Education extends Component {
   static need = [];
 
   constructor(props) {
@@ -27,8 +27,11 @@ class Economy extends Component {
     const { selected } = this.state;
 
     const sections = [
-      { name: t("Trade"), slides: [0] },
-      { name: t("Industry"), slides: [1] }
+      { name: t("Enrollment"), slides: [0] },
+      { name: t("Performance"), slides: [1] }
+      /*{ name: t("Higher education"), slides: [2, 3, 4] },
+      { name: t("Secondary education"), slides: [5] },
+      { name: t("Scholarships"), slides: [6] }*/
     ];
 
     const selectedSection = _.find(sections, function(s) {
@@ -36,18 +39,18 @@ class Economy extends Component {
     });
 
     return (
-      <div className="topic-block" id="economy">
+      <div className="topic-block" id="education">
         <div className="topic-header">
           <div className="topic-title">
             <h2>
-              {t("Economy")}
+              {t("Education")}
               <small>
                 <span className="pipe">|</span>
                 {selectedSection.name}
               </small>
             </h2>
             <TopicSliderBullets
-              name="economy"
+              name="education"
               slides={children}
               selected={selected}
               goTo={this.goTo}
@@ -55,7 +58,7 @@ class Economy extends Component {
           </div>
           <div className="topic-go-to-targets">
             <TopicSliderSections
-              name="economy"
+              name="education"
               sections={sections}
               selected={selected}
               goTo={this.goTo}
@@ -78,5 +81,5 @@ export default translate()(
       data: state.data
     }),
     {}
-  )(Economy)
+  )(Education)
 );

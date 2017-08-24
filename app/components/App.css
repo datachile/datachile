@@ -95,6 +95,10 @@ extrabold 800
 	lost-flex-container: column;
 }
 
+.lost-1 {
+	lost-column: 1;
+}
+
 .lost-1-2 {
 	lost-column: 1/2 flex;
 }
