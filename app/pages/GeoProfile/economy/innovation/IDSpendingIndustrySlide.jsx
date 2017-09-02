@@ -6,7 +6,7 @@ import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-class IndustrySlide extends Section {
+class IDSpendingCategorySlide extends Section {
   static need = [];
 
   render() {
@@ -16,7 +16,7 @@ class IndustrySlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">
-            {t("Industry")}
+            {t("I+D spending")}
           </div>
           <div className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
@@ -66,5 +66,5 @@ export default translate()(
       data: state.data
     }),
     {}
-  )(IndustrySlide)
+  )(IDSpendingCategorySlide)
 );

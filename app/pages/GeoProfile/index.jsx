@@ -22,14 +22,43 @@ import TopicMenu from "components/TopicMenu";
 /*Economy*/
 import Economy from "./economy/Economy";
 
-import IndustrySlide from "./economy/industry/IndustrySlide";
-import OutputByIndustry from "./economy/industry/charts/OutputByIndustry";
-
 import TradeSlide from "./economy/trade/TradeSlide";
 import ExportsByProduct from "./economy/trade/charts/ExportsByProduct";
 import ExportsByDestination from "./economy/trade/charts/ExportsByDestination";
 import ImportsByOrigin from "./economy/trade/charts/ImportsByOrigin";
 import TradeBalance from "./economy/trade/charts/TradeBalance";
+
+import IndustrySlide from "./economy/industry/IndustrySlide";
+import IndustryBySector from "./economy/industry/charts/IndustryBySector";
+import IndustryByOccupation from "./economy/industry/charts/IndustryByOccupation";
+
+import OpportunitySlide from "./economy/opportunity/OpportunitySlide";
+import ProductSpace from "./economy/opportunity/charts/ProductSpace";
+import IndustrySpace from "./economy/opportunity/charts/IndustrySpace";
+
+import EmploymentSlide from "./economy/employment/EmploymentSlide";
+import EmploymentByGenre from "./economy/employment/charts/EmploymentByGenre";
+import EmploymentByLevel from "./economy/employment/charts/EmploymentByLevel";
+
+import IncomeSexAgeSlide from "./economy/income/IncomeSexAgeSlide";
+import IncomeByAge from "./economy/income/charts/IncomeByAge";
+import IncomeBySex from "./economy/income/charts/IncomeBySex";
+
+import IncomeOccupationSlide from "./economy/income/IncomeOccupationSlide";
+import SalariesByOccupation from "./economy/income/charts/SalariesByOccupation";
+import SalariesByCategory from "./economy/income/charts/SalariesByCategory";
+
+import IDSpendingIndustrySlide from "./economy/innovation/IDSpendingIndustrySlide";
+import SpendingBySector from "./economy/innovation/charts/SpendingBySector";
+import SpendingByIndustry from "./economy/innovation/charts/SpendingByIndustry";
+
+import IDSpendingCategorySlide from "./economy/innovation/IDSpendingCategorySlide";
+
+import IDStaffSlide from "./economy/innovation/IDStaffSlide";
+
+import CompanyInnovationSlide from "./economy/innovation/CompanyInnovationSlide";
+
+import InnovationCompanySlide from "./economy/innovation/InnovationCompanySlide";
 /*end Economy*/
 
 /*Education*/
@@ -40,7 +69,6 @@ import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollme
 
 import PerformanceSlide from "./education/performance/PerformanceSlide";
 import PerformanceByType from "./education/performance/charts/PerformanceByType";
-
 /*end Education*/
 
 import "./intro.css";
@@ -223,17 +251,47 @@ class GeoProfile extends Component {
         promise: prm
       };
     },
+    AuthoritiesBlock,
 
     Economy,
 
     IndustrySlide,
-    OutputByIndustry,
+    IndustryBySector,
+    IndustryByOccupation,
 
     TradeSlide,
     ExportsByProduct,
     ExportsByDestination,
     ImportsByOrigin,
     TradeBalance,
+
+    OpportunitySlide,
+    ProductSpace,
+    IndustrySpace,
+
+    EmploymentSlide,
+    EmploymentByLevel,
+    EmploymentByGenre,
+
+    IncomeSexAgeSlide,
+    IncomeByAge,
+    IncomeBySex,
+
+    IncomeOccupationSlide,
+    SalariesByCategory,
+    SalariesByOccupation,
+
+    IDSpendingCategorySlide,
+    SpendingByIndustry,
+    SpendingBySector,
+
+    IDSpendingIndustrySlide,
+
+    IDStaffSlide,
+
+    InnovationCompanySlide,
+
+    CompanyInnovationSlide,
 
     Education,
 
@@ -513,9 +571,79 @@ class GeoProfile extends Component {
               <div>
                 <IndustrySlide>
                   <SectionColumns>
-                    <OutputByIndustry className="lost-1-2" />
+                    <IndustryBySector className="lost-1-2" />
+                    <IndustryByOccupation className="lost-1-2" />
                   </SectionColumns>
                 </IndustrySlide>
+              </div>
+
+              <div>
+                <OpportunitySlide>
+                  <SectionColumns>
+                    <IndustrySpace className="lost-1-2" />
+                    <ProductSpace className="lost-1-2" />
+                  </SectionColumns>
+                </OpportunitySlide>
+              </div>
+
+              <div>
+                <EmploymentSlide>
+                  <SectionColumns>
+                    <EmploymentByGenre className="lost-2-3" />
+                    <EmploymentByLevel className="lost-1-3" />
+                  </SectionColumns>
+                </EmploymentSlide>
+              </div>
+
+              <div>
+                <IncomeSexAgeSlide>
+                  <SectionColumns>
+                    <IncomeBySex className="lost-2-3" />
+                    <IncomeByAge className="lost-1-3" />
+                  </SectionColumns>
+                </IncomeSexAgeSlide>
+              </div>
+
+              <div>
+                <IncomeOccupationSlide>
+                  <SectionColumns>
+                    <SalariesByOccupation className="lost-2-3" />
+                    <SalariesByCategory className="lost-1-3" />
+                  </SectionColumns>
+                </IncomeOccupationSlide>
+              </div>
+
+              <div>
+                <IDSpendingIndustrySlide>
+                  <SectionColumns>
+                    <SpendingBySector className="lost-1-3" />
+                    <SpendingByIndustry className="lost-2-3" />
+                  </SectionColumns>
+                </IDSpendingIndustrySlide>
+              </div>
+
+              <div>
+                <IDSpendingCategorySlide>
+                  <SectionColumns />
+                </IDSpendingCategorySlide>
+              </div>
+
+              <div>
+                <IDStaffSlide>
+                  <SectionColumns />
+                </IDStaffSlide>
+              </div>
+
+              <div>
+                <InnovationCompanySlide>
+                  <SectionColumns />
+                </InnovationCompanySlide>
+              </div>
+
+              <div>
+                <CompanyInnovationSlide>
+                  <SectionColumns />
+                </CompanyInnovationSlide>
               </div>
             </Economy>
 

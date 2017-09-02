@@ -14,5 +14,8 @@ export default {
 	population_year: (state = {}) => state,
 	income_year: (state = {}) => state,
 	psu_year: (state = {}) => state,
+	presidential_election_year: (state = {}) => state,
+	senators_election_year: (state = {}) => state,
+	mayor_election_year: (state = {}) => state,
 	search: combineReducers({ searchActive })
 };

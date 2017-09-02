@@ -28,7 +28,11 @@ class Economy extends Component {
 
     const sections = [
       { name: t("Trade"), slides: [0] },
-      { name: t("Industry"), slides: [1] }
+      { name: t("Industry"), slides: [1] },
+      { name: t("Opportunity"), slides: [2] },
+      { name: t("Employment"), slides: [3] },
+      { name: t("Income"), slides: [4, 5] },
+      { name: t("Innovation"), slides: [6, 7, 8, 9, 10] }
     ];
 
     const selectedSection = _.find(sections, function(s) {

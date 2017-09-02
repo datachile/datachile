@@ -32,15 +32,25 @@ export function getGeoObject(params) {
         }
         case 'region':{
             const parts = params.region.split('-');
-            geo.key = parseInt(parts[parts.length-1])
-            geo.image = geo.type+'-'+geo.key+'.jpg'
+            geo.key = parseInt(parts[parts.length-1]);
+            geo.image = geo.type+'-'+geo.key+'.jpg';
+            geo.ancestor = {
+              key:'chile',
+              image:'chile.jpg',
+              type:'country'
+            }
             break;
         }
         case 'comuna':{
             const partsR = params.region.split('-');
             const partsC = params.comuna.split('-');
             geo.key = parseInt(partsC[partsC.length-1]);
-            geo.image = 'region-'+partsR[partsR.length-1]+'.jpg'
+            geo.image = 'region-'+partsR[partsR.length-1]+'.jpg';
+            geo.ancestor = {
+              key:partsR[partsR.length-1],
+              image:'region-'+partsR[partsR.length-1]+'.jpg',
+              type:'region'
+            }
             break;
         }
     }

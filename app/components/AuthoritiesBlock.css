@@ -8,4 +8,8 @@
     lost-flex-container: row;
     justify-content: center;
   }
+  & .splash-authorities-mayor {
+    lost-flex-container: row;
+    justify-content: center;
+  }
 }

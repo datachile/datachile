@@ -7,7 +7,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-class OutputByIndustry extends Section {
+class IndustryByOccupation extends Section {
   static need = [
     (params, store) => {
       console.log("PARAMS CHART", params);
@@ -43,7 +43,7 @@ class OutputByIndustry extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Output By Industry")}
+          {t("Industry By Occupation")}
         </h3>
         <Treemap
           config={{
@@ -65,4 +65,4 @@ class OutputByIndustry extends Section {
   }
 }
 
-export default translate()(OutputByIndustry);
+export default translate()(IndustryByOccupation);

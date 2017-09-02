@@ -60,7 +60,9 @@ class TradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">Trade</div>
+          <div className="topic-slide-title">
+            {t("Trade")}
+          </div>
           <div className="topic-slide-text">
             <p>
               <span
