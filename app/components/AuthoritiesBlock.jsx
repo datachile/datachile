@@ -72,19 +72,19 @@ class AuthoritiesBlock extends Component {
                }   
 
               q.cut(`[GeographyR].[Geography].[Region].&[${id}]`);
-              console.warn(geo.type,id);
+
 
               return mondrianClient.query(q, "jsonrecords");
             })
             .then(res => {
-              console.warn('res',res);
+
               return {
                 key: "election_senators",
                 data: res.data.data.filter(function(r){return (r['Votes']!=null)})
               };
             },
             error => {
-              console.warn('error',error);
+              console.error('error',error);
               return {
                 key: "election_senators",
                 data: []
@@ -156,8 +156,6 @@ class AuthoritiesBlock extends Component {
       name: this.props.data.election_mayor['Candidate'],
       party: this.props.data.election_mayor['Party']
     }:false;
-
-    console.warn('mayor!',this.props.data.election_mayor);
 
     const senators = _.map(this.props.data.election_senators,(d) => {
       return {

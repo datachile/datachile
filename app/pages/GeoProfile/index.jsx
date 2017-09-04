@@ -81,6 +81,22 @@ import PerformanceSlide from "./education/performance/PerformanceSlide";
 import PerformanceByType from "./education/performance/charts/PerformanceByType";
 /*end Education*/
 
+/*Demography*/
+import Demography from "./demography/Demography";
+
+import MigrationSlide from "./demography/origins/MigrationSlide";
+import MigrationByOrigin from "./demography/origins/charts/MigrationByOrigin";
+
+import MigrationDetailsSlide from "./demography/origins/MigrationDetailsSlide";
+import MigrationBySex from "./demography/origins/charts/MigrationBySex";
+import MigrationByAge from "./demography/origins/charts/MigrationByAge";
+
+import MigrationActivitySlide from "./demography/origins/MigrationActivitySlide";
+import MigrationByActivity from "./demography/origins/charts/MigrationByActivity";
+import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
+
+/*end Demography*/
+
 import "./intro.css";
 import "./topics.css";
 
@@ -317,7 +333,20 @@ class GeoProfile extends Component {
     PerformanceByType,
 
     EnrollmentSlide,
-    CollegeByEnrollment
+    CollegeByEnrollment,
+
+    Demography,
+
+    MigrationSlide,
+    MigrationByOrigin,
+
+    MigrationDetailsSlide,
+    MigrationBySex,
+    MigrationByAge,
+
+    MigrationActivitySlide,
+    MigrationByActivity,
+    MigrationByVisa
   ];
 
   componentDidMount() {
@@ -370,8 +399,8 @@ class GeoProfile extends Component {
         title: t("Environment")
       },
       {
-        slug: "demographics",
-        title: t("Demographics")
+        slug: "demography",
+        title: t("Demography")
       },
       {
         slug: "health",
@@ -693,6 +722,33 @@ class GeoProfile extends Component {
                 </PerformanceSlide>
               </div>
             </Education>
+
+            <Demography>
+              <div>
+                <MigrationSlide>
+                  <SectionColumns>
+                    <MigrationByOrigin className="lost-1" />
+                  </SectionColumns>
+                </MigrationSlide>
+              </div>
+              <div>
+                <MigrationDetailsSlide>
+                  <SectionColumns>
+                    <MigrationBySex className="lost-1-2" />
+                    <MigrationByAge className="lost-1-2" />
+                  </SectionColumns>
+                </MigrationDetailsSlide>
+              </div>
+              <div>
+                <MigrationActivitySlide>
+                  <SectionColumns>
+                    <MigrationByActivity className="lost-2-3" />
+                    <MigrationByVisa className="lost-1-3" />
+                  </SectionColumns>
+                </MigrationActivitySlide>
+              </div>
+            </Demography>
+
           </div>
         </div>
       </CanonComponent>

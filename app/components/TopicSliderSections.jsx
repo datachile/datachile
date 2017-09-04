@@ -20,7 +20,10 @@ class TopicSliderSections extends Component {
                     (_.indexOf(s.slides, selected) > -1 ? "selected" : "")
                   }>
                   <a onClick={() => goTo(s.slides[0])}>
-                    {s.name}
+                    {s.name} 
+                    {s && s.slides && s.slides.length>1 && 
+                      <span> ({s.slides.length})</span>
+                    }
                   </a>
                 </li>
                 <span className="pipe">|</span>

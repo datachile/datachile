@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { text as loadSvgAsString } from "d3-request";
+import { request as d3Request } from "d3-request";
 import { select, selectAll, event } from "d3-selection";
 import { translate } from "react-i18next";
 import SVGCache from "helpers/svg";
@@ -15,15 +15,23 @@ class SvgImage extends Component {
     this.callbackSvg = this.callbackSvg.bind(this);
   }
 
-  callbackSvg(error, xml) {
-    if (error) throw error;
-    this.cache.setSvg(this.props.src, xml);
-    this.setState(
-      {
-        svgFile: xml
-      },
-      function() {}
-    );
+  callbackSvg(error, response) {
+    var xml = (response.responseText)?response.responseText:response;
+    if (!xml.startsWith("<?xml")){
+      this.setState(
+        {
+          svgFile: "Error loading SVG"
+        }
+      );
+      console.error('Error loading '+this.props.src);
+    } else {
+      this.cache.setSvg(this.props.src, xml);
+      this.setState(
+        {
+          svgFile: xml
+        }
+      );
+    }
   }
 
   componentDidMount() {
@@ -31,7 +39,7 @@ class SvgImage extends Component {
     if (cached) {
       this.callbackSvg(false, cached);
     } else {
-      loadSvgAsString(this.props.src).get(this.callbackSvg);
+      d3Request(this.props.src).on("error", function(error) { console.error(error); }).get(this.props.src,this.callbackSvg);
     }
   }
 
