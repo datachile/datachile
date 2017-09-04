@@ -10,7 +10,7 @@ import { Section } from "datawheel-canon";
 class IndustrySpace extends Section {
   static need = [
     (params, store) => {
-      console.log("PARAMS CHART", params);
+      
       const geo = getGeoObject(params);
       const prm = mondrianClient.cube("tax_data").then(cube => {
         var q = geoCut(

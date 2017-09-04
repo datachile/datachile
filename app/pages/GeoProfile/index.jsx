@@ -53,12 +53,22 @@ import SpendingBySector from "./economy/innovation/charts/SpendingBySector";
 import SpendingByIndustry from "./economy/innovation/charts/SpendingByIndustry";
 
 import IDSpendingCategorySlide from "./economy/innovation/IDSpendingCategorySlide";
+import SpendingByArea from "./economy/innovation/charts/SpendingByArea";
+import SpendingByFundingSource from "./economy/innovation/charts/SpendingByFundingSource";
 
 import IDStaffSlide from "./economy/innovation/IDStaffSlide";
+import StaffByOccupation from "./economy/innovation/charts/StaffByOccupation";
+import StaffBySex from "./economy/innovation/charts/StaffBySex";
 
 import CompanyInnovationSlide from "./economy/innovation/CompanyInnovationSlide";
+import InnovationRate from "./economy/innovation/charts/InnovationRate";
+import InnovationByType from "./economy/innovation/charts/InnovationByType";
+
 
 import InnovationCompanySlide from "./economy/innovation/InnovationCompanySlide";
+import InnovationBySize from "./economy/innovation/charts/InnovationBySize";
+import InnovationByActivity from "./economy/innovation/charts/InnovationByActivity";
+
 /*end Economy*/
 
 /*Education*/
@@ -286,12 +296,20 @@ class GeoProfile extends Component {
     SpendingBySector,
 
     IDSpendingIndustrySlide,
+    SpendingByArea,
+    SpendingByFundingSource,
 
     IDStaffSlide,
+    StaffByOccupation,
+    StaffBySex,
 
     InnovationCompanySlide,
+    InnovationRate,
+    InnovationByType,
 
     CompanyInnovationSlide,
+    InnovationBySize,
+    InnovationByActivity,
 
     Education,
 
@@ -624,25 +642,37 @@ class GeoProfile extends Component {
 
               <div>
                 <IDSpendingCategorySlide>
-                  <SectionColumns />
+                  <SectionColumns>
+                    <SpendingByFundingSource className="lost-1-2" />
+                    <SpendingByArea className="lost-1-2" />
+                  </SectionColumns>
                 </IDSpendingCategorySlide>
               </div>
 
               <div>
                 <IDStaffSlide>
-                  <SectionColumns />
+                  <SectionColumns>
+                    <StaffByOccupation className="lost-1-2" />
+                    <StaffBySex className="lost-1-2" />
+                  </SectionColumns>
                 </IDStaffSlide>
               </div>
 
               <div>
                 <InnovationCompanySlide>
-                  <SectionColumns />
+                  <SectionColumns>
+                    <InnovationRate className="lost-2-3" />
+                    <InnovationByType className="lost-1-3" />
+                  </SectionColumns>
                 </InnovationCompanySlide>
               </div>
 
               <div>
                 <CompanyInnovationSlide>
-                  <SectionColumns />
+                  <SectionColumns>
+                    <InnovationBySize className="lost-2-3" />
+                    <InnovationByActivity className="lost-1-3" />
+                  </SectionColumns>
                 </CompanyInnovationSlide>
               </div>
             </Economy>
