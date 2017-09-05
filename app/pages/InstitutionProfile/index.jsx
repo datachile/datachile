@@ -36,8 +36,8 @@ class InstitutionProfile extends Component {
       var prms = [
         getMemberQuery(
           "education_employability",
-          "Institution",
-          "Institution Type",
+          "Higher Institution",
+          "Higher Institution Subgroup",
           ids.level1,
           store.i18n.locale
         )
@@ -47,8 +47,8 @@ class InstitutionProfile extends Component {
         prms.push(
           getMemberQuery(
             "education_employability",
-            "Institution",
-            "Institution",
+            "Higher Institution",
+            "Higher Institution",
             ids.level2,
             store.i18n.locale
           )
