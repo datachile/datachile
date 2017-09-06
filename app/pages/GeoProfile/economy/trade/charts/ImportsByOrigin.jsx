@@ -1,6 +1,7 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 
+import { ordinalColorScale } from "helpers/colors";
 import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
@@ -49,11 +50,14 @@ export default translate()(
             config={{
               height: 500,
               data: path,
-              groupBy: ["ID Region", "ID Country"],
+              groupBy: ["ID Continent", "ID Country"],
               label: d =>
-                d["Country"] instanceof Array ? d["Region"] : d["Country"],
+                d["Country"] instanceof Array ? d["Continent"] : d["Country"],
               sum: d => d["CIF US"],
-              time: "ID Year"
+              time: "ID Year",
+              shapeConfig: {
+                  fill: d => ordinalColorScale(d["ID Continent"])
+              }
             }}
             dataFormat={data => data.data}
           />

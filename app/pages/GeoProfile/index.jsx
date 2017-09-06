@@ -376,6 +376,8 @@ class GeoProfile extends Component {
 
     const geoObj = getGeoObject(this.props.routeParams);
 
+    this.props.data.geo.type = geoObj.type;
+    
     const geo = this.props.data.geo;
 
     const locale = i18n.language.split("-")[0];

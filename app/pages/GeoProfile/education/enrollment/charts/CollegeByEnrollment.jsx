@@ -11,15 +11,22 @@ class CollegeByEnrollment extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("tax_data").then(cube => {
+      const prm = mondrianClient.cube("education_enrollment").then(cube => {
+        
+        var query = cube.query
+            .option("parents", true)
+            .drilldown("Date", "Date", "Year")
+            .drilldown("Administration", "Administration", "Administration")
+            .measure("Number of records")
+
+        if(geo.type=='comuna'){
+          query.drilldown("Institutions", "Institution", "Institution")
+        }
         var q = geoCut(
           geo,
-          "Tax Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("ISICrev4", "Level 2")
-            .drilldown("Date", "Year")
-            .measure("Output"),
+          "Geography",
+          query
+          ,
           store.i18n.locale
         );
 
@@ -39,6 +46,8 @@ class CollegeByEnrollment extends Section {
   render() {
     const path = this.context.data.path_college_by_enrollment;
     const { t, className } = this.props;
+    const geo = this.context.data.geo;
+
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -48,13 +57,13 @@ class CollegeByEnrollment extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: ["ID Level 1", "ID Level 2"],
+            groupBy: (geo.type!='comuna')?["ID Administration"]:["ID Administration", "ID Institution"],
             label: d =>
-              d["Level 2"] instanceof Array ? d["Level 1"] : d["Level 2"],
-            sum: d => d["Output"],
+              d["Institution"] instanceof Array || geo.type!='comuna' ? d["Administration"] : d["Institution"],
+            sum: d => d["Number of records"],
             time: "ID Year",
             shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Level 1"])
+              fill: d => ordinalColorScale(d["ID Administration"])
             }
           }}
           dataFormat={data => data.data}

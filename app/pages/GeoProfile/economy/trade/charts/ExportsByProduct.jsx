@@ -61,7 +61,13 @@ export default translate()(
                             sum: d => d["FOB US"],
                             time: "ID Year",
                             legendConfig: {
-                                label: false
+                                label: false,
+                                shapeConfig:{
+                                    width:25,
+                                    height:25,
+                                    fill: d => ordinalColorScale(d["ID HS0"]),
+                                    backgroundImage: d => "https://datausa.io/static/img/attrs/thing_apple.png",
+                                }
                             },
                             shapeConfig: {
                                 fill: d => ordinalColorScale(d["ID HS0"])
