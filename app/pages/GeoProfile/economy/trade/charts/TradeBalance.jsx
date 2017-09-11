@@ -54,7 +54,20 @@ export default translate()(
               data: path,
               groupBy: "variable",
               x: "ID Year",
-              y: "value"
+              y: "value",
+              xConfig:{
+                tickSize:0,
+                title:false
+              },
+              yConfig:{
+                title:t("")
+              },
+              shapeConfig: {
+                Line:{
+                  stroke: d => ordinalColorScale(d["variable"]),
+                  "strokeWidth": 3
+                }
+              }
             }}
             dataFormat={data =>
               melt(data.data, ["ID Year"], ["FOB", "CIF", "Trade Balance"])}

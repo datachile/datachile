@@ -66,11 +66,12 @@
         font-weight: 300;
         padding: 0 15px;
       }
-      & .d3plus-Rect-text,
+      & .ticks .d3plus-Rect-text,
+      & .d3plus-Legend .d3plus-textBox text,
       & .d3plus-Line-text,
       & .d3plus-Axis-title {
         & text {
-          fill: var(--snow);
+          fill: var(--snow) !important;
         }
       }
       & .d3plus-viz-timeline {

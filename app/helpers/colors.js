@@ -12,21 +12,11 @@ export const COLORS_CROP = {
   "Vegetables": "#809FC2"
 };
 
-export const COLORS_GENDER = {
-  female: "#A599D0",
-  male: "#C9DB78"
-};
-
-export const COLORS_RESIDENCE = {
-  rural: "#AED7A1",
-  urban: "#809FC2"
-};
-
-export const COLORS_CONDITION = {
-  wasted: "#C993A8",
-  stunted: "#D69F7A",
-  underweight: "#DB968E"
-};
+export const COLORS_GENDER = [
+  "#ccc",
+  "#8E2D66",
+  "#454C70"
+];
 
 export const ORDINAL_COLORS = ['#79C3F4','#245955','#22A29C','#70BFB8',
                                '#B2DAAF','#9FC57E','#F2EF94','#E1CF28',

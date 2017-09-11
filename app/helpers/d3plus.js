@@ -1,23 +1,23 @@
 const axisConfig = {
   barConfig: {
-    "stroke": "#979797",
+    "stroke": "#fff",
     "stroke-width": 1
   },
   gridConfig: {
-    "stroke": "#979797",
-    "stroke-width": 1
+    "stroke": "#fff",
+    "stroke-width": 0
   },
   shapeConfig: {
-    fill: "#979797",
-    fontColor: "rgba(0, 0, 0, 0.8)",
-    fontFamily: () => "Chivo",
-    fontSize: () => 12,
-    stroke: "#979797"
+    fill: "#fff",
+    fontColor: "rgba(0, 0, 0, 1)",
+    fontFamily: () => "'Yantramanav', sans-serif",
+    /*fontSize: () => 12,*/
+    stroke: "#fff"
   },
-  tickSize: 0,
+  tickSize: 4,
   titleConfig: {
-    fontFamily: "Chivo",
-    fontSize: "14px",
+    fontFamily: () => "'Yantramanav', sans-serif",
+    /*fontSize: () => 12,*/
     fontWeight: 600,
     textTransform: "uppercase"
   }
@@ -26,19 +26,22 @@ const axisConfig = {
 export default {
   legendConfig: {
     shapeConfig: {
-      fontColor: "rgba(0, 0, 0, 0.8)",
-      fontFamily: "Chivo",
+      fontColor: "white",
+      fontFamily: "'Yantramanav', sans-serif",
       fontResize: false,
       fontSize: 12,
       fontWeight: 400,
       height: () => 20,
       textTransform: "uppercase",
-      width: () => 20
-    }
+      width: () => 20,
+      labelConfig:{
+        fontColor: "white"
+      }
+    },
   },
   shapeConfig: {
     fontColor: "rgba(0, 0, 0, 0.4)",
-    fontFamily: "Chivo",
+    fontFamily: "'Yantramanav', sans-serif",
     fontWeight: 600
   },
   xConfig: axisConfig,

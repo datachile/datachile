@@ -5,6 +5,7 @@ import { BarChart } from "d3plus-react";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { translate } from "react-i18next";
+import { COLORS_GENDER } from "helpers/colors";
 
 export default translate()(
   class MigrationBySex extends Section {
@@ -53,8 +54,28 @@ export default translate()(
               label: d =>
                 d['Sex'],
               time: "ID Year",
-              x: "ID Sex",
-              y: "Number of visas"
+              x: false,
+              y: "Number of visas",
+              shapeConfig: {
+                  fill: d => COLORS_GENDER[d["ID Sex"]],
+              },
+              xConfig:{
+                tickSize:0,
+                title:false
+              },
+              yConfig:{
+                title:t("People")
+              },
+              barPadding: 20,
+              groupPadding: 40,
+              legendConfig: {
+                  label: false,
+                  shapeConfig:{
+                      width:30,
+                      height:30,
+                      backgroundImage: d => "/images/legend/sex/"+d["ID Sex"]+".png",
+                  }
+              }
             }}
             
             dataFormat={data => data.data}
