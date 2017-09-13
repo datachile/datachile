@@ -4,24 +4,27 @@ services:
     image: postgres:10
     volumes:
       - db-data:/var/lib/postgresql/data
+    ports:
+      - 127.0.0.1:5434:5432
   
   datachile-mondrian:
-    build:
-      context: ./dockerfiles
-      dockerfile: datachile-mondrian.dockerfile
-      args:
-        - DATACHILE_MONDRIAN_SRC=/home/hermes/datachile-mondrian/
+    image: datachile-mondrian
     environment:
       - APP_HOME=/datachile/
+      - MONDRIAN_REST_CONF=/datachile-mondrian.yaml
     depends_on:
       - db
     links:
       - db
+    volumes:
+      - ./dockerfiles/datachile-mondrian.yaml:/datachile-mondrian.yaml
+    ports:
+      - 127.0.0.1:9393:9292
   
   datachile-canon:
     build:
-      context: ./dockerfiles
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: dockerfiles/datachile-canon.dockerfile
     environment:
       - NODE_ENV=production
       - CANON_PORT=4444
@@ -40,8 +43,8 @@ services:
   
   nginx:
     build:
-      context: ./dockerfiles
-      dockerfile: nginx.dockerfile
+      context: .
+      dockerfile: dockerfiles/nginx.dockerfile
     volumes:
       - canon:/datachile-files
   

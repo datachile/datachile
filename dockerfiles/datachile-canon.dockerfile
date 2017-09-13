@@ -4,10 +4,10 @@ ENV APP_HOME /datachile
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-COPY ../package.json $APP_HOME
+COPY package.json $APP_HOME
 RUN npm install
 
-COPY .. $APP_HOME
+COPY . $APP_HOME
 RUN npm run build
 
 EXPOSE 4444
