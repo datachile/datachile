@@ -1,0 +1,51 @@
+version: "3"
+services:
+  db:
+    image: postgres:10
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  
+  datachile-mondrian:
+    build:
+      context: ./dockerfiles
+      dockerfile: datachile-mondrian.dockerfile
+      args:
+        - DATACHILE_MONDRIAN_SRC=/home/hermes/datachile-mondrian/
+    environment:
+      - APP_HOME=/datachile/
+    depends_on:
+      - db
+    links:
+      - db
+  
+  datachile-canon:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - CANON_PORT=4444
+      - ROOT=/datachile
+      - CANON_API=http://chilecube.datawheel.us
+      - CANON_GOOGLE_ANALYTICS=UA-########-#
+      - CANON_LANGUAGES=es
+      - CANON_LANGUAGES_DEFAULT=en
+      - APP_HOME=/datachile
+    volumes:
+      - canon:/datachile
+    depends_on:
+      - datachile-mondrian
+    links:
+      - datachile-mondrian
+  
+  nginx:
+    build:
+      context: ./dockerfiles
+      dockerfile: nginx.dockerfile
+    volumes:
+      - canon:/datachile-files
+  
+volumes:
+  db-data:
+  canon:
+
