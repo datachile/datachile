@@ -57,17 +57,16 @@
         lost-flex-container: row;
       }
     }
+    & .chart-title {
+      font-family: var(--font-family-text);
+      font-size: 22px;
+      text-transform: uppercase;
+      color: var(--snow);
+      font-weight: 300;
+      padding: 0 15px;
+    }
     & .topic-slide-charts {
-      & .chart-title {
-        font-family: var(--font-family-text);
-        font-size: 22px;
-        text-transform: uppercase;
-        color: var(--snow);
-        font-weight: 300;
-        padding: 0 15px;
-      }
       & .ticks .d3plus-Rect-text,
-      & .d3plus-Legend .d3plus-textBox text,
       & .d3plus-Line-text,
       & .d3plus-Axis-title {
         & text {

@@ -64,7 +64,14 @@ class CollegeByEnrollment extends Section {
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Administration"])
-            }
+            },
+            legendConfig: {
+                  shapeConfig:{
+                      width:40,
+                      height:40,
+                      backgroundImage: d => "/images/legend/college/administration.png",
+                  }
+              }
           }}
           dataFormat={data => data.data}
         />
