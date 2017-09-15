@@ -133,7 +133,7 @@ class IndustryByOccupation extends Section {
           },
           {
               id: 2,
-              title: t('More Specialized occupations'),
+              title: t('Most Specialized occupations'),
               path: this.context.data.path_industry_occupation_specialized,
               groupBy: ["ID ISCO","ID ISCED"],
               label: d => d["ISCED"],
@@ -161,7 +161,7 @@ class IndustryByOccupation extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <Select id='myDropdown' 
+          <Select id='variations' 
               options={this.state.chartVariations} 
               value={this.state.selectedOption}
               labelField='title'

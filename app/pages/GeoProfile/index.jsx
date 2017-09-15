@@ -38,7 +38,7 @@ import ProductSpace from "./economy/opportunity/charts/ProductSpace";
 import IndustrySpace from "./economy/opportunity/charts/IndustrySpace";
 
 import EmploymentSlide from "./economy/employment/EmploymentSlide";
-import EmploymentByGenre from "./economy/employment/charts/EmploymentByGenre";
+import EmploymentBySex from "./economy/employment/charts/EmploymentBySex";
 import EmploymentByLevel from "./economy/employment/charts/EmploymentByLevel";
 
 import IncomeSexAgeSlide from "./economy/income/IncomeSexAgeSlide";
@@ -299,7 +299,7 @@ class GeoProfile extends Component {
 
     EmploymentSlide,
     EmploymentByLevel,
-    EmploymentByGenre,
+    EmploymentBySex,
 
     IncomeSexAgeSlide,
     IncomeByAge,
@@ -642,7 +642,7 @@ class GeoProfile extends Component {
               <div>
                 <EmploymentSlide>
                   <SectionColumns>
-                    <EmploymentByGenre className="lost-2-3" />
+                    <EmploymentBySex className="lost-2-3" />
                     <EmploymentByLevel className="lost-1-3" />
                   </SectionColumns>
                 </EmploymentSlide>
