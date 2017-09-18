@@ -132,7 +132,8 @@ class EmploymentBySex extends Section {
                   a['value'] = f['Expansion factor'];
                   melted.push(a);
                 });
-                return melted.sort(function(a,b){return (a['Month']>b['Month'])?1:-1;});
+                melted = melted.sort(function(a,b){return (a['Month']>b['Month'])?1:-1;});
+                return melted;
               }
             }
           />
