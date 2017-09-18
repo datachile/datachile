@@ -11,8 +11,12 @@ class EmploymentByLevel extends Section {
   static need = [
     (params, store) => {
       
-      const geo = getGeoObject(params);
+      var geo = getGeoObject(params);
       const prm = mondrianClient.cube("nene").then(cube => {
+        //force to region query on comuna profile
+        if(geo.type=='comuna'){
+          geo = geo.ancestor;
+        }
         var q = geoCut(
           geo,
           "Geography",
@@ -44,7 +48,7 @@ class EmploymentByLevel extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Employment By Level")}
+          {t("Regional Employment By Level")}
         </h3>
         <BarChart
             config={{
