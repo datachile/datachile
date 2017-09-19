@@ -58,6 +58,7 @@ class SalariesByOccupation extends Section {
               y: "Median Income",
               shapeConfig: {
                   fill: d => COLORS_GENDER[d["ID Sex"]],
+                  label: d => ''
               },
               xConfig:{
                 tickSize:0,

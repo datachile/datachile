@@ -56,7 +56,7 @@ class SalariesByCategory extends Section {
               x: "Median Income",
               y: "ICSE",
               shapeConfig: {
-                  fill: d => ordinalColorScale(d["ID ICSE"]),
+                  fill: d => ordinalColorScale(d["ID ICSE"])
               },
               discrete:"y",
               xConfig:{ 
@@ -64,11 +64,13 @@ class SalariesByCategory extends Section {
                 title:t("Median Income")
               },
               yConfig:{
+                barConfig: {"stroke-width": 0},
                 tickSize:0,
-                title:false
+                ticks:[],
+                title:t("Occupational Category")
               },
               barPadding: 0,
-              groupPadding: 10,
+              groupPadding: 5,
               legendConfig: {
                   label: false,
                   shapeConfig:{
