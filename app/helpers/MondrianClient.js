@@ -7,8 +7,8 @@ import { Client as MondrianClient } from "mondrian-rest-client";
     ? process.env.CANON_API
     : "http://chilecube.datawheel.us/"
 );*/
-//const client = new MondrianClient("http://localhost:9292/");
-const client = new MondrianClient("http://chilecube.datawheel.us/");
+const client = new MondrianClient("http://localhost:9292/");
+//const client = new MondrianClient("http://chilecube.datawheel.us/");
 
 /**
  * Returns the provided query with the appropiate cut
@@ -19,16 +19,7 @@ const client = new MondrianClient("http://chilecube.datawheel.us/");
  */
 function geoCut(geo, dimensionName, query, lang = "en") {
   //if(lang!=CANON_LANGUAGE_DEFAULT){
-  if (lang.substring(0, 2) == "es") {
-    const drilldowns = query.getDrilldowns();
-
-    drilldowns.forEach(level => {
-      const es = level.annotations["es_caption"];
-      if (es) {
-        query.caption(level.hierarchy.dimension.name, level.name, es);
-      }
-    });
-  }
+  query = setLangCaptions(query,lang);
 
   if (geo.type === "country") {
     return query; // no region provided, don't cut
@@ -43,12 +34,30 @@ function geoCut(geo, dimensionName, query, lang = "en") {
   }
 }
 
+function setLangCaptions (query,lang){
+  if (lang.substring(0, 2) == "es") {
+    const drilldowns = query.getDrilldowns();
+
+    drilldowns.forEach(level => {
+      const es = level.annotations["es_caption"];
+      if (es) {
+        query.caption(level.hierarchy.dimension.name, level.name, es);
+      }
+    });
+  }
+  return query;
+}
+
 function getLocaleCaption(level, locale = "en") {
   const caption = level.annotations[locale.substring(0, 2) + "_caption"];
   if (caption) {
     return caption;
   }
   return null;
+}
+
+function getMeasureByGeo(type,countryM,regionM,comunaM) {
+  return (type=='country')?countryM:(type=='region')?regionM:comunaM;
 }
 
 function getMembersQuery(
@@ -81,5 +90,5 @@ function getMemberQuery(cube, dimension, level, key, locale = "en") {
     });
 }
 
-export { geoCut, getLocaleCaption, getMembersQuery, getMemberQuery };
+export { geoCut, getLocaleCaption, getMembersQuery, getMemberQuery, setLangCaptions, getMeasureByGeo };
 export default client;
