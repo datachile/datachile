@@ -9,15 +9,18 @@ const axisConfig = {
   },
   shapeConfig: {
     fill: "#fff",
-    fontColor: "rgba(0, 0, 0, 1)",
-    fontFamily: () => "'Yantramanav', sans-serif",
-    /*fontSize: () => 12,*/
+    labelConfig:{
+      fontColor: "#fff",
+      fontFamily: () => "'Yantramanav', sans-serif",
+      fontSize: () => 12
+    },
     stroke: "#fff"
   },
   tickSize: 4,
   titleConfig: {
     fontFamily: () => "'Yantramanav', sans-serif",
-    /*fontSize: () => 12,*/
+    fontColor: "#fff",
+    fontSize: 12,
     fontWeight: 600,
     textTransform: "uppercase"
   }

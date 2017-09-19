@@ -49,7 +49,7 @@ class TradeSlide extends Section {
   ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, t, TradeBalance } = this.props;
 
     const text_data = this.context.data.text_data_exports_by_product;
     if (text_data) {
@@ -90,20 +90,8 @@ class TradeSlide extends Section {
               title={t("Trade volume")}
               subtitle={text_data.first_year + " - " + text_data.last_year}
             />
-            <FeaturedDatum
-              className="lost-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="lost-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
+            <TradeBalance className="lost-2-3"/>
+            
           </div>
         </div>
         <div className="topic-slide-charts">

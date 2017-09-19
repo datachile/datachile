@@ -18,8 +18,6 @@ class Nav extends Component {
       ancestorLink
     } = this.props;
 
-    console.log(ancestor);
-
     const currentLang = i18n.language.split("-")[0];
     const otherLang = currentLang === "es" ? "en" : "es";
 

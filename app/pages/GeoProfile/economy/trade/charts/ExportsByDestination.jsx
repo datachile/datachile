@@ -39,7 +39,6 @@ export default translate()(
     render() {
       const { t, className } = this.props;
       const path = this.context.data.path_exports_by_destination;
-      console.log('path',path);
       return (
         <div className={className}>
           <h3 className="chart-title">
@@ -56,6 +55,13 @@ export default translate()(
               time: "ID Year",
               shapeConfig: {
                   fill: d => ordinalColorScale(d["ID Continent"])
+              },
+              legendConfig: {
+                  shapeConfig:{
+                      width:40,
+                      height:40,
+                      backgroundImage: d => "/images/legend/continent/"+d["ID Continent"]+".png",
+                  }
               }
             }}
             dataFormat={data => data.data}

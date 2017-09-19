@@ -26,6 +26,7 @@ import TradeSlide from "./economy/trade/TradeSlide";
 import ExportsByProduct from "./economy/trade/charts/ExportsByProduct";
 import ExportsByDestination from "./economy/trade/charts/ExportsByDestination";
 import ImportsByOrigin from "./economy/trade/charts/ImportsByOrigin";
+import ImportsByProduct from "./economy/trade/charts/ImportsByProduct";
 import TradeBalance from "./economy/trade/charts/TradeBalance";
 
 import IndustrySlide from "./economy/industry/IndustrySlide";
@@ -37,7 +38,7 @@ import ProductSpace from "./economy/opportunity/charts/ProductSpace";
 import IndustrySpace from "./economy/opportunity/charts/IndustrySpace";
 
 import EmploymentSlide from "./economy/employment/EmploymentSlide";
-import EmploymentByGenre from "./economy/employment/charts/EmploymentByGenre";
+import EmploymentBySex from "./economy/employment/charts/EmploymentBySex";
 import EmploymentByLevel from "./economy/employment/charts/EmploymentByLevel";
 
 import IncomeSexAgeSlide from "./economy/income/IncomeSexAgeSlide";
@@ -289,6 +290,7 @@ class GeoProfile extends Component {
     ExportsByProduct,
     ExportsByDestination,
     ImportsByOrigin,
+    ImportsByProduct,
     TradeBalance,
 
     OpportunitySlide,
@@ -297,7 +299,7 @@ class GeoProfile extends Component {
 
     EmploymentSlide,
     EmploymentByLevel,
-    EmploymentByGenre,
+    EmploymentBySex,
 
     IncomeSexAgeSlide,
     IncomeByAge,
@@ -376,9 +378,11 @@ class GeoProfile extends Component {
 
     const geoObj = getGeoObject(this.props.routeParams);
 
-    this.props.data.geo.type = geoObj.type;
     
     const geo = this.props.data.geo;
+    if(geo){
+      this.props.data.geo.type = geoObj.type;
+    }
 
     const locale = i18n.language.split("-")[0];
 
@@ -586,7 +590,7 @@ class GeoProfile extends Component {
                       width: 200,
                       zoom: false
                     }}
-                  />
+                  ></Geomap>
                 </div>
               </div>
             </div>
@@ -605,14 +609,14 @@ class GeoProfile extends Component {
           <div className="topics-container">
             <Economy>
               <div>
-                <TradeSlide>
+                <TradeSlide TradeBalance={TradeBalance}>
                   <SectionColumns>
-                    <ExportsByProduct className="lost-1-2" />
                     <ExportsByDestination className="lost-1-2" />
+                    <ExportsByProduct className="lost-1-2" />
                   </SectionColumns>
                   <SectionColumns>
                     <ImportsByOrigin className="lost-1-2" />
-                    <TradeBalance className="lost-1-2" />
+                    <ImportsByProduct className="lost-1-2" />
                   </SectionColumns>
                 </TradeSlide>
               </div>
@@ -638,7 +642,7 @@ class GeoProfile extends Component {
               <div>
                 <EmploymentSlide>
                   <SectionColumns>
-                    <EmploymentByGenre className="lost-2-3" />
+                    <EmploymentBySex className="lost-2-3" />
                     <EmploymentByLevel className="lost-1-3" />
                   </SectionColumns>
                 </EmploymentSlide>

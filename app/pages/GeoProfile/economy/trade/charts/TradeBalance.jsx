@@ -50,7 +50,7 @@ export default translate()(
           </h3>
           <LinePlot
             config={{
-              height: 500,
+              height: 200,
               data: path,
               groupBy: "variable",
               x: "ID Year",
@@ -60,12 +60,12 @@ export default translate()(
                 title:false
               },
               yConfig:{
-                title:t("")
+                title:t("Amount in $USD")
               },
               shapeConfig: {
                 Line:{
                   stroke: d => ordinalColorScale(d["variable"]),
-                  "strokeWidth": 3
+                  "strokeWidth": 2
                 }
               }
             }}
