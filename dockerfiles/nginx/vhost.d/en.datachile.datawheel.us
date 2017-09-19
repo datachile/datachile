@@ -10,3 +10,8 @@ location /fonts {
   alias /datachile-files/fonts;
 }
 
+location /css {
+  alias /datachile-files/css;
+}
+
+

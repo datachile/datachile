@@ -10,7 +10,7 @@ services:
     command: postgres -c config_file=/etc/postgresql.conf
 
   datachile-mondrian:
-    image: 'datachile-mondrian:0.7.1'
+    image: 'datachile-mondrian:0.7.2'
     environment:
       - APP_HOME=/datachile/
       - MONDRIAN_REST_CONF=/datachile-mondrian.yaml
@@ -34,7 +34,7 @@ services:
       - NODE_ENV=production
       - CANON_PORT=4444
       - ROOT=/datachile
-      - CANON_API=https://chilecube.datawheel.us
+      - CANON_API=https://chilecube.datawheel.us/
       - CANON_GOOGLE_ANALYTICS=UA-########-#
       - CANON_LANGUAGES=es
       - CANON_LANGUAGES_DEFAULT=en
@@ -48,6 +48,10 @@ services:
       - datachile-mondrian
     links:
       - datachile-mondrian
+    # alias the host IP to the API server
+    # because of NATing. should not be necessary in not nat'd networks
+    extra_hosts:
+      - "chilecube.datawheel.us:172.17.0.1"
 
   nginx:
     image: nginx
