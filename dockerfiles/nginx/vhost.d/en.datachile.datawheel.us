@@ -1,0 +1,12 @@
+location /images {
+  alias /datachile-files/images;
+}
+
+location /assets {
+  alias /datachile-files/assets;
+}
+
+location /fonts {
+  alias /datachile-files/fonts;
+}
+
