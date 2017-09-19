@@ -380,16 +380,19 @@ class GeoProfile extends Component {
 
     
     const geo = this.props.data.geo;
-    if(geo){
-      this.props.data.geo.type = geoObj.type;
-    }
-
-    const locale = i18n.language.split("-")[0];
-
+    
     const ancestor =
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
         : geoObj.type == "region" ? chileObj : false;
+    
+    if(geo){
+      this.props.data.geo.type = geoObj.type;
+      this.props.data.geo.ancestor = ancestor;
+    }
+
+    const locale = i18n.language.split("-")[0];
+
 
     const topics = [
       {
