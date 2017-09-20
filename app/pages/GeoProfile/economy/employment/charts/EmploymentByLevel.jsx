@@ -62,6 +62,7 @@ class EmploymentByLevel extends Section {
               y: "Expansion factor",
               shapeConfig: {
                   fill: d => ordinalColorScale(d["ID ISCED"]),
+                  label:false
               },
               xConfig:{
                 tickSize:0,
