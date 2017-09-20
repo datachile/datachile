@@ -56,6 +56,15 @@ class IndustryBySector extends Section {
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Level 1"])
+            },
+            legendConfig: {
+                label: false,
+                shapeConfig:{
+                    width:25,
+                    height:25,
+                    fill: d => ordinalColorScale(d["ID Level 1"]),
+                    backgroundImage: d => "https://datausa.io/static/img/attrs/thing_apple.png",
+                }
             }
           }}
           dataFormat={data => data.data}

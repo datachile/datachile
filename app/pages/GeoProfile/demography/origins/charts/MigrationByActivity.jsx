@@ -1,9 +1,11 @@
 import React from "react";
+import _ from "lodash";
 import { Section } from "datawheel-canon";
 
-import { Treemap } from "d3plus-react";
+import { BarChart } from "d3plus-react";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
+import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 
 export default translate()(
@@ -11,19 +13,19 @@ export default translate()(
     static need = [
       (params, store) => {
         const geo = getGeoObject(params);
-        const prm = mondrianClient.cube("exports").then(cube => {
+        const prm = mondrianClient.cube("immigration").then(cube => {
           var q = geoCut(
             geo,
             "Geography",
             cube.query
               .option("parents", true)
-              .drilldown("Destination Country", "Country")
-              .drilldown("Date", "Year")
-              .measure("FOB US"),
+              .drilldown("Date", "Date", "Year")
+              .drilldown("Activity", "Activity", "Activity")
+              .measure("Number of visas"),
             store.i18n.locale
           );
           return {
-            key: "path_peformance_by_type",
+            key: "path_migration_by_activity",
             data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
@@ -37,24 +39,48 @@ export default translate()(
 
     render() {
       const { t, className } = this.props;
-      const path = this.context.data.path_peformance_by_type;
+      const path = this.context.data.path_migration_by_activity;
 
       return (
         <div className={className}>
           <h3 className="chart-title">
             {t("Migration By Activity")}
           </h3>
-          <Treemap
+          <BarChart
             config={{
               height: 500,
               data: path,
-              groupBy: ["ID Region", "ID Country"],
+              groupBy: "ID Activity",
               label: d =>
-                d["Country"] instanceof Array ? d["Region"] : d["Country"],
-              sum: d => d["FOB US"],
-              time: "ID Year"
+                d['Activity'] + ': ' + d["Number of visas"],
+              time: "ID Year",
+              x: "Number of visas",
+              y: "Activity",
+              shapeConfig: {
+                  fill: d => ordinalColorScale(2),
+                  label: false
+              },
+              discrete:"y",
+              xConfig:{ 
+                tickSize:0,
+                title:t("Number of visas")
+              },
+              yConfig:{
+                barConfig: {"stroke-width": 0},
+                tickSize:0,
+                title:false
+              },
+              barPadding: 0,
+              groupPadding: 5,
+              legendConfig: {
+                  label: false,
+                  shapeConfig:false
+              }
             }}
-            dataFormat={data => data.data}
+            dataFormat={function(data){
+              var filtered = _.filter(data.data,(o) => o["Number of visas"] != null && o["Number of visas"] > 0);              
+              return _.orderBy(filtered,["Number of visas"],["desc"])}
+            } 
           />
         </div>
       );

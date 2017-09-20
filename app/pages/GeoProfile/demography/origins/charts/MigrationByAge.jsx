@@ -1,7 +1,8 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 
-import { Treemap } from "d3plus-react";
+import { BarChart } from "d3plus-react";
+import { ordinalColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { translate } from "react-i18next";
@@ -11,19 +12,19 @@ export default translate()(
     static need = [
       (params, store) => {
         const geo = getGeoObject(params);
-        const prm = mondrianClient.cube("exports").then(cube => {
+        const prm = mondrianClient.cube("immigration").then(cube => {
           var q = geoCut(
             geo,
             "Geography",
             cube.query
               .option("parents", true)
-              .drilldown("Destination Country", "Country")
-              .drilldown("Date", "Year")
-              .measure("FOB US"),
+              .drilldown("Date", "Date", "Year")
+              .drilldown("Calculated Age Range", "Calculated Age Range", "Age Range")
+              .measure("Number of visas"),
             store.i18n.locale
           );
           return {
-            key: "path_peformance_by_type",
+            key: "path_migration_by_age",
             data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
@@ -37,23 +38,44 @@ export default translate()(
 
     render() {
       const { t, className } = this.props;
-      const path = this.context.data.path_peformance_by_type;
+      const path = this.context.data.path_migration_by_age;
 
       return (
         <div className={className}>
           <h3 className="chart-title">
             {t("Migration By Age")}
           </h3>
-          <Treemap
+          <BarChart
             config={{
               height: 500,
               data: path,
-              groupBy: ["ID Region", "ID Country"],
+              groupBy: "ID Age Range",
               label: d =>
-                d["Country"] instanceof Array ? d["Region"] : d["Country"],
-              sum: d => d["FOB US"],
-              time: "ID Year"
+                d['Age Range'],
+              time: "ID Year",
+              x: false,
+              y: "Number of visas",
+              shapeConfig: {
+                  fill: d => ordinalColorScale(d["ID Age Range"]),
+              },
+              xConfig:{
+                tickSize:0,
+                title:false
+              },
+              yConfig:{
+                title:t("People")
+              },
+              barPadding: 20,
+              groupPadding: 40,
+              legendConfig: {
+                  label: false,
+                  shapeConfig:{
+                      width:40,
+                      height:40
+                  }
+              }
             }}
+            
             dataFormat={data => data.data}
           />
         </div>
