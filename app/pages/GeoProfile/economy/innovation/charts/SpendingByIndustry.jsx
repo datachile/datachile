@@ -13,8 +13,8 @@ class SpendingByIndustry extends Section {
       
       const geo = getGeoObject(params);
 
-      const comunaID = (typeof geo.ancestor !="undefined")?geo.ancestor.key:'';
-      const measureName = getMeasureByGeo(geo.type,'Total Spending','gasto_region_'+geo.key,'gasto_region_'+comunaID);
+      const regionID = (typeof geo.ancestor !="undefined")?geo.ancestor.key:'';
+      const measureName = getMeasureByGeo(geo.type,'Total Spending','gasto_region_'+geo.key,'gasto_region_'+regionID);
 
       const prm = mondrianClient.cube("rd_survey").then(cube => {
         var q = setLangCaptions(cube.query
@@ -43,8 +43,8 @@ class SpendingByIndustry extends Section {
     const { t, className } = this.props;
     const geo = this.context.data.geo;
 
-    const comunaID = (typeof geo.ancestor !="undefined")?geo.ancestor.key:'';
-    const measureName = getMeasureByGeo(geo.type,'Total Spending','gasto_region_'+geo.key,'gasto_region_'+comunaID);
+    const regionID = (typeof geo.ancestor !="undefined")?geo.ancestor.key:'';
+    const measureName = getMeasureByGeo(geo.type,'Total Spending','gasto_region_'+geo.key,'gasto_region_'+regionID);
 
     return (
       <div className={className}>
