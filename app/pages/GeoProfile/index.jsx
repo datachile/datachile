@@ -529,7 +529,7 @@ class GeoProfile extends Component {
                     source={stats.income.year + " - " + stats.income.source}
                     className=""
                   />}
-                {stats.income &&
+                {stats.psu &&
                   <FeaturedDatumSplash
                     title={t("PSU")}
                     icon="psu"
