@@ -5,3 +5,9 @@ gzip_comp_level 6;
 gzip_buffers 16 8k;
 gzip_http_version 1.1;
 gzip_types text/css application/json application/javascript text/xml application/xml text/javascript application/x-jsonrecords text/csv;
+
+location /ui {
+        sub_filter '<head>' '<head><script>window.__API_ENDPOINT__ = "https://chilecube.datawheel.us"; window.__SITE_TITLE__ = "DataChile"; </script>';
+	sub_filter_once on;
+    	alias /mondrian-rest-ui-files;
+}
