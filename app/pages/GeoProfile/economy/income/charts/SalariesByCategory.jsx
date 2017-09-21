@@ -63,6 +63,7 @@ class SalariesByCategory extends Section {
                 tickSize:0,
                 title:t("Median Income")
               },
+              ySort: (a,b) => {return a["Median Income"]>b["Median Income"] ? 1:-1;},
               yConfig:{
                 barConfig: {"stroke-width": 0},
                 tickSize:0,
