@@ -2,12 +2,12 @@ import { Client as MondrianClient } from "mondrian-rest-client";
 
 //console.log("HARCODED!!!! REMOVE!!!");
 
-const client = new MondrianClient(
+/*const client = new MondrianClient(
   typeof window == "undefined"
     ? process.env.CANON_API
     : "http://chilecube.datawheel.us/"
-);
-//const client = new MondrianClient("http://localhost:9292/");
+);*/
+const client = new MondrianClient("http://localhost:9292/");
 //const client = new MondrianClient("http://chilecube.datawheel.us/");
 
 /**
