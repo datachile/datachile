@@ -150,6 +150,7 @@ export default translate()(
                 tickSize:0,
                 title:false
               },
+              ySort: (a,b) => {return a["Number of visas"]>b["Number of visas"] ? 1:-1;},
               barPadding: 0,
               groupPadding: 5,
               legendConfig: {
