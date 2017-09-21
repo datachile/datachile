@@ -10,7 +10,7 @@ services:
     command: postgres -c config_file=/etc/postgresql.conf
 
   datachile-mondrian:
-    image: 'datachile-mondrian:0.7.2'
+    image: 'datachile-mondrian:0.7.4'
     environment:
       - APP_HOME=/datachile/
       - MONDRIAN_REST_CONF=/datachile-mondrian.yaml
@@ -30,6 +30,7 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/datachile-canon.dockerfile
+    command: /bin/bash -c 'cp -R /datachile/static/* /datachile/static-shared/ && npm run start'
     environment:
       - NODE_ENV=production
       - CANON_PORT=4444
@@ -63,7 +64,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - canon-static:/datachile-files
+      - canon-static:/datachile-files:ro
       - ${MONDRIAN_REST_UI_PATH}:/mondrian-rest-ui-files
       - ${NGINX_FILES_PATH}/conf.d:/etc/nginx/conf.d
       - ${NGINX_FILES_PATH}/vhost.d:/etc/nginx/vhost.d

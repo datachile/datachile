@@ -6,9 +6,6 @@ const client = new MondrianClient(
   typeof window == "undefined"
     ? process.env.CANON_API
     : "https://chilecube.datawheel.us/");
-//const client = new MondrianClient("http://localhost:9292/");
-//const client = new MondrianClient("https://chilecube.datawheel.us/");
-
 
 /**
  * Returns the provided query with the appropiate cut
