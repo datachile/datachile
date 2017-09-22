@@ -2,10 +2,7 @@ import { Client as MondrianClient } from "mondrian-rest-client";
 
 //console.log("HARCODED!!!! REMOVE!!!");
 
-const client = new MondrianClient(
-  typeof window == "undefined"
-    ? process.env.CANON_API
-    : "https://chilecube.datawheel.us/");
+const client = new MondrianClient("https://chilecube.datawheel.us/");
 
 /**
  * Returns the provided query with the appropiate cut

@@ -654,8 +654,8 @@ class GeoProfile extends Component {
               <div>
                 <IncomeSexAgeSlide>
                   <SectionColumns>
-                    <IncomeBySex className="lost-2-3" />
-                    <IncomeByAge className="lost-1-3" />
+                    <IncomeBySex className="lost-1-2" />
+                    <IncomeByAge className="lost-1-2" />
                   </SectionColumns>
                 </IncomeSexAgeSlide>
               </div>

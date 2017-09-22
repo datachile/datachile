@@ -97,6 +97,8 @@ export default translate()(
 
         var variations = this.context.data.visa_types_with_path;
 
+        console.log(variations);
+
         this.setState({
           selectedOption:0,
           selectedObj:variations[0],
@@ -162,21 +164,26 @@ export default translate()(
             dataFormat={function(data){
               var others = {};
               var limit = 0;
-              var grouped = _.map(_.groupBy(data.data,"ID Year"),function(children,year){
-                children = _.orderBy(_.filter(children,(o) => o["Number of visas"] != null),["Number of visas"],["desc"]);
-                if(children.length>20){
-                  limit = children[19]["Number of visas"];
-                  var othersCount = _.reduce(_.filter(children,(o) => o["Number of visas"] <= limit),(sum,r) => sum + r["Number of visas"],0);
-                  var others = _.clone(children[0]);
-                  others["Number of visas"] = othersCount;
-                  others["Country"] = t("Others");
-                  children = _.filter(children,(o) => o["Number of visas"] > limit);
-                  children.push(others);
-                }
-                return children;
-              });
+              var resp = [];
+              if(data.data.length>0){
+                var grouped = _.map(_.groupBy(data.data,"ID Year"),function(children,year){
+                  children = _.orderBy(_.filter(children,(o) => o["Number of visas"] != null && o["Number of visas"] != 0),["Number of visas"],["desc"]);
+                  if(children.length>20){
+                    limit = children[19]["Number of visas"];
+                    var othersCount = _.reduce(_.filter(children,(o) => o["Number of visas"] <= limit),(sum,r) => sum + r["Number of visas"],0);
+                    var others = _.clone(children[0]);
+                    others["Number of visas"] = othersCount;
+                    others["Country"] = t("Others");
+                    children = _.filter(children,(o) => o["Number of visas"] > limit);
+                    children.push(others);
+                  }
+                  return children;
+                });
 
-              return _.flatMap(grouped,(m)=>m);
+                resp = _.flatMap(grouped,(m)=>m);
+              }
+
+              return resp;
             }}
           />
         </div>
