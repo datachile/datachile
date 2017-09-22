@@ -10,7 +10,7 @@ services:
     command: postgres -c config_file=/etc/postgresql.conf
 
   datachile-mondrian:
-    image: 'datachile-mondrian:0.7.4'
+    image: 'datachile-mondrian:0.7.5'
     environment:
       - APP_HOME=/datachile/
       - MONDRIAN_REST_CONF=/datachile-mondrian.yaml
@@ -23,6 +23,7 @@ services:
       - db
     volumes:
       - ./dockerfiles/datachile-mondrian.yaml:/datachile-mondrian.yaml
+      - /home/hermes/datachile-mondrian/schema.xml:/mondrian-rest/schema.xml:ro
     ports:
       - 127.0.0.1:9393:9292
 
@@ -66,10 +67,10 @@ services:
     volumes:
       - canon-static:/datachile-files:ro
       - ${MONDRIAN_REST_UI_PATH}:/mondrian-rest-ui-files
-      - ${NGINX_FILES_PATH}/conf.d:/etc/nginx/conf.d
-      - ${NGINX_FILES_PATH}/vhost.d:/etc/nginx/vhost.d
-      - ${NGINX_FILES_PATH}/html:/usr/share/nginx/html
-      - ${NGINX_FILES_PATH}/certs:/etc/nginx/certs:ro
+      - ./dockerfiles/nginx/conf.d:/etc/nginx/conf.d
+      - ./dockerfiles/nginx/vhost.d:/etc/nginx/vhost.d
+      - ./dockerfiles/nginx/html:/usr/share/nginx/html
+      - ./dockerfiles/nginx/certs:/etc/nginx/certs:ro
 
   nginx-gen:
     image: jwilder/docker-gen
@@ -78,10 +79,10 @@ services:
     restart: unless-stopped
     volumes:
       - ./dockerfiles/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
-      - ${NGINX_FILES_PATH}/conf.d:/etc/nginx/conf.d
-      - ${NGINX_FILES_PATH}/vhost.d:/etc/nginx/vhost.d
-      - ${NGINX_FILES_PATH}/html:/usr/share/nginx/html
-      - ${NGINX_FILES_PATH}/certs:/etc/nginx/certs:ro
+      - ./dockerfiles/nginx/conf.d:/etc/nginx/conf.d
+      - ./dockerfiles/nginx/vhost.d:/etc/nginx/vhost.d
+      - ./dockerfiles/nginx/html:/usr/share/nginx/html
+      - ./dockerfiles/nginx/certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
 
@@ -90,10 +91,10 @@ services:
     container_name: nginx-letsencrypt
     restart: unless-stopped
     volumes:
-      - ${NGINX_FILES_PATH}/conf.d:/etc/nginx/conf.d
-      - ${NGINX_FILES_PATH}/vhost.d:/etc/nginx/vhost.d
-      - ${NGINX_FILES_PATH}/html:/usr/share/nginx/html
-      - ${NGINX_FILES_PATH}/certs:/etc/nginx/certs:rw
+      - ./dockerfiles/nginx/conf.d:/etc/nginx/conf.d
+      - ./dockerfiles/nginx/vhost.d:/etc/nginx/vhost.d
+      - ./dockerfiles/nginx/html:/usr/share/nginx/html
+      - ./dockerfiles/nginx/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       NGINX_DOCKER_GEN_CONTAINER: "nginx-gen"
