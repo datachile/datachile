@@ -7,10 +7,10 @@ This document describes how _Datachile_ is configured as a set of services runni
 The current version of Datachile is comprised of 6 containers:
 
   - `db`: an instance of PostgreSQL 9.6
-  - `datachile-mondrian`: an instance of [`mondrian-rest`](http://github.com/jazzido/mondrian-rest) with [Datachile's OLAP schema](schema.xml)
+  - `datachile-mondrian`: an instance of [`mondrian-rest`](http://github.com/jazzido/mondrian-rest) with [Datachile's OLAP schema](https://github.com/Datawheel/datachile-mondrian/blob/master/schema.xml)
   - `datachile-canon`: the web application
   - `nginx`: an instance of the [NGINX](http://nginx.org) web server, listening on ports 80 and 443.
-  - `nginx-gen`: a service that generates configuration files for NGINX, based on [a template](nginx.tmpl). Based on [`docker-gen`](https://github.com/jwilder/docker-gen).
+  - `nginx-gen`: a service that generates configuration files for NGINX, based on [a template](https://github.com/Datawheel/datachile/blob/docker/dockerfiles/nginx.tmpl). Based on [`docker-gen`](https://github.com/jwilder/docker-gen).
   - `nginx-letsencrypt`: a companion service for `nginx-gen`, it allows the creation/renewal of Let's Encrypt certificates automatically.
   
 ## Deployment
