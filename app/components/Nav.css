@@ -1,13 +1,13 @@
 .nav {
   width: 100%;
-  margin: 60px auto;
+  margin: 30px auto 60px auto;
 
   & .nav-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     & .nav-title {
-      max-width: 50%;
+      lost-column: 6/12 flex;
       & h1 {
         text-transform: uppercase;
         color: var(--snow);
@@ -16,29 +16,63 @@
         font-size: 50px;
         line-height: 1;
         text-align: right;
+        margin: 0px;
+      }
+      & .parent {
+        padding: 0px;
+        text-align: right;
+        & a {
+          cursor: pointer;
+          display: inline-block;
+          margin: 0px;
+          opacity: 0.8;
+          text-decoration: none;
+          transition: opacity 0.2s;
+          font-family: var(--font-family-text);
+          font-weight: 400;
+          font-size: 12px;
+          color: var(--snow);
+          letter-spacing: 0.08px;
+          text-transform: uppercase;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
       }
     }
     & .nav-meta {
+      lost-column: 2/12 flex;
       display: flex;
-      align-items: center;
-      & .type,
-      & .parent {
-        width: 100%;
-        margin: 0px 5px;
+      flex-direction: column;
+      align-items: start;
+      & .type {
+        padding: 0 10px;
         & a {
-          color: var(--snow);
-          text-decoration: underline;
-          font-family: var(--font-family-title);
-          font-weight: 300;
+          cursor: pointer;
+          display: inline-block;
+          margin: 15px 15px 0px 15px;
+          opacity: 0.8;
+          text-decoration: none;
+          transition: opacity 0.2s;
+          font-family: var(--font-family-text);
+          font-weight: 400;
           font-size: 12px;
+          color: var(--snow);
+          letter-spacing: 0.08px;
           text-transform: uppercase;
+
+          &:hover {
+            opacity: 1;
+          }
         }
       }
     }
     & .nav-links {
+      lost-column: 3/12 flex;
       display: flex;
       align-items: flex-start;
-      padding: 0px var(--gutter);
+      padding-left: var(--gutter);
       & .logo {
         display: inline-block;
         margin-right: 30px;
@@ -58,7 +92,7 @@
       & .link {
         cursor: pointer;
         display: inline-block;
-        margin: 10px 20px;
+        margin: 15px 15px;
         opacity: 0.8;
         text-decoration: none;
         transition: opacity 0.2s;
@@ -73,31 +107,108 @@
           opacity: 1;
         }
       }
+    }
+    & .nav-lang{
+      lost-column: 1/12 flex;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
       & .lang-selector {
         & span {
           display: inline-block;
-          margin: 10px 2px;
-          opacity: 0.8;
+          margin: 15px 2px;
           text-decoration: none;
-          transition: opacity 0.2s;
           font-family: var(--font-family-text);
           font-weight: 400;
-          font-size: 10px;
+          font-size: 12px;
           color: var(--snow);
           letter-spacing: 0.08px;
           text-transform: uppercase;
           &.lang-current {
             color: var(--snow);
             text-decoration: underline;
+            opacity: 1;
           }
           &.lang-other {
             & a {
+              transition: opacity 0.2s;
               color: var(--snow);
+              opacity: 0.8;
+              text-decoration: none;
+              &:hover {
+                opacity: 1;
+              }
             }
-            text-decoration: none;
           }
         }
       }
     }
+  
   }
+}
+
+@add-mixin for-xl {
+}
+
+@add-mixin for-lg {
+  .nav{
+    & .nav-container{
+      & .nav-title{
+        & h1 {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}
+
+@add-mixin for-md {
+   .nav{
+      & .nav-container{
+        & .nav-title{
+          & h1 {
+            font-size: 30px;
+          }
+        }
+        & .nav-lang{
+          display: none;
+        }
+      }
+   }
+}
+
+@add-mixin for-sm {
+  .nav{
+    margin: 30px auto;
+    & .nav-container{
+      & .nav-links{
+        lost-column: 1 flex;
+      }
+      & .nav-title{
+        lost-column: 1 flex;
+        & h1 {
+          font-size: 30px;
+          text-align: center;
+          padding: 15px;
+        }
+        & .parent{
+          text-align: center;
+        }
+      }
+      & .nav-meta{
+        lost-column: 1 flex;
+        & .type {
+          text-align: center;
+          lost-column: 1 flex;
+        }
+      }
+    }
+  } 
+}
+
+@add-mixin for-xs {
+}
+
+@add-mixin for-xx {
+    
 }

@@ -48,6 +48,10 @@ class Nav extends Component {
             <h1>
               {title}
             </h1>
+            {ancestor &&
+              <div className="parent">
+                <Link className="link" to={ancestorLink}>{ancestor}</Link>
+              </div>}
           </div>
           <div className="nav-meta">
             <div className="type">
@@ -62,14 +66,9 @@ class Nav extends Component {
                   {type}
                 </span>}
             </div>
-            {ancestor &&
-              <div className="parent">
-                <Link className="link" to={ancestorLink}>
-                  {ancestor}
-                </Link>
-              </div>}
+            
           </div>
-          <div className="nav-links">
+          <div className="nav-lang">
             <div className="lang-selector">
               <span className="lang-current">
                 {currentLang}

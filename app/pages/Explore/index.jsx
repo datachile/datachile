@@ -227,7 +227,7 @@ class Explore extends Component {
           <div className="intro">
             <Nav
               title={type != "" ? type : t("Explore")}
-              type={type != "" ? t("Explore") : ""}
+              type={type != "" ? t("Profiles") : ""}
               exploreLink={"/explore"}
             />
             <div className="splash">

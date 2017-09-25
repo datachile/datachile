@@ -2,23 +2,21 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { Link } from "react-router";
-
 import { browserHistory } from "react-router";
-import d3plus from "helpers/d3plus";
-import { slugifyItem } from "helpers/formatters";
+import { translate } from "react-i18next";
 
+import d3plus from "helpers/d3plus";
+import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
   getMemberQuery
 } from "helpers/MondrianClient";
-
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
-import { translate } from "react-i18next";
-
 import Nav from "components/Nav";
+import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 
-import "./intro.css";
+import "../intro.css";
 
 class IndustryProfile extends Component {
   constructor() {
@@ -71,14 +69,26 @@ class IndustryProfile extends Component {
   render() {
     const { subnav, activeSub } = this.state;
 
-    const { focus, t } = this.props;
+    const { focus, t, i18n } = this.props;
 
     const { industry } = this.props.routeParams;
+    
     const obj = this.props.data.industry;
+
+    const locale = i18n.language.split("-")[0];
+
+    const stats = {
+      employees: {
+        value: 1000,
+        decile: 4,
+        year: 2010,
+        source: "source"
+      }
+    };
 
     return (
       <CanonComponent data={this.props.data} d3plus={d3plus}>
-        <div className="industry-profile">
+        <div className="profile">
           <div className="intro">
             {obj &&
               <Nav
@@ -102,11 +112,56 @@ class IndustryProfile extends Component {
               <div className="gradient" />
             </div>
 
-            <div className="dc-container">
               <div className="header">
-                <div className="meta" />
+                  <div className="datum-full-width">
+                    
+                    {stats.employees &&
+                      <FeaturedDatumSplash
+                        title={t("Employees")}
+                        icon="poblacion"
+                        decile={stats.employees.decile}
+                        datum={numeral(stats.employees.value, locale).format(
+                          "(0,0)"
+                        )}
+                        source={
+                          stats.employees.year + " - " + stats.employees.source
+                        }
+                        className=""
+                      />}
+
+
+                    {stats.employees &&
+                      <FeaturedDatumSplash
+                        title={t("Employees")}
+                        icon="poblacion"
+                        decile={stats.employees.decile}
+                        datum={numeral(stats.employees.value, locale).format(
+                          "(0,0)"
+                        )}
+                        source={
+                          stats.employees.year + " - " + stats.employees.source
+                        }
+                        className=""
+                      />}
+
+
+                    {stats.employees &&
+                      <FeaturedDatumSplash
+                        title={t("Employees")}
+                        icon="poblacion"
+                        decile={stats.employees.decile}
+                        datum={numeral(stats.employees.value, locale).format(
+                          "(0,0)"
+                        )}
+                        source={
+                          stats.employees.year + " - " + stats.employees.source
+                        }
+                        className=""
+                      />}
+                  
+                  </div>
+
               </div>
-            </div>
           </div>
         </div>
       </CanonComponent>
