@@ -88,6 +88,24 @@ extrabold 800
 }
 */
 
+/*BREAKPOINTS mixins */
+
+@define-mixin for-phone-only {
+  @media (max-width: --var(break-xxs)) { @content; }
+}
+@define-mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}
+@define-mixin for-tablet-landscape-up {
+  @media (min-width: 900px) { @content; }
+}
+@define-mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+@define-mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}
+
 /* global classes */
 @lost flexbox flex;
 
@@ -113,4 +131,8 @@ extrabold 800
 
 .lost-1-4 {
 	lost-column: 1/4 flex;
+}
+
+.lost-row {
+  lost-utility: clearfix;
 }

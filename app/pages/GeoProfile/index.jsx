@@ -533,7 +533,7 @@ class GeoProfile extends Component {
                   <FeaturedDatumSplash
                     title={t("PSU")}
                     icon="psu"
-                    decile={9.2}
+                    decile={stats.income.decile}
                     datum={
                       numeral(stats.psu.value, locale).format("(0,0)") + "pts"
                     }
