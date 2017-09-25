@@ -61,7 +61,7 @@ class SalariesByCategory extends Section {
               discrete:"y",
               xConfig:{ 
                 tickSize:0,
-                title:t("Median Income")
+                title:t("Monthly Median Income")
               },
               ySort: (a,b) => {return a["Median Income"]>b["Median Income"] ? 1:-1;},
               yConfig:{
@@ -75,8 +75,8 @@ class SalariesByCategory extends Section {
               legendConfig: {
                   label: false,
                   shapeConfig:{
-                      width:40,
-                      height:40
+                      width:1,
+                      height:1
                   }
               }
             }}

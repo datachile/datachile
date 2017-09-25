@@ -52,7 +52,7 @@ export default translate()(
               label: d =>
                 d["Country"] instanceof Array ? d["Continent"] : d["Country"],
               sum: d => d["FOB US"],
-              time: "ID Year",
+              time: "ID Year" ,
               shapeConfig: {
                   fill: d => ordinalColorScale(d["ID Continent"])
               },

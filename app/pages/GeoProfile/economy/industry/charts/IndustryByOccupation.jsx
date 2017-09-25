@@ -136,7 +136,7 @@ class IndustryByOccupation extends Section {
               title: t('Most Specialized occupations'),
               path: this.context.data.path_industry_occupation_specialized,
               groupBy: ["ID ISCO","ID ISCED"],
-              label: d => d["ISCED"],
+              label: d => d["ISCO"] + ' - '  + d["ISCED"],
               sum: d => d["Expansion Factor"]
           }
       ];
@@ -177,18 +177,17 @@ class IndustryByOccupation extends Section {
             label: this.state.selectedObj.label,
             sum: this.state.selectedObj.sum,
             time: "ID Year",
-            legendConfig: {
-                label: false,
-                shapeConfig:{
-                    width:25,
-                    height:25,
-                    fill: d => ordinalColorScale(d["ID ISCO"]),
-                    backgroundImage: d => "https://datausa.io/static/img/attrs/thing_apple.png",
-                }
-            },
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID ISCO"])
-            }
+            },
+            legendConfig: {
+                  label: false,
+                  shapeConfig:{
+                      width:20,
+                      height:20,
+                      backgroundImage: d => "/images/legend/occupation/occupation.png",
+                  }
+              }
           }}
           dataFormat={data => data.data}
         />

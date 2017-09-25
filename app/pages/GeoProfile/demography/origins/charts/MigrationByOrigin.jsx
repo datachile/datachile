@@ -49,12 +49,21 @@ export default translate()(
               height: 500,
               data: path,
               groupBy: ["ID Continent", "ID Country"],
-              label: d =>
-                d["Country"] instanceof Array ? d["Continent"] : d["Country"],
+              label: d => {
+                d["Country"] = d["Country"]=="Chile"?["Chile"]:d["Country"];
+                return d["Country"] instanceof Array ? d["Continent"] : d["Country"]
+              },
               sum: d => d["Number of visas"],
               time: "ID Year",
               shapeConfig: {
                   fill: d => ordinalColorScale(d["ID Continent"])
+              },
+              legendConfig: {
+                  shapeConfig:{
+                      width:40,
+                      height:40,
+                      backgroundImage: d => "/images/legend/continent/"+d["ID Continent"]+".png",
+                  }
               }
             }}
             dataFormat={data => data.data}

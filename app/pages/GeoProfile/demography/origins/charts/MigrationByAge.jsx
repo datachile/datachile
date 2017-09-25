@@ -56,24 +56,17 @@ export default translate()(
               x: false,
               y: "Number of visas",
               shapeConfig: {
-                  fill: d => ordinalColorScale(d["ID Age Range"]),
+                  fill: d => ordinalColorScale(1),
               },
               xConfig:{
                 tickSize:0,
-                title:false
+                title:t("Age Range")
               },
               yConfig:{
                 title:t("People")
               },
               barPadding: 20,
-              groupPadding: 40,
-              legendConfig: {
-                  label: false,
-                  shapeConfig:{
-                      width:40,
-                      height:40
-                  }
-              }
+              groupPadding: 40
             }}
             
             dataFormat={data => data.data}
