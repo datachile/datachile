@@ -118,7 +118,7 @@ class CareerProfile extends Component {
     ];
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus}>
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {obj &&
@@ -132,6 +132,7 @@ class CareerProfile extends Component {
                     ? slugifyItem("careers", obj.parent.key, obj.parent.name)
                     : ""
                 }
+                topics={topics}
               />}
             <div className="splash">
               <div

@@ -109,18 +109,6 @@ extrabold 800
   @media (max-width: 320px) { @mixin-content; }
 }
 
-
-/*
-// usage
-.my-box {
-  padding: 10px;
-  
-  @include for-desktop-up {
-    padding: 20px;
-  }
-}
-*/
-
 /* global classes */
 @lost flexbox flex;
 @lost gutter 32px;

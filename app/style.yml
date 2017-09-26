@@ -8,6 +8,8 @@ accent: "#4B71B5"
 gray: "#F2F2F2"
 footer-bg: "#1E1E26"
 
+subnav-size: "300px"
+
 near-black: "#1A1B2D"
 nice-blue: "#708BBB"
 
@@ -28,7 +30,7 @@ font-family-text: "'Yantramanav', sans-serif"
 
 background: "-10"
 foreground: "10"
-cover: "20"
+cover: "30"
 
 gutter: "32px"
 width: "1148px"

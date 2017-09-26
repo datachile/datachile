@@ -477,7 +477,7 @@ class GeoProfile extends Component {
     }
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus}>
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {geo &&
@@ -492,6 +492,7 @@ class GeoProfile extends Component {
                   ancestor ? ancestor.key : "",
                   ancestor ? ancestor.name : ""
                 )}
+                topics={topics}
               />}
             <div className="splash">
               <div
