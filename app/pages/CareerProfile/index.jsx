@@ -2,24 +2,23 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { Link } from "react-router";
-
 import { browserHistory } from "react-router";
+import { translate } from "react-i18next";
+
 import d3plus from "helpers/d3plus";
-
-import { slugifyItem } from "helpers/formatters";
-
+import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
   getMemberQuery
 } from "helpers/MondrianClient";
-
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
-import { translate } from "react-i18next";
-
 import Nav from "components/Nav";
+import SvgImage from "components/SvgImage";
+import TopicMenu from "components/TopicMenu";
+import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 
-import "./intro.css";
+import "../intro.css";
 
 class CareerProfile extends Component {
   constructor() {
@@ -72,13 +71,55 @@ class CareerProfile extends Component {
   render() {
     const { subnav, activeSub } = this.state;
 
-    const { focus, t } = this.props;
+    const { focus, t, i18n } = this.props;
 
     const obj = this.props.data.career;
 
+    const locale = i18n.language.split("-")[0];
+
+    const stats = {
+      enrollment: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      },
+      income: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      },
+      psu: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      }
+    };
+
+    const topics = [
+      {
+        slug: "about",
+        title: t("About")
+      },
+      {
+        slug: "demography",
+        title: t("Demography")
+      },
+      {
+        slug: "education",
+        title: t("Education")
+      },
+      {
+        slug: "employment",
+        title: t("Employment")
+      }
+    ];
+
     return (
       <CanonComponent data={this.props.data} d3plus={d3plus}>
-        <div className="career-profile">
+        <div className="profile">
           <div className="intro">
             {obj &&
               <Nav
@@ -102,11 +143,66 @@ class CareerProfile extends Component {
               <div className="gradient" />
             </div>
 
-            <div className="dc-container">
-              <div className="header">
-                <div className="meta" />
+            <div className="header">
+                <div className="datum-full-width">
+                  
+
+                  {stats.enrollment &&
+                    <FeaturedDatumSplash
+                      title={t("Total Enrollment")}
+                      icon="poblacion"
+                      decile={stats.enrollment.decile}
+                      datum={numeral(stats.enrollment.value, locale).format(
+                        "(0,0)"
+                      )}
+                      source={
+                        stats.enrollment.year + " - " + stats.enrollment.source
+                      }
+                      className=""
+                    />}
+
+                  {stats.income &&
+                    <FeaturedDatumSplash
+                      title={t("Average Income 1st year")}
+                      icon="ingreso"
+                      decile={stats.income.decile}
+                      datum={'$'+numeral(stats.income.value, locale).format(
+                        "(0,0)"
+                      )}
+                      source={
+                        stats.income.year + " - " + stats.income.source
+                      }
+                      className=""
+                    />}
+
+                  {stats.psu &&
+                    <FeaturedDatumSplash
+                      title={t("Average psu")}
+                      icon="psu"
+                      decile={stats.psu.decile}
+                      datum={numeral(stats.psu.value, locale).format(
+                        "(0,0)"
+                      )+'pts'}
+                      source={
+                        stats.psu.year + " - " + stats.psu.source
+                      }
+                      className=""
+                    />}
+
+                
+                </div>
+
               </div>
-            </div>
+
+              <div className="topics-selector-container">
+                <TopicMenu topics={topics} />
+              </div>
+
+              <div className="arrow-container">
+                <a href="#about">
+                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+                </a>
+              </div>
           </div>
         </div>
       </CanonComponent>

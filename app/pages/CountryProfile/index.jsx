@@ -5,14 +5,20 @@ import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 
-import Nav from "components/Nav";
-
 import d3plus from "helpers/d3plus";
-import { slugifyItem } from "helpers/formatters";
-import mondrianClient, { getMemberQuery } from "helpers/MondrianClient";
+import { numeral, slugifyItem } from "helpers/formatters";
+import mondrianClient, {
+  getMembersQuery,
+  getMemberQuery
+} from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
-import "./intro.css";
+import Nav from "components/Nav";
+import SvgImage from "components/SvgImage";
+import TopicMenu from "components/TopicMenu";
+import FeaturedDatumSplash from "components/FeaturedDatumSplash";
+
+import "../intro.css";
 
 class CountryProfile extends Component {
   constructor() {
@@ -64,14 +70,46 @@ class CountryProfile extends Component {
 
   render() {
     const { subnav, activeSub } = this.state;
-    const { focus, t } = this.props;
+    const { focus, t, i18n } = this.props;
 
     const { country } = this.props.routeParams;
+    
     const obj = this.props.data.country;
+
+    const locale = i18n.language.split("-")[0];
+
+    const stats = {
+      employees: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      },
+      income: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      },
+      studies: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      }
+    };
+
+    const topics = [
+      {
+        slug: "about",
+        title: t("About")
+      }
+    ];
+
 
     return (
       <CanonComponent data={this.props.data} d3plus={d3plus}>
-        <div className="country-profile">
+        <div className="profile">
           <div className="intro">
             {obj &&
               <Nav
@@ -95,11 +133,67 @@ class CountryProfile extends Component {
               <div className="gradient" />
             </div>
 
-            <div className="dc-container">
-              <div className="header">
-                <div className="meta" />
+            <div className="header">
+                <div className="datum-full-width">
+                  
+                  {stats.employees &&
+                    <FeaturedDatumSplash
+                      title={t("Employees")}
+                      icon="poblacion"
+                      decile={stats.employees.decile}
+                      datum={numeral(stats.employees.value, locale).format(
+                        "(0,0)"
+                      )}
+                      source={
+                        stats.employees.year + " - " + stats.employees.source
+                      }
+                      className=""
+                    />}
+
+
+                  {stats.income &&
+                    <FeaturedDatumSplash
+                      title={t("Average Income")}
+                      icon="ingreso"
+                      decile={stats.income.decile}
+                      datum={numeral(stats.income.value, locale).format(
+                        "(0,0)"
+                      )}
+                      source={
+                        stats.income.year + " - " + stats.income.source
+                      }
+                      className=""
+                    />}
+
+
+                  {stats.studies &&
+                    <FeaturedDatumSplash
+                      title={t("Years of Studies")}
+                      icon="psu"
+                      decile={stats.studies.decile}
+                      datum={numeral(stats.studies.value, locale).format(
+                        "(0,0)"
+                      )}
+                      source={
+                        stats.studies.year + " - " + stats.studies.source
+                      }
+                      className=""
+                    />}
+                
+                </div>
+
               </div>
-            </div>
+
+              <div className="topics-selector-container">
+                <TopicMenu topics={topics} />
+              </div>
+
+              <div className="arrow-container">
+                <a href="#about">
+                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+                </a>
+              </div>
+
           </div>
         </div>
       </CanonComponent>

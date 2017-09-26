@@ -5,14 +5,15 @@
 		text-align: center;
 		lost-flex-container: column;
 		justify-content: space-between;
-		padding: 15px var(--gutter);
+		padding: 15px;
+		min-width: 125px;
 		& span {
 			color: var(--snow);
 			text-transform: uppercase;
 			font-size: 12px;
 		}
 		& .svg-image {
-			& path  {
+			& path, & line, & polygon  {
 				fill: var(--snow);
 				stroke: var(--snow);
 			}
@@ -23,7 +24,7 @@
 				color: var(--accent);
 			}
 			& .svg-image {
-				& path  {
+				& path, & line, & polygon {
 					fill: var(--accent);
 					stroke: var(--accent);
 				}

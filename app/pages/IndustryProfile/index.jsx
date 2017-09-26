@@ -14,6 +14,8 @@ import mondrianClient, {
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
+import SvgImage from "components/SvgImage";
+import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 
 import "../intro.css";
@@ -80,11 +82,34 @@ class IndustryProfile extends Component {
     const stats = {
       employees: {
         value: 1000,
-        decile: 4,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      },
+      income: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      },
+      studies: {
+        value: 1000,
+        decile: 5,
         year: 2010,
         source: "source"
       }
     };
+
+    const topics = [
+      {
+        slug: "about",
+        title: t("About")
+      },
+      {
+        slug: "employment",
+        title: t("Employment")
+      }
+    ];
 
     return (
       <CanonComponent data={this.props.data} d3plus={d3plus}>
@@ -102,15 +127,15 @@ class IndustryProfile extends Component {
                     : ""
                 }
               />}
-            <div className="splash">
-              <div
-                className="image"
-                style={{
-                  backgroundImage: `url('/images/profile-bg/chile.jpg')`
-                }}
-              />
-              <div className="gradient" />
-            </div>
+              <div className="splash">
+                <div
+                  className="image"
+                  style={{
+                    backgroundImage: `url('/images/profile-bg/chile.jpg')`
+                  }}
+                />
+                <div className="gradient" />
+              </div>
 
               <div className="header">
                   <div className="datum-full-width">
@@ -130,31 +155,31 @@ class IndustryProfile extends Component {
                       />}
 
 
-                    {stats.employees &&
+                    {stats.income &&
                       <FeaturedDatumSplash
-                        title={t("Employees")}
-                        icon="poblacion"
-                        decile={stats.employees.decile}
-                        datum={numeral(stats.employees.value, locale).format(
+                        title={t("Average Income")}
+                        icon="ingreso"
+                        decile={stats.income.decile}
+                        datum={numeral(stats.income.value, locale).format(
                           "(0,0)"
                         )}
                         source={
-                          stats.employees.year + " - " + stats.employees.source
+                          stats.income.year + " - " + stats.income.source
                         }
                         className=""
                       />}
 
 
-                    {stats.employees &&
+                    {stats.studies &&
                       <FeaturedDatumSplash
-                        title={t("Employees")}
-                        icon="poblacion"
-                        decile={stats.employees.decile}
-                        datum={numeral(stats.employees.value, locale).format(
+                        title={t("Years of Studies")}
+                        icon="psu"
+                        decile={stats.studies.decile}
+                        datum={numeral(stats.studies.value, locale).format(
                           "(0,0)"
                         )}
                         source={
-                          stats.employees.year + " - " + stats.employees.source
+                          stats.studies.year + " - " + stats.studies.source
                         }
                         className=""
                       />}
@@ -162,6 +187,17 @@ class IndustryProfile extends Component {
                   </div>
 
               </div>
+
+              <div className="topics-selector-container">
+                <TopicMenu topics={topics} />
+              </div>
+
+              <div className="arrow-container">
+                <a href="#about">
+                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+                </a>
+              </div>
+
           </div>
         </div>
       </CanonComponent>
