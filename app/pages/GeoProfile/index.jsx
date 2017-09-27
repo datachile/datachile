@@ -98,7 +98,7 @@ import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
 
 /*end Demography*/
 
-import "./intro.css";
+import "../intro.css";
 import "./topics.css";
 
 const chileObj = {
@@ -477,7 +477,7 @@ class GeoProfile extends Component {
     }
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus}>
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {geo &&
@@ -492,6 +492,7 @@ class GeoProfile extends Component {
                   ancestor ? ancestor.key : "",
                   ancestor ? ancestor.name : ""
                 )}
+                topics={topics}
               />}
             <div className="splash">
               <div
@@ -533,7 +534,7 @@ class GeoProfile extends Component {
                   <FeaturedDatumSplash
                     title={t("PSU")}
                     icon="psu"
-                    decile={9.2}
+                    decile={stats.income.decile}
                     datum={
                       numeral(stats.psu.value, locale).format("(0,0)") + "pts"
                     }

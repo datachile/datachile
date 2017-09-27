@@ -222,12 +222,12 @@ class Explore extends Component {
     }
 
     return (
-      <CanonComponent id="explore" data={this.props.data}>
+      <CanonComponent id="explore" data={this.props.data} topics={[]}>
         <div className="explore-page">
           <div className="intro">
             <Nav
               title={type != "" ? type : t("Explore")}
-              type={type != "" ? t("Explore") : ""}
+              type={type != "" ? t("Profiles") : ""}
               exploreLink={"/explore"}
             />
             <div className="splash">

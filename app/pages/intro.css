@@ -1,8 +1,8 @@
-.institution-profile {
+.profile {
   font-family: var(--font-family-text);
 
   & .intro {
-    color: white;
+    color: var(--snow);
     margin: 0 auto;
     position: relative;
     width: 100%;
@@ -19,7 +19,7 @@
       & .image {
         background-position: 50%;
         background-size: cover;
-        filter: saturate(150%) contrast(130%);
+        filter: saturate(80%) contrast(130%);
         height: 100%;
         left: 0;
         position: absolute;
@@ -28,12 +28,17 @@
       }
 
       & .gradient {
-        background-color: rgba(0, 0, 0, 0.5);
         bottom: 0;
         left: 0;
         position: absolute;
         top: 0;
         width: 100%;
+        background-image: linear-gradient(
+          -180deg,
+          rgba(3, 16, 54, 0.16) 0%,
+          rgba(6, 13, 41, 0.72) 56%,
+          #080b23 100%
+        );
       }
     }
 
@@ -41,15 +46,24 @@
       display: flex;
       margin: 0 auto;
       justify-content: center;
-      margin-top: 200px;
+    }
+
+    & .datum-full-width {
+      lost-column: 1 flex;
+      padding: 0px var(--gutter);
+      lost-flex-container: row;
+      margin: 100px 0px;
+      & .featured-datum-splash{
+        lost-column: 1/3 flex;
+      }
     }
 
     & .meta {
       box-sizing: border-box;
       display: inline-block;
-      flex: 0.3;
+      lost-column: 1/3 flex;
       vertical-align: top;
-      margin: var(--gutter);
+      padding: 0px var(--gutter);
       & .title {
         font-family: var(--font-family-text);
         font-weight: 300;
@@ -81,40 +95,72 @@
         }
       }
 
-      & .stat {
-        margin: 25px 0;
+      & .stat-group {
+        margin-bottom: 30px;
+        & .stat {
+          & .label {
+            font-family: var(--font-family-text);
+            font-weight: 300;
+            font-size: 13px;
+            color: #ffffff;
+            letter-spacing: -0.05px;
+          }
 
-        & .label {
-          font-family: var(--font-family-text);
-          font-weight: 300;
-          font-size: 13px;
-          color: #ffffff;
-          letter-spacing: -0.05px;
+          & .value {
+            font-family: var(--font-family-title);
+            font-weight: 400;
+            font-size: 21px;
+            color: var(--snow);
+            letter-spacing: 0.05px;
+          }
         }
-
-        & .value {
-          font-family: var(--font-family-title);
-          font-weight: 400;
-          font-size: 21px;
-          color: var(--snow);
-          letter-spacing: 0.05px;
-          margin-bottom: 10px;
+        & .source {
+          font-size: 10px;
         }
       }
     }
 
+    & .candidates {
+      lost-column: 1/3 flex;
+    }
+
     & .map-region {
-      flex: 0.2;
-      align-self: center;
+      position: absolute;
+      z-index: 100;
+      right: 0;
+      top: 0;
+      pointer-events: none;
     }
 
     & .map-comuna {
-      flex: 0.35;
+      lost-column: 1/3 flex;
       align-self: center;
       pointer-events: all;
+      position: relative;
+      min-height: 500px;
+      padding-right: 60px;
     }
 
-    & .subnav {
+    & .topics-selector-container {
+    }
+
+    & .arrow-container {
+      lost-flex-container: row;
+      justify-content: center;
+      & a {
+        padding: var(--gutter) 0;
+        & path  {
+          fill: var(--snow);
+        }
+        &:hover {
+          & path  {
+            fill: var(--accent);
+          }
+        }
+      }
+    }
+
+    /*& .subnav {
       margin: 0 var(--gutter);
       text-align: right;
 
@@ -148,10 +194,62 @@
           }
         }
       }
-    }
+    }*/
 
     & .sources {
       padding: var(--gutter);
     }
   }
+}
+
+
+
+@add-mixin for-xl {
+}
+
+@add-mixin for-lg {
+  
+}
+
+@add-mixin for-md {
+  .profile{
+    & .intro{
+      & .datum-full-width {
+        justify-content: space-around;
+        & .featured-datum-splash{
+          lost-column: 4/9 2;
+        }
+      }
+    }
+  }
+}
+
+@add-mixin for-sm {
+  .profile{
+    & .intro{
+      & .datum-full-width {
+        justify-content: space-around;
+        & .featured-datum-splash{
+          lost-column: 1/2 2;
+        }
+      }
+    }
+  }
+}
+
+@add-mixin for-xs {
+  .profile{
+    & .intro{
+      & .datum-full-width {
+        justify-content: space-around;
+        & .featured-datum-splash{
+          lost-column: 1 1;
+        }
+      }
+    }
+  }
+}
+
+@add-mixin for-xx {
+    
 }

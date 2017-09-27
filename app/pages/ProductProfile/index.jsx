@@ -2,24 +2,25 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { Link } from "react-router";
-
 import { browserHistory } from "react-router";
+import { translate } from "react-i18next";
+
 import d3plus from "helpers/d3plus";
-
-import { slugifyItem } from "helpers/formatters";
-
+import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
   getMemberQuery
 } from "helpers/MondrianClient";
-
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
-import { translate } from "react-i18next";
-
 import Nav from "components/Nav";
+import SvgImage from "components/SvgImage";
+import TopicMenu from "components/TopicMenu";
+import FeaturedDatumSplash from "components/FeaturedDatumSplash";
+import FeaturedMapSplash from "components/FeaturedMapSplash";
 
-import "./intro.css";
+
+import "../intro.css";
 
 class ProductProfile extends Component {
   constructor() {
@@ -72,14 +73,52 @@ class ProductProfile extends Component {
   render() {
     const { subnav, activeSub } = this.state;
 
-    const { focus, t } = this.props;
+    const { focus, t, i18n } = this.props;
 
     const { industry } = this.props.routeParams;
     const obj = this.props.data.product;
 
+    const locale = i18n.language.split("-")[0];
+
+    const stats = {
+      country: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      },
+      exports: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      },
+      studies: {
+        value: 1000,
+        decile: 5,
+        year: 2010,
+        source: "source"
+      }
+    };
+
+    const topics = [
+      {
+        slug: "about",
+        title: t("About")
+      },
+      {
+        slug: "trade",
+        title: t("Trade")
+      },
+      {
+        slug: "opportunities",
+        title: t("Opportunities")
+      }
+    ];
+
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus}>
-        <div className="product-profile">
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+        <div className="profile">
           <div className="intro">
             {obj &&
               <Nav
@@ -92,6 +131,7 @@ class ProductProfile extends Component {
                     ? slugifyItem("products", obj.parent.key, obj.parent.name)
                     : ""
                 }
+                topics={topics}
               />}
             <div className="splash">
               <div
@@ -103,11 +143,62 @@ class ProductProfile extends Component {
               <div className="gradient" />
             </div>
 
-            <div className="dc-container">
-              <div className="header">
-                <div className="meta" />
+            <div className="header">
+                <div className="datum-full-width">
+                  
+                  {stats.country &&
+                    <FeaturedMapSplash
+                      title={t("Top importer country")}
+                      type="country"
+                      code={33}
+                      datum={t("France")}
+                      source={
+                        stats.country.year + " - " + stats.country.source
+                      }
+                      className=""
+                    />}
+
+
+                  {stats.exports &&
+                    <FeaturedDatumSplash
+                      title={t("Exports")}
+                      icon="ingreso"
+                      decile={stats.exports.decile}
+                      datum={numeral(stats.exports.value, locale).format(
+                        "(0,0)"
+                      )}
+                      source={
+                        stats.exports.year + " - " + stats.exports.source
+                      }
+                      className=""
+                    />}
+
+
+                  {stats.studies &&
+                    <FeaturedMapSplash
+                      title={t("Top Producer Region")}
+                      type="region"
+                      code={33}
+                      datum={t("O'Higgins")}
+                      source={
+                        stats.country.year + " - " + stats.country.source
+                      }
+                      className=""
+                    />}
+                
+                </div>
+
               </div>
-            </div>
+
+              <div className="topics-selector-container">
+                <TopicMenu topics={topics} />
+              </div>
+
+              <div className="arrow-container">
+                <a href="#about">
+                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+                </a>
+              </div>
           </div>
         </div>
       </CanonComponent>

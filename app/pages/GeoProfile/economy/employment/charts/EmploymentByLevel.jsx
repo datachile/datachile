@@ -78,7 +78,7 @@ class EmploymentByLevel extends Section {
                   shapeConfig:{
                       width:40,
                       height:40,
-                      backgroundImage: d => "/images/legend/college/administration.png",
+                      backgroundImage: d => "/images/legend/college/hat.png",
                   }
               }
             }}

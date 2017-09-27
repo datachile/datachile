@@ -57,6 +57,13 @@ export default translate()(
               time: "ID Year",
               shapeConfig: {
                   fill: d => ordinalColorScale(d["ID Continent"])
+              },
+              legendConfig: {
+                  shapeConfig:{
+                      width:40,
+                      height:40,
+                      backgroundImage: d => "/images/legend/continent/"+d["ID Continent"]+".png",
+                  }
               }
             }}
             dataFormat={data => data.data}
