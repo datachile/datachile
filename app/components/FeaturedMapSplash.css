@@ -1,11 +1,11 @@
 .featured-map-splash {
 	& .svg-mini-map{
-		width: 150px;
-		height: 150px;
+		width: 100%;
+		height: 100px;
 		overflow: hidden;
-		margin-left: -20px;
-		margin-top: -20px;
 		& svg{
+			width: 140px;
+			margin: -25px -10px -10px -10px;
 			& circle{
 				fill:none;
 				stroke:0;
