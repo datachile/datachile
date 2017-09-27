@@ -33,12 +33,14 @@ function geoCut(geo, dimensionName, query, lang = "en") {
   }
 }
 
-function levelCut(object, dimensionName, query, level1, level2, lang = "en") {
+function levelCut(object, dimensionName, subDimensionName, query, level1, level2, lang = "en") {
   query = setLangCaptions(query,lang);
   if (object.level2 === false) {
-    return query.cut(`${dimensionName}.[${level1}].&[${object.level1}]`);
+    query.drilldown(dimensionName, subDimensionName, level1);
+    return query.cut(`[${dimensionName}].[${subDimensionName}].[${level1}].&[${object.level1}]`);
   } else {
-    return query.cut(`${dimensionName}.[${level2}].&[${object.level2}]`);
+    query.drilldown(dimensionName, subDimensionName, level2);
+    return query.cut(`[${dimensionName}].[${subDimensionName}].[${level2}].&[${object.level2}]`);
   }
 }
 

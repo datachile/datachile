@@ -75,7 +75,8 @@ class ProductProfile extends Component {
         .then(cube => {
           var q = levelCut(
             ids,
-            "[Export HS].[HS]",
+            "Export HS",
+            "HS",
             cube.query
               .option("parents", true)
               .drilldown("Destination Country", "Country", "Country")
@@ -116,7 +117,8 @@ class ProductProfile extends Component {
         .then(cube => {
           var q = levelCut(
             ids,
-            "[Export HS].[HS]",
+            "Export HS",
+            "HS",
             cube.query
               .drilldown("Geography", "Geography", "Region")
               .measure("FOB US"),
@@ -155,10 +157,12 @@ class ProductProfile extends Component {
         .then(cube => {
           var q = levelCut(
             ids,
-            "[Export HS].[HS]",
+            "Export HS",
+            "HS",
             cube.query
               .drilldown("Date", "Date", "Year")
-              .measure("FOB US"),
+              .measure("FOB US")
+              .measure("HS Rank Decile"),
             "HS0",
             "HS2",
             store.i18n.locale
@@ -175,7 +179,7 @@ class ProductProfile extends Component {
             data: 
               {
                 value: (total)?total['FOB US']:'',
-                decile: 5,
+                decile: (total)?total['HS Rank Decile']:'',
                 year: store.exports_year,
                 source: "Source Lorem"
               }
