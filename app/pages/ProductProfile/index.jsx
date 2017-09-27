@@ -77,8 +77,10 @@ class ProductProfile extends Component {
             ids,
             "[Export HS].[HS]",
             cube.query
+              .option("parents", true)
               .drilldown("Destination Country", "Country", "Country")
-              .measure("FOB US"),
+              .measure("FOB US")
+              .property("Destination Country", "Country","iso3"),
             "HS0",
             "HS2",
             store.i18n.locale
@@ -93,7 +95,7 @@ class ProductProfile extends Component {
           return {
             key: "top_destination_country_per_product",
             data:{
-                id:(top_country)?top_country['ID Country']:'',
+                id:(top_country)?top_country['iso3']:'',
                 name:(top_country)?top_country['Country']:'',
                 value:(top_country)?top_country['FOB US']:'',
                 source: "Source Lorem",

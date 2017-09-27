@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { text as loadSvgAsString } from "d3-request";
+import { Geomap } from "d3plus-react";
 
 import SVGCache from "helpers/svg";
 import { FORMATTERS } from "helpers/formatters";
@@ -81,10 +82,35 @@ class FeaturedMapSplash extends Component {
 
                 { 
                   type && type=="country" &&
-                  <SvgImage
-                          extraClass="full"
-                          src={`/images/splash-icon/icon-ingreso-full.svg`}
-                      />
+                  <div className="svg-mini-geomap">
+                    <Geomap
+                      config={{
+                        data: [],
+                        downloadButton: false,
+                        groupBy: "key",
+                        height: 80,
+                        width: 80,
+                        label: d => "Región ",
+                        legend: false,
+                        ocean: "transparent",
+                        padding: 0,
+                        shapeConfig: {
+                          hoverOpacity: 1,
+                          Path: {
+                            fill: function(d){ return d.id == code?"#4B71B5":"none"},
+                            stroke: "rgba(255, 255, 255, 1)"
+                          }
+                        },
+                        tiles: false,
+                        topojson: "/geo/countries.json",
+                        topojsonId: "id",
+                        topojsonKey: "id",
+                        topojsonFilter: d => (d.id==code),
+                        fitKey: code,
+                        zoom: false
+                      }}
+                    />
+                  </div>
                 } 
 
               </div>
