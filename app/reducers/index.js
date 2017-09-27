@@ -17,5 +17,6 @@ export default {
 	presidential_election_year: (state = {}) => state,
 	senators_election_year: (state = {}) => state,
 	mayor_election_year: (state = {}) => state,
+	exports_year: (state = {}) => state,
 	search: combineReducers({ searchActive })
 };

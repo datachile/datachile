@@ -71,6 +71,7 @@ services:
       - ./dockerfiles/nginx/vhost.d:/etc/nginx/vhost.d
       - ./dockerfiles/nginx/html:/usr/share/nginx/html
       - ./dockerfiles/nginx/certs:/etc/nginx/certs:ro
+      - /home/pacha/public_www:/pacha:ro
 
   nginx-gen:
     image: jwilder/docker-gen

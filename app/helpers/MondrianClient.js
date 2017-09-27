@@ -12,7 +12,6 @@ const client = new MondrianClient("https://chilecube.datawheel.us/");
  * @param {} query
  */
 function geoCut(geo, dimensionName, query, lang = "en") {
-  //if(lang!=CANON_LANGUAGE_DEFAULT){
   query = setLangCaptions(query,lang);
 
   if (geo.type === "country") {
@@ -25,6 +24,17 @@ function geoCut(geo, dimensionName, query, lang = "en") {
     return query.cut(`[${dimensionName}].[Comuna].&[${geo.key}]`);
   } else {
     throw new Error(`Geo '${geo}' unknown`);
+  }
+}
+
+function levelCut(object, dimensionName, subDimensionName, query, level1, level2, lang = "en") {
+  query = setLangCaptions(query,lang);
+  if (object.level2 === false) {
+    query.drilldown(dimensionName, subDimensionName, level1);
+    return query.cut(`[${dimensionName}].[${subDimensionName}].[${level1}].&[${object.level1}]`);
+  } else {
+    query.drilldown(dimensionName, subDimensionName, level2);
+    return query.cut(`[${dimensionName}].[${subDimensionName}].[${level2}].&[${object.level2}]`);
   }
 }
 
@@ -84,5 +94,5 @@ function getMemberQuery(cube, dimension, level, key, locale = "en") {
     });
 }
 
-export { geoCut, getLocaleCaption, getMembersQuery, getMemberQuery, setLangCaptions, getMeasureByGeo };
+export { levelCut, geoCut, getLocaleCaption, getMembersQuery, getMemberQuery, setLangCaptions, getMeasureByGeo };
 export default client;

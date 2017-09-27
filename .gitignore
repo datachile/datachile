@@ -6,3 +6,4 @@ static/assets/*
 npm-debug.log
 *~
 dockerfiles/nginx/certs/*
+dockerfiles/nginx/conf.d/default.conf
