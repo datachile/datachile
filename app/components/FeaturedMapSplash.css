@@ -1,3 +1,28 @@
 .featured-map-splash {
-
+	& .svg-mini-map{
+		width: 150px;
+		height: 150px;
+		overflow: hidden;
+		margin-left: -20px;
+		margin-top: -20px;
+		& svg{
+			& circle{
+				fill:none;
+				stroke:0;
+			}
+			& path.region{
+				fill:none;
+				stroke:0;
+			}
+			& path.comuna{
+				fill: var(--accent);
+				stroke-width: 2;
+			    stroke-opacity: 1;
+			    stroke: var(--snow);
+			}
+			& path.limite{
+				fill:none;
+			}
+		}
+	}
 }

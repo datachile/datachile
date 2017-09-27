@@ -4,12 +4,14 @@ import { CanonComponent } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
+import _ from "lodash";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
-  getMemberQuery
+  getMemberQuery,
+  levelCut
 } from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
@@ -65,6 +67,123 @@ class ProductProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "[Export HS].[HS]",
+            cube.query
+              .drilldown("Destination Country", "Country", "Country")
+              .measure("FOB US"),
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          res.data.data = _.orderBy(res.data.data, ['FOB US'],['desc']);
+          const top_country = (res.data.data[0])?res.data.data[0]:false;
+          return {
+            key: "top_destination_country_per_product",
+            data:{
+                id:(top_country)?top_country['ID Country']:'',
+                name:(top_country)?top_country['Country']:'',
+                value:(top_country)?top_country['FOB US']:'',
+                source: "Source Lorem",
+                year:store.exports_year
+              }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "[Export HS].[HS]",
+            cube.query
+              .drilldown("Geography", "Geography", "Region")
+              .measure("FOB US"),
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          res.data.data = _.orderBy(res.data.data, ['FOB US'],['desc']);
+          const top_region = (res.data.data[0])?res.data.data[0]:false;
+          return {
+            key: "top_region_producer_per_product",
+            data: {
+                id:(top_region)?top_region['ID Region']:'',
+                name:(top_region)?top_region['Region']:'',
+                value:(top_region)?top_region['FOB US']:'',
+                source: "Source Lorem",
+                year:store.exports_year
+              }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "[Export HS].[HS]",
+            cube.query
+              .drilldown("Date", "Date", "Year")
+              .measure("FOB US"),
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          res.data.data = _.orderBy(res.data.data, ['FOB US'],['desc']);
+          const total = (res.data.data[0])?res.data.data[0]:false;
+          return {
+            key: "total_exports_per_product",
+            data: 
+              {
+                value: (total)?total['FOB US']:'',
+                decile: 5,
+                year: store.exports_year,
+                source: "Source Lorem"
+              }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -81,24 +200,9 @@ class ProductProfile extends Component {
     const locale = i18n.language.split("-")[0];
 
     const stats = {
-      country: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      },
-      exports: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      },
-      studies: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      }
+      country: this.props.data.top_destination_country_per_product,
+      region: this.props.data.top_region_producer_per_product,
+      exports: this.props.data.total_exports_per_product
     };
 
     const topics = [
@@ -148,12 +252,14 @@ class ProductProfile extends Component {
                   
                   {stats.country &&
                     <FeaturedMapSplash
-                      title={t("Top importer country")}
+                      title={t("Top destination country")}
                       type="country"
-                      code={33}
-                      datum={t("France")}
+                      code={stats.country.id}
+                      datum={stats.country.name}
                       source={
-                        stats.country.year + " - " + stats.country.source
+                        numeral(stats.country.value, locale).format(
+                      "($ 0,0 a)"
+                    ) + " - " + stats.country.year + " - " + stats.country.source
                       }
                       className=""
                     />}
@@ -165,7 +271,7 @@ class ProductProfile extends Component {
                       icon="ingreso"
                       decile={stats.exports.decile}
                       datum={numeral(stats.exports.value, locale).format(
-                        "(0,0)"
+                        "($ 0,0 a)"
                       )}
                       source={
                         stats.exports.year + " - " + stats.exports.source
@@ -174,14 +280,16 @@ class ProductProfile extends Component {
                     />}
 
 
-                  {stats.studies &&
+                  {stats.region &&
                     <FeaturedMapSplash
-                      title={t("Top Producer Region")}
+                      title={t("Top producer region")}
                       type="region"
-                      code={33}
-                      datum={t("O'Higgins")}
+                      code={stats.region.id}
+                      datum={stats.region.name}
                       source={
-                        stats.country.year + " - " + stats.country.source
+                        numeral(stats.region.value, locale).format(
+                      "($ 0,0 a)"
+                    ) + " - " + stats.region.year + " - " + stats.region.source
                       }
                       className=""
                     />}
@@ -211,7 +319,8 @@ export default translate()(
     state => ({
       data: state.data,
       focus: state.focus,
-      stats: state.stats
+      stats: state.stats,
+      exports_year: state.exports_year
     }),
     {}
   )(ProductProfile)
