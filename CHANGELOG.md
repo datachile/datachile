@@ -36,3 +36,4 @@
   * Query creation
   * New dimensions and measure added (age ranges, iso3 codes, deciles calculation)
   * New level on educational institutions.
+  * Update ISIC revision to match tax data for NENE survey.
