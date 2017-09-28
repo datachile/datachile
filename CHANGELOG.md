@@ -18,7 +18,7 @@
       * Employment
       * Income
     * Education charts implemented:
-      * Enrollment
+      * Enrollment: school type when drilling down at Country or Region Level, individual schools at Comuna level.
     * Demography charts:
       * Origins (migration)
   * Product profile
@@ -33,7 +33,7 @@
   * Profiles splash assets.
 
 * Data
-  * Query creation
+  * Query creation (@pachamaltese)
   * New dimensions and measure added (age ranges, iso3 codes, deciles calculation)
   * New level on educational institutions.
   * Update ISIC revision to match tax data for NENE survey.
