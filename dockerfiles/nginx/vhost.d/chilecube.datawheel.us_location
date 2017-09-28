@@ -1,0 +1,7 @@
+proxy_cache             one;
+proxy_cache_valid       200 2d; # status 200 will be cached for 30days
+proxy_cache_min_uses    1;
+proxy_ignore_headers    X-Accel-Expires Expires Cache-Control Set-Cookie; 
+proxy_hide_header       Set-Cookie;
+# add_header              'Content-Type:' 'application/json';
+add_header              X-Cache-Status $upstream_cache_status;

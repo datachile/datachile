@@ -72,6 +72,7 @@ services:
       - ./dockerfiles/nginx/html:/usr/share/nginx/html
       - ./dockerfiles/nginx/certs:/etc/nginx/certs:ro
       - /home/pacha/public_www:/pacha:ro
+    tmpfs: /nginx-cache:exec,mode=777
 
   nginx-gen:
     image: jwilder/docker-gen
