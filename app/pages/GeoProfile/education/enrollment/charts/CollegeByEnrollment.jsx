@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-
+import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
+import { translate } from "react-i18next";
+
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { numeral } from "helpers/formatters";
 
 class CollegeByEnrollment extends Section {
   static need = [
@@ -45,32 +46,36 @@ class CollegeByEnrollment extends Section {
 
   render() {
     const path = this.context.data.path_college_by_enrollment;
-    const { t, className } = this.props;
+    const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
+    const locale = i18n.language.split("-")[0];
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("College By Enrollment")}
+          {t("School By Enrollment")}
         </h3>
         <Treemap
           config={{
             height: 500,
             data: path,
             groupBy: (geo.type!='comuna')?["ID Administration"]:["ID Administration", "ID Institution"],
-            label: d =>
-              d["Institution"] instanceof Array || geo.type!='comuna' ? d["Administration"] : d["Institution"],
+            label: d => d["Institution"] instanceof Array || geo.type!='comuna' ? d["Administration"] : d["Institution"],
             sum: d => d["Number of records"],
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Administration"])
             },
+            tooltipConfig:{
+              title: d => d["Institution"] instanceof Array || geo.type!='comuna' ? d["Administration"] : d["Institution"],
+              body: d => numeral(d['Number of records'], locale).format("(0 a)") + " " + t("students")
+            },
             legendConfig: {
-                  shapeConfig:{
-                      width:40,
-                      height:40,
-                      backgroundImage: d => "/images/legend/college/administration.png",
-                  }
+              shapeConfig:{
+                  width:40,
+                  height:40,
+                  backgroundImage: d => "/images/legend/college/administration.png",
+              }
               }
           }}
           dataFormat={data => data.data}

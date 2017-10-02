@@ -76,10 +76,20 @@
     "line3": "Las principales exportaciones más recientes son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> que representan {{trade_first_share}} de las exportaciones de {{geo.caption}}, seguidas por <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a>, que representan el {{trade_second_share}} de los principales productos exportados en {{latest_year}}"
   },
 
+  "trade_balance": {
+    "fob":"Exportaciones",
+    "cif":"Importaciones",
+    "trade_balance": "Balanza comercial"
+  },
+
   "Exports by Destination": "Exportación por destino",
   "Imports by Origin Country": "Importación por país de origen",
   "Output by Industry": "Producción por industria",
   "Trade Balance": "Balanza comercial",
 
-  "Click to Highlight": "Clic para resaltar"
+  "Click to Highlight": "Clic para resaltar",
+
+  "tooltip": {
+    "to_profile": "Click to see the full profile"
+  }
 }

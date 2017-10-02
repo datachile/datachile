@@ -1,14 +1,13 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-
+import { translate } from "react-i18next";
 import { Treemap } from "d3plus-react";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
+import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { numeral } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
 import { getGeoObject } from "helpers/dataUtils";
 import { trade_by_time_and_product } from "helpers/aggregations";
-
-import { translate } from "react-i18next";
 
 export default translate()(
     class ExportsByProduct extends Section {
@@ -42,8 +41,8 @@ export default translate()(
         ];
 
         render() {
-            const { t, className } = this.props;
-
+            const { t, className, i18n } = this.props;
+            const locale = i18n.language.split("-")[0];
             const path = this.context.data.path_exports_by_product;
 
             return (
@@ -71,6 +70,10 @@ export default translate()(
                             },
                             shapeConfig: {
                                 fill: d => ordinalColorScale(d["ID HS0"])
+                            },
+                            tooltipConfig:{
+                              title: d=>d["HS2"] instanceof Array ? d["HS0"] : d["HS2"],
+                              body: d=>numeral(d['FOB US'], locale).format("(USD 0 a)") + "<br/><a>"+t("tooltip.to_profile")+"</a>"
                             }
                         }}
                         dataFormat={data => data.data}

@@ -1,13 +1,13 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-
+import _ from "lodash";
 import { LinePlot } from "d3plus-react";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-
-import { ordinalColorScale } from "helpers/colors";
-import { melt, getGeoObject } from "helpers/dataUtils";
-
 import { translate } from "react-i18next";
+
+import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { ordinalColorScale } from "helpers/colors";
+import { melt, getGeoObject, replaceKeyNames } from "helpers/dataUtils";
+import { numeral } from "helpers/formatters";
 
 export default translate()(
   class TradeBalance extends Section {
@@ -40,8 +40,9 @@ export default translate()(
     ];
 
     render() {
-      const { t, className } = this.props;
+      const { t, className, i18n } = this.props;
       const path = this.context.data.path_trade_balance;
+      const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
@@ -60,7 +61,8 @@ export default translate()(
                 title:false
               },
               yConfig:{
-                title:t("Amount in $USD")
+                title:t("USD"),
+                tickFormat:(tick) => numeral(tick, locale).format("(0 a)")
               },
               shapeConfig: {
                 Line:{
@@ -69,8 +71,16 @@ export default translate()(
                 }
               }
             }}
-            dataFormat={data =>
-              melt(data.data, ["ID Year"], ["FOB", "CIF", "Trade Balance"])}
+            dataFormat={data => {
+                const tKeys = {
+                  "FOB": t("trade_balance.fob"),
+                  "CIF": t("trade_balance.cif"),
+                  "Trade Balance": t("trade_balance.trade_balance")
+                };
+                data.data = replaceKeyNames(data.data,tKeys);
+                return melt(data.data, ["ID Year"], _.values(tKeys))
+              }
+            }
           />
         </div>
       );

@@ -88,3 +88,15 @@ export function getLevelObject(params) {
 
   return r;
 }
+
+export function replaceKeyNames(list, keys){
+  return list.map((record)=>{
+      for (var oldKey in keys) {
+        if (keys.hasOwnProperty(oldKey)) {
+          record[keys[oldKey]] = record[oldKey];
+          if(oldKey!=keys[oldKey]) delete record[oldKey];
+        }
+      }
+      return record;
+  });
+}

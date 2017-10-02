@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-
+import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
+import { translate } from "react-i18next";
+
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { numeral } from "helpers/formatters";
 
 class EmploymentByLevel extends Section {
   static need = [
@@ -44,7 +45,9 @@ class EmploymentByLevel extends Section {
 
   render() {
     const path = this.context.data.path_employment_by_level;
-    const { t, className } = this.props;
+    const { t, className, i18n } = this.props;
+    const locale = i18n.language.split("-")[0];
+
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -69,10 +72,18 @@ class EmploymentByLevel extends Section {
                 title:false
               },
               yConfig:{
-                title:t("People")
+                title:t("People"),
+                tickFormat:(tick) => numeral(tick, locale).format("(0 a)")
               },
+              xSort: (a,b) => { console.warn(a); return 1;},
               barPadding: 0,
               groupPadding: 5,
+              tooltipConfig:{
+                title: d => { 
+                  return d["ISCED"]
+                },
+                body: d => numeral(d['Expansion factor'], locale).format("(0 a)") + " " + t("people")
+              },
               legendConfig: {
                   label: false,
                   shapeConfig:{

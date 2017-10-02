@@ -86,6 +86,15 @@ export function numeral(number, locale = "en") {
   return n(number);
 }
 
+export function moneyRangeFormat(tick,locale = "en"){
+  if(!tick)return '';
+  var ticks = tick.split('-').map((ti)=>numeral(ti, locale).format("($ 0 a)"));
+  if(ticks.length==1){
+    ticks[0] = '+'+ticks[0];
+  }
+  return ticks.join(' - ');
+}
+
 function abbreviate(n) {
   if (n === undefined || n === null) return "N/A";
 
