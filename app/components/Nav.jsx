@@ -68,7 +68,14 @@ class Nav extends Component {
     return (
       <nav className="nav">
         
-        <SubNav type="scroll" anchor="right" visible={this.visibleSubNav}>
+        <SubNav type="scroll" anchor="left" visible={this.visibleSubNav}>
+          <div className="close-btn-container">
+            <div className="menu-button">
+              <a onClick={this.toggleSubNav}>
+                {subnav_visible?'X':'='}
+              </a>
+            </div>
+          </div>
           <ul>
             <li className="title">
               {t('Navigation')}
@@ -99,23 +106,34 @@ class Nav extends Component {
 
         <div className="nav-container">
           <div className="nav-links">
-            <Link className="logo" to="/">
-              <img src="/images/logos/logo-datachile.svg" />
-            </Link>
-            <Link className="link" to="/explore">
-              {t("Explore")}
-            </Link>
+            <div className="nav-lang">
+              <div className="lang-selector">
+                <span className="lang-current">
+                  {currentLang}
+                </span>
+                <span> | </span>
+                <span className="lang-other">
+                  <a href={url}>
+                    {otherLang}
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div className="nav-menu">
+              <Link className="logo" to="/">
+                <img src="/images/logos/logo-datachile.svg" />
+              </Link>
+              <Link className="link" to="/explore">
+                {t("Explore")}
+              </Link>
+              <div className="menu-button">
+                <a onClick={this.toggleSubNav}>
+                  {subnav_visible?'=':'='}
+                </a>
+              </div>
+            </div>
           </div>
           <div className="nav-title">
-            <h1>
-              {title}
-            </h1>
-            {ancestor &&
-              <div className="parent">
-                <Link className="link" to={ancestorLink}>{ancestor}</Link>
-              </div>}
-          </div>
-          <div className="nav-meta">
             <div className="type">
               {type &&
                 exploreLink &&
@@ -128,25 +146,13 @@ class Nav extends Component {
                   {type}
                 </span>}
             </div>
-            
-          </div>
-          <div className="menu-button">
-            <a onClick={this.toggleSubNav}>
-              {subnav_visible?'X':'='}
-            </a>
-          </div>
-          <div className="nav-lang">
-            <div className="lang-selector">
-              <span className="lang-current">
-                {currentLang}
-              </span>
-              <span> | </span>
-              <span className="lang-other">
-                <a href={url}>
-                  {otherLang}
-                </a>
-              </span>
-            </div>
+            <h1>
+              {title}
+            </h1>
+            {ancestor &&
+              <div className="parent">
+                <Link className="link" to={ancestorLink}>{ancestor}</Link>
+              </div>}
           </div>
         </div>
       </nav>

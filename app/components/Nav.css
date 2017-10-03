@@ -1,13 +1,14 @@
 .nav {
   width: 100%;
-  margin: 30px auto 60px auto;
+  margin: var(--gutter) auto 60px auto;
+  padding: 0px var(--gutter);
 
   & .nav-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     & .nav-title {
-      lost-column: 6/12 flex;
+      lost-column: 6/12 2;
       & h1 {
         text-transform: uppercase;
         color: var(--snow);
@@ -18,7 +19,8 @@
         text-align: right;
         margin: 0px;
       }
-      & .parent {
+      & .parent,
+      & .type {
         padding: 0px;
         text-align: right;
         & a {
@@ -41,17 +43,23 @@
         }
       }
     }
-    & .nav-meta {
-      lost-column: 2/12 flex;
+    & .nav-links {
       display: flex;
-      flex-direction: column;
-      align-items: start;
-      & .type {
-        padding: 0 10px;
-        & a {
+      lost-column: 6/12 flex;
+      lost-flex-container: column;
+      & .nav-menu {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+        & .logo {
+          margin-right: 30px;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
+        & .link {
           cursor: pointer;
           display: inline-block;
-          margin: 15px 15px 0px 15px;
+          margin: 15px 15px;
           opacity: 0.8;
           text-decoration: none;
           transition: opacity 0.2s;
@@ -67,76 +75,31 @@
           }
         }
       }
-    }
-    & .nav-links {
-      lost-column: 3/12 flex;
-      display: flex;
-      align-items: flex-start;
-      padding-left: var(--gutter);
-      & .logo {
-        display: inline-block;
-        margin-right: 30px;
-        text-decoration: none;
-        text-transform: uppercase;
-
-        & .data {
-          color: white;
-        }
-
-        & .chile {
-          color: var(--light);
-          margin-left: 5px;
-        }
-      }
-
-      & .link {
-        cursor: pointer;
-        display: inline-block;
-        margin: 15px 15px;
-        opacity: 0.8;
-        text-decoration: none;
-        transition: opacity 0.2s;
-        font-family: var(--font-family-text);
-        font-weight: 400;
-        font-size: 12px;
-        color: var(--snow);
-        letter-spacing: 0.08px;
-        text-transform: uppercase;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-    & .nav-lang{
-      lost-column: 1/12 flex;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      & .lang-selector {
-        & span {
-          display: inline-block;
-          margin: 15px 2px;
-          text-decoration: none;
-          font-family: var(--font-family-text);
-          font-weight: 400;
-          font-size: 12px;
-          color: var(--snow);
-          letter-spacing: 0.08px;
-          text-transform: uppercase;
-          &.lang-current {
+      & .nav-lang{
+        & .lang-selector {
+          & span {
+            margin: 0px 2px;
+            text-decoration: none;
+            font-family: var(--font-family-text);
+            font-weight: 400;
+            font-size: 12px;
             color: var(--snow);
-            text-decoration: underline;
-            opacity: 1;
-          }
-          &.lang-other {
-            & a {
-              transition: opacity 0.2s;
+            letter-spacing: 0.08px;
+            text-transform: uppercase;
+            &.lang-current {
               color: var(--snow);
-              opacity: 0.8;
-              text-decoration: none;
-              &:hover {
-                opacity: 1;
+              text-decoration: underline;
+              opacity: 1;
+            }
+            &.lang-other {
+              & a {
+                transition: opacity 0.2s;
+                color: var(--snow);
+                opacity: 0.8;
+                text-decoration: none;
+                &:hover {
+                  opacity: 1;
+                }
               }
             }
           }
@@ -150,6 +113,9 @@
 .subnav {
   background-color: var(--footer-bg);
   padding: 15px 30px;
+  & .close-btn-container{
+    text-align: right;
+  }
   & ul{
     list-style: none;
     padding: 0px;
@@ -218,19 +184,22 @@
 }
 
 .menu-button{
-  position: absolute;
-  z-index: 101;
-  right: 10px;
-  top: 10px;
   display: none;
-  padding: 20px;
-
-  text-transform: uppercase;
-  color: var(--snow);
-  font-family: var(--font-family-title);
-  font-weight: 300;
-  font-size: 30px;
-  line-height: 1;
+  & a {
+    text-transform: uppercase;
+    font-family: var(--font-family-title);
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1;
+    transition: opacity 0.2s;
+    color: var(--snow);
+    opacity: 0.8;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      opacity: 1;
+    }
+  }
 }
 
 @add-mixin for-xl {
@@ -252,17 +221,22 @@
    .nav{
       & .nav-container{
         & .nav-links{
-          & .link{
-            display: none;
+          & .nav-menu{
+            & .link{
+              display: none;
+            }
           }
+        }
+        & .nav-menu {
+          align-items: flex-start;
+        }
+        & .nav-lang{
+          display: none;
         }
         & .nav-title{
           & h1 {
             font-size: 30px;
           }
-        }
-        & .nav-lang{
-          display: none;
         }
       }
    }
@@ -278,6 +252,9 @@
       & .nav-links{
         lost-column: 1 flex;
       }
+      & .nav-menu {
+        justify-content: space-between;
+      }
       & .nav-title{
         lost-column: 1 flex;
         & h1 {
@@ -285,15 +262,8 @@
           text-align: center;
           padding: 15px;
         }
-        & .parent{
+        & .parent, & .type{
           text-align: center;
-        }
-      }
-      & .nav-meta{
-        lost-column: 1 flex;
-        & .type {
-          text-align: center;
-          lost-column: 1 flex;
         }
       }
     }

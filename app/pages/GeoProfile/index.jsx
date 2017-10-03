@@ -102,8 +102,9 @@ import "../intro.css";
 import "./topics.css";
 
 const chileObj = {
-  name: "Chile",
-  id: "chile"
+  key:'chile',
+  name:'Chile',
+  caption:'Chile'
 };
 
 class GeoProfile extends Component {

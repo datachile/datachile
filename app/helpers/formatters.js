@@ -22,6 +22,9 @@ function slugifyStr(str) {
 }
 
 export function slugifyItem(prefix, id1, name1, id2, name2) {
+  if(prefix=='geo'&&id1=='chile'){
+    return '/geo/chile'
+  }
   var link = "/" + prefix + "/" + slugifyStr(name1);
 
   if (id1) {
