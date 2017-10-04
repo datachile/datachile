@@ -8,7 +8,7 @@ import "../../node_modules/slick-carousel/slick/slick.css";
 
 class TopicSlider extends Component {
   componentWillReceiveProps(nextProps) {
-    console.log("TOPIC SLIDER", nextProps);
+    //console.log("TOPIC SLIDER", nextProps);
     /*if (nextProps.selected !== this.state.selected) {
       //this.setState({ selected: nextProps.selected });
       //this.refs.slider.slickGoTo(nextProps.selected);
@@ -22,7 +22,7 @@ class TopicSlider extends Component {
 
     const afterChange = d => {
       goTo(d);
-      console.log("afterChange", browserHistory.getCurrentLocation());
+      //console.log("afterChange", browserHistory.getCurrentLocation());
       //browserHistory.replace({ search: "?slide=" + d });
       /*browserHistory.push(
         browserHistory.getCurrentLocation().pathname + "#" + d
@@ -31,7 +31,7 @@ class TopicSlider extends Component {
 
     const beforeChange = d => {
       //goTo(d);
-      console.log("beforeChange", browserHistory.getCurrentLocation());
+      //console.log("beforeChange", browserHistory.getCurrentLocation());
       //browserHistory.replace({ search: "?slide=" + d });
       /*browserHistory.push(
         browserHistory.getCurrentLocation().pathname + "#" + d
