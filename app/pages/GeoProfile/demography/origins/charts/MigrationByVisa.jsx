@@ -1,12 +1,14 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import _ from "lodash";
-
+import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
+
 import { ordinalColorScale } from "helpers/colors";
 import mondrianClient, { geoCut,getMembersQuery } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { translate } from "react-i18next";
+import { numeral } from "helpers/formatters";
+
 import Select from "components/Select";
 
 export default translate()(
@@ -97,8 +99,6 @@ export default translate()(
 
         var variations = this.context.data.visa_types_with_path;
 
-        console.log(variations);
-
         this.setState({
           selectedOption:0,
           selectedObj:variations[0],
@@ -114,8 +114,8 @@ export default translate()(
       };
 
     render() {
-      const { t, className } = this.props;
-     
+      const { t, className, i18n } = this.props;
+      const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
@@ -133,8 +133,7 @@ export default translate()(
               height: 500,
               data: this.state.selectedObj.path,
               groupBy: "ID Country",
-              label: d =>
-                d['Country'] + ': ' + d["Number of visas"],
+              label: d => d['Country'],
               time: "ID Year",
               x: "Number of visas",
               y: "Country",
@@ -155,6 +154,10 @@ export default translate()(
               ySort: (a,b) => {return a["Number of visas"]>b["Number of visas"] ? 1:-1;},
               barPadding: 0,
               groupPadding: 5,
+              tooltipConfig:{
+                title: d => d["Country"],
+                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+              },
               legendConfig: {
                   label: false,
                   shapeConfig:false

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import _ from "lodash";
-
+import { Section } from "datawheel-canon";
 import { LinePlot } from "d3plus-react";
+import { translate } from "react-i18next";
+
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { melt,getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { numeral } from "helpers/formatters";
+
 import Select from "components/Select";
 
 class EmploymentBySex extends Section {
@@ -84,9 +86,12 @@ class EmploymentBySex extends Section {
   };
 
   render() {
-    const path = this.context.data.path_employment_by_sex;
-    const { t, className } = this.props;
+    const { t, className, i18n } = this.props;
     const { selectedObj } = this.state;
+    const locale = i18n.language.split("-")[0];
+    
+    const path = this.context.data.path_employment_by_sex;
+    
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -105,19 +110,28 @@ class EmploymentBySex extends Section {
               groupBy: "variable",
               x: "Month",
               y: "value",
+              time: "Month",
+              timeline: false,
               scale: "time",
               xConfig:{
-                tickSize:0,
                 title:false
               },
               yConfig:{
-                title:t("People")
+                title:t("People"),
+                tickFormat:(tick) => numeral(tick, locale).format("(0 a)")
               },
               shapeConfig: {
                 Line:{
                   stroke: d => ordinalColorScale(d["variable"]),
                   "strokeWidth": 2
                 }
+              },
+              tooltipConfig:{
+                title: d => { 
+                  const date = new Date(d["Month"]);
+                  return d["variable"] + " " + date.getFullYear() + "-" + date.getMonth()
+                },
+                body: d => numeral(d['value'], locale).format("(0 a)") + " " + t("people")
               }
             }}
             dataFormat={function(data) {

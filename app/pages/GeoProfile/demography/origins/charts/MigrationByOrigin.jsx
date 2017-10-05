@@ -1,10 +1,12 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { ordinalColorScale } from "helpers/colors";
 import { Treemap } from "d3plus-react";
+import { translate } from "react-i18next";
+
+import { ordinalColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { translate } from "react-i18next";
+import { numeral } from "helpers/formatters";
 
 export default translate()(
   class MigrationByOrigin extends Section {
@@ -36,8 +38,9 @@ export default translate()(
     ];
 
     render() {
-      const { t, className } = this.props;
+      const { t, className, i18n } = this.props;
       const path = this.context.data.path_migration_by_origin;
+      const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
@@ -57,6 +60,13 @@ export default translate()(
               time: "ID Year",
               shapeConfig: {
                   fill: d => ordinalColorScale(d["ID Continent"])
+              },
+              tooltipConfig:{
+                title: d => {
+                  d["Country"] = d["Country"]=="Chile"?["Chile"]:d["Country"];
+                  return d["Country"] instanceof Array ? d["Continent"] : d["Country"]
+                },
+                body: d => numeral(d['Number of visas'], locale).format("(0 a)") + " " + t("people")
               },
               legendConfig: {
                   shapeConfig:{

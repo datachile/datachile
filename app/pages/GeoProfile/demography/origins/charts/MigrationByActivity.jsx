@@ -1,12 +1,13 @@
 import React from "react";
 import _ from "lodash";
 import { Section } from "datawheel-canon";
-
 import { BarChart } from "d3plus-react";
+import { translate } from "react-i18next";
+
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { translate } from "react-i18next";
+import { numeral } from "helpers/formatters";
 
 export default translate()(
   class MigrationByActivity extends Section {
@@ -38,8 +39,9 @@ export default translate()(
     ];
 
     render() {
-      const { t, className } = this.props;
+      const { t, className, i18n } = this.props;
       const path = this.context.data.path_migration_by_activity;
+      const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
@@ -63,7 +65,8 @@ export default translate()(
               discrete:"y",
               xConfig:{ 
                 tickSize:0,
-                title:t("Number of visas")
+                title:t("Number of visas"),
+                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)")
               },
               yConfig:{
                 barConfig: {"stroke-width": 0},
@@ -73,6 +76,10 @@ export default translate()(
               ySort: (a,b) => {return a["Number of visas"]>b["Number of visas"] ? 1:-1;},
               barPadding: 0,
               groupPadding: 5,
+              tooltipConfig:{
+                title: d => d["Activity"],
+                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+              },
               legendConfig: {
                   label: false,
                   shapeConfig:false

@@ -43,7 +43,7 @@ class IndustryBySector extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Industry By Sector")}
+          {t("Industry By Employment")}
         </h3>
         <Treemap
           config={{

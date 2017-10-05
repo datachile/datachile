@@ -102,8 +102,9 @@ import "../intro.css";
 import "./topics.css";
 
 const chileObj = {
-  name: "Chile",
-  id: "chile"
+  key:'chile',
+  name:'Chile',
+  caption:'Chile'
 };
 
 class GeoProfile extends Component {
@@ -180,6 +181,7 @@ class GeoProfile extends Component {
               .measure("Number of records")
               .measure("Population")
               .measure("Population Rank")
+              .measure("Population Rank Total")
               .measure("Population Rank Decile"),
             store.i18n.locale
           );
@@ -193,6 +195,8 @@ class GeoProfile extends Component {
             data: {
               value: res.data.data[0]["Population"],
               decile: res.data.data[0]["Population Rank Decile"],
+              rank: res.data.data[0]["Population Rank"],
+              total: res.data.data[0]["Population Rank Total"],
               year: store.population_year,
               source: "INE projection"
             }
@@ -217,7 +221,8 @@ class GeoProfile extends Component {
               .measure("Income")
               .measure("Median Income")
               .measure("Weighted Median Income Rank")
-              .measure("Weighted Median Income Decile"),
+              .measure("Weighted Median Income Decile")
+              .measure("Weighted Median Income Total"),
             store.i18n.locale
           );
 
@@ -230,6 +235,8 @@ class GeoProfile extends Component {
             data: {
               value: res.data.data[0]["Median Income"],
               decile: res.data.data[0]["Weighted Median Income Decile"],
+              rank: res.data.data[0]["Weighted Median Income Rank"],
+              total: res.data.data[0]["Weighted Median Income Total"],
               year: store.income_year,
               source: "NESI Survey"
             }
@@ -254,7 +261,8 @@ class GeoProfile extends Component {
               .measure("Number of records")
               .measure("PSU Rank")
               .measure("PSU Average")
-              .measure("PSU Rank Decile"),
+              .measure("PSU Rank Decile")
+              .measure("PSU Rank Total"),
             store.i18n.locale
           );
 
@@ -267,6 +275,8 @@ class GeoProfile extends Component {
             data: {
               value: res.data.data[0]["PSU Average"],
               decile: res.data.data[0]["PSU Rank Decile"],
+              rank: res.data.data[0]["PSU Rank"],
+              total: res.data.data[0]["PSU Rank Total"],
               year: store.psu_year,
               source: "PSU data"
             }
@@ -376,23 +386,41 @@ class GeoProfile extends Component {
 
     const { subnav, activeSub } = this.state;
 
+    const locale = i18n.language.split("-")[0];
+    
     const geoObj = getGeoObject(this.props.routeParams);
 
-    
+    const showRanking = (geoObj.type=='country')?false:true;
+
     const geo = this.props.data.geo;
+    
+    if(geo){
+      this.props.data.geo.type = geoObj.type;
+      this.props.data.geo.ancestor = ancestor;
+    }
     
     const ancestor =
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
         : geoObj.type == "region" ? chileObj : false;
     
-    if(geo){
-      this.props.data.geo.type = geoObj.type;
-      this.props.data.geo.ancestor = ancestor;
-    }
+    /*
+    stats format
+      {
+        value: 200100,
+        decile: 3.1,
+        rank: 3,
+        total: 13
+        year: 2015,
+        source: "NESI"
+      }
+    */
 
-    const locale = i18n.language.split("-")[0];
-
+    const stats = {
+      population: this.props.data.population,
+      income: this.props.data.income,
+      psu: this.props.data.psu
+    };
 
     const topics = [
       {
@@ -421,20 +449,6 @@ class GeoProfile extends Component {
       }
     ];
 
-    /*
-    stats format
-      {
-        value: 200100,
-        decile: 3.1,
-        year: 2015,
-        source: "NESI"
-      }
-    */
-    const stats = {
-      population: this.props.data.population,
-      income: this.props.data.income,
-      psu: this.props.data.psu
-    };
 
     var type = "";
     switch (geoObj.type) {
@@ -511,6 +525,7 @@ class GeoProfile extends Component {
                     title={t("Population")}
                     icon="poblacion"
                     decile={stats.population.decile}
+                    rank={(showRanking)?stats.population.rank+'/'+stats.population.total:false}
                     datum={numeral(stats.population.value, locale).format(
                       "(0,0)"
                     )}
@@ -524,6 +539,7 @@ class GeoProfile extends Component {
                     title={t("Income")}
                     icon="ingreso"
                     decile={stats.income.decile}
+                    rank={(showRanking)?stats.income.rank+'/'+stats.income.total:false}
                     datum={numeral(stats.income.value, locale).format(
                       "($ 0,0)"
                     )}
@@ -532,11 +548,12 @@ class GeoProfile extends Component {
                   />}
                 {stats.psu &&
                   <FeaturedDatumSplash
-                    title={t("PSU")}
+                    title={t("Education")}
                     icon="psu"
-                    decile={stats.income.decile}
+                    decile={stats.psu.decile}
+                    rank={(showRanking)?stats.psu.rank+'/'+stats.psu.total:false}
                     datum={
-                      numeral(stats.psu.value, locale).format("(0,0)") + "pts"
+                      numeral(stats.psu.value, locale).format("(0,0)") + " psu"
                     }
                     source={stats.psu.year + " - " + stats.psu.source}
                     className=""

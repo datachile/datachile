@@ -162,7 +162,9 @@ class ProductProfile extends Component {
             cube.query
               .drilldown("Date", "Date", "Year")
               .measure("FOB US")
-              .measure("HS Rank Decile"),
+              .measure("HS Rank")
+              .measure("HS Rank Decile")
+              .measure("HS Rank Total"),
             "HS0",
             "HS2",
             store.i18n.locale
@@ -180,6 +182,8 @@ class ProductProfile extends Component {
               {
                 value: (total)?total['FOB US']:'',
                 decile: (total)?total['HS Rank Decile']:'',
+                rank: (total)?total['HS Rank']:'',
+                total: (total)?total['HS Rank Total']:'',
                 year: store.exports_year,
                 source: "Source Lorem"
               }
@@ -276,6 +280,7 @@ class ProductProfile extends Component {
                       title={t("Exports")}
                       icon="ingreso"
                       decile={stats.exports.decile}
+                      rank={stats.exports.rank+'/'+stats.exports.total}
                       datum={numeral(stats.exports.value, locale).format(
                         "($ 0,0 a)"
                       )}

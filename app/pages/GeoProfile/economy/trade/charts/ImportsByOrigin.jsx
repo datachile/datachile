@@ -1,11 +1,12 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-
-import { ordinalColorScale } from "helpers/colors";
 import { Treemap } from "d3plus-react";
+import { translate } from "react-i18next";
+
+import { numeral } from "helpers/formatters";
+import { ordinalColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { translate } from "react-i18next";
 
 export default translate()(
   class ImportsByOrigin extends Section {
@@ -38,8 +39,9 @@ export default translate()(
     ];
 
     render() {
-      const { t, className } = this.props;
+      const { t, className, i18n } = this.props;
       const path = this.context.data.path_imports_by_origin;
+      const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
@@ -57,6 +59,12 @@ export default translate()(
               time: "ID Year",
               shapeConfig: {
                   fill: d => ordinalColorScale(d["ID Continent"])
+              },
+              tooltipConfig:{
+                title: d=>{
+                  return d["Country"] instanceof Array ? d["Continent"] : d["Country"];
+                },
+                body: d=>numeral(d['CIF US'], locale).format("(USD 0 a)") + "<br/><a>"+t("tooltip.to_profile")+"</a>"
               },
               legendConfig: {
                   shapeConfig:{

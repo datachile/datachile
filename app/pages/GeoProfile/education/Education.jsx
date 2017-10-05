@@ -27,15 +27,27 @@ class Education extends Component {
     const { selected } = this.state;
 
     const sections = [
-      { name: t("Enrollment"), slides: [0] },
-      { name: t("Performance"), slides: [1] }
+      { 
+        name: t("Enrollment"),
+        slides: [
+          {ix:0, name:t("By School Type")}
+        ]
+      },
+      { 
+        name: t("Performance"),
+        slides: [
+          {ix:1, name:t("By School Type")}
+        ]
+      }
       /*{ name: t("Higher education"), slides: [2, 3, 4] },
       { name: t("Secondary education"), slides: [5] },
       { name: t("Scholarships"), slides: [6] }*/
     ];
 
     const selectedSection = _.find(sections, function(s) {
-      return _.indexOf(s.slides, selected) > -1;
+      return _.find(s.slides, function(slid){
+        return slid.ix == selected;
+      });
     });
 
     return (

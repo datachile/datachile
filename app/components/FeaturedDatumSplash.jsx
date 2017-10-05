@@ -9,7 +9,7 @@ import "./FeaturedDatumSplash.css";
 
 class FeaturedDatumSplash extends Component {
     render() {
-        const { t, icon, datum, decile, title, source, className } = this.props;
+        const { t, icon, datum, decile, title, source, className, rank } = this.props;
 
         const full = Math.floor(decile / 2);
         const half = decile % 2 != 0 ? 1 : 0;
@@ -20,7 +20,7 @@ class FeaturedDatumSplash extends Component {
         return (
             <div className={"featured-datum-splash " + className}>
                 <h4 className="featured-datum-splash-title">
-                    {title}
+                    {title} {rank && <small>{rank}</small> }
                 </h4>
                 <div className="featured-datum-splash-icons">
                     {[...Array(full)].map((x, i) =>

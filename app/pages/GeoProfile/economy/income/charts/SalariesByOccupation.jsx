@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-
+import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
+import { translate } from "react-i18next";
+
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale,COLORS_GENDER } from "helpers/colors";
-import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { numeral } from "helpers/formatters";
 
 class SalariesByOccupation extends Section {
   static need = [
@@ -40,7 +41,9 @@ class SalariesByOccupation extends Section {
 
   render() {
     const path = this.context.data.path_salaries_by_occupation;
-    const { t, className } = this.props;
+    const { t, className, i18n } = this.props;
+    const locale = i18n.language.split("-")[0];
+
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -65,7 +68,8 @@ class SalariesByOccupation extends Section {
                 title:false
               },
               yConfig:{
-                title:t("Median Income")
+                title:t("Median Income CLP"),
+                tickFormat:(tick) => numeral(tick, locale).format("(0 a)")
               },
               barPadding: 0,
               groupPadding: 10,

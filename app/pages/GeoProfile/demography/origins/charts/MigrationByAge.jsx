@@ -1,11 +1,12 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-
+import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
+
 import { ordinalColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { translate } from "react-i18next";
+import { numeral } from "helpers/formatters";
 
 export default translate()(
   class MigrationByAge extends Section {
@@ -37,8 +38,9 @@ export default translate()(
     ];
 
     render() {
-      const { t, className } = this.props;
+      const { t, className, i18n } = this.props;
       const path = this.context.data.path_migration_by_age;
+      const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
@@ -63,10 +65,15 @@ export default translate()(
                 title:t("Age Range")
               },
               yConfig:{
-                title:t("People")
+                title:t("Visas"),
+                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)")
               },
               barPadding: 20,
-              groupPadding: 40
+              groupPadding: 40,
+              tooltipConfig:{
+                title: d => d["Age Range"],
+                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+              }
             }}
             
             dataFormat={data => data.data}
