@@ -13,22 +13,23 @@
     }
 
     & input {
-      border: 0;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
       box-sizing: border-box;
       display: inline-block;
       font-family: var(--font-family-text);
       font-size: 14.53px;
       color: var(--color-p);
       font-weight: 400;
-      padding: 10px 0 10px 30px;
+      padding: 10px 10px 10px 40px;
       width: 100%;
       background-image: url("/images/icons/icon-lupa.svg");
       background-repeat: no-repeat;
-      background-position: 10px center;
+      background-position: 20px center;
+      background-color: transparent;
       &::placeholder {
-        color: var(--color-p);
+        color: var(--snow);
       }
-
       &:focus {
         outline: none;
       }

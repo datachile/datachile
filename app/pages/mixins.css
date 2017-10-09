@@ -1,0 +1,21 @@
+/*BASICS mixins */
+
+/*BREAKPOINTS mixins */
+@define-mixin for-xl {
+  @media (max-width: 1800px) { @mixin-content; }
+}
+@define-mixin for-lg {
+  @media (max-width: 1200px) { @mixin-content; }
+}
+@define-mixin for-md {
+  @media (max-width: 992px) { @mixin-content; }
+}
+@define-mixin for-sm {
+  @media (max-width: 768px) { @mixin-content; }
+}
+@define-mixin for-xs {
+  @media (max-width: 480px) { @mixin-content; }
+}
+@define-mixin for-xx {
+  @media (max-width: 320px) { @mixin-content; }
+}

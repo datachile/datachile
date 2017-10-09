@@ -1,32 +1,8 @@
-@import "variables.css";
-
-body {
-  /* @media only screen and (max-width : var(--break-lg)) {
-  
-  }
-
-  @media only screen and (max-width : var(--break-md)) {
-  
-  }
-
-  @media only screen and (max-width : var(--break-sm)) {
-
-  }
-
-  @media only screen and (max-width : var(--break-xs)) {
-
-  }
-
-  @media only screen and (max-width : var(--break-xxs)) {
-
-  }*/
-}
-
 .home {
   font-family: var(--font-family-text);
 
   & .splash {
-    height: 800px;
+    height: 100%;
     left: 0;
     position: absolute;
     top: 0;
@@ -55,24 +31,21 @@ body {
   }
 
   & .intro {
-    display: flex;
-    flex-direction: row;
+    lost-flex-container: column;
     width: 100%;
-    padding-top: 300px;
-    padding-bottom: 100px;
-    justify-content: space-between;
-    align-items: center;
-
+    justify-content: center;
+    lost-align: center;
+    lost-center: 1/3;
     & .text {
-      flex: 0.3;
       padding: 0px var(--gutter);
-
+      text-transform: uppercase;
       & .title {
         color: var(--snow);
         font-size: 45px;
         font-weight: 300;
         margin: 10px 0px;
         font-family: var(--font-family-text);
+        text-align: center;
       }
 
       & .lead {
@@ -83,54 +56,226 @@ body {
         color: var(--snow);
         letter-spacing: 0.06px;
         line-height: 19px;
-        text-transform: uppercase;
-      }
-
-      @media only screen and (--small) {
-        flex: 1;
+        text-align: center;
       }
     }
 
     & .search-home-wrapper {
-      flex: 0.6;
-      background-color: var(--near-black);
-      border-radius: var(--border-radius);
-      padding: 15px 20px;
-      margin: 0px var(--gutter);
-
-      @media only screen and (--small) {
-        flex: 1;
-      }
-    }
-
-    @media only screen and (--small) {
-      flex-direction: column;
-      align-items: stretch;
+      padding: var(--gutter);
+      lost-column: 1;
     }
   }
 
-  & .title-tiles {
-    font-weight: 400;
-    text-transform: uppercase;
-    font-family: var(--font-family-title);
-    font-size: 24px;
-    color: var(--snow);
-    letter-spacing: 0.05px;
-    margin-bottom: 40px;
-    padding: 0px var(--gutter);
-  }
+  & .home-slider{
+    lost-flex-container: column;
+    lost-center: 3/4;
 
-  & .tiles {
-    background-color: var(--dark);
-    & .dc-container {
-      & .tiles-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-      & .source-container {
-        padding: var(--gutter);
+    & * {
+      min-height: 0;
+      min-width: 0;
+    }
+    /* Slider */
+    & .slick-loading .slick-list {
+      background: steelblue;
+    }
+
+    /* Arrows */
+    & .slick-prev,
+    & .slick-next {
+      font-size: 0;
+      line-height: 0;
+
+      position: absolute;
+      top: 50%;
+
+
+      width: 20px;
+      height: 100%;
+      padding: 0;
+      -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+
+      cursor: pointer;
+
+      color: transparent;
+      border: none;
+      outline: none;
+      background: black;
+      z-index: 10;
+    }
+    & .slick-prev:hover,
+    & .slick-prev:focus,
+    & .slick-next:hover,
+    & .slick-next:focus {
+      color: transparent;
+      outline: none;
+      background: gray;
+    }
+    & .slick-prev:hover:before,
+    & .slick-prev:focus:before,
+    & .slick-next:hover:before,
+    & .slick-next:focus:before {
+      opacity: 1;
+    }
+    & .slick-prev.slick-disabled,
+    & .slick-next.slick-disabled {
+      visibility: hidden;
+    }
+    & .slick-prev.slick-disabled:before,
+    & .slick-next.slick-disabled:before {
+      opacity: 0;
+    }
+
+    & .slick-prev:before,
+    & .slick-next:before {
+      font-family: 'slick';
+      font-size: 20px;
+      line-height: 1;
+
+      opacity: .75;
+      color: white;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    & .slick-prev {
+      left: 0;
+    }
+    & [dir='rtl'] .slick-prev {
+      right: 0;
+      left: auto;
+    }
+    & .slick-prev:before {
+      content: '←';
+    }
+    & [dir='rtl'] .slick-prev:before {
+      content: '→';
+    }
+
+    & .slick-next {
+      right: 0;
+    }
+    & [dir='rtl'] .slick-next {
+      right: auto;
+      left: 0;
+    }
+    & .slick-next:before {
+      content: '→';
+    }
+    & [dir='rtl'] .slick-next:before {
+      content: '←';
+    }
+
+    /* Dots */
+    & .slick-dotted.slick-slider {
+      margin-bottom: 30px;
+    }
+
+    & .slick-dots {
+      position: absolute;
+      bottom: -25px;
+
+      display: block;
+
+      width: 100%;
+      padding: 0;
+      margin: 0;
+
+      list-style: none;
+
+      text-align: center;
+    }
+    & .slick-dots li {
+      position: relative;
+
+      display: inline-block;
+
+      width: 20px;
+      height: 20px;
+      margin: 0 5px;
+      padding: 0;
+
+      cursor: pointer;
+    }
+    & .slick-dots li button {
+      font-size: 0;
+      line-height: 0;
+
+      display: block;
+
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+
+      cursor: pointer;
+
+      color: transparent;
+      border: 0;
+      outline: none;
+      background: transparent;
+    }
+    & .slick-dots li button:hover,
+    & .slick-dots li button:focus {
+      outline: none;
+    }
+    & .slick-dots li button:hover:before,
+    & .slick-dots li button:focus:before {
+      opacity: 1;
+    }
+    & .slick-dots li button:before {
+      font-family: 'slick';
+      font-size: 6px;
+      line-height: 20px;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 20px;
+      height: 20px;
+
+      content: '•';
+      text-align: center;
+
+      opacity: .25;
+      color: black;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    & .slick-dots li.slick-active button:before {
+      opacity: .75;
+      color: black;
+    }
+
+    & .home-slide-item{
+      padding: 15px;
+      & .home-slide-content{
+        background-color: var(--gray-dark); 
+        padding: 15px;
+        &:hover{
+          background-color: var(--gray-light); 
+        }
+        & .home-slide-clickable{
+          cursor: pointer;
+          & h3{
+            color: var(--snow);
+          }
+          & p{
+            color: var(--snow);
+          }
+        }
       }
     }
   }
+
+  & .home-header {
+    & h2{
+      text-align: center;
+      color: var(--snow);
+    }
+  }
+
 }
