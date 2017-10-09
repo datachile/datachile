@@ -17,11 +17,11 @@ The current version of Datachile is comprised of 6 containers:
 
 ### Requirements
 
-Install Docker Community Edition by following [the documentation on the Docker site](https://docs.docker.com/engine/installation/linux/docker-ce/debian/). [`docker-compose`] is also required, install it following [the instructions](https://docs.docker.com/compose/install/).
+Install Docker Community Edition by following [the documentation on the Docker site](https://docs.docker.com/engine/installation/linux/docker-ce/debian/). `docker-compose` is also required, install it following [the instructions](https://docs.docker.com/compose/install/).
 
 ### Build `datachile-mondrian` image
 
-Get the [source code of the Datachile Cubes server](https://github.com/datawheel/datachile-mondrian), and run `docker build -t datachile-mondrian:x.y.z`, where `x.y.z` is a version number. We will refer to it in the `docker-compose.yml` file.
+Get the [source code of the Datachile Cubes server](https://github.com/datawheel/datachile-mondrian), and run `docker build -t datachile-mondrian`.
 
 ### Load data into the `db` container
 
@@ -53,13 +53,3 @@ If there are changes in the code of `datachile-canon`, a new container must be b
 # Purging the nginx cache
 
 The `nginx` service is configured to keep a cache of the data served by `datachile-docker`. To purge it, run: `docker exec -it nginx /bin/bash -c 'rm -rf /nginx-cache/*' && docker-compose restart nginx`
-
-
-
-
-
-
-
-
-
-
