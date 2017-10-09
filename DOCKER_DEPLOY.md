@@ -40,6 +40,21 @@ The location of the cubes' schema definition file `schema.xml` is defined in the
 
 Make sure that ports 80 and 443 are not bound to any service in the host, and run `docker-compose up -d`. Logs can be inspected with `docker-compose logs -f --tail==100`.
 
+# Updating to new versions of the services
+
+## `datachile-mondrian`
+
+If there are changes in the code of `datachile-mondrian`, a new container must be built with. From the directory that contains the code of `datachile-mondrian`, run `docker build datachile-mondrian`. Then, restart the Compose cluster with `docker-compose up -d`.
+
+## `datachile-canon`
+
+If there are changes in the code of `datachile-canon`, a new container must be built with. From the directory that contains the code of `datachile-canon`, run `docker build datachile-canon`. Then, restart the Compose cluster with `docker-compose up -d`
+
+# Purging the nginx cache
+
+The `nginx` service is configured to keep a cache of the data served by `datachile-docker`. To purge it, run: `docker exec -it nginx /bin/bash -c 'rm -rf /nginx-cache/*' && docker-compose restart nginx`
+
+
 
 
 

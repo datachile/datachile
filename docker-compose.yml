@@ -10,7 +10,7 @@ services:
     command: postgres -c config_file=/etc/postgresql.conf
 
   datachile-mondrian:
-    image: 'datachile-mondrian:0.7.5'
+    image: 'datachile-mondrian:latest'
     environment:
       - APP_HOME=/datachile/
       - MONDRIAN_REST_CONF=/datachile-mondrian.yaml
