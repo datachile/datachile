@@ -1,28 +1,24 @@
-.featured-map-splash {
-	& .svg-mini-map{
-		width: 100%;
+.dynamic-home-header {
+	lost-flex-container: column;
+	& .dynamic-home-block{
 		height: 100px;
-		overflow: hidden;
-		& svg{
-			width: 140px;
-			margin: -25px -10px -10px -10px;
-			& circle{
-				fill:none;
-				stroke:0;
-			}
-			& path.region{
-				fill:none;
-				stroke:0;
-			}
-			& path.comuna{
-				fill: var(--accent);
-				stroke-width: 2;
-			    stroke-opacity: 1;
-			    stroke: var(--snow);
-			}
-			& path.limite{
-				fill:none;
-			}
+		width: 100%;
+		display: block;
+	}
+	& .dynamic-home-illustration{
+		position: relative;
+		& .svg-image {
+			line-height: 0;
+		}
+		& .dynamic-home-items{
+			line-height: 0;
+			position: absolute;
+			bottom: -30px;
+			width: 80%;
+			margin-left: auto;
+			margin-right: auto;
+			left: 0;
+			right: 0;
 		}
 	}
 }

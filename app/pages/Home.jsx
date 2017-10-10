@@ -41,27 +41,6 @@ class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps, nextState) {
-    console.warn('componentWillReceiveProps',nextState.header);
-    //this.paintMountains(nextProps.header);
-    /*if (nextProps && nextProps.header && (nextProps.header.slug !== this.props.header.slug)) {
-      loadSvgAsString(
-        "/images/home/headers/" + this.state.header.slug + ".svg"
-      ).get(this.callbackSvg);
-    }*/
-  }
-
-  changeBg() {
-    const id = this.state.header.slug;
-    select('.home .splash .image')
-      .transition()
-      .duration(500)
-      .style("opacity",0)
-      .on("end", function(e) {
-        select('.home .splash .image#'+id)
-          .transition()
-          .duration(500)
-          .style('opacity',1);
-      });
   }
 
   render() {
@@ -80,10 +59,7 @@ class Home extends Component {
     };
 
     const changeProfileHeader = p => {
-      console.warn('changeProfileHeader', p);
-      this.setState({header:p}, () => {
-        //this.changeBg();
-      });
+      this.setState({header:p});
     };
 
     var settings = {
