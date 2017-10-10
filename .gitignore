@@ -4,3 +4,6 @@ static/assets/*
 .env
 .DS_Store
 npm-debug.log
+*~
+dockerfiles/nginx/certs/*
+dockerfiles/nginx/conf.d/default.conf

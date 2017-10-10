@@ -1,7 +1,7 @@
 module.exports = {
   link: [
     {rel: "icon", href: "/images/favicon.ico?v=2"},
-    {rel: "stylesheet", href: "/images/css/reset.css"}
+    {rel: "stylesheet", href: "/css/reset.css"}
   ],
   meta: [
     {charset: "utf-8"},
