@@ -10,7 +10,7 @@
     z-index: var(--background);
 
     & .image {
-      background-image: url("/images/profile-bg/home.png");
+      background-color: var(--near-black);
       background-position: 50%;
       background-size: cover;
       height: 800px;
@@ -18,6 +18,11 @@
       position: absolute;
       top: 0;
       width: 100%;
+      opacity: 0;
+      &.selected{
+        transition: opacity 0.5s ease-in-out 0.5s;
+        opacity: 1;
+      }
     }
 
     & .gradient {

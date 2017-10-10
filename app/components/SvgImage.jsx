@@ -23,7 +23,7 @@ class SvgImage extends Component {
           svgFile: "Error loading SVG"
         }
       );
-      console.error('Error loading '+this.props.src);
+      (this.props.callbackError)?this.props.callbackError():console.error('Error loading '+this.props.src);
     } else {
       this.cache.setSvg(this.props.src, xml);
       this.setState(
@@ -31,6 +31,9 @@ class SvgImage extends Component {
           svgFile: xml
         }
       );
+      if(this.props.callback){
+        this.props.callback();
+      }
     }
   }
 
@@ -39,7 +42,7 @@ class SvgImage extends Component {
     if (cached) {
       this.callbackSvg(false, cached);
     } else {
-      d3Request(this.props.src).on("error", function(error) { console.error(error); }).get(this.props.src,this.callbackSvg);
+      d3Request(this.props.src).on("error", function(error) { (this.props.callbackError)?this.props.callbackError():console.error(error); }).get(this.props.src,this.callbackSvg);
     }
   }
 

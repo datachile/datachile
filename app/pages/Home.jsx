@@ -4,6 +4,7 @@ import { CanonComponent } from "datawheel-canon";
 import Slider from "react-slick";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
+import { select, selectAll, event } from "d3-selection";
 
 import { GEO } from "helpers/dictionary";
 import { GEOMAP } from "helpers/GeoData";
@@ -12,6 +13,7 @@ import FeaturedBox from "components/FeaturedBox";
 import SourceNote from "components/SourceNote";
 import Nav from "components/Nav";
 import Search from "components/Search";
+import DynamicHomeHeader from "components/DynamicHomeHeader";
 
 import "./Home.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
@@ -24,18 +26,42 @@ class Home extends Component {
     const { t } = props;
 
     const profiles = [
-        {name:t('Geo'), explore:'/explore/geo', color:'', slug: '', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Countries'), explore:'/explore/coutries', color:'', slug: '', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Institutions'), explore:'/explore/institutions', color:'', slug: '', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Careers'), explore:'/explore/careers', color:'', slug: '', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Products'), explore:'/explore/products', color:'', slug: '', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Industries'), explore:'/explore/industries', color:'', slug: '', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon.')}
+        {name:t('Geo'), explore:'/explore/geo', colors:['#445e81','#263b58'], slug: 'geo', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
+        {name:t('Countries'), explore:'/explore/coutries', colors:['#ccc','#ddd'], slug: 'countries', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
+        {name:t('Institutions'), explore:'/explore/institutions', colors:['#595a8f','#393a6a'], slug: 'institutions', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
+        {name:t('Careers'), explore:'/explore/careers', colors:['#676258','#9b8365'], slug: 'careers', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
+        {name:t('Products'), explore:'/explore/products', colors:['#a45c58','#794f57'], slug: 'products', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
+        {name:t('Industries'), explore:'/explore/industries', colors:['#0b5151','#143e48'], slug: 'industries', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon.')}
       ];
     this.state = {
       profiles: profiles,
       header: profiles[0],
-      selected: 0,
+      selected: 0
     };
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    console.warn('componentWillReceiveProps',nextState.header);
+    //this.paintMountains(nextProps.header);
+    /*if (nextProps && nextProps.header && (nextProps.header.slug !== this.props.header.slug)) {
+      loadSvgAsString(
+        "/images/home/headers/" + this.state.header.slug + ".svg"
+      ).get(this.callbackSvg);
+    }*/
+  }
+
+  changeBg() {
+    const id = this.state.header.slug;
+    select('.home .splash .image')
+      .transition()
+      .duration(500)
+      .style("opacity",0)
+      .on("end", function(e) {
+        select('.home .splash .image#'+id)
+          .transition()
+          .duration(500)
+          .style('opacity',1);
+      });
   }
 
   render() {
@@ -45,15 +71,19 @@ class Home extends Component {
 
     const { profiles, header, selected } = this.state; 
 
-    const afterChange = d => {
+
+
+    const afterChangeSlider = d => {
     };
 
-    const beforeChange = d => {
+    const beforeChangeSlider = d => {
     };
 
     const changeProfileHeader = p => {
-      console.log('changeProfileHeader', p);
-      this.setState({header:p});
+      console.warn('changeProfileHeader', p);
+      this.setState({header:p}, () => {
+        //this.changeBg();
+      });
     };
 
     var settings = {
@@ -72,7 +102,9 @@ class Home extends Component {
           <Nav />
           
           <div className="splash">
-            <div className="image" />
+            { profiles && profiles.map((p) =>
+              <div className={(p.slug==this.state.header.slug)?'selected image':'image'} id={p.slug} style={{'backgroundImage':'url(/images/home/bg/'+this.state.header.slug+'.png)'}} />
+            )}
             <div className="gradient" />
           </div>
           
@@ -93,15 +125,15 @@ class Home extends Component {
           </div>
 
           <div className="home-header">
-            <h2>HEADER + ILLUSTRATION {header.name}</h2>
+            <DynamicHomeHeader header={header} />
           </div>
 
           <div className="home-slider">
             <Slider
               {...settings}
               slickGoTo={selected}
-              afterChange={afterChange}
-              beforeChange={beforeChange}>
+              afterChange={afterChangeSlider}
+              beforeChange={beforeChangeSlider}>
               { profiles && profiles.map((p) => 
                   
                   <div id="home-slide-{p.slug}" className="home-slide-item">

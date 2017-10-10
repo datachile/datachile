@@ -1,4 +1,4 @@
-@import "mixins.css";
+@import "./mixins";
 
 .profile {
   font-family: var(--font-family-text);

@@ -12,6 +12,10 @@
   font-weight: 800;
 }
 
+body {
+  background-color: var(--near-black);
+}
+
 /*
 Yantramanav -> var(--font-family-text)
 font-family: 'Yantramanav', sans-serif;
