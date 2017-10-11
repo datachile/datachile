@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .home {
   font-family: var(--font-family-text);
   & .nav {
@@ -231,4 +233,40 @@
     }
   }
 
+}
+
+@add-mixin for-xl {
+}
+
+@add-mixin for-lg {
+  
+}
+
+@add-mixin for-md {
+  .home {
+    & .splash {
+      & .intro {
+        background-color: red;
+        lost-center:1/2;
+      }
+    }
+  }
+}
+
+@add-mixin for-sm {
+  .home {
+    & .splash {
+      & .intro {
+        background-color: green;
+        lost-column:1;
+      }
+    }
+  }
+}
+
+@add-mixin for-xs {
+}
+
+@add-mixin for-xx {
+    
 }
