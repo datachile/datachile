@@ -23,45 +23,85 @@ import "../../node_modules/slick-carousel/slick/slick.css";
 class Home extends Component {
   static need = [];
 
-  constructor (props) {
+  constructor(props) {
     super(props);
-    const { t } = props;
+    const { t, focus } = props;
 
     const profiles = [
-        {name:t('Geo'), explore:'/explore/geo', colors:['#445e81','#263b58'], slug: 'geo', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Countries'), explore:'/explore/coutries', colors:['#ccc','#ddd'], slug: 'countries', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Institutions'), explore:'/explore/institutions', colors:['#595a8f','#393a6a'], slug: 'institutions', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Careers'), explore:'/explore/careers', colors:['#676258','#9b8365'], slug: 'careers', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Products'), explore:'/explore/products', colors:['#a45c58','#794f57'], slug: 'products', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.')},
-        {name:t('Industries'), explore:'/explore/industries', colors:['#0b5151','#143e48'], slug: 'industries', description:t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon.')}
-      ];
+      {
+        name: t("Geographical"),
+        explore: "/explore/geo",
+        colors: ["#445e81", "#263b58"],
+        slug: "geo",
+        description: t(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
+        )
+      },
+      {
+        name: t("Countries"),
+        explore: "/explore/coutries",
+        colors: ["#ccc", "#ddd"],
+        slug: "countries",
+        description: t(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        )
+      },
+      {
+        name: t("Institutions"),
+        explore: "/explore/institutions",
+        colors: ["#595a8f", "#393a6a"],
+        slug: "institutions",
+        description: t(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
+        )
+      },
+      {
+        name: t("Careers"),
+        explore: "/explore/careers",
+        colors: ["#676258", "#9b8365"],
+        slug: "careers",
+        description: t("Lorem ipsum dolor sit amet, consectetur .")
+      },
+      {
+        name: t("Products"),
+        explore: "/explore/products",
+        colors: ["#a45c58", "#794f57"],
+        slug: "products",
+        description: t(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
+        )
+      },
+      {
+        name: t("Industries"),
+        explore: "/explore/industries",
+        colors: ["#0b5151", "#143e48"],
+        slug: "industries",
+        description: t(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
+        )
+      }
+    ];
     this.state = {
       profiles: profiles,
       header: profiles[0],
-      selected: 0
+      selected: 0,
+      focus: focus
     };
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
-  }
+  componentWillReceiveProps(nextProps, nextState) {}
 
   render() {
-    const { focus, message, t } = this.props;
+    const { message, t } = this.props;
 
-//    const featured = focus.map(f => GEOMAP.getRegion(f));
+    const { profiles, header, selected, focus } = this.state;
 
-    const { profiles, header, selected } = this.state; 
+    const afterChangeSlider = d => {};
 
-
-
-    const afterChangeSlider = d => {
-    };
-
-    const beforeChangeSlider = d => {
-    };
+    const beforeChangeSlider = d => {};
 
     const changeProfileHeader = p => {
-      this.setState({header:p});
+      this.setState({ header: p });
     };
 
     var settings = {
@@ -72,26 +112,38 @@ class Home extends Component {
       slidesToScroll: 2,
       adaptiveHeight: true,
       lazyLoad: false,
-      prevArrow: <CustomPrevArrow/>,
-      nextArrow: <CustomNextArrow/>
+      prevArrow: <CustomPrevArrow />,
+      nextArrow: <CustomNextArrow />
     };
 
     return (
       <CanonComponent id="home" data={this.props.data} topics={[]}>
         <div className="home">
           <Nav />
-          
+
           <div className="splash">
-            { profiles && profiles.map((p) =>
-              <div className={(p.slug==this.state.header.slug)?'selected image':'image'} id={p.slug} style={{'backgroundImage':'url(/images/home/bg/'+this.state.header.slug+'.png)'}} />
-            )}
+            {profiles &&
+              profiles.map(p => (
+                <div
+                  className={
+                    p.slug == this.state.header.slug
+                      ? "selected image"
+                      : "image"
+                  }
+                  id={p.slug}
+                  style={{
+                    backgroundImage:
+                      "url(/images/home/bg/" + this.state.header.slug + ".png)"
+                  }}
+                />
+              ))}
             <div className="gradient" />
-            
+
             <div className="intro">
               <div className="text">
-                <h2 className="title">
+                <h1 className="title">
                   <span>DATACHILE</span>
-                </h2>
+                </h1>
                 <p className="lead">
                   {t(
                     "Interactive data visualization platform about Chilean public data"
@@ -106,35 +158,58 @@ class Home extends Component {
             <div className="home-header">
               <DynamicHomeHeader header={header} />
             </div>
-
           </div>
-          
+
           <div className="home-slider">
             <Slider
               {...settings}
               slickGoTo={selected}
               afterChange={afterChangeSlider}
-              beforeChange={beforeChangeSlider}>
-              { profiles && profiles.map((p) => 
-                  
-                  <div id={ `home-slide-${p.slug}` } className={ (p.slug==header.slug)?'home-slide-item selected':'home-slide-item' }>
-                    <span className={`home-slide-selected background-${p.slug}`}></span>
+              beforeChange={beforeChangeSlider}
+            >
+              {profiles &&
+                profiles.map(p => (
+                  <div
+                    id={`home-slide-${p.slug}`}
+                    className={
+                      p.slug == header.slug
+                        ? "home-slide-item selected"
+                        : "home-slide-item"
+                    }
+                  >
+                    <span
+                      className={`home-slide-selected background-${p.slug}`}
+                    />
                     <div className={`home-slide-content border-${p.slug}`}>
-                      <div className="home-slide-clickable" onClick={() => changeProfileHeader(p)}>
-                        <h3>{p.name}</h3>
+                      <div
+                        className="home-slide-clickable"
+                        onClick={() => changeProfileHeader(p)}
+                      >
+                        <h3>
+                          <img src={`/images/icons/icon-${p.slug}.svg`} />{" "}
+                          {p.name}
+                        </h3>
                         <p>{p.description}</p>
                       </div>
                       <Link className={`link color-${p.slug}`} to={p.explore}>
-                        {t("Explore profiles")} <span className="pt-icon pt-icon-chevron-right" />
+                        {t("Explore profiles")}{" "}
+                        <span className="pt-icon pt-icon-chevron-right" />
                       </Link>
                     </div>
                   </div>
-
-              )}
+                ))}
             </Slider>
           </div>
 
-
+          <div className="home-featured-profiles">
+            <h2>{t("Explore Featured Profiles")}</h2>
+            <div className="home-featured-tiles">
+              {focus &&
+                focus.map(f => (
+                  <FeaturedBox item={f} className="home-featured-profile" />
+                ))}
+            </div>
+          </div>
         </div>
       </CanonComponent>
     );

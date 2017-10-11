@@ -86,7 +86,7 @@
   & h3.list-title {
     margin: 10px;
     & .link {
-      color: var(--near-black);
+      color: white;
       &:hover {
         text-decoration: none;
       }

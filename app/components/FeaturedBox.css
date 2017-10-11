@@ -11,11 +11,11 @@
   text-decoration: none;
   transition: background-position 0.2s;
   flex-direction: row;
-  justify-content: space-around;
-  min-height: 200px;
+  justify-content: space-between;
+  min-height: 150px;
   position: relative;
   align-content: stretch;
-  margin: var(--gutter);
+  border: 1px solid var(--snow);
 
   & .tile-filter {
     position: absolute;
@@ -23,27 +23,25 @@
     height: 100%;
     background-image: linear-gradient(
       -180deg,
-      rgba(26, 27, 44, 0.10) 50%,
+      rgba(26, 27, 44, 0.1) 50%,
       #000000 100%
     );
-    border: 1px solid #e6e6e6;
   }
 
   & .col-r {
     display: flex;
-    flex: 0.5;
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
     align-self: stretch;
 
-    padding: 10px;
+    padding: 5px;
     & .type {
       z-index: var(--foreground);
       font-family: var(--font-family-text);
       text-transform: uppercase;
       font-weight: 300;
-      font-size: 11px;
+      font-size: 9px;
       color: var(--snow);
       letter-spacing: -0.38px;
     }
@@ -51,34 +49,36 @@
 
   & .col-l {
     display: flex;
-    flex: 0.5;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: flex-start;
     align-self: stretch;
-    padding: 10px;
+    padding: 0px 10px 20px 20px;
     & .name {
-      z-index: var(--foreground);
-      padding: 5px;
-      margin: 10px 0px;
-      background-color: var(--accent);
-      text-transform: uppercase;
-      font-family: var(--font-family-text);
-      font-size: 16px;
-      font-weight: 300;
+      font-family: var(--font-family-title);
+      font-size: 14px;
       color: var(--snow);
-      letter-spacing: -0.76px;
-    }
-    & .icon {
-      z-index: var(--foreground);
-    }
-    & .region {
-      z-index: var(--foreground);
-      font-family: var(--font-family-text);
-      text-transform: uppercase;
       font-weight: 300;
-      font-size: 11px;
-      color: var(--snow);
-      letter-spacing: -0.38px;
+      letter-spacing: 0.03px;
+      text-transform: uppercase;
+      z-index: var(--foreground);
+      text-align: left;
+      line-height: 1em;
+    }
+    & .icon-container {
+      background-color: var(--snow);
+      border-radius: 50%;
+      z-index: var(--foreground);
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      & .icon {
+        height: 15px;
+        width: 15px;
+      }
     }
   }
 
@@ -96,6 +96,7 @@
 
   &:hover {
     background-position: 50% 25%;
+    text-decoration: none;
 
     &:after {
       background-color: rgba(0, 0, 0, 0.2);
