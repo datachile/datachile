@@ -13,22 +13,29 @@
     }
 
     & input {
-      border: 1px solid var(--accent);
-      border-radius: 20px;
+      border: 1px solid var(--snow);
+      border-radius: 30px;
       box-sizing: border-box;
       display: inline-block;
       font-family: var(--font-family-text);
-      font-size: 14.53px;
-      color: var(--color-p);
-      font-weight: 400;
-      padding: 10px 10px 10px 40px;
+      font-weight: 300;
+      font-size: 11.67px;
+      letter-spacing: 0.08px;
+      color: var(--snow);
+      padding: 15px 10px 15px 60px;
       width: 100%;
-      background-image: url("/images/icons/icon-lupa.svg");
+      background-image: url("/images/icons/icon-search.svg");
       background-repeat: no-repeat;
       background-position: 20px center;
       background-color: transparent;
+      opacity: 1;
       &::placeholder {
         color: var(--snow);
+        font-family: var(--font-family-text);
+        font-weight: 300;
+        font-size: 11.67px;
+        letter-spacing: 0.08px;
+        opacity: 0.7;
       }
       &:focus {
         outline: none;

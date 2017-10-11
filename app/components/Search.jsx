@@ -117,7 +117,7 @@ class Search extends Component {
     return (
       <div className={ `${className} ${ enabled ? "active" : "" } search-component` }>
         <div className="input">
-          <input type="text" ref="input" onChange={ this.onChange.bind(this) } placeholder={ t("Enter a location, industry, product, career, etc") } />
+          <input type="text" ref="input" onChange={ this.onChange.bind(this) } placeholder={ t("Search a location, industry, product, career, etc") } />
         </div>
         <ul className="results">
           { results.map(result =>

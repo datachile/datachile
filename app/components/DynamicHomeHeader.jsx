@@ -52,10 +52,7 @@ class DynamicHomeHeader extends Component {
 
   componentWillMount() {
     this.paintMountains(this.props.header);
-    const src = "/images/home/headers/" + this.props.header.slug + ".svg";
-      d3Request(src)
-        .on("error", function(error) { console.error(error); })
-        .get(src,this.callbackSvg);
+    this.loadHeader(this.props.header);
   }
 
   componentDidMount() {
@@ -63,12 +60,18 @@ class DynamicHomeHeader extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.paintMountains(nextProps.header);
     if (nextProps && nextProps.header) {
-      const src = "/images/home/headers/" + nextProps.header.slug + ".svg";
-      d3Request(src)
-        .on("error", function(error) { console.error(error); })
-        .get(src,this.callbackSvg);
+      this.paintMountains(nextProps.header);
+      this.loadHeader(nextProps.header);
+    }
+  }
+
+  loadHeader(header){
+    if(typeof document != "undefined" && header){
+      const src = "/images/home/headers/" + header.slug + ".svg";
+        d3Request(src)
+          .on("error", function(error) { console.error(error); })
+          .get(src,this.callbackSvg);
     }
   }
 

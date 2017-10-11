@@ -82,28 +82,29 @@ class Home extends Component {
               <div className={(p.slug==this.state.header.slug)?'selected image':'image'} id={p.slug} style={{'backgroundImage':'url(/images/home/bg/'+this.state.header.slug+'.png)'}} />
             )}
             <div className="gradient" />
+            
+            <div className="intro">
+              <div className="text">
+                <h2 className="title">
+                  <span>DATACHILE</span>
+                </h2>
+                <p className="lead">
+                  {t(
+                    "Interactive data visualization platform about Chilean public data"
+                  )}
+                </p>
+              </div>
+              <div className="search-home-wrapper">
+                <Search className="search-home" local={true} limit={5} />
+              </div>
+            </div>
+
+            <div className="home-header">
+              <DynamicHomeHeader header={header} />
+            </div>
+
           </div>
           
-          <div className="intro">
-            <div className="text">
-              <h2 className="title">
-                <span>Data Chile</span>
-              </h2>
-              <p className="lead">
-                {t(
-                  "Interactive data visualization platform about Chilean public data"
-                )}
-              </p>
-            </div>
-            <div className="search-home-wrapper">
-              <Search className="search-home" local={true} limit={5} />
-            </div>
-          </div>
-
-          <div className="home-header">
-            <DynamicHomeHeader header={header} />
-          </div>
-
           <div className="home-slider">
             <Slider
               {...settings}
