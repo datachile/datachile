@@ -1,7 +1,7 @@
 .dynamic-home-header {
 	lost-flex-container: column;
 	& .dynamic-home-block{
-		height: 50px;
+		height: 75px;
 		width: 100%;
 		display: block;
 	}

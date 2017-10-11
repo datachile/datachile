@@ -2,6 +2,7 @@
   font-family: var(--font-family-text);
   & .nav {
     position: absolute;
+    z-index: 10;
   }
 
   & .splash {
@@ -30,7 +31,7 @@
     }
 
     & .gradient {
-      background-color: rgba(25, 25, 40, 0.5);
+      background-color: rgba(25, 25, 40, 0.4);
       bottom: 0;
       left: 0;
       position: absolute;
@@ -79,6 +80,8 @@
   & .home-slider{
     lost-flex-container: column;
     lost-center: 3/4;
+    position: relative;
+    top: -10px;
 
     & * {
       min-height: 0;
@@ -86,41 +89,35 @@
     }
     /* Slider */
     & .slick-loading .slick-list {
-      background: steelblue;
+      
     }
 
     /* Arrows */
     & .slick-prev,
     & .slick-next {
-      font-size: 0;
-      line-height: 0;
+      font-size: 10px;
+      line-height: 1em;
 
       position: absolute;
-      top: 50%;
+      top: -20px;
 
-
-      width: 20px;
-      height: 100%;
-      padding: 0;
-      -webkit-transform: translate(0, -50%);
-      -ms-transform: translate(0, -50%);
-      transform: translate(0, -50%);
+      width: auto;
+      height: auto;
+      padding: 5px;
 
       cursor: pointer;
 
-      color: transparent;
+      color: var(--snow);
       border: none;
       outline: none;
-      background: black;
+      background: transparent;
       z-index: 10;
     }
     & .slick-prev:hover,
     & .slick-prev:focus,
     & .slick-next:hover,
     & .slick-next:focus {
-      color: transparent;
-      outline: none;
-      background: gray;
+      visibility: visible;
     }
     & .slick-prev:hover:before,
     & .slick-prev:focus:before,
@@ -139,7 +136,6 @@
 
     & .slick-prev:before,
     & .slick-next:before {
-      font-family: 'slick';
       font-size: 20px;
       line-height: 1;
 
@@ -158,10 +154,10 @@
       left: auto;
     }
     & .slick-prev:before {
-      content: '←';
+
     }
     & [dir='rtl'] .slick-prev:before {
-      content: '→';
+
     }
 
     & .slick-next {
@@ -172,110 +168,56 @@
       left: 0;
     }
     & .slick-next:before {
-      content: '→';
+      
     }
     & [dir='rtl'] .slick-next:before {
-      content: '←';
-    }
-
-    /* Dots */
-    & .slick-dotted.slick-slider {
-      margin-bottom: 30px;
-    }
-
-    & .slick-dots {
-      position: absolute;
-      bottom: -25px;
-
-      display: block;
-
-      width: 100%;
-      padding: 0;
-      margin: 0;
-
-      list-style: none;
-
-      text-align: center;
-    }
-    & .slick-dots li {
-      position: relative;
-
-      display: inline-block;
-
-      width: 20px;
-      height: 20px;
-      margin: 0 5px;
-      padding: 0;
-
-      cursor: pointer;
-    }
-    & .slick-dots li button {
-      font-size: 0;
-      line-height: 0;
-
-      display: block;
-
-      width: 20px;
-      height: 20px;
-      padding: 5px;
-
-      cursor: pointer;
-
-      color: transparent;
-      border: 0;
-      outline: none;
-      background: transparent;
-    }
-    & .slick-dots li button:hover,
-    & .slick-dots li button:focus {
-      outline: none;
-    }
-    & .slick-dots li button:hover:before,
-    & .slick-dots li button:focus:before {
-      opacity: 1;
-    }
-    & .slick-dots li button:before {
-      font-family: 'slick';
-      font-size: 6px;
-      line-height: 20px;
-
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      width: 20px;
-      height: 20px;
-
-      content: '•';
-      text-align: center;
-
-      opacity: .25;
-      color: black;
-
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    & .slick-dots li.slick-active button:before {
-      opacity: .75;
-      color: black;
+      
     }
 
     & .home-slide-item{
-      padding: 15px;
+      padding: 0 15px;
+      & .home-slide-selected{
+        display: block;
+        width: 15%;
+        height: 4px;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
       & .home-slide-content{
-        background-color: var(--gray-dark); 
-        padding: 15px;
+        border-top-style: solid;
+        border-top-width: 1px;
+        background-color: var(--near-black);
+        padding: 30px 15px;
         &:hover{
-          background-color: var(--gray-light); 
+
         }
         & .home-slide-clickable{
           cursor: pointer;
           & h3{
+            font-family: var(--font-family-title);
+            font-weight: 300;
+            font-size: 12px;
             color: var(--snow);
+            letter-spacing: 0.24px;
+            text-transform: uppercase;
           }
           & p{
             color: var(--snow);
+            font-family: var(--font-family-text);
+            font-weight: 300;
+            font-size: 11px;
           }
+        }
+        & .link{
+          font-family: var(--font-family-text);
+          font-size: 10px;
+          letter-spacing: 0.09px;
+          text-transform: uppercase;
+        }
+      }
+      &.selected{
+        & .home-slide-selected{
+          opacity: 1;
         }
       }
     }

@@ -14,6 +14,8 @@ import SourceNote from "components/SourceNote";
 import Nav from "components/Nav";
 import Search from "components/Search";
 import DynamicHomeHeader from "components/DynamicHomeHeader";
+import CustomPrevArrow from "components/CustomPrevArrow";
+import CustomNextArrow from "components/CustomNextArrow";
 
 import "./Home.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
@@ -69,7 +71,9 @@ class Home extends Component {
       slidesToShow: 4,
       slidesToScroll: 2,
       adaptiveHeight: true,
-      lazyLoad: false
+      lazyLoad: false,
+      prevArrow: <CustomPrevArrow/>,
+      nextArrow: <CustomNextArrow/>
     };
 
     return (
@@ -113,14 +117,15 @@ class Home extends Component {
               beforeChange={beforeChangeSlider}>
               { profiles && profiles.map((p) => 
                   
-                  <div id="home-slide-{p.slug}" className="home-slide-item">
-                    <div className="home-slide-content">
+                  <div id={ `home-slide-${p.slug}` } className={ (p.slug==header.slug)?'home-slide-item selected':'home-slide-item' }>
+                    <span className={`home-slide-selected background-${p.slug}`}></span>
+                    <div className={`home-slide-content border-${p.slug}`}>
                       <div className="home-slide-clickable" onClick={() => changeProfileHeader(p)}>
                         <h3>{p.name}</h3>
                         <p>{p.description}</p>
                       </div>
-                      <Link className="link" to={p.explore}>
-                        {t("Explore profiles")}
+                      <Link className={`link color-${p.slug}`} to={p.explore}>
+                        {t("Explore profiles")} <span className="pt-icon pt-icon-chevron-right" />
                       </Link>
                     </div>
                   </div>

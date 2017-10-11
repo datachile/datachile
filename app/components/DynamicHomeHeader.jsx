@@ -26,9 +26,8 @@ class DynamicHomeHeader extends Component {
       this.paintMountains = this.paintMountains.bind(this);
   }
 
-  callbackSvg(error, response) {
+  callbackSvg(error, response, src) {
     var xml = (response.responseText)?response.responseText:response;
-    var src = "/images/home/headers/" + this.props.header.slug + ".svg";
     if (!xml.startsWith("<?xml")){
       this.setState(
         {
@@ -43,7 +42,9 @@ class DynamicHomeHeader extends Component {
           illustration: xml
         },
         () => {
-          
+          if(typeof document != "undefined"){
+            select('.dynamic-home-items').transition().duration(1000).style('opacity',1);
+          }
         }
       );
     }
@@ -69,9 +70,17 @@ class DynamicHomeHeader extends Component {
   loadHeader(header){
     if(typeof document != "undefined" && header){
       const src = "/images/home/headers/" + header.slug + ".svg";
-        d3Request(src)
-          .on("error", function(error) { console.error(error); })
-          .get(src,this.callbackSvg);
+      const cb = this.callbackSvg;
+      var cached = this.cache.getSvg(src);
+      select('.dynamic-home-items').transition().duration(500).style('opacity',0);
+      if (cached) {
+        cb(false, cached, src);
+      } else {
+          d3Request(src)
+            .on("error", function(error) { console.error(error); })
+            .get(src,function(error, response){cb(error, response,src);});
+      }
+
     }
   }
 
