@@ -8,11 +8,9 @@ import "../../node_modules/slick-carousel/slick/slick.css";
 
 class TopicSlider extends Component {
   componentWillReceiveProps(nextProps) {
-    //console.log("TOPIC SLIDER", nextProps);
-    /*if (nextProps.selected !== this.state.selected) {
-      //this.setState({ selected: nextProps.selected });
-      //this.refs.slider.slickGoTo(nextProps.selected);
-    }*/
+    if (nextProps.selected !== this.props.selected) {
+      //this.refs.topicSlider.slickGoTo(parseInt(nextProps.selected));
+    }
   }
 
   render() {
@@ -21,7 +19,7 @@ class TopicSlider extends Component {
     console.log("selected en topic slider", selected);
 
     const afterChange = d => {
-      goTo(d);
+      //goTo(d);
       //console.log("afterChange", browserHistory.getCurrentLocation());
       //browserHistory.replace({ search: "?slide=" + d });
       /*browserHistory.push(
@@ -45,16 +43,18 @@ class TopicSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       adaptiveHeight: true,
-      lazyLoad: true
+      lazyLoad: false
     };
 
     return (
       <div className="topic-slider">
         <Slider
           {...settings}
+          ref="topicSlider"
           slickGoTo={selected}
           afterChange={afterChange}
-          beforeChange={beforeChange}>
+          beforeChange={beforeChange}
+        >
           {children}
         </Slider>
       </div>
