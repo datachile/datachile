@@ -119,90 +119,93 @@ class InstitutionProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
-            {obj &&
+            {obj && (
               <Nav
                 title={obj.caption}
-                type={obj.parent ? t("Institution") : t("Institution Type")}
+                typeTitle={
+                  obj.parent ? t("Institution") : t("Institution Type")
+                }
+                type={"institutions"}
                 exploreLink={"/explore/institutions"}
                 ancestor={obj.parent ? obj.parent.caption : ""}
                 ancestorLink={
                   obj.parent
-                    ? slugifyItem("institutions", obj.parent.key, obj.parent.name)
+                    ? slugifyItem(
+                        "institutions",
+                        obj.parent.key,
+                        obj.parent.name
+                      )
                     : ""
                 }
                 topics={topics}
-              />}
-              <div className="splash">
-                <div
-                  className="image"
-                  style={{
-                    backgroundImage: `url('/images/profile-bg/chile.jpg')`
-                  }}
-                />
-                <div className="gradient" />
+              />
+            )}
+            <div className="splash">
+              <div
+                className="image"
+                style={{
+                  backgroundImage: `url('/images/profile-bg/chile.jpg')`
+                }}
+              />
+              <div className="gradient" />
+            </div>
+
+            <div className="header">
+              <div className="datum-full-width">
+                {stats.enrollment && (
+                  <FeaturedDatumSplash
+                    title={t("Total Enrollment")}
+                    icon="poblacion"
+                    decile={stats.enrollment.decile}
+                    datum={numeral(stats.enrollment.value, locale).format(
+                      "(0,0)"
+                    )}
+                    source={
+                      stats.enrollment.year + " - " + stats.enrollment.source
+                    }
+                    className=""
+                  />
+                )}
+
+                {stats.accreditation && (
+                  <FeaturedDatumSplash
+                    title={t("Accreditation")}
+                    icon="check"
+                    decile={stats.accreditation.decile}
+                    datum={numeral(stats.accreditation.value, locale).format(
+                      "(0,0)"
+                    )}
+                    source={
+                      stats.accreditation.year +
+                      " - " +
+                      stats.accreditation.source
+                    }
+                    className=""
+                  />
+                )}
+
+                {stats.psu && (
+                  <FeaturedDatumSplash
+                    title={t("Average PSU")}
+                    icon="psu"
+                    decile={stats.psu.decile}
+                    datum={numeral(stats.psu.value, locale).format("(0,0)")}
+                    source={stats.psu.year + " - " + stats.psu.source}
+                    className=""
+                  />
+                )}
               </div>
+            </div>
 
-              <div className="header">
-                  <div className="datum-full-width">
-                    
-                    {stats.enrollment &&
-                      <FeaturedDatumSplash
-                        title={t("Total Enrollment")}
-                        icon="poblacion"
-                        decile={stats.enrollment.decile}
-                        datum={numeral(stats.enrollment.value, locale).format(
-                          "(0,0)"
-                        )}
-                        source={
-                          stats.enrollment.year + " - " + stats.enrollment.source
-                        }
-                        className=""
-                      />}
+            <div className="topics-selector-container">
+              <TopicMenu topics={topics} />
+            </div>
 
-
-                    {stats.accreditation &&
-                      <FeaturedDatumSplash
-                        title={t("Accreditation")}
-                        icon="check"
-                        decile={stats.accreditation.decile}
-                        datum={numeral(stats.accreditation.value, locale).format(
-                          "(0,0)"
-                        )}
-                        source={
-                          stats.accreditation.year + " - " + stats.accreditation.source
-                        }
-                        className=""
-                      />}
-
-
-                    {stats.psu &&
-                      <FeaturedDatumSplash
-                        title={t("Average PSU")}
-                        icon="psu"
-                        decile={stats.psu.decile}
-                        datum={numeral(stats.psu.value, locale).format(
-                          "(0,0)"
-                        )}
-                        source={
-                          stats.psu.year + " - " + stats.psu.source
-                        }
-                        className=""
-                      />}
-                  
-                  </div>
-
-              </div>
-
-              <div className="topics-selector-container">
-                <TopicMenu topics={topics} />
-              </div>
-
-              <div className="arrow-container">
-                <a href="#about">
-                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-                </a>
-              </div>
-
+            <div className="arrow-container">
+              <a href="#about">
+                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+              </a>
+            </div>
           </div>
         </div>
       </CanonComponent>

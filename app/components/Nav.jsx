@@ -35,6 +35,7 @@ class Nav extends Component {
       location,
       title,
       type,
+      typeTitle,
       ancestor,
       exploreLink,
       ancestorLink,
@@ -44,7 +45,7 @@ class Nav extends Component {
     const currentLang = i18n.language.split("-")[0];
     const otherLang = currentLang === "es" ? "en" : "es";
 
-    const {subnav_visible} = this.state;
+    const { subnav_visible } = this.state;
 
     var canUseDOM = !!(
       typeof window !== "undefined" &&
@@ -53,10 +54,10 @@ class Nav extends Component {
     );
 
     //disgusting code, just to trigger the menu on subnav canon. Remove when is fixed
-    if(canUseDOM){
-      setTimeout(function(){
-        window.dispatchEvent(new Event('scroll'));
-      },100);      
+    if (canUseDOM) {
+      setTimeout(function() {
+        window.dispatchEvent(new Event("scroll"));
+      }, 100);
     }
 
     var url = location.href;
@@ -67,92 +68,85 @@ class Nav extends Component {
 
     return (
       <nav className="nav">
-        
         <SubNav type="scroll" anchor="left" visible={this.visibleSubNav}>
           <div className="close-btn-container">
             <div className="menu-button">
               <a onClick={this.toggleSubNav}>
-                {subnav_visible?'X':'='}
+                <img src="/images/icons/icon-close.svg" />
               </a>
             </div>
           </div>
           <ul>
-            <li className="title">
-              {t('Navigation')}
-            </li>
+            <li className="title">{t("Navigation")}</li>
             <li className="lang-selector">
-                <span className="lang-current">
-                  {currentLang}
-                </span>
-                <span> | </span>
-                <span className="lang-other">
-                  <a href={url}>
-                    {otherLang}
-                  </a>
-                </span>
+              <span className="lang-current">{currentLang}</span>
+              <span> | </span>
+              <span className="lang-other">
+                <a href={url}>{otherLang}</a>
+              </span>
             </li>
             <li className="link">
-              <Link to="/explore">
-                {t("Explore")}
-              </Link>
+              <Link to="/explore">{t("Explore")}</Link>
             </li>
-            {topics && topics.length>0 &&
-              <li className="title">
-                {t('Topics')}
-              </li>
-            }
+            <li className="link">
+              <Link to="/about">{t("About")}</Link>
+            </li>
+            {topics &&
+              topics.length > 0 && <li className="title">{t("Topics")}</li>}
           </ul>
         </SubNav>
 
         <div className="nav-container">
-          <div className="nav-links">
+          <div className="l-col">
+            <div className="menu-button">
+              <a onClick={this.toggleSubNav}>
+                <img src="/images/icons/icon-menu.svg" />
+              </a>
+            </div>
+          </div>
+
+          <div className="c-col">
+            <Link className="logo" to="/">
+              <img src="/images/logos/logo-datachile.svg" />
+            </Link>
+          </div>
+
+          <div className="r-col">
             <div className="nav-lang">
               <div className="lang-selector">
-                <span className="lang-current">
-                  {currentLang}
-                </span>
+                <span className="lang-current">{currentLang}</span>
                 <span> | </span>
                 <span className="lang-other">
-                  <a href={url}>
-                    {otherLang}
-                  </a>
+                  <a href={url}>{otherLang}</a>
                 </span>
-              </div>
-            </div>
-            <div className="nav-menu">
-              <Link className="logo" to="/">
-                <img src="/images/logos/logo-datachile.svg" />
-              </Link>
-              <Link className="link" to="/explore">
-                {t("Explore")}
-              </Link>
-              <div className="menu-button">
-                <a onClick={this.toggleSubNav}>
-                  {subnav_visible?'=':'='}
-                </a>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="title-container">
           <div className="nav-title">
-            <div className="type">
-              {type &&
-                exploreLink &&
-                <Link className="link" to={exploreLink}>
-                  {type}
-                </Link>}
-              {type &&
-                !exploreLink &&
-                <span>
-                  {type}
-                </span>}
+            <h1>{title}</h1>
+            <div className="meta-title">
+              <div className="type">
+                {typeTitle &&
+                  exploreLink && (
+                    <Link className="link" to={exploreLink}>
+                      {type && <img src={`/images/icons/icon-${type}.svg`} />}
+                      <span>{typeTitle}</span>
+                    </Link>
+                  )}
+                {type && !exploreLink && <span>{typeTitle}</span>}
+              </div>
+              {ancestor && (
+                <div className="parent">
+                  <span className="separator">|</span>
+                  <Link className="link" to={ancestorLink}>
+                    {ancestor}
+                  </Link>
+                </div>
+              )}
             </div>
-            <h1>
-              {title}
-            </h1>
-            {ancestor &&
-              <div className="parent">
-                <Link className="link" to={ancestorLink}>{ancestor}</Link>
-              </div>}
           </div>
         </div>
       </nav>

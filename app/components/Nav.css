@@ -9,75 +9,39 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    & .nav-title {
-      lost-column: 6/12 2;
-      & h1 {
-        text-transform: uppercase;
-        color: var(--snow);
-        font-family: var(--font-family-title);
-        font-weight: 300;
-        font-size: 50px;
-        line-height: 1;
-        text-align: right;
-        margin: 0px;
-      }
-      & .parent,
-      & .type {
-        padding: 0px;
-        text-align: right;
+    & .l-col {
+      lost-column: 1/3;
+      & .menu-button {
         & a {
-          cursor: pointer;
-          display: inline-block;
-          margin: 0px;
+          text-transform: uppercase;
+          font-family: var(--font-family-title);
+          font-weight: 300;
+          font-size: 30px;
+          line-height: 1;
+          transition: opacity 0.2s;
+          color: var(--snow);
           opacity: 0.8;
           text-decoration: none;
-          transition: opacity 0.2s;
-          font-family: var(--font-family-text);
-          font-weight: 400;
-          font-size: 12px;
-          color: var(--snow);
-          letter-spacing: 0.08px;
-          text-transform: uppercase;
-
           &:hover {
+            text-decoration: none;
             opacity: 1;
           }
         }
       }
     }
-    & .nav-links {
-      display: flex;
-      lost-column: 6/12 flex;
-      lost-flex-container: column;
-      & .nav-menu {
-        display: flex;
-        align-items: center;
-        margin-top: 5px;
-        & .logo {
-          margin-right: 30px;
-          text-decoration: none;
-          text-transform: uppercase;
-        }
-        & .link {
-          cursor: pointer;
-          display: inline-block;
-          margin: 15px 15px;
-          opacity: 0.8;
-          text-decoration: none;
-          transition: opacity 0.2s;
-          font-family: var(--font-family-text);
-          font-weight: 400;
-          font-size: 12px;
-          color: var(--snow);
-          letter-spacing: 0.08px;
-          text-transform: uppercase;
-
-          &:hover {
-            opacity: 1;
-          }
-        }
+    & .c-col {
+      lost-column: 1/3;
+      text-align: center;
+      & .logo {
+        text-decoration: none;
+        text-transform: uppercase;
       }
-      & .nav-lang{
+    }
+    & .r-col {
+      lost-column: 1/3;
+      text-align: right;
+      padding-top: 10px;
+      & .nav-lang {
         & .lang-selector {
           & span {
             margin: 0px 2px;
@@ -108,24 +72,84 @@
         }
       }
     }
-  
   }
 
+  & .title-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: var(--gutter) auto;
+    & .nav-title {
+      text-align: center;
+      lost-center: 500px;
+      & h1 {
+        text-transform: uppercase;
+        color: var(--snow);
+        font-family: var(--font-family-title);
+        font-weight: 300;
+        font-size: 50px;
+        line-height: 1em;
+        text-align: center;
+        margin: 0px;
+        width: 100%;
+      }
+      & .meta-title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & .parent,
+        & .type {
+          padding: 0px;
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          & .separator {
+            margin: 0 5px;
+          }
+          & a {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin: 0px;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            font-family: var(--font-family-text);
+            font-weight: 400;
+            font-size: 12px;
+            color: var(--snow);
+            letter-spacing: 0.08px;
+            text-transform: uppercase;
+            & img {
+              width: 20px;
+              height: 20px;
+              margin-right: 5px;
+            }
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 .subnav {
   background-color: var(--footer-bg);
-  padding: 15px 30px;
-  & .close-btn-container{
+  padding: 15px 15px;
+  & .close-btn-container {
     text-align: right;
   }
-  & ul{
+  & ul {
     list-style: none;
     padding: 0px;
-    margin: 0px;
+    margin: 0px 15px;
     & li {
       margin: 15px 0px;
     }
-    & li.link a, & li.topic a {
+    & li.link a,
+    & li.topic a {
       cursor: pointer;
       display: inline-block;
       opacity: 0.8;
@@ -172,7 +196,7 @@
         }
       }
     }
-    & li.title{
+    & li.title {
       text-transform: uppercase;
       color: var(--gray);
       font-family: var(--font-family-text);
@@ -182,35 +206,15 @@
       letter-spacing: 5px;
     }
   }
-  
-}
-
-.menu-button{
-  display: none;
-  & a {
-    text-transform: uppercase;
-    font-family: var(--font-family-title);
-    font-weight: 300;
-    font-size: 30px;
-    line-height: 1;
-    transition: opacity 0.2s;
-    color: var(--snow);
-    opacity: 0.8;
-    text-decoration: none;
-    &:hover {
-      text-decoration: none;
-      opacity: 1;
-    }
-  }
 }
 
 @add-mixin for-xl {
 }
 
 @add-mixin for-lg {
-  .nav{
-    & .nav-container{
-      & .nav-title{
+  .nav {
+    & .nav-container {
+      & .nav-title {
         & h1 {
           font-size: 40px;
         }
@@ -220,61 +224,23 @@
 }
 
 @add-mixin for-md {
-   .nav{
-      & .nav-container{
-        & .nav-links{
-          & .nav-menu{
-            & .link{
-              display: none;
-            }
-          }
-        }
-        & .nav-menu {
-          align-items: flex-start;
-        }
-        & .nav-lang{
-          display: none;
-        }
-        & .nav-title{
-          & h1 {
-            font-size: 30px;
-          }
-        }
-      }
-   }
-   .menu-button{
-    display: block;
-   }
+  .nav {
+  }
 }
 
 @add-mixin for-sm {
-  .nav{
-    margin: 30px auto;
-    & .nav-container{
-      & .nav-links{
-        lost-column: 1 flex;
-      }
-      & .nav-menu {
-        justify-content: space-between;
-      }
-      & .nav-title{
-        lost-column: 1 flex;
-        & h1 {
-          font-size: 30px;
-          text-align: center;
-          padding: 15px;
-        }
-        & .parent, & .type{
-          text-align: center;
-        }
-      }
-    }
-  } 
 }
 
 @add-mixin for-xs {
+  .nav {
+    & .nav-container {
+      justify-content: flex-start;
+      & .r-col {
+        display: none;
+      }
+    }
+  }
 }
 
 @add-mixin for-xx {
-    
 }

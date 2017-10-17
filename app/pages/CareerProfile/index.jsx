@@ -121,10 +121,11 @@ class CareerProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
-            {obj &&
+            {obj && (
               <Nav
                 title={obj.caption}
-                type={obj.parent ? t("Career") : t("Field of Science")}
+                typeTitle={obj.parent ? t("Career") : t("Field of Science")}
+                type={"career"}
                 exploreLink={"/explore/careers"}
                 ancestor={obj.parent ? obj.parent.caption : ""}
                 ancestorLink={
@@ -133,7 +134,8 @@ class CareerProfile extends Component {
                     : ""
                 }
                 topics={topics}
-              />}
+              />
+            )}
             <div className="splash">
               <div
                 className="image"
@@ -145,65 +147,59 @@ class CareerProfile extends Component {
             </div>
 
             <div className="header">
-                <div className="datum-full-width">
-                  
+              <div className="datum-full-width">
+                {stats.enrollment && (
+                  <FeaturedDatumSplash
+                    title={t("Total Enrollment")}
+                    icon="poblacion"
+                    decile={stats.enrollment.decile}
+                    datum={numeral(stats.enrollment.value, locale).format(
+                      "(0,0)"
+                    )}
+                    source={
+                      stats.enrollment.year + " - " + stats.enrollment.source
+                    }
+                    className=""
+                  />
+                )}
 
-                  {stats.enrollment &&
-                    <FeaturedDatumSplash
-                      title={t("Total Enrollment")}
-                      icon="poblacion"
-                      decile={stats.enrollment.decile}
-                      datum={numeral(stats.enrollment.value, locale).format(
-                        "(0,0)"
-                      )}
-                      source={
-                        stats.enrollment.year + " - " + stats.enrollment.source
-                      }
-                      className=""
-                    />}
+                {stats.income && (
+                  <FeaturedDatumSplash
+                    title={t("Average Income 1st year")}
+                    icon="ingreso"
+                    decile={stats.income.decile}
+                    datum={
+                      "$" + numeral(stats.income.value, locale).format("(0,0)")
+                    }
+                    source={stats.income.year + " - " + stats.income.source}
+                    className=""
+                  />
+                )}
 
-                  {stats.income &&
-                    <FeaturedDatumSplash
-                      title={t("Average Income 1st year")}
-                      icon="ingreso"
-                      decile={stats.income.decile}
-                      datum={'$'+numeral(stats.income.value, locale).format(
-                        "(0,0)"
-                      )}
-                      source={
-                        stats.income.year + " - " + stats.income.source
-                      }
-                      className=""
-                    />}
-
-                  {stats.psu &&
-                    <FeaturedDatumSplash
-                      title={t("Average psu")}
-                      icon="psu"
-                      decile={stats.psu.decile}
-                      datum={numeral(stats.psu.value, locale).format(
-                        "(0,0)"
-                      )+'pts'}
-                      source={
-                        stats.psu.year + " - " + stats.psu.source
-                      }
-                      className=""
-                    />}
-
-                
-                </div>
-
+                {stats.psu && (
+                  <FeaturedDatumSplash
+                    title={t("Average psu")}
+                    icon="psu"
+                    decile={stats.psu.decile}
+                    datum={
+                      numeral(stats.psu.value, locale).format("(0,0)") + "pts"
+                    }
+                    source={stats.psu.year + " - " + stats.psu.source}
+                    className=""
+                  />
+                )}
               </div>
+            </div>
 
-              <div className="topics-selector-container">
-                <TopicMenu topics={topics} />
-              </div>
+            <div className="topics-selector-container">
+              <TopicMenu topics={topics} />
+            </div>
 
-              <div className="arrow-container">
-                <a href="#about">
-                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-                </a>
-              </div>
+            <div className="arrow-container">
+              <a href="#about">
+                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+              </a>
+            </div>
           </div>
         </div>
       </CanonComponent>

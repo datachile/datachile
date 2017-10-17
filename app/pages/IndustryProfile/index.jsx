@@ -74,7 +74,7 @@ class IndustryProfile extends Component {
     const { focus, t, i18n } = this.props;
 
     const { industry } = this.props.routeParams;
-    
+
     const obj = this.props.data.industry;
 
     const locale = i18n.language.split("-")[0];
@@ -115,10 +115,11 @@ class IndustryProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
-            {obj &&
+            {obj && (
               <Nav
                 title={obj.caption}
-                type={obj.parent ? t("Industry") : t("Industry Type")}
+                typeTitle={obj.parent ? t("Industry") : t("Industry Type")}
+                type={"industries"}
                 exploreLink={"/explore/industries"}
                 ancestor={obj.parent ? obj.parent.caption : ""}
                 ancestorLink={
@@ -127,78 +128,68 @@ class IndustryProfile extends Component {
                     : ""
                 }
                 topics={topics}
-              />}
-              <div className="splash">
-                <div
-                  className="image"
-                  style={{
-                    backgroundImage: `url('/images/profile-bg/chile.jpg')`
-                  }}
-                />
-                <div className="gradient" />
+              />
+            )}
+            <div className="splash">
+              <div
+                className="image"
+                style={{
+                  backgroundImage: `url('/images/profile-bg/chile.jpg')`
+                }}
+              />
+              <div className="gradient" />
+            </div>
+
+            <div className="header">
+              <div className="datum-full-width">
+                {stats.employees && (
+                  <FeaturedDatumSplash
+                    title={t("Employees")}
+                    icon="poblacion"
+                    decile={stats.employees.decile}
+                    datum={numeral(stats.employees.value, locale).format(
+                      "(0,0)"
+                    )}
+                    source={
+                      stats.employees.year + " - " + stats.employees.source
+                    }
+                    className=""
+                  />
+                )}
+
+                {stats.income && (
+                  <FeaturedDatumSplash
+                    title={t("Average Income")}
+                    icon="ingreso"
+                    decile={stats.income.decile}
+                    datum={numeral(stats.income.value, locale).format("(0,0)")}
+                    source={stats.income.year + " - " + stats.income.source}
+                    className=""
+                  />
+                )}
+
+                {stats.studies && (
+                  <FeaturedDatumSplash
+                    title={t("Years of Studies")}
+                    icon="psu"
+                    decile={stats.studies.decile}
+                    datum={numeral(stats.studies.value, locale).format("(0,0)")}
+                    source={stats.studies.year + " - " + stats.studies.source}
+                    className=""
+                  />
+                )}
               </div>
+            </div>
 
-              <div className="header">
-                  <div className="datum-full-width">
-                    
-                    {stats.employees &&
-                      <FeaturedDatumSplash
-                        title={t("Employees")}
-                        icon="poblacion"
-                        decile={stats.employees.decile}
-                        datum={numeral(stats.employees.value, locale).format(
-                          "(0,0)"
-                        )}
-                        source={
-                          stats.employees.year + " - " + stats.employees.source
-                        }
-                        className=""
-                      />}
+            <div className="topics-selector-container">
+              <TopicMenu topics={topics} />
+            </div>
 
-
-                    {stats.income &&
-                      <FeaturedDatumSplash
-                        title={t("Average Income")}
-                        icon="ingreso"
-                        decile={stats.income.decile}
-                        datum={numeral(stats.income.value, locale).format(
-                          "(0,0)"
-                        )}
-                        source={
-                          stats.income.year + " - " + stats.income.source
-                        }
-                        className=""
-                      />}
-
-
-                    {stats.studies &&
-                      <FeaturedDatumSplash
-                        title={t("Years of Studies")}
-                        icon="psu"
-                        decile={stats.studies.decile}
-                        datum={numeral(stats.studies.value, locale).format(
-                          "(0,0)"
-                        )}
-                        source={
-                          stats.studies.year + " - " + stats.studies.source
-                        }
-                        className=""
-                      />}
-                  
-                  </div>
-
-              </div>
-
-              <div className="topics-selector-container">
-                <TopicMenu topics={topics} />
-              </div>
-
-              <div className="arrow-container">
-                <a href="#about">
-                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-                </a>
-              </div>
-
+            <div className="arrow-container">
+              <a href="#about">
+                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+              </a>
+            </div>
           </div>
         </div>
       </CanonComponent>

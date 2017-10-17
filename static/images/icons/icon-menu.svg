@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="19px" height="14px" viewBox="0 0 19 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
-    <title>icon-menu</title>
+<svg width="28px" height="24px" viewBox="0 0 28 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>ico-menu</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Perfil-pais-industria-seccion" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="perfil-pais-industria" transform="translate(-48.000000, -33.000000)" fill="#FFFFFF">
-            <g id="header-fixed" transform="translate(2.000000, 0.000000)">
-                <g id="icon-menu" transform="translate(46.000000, 33.000000)">
-                    <polygon id="Fill-19" points="0.972 1.261 18.305 1.261 18.305 0.105 0.972 0.105"></polygon>
-                    <polygon id="Fill-21" points="0.972 7.578 18.305 7.578 18.305 6.422 0.972 6.422"></polygon>
-                    <polygon id="Fill-22" points="0.972 13.895 18.305 13.895 18.305 12.739 0.972 12.739"></polygon>
-                </g>
-            </g>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ico-menu" fill="#FFFFFF">
+            <polygon id="Fill-24" points="0.176 23.264 27.824 23.264 27.824 21.216 0.176 21.216"></polygon>
+            <polygon id="Fill-26" points="0.176 13.024 27.824 13.024 27.824 10.976 0.176 10.976"></polygon>
+            <polygon id="Fill-27" points="0.176 2.784 27.824 2.784 27.824 0.736 0.176 0.736"></polygon>
         </g>
     </g>
 </svg>

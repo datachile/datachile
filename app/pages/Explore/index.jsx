@@ -184,35 +184,43 @@ class Explore extends Component {
 
     const members = this.props.data.members;
 
+    var typeTitle = "";
     var type = "";
     var mainLink = false;
     switch (entity) {
       case undefined: {
         type = "";
+        typeTitle = "";
         break;
       }
       case "countries": {
-        type = t("Countries");
+        typeTitle = t("Countries");
+        type = "countries";
         break;
       }
       case "institutions": {
-        type = t("Institutions");
+        typeTitle = t("Institutions");
+        type = "institutions";
         break;
       }
       case "careers": {
-        type = t("Careers");
+        typeTitle = t("Careers");
+        type = "careers";
         break;
       }
       case "products": {
-        type = t("Products");
+        typeTitle = t("Products");
+        type = "products";
         break;
       }
       case "industries": {
-        type = t("Industries");
+        typeTitle = t("Industries");
+        type = "industries";
         break;
       }
       case "geo": {
-        type = t("Geo");
+        typeTitle = t("Geo");
+        type = "geo";
         mainLink = true;
         break;
       }
@@ -227,7 +235,8 @@ class Explore extends Component {
           <div className="intro">
             <Nav
               title={type != "" ? type : t("Explore")}
-              type={type != "" ? t("Profiles") : t("Home")}
+              typeTitle={typeTitle != "" ? t("Profiles") : t("Home")}
+              type={type != "" ? type : false}
               exploreLink={type != "" ? "/explore" : "/"}
             />
             <div className="splash">
@@ -249,7 +258,7 @@ class Explore extends Component {
           </div>
 
           <div>
-            {!entity &&
+            {!entity && (
               <div className="">
                 <ul className="explore-list">
                   <li>
@@ -283,25 +292,27 @@ class Explore extends Component {
                     </Link>
                   </li>
                 </ul>
-              </div>}
+              </div>
+            )}
 
-            {entity &&
+            {entity && (
               <div className="">
                 <div>
                   {members &&
-                    members.map(m =>
+                    members.map(m => (
                       <div>
                         <h3 className="list-title">
                           <Link
                             className="link"
-                            to={slugifyItem(entity, m.key, m.name)}>
+                            to={slugifyItem(entity, m.key, m.name)}
+                          >
                             {m.caption}
                           </Link>
                         </h3>
 
                         <ul className="explore-list">
                           {m.children &&
-                            m.children.map(c =>
+                            m.children.map(c => (
                               <li>
                                 <Link
                                   className="link"
@@ -311,16 +322,18 @@ class Explore extends Component {
                                     m.name,
                                     c.key,
                                     c.name
-                                  )}>
+                                  )}
+                                >
                                   {c.caption}
                                 </Link>
                               </li>
-                            )}
+                            ))}
                         </ul>
                       </div>
-                    )}
+                    ))}
                 </div>
-              </div>}
+              </div>
+            )}
           </div>
         </div>
       </CanonComponent>

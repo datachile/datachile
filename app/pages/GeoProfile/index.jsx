@@ -65,7 +65,6 @@ import CompanyInnovationSlide from "./economy/innovation/CompanyInnovationSlide"
 import InnovationRate from "./economy/innovation/charts/InnovationRate";
 import InnovationByType from "./economy/innovation/charts/InnovationByType";
 
-
 import InnovationCompanySlide from "./economy/innovation/InnovationCompanySlide";
 import InnovationBySize from "./economy/innovation/charts/InnovationBySize";
 import InnovationByActivity from "./economy/innovation/charts/InnovationByActivity";
@@ -102,9 +101,9 @@ import "../intro.css";
 import "./topics.css";
 
 const chileObj = {
-  key:'chile',
-  name:'Chile',
-  caption:'Chile'
+  key: "chile",
+  name: "Chile",
+  caption: "Chile"
 };
 
 class GeoProfile extends Component {
@@ -387,23 +386,23 @@ class GeoProfile extends Component {
     const { subnav, activeSub } = this.state;
 
     const locale = i18n.language.split("-")[0];
-    
+
     const geoObj = getGeoObject(this.props.routeParams);
 
-    const showRanking = (geoObj.type=='country')?false:true;
+    const showRanking = geoObj.type == "country" ? false : true;
 
     const geo = this.props.data.geo;
-    
-    if(geo){
+
+    if (geo) {
       this.props.data.geo.type = geoObj.type;
       this.props.data.geo.ancestor = ancestor;
     }
-    
+
     const ancestor =
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
         : geoObj.type == "region" ? chileObj : false;
-    
+
     /*
     stats format
       {
@@ -448,7 +447,6 @@ class GeoProfile extends Component {
         title: t("Politics")
       }
     ];
-
 
     var type = "";
     switch (geoObj.type) {
@@ -495,19 +493,21 @@ class GeoProfile extends Component {
         <div className="profile">
           <div className="intro">
             {geo &&
-              geoObj &&
-              <Nav
-                title={geo.caption}
-                type={geoObj.type}
-                exploreLink={"/explore/geo"}
-                ancestor={ancestor ? ancestor.caption : ""}
-                ancestorLink={slugifyItem(
-                  "geo",
-                  ancestor ? ancestor.key : "",
-                  ancestor ? ancestor.name : ""
-                )}
-                topics={topics}
-              />}
+              geoObj && (
+                <Nav
+                  title={geo.caption}
+                  typeTitle={geoObj.type}
+                  type={"geo"}
+                  exploreLink={"/explore/geo"}
+                  ancestor={ancestor ? ancestor.caption : ""}
+                  ancestorLink={slugifyItem(
+                    "geo",
+                    ancestor ? ancestor.key : "",
+                    ancestor ? ancestor.name : ""
+                  )}
+                  topics={topics}
+                />
+              )}
             <div className="splash">
               <div
                 className="image"
@@ -520,12 +520,16 @@ class GeoProfile extends Component {
 
             <div className="header">
               <div className="meta">
-                {stats.population &&
+                {stats.population && (
                   <FeaturedDatumSplash
                     title={t("Population")}
                     icon="poblacion"
                     decile={stats.population.decile}
-                    rank={(showRanking)?stats.population.rank+'/'+stats.population.total:false}
+                    rank={
+                      showRanking
+                        ? stats.population.rank + "/" + stats.population.total
+                        : false
+                    }
                     datum={numeral(stats.population.value, locale).format(
                       "(0,0)"
                     )}
@@ -533,31 +537,42 @@ class GeoProfile extends Component {
                       stats.population.year + " - " + stats.population.source
                     }
                     className=""
-                  />}
-                {stats.income &&
+                  />
+                )}
+                {stats.income && (
                   <FeaturedDatumSplash
                     title={t("Income")}
                     icon="ingreso"
                     decile={stats.income.decile}
-                    rank={(showRanking)?stats.income.rank+'/'+stats.income.total:false}
+                    rank={
+                      showRanking
+                        ? stats.income.rank + "/" + stats.income.total
+                        : false
+                    }
                     datum={numeral(stats.income.value, locale).format(
                       "($ 0,0)"
                     )}
                     source={stats.income.year + " - " + stats.income.source}
                     className=""
-                  />}
-                {stats.psu &&
+                  />
+                )}
+                {stats.psu && (
                   <FeaturedDatumSplash
                     title={t("Education")}
                     icon="psu"
                     decile={stats.psu.decile}
-                    rank={(showRanking)?stats.psu.rank+'/'+stats.psu.total:false}
+                    rank={
+                      showRanking
+                        ? stats.psu.rank + "/" + stats.psu.total
+                        : false
+                    }
                     datum={
                       numeral(stats.psu.value, locale).format("(0,0)") + " psu"
                     }
                     source={stats.psu.year + " - " + stats.psu.source}
                     className=""
-                  />}
+                  />
+                )}
               </div>
 
               <div className="candidates">
@@ -565,11 +580,12 @@ class GeoProfile extends Component {
               </div>
 
               <div className="map-comuna">
-                {geoObj.type != "country" &&
+                {geoObj.type != "country" && (
                   <SvgMap
                     region={geoObj.type == "region" ? geo : ancestor}
                     active={geoObj.type == "comuna" ? geo : false}
-                  />}
+                  />
+                )}
                 <div className="map-region">
                   <Geomap
                     config={{
@@ -611,7 +627,7 @@ class GeoProfile extends Component {
                       width: 200,
                       zoom: false
                     }}
-                  ></Geomap>
+                  />
                 </div>
               </div>
             </div>
@@ -775,7 +791,6 @@ class GeoProfile extends Component {
                 </MigrationActivitySlide>
               </div>
             </Demography>
-
           </div>
         </div>
       </CanonComponent>

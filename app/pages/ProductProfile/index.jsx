@@ -21,7 +21,6 @@ import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import FeaturedMapSplash from "components/FeaturedMapSplash";
 
-
 import "../intro.css";
 
 class ProductProfile extends Component {
@@ -81,7 +80,7 @@ class ProductProfile extends Component {
               .option("parents", true)
               .drilldown("Destination Country", "Country", "Country")
               .measure("FOB US")
-              .property("Destination Country", "Country","iso3"),
+              .property("Destination Country", "Country", "iso3"),
             "HS0",
             "HS2",
             store.i18n.locale
@@ -91,17 +90,17 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ['FOB US'],['desc']);
-          const top_country = (res.data.data[0])?res.data.data[0]:false;
+          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          const top_country = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "top_destination_country_per_product",
-            data:{
-                id:(top_country)?top_country['iso3']:'',
-                name:(top_country)?top_country['Country']:'',
-                value:(top_country)?top_country['FOB US']:'',
-                source: "Source Lorem",
-                year:store.exports_year
-              }
+            data: {
+              id: top_country ? top_country["iso3"] : "",
+              name: top_country ? top_country["Country"] : "",
+              value: top_country ? top_country["FOB US"] : "",
+              source: "Source Lorem",
+              year: store.exports_year
+            }
           };
         });
 
@@ -131,17 +130,17 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ['FOB US'],['desc']);
-          const top_region = (res.data.data[0])?res.data.data[0]:false;
+          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          const top_region = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "top_region_producer_per_product",
             data: {
-                id:(top_region)?top_region['ID Region']:'',
-                name:(top_region)?top_region['Region']:'',
-                value:(top_region)?top_region['FOB US']:'',
-                source: "Source Lorem",
-                year:store.exports_year
-              }
+              id: top_region ? top_region["ID Region"] : "",
+              name: top_region ? top_region["Region"] : "",
+              value: top_region ? top_region["FOB US"] : "",
+              source: "Source Lorem",
+              year: store.exports_year
+            }
           };
         });
 
@@ -174,19 +173,18 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ['FOB US'],['desc']);
-          const total = (res.data.data[0])?res.data.data[0]:false;
+          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          const total = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "total_exports_per_product",
-            data: 
-              {
-                value: (total)?total['FOB US']:'',
-                decile: (total)?total['HS Rank Decile']:'',
-                rank: (total)?total['HS Rank']:'',
-                total: (total)?total['HS Rank Total']:'',
-                year: store.exports_year,
-                source: "Source Lorem"
-              }
+            data: {
+              value: total ? total["FOB US"] : "",
+              decile: total ? total["HS Rank Decile"] : "",
+              rank: total ? total["HS Rank"] : "",
+              total: total ? total["HS Rank Total"] : "",
+              year: store.exports_year,
+              source: "Source Lorem"
+            }
           };
         });
 
@@ -234,10 +232,11 @@ class ProductProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
-            {obj &&
+            {obj && (
               <Nav
                 title={obj.caption}
-                type={obj.parent ? t("Product") : t("Product Type")}
+                typeTitle={obj.parent ? t("Product") : t("Product Type")}
+                type={"products"}
                 exploreLink={"/explore/products"}
                 ancestor={obj.parent ? obj.parent.caption : ""}
                 ancestorLink={
@@ -246,7 +245,8 @@ class ProductProfile extends Component {
                     : ""
                 }
                 topics={topics}
-              />}
+              />
+            )}
             <div className="splash">
               <div
                 className="image"
@@ -258,66 +258,66 @@ class ProductProfile extends Component {
             </div>
 
             <div className="header">
-                <div className="datum-full-width">
-                  
-                  {stats.country &&
-                    <FeaturedMapSplash
-                      title={t("Top destination country")}
-                      type="country"
-                      code={stats.country.id}
-                      datum={stats.country.name}
-                      source={
-                        numeral(stats.country.value, locale).format(
+              <div className="datum-full-width">
+                {stats.country && (
+                  <FeaturedMapSplash
+                    title={t("Top destination country")}
+                    type="country"
+                    code={stats.country.id}
+                    datum={stats.country.name}
+                    source={
+                      numeral(stats.country.value, locale).format("($ 0,0 a)") +
+                      " - " +
+                      stats.country.year +
+                      " - " +
+                      stats.country.source
+                    }
+                    className=""
+                  />
+                )}
+
+                {stats.exports && (
+                  <FeaturedDatumSplash
+                    title={t("Exports")}
+                    icon="ingreso"
+                    decile={stats.exports.decile}
+                    rank={stats.exports.rank + "/" + stats.exports.total}
+                    datum={numeral(stats.exports.value, locale).format(
                       "($ 0,0 a)"
-                    ) + " - " + stats.country.year + " - " + stats.country.source
-                      }
-                      className=""
-                    />}
+                    )}
+                    source={stats.exports.year + " - " + stats.exports.source}
+                    className=""
+                  />
+                )}
 
-
-                  {stats.exports &&
-                    <FeaturedDatumSplash
-                      title={t("Exports")}
-                      icon="ingreso"
-                      decile={stats.exports.decile}
-                      rank={stats.exports.rank+'/'+stats.exports.total}
-                      datum={numeral(stats.exports.value, locale).format(
-                        "($ 0,0 a)"
-                      )}
-                      source={
-                        stats.exports.year + " - " + stats.exports.source
-                      }
-                      className=""
-                    />}
-
-
-                  {stats.region &&
-                    <FeaturedMapSplash
-                      title={t("Top producer region")}
-                      type="region"
-                      code={stats.region.id}
-                      datum={stats.region.name}
-                      source={
-                        numeral(stats.region.value, locale).format(
-                      "($ 0,0 a)"
-                    ) + " - " + stats.region.year + " - " + stats.region.source
-                      }
-                      className=""
-                    />}
-                
-                </div>
-
+                {stats.region && (
+                  <FeaturedMapSplash
+                    title={t("Top producer region")}
+                    type="region"
+                    code={stats.region.id}
+                    datum={stats.region.name}
+                    source={
+                      numeral(stats.region.value, locale).format("($ 0,0 a)") +
+                      " - " +
+                      stats.region.year +
+                      " - " +
+                      stats.region.source
+                    }
+                    className=""
+                  />
+                )}
               </div>
+            </div>
 
-              <div className="topics-selector-container">
-                <TopicMenu topics={topics} />
-              </div>
+            <div className="topics-selector-container">
+              <TopicMenu topics={topics} />
+            </div>
 
-              <div className="arrow-container">
-                <a href="#about">
-                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-                </a>
-              </div>
+            <div className="arrow-container">
+              <a href="#about">
+                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+              </a>
+            </div>
           </div>
         </div>
       </CanonComponent>
