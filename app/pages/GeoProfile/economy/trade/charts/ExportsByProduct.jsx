@@ -2,9 +2,10 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { Treemap } from "d3plus-react";
+import { browserHistory } from "react-router";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
 import { getGeoObject } from "helpers/dataUtils";
 import { trade_by_time_and_product } from "helpers/aggregations";
@@ -66,11 +67,28 @@ export default translate()(
                                         ".png",
                                     width: 25,
                                     height: 25,
-                                    fill: d => ordinalColorScale(d["ID HS0"])
+                                    fill: d =>
+                                        ordinalColorScale("hs" + d["ID HS0"])
                                 }
                             },
                             shapeConfig: {
-                                fill: d => ordinalColorScale(d["ID HS0"])
+                                fill: d => ordinalColorScale("hs" + d["ID HS0"])
+                            },
+                            on: {
+                                click: d => {
+                                    var url = slugifyItem(
+                                        "products",
+                                        d["ID HS0"],
+                                        d["HS0"],
+                                        d["ID HS2"] instanceof Array
+                                            ? false
+                                            : d["ID HS2"],
+                                        d["HS2"] instanceof Array
+                                            ? false
+                                            : d["HS2"]
+                                    );
+                                    browserHistory.push(url);
+                                }
                             },
                             tooltipConfig: {
                                 title: d =>
