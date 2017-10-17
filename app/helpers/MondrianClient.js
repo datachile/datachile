@@ -2,7 +2,8 @@ import { Client as MondrianClient } from "mondrian-rest-client";
 
 //console.log("HARCODED!!!! REMOVE!!!");
 
-const client = new MondrianClient("https://chilecube.datawheel.us/");
+//const client = new MondrianClient("https://chilecube.datawheel.us/");
+const client = new MondrianClient("http://localhost:9292/");
 
 /**
  * Returns the provided query with the appropiate cut
@@ -12,7 +13,7 @@ const client = new MondrianClient("https://chilecube.datawheel.us/");
  * @param {} query
  */
 function geoCut(geo, dimensionName, query, lang = "en") {
-  query = setLangCaptions(query,lang);
+  query = setLangCaptions(query, lang);
 
   if (geo.type === "country") {
     return query; // no region provided, don't cut
@@ -27,18 +28,30 @@ function geoCut(geo, dimensionName, query, lang = "en") {
   }
 }
 
-function levelCut(object, dimensionName, subDimensionName, query, level1, level2, lang = "en") {
-  query = setLangCaptions(query,lang);
+function levelCut(
+  object,
+  dimensionName,
+  subDimensionName,
+  query,
+  level1,
+  level2,
+  lang = "en"
+) {
+  query = setLangCaptions(query, lang);
   if (object.level2 === false) {
     query.drilldown(dimensionName, subDimensionName, level1);
-    return query.cut(`[${dimensionName}].[${subDimensionName}].[${level1}].&[${object.level1}]`);
+    return query.cut(
+      `[${dimensionName}].[${subDimensionName}].[${level1}].&[${object.level1}]`
+    );
   } else {
     query.drilldown(dimensionName, subDimensionName, level2);
-    return query.cut(`[${dimensionName}].[${subDimensionName}].[${level2}].&[${object.level2}]`);
+    return query.cut(
+      `[${dimensionName}].[${subDimensionName}].[${level2}].&[${object.level2}]`
+    );
   }
 }
 
-function setLangCaptions (query,lang){
+function setLangCaptions(query, lang) {
   if (lang.substring(0, 2) == "es") {
     const drilldowns = query.getDrilldowns();
 
@@ -60,8 +73,8 @@ function getLocaleCaption(level, locale = "en") {
   return null;
 }
 
-function getMeasureByGeo(type,countryM,regionM,comunaM) {
-  return (type=='country')?countryM:(type=='region')?regionM:comunaM;
+function getMeasureByGeo(type, countryM, regionM, comunaM) {
+  return type == "country" ? countryM : type == "region" ? regionM : comunaM;
 }
 
 function getMembersQuery(
@@ -94,5 +107,13 @@ function getMemberQuery(cube, dimension, level, key, locale = "en") {
     });
 }
 
-export { levelCut, geoCut, getLocaleCaption, getMembersQuery, getMemberQuery, setLangCaptions, getMeasureByGeo };
+export {
+  levelCut,
+  geoCut,
+  getLocaleCaption,
+  getMembersQuery,
+  getMemberQuery,
+  setLangCaptions,
+  getMeasureByGeo
+};
 export default client;

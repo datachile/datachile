@@ -47,9 +47,7 @@ export default translate()(
 
             return (
                 <div className={className}>
-                    <h3 className="chart-title">
-                        {t("Imports By Product")}
-                    </h3>
+                    <h3 className="chart-title">{t("Imports By Product")}</h3>
                     <Treemap
                         config={{
                             height: 500,
@@ -61,19 +59,31 @@ export default translate()(
                             time: "ID Year",
                             legendConfig: {
                                 label: false,
-                                shapeConfig:{
-                                    width:25,
-                                    height:25,
+                                shapeConfig: {
+                                    width: 25,
+                                    height: 25,
                                     fill: d => ordinalColorScale(d["ID HS0"]),
-                                    backgroundImage: d => "https://datausa.io/static/img/attrs/thing_apple.png",
+                                    backgroundImage: d =>
+                                        "/images/legend/hs/hs_" +
+                                        d["ID HS0"] +
+                                        ".png"
                                 }
                             },
                             shapeConfig: {
                                 fill: d => ordinalColorScale(d["ID HS0"])
                             },
-                            tooltipConfig:{
-                              title: d=>d["HS2"] instanceof Array ? d["HS0"] : d["HS2"],
-                              body: d=>numeral(d['CIF US'], locale).format("(USD 0 a)") + "<br/><a>"+t("tooltip.to_profile")+"</a>"
+                            tooltipConfig: {
+                                title: d =>
+                                    d["HS2"] instanceof Array
+                                        ? d["HS0"]
+                                        : d["HS2"],
+                                body: d =>
+                                    numeral(d["CIF US"], locale).format(
+                                        "(USD 0 a)"
+                                    ) +
+                                    "<br/><a>" +
+                                    t("tooltip.to_profile") +
+                                    "</a>"
                             }
                         }}
                         dataFormat={data => data.data}
