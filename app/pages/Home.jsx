@@ -31,7 +31,7 @@ class Home extends Component {
       {
         name: t("Geographical"),
         explore: "/explore/geo",
-        colors: ["#445e81", "#263b58"],
+        colors: ["#445e81", "#263b58", "#1B2E44"],
         slug: "geo",
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
@@ -40,7 +40,7 @@ class Home extends Component {
       {
         name: t("Countries"),
         explore: "/explore/coutries",
-        colors: ["#ccc", "#ddd"],
+        colors: ["#ccc", "#ddd", "eee"],
         slug: "countries",
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -49,7 +49,7 @@ class Home extends Component {
       {
         name: t("Institutions"),
         explore: "/explore/institutions",
-        colors: ["#595a8f", "#393a6a"],
+        colors: ["#595a8f", "#393a6a", "#393954"],
         slug: "institutions",
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
@@ -58,14 +58,14 @@ class Home extends Component {
       {
         name: t("Careers"),
         explore: "/explore/careers",
-        colors: ["#676258", "#9b8365"],
+        colors: ["#676258", "#9b8365", "#776551"],
         slug: "careers",
         description: t("Lorem ipsum dolor sit amet, consectetur .")
       },
       {
         name: t("Products"),
         explore: "/explore/products",
-        colors: ["#a45c58", "#794f57"],
+        colors: ["#a45c58", "#794f57", "#91453B"],
         slug: "products",
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
@@ -74,7 +74,7 @@ class Home extends Component {
       {
         name: t("Industries"),
         explore: "/explore/industries",
-        colors: ["#0b5151", "#143e48"],
+        colors: ["#0b5151", "#143e48", "#205258"],
         slug: "industries",
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."

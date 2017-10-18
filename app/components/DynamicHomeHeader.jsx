@@ -14,27 +14,25 @@ import SvgImage from "components/SvgImage";
 import "./DynamicHomeHeader.css";
 
 class DynamicHomeHeader extends Component {
-
   constructor(props) {
-      super(props);
-      this.cache = SVGCache.instance;
-      this.state = {
-        illustration: ""
-      };
+    super(props);
+    this.cache = SVGCache.instance;
+    this.state = {
+      illustration: ""
+    };
 
-      this.callbackSvg = this.callbackSvg.bind(this);
-      this.paintMountains = this.paintMountains.bind(this);
+    this.callbackSvg = this.callbackSvg.bind(this);
+    this.paintMountains = this.paintMountains.bind(this);
   }
 
   callbackSvg(error, response, src) {
-    var xml = (response.responseText)?response.responseText:response;
-    if (!xml.startsWith("<?xml")){
-      this.setState(
-        {
-          illustration: "Error loading SVG"
-        }
-      );
-      console.error('Error loading '+src);
+    const { header } = this.props;
+    var xml = response.responseText ? response.responseText : response;
+    if (!xml.startsWith("<?xml")) {
+      this.setState({
+        illustration: "Error loading SVG"
+      });
+      console.error("Error loading " + src);
     } else {
       this.cache.setSvg(src, xml);
       this.setState(
@@ -42,13 +40,42 @@ class DynamicHomeHeader extends Component {
           illustration: xml
         },
         () => {
-          if(typeof document != "undefined"){
-            select('.dynamic-home-items').transition().duration(1000).style('opacity',1);
+          if (typeof document != "undefined") {
+            select(".dynamic-home-image")
+              .transition()
+              .duration(500)
+              .style("opacity", 1);
+
+            select(".dynamic-home-hotspots")
+              .transition()
+              .duration(1500)
+              .style("opacity", 1);
+
+            selectAll(".dynamic-home-hotspots ellipse.st1")
+              .on("mouseover", function(d) {
+                //select(this).classed("fill-" + header.slug, true);
+                console.log("mouseover", this);
+                /*div
+                  .transition()
+                  .duration(200)
+                  .style("opacity", 0.9);
+                div
+                  .html(formatTime(d.date) + "<br/>" + d.close)
+                  .style("left", d3.event.pageX + "px")
+                  .style("top", d3.event.pageY - 28 + "px");*/
+              })
+              .on("mouseout", function(d) {
+                console.log("mouseout");
+                //select(this).classed("fill-" + header.slug, false);
+                /*div
+                  .transition()
+                  .duration(500)
+                  .style("opacity", 0);*/
+              });
           }
         }
       );
     }
-
   }
 
   componentWillMount() {
@@ -67,56 +94,82 @@ class DynamicHomeHeader extends Component {
     }
   }
 
-  loadHeader(header){
-    if(typeof document != "undefined" && header){
-      const src = "/images/home/headers/" + header.slug + ".svg";
+  loadHeader(header) {
+    if (typeof document != "undefined" && header) {
+      const src = "/images/home/hotspots/" + header.slug + ".svg";
       const cb = this.callbackSvg;
       var cached = this.cache.getSvg(src);
-      select('.dynamic-home-items').transition().duration(500).style('opacity',0);
+      select(".dynamic-home-hotspots")
+        .transition()
+        .duration(500)
+        .style("opacity", 0);
+      select(".dynamic-home-image")
+        .transition()
+        .duration(500)
+        .style("opacity", 0);
       if (cached) {
         cb(false, cached, src);
       } else {
-          d3Request(src)
-            .on("error", function(error) { console.error(error); })
-            .get(src,function(error, response){cb(error, response,src);});
+        d3Request(src)
+          .on("error", function(error) {
+            console.error(error);
+          })
+          .get(src, function(error, response) {
+            cb(error, response, src);
+          });
       }
-
     }
   }
 
-  paintMountains(header){
-    if(typeof document != "undefined" && header){
-      select('.dynamic-home-header .st0').transition().duration(500).style('fill',header.colors[0]);
-      select('.dynamic-home-header .st1').transition().duration(500).style('fill',header.colors[1]);
-      select('.dynamic-home-block').transition().duration(500).style('background-color',header.colors[0]);
+  paintMountains(header) {
+    if (typeof document != "undefined" && header) {
+      select(".dynamic-home-header .front")
+        .transition()
+        .duration(500)
+        .style("fill", header.colors[0]);
+      select(".dynamic-home-header .back")
+        .transition()
+        .duration(500)
+        .style("fill", header.colors[1]);
+      select(".dynamic-home-block")
+        .transition()
+        .duration(500)
+        .style("background-color", header.colors[2]);
     }
   }
-
 
   render() {
-      const { t, header } = this.props;
+    const { t, header } = this.props;
 
-      const mountainsLoaded = () => {
-        this.paintMountains(header);
-      }
+    const mountainsLoaded = () => {
+      this.paintMountains(header);
+    };
 
-      const mountainsLoadedError = () => {
-      }
+    const mountainsLoadedError = () => {};
 
-      return (
-          <div className="dynamic-home-header">
-            <div className="dynamic-home-illustration">
-              <SvgImage src={`/images/home/mountains.svg`} callback={mountainsLoaded} callbackError={mountainsLoadedError}/>
-              { 
-                header &&
-                <div className="dynamic-home-items"
-                    dangerouslySetInnerHTML={{ __html: this.state.illustration }}
-                  />
-              }
+    return (
+      <div className="dynamic-home-header">
+        <div className="dynamic-home-illustration">
+          <SvgImage
+            src={`/images/home/mountains.svg`}
+            callback={mountainsLoaded}
+            callbackError={mountainsLoadedError}
+          />
+          {header && (
+            <div className="dynamic-home-items">
+              <div
+                className="dynamic-home-hotspots"
+                dangerouslySetInnerHTML={{ __html: this.state.illustration }}
+              />
+              <div className="dynamic-home-image">
+                <img src={`/images/home/headers/${header.slug}.svg`} />
+              </div>
             </div>
-            <div className="dynamic-home-block"></div>
-          </div>
-      );
+          )}
+        </div>
+        <div className="dynamic-home-block" />
+      </div>
+    );
   }
 }
 

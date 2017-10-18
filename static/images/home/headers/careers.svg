@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Capa_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1593 247"
-	 style="enable-background:new 0 0 1593 247;" xml:space="preserve">
+<svg version="1.1" id="Capa_1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1951 313"
+	 style="enable-background:new 0 0 1951 313;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#B97850;}
 	.st1{fill:#11519D;}
@@ -79,11 +79,7 @@
 	.st72{fill:#57442F;}
 </style>
 <switch>
-	<foreignObject requiredExtensions="&ns_ai;" x="0" y="0" width="1" height="1">
-		<i:pgfRef  xlink:href="#adobe_illustrator_pgf">
-		</i:pgfRef>
-	</foreignObject>
-	<g i:extraneous="self">
+	<g transform="translate(150,70)">
 		<g>
 			<path class="st0" d="M503.2,112.4V107c0-6.8-4.9-12.3-10.8-12.3h-22.5c-5.9,0-10.8,5.5-10.8,12.3v5.4 M502.5,112.7h0.5H502.5z"/>
 			<path class="st1" d="M492.9,94.7c0,2.6,0,5.2,0,8.5c-2.4-3.2-5.1-5.4-6.7-8.4C488.4,94.7,490.6,94.7,492.9,94.7z"/>

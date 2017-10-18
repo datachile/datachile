@@ -1,24 +1,54 @@
 .dynamic-home-header {
 	lost-flex-container: column;
-	& .dynamic-home-block{
+	& .dynamic-home-block {
 		height: 75px;
 		width: 100%;
 		display: block;
 	}
-	& .dynamic-home-illustration{
+	& .dynamic-home-illustration {
 		position: relative;
 		& .svg-image {
 			line-height: 0;
 		}
-		& .dynamic-home-items{
+		& .dynamic-home-hotspots {
+			opacity: 0;
 			line-height: 0;
 			position: absolute;
 			bottom: -30px;
-			width: 80%;
+			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
 			left: 0;
 			right: 0;
+			z-index: 10;
+			& svg {
+				& ellipse.st1 {
+					opacity: 0.5;
+					transition: opacity 0.5s;
+					cursor: pointer;
+					&:hover {
+						opacity: 1;
+					}
+				}
+				& path.st2 {
+					pointer-events: none;
+					transition: fill 1s ease;
+				}
+			}
+		}
+		& .dynamic-home-image {
+			opacity: 0;
+			line-height: 0;
+			position: absolute;
+			bottom: -10px;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			left: 0;
+			right: 0;
+			& img {
+				width: 100%;
+			}
 		}
 	}
 }

@@ -1,14 +1,14 @@
 /* FONTS */
-@import url('https://fonts.googleapis.com/css?family=Yantramanav:300,400,500,700');
+@import url("https://fonts.googleapis.com/css?family=Yantramanav:300,400,500,700");
 
 @font-face {
   font-family: Gilroy;
-  src: url('/fonts/gilroy/Gilroy-Light.otf');
+  src: url("/fonts/gilroy/Gilroy-Light.otf");
   font-weight: 300;
 }
 @font-face {
   font-family: Gilroy;
-  src: url('/fonts/gilroy/Gilroy-ExtraBold.otf');
+  src: url("/fonts/gilroy/Gilroy-ExtraBold.otf");
   font-weight: 800;
 }
 
@@ -62,37 +62,84 @@ extrabold 800
   lost-utility: clearfix;
 }
 
-
 /* Helpers profiles */
-.color-geo{ color: var(--color-geo);}
-.border-geo{border-color: var(--color-geo);}
-.fill-geo{fill: var(--color-geo);}
-.background-geo{background-color: var(--color-geo);}
+.color-geo {
+  color: var(--color-geo);
+}
+.border-geo {
+  border-color: var(--color-geo);
+}
+.fill-geo {
+  fill: var(--color-geo) !important;
+}
+.background-geo {
+  background-color: var(--color-geo);
+}
 
-.color-countries{ color: var(--color-countries);}
-.border-countries{border-color: var(--color-countries);}
-.fill-countries{fill: var(--color-countries);}
-.background-countries{background-color: var(--color-countries);}
+.color-countries {
+  color: var(--color-countries);
+}
+.border-countries {
+  border-color: var(--color-countries);
+}
+.fill-countries {
+  fill: var(--color-countries) !important;
+}
+.background-countries {
+  background-color: var(--color-countries);
+}
 
-.color-institutions{ color: var(--color-institutions);}
-.border-institutions{border-color: var(--color-institutions);}
-.fill-institutions{fill: var(--color-institutions);}
-.background-institutions{background-color: var(--color-institutions);}
+.color-institutions {
+  color: var(--color-institutions);
+}
+.border-institutions {
+  border-color: var(--color-institutions);
+}
+.fill-institutions {
+  fill: var(--color-institutions) !important;
+}
+.background-institutions {
+  background-color: var(--color-institutions);
+}
 
-.color-careers{ color: var(--color-careers);}
-.border-careers{border-color: var(--color-careers);}
-.fill-careers{fill: var(--color-careers);}
-.background-careers{background-color: var(--color-careers);}
+.color-careers {
+  color: var(--color-careers);
+}
+.border-careers {
+  border-color: var(--color-careers);
+}
+.fill-careers {
+  fill: var(--color-careers) !important;
+}
+.background-careers {
+  background-color: var(--color-careers);
+}
 
-.color-products{ color: var(--color-products);}
-.border-products{border-color: var(--color-products);}
-.fill-products{fill: var(--color-products);}
-.background-products{background-color: var(--color-products);}
+.color-products {
+  color: var(--color-products);
+}
+.border-products {
+  border-color: var(--color-products);
+}
+.fill-products {
+  fill: var(--color-products) !important;
+}
+.background-products {
+  background-color: var(--color-products);
+}
 
-.color-industries{ color: var(--color-industries);}
-.border-industries{border-color: var(--color-industries);}
-.fill-industries{fill: var(--color-industries);}
-.background-industries{background-color: var(--color-industries);}
+.color-industries {
+  color: var(--color-industries);
+}
+.border-industries {
+  border-color: var(--color-industries);
+}
+.fill-industries {
+  fill: var(--color-industries) !important;
+}
+.background-industries {
+  background-color: var(--color-industries);
+}
 
 /*color-geo: "#4B71B5"
 color-countries: "#1ECBD8"
