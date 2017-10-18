@@ -125,7 +125,7 @@ class CareerProfile extends Component {
               <Nav
                 title={obj.caption}
                 typeTitle={obj.parent ? t("Career") : t("Field of Science")}
-                type={"career"}
+                type={"careers"}
                 exploreLink={"/explore/careers"}
                 ancestor={obj.parent ? obj.parent.caption : ""}
                 ancestorLink={

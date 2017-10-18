@@ -132,7 +132,14 @@ class Nav extends Component {
                 {typeTitle &&
                   exploreLink && (
                     <Link className="link" to={exploreLink}>
-                      {type && <img src={`/images/icons/icon-${type}.svg`} />}
+                      {type && (
+                        <span className="icon-container">
+                          <img
+                            className="icon"
+                            src={`/images/icons/icon-${type}.svg`}
+                          />
+                        </span>
+                      )}
                       <span>{typeTitle}</span>
                     </Link>
                   )}

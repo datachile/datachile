@@ -121,10 +121,20 @@
             color: var(--snow);
             letter-spacing: 0.08px;
             text-transform: uppercase;
-            & img {
-              width: 20px;
-              height: 20px;
+            & .icon-container {
+              background-color: var(--snow);
+              border-radius: 50%;
+              z-index: var(--foreground);
+              width: 30px;
+              height: 30px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
               margin-right: 5px;
+              & .icon {
+                height: 15px;
+                width: 15px;
+              }
             }
             &:hover {
               opacity: 1;

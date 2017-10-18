@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Capa_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+<!DOCTYPE>
+<svg version="1.1" id="Capa_1"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1814.5 141"
 	 style="enable-background:new 0 0 1814.5 141;" xml:space="preserve">
 <style type="text/css">
@@ -45,11 +45,7 @@
 	.st38{opacity:0.31;fill:#4979B2;}
 </style>
 <switch>
-	<foreignObject requiredExtensions="&ns_ai;" x="0" y="0" width="1" height="1">
-		<i:pgfRef  xlink:href="#adobe_illustrator_pgf">
-		</i:pgfRef>
-	</foreignObject>
-	<g i:extraneous="self">
+	<g>
 		<g>
 			<g>
 				<polygon class="st0" points="647.2,30.4 684.6,9.2 692.9,19.1 699.9,16.8 827.1,99 840.8,106.4 649.2,105.8 				"/>

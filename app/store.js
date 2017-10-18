@@ -58,5 +58,6 @@ module.exports = {
 	presidential_election_year: 2013,
 	senators_election_year: 2013,
 	mayor_election_year: 2016,
-	exports_year: 2015
+	exports_year: 2015,
+	nene_year: 2017
 };

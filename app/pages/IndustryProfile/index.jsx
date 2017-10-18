@@ -9,7 +9,8 @@ import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
-  getMemberQuery
+  getMemberQuery,
+  levelCut
 } from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
@@ -63,6 +64,49 @@ class IndustryProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const level2 = ids.level2;
+      ids.level2 = false;
+      const prm = mondrianClient
+        .cube("nene")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "ISICrev4",
+            "ISICrev4",
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Date", "Year")
+              .measure("Expansion factor"),
+            "Level 1",
+            "Level 2",
+            store.i18n.locale
+          );
+          q.cut(`[Date].[Year].&[${store.nene_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          var source = "NENE Survey";
+          source += level2 ? " - " + res.data.data[0]["Level 1"] : "";
+          return {
+            key: "employees_by_industry",
+            data: {
+              value: res.data.data[0]["Expansion factor"],
+              decile: 5,
+              rank: 1,
+              total: 1,
+              year: store.nene_year,
+              source: source
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -80,12 +124,7 @@ class IndustryProfile extends Component {
     const locale = i18n.language.split("-")[0];
 
     const stats = {
-      employees: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      },
+      employees: this.props.data.employees_by_industry,
       income: {
         value: 1000,
         decile: 5,
@@ -202,7 +241,8 @@ export default translate()(
     state => ({
       data: state.data,
       focus: state.focus,
-      stats: state.stats
+      stats: state.stats,
+      nene_year: state.nene_year
     }),
     {}
   )(IndustryProfile)

@@ -299,7 +299,7 @@ class Explore extends Component {
               <div className="">
                 <div>
                   {members &&
-                    members.map(m => (
+                    members.filter(m => m.key != 0).map(m => (
                       <div>
                         <h3 className="list-title">
                           <Link
