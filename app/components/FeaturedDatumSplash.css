@@ -9,6 +9,15 @@
     letter-spacing: -0.01px;
     color: var(--snow);
     font-weight: 300;
+    display: flex;
+    align-items: center;
+    & small {
+      background-color: var(--accent);
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 200px;
+      margin-left: 10px;
+    }
   }
   & .featured-datum-splash-source {
     font-family: var(--font-family-title);
