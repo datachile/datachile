@@ -23,6 +23,9 @@
             margin: 0 10px;
           }
         }
+        &.full-width {
+          lost-column: 1 flex;
+        }
       }
       & .topic-slider-bullets {
         lost-column: 1/2 flex;
@@ -48,9 +51,6 @@
         font-weight: 300;
         letter-spacing: 0;
         line-height: 22px;
-        & a {
-          color: var(--accent);
-        }
       }
       & .topic-slide-data {
         lost-column: 2/3 flex;
