@@ -298,6 +298,13 @@ class Explore extends Component {
             {entity && (
               <div className="">
                 <div>
+                  {type == "geo" && (
+                    <h2 className="list-title">
+                      <Link className="link" to={"/geo/chile"}>
+                        Chile
+                      </Link>
+                    </h2>
+                  )}
                   {members &&
                     members.filter(m => m.key != 0).map(m => (
                       <div>

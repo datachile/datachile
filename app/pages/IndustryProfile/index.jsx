@@ -78,13 +78,14 @@ class IndustryProfile extends Component {
             "ISICrev4",
             cube.query
               .option("parents", true)
-              .drilldown("Date", "Date", "Year")
+              .drilldown("Date", "Date", "Month")
               .measure("Expansion factor"),
             "Level 1",
             "Level 2",
             store.i18n.locale
           );
-          q.cut(`[Date].[Year].&[${store.nene_year}]`);
+          //q.cut(`[Date].[Year].&[${store.nene_year}]`);
+          q.cut(`[Date].[Month].&[1]&[2017]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {

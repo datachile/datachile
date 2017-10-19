@@ -83,12 +83,22 @@
     }
   }
 
+  & h2.list-title {
+    text-transform: uppercase;
+    margin: 10px;
+    line-height: 1em;
+    & .link {
+      color: white;
+    }
+  }
+
   & h3.list-title {
     margin: 10px;
+    line-height: 1em;
     & .link {
       color: white;
       &:hover {
-        text-decoration: none;
+        text-decoration: underline;
       }
     }
   }
@@ -107,7 +117,7 @@
       display: flex;
       & .link {
         padding: 10px;
-        background-color: var(--near-black);
+        background-color: var(--accent);
         color: var(--snow);
         text-decoration: none;
         &:hover {
