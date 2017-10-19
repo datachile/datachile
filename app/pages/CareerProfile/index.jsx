@@ -201,6 +201,14 @@ class CareerProfile extends Component {
               </a>
             </div>
           </div>
+
+          <div className="topic-block" id="about">
+            <div className="topic-header">
+              <div className="topic-title">
+                <h2>{t("About")}</h2>
+              </div>
+            </div>
+          </div>
         </div>
       </CanonComponent>
     );

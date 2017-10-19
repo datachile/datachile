@@ -107,7 +107,7 @@ class Nav extends Component {
 
           <div className="c-col">
             <Link className="logo" to="/">
-              <img src="/images/logos/logo-datachile.svg" />
+              <img src="/images/logos/logo-datachile.png" />
             </Link>
           </div>
 

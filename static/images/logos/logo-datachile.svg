@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="180px" height="30px" viewBox="0 0 180 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>logo-datachile</title>
-    <desc>Created with Sketch.</desc>
+<svg width="180px" height="30px" viewBox="0 0 185 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" shape-rendering="auto">
     <defs>
         <polygon id="path-1" points="0.561 21.109 17.136 21.109 8.849 0.084"></polygon>
         <polygon id="path-3" points="0.164 29.109 16.744 29.109 9.047 0.122"></polygon>
@@ -50,9 +47,8 @@
                             <g id="Clip-22"></g>
                             <polygon id="Fill-21" fill="#E80C3B" mask="url(#mask-10)" points="-3.121 20.625 18.813 20.625 18.813 -3.89 -3.121 -3.89"></polygon>
                         </g>
-                        <text id="DATACHILE" font-family="Gilroy-ExtraBold, Gilroy" font-size="21" font-weight="600" letter-spacing="2.68000007" fill="#FFFFFF">
-                            <tspan x="51.5825" y="28.8687479">DATACHIL</tspan>
-                            <tspan x="169.391501" y="28.8687479">E</tspan>
+                        <text id="DATACHILE" font-family="Gilroy-ExtraBold, Gilroy" font-size="21" font-weight="600" fill="#FFFFFF" letter-spacing="3" textLength="135">
+                            <tspan x="51.5825" y="28.8687479">DATACHILE</tspan>
                         </text>
                     </g>
                 </g>

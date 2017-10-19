@@ -98,7 +98,7 @@ import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
 /*end Demography*/
 
 import "../intro.css";
-import "./topics.css";
+import "../topics.css";
 
 const chileObj = {
   key: "chile",
