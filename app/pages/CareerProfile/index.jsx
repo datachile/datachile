@@ -134,30 +134,31 @@ class CareerProfile extends Component {
 
     const ids = getLevelObject(this.props.routeParams);
 
-    const list =
-      obj && ids
-        ? this.props.data.career_list_detail.map(c => {
-            c.label = ids.level2 ? c["Higher Institution"] : c["Career"];
-            if (ids.level2 && c["ID Higher Institution Subgroup"]) {
-              c.link = slugifyItem(
-                "institutions",
-                c["ID Higher Institution Subgroup"],
-                c["Higher Institution Subgroup"],
-                c["ID Higher Institution"],
-                c["Higher Institution"]
-              );
-            } else if (ids.level1 && c["ID Career"]) {
-              c.link = slugifyItem(
-                "careers",
-                obj.key,
-                obj.name,
-                c["ID Career"],
-                c["Career"]
-              );
-            }
-            return c;
-          })
-        : [];
+    const list = this.props.data.career_list_detail;
+
+    obj && ids && list
+      ? list.map(c => {
+          c.label = ids.level2 ? c["Higher Institution"] : c["Career"];
+          if (ids.level2 && c["ID Higher Institution Subgroup"]) {
+            c.link = slugifyItem(
+              "institutions",
+              c["ID Higher Institution Subgroup"],
+              c["Higher Institution Subgroup"],
+              c["ID Higher Institution"],
+              c["Higher Institution"]
+            );
+          } else if (ids.level1 && c["ID Career"]) {
+            c.link = slugifyItem(
+              "careers",
+              obj.key,
+              obj.name,
+              c["ID Career"],
+              c["Career"]
+            );
+          }
+          return c;
+        })
+      : [];
 
     const listTitle = ids
       ? ids.level2 ? t("Institutions") : t("Careers")
@@ -209,21 +210,22 @@ class CareerProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
-            {obj && (
-              <Nav
-                title={obj.caption}
-                typeTitle={obj.parent ? t("Career") : t("Field of Science")}
-                type={"careers"}
-                exploreLink={"/explore/careers"}
-                ancestor={obj.parent ? obj.parent.caption : ""}
-                ancestorLink={
-                  obj.parent
-                    ? slugifyItem("careers", obj.parent.key, obj.parent.name)
-                    : ""
-                }
-                topics={topics}
-              />
-            )}
+            {obj &&
+              obj.caption && (
+                <Nav
+                  title={obj.caption}
+                  typeTitle={obj.parent ? t("Career") : t("Field of Science")}
+                  type={"careers"}
+                  exploreLink={"/explore/careers"}
+                  ancestor={obj.parent ? obj.parent.caption : ""}
+                  ancestorLink={
+                    obj.parent
+                      ? slugifyItem("careers", obj.parent.key, obj.parent.name)
+                      : ""
+                  }
+                  topics={topics}
+                />
+              )}
             <div className="splash">
               <div
                 className="image"
@@ -295,10 +297,12 @@ class CareerProfile extends Component {
               <div className="topic-title">
                 <h2 className="full-width">
                   {t("About")}
-                  <small>
-                    <span className="pipe">|</span>
-                    {obj.caption}
-                  </small>
+                  {obj && (
+                    <small>
+                      <span className="pipe">|</span>
+                      {obj.caption}
+                    </small>
+                  )}
                 </h2>
               </div>
               <div className="topic-go-to-targets">

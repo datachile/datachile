@@ -9,7 +9,8 @@ import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
-  getMemberQuery
+  getMemberQuery,
+  levelCut
 } from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
@@ -17,6 +18,7 @@ import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
+import LinksList from "components/LinksList";
 
 import "../intro.css";
 
@@ -63,6 +65,61 @@ class InstitutionProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("education_employability")
+        .then(cube => {
+          var q;
+          if (ids.level2) {
+            //Search careers
+            q = levelCut(
+              ids,
+              "Higher Institution",
+              "Higher Institution",
+              cube.query
+                .option("parents", true)
+                .drilldown("Careers", "Careers", "Career")
+                .measure("Number of records"),
+              "Higher Institution Subgroup",
+              "Higher Institution",
+              store.i18n.locale
+            );
+          } else {
+            //Search institutions
+            q = levelCut(
+              ids,
+              "Higher Institution",
+              "Higher Institution",
+              cube.query
+                .option("parents", true)
+                .drilldown(
+                  "Higher Institution",
+                  "Higher Institution",
+                  "Higher Institution"
+                )
+                .measure("Number of records"),
+              "Higher Institution Subgroup",
+              "Higher Institution",
+              store.i18n.locale,
+              false
+            );
+          }
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "institution_list_detail",
+            data: res.data.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -76,6 +133,38 @@ class InstitutionProfile extends Component {
     const { focus, t, i18n } = this.props;
 
     const obj = this.props.data.institution;
+
+    const ids = getLevelObject(this.props.routeParams);
+
+    const list = this.props.data.institution_list_detail;
+
+    obj && ids && list
+      ? list.map(c => {
+          c.label = ids.level2 ? c["Career"] : c["Higher Institution"];
+          if (ids.level2) {
+            c.link = slugifyItem(
+              "careers",
+              c["ID Career Group"],
+              c["Career Group"],
+              c["ID Career"],
+              c["Career"]
+            );
+          } else if (ids.level1) {
+            c.link = slugifyItem(
+              "institutions",
+              c["ID Higher Institution Subgroup"],
+              c["Higher Institution Subgroup"],
+              c["ID Higher Institution"],
+              c["Higher Institution"]
+            );
+          }
+          return c;
+        })
+      : [];
+
+    const listTitle = ids
+      ? ids.level2 ? t("Careers") : t("Institutions")
+      : "";
 
     const locale = i18n.language.split("-")[0];
 
@@ -205,6 +294,57 @@ class InstitutionProfile extends Component {
               <a href="#about">
                 <SvgImage src="/images/profile-icon/icon-arrow.svg" />
               </a>
+            </div>
+          </div>
+          <div className="topic-block" id="about">
+            <div className="topic-header">
+              <div className="topic-title">
+                <h2 className="full-width">
+                  {t("About")}
+                  {obj && (
+                    <small>
+                      <span className="pipe">|</span>
+                      {obj.caption}
+                    </small>
+                  )}
+                </h2>
+              </div>
+              <div className="topic-go-to-targets">
+                <div className="topic-slider-sections" />
+              </div>
+            </div>
+            <div className="topic-slide-container">
+              <div className="topic-slide-block">
+                <div className="topic-slide-intro">
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <LinksList title={listTitle} list={list} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
