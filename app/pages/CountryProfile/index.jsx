@@ -9,7 +9,8 @@ import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
-  getMemberQuery
+  getMemberQuery,
+  levelCut
 } from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
@@ -17,6 +18,7 @@ import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
+import LinksList from "components/LinksList";
 
 import "../intro.css";
 
@@ -63,6 +65,65 @@ class CountryProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+
+      var ids = getLevelObject(params);
+
+      var prm;
+
+      if (ids.level2) {
+        
+        prm = getMembersQuery(
+              "exports",
+              "Destination Country",
+              "Subregion",
+              store.i18n.locale,
+              false
+            ).then(res => {
+            return {
+              key: "country_list_detail",
+              data: res
+            };
+          });
+
+      }else{
+
+        prm = mondrianClient
+          .cube("exports")
+          .then(cube => {
+            var q;
+            
+              //Search countries
+              q = levelCut(
+                ids,
+                "Destination Country",
+                "Country",
+                cube.query
+                  .option("parents", true)
+                  .drilldown("Destination Country", "Country", "Country")
+                  .measure("FOB US"),
+                "Subregion",
+                "Country",
+                store.i18n.locale,
+                false
+              );
+
+            return mondrianClient.query(q, "jsonrecords");
+          })
+          .then(res => {
+            return {
+              key: "country_list_detail",
+              data: res.data.data
+            };
+          });
+
+      }
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -75,6 +136,39 @@ class CountryProfile extends Component {
     const { country } = this.props.routeParams;
 
     const obj = this.props.data.country;
+
+    const ids = getLevelObject(this.props.routeParams);
+
+    const list = this.props.data.country_list_detail;
+
+
+    obj && ids && list
+      ? list.map(c => {
+          c.label = ids.level2 ? c["caption"] : c["Country"];
+          if (ids.level2 && c["fullName"]) {
+            c.link = slugifyItem(
+              "countries",
+              c["key"],
+              c["name"],
+              false,
+              false
+            );
+          } else if (ids.level1 && c["ID Subregion"]) {
+            c.link = slugifyItem(
+              "countries",
+              obj.key,
+              obj.name,
+              c["ID Country"],
+              c["Country"]
+            );
+          }
+          return c;
+        })
+      : [];
+
+    const listTitle = ids
+      ? ids.level2 ? t("Other regions") : t("Countries")
+      : "";
 
     const locale = i18n.language.split("-")[0];
 
@@ -186,6 +280,59 @@ class CountryProfile extends Component {
               </a>
             </div>
           </div>
+          
+          <div className="topic-block" id="about">
+            <div className="topic-header">
+              <div className="topic-title">
+                <h2 className="full-width">
+                  {t("About")}
+                  {obj && (
+                    <small>
+                      <span className="pipe">|</span>
+                      {obj.caption}
+                    </small>
+                  )}
+                </h2>
+              </div>
+              <div className="topic-go-to-targets">
+                <div className="topic-slider-sections" />
+              </div>
+            </div>
+            <div className="topic-slide-container">
+              <div className="topic-slide-block">
+                <div className="topic-slide-intro">
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <LinksList title={listTitle} list={list} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </CanonComponent>
     );

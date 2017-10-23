@@ -9,7 +9,8 @@ import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
-  getMemberQuery
+  getMemberQuery,
+  levelCut
 } from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
@@ -17,6 +18,7 @@ import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
+import LinksList from "components/LinksList";
 
 import "../intro.css";
 
@@ -63,6 +65,61 @@ class CareerProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("education_employability")
+        .then(cube => {
+          var q;
+          if (ids.level2) {
+            //Search institutions
+            q = levelCut(
+              ids,
+              "Careers",
+              "Careers",
+              cube.query
+                .option("parents", true)
+                .drilldown(
+                  "Higher Institutions",
+                  "Higher Institutions",
+                  "Higher Institution"
+                )
+                .measure("Number of records"),
+              "Career Group",
+              "Career",
+              store.i18n.locale
+            );
+          } else {
+            //Search careers
+            q = levelCut(
+              ids,
+              "Careers",
+              "Careers",
+              cube.query
+                .option("parents", true)
+                .drilldown("Careers", "Careers", "Career")
+                .measure("Number of records"),
+              "Career Group",
+              "Career",
+              store.i18n.locale,
+              false
+            );
+          }
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "career_list_detail",
+            data: res.data.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -74,6 +131,38 @@ class CareerProfile extends Component {
     const { focus, t, i18n } = this.props;
 
     const obj = this.props.data.career;
+
+    const ids = getLevelObject(this.props.routeParams);
+
+    const list = this.props.data.career_list_detail;
+
+    obj && ids && list
+      ? list.map(c => {
+          c.label = ids.level2 ? c["Higher Institution"] : c["Career"];
+          if (ids.level2 && c["ID Higher Institution Subgroup"]) {
+            c.link = slugifyItem(
+              "institutions",
+              c["ID Higher Institution Subgroup"],
+              c["Higher Institution Subgroup"],
+              c["ID Higher Institution"],
+              c["Higher Institution"]
+            );
+          } else if (ids.level1 && c["ID Career"]) {
+            c.link = slugifyItem(
+              "careers",
+              obj.key,
+              obj.name,
+              c["ID Career"],
+              c["Career"]
+            );
+          }
+          return c;
+        })
+      : [];
+
+    const listTitle = ids
+      ? ids.level2 ? t("Institutions") : t("Careers")
+      : "";
 
     const locale = i18n.language.split("-")[0];
 
@@ -121,21 +210,22 @@ class CareerProfile extends Component {
       <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
-            {obj && (
-              <Nav
-                title={obj.caption}
-                typeTitle={obj.parent ? t("Career") : t("Field of Science")}
-                type={"careers"}
-                exploreLink={"/explore/careers"}
-                ancestor={obj.parent ? obj.parent.caption : ""}
-                ancestorLink={
-                  obj.parent
-                    ? slugifyItem("careers", obj.parent.key, obj.parent.name)
-                    : ""
-                }
-                topics={topics}
-              />
-            )}
+            {obj &&
+              obj.caption && (
+                <Nav
+                  title={obj.caption}
+                  typeTitle={obj.parent ? t("Career") : t("Field of Science")}
+                  type={"careers"}
+                  exploreLink={"/explore/careers"}
+                  ancestor={obj.parent ? obj.parent.caption : ""}
+                  ancestorLink={
+                    obj.parent
+                      ? slugifyItem("careers", obj.parent.key, obj.parent.name)
+                      : ""
+                  }
+                  topics={topics}
+                />
+              )}
             <div className="splash">
               <div
                 className="image"
@@ -205,10 +295,55 @@ class CareerProfile extends Component {
           <div className="topic-block" id="about">
             <div className="topic-header">
               <div className="topic-title">
-                <h2>{t("About")}</h2>
+                <h2 className="full-width">
+                  {t("About")}
+                  {obj && (
+                    <small>
+                      <span className="pipe">|</span>
+                      {obj.caption}
+                    </small>
+                  )}
+                </h2>
+              </div>
+              <div className="topic-go-to-targets">
+                <div className="topic-slider-sections" />
+              </div>
+            </div>
+            <div className="topic-slide-container">
+              <div className="topic-slide-block">
+                <div className="topic-slide-intro">
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <LinksList title={listTitle} list={list} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        
         </div>
       </CanonComponent>
     );

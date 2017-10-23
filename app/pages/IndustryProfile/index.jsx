@@ -18,6 +18,7 @@ import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
+import LinksList from "components/LinksList";
 
 import "../intro.css";
 
@@ -108,6 +109,41 @@ class IndustryProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("tax_data")
+        .then(cube => {
+          var q;
+
+          q = levelCut(
+            { level1: ids.level1 },
+            "ISICrev4",
+            "ISICrev4",
+            cube.query
+              .option("parents", true)
+              .drilldown("ISICrev4", "ISICrev4", "Level 2")
+              .measure("Output"),
+            "Level 1",
+            "Level 2",
+            store.i18n.locale,
+            false
+          );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "industry_list_detail",
+            data: res.data.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -123,6 +159,40 @@ class IndustryProfile extends Component {
     const obj = this.props.data.industry;
 
     const locale = i18n.language.split("-")[0];
+
+    const ids = getLevelObject(this.props.routeParams);
+
+    const list = this.props.data.industry_list_detail;
+
+    console.warn("list", list);
+
+    obj && ids && list
+      ? list.map(c => {
+          c.label = ids.level2 ? c["Level 2"] : c["Level 2"];
+          if (ids.level2) {
+            c.link = slugifyItem(
+              "industries",
+              c["ID Level 1"],
+              c["Level 1"],
+              c["ID Level 2"],
+              c["Level 2"]
+            );
+          } else if (ids.level1) {
+            c.link = slugifyItem(
+              "industries",
+              c["ID Level 1"],
+              c["Level 1"],
+              c["ID Level 2"],
+              c["Level 2"]
+            );
+          }
+          return c;
+        })
+      : [];
+
+    const listTitle = ids
+      ? ids.level2 ? t("Industries") : t("Industries")
+      : "";
 
     const stats = {
       employees: this.props.data.employees_by_industry,
@@ -229,6 +299,58 @@ class IndustryProfile extends Component {
               <a href="#about">
                 <SvgImage src="/images/profile-icon/icon-arrow.svg" />
               </a>
+            </div>
+          </div>
+
+          <div className="topic-block" id="about">
+            <div className="topic-header">
+              <div className="topic-title">
+                <h2 className="full-width">
+                  {t("About")}
+                  {obj && (
+                    <small>
+                      <span className="pipe">|</span>
+                      {obj.caption}
+                    </small>
+                  )}
+                </h2>
+              </div>
+              <div className="topic-go-to-targets">
+                <div className="topic-slider-sections" />
+              </div>
+            </div>
+            <div className="topic-slide-container">
+              <div className="topic-slide-block">
+                <div className="topic-slide-intro">
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <LinksList title={listTitle} list={list} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

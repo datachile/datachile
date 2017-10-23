@@ -22,8 +22,8 @@ function slugifyStr(str) {
 }
 
 export function slugifyItem(prefix, id1, name1, id2, name2) {
-  if(prefix=='geo'&&id1=='chile'){
-    return '/geo/chile'
+  if (prefix == "geo" && id1 == "chile") {
+    return "/geo/chile";
   }
   var link = "/" + prefix + "/" + slugifyStr(name1);
 
@@ -75,7 +75,7 @@ n.register("locale", "en-cl", {
   },
   ordinal: function(number) {
     var b = number % 10;
-    return ~~(number % 100 / 10) === 1
+    return ~~((number % 100) / 10) === 1
       ? "th"
       : b === 1 ? "st" : b === 2 ? "nd" : b === 3 ? "rd" : "th";
   },
@@ -89,13 +89,13 @@ export function numeral(number, locale = "en") {
   return n(number);
 }
 
-export function moneyRangeFormat(tick,locale = "en"){
-  if(!tick)return '';
-  var ticks = tick.split('-').map((ti)=>numeral(ti, locale).format("($ 0 a)"));
-  if(ticks.length==1){
-    ticks[0] = '+'+ticks[0];
+export function moneyRangeFormat(tick, locale = "en") {
+  if (!tick) return "";
+  var ticks = tick.split("-").map(ti => numeral(ti, locale).format("($ 0 a)"));
+  if (ticks.length == 1) {
+    ticks[0] = "+" + ticks[0];
   }
-  return ticks.join(' - ');
+  return ticks.join(" - ");
 }
 
 function abbreviate(n) {

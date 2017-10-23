@@ -35,16 +35,17 @@ function levelCut(
   query,
   level1,
   level2,
-  lang = "en"
+  lang = "en",
+  drilldown = true
 ) {
   query = setLangCaptions(query, lang);
   if (object.level2 === false) {
-    query.drilldown(dimensionName, subDimensionName, level1);
+    if (drilldown) query.drilldown(dimensionName, subDimensionName, level1);
     return query.cut(
       `[${dimensionName}].[${subDimensionName}].[${level1}].&[${object.level1}]`
     );
   } else {
-    query.drilldown(dimensionName, subDimensionName, level2);
+    if (drilldown) query.drilldown(dimensionName, subDimensionName, level2);
     return query.cut(
       `[${dimensionName}].[${subDimensionName}].[${level2}].&[${object.level2}]`
     );
