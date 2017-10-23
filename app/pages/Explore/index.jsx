@@ -82,14 +82,14 @@ class Explore extends Component {
           case "institutions": {
             var prm1 = getMembersQuery(
               "education_employability",
-              "Higher Institution",
+              "Higher Institutions",
               "Higher Institution Subgroup",
               store.i18n.locale,
               false
             );
             var prm2 = getMembersQuery(
               "education_employability",
-              "Higher Institution",
+              "Higher Institutions",
               "Higher Institution",
               store.i18n.locale,
               false

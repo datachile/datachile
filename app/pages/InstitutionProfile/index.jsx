@@ -38,7 +38,7 @@ class InstitutionProfile extends Component {
       var prms = [
         getMemberQuery(
           "education_employability",
-          "Higher Institution",
+          "Higher Institutions",
           "Higher Institution Subgroup",
           ids.level1,
           store.i18n.locale
@@ -49,7 +49,7 @@ class InstitutionProfile extends Component {
         prms.push(
           getMemberQuery(
             "education_employability",
-            "Higher Institution",
+            "Higher Institutions",
             "Higher Institution",
             ids.level2,
             store.i18n.locale
@@ -76,8 +76,8 @@ class InstitutionProfile extends Component {
             //Search careers
             q = levelCut(
               ids,
-              "Higher Institution",
-              "Higher Institution",
+              "Higher Institutions",
+              "Higher Institutions",
               cube.query
                 .option("parents", true)
                 .drilldown("Careers", "Careers", "Career")
@@ -90,13 +90,13 @@ class InstitutionProfile extends Component {
             //Search institutions
             q = levelCut(
               ids,
-              "Higher Institution",
-              "Higher Institution",
+              "Higher Institutions",
+              "Higher Institutions",
               cube.query
                 .option("parents", true)
                 .drilldown(
-                  "Higher Institution",
-                  "Higher Institution",
+                  "Higher Institutions",
+                  "Higher Institutions",
                   "Higher Institution"
                 )
                 .measure("Number of records"),
@@ -137,6 +137,9 @@ class InstitutionProfile extends Component {
     const ids = getLevelObject(this.props.routeParams);
 
     const list = this.props.data.institution_list_detail;
+
+    console.warn('list->',list);
+
 
     obj && ids && list
       ? list.map(c => {

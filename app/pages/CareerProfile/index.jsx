@@ -81,8 +81,8 @@ class CareerProfile extends Component {
               cube.query
                 .option("parents", true)
                 .drilldown(
-                  "Higher Institution",
-                  "Higher Institution",
+                  "Higher Institutions",
+                  "Higher Institutions",
                   "Higher Institution"
                 )
                 .measure("Number of records"),
@@ -343,6 +343,7 @@ class CareerProfile extends Component {
               </div>
             </div>
           </div>
+        
         </div>
       </CanonComponent>
     );

@@ -156,13 +156,13 @@ class DynamicHomeHeader extends Component {
             callbackError={mountainsLoadedError}
           />
           {header && (
-            <div className="dynamic-home-items">
+            <div className={`dynamic-home-items illustration-${header.slug}`}>
               <div
                 className="dynamic-home-hotspots"
                 dangerouslySetInnerHTML={{ __html: this.state.illustration }}
               />
-              <div className="dynamic-home-image">
-                <img src={`/images/home/headers/${header.slug}.svg`} />
+              <div className={`dynamic-home-image`}>
+                <img src={`/images/home/headers/${header.slug}.png`} />
               </div>
             </div>
           )}
