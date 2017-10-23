@@ -165,8 +165,6 @@ class CountryProfile extends Component {
           return c;
         })
       : [];
-    
-    console.warn('list->',list);
 
     const listTitle = ids
       ? ids.level2 ? t("Other regions") : t("Countries")

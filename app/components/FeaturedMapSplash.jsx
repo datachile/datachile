@@ -54,7 +54,7 @@ class FeaturedMapSplash extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (props.nextProps=="region" && (nextProps.code !== this.props.code)) {
+    if (props.nextProps=="region" && (this.props) && (nextProps.code !== this.props.code)) {
       loadSvgAsString(
         "/images/maps/zoom/comunas-" + this.props.code + ".svg"
       ).get(this.callbackSvg);

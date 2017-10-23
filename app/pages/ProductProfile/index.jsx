@@ -20,6 +20,7 @@ import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import FeaturedMapSplash from "components/FeaturedMapSplash";
+import LinksList from "components/LinksList";
 
 import "../intro.css";
 
@@ -192,6 +193,59 @@ class ProductProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+
+      var prm;
+      if (ids.level2) {
+        prm = getMembersQuery(
+            "exports",
+            "Export HS",
+            "HS0",
+            store.i18n.locale,
+            false
+          ).then(res => {
+          return {
+            key: "product_list_detail",
+            data: res
+          };
+        });
+
+      }else {
+      
+        prm = mondrianClient
+          .cube("exports")
+          .then(cube => {
+            var q = levelCut(
+                ids,
+                "Export HS",
+                "HS",
+                cube.query
+                  .option("parents", true)
+                  .drilldown("Export HS", "HS", "HS2")
+                  .measure("FOB US"),
+                "HS0",
+                "HS2",
+                store.i18n.locale,
+                false
+              );
+
+            return mondrianClient.query(q, "jsonrecords");
+          })
+          .then(res => {
+            return {
+              key: "product_list_detail",
+              data: res.data.data
+            };
+          });
+
+      }
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -203,9 +257,42 @@ class ProductProfile extends Component {
     const { focus, t, i18n } = this.props;
 
     const { industry } = this.props.routeParams;
+
     const obj = this.props.data.product;
 
     const locale = i18n.language.split("-")[0];
+
+    const ids = getLevelObject(this.props.routeParams);
+  
+    const list = this.props.data.product_list_detail;
+  
+    obj && ids && list
+      ? list.map(c => {
+          c.label = ids.level2 ? c["caption"] : c["HS2"];
+          if (ids.level2 && c["fullName"]) {
+            c.link = slugifyItem(
+              "products",
+              c["key"],
+              c["name"],
+              false,
+              false
+            );
+          } else if (ids.level1 && c["ID HS2"]) {
+            c.link = slugifyItem(
+              "products",
+              c["ID HS0"],
+              c["HS0"],
+              c["ID HS2"],
+              c["HS2"]
+            );
+          }
+          return c;
+        })
+      : [];
+
+    const listTitle = ids
+      ? ids.level2 ? t("Other products") : t("Products")
+      : "";
 
     const stats = {
       country: this.props.data.top_destination_country_per_product,
@@ -319,6 +406,60 @@ class ProductProfile extends Component {
               </a>
             </div>
           </div>
+
+          <div className="topic-block" id="about">
+            <div className="topic-header">
+              <div className="topic-title">
+                <h2 className="full-width">
+                  {t("About")}
+                  {obj && (
+                    <small>
+                      <span className="pipe">|</span>
+                      {obj.caption}
+                    </small>
+                  )}
+                </h2>
+              </div>
+              <div className="topic-go-to-targets">
+                <div className="topic-slider-sections" />
+              </div>
+            </div>
+            <div className="topic-slide-container">
+              <div className="topic-slide-block">
+                <div className="topic-slide-intro">
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                  <div className="topic-slide-text">
+                    <LinksList title={listTitle} list={list} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </CanonComponent>
     );
