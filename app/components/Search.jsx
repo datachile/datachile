@@ -38,19 +38,10 @@ class Search extends Component {
         userQuery
       )}`,
       (error, data) => {
-        console.log(data);
+        const r = JSON.parse(data.responseText);
+        this.setState({ active: true, results: r });
       }
     );
-
-    // else if (userQuery.length < 3) return;
-    let results = GEOARRAY.filter(
-      e =>
-        e.name.toLowerCase().indexOf(userQuery.toLowerCase()) > -1 ||
-        e.clean.toLowerCase().indexOf(userQuery.toLowerCase()) > -1
-    ).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase());
-
-    if (limit) results = results.slice(0, limit);
-    this.setState({ active: true, results });
   }
 
   onChange(e) {
@@ -148,9 +139,9 @@ class Search extends Component {
         </div>
         <ul className="results">
           {results.map(result => (
-            <li key={result.key} className="result">
+            <li key={`${result.index_as}-${result.key}`} className="result">
               <Link to={result.url}>
-                {result.name} | {result.type}
+                {result.content} | {result.index_as}
               </Link>
             </li>
           ))}
