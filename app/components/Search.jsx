@@ -40,7 +40,7 @@ class Search extends Component {
     request(
       `https://chilecube.datawheel.us/search?q=${encodeURIComponent(
         userQuery
-      )}`,
+      )}&limit=10`,
       (error, data) => {
         const r = JSON.parse(data.responseText);
         this.setState({ active: true, results: r, loading: false });
