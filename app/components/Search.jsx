@@ -35,7 +35,9 @@ class Search extends Component {
     }
 
     request(
-      `http://localhost:9292/search?q=${encodeURIComponent(userQuery)}`,
+      `https://chilecube.datawheel.us/search?q=${encodeURIComponent(
+        userQuery
+      )}`,
       (error, data) => {
         const r = JSON.parse(data.responseText);
         this.setState({ active: true, results: r });
@@ -114,6 +116,44 @@ class Search extends Component {
     );
   }
 
+  getProfileType(result) {
+    const { t } = this.props;
+    var profileType = "";
+    switch (result.index_as) {
+      case undefined: {
+        profileType = "";
+        break;
+      }
+      case "countries": {
+        profileType = result.ancestor_key ? t("Country") : t("Area");
+        break;
+      }
+      case "institutions": {
+        profileType = result.ancestor_key
+          ? t("Institution")
+          : t("Institution Type");
+        break;
+      }
+      case "careers": {
+        profileType = result.ancestor_key ? t("Career") : t("Field of Science");
+        break;
+      }
+      case "products": {
+        profileType = result.ancestor_key ? t("Product") : t("Product Type");
+        break;
+      }
+      case "industries": {
+        profileType = result.ancestor_key ? t("Sector") : t("Sector Type");
+        break;
+      }
+      case "geo": {
+        profileType = result.ancestor_key ? t("Comuna") : t("Region");
+        break;
+      }
+    }
+    return profileType;
+  }
+
   render() {
     const { className, searchActive, local, t } = this.props;
     const { active, results } = this.state;
@@ -143,12 +183,20 @@ class Search extends Component {
                 to={slugifyItem(
                   result.index_as,
                   result.ancestor_key ? result.ancestor_key : result.key,
-                  result.ancestor_name ? result.ancestor_name : result.name,
+                  result.ancestor_name ? result.ancestor_name : result.content,
                   result.ancestor_key ? result.key : result.ancestor_key,
-                  result.ancestor_name ? result.name : result.ancestor_name
+                  result.ancestor_name ? result.content : result.ancestor_name
                 )}
               >
-                {result.content} | {result.index_as}
+                <span className="icon-container">
+                  <img
+                    className="icon"
+                    src={`/images/icons/icon-${result.index_as}.svg`}
+                  />
+                </span>
+                <span className="content">{result.content}</span>
+                <span className="separator">|</span>
+                <span className="type">{this.getProfileType(result)}</span>
               </Link>
             </li>
           ))}
