@@ -15,7 +15,8 @@
   "Explore": "Explorar",
   "Explore featured profiles": "Explorar perfiles destacados",
 
-  "Interactive data visualization platform about Chilean public data": "Plataforma interactiva de visualización de datos sobre información pública de Chile",
+  "Interactive data visualization platform about Chilean public data":
+    "Plataforma interactiva de visualización de datos sobre información pública de Chile",
   "Pic by": "Foto de",
 
   "Home": "Inicio",
@@ -71,14 +72,17 @@
 
   "export_by_product": {
     "title": "Exportación por producto",
-    "line1": "En {{latest_year}}, {{geo.caption}} exportó <i>{{trade_volume}}</i> convirtiéndolo en el {{rank}} mayor exportador en Chile. ",
-    "line2": "Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual de {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}} ",
-    "line3": "Las principales exportaciones más recientes son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> que representan {{trade_first_share}} de las exportaciones de {{geo.caption}}, seguidas por <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a>, que representan el {{trade_second_share}} de los principales productos exportados en {{latest_year}}"
+    "line1":
+      "En {{latest_year}}, las firmas basadas en {{geo.caption}} exportaron <i>{{trade_volume}}</i> convirtiéndolo en el {{rank}} mayor exportador en Chile. ",
+    "line2":
+      "Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual de {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}} ",
+    "line3":
+      "Las principales exportaciones más recientes son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> que representan {{trade_first_share}} de las exportaciones de {{geo.caption}}, seguidas por <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a>, que representan el {{trade_second_share}} de los principales productos exportados en {{latest_year}}"
   },
 
   "trade_balance": {
-    "fob":"Exportaciones",
-    "cif":"Importaciones",
+    "fob": "Exportaciones",
+    "cif": "Importaciones",
     "trade_balance": "Balanza comercial"
   },
 

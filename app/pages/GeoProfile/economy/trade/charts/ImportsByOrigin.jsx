@@ -46,7 +46,9 @@ export default translate()(
 
       return (
         <div className={className}>
-          <h3 className="chart-title">{t("Imports By Origin")}</h3>
+          <h3 className="chart-title">
+            {t("Imports by destination of firms based on this location")}
+          </h3>
           <Treemap
             config={{
               height: 500,
