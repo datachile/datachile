@@ -133,7 +133,7 @@ class Home extends Component {
                   id={p.slug}
                   style={{
                     backgroundImage:
-                      "url(/images/home/bg/" + this.state.header.slug + ".png)"
+                      "url(/images/home/bg/" + this.state.header.slug + ".jpg)"
                   }}
                 />
               ))}
