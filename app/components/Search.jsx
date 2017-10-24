@@ -10,6 +10,7 @@ import { request } from "d3-request";
 import "./Search.css";
 
 import { GEOARRAY } from "helpers/GeoData";
+import { slugifyItem } from "helpers/formatters";
 
 import { strip } from "d3plus-text";
 import { dataFold } from "d3plus-viz";
@@ -34,9 +35,7 @@ class Search extends Component {
     }
 
     request(
-      `https://chilecube.datawheel.us/search?q=${encodeURIComponent(
-        userQuery
-      )}`,
+      `http://localhost:9292/search?q=${encodeURIComponent(userQuery)}`,
       (error, data) => {
         const r = JSON.parse(data.responseText);
         this.setState({ active: true, results: r });
@@ -140,7 +139,15 @@ class Search extends Component {
         <ul className="results">
           {results.map(result => (
             <li key={`${result.index_as}-${result.key}`} className="result">
-              <Link to={result.url}>
+              <Link
+                to={slugifyItem(
+                  result.index_as,
+                  result.ancestor_key ? result.ancestor_key : result.key,
+                  result.ancestor_name ? result.ancestor_name : result.name,
+                  result.ancestor_key ? result.key : result.ancestor_key,
+                  result.ancestor_name ? result.name : result.ancestor_name
+                )}
+              >
                 {result.content} | {result.index_as}
               </Link>
             </li>
