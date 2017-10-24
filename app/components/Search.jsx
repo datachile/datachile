@@ -20,6 +20,7 @@ class Search extends Component {
     super(props);
     this.state = {
       active: false,
+      loading: false,
       results: []
     };
     this.handleChange = debounce(this.handleChange, 500);
@@ -34,13 +35,15 @@ class Search extends Component {
       return;
     }
 
+    this.setState({ loading: true });
+
     request(
       `https://chilecube.datawheel.us/search?q=${encodeURIComponent(
         userQuery
       )}`,
       (error, data) => {
         const r = JSON.parse(data.responseText);
-        this.setState({ active: true, results: r });
+        this.setState({ active: true, results: r, loading: false });
       }
     );
   }
@@ -156,7 +159,7 @@ class Search extends Component {
 
   render() {
     const { className, searchActive, local, t } = this.props;
-    const { active, results } = this.state;
+    const { active, results, loading } = this.state;
     const enabled = local ? active : searchActive;
 
     const availableClass =
@@ -173,6 +176,7 @@ class Search extends Component {
       >
         <div className="input">
           <input
+            className={loading ? "loading" : ""}
             type="text"
             ref="input"
             onChange={this.onChange.bind(this)}

@@ -164,8 +164,6 @@ class IndustryProfile extends Component {
 
     const list = this.props.data.industry_list_detail;
 
-    console.warn("list", list);
-
     obj && ids && list
       ? list.map(c => {
           c.label = ids.level2 ? c["Level 2"] : c["Level 2"];

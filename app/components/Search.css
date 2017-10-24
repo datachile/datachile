@@ -43,6 +43,9 @@
         background-color: var(--snow);
         color: var(--accent);
       }
+      &.loading {
+        background-image: url("/images/icons/icon-mini-loader.svg");
+      }
     }
   }
 
