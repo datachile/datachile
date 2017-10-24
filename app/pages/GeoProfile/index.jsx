@@ -527,7 +527,11 @@ class GeoProfile extends Component {
                     decile={stats.population.decile}
                     rank={
                       showRanking
-                        ? stats.population.rank + "/" + stats.population.total
+                        ? numeral(stats.population.rank, locale).format("0o") +
+                          " " +
+                          t("of") +
+                          " " +
+                          stats.population.total
                         : false
                     }
                     datum={numeral(stats.population.value, locale).format(
@@ -546,7 +550,11 @@ class GeoProfile extends Component {
                     decile={stats.income.decile}
                     rank={
                       showRanking
-                        ? stats.income.rank + "/" + stats.income.total
+                        ? numeral(stats.income.rank, locale).format("0o") +
+                          " " +
+                          t("of") +
+                          " " +
+                          stats.income.total
                         : false
                     }
                     datum={numeral(stats.income.value, locale).format(
@@ -563,7 +571,11 @@ class GeoProfile extends Component {
                     decile={stats.psu.decile}
                     rank={
                       showRanking
-                        ? stats.psu.rank + "/" + stats.psu.total
+                        ? numeral(stats.psu.rank, locale).format("0o") +
+                          " " +
+                          t("of") +
+                          " " +
+                          stats.psu.total
                         : false
                     }
                     datum={

@@ -200,36 +200,34 @@ class ProductProfile extends Component {
       var prm;
       if (ids.level2) {
         prm = getMembersQuery(
-            "exports",
-            "Export HS",
-            "HS0",
-            store.i18n.locale,
-            false
-          ).then(res => {
+          "exports",
+          "Export HS",
+          "HS0",
+          store.i18n.locale,
+          false
+        ).then(res => {
           return {
             key: "product_list_detail",
             data: res
           };
         });
-
-      }else {
-      
+      } else {
         prm = mondrianClient
           .cube("exports")
           .then(cube => {
             var q = levelCut(
-                ids,
-                "Export HS",
-                "HS",
-                cube.query
-                  .option("parents", true)
-                  .drilldown("Export HS", "HS", "HS2")
-                  .measure("FOB US"),
-                "HS0",
-                "HS2",
-                store.i18n.locale,
-                false
-              );
+              ids,
+              "Export HS",
+              "HS",
+              cube.query
+                .option("parents", true)
+                .drilldown("Export HS", "HS", "HS2")
+                .measure("FOB US"),
+              "HS0",
+              "HS2",
+              store.i18n.locale,
+              false
+            );
 
             return mondrianClient.query(q, "jsonrecords");
           })
@@ -239,7 +237,6 @@ class ProductProfile extends Component {
               data: res.data.data
             };
           });
-
       }
 
       return {
@@ -263,20 +260,14 @@ class ProductProfile extends Component {
     const locale = i18n.language.split("-")[0];
 
     const ids = getLevelObject(this.props.routeParams);
-  
+
     const list = this.props.data.product_list_detail;
-  
+
     obj && ids && list
       ? list.map(c => {
           c.label = ids.level2 ? c["caption"] : c["HS2"];
           if (ids.level2 && c["fullName"]) {
-            c.link = slugifyItem(
-              "products",
-              c["key"],
-              c["name"],
-              false,
-              false
-            );
+            c.link = slugifyItem("products", c["key"], c["name"], false, false);
           } else if (ids.level1 && c["ID HS2"]) {
             c.link = slugifyItem(
               "products",
@@ -368,7 +359,15 @@ class ProductProfile extends Component {
                     title={t("Exports")}
                     icon="ingreso"
                     decile={stats.exports.decile}
-                    rank={stats.exports.rank + "/" + stats.exports.total}
+                    rank={
+                      stats.exports.rank
+                        ? numeral(stats.exports.rank, locale).format("0o") +
+                          " " +
+                          t("of") +
+                          " " +
+                          stats.exports.total
+                        : false
+                    }
                     datum={numeral(stats.exports.value, locale).format(
                       "($ 0,0 a)"
                     )}
@@ -458,8 +457,6 @@ class ProductProfile extends Component {
               </div>
             </div>
           </div>
-
-
         </div>
       </CanonComponent>
     );

@@ -17,6 +17,7 @@
       font-size: 12px;
       border-radius: 200px;
       margin-left: 10px;
+      text-transform: lowercase;
     }
   }
   & .featured-datum-splash-source {
