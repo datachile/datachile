@@ -415,11 +415,17 @@ class GeoProfile extends Component {
       }
     */
 
-    const stats = {
+    var stats = {
       population: this.props.data.population,
       income: this.props.data.income,
       psu: this.props.data.psu
     };
+
+    //national
+    if (this.props.data.geo.type == "country") {
+      stats.income.decile = 5;
+      stats.psu.decile = 5;
+    }
 
     const topics = [
       {
