@@ -44,7 +44,9 @@ export default translate()(
       const locale = i18n.language.split("-")[0];
       return (
         <div className={className}>
-          <h3 className="chart-title">{t("Exports By Destination")}</h3>
+          <h3 className="chart-title">
+            {t("Exports by destination of firms based on this location")}
+          </h3>
           <Treemap
             config={{
               height: 500,
