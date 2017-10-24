@@ -16,7 +16,7 @@ class IDStaffSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">
-            {t("I+D Staff")}
+            {t("R&D Staff")}
           </div>
           <div className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non

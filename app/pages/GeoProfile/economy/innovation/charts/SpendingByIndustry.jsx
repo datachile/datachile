@@ -49,7 +49,7 @@ class SpendingByIndustry extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("I+D Spending By Industry")} {geo && geo.type=='comuna' && t("Regional")}
+          {t("R&D Spending By Industry")} {geo && geo.type=='comuna' && t("Regional")}
         </h3>
         <Treemap
           config={{
