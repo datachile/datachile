@@ -159,6 +159,9 @@ class Search extends Component {
     const { active, results } = this.state;
     const enabled = local ? active : searchActive;
 
+    const availableClass =
+      results && results.length > 0 ? "available" : "not-available";
+
     if (this.refs.input) {
       if (enabled) this.refs.input.focus();
       else this.refs.input.blur();
@@ -176,7 +179,7 @@ class Search extends Component {
             placeholder={t("Search a location, industry, product, career, etc")}
           />
         </div>
-        <ul className="results">
+        <ul className={`results ${availableClass}`}>
           {results.map(result => (
             <li key={`${result.index_as}-${result.key}`} className="result">
               <Link
