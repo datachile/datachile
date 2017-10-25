@@ -67,47 +67,43 @@ class CountryProfile extends Component {
       };
     },
     (params, store) => {
-
       var ids = getLevelObject(params);
 
       var prm;
 
       if (ids.level2) {
-        
         prm = getMembersQuery(
-              "exports",
-              "Destination Country",
-              "Subregion",
-              store.i18n.locale,
-              false
-            ).then(res => {
-            return {
-              key: "country_list_detail",
-              data: res
-            };
-          });
-
-      }else{
-
+          "exports",
+          "Destination Country",
+          "Subregion",
+          store.i18n.locale,
+          false
+        ).then(res => {
+          return {
+            key: "country_list_detail",
+            data: res
+          };
+        });
+      } else {
         prm = mondrianClient
           .cube("exports")
           .then(cube => {
             var q;
-            
-              //Search countries
-              q = levelCut(
-                ids,
-                "Destination Country",
-                "Country",
-                cube.query
-                  .option("parents", true)
-                  .drilldown("Destination Country", "Country", "Country")
-                  .measure("FOB US"),
-                "Subregion",
-                "Country",
-                store.i18n.locale,
-                false
-              );
+
+            //Search countries
+            q = levelCut(
+              ids,
+              "Destination Country",
+              "Country",
+              cube.query
+                .option("parents", true)
+                .drilldown("Destination Country", "Country", "Country")
+                .measure("FOB US"),
+              "Subregion",
+              "Country",
+              store.i18n.locale,
+              false
+            );
 
             return mondrianClient.query(q, "jsonrecords");
           })
@@ -117,7 +113,6 @@ class CountryProfile extends Component {
               data: res.data.data
             };
           });
-
       }
 
       return {
@@ -140,7 +135,6 @@ class CountryProfile extends Component {
     const ids = getLevelObject(this.props.routeParams);
 
     const list = this.props.data.country_list_detail;
-
 
     obj && ids && list
       ? list.map(c => {
@@ -173,19 +167,19 @@ class CountryProfile extends Component {
     const locale = i18n.language.split("-")[0];
 
     const stats = {
-      employees: {
+      imports: {
         value: 1000,
         decile: 5,
         year: 2010,
         source: "source"
       },
-      income: {
+      product: {
         value: 1000,
         decile: 5,
         year: 2010,
         source: "source"
       },
-      studies: {
+      exports: {
         value: 1000,
         decile: 5,
         year: 2010,
@@ -197,6 +191,14 @@ class CountryProfile extends Component {
       {
         slug: "about",
         title: t("About")
+      },
+      {
+        slug: "demography",
+        title: t("Demography")
+      },
+      {
+        slug: "trade",
+        title: t("Trade")
       }
     ];
 
@@ -231,39 +233,35 @@ class CountryProfile extends Component {
 
             <div className="header">
               <div className="datum-full-width">
-                {stats.employees && (
+                {stats.imports && (
                   <FeaturedDatumSplash
-                    title={t("Employees")}
-                    icon="poblacion"
-                    decile={stats.employees.decile}
-                    datum={numeral(stats.employees.value, locale).format(
-                      "(0,0)"
-                    )}
-                    source={
-                      stats.employees.year + " - " + stats.employees.source
-                    }
-                    className=""
-                  />
-                )}
-
-                {stats.income && (
-                  <FeaturedDatumSplash
-                    title={t("Average Income")}
+                    title={t("Imports")}
                     icon="ingreso"
-                    decile={stats.income.decile}
-                    datum={numeral(stats.income.value, locale).format("(0,0)")}
-                    source={stats.income.year + " - " + stats.income.source}
+                    decile={stats.imports.decile}
+                    datum={numeral(stats.imports.value, locale).format("(0,0)")}
+                    source={stats.imports.year + " - " + stats.imports.source}
                     className=""
                   />
                 )}
 
-                {stats.studies && (
+                {stats.product && (
                   <FeaturedDatumSplash
-                    title={t("Years of Studies")}
-                    icon="psu"
-                    decile={stats.studies.decile}
-                    datum={numeral(stats.studies.value, locale).format("(0,0)")}
-                    source={stats.studies.year + " - " + stats.studies.source}
+                    title={t("Main imported product")}
+                    icon="check"
+                    decile={stats.product.decile}
+                    datum={numeral(stats.product.value, locale).format("(0,0)")}
+                    source={stats.product.year + " - " + stats.product.source}
+                    className=""
+                  />
+                )}
+
+                {stats.exports && (
+                  <FeaturedDatumSplash
+                    title={t("Exports")}
+                    icon="ingreso"
+                    decile={stats.exports.decile}
+                    datum={numeral(stats.exports.value, locale).format("(0,0)")}
+                    source={stats.exports.year + " - " + stats.exports.source}
                     className=""
                   />
                 )}
@@ -280,7 +278,7 @@ class CountryProfile extends Component {
               </a>
             </div>
           </div>
-          
+
           <div className="topic-block" id="about">
             <div className="topic-header">
               <div className="topic-title">
@@ -332,7 +330,6 @@ class CountryProfile extends Component {
               </div>
             </div>
           </div>
-
         </div>
       </CanonComponent>
     );
