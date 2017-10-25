@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
@@ -21,6 +21,11 @@ import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import FeaturedMapSplash from "components/FeaturedMapSplash";
 import LinksList from "components/LinksList";
+
+import InternationalTrade from "./InternationalTrade/InternationalTrade";
+import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
+import ExportsByDestination from "./InternationalTrade/charts/ExportsByDestination";
+import ImportsByDestination from "./InternationalTrade/charts/ImportsByDestination";
 
 import "../intro.css";
 
@@ -243,7 +248,12 @@ class ProductProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
-    }
+    },
+
+    InternationalTrade,
+    InternationalTradeSlide,
+    ExportsByDestination,
+    ImportsByDestination
   ];
 
   componentDidMount() {}
@@ -456,6 +466,34 @@ class ProductProfile extends Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="topics-container">
+            <InternationalTrade>
+              <div>
+                <InternationalTradeSlide>
+                  <SectionColumns>
+                    <ExportsByDestination className="lost-1-2" />
+                    <ImportsByDestination className="lost-1-2" />
+                  </SectionColumns>
+                </InternationalTradeSlide>
+              </div>
+              <div>
+                <p>
+                  Nullam eu ante vel est convallis dignissim. Fusce suscipit,
+                  wisi nec facilisis facilisis, est dui fermentum leo, quis
+                  tempor ligula erat quis odio. Nunc porta vulputate tellus.
+                  Nunc rutrum turpis sed pede. Sed bibendum. Aliquam posuere.
+                  Nunc aliquet, augue nec adipiscing interdum, lacus tellus
+                  malesuada massa, quis varius mi purus non odio. Pellentesque
+                  condimentum, magna ut suscipit hendrerit, ipsum augue ornare
+                  nulla, non luctus diam neque sit amet urna. Curabitur
+                  vulputate vestibulum lorem. Fusce sagittis, libero non
+                  molestie mollis, magna orci ultrices dolor, at vulputate neque
+                  nulla lacinia eros. Sed id ligula quis est convallis tempor.
+                  Curabitur lacinia pulvinar nibh. Nam a sapien.
+                </p>
+              </div>
+            </InternationalTrade>
           </div>
         </div>
       </CanonComponent>

@@ -16,7 +16,7 @@ class IDSpendingCategorySlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">
-            {t("I+D spending")}
+            {t("R&D spending")}
           </div>
           <div className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
