@@ -147,3 +147,13 @@ color-institutions: "#7777ED"
 color-careers: "#E5C38D"
 color-products: "#FF7474"
 color-industries: "#2A8090"*/
+
+.datachile-tooltip {
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  background: var(--snow);
+  border: 1px solid var(--near-black);
+  font-family: var(--font-family-text);
+  color: var(--near-black);
+}

@@ -48,17 +48,17 @@
     }
   }
   & #svg-map-tooltip {
-    opacity: 0;
+    transform: scale(0);
     position: absolute;
+    z-index: 100;
+    pointer-events: none;
+
     text-align: center;
     padding: 10px;
-    z-index: 100;
-    font-family: var(--font-family-text);
     font-size: 12px;
     background: var(--snow);
-    border: 1px solid var(--near-black);
-    pointer-events: none;
+    border: 1px solid var(--dark);
     font-family: var(--font-family-text);
-    color: var(--near-black);
+    color: var(--dark);
   }
 }

@@ -61,7 +61,7 @@ class SvgMap extends Component {
   prepareSelected(active) {
     selectAll(".svg-map .comuna").classed("selected", false);
     select(".svg-map .comuna#c" + active).classed("selected", true);
-    select(".svg-map #svg-map-tooltip").style("opacity", 0);
+    select(".svg-map #svg-map-tooltip").style("transform", "scale(0)");
   }
 
   launchEvents() {
@@ -83,7 +83,7 @@ class SvgMap extends Component {
         tooltip
           .transition()
           .duration(200)
-          .style("opacity", 0.9);
+          .style("transform", "scale(1)");
         tooltip
           .html(
             "Comuna " +
@@ -100,7 +100,7 @@ class SvgMap extends Component {
         tooltip
           .transition()
           .duration(200)
-          .style("opacity", 0);
+          .style("transform", "scale(0)");
       })
       .on("mousemove", function(d, a) {
         var coordinates = mouse(select(".map-comuna").node());
@@ -130,7 +130,7 @@ class SvgMap extends Component {
         tooltip
           .transition()
           .duration(200)
-          .style("opacity", 0.9);
+          .style("transform", "scale(1)");
         tooltip
           .html(
             "Región " +
@@ -147,7 +147,7 @@ class SvgMap extends Component {
         tooltip
           .transition()
           .duration(200)
-          .style("opacity", 0);
+          .style("transform", "scale(0)");
       })
       .on("mousemove", function(d, a) {
         var coordinates = mouse(select(".map-comuna").node());
@@ -166,7 +166,7 @@ class SvgMap extends Component {
 
     return (
       <div className="svg-map">
-        <div id="svg-map-tooltip" />
+        <div id="svg-map-tooltip" className="datachile-tooltip" />
         <div
           ref="svgcontainer"
           dangerouslySetInnerHTML={{ __html: this.state.svgFile }}

@@ -607,18 +607,35 @@ class GeoProfile extends Component {
                 <div className="map-region">
                   <Geomap
                     config={{
-                      data: [],
+                      data: [
+                        { id: 1, name: "Arica y Parinacota" },
+                        { id: 2, name: "Antofagasta" },
+                        { id: 3, name: "Atacama" },
+                        { id: 4, name: "Coquimbo" },
+                        { id: 5, name: "Valparaíso" },
+                        { id: 6, name: "O'Higgins" },
+                        { id: 7, name: "Maule" },
+                        { id: 8, name: "BíoBío" },
+                        { id: 9, name: "Araucanía" },
+                        { id: 10, name: "Los Lagos" },
+                        { id: 11, name: "Aisén" },
+                        { id: 12, name: "Magallanes" },
+                        { id: 13, name: "Región Metropolitana" },
+                        { id: 14, name: "Los Ríos" },
+                        { id: 15, name: "pepe" }
+                      ],
+                      id: "id",
                       downloadButton: false,
-                      groupBy: "key",
                       height: 500,
-                      label: d => "Región " + d.properties.Region,
+                      label: d => {
+                        console.log(d);
+                        return "label";
+                      },
                       legend: false,
                       ocean: "transparent",
                       on: {
                         "click.shape": function(d) {
-                          browserHistory.push(
-                            slugifyItem("geo", d.id, d.properties.Region)
-                          );
+                          browserHistory.push(slugifyItem("geo", d.id, d.name));
                         }
                       },
                       padding: 10,
@@ -631,13 +648,30 @@ class GeoProfile extends Component {
                       },
                       tiles: false,
                       tooltipConfig: {
-                        background: "white",
+                        title: "",
+                        body: d => {
+                          return (
+                            "Región " +
+                            d.name +
+                            "<br/><a>" +
+                            t("tooltip.to_profile") +
+                            "</a>"
+                          );
+                        },
+                        bodyStyle: {
+                          "font-family": "'Yantramanav', sans-serif",
+                          "font-size": "12px",
+                          "text-align": "center",
+                          color: "#2F2F38"
+                        },
                         footer: "",
+                        background: "white",
                         footerStyle: {
                           "margin-top": 0
                         },
-                        padding: "12px",
-                        body: d => `${d.properties.Region}`
+                        padding: "10px",
+                        borderRadius: "0px",
+                        border: "1px solid #2F2F38"
                       },
                       topojson: "/geo/regiones.json",
                       topojsonId: "id",
