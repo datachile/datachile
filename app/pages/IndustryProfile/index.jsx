@@ -118,7 +118,7 @@ class IndustryProfile extends Component {
           var q;
 
           q = levelCut(
-            { level1: ids.level1 },
+            { level1: ids.level1, level2: false },
             "ISICrev4",
             "ISICrev4",
             cube.query
@@ -166,24 +166,14 @@ class IndustryProfile extends Component {
 
     obj && ids && list
       ? list.map(c => {
-          c.label = ids.level2 ? c["Level 2"] : c["Level 2"];
-          if (ids.level2) {
-            c.link = slugifyItem(
-              "industries",
-              c["ID Level 1"],
-              c["Level 1"],
-              c["ID Level 2"],
-              c["Level 2"]
-            );
-          } else if (ids.level1) {
-            c.link = slugifyItem(
-              "industries",
-              c["ID Level 1"],
-              c["Level 1"],
-              c["ID Level 2"],
-              c["Level 2"]
-            );
-          }
+          c.label = c["Level 2"];
+          c.link = slugifyItem(
+            "industries",
+            c["ID Level 1"],
+            c["Level 1"],
+            c["ID Level 2"],
+            c["Level 2"]
+          );
           return c;
         })
       : [];

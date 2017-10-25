@@ -343,7 +343,6 @@ class CareerProfile extends Component {
               </div>
             </div>
           </div>
-        
         </div>
       </CanonComponent>
     );

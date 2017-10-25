@@ -13,7 +13,9 @@
 			font-size: 12px;
 		}
 		& .svg-image {
-			& path, & line, & polygon  {
+			& path,
+			& line,
+			& polygon  {
 				fill: var(--snow);
 				stroke: var(--snow);
 			}
@@ -24,7 +26,9 @@
 				color: var(--accent);
 			}
 			& .svg-image {
-				& path, & line, & polygon {
+				& path,
+				& line,
+				& polygon {
 					fill: var(--accent);
 					stroke: var(--accent);
 				}
