@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
@@ -19,6 +19,11 @@ import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
+
+import InternationalTrade from "./InternationalTrade/InternationalTrade";
+import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
+import ExportsByProduct from "./InternationalTrade/charts/ExportsByProduct";
+import ImportsByProduct from "./InternationalTrade/charts/ImportsByProduct";
 
 import "../intro.css";
 
@@ -119,7 +124,11 @@ class CountryProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
-    }
+    },
+    InternationalTrade,
+    InternationalTradeSlide,
+    ImportsByProduct,
+    ExportsByProduct
   ];
 
   componentDidMount() {}
@@ -329,6 +338,16 @@ class CountryProfile extends Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="topics-container">
+            <InternationalTrade>
+              <InternationalTradeSlide>
+                <SectionColumns>
+                  <ExportsByProduct className="lost-1-2" />
+                  <ImportsByProduct className="lost-1-2" />
+                </SectionColumns>
+              </InternationalTradeSlide>
+            </InternationalTrade>
           </div>
         </div>
       </CanonComponent>
