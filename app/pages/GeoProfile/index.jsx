@@ -4,6 +4,7 @@ import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { Geomap } from "d3plus-react";
 import { Link, browserHistory } from "react-router";
 import { translate } from "react-i18next";
+import { selectAll } from "d3-selection";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -635,6 +636,10 @@ class GeoProfile extends Component {
                       ocean: "transparent",
                       on: {
                         "click.shape": function(d) {
+                          selectAll(".d3plus-tooltip").style(
+                            "transform",
+                            "scale(0)"
+                          );
                           browserHistory.push(slugifyItem("geo", d.id, d.name));
                         }
                       },
