@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { text as loadSvgAsString } from "d3-request";
-import { select, selectAll, event } from "d3-selection";
+import { select, selectAll, event, mouse } from "d3-selection";
 import { browserHistory } from "react-router";
 import { GEOMAP } from "helpers/GeoData";
 import { slugifyItem } from "helpers/formatters";
@@ -67,6 +67,8 @@ class SvgMap extends Component {
   launchEvents() {
     this.prepareSelected(this.props.active.key);
 
+    const { t } = this.props;
+
     var slug = this.props.slug;
 
     var tooltip = select(".svg-map #svg-map-tooltip");
@@ -75,22 +77,37 @@ class SvgMap extends Component {
 
     selectAll(".svg-map .comuna")
       .on("mouseover", function(d, a) {
+        var coordinates = mouse(select(".map-comuna").node());
         var d = select(this);
         var id = d.classed("hover", true).attr("id");
-        tooltip.transition().duration(200).style("opacity", 0.9);
         tooltip
-          .html("Comuna " + d.attr("name"))
-          .style("left", event.pageX + "px")
-          .style("top", event.pageY - 28 + "px");
+          .transition()
+          .duration(200)
+          .style("opacity", 0.9);
+        tooltip
+          .html(
+            "Comuna " +
+              d.attr("name") +
+              "<br/><a>" +
+              t("tooltip.to_profile") +
+              "</a>"
+          )
+          .style("left", coordinates[0] + "px")
+          .style("top", coordinates[1] - 28 + "px");
       })
       .on("mouseout", function(d, a) {
         select(this).classed("hover", false);
-        tooltip.transition().duration(200).style("opacity", 0);
+        tooltip
+          .transition()
+          .duration(200)
+          .style("opacity", 0);
       })
       .on("mousemove", function(d, a) {
+        var coordinates = mouse(select(".map-comuna").node());
+
         tooltip
-          .style("left", event.pageX + "px")
-          .style("top", event.pageY - 28 + "px");
+          .style("left", coordinates[0] + "px")
+          .style("top", coordinates[1] - 28 + "px");
       })
       .on("click", function() {
         var d = select(this);
@@ -107,22 +124,36 @@ class SvgMap extends Component {
 
     selectAll(".svg-map .region")
       .on("mouseover", function(d, a) {
+        var coordinates = mouse(select(".map-comuna").node());
         var d = select(this);
         var id = d.classed("hover", true).attr("id");
-        tooltip.transition().duration(200).style("opacity", 0.9);
         tooltip
-          .html("Región " + d.attr("name"))
-          .style("left", event.pageX + "px")
-          .style("top", event.pageY - 28 + "px");
+          .transition()
+          .duration(200)
+          .style("opacity", 0.9);
+        tooltip
+          .html(
+            "Región " +
+              d.attr("name") +
+              "<br/><a>" +
+              t("tooltip.to_profile") +
+              "</a>"
+          )
+          .style("left", coordinates[0] + "px")
+          .style("top", coordinates[1] - 28 + "px");
       })
       .on("mouseout", function(d, a) {
         select(this).classed("hover", false);
-        tooltip.transition().duration(200).style("opacity", 0);
+        tooltip
+          .transition()
+          .duration(200)
+          .style("opacity", 0);
       })
       .on("mousemove", function(d, a) {
+        var coordinates = mouse(select(".map-comuna").node());
         tooltip
-          .style("left", event.pageX + "px")
-          .style("top", event.pageY - 28 + "px");
+          .style("left", coordinates[0] + "px")
+          .style("top", coordinates[1] - 28 + "px");
       })
       .on("click", function() {
         var d = select(this);

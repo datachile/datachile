@@ -471,7 +471,7 @@ class GeoProfile extends Component {
     }
 
     function fillShape(d) {
-      var c = "rgba(255, 255, 255, 0.75)";
+      var c = "rgba(255, 255, 255, 0.7)";
       switch (geoObj.type) {
         case "country": {
           c = "rgba(255, 255, 255, 1)";
@@ -479,13 +479,13 @@ class GeoProfile extends Component {
         }
         case "region": {
           if (parseInt(d.id) == parseInt(geoObj.key)) {
-            c = "rgba(30,144,255,1)";
+            c = "rgba(75, 113, 181,1)";
           }
           break;
         }
         case "comuna": {
           if (parseInt(d.id) == parseInt(ancestor.key)) {
-            c = "rgba(30,144,255,1)";
+            c = "rgba(75, 113, 181,1)";
           }
           break;
         }

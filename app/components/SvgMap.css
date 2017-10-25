@@ -10,7 +10,7 @@
       fill-opacity: 0.7;
 
       cursor: pointer;
-      transition: fill-opacity .4s ease;
+      transition: fill-opacity 0.4s ease;
       &.hover {
         fill-opacity: 1;
       }
@@ -23,9 +23,9 @@
       fill-opacity: 0.2;
       stroke: var(--snow);
       cursor: pointer;
-      transition: fill .4s ease, opacity .4s ease;
+      transition: fill 0.4s ease, opacity 0.4s ease;
       &.selected {
-        fill: var(--snow);
+        fill: var(--accent);
         fill-opacity: 1;
         cursor: pointer;
       }
@@ -41,7 +41,7 @@
       pointer-events: none;
     }
     & circle.border-circle,
-    & clipPath {
+    & clippath {
       fill: none;
       stroke: var(--snow);
       pointer-events: none;
@@ -52,7 +52,9 @@
     position: absolute;
     text-align: center;
     padding: 10px;
-    font: 12px sans-serif;
+    z-index: 100;
+    font-family: var(--font-family-text);
+    font-size: 12px;
     background: var(--snow);
     border: 1px solid var(--near-black);
     pointer-events: none;
