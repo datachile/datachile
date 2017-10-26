@@ -423,7 +423,7 @@ class GeoProfile extends Component {
     };
 
     //national
-    if (this.props.data.geo.type == "country") {
+    if (geo && geo.type == "country") {
       stats.income.decile = 5;
       stats.psu.decile = 5;
     }
