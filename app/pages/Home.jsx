@@ -40,7 +40,7 @@ class Home extends Component {
       {
         name: t("Countries"),
         explore: "/explore/coutries",
-        colors: ["#ccc", "#ddd", "eee"],
+        colors: ["#3f93a0", "#1bc4d3", "#31999B"],
         slug: "countries",
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -127,14 +127,10 @@ class Home extends Component {
                 <div
                   className={
                     p.slug == this.state.header.slug
-                      ? "selected image"
-                      : "image"
+                      ? "selected image bg-" + p.slug
+                      : "image bg-" + p.slug
                   }
                   id={p.slug}
-                  style={{
-                    backgroundImage:
-                      "url(/images/home/bg/" + this.state.header.slug + ".jpg)"
-                  }}
                 />
               ))}
             <div className="gradient" />

@@ -343,8 +343,8 @@ class CountryProfile extends Component {
             <InternationalTrade>
               <InternationalTradeSlide>
                 <SectionColumns>
-                  <ExportsByProduct className="lost-1-2" />
                   <ImportsByProduct className="lost-1-2" />
+                  <ExportsByProduct className="lost-1-2" />
                 </SectionColumns>
               </InternationalTradeSlide>
             </InternationalTrade>

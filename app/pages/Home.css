@@ -30,6 +30,24 @@
         transition: opacity 0.5s ease-in-out 0.5s;
         opacity: 1;
       }
+      &.bg-geo {
+        background-image: url("/images/home/bg/geo.jpg");
+      }
+      &.bg-countries {
+        background-image: url("/images/home/bg/countries.jpg");
+      }
+      &.bg-institutions {
+        background-image: url("/images/home/bg/institutions.jpg");
+      }
+      &.bg-careers {
+        background-image: url("/images/home/bg/careers.jpg");
+      }
+      &.bg-products {
+        background-image: url("/images/home/bg/products.jpg");
+      }
+      &.bg-industries {
+        background-image: url("/images/home/bg/industries.jpg");
+      }
     }
 
     & .gradient {

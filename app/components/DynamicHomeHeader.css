@@ -10,25 +10,26 @@
     & .svg-image {
       line-height: 0;
     }
-    & .dynamic-home-items{
+    & .dynamic-home-items {
       position: relative;
       transition: top 1s ease;
 
-      &.illustration-geo{
+      &.illustration-geo {
         top: 23px;
       }
-      &.illustration-countries{
+      &.illustration-countries {
+        top: 20px;
       }
-      &.illustration-careers{
+      &.illustration-careers {
         top: 60px;
       }
-      &.illustration-institutions{
+      &.illustration-institutions {
         top: 60px;
       }
-      &.illustration-products{
+      &.illustration-products {
         top: 50px;
       }
-      &.illustration-industries{
+      &.illustration-industries {
         top: 40px;
       }
 
@@ -36,7 +37,7 @@
         opacity: 0;
         line-height: 0;
         position: absolute;
-        bottom:0px;
+        bottom: 0px;
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -72,7 +73,6 @@
           width: 100%;
         }
       }
-
     }
   }
 }
