@@ -39,7 +39,7 @@ class Home extends Component {
       },
       {
         name: t("Countries"),
-        explore: "/explore/coutries",
+        explore: "/explore/countries",
         colors: ["#3f93a0", "#1bc4d3", "#31999B"],
         slug: "countries",
         description: t(
