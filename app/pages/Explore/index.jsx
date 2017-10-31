@@ -14,14 +14,13 @@ import mondrianClient, {
   getMemberQuery
 } from "helpers/MondrianClient";
 
-import "./intro.css";
+import "./explore.css";
 
 class Explore extends Component {
   constructor() {
     super();
     this.state = {
-      subnav: false,
-      activeSub: false
+      level1ID: false
     };
   }
 
@@ -173,10 +172,20 @@ class Explore extends Component {
     }
   ];
 
-  componentDidMount() {}
+  componentWillUnmount() {
+    this.setState({
+      level1ID: false
+    });
+  }
+
+  componentDidMount() {
+    this.setState({
+      level1ID: false
+    });
+  }
 
   render() {
-    const { subnav, activeSub } = this.state;
+    const { level1ID } = this.state;
 
     const { entity } = this.props.routeParams;
 
@@ -229,118 +238,136 @@ class Explore extends Component {
       }
     }
 
+    const results = members.filter(m => type + "-" + m.key == level1ID);
+
     return (
       <CanonComponent id="explore" data={this.props.data} topics={[]}>
         <div className="explore-page">
-          <div className="intro">
-            <Nav
-              title={type != "" ? type : t("Explore")}
-              typeTitle={typeTitle != "" ? t("Profiles") : t("Home")}
-              type={type != "" ? type : false}
-              exploreLink={type != "" ? "/explore" : "/"}
-            />
-            <div className="splash">
-              <div
-                className="image"
-                style={{
-                  backgroundImage: `url('/images/profile-bg/chile2.jpg')`
-                }}
-              />
-              <div className="gradient" />
-            </div>
+          <Nav
+            title={type != "" ? type : t("Explore")}
+            typeTitle={typeTitle != "" ? t("Profiles") : t("Home")}
+            type={type != "" ? type : false}
+            exploreLink={type != "" ? "/explore" : "/"}
+          />
 
-            <div className="header">
-              <div className="meta">
-                <div className="title" />
-                <div className="subtitle" />
-              </div>
+          <div id="explore-sidebar">
+            <div className="explore-column">
+              <h3>{t("Explore profiles by category")}</h3>
+              <ul>
+                <li className={type == "geo" ? "selected" : ""}>
+                  <Link className="link" to="/explore/geo">
+                    <img src="/images/icons/icon-geo.svg" />
+                    <span>{t("Geo")}</span>
+                  </Link>
+                </li>
+                <li className={type == "countries" ? "selected" : ""}>
+                  <Link className="link" to="/explore/countries">
+                    <img src="/images/icons/icon-countries.svg" />
+                    <span>{t("Countries")}</span>
+                  </Link>
+                </li>
+                <li className={type == "institutions" ? "selected" : ""}>
+                  <Link className="link" to="/explore/institutions">
+                    <img src="/images/icons/icon-institutions.svg" />
+                    <span>{t("Institutions")}</span>
+                  </Link>
+                </li>
+                <li className={type == "careers" ? "selected" : ""}>
+                  <Link className="link" to="/explore/careers">
+                    <img src="/images/icons/icon-careers.svg" />
+                    <span>{t("Careers")}</span>
+                  </Link>
+                </li>
+                <li className={type == "products" ? "selected" : ""}>
+                  <Link className="link" to="/explore/products">
+                    <img src="/images/icons/icon-products.svg" />
+                    <span>{t("Products")}</span>
+                  </Link>
+                </li>
+                <li className={type == "industries" ? "selected" : ""}>
+                  <Link className="link" to="/explore/industries">
+                    <img src="/images/icons/icon-industries.svg" />
+                    <span>{t("Industries")}</span>
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
 
-          <div>
-            {!entity && (
-              <div className="">
-                <ul className="explore-list">
-                  <li>
-                    <Link className="link" to="/explore/geo">
-                      {t("Geo")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="link" to="/explore/countries">
-                      {t("Countries")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="link" to="/explore/institutions">
-                      {t("Institutions")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="link" to="/explore/careers">
-                      {t("Careers")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="link" to="/explore/products">
-                      {t("Products")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="link" to="/explore/industries">
-                      {t("Industries")}
-                    </Link>
-                  </li>
+          <hr />
+
+          <div id="explore-results">
+            <div className="explore-column">
+              <div className="filter-block">
+                <ul>
+                  {entity &&
+                    members &&
+                    members.filter(m => m.key != 0).map(m => (
+                      <li
+                        className={
+                          level1ID == type + "-" + m.key
+                            ? "level1-filter selected"
+                            : "level1-filter"
+                        }
+                        onClick={() =>
+                          this.setState({ level1ID: type + "-" + m.key })}
+                      >
+                        <span>{m.caption}</span>
+                      </li>
+                    ))}
                 </ul>
               </div>
-            )}
-
-            {entity && (
-              <div className="">
-                <div>
-                  {type == "geo" && (
-                    <h2 className="list-title">
-                      <Link className="link" to={"/geo/chile"}>
-                        Chile
-                      </Link>
-                    </h2>
-                  )}
-                  {members &&
-                    members.filter(m => m.key != 0).map(m => (
+              <div className="results-block">
+                {entity &&
+                  results.length > 0 && (
+                    <div className="">
+                      <h3>Resultados</h3>
                       <div>
-                        <h3 className="list-title">
-                          <Link
-                            className="link"
-                            to={slugifyItem(entity, m.key, m.name)}
-                          >
-                            {m.caption}
-                          </Link>
-                        </h3>
-
-                        <ul className="explore-list">
-                          {m.children &&
-                            m.children.map(c => (
-                              <li>
+                        {type == "geo" && (
+                          <div className="list-title">
+                            <Link className="link" to={"/geo/chile"}>
+                              Chile
+                            </Link>
+                          </div>
+                        )}
+                        {members &&
+                          results.map(m => (
+                            <div>
+                              <div className="list-title">
                                 <Link
                                   className="link"
-                                  to={slugifyItem(
-                                    entity,
-                                    m.key,
-                                    m.name,
-                                    c.key,
-                                    c.name
-                                  )}
+                                  to={slugifyItem(entity, m.key, m.name)}
                                 >
-                                  {c.caption}
+                                  {m.caption}
                                 </Link>
-                              </li>
-                            ))}
-                        </ul>
+                              </div>
+
+                              <ul className="explore-list">
+                                {m.children &&
+                                  m.children.map(c => (
+                                    <li>
+                                      <Link
+                                        className="link"
+                                        to={slugifyItem(
+                                          entity,
+                                          m.key,
+                                          m.name,
+                                          c.key,
+                                          c.name
+                                        )}
+                                      >
+                                        {c.caption}
+                                      </Link>
+                                    </li>
+                                  ))}
+                              </ul>
+                            </div>
+                          ))}
                       </div>
-                    ))}
-                </div>
+                    </div>
+                  )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </CanonComponent>

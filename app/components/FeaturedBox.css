@@ -69,15 +69,15 @@
       background-color: var(--snow);
       border-radius: 50%;
       z-index: var(--foreground);
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 10px;
       & .icon {
-        height: 15px;
-        width: 15px;
+        height: 20px;
+        width: 20px;
       }
     }
   }

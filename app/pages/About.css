@@ -1,4 +1,3 @@
-
 .about {
   & .glossary {
     & .definition {
@@ -28,7 +27,7 @@
       z-index: var(--background);
 
       & .image {
-        background-image: url("/images/profile-bg/chile.jpg");
+        background-image: url("/images/profile-bg/geo/chile.jpg");
         background-position: 50%;
         background-size: cover;
         filter: saturate(150%) contrast(130%);

@@ -1,0 +1,98 @@
+.explore-page {
+  lost-flex-container: row;
+  & #explore-sidebar {
+    lost-column: 1/3 flex;
+    & h3 {
+      color: var(--snow);
+      text-transform: uppercase;
+      font-family: var(--font-family-title);
+      font-weight: 300;
+      line-height: 1em;
+    }
+    & ul {
+      padding: 0px;
+      & li {
+        margin: 15px 0px;
+        & a {
+          display: flex;
+          align-items: center;
+          & img {
+            width: 25px;
+            height: 25px;
+          }
+          & span {
+            margin-left: 15px;
+            color: var(--snow);
+            text-transform: uppercase;
+            font-family: var(--font-family-title);
+            padding: 10px 0px 5px 0px;
+            border-bottom: 1px solid var(--dark);
+          }
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      & li.selected {
+        & a {
+          & span {
+            border-color: var(--snow);
+          }
+        }
+      }
+    }
+  }
+
+  & #explore-results {
+    lost-column: 2/3 flex;
+    & .filter-block {
+      & ul {
+        margin: var(--gutter) 0;
+        padding: 0;
+        & li.level1-filter {
+          color: var(--snow);
+          text-transform: uppercase;
+          cursor: pointer;
+          & span {
+            border-bottom: 1px solid var(--dark);
+          }
+          &.selected {
+            & span {
+              border-color: var(--snow);
+            }
+          }
+        }
+      }
+    }
+    & .results-block {
+      & ul {
+        margin: var(--gutter) 0;
+        padding: 0;
+        & li {
+          & a {
+            color: var(--snow);
+          }
+        }
+      }
+      & h3 {
+        color: var(--snow);
+        text-transform: uppercase;
+        font-family: var(--font-family-title);
+        font-weight: 300;
+        line-height: 1em;
+        margin: var(--gutter) 0px var(--gutter) 0px;
+      }
+      & .list-title {
+        & a {
+          color: var(--snow);
+          text-transform: uppercase;
+          font-family: var(--font-family-title);
+        }
+      }
+    }
+  }
+
+  & .explore-column {
+    padding: 0px var(--gutter);
+  }
+}

@@ -138,8 +138,7 @@ class InstitutionProfile extends Component {
 
     const list = this.props.data.institution_list_detail;
 
-    console.warn('list->',list);
-
+    console.warn("list->", list);
 
     obj && ids && list
       ? list.map(c => {
@@ -236,7 +235,7 @@ class InstitutionProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/chile.jpg')`
+                  backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
                 }}
               />
               <div className="gradient" />

@@ -182,8 +182,8 @@ class Home extends Component {
                         onClick={() => changeProfileHeader(p)}
                       >
                         <h3>
-                          <img src={`/images/icons/icon-${p.slug}.svg`} />{" "}
-                          {p.name}
+                          <img src={`/images/icons/icon-${p.slug}.svg`} />
+                          <span>{p.name}</span>
                         </h3>
                         <p>{p.description}</p>
                       </div>

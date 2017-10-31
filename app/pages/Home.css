@@ -212,23 +212,25 @@
           margin: var(--gutter) 15px 0 15px;
           height: auto;
           & h3 {
-            font-family: var(--font-family-title);
-            font-weight: 300;
-            font-size: 12px;
-            color: var(--snow);
-            letter-spacing: 0.24px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            line-height: 1em;
             display: flex;
             flex-wrap: nowrap;
             flex-direction: row;
             align-items: center;
+            margin-bottom: 20px;
+            & span {
+              font-family: var(--font-family-title);
+              font-weight: 300;
+              font-size: 12px;
+              color: var(--snow);
+              letter-spacing: 0.24px;
+              text-transform: uppercase;
+              line-height: 1em;
+            }
             & img {
               display: inline;
               margin-right: 5px;
-              width: 15px;
-              height: 15px;
+              width: 20px;
+              height: 20px;
             }
           }
           & p {
