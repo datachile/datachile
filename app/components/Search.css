@@ -1,7 +1,7 @@
 .search-component {
   position: relative;
   z-index: var(--cover);
-
+  width: 100%;
   & .input {
     width: 100%;
 
