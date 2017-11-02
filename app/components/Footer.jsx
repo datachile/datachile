@@ -38,7 +38,7 @@ class Footer extends Component {
                             {t("Home")}
                         </Link>
                         <span className="link link-dot">&#183;</span>
-                        <Link className="link" to="/explore">
+                        <Link className="link" to="/explore/geo">
                             {t("Explore")}
                         </Link>
                         <span className="link link-dot">&#183;</span>
