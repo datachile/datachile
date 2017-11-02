@@ -86,7 +86,7 @@ class Nav extends Component {
               </span>
             </li>
             <li className="link">
-              <Link to="/explore">{t("Explore")}</Link>
+              <Link to="/explore/geo">{t("Explore")}</Link>
             </li>
             <li className="link">
               <Link to="/about">{t("About")}</Link>

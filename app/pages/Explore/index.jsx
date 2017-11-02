@@ -15,6 +15,7 @@ import mondrianClient, {
 import Nav from "components/Nav";
 import Search from "components/Search";
 import FeaturedBox from "components/FeaturedBox";
+import ResultItem from "components/ResultItem";
 
 import "./explore.css";
 
@@ -187,9 +188,7 @@ class Explore extends Component {
   }
 
   render() {
-    const { level1ID } = this.state;
-
-    const { entity } = this.props.routeParams;
+    const { entity, entity_id } = this.props.routeParams;
 
     const { focus, t } = this.props;
 
@@ -240,24 +239,34 @@ class Explore extends Component {
       }
     }
 
-    console.log(members);
-
     const filters =
-      typeof members != "undefined"
+      typeof members != "undefined" && entity
         ? members.filter(m => m.key != 0).map(m => {
             return {
               key: m.key,
               name: m.caption,
               type: type,
-              url: "/explore/" + type + "#results",
+              url: "/explore/" + type + "/" + m.key + "#results",
               img: "/images/profile-bg/geo/chile.jpg"
             };
           })
         : [];
 
     const results =
-      typeof members != "undefined"
-        ? members.filter(m => type + "-" + m.key == level1ID)
+      typeof members != "undefined" && entity && entity_id
+        ? members.filter(m => m.key == entity_id).map(m => {
+            if (type) {
+              m.children = m.children.map(c => {
+                return {
+                  key: c.key,
+                  name: c.name,
+                  type: type,
+                  url: slugifyItem(entity, m.key, m.name, c.key, c.name)
+                };
+              });
+            }
+            return m;
+          })
         : [];
 
     return (
@@ -265,19 +274,22 @@ class Explore extends Component {
         <div className="explore-page">
           <Nav
             title={type != "" ? type : t("Explore")}
-            typeTitle={typeTitle != "" ? t("Profiles") : t("Home")}
+            typeTitle={t("Home")}
             type={type != "" ? type : false}
-            exploreLink={type != "" ? "/explore" : "/"}
+            exploreLink={"/"}
           />
 
           <div className="search-explore-wrapper">
             <Search className="search-home" local={true} limit={5} />
           </div>
 
+          <div className="explore-title">
+            <h3>{t("Explore profiles by category")}</h3>
+          </div>
+
           <div className="explore-container">
             <div id="explore-sidebar">
               <div className="explore-column">
-                <h3>{t("Explore profiles by category")}</h3>
                 <ul>
                   <li className={type == "geo" ? "selected" : ""}>
                     <Link className="link" to="/explore/geo">
@@ -328,12 +340,10 @@ class Explore extends Component {
                       filters.map(f => (
                         <div
                           className={
-                            level1ID == type + "-" + f.key
+                            entity_id == f.key
                               ? "level1-filter selected"
                               : "level1-filter"
                           }
-                          onClick={() =>
-                            this.setState({ level1ID: type + "-" + f.key })}
                         >
                           <FeaturedBox
                             item={f}
@@ -343,47 +353,47 @@ class Explore extends Component {
                       ))}
                   </div>
                 </div>
-                <div id="results" className="results-block">
+                <div id={`results`} className="results-block">
                   {entity &&
                     results.length > 0 && (
                       <div className="">
-                        <h3>Resultados</h3>
+                        <h3>
+                          {t("Results for")} {typeTitle} : "{results[0].name}"
+                        </h3>
                         <div>
                           {type == "geo" && (
                             <div className="list-title">
-                              <Link className="link" to={"/geo/chile"}>
-                                Chile
-                              </Link>
+                              <ResultItem
+                                item={{
+                                  key: "chile",
+                                  name: "Chile",
+                                  type: "geo",
+                                  url: "/geo/chile"
+                                }}
+                              />
                             </div>
                           )}
                           {members &&
+                            entity &&
+                            results &&
                             results.map(m => (
                               <div>
                                 <div className="list-title">
-                                  <Link
-                                    className="link"
-                                    to={slugifyItem(entity, m.key, m.name)}
-                                  >
-                                    {m.caption}
-                                  </Link>
+                                  <ResultItem
+                                    item={{
+                                      key: m.key,
+                                      name: m.caption,
+                                      type: type,
+                                      url: slugifyItem(entity, m.key, m.name)
+                                    }}
+                                  />
                                 </div>
 
                                 <ul className="explore-list">
                                   {m.children &&
                                     m.children.map(c => (
                                       <li>
-                                        <Link
-                                          className="link"
-                                          to={slugifyItem(
-                                            entity,
-                                            m.key,
-                                            m.name,
-                                            c.key,
-                                            c.name
-                                          )}
-                                        >
-                                          {c.caption}
-                                        </Link>
+                                        <ResultItem item={c} />
                                       </li>
                                     ))}
                                 </ul>
