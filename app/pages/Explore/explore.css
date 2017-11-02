@@ -1,3 +1,4 @@
+@import "../mixins";
 .explore-page {
   & .search-explore-wrapper {
     lost-flex-container: row;
