@@ -98,6 +98,13 @@ import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
 
 /*end Demography*/
 
+/* Health */
+import Health from "./health/Health";
+import AccessSlide from "./health/access/AccessSlide";
+import HealthInsurance from "./health/access/charts/HealthInsurance";
+
+/* end Health */
+
 import "../intro.css";
 import "../topics.css";
 
@@ -358,7 +365,13 @@ class GeoProfile extends Component {
 
     MigrationActivitySlide,
     MigrationByActivity,
-    MigrationByVisa
+
+    MigrationByVisa,
+
+    Health,
+
+    AccessSlide,
+    HealthInsurance
   ];
 
   componentDidMount() {
@@ -848,6 +861,16 @@ class GeoProfile extends Component {
                 </MigrationActivitySlide>
               </div>
             </Demography>
+
+            <Health>
+              <div>
+                <AccessSlide>
+                  <SectionColumns>
+                    <HealthInsurance className="lost-1" />
+                  </SectionColumns>
+                </AccessSlide>
+              </div>
+            </Health>
           </div>
         </div>
       </CanonComponent>
