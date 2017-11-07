@@ -30,6 +30,10 @@ class Health extends Component {
       {
         name: t("Social Security"),
         slides: [{ ix: 0, name: t("Social Security") }]
+      },
+      {
+        name: t("Disability"),
+        slides: [{ ix: 1, name: t("Disability") }]
       }
     ];
 
