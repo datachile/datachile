@@ -246,6 +246,12 @@
   .nav {
     & .nav-container {
       justify-content: flex-start;
+      & .l-col {
+        lost-column: 1/4;
+      }
+      & .c-col {
+        lost-column: 2/4;
+      }
       & .r-col {
         display: none;
       }

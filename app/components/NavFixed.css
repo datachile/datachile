@@ -20,13 +20,13 @@
     justify-content: space-between;
     align-items: stretch;
     & .topics {
-      margin: 0 var(--gutter);
+      margin: 0 calc(var(--gutter)/2);
       text-align: right;
       & .topic-link {
         color: var(--snow);
         display: inline-block;
         font-size: 10px;
-        margin: 5px 25px;
+        margin: calc(var(--gutter)/2) calc(var(--gutter)/2) -2px calc(var(--gutter)/2);
         text-align: center;
         text-decoration: none;
         text-transform: uppercase;
@@ -54,19 +54,7 @@
           }
         }
 
-        &.active {
-          border-bottom-color: var(--accent);
-          color: var(--accent);
-          & .svg-image {
-            & .fill-color {
-              fill: var(--accent);
-            }
-            & .stroke-color {
-              stroke: var(--accent);
-            }
-          }
-        }
-
+        &.active,
         &:hover {
           border-bottom-color: var(--accent);
           color: var(--accent);
@@ -95,25 +83,26 @@
     align-content: center;
     justify-content: space-between;
     & .nav-titles {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: calc(var(--gutter)/2) var(--gutter);
       & .datachile {
         color: var(--snow);
         font-family: var(--font-family-title);
-        font-weight: 400;
+        font-weight: 300;
+        font-size: 18px;
+        letter-spacing: 0.03px;
+        margin: 0 calc(var(--gutter)/2);
+      }
+      & .title {
+        color: var(--accent);
+        font-family: var(--font-family-title);
+        font-weight: 300;
         font-size: 18px;
         letter-spacing: 0.03px;
       }
     }
-    & .nav-search {
-      margin-right: var(--gutter);
-    }
-  }
-
-  & .nav-float-container {
-    position: absolute;
-    background-color: red;
-    width: 100%;
-    top: 0px;
-    margin-top: 72px;
   }
 
   & .nav-menu {
@@ -162,4 +151,45 @@
       }
     }
   }
+}
+
+@add-mixin for-xl {
+}
+
+@add-mixin for-lg {
+  .nav-fixed {
+  }
+}
+
+@add-mixin for-md {
+  .nav-fixed {
+    & .nav-topic {
+      & .topics {
+        & .topic-link {
+          margin: 0px 10px 5px 10px;
+          padding-bottom: 10px;
+          & .svg-image {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@add-mixin for-sm {
+}
+
+@add-mixin for-xs {
+  .nav-fixed {
+    & .nav-topic {
+      & .topics {
+        & .topic-link {
+        }
+      }
+    }
+  }
+}
+
+@add-mixin for-xx {
 }
