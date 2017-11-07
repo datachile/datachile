@@ -5,17 +5,18 @@ import "./TopicSliderBullets.css";
 
 class TopicSliderBullets extends Component {
   render() {
-    const { name, slides, selected, goTo } = this.props;
+    const { name, selected, goTo } = this.props;
+    const slides = React.Children.toArray(this.props.children);
 
     return (
       <div className="topic-slider-bullets">
         <ul id={name + "-bullets"}>
           {slides &&
-            slides.map((m, ix) =>
+            slides.map((m, ix) => (
               <li className={"bullet " + (selected == ix ? "selected" : "")}>
                 <a onClick={() => goTo(ix)} />
               </li>
-            )}
+            ))}
         </ul>
       </div>
     );
