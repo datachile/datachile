@@ -18,10 +18,9 @@ import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
 import AuthoritiesBlock from "components/AuthoritiesBlock";
 import TopicMenu from "components/TopicMenu";
+import Topic from "components/Topic";
 
 /*Economy*/
-import Economy from "./economy/Economy";
-
 import TradeSlide from "./economy/trade/TradeSlide";
 import ExportsByProduct from "./economy/trade/charts/ExportsByProduct";
 import ExportsByDestination from "./economy/trade/charts/ExportsByDestination";
@@ -72,7 +71,6 @@ import InnovationByActivity from "./economy/innovation/charts/InnovationByActivi
 /*end Economy*/
 
 /*Education*/
-import Education from "./education/Education";
 
 import EnrollmentSlide from "./education/enrollment/EnrollmentSlide";
 import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollment";
@@ -82,7 +80,6 @@ import PerformanceByType from "./education/performance/charts/PerformanceByType"
 /*end Education*/
 
 /*Demography*/
-import Demography from "./demography/Demography";
 
 import MigrationSlide from "./demography/origins/MigrationSlide";
 import MigrationByOrigin from "./demography/origins/charts/MigrationByOrigin";
@@ -98,7 +95,6 @@ import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
 /*end Demography*/
 
 /* Health */
-import Health from "./health/Health";
 import AccessSlide from "./health/access/AccessSlide";
 import HealthInsurance from "./health/access/charts/HealthInsurance";
 
@@ -296,7 +292,7 @@ class GeoProfile extends Component {
     },
     AuthoritiesBlock,
 
-    Economy,
+    /*Economy,*/
 
     IndustrySlide,
     IndustryBySector,
@@ -345,15 +341,11 @@ class GeoProfile extends Component {
     InnovationBySize,
     InnovationByActivity,
 
-    Education,
-
     PerformanceSlide,
     PerformanceByType,
 
     EnrollmentSlide,
     CollegeByEnrollment,
-
-    Demography,
 
     MigrationSlide,
     MigrationByOrigin,
@@ -366,8 +358,6 @@ class GeoProfile extends Component {
     MigrationByActivity,
 
     MigrationByVisa,
-
-    Health,
 
     AccessSlide,
     HealthInsurance
@@ -713,7 +703,38 @@ class GeoProfile extends Component {
           </div>
 
           <div className="topics-container">
-            <Economy>
+            <Topic
+              name={t("Economy")}
+              id="economy"
+              sections={[
+                {
+                  name: t("Trade"),
+                  slides: [t("International trade")]
+                },
+                {
+                  name: t("Industry"),
+                  slides: [t("Industry & Occupations")]
+                },
+                {
+                  name: t("Opportunity"),
+                  slides: [t("Opportunities")]
+                },
+                {
+                  name: t("Income"),
+                  slides: [t("By Sex & Age"), t("By Occupation")]
+                },
+                {
+                  name: t("Innovation"),
+                  slides: [
+                    t("By Industry"),
+                    t("By Funding & Area"),
+                    t("By Staff"),
+                    t("By Type"),
+                    t("By Sector")
+                  ]
+                }
+              ]}
+            >
               <div>
                 <TradeSlide TradeBalance={TradeBalance}>
                   <SectionColumns>
@@ -816,9 +837,22 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </CompanyInnovationSlide>
               </div>
-            </Economy>
+            </Topic>
 
-            <Education>
+            <Topic
+              name={t("Education")}
+              id="education"
+              sections={[
+                {
+                  name: t("Enrollment"),
+                  slides: [t("By School Type")]
+                },
+                {
+                  name: t("Performance"),
+                  slides: [t("By School Type")]
+                }
+              ]}
+            >
               <div>
                 <EnrollmentSlide>
                   <SectionColumns>
@@ -833,9 +867,34 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </PerformanceSlide>
               </div>
-            </Education>
+            </Topic>
 
-            <Demography>
+            <Topic
+              name={t("Demography")}
+              id="demography"
+              sections={[
+                {
+                  name: t("Origins"),
+                  slides: [
+                    t("By Origin Country"),
+                    t("By Sex & Age"),
+                    t("By Activity & Vista Type")
+                  ]
+                },
+                {
+                  name: t("Diversity"),
+                  slides: [t("By Sex & Age")]
+                },
+                {
+                  name: t("Population"),
+                  slides: [t("By Sex & Age")]
+                },
+                {
+                  name: t("Ethnicity"),
+                  slides: [t("By Sex & Age")]
+                }
+              ]}
+            >
               <div>
                 <MigrationSlide>
                   <SectionColumns>
@@ -859,9 +918,22 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </MigrationActivitySlide>
               </div>
-            </Demography>
+            </Topic>
 
-            <Health>
+            <Topic
+              name={t("Health")}
+              id="health"
+              sections={[
+                {
+                  name: t("Social Security"),
+                  slides: [t("Social Security")]
+                },
+                {
+                  name: t("Disability"),
+                  slides: [t("Disability")]
+                }
+              ]}
+            >
               <div>
                 <AccessSlide>
                   <SectionColumns>
@@ -869,7 +941,7 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </AccessSlide>
               </div>
-            </Health>
+            </Topic>
           </div>
         </div>
       </CanonComponent>
