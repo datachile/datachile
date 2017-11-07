@@ -12,7 +12,7 @@ import "./NavFixed.css";
 class NavFixed extends Component {
   constructor(props) {
     super(props);
-    this.state = { visible: false };
+    this.state = { visible: false, active: "about" };
 
     this.handleScroll = this.handleScroll.bind(this);
   }
@@ -30,15 +30,23 @@ class NavFixed extends Component {
   }
 
   handleScroll() {
+    let { visible, active } = this.state;
+
+    /*Show fixed nav*/
     const ref = document.getElementById("topic-profile-menu");
-    if (ref && ref.offsetTop < window.scrollY) {
-      if (this.state.visible != true) {
-        this.setState({ visible: true });
-      }
-    } else {
-      if (this.state.visible != false) {
-        this.setState({ visible: false });
-      }
+    visible = ref && ref.offsetTop < window.scrollY ? true : false;
+
+    /*Show active topic*/
+    const { topics } = this.props;
+    if (topics) {
+      topics.forEach(topic => {
+        const elem = document.getElementById(topic.slug);
+        const top = elem ? elem.getBoundingClientRect().top : 1;
+        if (top <= 0) active = topic.slug;
+      });
+    }
+    if (this.state.visible != visible || this.state.active != active) {
+      this.setState({ visible: visible, active: active });
     }
   }
 
@@ -46,7 +54,7 @@ class NavFixed extends Component {
 
   render() {
     const { t, topics, title, toggleSubNav } = this.props;
-    const { visible } = this.state;
+    const { visible, active } = this.state;
 
     return (
       <nav className={`nav-fixed${visible ? "" : " hidden"}`}>
@@ -57,7 +65,8 @@ class NavFixed extends Component {
                 <img src="/images/icons/icon-menu.svg" />
               </a>
             </div>
-            <span className="datachile">DataChile:</span> {title}
+            <span className="datachile">DataChile:</span>
+            <span className="title">{title}</span>
           </div>
           <div className="nav-topic">
             {topics &&
@@ -66,7 +75,9 @@ class NavFixed extends Component {
                   {topics.map(topic => (
                     <a
                       key={topic.slug}
-                      className={`topic-link`}
+                      className={`topic-link ${active == topic.slug
+                        ? " active"
+                        : ""}`}
                       href={`#${topic.slug}`}
                     >
                       <SvgImage
@@ -77,9 +88,6 @@ class NavFixed extends Component {
                   ))}
                 </div>
               )}
-            <div className="nav-search">
-              <img src="/images/icons/icon-lupa-header.svg" />
-            </div>
           </div>
         </div>
       </nav>
