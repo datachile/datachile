@@ -51,15 +51,15 @@ class HealthInsurance extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: "ID Health System",
+            groupBy: ["ID Health System"],
             label: d => d["Health System"],
             sum: d =>
               geo.type == "comuna"
-                ? "Expansion Factor Comuna"
-                : "Expansion Factor Region",
+                ? d["Expansion Factor Comuna"]
+                : d["Expansion Factor Region"],
             time: "ID Year",
             shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Health System"])
+              fill: d => ordinalColorScale("health" + d["ID Health System"])
             },
             legendConfig: {
               shapeConfig: {
@@ -70,7 +70,10 @@ class HealthInsurance extends Section {
               }
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={data =>
+            data.data.filter(h => {
+              return h["ID Health System"] != 0; //nan
+            })}
         />
       </div>
     );
