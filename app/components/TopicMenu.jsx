@@ -9,15 +9,13 @@ class TopicMenu extends Component {
     const { topics } = this.props;
 
     return (
-      <div className="topic-menu">
-        {topics.map(topic =>
+      <div id="topic-profile-menu" className="topic-menu">
+        {topics.map(topic => (
           <a key={topic.slug} className="topic-link" href={`#${topic.slug}`}>
             <SvgImage src={`/images/profile-icon/icon-${topic.slug}.svg`} />
-            <span>
-              {topic.title}
-            </span>
+            <span>{topic.title}</span>
           </a>
-        )}
+        ))}
       </div>
     );
   }
