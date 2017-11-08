@@ -6,7 +6,7 @@ import "./TopicSliderBullets.css";
 class TopicSliderBullets extends Component {
   render() {
     const { name, selected, goTo } = this.props;
-    const slides = React.Children.toArray(this.props.children);
+    const slides = React.Children.toArray(this.props.slides);
 
     return (
       <div className="topic-slider-bullets">
