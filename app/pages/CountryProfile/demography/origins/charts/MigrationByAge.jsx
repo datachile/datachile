@@ -64,7 +64,7 @@ export default translate()(
               x: false,
               y: "Number of visas",
               shapeConfig: {
-                  fill: d => ordinalColorScale(2)
+                  fill: d => ordinalColorScale(3)
               },
               xConfig:{
                 tickSize:0,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { BarChart } from "d3plus-react";
+import { Treemap } from "d3plus-react";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
@@ -53,31 +53,18 @@ export default translate()(
           <h3 className="chart-title">
             {t("Migration By Activity")}
           </h3>
-          <BarChart
+          <Treemap
             config={{
               height: 500,
               data: path,
               groupBy: "ID Activity",
               label: d =>
                 d['Activity'],
+              sum: d => d["Number of visas"],
               time: "ID Year",
-              y: false,
-              x: "Number of visas",
-              discrete: "y",
               shapeConfig: {
-                fill: d => ordinalColorScale(3)
+                fill: d => ordinalColorScale(d["ID Activity"])
               },
-              yConfig:{
-                tickSize:0,
-                title:false
-              },
-              xConfig:{
-                title:t("Visas"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)"),
-                title: false
-              },
-              barPadding: 20,
-              groupPadding: 40,
               tooltipConfig:{
                 title: d => d["Activity"],
                 body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
