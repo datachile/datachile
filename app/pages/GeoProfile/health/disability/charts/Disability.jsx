@@ -8,7 +8,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
-class HealthInsurance extends Section {
+class Disability extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
@@ -77,4 +77,4 @@ class HealthInsurance extends Section {
   }
 }
 
-export default translate()(HealthInsurance);
+export default translate()(Disability);

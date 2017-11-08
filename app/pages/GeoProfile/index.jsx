@@ -81,6 +81,11 @@ import PerformanceByType from "./education/performance/charts/PerformanceByType"
 
 /*Demography*/
 
+/* Housing and Environment */
+import QualitySlide from "./environment/quality/QualitySlide";
+import HousingType from "./environment/quality/charts/HousingType";
+/* end Housing and Environment */
+
 import MigrationSlide from "./demography/origins/MigrationSlide";
 import MigrationByOrigin from "./demography/origins/charts/MigrationByOrigin";
 
@@ -341,6 +346,9 @@ class GeoProfile extends Component {
     InnovationBySize,
     InnovationByActivity,
 
+    QualitySlide,
+    HousingType,
+
     PerformanceSlide,
     PerformanceByType,
 
@@ -362,26 +370,6 @@ class GeoProfile extends Component {
     AccessSlide,
     HealthInsurance
   ];
-
-  componentDidMount() {
-    //window.addEventListener("scroll", this.handleScroll.bind(this));
-  }
-
-  handleScroll() {
-    /*if (!this.subLinks) return;
-
-    const {activeSub, subnav} = this.state;
-    const newSub = this.subLinks.getBoundingClientRect().top <= 0;
-
-    let newActive = false;
-    for (let i = 0; i < topics.length; i++) {
-      const top = document.getElementById(topics[i].slug).getBoundingClientRect().top;
-      if (top <= 0) newActive = topics[i].slug;
-    }
-    if (subnav !== newSub || newActive !== activeSub) {
-      this.setState({activeSub: newActive, subnav: newSub});
-    }*/
-  }
 
   render() {
     const { focus, t, i18n } = this.props;
@@ -866,6 +854,38 @@ class GeoProfile extends Component {
                     <PerformanceByType className="lost-1" />
                   </SectionColumns>
                 </PerformanceSlide>
+              </div>
+            </Topic>
+
+            <Topic
+              name={t("Housing and Environment")}
+              id="environment"
+              sections={[
+                {
+                  name: t("Quality"),
+                  slides: [t("Housing Conditions")]
+                },
+                {
+                  name: t("Connectivity"),
+                  slides: [
+                    t("Internet access"),
+                    t("Devices"),
+                    t("Internet use")
+                  ]
+                },
+                {
+                  name: t("Ammenities"),
+                  slides: [t("Access to services")]
+                }
+              ]}
+            >
+              <div>
+                <QualitySlide>
+                  <SectionColumns>
+                    <HousingType className="lost-1-2" />
+                    <HousingType className="lost-1-2" />
+                  </SectionColumns>
+                </QualitySlide>
               </div>
             </Topic>
 
