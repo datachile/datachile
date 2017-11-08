@@ -12,7 +12,6 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
-import NavFixed from "components/NavFixed";
 import SourceNote from "components/SourceNote";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import SvgMap from "components/SvgMap";

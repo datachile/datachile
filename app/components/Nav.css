@@ -148,6 +148,7 @@
 .subnav {
   background-color: var(--footer-bg);
   padding: 15px 15px;
+  z-index: 11;
   & .close-btn-container {
     text-align: right;
   }
@@ -245,6 +246,12 @@
   .nav {
     & .nav-container {
       justify-content: flex-start;
+      & .l-col {
+        lost-column: 1/4;
+      }
+      & .c-col {
+        lost-column: 2/4;
+      }
       & .r-col {
         display: none;
       }
