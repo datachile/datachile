@@ -37,6 +37,7 @@ import MigrationByAge from "./demography/origins/charts/MigrationByAge";
 import MigrationByRegion from "./demography/origins/charts/MigrationByRegion";
 import MigrationBySex from "./demography/origins/charts/MigrationBySex";
 import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
+
 /* END DEMOGRAPHY */
 
 import "../intro.css";
