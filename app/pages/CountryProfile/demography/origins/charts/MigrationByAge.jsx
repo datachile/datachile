@@ -61,7 +61,7 @@ export default translate()(
               label: d =>
                 d['Calculated Age Range'],
               time: "ID Year",
-              x: false,
+              x: "Age Range",
               y: "Number of visas",
               shapeConfig: {
                   fill: d => ordinalColorScale(3)
@@ -72,7 +72,7 @@ export default translate()(
               },
               yConfig:{
                 title:t("Visas"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)")
+                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)"),
               },
               barPadding: 20,
               groupPadding: 40,

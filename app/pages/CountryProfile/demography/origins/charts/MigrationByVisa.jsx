@@ -61,10 +61,11 @@ export default translate()(
               label: d =>
                 d['Visa Type'],
               time: "ID Year",
-              y: false,
+              y: "Visa Type",
               x: "Number of visas",
               discrete: "y",
               shapeConfig: {
+                label: false,
                 fill: d => ordinalColorScale(3)
               },
               yConfig:{
@@ -74,7 +75,6 @@ export default translate()(
               xConfig:{
                 title:t("Visas"),
                 tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)"),
-                title: false
               },
               barPadding: 20,
               groupPadding: 40,
@@ -88,7 +88,10 @@ export default translate()(
               }
             }}
 
-          dataFormat={data => { console.log(data.data); return data.data;}}
+            dataFormat={function(data){
+              var filtered = _.filter(data.data,(o) => o["Number of visas"] != null && o["Number of visas"] > 0);
+              return _.orderBy(filtered,["Number of visas"],["asc"])}
+            }
           />
         </div>
       );
