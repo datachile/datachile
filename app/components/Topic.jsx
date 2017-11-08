@@ -7,7 +7,7 @@ import TopicSlider from "components/TopicSlider";
 import TopicSliderBullets from "components/TopicSliderBullets";
 import TopicSliderSections from "components/TopicSliderSections";
 
-class Demography extends Component {
+class Topic extends Component {
   static need = [];
 
   constructor(props) {
@@ -16,64 +16,44 @@ class Demography extends Component {
     this.state = { selected: 0 };
   }
 
-  componentWillMount() {}
-
   goTo(n) {
     this.setState({ selected: n });
   }
 
   render() {
-    const { t, children } = this.props;
+    const { t, children, name, id } = this.props;
     const { selected } = this.state;
 
-    const sections = [
-      {
-        name: t("Origins"), 
-        slides: [
-          {ix:0, name:t("By Origin Country")},
-          {ix:1, name:t("By Sex & Age")},
-          {ix:2, name:t("By Activity & Vista Type")},
-        ]
-      },
-      { 
-        name: t("Diversity"), 
-        slides: [
-          {ix:3, name:t("By Sex & Age")}
-        ]
-      },
-      { 
-        name: t("Population"), 
-        slides: [
-          {ix:4, name:t("By Sex & Age")}
-        ]
-      },
-      { 
-        name: t("Ethnicity"), 
-        slides: [
-          {ix:5, name:t("By Sex & Age")}
-        ]
-      }
-    ];
+    let i = 0;
+    const sections = this.props.sections.map(s => {
+      return {
+        name: s.name,
+        slides: s.slides.map(sl => ({
+          ix: i++,
+          name: sl
+        }))
+      };
+    });
 
     const selectedSection = _.find(sections, function(s) {
-      return _.find(s.slides, function(slid){
+      return _.find(s.slides, function(slid) {
         return slid.ix == selected;
       });
     });
 
     return (
-      <div className="topic-block" id="demography">
+      <div className="topic-block" id={id}>
         <div className="topic-header">
           <div className="topic-title">
             <h2>
-              {t("Demography")}
+              {name}
               <small>
                 <span className="pipe">|</span>
                 {selectedSection.name}
               </small>
             </h2>
             <TopicSliderBullets
-              name="demography"
+              name={id}
               slides={children}
               selected={selected}
               goTo={this.goTo}
@@ -81,7 +61,7 @@ class Demography extends Component {
           </div>
           <div className="topic-go-to-targets">
             <TopicSliderSections
-              name="demography"
+              name={id}
               sections={sections}
               selected={selected}
               goTo={this.goTo}
@@ -104,5 +84,5 @@ export default translate()(
       data: state.data
     }),
     {}
-  )(Demography)
+  )(Topic)
 );
