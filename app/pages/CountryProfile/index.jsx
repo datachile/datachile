@@ -25,7 +25,22 @@ import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlid
 import ExportsByProduct from "./InternationalTrade/charts/ExportsByProduct";
 import ImportsByProduct from "./InternationalTrade/charts/ImportsByProduct";
 
+/* BEGIN DEMOGRAPHY */
+import Demography from "./demography/Demography";
+
+import MigrationSlide from "./demography/origins/MigrationSlide";
+import MigrationDetailsSlide from "./demography/origins/MigrationDetailsSlide";
+import MigrationActivitySlide from "./demography/origins/MigrationActivitySlide";
+
+import MigrationByActivity from "./demography/origins/charts/MigrationByActivity";
+import MigrationByAge from "./demography/origins/charts/MigrationByAge";
+import MigrationByRegion from "./demography/origins/charts/MigrationByRegion";
+import MigrationBySex from "./demography/origins/charts/MigrationBySex";
+import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
+/* END DEMOGRAPHY */
+
 import "../intro.css";
+import "../topics.css";
 
 class CountryProfile extends Component {
   constructor() {
@@ -128,7 +143,17 @@ class CountryProfile extends Component {
     InternationalTrade,
     InternationalTradeSlide,
     ImportsByProduct,
-    ExportsByProduct
+    ExportsByProduct,
+
+    Demography,
+    MigrationSlide,
+    MigrationDetailsSlide,
+    MigrationActivitySlide,
+    MigrationByActivity,
+    MigrationByAge,
+    MigrationByRegion,
+    MigrationBySex,
+    MigrationByVisa
   ];
 
   componentDidMount() {}
@@ -348,6 +373,26 @@ class CountryProfile extends Component {
                 </SectionColumns>
               </InternationalTradeSlide>
             </InternationalTrade>
+
+            <Demography>
+              <div>
+                <MigrationSlide>
+                    <MigrationByRegion className="lost-1-2" />
+                </MigrationSlide>
+              </div>
+              <div>
+                <MigrationDetailsSlide>
+                  <MigrationBySex className="lost-1-2" />
+                  <MigrationByAge className="lost-1-2" />
+                </MigrationDetailsSlide>
+              </div>
+              <div>
+                <MigrationActivitySlide>
+                  <MigrationByVisa className="lost-1-2" />
+                  <MigrationByActivity className="lost-1-2" />
+                </MigrationActivitySlide>
+              </div>
+            </Demography>
           </div>
         </div>
       </CanonComponent>
