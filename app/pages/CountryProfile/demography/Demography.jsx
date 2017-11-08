@@ -35,7 +35,7 @@ class Demography extends Component {
         name: t("Characterization"),
         slides: [
           { ix: 1, name: t("By Sex & Age") },
-          { ix: 2, name: t("By Activity & Vista Type") }
+          { ix: 2, name: t("By Activity & Visa Type") }
         ]
       }
     ];

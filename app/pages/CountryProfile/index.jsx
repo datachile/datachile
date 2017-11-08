@@ -28,15 +28,15 @@ import ImportsByProduct from "./InternationalTrade/charts/ImportsByProduct";
 /* BEGIN DEMOGRAPHY */
 import Demography from "./demography/Demography";
 
-import MigrationSlide from "./demography/origins/MigrationSlide";
-import MigrationDetailsSlide from "./demography/origins/MigrationDetailsSlide";
-import MigrationActivitySlide from "./demography/origins/MigrationActivitySlide";
+import MigrationSlide from "./demography/MigrationSlide";
+import MigrationDetailsSlide from "./demography/MigrationDetailsSlide";
+import MigrationActivitySlide from "./demography/MigrationActivitySlide";
 
-import MigrationByActivity from "./demography/origins/charts/MigrationByActivity";
-import MigrationByAge from "./demography/origins/charts/MigrationByAge";
-import MigrationByRegion from "./demography/origins/charts/MigrationByRegion";
-import MigrationBySex from "./demography/origins/charts/MigrationBySex";
-import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
+import MigrationByActivity from "./demography/charts/MigrationByActivity";
+import MigrationByAge from "./demography/charts/MigrationByAge";
+import MigrationByRegion from "./demography/charts/MigrationByRegion";
+import MigrationBySex from "./demography/charts/MigrationBySex";
+import MigrationByVisa from "./demography/charts/MigrationByVisa";
 /* END DEMOGRAPHY */
 
 import "../intro.css";
