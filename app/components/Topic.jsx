@@ -53,7 +53,7 @@ class Topic extends Component {
               </small>
             </h2>
             <TopicSliderBullets
-              name="economy"
+              name={id}
               slides={children}
               selected={selected}
               goTo={this.goTo}
@@ -61,7 +61,7 @@ class Topic extends Component {
           </div>
           <div className="topic-go-to-targets">
             <TopicSliderSections
-              name="economy"
+              name={id}
               sections={sections}
               selected={selected}
               goTo={this.goTo}

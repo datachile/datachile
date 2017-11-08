@@ -79,13 +79,12 @@ import PerformanceSlide from "./education/performance/PerformanceSlide";
 import PerformanceByType from "./education/performance/charts/PerformanceByType";
 /*end Education*/
 
-/*Demography*/
-
 /* Housing and Environment */
 import QualitySlide from "./environment/quality/QualitySlide";
 import HousingType from "./environment/quality/charts/HousingType";
 /* end Housing and Environment */
 
+/*Demography*/
 import MigrationSlide from "./demography/origins/MigrationSlide";
 import MigrationByOrigin from "./demography/origins/charts/MigrationByOrigin";
 
@@ -883,7 +882,7 @@ class GeoProfile extends Component {
                 <QualitySlide>
                   <SectionColumns>
                     <HousingType className="lost-1-2" />
-                    <HousingType className="lost-1-2" />
+                    <div className="lost-1-2">other chart</div>
                   </SectionColumns>
                 </QualitySlide>
               </div>

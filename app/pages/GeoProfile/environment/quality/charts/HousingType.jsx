@@ -21,7 +21,6 @@ class HousingType extends Section {
             .option("parents", true)
             .drilldown("Household Type", "Household Type", "Household Type")
             .drilldown("Date", "Date", "Year")
-            .drilldown("Activity", "Activity", "Activity")
             .measure(
               geo.type == "comuna"
                 ? "Expansion Factor Comuna"
@@ -29,6 +28,7 @@ class HousingType extends Section {
             ),
           store.i18n.locale
         );
+
         return {
           key: "path_housing_type",
           data: store.env.CANON_API + q.path("jsonrecords")
@@ -96,7 +96,9 @@ class HousingType extends Section {
               shapeConfig: false
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={data => {
+            return _.orderBy(data.data, [msrName], ["ASC"]);
+          }}
         />
       </div>
     );
