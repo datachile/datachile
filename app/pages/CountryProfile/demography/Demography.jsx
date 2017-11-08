@@ -30,33 +30,27 @@ class Demography extends Component {
       {
         name: t("Origins"),
         slides: [
-          {ix:0, name:t("By Origin Country")},
-          {ix:1, name:t("By Sex & Age")},
-          {ix:2, name:t("By Activity & Vista Type")},
+          { ix: 0, name: t("By Destination Region") },
+          { ix: 1, name: t("By Sex & Age") },
+          { ix: 2, name: t("By Activity & Vista Type") }
         ]
       },
       {
         name: t("Diversity"),
-        slides: [
-          {ix:3, name:t("By Sex & Age")}
-        ]
+        slides: [{ ix: 3, name: t("By Sex & Age") }]
       },
       {
         name: t("Population"),
-        slides: [
-          {ix:4, name:t("By Sex & Age")}
-        ]
+        slides: [{ ix: 4, name: t("By Sex & Age") }]
       },
       {
         name: t("Ethnicity"),
-        slides: [
-          {ix:5, name:t("By Sex & Age")}
-        ]
+        slides: [{ ix: 5, name: t("By Sex & Age") }]
       }
     ];
 
     const selectedSection = _.find(sections, function(s) {
-      return _.find(s.slides, function(slid){
+      return _.find(s.slides, function(slid) {
         return slid.ix == selected;
       });
     });

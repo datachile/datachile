@@ -364,6 +364,7 @@ class CountryProfile extends Component {
               </div>
             </div>
           </div>
+
           <div className="topics-container">
             <InternationalTrade>
               <InternationalTradeSlide>
@@ -377,19 +378,25 @@ class CountryProfile extends Component {
             <Demography>
               <div>
                 <MigrationSlide>
-                    <MigrationByRegion className="lost-1-2" />
+                  <SectionColumns>
+                    <MigrationByRegion className="lost-1" />
+                  </SectionColumns>
                 </MigrationSlide>
               </div>
               <div>
                 <MigrationDetailsSlide>
-                  <MigrationBySex className="lost-1-2" />
-                  <MigrationByAge className="lost-1-2" />
+                  <SectionColumns>
+                    <MigrationBySex className="lost-1-2" />
+                    <MigrationByAge className="lost-1-2" />
+                  </SectionColumns>
                 </MigrationDetailsSlide>
               </div>
               <div>
                 <MigrationActivitySlide>
-                  <MigrationByVisa className="lost-1-2" />
-                  <MigrationByActivity className="lost-1-2" />
+                  <SectionColumns>
+                    <MigrationByVisa className="lost-1-2" />
+                    <MigrationByActivity className="lost-1-2" />
+                  </SectionColumns>
                 </MigrationActivitySlide>
               </div>
             </Demography>

@@ -15,12 +15,8 @@ class MigrationDetailsSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Migration")}
-          </div>
-          <div className="topic-slide-text">
-            Yo no sé si será delito esto.
-          </div>
+          <div className="topic-slide-title">{t("Migration")}</div>
+          <div className="topic-slide-text">Lorem ipsum</div>
           <div className="topic-slide-data">
             <FeaturedDatum
               className="lost-1-3"
@@ -45,9 +41,7 @@ class MigrationDetailsSlide extends Section {
             />
           </div>
         </div>
-        <div className="topic-slide-charts">
-          {children}
-        </div>
+        <div className="topic-slide-charts">{children}</div>
       </div>
     );
   }
