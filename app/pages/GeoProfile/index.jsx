@@ -20,6 +20,8 @@ import AuthoritiesBlock from "components/AuthoritiesBlock";
 import TopicMenu from "components/TopicMenu";
 import Topic from "components/Topic";
 
+import Placeholder from "components/Placeholder";
+
 /*Economy*/
 import TradeSlide from "./economy/trade/TradeSlide";
 import ExportsByProduct from "./economy/trade/charts/ExportsByProduct";
@@ -707,6 +709,10 @@ class GeoProfile extends Component {
                   slides: [t("Opportunities")]
                 },
                 {
+                  name: t("Employemnt"),
+                  slides: [t("By Sex & Education Level")]
+                },
+                {
                   name: t("Income"),
                   slides: [t("By Sex & Age"), t("By Occupation")]
                 },
@@ -747,8 +753,12 @@ class GeoProfile extends Component {
               <div>
                 <OpportunitySlide>
                   <SectionColumns>
-                    <IndustrySpace className="lost-1-2" />
-                    <ProductSpace className="lost-1-2" />
+                    {/* 
+                      <IndustrySpace className="lost-1-2" />
+                      <ProductSpace className="lost-1-2" />
+                    */}
+                    <Placeholder className="lost-1-2" text="Industry Space" />
+                    <Placeholder className="lost-1-2" text="Product Space" />
                   </SectionColumns>
                 </OpportunitySlide>
               </div>
@@ -850,7 +860,8 @@ class GeoProfile extends Component {
               <div>
                 <PerformanceSlide>
                   <SectionColumns>
-                    <PerformanceByType className="lost-1" />
+                    {/* <PerformanceByType className="lost-1" /> */}
+                    <Placeholder className="lost-1" text="Performance" />
                   </SectionColumns>
                 </PerformanceSlide>
               </div>
@@ -882,7 +893,7 @@ class GeoProfile extends Component {
                 <QualitySlide>
                   <SectionColumns>
                     <HousingType className="lost-1-2" />
-                    <div className="lost-1-2">other chart</div>
+                    <Placeholder className="lost-1-2" text="Other Chart" />
                   </SectionColumns>
                 </QualitySlide>
               </div>
@@ -897,7 +908,7 @@ class GeoProfile extends Component {
                   slides: [
                     t("By Origin Country"),
                     t("By Sex & Age"),
-                    t("By Activity & Vista Type")
+                    t("By Activity & Visa Type")
                   ]
                 },
                 {
