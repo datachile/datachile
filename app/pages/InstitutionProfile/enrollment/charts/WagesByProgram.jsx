@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "lodash";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
@@ -13,22 +14,16 @@ export default translate()(
     static need = [
       (params, store) => {
         const institution = getLevelObject(params);
-        const prm = mondrianClient
-          .cube("education_employability")
-          .then(cube => {
+        const prm = mondrianClient.cube("education_employability").then(cube => {
             const q = levelCut(
               institution,
               "Higher Institutions",
               "Higher Institutions",
               cube.query
                 .option("parents", true)
-                .drilldown(
-                  "Avg Income 4th year",
-                  "Avg Income 4th year",
-                  "Avg Income 4th year"
-                )
                 .drilldown("Careers", "Careers", "Career")
-                .measure("Avg anual payment 2016"),
+                .drilldown("Avg Income 4th year", "Avg Income 4th year", "Avg Income 4th year")
+                .measure("Number of records"),
               "Higher Institution Subgroup",
               "Higher Institution",
               store.i18n.locale,
@@ -60,10 +55,10 @@ export default translate()(
             config={{
               height: 500,
               data: path,
-              groupBy: "ID Avg Income 4th year",
-              label: d => d["Avg Income 4th year"],
+              groupBy: "ID Career",
+              label: d => d["Number of records"],
               x: "Career",
-              y: "Avg Income 4th year",
+              y: "Number of records",
               shapeConfig: {
                 fill: d => ordinalColorScale(3)
               },
@@ -80,7 +75,7 @@ export default translate()(
               tooltipConfig: {
                 title: d => d["Career"],
                 body: d =>
-                  numeral(d["Avg anual payment 2016"], locale).format(
+                  numeral(d["Number of records"], locale).format(
                     "( 0,0 )"
                   ) +
                   " " +
@@ -91,10 +86,10 @@ export default translate()(
                 shapeConfig: false
               }
             }}
-            dataFormat={data => {
-              console.warn(data.data);
-              return data.data;
-            }}
+            dataFormat={function(data){
+              var filtered = _.filter(data.data,(o) => o["Number of records"] != null && o["Number of records"] > 0);
+              return _.orderBy(filtered,["Number of records"],["asc"])}
+            }
           />
         </div>
       );
