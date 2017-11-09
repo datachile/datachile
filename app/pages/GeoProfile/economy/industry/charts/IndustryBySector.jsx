@@ -3,14 +3,13 @@ import React, { Component } from "react";
 import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { industriesColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 class IndustryBySector extends Section {
   static need = [
     (params, store) => {
-      
       const geo = getGeoObject(params);
       const prm = mondrianClient.cube("tax_data").then(cube => {
         var q = geoCut(
@@ -42,9 +41,7 @@ class IndustryBySector extends Section {
     const { t, className } = this.props;
     return (
       <div className={className}>
-        <h3 className="chart-title">
-          {t("Industry By Employment")}
-        </h3>
+        <h3 className="chart-title">{t("Industry By Employment")}</h3>
         <Treemap
           config={{
             height: 500,
@@ -55,16 +52,17 @@ class IndustryBySector extends Section {
             sum: d => d["Output"],
             time: "ID Year",
             shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Level 1"])
+              fill: d => industriesColorScale(d["ID Level 1"])
             },
             legendConfig: {
-                label: false,
-                shapeConfig:{
-                    width:25,
-                    height:25,
-                    fill: d => ordinalColorScale(d["ID Level 1"]),
-                    backgroundImage: d => "https://datausa.io/static/img/attrs/thing_apple.png",
-                }
+              label: false,
+              shapeConfig: {
+                width: 25,
+                height: 25,
+                fill: d => industriesColorScale(d["ID Level 1"]),
+                backgroundImage: d =>
+                  "https://datausa.io/static/img/attrs/thing_apple.png"
+              }
             }
           }}
           dataFormat={data => data.data}

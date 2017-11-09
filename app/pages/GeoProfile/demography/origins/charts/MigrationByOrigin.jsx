@@ -3,7 +3,7 @@ import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import { ordinalColorScale } from "helpers/colors";
+import { continentColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
@@ -44,36 +44,44 @@ export default translate()(
 
       return (
         <div className={className}>
-          <h3 className="chart-title">
-            {t("Migration By Origin")}
-          </h3>
+          <h3 className="chart-title">{t("Migration By Origin")}</h3>
           <Treemap
             config={{
               height: 500,
               data: path,
               groupBy: ["ID Continent", "ID Country"],
               label: d => {
-                d["Country"] = d["Country"]=="Chile"?["Chile"]:d["Country"];
-                return d["Country"] instanceof Array ? d["Continent"] : d["Country"]
+                d["Country"] =
+                  d["Country"] == "Chile" ? ["Chile"] : d["Country"];
+                return d["Country"] instanceof Array
+                  ? d["Continent"]
+                  : d["Country"];
               },
               sum: d => d["Number of visas"],
               time: "ID Year",
               shapeConfig: {
-                  fill: d => ordinalColorScale(d["ID Continent"])
+                fill: d => continentColorScale(d["ID Continent"])
               },
-              tooltipConfig:{
+              tooltipConfig: {
                 title: d => {
-                  d["Country"] = d["Country"]=="Chile"?["Chile"]:d["Country"];
-                  return d["Country"] instanceof Array ? d["Continent"] : d["Country"]
+                  d["Country"] =
+                    d["Country"] == "Chile" ? ["Chile"] : d["Country"];
+                  return d["Country"] instanceof Array
+                    ? d["Continent"]
+                    : d["Country"];
                 },
-                body: d => numeral(d['Number of visas'], locale).format("(0 a)") + " " + t("people")
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("(0 a)") +
+                  " " +
+                  t("people")
               },
               legendConfig: {
-                  shapeConfig:{
-                      width:40,
-                      height:40,
-                      backgroundImage: d => "/images/legend/continent/"+d["ID Continent"]+".png",
-                  }
+                shapeConfig: {
+                  width: 40,
+                  height: 40,
+                  backgroundImage: d =>
+                    "/images/legend/continent/" + d["ID Continent"] + ".png"
+                }
               }
             }}
             dataFormat={data => data.data}

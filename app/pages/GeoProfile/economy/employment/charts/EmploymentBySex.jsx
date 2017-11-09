@@ -6,7 +6,7 @@ import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { melt, getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { employmentColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import Select from "components/Select";
@@ -128,7 +128,7 @@ class EmploymentBySex extends Section {
             },
             shapeConfig: {
               Line: {
-                stroke: d => ordinalColorScale(d["variable"]),
+                stroke: d => employmentColorScale(d["variable"]),
                 strokeWidth: 2
               }
             },
