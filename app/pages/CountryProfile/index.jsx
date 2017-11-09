@@ -14,6 +14,8 @@ import mondrianClient, {
 } from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
+import Topic from "components/Topic";
+
 import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
@@ -26,8 +28,6 @@ import ExportsByProduct from "./InternationalTrade/charts/ExportsByProduct";
 import ImportsByProduct from "./InternationalTrade/charts/ImportsByProduct";
 
 /* BEGIN DEMOGRAPHY */
-import Demography from "./demography/Demography";
-
 import MigrationSlide from "./demography/MigrationSlide";
 import MigrationDetailsSlide from "./demography/MigrationDetailsSlide";
 import MigrationActivitySlide from "./demography/MigrationActivitySlide";
@@ -37,6 +37,7 @@ import MigrationByAge from "./demography/charts/MigrationByAge";
 import MigrationByRegion from "./demography/charts/MigrationByRegion";
 import MigrationBySex from "./demography/charts/MigrationBySex";
 import MigrationByVisa from "./demography/charts/MigrationByVisa";
+
 /* END DEMOGRAPHY */
 
 import "../intro.css";
@@ -145,7 +146,6 @@ class CountryProfile extends Component {
     ImportsByProduct,
     ExportsByProduct,
 
-    Demography,
     MigrationSlide,
     MigrationDetailsSlide,
     MigrationActivitySlide,
@@ -366,16 +366,20 @@ class CountryProfile extends Component {
           </div>
 
           <div className="topics-container">
-            <InternationalTrade>
-              <InternationalTradeSlide>
-                <SectionColumns>
-                  <ImportsByProduct className="lost-1-2" />
-                  <ExportsByProduct className="lost-1-2" />
-                </SectionColumns>
-              </InternationalTradeSlide>
-            </InternationalTrade>
-
-            <Demography>
+            <Topic
+              name={t("Demography")}
+              id="demography"
+              sections={[
+                {
+                  name: t("Destination"),
+                  slides: [t("By Destination Region")]
+                },
+                {
+                  name: t("Characterization"),
+                  slides: [t("By Sex & Age"), t("By Activity & Visa Type")]
+                }
+              ]}
+            >
               <div>
                 <MigrationSlide>
                   <SectionColumns>
@@ -399,7 +403,31 @@ class CountryProfile extends Component {
                   </SectionColumns>
                 </MigrationActivitySlide>
               </div>
-            </Demography>
+            </Topic>
+            <Topic
+              name={t("Trade")}
+              id="trade"
+              sections={[
+                {
+                  name: t("Trade"),
+                  slides: [t("International trade")]
+                },
+                {
+                  name: t("Trade Balance"),
+                  slides: [t("Trade Balance")]
+                }
+              ]}
+            >
+              <div>
+                <InternationalTradeSlide>
+                  <SectionColumns>
+                    <ImportsByProduct className="lost-1-2" />
+                    <ExportsByProduct className="lost-1-2" />
+                  </SectionColumns>
+                </InternationalTradeSlide>
+              </div>
+              <div>trade balance</div>
+            </Topic>
           </div>
         </div>
       </CanonComponent>

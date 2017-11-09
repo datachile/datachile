@@ -12,8 +12,8 @@ class TradeSlide extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      const prm = mondrianClient
-        .cube("exports")
+      const cube = mondrianClient.cube("exports");
+      const prm = cube
         .then(cube => {
           var q = geoCut(
             geo,
@@ -60,9 +60,7 @@ class TradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Trade")}
-          </div>
+          <div className="topic-slide-title">{t("Trade")}</div>
           <div className="topic-slide-text">
             <p>
               <span
@@ -90,13 +88,10 @@ class TradeSlide extends Section {
               title={t("Trade volume")}
               subtitle={text_data.first_year + " - " + text_data.last_year}
             />
-            <TradeBalance className="lost-2-3"/>
-            
+            <TradeBalance className="lost-2-3" />
           </div>
         </div>
-        <div className="topic-slide-charts">
-          {children}
-        </div>
+        <div className="topic-slide-charts">{children}</div>
       </div>
     );
   }

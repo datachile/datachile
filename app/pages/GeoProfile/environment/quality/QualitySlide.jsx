@@ -9,31 +9,34 @@ import { getGeoObject } from "helpers/dataUtils";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-class EnrollmentSlide extends Section {
+class QualitySlide extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      const cube = mondrianClient.cube("education_enrollment");
+      const cube = mondrianClient.cube("casen_household");
+      const msrName =
+        geo.type == "comuna"
+          ? "Expansion Factor Comuna"
+          : "Expansion Factor Region";
+
       const prm = cube
         .then(cube => {
           var q = geoCut(
             geo,
             "Geography",
             cube.query
-              .cut(
-                // TODO replace with NamedSet 'Special Education Teachings'
-                "{[Teachings].[Teaching].[Teaching].&[211],[Teachings].[Teaching].[Teaching].&[212],[Teachings].[Teaching].[Teaching].&[213],[Teachings].[Teaching].[Teaching].&[214],[Teachings].[Teaching].[Teaching].&[215],[Teachings].[Teaching].[Teaching].&[216],[Teachings].[Teaching].[Teaching].&[217]}"
-              )
+              .drilldown("Zone Id", "Zone Id", "Zone Id")
               .cut("[Date].[Date].[Year].&[2015]")
-              .measure("Number of records"),
+              .cut("[Zone Id].[Zone Id].[Zone Id].&[2]")
+              .measure(msrName),
             store.i18n.locale
           );
-          return mondrianClient.query(q);
+          return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
           return {
-            key: "datum_enrollment_special_education",
-            data: res.data.values
+            key: "datum_rural_households",
+            data: res.data.data[0][msrName]
           };
         });
 
@@ -46,12 +49,12 @@ class EnrollmentSlide extends Section {
 
   render() {
     const { children, t } = this.props;
-    const { datum_enrollment_special_education } = this.context.data;
+    const { datum_rural_households } = this.context.data;
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Enrollment")}</div>
+          <div className="topic-slide-title">{t("Quality")}</div>
           <div className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
             orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
@@ -66,8 +69,8 @@ class EnrollmentSlide extends Section {
             <FeaturedDatum
               className="lost-1-3"
               icon="empleo"
-              datum={datum_enrollment_special_education}
-              title={t("Students in Special Education")}
+              datum={datum_rural_households}
+              title={t("Rural households")}
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
@@ -98,5 +101,5 @@ export default translate()(
       data: state.data
     }),
     {}
-  )(EnrollmentSlide)
+  )(QualitySlide)
 );
