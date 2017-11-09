@@ -20,24 +20,6 @@ import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
 
-/* BEGIN WAGES */
-import Wages from "./enrollment/Wages";
-import WagesSlide from "./enrollment/WagesSlide";
-import WagesByProgram from "./enrollment/charts/WagesByProgram";
-/* END WAGES */
-
-/* BEGIN EMPLOYABILITY */
-import Employability from "./enrollment/Employability";
-import EmployabilitySlide from "./enrollment/EmployabilitySlide";
-import EmployabilityByProgram from "./enrollment/charts/EmployabilityByProgram";
-/* END EMPLOYABILITY */
-
-/* BEGIN ACCREDITATION */
-import Accreditation from "./enrollment/Accreditation";
-import AccreditationSlide from "./enrollment/AccreditationSlide";
-import AccreditationByProgram from "./enrollment/charts/AccreditationByProgram";
-/* END ACCREDITATION */
-
 import "../intro.css";
 import "../topics.css";
 
@@ -139,9 +121,9 @@ class InstitutionProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
-    },
+    }
 
-    Wages,
+    /*Wages,
     WagesSlide,
     WagesByProgram,
     Employability,
@@ -149,7 +131,7 @@ class InstitutionProfile extends Component {
     EmployabilityByProgram,
     Accreditation,
     AccreditationSlide,
-    AccreditationByProgram
+    AccreditationByProgram*/
   ];
 
   componentDidMount() {}
@@ -378,37 +360,6 @@ class InstitutionProfile extends Component {
               </div>
             </div>
           </div>
-
-          <Wages>
-            <div>
-              <WagesSlide>
-                <SectionColumns>
-                  <WagesByProgram className="lost-1" />
-                </SectionColumns>
-              </WagesSlide>
-            </div>
-          </Wages>
-
-          <Employability>
-            <div>
-              <EmployabilitySlide>
-                <SectionColumns>
-                  <EmployabilityByProgram className="lost-1" />
-                </SectionColumns>
-              </EmployabilitySlide>
-            </div>
-          </Employability>
-
-          <Accreditation>
-            <div>
-              <AccreditationSlide>
-                <SectionColumns>
-                  <AccreditationByProgram className="lost-1" />
-                </SectionColumns>
-              </AccreditationSlide>
-            </div>
-          </Accreditation>
-
         </div>
       </CanonComponent>
     );
