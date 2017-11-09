@@ -32,6 +32,12 @@ import EmployabilitySlide from "./enrollment/EmployabilitySlide";
 import EmployabilityByProgram from "./enrollment/charts/EmployabilityByProgram";
 /* END EMPLOYABILITY */
 
+/* BEGIN ACCREDITATION */
+import Accreditation from "./enrollment/Accreditation";
+import AccreditationSlide from "./enrollment/AccreditationSlide";
+import AccreditationByProgram from "./enrollment/charts/AccreditationByProgram";
+/* END ACCREDITATION */
+
 import "../intro.css";
 import "../topics.css";
 
@@ -140,7 +146,10 @@ class InstitutionProfile extends Component {
     WagesByProgram,
     Employability,
     EmployabilitySlide,
-    EmployabilityByProgram
+    EmployabilityByProgram,
+    Accreditation,
+    AccreditationSlide,
+    AccreditationByProgram
   ];
 
   componentDidMount() {}
@@ -389,6 +398,16 @@ class InstitutionProfile extends Component {
               </EmployabilitySlide>
             </div>
           </Employability>
+
+          <Accreditation>
+            <div>
+              <AccreditationSlide>
+                <SectionColumns>
+                  <AccreditationByProgram className="lost-1" />
+                </SectionColumns>
+              </AccreditationSlide>
+            </div>
+          </Accreditation>
 
         </div>
       </CanonComponent>
