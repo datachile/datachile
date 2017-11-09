@@ -374,15 +374,10 @@ class GeoProfile extends Component {
 
   render() {
     const { focus, t, i18n } = this.props;
-
     const { subnav, activeSub } = this.state;
-
     const locale = i18n.language.split("-")[0];
-
     const geoObj = getGeoObject(this.props.routeParams);
-
     const showRanking = geoObj.type == "country" ? false : true;
-
     const geo = this.props.data.geo;
 
     if (geo) {
@@ -802,8 +797,18 @@ class GeoProfile extends Component {
               <div>
                 <IDSpendingCategorySlide>
                   <SectionColumns>
+                    {/*
                     <SpendingByFundingSource className="lost-1-2" />
                     <SpendingByArea className="lost-1-2" />
+                    */}
+                    <Placeholder
+                      className="lost-1-2"
+                      text="RD - By Funding Source"
+                    />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="RD - By Knowledge Area"
+                    />
                   </SectionColumns>
                 </IDSpendingCategorySlide>
               </div>
@@ -811,8 +816,15 @@ class GeoProfile extends Component {
               <div>
                 <IDStaffSlide>
                   <SectionColumns>
+                    {/*
                     <StaffByOccupation className="lost-1-2" />
                     <StaffBySex className="lost-1-2" />
+                     */}
+                    <Placeholder
+                      className="lost-1-2"
+                      text="RD - By Occupation"
+                    />
+                    <Placeholder className="lost-1-2" text="RD - By Sex" />
                   </SectionColumns>
                 </IDStaffSlide>
               </div>
@@ -820,8 +832,18 @@ class GeoProfile extends Component {
               <div>
                 <InnovationCompanySlide>
                   <SectionColumns>
+                    {/*
                     <InnovationRate className="lost-2-3" />
                     <InnovationByType className="lost-1-3" />
+                    */}
+                    <Placeholder
+                      className="lost-1-2"
+                      text="RD - Innovation Rate"
+                    />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="RD - Innovation Type"
+                    />
                   </SectionColumns>
                 </InnovationCompanySlide>
               </div>
@@ -829,8 +851,12 @@ class GeoProfile extends Component {
               <div>
                 <CompanyInnovationSlide>
                   <SectionColumns>
+                    {/*
                     <InnovationBySize className="lost-2-3" />
                     <InnovationByActivity className="lost-1-3" />
+                    */}
+                    <Placeholder className="lost-1-2" text="RD - by Size" />
+                    <Placeholder className="lost-1-2" text="RD - by Activity" />
                   </SectionColumns>
                 </CompanyInnovationSlide>
               </div>
