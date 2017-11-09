@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
@@ -20,7 +20,20 @@ import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
 
+/* BEGIN WAGES */
+import Wages from "./enrollment/Wages";
+import WagesSlide from "./enrollment/WagesSlide";
+import WagesByProgram from "./enrollment/charts/WagesByProgram";
+/* END WAGES */
+
+/* BEGIN EMPLOYABILITY */
+import Employability from "./enrollment/Employability";
+import EmployabilitySlide from "./enrollment/EmployabilitySlide";
+import EmployabilityByProgram from "./enrollment/charts/EmployabilityByProgram";
+/* END EMPLOYABILITY */
+
 import "../intro.css";
+import "../topics.css";
 
 class InstitutionProfile extends Component {
   constructor() {
@@ -120,7 +133,14 @@ class InstitutionProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
-    }
+    },
+
+    Wages,
+    WagesSlide,
+    WagesByProgram,
+    Employability,
+    EmployabilitySlide,
+    EmployabilityByProgram
   ];
 
   componentDidMount() {}
@@ -245,7 +265,7 @@ class InstitutionProfile extends Component {
               <div className="datum-full-width">
                 {stats.enrollment && (
                   <FeaturedDatumSplash
-                    title={t("Total Enrollment")}
+                    title={t("Total Wages")}
                     icon="poblacion"
                     decile={stats.enrollment.decile}
                     datum={numeral(stats.enrollment.value, locale).format(
@@ -349,6 +369,27 @@ class InstitutionProfile extends Component {
               </div>
             </div>
           </div>
+
+          <Wages>
+            <div>
+              <WagesSlide>
+                <SectionColumns>
+                  <WagesByProgram className="lost-1" />
+                </SectionColumns>
+              </WagesSlide>
+            </div>
+          </Wages>
+
+          <Employability>
+            <div>
+              <EmployabilitySlide>
+                <SectionColumns>
+                  <EmployabilityByProgram className="lost-1" />
+                </SectionColumns>
+              </EmployabilitySlide>
+            </div>
+          </Employability>
+
         </div>
       </CanonComponent>
     );
