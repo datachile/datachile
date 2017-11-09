@@ -17,23 +17,21 @@ import { getLevelObject, ingestParent } from "helpers/dataUtils";
 import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
+import Topic from "components/Topic";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
 
 /* BEGIN WAGES */
-import Wages from "./enrollment/Wages";
 import WagesSlide from "./enrollment/WagesSlide";
 import WagesByProgram from "./enrollment/charts/WagesByProgram";
 /* END WAGES */
 
 /* BEGIN EMPLOYABILITY */
-import Employability from "./enrollment/Employability";
 import EmployabilitySlide from "./enrollment/EmployabilitySlide";
 import EmployabilityByProgram from "./enrollment/charts/EmployabilityByProgram";
 /* END EMPLOYABILITY */
 
 /* BEGIN ACCREDITATION */
-import Accreditation from "./enrollment/Accreditation";
 import AccreditationSlide from "./enrollment/AccreditationSlide";
 import AccreditationByProgram from "./enrollment/charts/AccreditationByProgram";
 /* END ACCREDITATION */
@@ -141,15 +139,12 @@ class InstitutionProfile extends Component {
       };
     },
 
-    Wages,
     WagesSlide,
     WagesByProgram,
-    Employability,
+
     EmployabilitySlide,
-    EmployabilityByProgram,
-    Accreditation,
-    AccreditationSlide,
-    AccreditationByProgram
+
+    AccreditationSlide
   ];
 
   componentDidMount() {}
@@ -166,8 +161,6 @@ class InstitutionProfile extends Component {
     const ids = getLevelObject(this.props.routeParams);
 
     const list = this.props.data.institution_list_detail;
-
-    console.warn("list->", list);
 
     obj && ids && list
       ? list.map(c => {
@@ -327,6 +320,7 @@ class InstitutionProfile extends Component {
               </a>
             </div>
           </div>
+
           <div className="topic-block" id="about">
             <div className="topic-header">
               <div className="topic-title">
@@ -379,36 +373,64 @@ class InstitutionProfile extends Component {
             </div>
           </div>
 
-          <Wages>
-            <div>
-              <WagesSlide>
-                <SectionColumns>
-                  <WagesByProgram className="lost-1" />
-                </SectionColumns>
-              </WagesSlide>
-            </div>
-          </Wages>
+          <div className="topics-container">
+            <Topic
+              name={t("Wages")}
+              id="wages"
+              sections={[
+                {
+                  name: t("Wages"),
+                  slides: [t("By program")]
+                }
+              ]}
+            >
+              <div>
+                <WagesSlide>
+                  <SectionColumns>
+                    <WagesByProgram className="lost-1" />
+                  </SectionColumns>
+                </WagesSlide>
+              </div>
+            </Topic>
 
-          <Employability>
-            <div>
-              <EmployabilitySlide>
-                <SectionColumns>
-                  <EmployabilityByProgram className="lost-1" />
-                </SectionColumns>
-              </EmployabilitySlide>
-            </div>
-          </Employability>
+            <Topic
+              name={t("Employability")}
+              id="employability"
+              sections={[
+                {
+                  name: t("Employability"),
+                  slides: [t("By program")]
+                }
+              ]}
+            >
+              <div>
+                <EmployabilitySlide>
+                  <SectionColumns>
+                    <p>hola</p>
+                  </SectionColumns>
+                </EmployabilitySlide>
+              </div>
+            </Topic>
 
-          <Accreditation>
-            <div>
-              <AccreditationSlide>
-                <SectionColumns>
-                  <AccreditationByProgram className="lost-1" />
-                </SectionColumns>
-              </AccreditationSlide>
-            </div>
-          </Accreditation>
-
+            <Topic
+              name={t("Accreditation")}
+              id="accreditation"
+              sections={[
+                {
+                  name: t("Accreditation"),
+                  slides: [t("By program")]
+                }
+              ]}
+            >
+              <div>
+                <AccreditationSlide>
+                  <SectionColumns>
+                    <p>hola</p>
+                  </SectionColumns>
+                </AccreditationSlide>
+              </div>
+            </Topic>
+          </div>
         </div>
       </CanonComponent>
     );

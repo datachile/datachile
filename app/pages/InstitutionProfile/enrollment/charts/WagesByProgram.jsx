@@ -13,25 +13,33 @@ export default translate()(
     static need = [
       (params, store) => {
         const institution = getLevelObject(params);
-        const prm = mondrianClient.cube("education_employability").then(cube => {
-          const q = levelCut(
+        const prm = mondrianClient
+          .cube("education_employability")
+          .then(cube => {
+            const q = levelCut(
               institution,
               "Higher Institutions",
-              cube.query
-                  .option("parents", true)
-                  .drilldown( "Careers", "Career")
-                  .drilldown("Avg Income 4th year", "Avg Income 4th year")
-                  .measure("Avg Income 4th year"),
               "Higher Institutions",
+              cube.query
+                .option("parents", true)
+                .drilldown(
+                  "Avg Income 4th year",
+                  "Avg Income 4th year",
+                  "Avg Income 4th year"
+                )
+                .drilldown("Careers", "Careers", "Career")
+                .measure("Avg anual payment 2016"),
+              "Higher Institution Subgroup",
+              "Higher Institution",
               store.i18n.locale,
               false
-          );
+            );
 
-          return {
+            return {
               key: "path_institution_wages_by_program",
               data: store.env.CANON_API + q.path("jsonrecords")
-          };
-        });
+            };
+          });
 
         return {
           type: "GET_DATA",
@@ -40,7 +48,6 @@ export default translate()(
       }
     ];
 
-
     render() {
       const { t, className, i18n } = this.props;
       const path = this.context.data.path_institution_wages_by_program;
@@ -48,42 +55,46 @@ export default translate()(
 
       return (
         <div className={className}>
-          <h3 className="chart-title">
-            {t("Wages by Program")}
-          </h3>
+          <h3 className="chart-title">{t("Wages by Program")}</h3>
           <BarChart
             config={{
               height: 500,
               data: path,
-              groupBy: "Career",
-              label: d =>
-                d['Avg Income 4th year'],
-              x: "Careers",
+              groupBy: "ID Avg Income 4th year",
+              label: d => d["Avg Income 4th year"],
+              x: "Career",
               y: "Avg Income 4th year",
               shapeConfig: {
-                  fill: d => ordinalColorScale(3)
+                fill: d => ordinalColorScale(3)
               },
-              xConfig:{
-                tickSize:0,
-                title:false
+              xConfig: {
+                tickSize: 0,
+                title: false
               },
-              yConfig:{
-                title:t("Wages"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)"),
+              yConfig: {
+                title: t("Wages"),
+                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
               },
               barPadding: 20,
               groupPadding: 40,
-              tooltipConfig:{
+              tooltipConfig: {
                 title: d => d["Career"],
-                body: d => numeral(d['Avg Income 4th year'], locale).format("( 0,0 )") + " " + t("val")
+                body: d =>
+                  numeral(d["Avg anual payment 2016"], locale).format(
+                    "( 0,0 )"
+                  ) +
+                  " " +
+                  t("val")
               },
               legendConfig: {
-                  label: false,
-                  shapeConfig: false
+                label: false,
+                shapeConfig: false
               }
             }}
-
-          dataFormat={data => { console.log(data.data); return data.data;}}
+            dataFormat={data => {
+              console.warn(data.data);
+              return data.data;
+            }}
           />
         </div>
       );
