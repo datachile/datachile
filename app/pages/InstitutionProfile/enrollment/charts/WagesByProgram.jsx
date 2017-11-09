@@ -55,7 +55,7 @@ export default translate()(
             config={{
               height: 500,
               data: path,
-              groupBy: "Careers",
+              groupBy: "Career",
               label: d =>
                 d['Avg Income 4th year'],
               x: "Careers",
@@ -74,8 +74,8 @@ export default translate()(
               barPadding: 20,
               groupPadding: 40,
               tooltipConfig:{
-                title: d => d["Careers"],
-                body: d => numeral(d['Avg Income 4th year'], locale).format("( 0,0 )") + " " + t("visas")
+                title: d => d["Career"],
+                body: d => numeral(d['Avg Income 4th year'], locale).format("( 0,0 )") + " " + t("val")
               },
               legendConfig: {
                   label: false,

@@ -19,7 +19,7 @@ export default translate()(
               "Higher Institutions",
               cube.query
                   .option("parents", true)
-                  .drilldown( "Careers", "Career")
+                  .drilldown("Careers", "Career")
                   .drilldown("Avg employability 1st year", "Avg employability 1st year")
                   .measure("Avg employability 1st year"),
               "Higher Institutions",
@@ -55,10 +55,10 @@ export default translate()(
             config={{
               height: 500,
               data: path,
-              groupBy: "Careers",
+              groupBy: "Career",
               label: d =>
                 d['Avg employability 1st year'],
-              x: "Careers",
+              x: "Career",
               y: "Avg employability 1st year",
               shapeConfig: {
                   fill: d => ordinalColorScale(3)
@@ -74,8 +74,8 @@ export default translate()(
               barPadding: 20,
               groupPadding: 40,
               tooltipConfig:{
-                title: d => d["Careers"],
-                body: d => numeral(d['Avg employability 1st year'], locale).format("( 0,0 )") + " " + t("visas")
+                title: d => d["Career"],
+                body: d => numeral(d['Avg employability 1st year'], locale).format("( 0,0 )") + " " + t("avg")
               },
               legendConfig: {
                   label: false,

@@ -55,7 +55,7 @@ export default translate()(
             config={{
               height: 500,
               data: path,
-              groupBy: "Careers",
+              groupBy: "Career",
               label: d =>
                 d['Accreditation'],
               x: "Careers",
@@ -74,8 +74,8 @@ export default translate()(
               barPadding: 20,
               groupPadding: 40,
               tooltipConfig:{
-                title: d => d["Careers"],
-                body: d => numeral(d['Accreditation'], locale).format("( 0,0 )") + " " + t("visas")
+                title: d => d["Career"],
+                body: d => numeral(d['Accreditation'], locale).format("( 0,0 )") + " " + t("count")
               },
               legendConfig: {
                   label: false,
