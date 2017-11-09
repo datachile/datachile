@@ -6,7 +6,7 @@ import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { numeral, slugifyItem } from "helpers/formatters";
-import { ordinalColorScale } from "helpers/colors";
+import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
@@ -68,7 +68,7 @@ export default translate()(
                                     width: 25,
                                     height: 25,
                                     fill: d =>
-                                        ordinalColorScale("hs" + d["ID HS0"]),
+                                        productsColorScale("hs" + d["ID HS0"]),
                                     backgroundImage: d =>
                                         "/images/legend/hs/hs_" +
                                         d["ID HS0"] +
@@ -76,7 +76,8 @@ export default translate()(
                                 }
                             },
                             shapeConfig: {
-                                fill: d => ordinalColorScale("hs" + d["ID HS0"])
+                                fill: d =>
+                                    productsColorScale("hs" + d["ID HS0"])
                             },
                             on: {
                                 click: d => {

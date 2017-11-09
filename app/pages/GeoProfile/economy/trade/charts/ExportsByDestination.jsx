@@ -4,7 +4,7 @@ import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
-import { ordinalColorScale } from "helpers/colors";
+import { continentColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
@@ -57,7 +57,7 @@ export default translate()(
               sum: d => d["FOB US"],
               time: "ID Year",
               shapeConfig: {
-                fill: d => ordinalColorScale("c" + d["ID Continent"])
+                fill: d => continentColorScale("c" + d["ID Continent"])
               },
               on: {
                 click: d => {

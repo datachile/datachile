@@ -5,7 +5,7 @@ import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { ordinalColorScale } from "helpers/colors";
+import { tradeBalanceColorScale } from "helpers/colors";
 import { melt, getGeoObject, replaceKeyNames } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
@@ -46,9 +46,7 @@ export default translate()(
 
       return (
         <div className={className}>
-          <h3 className="chart-title">
-            {t("Trade Balance")}
-          </h3>
+          <h3 className="chart-title">{t("Trade Balance")}</h3>
           <LinePlot
             config={{
               height: 200,
@@ -56,31 +54,30 @@ export default translate()(
               groupBy: "variable",
               x: "ID Year",
               y: "value",
-              xConfig:{
-                tickSize:0,
-                title:false
+              xConfig: {
+                tickSize: 0,
+                title: false
               },
-              yConfig:{
-                title:t("USD"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0 a)")
+              yConfig: {
+                title: t("USD"),
+                tickFormat: tick => numeral(tick, locale).format("(0 a)")
               },
               shapeConfig: {
-                Line:{
-                  stroke: d => ordinalColorScale(d["variable"]),
-                  "strokeWidth": 2
+                Line: {
+                  stroke: d => tradeBalanceColorScale(d["variable"]),
+                  strokeWidth: 2
                 }
               }
             }}
             dataFormat={data => {
-                const tKeys = {
-                  "FOB": t("trade_balance.fob"),
-                  "CIF": t("trade_balance.cif"),
-                  "Trade Balance": t("trade_balance.trade_balance")
-                };
-                data.data = replaceKeyNames(data.data,tKeys);
-                return melt(data.data, ["ID Year"], _.values(tKeys))
-              }
-            }
+              const tKeys = {
+                FOB: t("trade_balance.fob"),
+                CIF: t("trade_balance.cif"),
+                "Trade Balance": t("trade_balance.trade_balance")
+              };
+              data.data = replaceKeyNames(data.data, tKeys);
+              return melt(data.data, ["ID Year"], _.values(tKeys));
+            }}
           />
         </div>
       );
