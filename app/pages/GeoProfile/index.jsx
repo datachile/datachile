@@ -704,7 +704,7 @@ class GeoProfile extends Component {
                   slides: [t("Opportunities")]
                 },
                 {
-                  name: t("Employemnt"),
+                  name: t("Employment"),
                   slides: [t("By Sex & Education Level")]
                 },
                 {

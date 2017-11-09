@@ -17,6 +17,23 @@ export const COLORS_INSTITUTIONS = [
 ];
 export const institutionsColorScale = scaleOrdinal().range(COLORS_INSTITUTIONS);
 
+export const COLORS_EMPLOYMENT = ["#E8B25D", "#049FA3", "#E2646E", "#7167B2"];
+export const employmentColorScale = scaleOrdinal().range(COLORS_EMPLOYMENT);
+
+export const COLORS_EDUCATION_LEVEL = [
+  "#381643",
+  "#663058",
+  "#9A5F8E",
+  "#A090B1",
+  "#7C7C77",
+  "#C8CFD8",
+  "#8EA3BA",
+  "#596F84"
+];
+export const educationLevelColorScale = scaleOrdinal().range(
+  COLORS_EDUCATION_LEVEL
+);
+
 export const COLORS_CONTINENTS = [
   "#84386E",
   "#5D5DA8",
@@ -51,6 +68,31 @@ export const PRODUCTS_COLORS = [
   "#7485AA"
 ];
 export const productsColorScale = scaleOrdinal().range(PRODUCTS_COLORS);
+
+export const INDUSTRIES_COLORS = [
+  "#70BFB8",
+  "#B2DAAF",
+  "#9FC57E",
+  "#EDE788",
+  "#E1CF27",
+  "#F5907A",
+  "#E24040",
+  "#E61B3D",
+  "#A41D36",
+  "#882158",
+  "#E3A3C0",
+  "#B07DB4",
+  "#7F53AB",
+  "#5E56DF",
+  "#0F21B9",
+  "#9FADFF",
+  "#3670D5",
+  "#7C4848",
+  "#476D47",
+  "#30396B",
+  "#79C3F4"
+];
+export const industriesColorScale = scaleOrdinal().range(INDUSTRIES_COLORS);
 
 export const ORDINAL_COLORS = [
   "#74C0E2",

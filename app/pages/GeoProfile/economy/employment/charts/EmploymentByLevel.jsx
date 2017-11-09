@@ -5,17 +5,16 @@ import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { educationLevelColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 class EmploymentByLevel extends Section {
   static need = [
     (params, store) => {
-      
       var geo = getGeoObject(params);
       const prm = mondrianClient.cube("nene").then(cube => {
         //force to region query on comuna profile
-        if(geo.type=='comuna'){
+        if (geo.type == "comuna") {
           geo = geo.ancestor;
         }
         var q = geoCut(
@@ -26,7 +25,9 @@ class EmploymentByLevel extends Section {
             .drilldown("ISCED", "ISCED", "ISCED")
             .drilldown("Date", "Month")
             .measure("Expansion factor")
-            .cut("[Occupational Situation].[Occupational Situation].[Occupational Situation].&[1]"),
+            .cut(
+              "[Occupational Situation].[Occupational Situation].[Occupational Situation].&[1]"
+            ),
           store.i18n.locale
         );
 
@@ -50,52 +51,54 @@ class EmploymentByLevel extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">
-          {t("Regional Employment By Level")}
-        </h3>
+        <h3 className="chart-title">{t("Regional Employment By Level")}</h3>
         <BarChart
-            config={{
-              height: 500,
-              data: path,
-              groupBy: "ID ISCED",
-              label: d =>
-                d['ISCED'],
-              time: "Month",
-              x: false,
-              y: "Expansion factor",
+          config={{
+            height: 500,
+            data: path,
+            groupBy: "ID ISCED",
+            label: d => d["ISCED"],
+            time: "Month",
+            x: false,
+            y: "Expansion factor",
+            shapeConfig: {
+              fill: d => educationLevelColorScale(d["ID ISCED"]),
+              label: false
+            },
+            xConfig: {
+              tickSize: 0,
+              title: false
+            },
+            yConfig: {
+              title: t("People"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+            },
+            xSort: (a, b) => {
+              console.warn(a);
+              return 1;
+            },
+            barPadding: 0,
+            groupPadding: 5,
+            tooltipConfig: {
+              title: d => {
+                return d["ISCED"];
+              },
+              body: d =>
+                numeral(d["Expansion factor"], locale).format("(0 a)") +
+                " " +
+                t("people")
+            },
+            legendConfig: {
+              label: false,
               shapeConfig: {
-                  fill: d => ordinalColorScale(d["ID ISCED"]),
-                  label:false
-              },
-              xConfig:{
-                tickSize:0,
-                title:false
-              },
-              yConfig:{
-                title:t("People"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0 a)")
-              },
-              xSort: (a,b) => { console.warn(a); return 1;},
-              barPadding: 0,
-              groupPadding: 5,
-              tooltipConfig:{
-                title: d => { 
-                  return d["ISCED"]
-                },
-                body: d => numeral(d['Expansion factor'], locale).format("(0 a)") + " " + t("people")
-              },
-              legendConfig: {
-                  label: false,
-                  shapeConfig:{
-                      width:40,
-                      height:40,
-                      backgroundImage: d => "/images/legend/college/hat.png",
-                  }
+                width: 40,
+                height: 40,
+                backgroundImage: d => "/images/legend/college/hat.png"
               }
-            }}
-            
-            dataFormat={data => data.data}
-          />
+            }
+          }}
+          dataFormat={data => data.data}
+        />
       </div>
     );
   }
