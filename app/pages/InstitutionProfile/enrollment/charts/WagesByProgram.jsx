@@ -14,7 +14,9 @@ export default translate()(
     static need = [
       (params, store) => {
         const institution = getLevelObject(params);
-        const prm = mondrianClient.cube("education_employability").then(cube => {
+        const prm = mondrianClient
+          .cube("education_employability")
+          .then(cube => {
             const q = levelCut(
               institution,
               "Higher Institutions",
@@ -22,7 +24,11 @@ export default translate()(
               cube.query
                 .option("parents", true)
                 .drilldown("Careers", "Careers", "Career")
-                .drilldown("Avg Income 4th year", "Avg Income 4th year", "Avg Income 4th year")
+                .drilldown(
+                  "Avg Income 4th year",
+                  "Avg Income 4th year",
+                  "Avg Income 4th year"
+                )
                 .measure("Number of records"),
               "Higher Institution Subgroup",
               "Higher Institution",
@@ -75,9 +81,7 @@ export default translate()(
               tooltipConfig: {
                 title: d => d["Career"],
                 body: d =>
-                  numeral(d["Number of records"], locale).format(
-                    "( 0,0 )"
-                  ) +
+                  numeral(d["Number of records"], locale).format("( 0,0 )") +
                   " " +
                   t("val")
               },
@@ -86,10 +90,16 @@ export default translate()(
                 shapeConfig: false
               }
             }}
-            dataFormat={function(data){
-              var filtered = _.filter(data.data,(o) => o["Number of records"] != null && o["Number of records"] > 0);
-              return _.orderBy(filtered,["Number of records"],["asc"])}
-            }
+            dataFormat={function(data) {
+              var filtered = _.filter(
+                data.data,
+                o =>
+                  o["Avg Income 4th year"] != null &&
+                  o["Number of records"] != null &&
+                  o["Number of records"] > 0
+              );
+              return _.orderBy(filtered, ["Number of records"], ["desc"]);
+            }}
           />
         </div>
       );
