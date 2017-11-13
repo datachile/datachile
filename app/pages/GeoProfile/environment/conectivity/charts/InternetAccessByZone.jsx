@@ -12,8 +12,12 @@ import { numeral } from "helpers/formatters";
 class InternetAccessByZone extends Section {
   static need = [
     (params, store) => {
-      const geo = getGeoObject(params);
+      var geo = getGeoObject(params);
       const prm = mondrianClient.cube("internet_access").then(cube => {
+        //force to region query on comuna profile
+        if (geo.type == "comuna") {
+          geo = geo.ancestor;
+        }
         var q = geoCut(
           geo,
           "Geography",
@@ -45,7 +49,6 @@ class InternetAccessByZone extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_internet_access;
     const locale = i18n.language.split("-")[0];
-    console.warn(path);
     const geo = this.context.data.geo;
 
     return (

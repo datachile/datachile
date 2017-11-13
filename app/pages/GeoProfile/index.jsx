@@ -935,7 +935,7 @@ class GeoProfile extends Component {
                 <QualitySlide>
                   <SectionColumns>
                     <HousingType className="lost-1-2" />
-                    <Placeholder className="lost-1-2" text="Other Chart" />
+                    <Placeholder className="lost-1-2" text="Materials" />
                   </SectionColumns>
                 </QualitySlide>
               </div>
@@ -943,7 +943,10 @@ class GeoProfile extends Component {
                 <InternetAccessSlide>
                   <SectionColumns>
                     <InternetAccessByZone className="lost-1-2" />
-                    <Placeholder className="lost-1-2" text="Other Chart" />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Internet Access Type"
+                    />
                   </SectionColumns>
                 </InternetAccessSlide>
               </div>
@@ -957,8 +960,11 @@ class GeoProfile extends Component {
               <div>
                 <InternetUseSlide>
                   <SectionColumns>
-                    <Placeholder className="lost-1-2" text="Other Chart" />
-                    <Placeholder className="lost-1-2" text="Other Chart" />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Internet purposes"
+                    />
+                    <Placeholder className="lost-1-2" text="Internet uses" />
                   </SectionColumns>
                 </InternetUseSlide>
               </div>

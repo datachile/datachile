@@ -69,8 +69,8 @@ class InternetAccessSlide extends Section {
             <FeaturedDatum
               className="lost-1-3"
               icon="empleo"
-              datum={datum_rural_households}
-              title={t("Rural households")}
+              datum="xx"
+              title="Lorem ipsum"
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
