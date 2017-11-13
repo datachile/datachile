@@ -86,11 +86,11 @@ class InternetAccessByZone extends Section {
               label: false,
               shapeConfig: {
                 width: 40,
-                height: 40,
-                backgroundImage: d =>
+                height: 40
+                /*backgroundImage: d =>
                   "/images/legend/survey_response/" +
                   d["ID Survey Response"] +
-                  ".png"
+                  ".png"*/
               }
             }
           }}

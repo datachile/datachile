@@ -90,6 +90,12 @@
           }
         }
       }
+      & .device-container {
+        lost-flex-container: row;
+        & .info-logo-item {
+          lost-column: 1/3 flex;
+        }
+      }
     }
   }
 }

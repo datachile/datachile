@@ -89,6 +89,8 @@ import InternetAccessSlide from "./environment/conectivity/InternetAccessSlide";
 import InternetAccessByZone from "./environment/conectivity/charts/InternetAccessByZone";
 
 import DevicesSlide from "./environment/conectivity/DevicesSlide";
+import Devices from "./environment/conectivity/charts/Devices";
+
 import InternetUseSlide from "./environment/conectivity/InternetUseSlide";
 /* end Housing and Environment */
 
@@ -360,6 +362,7 @@ class GeoProfile extends Component {
     InternetAccessByZone,
 
     DevicesSlide,
+    Devices,
 
     InternetUseSlide,
 
@@ -947,8 +950,7 @@ class GeoProfile extends Component {
               <div>
                 <DevicesSlide>
                   <SectionColumns>
-                    <Placeholder className="lost-1-2" text="Other Chart" />
-                    <Placeholder className="lost-1-2" text="Other Chart" />
+                    <Devices className="lost-1" />
                   </SectionColumns>
                 </DevicesSlide>
               </div>
