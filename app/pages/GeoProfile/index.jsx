@@ -84,6 +84,12 @@ import PerformanceByType from "./education/performance/charts/PerformanceByType"
 /* Housing and Environment */
 import QualitySlide from "./environment/quality/QualitySlide";
 import HousingType from "./environment/quality/charts/HousingType";
+
+import InternetAccessSlide from "./environment/conectivity/InternetAccessSlide";
+import InternetAccessByZone from "./environment/conectivity/charts/InternetAccessByZone";
+
+import DevicesSlide from "./environment/conectivity/DevicesSlide";
+import InternetUseSlide from "./environment/conectivity/InternetUseSlide";
 /* end Housing and Environment */
 
 /*Demography*/
@@ -349,6 +355,13 @@ class GeoProfile extends Component {
 
     QualitySlide,
     HousingType,
+
+    InternetAccessSlide,
+    InternetAccessByZone,
+
+    DevicesSlide,
+
+    InternetUseSlide,
 
     PerformanceSlide,
     PerformanceByType,
@@ -922,6 +935,30 @@ class GeoProfile extends Component {
                     <Placeholder className="lost-1-2" text="Other Chart" />
                   </SectionColumns>
                 </QualitySlide>
+              </div>
+              <div>
+                <InternetAccessSlide>
+                  <SectionColumns>
+                    <InternetAccessByZone className="lost-1-2" />
+                    <Placeholder className="lost-1-2" text="Other Chart" />
+                  </SectionColumns>
+                </InternetAccessSlide>
+              </div>
+              <div>
+                <DevicesSlide>
+                  <SectionColumns>
+                    <Placeholder className="lost-1-2" text="Other Chart" />
+                    <Placeholder className="lost-1-2" text="Other Chart" />
+                  </SectionColumns>
+                </DevicesSlide>
+              </div>
+              <div>
+                <InternetUseSlide>
+                  <SectionColumns>
+                    <Placeholder className="lost-1-2" text="Other Chart" />
+                    <Placeholder className="lost-1-2" text="Other Chart" />
+                  </SectionColumns>
+                </InternetUseSlide>
               </div>
             </Topic>
 

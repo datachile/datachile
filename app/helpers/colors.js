@@ -3,6 +3,8 @@ import { scaleOrdinal } from "d3-scale";
 export const COLORS_GENDER = ["#ccc", "#9B1E64", "#3F456B"];
 export const genderColorScale = scaleOrdinal().range(COLORS_GENDER);
 
+export const COLORS_SURVEY_RESPONSE = ["#ccc", "#9B1E64", "#3F456B"];
+
 export const COLORS_TRADE_BALANCE = ["#E5656C", "#4E6FD0", "#ccc"];
 export const tradeBalanceColorScale = scaleOrdinal().range(
   COLORS_TRADE_BALANCE
