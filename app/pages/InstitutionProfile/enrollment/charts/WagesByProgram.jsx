@@ -62,9 +62,9 @@ export default translate()(
               height: 500,
               data: path,
               groupBy: "ID Career",
-              label: d => d["Number of records"],
+              label: d => d["ID Avg Income 4th year"],
               x: "Career",
-              y: "Number of records",
+              y: "ID Avg Income 4th year",
               shapeConfig: {
                 fill: d => ordinalColorScale(3)
               },
@@ -75,6 +75,11 @@ export default translate()(
               yConfig: {
                 title: t("Wages"),
                 tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+              },
+              xSort: (a, b) => {
+                return a["ID Avg Income 4th year"] > b["ID Avg Income 4th year"]
+                  ? -1
+                  : 1;
               },
               barPadding: 20,
               groupPadding: 40,
@@ -94,11 +99,13 @@ export default translate()(
               var filtered = _.filter(
                 data.data,
                 o =>
-                  o["Avg Income 4th year"] != null &&
+                  o["ID Avg Income 4th year"] != null &&
+                  o["ID Avg Income 4th year"] > 0 &&
                   o["Number of records"] != null &&
                   o["Number of records"] > 0
               );
-              return _.orderBy(filtered, ["Number of records"], ["desc"]);
+              console.log(filtered);
+              return _.orderBy(filtered, ["ID Avg Income 4th year"], ["desc"]);
             }}
           />
         </div>
