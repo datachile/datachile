@@ -145,7 +145,8 @@ class InstitutionProfile extends Component {
     EmployabilitySlide,
     EmployabilityByProgram,
 
-    AccreditationSlide
+    AccreditationSlide,
+    AccreditationByProgram
   ];
 
   componentDidMount() {}
