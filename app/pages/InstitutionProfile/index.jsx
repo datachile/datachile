@@ -143,6 +143,7 @@ class InstitutionProfile extends Component {
     WagesByProgram,
 
     EmployabilitySlide,
+    EmployabilityByProgram,
 
     AccreditationSlide
   ];
@@ -406,7 +407,7 @@ class InstitutionProfile extends Component {
               <div>
                 <EmployabilitySlide>
                   <SectionColumns>
-                    <p>hola</p>
+                    <EmployabilityByProgram className="lost-1" />
                   </SectionColumns>
                 </EmployabilitySlide>
               </div>
@@ -425,7 +426,7 @@ class InstitutionProfile extends Component {
               <div>
                 <AccreditationSlide>
                   <SectionColumns>
-                    <p>hola</p>
+                    <AccreditationByProgram className="lost-1" />
                   </SectionColumns>
                 </AccreditationSlide>
               </div>
