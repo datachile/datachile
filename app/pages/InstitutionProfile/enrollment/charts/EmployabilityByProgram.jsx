@@ -24,7 +24,7 @@ export default translate()(
               cube.query
                 .option("parents", true)
                 .drilldown("Careers", "Careers", "Career")
-                .drilldown("Avg employability 1st year")
+                .measure("Avg employability 1st year")
                 .measure("Number of records"),
               "Higher Institution Subgroup",
               "Higher Institution",
