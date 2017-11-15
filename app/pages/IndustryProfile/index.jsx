@@ -352,8 +352,7 @@ export default translate()(
     state => ({
       data: state.data,
       focus: state.focus,
-      stats: state.stats,
-      nene_year: state.nene_year
+      stats: state.stats
     }),
     {}
   )(IndustryProfile)

@@ -260,17 +260,11 @@ class ProductProfile extends Component {
 
   render() {
     const { subnav, activeSub } = this.state;
-
     const { focus, t, i18n } = this.props;
-
     const { industry } = this.props.routeParams;
-
     const obj = this.props.data.product;
-
     const locale = i18n.language.split("-")[0];
-
     const ids = getLevelObject(this.props.routeParams);
-
     const list = this.props.data.product_list_detail;
 
     obj && ids && list
@@ -504,10 +498,7 @@ class ProductProfile extends Component {
 export default translate()(
   connect(
     state => ({
-      data: state.data,
-      focus: state.focus,
-      stats: state.stats,
-      exports_year: state.exports_year
+      data: state.data
     }),
     {}
   )(ProductProfile)

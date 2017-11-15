@@ -1008,10 +1008,7 @@ class GeoProfile extends Component {
 export default translate()(
   connect(
     state => ({
-      data: state.data,
-      population_year: state.population_year,
-      income_year: state.income_year,
-      psu_year: state.psu_year
+      data: state.data
     }),
     {}
   )(GeoProfile)
