@@ -92,6 +92,7 @@ class EmploymentBySex extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const { selectedObj } = this.state;
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
 
     const path = this.context.data.path_employment_by_sex;

@@ -48,6 +48,7 @@ export default translate()(
     render() {
       const { t, className, i18n } = this.props;
       const path = this.context.data.path_institution_accreditation_by_program;
+      if (!i18n.language) return null;
       const locale = i18n.language.split("-")[0];
 
       return (

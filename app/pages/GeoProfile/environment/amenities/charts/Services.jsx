@@ -94,7 +94,7 @@ class Services extends Section {
     const { t, className, i18n } = this.props;
     const environment_services_data = this.context.data
       .environment_services_data;
-
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
     const geo = this.context.data.geo;
 

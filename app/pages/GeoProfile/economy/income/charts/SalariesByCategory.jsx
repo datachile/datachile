@@ -11,7 +11,6 @@ import { numeral } from "helpers/formatters";
 class SalariesByCategory extends Section {
   static need = [
     (params, store) => {
-      
       const geo = getGeoObject(params);
       const prm = mondrianClient.cube("nesi_income").then(cube => {
         var q = geoCut(
@@ -41,55 +40,53 @@ class SalariesByCategory extends Section {
   render() {
     const path = this.context.data.path_salaries_by_category;
     const { t, className, i18n } = this.props;
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
-
 
     return (
       <div className={className}>
-        <h3 className="chart-title">
-          {t("Salaries By Category")}
-        </h3>
+        <h3 className="chart-title">{t("Salaries By Category")}</h3>
         <BarChart
-            config={{
-              height: 500,
-              data: path,
-              groupBy: "ID ICSE",
-              label: d =>
-                d['ICSE'],
-              time: "ID Year",
-              x: "Median Income",
-              y: "ICSE",
+          config={{
+            height: 500,
+            data: path,
+            groupBy: "ID ICSE",
+            label: d => d["ICSE"],
+            time: "ID Year",
+            x: "Median Income",
+            y: "ICSE",
+            shapeConfig: {
+              fill: d => ordinalColorScale(d["ID ICSE"])
+            },
+            discrete: "y",
+            xConfig: {
+              tickSize: 0,
+              title: t("Monthly Median Income CLP"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+            },
+            ySort: (a, b) => {
+              return a["Median Income"] > b["Median Income"] ? 1 : -1;
+            },
+            yConfig: {
+              barConfig: { "stroke-width": 0 },
+              tickSize: 0,
+              ticks: [],
+              title: t("Occupational Category")
+            },
+            barPadding: 0,
+            groupPadding: 5,
+            legendConfig: {
+              label: false,
               shapeConfig: {
-                  fill: d => ordinalColorScale(d["ID ICSE"])
-              },
-              discrete:"y",
-              xConfig:{ 
-                tickSize:0,
-                title:t("Monthly Median Income CLP"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0 a)")
-              },
-              ySort: (a,b) => {return a["Median Income"]>b["Median Income"] ? 1:-1;},
-              yConfig:{
-                barConfig: {"stroke-width": 0},
-                tickSize:0,
-                ticks:[],
-                title:t("Occupational Category")
-              },
-              barPadding: 0,
-              groupPadding: 5,
-              legendConfig: {
-                  label: false,
-                  shapeConfig:{
-                      width:1,
-                      height:1
-                  }
+                width: 1,
+                height: 1
               }
-            }}
-            dataFormat={data => data.data}
-          />
+            }
+          }}
+          dataFormat={data => data.data}
+        />
       </div>
     );
-
   }
 }
 

@@ -8,11 +8,9 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_GENDER } from "helpers/colors";
 
-
 class IncomeBySex extends Section {
   static need = [
     (params, store) => {
-      
       var geo = getGeoObject(params);
       const prm = mondrianClient.cube("nesi_income").then(cube => {
         var q = geoCut(
@@ -43,59 +41,64 @@ class IncomeBySex extends Section {
   render() {
     const path = this.context.data.path_income_by_sex;
     const { t, className, i18n } = this.props;
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
 
     return (
       <div className={className}>
-        <h3 className="chart-title">
-          {t("Income By Sex")}
-        </h3>
+        <h3 className="chart-title">{t("Income By Sex")}</h3>
         <BarChart
-            config={{
-              height: 500,
-              data: path,
-              groupBy: "ID Sex",
-              label: d =>
-                d['Sex'],
-              time: "ID Year",
-              x: "Income Range",
-              y: "Expansion Factor",
+          config={{
+            height: 500,
+            data: path,
+            groupBy: "ID Sex",
+            label: d => d["Sex"],
+            time: "ID Year",
+            x: "Income Range",
+            y: "Expansion Factor",
+            shapeConfig: {
+              fill: d => COLORS_GENDER[d["ID Sex"]],
+              label: false
+            },
+            xConfig: {
+              tickSize: 0,
+              title: t("Income Range CLP"),
+              tickFormat: tick => moneyRangeFormat(tick, locale)
+            },
+            xSort: (a, b) =>
+              a["ID Income Range"] > b["ID Income Range"] ? 1 : -1,
+            yConfig: {
+              title: t("People"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+            },
+            barPadding: 0,
+            groupPadding: 5,
+            tooltipConfig: {
+              title: d => {
+                var title = d["Sex"];
+                title +=
+                  d["Income Range"] instanceof Array
+                    ? ""
+                    : ": " + moneyRangeFormat(d["Income Range"], locale);
+                return title;
+              },
+              body: d =>
+                numeral(d["Expansion Factor"], locale).format("(0 a)") +
+                " " +
+                t("people")
+            },
+            legendConfig: {
+              label: false,
               shapeConfig: {
-                  fill: d => COLORS_GENDER[d["ID Sex"]],
-                  label: false
-              },
-              xConfig:{
-                tickSize:0,
-                title:t("Income Range CLP"),
-                tickFormat:(tick) => moneyRangeFormat(tick,locale)
-              },
-              xSort:(a,b) => a['ID Income Range']>b['ID Income Range'] ? 1:-1,
-              yConfig:{
-                title:t("People"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0 a)")
-              },
-              barPadding: 0,
-              groupPadding: 5,
-              tooltipConfig:{
-                title: d => {
-                  var title = d["Sex"];
-                  title += (d["Income Range"] instanceof Array)?'':': ' + moneyRangeFormat(d["Income Range"],locale);
-                  return title;
-                },
-                body: d => numeral(d['Expansion Factor'], locale).format("(0 a)") + " " + t("people")
-              },
-              legendConfig: {
-                  label: false,
-                  shapeConfig:{
-                      width:40,
-                      height:40,
-                      backgroundImage: d => "/images/legend/sex/"+d["ID Sex"]+".png",
-                  }
+                width: 40,
+                height: 40,
+                backgroundImage: d =>
+                  "/images/legend/sex/" + d["ID Sex"] + ".png"
               }
-            }}
-            
-            dataFormat={data => data.data}
-          />
+            }
+          }}
+          dataFormat={data => data.data}
+        />
       </div>
     );
   }

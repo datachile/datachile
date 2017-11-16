@@ -20,7 +20,11 @@ export default translate()(
             cube.query
               .option("parents", true)
               .drilldown("Date", "Date", "Year")
-              .drilldown("Calculated Age Range", "Calculated Age Range", "Age Range")
+              .drilldown(
+                "Calculated Age Range",
+                "Calculated Age Range",
+                "Age Range"
+              )
               .measure("Number of visas"),
             store.i18n.locale
           );
@@ -40,42 +44,42 @@ export default translate()(
     render() {
       const { t, className, i18n } = this.props;
       const path = this.context.data.path_migration_by_age;
+      if (!i18n.language) return null;
       const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
-          <h3 className="chart-title">
-            {t("Migration By Age")}
-          </h3>
+          <h3 className="chart-title">{t("Migration By Age")}</h3>
           <BarChart
             config={{
               height: 500,
               data: path,
               groupBy: "ID Age Range",
-              label: d =>
-                d['Age Range'],
+              label: d => d["Age Range"],
               time: "ID Year",
               x: false,
               y: "Number of visas",
               shapeConfig: {
-                  fill: d => ordinalColorScale(1),
+                fill: d => ordinalColorScale(1)
               },
-              xConfig:{
-                tickSize:0,
-                title:t("Age Range")
+              xConfig: {
+                tickSize: 0,
+                title: t("Age Range")
               },
-              yConfig:{
-                title:t("Visas"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)")
+              yConfig: {
+                title: t("Visas"),
+                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
               },
               barPadding: 20,
               groupPadding: 40,
-              tooltipConfig:{
+              tooltipConfig: {
                 title: d => d["Age Range"],
-                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                  " " +
+                  t("visas")
               }
             }}
-            
             dataFormat={data => data.data}
           />
         </div>

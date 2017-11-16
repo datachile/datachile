@@ -15,23 +15,23 @@ export default translate()(
         const country = getLevelObject(params);
         const prm = mondrianClient.cube("immigration").then(cube => {
           const q = levelCut(
-              country,
-              "Origin Country",
-              "Country",
-              cube.query
-                  .option("parents", true)
-                  .drilldown("Date", "Year")
-                  .drilldown("Calculated Age Range", "Age Range")
-                  .measure("Number of visas"),
-              "Subregion",
-              "Country",
-              store.i18n.locale,
-              false
+            country,
+            "Origin Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Year")
+              .drilldown("Calculated Age Range", "Age Range")
+              .measure("Number of visas"),
+            "Subregion",
+            "Country",
+            store.i18n.locale,
+            false
           );
 
           return {
-              key: "path_country_migration_by_age",
-              data: store.env.CANON_API + q.path("jsonrecords")
+            key: "path_country_migration_by_age",
+            data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
 
@@ -42,11 +42,13 @@ export default translate()(
       }
     ];
 
-
     render() {
       const { t, className, i18n } = this.props;
-      const path = this.context.data.path_country_migration_by_age;
+
+      if (!i18n.language) return null;
       const locale = i18n.language.split("-")[0];
+
+      const path = this.context.data.path_country_migration_by_age;
 
       return (
         <div className={className}>
@@ -58,35 +60,36 @@ export default translate()(
               height: 500,
               data: path,
               groupBy: "ID Age Range",
-              label: d =>
-                d['Calculated Age Range'],
+              label: d => d["Calculated Age Range"],
               time: "ID Year",
               x: "Age Range",
               y: "Number of visas",
               shapeConfig: {
-                  fill: d => ordinalColorScale(3)
+                fill: d => ordinalColorScale(3)
               },
-              xConfig:{
-                tickSize:0,
-                title:false
+              xConfig: {
+                tickSize: 0,
+                title: false
               },
-              yConfig:{
-                title:t("Visas"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)"),
+              yConfig: {
+                title: t("Visas"),
+                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
               },
               barPadding: 20,
               groupPadding: 40,
-              tooltipConfig:{
+              tooltipConfig: {
                 title: d => d["Calculated Age Range"],
-                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                  " " +
+                  t("visas")
               },
               legendConfig: {
-                  label: false,
-                  shapeConfig: false
+                label: false,
+                shapeConfig: false
               }
             }}
-
-          dataFormat={data => data.data}
+            dataFormat={data => data.data}
           />
         </div>
       );

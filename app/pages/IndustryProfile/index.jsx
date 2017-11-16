@@ -158,6 +158,7 @@ class IndustryProfile extends Component {
 
     const obj = this.props.data.industry;
 
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
 
     const ids = getLevelObject(this.props.routeParams);

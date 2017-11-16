@@ -238,8 +238,11 @@ class GeoProfile extends Component {
 
   render() {
     const { focus, t, i18n } = this.props;
-    const { subnav, activeSub } = this.state;
+
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
+
+    const { subnav, activeSub } = this.state;
     const geoObj = getGeoObject(this.props.routeParams);
     const showRanking = geoObj.type == "country" ? false : true;
     const geo = this.props.data.geo;
