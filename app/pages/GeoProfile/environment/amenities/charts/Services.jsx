@@ -94,8 +94,6 @@ class Services extends Section {
     const environment_services_data = this.context.data
       .environment_services_data;
 
-    console.warn(environment_services_data);
-
     const locale = i18n.language.split("-")[0];
     const geo = this.context.data.geo;
 

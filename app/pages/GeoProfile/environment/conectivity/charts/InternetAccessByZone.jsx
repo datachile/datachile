@@ -51,9 +51,14 @@ class InternetAccessByZone extends Section {
     const locale = i18n.language.split("-")[0];
     const geo = this.context.data.geo;
 
+    const geoChartName =
+      geo.type == "region" ? geo.caption : geo.ancestors[0].caption;
+
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Internet Access By Zone")}</h3>
+        <h3 className="chart-title">
+          {t("Internet Access By Zone in ") + geoChartName}
+        </h3>
         <BarChart
           config={{
             height: 500,

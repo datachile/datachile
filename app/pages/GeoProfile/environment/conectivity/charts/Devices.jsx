@@ -92,6 +92,9 @@ class Devices extends Section {
     const locale = i18n.language.split("-")[0];
     const geo = this.context.data.geo;
 
+    const geoChartName =
+      geo.type == "region" ? geo.caption : geo.ancestors[0].caption;
+
     var devices = [];
     if (internet_data) {
       devices = [
@@ -155,7 +158,7 @@ class Devices extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Devices")}</h3>
+        <h3 className="chart-title">{t("Devices' use in ") + geoChartName}</h3>
         <div className="device-container">
           {devices.map(d => <InfoLogoItem item={d} />)}
         </div>
