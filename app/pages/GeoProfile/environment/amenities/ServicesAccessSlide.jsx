@@ -9,8 +9,43 @@ import { getGeoObject } from "helpers/dataUtils";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-class InternetAccessSlide extends Section {
-  static need = [];
+class ServicesAccessSlide extends Section {
+  static need = [
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const cube = mondrianClient.cube("casen_household");
+      const msrName =
+        geo.type == "comuna"
+          ? "Expansion Factor Comuna"
+          : "Expansion Factor Region";
+
+      const prm = cube
+        .then(cube => {
+          var q = geoCut(
+            geo,
+            "Geography",
+            cube.query
+              .drilldown("Zone Id", "Zone Id", "Zone Id")
+              .cut("[Date].[Date].[Year].&[2015]")
+              .cut("[Zone Id].[Zone Id].[Zone Id].&[2]")
+              .measure(msrName),
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "datum_rural_households",
+            data: res.data.data[0][msrName]
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
+  ];
 
   render() {
     const { children, t } = this.props;
@@ -19,7 +54,7 @@ class InternetAccessSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Internet Access")}</div>
+          <div className="topic-slide-title">{t("Services Access")}</div>
           <div className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
             orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
@@ -66,5 +101,5 @@ export default translate()(
       data: state.data
     }),
     {}
-  )(InternetAccessSlide)
+  )(ServicesAccessSlide)
 );

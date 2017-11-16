@@ -26,7 +26,7 @@ class InternetAccessByZone extends Section {
             .drilldown(
               "Home Access",
               "Binary Survey Response",
-              "Survey Response"
+              "Binary Survey Response"
             )
             .measure("Expansion factor"),
           store.i18n.locale
@@ -58,12 +58,12 @@ class InternetAccessByZone extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: "ID Survey Response",
-            label: d => d["ID Survey Response"],
+            groupBy: "ID Binary Survey Response",
+            label: d => d["ID Binary Survey Response"],
             x: "Zone",
             y: "Expansion factor",
             shapeConfig: {
-              fill: d => COLORS_SURVEY_RESPONSE[d["ID Survey Response"]],
+              fill: d => COLORS_SURVEY_RESPONSE[d["ID Binary Survey Response"]],
               label: false
             },
             xConfig: {
@@ -79,7 +79,7 @@ class InternetAccessByZone extends Section {
             barPadding: 0,
             groupPadding: 10,
             tooltipConfig: {
-              title: d => d["Zone"] + " - " + d["Survey Response"],
+              title: d => d["Zone"] + " - " + d["Binary Survey Response"],
               body: d =>
                 `${numeral(d["Expansion factor"], locale).format(
                   "( 0,0 )"
@@ -92,12 +92,13 @@ class InternetAccessByZone extends Section {
                 height: 40
                 /*backgroundImage: d =>
                   "/images/legend/survey_response/" +
-                  d["ID Survey Response"] +
+                  d["ID Binary Survey Response"] +
                   ".png"*/
               }
             }
           }}
           dataFormat={data => {
+            console.log(data.data);
             return data.data;
           }}
         />

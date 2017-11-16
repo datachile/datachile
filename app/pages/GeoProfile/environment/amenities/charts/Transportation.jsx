@@ -11,20 +11,20 @@ import { numeral } from "helpers/formatters";
 
 import InfoLogoItem from "components/InfoLogoItem";
 
-class Devices extends Section {
+class Transportation extends Section {
   static need = [
     (params, store) => {
       var geo = getGeoObject(params);
-      const cube = mondrianClient.cube("internet_access");
+      const cube = mondrianClient.cube("casen_household");
 
-      //force to region query on comuna profile
-      if (geo.type == "comuna") {
-        geo = geo.ancestor;
-      }
+      const msrName =
+        geo.type == "comuna"
+          ? "Expansion Factor Comuna"
+          : "Expansion Factor Region";
 
-      const devices = [
-        "Desktop Access",
-        "Laptop Access",
+      const transortations = [
+        "Less Than 8 Blocks Public Transport",
+        "Less Than 20 Blocks Educational Center",
         "Tablet Access",
         "Cellphone Access",
         "Games or Consoles Access",
@@ -33,7 +33,7 @@ class Devices extends Section {
 
       var prms = [];
 
-      devices.forEach(d => {
+      transortations.forEach(d => {
         prms.push(
           cube.then(cube => {
             var q = geoCut(
@@ -46,7 +46,7 @@ class Devices extends Section {
                   "Binary Survey Response"
                 )
                 .measure("Number of records")
-                .measure("Expansion factor"),
+                .measure(msrName),
               store.i18n.locale
             );
 
@@ -57,17 +57,17 @@ class Devices extends Section {
 
       var prm = Promise.all(prms).then(res => {
         return {
-          key: "internet_data",
+          key: "environment_transportation_data",
           data: _.keyBy(
             res.map((r, ix) => {
-              const total = _.sumBy(r.data.data, "Expansion factor");
+              const total = _.sumBy(r.data.data, msrName);
               const response = r.data.data.map(rr => {
                 rr["total"] = total;
-                rr["percentage"] = rr["Expansion factor"] / total;
+                rr["percentage"] = rr[msrName] / total;
                 return rr;
               });
               return {
-                key: devices[ix],
+                key: transortations[ix],
                 expansion_factor_total: total,
                 values: _.keyBy(response, function(o) {
                   return "response_" + o["ID Binary Survey Response"];
@@ -88,17 +88,19 @@ class Devices extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    const internet_data = this.context.data.internet_data;
+    const environment_transportation_data = this.context.data
+      .environment_transportation_data;
     const locale = i18n.language.split("-")[0];
     const geo = this.context.data.geo;
 
-    var devices = [];
-    if (internet_data) {
-      devices = [
+    var transortations = [];
+    if (false) {
+      transortations = [
         {
           logo: "phone",
           value: numeral(
-            internet_data["Cellphone Access"].values.response_2.percentage,
+            environment_transportation_data["Cellphone Access"].values
+              .response_2.percentage,
             locale
           ).format("0.0%"),
           verb: t("use device"),
@@ -107,7 +109,8 @@ class Devices extends Section {
         {
           logo: "desktop",
           value: numeral(
-            internet_data["Desktop Access"].values.response_2.percentage,
+            environment_transportation_data["Desktop Access"].values.response_2
+              .percentage,
             locale
           ).format("0.0%"),
           verb: t("use device"),
@@ -116,7 +119,8 @@ class Devices extends Section {
         {
           logo: "tv",
           value: numeral(
-            internet_data["TV Access"].values.response_2.percentage,
+            environment_transportation_data["TV Access"].values.response_2
+              .percentage,
             locale
           ).format("0.0%"),
           verb: t("use device"),
@@ -125,7 +129,8 @@ class Devices extends Section {
         {
           logo: "laptop",
           value: numeral(
-            internet_data["Laptop Access"].values.response_2.percentage,
+            environment_transportation_data["Laptop Access"].values.response_2
+              .percentage,
             locale
           ).format("0.0%"),
           verb: t("use device"),
@@ -134,7 +139,8 @@ class Devices extends Section {
         {
           logo: "tablet",
           value: numeral(
-            internet_data["Tablet Access"].values.response_2.percentage,
+            environment_transportation_data["Tablet Access"].values.response_2
+              .percentage,
             locale
           ).format("0.0%"),
           verb: t("use device"),
@@ -143,8 +149,8 @@ class Devices extends Section {
         {
           logo: "console",
           value: numeral(
-            internet_data["Games or Consoles Access"].values.response_2
-              .percentage,
+            environment_transportation_data["Games or Consoles Access"].values
+              .response_2.percentage,
             locale
           ).format("0.0%"),
           verb: t("use device"),
@@ -155,13 +161,13 @@ class Devices extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Devices")}</h3>
+        <h3 className="chart-title">{t("Transportation")}</h3>
         <div className="device-container">
-          {devices.map(d => <InfoLogoItem item={d} />)}
+          {transortations.map(d => <InfoLogoItem item={d} />)}
         </div>
       </div>
     );
   }
 }
 
-export default translate()(Devices);
+export default translate()(Transportation);

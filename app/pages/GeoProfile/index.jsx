@@ -92,6 +92,13 @@ import DevicesSlide from "./environment/conectivity/DevicesSlide";
 import Devices from "./environment/conectivity/charts/Devices";
 
 import InternetUseSlide from "./environment/conectivity/InternetUseSlide";
+
+import ServicesAccessSlide from "./environment/amenities/ServicesAccessSlide";
+import Services from "./environment/amenities/charts/Services";
+
+import TransportationSlide from "./environment/amenities/TransportationSlide";
+import Transportation from "./environment/amenities/charts/Transportation";
+
 /* end Housing and Environment */
 
 /*Demography*/
@@ -365,6 +372,12 @@ class GeoProfile extends Component {
     Devices,
 
     InternetUseSlide,
+
+    ServicesAccessSlide,
+    Services,
+
+    TransportationSlide,
+    /*Transportation,*/
 
     PerformanceSlide,
     PerformanceByType,
@@ -926,8 +939,8 @@ class GeoProfile extends Component {
                   ]
                 },
                 {
-                  name: t("Ammenities"),
-                  slides: [t("Access to services")]
+                  name: t("Amenities"),
+                  slides: [t("Access to services"), t("Transportation")]
                 }
               ]}
             >
@@ -967,6 +980,20 @@ class GeoProfile extends Component {
                     <Placeholder className="lost-1-2" text="Internet uses" />
                   </SectionColumns>
                 </InternetUseSlide>
+              </div>
+              <div>
+                <ServicesAccessSlide>
+                  <SectionColumns>
+                    <Services className="lost-1" />
+                  </SectionColumns>
+                </ServicesAccessSlide>
+              </div>
+              <div>
+                <TransportationSlide>
+                  <SectionColumns>
+                    <Placeholder className="lost-1" text="Transportation" />
+                  </SectionColumns>
+                </TransportationSlide>
               </div>
             </Topic>
 
