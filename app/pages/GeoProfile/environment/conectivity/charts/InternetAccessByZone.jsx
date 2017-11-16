@@ -9,6 +9,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import SourceNote from "components/SourceNote";
+
 class InternetAccessByZone extends Section {
   static need = [
     (params, store) => {
@@ -106,6 +108,7 @@ class InternetAccessByZone extends Section {
             return data.data;
           }}
         />
+        <SourceNote cube="internet_access" />
       </div>
     );
   }

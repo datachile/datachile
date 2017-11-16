@@ -10,6 +10,7 @@ import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import InfoLogoItem from "components/InfoLogoItem";
+import SourceNote from "components/SourceNote";
 
 class Devices extends Section {
   static need = [
@@ -159,9 +160,10 @@ class Devices extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">{t("Devices' use in ") + geoChartName}</h3>
-        <div className="device-container">
+        <div className="info-logo-container">
           {devices.map(d => <InfoLogoItem item={d} />)}
         </div>
+        <SourceNote cube="internet_access" />
       </div>
     );
   }

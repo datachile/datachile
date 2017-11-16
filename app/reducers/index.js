@@ -19,5 +19,6 @@ export default {
 	mayor_election_year: (state = {}) => state,
 	exports_year: (state = {}) => state,
 	nene_year: (state = {}) => state,
+	sources: (state = {}) => state,
 	search: combineReducers({ searchActive })
 };

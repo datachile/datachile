@@ -10,7 +10,6 @@ import { GEO } from "helpers/dictionary";
 import { GEOMAP } from "helpers/GeoData";
 
 import FeaturedBox from "components/FeaturedBox";
-import SourceNote from "components/SourceNote";
 import Nav from "components/Nav";
 import Search from "components/Search";
 import DynamicHomeHeader from "components/DynamicHomeHeader";
