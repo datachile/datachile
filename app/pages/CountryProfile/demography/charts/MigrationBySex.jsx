@@ -90,7 +90,7 @@ export default translate()(
               }
             }}
 
-          dataFormat={data => { console.log(data.data); return data.data;}}
+          dataFormat={data => data.data }
           />
         </div>
       );
