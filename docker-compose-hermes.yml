@@ -23,7 +23,7 @@ services:
       - db
     volumes:
       - ./dockerfiles/datachile-mondrian.yaml:/datachile-mondrian.yaml
-      - /home/manuel/datachile-mondrian/schema.xml:/mondrian-rest/schema.xml:ro
+      - /home/hermes/datachile-mondrian/schema.xml:/mondrian-rest/schema.xml:ro
     ports:
       - 127.0.0.1:9393:9292
 
@@ -37,7 +37,7 @@ services:
       - CANON_PORT=4444
       - ROOT=/datachile
       - CANON_API=https://chilecube.datawheel.us/
-      - CANON_GOOGLE_ANALYTICS=UA-109603240-1
+      - CANON_GOOGLE_ANALYTICS=UA-########-#
       - CANON_LANGUAGES=es
       - CANON_LANGUAGES_DEFAULT=en
       - APP_HOME=/datachile
@@ -50,6 +50,10 @@ services:
       - datachile-mondrian
     links:
       - datachile-mondrian
+    # alias the host IP to the API server
+    # because of NATing. should not be necessary in not nat'd networks
+    extra_hosts:
+      - "chilecube.datawheel.us:172.17.0.1"
 
   nginx:
     image: nginx
@@ -62,11 +66,12 @@ services:
       - "443:443"
     volumes:
       - canon-static:/datachile-files:ro
-      - /home/manuel/mondrian-rest-ui/build/:/mondrian-rest-ui-files
+      - ${MONDRIAN_REST_UI_PATH}:/mondrian-rest-ui-files
       - ./dockerfiles/nginx/conf.d:/etc/nginx/conf.d
       - ./dockerfiles/nginx/vhost.d:/etc/nginx/vhost.d
       - ./dockerfiles/nginx/html:/usr/share/nginx/html
       - ./dockerfiles/nginx/certs:/etc/nginx/certs:ro
+      - /home/pacha/public_www:/pacha:ro
     tmpfs: /nginx-cache:exec,mode=777
 
   nginx-gen:
@@ -99,8 +104,7 @@ services:
 
 volumes:
   db-data:
-    driver: local-persist
-    driver_opts:
-      mountpoint: /data/postgres
+    external:
+      name: "datachile_db-data"
   canon-static:
     
