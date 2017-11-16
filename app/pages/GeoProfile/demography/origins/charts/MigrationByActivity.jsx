@@ -45,50 +45,55 @@ export default translate()(
 
       return (
         <div className={className}>
-          <h3 className="chart-title">
-            {t("Migration By Activity")}
-          </h3>
+          <h3 className="chart-title">{t("Migration By Activity")}</h3>
           <BarChart
             config={{
               height: 500,
               data: path,
               groupBy: "ID Activity",
-              label: d =>
-                d['Activity'] + ': ' + d["Number of visas"],
+              label: d => d["Activity"] + ": " + d["Number of visas"],
               time: "ID Year",
               x: "Number of visas",
               y: "Activity",
               shapeConfig: {
-                  fill: d => ordinalColorScale(2),
-                  label: false
+                fill: d => ordinalColorScale(2),
+                label: false
               },
-              discrete:"y",
-              xConfig:{ 
-                tickSize:0,
-                title:t("Number of visas"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)")
+              discrete: "y",
+              xConfig: {
+                tickSize: 0,
+                title: t("Number of visas"),
+                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
               },
-              yConfig:{
-                barConfig: {"stroke-width": 0},
-                tickSize:0,
-                title:false
+              yConfig: {
+                barConfig: { "stroke-width": 0 },
+                tickSize: 0,
+                title: false
               },
-              ySort: (a,b) => {return a["Number of visas"]>b["Number of visas"] ? 1:-1;},
+              ySort: (a, b) => {
+                return a["Number of visas"] > b["Number of visas"] ? 1 : -1;
+              },
               barPadding: 0,
               groupPadding: 5,
-              tooltipConfig:{
+              tooltipConfig: {
                 title: d => d["Activity"],
-                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                  " " +
+                  t("visas")
               },
               legendConfig: {
-                  label: false,
-                  shapeConfig:false
+                label: false,
+                shapeConfig: false
               }
             }}
-            dataFormat={function(data){
-              var filtered = _.filter(data.data,(o) => o["Number of visas"] != null && o["Number of visas"] > 0);              
-              return _.orderBy(filtered,["Number of visas"],["desc"])}
-            } 
+            dataFormat={function(data) {
+              var filtered = _.filter(
+                data.data,
+                o => o["Number of visas"] != null && o["Number of visas"] > 0
+              );
+              return _.orderBy(filtered, ["Number of visas"], ["desc"]);
+            }}
           />
         </div>
       );
