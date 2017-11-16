@@ -641,9 +641,9 @@ class GeoProfile extends Component {
                 <IDSpendingCategorySlide>
                   <SectionColumns>
                     {/*
-                    <SpendingByFundingSource className="lost-1-2" />
-                    <SpendingByArea className="lost-1-2" />
-                    */}
+                                        <SpendingByFundingSource className="lost-1-2" />
+                                        <SpendingByArea className="lost-1-2" />
+                                      */}
                     <Placeholder
                       className="lost-1-2"
                       text="RD - By Funding Source"
@@ -660,9 +660,9 @@ class GeoProfile extends Component {
                 <IDStaffSlide>
                   <SectionColumns>
                     {/*
-                    <StaffByOccupation className="lost-1-2" />
-                    <StaffBySex className="lost-1-2" />
-                     */}
+                                        <StaffByOccupation className="lost-1-2" />
+                                        <StaffBySex className="lost-1-2" />
+                                      */}
                     <Placeholder
                       className="lost-1-2"
                       text="RD - By Occupation"
@@ -676,9 +676,9 @@ class GeoProfile extends Component {
                 <InnovationCompanySlide>
                   <SectionColumns>
                     {/*
-                    <InnovationRate className="lost-2-3" />
-                    <InnovationByType className="lost-1-3" />
-                    */}
+                                        <InnovationRate className="lost-2-3" />
+                                        <InnovationByType className="lost-1-3" />
+                                      */}
                     <Placeholder
                       className="lost-1-2"
                       text="RD - Innovation Rate"
@@ -695,9 +695,9 @@ class GeoProfile extends Component {
                 <CompanyInnovationSlide>
                   <SectionColumns>
                     {/*
-                    <InnovationBySize className="lost-2-3" />
-                    <InnovationByActivity className="lost-1-3" />
-                    */}
+                                        <InnovationBySize className="lost-2-3" />
+                                        <InnovationByActivity className="lost-1-3" />
+                                      */}
                     <Placeholder className="lost-1-2" text="RD - by Size" />
                     <Placeholder className="lost-1-2" text="RD - by Activity" />
                   </SectionColumns>
