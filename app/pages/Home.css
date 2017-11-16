@@ -107,10 +107,9 @@
       lost-column: 1/6 6 0px;
       & .home-slide-selected {
         display: block;
-        width: 30%;
         height: 4px;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
+        width: 0px;
+        transition: width 0.5s ease-in-out;
       }
       & .home-slide-content {
         border-top-style: solid;
@@ -170,7 +169,7 @@
       }
       &.selected {
         & .home-slide-selected {
-          opacity: 1;
+          width: 30%;
         }
       }
     }

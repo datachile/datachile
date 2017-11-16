@@ -46,12 +46,12 @@ class DynamicHomeHeader extends Component {
               .duration(500)
               .style("opacity", 1);
 
-            select(".dynamic-home-hotspots")
+            /*select(".dynamic-home-hotspots")
               .transition()
               .duration(1500)
-              .style("opacity", 1);
+              .style("opacity", 1);*/
 
-            selectAll(".dynamic-home-hotspots ellipse.st1")
+            selectAll(".dynamic-home-hotspots ellipse.st0")
               .on("mouseover", function(d) {
                 //select(this).classed("fill-" + header.slug, true);
                 console.log("mouseover", this);
@@ -99,10 +99,10 @@ class DynamicHomeHeader extends Component {
       const src = "/images/home/hotspots/" + header.slug + ".svg";
       const cb = this.callbackSvg;
       var cached = this.cache.getSvg(src);
-      select(".dynamic-home-hotspots")
+      /*select(".dynamic-home-hotspots")
         .transition()
         .duration(500)
-        .style("opacity", 0);
+        .style("opacity", 0);*/
       select(".dynamic-home-image")
         .transition()
         .duration(500)
