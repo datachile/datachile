@@ -590,12 +590,13 @@ class GeoProfile extends Component {
               <div>
                 <OpportunitySlide>
                   <SectionColumns>
+                    <IndustrySpace className="lost-1-2" />
+                    <ProductSpace className="lost-1-2" />
+
                     {/* 
-                      <IndustrySpace className="lost-1-2" />
-                      <ProductSpace className="lost-1-2" />
-                    */}
-                    <Placeholder className="lost-1-2" text="Industry Space" />
-                    <Placeholder className="lost-1-2" text="Product Space" />
+                                        <Placeholder className="lost-1-2" text="Industry Space" />
+                                        <Placeholder className="lost-1-2" text="Product Space" />
+                                      */}
                   </SectionColumns>
                 </OpportunitySlide>
               </div>
