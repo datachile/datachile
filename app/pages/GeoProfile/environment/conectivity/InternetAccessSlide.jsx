@@ -1,0 +1,70 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router";
+import { translate } from "react-i18next";
+import { Section } from "datawheel-canon";
+
+import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { getGeoObject } from "helpers/dataUtils";
+
+import FeaturedDatum from "components/FeaturedDatum";
+
+class InternetAccessSlide extends Section {
+  static need = [];
+
+  render() {
+    const { children, t } = this.props;
+    const { datum_rural_households } = this.context.data;
+
+    return (
+      <div className="topic-slide-block">
+        <div className="topic-slide-intro">
+          <div className="topic-slide-title">{t("Internet Access")}</div>
+          <div className="topic-slide-text">
+            Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
+            orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
+            lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
+            Nullam tempus. Mauris ac felis vel velit tristique imperdiet. Donec
+            at pede. Etiam vel neque nec dui dignissim bibendum. Vivamus id
+            enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
+            Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
+            euismod tellus id erat.
+          </div>
+          <div className="topic-slide-data">
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="empleo"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
+            />
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="empleo"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
+            />
+            <FeaturedDatum
+              className="lost-1-3"
+              icon="industria"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
+            />
+          </div>
+        </div>
+        <div className="topic-slide-charts">{children}</div>
+      </div>
+    );
+  }
+}
+
+export default translate()(
+  connect(
+    state => ({
+      data: state.data
+    }),
+    {}
+  )(InternetAccessSlide)
+);

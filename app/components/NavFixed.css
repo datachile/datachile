@@ -26,7 +26,7 @@
         color: var(--snow);
         display: inline-block;
         font-size: 10px;
-        margin: calc(var(--gutter)/2) calc(var(--gutter)/2) -2px calc(var(--gutter)/2);
+        margin: 0 calc(var(--gutter)/2) -2px calc(var(--gutter)/2);
         text-align: center;
         text-decoration: none;
         text-transform: uppercase;
@@ -36,13 +36,13 @@
         font-weight: 300;
         cursor: pointer;
         border-bottom: 2px solid var(--snow);
-        padding-bottom: 10px;
+        padding-bottom: 5px;
         letter-spacing: 0.1px;
 
         & .svg-image {
-          width: 50px;
+          width: 30px;
           display: block;
-          margin: 0px auto 10px auto;
+          margin: 0px auto;
           & svg {
             width: 100%;
             & path,

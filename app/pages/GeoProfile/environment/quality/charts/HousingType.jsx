@@ -9,6 +9,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import SourceNote from "components/SourceNote";
+
 class HousingType extends Section {
   static need = [
     (params, store) => {
@@ -100,6 +102,7 @@ class HousingType extends Section {
             return _.orderBy(data.data, [msrName], ["ASC"]);
           }}
         />
+        <SourceNote cube="casen_household" />
       </div>
     );
   }

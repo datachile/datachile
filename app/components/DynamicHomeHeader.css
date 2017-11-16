@@ -1,5 +1,31 @@
 .dynamic-home-header {
   lost-flex-container: column;
+  & .dynamic-home-explore-btn {
+    lost-flex-container: row;
+    align-items: center;
+    justify-content: center;
+    & .explore-btn {
+      background-color: #ccc;
+      transition: all 1s ease;
+      transition-property: background-color, padding-right;
+      padding: calc(var(--gutter)/2) calc(var(--gutter)/2) calc(var(--gutter)/2)
+        var(--gutter);
+      border-radius: 30px;
+      text-transform: uppercase;
+      font-family: var(--font-family-title);
+      color: var(--snow);
+      font-size: 10px;
+      min-width: 15%;
+
+      lost-flex-container: row;
+      align-items: center;
+      justify-content: space-between;
+      &:hover {
+        text-decoration: none;
+        padding-right: calc(var(--gutter)/3);
+      }
+    }
+  }
   & .dynamic-home-block {
     height: 75px;
     width: 100%;
@@ -12,40 +38,24 @@
     }
     & .dynamic-home-items {
       position: relative;
-      transition: top 1s ease;
-
-      &.illustration-geo {
-        top: 23px;
-      }
-      &.illustration-countries {
-        top: 20px;
-      }
-      &.illustration-careers {
-        top: 60px;
-      }
-      &.illustration-institutions {
-        top: 60px;
-      }
-      &.illustration-products {
-        top: 50px;
-      }
-      &.illustration-industries {
-        top: 40px;
-      }
+      bottom: -75px;
 
       & .dynamic-home-hotspots {
-        opacity: 0;
         line-height: 0;
         position: absolute;
-        bottom: 0px;
+        bottom: 20px;
         width: 100%;
         margin-left: auto;
         margin-right: auto;
         left: 0;
         right: 0;
         z-index: 10;
+        animation: fadein 2s;
+        -moz-animation: fadein 2s; /* Firefox */
+        -webkit-animation: fadein 2s; /* Safari and Chrome */
+        -o-animation: fadein 2s; /* Opera */
         & svg {
-          & ellipse.st1 {
+          & ellipse.st0 {
             opacity: 0.5;
             transition: opacity 0.5s;
             cursor: pointer;
@@ -53,14 +63,9 @@
               opacity: 1;
             }
           }
-          & path.st2 {
-            pointer-events: none;
-            transition: fill 1s ease;
-          }
         }
       }
       & .dynamic-home-image {
-        opacity: 0;
         line-height: 0;
         position: absolute;
         bottom: 0px;
@@ -69,10 +74,49 @@
         margin-right: auto;
         left: 0;
         right: 0;
+        animation: fadein 2s;
+        -moz-animation: fadein 2s; /* Firefox */
+        -webkit-animation: fadein 2s; /* Safari and Chrome */
+        -o-animation: fadein 2s; /* Opera */
         & img {
           width: 100%;
         }
       }
     }
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

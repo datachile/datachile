@@ -60,5 +60,19 @@ module.exports = {
 	mayor_election_year: 2016,
 	exports_year: 2015,
   tax_data_year: 2014,
-	nene_year: 2017
+	nene_year: 2017,
+	sources: {
+		casen_household: {
+			title: "Encuesta CASEN",
+			url:
+				"http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
+			year: "2015"
+		},
+		internet_access: {
+			title: "Encuesta de Acceso a Internet",
+			url:
+				"http://www.subtel.gob.cl/wp-content/uploads/2015/04/Informe-VII-Encuesta-de-Acceso-Usos-y-Usuarios-de-Internet_VF.pdf",
+			year: "2016"
+		}
+	}
 };

@@ -20,7 +20,6 @@ import {
 } from "./index_needs";
 
 import Nav from "components/Nav";
-import SourceNote from "components/SourceNote";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
@@ -92,6 +91,18 @@ import PerformanceByType from "./education/performance/charts/PerformanceByType"
 /* Housing and Environment */
 import QualitySlide from "./environment/quality/QualitySlide";
 import HousingType from "./environment/quality/charts/HousingType";
+
+import InternetAccessSlide from "./environment/conectivity/InternetAccessSlide";
+import InternetAccessByZone from "./environment/conectivity/charts/InternetAccessByZone";
+
+import DevicesSlide from "./environment/conectivity/DevicesSlide";
+import Devices from "./environment/conectivity/charts/Devices";
+
+import InternetUseSlide from "./environment/conectivity/InternetUseSlide";
+
+import ServicesAccessSlide from "./environment/amenities/ServicesAccessSlide";
+import Services from "./environment/amenities/charts/Services";
+
 /* end Housing and Environment */
 
 /*Demography*/
@@ -191,6 +202,17 @@ class GeoProfile extends Component {
 
     QualitySlide,
     HousingType,
+
+    InternetAccessSlide,
+    InternetAccessByZone,
+
+    DevicesSlide,
+    Devices,
+
+    InternetUseSlide,
+
+    ServicesAccessSlide,
+    Services,
 
     PerformanceSlide,
     PerformanceByType,
@@ -753,7 +775,7 @@ class GeoProfile extends Component {
                   ]
                 },
                 {
-                  name: t("Ammenities"),
+                  name: t("Amenities"),
                   slides: [t("Access to services")]
                 }
               ]}
@@ -762,9 +784,45 @@ class GeoProfile extends Component {
                 <QualitySlide>
                   <SectionColumns>
                     <HousingType className="lost-1-2" />
-                    <Placeholder className="lost-1-2" text="Other Chart" />
+                    <Placeholder className="lost-1-2" text="Materials" />
                   </SectionColumns>
                 </QualitySlide>
+              </div>
+              <div>
+                <InternetAccessSlide>
+                  <SectionColumns>
+                    <InternetAccessByZone className="lost-1-2" />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Internet Access Type"
+                    />
+                  </SectionColumns>
+                </InternetAccessSlide>
+              </div>
+              <div>
+                <DevicesSlide>
+                  <SectionColumns>
+                    <Devices className="lost-1" />
+                  </SectionColumns>
+                </DevicesSlide>
+              </div>
+              <div>
+                <InternetUseSlide>
+                  <SectionColumns>
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Internet purposes"
+                    />
+                    <Placeholder className="lost-1-2" text="Internet uses" />
+                  </SectionColumns>
+                </InternetUseSlide>
+              </div>
+              <div>
+                <ServicesAccessSlide>
+                  <SectionColumns>
+                    <Services className="lost-1" />
+                  </SectionColumns>
+                </ServicesAccessSlide>
               </div>
             </Topic>
 
