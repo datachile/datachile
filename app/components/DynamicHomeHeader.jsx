@@ -149,6 +149,15 @@ class DynamicHomeHeader extends Component {
 
     return (
       <div className="dynamic-home-header">
+        <div className="dynamic-home-explore-btn">
+          <Link
+            className={`explore-btn background-${header.slug}`}
+            href={`/explore/${header.slug}`}
+          >
+            <span>{t("Explore profiles")}</span>
+            <span className="pt-icon-standard pt-icon-chevron-right" />
+          </Link>
+        </div>
         <div className="dynamic-home-illustration">
           <SvgImage
             src={`/images/home/mountains.svg`}

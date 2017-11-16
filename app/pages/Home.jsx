@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
-import Slider from "react-slick";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
 import { select, selectAll, event } from "d3-selection";
@@ -95,24 +94,8 @@ class Home extends Component {
 
     const { profiles, header, selected, focus } = this.state;
 
-    const afterChangeSlider = d => {};
-
-    const beforeChangeSlider = d => {};
-
     const changeProfileHeader = p => {
       this.setState({ header: p });
-    };
-
-    var settings = {
-      dots: false,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 2,
-      adaptiveHeight: true,
-      lazyLoad: false,
-      prevArrow: <CustomPrevArrow />,
-      nextArrow: <CustomNextArrow />
     };
 
     return (
@@ -146,7 +129,7 @@ class Home extends Component {
                 </p>
               </div>
               <div className="search-home-wrapper">
-                <Search className="search-home" local={true} limit={5} />
+                <Search className="search-home" limit={5} />
               </div>
             </div>
 
@@ -156,44 +139,32 @@ class Home extends Component {
           </div>
 
           <div className="home-slider">
-            <Slider
-              {...settings}
-              slickGoTo={selected}
-              afterChange={afterChangeSlider}
-              beforeChange={beforeChangeSlider}
-            >
-              {profiles &&
-                profiles.map(p => (
-                  <div
-                    id={`home-slide-${p.slug}`}
-                    className={
-                      p.slug == header.slug
-                        ? "home-slide-item selected"
-                        : "home-slide-item"
-                    }
-                  >
-                    <span
-                      className={`home-slide-selected background-${p.slug}`}
-                    />
-                    <div className={`home-slide-content border-${p.slug}`}>
-                      <div
-                        className="home-slide-clickable"
-                        onClick={() => changeProfileHeader(p)}
-                      >
-                        <h3>
-                          <img src={`/images/icons/icon-${p.slug}.svg`} />
-                          <span>{p.name}</span>
-                        </h3>
-                        <p>{p.description}</p>
-                      </div>
-                      <Link className={`link color-${p.slug}`} to={p.explore}>
-                        {t("Explore profiles")}{" "}
-                        <span className="pt-icon pt-icon-chevron-right" />
-                      </Link>
+            {profiles &&
+              profiles.map(p => (
+                <div
+                  id={`home-slide-${p.slug}`}
+                  className={
+                    p.slug == header.slug
+                      ? "home-slide-item selected"
+                      : "home-slide-item"
+                  }
+                >
+                  <span
+                    className={`home-slide-selected background-${p.slug}`}
+                  />
+                  <div className={`home-slide-content border-${p.slug}`}>
+                    <div
+                      className="home-slide-clickable"
+                      onClick={() => changeProfileHeader(p)}
+                    >
+                      <h3>
+                        <img src={`/images/icons/icon-${p.slug}.svg`} />
+                        <span>{p.name}</span>
+                      </h3>
                     </div>
                   </div>
-                ))}
-            </Slider>
+                </div>
+              ))}
           </div>
 
           <div className="home-featured-profiles">
