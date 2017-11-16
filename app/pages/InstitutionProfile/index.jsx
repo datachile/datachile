@@ -36,6 +36,11 @@ import AccreditationSlide from "./enrollment/AccreditationSlide";
 import AccreditationByProgram from "./enrollment/charts/AccreditationByProgram";
 /* END ACCREDITATION */
 
+/* BEGIN RETENTION */
+import RetentionSlide from "./enrollment/RetentionSlide";
+import RetentionByProgram from "./enrollment/charts/RetentionByProgram";
+/* END RETENTION */
+
 import "../intro.css";
 import "../topics.css";
 
@@ -146,7 +151,10 @@ class InstitutionProfile extends Component {
     EmployabilityByProgram,
 
     AccreditationSlide,
-    AccreditationByProgram
+    AccreditationByProgram,
+
+    RetentionSlide,
+    RetentionByProgram
   ];
 
   componentDidMount() {}
@@ -430,6 +438,25 @@ class InstitutionProfile extends Component {
                     <AccreditationByProgram className="lost-1" />
                   </SectionColumns>
                 </AccreditationSlide>
+              </div>
+            </Topic>
+
+            <Topic
+              name={t("Retention")}
+              id="employability"
+              sections={[
+                {
+                  name: t("Retention"),
+                  slides: [t("By program")]
+                }
+              ]}
+            >
+              <div>
+                <RetentionSlide>
+                  <SectionColumns>
+                    <RetentionByProgram className="lost-1" />
+                  </SectionColumns>
+                </RetentionSlide>
               </div>
             </Topic>
           </div>
