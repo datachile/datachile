@@ -135,7 +135,7 @@ export function needGetIncomeDatum(params, store) {
   };
 }
 
-export function needGetPSUDatum(param, store) {
+export function needGetPSUDatum(params, store) {
   const geo = getGeoObject(params);
   const prm = mondrianClient
     .cube("psu")
