@@ -14,27 +14,29 @@ export default translate()(
     static need = [
       (params, store) => {
         const institution = getLevelObject(params);
-        const prm = mondrianClient.cube("education_retention").then(cube => {
-          const q = levelCut(
-            institution,
-            "Higher Institutions",
-            "Higher Institutions",
-            cube.query
-              .option("parents", true)
-              .drilldown("Careers", "Careers", "Career")
-              .measure("Avg Retention 1st year")
-              .measure("Number of records"),
-            "Higher Institution Subgroup",
-            "Higher Institution",
-            store.i18n.locale,
-            false
-          );
+        const prm = mondrianClient
+          .cube("education_employability")
+          .then(cube => {
+            const q = levelCut(
+              institution,
+              "Higher Institutions",
+              "Higher Institutions",
+              cube.query
+                .option("parents", true)
+                .drilldown("Careers", "Careers", "Career")
+                .measure("Avg Retention 1st year")
+                .measure("Number of records"),
+              "Higher Institution Subgroup",
+              "Higher Institution",
+              store.i18n.locale,
+              false
+            );
 
-          return {
-            key: "path_institution_retention_by_program",
-            data: store.env.CANON_API + q.path("jsonrecords")
-          };
-        });
+            return {
+              key: "path_institution_retention_by_program",
+              data: store.env.CANON_API + q.path("jsonrecords")
+            };
+          });
 
         return {
           type: "GET_DATA",
