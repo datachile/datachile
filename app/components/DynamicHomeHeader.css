@@ -76,6 +76,9 @@
               opacity: 1;
             }
           }
+          & path.st1 {
+            pointer-events: none;
+          }
         }
       }
       & .dynamic-home-image {
@@ -87,12 +90,45 @@
         margin-right: auto;
         left: 0;
         right: 0;
+        z-index: 8;
         animation: fadein 2s;
         -moz-animation: fadein 2s; /* Firefox */
         -webkit-animation: fadein 2s; /* Safari and Chrome */
         -o-animation: fadein 2s; /* Opera */
         & img {
           width: 100%;
+        }
+      }
+    }
+    & #tooltip-home {
+      background-color: var(--snow);
+      width: 150px;
+      height: auto;
+      opacity: 0;
+      position: absolute;
+      z-index: 9;
+      & .tooltip-title {
+        color: var(--snow);
+        padding: calc(var(--gutter)/2);
+        font-family: var(--font-family-text);
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+      & .tooltip-body {
+        padding: calc(var(--gutter)/2);
+        & .tooltip-data-title {
+          font-family: var(--font-family-text);
+          font-size: 10px;
+          text-transform: uppercase;
+          color: var(--medium-gray);
+          letter-spacing: 0.08px;
+          font-weight: 700;
+        }
+        & .tooltip-data-value {
+          font-family: var(--font-family-text);
+          font-size: 16px;
+          letter-spacing: 0.08px;
+          font-weight: 700;
         }
       }
     }

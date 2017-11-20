@@ -19,7 +19,7 @@ import "./Home.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
 
 class Home extends Component {
-  static need = [];
+  static need = [DynamicHomeHeader];
 
   constructor(props) {
     super(props);
@@ -185,7 +185,8 @@ class Home extends Component {
 export default translate()(
   connect(
     state => ({
-      focus: state.focus
+      focus: state.focus,
+      data: state.data
     }),
     {}
   )(Home)

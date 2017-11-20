@@ -7,6 +7,7 @@ light: "#fff"
 accent: "#4B71B5"
 gray: "#F2F2F2"
 darker-gray: "#e6e6e6"
+medium-gray: "#808080"
 footer-bg: "#1E1E26"
 
 subnav-size: "300px"

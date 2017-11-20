@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import { connect } from "react-redux";
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import { text as loadSvgAsString, request as d3Request } from "d3-request";
 import { Geomap } from "d3plus-react";
-import { select, selectAll, event } from "d3-selection";
+import { select, selectAll, event, mouse } from "d3-selection";
 
+import { numeral, slugifyItem } from "helpers/formatters";
+import mondrianClient from "helpers/MondrianClient";
 import SVGCache from "helpers/svg";
 import { FORMATTERS } from "helpers/formatters";
 
@@ -14,6 +17,35 @@ import SvgImage from "components/SvgImage";
 import "./DynamicHomeHeader.css";
 
 class DynamicHomeHeader extends Component {
+  static need = [
+    (params, store) => {
+      const prm = mondrianClient
+        .cube("population_estimate")
+        .then(cube => {
+          var q = cube.query
+            .drilldown("Date", "Year")
+            .drilldown("Geography", "Geography", "Region")
+            .measure("Population")
+            .cut(`[Date].[Year].&[${store.population_year}]`);
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "home_geo_population",
+            data: _.keyBy(res.data.data, function(o) {
+              return "geo_" + o["ID Region"];
+            })
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
+  ];
+
   constructor(props) {
     super(props);
     this.cache = SVGCache.instance;
@@ -22,12 +54,12 @@ class DynamicHomeHeader extends Component {
     };
 
     this.callbackSvg = this.callbackSvg.bind(this);
-    //this.paintMountains = //this.paintMountains.bind(this);
   }
 
   callbackSvg(error, response, src) {
-    const { header } = this.props;
+    const { header, data } = this.props;
     var xml = response.responseText ? response.responseText : response;
+    var that = this;
     if (!xml.startsWith("<?xml")) {
       this.setState({
         illustration: "Error loading SVG"
@@ -46,36 +78,106 @@ class DynamicHomeHeader extends Component {
               .duration(500)
               .style("opacity", 1);
 
-            /*select(".dynamic-home-hotspots")
-              .transition()
-              .duration(1500)
-              .style("opacity", 1);*/
+            var div = select("#tooltip-home");
+
+            function getCoords(x, y) {
+              const w = window.innerWidth,
+                imgW = 1366,
+                imgH = 241;
+              const h = imgH * w / imgW;
+
+              return [x * w / imgW, y * h / imgH];
+            }
 
             selectAll(".dynamic-home-hotspots ellipse.st0")
               .on("mouseover", function(d) {
-                //select(this).classed("fill-" + header.slug, true);
-                console.log("mouseover", this);
-                /*div
+                var elem = select(this);
+                var coords = getCoords(elem.attr("cx"), elem.attr("cy"));
+
+                div
                   .transition()
                   .duration(200)
-                  .style("opacity", 0.9);
+                  .style("opacity", 1);
                 div
-                  .html(formatTime(d.date) + "<br/>" + d.close)
-                  .style("left", d3.event.pageX + "px")
-                  .style("top", d3.event.pageY - 28 + "px");*/
+                  .style("left", coords[0] - 75 + "px")
+                  .style("top", coords[1] + 9 + "px");
+
+                const name = that.getTooltipName(elem.attr("id"));
+                div.select(".tooltip-title").html(name);
+
+                const data_collection = that.getTooltipData(elem.attr("id"));
+                div
+                  .select(".tooltip-body")
+                  .html(
+                    data_collection
+                      .map(
+                        d =>
+                          "<div class='tooltip-data-value color-" +
+                          that.props.header.slug +
+                          "'>" +
+                          d.value +
+                          "</div><div class='tooltip-data-title'>" +
+                          d.title +
+                          "</div>"
+                      )
+                      .join("")
+                  );
               })
               .on("mouseout", function(d) {
-                console.log("mouseout");
-                //select(this).classed("fill-" + header.slug, false);
-                /*div
+                div
                   .transition()
                   .duration(500)
-                  .style("opacity", 0);*/
+                  .style("opacity", 0);
+              })
+              .on("click", function(d) {
+                var elem = select(this);
+                const name = that.getTooltipName(elem.attr("id"));
+                if (elem.attr("id") === null) {
+                  console.error("No attribute 'id' on svg file");
+                } else {
+                  var url = slugifyItem(
+                    that.props.header.slug,
+                    elem.attr("id"),
+                    name
+                  );
+                  browserHistory.push(url);
+                }
               });
           }
         }
       );
     }
+  }
+
+  getTooltipName(id) {
+    const { t, header, data } = this.props;
+    var name = "";
+    switch (header.slug) {
+      case "geo":
+        name = data.home_geo_population["geo_" + id].Region;
+        break;
+    }
+    return name;
+  }
+
+  getTooltipData(id) {
+    const { t, header, data, i18n } = this.props;
+    const locale = i18n.language.split("-")[0];
+
+    var datas = [];
+    switch (header.slug) {
+      case "geo":
+        datas.push({
+          title: t("Estimate Population 2017"),
+          value:
+            numeral(
+              data.home_geo_population["geo_" + id].Population,
+              locale
+            ).format("(0,0)") + " hab."
+        });
+        break;
+    }
+    return datas;
   }
 
   componentWillMount() {
@@ -132,6 +234,10 @@ class DynamicHomeHeader extends Component {
           </Link>
         </div>
         <div className="dynamic-home-illustration">
+          <div id="tooltip-home">
+            <div className={`tooltip-title background-${header.slug}`} />
+            <div className={`tooltip-body`} />
+          </div>
           <div id="mountains-home">
             <svg
               version="1.1"
@@ -139,7 +245,6 @@ class DynamicHomeHeader extends Component {
               x="0px"
               y="0px"
               viewBox="0 0 1960 281"
-              style={{ enableBackground: "new 0 0 1960 281" }}
             >
               <g>
                 <polyline
@@ -177,4 +282,11 @@ class DynamicHomeHeader extends Component {
   }
 }
 
-export default translate()(connect(state => ({}), {})(DynamicHomeHeader));
+export default translate()(
+  connect(
+    state => ({
+      data: state.data
+    }),
+    {}
+  )(DynamicHomeHeader)
+);
