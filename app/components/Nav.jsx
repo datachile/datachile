@@ -43,6 +43,8 @@ class Nav extends Component {
       topics
     } = this.props;
 
+    if (!i18n.language) return null;
+
     const currentLang = i18n.language.split("-")[0];
     const otherLang = currentLang === "es" ? "en" : "es";
 

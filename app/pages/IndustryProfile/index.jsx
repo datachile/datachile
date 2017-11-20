@@ -158,6 +158,7 @@ class IndustryProfile extends Component {
 
     const obj = this.props.data.industry;
 
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
 
     const ids = getLevelObject(this.props.routeParams);
@@ -352,8 +353,7 @@ export default translate()(
     state => ({
       data: state.data,
       focus: state.focus,
-      stats: state.stats,
-      nene_year: state.nene_year
+      stats: state.stats
     }),
     {}
   )(IndustryProfile)

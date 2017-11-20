@@ -30,9 +30,14 @@ vi .env.js
 npm run dev
 ```
 
+* Add this line to your /etc/hosts file
+```Bash
+127.0.0.1       en.datachile.local es.datachile.local
+```
+
 * Open browser
 ```Bash
-http://localhost:3300
+http://en.datachile.local:3300/
 ```
 
 * Do your job. :D

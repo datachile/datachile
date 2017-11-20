@@ -15,23 +15,23 @@ export default translate()(
         const country = getLevelObject(params);
         const prm = mondrianClient.cube("immigration").then(cube => {
           const q = levelCut(
-              country,
-              "Origin Country",
-              "Country",
-              cube.query
-                  .option("parents", true)
-                  .drilldown("Date", "Year")
-                  .drilldown("Sex", "Sex")
-                  .measure("Number of visas"),
-              "Subregion",
-              "Country",
-              store.i18n.locale,
-              false
+            country,
+            "Origin Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Year")
+              .drilldown("Sex", "Sex")
+              .measure("Number of visas"),
+            "Subregion",
+            "Country",
+            store.i18n.locale,
+            false
           );
 
           return {
-              key: "path_country_migration_by_sex",
-              data: store.env.CANON_API + q.path("jsonrecords")
+            key: "path_country_migration_by_sex",
+            data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
 
@@ -42,55 +42,55 @@ export default translate()(
       }
     ];
 
-
     render() {
       const { t, className, i18n } = this.props;
+      if (!i18n.language) return null;
       const path = this.context.data.path_country_migration_by_sex;
       const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
-          <h3 className="chart-title">
-            {t("Migration By Sex")}
-          </h3>
+          <h3 className="chart-title">{t("Migration By Sex")}</h3>
           <BarChart
             config={{
               height: 500,
               data: path,
               groupBy: "ID Sex",
-              label: d =>
-                d['Sex'],
+              label: d => d["Sex"],
               time: "ID Year",
               x: false,
               y: "Number of visas",
               shapeConfig: {
-                  fill: d => COLORS_GENDER[d["ID Sex"]],
+                fill: d => COLORS_GENDER[d["ID Sex"]]
               },
-              xConfig:{
-                tickSize:0,
-                title:false
+              xConfig: {
+                tickSize: 0,
+                title: false
               },
-              yConfig:{
-                title:t("Visas"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)")
+              yConfig: {
+                title: t("Visas"),
+                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
               },
               barPadding: 20,
               groupPadding: 40,
-              tooltipConfig:{
+              tooltipConfig: {
                 title: d => d["Sex"],
-                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                  " " +
+                  t("visas")
               },
               legendConfig: {
-                  label: false,
-                  shapeConfig:{
-                      width:40,
-                      height:40,
-                      backgroundImage: d => "/images/legend/sex/"+d["ID Sex"]+".png",
-                  }
+                label: false,
+                shapeConfig: {
+                  width: 40,
+                  height: 40,
+                  backgroundImage: d =>
+                    "/images/legend/sex/" + d["ID Sex"] + ".png"
+                }
               }
             }}
-
-          dataFormat={data => { console.log(data.data); return data.data;}}
+            dataFormat={data => data.data}
           />
         </div>
       );

@@ -15,23 +15,23 @@ export default translate()(
         const country = getLevelObject(params);
         const prm = mondrianClient.cube("immigration").then(cube => {
           const q = levelCut(
-              country,
-              "Origin Country",
-              "Country",
-              cube.query
-                  .option("parents", true)
-                  .drilldown("Date", "Year")
-                  .drilldown("Visa Type", "Visa Type")
-                  .measure("Number of visas"),
-              "Subregion",
-              "Country",
-              store.i18n.locale,
-              false
+            country,
+            "Origin Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Year")
+              .drilldown("Visa Type", "Visa Type")
+              .measure("Number of visas"),
+            "Subregion",
+            "Country",
+            store.i18n.locale,
+            false
           );
 
           return {
-              key: "path_country_migration_by_visa",
-              data: store.env.CANON_API + q.path("jsonrecords")
+            key: "path_country_migration_by_visa",
+            data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
 
@@ -42,24 +42,21 @@ export default translate()(
       }
     ];
 
-
     render() {
       const { t, className, i18n } = this.props;
+      if (!i18n.language) return null;
       const path = this.context.data.path_country_migration_by_visa;
       const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
-          <h3 className="chart-title">
-            {t("Migration By Visa")}
-          </h3>
+          <h3 className="chart-title">{t("Migration By Visa")}</h3>
           <BarChart
             config={{
               height: 500,
               data: path,
               groupBy: "ID Visa Type",
-              label: d =>
-                d['Visa Type'],
+              label: d => d["Visa Type"],
               time: "ID Year",
               y: "Visa Type",
               x: "Number of visas",
@@ -68,30 +65,35 @@ export default translate()(
                 label: false,
                 fill: d => ordinalColorScale(3)
               },
-              yConfig:{
-                tickSize:0,
-                title:false
+              yConfig: {
+                tickSize: 0,
+                title: false
               },
-              xConfig:{
-                title:t("Visas"),
-                tickFormat:(tick) => numeral(tick, locale).format("(0.0 a)"),
+              xConfig: {
+                title: t("Visas"),
+                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
               },
               barPadding: 20,
               groupPadding: 40,
-              tooltipConfig:{
+              tooltipConfig: {
                 title: d => d["Visa Type"],
-                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                  " " +
+                  t("visas")
               },
               legendConfig: {
                 label: false,
-                shapeConfig:false
+                shapeConfig: false
               }
             }}
-
-            dataFormat={function(data){
-              var filtered = _.filter(data.data,(o) => o["Number of visas"] != null && o["Number of visas"] > 0);
-              return _.orderBy(filtered,["Number of visas"],["asc"])}
-            }
+            dataFormat={function(data) {
+              var filtered = _.filter(
+                data.data,
+                o => o["Number of visas"] != null && o["Number of visas"] > 0
+              );
+              return _.orderBy(filtered, ["Number of visas"], ["asc"]);
+            }}
           />
         </div>
       );

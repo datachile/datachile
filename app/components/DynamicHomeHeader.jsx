@@ -22,7 +22,7 @@ class DynamicHomeHeader extends Component {
     };
 
     this.callbackSvg = this.callbackSvg.bind(this);
-    this.paintMountains = this.paintMountains.bind(this);
+    //this.paintMountains = //this.paintMountains.bind(this);
   }
 
   callbackSvg(error, response, src) {
@@ -46,12 +46,12 @@ class DynamicHomeHeader extends Component {
               .duration(500)
               .style("opacity", 1);
 
-            select(".dynamic-home-hotspots")
+            /*select(".dynamic-home-hotspots")
               .transition()
               .duration(1500)
-              .style("opacity", 1);
+              .style("opacity", 1);*/
 
-            selectAll(".dynamic-home-hotspots ellipse.st1")
+            selectAll(".dynamic-home-hotspots ellipse.st0")
               .on("mouseover", function(d) {
                 //select(this).classed("fill-" + header.slug, true);
                 console.log("mouseover", this);
@@ -79,17 +79,13 @@ class DynamicHomeHeader extends Component {
   }
 
   componentWillMount() {
-    this.paintMountains(this.props.header);
     this.loadHeader(this.props.header);
   }
 
-  componentDidMount() {
-    this.paintMountains(this.props.header);
-  }
+  componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.header) {
-      this.paintMountains(nextProps.header);
       this.loadHeader(nextProps.header);
     }
   }
@@ -99,10 +95,10 @@ class DynamicHomeHeader extends Component {
       const src = "/images/home/hotspots/" + header.slug + ".svg";
       const cb = this.callbackSvg;
       var cached = this.cache.getSvg(src);
-      select(".dynamic-home-hotspots")
+      /*select(".dynamic-home-hotspots")
         .transition()
         .duration(500)
-        .style("opacity", 0);
+        .style("opacity", 0);*/
       select(".dynamic-home-image")
         .transition()
         .duration(500)
@@ -121,39 +117,48 @@ class DynamicHomeHeader extends Component {
     }
   }
 
-  paintMountains(header) {
-    if (typeof document != "undefined" && header) {
-      select(".dynamic-home-header .front")
-        .transition()
-        .duration(500)
-        .style("fill", header.colors[0]);
-      select(".dynamic-home-header .back")
-        .transition()
-        .duration(500)
-        .style("fill", header.colors[1]);
-      select(".dynamic-home-block")
-        .transition()
-        .duration(500)
-        .style("background-color", header.colors[2]);
-    }
-  }
-
   render() {
     const { t, header } = this.props;
 
-    const mountainsLoaded = () => {
-      this.paintMountains(header);
-    };
-
-    const mountainsLoadedError = () => {};
-
     return (
       <div className="dynamic-home-header">
+        <div className="dynamic-home-explore-btn">
+          <Link
+            className={`explore-btn background-${header.slug}`}
+            href={`/explore/${header.slug}`}
+          >
+            <span>{t("Explore profiles")}</span>
+            <span className="pt-icon-standard pt-icon-chevron-right" />
+          </Link>
+        </div>
         <div className="dynamic-home-illustration">
-          <SvgImage
-            src={`/images/home/mountains.svg`}
-            callback={mountainsLoaded}
-            callbackError={mountainsLoadedError}
+          <div id="mountains-home">
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 1960 281"
+              style={{ enableBackground: "new 0 0 1960 281" }}
+            >
+              <g>
+                <polyline
+                  className="back"
+                  points="1.4,282.6 0,82 154.6,142 422.5,60 908.2,124 1169.2,60 1529.4,101 1966,0.3 1963.9,279.6     "
+                  style={{ fill: header.colors[1] }}
+                />
+                <polyline
+                  className="front"
+                  points="0.7,283.6 0,224.4 66.2,163.2 251.6,236.7 453.2,126.2 735.9,263.3 1003.6,142.7 1160.4,174.7 
+                    1358.5,114.1 1502.8,138.7 1778.6,59 1959,229.6 1959.1,280.6"
+                  style={{ fill: header.colors[0] }}
+                />
+              </g>
+            </svg>
+          </div>
+          <div
+            className="dynamic-home-block"
+            style={{ backgroundColor: header.colors[2] }}
           />
           {header && (
             <div className={`dynamic-home-items illustration-${header.slug}`}>
@@ -167,7 +172,6 @@ class DynamicHomeHeader extends Component {
             </div>
           )}
         </div>
-        <div className="dynamic-home-block" />
       </div>
     );
   }

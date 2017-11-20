@@ -166,6 +166,9 @@ class InstitutionProfile extends Component {
 
     const { focus, t, i18n } = this.props;
 
+    if (!i18n.language) return null;
+    const locale = i18n.language.split("-")[0];
+
     const obj = this.props.data.institution;
 
     const ids = getLevelObject(this.props.routeParams);
@@ -199,8 +202,6 @@ class InstitutionProfile extends Component {
     const listTitle = ids
       ? ids.level2 ? t("Careers") : t("Institutions")
       : "";
-
-    const locale = i18n.language.split("-")[0];
 
     const stats = {
       enrollment: {

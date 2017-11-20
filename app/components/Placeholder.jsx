@@ -7,7 +7,7 @@ export default class Placeholder extends Component {
     return (
       <div className={this.props.className}>
         <img
-          src={`http://via.placeholder.com/350x150?text=${text.replace(
+          src={`https://via.placeholder.com/350x150?text=${text.replace(
             / /g,
             "+"
           )}`}

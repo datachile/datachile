@@ -1,160 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg version="1.1" id="Capa_1"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1948 212"
-	 style="enable-background:new 0 0 1948 212;" xml:space="preserve">
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1366 241" style="enable-background:new 0 0 1366 241;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#FF7474;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0,7;}
-	.st1{fill:#4B71B5;stroke:#FFFFFF;stroke-miterlimit:10;}
-	.st2{fill:#FFFFFF;}
+	.st0{fill:#4B71B5;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;}
 </style>
-<switch>
+<g>
+	<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1.27 159.3583)" class="st0" cx="80.4" cy="79" rx="11.1" ry="11.1"/>
 	<g>
 		<g>
-			<g id="Page-1">
-				<g id="linea-punteada-geo" transform="translate(1.000000, -39.000000)">
-					<polyline id="Stroke-1" class="st0" points="1807.7,145.6 1659.3,128.3 1516.8,132.6 1407.3,125.4 1319.5,99.5 1228.8,111 
-						1106.4,115.4 965.3,102.4 793.9,95.2 677.3,113.9 557.7,88 458.4,89.4 353.3,135.5 268.3,95.2 137.3,79.4 7.5,112.7 					"/>
-					<path id="Stroke-3" class="st0" d="M1807.7,145.6l140.8-42.5"/>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 104.9916 186.9038)" class="st1" cx="146.1" cy="40.9" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M149.8,40.7l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L149.8,40.7z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 206.3251 319.8513)" class="st1" cx="263.3" cy="56.6" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M267,56.4l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L267,56.4z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 263.2991 456.6753)" class="st1" cx="360.3" cy="96.5" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M364.2,96.4l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L364.2,96.4z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 413.39 514.5667)" class="st1" cx="464.3" cy="50.3" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M468,50.1l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L468,50.1z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 531.0286 628.147)" class="st1" cx="580" cy="48.2" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M583.7,48l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L583.7,48z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 609.3322 759.0323)" class="st1" cx="684.6" cy="74.5" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M688.4,74.3l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L688.4,74.3z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 737.6204 849.6824)" class="st1" cx="794.2" cy="55.6" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M797.9,54.3l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L797.9,54.3z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 900.1796 1027.1327)" class="st1" cx="964.3" cy="62.9" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M968,61.7l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L968,61.7z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1044.0619 1198.4808)" class="st1" cx="1122" cy="76.6" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M1125.7,75.3l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L1125.7,75.3z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1154.9564 1299.0104)" class="st1" cx="1227.8" cy="71.3" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M1231.5,70.1l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L1231.5,70.1z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1246.6859 1369.8544)" class="st1" cx="1309.1" cy="60.8" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M1312.8,59.6l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L1312.8,59.6z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1317.5068 1491.1486)" class="st1" cx="1405.2" cy="86" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M1409,84.8l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L1409,84.8z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1434.2349 1622.7128)" class="st1" cx="1529.4" cy="93.4" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M1533.2,92.1l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L1533.2,92.1z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1607.9984 1788.286)" class="st1" cx="1699.2" cy="89.2" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M1703,87.9l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L1703,87.9z"/>
-					</g>
-				</g>
-			</g>
-			<g>
-				
-					<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1709.0773 1923.0781)" class="st1" cx="1817.2" cy="106" rx="12.3" ry="12.3"/>
-				<g>
-					<g>
-						<path class="st2" d="M1821,104.7l0,1.7l-3.3,0l0,3.2l-1.6,0l0-3.2l-3.3,0l0-1.7l3.3,0l0-3.3l1.6,0l0,3.3L1821,104.7z"/>
-					</g>
-				</g>
-			</g>
+			<path class="st1" d="M83.8,78.9l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L83.8,78.9z"/>
 		</g>
 	</g>
-</switch>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 68.2035 247.5154)" class="st0" cx="158" cy="89.6" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M161.4,89.4l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L161.4,89.4z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 111.6247 335.9884)" class="st0" cx="224" cy="112.1" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M227.4,111.9l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L227.4,111.9z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 223.705 380.2592)" class="st0" cx="302.2" cy="78.1" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M305.6,78l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L305.6,78z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 328.7008 449.3806)" class="st0" cx="389.3" cy="60.1" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M392.7,60l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L392.7,60z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 394.9817 582.3408)" class="st0" cx="489" cy="93.4" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M492.4,93.3l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L492.4,93.3z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 507.068 660.3611)" class="st0" cx="584.1" cy="76.3" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M587.5,76.2l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L587.5,76.2z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 638.8909 824.7417)" class="st0" cx="732.3" cy="92.5" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M735.7,92.4l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L735.7,92.4z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 719.3791 931.3261)" class="st0" cx="825.9" cy="105.5" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M829.3,105.4l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L829.3,105.4z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1166.2288 1404.9102)" class="st0" cx="1286.4" cy="118.6" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M1289.8,118.5l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L1289.8,118.5z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 801.9943 990.4401)" class="st0" cx="896.8" cy="93.7" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M900.2,93.6l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L900.2,93.6z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 861.5144 1064.6313)" class="st0" cx="963.7" cy="101" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M967.1,100.9l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L967.1,100.9z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 920.8514 1110.6393)" class="st0" cx="1016.4" cy="94.3" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M1019.8,94.2l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L1019.8,94.2z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1020.3298 1214.4368)" class="st0" cx="1118.1" cy="96.4" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M1121.5,96.3l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L1121.5,96.3z"/>
+		</g>
+	</g>
+</g>
+<g>
+	
+		<ellipse transform="matrix(1.195156e-03 -1 1 1.195156e-03 1111.6144 1316.2305)" class="st0" cx="1214.7" cy="101.6" rx="11.1" ry="11.1"/>
+	<g>
+		<g>
+			<path class="st1" d="M1218.1,101.5l0,1.5l-3,0l0,2.9l-1.4,0l0-2.9l-2.9,0l0-1.5l2.9,0l0-2.9l1.4,0l0,2.9L1218.1,101.5z"/>
+		</g>
+	</g>
+</g>
 </svg>

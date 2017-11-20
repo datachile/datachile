@@ -42,6 +42,7 @@ class Disability extends Section {
     const path = this.context.data.path_health_insurance;
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
 
     return (

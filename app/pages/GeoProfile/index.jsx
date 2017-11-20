@@ -11,8 +11,15 @@ import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
+// needs (data fetchers)
+import {
+  needGetGeo,
+  needGetPopulationDatum,
+  needGetIncomeDatum,
+  needGetPSUDatum
+} from "./index_needs";
+
 import Nav from "components/Nav";
-import SourceNote from "components/SourceNote";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
@@ -84,6 +91,18 @@ import PerformanceByType from "./education/performance/charts/PerformanceByType"
 /* Housing and Environment */
 import QualitySlide from "./environment/quality/QualitySlide";
 import HousingType from "./environment/quality/charts/HousingType";
+
+import InternetAccessSlide from "./environment/conectivity/InternetAccessSlide";
+import InternetAccessByZone from "./environment/conectivity/charts/InternetAccessByZone";
+
+import DevicesSlide from "./environment/conectivity/DevicesSlide";
+import Devices from "./environment/conectivity/charts/Devices";
+
+import InternetUseSlide from "./environment/conectivity/InternetUseSlide";
+
+import ServicesAccessSlide from "./environment/amenities/ServicesAccessSlide";
+import Services from "./environment/amenities/charts/Services";
+
 /* end Housing and Environment */
 
 /*Demography*/
@@ -125,177 +144,11 @@ class GeoProfile extends Component {
   }
 
   static need = [
-    params => {
-      const geoObj = getGeoObject(params);
+    needGetGeo,
+    needGetPopulationDatum,
+    needGetIncomeDatum,
+    needGetPSUDatum,
 
-      var prm;
-
-      switch (geoObj.type) {
-        case "country": {
-          prm = new Promise((resolve, reject) => {
-            resolve({ key: "geo", data: geoObj });
-          });
-          break;
-        }
-        case "region": {
-          prm = mondrianClient
-            .cube("exports")
-            .then(cube => {
-              return cube.dimensionsByName["Geography"].hierarchies[0].getLevel(
-                "Region"
-              );
-            })
-            .then(level => {
-              return mondrianClient.member(level, geoObj.key);
-            })
-            .then(res => {
-              return { key: "geo", data: res };
-            });
-          break;
-        }
-        case "comuna": {
-          prm = mondrianClient
-            .cube("exports")
-            .then(cube => {
-              return cube.dimensionsByName["Geography"].hierarchies[0].getLevel(
-                "Comuna"
-              );
-            })
-            .then(level => {
-              return mondrianClient.member(level, geoObj.key);
-            })
-            .then(res => {
-              return { key: "geo", data: res };
-            });
-          break;
-        }
-      }
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient
-        .cube("population_estimate")
-        .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .drilldown("Date", "Year")
-              .measure("Number of records")
-              .measure("Population")
-              .measure("Population Rank")
-              .measure("Population Rank Total")
-              .measure("Population Rank Decile"),
-            store.i18n.locale
-          );
-
-          q.cut(`[Date].[Year].&[${store.population_year}]`);
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "population",
-            data: {
-              value: res.data.data[0]["Population"],
-              decile: res.data.data[0]["Population Rank Decile"],
-              rank: res.data.data[0]["Population Rank"],
-              total: res.data.data[0]["Population Rank Total"],
-              year: store.population_year,
-              source: "INE projection"
-            }
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient
-        .cube("nesi_income")
-        .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .drilldown("Date", "Year")
-              .measure("Income")
-              .measure("Median Income")
-              .measure("Weighted Median Income Rank")
-              .measure("Weighted Median Income Decile")
-              .measure("Weighted Median Income Total"),
-            store.i18n.locale
-          );
-
-          q.cut(`[Date].[Year].&[${store.income_year}]`);
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "income",
-            data: {
-              value: res.data.data[0]["Median Income"],
-              decile: res.data.data[0]["Weighted Median Income Decile"],
-              rank: res.data.data[0]["Weighted Median Income Rank"],
-              total: res.data.data[0]["Weighted Median Income Total"],
-              year: store.income_year,
-              source: "NESI Survey"
-            }
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient
-        .cube("psu")
-        .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .drilldown("Date", "Year")
-              .measure("Number of records")
-              .measure("PSU Rank")
-              .measure("PSU Average")
-              .measure("PSU Rank Decile")
-              .measure("PSU Rank Total"),
-            store.i18n.locale
-          );
-
-          q.cut(`[Date].[Year].&[${store.psu_year}]`);
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "psu",
-            data: {
-              value: res.data.data[0]["PSU Average"],
-              decile: res.data.data[0]["PSU Rank Decile"],
-              rank: res.data.data[0]["PSU Rank"],
-              total: res.data.data[0]["PSU Rank Total"],
-              year: store.psu_year,
-              source: "PSU data"
-            }
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
     AuthoritiesBlock,
 
     /*Economy,*/
@@ -350,6 +203,17 @@ class GeoProfile extends Component {
     QualitySlide,
     HousingType,
 
+    InternetAccessSlide,
+    InternetAccessByZone,
+
+    DevicesSlide,
+    Devices,
+
+    InternetUseSlide,
+
+    ServicesAccessSlide,
+    Services,
+
     PerformanceSlide,
     PerformanceByType,
 
@@ -374,8 +238,11 @@ class GeoProfile extends Component {
 
   render() {
     const { focus, t, i18n } = this.props;
-    const { subnav, activeSub } = this.state;
+
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
+
+    const { subnav, activeSub } = this.state;
     const geoObj = getGeoObject(this.props.routeParams);
     const showRanking = geoObj.type == "country" ? false : true;
     const geo = this.props.data.geo;
@@ -748,12 +615,13 @@ class GeoProfile extends Component {
               <div>
                 <OpportunitySlide>
                   <SectionColumns>
+                    <IndustrySpace className="lost-1-2" />
+                    <ProductSpace className="lost-1-2" />
+
                     {/* 
-                      <IndustrySpace className="lost-1-2" />
-                      <ProductSpace className="lost-1-2" />
-                    */}
-                    <Placeholder className="lost-1-2" text="Industry Space" />
-                    <Placeholder className="lost-1-2" text="Product Space" />
+                                        <Placeholder className="lost-1-2" text="Industry Space" />
+                                        <Placeholder className="lost-1-2" text="Product Space" />
+                                      */}
                   </SectionColumns>
                 </OpportunitySlide>
               </div>
@@ -798,9 +666,9 @@ class GeoProfile extends Component {
                 <IDSpendingCategorySlide>
                   <SectionColumns>
                     {/*
-                    <SpendingByFundingSource className="lost-1-2" />
-                    <SpendingByArea className="lost-1-2" />
-                    */}
+                                        <SpendingByFundingSource className="lost-1-2" />
+                                        <SpendingByArea className="lost-1-2" />
+                                      */}
                     <Placeholder
                       className="lost-1-2"
                       text="RD - By Funding Source"
@@ -817,9 +685,9 @@ class GeoProfile extends Component {
                 <IDStaffSlide>
                   <SectionColumns>
                     {/*
-                    <StaffByOccupation className="lost-1-2" />
-                    <StaffBySex className="lost-1-2" />
-                     */}
+                                        <StaffByOccupation className="lost-1-2" />
+                                        <StaffBySex className="lost-1-2" />
+                                      */}
                     <Placeholder
                       className="lost-1-2"
                       text="RD - By Occupation"
@@ -833,9 +701,9 @@ class GeoProfile extends Component {
                 <InnovationCompanySlide>
                   <SectionColumns>
                     {/*
-                    <InnovationRate className="lost-2-3" />
-                    <InnovationByType className="lost-1-3" />
-                    */}
+                                        <InnovationRate className="lost-2-3" />
+                                        <InnovationByType className="lost-1-3" />
+                                      */}
                     <Placeholder
                       className="lost-1-2"
                       text="RD - Innovation Rate"
@@ -852,9 +720,9 @@ class GeoProfile extends Component {
                 <CompanyInnovationSlide>
                   <SectionColumns>
                     {/*
-                    <InnovationBySize className="lost-2-3" />
-                    <InnovationByActivity className="lost-1-3" />
-                    */}
+                                        <InnovationBySize className="lost-2-3" />
+                                        <InnovationByActivity className="lost-1-3" />
+                                      */}
                     <Placeholder className="lost-1-2" text="RD - by Size" />
                     <Placeholder className="lost-1-2" text="RD - by Activity" />
                   </SectionColumns>
@@ -910,7 +778,7 @@ class GeoProfile extends Component {
                   ]
                 },
                 {
-                  name: t("Ammenities"),
+                  name: t("Amenities"),
                   slides: [t("Access to services")]
                 }
               ]}
@@ -919,9 +787,45 @@ class GeoProfile extends Component {
                 <QualitySlide>
                   <SectionColumns>
                     <HousingType className="lost-1-2" />
-                    <Placeholder className="lost-1-2" text="Other Chart" />
+                    <Placeholder className="lost-1-2" text="Materials" />
                   </SectionColumns>
                 </QualitySlide>
+              </div>
+              <div>
+                <InternetAccessSlide>
+                  <SectionColumns>
+                    <InternetAccessByZone className="lost-1-2" />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Internet Access Type"
+                    />
+                  </SectionColumns>
+                </InternetAccessSlide>
+              </div>
+              <div>
+                <DevicesSlide>
+                  <SectionColumns>
+                    <Devices className="lost-1" />
+                  </SectionColumns>
+                </DevicesSlide>
+              </div>
+              <div>
+                <InternetUseSlide>
+                  <SectionColumns>
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Internet purposes"
+                    />
+                    <Placeholder className="lost-1-2" text="Internet uses" />
+                  </SectionColumns>
+                </InternetUseSlide>
+              </div>
+              <div>
+                <ServicesAccessSlide>
+                  <SectionColumns>
+                    <Services className="lost-1" />
+                  </SectionColumns>
+                </ServicesAccessSlide>
               </div>
             </Topic>
 
@@ -1008,10 +912,7 @@ class GeoProfile extends Component {
 export default translate()(
   connect(
     state => ({
-      data: state.data,
-      population_year: state.population_year,
-      income_year: state.income_year,
-      psu_year: state.psu_year
+      data: state.data
     }),
     {}
   )(GeoProfile)

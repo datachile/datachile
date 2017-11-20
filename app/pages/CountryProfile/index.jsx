@@ -162,6 +162,10 @@ class CountryProfile extends Component {
     const { subnav, activeSub } = this.state;
     const { focus, t, i18n } = this.props;
 
+    if (!i18n.language) return null;
+
+    const locale = i18n.language.split("-")[0];
+
     const { country } = this.props.routeParams;
 
     const obj = this.props.data.country;
@@ -197,8 +201,6 @@ class CountryProfile extends Component {
     const listTitle = ids
       ? ids.level2 ? t("Other regions") : t("Countries")
       : "";
-
-    const locale = i18n.language.split("-")[0];
 
     const stats = {
       imports: {

@@ -9,6 +9,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import SourceNote from "components/SourceNote";
+
 class HousingType extends Section {
   static need = [
     (params, store) => {
@@ -45,6 +47,7 @@ class HousingType extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_housing_type;
+    if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
     const geo = this.context.data.geo;
     const msrName =
@@ -100,6 +103,7 @@ class HousingType extends Section {
             return _.orderBy(data.data, [msrName], ["ASC"]);
           }}
         />
+        <SourceNote cube="casen_household" />
       </div>
     );
   }

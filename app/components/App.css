@@ -73,7 +73,7 @@ extrabold 800
   fill: var(--color-geo) !important;
 }
 .background-geo {
-  background-color: var(--color-geo);
+  background-color: var(--color-geo) !important;
 }
 
 .color-countries {
@@ -86,7 +86,7 @@ extrabold 800
   fill: var(--color-countries) !important;
 }
 .background-countries {
-  background-color: var(--color-countries);
+  background-color: var(--color-countries) !important;
 }
 
 .color-institutions {
@@ -99,7 +99,7 @@ extrabold 800
   fill: var(--color-institutions) !important;
 }
 .background-institutions {
-  background-color: var(--color-institutions);
+  background-color: var(--color-institutions) !important;
 }
 
 .color-careers {
@@ -112,7 +112,7 @@ extrabold 800
   fill: var(--color-careers) !important;
 }
 .background-careers {
-  background-color: var(--color-careers);
+  background-color: var(--color-careers) !important;
 }
 
 .color-products {
@@ -125,7 +125,7 @@ extrabold 800
   fill: var(--color-products) !important;
 }
 .background-products {
-  background-color: var(--color-products);
+  background-color: var(--color-products) !important;
 }
 
 .color-industries {
@@ -138,7 +138,7 @@ extrabold 800
   fill: var(--color-industries) !important;
 }
 .background-industries {
-  background-color: var(--color-industries);
+  background-color: var(--color-industries) !important;
 }
 
 /*color-geo: "#4B71B5"

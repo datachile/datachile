@@ -207,10 +207,7 @@ class AuthoritiesBlock extends Component {
 export default translate()(
   connect(
     state => ({
-      data: state.data,
-      presidential_election_year: state.presidential_election_year,
-      senators_election_year: state.senators_election_year,
-      mayor_election_year: state.mayor_election_year
+      data: state.data
     }),
     {}
   )(AuthoritiesBlock)

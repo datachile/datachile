@@ -15,23 +15,23 @@ export default translate()(
         const country = getLevelObject(params);
         const prm = mondrianClient.cube("immigration").then(cube => {
           const q = levelCut(
-              country,
-              "Origin Country",
-              "Country",
-              cube.query
-                  .option("parents", true)
-                  .drilldown("Date", "Year")
-                  .drilldown("Activity", "Activity")
-                  .measure("Number of visas"),
-              "Subregion",
-              "Country",
-              store.i18n.locale,
-              false
+            country,
+            "Origin Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Year")
+              .drilldown("Activity", "Activity")
+              .measure("Number of visas"),
+            "Subregion",
+            "Country",
+            store.i18n.locale,
+            false
           );
 
           return {
-              key: "path_country_migration_by_activity",
-              data: store.env.CANON_API + q.path("jsonrecords")
+            key: "path_country_migration_by_activity",
+            data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
 
@@ -42,40 +42,42 @@ export default translate()(
       }
     ];
 
-
     render() {
       const { t, className, i18n } = this.props;
-      const path = this.context.data.path_country_migration_by_activity;
+
+      if (!i18n.language) return null;
+
       const locale = i18n.language.split("-")[0];
+
+      const path = this.context.data.path_country_migration_by_activity;
 
       return (
         <div className={className}>
-          <h3 className="chart-title">
-            {t("Migration By Activity")}
-          </h3>
+          <h3 className="chart-title">{t("Migration By Activity")}</h3>
           <Treemap
             config={{
               height: 500,
               data: path,
               groupBy: "ID Activity",
-              label: d =>
-                d['Activity'],
+              label: d => d["Activity"],
               sum: d => d["Number of visas"],
               time: "ID Year",
               shapeConfig: {
                 fill: d => ordinalColorScale(d["ID Activity"])
               },
-              tooltipConfig:{
+              tooltipConfig: {
                 title: d => d["Activity"],
-                body: d => numeral(d['Number of visas'], locale).format("( 0,0 )") + " " + t("visas")
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                  " " +
+                  t("visas")
               },
               legendConfig: {
                 label: false,
-                shapeConfig:false
+                shapeConfig: false
               }
             }}
-
-          dataFormat={data => { console.log(data.data); return data.data;}}
+            dataFormat={data => data.data}
           />
         </div>
       );

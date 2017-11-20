@@ -100,106 +100,20 @@
     lost-flex-container: column;
     lost-center: 3/4;
     position: relative;
-    top: -10px;
-
-    & * {
-      min-height: 0;
-      min-width: 0;
-    }
-    /* Slider */
-    & .slick-loading .slick-list {
-    }
-
-    /* Arrows */
-    & .slick-prev,
-    & .slick-next {
-      font-size: 10px;
-      line-height: 1em;
-
-      position: absolute;
-      top: -20px;
-
-      width: auto;
-      height: auto;
-      padding: 5px;
-
-      cursor: pointer;
-
-      color: var(--snow);
-      border: none;
-      outline: none;
-      background: transparent;
-      z-index: 10;
-    }
-    & .slick-prev:hover,
-    & .slick-prev:focus,
-    & .slick-next:hover,
-    & .slick-next:focus {
-      visibility: visible;
-    }
-    & .slick-prev:hover:before,
-    & .slick-prev:focus:before,
-    & .slick-next:hover:before,
-    & .slick-next:focus:before {
-      opacity: 1;
-    }
-    & .slick-prev.slick-disabled,
-    & .slick-next.slick-disabled {
-      visibility: hidden;
-    }
-    & .slick-prev.slick-disabled:before,
-    & .slick-next.slick-disabled:before {
-      opacity: 0;
-    }
-
-    & .slick-prev:before,
-    & .slick-next:before {
-      font-size: 20px;
-      line-height: 1;
-
-      opacity: 0.75;
-      color: white;
-
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    & .slick-prev {
-      left: 0;
-    }
-    & [dir="rtl"] .slick-prev {
-      right: 0;
-      left: auto;
-    }
-    & .slick-prev:before {
-    }
-    & [dir="rtl"] .slick-prev:before {
-    }
-
-    & .slick-next {
-      right: 0;
-    }
-    & [dir="rtl"] .slick-next {
-      right: auto;
-      left: 0;
-    }
-    & .slick-next:before {
-    }
-    & [dir="rtl"] .slick-next:before {
-    }
+    top: -7px;
 
     & .home-slide-item {
       padding: 0 15px;
+      lost-column: 1/6 6 0px;
       & .home-slide-selected {
         display: block;
-        width: 15%;
         height: 4px;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
+        width: 0px;
+        transition: width 0.5s ease-in-out;
       }
       & .home-slide-content {
         border-top-style: solid;
-        border-top-width: 1px;
+        border-top-width: 3px;
         background-color: var(--near-black);
         padding-bottom: var(--gutter);
         display: flex;
@@ -209,7 +123,7 @@
         }
         & .home-slide-clickable {
           cursor: pointer;
-          margin: var(--gutter) 15px 0 15px;
+          margin: 10px;
           height: auto;
           & h3 {
             display: flex;
@@ -255,7 +169,7 @@
       }
       &.selected {
         & .home-slide-selected {
-          opacity: 1;
+          width: 30%;
         }
       }
     }
