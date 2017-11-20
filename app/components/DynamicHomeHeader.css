@@ -26,24 +26,37 @@
       }
     }
   }
-  & .dynamic-home-block {
-    height: 75px;
-    width: 100%;
-    display: block;
-  }
   & .dynamic-home-illustration {
     position: relative;
-    & .svg-image {
+    & #mountains-home {
       line-height: 0;
+      width: 100%;
+      & .back {
+        fill: #ccc;
+        transition: fill 1s ease;
+      }
+      & .front {
+        fill: #ddd;
+        transition: fill 2s ease;
+      }
+    }
+    & .dynamic-home-block {
+      height: 75px;
+      width: 100%;
+      display: block;
+      transition: background-color 2s ease;
     }
     & .dynamic-home-items {
-      position: relative;
-      bottom: -75px;
+      position: absolute;
+      width: 100%;
+      bottom: 0px;
+      display: block;
+      height: 100%;
 
       & .dynamic-home-hotspots {
         line-height: 0;
         position: absolute;
-        bottom: 20px;
+        top: 3%;
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -68,7 +81,7 @@
       & .dynamic-home-image {
         line-height: 0;
         position: absolute;
-        bottom: 0px;
+        top: 14%;
         width: 100%;
         margin-left: auto;
         margin-right: auto;

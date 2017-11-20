@@ -22,7 +22,7 @@ class DynamicHomeHeader extends Component {
     };
 
     this.callbackSvg = this.callbackSvg.bind(this);
-    this.paintMountains = this.paintMountains.bind(this);
+    //this.paintMountains = //this.paintMountains.bind(this);
   }
 
   callbackSvg(error, response, src) {
@@ -79,17 +79,13 @@ class DynamicHomeHeader extends Component {
   }
 
   componentWillMount() {
-    this.paintMountains(this.props.header);
     this.loadHeader(this.props.header);
   }
 
-  componentDidMount() {
-    this.paintMountains(this.props.header);
-  }
+  componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.header) {
-      this.paintMountains(nextProps.header);
       this.loadHeader(nextProps.header);
     }
   }
@@ -121,31 +117,8 @@ class DynamicHomeHeader extends Component {
     }
   }
 
-  paintMountains(header) {
-    if (typeof document != "undefined" && header) {
-      select(".dynamic-home-header .front")
-        .transition()
-        .duration(500)
-        .style("fill", header.colors[0]);
-      select(".dynamic-home-header .back")
-        .transition()
-        .duration(500)
-        .style("fill", header.colors[1]);
-      select(".dynamic-home-block")
-        .transition()
-        .duration(500)
-        .style("background-color", header.colors[2]);
-    }
-  }
-
   render() {
     const { t, header } = this.props;
-
-    const mountainsLoaded = () => {
-      this.paintMountains(header);
-    };
-
-    const mountainsLoadedError = () => {};
 
     return (
       <div className="dynamic-home-header">
@@ -159,10 +132,33 @@ class DynamicHomeHeader extends Component {
           </Link>
         </div>
         <div className="dynamic-home-illustration">
-          <SvgImage
-            src={`/images/home/mountains.svg`}
-            callback={mountainsLoaded}
-            callbackError={mountainsLoadedError}
+          <div id="mountains-home">
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 1960 281"
+              style={{ enableBackground: "new 0 0 1960 281" }}
+            >
+              <g>
+                <polyline
+                  className="back"
+                  points="1.4,282.6 0,82 154.6,142 422.5,60 908.2,124 1169.2,60 1529.4,101 1966,0.3 1963.9,279.6     "
+                  style={{ fill: header.colors[1] }}
+                />
+                <polyline
+                  className="front"
+                  points="0.7,283.6 0,224.4 66.2,163.2 251.6,236.7 453.2,126.2 735.9,263.3 1003.6,142.7 1160.4,174.7 
+                    1358.5,114.1 1502.8,138.7 1778.6,59 1959,229.6 1959.1,280.6"
+                  style={{ fill: header.colors[0] }}
+                />
+              </g>
+            </svg>
+          </div>
+          <div
+            className="dynamic-home-block"
+            style={{ backgroundColor: header.colors[2] }}
           />
           {header && (
             <div className={`dynamic-home-items illustration-${header.slug}`}>
@@ -176,7 +172,6 @@ class DynamicHomeHeader extends Component {
             </div>
           )}
         </div>
-        <div className="dynamic-home-block" />
       </div>
     );
   }
