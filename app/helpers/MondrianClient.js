@@ -108,6 +108,41 @@ function getMemberQuery(cube, dimension, level, key, locale = "en") {
     });
 }
 
+function simpleGeoChartNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const geo = getGeoObject(params);
+
+    const prm = client.cube(cube).then(cube => {
+      const q = cube.query;
+      measures.forEach(m => {
+        q.measure(m);
+      });
+      drillDowns.forEach(([...dd]) => {
+        q.drilldown(...dd);
+      });
+      Object.entries(options).forEach(([k, v]) => q.option(k, v));
+      cuts.forEach(c => q.cut(c));
+
+      return {
+        key: key,
+        data:
+          store.env.CANON_API +
+          geoCut(geo, "Geography", q, store.i18n.locale).path("jsonrecords")
+      };
+    });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 export {
   levelCut,
   geoCut,
@@ -115,6 +150,7 @@ export {
   getMembersQuery,
   getMemberQuery,
   setLangCaptions,
-  getMeasureByGeo
+  getMeasureByGeo,
+  simpleGeoChartNeed
 };
 export default client;

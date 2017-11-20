@@ -6,37 +6,16 @@ import { browserHistory } from "react-router";
 
 import { numeral, slugifyItem } from "helpers/formatters";
 import { continentColorScale } from "helpers/colors";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
 export default translate()(
   class ImportsByOrigin extends Section {
     static need = [
-      (params, store) => {
-        const geo = getGeoObject(params);
-        const prm = mondrianClient.cube("imports").then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .option("parents", true)
-              .drilldown("Origin Country", "Country")
-              .drilldown("Date", "Year")
-              .measure("CIF US"),
-            store.i18n.locale
-          );
-
-          return {
-            key: "path_imports_by_origin",
-            data: store.env.CANON_API + q.path("jsonrecords")
-          };
-        });
-
-        return {
-          type: "GET_DATA",
-          promise: prm
-        };
-      }
+      simpleGeoChartNeed("path_imports_by_origin", "exports", ["CIF US"], {
+        drillDowns: [["Origin Country", "Country"], ["Date", "Year"]],
+        options: { parents: true }
+      })
     ];
 
     render() {
