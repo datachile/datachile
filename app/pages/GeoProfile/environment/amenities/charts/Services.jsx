@@ -11,6 +11,7 @@ import { numeral } from "helpers/formatters";
 
 import InfoLogoItem from "components/InfoLogoItem";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class Services extends Section {
   static need = [
@@ -100,7 +101,11 @@ class Services extends Section {
 
     var services = [];
 
-    if (environment_services_data) {
+    if (
+      environment_services_data &&
+      environment_services_data["Less Than 8 Blocks Public Transport"].values
+        .response_2
+    ) {
       services = [
         {
           logo: "public-transportation",
@@ -199,6 +204,7 @@ class Services extends Section {
       <div className={className}>
         <h3 className="chart-title">{t("Main services in ") + geo.name}</h3>
         <div className="info-logo-container">
+          {services.length == 0 && <NoDataAvailable text="" />}
           {services.map(d => <InfoLogoItem item={d} />)}
         </div>
         <SourceNote cube="casen_household" />
