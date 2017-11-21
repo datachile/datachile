@@ -213,6 +213,7 @@
     & .home-featured-profiles {
       & .home-featured-tiles {
         lost-column: 1;
+        padding: 0 var(--gutter);
         & .tile {
           lost-waffle: 1/4;
         }

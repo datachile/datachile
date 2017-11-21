@@ -136,6 +136,23 @@
     & .search-explore-wrapper {
       lost-center: 1/2 flex;
     }
+    & .explore-container {
+      & #explore-results {
+        & .filter-block {
+          & .explore-featured-tiles {
+            & .level1-filter {
+            }
+          }
+        }
+        & .results-block {
+          & .explore-list {
+            & li {
+              lost-waffle: 1/3;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -143,6 +160,40 @@
   .explore-page {
     & .search-explore-wrapper {
       lost-center: 1/2 flex;
+    }
+    & .explore-title {
+      margin: 0 var(--gutter) 0 var(--gutter);
+    }
+    & .explore-container {
+      lost-flex-container: column;
+      & #explore-sidebar {
+        lost-column: 1 flex;
+        & .explore-column {
+          & ul {
+            lost-flex-container: row;
+            & li {
+              lost-column: 1/6 flex;
+            }
+          }
+        }
+      }
+      & #explore-results {
+        lost-column: 1 flex;
+        & .filter-block {
+          & .explore-featured-tiles {
+            & .level1-filter {
+              lost-waffle: 1/3;
+            }
+          }
+        }
+        & .results-block {
+          & .explore-list {
+            & li {
+              lost-waffle: 1/3;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -152,6 +203,33 @@
     & .search-explore-wrapper {
       lost-column: 1 flex;
     }
+    & .explore-container {
+      & #explore-sidebar {
+        & .explore-column {
+          & ul {
+            & li {
+              lost-column: 1/3 flex;
+            }
+          }
+        }
+      }
+      & #explore-results {
+        & .filter-block {
+          & .explore-featured-tiles {
+            & .level1-filter {
+              lost-waffle: 1/2;
+            }
+          }
+        }
+        & .results-block {
+          & .explore-list {
+            & li {
+              lost-waffle: 1/2;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -159,6 +237,33 @@
   .explore-page {
     & .search-explore-wrapper {
       lost-column: 1 flex;
+    }
+    & .explore-container {
+      & #explore-sidebar {
+        & .explore-column {
+          & ul {
+            & li {
+              lost-column: 1/2 flex;
+            }
+          }
+        }
+      }
+      & #explore-results {
+        & .filter-block {
+          & .explore-featured-tiles {
+            & .level1-filter {
+              lost-waffle: 1;
+            }
+          }
+        }
+        & .results-block {
+          & .explore-list {
+            & li {
+              lost-waffle: 1;
+            }
+          }
+        }
+      }
     }
   }
 }
