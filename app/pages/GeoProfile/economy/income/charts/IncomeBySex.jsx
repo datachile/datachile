@@ -4,38 +4,25 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { numeral, moneyRangeFormat } from "helpers/formatters";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_GENDER } from "helpers/colors";
 
 class IncomeBySex extends Section {
   static need = [
-    (params, store) => {
-      var geo = getGeoObject(params);
-      const prm = mondrianClient.cube("nesi_income").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("Date", "Date", "Year")
-            .drilldown("Income Range", "Income Range", "Income Range")
-            .drilldown("Sex", "Sex", "Sex")
-            .measure("Expansion Factor"),
-          store.i18n.locale
-        );
-
-        return {
-          key: "path_income_by_sex",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    simpleGeoChartNeed(
+      "path_income_by_sex",
+      "nesi_income",
+      ["Expansion Factor"],
+      {
+        drillDowns: [
+          ["Date", "Date", "Year"],
+          ["Income Range", "Income Range", "Income Range"],
+          ["Sex", "Sex", "Sex"]
+        ],
+        options: { parents: true }
+      }
+    )
   ];
 
   render() {
