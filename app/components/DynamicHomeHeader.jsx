@@ -23,6 +23,7 @@ class DynamicHomeHeader extends Component {
         .cube("population_estimate")
         .then(cube => {
           var q = cube.query
+            .option("parents", true)
             .drilldown("Date", "Year")
             .drilldown("Geography", "Geography", "Region")
             .measure("Population")
@@ -49,6 +50,7 @@ class DynamicHomeHeader extends Component {
         .cube("exports")
         .then(cube => {
           var q = cube.query
+            .option("parents", true)
             .drilldown("Destination Country", "Country", "Country")
             .drilldown("Date", "Date", "Year")
             .measure("FOB US")
@@ -64,6 +66,39 @@ class DynamicHomeHeader extends Component {
             key: "home_countries_export",
             data: _.keyBy(res.data.data, function(o) {
               return "countries_" + o["ID Country"];
+            })
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const prm = mondrianClient
+        .cube("education_employability")
+        .then(cube => {
+          var q = cube.query
+            .option("parents", true)
+            .drilldown(
+              "Higher Institutions",
+              "Higher Institutions",
+              "Higher Institution"
+            )
+            .measure("Number of records")
+            .measure("Avg employability 1st year")
+            .cut(
+              "{[Higher Institutions].[Higher Institutions].[Higher Institution].&[97],[Higher Institutions].[Higher Institutions].[Higher Institution].&[73],[Higher Institutions].[Higher Institutions].[Higher Institution].&[75],[Higher Institutions].[Higher Institutions].[Higher Institution].&[96]}"
+            );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "home_institutions_employability",
+            data: _.keyBy(res.data.data, function(o) {
+              return "institutions_" + o["ID Higher Institution"];
             })
           };
         });
@@ -160,16 +195,15 @@ class DynamicHomeHeader extends Component {
               })
               .on("click", function(d) {
                 var elem = select(this);
-                const name = that.getTooltipName(elem.attr("id"));
-                if (elem.attr("id") === null) {
+                const id = elem.attr("id");
+
+                if (id === null) {
                   console.error("No attribute 'id' on svg file");
                 } else {
-                  var url = slugifyItem(
-                    that.props.header.slug,
-                    elem.attr("id"),
-                    name
-                  );
-                  browserHistory.push(url);
+                  var url = that.getTooltipUrl(id);
+                  if (url) {
+                    browserHistory.push(url);
+                  }
                 }
               });
           }
@@ -182,12 +216,20 @@ class DynamicHomeHeader extends Component {
     const { t, header, data } = this.props;
     var name = "";
 
+    console.log("institutions", id, data.home_institutions_employability);
+
     switch (header.slug) {
       case "geo":
         name = data.home_geo_population["geo_" + id].Region;
         break;
       case "countries":
         name = data.home_countries_export["countries_" + id]["Country"];
+        break;
+      case "institutions":
+        name =
+          data.home_institutions_employability["institutions_" + id][
+            "Higher Institution"
+          ];
         break;
     }
     return name;
@@ -214,8 +256,50 @@ class DynamicHomeHeader extends Component {
           value: numeral(obj["FOB US"], locale).format("($ 0.00 a)")
         });
         break;
+      case "institutions":
+        var obj = data.home_institutions_employability[header.slug + "_" + id];
+        datas.push({
+          title: t("Employability 1st Year"),
+          value: numeral(obj["Avg employability 1st year"], locale).format(
+            "0.00%"
+          )
+        });
+        break;
     }
     return datas;
+  }
+
+  getTooltipUrl(id) {
+    const { header, data } = this.props;
+
+    var url = null;
+    switch (header.slug) {
+      case "geo":
+        var obj = data.home_geo_population[header.slug + "_" + id];
+        url = slugifyItem("geo", id, this.getTooltipName(id));
+        break;
+      case "countries":
+        var obj = data.home_countries_export[header.slug + "_" + id];
+        url = slugifyItem(
+          "countries",
+          obj["ID Subregion"],
+          obj["Subregion"],
+          id,
+          this.getTooltipName(id)
+        );
+        break;
+      case "institutions":
+        var obj = data.home_institutions_employability[header.slug + "_" + id];
+        url = slugifyItem(
+          "institutions",
+          obj["ID Higher Institution Subgroup"],
+          obj["Higher Institution Subgroup"],
+          id,
+          this.getTooltipName(id)
+        );
+        break;
+    }
+    return url;
   }
 
   componentWillMount() {
