@@ -8,7 +8,7 @@ import { Geomap } from "d3plus-react";
 import { select, selectAll, event, mouse } from "d3-selection";
 
 import { numeral, slugifyItem } from "helpers/formatters";
-import mondrianClient from "helpers/MondrianClient";
+import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import SVGCache from "helpers/svg";
 import { FORMATTERS } from "helpers/formatters";
 
@@ -22,12 +22,15 @@ class DynamicHomeHeader extends Component {
       const prm = mondrianClient
         .cube("population_estimate")
         .then(cube => {
-          var q = cube.query
-            .option("parents", true)
-            .drilldown("Date", "Year")
-            .drilldown("Geography", "Geography", "Region")
-            .measure("Population")
-            .cut(`[Date].[Year].&[${store.population_year}]`);
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Year")
+              .drilldown("Geography", "Geography", "Region")
+              .measure("Population")
+              .cut(`[Date].[Year].&[${store.population_year}]`),
+            store.i18n.locale
+          );
 
           return mondrianClient.query(q, "jsonrecords");
         })
@@ -49,15 +52,18 @@ class DynamicHomeHeader extends Component {
       const prm = mondrianClient
         .cube("exports")
         .then(cube => {
-          var q = cube.query
-            .option("parents", true)
-            .drilldown("Destination Country", "Country", "Country")
-            .drilldown("Date", "Date", "Year")
-            .measure("FOB US")
-            .cut(`[Date].[Year].&[${store.exports_year}]`)
-            .cut(
-              "{[Destination Country].[Country].[Country].&[202],[Destination Country].[Country].[Country].&[219],[Destination Country].[Country].[Country].&[208],[Destination Country].[Country].[Country].&[201],[Destination Country].[Country].[Country].&[216],[Destination Country].[Country].[Country].&[505],[Destination Country].[Country].[Country].&[112],[Destination Country].[Country].[Country].&[406],[Destination Country].[Country].[Country].&[563],[Destination Country].[Country].[Country].&[220],[Destination Country].[Country].[Country].&[225],[Destination Country].[Country].[Country].&[336]}"
-            );
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", true)
+              .drilldown("Destination Country", "Country", "Country")
+              .drilldown("Date", "Date", "Year")
+              .measure("FOB US")
+              .cut(`[Date].[Year].&[${store.exports_year}]`)
+              .cut(
+                "{[Destination Country].[Country].[Country].&[202],[Destination Country].[Country].[Country].&[219],[Destination Country].[Country].[Country].&[208],[Destination Country].[Country].[Country].&[201],[Destination Country].[Country].[Country].&[216],[Destination Country].[Country].[Country].&[505],[Destination Country].[Country].[Country].&[112],[Destination Country].[Country].[Country].&[406],[Destination Country].[Country].[Country].&[563],[Destination Country].[Country].[Country].&[220],[Destination Country].[Country].[Country].&[225],[Destination Country].[Country].[Country].&[336]}"
+              ),
+            store.i18n.locale
+          );
 
           return mondrianClient.query(q, "jsonrecords");
         })
@@ -79,18 +85,21 @@ class DynamicHomeHeader extends Component {
       const prm = mondrianClient
         .cube("education_employability")
         .then(cube => {
-          var q = cube.query
-            .option("parents", true)
-            .drilldown(
-              "Higher Institutions",
-              "Higher Institutions",
-              "Higher Institution"
-            )
-            .measure("Number of records")
-            .measure("Avg employability 1st year")
-            .cut(
-              "{[Higher Institutions].[Higher Institutions].[Higher Institution].&[97],[Higher Institutions].[Higher Institutions].[Higher Institution].&[73],[Higher Institutions].[Higher Institutions].[Higher Institution].&[75],[Higher Institutions].[Higher Institutions].[Higher Institution].&[96]}"
-            );
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", true)
+              .drilldown(
+                "Higher Institutions",
+                "Higher Institutions",
+                "Higher Institution"
+              )
+              .measure("Number of records")
+              .measure("Avg employability 1st year")
+              .cut(
+                "{[Higher Institutions].[Higher Institutions].[Higher Institution].&[97],[Higher Institutions].[Higher Institutions].[Higher Institution].&[73],[Higher Institutions].[Higher Institutions].[Higher Institution].&[75],[Higher Institutions].[Higher Institutions].[Higher Institution].&[96]}"
+              ),
+            store.i18n.locale
+          );
 
           return mondrianClient.query(q, "jsonrecords");
         })
@@ -112,14 +121,17 @@ class DynamicHomeHeader extends Component {
       const prm = mondrianClient
         .cube("education_employability")
         .then(cube => {
-          var q = cube.query
-            .option("parents", true)
-            .drilldown("Careers", "Careers", "Career")
-            .measure("Number of records")
-            .measure("Avg anual payment 2016")
-            .cut(
-              "{[Careers].[Careers].[Career].&[63],[Careers].[Careers].[Career].&[26],[Careers].[Careers].[Career].&[47],[Careers].[Careers].[Career].&[280],[Careers].[Careers].[Career].&[76],[Careers].[Careers].[Career].&[68],[Careers].[Careers].[Career].&[205],[Careers].[Careers].[Career].&[18],[Careers].[Careers].[Career].&[100]}"
-            );
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", true)
+              .drilldown("Careers", "Careers", "Career")
+              .measure("Number of records")
+              .measure("Avg anual payment 2016")
+              .cut(
+                "{[Careers].[Careers].[Career].&[63],[Careers].[Careers].[Career].&[26],[Careers].[Careers].[Career].&[47],[Careers].[Careers].[Career].&[280],[Careers].[Careers].[Career].&[76],[Careers].[Careers].[Career].&[68],[Careers].[Careers].[Career].&[205],[Careers].[Careers].[Career].&[18],[Careers].[Careers].[Career].&[100]}"
+              ),
+            store.i18n.locale
+          );
 
           return mondrianClient.query(q, "jsonrecords");
         })
@@ -128,6 +140,69 @@ class DynamicHomeHeader extends Component {
             key: "home_careers_employability",
             data: _.keyBy(res.data.data, function(o) {
               return "careers_" + o["ID Career"];
+            })
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", true)
+              .drilldown("Export HS", "HS", "HS2")
+              .drilldown("Date", "Date", "Year")
+              .measure("FOB US")
+              .cut(`[Date].[Year].&[${store.exports_year}]`)
+              .cut(
+                "{[Export HS].[HS].[HS2].&[08],[Export HS].[HS].[HS2].&[74],[Export HS].[HS].[HS2].&[12],[Export HS].[HS].[HS2].&[16],[Export HS].[HS].[HS2].&[10],[Export HS].[HS].[HS2].&[27],[Export HS].[HS].[HS2].&[44],[Export HS].[HS].[HS2].&[02],[Export HS].[HS].[HS2].&[19],[Export HS].[HS].[HS2].&[07],[Export HS].[HS].[HS2].&[48],[Export HS].[HS].[HS2].&[06],[Export HS].[HS].[HS2].&[27],[Export HS].[HS].[HS2].&[51]}"
+              ),
+            store.i18n.locale
+          );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "home_product_exports",
+            data: _.keyBy(res.data.data, function(o) {
+              return "products_" + o["ID HS2"];
+            })
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const prm = mondrianClient
+        .cube("tax_data")
+        .then(cube => {
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", true)
+              .drilldown("ISICrev4", "ISICrev4", "Level 1")
+              .drilldown("Date", "Date", "Year")
+              .measure("Output")
+              .cut(`[Date].[Year].&[${store.tax_data_year}]`),
+            store.i18n.locale
+          );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "home_industries_tax_data",
+            data: _.keyBy(res.data.data, function(o) {
+              return "industries_" + o["ID Level 1"];
             })
           };
         });
@@ -245,8 +320,6 @@ class DynamicHomeHeader extends Component {
     const { t, header, data } = this.props;
     var name = "";
 
-    console.log("careers", id, data.home_careers_employability);
-
     switch (header.slug) {
       case "geo":
         name = data.home_geo_population["geo_" + id].Region;
@@ -262,6 +335,12 @@ class DynamicHomeHeader extends Component {
         break;
       case "careers":
         name = data.home_careers_employability["careers_" + id]["Career"];
+        break;
+      case "products":
+        name = data.home_product_exports["products_" + id]["HS2"];
+        break;
+      case "industries":
+        name = data.home_industries_tax_data["industries_" + id]["Level 1"];
         break;
     }
     return name;
@@ -284,7 +363,7 @@ class DynamicHomeHeader extends Component {
       case "countries":
         var obj = data.home_countries_export[header.slug + "_" + id];
         datas.push({
-          title: t("Exports") + " " + obj["Year"],
+          title: t("Imports from Chile") + " " + obj["Year"],
           value: numeral(obj["FOB US"], locale).format("($ 0.00 a)")
         });
         break;
@@ -304,6 +383,20 @@ class DynamicHomeHeader extends Component {
           value: numeral(obj["Avg anual payment 2016"], locale).format(
             "($ 0,0)"
           )
+        });
+        break;
+      case "products":
+        var obj = data.home_product_exports[header.slug + "_" + id];
+        datas.push({
+          title: t("Chile Exports") + " " + obj["Year"],
+          value: numeral(obj["FOB US"], locale).format("($ 0.00 a)")
+        });
+        break;
+      case "industries":
+        var obj = data.home_industries_tax_data[header.slug + "_" + id];
+        datas.push({
+          title: t("Industry output") + " " + obj["Year"],
+          value: numeral(obj["Output"], locale).format("($ 0.00 a)")
         });
         break;
     }
@@ -348,6 +441,20 @@ class DynamicHomeHeader extends Component {
           id,
           this.getTooltipName(id)
         );
+        break;
+      case "products":
+        var obj = data.home_product_exports[header.slug + "_" + id];
+        url = slugifyItem(
+          "products",
+          obj["ID HS0"],
+          obj["HS0"],
+          id,
+          this.getTooltipName(id)
+        );
+        break;
+      case "industries":
+        var obj = data.home_industries_tax_data[header.slug + "_" + id];
+        url = slugifyItem("industries", id, this.getTooltipName(id));
         break;
     }
     return url;
