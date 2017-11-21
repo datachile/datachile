@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .dynamic-home-header {
   lost-flex-container: column;
   & .dynamic-home-explore-btn {
@@ -168,4 +170,38 @@
   to {
     opacity: 1;
   }
+}
+
+@add-mixin for-xl {
+}
+
+@add-mixin for-lg {
+}
+
+@add-mixin for-md {
+}
+
+@add-mixin for-sm {
+  .dynamic-home-header {
+    & .dynamic-home-illustration {
+      & .dynamic-home-hotspots,
+      & .dynamic-home-image {
+        display: none;
+      }
+      & .dynamic-home-block {
+        height: 30px;
+      }
+    }
+    & .dynamic-home-explore-btn {
+      & .explore-btn {
+        min-width: 50%;
+      }
+    }
+  }
+}
+
+@add-mixin for-xs {
+}
+
+@add-mixin for-xx {
 }
