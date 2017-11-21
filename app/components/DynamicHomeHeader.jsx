@@ -107,6 +107,35 @@ class DynamicHomeHeader extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      const prm = mondrianClient
+        .cube("education_employability")
+        .then(cube => {
+          var q = cube.query
+            .option("parents", true)
+            .drilldown("Careers", "Careers", "Career")
+            .measure("Number of records")
+            .measure("Avg anual payment 2016")
+            .cut(
+              "{[Careers].[Careers].[Career].&[63],[Careers].[Careers].[Career].&[26],[Careers].[Careers].[Career].&[47],[Careers].[Careers].[Career].&[280],[Careers].[Careers].[Career].&[76],[Careers].[Careers].[Career].&[68],[Careers].[Careers].[Career].&[205],[Careers].[Careers].[Career].&[18],[Careers].[Careers].[Career].&[100]}"
+            );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "home_careers_employability",
+            data: _.keyBy(res.data.data, function(o) {
+              return "careers_" + o["ID Career"];
+            })
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -216,7 +245,7 @@ class DynamicHomeHeader extends Component {
     const { t, header, data } = this.props;
     var name = "";
 
-    console.log("institutions", id, data.home_institutions_employability);
+    console.log("careers", id, data.home_careers_employability);
 
     switch (header.slug) {
       case "geo":
@@ -230,6 +259,9 @@ class DynamicHomeHeader extends Component {
           data.home_institutions_employability["institutions_" + id][
             "Higher Institution"
           ];
+        break;
+      case "careers":
+        name = data.home_careers_employability["careers_" + id]["Career"];
         break;
     }
     return name;
@@ -265,6 +297,15 @@ class DynamicHomeHeader extends Component {
           )
         });
         break;
+      case "careers":
+        var obj = data.home_careers_employability[header.slug + "_" + id];
+        datas.push({
+          title: t("Avg anual payment 2016"),
+          value: numeral(obj["Avg anual payment 2016"], locale).format(
+            "($ 0,0)"
+          )
+        });
+        break;
     }
     return datas;
   }
@@ -294,6 +335,16 @@ class DynamicHomeHeader extends Component {
           "institutions",
           obj["ID Higher Institution Subgroup"],
           obj["Higher Institution Subgroup"],
+          id,
+          this.getTooltipName(id)
+        );
+        break;
+      case "careers":
+        var obj = data.home_careers_employability[header.slug + "_" + id];
+        url = slugifyItem(
+          "careers",
+          obj["ID Career Group"],
+          obj["Career Group"],
           id,
           this.getTooltipName(id)
         );
