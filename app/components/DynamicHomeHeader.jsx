@@ -43,6 +43,35 @@ class DynamicHomeHeader extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = cube.query
+            .drilldown("Destination Country", "Country", "Country")
+            .drilldown("Date", "Date", "Year")
+            .measure("FOB US")
+            .cut(`[Date].[Year].&[${store.exports_year}]`)
+            .cut(
+              "{[Destination Country].[Country].[Country].&[202],[Destination Country].[Country].[Country].&[219],[Destination Country].[Country].[Country].&[208],[Destination Country].[Country].[Country].&[201],[Destination Country].[Country].[Country].&[216],[Destination Country].[Country].[Country].&[505],[Destination Country].[Country].[Country].&[112],[Destination Country].[Country].[Country].&[406],[Destination Country].[Country].[Country].&[563],[Destination Country].[Country].[Country].&[220],[Destination Country].[Country].[Country].&[225],[Destination Country].[Country].[Country].&[336]}"
+            );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "home_countries_export",
+            data: _.keyBy(res.data.data, function(o) {
+              return "countries_" + o["ID Country"];
+            })
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -152,9 +181,13 @@ class DynamicHomeHeader extends Component {
   getTooltipName(id) {
     const { t, header, data } = this.props;
     var name = "";
+
     switch (header.slug) {
       case "geo":
         name = data.home_geo_population["geo_" + id].Region;
+        break;
+      case "countries":
+        name = data.home_countries_export["countries_" + id]["Country"];
         break;
     }
     return name;
@@ -167,13 +200,18 @@ class DynamicHomeHeader extends Component {
     var datas = [];
     switch (header.slug) {
       case "geo":
+        var obj = data.home_geo_population[header.slug + "_" + id];
+
         datas.push({
-          title: t("Estimate Population 2017"),
-          value:
-            numeral(
-              data.home_geo_population["geo_" + id].Population,
-              locale
-            ).format("(0,0)") + " hab."
+          title: t("Estimate Population") + " " + obj["Year"],
+          value: numeral(obj.Population, locale).format("(0,0)") + " hab."
+        });
+        break;
+      case "countries":
+        var obj = data.home_countries_export[header.slug + "_" + id];
+        datas.push({
+          title: t("Exports") + " " + obj["Year"],
+          value: numeral(obj["FOB US"], locale).format("($ 0.00 a)")
         });
         break;
     }
