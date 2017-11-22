@@ -91,6 +91,7 @@ import PerformanceByType from "./education/performance/charts/PerformanceByType"
 /* Housing and Environment */
 import QualitySlide from "./environment/quality/QualitySlide";
 import HousingType from "./environment/quality/charts/HousingType";
+import HousingByConstructionType from "./environment/quality/charts/HousingByConstructionType";
 
 import InternetAccessSlide from "./environment/conectivity/InternetAccessSlide";
 import InternetAccessByZone from "./environment/conectivity/charts/InternetAccessByZone";
@@ -202,6 +203,7 @@ class GeoProfile extends Component {
 
     QualitySlide,
     HousingType,
+    HousingByConstructionType,
 
     InternetAccessSlide,
     InternetAccessByZone,
@@ -787,7 +789,7 @@ class GeoProfile extends Component {
                 <QualitySlide>
                   <SectionColumns>
                     <HousingType className="lost-1-2" />
-                    <Placeholder className="lost-1-2" text="Materials" />
+                    <HousingByConstructionType className="lost-1-2" />
                   </SectionColumns>
                 </QualitySlide>
               </div>

@@ -4,19 +4,22 @@ import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import { simpleGeoChartNeed, geoCut } from "helpers/MondrianClient";
+import {
+  simpleGeoChartNeed,
+  geoCut
+} from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
 
-class HousingType extends Section {
+class HousingByConstructionType extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
       return simpleGeoChartNeed(
-        "path_housing_type",
+        "path_housing_construction_type",
         "casen_household",
         [
           geo.type == "comuna"
@@ -25,7 +28,7 @@ class HousingType extends Section {
         ],
         {
           drillDowns: [
-            ["Household Type", "Household Type", "Household Type"],
+            ["Walls Material", "Walls Material", "Walls Material"],
             ["Date", "Date", "Year"]
           ],
           options: { parents: true }
@@ -36,7 +39,7 @@ class HousingType extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    const path = this.context.data.path_housing_type;
+    const path = this.context.data.path_housing_construction_type;
     if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
     const geo = this.context.data.geo;
@@ -45,18 +48,20 @@ class HousingType extends Section {
         ? "Expansion Factor Comuna"
         : "Expansion Factor Region";
 
+    console.log("PPPPPPPPPPPPP", path);
+
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Housing Type")}</h3>
+        <h3 className="chart-title">{t("Material of Walls")}</h3>
         <BarChart
           config={{
             height: 500,
             data: path,
-            groupBy: "ID Household Type",
-            label: d => d["Household Type"],
+            groupBy: "ID Walls Material",
+            label: d => d["Walls Material"],
             time: "ID Year",
             x: msrName,
-            y: "Household Type",
+            y: "Walls Material",
             shapeConfig: {
               fill: d => ordinalColorScale(2),
               label: false
@@ -73,7 +78,7 @@ class HousingType extends Section {
               title: false
             },
             ySort: (a, b) => {
-              return a["Number of visas"] > b["Number of visas"] ? 1 : -1;
+              return a[msrName] > b[msrName] ? 1 : -1;
             },
             barPadding: 0,
             groupPadding: 5,
@@ -99,4 +104,4 @@ class HousingType extends Section {
   }
 }
 
-export default translate()(HousingType);
+export default translate()(HousingByConstructionType);
