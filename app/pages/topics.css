@@ -75,6 +75,9 @@
             lost-column: 1/2 flex;
           }
         }
+        & .l-2-3 {
+          lost-column: 2/3 flex;
+        }
       }
     }
     & .chart-title {
@@ -217,6 +220,9 @@
               lost-column: 1/2 flex;
             }
           }
+          & .l-2-3 {
+            lost-column: 1/2 flex;
+          }
         }
       }
       & .topic-slide-charts {
@@ -247,6 +253,9 @@
             &.l-1-2 {
               lost-column: 1 1 flex;
             }
+          }
+          & .l-2-3 {
+            lost-column: 1 1 flex;
           }
         }
       }
