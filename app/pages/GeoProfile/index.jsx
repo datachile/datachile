@@ -237,7 +237,7 @@ class GeoProfile extends Component {
   ];
 
   render() {
-    const { focus, t, i18n } = this.props;
+    const { t, i18n } = this.props;
 
     if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
