@@ -1,46 +1,29 @@
 import React, { Component } from "react";
 
 import { Network } from "d3plus-react";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
+import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 class IndustrySpace extends Section {
   static need = [
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("tax_data").then(cube => {
-        var q = geoCut(
-          geo,
-          "Tax Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("ISICrev4", "Level 2")
-            .drilldown("Date", "Year")
-            .cut(`[Date].[Date].[Year].&[${store.tax_data_year}]`)
-            .measure("Output")
-            .option("parents", true),
-          store.i18n.locale
-        );
-
-        return {
-          key: "path_industry_output",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    (params, store) =>
+      simpleGeoChartNeed("path_industry_space", "tax_data", ["Output"], {
+        drillDowns: [["ISICrev4", "ISICrev4", "Level 4"]],
+        options: { parents: true },
+        cuts: [`[Date].[Date].[Year].&[${store.tax_data_year}]`]
+      })(params, store)
   ];
 
   render() {
-    const path = this.context.data.path_industry_output;
-    const { t, className } = this.props;
+    const path = this.context.data.path_industry_space;
+    const { t, className, i18n } = this.props;
+    if (!i18n.language) return null;
+    const locale = i18n.language.split("-")[0];
+
     return (
       <div className={className}>
         <h3 className="chart-title">{t("Industry Space")}</h3>
@@ -54,13 +37,21 @@ class IndustrySpace extends Section {
             sizeMin: 1,
             sizeMax: 15,
             zoomScroll: false,
+            legend: false,
+            tooltipConfig: {
+              title: d => {
+                return d["Level 4"];
+              },
+              body: d => numeral(d["Output"], locale).format("(USD 0 a)")
+            },
             legend: false
           }}
           dataFormat={data =>
             data.data.map(d => ({
-              id: `${d["ID Level 1"]}${d["ID Level 2"]}`,
+              id: d["ID Level 4"],
               ...d
-            }))}
+            }))
+          }
         />
       </div>
     );

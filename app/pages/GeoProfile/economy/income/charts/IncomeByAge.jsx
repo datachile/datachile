@@ -3,39 +3,26 @@ import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral, moneyRangeFormat } from "helpers/formatters";
 
 class IncomeByAge extends Section {
   static need = [
-    (params, store) => {
-      var geo = getGeoObject(params);
-      const prm = mondrianClient.cube("nesi_income").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("Date", "Date", "Year")
-            .drilldown("Income Range", "Income Range", "Income Range")
-            .drilldown("Age Range", "Age Range", "Age Range")
-            .measure("Expansion Factor"),
-          store.i18n.locale
-        );
-
-        return {
-          key: "path_income_by_age",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    simpleGeoChartNeed(
+      "path_income_by_age",
+      "nesi_income",
+      ["Expansion Factor"],
+      {
+        drillDowns: [
+          ["Date", "Date", "Year"],
+          ["Income Range", "Income Range", "Income Range"],
+          ["Age Range", "Age Range", "Age Range"]
+        ],
+        options: { parents: true }
+      }
+    )
   ];
 
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Network } from "d3plus-react";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
@@ -10,33 +10,12 @@ import { numeral } from "helpers/formatters";
 
 class ProductSpace extends Section {
   static need = [
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const cube = mondrianClient.cube("exports");
-      const prm = cube.then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .drilldown("Date", "Year")
-            .drilldown("Export HS", "HS4")
-            .measure("FOB US")
-            .cut(`[Date].[Date].[Year].&[${store.exports_year}]`)
-            .option("parents", true),
-          store.i18n.locale
-        );
-
-        return {
-          key: "path_exports_last_year",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    (params, store) =>
+      simpleGeoChartNeed("path_exports_last_year", "exports", ["FOB US"], {
+        drillDowns: [["Export HS", "HS4"]],
+        options: { parents: true },
+        cuts: [`[Date].[Date].[Year].&[${store.exports_year}]`]
+      })(params, store)
   ];
 
   render() {

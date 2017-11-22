@@ -213,6 +213,7 @@
     & .home-featured-profiles {
       & .home-featured-tiles {
         lost-column: 1;
+        padding: 0 var(--gutter);
         & .tile {
           lost-waffle: 1/4;
         }
@@ -235,6 +236,15 @@
         }
       }
     }
+    & .home-slider {
+      top: 0;
+      & .home-slide-item {
+        lost-column: 1/3 3 0px;
+        & .home-slide-content {
+          padding-bottom: 0px;
+        }
+      }
+    }
   }
 }
 
@@ -252,6 +262,15 @@
         }
       }
     }
+    & .home-slider {
+      top: 0;
+      & .home-slide-item {
+        lost-column: 1/3 3 0px;
+        & .home-slide-content {
+          margin-bottom: 0px;
+        }
+      }
+    }
   }
 }
 
@@ -264,8 +283,22 @@
         }
       }
     }
+    & .home-slider {
+      top: 0;
+      & .home-slide-item {
+        lost-column: 1/2 2 0px;
+      }
+    }
   }
 }
 
 @add-mixin for-xx {
+  .home {
+    & .home-slider {
+      top: 0;
+      & .home-slide-item {
+        lost-column: 1 1 0px;
+      }
+    }
+  }
 }

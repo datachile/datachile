@@ -1,6 +1,5 @@
 import { Client as MondrianClient } from "mondrian-rest-client";
-
-//console.log("HARCODED!!!! REMOVE!!!");
+import { getGeoObject } from "helpers/dataUtils";
 
 const client = new MondrianClient("https://chilecube.datawheel.us/");
 //const client = new MondrianClient("http://localhost:9292/");
@@ -18,10 +17,10 @@ function geoCut(geo, dimensionName, query, lang = "en") {
   if (geo.type === "country") {
     return query; // no region provided, don't cut
   } else if (geo.type === "region") {
-    query.drilldown(dimensionName, "Region");
+    //query.drilldown(dimensionName, "Region");
     return query.cut(`[${dimensionName}].[Region].&[${geo.key}]`);
   } else if (geo.type === "comuna") {
-    query.drilldown(dimensionName, "Comuna");
+    //query.drilldown(dimensionName, "Comuna");
     return query.cut(`[${dimensionName}].[Comuna].&[${geo.key}]`);
   } else {
     throw new Error(`Geo '${geo}' unknown`);
@@ -108,6 +107,41 @@ function getMemberQuery(cube, dimension, level, key, locale = "en") {
     });
 }
 
+function simpleGeoChartNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const geo = getGeoObject(params);
+
+    const prm = client.cube(cube).then(cube => {
+      const q = cube.query;
+      measures.forEach(m => {
+        q.measure(m);
+      });
+      drillDowns.forEach(([...dd]) => {
+        q.drilldown(...dd);
+      });
+      Object.entries(options).forEach(([k, v]) => q.option(k, v));
+      cuts.forEach(c => q.cut(c));
+
+      return {
+        key: key,
+        data:
+          store.env.CANON_API +
+          geoCut(geo, "Geography", q, store.i18n.locale).path("jsonrecords")
+      };
+    });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 export {
   levelCut,
   geoCut,
@@ -115,6 +149,7 @@ export {
   getMembersQuery,
   getMemberQuery,
   setLangCaptions,
-  getMeasureByGeo
+  getMeasureByGeo,
+  simpleGeoChartNeed
 };
 export default client;

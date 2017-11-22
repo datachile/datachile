@@ -7,6 +7,7 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import SourceNote from "components/SourceNote";
 
 class TradeSlide extends Section {
   static need = [
@@ -58,41 +59,42 @@ class TradeSlide extends Section {
     }
 
     return (
-      <div className="topic-slide-block">
-        <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Trade")}</div>
-          <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("export_by_product.line1", text_data)
-                }}
-              />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("export_by_product.line2", text_data)
-                }}
-              />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("export_by_product.line3", text_data)
-                }}
-              />
-            </p>
-          </div>
-          <div className="topic-slide-data">
-            <FeaturedDatum
-              className="lost-1-3"
-              icon="industria"
-              datum={text_data.trade_volume}
-              title={t("Trade volume")}
-              subtitle={text_data.first_year + " - " + text_data.last_year}
-            />
-            <TradeBalance className="lost-2-3" />
-          </div>
+        <div className="topic-slide-block">
+            <div className="topic-slide-intro">
+                <div className="topic-slide-title">{t("Trade")}</div>
+                <div className="topic-slide-text">
+                    <p>
+                        <span
+                            dangerouslySetInnerHTML={{
+                                __html: t("export_by_product.line1", text_data)
+                            }}
+                        />
+                        <span
+                            dangerouslySetInnerHTML={{
+                                __html: t("export_by_product.line2", text_data)
+                            }}
+                        />
+                        <span
+                            dangerouslySetInnerHTML={{
+                                __html: t("export_by_product.line3", text_data)
+                            }}
+                        />
+                    </p>
+                </div>
+                <div className="topic-slide-data">
+                    <FeaturedDatum
+                        className="lost-1-3"
+                        icon="industria"
+                        datum={text_data.trade_volume}
+                        title={t("Trade volume")}
+                        subtitle={text_data.first_year + " - " + text_data.last_year}
+                    />
+                    <TradeBalance className="lost-2-3" />
+                </div>
+            </div>
+            <div className="topic-slide-charts">{children}</div>
+            <SourceNote cube="exports" />
         </div>
-        <div className="topic-slide-charts">{children}</div>
-      </div>
     );
   }
 }

@@ -6,6 +6,7 @@ import { Section } from "datawheel-canon";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
+import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -45,8 +46,11 @@ class EnrollmentSlide extends Section {
   ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, t, i18n } = this.props;
     const { datum_enrollment_special_education } = this.context.data;
+
+    if (!i18n.language) return null;
+    const locale = i18n.language.split("-")[0];
 
     return (
       <div className="topic-slide-block">
@@ -66,7 +70,9 @@ class EnrollmentSlide extends Section {
             <FeaturedDatum
               className="lost-1-3"
               icon="empleo"
-              datum={datum_enrollment_special_education}
+              datum={numeral(datum_enrollment_special_education, locale).format(
+                "(0,0)"
+              )}
               title={t("Students in Special Education")}
               subtitle="Lorem blabla"
             />

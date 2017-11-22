@@ -6,35 +6,18 @@ import { browserHistory } from "react-router";
 
 import { continentColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  geoCut,
+  simpleGeoChartNeed
+} from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
 class ExportsByDestination extends Section {
   static need = [
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("exports").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("Destination Country", "Country")
-            .drilldown("Date", "Year")
-            .measure("FOB US"),
-          store.i18n.locale
-        );
-        return {
-          key: "path_exports_by_destination",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    simpleGeoChartNeed("path_exports_by_destination", "exports", ["FOB US"], {
+      drillDowns: [["Destination Country", "Country"], ["Date", "Year"]],
+      options: { parents: true }
+    })
   ];
 
   render() {
