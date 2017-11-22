@@ -16,24 +16,26 @@ class MigrationDetailsSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Migration")}</div>
-          <div className="topic-slide-text">Lorem ipsum</div>
+          <div className="topic-slide-text">
+            <p>Lorem ipsum</p>
+          </div>
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="empleo"
               datum="xx"
               title="Lorem ipsum"
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="empleo"
               datum="xx"
               title="Lorem ipsum"
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="industria"
               datum="xx"
               title="Lorem ipsum"

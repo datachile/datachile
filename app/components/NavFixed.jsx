@@ -60,12 +60,14 @@ class NavFixed extends Component {
       <nav className={`nav-fixed${visible ? "" : " hidden"}`}>
         <div className="nav-entity">
           <div className="nav-titles">
-            <div className="menu-button">
-              <a onClick={toggleSubNav}>
-                <img src="/images/icons/icon-menu.svg" />
-              </a>
+            <div className="nav-titles-action">
+              <div className="menu-button">
+                <a onClick={toggleSubNav}>
+                  <img src="/images/icons/icon-menu.svg" />
+                </a>
+              </div>
+              <span className="datachile">DataChile:</span>
             </div>
-            <span className="datachile">DataChile:</span>
             <span className="title">{title}</span>
           </div>
           <div className="nav-topic">

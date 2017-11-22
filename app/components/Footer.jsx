@@ -42,17 +42,13 @@ class Footer extends Component {
                             {t("Explore")}
                         </Link>
                         <span className="link link-dot">&#183;</span>
-                        <Link className="link" to="/terms">
-                            {t("Terms of use")}
-                        </Link>
-                        <span className="link link-dot">&#183;</span>
                         <Link className="link" to="/about">
                             {t("About")}
                         </Link>
                         <span className="link link-dot">&#183;</span>
-                        <Link className="link" to="/contact">
+                        <a className="link" href="#" target="_blank">
                             {t("Contact")}
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </footer>

@@ -46,7 +46,7 @@ class SalariesByCategory extends Section {
             xConfig: {
               tickSize: 0,
               title: t("Monthly Median Income CLP"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.00 a)")
             },
             ySort: (a, b) => {
               return a["Median Income"] > b["Median Income"] ? 1 : -1;

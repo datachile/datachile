@@ -3,39 +3,26 @@ import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale, COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 class SalariesByOccupation extends Section {
   static need = [
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("nesi_income").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("ISCO", "ISCO", "ISCO")
-            .drilldown("Date", "Date", "Year")
-            .drilldown("Sex", "Sex", "Sex")
-            .measure("Median Income"),
-          store.i18n.locale
-        );
-
-        return {
-          key: "path_salaries_by_occupation",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    simpleGeoChartNeed(
+      "path_salaries_by_occupation",
+      "nesi_income",
+      ["Median Income"],
+      {
+        drillDowns: [
+          ["ISCO", "ISCO", "ISCO"],
+          ["Date", "Date", "Year"],
+          ["Sex", "Sex", "Sex"]
+        ],
+        options: { parents: true }
+      }
+    )
   ];
 
   render() {
@@ -66,7 +53,7 @@ class SalariesByOccupation extends Section {
             },
             yConfig: {
               title: t("Median Income CLP"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.00 a)")
             },
             barPadding: 0,
             groupPadding: 10,
