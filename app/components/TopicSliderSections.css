@@ -1,11 +1,13 @@
+@import "../pages/mixins";
+
 .topic-slider-sections {
   margin: 0 var(--gutter) var(--gutter) var(--gutter);
   & ul {
     padding: 0px;
     margin: 0px;
     line-height: 2;
-    & .section-block{
-      &:last-child{
+    & .section-block {
+      &:last-child {
         & .pipe {
           display: none;
         }
@@ -72,4 +74,27 @@
       }
     }
   }
+}
+
+@add-mixin for-xl {
+}
+
+@add-mixin for-lg {
+}
+
+@add-mixin for-md {
+}
+
+@add-mixin for-sm {
+  .topic-slider-sections {
+    & ul {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+@add-mixin for-xs {
+}
+
+@add-mixin for-xx {
 }

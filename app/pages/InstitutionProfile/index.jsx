@@ -358,10 +358,10 @@ class InstitutionProfile extends Component {
                 <h2 className="full-width">
                   {t("About")}
                   {obj && (
-                    <small>
-                      <span className="pipe">|</span>
+                    <span className="small">
+                      <span className="pipe"> | </span>
                       {obj.caption}
-                    </small>
+                    </span>
                   )}
                 </h2>
               </div>
@@ -396,7 +396,7 @@ class InstitutionProfile extends Component {
                       officia deserunt mollit anim id est laborum.
                     </p>
                   </div>
-                  <div className="topic-slide-text">
+                  <div className="topic-slide-link-list">
                     <LinksList title={listTitle} list={list} />
                   </div>
                 </div>

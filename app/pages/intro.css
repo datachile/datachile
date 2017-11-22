@@ -224,10 +224,20 @@
   .profile {
     & .intro {
       & .datum-full-width {
+        margin: 50px 0px;
         justify-content: space-around;
         & .featured-datum-splash {
           lost-column: 4/9 2;
         }
+      }
+      & .meta {
+        lost-column: 1/2 flex;
+      }
+      & .candidates {
+        display: none;
+      }
+      & .map-comuna {
+        lost-column: 1/2 flex;
       }
     }
   }
@@ -237,10 +247,22 @@
   .profile {
     & .intro {
       & .datum-full-width {
-        justify-content: space-around;
+        margin: 25px 0px;
         & .featured-datum-splash {
           lost-column: 1/2 2;
         }
+      }
+      & .meta {
+        lost-column: 1 flex;
+        & .featured-datum-splash {
+          lost-column: 1;
+        }
+      }
+      & .candidates {
+        display: none;
+      }
+      & .map-comuna {
+        display: none;
       }
     }
   }
@@ -250,9 +272,14 @@
   .profile {
     & .intro {
       & .datum-full-width {
-        justify-content: space-around;
         & .featured-datum-splash {
           lost-column: 1 1;
+        }
+      }
+      & .meta {
+        lost-column: 1 flex;
+        & .featured-datum-splash {
+          lost-column: 1;
         }
       }
     }

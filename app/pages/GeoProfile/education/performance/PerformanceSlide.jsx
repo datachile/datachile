@@ -82,21 +82,21 @@ class PerformanceSlide extends Section {
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="industria"
               datum={text_data.trade_volume}
               title={t("Trade volume")}
               subtitle={text_data.first_year + " - " + text_data.last_year}
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="empleo"
               datum="xx"
               title="Lorem ipsum"
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="industria"
               datum="xx"
               title="Lorem ipsum"
@@ -104,9 +104,7 @@ class PerformanceSlide extends Section {
             />
           </div>
         </div>
-        <div className="topic-slide-charts">
-          {children}
-        </div>
+        <div className="topic-slide-charts">{children}</div>
       </div>
     );
   }

@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .topic-slider-bullets {
 	text-align: right;
 	& ul {
@@ -22,4 +24,31 @@
 			}
 		}
 	}
+}
+
+@add-mixin for-xl {
+}
+
+@add-mixin for-lg {
+}
+
+@add-mixin for-md {
+}
+
+@add-mixin for-sm {
+	.topic-slider-bullets {
+		& ul {
+			& li.bullet {
+				& a {
+					margin: 5px 2px;
+				}
+			}
+		}
+	}
+}
+
+@add-mixin for-xs {
+}
+
+@add-mixin for-xx {
 }

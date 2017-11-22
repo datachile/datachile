@@ -32,21 +32,21 @@ class InternetAccessSlide extends Section {
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="empleo"
               datum="xx"
               title="Lorem ipsum"
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="empleo"
               datum="xx"
               title="Lorem ipsum"
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="industria"
               datum="xx"
               title="Lorem ipsum"
