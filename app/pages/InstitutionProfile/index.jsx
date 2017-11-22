@@ -155,29 +155,17 @@ class InstitutionProfile extends Component {
             cube.query
               .option("parents", true)
               .drilldown("Accreditations", "Accreditations", "Accreditation")
-              .measure("Number of records")
-              .property(
-                "Higher Institutions",
-                "Higher Institution",
-                "institution_id"
-              ),
-            "Accreditation"
+              .measure("Number of records"),
+            "Higher Institution Subgroup",
+            "Higher Institution",
             store.i18n.locale
           );
-
-          q.cut(`[Higher Institutions].[Higher Institutions].[Higher Institution].&[${XXX-XXX}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ["Number of records"], ["desc"]);
-          const accreditation_per_institution = res.data.data[0] ? res.data.data[0] : false;
           return {
-            key: "accreditation_per_institution",
-            data: {
-              id: top_country ? top_country["XXX-XXX"] : "",
-              name: top_country ? top_country["XXX-XXX"] : "",
-              source: "Source Lorem",
-            }
+            key: "institution_accreditation",
+            data: res.data.data[0]["Accreditation"]
           };
         });
 
@@ -241,7 +229,7 @@ class InstitutionProfile extends Component {
       : "";
 
     const stats = {
-      accreditation: this.props.data.accreditation_per_institution
+      accreditation: this.props.data.institution_accreditation
     };
 
     const topics = [
@@ -315,15 +303,8 @@ class InstitutionProfile extends Component {
                   <FeaturedDatumSplash
                     title={t("Accreditation")}
                     icon="check"
-                    decile={stats.accreditation.decile}
-                    datum={numeral(stats.accreditation.value, locale).format(
-                      "(0,0)"
-                    )}
-                    source={
-                      stats.accreditation.year +
-                      " - " +
-                      stats.accreditation.source
-                    }
+                    datum={stats.accreditation}
+                    source="XXXXXXX"
                     className=""
                   />
                 )}
