@@ -143,6 +143,49 @@ class InstitutionProfile extends Component {
         promise: prm
       };
     },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("education_employability")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Higher Institutions",
+            "Higher Institutions",
+            cube.query
+              .option("parents", true)
+              .drilldown("Accreditations", "Accreditations", "Accreditation")
+              .measure("Number of records")
+              .property(
+                "Higher Institutions",
+                "Higher Institution",
+                "institution_id"
+              ),
+            "Accreditation"
+            store.i18n.locale
+          );
+
+          q.cut(`[Higher Institutions].[Higher Institutions].[Higher Institution].&[${XXX-XXX}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          res.data.data = _.orderBy(res.data.data, ["Number of records"], ["desc"]);
+          const accreditation_per_institution = res.data.data[0] ? res.data.data[0] : false;
+          return {
+            key: "accreditation_per_institution",
+            data: {
+              id: top_country ? top_country["XXX-XXX"] : "",
+              name: top_country ? top_country["XXX-XXX"] : "",
+              source: "Source Lorem",
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
 
     WagesSlide,
     WagesByProgram,
@@ -161,18 +204,12 @@ class InstitutionProfile extends Component {
 
   render() {
     const { subnav, activeSub } = this.state;
-
     const { institution } = this.props.routeParams;
-
     const { focus, t, i18n } = this.props;
-
     if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
-
     const obj = this.props.data.institution;
-
     const ids = getLevelObject(this.props.routeParams);
-
     const list = this.props.data.institution_list_detail;
 
     obj && ids && list
@@ -204,24 +241,7 @@ class InstitutionProfile extends Component {
       : "";
 
     const stats = {
-      enrollment: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      },
-      accreditation: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      },
-      psu: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      }
+      accreditation: this.props.data.accreditation_per_institution
     };
 
     const topics = [

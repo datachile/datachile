@@ -57,7 +57,7 @@ class TradeByDestination extends Section {
 
       return {
         type: "GET_DATA",
-        promise: prm + prm2
+        promise: prm
       };
     }
   ];
