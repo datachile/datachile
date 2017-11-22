@@ -28,21 +28,21 @@ class InternationalTradeSlide extends Section {
 
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="industria"
               datum={"434k"}
               title={t("Trade volume")}
               subtitle="XXXX - YYYY"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="industria"
               datum={"434k"}
               title={t("Trade volume")}
               subtitle="XXXX - YYYY"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="industria"
               datum={"4343k"}
               title={t("Trade volume")}

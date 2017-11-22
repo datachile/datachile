@@ -47,10 +47,10 @@ class Topic extends Component {
           <div className="topic-title">
             <h2>
               {name}
-              <small>
+              <span className="small">
                 <span className="pipe">|</span>
                 {selectedSection.name}
-              </small>
+              </span>
             </h2>
             <TopicSliderBullets
               name={id}

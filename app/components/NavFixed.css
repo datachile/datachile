@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .nav-fixed {
   width: 100%;
   position: fixed;
@@ -87,13 +89,19 @@
       flex-direction: row;
       align-items: center;
       padding: calc(var(--gutter)/2) var(--gutter);
-      & .datachile {
-        color: var(--snow);
-        font-family: var(--font-family-title);
-        font-weight: 300;
-        font-size: 18px;
-        letter-spacing: 0.03px;
-        margin: 0 calc(var(--gutter)/2);
+      & .nav-titles-action {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        & .datachile {
+          color: var(--snow);
+          font-family: var(--font-family-title);
+          font-weight: 300;
+          font-size: 18px;
+          letter-spacing: 0.03px;
+          margin: 0 calc(var(--gutter)/2);
+        }
       }
       & .title {
         color: var(--accent);
@@ -163,6 +171,10 @@
 
 @add-mixin for-md {
   .nav-fixed {
+    & .nav-entity {
+      & .nav-titles {
+      }
+    }
     & .nav-topic {
       & .topics {
         & .topic-link {
@@ -178,6 +190,14 @@
 }
 
 @add-mixin for-sm {
+  .nav-fixed {
+    & .nav-entity {
+      & .nav-titles {
+        flex-direction: column;
+        align-items: left;
+      }
+    }
+  }
 }
 
 @add-mixin for-xs {

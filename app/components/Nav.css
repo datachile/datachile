@@ -224,7 +224,7 @@
 
 @add-mixin for-lg {
   .nav {
-    & .nav-container {
+    & .title-container {
       & .nav-title {
         & h1 {
           font-size: 40px;
@@ -236,10 +236,34 @@
 
 @add-mixin for-md {
   .nav {
+    & .title-container {
+      & .nav-title {
+        & h1 {
+          font-size: 30px;
+        }
+      }
+    }
   }
 }
 
 @add-mixin for-sm {
+  .nav {
+    & .title-container {
+      & .nav-title {
+        & h1 {
+          font-size: 30px;
+        }
+        & .meta-title {
+          flex-direction: column;
+          & .parent {
+            & .separator {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @add-mixin for-xs {

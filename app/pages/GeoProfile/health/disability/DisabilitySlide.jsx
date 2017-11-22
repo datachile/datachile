@@ -15,9 +15,7 @@ class DisabilitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Disability")}
-          </div>
+          <div className="topic-slide-title">{t("Disability")}</div>
           <div className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
             orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
@@ -30,21 +28,21 @@ class DisabilitySlide extends Section {
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="empleo"
               datum="xx"
               title="Lorem ipsum"
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="empleo"
               datum="xx"
               title="Lorem ipsum"
               subtitle="Lorem blabla"
             />
             <FeaturedDatum
-              className="lost-1-3"
+              className="l-1-3"
               icon="industria"
               datum="xx"
               title="Lorem ipsum"
@@ -52,9 +50,7 @@ class DisabilitySlide extends Section {
             />
           </div>
         </div>
-        <div className="topic-slide-charts">
-          {children}
-        </div>
+        <div className="topic-slide-charts">{children}</div>
       </div>
     );
   }
