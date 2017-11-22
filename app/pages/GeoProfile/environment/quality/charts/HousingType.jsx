@@ -4,7 +4,10 @@ import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  simpleGeoChartNeed,
+  geoCut
+} from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
@@ -15,32 +18,22 @@ class HousingType extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("casen_household").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("Household Type", "Household Type", "Household Type")
-            .drilldown("Date", "Date", "Year")
-            .measure(
-              geo.type == "comuna"
-                ? "Expansion Factor Comuna"
-                : "Expansion Factor Region"
-            ),
-          store.i18n.locale
-        );
-
-        return {
-          key: "path_housing_type",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
+      return simpleGeoChartNeed(
+        "path_housing_type",
+        "casen_household",
+        [
+          geo.type == "comuna"
+            ? "Expansion Factor Comuna"
+            : "Expansion Factor Region"
+        ],
+        {
+          drillDowns: [
+            ["Household Type", "Household Type", "Household Type"],
+            ["Date", "Date", "Year"]
+          ],
+          options: { parents: true }
+        }
+      )(params, store);
     }
   ];
 
