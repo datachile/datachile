@@ -619,11 +619,6 @@ class GeoProfile extends Component {
                   <SectionColumns>
                     <IndustrySpace className="lost-1-2" />
                     <ProductSpace className="lost-1-2" />
-
-                    {/* 
-                                        <Placeholder className="lost-1-2" text="Industry Space" />
-                                        <Placeholder className="lost-1-2" text="Product Space" />
-                                      */}
                   </SectionColumns>
                 </OpportunitySlide>
               </div>
@@ -799,7 +794,7 @@ class GeoProfile extends Component {
                     <InternetAccessByZone className="lost-1-2" />
                     <Placeholder
                       className="lost-1-2"
-                      text="Internet Access Type"
+                      text="Internet Access Type - Blocked by issue 61"
                     />
                   </SectionColumns>
                 </InternetAccessSlide>
