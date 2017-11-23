@@ -33,7 +33,7 @@ export default translate()(
           );
 
           return {
-            key: "path_imports_by_product_country",
+            key: "path_trade_by_product_country",
             data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
@@ -49,7 +49,7 @@ export default translate()(
       const { t, className, i18n } = this.props;
       if (!i18n.language) return null;
       const locale = i18n.language.split("-")[0];
-      const path = this.context.data.path_imports_by_product_country;
+      const path = this.context.data.path_trade_by_product_country;
 
       return (
         <div className={className}>
