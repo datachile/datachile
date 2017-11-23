@@ -150,20 +150,23 @@ class CountryProfile extends Component {
             ids,
             "Origin Country",
             "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Origin Country", "Country", "Country")
-              .measure("CIF US"),
-            "Origin Country",
+            cube.query.option("parents", true).measure("CIF US"),
+            "Subregion",
             "Country",
             store.i18n.locale
           );
+          q.cut(`[Date].[Date].[Year].&[${store.imports_year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
           return {
             key: "country_imports",
-            data: res.data.data[0]["CIF US"]
+            data: {
+              value: res.data.data[0]["CIF US"],
+              decile: null,
+              year: store.imports_year,
+              source: store.sources.imports.title
+            }
           };
         });
 
@@ -300,7 +303,9 @@ class CountryProfile extends Component {
                     title={t("Imports")}
                     icon="ingreso"
                     decile={stats.imports.decile}
-                    datum={numeral(stats.imports.value, locale).format("(0,0)")}
+                    datum={numeral(stats.imports.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
                     source={stats.imports.year + " - " + stats.imports.source}
                     className=""
                   />

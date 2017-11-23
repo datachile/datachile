@@ -59,6 +59,7 @@ module.exports = {
   senators_election_year: [2009, 2013],
   mayor_election_year: 2016,
   exports_year: 2015,
+  imports_year: 2015,
   tax_data_year: 2014,
   nene_year: 2017,
   sources: {
