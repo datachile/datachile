@@ -174,6 +174,76 @@ class InstitutionProfile extends Component {
         promise: prm
       };
     },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("education_employability")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Higher Institutions",
+            "Higher Institutions",
+            cube.query
+              .option("parents", true)
+              .drilldown(
+                "Avg Income 4th year",
+                "Avg Income 4th year",
+                "Avg Income 4th year"
+              )
+              .measure("Number of records"),
+            "Higher Institution Subgroup",
+            "Higher Institution",
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "institution_avgincome",
+            data: res.data.data[0]["Number of records"]
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("education_employability")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Higher Institutions",
+            "Higher Institutions",
+            cube.query
+              .option("parents", true)
+              .drilldown(
+                "Higher Institutions",
+                "Higher Institutions",
+                "Higher Institution"
+              )
+              .measure("Avg employability 1st year"),
+            "Higher Institution Subgroup",
+            "Higher Institution",
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "institution_avgemployability",
+            data: res.data.data[0]["Avg employability 1st year"]
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
 
     WagesSlide,
     WagesByProgram,
@@ -229,7 +299,9 @@ class InstitutionProfile extends Component {
       : "";
 
     const stats = {
-      accreditation: this.props.data.institution_accreditation
+      accreditation: this.props.data.institution_accreditation,
+      avgincome: this.props.data.institution_avgincome,
+      avgemployability: this.props.data.institution_avgemployability
     };
 
     const topics = [
@@ -284,38 +356,32 @@ class InstitutionProfile extends Component {
 
             <div className="header">
               <div className="datum-full-width">
-                {stats.enrollment && (
-                  <FeaturedDatumSplash
-                    title={t("Total Wages")}
-                    icon="poblacion"
-                    decile={stats.enrollment.decile}
-                    datum={numeral(stats.enrollment.value, locale).format(
-                      "(0,0)"
-                    )}
-                    source={
-                      stats.enrollment.year + " - " + stats.enrollment.source
-                    }
-                    className=""
-                  />
-                )}
-
                 {stats.accreditation && (
                   <FeaturedDatumSplash
                     title={t("Accreditation")}
                     icon="check"
                     datum={stats.accreditation}
-                    source="XXXXXXX"
+                    source="MINEDUC"
                     className=""
                   />
                 )}
 
-                {stats.psu && (
+                {stats.avgincome && (
                   <FeaturedDatumSplash
-                    title={t("Average PSU")}
-                    icon="psu"
-                    decile={stats.psu.decile}
-                    datum={numeral(stats.psu.value, locale).format("(0,0)")}
-                    source={stats.psu.year + " - " + stats.psu.source}
+                    title={t("Average Income (4th year)")}
+                    icon="check"
+                    datum={stats.avgincome}
+                    source="MINEDUC"
+                    className=""
+                  />
+                )}
+
+                {stats.avgemployability && (
+                  <FeaturedDatumSplash
+                    title={t("Average Employability (1st year)")}
+                    icon="check"
+                    datum={stats.avgemployability}
+                    source="MINEDUC"
                     className=""
                   />
                 )}
