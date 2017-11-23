@@ -175,6 +175,40 @@ class CountryProfile extends Component {
         promise: prm
       };
     },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Destination Country",
+            "Country",
+            cube.query.option("parents", true).measure("FOB US"),
+            "Subregion",
+            "Country",
+            store.i18n.locale
+          );
+          q.cut(`[Date].[Date].[Year].&[${store.exports_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "country_exports",
+            data: {
+              value: res.data.data[0]["FOB US"],
+              decile: null,
+              year: store.exports_year,
+              source: store.sources.exports.title
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
     InternationalTrade,
     InternationalTradeSlide,
     ImportsByProduct,
@@ -238,13 +272,8 @@ class CountryProfile extends Component {
 
     const stats = {
       imports: this.props.data.country_imports,
+      exports: this.props.data.country_exports,
       product: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      },
-      exports: {
         value: 1000,
         decile: 5,
         year: 2010,
@@ -327,7 +356,9 @@ class CountryProfile extends Component {
                     title={t("Exports")}
                     icon="ingreso"
                     decile={stats.exports.decile}
-                    datum={numeral(stats.exports.value, locale).format("(0,0)")}
+                    datum={numeral(stats.exports.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
                     source={stats.exports.year + " - " + stats.exports.source}
                     className=""
                   />
