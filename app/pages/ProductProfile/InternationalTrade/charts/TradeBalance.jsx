@@ -6,7 +6,6 @@ import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { tradeBalanceColorScale } from "helpers/colors";
-import { melt, getGeoObject, replaceKeyNames } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 class TradeBalance extends Section {

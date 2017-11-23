@@ -144,6 +144,41 @@ class IndustryProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("education_employability")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Higher Institutions",
+            "Higher Institutions",
+            cube.query
+              .option("parents", true)
+              .drilldown(
+                "Avg Income 4th year",
+                "Avg Income 4th year",
+                "Avg Income 4th year"
+              )
+              .measure("Number of records"),
+            "Higher Institution Subgroup",
+            "Higher Institution",
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "institution_avgincome",
+            data: res.data.data[0]["Number of records"]
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -185,12 +220,7 @@ class IndustryProfile extends Component {
 
     const stats = {
       employees: this.props.data.employees_by_industry,
-      income: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      },
+      income: this.props.data.institution_avgincome,
       studies: {
         value: 1000,
         decile: 5,
