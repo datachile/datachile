@@ -1,10 +1,10 @@
 import _ from "lodash";
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral } from "helpers/formatters";
 
 function annualized_growth(last_v, first_v, last_time, first_time) {
     var temp = parseFloat(last_time) - parseFloat(first_time);
     //bypass
-    if (temp == 0) {
+    if (temp === 0) {
         temp = 1;
     }
 

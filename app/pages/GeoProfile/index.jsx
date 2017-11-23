@@ -26,6 +26,7 @@ import SvgImage from "components/SvgImage";
 import AuthoritiesBlock from "components/AuthoritiesBlock";
 import TopicMenu from "components/TopicMenu";
 import Topic from "components/Topic";
+import LoadingWithProgress from "components/LoadingWithProgress";
 
 import Placeholder from "components/Placeholder";
 
@@ -91,6 +92,7 @@ import PerformanceByType from "./education/performance/charts/PerformanceByType"
 /* Housing and Environment */
 import QualitySlide from "./environment/quality/QualitySlide";
 import HousingType from "./environment/quality/charts/HousingType";
+import HousingByConstructionType from "./environment/quality/charts/HousingByConstructionType";
 
 import InternetAccessSlide from "./environment/conectivity/InternetAccessSlide";
 import InternetAccessByZone from "./environment/conectivity/charts/InternetAccessByZone";
@@ -202,6 +204,7 @@ class GeoProfile extends Component {
 
     QualitySlide,
     HousingType,
+    HousingByConstructionType,
 
     InternetAccessSlide,
     InternetAccessByZone,
@@ -237,7 +240,7 @@ class GeoProfile extends Component {
   ];
 
   render() {
-    const { focus, t, i18n } = this.props;
+    const { t, i18n } = this.props;
 
     if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
@@ -301,11 +304,11 @@ class GeoProfile extends Component {
       {
         slug: "health",
         title: t("Health")
-      },
+      } /*,
       {
         slug: "politics",
         title: t("Politics")
-      }
+      }*/
     ];
 
     var type = "";
@@ -349,7 +352,12 @@ class GeoProfile extends Component {
     }
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<LoadingWithProgress />}
+      >
         <div className="profile">
           <div className="intro">
             {geo &&
@@ -617,11 +625,6 @@ class GeoProfile extends Component {
                   <SectionColumns>
                     <IndustrySpace className="lost-1-2" />
                     <ProductSpace className="lost-1-2" />
-
-                    {/* 
-                                        <Placeholder className="lost-1-2" text="Industry Space" />
-                                        <Placeholder className="lost-1-2" text="Product Space" />
-                                      */}
                   </SectionColumns>
                 </OpportunitySlide>
               </div>
@@ -787,7 +790,7 @@ class GeoProfile extends Component {
                 <QualitySlide>
                   <SectionColumns>
                     <HousingType className="lost-1-2" />
-                    <Placeholder className="lost-1-2" text="Materials" />
+                    <HousingByConstructionType className="lost-1-2" />
                   </SectionColumns>
                 </QualitySlide>
               </div>
@@ -797,7 +800,7 @@ class GeoProfile extends Component {
                     <InternetAccessByZone className="lost-1-2" />
                     <Placeholder
                       className="lost-1-2"
-                      text="Internet Access Type"
+                      text="Internet Access Type - Blocked by issue 61"
                     />
                   </SectionColumns>
                 </InternetAccessSlide>

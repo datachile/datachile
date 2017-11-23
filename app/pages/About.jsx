@@ -9,58 +9,47 @@ import "./About.css";
 import { GLOSSARY } from "helpers/glossary";
 import { titleCase } from "d3plus-text";
 
-const topics = [
-  {
-    slug: "background",
-    title: "Background"
-  },
-  {
-    slug: "data",
-    title: "Data Sources"
-  },
-  {
-    slug: "glossary",
-    title: "Glossary"
-  },
-  {
-    slug: "terms",
-    title: "Terms of Use"
-  }
-];
-
 class About extends Component {
   constructor() {
     super();
-    this.state = {
-      activeSub: false,
-      subnav: false
-    };
+    this.state = {};
   }
 
   componentDidMount() {
     //window.addEventListener("scroll", this.handleScroll.bind(this));
   }
 
-  handleScroll() {
-    const { activeSub, subnav } = this.state;
-    const newSub = this.refs.sublinks.getBoundingClientRect().top <= 0;
-    let newActive = false;
-    for (let i = 0; i < topics.length; i++) {
-      const top = document
-        .getElementById(topics[i].slug)
-        .getBoundingClientRect().top;
-      if (top <= 0) newActive = topics[i].slug;
-    }
-    if (subnav !== newSub || newActive !== activeSub) {
-      this.setState({ activeSub: newActive, subnav: newSub });
-    }
-  }
-
   render() {
     const { t } = this.props;
+    const topics = [
+      {
+        slug: "background",
+        title: t("Background")
+      },
+      {
+        slug: "data",
+        title: t("Data Sources")
+      },
+      {
+        slug: "glossary",
+        title: t("Glossary")
+      },
+      {
+        slug: "teams",
+        title: t("Teams")
+      },
+      {
+        slug: "acknowledgement",
+        title: t("Acknowledgement")
+      },
+      {
+        slug: "terms",
+        title: t("Terms of Use")
+      }
+    ];
     const { activeSub, subnav } = this.state;
     return (
-      <CanonComponent id="about" data={this.props.data} topics={[]}>
+      <CanonComponent id="about" data={this.props.data} topics={topics}>
         <Nav
           title={t("About")}
           typeTitle={t("Home")}
@@ -73,11 +62,6 @@ class About extends Component {
               <div className="image" />
               <div className="gradient" />
             </div>
-            <div className="header">
-              <div className="meta">
-                <div className="title" />
-              </div>
-            </div>
             <div ref="sublinks" className="sublinks">
               {topics.map(topic => (
                 <a key={topic.slug} className="sublink" href={`#${topic.slug}`}>
@@ -87,8 +71,8 @@ class About extends Component {
             </div>
           </div>
 
-          <TopicTitle slug="background">Background</TopicTitle>
           <section className="section">
+            <TopicTitle slug="background">{t("Background")}</TopicTitle>
             <p className="paragraph">
               Data Chile is ...ipsum dolor sit amet, consectetur adipiscing
               elit, sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -105,8 +89,8 @@ class About extends Component {
             </p>
           </section>
 
-          <TopicTitle slug="data">Data Sources</TopicTitle>
           <section className="section">
+            <TopicTitle slug="data">{t("Data")}</TopicTitle>
             <p className="paragraph">
               The data contained in this site draws from a variety of sources,
               including:
@@ -125,22 +109,70 @@ class About extends Component {
             </ul>
           </section>
 
-          <TopicTitle slug="glossary">Glossary</TopicTitle>
           <section className="section glossary">
-            {GLOSSARY.map(entry => (
-              <div className="paragraph" key={entry.term} id={entry.term}>
-                <p className="term">
-                  {entry.term === entry.term.toUpperCase()
-                    ? entry.term
-                    : titleCase(entry.term)}
-                </p>
-                <p className="definition">{entry.definition}</p>
-              </div>
-            ))}
+            <TopicTitle slug="glossary">{t("Glossary")}</TopicTitle>
+            <p className="paragraph">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore veritatis et quasi architecto beatae vitae
+              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
+              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+              velit, sed quia non numquam eius modi tempora incidunt ut labore
+              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
+              veniam, quis nostrum exercitationem ullam corporis suscipit
+              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
+              vel eum iure reprehenderit qui in ea voluptate velit esse quam
+              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
+              voluptas nulla pariatur?
+            </p>
           </section>
 
-          <TopicTitle slug="terms">Terms of Use</TopicTitle>
+          <section className="section teams">
+            <TopicTitle slug="team">{t("Teams")}</TopicTitle>
+            <p className="paragraph">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore veritatis et quasi architecto beatae vitae
+              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
+              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+              velit, sed quia non numquam eius modi tempora incidunt ut labore
+              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
+              veniam, quis nostrum exercitationem ullam corporis suscipit
+              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
+              vel eum iure reprehenderit qui in ea voluptate velit esse quam
+              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
+              voluptas nulla pariatur?
+            </p>
+          </section>
+
+          <section className="section acknowledgement">
+            <TopicTitle slug="acknowledgement">
+              {t("Acknowledgement")}
+            </TopicTitle>
+            <p className="paragraph">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore veritatis et quasi architecto beatae vitae
+              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
+              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+              velit, sed quia non numquam eius modi tempora incidunt ut labore
+              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
+              veniam, quis nostrum exercitationem ullam corporis suscipit
+              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
+              vel eum iure reprehenderit qui in ea voluptate velit esse quam
+              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
+              voluptas nulla pariatur?
+            </p>
+          </section>
+
           <section className="section">
+            <TopicTitle slug="terms">{t("Terms of Use")}</TopicTitle>
             <p className="paragraph">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa

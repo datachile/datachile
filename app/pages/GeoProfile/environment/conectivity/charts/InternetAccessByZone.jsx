@@ -55,7 +55,7 @@ class InternetAccessByZone extends Section {
     const geo = this.context.data.geo;
 
     const geoChartName =
-      geo.type == "region" ? geo.caption : geo.ancestors[0].caption;
+      geo.type == "comuna" ? geo.ancestors[0].caption : geo.caption;
 
     return (
       <div className={className}>
