@@ -42,6 +42,7 @@ export default {
 	senators_election_year: id,
 	mayor_election_year: id,
 	exports_year: id,
+  imports_year: id,
   tax_data_year: id,
 	nene_year: id,
 	sources: id,
