@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import "./LoadingWithProgress.css";
+
+import "datawheel-canon/src/components/LoadingComponent.css"
 
 const LoadingWithProgress = props => (
-  <div className="loading-component">
+    <div className="loading-component">
     <span className="loading-text">
-      Loading... ({props.fulfilled}/{props.requests})
+    Loading... ({props.fulfilled}/{props.requests})
     </span>
   </div>
 );
