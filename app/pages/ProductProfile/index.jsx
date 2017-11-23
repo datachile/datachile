@@ -26,7 +26,7 @@ import InternationalTrade from "./InternationalTrade/InternationalTrade";
 import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
 import ExportsByDestination from "./InternationalTrade/charts/ExportsByDestination";
 import ImportsByDestination from "./InternationalTrade/charts/ImportsByDestination";
-import TradeByDestination from "./InternationalTrade/charts/TradeByDestination";
+import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 
 import "../intro.css";
 
@@ -255,7 +255,7 @@ class ProductProfile extends Component {
     InternationalTradeSlide,
     ExportsByDestination,
     ImportsByDestination,
-    TradeByDestination
+    TradeBalance
   ];
 
   componentDidMount() {}
@@ -473,7 +473,7 @@ class ProductProfile extends Component {
                     <ImportsByDestination className="lost-1-2" />
                   </SectionColumns>
                   <SectionColumns>
-                    <TradeByDestination className="lost-1" />
+                    <TradeBalance className="lost-1" />
                   </SectionColumns>
                 </InternationalTradeSlide>
               </div>

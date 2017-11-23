@@ -26,7 +26,7 @@ import InternationalTrade from "./InternationalTrade/InternationalTrade";
 import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
 import ExportsByProduct from "./InternationalTrade/charts/ExportsByProduct";
 import ImportsByProduct from "./InternationalTrade/charts/ImportsByProduct";
-import TradeByProduct from "./InternationalTrade/charts/TradeByProduct";
+import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 
 /* BEGIN DEMOGRAPHY */
 import MigrationSlide from "./demography/MigrationSlide";
@@ -248,7 +248,7 @@ class CountryProfile extends Component {
     InternationalTradeSlide,
     ImportsByProduct,
     ExportsByProduct,
-    TradeByProduct,
+    TradeBalance,
 
     MigrationSlide,
     MigrationDetailsSlide,
@@ -539,7 +539,7 @@ class CountryProfile extends Component {
                     <ExportsByProduct className="lost-1-2" />
                   </SectionColumns>
                   <SectionColumns>
-                    <TradeByProduct className="lost-1" />
+                    <TradeBalance className="lost-1" />
                   </SectionColumns>
                 </InternationalTradeSlide>
               </div>
