@@ -11,9 +11,13 @@ class FeaturedDatumSplash extends Component {
     render() {
         const { t, icon, datum, decile, title, source, className, rank } = this.props;
 
-        const full = Math.floor(decile / 2);
-        const half = decile % 2 != 0 ? 1 : 0;
-        const none = 5 - half - full;
+        let full, half, none;
+
+        if (decile !== null && decile !== undefined)  {
+            full = Math.floor(decile / 2);
+            half = decile % 2 != 0 ? 1 : 0;
+            none = 5 - half - full;
+        }
 
         const iconUrl = `/images/splash-icon/icon-${icon}.svg`;
 
@@ -22,25 +26,25 @@ class FeaturedDatumSplash extends Component {
                 <h4 className="featured-datum-splash-title">
                     {title} {rank && <small>{rank}</small> }
                 </h4>
-                <div className="featured-datum-splash-icons">
+                {decile !== null && decile !== undefined && <div className="featured-datum-splash-icons">
                     {[...Array(full)].map((x, i) =>
                         <SvgImage
                             extraClass="full"
                             src={`/images/splash-icon/icon-${icon}-full.svg`}
                         />
-                    )}
+                     )}
                     {half == 1 &&
-                        <SvgImage
-                            extraClass="half"
-                            src={`/images/splash-icon/icon-${icon}-half.svg`}
-                        />}
+                     <SvgImage
+                         extraClass="half"
+                         src={`/images/splash-icon/icon-${icon}-half.svg`}
+                     />}
                     {[...Array(none)].map((x, i) =>
                         <SvgImage
                             extraClass="none"
                             src={`/images/splash-icon/icon-${icon}-none.svg`}
                         />
-                    )}
-                </div>
+                     )}
+                </div>}
                 <div className="featured-datum-splash-data">
                     <p className="featured-datum-data">
                         {datum}
