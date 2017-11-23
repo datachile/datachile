@@ -141,6 +141,37 @@ class CountryProfile extends Component {
         promise: prm
       };
     },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Origin Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Origin Country", "Country", "Country")
+              .measure("CIF US"),
+            "Origin Country",
+            "Country",
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "country_imports",
+            data: res.data.data[0]["CIF US"]
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
     InternationalTrade,
     InternationalTradeSlide,
     ImportsByProduct,
@@ -203,12 +234,7 @@ class CountryProfile extends Component {
       : "";
 
     const stats = {
-      imports: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
-      },
+      imports: this.props.data.country_imports,
       product: {
         value: 1000,
         decile: 5,

@@ -225,6 +225,7 @@ class InstitutionProfile extends Component {
                 "Higher Institutions",
                 "Higher Institution"
               )
+              .measure("Number of records")
               .measure("Avg employability 1st year"),
             "Higher Institution Subgroup",
             "Higher Institution",
