@@ -209,6 +209,40 @@ class CountryProfile extends Component {
         promise: prm
       };
     },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports_and_imports")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Country",
+            "Country",
+            cube.query.option("parents", true).measure("Trade Balance"),
+            "Subregion",
+            "Country",
+            store.i18n.locale
+          );
+          q.cut(`[Date].[Date].[Year].&[${store.balance_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "country_balance",
+            data: {
+              value: res.data.data[0]["Trade Balance"],
+              decile: null,
+              year: store.balance_year,
+              source: store.sources.balance.title
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
     InternationalTrade,
     InternationalTradeSlide,
     ImportsByProduct,
@@ -273,6 +307,7 @@ class CountryProfile extends Component {
     const stats = {
       imports: this.props.data.country_imports,
       exports: this.props.data.country_exports,
+      balance: this.props.data.country_balance,
       product: {
         value: 1000,
         decile: 5,
@@ -360,6 +395,19 @@ class CountryProfile extends Component {
                       "($ 0,0 a)"
                     )}
                     source={stats.exports.year + " - " + stats.exports.source}
+                    className=""
+                  />
+                )}
+
+                {stats.balance && (
+                  <FeaturedDatumSplash
+                    title={t("Trade Balance")}
+                    icon="ingreso"
+                    decile={stats.balance.decile}
+                    datum={numeral(stats.balance.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
+                    source={stats.balance.year + " - " + stats.balance.source}
                     className=""
                   />
                 )}
