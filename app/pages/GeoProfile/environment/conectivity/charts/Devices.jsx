@@ -95,7 +95,7 @@ class Devices extends Section {
     const geo = this.context.data.geo;
 
     const geoChartName =
-      geo.type == "region" ? geo.caption : geo.ancestors[0].caption;
+      geo.type == "comuna" ? geo.ancestors[0].caption : geo.caption;
 
     var devices = [];
     if (internet_data) {
