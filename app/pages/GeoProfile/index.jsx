@@ -304,11 +304,11 @@ class GeoProfile extends Component {
       {
         slug: "health",
         title: t("Health")
-      },
+      } /*,
       {
         slug: "politics",
         title: t("Politics")
-      }
+      }*/
     ];
 
     var type = "";
