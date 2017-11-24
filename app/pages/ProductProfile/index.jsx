@@ -14,6 +14,7 @@ import mondrianClient, {
   levelCut
 } from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
+import Placeholder from "components/Placeholder";
 
 import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
@@ -105,8 +106,8 @@ class ProductProfile extends Component {
               id: top_country ? top_country["iso3"] : "",
               name: top_country ? top_country["Country"] : "",
               value: top_country ? top_country["FOB US"] : "",
-              source: "Source Lorem",
-              year: store.exports_year
+              source: store.sources.exports.title,
+              year: store.sources.exports.year
             }
           };
         });
@@ -254,8 +255,8 @@ class ProductProfile extends Component {
     InternationalTrade,
     InternationalTradeSlide,
     ExportsByDestination,
-    ImportsByDestination,
-    TradeBalance
+    ImportsByDestination /*,
+    TradeBalance */
   ];
 
   componentDidMount() {}
@@ -265,8 +266,10 @@ class ProductProfile extends Component {
     const { focus, t, i18n } = this.props;
     const { industry } = this.props.routeParams;
     const obj = this.props.data.product;
+
     if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
+
     const ids = getLevelObject(this.props.routeParams);
     const list = this.props.data.product_list_detail;
 
@@ -473,7 +476,10 @@ class ProductProfile extends Component {
                     <ImportsByDestination className="lost-1-2" />
                   </SectionColumns>
                   <SectionColumns>
-                    <TradeBalance className="lost-1" />
+                    {/* }
+                                    <TradeBalance className="lost-1" />
+                                    { */}
+                    <Placeholder className="lost-1" text="Trade Balance" />
                   </SectionColumns>
                 </InternationalTradeSlide>
               </div>
