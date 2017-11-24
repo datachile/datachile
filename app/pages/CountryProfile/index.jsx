@@ -244,6 +244,47 @@ class CountryProfile extends Component {
         promise: prm
       };
     },
+    // main imported product
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Origin Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Import HS", "HS", "HS2")
+              .measure("CIF US"),
+            "Subregion",
+            "Country",
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${store.imports_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          res.data.data = _.orderBy(res.data.data, ["CIF US"], ["desc"]);
+          const top_product = res.data.data[0] ? res.data.data[0] : false;
+          return {
+            key: "top_imported_product_from_country",
+            data: {
+              name: top_product ? top_product["HS2"] : "",
+              value: top_product ? top_product["CIF US"] : "",
+              source: store.sources.imports.title,
+              year: store.sources.imports.year
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
     InternationalTrade,
     InternationalTradeSlide,
     ImportsByProduct,
@@ -311,14 +352,12 @@ class CountryProfile extends Component {
       exports: this.props.data.country_exports,
       balance: this.props.data.country_balance,
       product: {
-        value: 1000,
-        decile: 5,
-        year: 2010,
-        source: "source"
+        name: this.props.data.top_imported_product_from_country.name,
+        value: this.props.data.top_imported_product_from_country.value,
+        year: this.props.data.top_imported_product_from_country.year,
+        source: this.props.data.top_imported_product_from_country.source
       }
     };
-
-    console.log("STATS", stats);
 
     const topics = [
       {
@@ -383,9 +422,10 @@ class CountryProfile extends Component {
                   <FeaturedDatumSplash
                     title={t("Main imported product")}
                     icon="check"
-                    decile={stats.product.decile}
-                    datum={numeral(stats.product.value, locale).format("(0,0)")}
-                    source={stats.product.year + " - " + stats.product.source}
+                    datum={stats.product.name}
+                    source={`${numeral(stats.product.value, locale).format(
+                      "$ 0,0 a"
+                    )} - ${stats.product.year} - ${stats.product.source}`}
                     className=""
                   />
                 )}
