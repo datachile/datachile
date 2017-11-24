@@ -55,9 +55,25 @@ export default translate()(
           <LinePlot
             config={{
               height: 500,
-              data: path
+              data: path,
+              groupBy: "variable",
+              x: "ID Year",
+              y: "value",
+              xConfig: {
+                tickSize: 0,
+                title: false
+              },
+              yConfig: {
+                title: t("USD"),
+                tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              },
+              shapeConfig: {
+                Line: {
+                  stroke: d => tradeBalanceColorScale(d["variable"]),
+                  strokeWidth: 2
+                }
+              }
             }}
-            dataFormat={data => data.data}
           />
         </div>
       );
