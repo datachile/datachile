@@ -6,77 +6,77 @@ import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { numeral, slugifyItem } from "helpers/formatters";
-import { productsColorScale } from "helpers/colors";
+import { tradeBalanceColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
-export default translate()(
-  class TradeBalance extends Section {
-    static need = [
-      (params, store) => {
-        const country = getLevelObject(params);
+class TradeBalance extends Section {
+  static need = [
+    (params, store) => {
+      const country = getLevelObject(params);
 
-        const prm = mondrianClient.cube("exports_and_imports").then(cube => {
-          const q = levelCut(
-            country,
-            "Destination Country",
-            "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Country", "Country", "Country")
-              .measure("Trade Balance"),
-            "Subregion",
-            "Country",
-            store.i18n.locale,
-            false
-          );
-
-          return {
-            key: "path_trade_balance_country",
-            data: store.env.CANON_API + q.path("jsonrecords")
-          };
-        });
+      const prm = mondrianClient.cube("exports_and_imports").then(cube => {
+        const q = levelCut(
+          country,
+          "Country",
+          "Country",
+          cube.query
+            .option("parents", true)
+            .drilldown("Date", "Date", "Year")
+            .measure("Trade Balance"),
+          "Subregion",
+          "Country",
+          store.i18n.locale,
+          false
+        );
 
         return {
-          type: "GET_DATA",
-          promise: prm
+          key: "path_trade_balance_country",
+          data: store.env.CANON_API + q.path("jsonrecords")
         };
-      }
-    ];
+      });
 
-    render() {
-      const { t, className, i18n } = this.props;
-      if (!i18n.language) return null;
-      const locale = i18n.language.split("-")[0];
-      const path = this.context.data.path_trade_balance_country;
-
-      return (
-        <div className={className}>
-          <h3 className="chart-title">{t("Trade Balance")}</h3>
-          <LinePlot
-            config={{
-              height: 500,
-              data: path,
-              groupBy: "variable",
-              x: "ID Year",
-              y: "value",
-              xConfig: {
-                tickSize: 0,
-                title: false
-              },
-              yConfig: {
-                title: t("USD"),
-                tickFormat: tick => numeral(tick, locale).format("(0 a)")
-              },
-              shapeConfig: {
-                Line: {
-                  stroke: d => tradeBalanceColorScale(d["variable"]),
-                  strokeWidth: 2
-                }
-              }
-            }}
-          />
-        </div>
-      );
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
+  ];
+
+  render() {
+    const { t, className, i18n } = this.props;
+    if (!i18n.language) return null;
+    const locale = i18n.language.split("-")[0];
+    const path = this.context.data.path_trade_balance_country;
+
+    return (
+      <div className={className}>
+        <h3 className="chart-title">{t("Trade Balance")}</h3>
+        <LinePlot
+          config={{
+            height: 500,
+            data: path,
+            x: "ID Year",
+            y: "Trade Balance",
+            xConfig: {
+              tickSize: 0,
+              title: false
+            },
+            yConfig: {
+              title: t("USD"),
+              tickFormat: tick => numeral(tick, locale).format("0 a")
+            },
+            shapeConfig: {
+              Line: {
+                //                stroke: d => tradeBalanceColorScale(d["Trade Balance"]),
+                strokeWidth: 4
+              }
+            }
+          }}
+          dataFormat={data => data.data.filter(d => d["ID Year"] >= 2002)}
+        />
+      </div>
+    );
   }
-);
+}
+
+export default translate()(TradeBalance);
