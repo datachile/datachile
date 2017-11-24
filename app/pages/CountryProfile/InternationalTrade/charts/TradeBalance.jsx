@@ -1,68 +1,66 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import _ from "lodash";
-import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
+import { LinePlot } from "d3plus-react";
+import { browserHistory } from "react-router";
 
-import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { tradeBalanceColorScale } from "helpers/colors";
-import { melt, getGeoObject, replaceKeyNames } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
+import mondrianClient, { levelCut } from "helpers/MondrianClient";
+import { numeral, slugifyItem } from "helpers/formatters";
+import { productsColorScale } from "helpers/colors";
+import { getLevelObject } from "helpers/dataUtils";
 
-class TradeBalance extends Section {
-  static need = [
-    simpleGeoChartNeed(
-      "path_trade_balance",
-      "exports_and_imports",
-      ["FOB", "CIF", "Trade Balance"],
-      { drillDowns: [["Date", "Year"]] }
-    )
-  ];
+export default translate()(
+  class TradeBalance extends Section {
+    static need = [
+      (params, store) => {
+        const country = getLevelObject(params);
 
-  render() {
-    const { t, className, i18n } = this.props;
-    const path = this.context.data.path_trade_balance;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+        const prm = mondrianClient.cube("exports_and_imports").then(cube => {
+          const q = levelCut(
+            country,
+            "Destination Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Country", "Country", "Country")
+              .measure("Trade Balance"),
+            "Subregion",
+            "Country",
+            store.i18n.locale,
+            false
+          );
 
-    return (
-      <div className={className}>
-        <h3 className="chart-title">{t("Trade Balance")}</h3>
-        <LinePlot
-          config={{
-            height: 500,
-            data: path,
-            groupBy: "variable",
-            x: "ID Year",
-            y: "value",
-            xConfig: {
-              tickSize: 0,
-              title: false
-            },
-            yConfig: {
-              title: t("USD"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
-            },
-            shapeConfig: {
-              Line: {
-                stroke: d => tradeBalanceColorScale(d["variable"]),
-                strokeWidth: 2
-              }
-            }
-          }}
-          dataFormat={data => {
-            const tKeys = {
-              FOB: t("trade_balance.fob"),
-              CIF: t("trade_balance.cif"),
-              "Trade Balance": t("trade_balance.trade_balance")
-            };
-            data.data = replaceKeyNames(data.data, tKeys);
-            return melt(data.data, ["ID Year"], _.values(tKeys));
-          }}
-        />
-      </div>
-    );
+          return {
+            key: "path_trade_balance_country",
+            data: store.env.CANON_API + q.path("jsonrecords")
+          };
+        });
+
+        return {
+          type: "GET_DATA",
+          promise: prm
+        };
+      }
+    ];
+
+    render() {
+      const { t, className, i18n } = this.props;
+      if (!i18n.language) return null;
+      const locale = i18n.language.split("-")[0];
+      const path = this.context.data.path_trade_balance_country;
+
+      return (
+        <div className={className}>
+          <h3 className="chart-title">{t("Trade Balance")}</h3>
+          <LinePlot
+            config={{
+              height: 500,
+              data: path
+            }}
+            dataFormat={data => data.data}
+          />
+        </div>
+      );
+    }
   }
-}
-
-export default translate()(TradeBalance);
+);
