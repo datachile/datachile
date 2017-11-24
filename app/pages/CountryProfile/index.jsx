@@ -351,12 +351,7 @@ class CountryProfile extends Component {
       imports: this.props.data.country_imports,
       exports: this.props.data.country_exports,
       balance: this.props.data.country_balance,
-      product: {
-        name: this.props.data.top_imported_product_from_country.name,
-        value: this.props.data.top_imported_product_from_country.value,
-        year: this.props.data.top_imported_product_from_country.year,
-        source: this.props.data.top_imported_product_from_country.source
-      }
+      product: this.props.data.top_imported_product_from_country
     };
 
     const topics = [
