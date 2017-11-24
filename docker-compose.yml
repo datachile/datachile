@@ -41,8 +41,8 @@ services:
       - CANON_LANGUAGES=es
       - CANON_LANGUAGES_DEFAULT=en
       - APP_HOME=/datachile
-      - VIRTUAL_HOST=en.datachile.datawheel.us,es.datachile.datawheel.us,datachile.datawheel.us
-      - LETSENCRYPT_HOST=en.datachile.datawheel.us,es.datachile.datawheel.us,datachile.datawheel.us
+      - VIRTUAL_HOST=en.datachile.datawheel.us,es.datachile.datawheel.us,datachile.datawheel.us,datachile.io,en.datachile.io,es.datachile.io,www.datachile.io
+      - LETSENCRYPT_HOST=en.datachile.datawheel.us,es.datachile.datawheel.us,datachile.datawheel.us,datachile.io,en.datachile.io,es.datachile.io,www.datachile.io
       - LETSENCRYPT_EMAIL=datachile@datawheel.us
     volumes:
       - canon-static:/datachile/static-shared

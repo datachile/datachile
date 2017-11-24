@@ -22,5 +22,3 @@ location /fonts {
 location /css {
   alias /datachile-files/css;
 }
-
-
