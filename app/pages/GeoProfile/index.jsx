@@ -119,6 +119,8 @@ import MigrationActivitySlide from "./demography/origins/MigrationActivitySlide"
 import MigrationByActivity from "./demography/origins/charts/MigrationByActivity";
 import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
 
+import PopulationSlide from "./demography/population/PopulationSlide";
+
 /*end Demography*/
 
 /* Health */
@@ -380,7 +382,9 @@ class GeoProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/${geoObj.image}')`
+                  backgroundImage: `url('/images/profile-bg/geo/${
+                    geoObj.image
+                  }')`
                 }}
               />
               <div className="gradient" />
@@ -843,19 +847,19 @@ class GeoProfile extends Component {
                     t("By Sex & Age"),
                     t("By Activity & Visa Type")
                   ]
-                },
-                {
-                  name: t("Diversity"),
-                  slides: [t("By Sex & Age")]
-                },
+                } /*
+                         {
+                         name: t("Diversity"),
+                         slides: [t("By Sex & Age")]
+                         },*/,
                 {
                   name: t("Population"),
                   slides: [t("By Sex & Age")]
-                },
-                {
-                  name: t("Ethnicity"),
-                  slides: [t("By Sex & Age")]
-                }
+                } /*,
+                         {
+                         name: t("Ethnicity"),
+                         slides: [t("By Sex & Age")]
+                         }*/
               ]}
             >
               <div>
@@ -880,6 +884,20 @@ class GeoProfile extends Component {
                     <MigrationByVisa className="lost-1-3" />
                   </SectionColumns>
                 </MigrationActivitySlide>
+              </div>
+              <div>
+                <PopulationSlide>
+                  <SectionColumns>
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Population Pyramid (issue 81)"
+                    />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Population Projection (issue 82)"
+                    />
+                  </SectionColumns>
+                </PopulationSlide>
               </div>
             </Topic>
 

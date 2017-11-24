@@ -73,7 +73,7 @@ class HousingType extends Section {
               title: false
             },
             ySort: (a, b) => {
-              return a["Number of visas"] > b["Number of visas"] ? 1 : -1;
+              return a[msrName] > b[msrName] ? 1 : -1;
             },
             barPadding: 0,
             groupPadding: 5,
