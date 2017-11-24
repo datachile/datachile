@@ -224,7 +224,7 @@ class CountryProfile extends Component {
             "Country",
             store.i18n.locale
           );
-          q.cut(`[Date].[Date].[Year].&[${store.balance_year}]`);
+          q.cut(`[Date].[Date].[Year].&[${store.exports_year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -233,8 +233,8 @@ class CountryProfile extends Component {
             data: {
               value: res.data.data[0]["Trade Balance"],
               decile: null,
-              year: store.balance_year,
-              source: store.sources.balance.title
+              year: store.sources.exports.year,
+              source: store.sources.exports.title
             }
           };
         });
@@ -264,7 +264,7 @@ class CountryProfile extends Component {
 
   render() {
     const { subnav, activeSub } = this.state;
-    const { focus, t, i18n } = this.props;
+    const { t, i18n } = this.props;
 
     if (!i18n.language) return null;
 
@@ -317,6 +317,8 @@ class CountryProfile extends Component {
         source: "source"
       }
     };
+
+    console.log("STATS", stats);
 
     const topics = [
       {
@@ -407,7 +409,7 @@ class CountryProfile extends Component {
                     icon="ingreso"
                     decile={stats.balance.decile}
                     datum={numeral(stats.balance.value, locale).format(
-                      "($ 0,0 a)"
+                      "$ 0,0 a"
                     )}
                     source={stats.balance.year + " - " + stats.balance.source}
                     className=""
@@ -543,7 +545,6 @@ class CountryProfile extends Component {
                   </SectionColumns>
                 </InternationalTradeSlide>
               </div>
-              <div>trade balance</div>
             </Topic>
           </div>
         </div>
@@ -555,9 +556,7 @@ class CountryProfile extends Component {
 export default translate()(
   connect(
     state => ({
-      data: state.data,
-      focus: state.focus,
-      stats: state.stats
+      data: state.data
     }),
     {}
   )(CountryProfile)
