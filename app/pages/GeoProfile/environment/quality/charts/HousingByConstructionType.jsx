@@ -4,10 +4,7 @@ import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import {
-  simpleGeoChartNeed,
-  geoCut
-} from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
@@ -47,8 +44,6 @@ class HousingByConstructionType extends Section {
       geo.type == "comuna"
         ? "Expansion Factor Comuna"
         : "Expansion Factor Region";
-
-    console.log("PPPPPPPPPPPPP", path);
 
     return (
       <div className={className}>

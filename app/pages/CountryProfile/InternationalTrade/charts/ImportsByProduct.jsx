@@ -8,7 +8,6 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { numeral, slugifyItem } from "helpers/formatters";
 import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
-import { trade_by_time_and_product } from "helpers/aggregations";
 
 export default translate()(
     class ImportsByProduct extends Section {

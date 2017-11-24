@@ -75,7 +75,6 @@ class EmploymentByLevel extends Section {
               tickFormat: tick => numeral(tick, locale).format("(0 a)")
             },
             xSort: (a, b) => {
-              console.warn(a);
               return 1;
             },
             barPadding: 0,

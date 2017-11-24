@@ -31,6 +31,14 @@ class Footer extends Component {
                             className="logo"
                             src="/images/logos/logo-corfo.svg"
                         />
+                        <img
+                            className="logo"
+                            src="/images/logos/logo-minecon.png"
+                        />
+                        <img
+                            className="logo"
+                            src="/images/logos/logo-direcon.png"
+                        />
                     </div>
 
                     <div className="nav-links">

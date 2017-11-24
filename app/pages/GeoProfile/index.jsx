@@ -26,6 +26,7 @@ import SvgImage from "components/SvgImage";
 import AuthoritiesBlock from "components/AuthoritiesBlock";
 import TopicMenu from "components/TopicMenu";
 import Topic from "components/Topic";
+import LoadingWithProgress from "components/LoadingWithProgress";
 
 import Placeholder from "components/Placeholder";
 
@@ -305,11 +306,11 @@ class GeoProfile extends Component {
       {
         slug: "health",
         title: t("Health")
-      },
+      } /*,
       {
         slug: "politics",
         title: t("Politics")
-      }
+      }*/
     ];
 
     var type = "";
@@ -353,7 +354,12 @@ class GeoProfile extends Component {
     }
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<LoadingWithProgress />}
+      >
         <div className="profile">
           <div className="intro">
             {geo &&
@@ -623,11 +629,6 @@ class GeoProfile extends Component {
                   <SectionColumns>
                     <IndustrySpace className="lost-1-2" />
                     <ProductSpace className="lost-1-2" />
-
-                    {/* 
-                                        <Placeholder className="lost-1-2" text="Industry Space" />
-                                        <Placeholder className="lost-1-2" text="Product Space" />
-                                      */}
                   </SectionColumns>
                 </OpportunitySlide>
               </div>
@@ -803,7 +804,7 @@ class GeoProfile extends Component {
                     <InternetAccessByZone className="lost-1-2" />
                     <Placeholder
                       className="lost-1-2"
-                      text="Internet Access - Blocked by issue 66"
+                      text="Internet Access Type - Blocked by issue 61"
                     />
                   </SectionColumns>
                 </InternetAccessSlide>
