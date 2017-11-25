@@ -22,6 +22,7 @@ import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import FeaturedMapSplash from "components/FeaturedMapSplash";
 import LinksList from "components/LinksList";
+import LoadingWithProgress from "components/LoadingWithProgress";
 
 import InternationalTrade from "./InternationalTrade/InternationalTrade";
 import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
@@ -317,7 +318,12 @@ class ProductProfile extends Component {
     ];
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<LoadingWithProgress />}
+      >
         <div className="profile">
           <div className="intro">
             {obj && (

@@ -19,6 +19,7 @@ import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
+import LoadingWithProgress from "components/LoadingWithProgress";
 
 import "../intro.css";
 
@@ -241,7 +242,12 @@ class IndustryProfile extends Component {
     ];
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<LoadingWithProgress />}
+      >
         <div className="profile">
           <div className="intro">
             {obj && (

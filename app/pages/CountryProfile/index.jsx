@@ -13,7 +13,7 @@ import mondrianClient, {
   levelCut
 } from "helpers/MondrianClient";
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
-
+import LoadingWithProgress from "components/LoadingWithProgress";
 import Topic from "components/Topic";
 
 import Nav from "components/Nav";
@@ -370,7 +370,12 @@ class CountryProfile extends Component {
     ];
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<LoadingWithProgress />}
+      >
         <div className="profile">
           <div className="intro">
             {obj && (
