@@ -9,6 +9,8 @@ import { numeral, slugifyItem } from "helpers/formatters";
 import { tradeBalanceColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
+import ExportLink from "components/ExportLink";
+
 class TradeBalance extends Section {
   static need = [
     (params, store) => {
@@ -50,7 +52,10 @@ class TradeBalance extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Trade Balance")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Trade Balance")}</span>
+          <ExportLink path={path} />
+        </h3>
         <LinePlot
           config={{
             height: 500,

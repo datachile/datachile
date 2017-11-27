@@ -9,6 +9,8 @@ import { numeral, slugifyItem } from "helpers/formatters";
 import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
+import ExportLink from "components/ExportLink";
+
 export default translate()(
     class ImportsByProduct extends Section {
         static need = [
@@ -52,7 +54,10 @@ export default translate()(
 
             return (
                 <div className={className}>
-                    <h3 className="chart-title">{t("Imports by product")}</h3>
+                    <h3 className="chart-title">
+                        <span>{t("Imports by product")}</span>
+                        <ExportLink path={path} />
+                    </h3>
                     <Treemap
                         config={{
                             height: 500,

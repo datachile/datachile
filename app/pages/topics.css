@@ -88,6 +88,8 @@
       font-weight: 300;
       padding: 0 15px;
       line-height: 1em;
+      display: flex;
+      justify-content: space-between;
     }
     & .topic-slide-charts {
       & .ticks .d3plus-Rect-text,

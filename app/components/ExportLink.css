@@ -1,0 +1,51 @@
+.export-link {
+  font-family: var(--font-family-text);
+  position: relative;
+  width: 60px;
+  display: inline-flex;
+  & .toggle {
+    font-size: 12px;
+    color: var(--snow);
+    text-transform: uppercase;
+    padding: 5px;
+    text-align: center;
+    transition: background-color 0.5s ease;
+    width: 100%;
+    &.open {
+      background-color: var(--accent);
+    }
+    &.close {
+      background-color: transparent;
+    }
+  }
+  & ul {
+    position: absolute;
+    display: inline-block;
+    transition: max-height 0.5s ease;
+    height: auto;
+    overflow: hidden;
+    background-color: var(--accent);
+    margin: 0px;
+    padding: 0px;
+    z-index: 14;
+    left: 0px;
+    width: 60px;
+    top: 25px;
+    &.open {
+      max-height: 200px;
+    }
+    &.close {
+      max-height: 0px;
+    }
+    & li {
+      padding: 5px;
+      text-align: center;
+      & a {
+        color: var(--snow);
+        font-size: 12px;
+        text-transform: uppercase;
+        width: 100%;
+      }
+    }
+  }
+}
