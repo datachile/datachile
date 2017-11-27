@@ -90,7 +90,25 @@ class Nav extends Component {
                 </span>
               </li>
               <li className="link">
-                <Link to="/explore/geo">{t("Explore")}</Link>
+                <Link to="/explore/geo">{t("Regions & Comunas")}</Link>
+              </li>
+              <li className="link">
+                <Link to="/explore/countries">{t("Countries")}</Link>
+              </li>
+              <li className="link">
+                <Link to="/explore/institutions">{t("Institutions")}</Link>
+              </li>
+              <li className="link">
+                <Link to="/explore/careers">{t("Careers")}</Link>
+              </li>
+              <li className="link">
+                <Link to="/explore/products">{t("Products")}</Link>
+              </li>
+              <li className="link">
+                <Link to="/explore/industries">{t("Industries")}</Link>
+              </li>
+              <li className="link">
+                <Link to="/explore/map">{t("Map explore")}</Link>
               </li>
               <li className="link">
                 <Link to="/about">{t("About")}</Link>

@@ -9,6 +9,7 @@ import NotFound from "pages/NotFound";
 import About from "pages/About";
 
 import Explore from "pages/Explore";
+import ExploreMap from "pages/ExploreMap";
 
 import GeoProfile from "pages/GeoProfile";
 import CountryProfile from "pages/CountryProfile";
@@ -22,6 +23,7 @@ export default function RouteCreate() {
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
 
+      <Route path="explore/map" component={ExploreMap} />
       <Route path="explore(/:entity)(/:entity_id)" component={Explore} />
 
       <Route path="geo/:region(/:comuna)" component={GeoProfile} />

@@ -47,7 +47,31 @@ class Footer extends Component {
                         </Link>
                         <span className="link link-dot">&#183;</span>
                         <Link className="link" to="/explore/geo">
-                            {t("Explore")}
+                            {t("Regions & Comunas")}
+                        </Link>
+                        <span className="link link-dot">&#183;</span>
+                        <Link className="link" to="/explore/industries">
+                            {t("Industries")}
+                        </Link>
+                        <span className="link link-dot">&#183;</span>
+                        <Link className="link" to="/explore/institutions">
+                            {t("Institutions")}
+                        </Link>
+                        <span className="link link-dot">&#183;</span>
+                        <Link className="link" to="/explore/careers">
+                            {t("Careers")}
+                        </Link>
+                        <span className="link link-dot">&#183;</span>
+                        <Link className="link" to="/explore/products">
+                            {t("Products")}
+                        </Link>
+                        <span className="link link-dot">&#183;</span>
+                        <Link className="link" to="/explore/industries">
+                            {t("Industries")}
+                        </Link>
+                        <span className="link link-dot">&#183;</span>
+                        <Link className="link" to="/explore/map">
+                            {t("Map")}
                         </Link>
                         <span className="link link-dot">&#183;</span>
                         <Link className="link" to="/about">
