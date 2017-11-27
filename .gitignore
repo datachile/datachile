@@ -1,9 +1,10 @@
 node_modules/*
 static/assets/*
 */**/.DS_Store
-.env
+.env.*
 .DS_Store
 npm-debug.log
 *~
 dockerfiles/nginx/certs/*
 dockerfiles/nginx/conf.d/default.conf
+package-lock.json
