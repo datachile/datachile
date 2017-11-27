@@ -28,7 +28,7 @@ class ExportLink extends Component {
     const { open } = this.state;
 
     const options = [
-      { caption: "CSV", path: path.replace("jsonrecords", "xsv") },
+      { caption: "CSV", path: path.replace("jsonrecords", "csv") },
       { caption: "XLS", path: path.replace("jsonrecords", "xls") },
       { caption: "JSON", path: path }
     ];
