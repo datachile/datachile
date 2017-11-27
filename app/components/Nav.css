@@ -39,8 +39,33 @@
     }
     & .r-col {
       lost-column: 1/3;
-      text-align: right;
-      padding-top: 10px;
+      & .search-nav-container {
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        & .search-nav-wrapper {
+          transition: width 0.5s ease;
+        }
+        & a.search-toggle-nav {
+          padding: 11px 15px;
+        }
+        &.close {
+          & a.search-toggle-nav {
+          }
+          & .search-nav-wrapper {
+            width: 0px;
+            opacity: 0;
+          }
+        }
+        &.open {
+          & .search-nav-wrapper {
+            width: 100%;
+            opacity: 1;
+          }
+          & a.search-toggle-nav {
+          }
+        }
+      }
       & .nav-lang {
         & .lang-selector {
           & span {

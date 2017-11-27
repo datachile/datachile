@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { SubNav } from "datawheel-canon";
 
 import NavFixed from "components/NavFixed";
+import Search from "components/Search";
 import { slugifyItem } from "helpers/formatters";
 
 import "./Nav.css";
@@ -17,11 +18,18 @@ class Nav extends Component {
     };
     this.toggleSubNav = this.toggleSubNav.bind(this);
     this.visibleSubNav = this.visibleSubNav.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
   }
 
   toggleSubNav() {
     this.setState(prevState => ({
       subnav_visible: !prevState.subnav_visible
+    }));
+  }
+
+  toggleSearch() {
+    this.setState(prevState => ({
+      search_visible: !prevState.search_visible
     }));
   }
 
@@ -48,7 +56,9 @@ class Nav extends Component {
     const currentLang = i18n.language.split("-")[0];
     const otherLang = currentLang === "es" ? "en" : "es";
 
-    const { subnav_visible } = this.state;
+    const { subnav_visible, search_visible } = this.state;
+
+    const search_icon = search_visible ? "icon-close" : "icon-search";
 
     var canUseDOM = !!(
       typeof window !== "undefined" &&
@@ -134,13 +144,16 @@ class Nav extends Component {
             </div>
 
             <div className="r-col">
-              <div className="nav-lang">
-                <div className="lang-selector">
-                  <span className="lang-current">{currentLang}</span>
-                  <span> | </span>
-                  <span className="lang-other">
-                    <a href={url}>{otherLang}</a>
-                  </span>
+              <div
+                className={`search-nav-container ${search_visible
+                  ? "open"
+                  : "close"}`}
+              >
+                <a className="search-toggle-nav" onClick={this.toggleSearch}>
+                  <img src={`/images/icons/${search_icon}.svg`} />
+                </a>
+                <div className={`search-nav-wrapper`}>
+                  <Search className="search-nav" />
                 </div>
               </div>
             </div>
