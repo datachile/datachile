@@ -32,12 +32,14 @@ import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 import MigrationSlide from "./demography/MigrationSlide";
 import MigrationDetailsSlide from "./demography/MigrationDetailsSlide";
 import MigrationActivitySlide from "./demography/MigrationActivitySlide";
+import MigrationEducationSlide from "./demography/MigrationEducationSlide";
 
 import MigrationByActivity from "./demography/charts/MigrationByActivity";
 import MigrationByAge from "./demography/charts/MigrationByAge";
 import MigrationByRegion from "./demography/charts/MigrationByRegion";
 import MigrationBySex from "./demography/charts/MigrationBySex";
 import MigrationByVisa from "./demography/charts/MigrationByVisa";
+import MigrationByEducation from "./demography/charts/MigrationByEducation";
 
 /* END DEMOGRAPHY */
 
@@ -298,7 +300,8 @@ class CountryProfile extends Component {
     MigrationByAge,
     MigrationByRegion,
     MigrationBySex,
-    MigrationByVisa
+    MigrationByVisa,
+    MigrationByEducation
   ];
 
   componentDidMount() {}
@@ -532,7 +535,11 @@ class CountryProfile extends Component {
                 },
                 {
                   name: t("Characterization"),
-                  slides: [t("By Sex & Age"), t("By Activity & Visa Type")]
+                  slides: [
+                    t("By Sex & Age"),
+                    t("By Activity & Visa Type"),
+                    t("By Education")
+                  ]
                 }
               ]}
             >
@@ -558,6 +565,13 @@ class CountryProfile extends Component {
                     <MigrationByActivity className="lost-1-2" />
                   </SectionColumns>
                 </MigrationActivitySlide>
+              </div>
+              <div>
+                <MigrationEducationSlide>
+                  <SectionColumns>
+                    <MigrationByEducation className="lost-1" />
+                  </SectionColumns>
+                </MigrationEducationSlide>
               </div>
             </Topic>
             <Topic

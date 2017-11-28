@@ -8,3 +8,6 @@ npm-debug.log
 dockerfiles/nginx/certs/*
 dockerfiles/nginx/conf.d/default.conf
 package-lock.json
+yarn.lock
+.vscode/*
+jsconfig.json

@@ -10,7 +10,6 @@ import { Section } from "datawheel-canon";
 class InnovationBySize extends Section {
   static need = [
     (params, store) => {
-      
       const geo = getGeoObject(params);
       const prm = mondrianClient.cube("tax_data").then(cube => {
         var q = geoCut(
