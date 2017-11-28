@@ -1,14 +1,13 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { Geomap } from "d3plus-react";
-import { Link, browserHistory } from "react-router";
+import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
 // needs (data fetchers)
@@ -140,14 +139,6 @@ const chileObj = {
 };
 
 class GeoProfile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      subnav: false,
-      activeSub: false
-    };
-  }
-
   static need = [
     needGetGeo,
     needGetPopulationDatum,
@@ -249,7 +240,6 @@ class GeoProfile extends Component {
     if (!i18n.language) return null;
     const locale = i18n.language.split("-")[0];
 
-    const { subnav, activeSub } = this.state;
     const geoObj = getGeoObject(this.props.routeParams);
     const showRanking = geoObj.type == "country" ? false : true;
     const geo = this.props.data.geo;
@@ -314,22 +304,6 @@ class GeoProfile extends Component {
         title: t("Politics")
       }*/
     ];
-
-    var type = "";
-    switch (geoObj.type) {
-      case "country": {
-        type = t("Country");
-        break;
-      }
-      case "region": {
-        type = t("Region");
-        break;
-      }
-      case "comuna": {
-        type = t("Comuna");
-        break;
-      }
-    }
 
     function fillShape(d) {
       var c = "rgba(255, 255, 255, 0.7)";
@@ -496,7 +470,6 @@ class GeoProfile extends Component {
                       downloadButton: false,
                       height: 500,
                       label: d => {
-                        console.log(d);
                         return "label";
                       },
                       legend: false,
@@ -850,18 +823,18 @@ class GeoProfile extends Component {
                     t("By Activity & Visa Type")
                   ]
                 } /*
-                         {
-                         name: t("Diversity"),
-                         slides: [t("By Sex & Age")]
-                         },*/,
+                                 {
+                                 name: t("Diversity"),
+                                 slides: [t("By Sex & Age")]
+                                 },*/,
                 {
                   name: t("Population"),
                   slides: [t("By Sex & Age")]
                 } /*,
-                         {
-                         name: t("Ethnicity"),
-                         slides: [t("By Sex & Age")]
-                         }*/
+                                 {
+                                 name: t("Ethnicity"),
+                                 slides: [t("By Sex & Age")]
+                                 }*/
               ]}
             >
               <div>
