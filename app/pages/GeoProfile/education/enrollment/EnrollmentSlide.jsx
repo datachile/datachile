@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -21,11 +20,7 @@ class EnrollmentSlide extends Section {
             geo,
             "Geography",
             cube.query
-              .cut(
-                // TODO replace with NamedSet 'Special Education Teachings'
-                // Blocked by mondrian-rest issue #20: https://github.com/jazzido/mondrian-rest/issues/20
-                "{[Teachings].[Teaching].[Teaching].&[211],[Teachings].[Teaching].[Teaching].&[212],[Teachings].[Teaching].[Teaching].&[213],[Teachings].[Teaching].[Teaching].&[214],[Teachings].[Teaching].[Teaching].&[215],[Teachings].[Teaching].[Teaching].&[216],[Teachings].[Teaching].[Teaching].&[217]}"
-              )
+              .cut("Special Education Teachings") // NamedSet
               .cut("[Date].[Date].[Year].&[2015]")
               .measure("Number of records"),
             store.i18n.locale
