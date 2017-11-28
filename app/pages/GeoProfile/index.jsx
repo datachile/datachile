@@ -110,6 +110,7 @@ import Services from "./environment/amenities/charts/Services";
 /*Demography*/
 import MigrationSlide from "./demography/origins/MigrationSlide";
 import MigrationByOrigin from "./demography/origins/charts/MigrationByOrigin";
+import MigrationByEducation from "./demography/origins/charts/MigrationByEducation";
 
 import MigrationDetailsSlide from "./demography/origins/MigrationDetailsSlide";
 import MigrationBySex from "./demography/origins/charts/MigrationBySex";
@@ -227,6 +228,7 @@ class GeoProfile extends Component {
 
     MigrationSlide,
     MigrationByOrigin,
+    MigrationByEducation,
 
     MigrationDetailsSlide,
     MigrationBySex,
@@ -865,7 +867,8 @@ class GeoProfile extends Component {
               <div>
                 <MigrationSlide>
                   <SectionColumns>
-                    <MigrationByOrigin className="lost-1" />
+                    <MigrationByOrigin className="lost-1-2" />
+                    <MigrationByEducation className="lost-1-2" />
                   </SectionColumns>
                 </MigrationSlide>
               </div>
