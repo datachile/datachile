@@ -55,7 +55,7 @@ class MigrationByEducation extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Migration By Education")}</span>
+          <span>{t("Migration By Educational Level")}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
