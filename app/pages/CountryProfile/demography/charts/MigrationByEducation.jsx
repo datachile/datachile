@@ -32,7 +32,7 @@ export default translate()(
           );
 
           return {
-            key: "path_country_migration_by_activity",
+            key: "path_country_migration_by_education",
             data: store.env.CANON_API + q.path("jsonrecords")
           };
         });
@@ -51,7 +51,7 @@ export default translate()(
 
       const locale = i18n.language.split("-")[0];
 
-      const path = this.context.data.path_country_migration_by_activity;
+      const path = this.context.data.path_country_migration_by_education;
 
       return (
         <div className={className}>
