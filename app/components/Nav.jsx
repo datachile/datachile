@@ -145,9 +145,9 @@ class Nav extends Component {
 
             <div className="r-col">
               <div
-                className={`search-nav-container ${search_visible
-                  ? "open"
-                  : "close"}`}
+                className={`search-nav-container ${
+                  search_visible ? "open" : "close"
+                }`}
               >
                 <a className="search-toggle-nav" onClick={this.toggleSearch}>
                   <img src={`/images/icons/${search_icon}.svg`} />

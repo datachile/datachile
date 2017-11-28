@@ -22,9 +22,9 @@ class EnrollmentSlide extends Section {
             "Geography",
             cube.query
               .cut(
-                  // TODO replace with NamedSet 'Special Education Teachings'
-                  // Blocked by mondrian-rest issue #20: https://github.com/jazzido/mondrian-rest/issues/20
-                  "{[Teachings].[Teaching].[Teaching].&[211],[Teachings].[Teaching].[Teaching].&[212],[Teachings].[Teaching].[Teaching].&[213],[Teachings].[Teaching].[Teaching].&[214],[Teachings].[Teaching].[Teaching].&[215],[Teachings].[Teaching].[Teaching].&[216],[Teachings].[Teaching].[Teaching].&[217]}"
+                // TODO replace with NamedSet 'Special Education Teachings'
+                // Blocked by mondrian-rest issue #20: https://github.com/jazzido/mondrian-rest/issues/20
+                "{[Teachings].[Teaching].[Teaching].&[211],[Teachings].[Teaching].[Teaching].&[212],[Teachings].[Teaching].[Teaching].&[213],[Teachings].[Teaching].[Teaching].&[214],[Teachings].[Teaching].[Teaching].&[215],[Teachings].[Teaching].[Teaching].&[216],[Teachings].[Teaching].[Teaching].&[217]}"
               )
               .cut("[Date].[Date].[Year].&[2015]")
               .measure("Number of records"),
