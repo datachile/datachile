@@ -5,6 +5,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import SourceNote from "components/SourceNote";
 
 class DeathCausesSlide extends Section {
   static need = [];
@@ -51,6 +52,7 @@ class DeathCausesSlide extends Section {
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
+        <SourceNote cube="death_causes" />
       </div>
     );
   }

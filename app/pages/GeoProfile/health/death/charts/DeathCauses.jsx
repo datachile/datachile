@@ -4,37 +4,26 @@ import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { continentColorScale } from "helpers/colors";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  geoCut,
+  simpleGeoChartNeed
+} from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 class DeathCauses extends Section {
   static need = [
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("death_causes").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("CIE 10", "CIE 10", "CIE 10")
-            .drilldown("Date", "Date", "Year")
-            .measure("Casualities Count SUM"),
-          store.i18n.locale
-        );
-        console.log(q)
-        return {
-          key: "path_health_death_causes",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    simpleGeoChartNeed(
+      "path_health_death_causes",
+      "death_causes",
+      ["Casualities Count SUM"],
+      {
+        drillDowns: [["CIE 10", "CIE 10", "CIE 10"], ["Date", "Date", "Year"]],
+        options: { parents: true }
+      }
+    )
   ];
 
   render() {
@@ -46,7 +35,11 @@ class DeathCauses extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Death Causes By Casualities")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Death Causes By Casualities")}</span>
+          <ExportLink path={path} />
+        </h3>
+
         <Treemap
           config={{
             height: 500,
