@@ -127,6 +127,12 @@ import PopulationSlide from "./demography/population/PopulationSlide";
 import AccessSlide from "./health/access/AccessSlide";
 import HealthInsurance from "./health/access/charts/HealthInsurance";
 
+import DisabilitySlide from "./health/disability/DisabilitySlide";
+import Disability from "./health/disability/charts/Disability";
+
+import DeathCausesSlide from "./health/death/DeathCausesSlide";
+import DeathCauses from "./health/death/charts/DeathCauses";
+
 /* end Health */
 
 import "../intro.css";
@@ -238,7 +244,10 @@ class GeoProfile extends Component {
     MigrationByVisa,
 
     AccessSlide,
-    HealthInsurance
+    HealthInsurance,
+    
+    DeathCausesSlide,
+    DeathCauses
   ];
 
   render() {
@@ -912,6 +921,10 @@ class GeoProfile extends Component {
                 {
                   name: t("Disability"),
                   slides: [t("Disability")]
+                },
+                {
+                  name: t("Death Causes"),
+                  slides: [t("Death Causes")]
                 }
               ]}
             >
@@ -921,6 +934,20 @@ class GeoProfile extends Component {
                     <HealthInsurance className="lost-1" />
                   </SectionColumns>
                 </AccessSlide>
+              </div>
+              <div>
+                <DisabilitySlide>
+                  <SectionColumns>
+                    <Disability className="lost-1" />
+                  </SectionColumns>
+                </DisabilitySlide>
+              </div>
+              <div>
+                <DeathCausesSlide>
+                  <SectionColumns>
+                    <DeathCauses className="lost-1" />
+                  </SectionColumns>
+                </DeathCausesSlide>
               </div>
             </Topic>
           </div>
