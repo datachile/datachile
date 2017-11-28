@@ -6,10 +6,7 @@ import { browserHistory } from "react-router";
 
 import { continentColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
-import mondrianClient, {
-  geoCut,
-  simpleGeoChartNeed
-} from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
 class ExportsByDestination extends Section {

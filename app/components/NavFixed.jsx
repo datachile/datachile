@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
-
-import { FORMATTERS } from "helpers/formatters";
 
 import SvgImage from "components/SvgImage";
 
@@ -50,8 +47,6 @@ class NavFixed extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {}
-
   render() {
     const { t, topics, title, toggleSubNav } = this.props;
     const { visible, active } = this.state;
@@ -77,9 +72,9 @@ class NavFixed extends Component {
                   {topics.map(topic => (
                     <a
                       key={topic.slug}
-                      className={`topic-link ${active == topic.slug
-                        ? " active"
-                        : ""}`}
+                      className={`topic-link ${
+                        active == topic.slug ? " active" : ""
+                      }`}
                       href={`#${topic.slug}`}
                     >
                       <SvgImage

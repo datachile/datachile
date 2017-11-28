@@ -10,7 +10,6 @@ import { Section } from "datawheel-canon";
 class SpendingByFundingSource extends Section {
   static need = [
     (params, store) => {
-      
       const geo = getGeoObject(params);
       const prm = mondrianClient.cube("tax_data").then(cube => {
         var q = geoCut(
@@ -42,9 +41,7 @@ class SpendingByFundingSource extends Section {
     const { t, className } = this.props;
     return (
       <div className={className}>
-        <h3 className="chart-title">
-          {t("By Funding Source")}
-        </h3>
+        <h3 className="chart-title">{t("By Funding Source")}</h3>
         <Treemap
           config={{
             height: 500,

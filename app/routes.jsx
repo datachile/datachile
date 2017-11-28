@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, IndexRoute } from "react-router";
 
-import store from "store";
-
 import App from "components/App";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";

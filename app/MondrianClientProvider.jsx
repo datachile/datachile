@@ -1,7 +1,6 @@
 import React, { Children } from "react";
 
 export default class MondrianClientProvider extends React.Component {
-
   static childContextTypes = {
     apiClient: React.PropTypes.object.isRequired
   };
