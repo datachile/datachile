@@ -5,7 +5,8 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "react/prop-types": 0
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -13,5 +14,9 @@
         "modules": true
     }
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "globals": {
+    "window": true,
+    "document": true
+  }
 }
