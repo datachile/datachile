@@ -57,20 +57,17 @@ class Select extends Component {
     const { selected } = this.state;
 
     return (
-      <select
-        id={id}
-        className="select-component"
-        value={selected}
-        onChange={this.handleChange}
-      >
-        {options &&
-          options.map(option => (
-            <option key={option[valueField]} value={option[valueField]}>
-              {option[labelField]}
-            </option>
-          ))}
-        )}
-      </select>
+      <div className="select-component">
+        <select id={id} value={selected} onChange={this.handleChange}>
+          {options &&
+            options.map(option => (
+              <option key={option[valueField]} value={option[valueField]}>
+                {option[labelField]}
+              </option>
+            ))}
+          )}
+        </select>
+      </div>
     );
   }
 

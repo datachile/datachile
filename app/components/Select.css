@@ -1,3 +1,38 @@
 .select-component {
-
+	& select {
+		height: 20px;
+		overflow: hidden;
+		background-color: transparent;
+		background-image: url("/images/profile-icon/icon-arrow-mini.svg");
+		background-repeat: no-repeat;
+		background-position: right center;
+		border: none;
+		border-radius: 0px;
+		padding: 0px 20px 0px 10px;
+		font-size: 14px;
+		font-family: var(--font-family-title);
+		color: var(--snow);
+		text-transform: uppercase;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		&:-moz-focusring {
+			outline: none;
+			color: transparent;
+			text-shadow: 0 0 0 #fff;
+		}
+		&::-ms-expand {
+			display: none;
+		}
+		&:focus,
+		&:active {
+			outline: none;
+			border: none;
+		}
+		& option {
+			font-size: 14px;
+			font-family: var(--font-family-title);
+			color: var(--dark);
+		}
+	}
+	border-bottom: 2px solid var(--accent);
 }
