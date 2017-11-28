@@ -1,3 +1,3 @@
 export function toggleSearch() {
-  return {type: "TOGGLE_SEARCH"};
+  return { type: "TOGGLE_SEARCH" };
 }
