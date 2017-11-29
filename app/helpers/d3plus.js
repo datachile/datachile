@@ -1,15 +1,15 @@
 const axisConfig = {
   barConfig: {
-    "stroke": "#fff",
+    stroke: "#fff",
     "stroke-width": 1
   },
   gridConfig: {
-    "stroke": "#fff",
+    stroke: "#fff",
     "stroke-width": 0
   },
   shapeConfig: {
     fill: "#fff",
-    labelConfig:{
+    labelConfig: {
       fontColor: "#fff",
       fontFamily: () => "'Yantramanav', sans-serif",
       fontSize: () => 12
@@ -37,10 +37,10 @@ export default {
       height: () => 20,
       textTransform: "uppercase",
       width: () => 20,
-      labelConfig:{
+      labelConfig: {
         fontColor: "white"
       }
-    },
+    }
   },
   shapeConfig: {
     fontColor: "rgba(0, 0, 0, 0.4)",

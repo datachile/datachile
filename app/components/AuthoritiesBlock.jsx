@@ -59,9 +59,9 @@ class AuthoritiesBlock extends Component {
               .cut("[Elected].[Elected].&[1]")
               .cut("[Election Type].[Election Type].&[3]")
               .cut(
-                `{[Date].[Date].[Year].&[${store
-                  .senators_election_year[0]}],[Date].[Date].[Year].&[${store
-                  .senators_election_year[1]}]}`
+                `{[Date].[Date].[Year].&[${
+                  store.senators_election_year[0]
+                }],[Date].[Date].[Year].&[${store.senators_election_year[1]}]}`
               );
 
             var id = 99999;

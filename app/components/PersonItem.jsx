@@ -12,18 +12,15 @@ class PersonItem extends Component {
       <div className={"person-item " + className}>
         <div className="person-item-img">
           <ReactImageFallback
-                    src={imgpath}
-                    fallbackImage="/images/authorities/dummy.jpg"
-                    initialImage="/images/loader.gif"
-                    alt={name}
-                    className="person-item-img-react" />
+            src={imgpath}
+            fallbackImage="/images/authorities/dummy.jpg"
+            initialImage="/images/loader.gif"
+            alt={name}
+            className="person-item-img-react"
+          />
         </div>
-        <div className="person-item-name">
-          {name}
-        </div>
-        <div className="person-item-subtitle">
-          {subtitle}
-        </div>
+        <div className="person-item-name">{name}</div>
+        <div className="person-item-subtitle">{subtitle}</div>
       </div>
     );
   }

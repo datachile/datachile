@@ -10,6 +10,8 @@ import { productsColorScale } from "helpers/colors";
 import { getGeoObject } from "helpers/dataUtils";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
+import ExportLink from "components/ExportLink";
+
 export default translate()(
   class ExportsByProduct extends Section {
     static need = [
@@ -28,7 +30,8 @@ export default translate()(
       return (
         <div className={className}>
           <h3 className="chart-title">
-            {t("Exports of firms registered in this location")}
+            <span>{t("Exports of firms registered in this location")}</span>
+            <ExportLink path={path} />
           </h3>
           <Treemap
             config={{

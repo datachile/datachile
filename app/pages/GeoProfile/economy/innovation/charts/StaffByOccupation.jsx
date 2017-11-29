@@ -7,10 +7,11 @@ import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import ExportLink from "components/ExportLink";
+
 class StaffByOccupation extends Section {
   static need = [
     (params, store) => {
-      
       const geo = getGeoObject(params);
       const prm = mondrianClient.cube("tax_data").then(cube => {
         var q = geoCut(
@@ -43,7 +44,8 @@ class StaffByOccupation extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("By Occupation")}
+          <span>{t("By Occupation")}</span>
+          <ExportLink path={path} />
         </h3>
         <Treemap
           config={{

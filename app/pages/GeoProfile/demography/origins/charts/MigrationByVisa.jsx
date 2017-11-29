@@ -13,6 +13,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import Select from "components/Select";
+import ExportLink from "components/ExportLink";
 
 export default translate()(
   class MigrationByVisa extends Section {
@@ -117,13 +118,14 @@ export default translate()(
 
     render() {
       const { t, className, i18n } = this.props;
+      const path = this.context.data.path_migration_by_visa_type;
       if (!i18n.language) return null;
       const locale = i18n.language.split("-")[0];
 
       return (
         <div className={className}>
           <h3 className="chart-title">
-            {t("Migration By Visa Type")}
+            <span>{t("Migration By Visa Type")}</span>
             <Select
               id="variations"
               options={this.state.chartVariations}

@@ -9,6 +9,8 @@ import { tradeBalanceColorScale } from "helpers/colors";
 import { melt, getGeoObject, replaceKeyNames } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 class TradeBalance extends Section {
   static need = [
     simpleGeoChartNeed(
@@ -27,7 +29,10 @@ class TradeBalance extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Trade Balance")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Trade Balance")}</span>
+          <ExportLink path={path} />
+        </h3>
         <LinePlot
           config={{
             height: 200,

@@ -10,6 +10,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
+import ExportLink from "components/ExportLink";
 
 class HousingByConstructionType extends Section {
   static need = [
@@ -47,7 +48,10 @@ class HousingByConstructionType extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Material of Walls")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Material of Walls")}</span>
+          <ExportLink path={path} />
+        </h3>
         <BarChart
           config={{
             height: 500,

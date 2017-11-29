@@ -6,6 +6,8 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { translate } from "react-i18next";
 
+import ExportLink from "components/ExportLink";
+
 export default translate()(
   class PerformanceByType extends Section {
     static need = [
@@ -42,7 +44,8 @@ export default translate()(
       return (
         <div className={className}>
           <h3 className="chart-title">
-            {t("Performance By Type")}
+            <span>{t("Performance By Type")}</span>
+            <ExportLink path={path} />
           </h3>
           <Treemap
             config={{

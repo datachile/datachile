@@ -8,6 +8,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 export default translate()(
   class MigrationBySex extends Section {
     static need = [
@@ -45,7 +47,10 @@ export default translate()(
 
       return (
         <div className={className}>
-          <h3 className="chart-title">{t("Migration By Sex")}</h3>
+          <h3 className="chart-title">
+            <span>{t("Migration By Sex")}</span>
+            <ExportLink path={path} />
+          </h3>
           <BarChart
             config={{
               height: 500,

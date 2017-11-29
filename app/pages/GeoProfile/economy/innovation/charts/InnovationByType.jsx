@@ -7,10 +7,11 @@ import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import ExportLink from "components/ExportLink";
+
 class InnovationByType extends Section {
   static need = [
     (params, store) => {
-      
       const geo = getGeoObject(params);
       const prm = mondrianClient.cube("tax_data").then(cube => {
         var q = geoCut(
@@ -43,7 +44,8 @@ class InnovationByType extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Innovation Type")}
+          <span>{t("Innovation Type")}</span>
+          <ExportLink path={path} />
         </h3>
         <Treemap
           config={{
