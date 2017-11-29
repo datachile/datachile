@@ -202,7 +202,9 @@ class Services extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Main services in ") + geo.name}</h3>
+        <h3 className="chart-title">
+          <span>{t("Main services in ") + geo.name}</span>
+        </h3>
         <div className="info-logo-container">
           {services.length == 0 && <NoDataAvailable text="" />}
           {services.map(d => <InfoLogoItem item={d} />)}

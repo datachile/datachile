@@ -9,6 +9,8 @@ import { numeral, slugifyItem } from "helpers/formatters";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
+import ExportLink from "components/ExportLink";
+
 class ExportsByDestination extends Section {
   static need = [
     simpleGeoChartNeed("path_exports_by_destination", "exports", ["FOB US"], {
@@ -25,7 +27,10 @@ class ExportsByDestination extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Exports by destination of firms based on this location")}
+          <span>
+            {t("Exports by destination of firms based on this location")}
+          </span>
+          <ExportLink path={path} />
         </h3>
         <Treemap
           config={{

@@ -10,6 +10,7 @@ import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
+import ExportLink from "components/ExportLink";
 
 class InternetAccessByZone extends Section {
   static need = [
@@ -60,7 +61,8 @@ class InternetAccessByZone extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Internet Access By Zone in ") + geoChartName}
+          <span>{t("Internet Access By Zone in ") + geoChartName}</span>
+          <ExportLink path={path} />
         </h3>
         <BarChart
           config={{
