@@ -40,7 +40,7 @@ class Nav extends Component {
   render() {
     const {
       t,
-      locale,
+      i18n,
       location,
       title,
       type,
@@ -51,6 +51,7 @@ class Nav extends Component {
       topics
     } = this.props;
 
+    const locale = i18n.locale;
     const otherLang = locale === "es" ? "en" : "es";
 
     const { subnav_visible, search_visible } = this.state;
@@ -202,10 +203,7 @@ class Nav extends Component {
 export default translate()(
   connect(
     state => ({
-      location: state.location,
-      locale: state.i18n.locale
-        ? state.i18n.locale.split("-")[0]
-        : state.i18n.locale
+      location: state.location
     }),
     {}
   )(Nav)
