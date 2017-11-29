@@ -4,7 +4,7 @@ import { Section } from "datawheel-canon";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { melt, getGeoObject } from "helpers/dataUtils";
 import { employmentColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
@@ -14,35 +14,17 @@ import ExportLink from "components/ExportLink";
 
 class EmploymentBySex extends Section {
   static need = [
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("nene").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .drilldown("Date", "Month")
-            .drilldown(
-              "Occupational Situation",
-              "Occupational Situation",
-              "Occupational Situation"
-            )
-            .drilldown("Sex", "Sex", "Sex")
-            .measure("Expansion factor"),
-          store.i18n.locale
-        );
-
-        return {
-          key: "path_employment_by_sex",
-          data: store.env.CANON_API + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    simpleGeoChartNeed("path_employment_by_sex", "nene", ["Expansion factor"], {
+      drillDowns: [
+        [
+          "Occupational Situation",
+          "Occupational Situation",
+          "Occupational Situation"
+        ],
+        ["Sex", "Sex", "Sex"],
+        ["Quaterly Reporting"]
+      ]
+    })
   ];
 
   constructor(props) {
@@ -136,13 +118,7 @@ class EmploymentBySex extends Section {
               }
             },
             tooltipConfig: {
-              title: d => {
-                const date = new Date(d["Month"]);
-                const dateStr = date.getFullYear()
-                  ? date.getFullYear() + "-" + date.getMonth()
-                  : "";
-                return d["variable"] + " " + dateStr;
-              },
+              title: d => d["Month"],
               body: d =>
                 numeral(d["value"], locale).format("(0 a)") + " " + t("people")
             }
