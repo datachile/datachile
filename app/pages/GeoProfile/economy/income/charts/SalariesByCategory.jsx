@@ -8,6 +8,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 class SalariesByCategory extends Section {
   static need = [
     simpleGeoChartNeed(
@@ -29,7 +31,10 @@ class SalariesByCategory extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Salaries By Category")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Salaries By Category")}</span>
+          <ExportLink path={path} />
+        </h3>
         <BarChart
           config={{
             height: 500,

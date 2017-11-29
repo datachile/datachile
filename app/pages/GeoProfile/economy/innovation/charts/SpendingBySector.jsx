@@ -10,6 +10,8 @@ import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import ExportLink from "components/ExportLink";
+
 class SpendingBySector extends Section {
   static need = [
     (params, store) => {
@@ -64,7 +66,10 @@ class SpendingBySector extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("By Sector")} {geo && geo.type == "comuna" && t("Regional")}
+          <span>
+            {t("By Sector")} {geo && geo.type == "comuna" && t("Regional")}
+          </span>
+          <ExportLink path={path} />
         </h3>
         <Treemap
           config={{

@@ -8,6 +8,8 @@ import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import ExportLink from "components/ExportLink";
+
 class IndustrySpace extends Section {
   static need = [
     (params, store) =>
@@ -26,7 +28,10 @@ class IndustrySpace extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Industry Space")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Industry Space")}</span>
+          <ExportLink path={path} />
+        </h3>
         <Network
           config={{
             height: 500,

@@ -8,6 +8,8 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_GENDER } from "helpers/colors";
 
+import ExportLink from "components/ExportLink";
+
 class IncomeBySex extends Section {
   static need = [
     simpleGeoChartNeed(
@@ -33,7 +35,10 @@ class IncomeBySex extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Income By Sex")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Income By Sex")}</span>
+          <ExportLink path={path} />
+        </h3>
         <BarChart
           config={{
             height: 500,

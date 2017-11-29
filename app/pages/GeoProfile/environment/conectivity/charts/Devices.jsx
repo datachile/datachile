@@ -160,7 +160,9 @@ class Devices extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Devices' use in ") + geoChartName}</h3>
+        <h3 className="chart-title">
+          <span>{t("Devices' use in ") + geoChartName}</span>
+        </h3>
         <div className="info-logo-container">
           {devices.map(d => <InfoLogoItem item={d} />)}
         </div>

@@ -8,6 +8,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 class HealthInsurance extends Section {
   static need = [
     (params, store) => {
@@ -47,7 +49,10 @@ class HealthInsurance extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Access to Health Insurance")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Access to Health Insurance")}</span>
+          <ExportLink path={path} />
+        </h3>
         <Treemap
           config={{
             height: 500,

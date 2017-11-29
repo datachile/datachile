@@ -10,6 +10,7 @@ import { employmentColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import Select from "components/Select";
+import ExportLink from "components/ExportLink";
 
 class EmploymentBySex extends Section {
   static need = [
@@ -100,7 +101,8 @@ class EmploymentBySex extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Employment By Sex and Situation")}
+          <span>{t("Employment By Sex and Situation")}</span>
+          <ExportLink path={path} />
           <Select
             id="variations"
             options={this.state.chartVariations}
