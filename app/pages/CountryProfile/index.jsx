@@ -22,8 +22,9 @@ import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
 
-import InternationalTrade from "./InternationalTrade/InternationalTrade";
 import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
+import InternationalTradeBalanceSlide from "./InternationalTrade/InternationalTradeBalanceSlide";
+
 import ExportsByProduct from "./InternationalTrade/charts/ExportsByProduct";
 import ImportsByProduct from "./InternationalTrade/charts/ImportsByProduct";
 import TradeBalance from "./InternationalTrade/charts/TradeBalance";
@@ -287,8 +288,8 @@ class CountryProfile extends Component {
         promise: prm
       };
     },
-    InternationalTrade,
     InternationalTradeSlide,
+    InternationalTradeBalanceSlide,
     ImportsByProduct,
     ExportsByProduct,
     TradeBalance,
@@ -296,6 +297,7 @@ class CountryProfile extends Component {
     MigrationSlide,
     MigrationDetailsSlide,
     MigrationActivitySlide,
+    MigrationEducationSlide,
     MigrationByActivity,
     MigrationByAge,
     MigrationByRegion,
@@ -594,10 +596,14 @@ class CountryProfile extends Component {
                     <ImportsByProduct className="lost-1-2" />
                     <ExportsByProduct className="lost-1-2" />
                   </SectionColumns>
+                </InternationalTradeSlide>
+              </div>
+              <div>
+                <InternationalTradeBalanceSlide>
                   <SectionColumns>
                     <TradeBalance className="lost-1" />
                   </SectionColumns>
-                </InternationalTradeSlide>
+                </InternationalTradeBalanceSlide>
               </div>
             </Topic>
           </div>
