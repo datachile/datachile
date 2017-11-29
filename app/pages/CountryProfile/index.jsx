@@ -213,40 +213,6 @@ class CountryProfile extends Component {
         promise: prm
       };
     },
-    (params, store) => {
-      var ids = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("exports_and_imports")
-        .then(cube => {
-          var q = levelCut(
-            ids,
-            "Country",
-            "Country",
-            cube.query.option("parents", true).measure("Trade Balance"),
-            "Subregion",
-            "Country",
-            store.i18n.locale
-          );
-          q.cut(`[Date].[Date].[Year].&[${store.exports_year}]`);
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "country_balance",
-            data: {
-              value: res.data.data[0]["Trade Balance"],
-              decile: null,
-              year: store.sources.exports.year,
-              source: store.sources.exports.title
-            }
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
     // main imported product
     (params, store) => {
       var ids = getLevelObject(params);
@@ -355,7 +321,6 @@ class CountryProfile extends Component {
     const stats = {
       imports: this.props.data.country_imports,
       exports: this.props.data.country_exports,
-      balance: this.props.data.country_balance,
       product: this.props.data.top_imported_product_from_country
     };
 
@@ -412,13 +377,26 @@ class CountryProfile extends Component {
               <div className="datum-full-width">
                 {stats.imports && (
                   <FeaturedDatumSplash
-                    title={t("Imports")}
+                    title={t("Total Imports")}
                     icon="ingreso"
                     decile={stats.imports.decile}
                     datum={numeral(stats.imports.value, locale).format(
                       "($ 0,0 a)"
                     )}
                     source={stats.imports.year + " - " + stats.imports.source}
+                    className=""
+                  />
+                )}
+
+                {stats.exports && (
+                  <FeaturedDatumSplash
+                    title={t("Total Exports")}
+                    icon="ingreso"
+                    decile={stats.exports.decile}
+                    datum={numeral(stats.exports.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
+                    source={stats.exports.year + " - " + stats.exports.source}
                     className=""
                   />
                 )}
@@ -431,32 +409,6 @@ class CountryProfile extends Component {
                     source={`${numeral(stats.product.value, locale).format(
                       "$ 0,0 a"
                     )} - ${stats.product.year} - ${stats.product.source}`}
-                    className=""
-                  />
-                )}
-
-                {stats.exports && (
-                  <FeaturedDatumSplash
-                    title={t("Exports")}
-                    icon="ingreso"
-                    decile={stats.exports.decile}
-                    datum={numeral(stats.exports.value, locale).format(
-                      "($ 0,0 a)"
-                    )}
-                    source={stats.exports.year + " - " + stats.exports.source}
-                    className=""
-                  />
-                )}
-
-                {stats.balance && (
-                  <FeaturedDatumSplash
-                    title={t("Trade Balance")}
-                    icon="ingreso"
-                    decile={stats.balance.decile}
-                    datum={numeral(stats.balance.value, locale).format(
-                      "$ 0,0 a"
-                    )}
-                    source={stats.balance.year + " - " + stats.balance.source}
                     className=""
                   />
                 )}
@@ -582,7 +534,7 @@ class CountryProfile extends Component {
               sections={[
                 {
                   name: t("Trade"),
-                  slides: [t("International trade")]
+                  slides: [t("By Product")]
                 },
                 {
                   name: t("Trade Balance"),
