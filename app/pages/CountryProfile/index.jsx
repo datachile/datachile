@@ -310,9 +310,7 @@ class CountryProfile extends Component {
     const { subnav, activeSub } = this.state;
     const { t, i18n } = this.props;
 
-    if (!i18n.language) return null;
-
-    const locale = i18n.language.split("-")[0];
+    const locale = i18n.locale;
 
     const { country } = this.props.routeParams;
 

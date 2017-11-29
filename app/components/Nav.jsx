@@ -40,7 +40,7 @@ class Nav extends Component {
   render() {
     const {
       t,
-      i18n,
+      locale,
       location,
       title,
       type,
@@ -51,10 +51,7 @@ class Nav extends Component {
       topics
     } = this.props;
 
-    if (!i18n.language) return null;
-
-    const currentLang = i18n.language.split("-")[0];
-    const otherLang = currentLang === "es" ? "en" : "es";
+    const otherLang = locale === "es" ? "en" : "es";
 
     const { subnav_visible, search_visible } = this.state;
 
@@ -77,7 +74,7 @@ class Nav extends Component {
     if (canUseDOM) {
       url = window.location.href;
     }
-    url = url.replace(currentLang, otherLang);
+    url = url.replace(locale, otherLang);
 
     return (
       <div id="navs-container">
@@ -93,7 +90,7 @@ class Nav extends Component {
             <ul>
               <li className="title">{t("Navigation")}</li>
               <li className="lang-selector">
-                <span className="lang-current">{currentLang}</span>
+                <span className="lang-current">{locale}</span>
                 <span> | </span>
                 <span className="lang-other">
                   <a href={url}>{otherLang}</a>
@@ -205,7 +202,10 @@ class Nav extends Component {
 export default translate()(
   connect(
     state => ({
-      location: state.location
+      location: state.location,
+      locale: state.i18n.locale
+        ? state.i18n.locale.split("-")[0]
+        : state.i18n.locale
     }),
     {}
   )(Nav)

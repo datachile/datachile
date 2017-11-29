@@ -236,9 +236,7 @@ class GeoProfile extends Component {
 
   render() {
     const { t, i18n } = this.props;
-
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    const { locale } = i18n;
 
     const geoObj = getGeoObject(this.props.routeParams);
     const showRanking = geoObj.type == "country" ? false : true;
@@ -358,9 +356,7 @@ class GeoProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/${
-                    geoObj.image
-                  }')`
+                  backgroundImage: `url('/images/profile-bg/geo/${geoObj.image}')`
                 }}
               />
               <div className="gradient" />
