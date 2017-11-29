@@ -480,18 +480,11 @@ class CountryProfile extends Component {
             <Topic
               name={t("Demography")}
               id="demography"
+              slider={false}
               sections={[
                 {
-                  name: t("Destination"),
-                  slides: [t("By Destination Region")]
-                },
-                {
-                  name: t("Characterization"),
-                  slides: [
-                    t("By Sex & Age"),
-                    t("By Activity & Visa Type"),
-                    t("By Education")
-                  ]
+                  name: t("Migration"),
+                  slides: [t("")]
                 }
               ]}
             >
@@ -529,14 +522,11 @@ class CountryProfile extends Component {
             <Topic
               name={t("Trade")}
               id="trade"
+              slider={false}
               sections={[
                 {
-                  name: t("Trade"),
-                  slides: [t("By Product")]
-                },
-                {
-                  name: t("Trade Balance"),
-                  slides: [t("Trade Balance")]
+                  name: t("Products"),
+                  slides: [t("")]
                 }
               ]}
             >
