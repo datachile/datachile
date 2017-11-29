@@ -49,7 +49,7 @@ class ImportsByDestination extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Imports By Destination")}</h3>
+        <h3 className="chart-title">{t("Imports By Origin")}</h3>
         <Treemap
           config={{
             height: 500,
