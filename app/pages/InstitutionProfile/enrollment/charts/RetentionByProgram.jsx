@@ -48,7 +48,7 @@ export default translate()(
     render() {
       const { t, className, i18n } = this.props;
       const path = this.context.data.path_institution_retention_by_program;
-      const locale = i18n.language.split("-")[0];
+      const locale = i18n.locale;
 
       return (
         <div className={className}>

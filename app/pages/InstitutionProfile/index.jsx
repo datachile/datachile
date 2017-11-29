@@ -266,8 +266,8 @@ class InstitutionProfile extends Component {
     const { subnav, activeSub } = this.state;
     const { institution } = this.props.routeParams;
     const { focus, t, i18n } = this.props;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
     const obj = this.props.data.institution;
     const ids = getLevelObject(this.props.routeParams);
     const list = this.props.data.institution_list_detail;
