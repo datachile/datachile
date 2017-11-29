@@ -23,8 +23,8 @@ class IndustrySpace extends Section {
   render() {
     const path = this.context.data.path_industry_space;
     const { t, className, i18n } = this.props;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
 
     return (
       <div className={className}>
@@ -55,8 +55,7 @@ class IndustrySpace extends Section {
             data.data.map(d => ({
               id: d["ID Level 4"],
               ...d
-            }))
-          }
+            }))}
         />
       </div>
     );

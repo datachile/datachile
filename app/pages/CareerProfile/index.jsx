@@ -131,9 +131,7 @@ class CareerProfile extends Component {
 
     const { focus, t, i18n } = this.props;
 
-    if (!i18n.language) return null;
-
-    const locale = i18n.language.split("-")[0];
+    const locale = i18n.locale;
 
     const obj = this.props.data.career;
 

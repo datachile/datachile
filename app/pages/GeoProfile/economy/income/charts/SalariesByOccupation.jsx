@@ -30,8 +30,8 @@ class SalariesByOccupation extends Section {
   render() {
     const path = this.context.data.path_salaries_by_occupation;
     const { t, className, i18n } = this.props;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
 
     return (
       <div className={className}>
