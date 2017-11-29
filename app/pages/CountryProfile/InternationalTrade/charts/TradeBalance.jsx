@@ -22,6 +22,8 @@ class TradeBalance extends Section {
           cube.query
             .option("parents", true)
             .drilldown("Date", "Date", "Year")
+            .measure("FOB")
+            .measure("CIF")
             .measure("Trade Balance"),
           "Subregion",
           "Country",
@@ -60,6 +62,7 @@ class TradeBalance extends Section {
             data: path,
             x: "ID Year",
             y: "Trade Balance",
+            groupBy: "key",
             xConfig: {
               tickSize: 0,
               title: false
