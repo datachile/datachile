@@ -2,11 +2,9 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { LinePlot } from "d3plus-react";
-import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
-import { numeral, slugifyItem } from "helpers/formatters";
-import { tradeBalanceColorScale } from "helpers/colors";
+import { numeral } from "helpers/formatters";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
@@ -72,7 +70,6 @@ class TradeBalance extends Section {
             },
             shapeConfig: {
               Line: {
-                //                stroke: d => tradeBalanceColorScale(d["Trade Balance"]),
                 strokeWidth: 4
               }
             }
