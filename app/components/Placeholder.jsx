@@ -6,13 +6,15 @@ export default class Placeholder extends Component {
     if (text === null) text = "Placeholder";
     return (
       <div className={this.props.className}>
-        <img
-          src={`https://via.placeholder.com/350x150?text=${text.replace(
-            / /g,
-            "+"
-          )}`}
-          style={{ width: "100%" }}
-        />
+        <div className="viz">
+          <img
+            src={`https://via.placeholder.com/350x150?text=${text.replace(
+              / /g,
+              "+"
+            )}`}
+            style={{ width: "100%" }}
+          />
+        </div>
       </div>
     );
   }

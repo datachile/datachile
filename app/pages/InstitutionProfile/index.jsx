@@ -317,7 +317,7 @@ class InstitutionProfile extends Component {
       },
       {
         slug: "employment",
-        title: t("Employment")
+        title: t("Employability")
       }
     ];
 
@@ -460,12 +460,13 @@ class InstitutionProfile extends Component {
 
           <div className="topics-container">
             <Topic
-              name={t("Wages")}
-              id="wages"
+              name={t("Education")}
+              id="education"
+              slider={false}
               sections={[
                 {
-                  name: t("Wages"),
-                  slides: [t("By program")]
+                  name: t("Summary"),
+                  slides: [t("")]
                 }
               ]}
             >
@@ -476,15 +477,29 @@ class InstitutionProfile extends Component {
                   </SectionColumns>
                 </WagesSlide>
               </div>
+              <div>
+                <AccreditationSlide>
+                  <SectionColumns>
+                    <AccreditationByProgram className="lost-1" />
+                  </SectionColumns>
+                </AccreditationSlide>
+              </div>
+              <div>
+                <RetentionSlide>
+                  <SectionColumns>
+                    <RetentionByProgram className="lost-1" />
+                  </SectionColumns>
+                </RetentionSlide>
+              </div>
             </Topic>
-
             <Topic
               name={t("Employability")}
-              id="employability"
+              id="employment"
+              slider={false}
               sections={[
                 {
-                  name: t("Employability"),
-                  slides: [t("By program")]
+                  name: t(""),
+                  slides: [t("")]
                 }
               ]}
             >
@@ -494,44 +509,6 @@ class InstitutionProfile extends Component {
                     <EmployabilityByProgram className="lost-1" />
                   </SectionColumns>
                 </EmployabilitySlide>
-              </div>
-            </Topic>
-
-            <Topic
-              name={t("Accreditation")}
-              id="accreditation"
-              sections={[
-                {
-                  name: t("Accreditation"),
-                  slides: [t("By program")]
-                }
-              ]}
-            >
-              <div>
-                <AccreditationSlide>
-                  <SectionColumns>
-                    <AccreditationByProgram className="lost-1" />
-                  </SectionColumns>
-                </AccreditationSlide>
-              </div>
-            </Topic>
-
-            <Topic
-              name={t("Retention")}
-              id="retention"
-              sections={[
-                {
-                  name: t("Retention"),
-                  slides: [t("By program")]
-                }
-              ]}
-            >
-              <div>
-                <RetentionSlide>
-                  <SectionColumns>
-                    <RetentionByProgram className="lost-1" />
-                  </SectionColumns>
-                </RetentionSlide>
               </div>
             </Topic>
           </div>
