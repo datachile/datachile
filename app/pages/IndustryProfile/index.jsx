@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonComponent, SectionColumns } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
@@ -15,11 +15,16 @@ import mondrianClient, {
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
+import Placeholder from "components/Placeholder";
 import SvgImage from "components/SvgImage";
+import Topic from "components/Topic";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
 import LoadingWithProgress from "components/LoadingWithProgress";
+
+import OccupationSlide from "./Employment/OccupationSlide";
+import SalariesSlide from "./Employment/SalariesSlide";
 
 import "../intro.css";
 
@@ -180,7 +185,9 @@ class IndustryProfile extends Component {
         type: "GET_DATA",
         promise: prm
       };
-    }
+    },
+    OccupationSlide,
+    SalariesSlide
   ];
 
   componentDidMount() {}
@@ -376,6 +383,48 @@ class IndustryProfile extends Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="topics-container">
+            <Topic
+              name={t("Employment")}
+              id="employment"
+              slider={false}
+              sections={[
+                {
+                  name: t("Summary"),
+                  slides: [t("Occupation")]
+                }
+              ]}
+            >
+              <div>
+                <OccupationSlide>
+                  <SectionColumns>
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Occupation By Sector"
+                    />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Occupied By Category"
+                    />
+                  </SectionColumns>
+                </OccupationSlide>
+              </div>
+              <div>
+                <SalariesSlide>
+                  <SectionColumns>
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Salaries By Sector"
+                    />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Salaries By Occupation"
+                    />
+                  </SectionColumns>
+                </SalariesSlide>
+              </div>
+            </Topic>
           </div>
         </div>
       </CanonComponent>
