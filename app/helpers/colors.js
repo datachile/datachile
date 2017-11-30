@@ -35,11 +35,12 @@ export const COLORS_EDUCATION_LEVEL = [
 export const educationLevelColorScale = scaleOrdinal().range(
   COLORS_EDUCATION_LEVEL
 );
+export const RDTypesColorScale = scaleOrdinal().range(COLORS_EDUCATION_LEVEL);
 
 export const COLORS_CONTINENTS = [
   "#84386E",
   "#5D5DA8",
-  "#455084",
+  "#335cb5",
   "#3C8181",
   "#E89CA2",
   "#CCBC4A"
@@ -70,6 +71,7 @@ export const PRODUCTS_COLORS = [
   "#7485AA"
 ];
 export const productsColorScale = scaleOrdinal().range(PRODUCTS_COLORS);
+export const regionsColorScale = scaleOrdinal().range(PRODUCTS_COLORS);
 
 export const INDUSTRIES_COLORS = [
   "#70BFB8",
