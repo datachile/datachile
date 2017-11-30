@@ -25,6 +25,8 @@ class ExportLink extends Component {
   render() {
     const { t, path } = this.props;
 
+    if (!path) return null; //Prevent error when path is not loaded yet
+
     const { open } = this.state;
 
     const options = [

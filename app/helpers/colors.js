@@ -70,6 +70,7 @@ export const PRODUCTS_COLORS = [
   "#7485AA"
 ];
 export const productsColorScale = scaleOrdinal().range(PRODUCTS_COLORS);
+export const regionsColorScale = scaleOrdinal().range(PRODUCTS_COLORS);
 
 export const INDUSTRIES_COLORS = [
   "#70BFB8",

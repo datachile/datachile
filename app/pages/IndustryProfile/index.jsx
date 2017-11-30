@@ -23,8 +23,12 @@ import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
 import LoadingWithProgress from "components/LoadingWithProgress";
 
-import OccupationSlide from "./Employment/OccupationSlide";
-import SalariesSlide from "./Employment/SalariesSlide";
+import EconomySlide from "./economy/EconomySlide";
+import OutputByLocation from "./economy/charts/OutputByLocation";
+import InvestmentByLocation from "./economy/charts/InvestmentByLocation";
+
+import OccupationSlide from "./employment/OccupationSlide";
+import SalariesSlide from "./employment/SalariesSlide";
 
 import "../intro.css";
 
@@ -86,13 +90,15 @@ class IndustryProfile extends Component {
             cube.query
               .option("parents", true)
               .drilldown("Date", "Date", "Month")
-              .measure("Expansion factor"),
+              .measure("Expansion factor")
+              .measure("Expansion Factor Rank")
+              .measure("Expansion Factor Decile"),
             "Level 1",
             "Level 2",
             store.i18n.locale
           );
-          //q.cut(`[Date].[Year].&[${store.nene_year}]`);
-          q.cut(`[Date].[Month].&[1]&[2017]`);
+          q.cut(`[Date].[Month].&[${store.nene_month}]&[${store.nene_year}]`);
+
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -102,10 +108,10 @@ class IndustryProfile extends Component {
             key: "employees_by_industry",
             data: {
               value: res.data.data[0]["Expansion factor"],
-              decile: 5,
-              rank: 1,
+              decile: res.data.data[0]["Expansion Factor Decile"],
+              rank: res.data.data[0]["Expansion Factor Rank"],
               total: 1,
-              year: store.nene_year,
+              year: store.nene_month + "/" + store.nene_year,
               source: source
             }
           };
@@ -151,41 +157,10 @@ class IndustryProfile extends Component {
         promise: prm
       };
     },
-    (params, store) => {
-      var ids = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("education_employability")
-        .then(cube => {
-          var q = levelCut(
-            ids,
-            "Higher Institutions",
-            "Higher Institutions",
-            cube.query
-              .option("parents", true)
-              .drilldown(
-                "Avg Income 4th year",
-                "Avg Income 4th year",
-                "Avg Income 4th year"
-              )
-              .measure("Number of records"),
-            "Higher Institution Subgroup",
-            "Higher Institution",
-            store.i18n.locale
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "institution_avgincome",
-            data: res.data.data[0]["Number of records"]
-          };
-        });
+    EconomySlide,
+    OutputByLocation,
+    InvestmentByLocation,
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
     OccupationSlide,
     SalariesSlide
   ];
@@ -240,6 +215,10 @@ class IndustryProfile extends Component {
       {
         slug: "about",
         title: t("About")
+      },
+      {
+        slug: "trade",
+        title: t("Economy")
       },
       {
         slug: "employment",
@@ -385,6 +364,26 @@ class IndustryProfile extends Component {
             </div>
           </div>
           <div className="topics-container">
+            <Topic
+              name={t("Economy")}
+              id="economy"
+              slider={false}
+              sections={[
+                {
+                  name: t("Trade"),
+                  slides: [t("Occupation")]
+                }
+              ]}
+            >
+              <div>
+                <EconomySlide>
+                  <SectionColumns>
+                    <OutputByLocation className="lost-1-2" />
+                    <InvestmentByLocation className="lost-1-2" />
+                  </SectionColumns>
+                </EconomySlide>
+              </div>
+            </Topic>
             <Topic
               name={t("Employment")}
               id="employment"
