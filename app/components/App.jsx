@@ -1,19 +1,35 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { activateSearch } from "actions/users";
-import Nav from "components/Nav";
 import Footer from "components/Footer";
-import Search from "components/Search";
+
+import mondrianClient from "helpers/MondrianClient";
 
 import "./App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+  static preneed = [
+    (params, store) => {
+      let prm;
+      const r = { key: "__cubes__" };
+      if (typeof window === "undefined") {
+        prm = Promise.resolve({ ...r, data: false });
+      } else if (store.data.__cubes__) {
+        prm = Promise.resolve({ ...r, data: true });
+      } else {
+        // force population of the internal MondrianClient cache.
+        prm = mondrianClient.cubes().then(() => ({ ...r, data: true }));
+      }
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
+  ];
 
   render() {
-    const { children, searchActive, location } = this.props;
+    const { children } = this.props;
     return (
       <div className="main-container">
         {children}
@@ -45,7 +61,7 @@ class App extends Component {
 
 export default connect(
   state => ({
-    searchActive: state.search.searchActive
+    data: state.data
   }),
-  { activateSearch }
+  {}
 )(App);
