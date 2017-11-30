@@ -106,19 +106,23 @@ class IndustryProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          var source = "NENE Survey";
-          source += level2 ? " - " + res.data.data[0]["Level 1"] : "";
-          return {
-            key: "employees_by_industry",
-            data: {
-              value: res.data.data[0]["Expansion factor"],
-              decile: res.data.data[0]["Expansion Factor Decile"],
-              rank: res.data.data[0]["Expansion Factor Rank"],
-              total: 1,
-              year: store.nene_month + "/" + store.nene_year,
-              source: source
-            }
-          };
+          if (!res.data.data[0]["Expansion factor"]) {
+            return false;
+          } else {
+            var source = "NENE Survey";
+            source += level2 ? " - " + res.data.data[0]["Level 1"] : "";
+            return {
+              key: "employees_by_industry",
+              data: {
+                value: res.data.data[0]["Expansion factor"],
+                decile: res.data.data[0]["Expansion Factor Decile"],
+                rank: res.data.data[0]["Expansion Factor Rank"],
+                total: 1,
+                year: store.nene_month + "/" + store.nene_year,
+                source: source
+              }
+            };
+          }
         });
 
       return {
@@ -210,11 +214,16 @@ class IndustryProfile extends Component {
 
     const stats = {
       employees: this.props.data.employees_by_industry,
-      income: this.props.data.institution_avgincome,
-      studies: {
-        value: 1000,
+      income: {
+        value: "xxx",
         decile: 5,
-        year: 2010,
+        year: 0,
+        source: "source"
+      },
+      studies: {
+        value: "xxx",
+        decile: 5,
+        year: 0,
         source: "source"
       }
     };

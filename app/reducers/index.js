@@ -45,6 +45,7 @@ export default {
   imports_year: id,
   tax_data_year: id,
   nene_year: id,
+  nene_month: id,
   sources: id,
   loadingProgress: loadingProgress,
   search: combineReducers({ searchActive })

@@ -40,7 +40,7 @@ export const RDTypesColorScale = scaleOrdinal().range(COLORS_EDUCATION_LEVEL);
 export const COLORS_CONTINENTS = [
   "#84386E",
   "#5D5DA8",
-  "#455084",
+  "#335cb5",
   "#3C8181",
   "#E89CA2",
   "#CCBC4A"

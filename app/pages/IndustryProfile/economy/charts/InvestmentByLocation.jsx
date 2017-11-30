@@ -72,7 +72,8 @@ class InvestmentByLocation extends Section {
             height: 500,
             data: path,
             groupBy: ["ID Region", "ID Comuna"],
-            label: d => d["Comuna"],
+            label: d =>
+              d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
             sum: d => d["Investment"],
             time: "ID Year",
             shapeConfig: {
