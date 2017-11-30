@@ -11,30 +11,39 @@ import { slugifyItem } from "helpers/formatters";
 import "./Nav.css";
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      subnav_visible: false
-    };
-    this.toggleSubNav = this.toggleSubNav.bind(this);
-    this.visibleSubNav = this.visibleSubNav.bind(this);
-    this.toggleSearch = this.toggleSearch.bind(this);
-  }
+  state = {
+    subnav_visible: false,
+    search_visible: false
+  };
 
-  toggleSubNav() {
+  toggleSubNav = () => {
     this.setState(prevState => ({
       subnav_visible: !prevState.subnav_visible
     }));
-  }
+  };
 
-  toggleSearch() {
+  toggleSearch = () => {
     this.setState(prevState => ({
       search_visible: !prevState.search_visible
     }));
+  };
+
+  refSubNav = instance => {
+    if (instance) this._nodeSubNav = instance.container;
+  };
+
+  manageOutsideClick = evt => {
+    const subnav = this._nodeSubNav;
+    if (!subnav.isSameNode(evt.target) && !subnav.contains(evt.target))
+      this.setState({ subnav_visible: false });
+  };
+
+  componentDidMount() {
+    document.addEventListener("click", this.manageOutsideClick, true);
   }
 
-  visibleSubNav() {
-    return this.state.subnav_visible;
+  componentWillUnmount() {
+    document.removeEventListener("click", this.manageOutsideClick, true);
   }
 
   render() {
@@ -80,7 +89,12 @@ class Nav extends Component {
     return (
       <div id="navs-container">
         <nav className="nav">
-          <SubNav type="scroll" anchor="left" visible={this.visibleSubNav}>
+          <SubNav
+            type="scroll"
+            anchor="left"
+            visible={subnav_visible}
+            ref={this.refSubNav}
+          >
             <div className="close-btn-container">
               <div className="menu-button">
                 <a onClick={this.toggleSubNav}>
@@ -143,9 +157,9 @@ class Nav extends Component {
 
             <div className="r-col">
               <div
-                className={`search-nav-container ${search_visible
-                  ? "open"
-                  : "close"}`}
+                className={`search-nav-container ${
+                  search_visible ? "open" : "close"
+                }`}
               >
                 <a className="search-toggle-nav" onClick={this.toggleSearch}>
                   <img src={`/images/icons/${search_icon}.svg`} />
