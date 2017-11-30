@@ -9,6 +9,8 @@ import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
+import ExportLink from "components/ExportLink";
+
 class ExportsByDestination extends Section {
   static need = [
     (params, store) => {
@@ -49,7 +51,10 @@ class ExportsByDestination extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Exports By Destination")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Exports By Destination")}</span>
+          <ExportLink path={path} />
+        </h3>
         <Treemap
           config={{
             height: 500,
