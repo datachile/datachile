@@ -4,7 +4,7 @@ import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
-import { regionsColorScale } from "helpers/colors";
+import { RDTypesColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
@@ -12,28 +12,28 @@ import { getLevelObject } from "helpers/dataUtils";
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
-class InvestmentByLocation extends Section {
+class RDByOwnershipType extends Section {
   static need = [
     (params, store) => {
       var industry = getLevelObject(params);
       industry.level2 = false;
-      const prm = mondrianClient.cube("tax_data").then(cube => {
+      const prm = mondrianClient.cube("rd_survey").then(cube => {
         var q = levelCut(
           industry,
           "ISICrev4",
           "ISICrev4",
           cube.query
             .option("parents", true)
-            .drilldown("Tax Geography", "Geography", "Comuna")
+            .drilldown("Ownership Type", "Ownership Type", "Ownership Type")
             .drilldown("Date", "Date", "Year")
-            .measure("Investment"),
+            .measure("Total Spending"),
           "Level 1",
           "Level 2",
           store.i18n.locale
         );
 
         return {
-          key: "industry_investment_by_region",
+          key: "industry_rd_by_ownership_type",
           data: store.env.CANON_API + q.path("jsonrecords")
         };
       });
@@ -47,7 +47,7 @@ class InvestmentByLocation extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    const path = this.context.data.industry_investment_by_region;
+    const path = this.context.data.industry_rd_by_ownership_type;
     const industry = this.context.data.industry;
 
     const locale = i18n.locale;
@@ -56,7 +56,7 @@ class InvestmentByLocation extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("Investment By Comuna (Legal address)")}
+            {t("Total R&D spending by Ownership Type")}
             {industry &&
               industry.parent && (
                 <span>
@@ -71,40 +71,17 @@ class InvestmentByLocation extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: ["ID Region", "ID Comuna"],
-            label: d => d["Comuna"],
-            sum: d => d["Investment"],
+            groupBy: ["ID Ownership Type"],
+            label: d => d["Ownership Type"],
+            sum: d => d["Total Spending"],
             time: "ID Year",
             shapeConfig: {
-              fill: d => regionsColorScale("r" + d["ID Region"])
-            },
-            on: {
-              click: d => {
-                if (!(d["ID Comuna"] instanceof Array)) {
-                  var url = slugifyItem(
-                    "geo",
-                    d["ID Region"],
-                    d["Region"],
-                    d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
-                    d["Comuna"] instanceof Array ? false : d["Comuna"]
-                  );
-                  browserHistory.push(url);
-                }
-              }
+              fill: d => RDTypesColorScale("ot" + d["ID Ownership Type"])
             },
             tooltipConfig: {
-              title: d => {
-                return d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"];
-              },
-              body: d => {
-                const link =
-                  d["ID Comuna"] instanceof Array
-                    ? ""
-                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return (
-                  numeral(d["Investment"], locale).format("(USD 0 a)") + link
-                );
-              }
+              title: d => d["Ownership Type"],
+              body: d =>
+                numeral(d["Total Spending"], locale).format("(USD 0 a)")
             },
             legendConfig: {
               shapeConfig: {
@@ -115,10 +92,10 @@ class InvestmentByLocation extends Section {
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="tax_data" />
+        <SourceNote cube="rd_survey" />
       </div>
     );
   }
 }
 
-export default translate()(InvestmentByLocation);
+export default translate()(RDByOwnershipType);

@@ -10,6 +10,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class OutputByLocation extends Section {
   static need = [
@@ -112,6 +113,7 @@ class OutputByLocation extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="tax_data" />
       </div>
     );
   }

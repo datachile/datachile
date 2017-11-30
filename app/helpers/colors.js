@@ -35,6 +35,7 @@ export const COLORS_EDUCATION_LEVEL = [
 export const educationLevelColorScale = scaleOrdinal().range(
   COLORS_EDUCATION_LEVEL
 );
+export const RDTypesColorScale = scaleOrdinal().range(COLORS_EDUCATION_LEVEL);
 
 export const COLORS_CONTINENTS = [
   "#84386E",

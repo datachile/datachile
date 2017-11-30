@@ -27,6 +27,10 @@ import EconomySlide from "./economy/EconomySlide";
 import OutputByLocation from "./economy/charts/OutputByLocation";
 import InvestmentByLocation from "./economy/charts/InvestmentByLocation";
 
+import RDSlide from "./economy/RDSlide";
+import RDByBusinessType from "./economy/charts/RDByBusinessType";
+import RDByOwnershipType from "./economy/charts/RDByOwnershipType";
+
 import OccupationSlide from "./employment/OccupationSlide";
 import SalariesSlide from "./employment/SalariesSlide";
 
@@ -161,6 +165,10 @@ class IndustryProfile extends Component {
     OutputByLocation,
     InvestmentByLocation,
 
+    RDSlide,
+    RDByOwnershipType,
+    RDByBusinessType,
+
     OccupationSlide,
     SalariesSlide
   ];
@@ -217,11 +225,11 @@ class IndustryProfile extends Component {
         title: t("About")
       },
       {
-        slug: "trade",
+        slug: "economy",
         title: t("Economy")
       },
       {
-        slug: "employment",
+        slug: "education",
         title: t("Employment")
       }
     ];
@@ -383,10 +391,18 @@ class IndustryProfile extends Component {
                   </SectionColumns>
                 </EconomySlide>
               </div>
+              <div>
+                <RDSlide>
+                  <SectionColumns>
+                    <RDByBusinessType className="lost-1-2" />
+                    <RDByOwnershipType className="lost-1-2" />
+                  </SectionColumns>
+                </RDSlide>
+              </div>
             </Topic>
             <Topic
               name={t("Employment")}
-              id="employment"
+              id="education"
               slider={false}
               sections={[
                 {
