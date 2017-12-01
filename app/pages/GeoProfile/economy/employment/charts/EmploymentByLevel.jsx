@@ -8,6 +8,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { educationLevelColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 class EmploymentByLevel extends Section {
   static need = [
     (params, store) => {
@@ -47,12 +49,15 @@ class EmploymentByLevel extends Section {
   render() {
     const path = this.context.data.path_employment_by_level;
     const { t, className, i18n } = this.props;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Regional Employment By Level")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Regional Employment By Level")}</span>
+          <ExportLink path={path} />
+        </h3>
         <BarChart
           config={{
             height: 500,

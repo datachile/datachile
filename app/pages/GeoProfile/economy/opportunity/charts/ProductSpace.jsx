@@ -8,6 +8,8 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 class ProductSpace extends Section {
   static need = [
     (params, store) =>
@@ -21,11 +23,14 @@ class ProductSpace extends Section {
   render() {
     const path = this.context.data.path_exports_last_year;
     const { t, className, i18n } = this.props;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Product Space")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Product Space")}</span>
+          <ExportLink path={path} />
+        </h3>
         <Network
           config={{
             height: 500,

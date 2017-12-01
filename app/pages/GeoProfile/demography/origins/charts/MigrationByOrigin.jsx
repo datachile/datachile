@@ -8,6 +8,8 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 export default translate()(
   class MigrationByOrigin extends Section {
     static need = [
@@ -40,12 +42,15 @@ export default translate()(
     render() {
       const { t, className, i18n } = this.props;
       const path = this.context.data.path_migration_by_origin;
-      if (!i18n.language) return null;
-      const locale = i18n.language.split("-")[0];
+
+      const locale = i18n.locale;
 
       return (
         <div className={className}>
-          <h3 className="chart-title">{t("Migration By Origin")}</h3>
+          <h3 className="chart-title">
+            <span>{t("Migration By Origin")}</span>
+            <ExportLink path={path} />
+          </h3>
           <Treemap
             config={{
               height: 500,

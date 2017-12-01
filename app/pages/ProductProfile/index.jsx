@@ -268,8 +268,7 @@ class ProductProfile extends Component {
     const { industry } = this.props.routeParams;
     const obj = this.props.data.product;
 
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    const locale = i18n.locale;
 
     const ids = getLevelObject(this.props.routeParams);
     const list = this.props.data.product_list_detail;

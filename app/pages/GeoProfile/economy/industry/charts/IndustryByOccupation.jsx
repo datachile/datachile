@@ -8,6 +8,8 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 import Select from "components/Select";
 
+import ExportLink from "components/ExportLink";
+
 class IndustryByOccupation extends Section {
   static need = [
     simpleGeoChartNeed(

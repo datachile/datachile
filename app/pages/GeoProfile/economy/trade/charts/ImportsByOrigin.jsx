@@ -9,6 +9,8 @@ import { continentColorScale } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
+import ExportLink from "components/ExportLink";
+
 class ImportsByOrigin extends Section {
   static need = [
     simpleGeoChartNeed("path_imports_by_origin", "imports", ["CIF US"], {
@@ -20,13 +22,14 @@ class ImportsByOrigin extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_imports_by_origin;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Imports by origin of firms based on this location")}
+          <span>{t("Imports by origin of firms based on this location")}</span>
+          <ExportLink path={path} />
         </h3>
         <Treemap
           config={{

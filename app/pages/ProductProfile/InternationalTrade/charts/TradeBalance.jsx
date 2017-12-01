@@ -21,8 +21,8 @@ class TradeBalance extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_trade_balance;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
 
     return (
       <div className={className}>

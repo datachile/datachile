@@ -8,6 +8,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { institutionsColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 class CollegeByEnrollment extends Section {
   static need = [
     (params, store) => {
@@ -41,12 +43,15 @@ class CollegeByEnrollment extends Section {
     const path = this.context.data.path_college_by_enrollment;
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("School By Enrollment")}</h3>
+        <h3 className="chart-title">
+          <span>{t("School By Enrollment")}</span>
+          <ExportLink path={path} />
+        </h3>
         <Treemap
           config={{
             height: 500,
