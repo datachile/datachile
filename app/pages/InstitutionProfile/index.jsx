@@ -23,23 +23,23 @@ import LinksList from "components/LinksList";
 import LoadingWithProgress from "components/LoadingWithProgress";
 
 /* BEGIN WAGES */
-import WagesSlide from "./enrollment/WagesSlide";
-import WagesByProgram from "./enrollment/charts/WagesByProgram";
+import WagesSlide from "./education/WagesSlide";
+import WagesByProgram from "./education/charts/WagesByProgram";
 /* END WAGES */
 
 /* BEGIN EMPLOYABILITY */
-import EmployabilitySlide from "./enrollment/EmployabilitySlide";
-import EmployabilityByProgram from "./enrollment/charts/EmployabilityByProgram";
+import EmployabilitySlide from "./employability/EmployabilitySlide";
+import EmployabilityByProgram from "./employability/charts/EmployabilityByProgram";
 /* END EMPLOYABILITY */
 
 /* BEGIN ACCREDITATION */
-import AccreditationSlide from "./enrollment/AccreditationSlide";
-import AccreditationByProgram from "./enrollment/charts/AccreditationByProgram";
+import AccreditationSlide from "./education/AccreditationSlide";
+import AccreditationByProgram from "./education/charts/AccreditationByProgram";
 /* END ACCREDITATION */
 
 /* BEGIN RETENTION */
-import RetentionSlide from "./enrollment/RetentionSlide";
-import RetentionByProgram from "./enrollment/charts/RetentionByProgram";
+import RetentionSlide from "./education/RetentionSlide";
+import RetentionByProgram from "./education/charts/RetentionByProgram";
 /* END RETENTION */
 
 import "../intro.css";
