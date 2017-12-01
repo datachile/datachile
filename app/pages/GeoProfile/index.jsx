@@ -124,6 +124,7 @@ import MigrationByActivity from "./demography/origins/charts/MigrationByActivity
 import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
 
 import PopulationSlide from "./demography/population/PopulationSlide";
+import PopulationProjection from "./demography/population/charts/PopulationProjection";
 
 /*end Demography*/
 
@@ -230,6 +231,8 @@ class GeoProfile extends Component {
     HigherEducationSlide,
     PSUResultsBySex,
 
+    /** DEMOGRAPHY */
+
     MigrationSlide,
     MigrationByOrigin,
     MigrationByEducation,
@@ -243,9 +246,12 @@ class GeoProfile extends Component {
 
     MigrationByVisa,
 
+    PopulationSlide,
+    PopulationProjection,
+
     AccessSlide,
     HealthInsurance,
-    
+
     DeathCausesSlide,
     DeathCauses
   ];
@@ -891,7 +897,7 @@ class GeoProfile extends Component {
                       className="lost-1-2"
                       text="Population Pyramid (issue 81)"
                     />
-                    <Placeholder
+                    <PopulationProjection
                       className="lost-1-2"
                       text="Population Projection (issue 82)"
                     />
