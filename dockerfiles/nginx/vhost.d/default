@@ -1,0 +1,3 @@
+# $lang comes from an nginx `map` defined in nginx.tmpl
+
+return 301 $scheme://$lang.datachile.io$request_uri;

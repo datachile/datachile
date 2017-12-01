@@ -292,3 +292,8 @@ server {
 
 {{ end }}
 {{ end }}
+
+map $http_accept_language $lang {
+        default en;
+        ~*^es es;
+}
