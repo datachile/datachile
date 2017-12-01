@@ -67,12 +67,12 @@ export default translate()(
             config={{
               height: 500,
               data: path,
-              groupBy: "ID Career",
+              groupBy: ["ID Career"],
               label: d => d["ID Avg Income 4th year"],
               x: "Career",
               y: "ID Avg Income 4th year",
               shapeConfig: {
-                fill: d => ordinalColorScale(3)
+                fill: d => ordinalColorScale(1)
               },
               xConfig: {
                 tickSize: 0,
@@ -102,6 +102,7 @@ export default translate()(
               }
             }}
             dataFormat={function(data) {
+              console.log("data->", data.data);
               var filtered = _.filter(
                 data.data,
                 o =>
@@ -110,7 +111,7 @@ export default translate()(
                   o["Number of records"] != null &&
                   o["Number of records"] > 0
               );
-              console.log(filtered);
+              console.log("filtered->", filtered);
               return _.orderBy(filtered, ["ID Avg Income 4th year"], ["desc"]);
             }}
           />
