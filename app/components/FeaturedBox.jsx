@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
+import Shiitake from "shiitake";
 import { FORMATTERS } from "helpers/formatters";
 
 import "./FeaturedBox.css";
@@ -20,6 +21,7 @@ class FeaturedBox extends Component {
         key={item.name + "anchor"}
         className="tile"
         to={item.url}
+        title={item.name}
         style={{
           backgroundImage: `url('${item.img}')`
         }}
@@ -29,7 +31,9 @@ class FeaturedBox extends Component {
           <span className="icon-container">
             <img className="icon" src={`/images/icons/icon-${icon}.svg`} />
           </span>
-          <span className="name">{item.name}</span>
+          <Shiitake tagName="span" className="name" lines={4}>
+            {item.name}
+          </Shiitake>
         </span>
         <span className="col-r">
           <span className="type">{item.type}</span>
