@@ -22,13 +22,14 @@ class ExportsByDestination extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_exports_by_destination;
-
+    const geo = this.context.data.geo;
     const locale = i18n.locale;
+
     return (
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("Exports by destination of firms based on this location")}
+            {t(`Exports by destination of firms located in ${geo.name}`)}
           </span>
           <ExportLink path={path} />
         </h3>
