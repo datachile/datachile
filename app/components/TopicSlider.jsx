@@ -7,24 +7,31 @@ import "./TopicSlider.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
 
 class TopicSlider extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selected !== this.props.selected) {
-      //this.refs.topicSlider.slickGoTo(parseInt(nextProps.selected));
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      chartsRendered: false
+    };
   }
 
   render() {
     const { children, selected, goTo } = this.props;
 
-    console.log("selected en topic slider", selected);
-
     const afterChange = d => {
-      //goTo(d);
-      //console.log("afterChange", browserHistory.getCurrentLocation());
-      //browserHistory.replace({ search: "?slide=" + d });
-      /*browserHistory.push(
-        browserHistory.getCurrentLocation().pathname + "#" + d
-      );*/
+      if (this.state.chartsRendered) return;
+      var canUseDOM = !!(
+        typeof window !== "undefined" &&
+        window.document &&
+        window.document.createElement
+      );
+
+      //disgusting code, just to trigger the new slide's charts render (d3plus).
+      if (canUseDOM) {
+        setTimeout(function() {
+          window.dispatchEvent(new Event("scroll"));
+          this.state.chartsRendered = true;
+        }, 100);
+      }
     };
 
     const beforeChange = d => {
@@ -53,7 +60,7 @@ class TopicSlider extends Component {
           ref="topicSlider"
           slickGoTo={selected}
           afterChange={afterChange}
-          beforeChange={beforeChange}
+          /* beforeChange={beforeChange} */
         >
           {children}
         </Slider>
@@ -62,4 +69,4 @@ class TopicSlider extends Component {
   }
 }
 
-export default translate()(connect(state => ({}), {})(TopicSlider));
+export default translate()(TopicSlider);
