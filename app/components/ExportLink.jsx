@@ -41,7 +41,7 @@ class ExportLink extends Component {
           className={open ? "toggle open" : "toggle close"}
           onClick={this.toggleMenu}
         >
-          {t("Data")}
+          <img src={`/images/icons/icon-download.svg`} />
         </a>
         <ul className={open ? "open" : "close"}>
           {options.map(o => (
