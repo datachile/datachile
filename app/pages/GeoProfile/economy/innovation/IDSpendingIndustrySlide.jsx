@@ -11,7 +11,8 @@ class IDSpendingCategorySlide extends Section {
 
   render() {
     const { children, t } = this.props;
-
+    const geo = this.context.data.geo;
+    
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
