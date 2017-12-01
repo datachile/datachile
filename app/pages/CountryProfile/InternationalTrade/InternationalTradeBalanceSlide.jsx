@@ -6,7 +6,7 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-class InternationalTradeSlide extends Section {
+class InternationalTradeBalanceSlide extends Section {
   static need = [];
 
   render() {
@@ -15,7 +15,9 @@ class InternationalTradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Imports & Exports")}</div>
+          <div className="topic-slide-title">
+            {t("International Trade Balance")}
+          </div>
           <div className="topic-slide-text">
             <p>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
@@ -56,4 +58,4 @@ class InternationalTradeSlide extends Section {
   }
 }
 
-export default translate()(InternationalTradeSlide);
+export default translate()(InternationalTradeBalanceSlide);

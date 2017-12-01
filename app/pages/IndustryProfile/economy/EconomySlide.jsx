@@ -1,12 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router";
+import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-class InternationalTradeSlide extends Section {
+class EconomySlide extends Section {
   static need = [];
 
   render() {
@@ -15,7 +13,7 @@ class InternationalTradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Imports & Exports")}</div>
+          <div className="topic-slide-title">{t("Economy")}</div>
           <div className="topic-slide-text">
             <p>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
@@ -30,22 +28,22 @@ class InternationalTradeSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"434k"}
-              title={t("Trade volume")}
+              datum={"xxx k"}
+              title={t("Lorem Datum")}
               subtitle="XXXX - YYYY"
             />
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"434k"}
-              title={t("Trade volume")}
+              datum={"xxx k"}
+              title={t("Lorem Datum")}
               subtitle="XXXX - YYYY"
             />
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"4343k"}
-              title={t("Trade volume")}
+              datum={"xxx k"}
+              title={t("Lorem Datum")}
               subtitle="XXXX - YYYY"
             />
           </div>
@@ -56,4 +54,4 @@ class InternationalTradeSlide extends Section {
   }
 }
 
-export default translate()(InternationalTradeSlide);
+export default translate()(EconomySlide);

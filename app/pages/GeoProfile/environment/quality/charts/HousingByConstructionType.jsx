@@ -74,7 +74,8 @@ class HousingByConstructionType extends Section {
             yConfig: {
               barConfig: { "stroke-width": 0 },
               tickSize: 0,
-              title: false
+              title: false,
+              width: 200
             },
             ySort: (a, b) => {
               return a[msrName] > b[msrName] ? 1 : -1;

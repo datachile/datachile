@@ -1,8 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router";
+import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -15,7 +13,9 @@ class InternationalTradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Imports & Exports")}</div>
+          <div className="topic-slide-title">
+            {t("International Trade Balance")}
+          </div>
           <div className="topic-slide-text">
             <p>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
