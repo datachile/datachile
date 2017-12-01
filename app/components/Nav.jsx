@@ -161,12 +161,12 @@ class Nav extends Component {
                   search_visible ? "open" : "close"
                 }`}
               >
-                <a className="search-toggle-nav" onClick={this.toggleSearch}>
-                  <img src={`/images/icons/${search_icon}.svg`} />
-                </a>
                 <div className={`search-nav-wrapper`}>
                   <Search className="search-nav" />
                 </div>
+                <a className="search-toggle-nav" onClick={this.toggleSearch}>
+                  <img src={`/images/icons/${search_icon}.svg`} />
+                </a>
               </div>
             </div>
           </div>
