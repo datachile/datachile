@@ -1,13 +1,13 @@
 import React from "react";
 import { Section } from "datawheel-canon";
+import _ from "lodash";
 import { translate } from "react-i18next";
 import { LinePlot } from "d3plus-react";
-import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral } from "helpers/formatters";
+import { melt, getLevelObject, replaceKeyNames } from "helpers/dataUtils";
 import { tradeBalanceColorScale } from "helpers/colors";
-import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 
@@ -24,6 +24,8 @@ class TradeBalance extends Section {
           cube.query
             .option("parents", true)
             .drilldown("Date", "Date", "Year")
+            .measure("FOB")
+            .measure("CIF")
             .measure("Trade Balance"),
           "Subregion",
           "Country",
@@ -60,8 +62,9 @@ class TradeBalance extends Section {
           config={{
             height: 500,
             data: path,
+            groupBy: "variable",
             x: "ID Year",
-            y: "Trade Balance",
+            y: "value",
             xConfig: {
               tickSize: 0,
               title: false
@@ -72,12 +75,20 @@ class TradeBalance extends Section {
             },
             shapeConfig: {
               Line: {
-                //                stroke: d => tradeBalanceColorScale(d["Trade Balance"]),
-                strokeWidth: 4
+                stroke: d => tradeBalanceColorScale(d["variable"]),
+                strokeWidth: 2
               }
             }
           }}
-          dataFormat={data => data.data.filter(d => d["ID Year"] >= 2002)}
+          dataFormat={data => {
+            const tKeys = {
+              FOB: t("trade_balance.fob"),
+              CIF: t("trade_balance.cif"),
+              "Trade Balance": t("trade_balance.trade_balance")
+            };
+            data.data = replaceKeyNames(data.data, tKeys);
+            return melt(data.data, ["ID Year"], _.values(tKeys));
+          }}
         />
       </div>
     );
