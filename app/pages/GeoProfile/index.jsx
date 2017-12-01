@@ -86,6 +86,10 @@ import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollme
 
 import PerformanceSlide from "./education/performance/PerformanceSlide";
 import PerformanceByType from "./education/performance/charts/PerformanceByType";
+
+import HigherEducationSlide from "./education/higher/HigherEducationSlide";
+import PSUResultsBySex from "./education/higher/charts/PSUResultsBySex";
+
 /*end Education*/
 
 /* Housing and Environment */
@@ -222,6 +226,9 @@ class GeoProfile extends Component {
 
     EnrollmentSlide,
     CollegeByEnrollment,
+
+    HigherEducationSlide,
+    PSUResultsBySex,
 
     MigrationSlide,
     MigrationByOrigin,
@@ -728,6 +735,10 @@ class GeoProfile extends Component {
                 {
                   name: t("Performance"),
                   slides: [t("By School Type")]
+                },
+                {
+                  name: t("Higher Education"),
+                  slides: [t("PSU Results")]
                 }
               ]}
             >
@@ -745,6 +756,13 @@ class GeoProfile extends Component {
                     <Placeholder className="lost-1" text="Performance" />
                   </SectionColumns>
                 </PerformanceSlide>
+              </div>
+              <div>
+                <HigherEducationSlide>
+                  <SectionColumns>
+                    <PSUResultsBySex className="lost-1-2" />
+                  </SectionColumns>
+                </HigherEducationSlide>
               </div>
             </Topic>
 
@@ -861,8 +879,8 @@ class GeoProfile extends Component {
               <div>
                 <MigrationActivitySlide>
                   <SectionColumns>
-                    <MigrationByActivity className="lost-2-3" />
-                    <MigrationByVisa className="lost-1-3" />
+                    <MigrationByActivity className="lost-1-2" />
+                    <MigrationByVisa className="lost-1-2" />
                   </SectionColumns>
                 </MigrationActivitySlide>
               </div>
