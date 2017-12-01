@@ -22,14 +22,14 @@ class ImportsByProduct extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-
+    const geo = this.context.data.geo;
     const locale = i18n.locale;
     const path = this.context.data.path_imports_by_product;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Imports of firms registered in this location")}</span>
+          <span>{t(`Imports of firms located in ${geo.name}`)}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap

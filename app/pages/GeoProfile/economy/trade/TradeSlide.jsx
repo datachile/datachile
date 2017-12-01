@@ -87,7 +87,7 @@ class TradeSlide extends Section {
               icon="industria"
               datum={text_data.trade_volume}
               title={t("Trade volume")}
-              subtitle={text_data.first_year + " - " + text_data.last_year}
+              subtitle={text_data.last_year}
             />
             <TradeBalance className="l-2-3" />
           </div>
