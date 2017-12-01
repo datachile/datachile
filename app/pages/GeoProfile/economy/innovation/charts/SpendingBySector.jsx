@@ -15,7 +15,7 @@ import ExportLink from "components/ExportLink";
 class SpendingBySector extends Section {
   static need = [
     (params, store) => {
-      const geo = getGeoObject(params);
+      const geo = getGeoObject({ region: params.region, comuna: undefined });
 
       const regionID =
         typeof geo.ancestor != "undefined" ? geo.ancestor.key : "";
@@ -54,8 +54,7 @@ class SpendingBySector extends Section {
     const { t, className } = this.props;
 
     const geo = this.context.data.geo;
-
-    const regionID = typeof geo.ancestor != "undefined" ? geo.ancestor.key : "";
+    const regionID = geo.type === "comuna" ? geo.ancestors[0].key : "";
     const measureName = getMeasureByGeo(
       geo.type,
       "Total Spending",
@@ -67,7 +66,7 @@ class SpendingBySector extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("By Sector")} {geo && geo.type == "comuna" && t("Regional")}
+            {t("R&D Spending By Sector")} {geo && geo.type == "comuna" && t("Regional")}
           </span>
           <ExportLink path={path} />
         </h3>
