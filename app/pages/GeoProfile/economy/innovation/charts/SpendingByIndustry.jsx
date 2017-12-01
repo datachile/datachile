@@ -53,8 +53,7 @@ class SpendingByIndustry extends Section {
     const path = this.context.data.path_spending_by_industry;
     const { t, className } = this.props;
     const geo = this.context.data.geo;
-
-    const regionID = typeof geo.ancestor != "undefined" ? geo.ancestor.key : "";
+    const regionID = geo.type === "comuna" ? geo.ancestors[0].key : "";
     const measureName = getMeasureByGeo(
       geo.type,
       "Total Spending",
