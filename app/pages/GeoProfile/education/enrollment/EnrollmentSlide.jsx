@@ -3,42 +3,23 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
+import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
 class EnrollmentSlide extends Section {
   static need = [
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const cube = mondrianClient.cube("education_enrollment");
-      const prm = cube
-        .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .cut("Special Education Teachings") // NamedSet
-              .cut("[Date].[Date].[Year].&[2015]")
-              .measure("Number of records"),
-            store.i18n.locale
-          );
-          return mondrianClient.query(q);
-        })
-        .then(res => {
-          return {
-            key: "datum_enrollment_special_education",
-            data: res.data.values
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_enrollment_special_education",
+        "education_enrollment",
+        ["Number of records"],
+        {
+          options: { parents: false },
+          cuts: ["Special Education Teachings", `[Date].[Date].[Year].&[2015]`]
+        }
+      )(params, store)
   ];
 
   render() {

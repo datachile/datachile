@@ -1,8 +1,6 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
-import { Link } from "react-router";
-import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import _ from "lodash";
 
@@ -264,9 +262,7 @@ class ProductProfile extends Component {
   componentDidMount() {}
 
   render() {
-    const { subnav, activeSub } = this.state;
-    const { focus, t, i18n } = this.props;
-    const { industry } = this.props.routeParams;
+    const { t, i18n } = this.props;
     const obj = this.props.data.product;
 
     const locale = i18n.locale;

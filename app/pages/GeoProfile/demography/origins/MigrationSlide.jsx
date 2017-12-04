@@ -6,11 +6,29 @@ import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
+import { simpleDatumNeed } from "helpers/MondrianClient";
+import { numeral } from "helpers/formatters";
+
 class MigrationSlide extends Section {
-  static need = [];
+  static need = [
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_migration_origin",
+        "immigration",
+        ["Number of visas"],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${store.sources.immigration.year}]`]
+        }
+      )(params, store)
+  ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, t, i18n, immigration_year } = this.props;
+    const { datum_migration_origin } = this.context.data;
+
+    const locale = i18n.locale;
 
     return (
       <div className="topic-slide-block">
@@ -30,9 +48,9 @@ class MigrationSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={numeral(datum_migration_origin, locale).format("(0,0)")}
+              title={t("Immigrant visas")}
+              subtitle={t("granted in") + " " + immigration_year}
             />
             <FeaturedDatum
               className="l-1-3"
@@ -59,7 +77,8 @@ class MigrationSlide extends Section {
 export default translate()(
   connect(
     state => ({
-      data: state.data
+      data: state.data,
+      immigration_year: state.sources.immigration.year
     }),
     {}
   )(MigrationSlide)

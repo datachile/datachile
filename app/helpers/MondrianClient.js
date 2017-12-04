@@ -142,6 +142,46 @@ function simpleGeoChartNeed(
   };
 }
 
+function simpleDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const geo = getGeoObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = cube.query;
+
+        measures.forEach(m => {
+          q.measure(m);
+        });
+        drillDowns.forEach(([...dd]) => {
+          q.drilldown(...dd);
+        });
+        Object.entries(options).forEach(([k, v]) => q.option(k, v));
+        cuts.forEach(c => q.cut(c));
+
+        var query = geoCut(geo, "Geography", q, store.i18n.locale);
+        return client.query(query);
+      })
+      .then(res => {
+        return {
+          key: key,
+          data: res.data.values
+        };
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 export {
   levelCut,
   geoCut,
@@ -150,6 +190,7 @@ export {
   getMemberQuery,
   setLangCaptions,
   getMeasureByGeo,
-  simpleGeoChartNeed
+  simpleGeoChartNeed,
+  simpleDatumNeed
 };
 export default client;

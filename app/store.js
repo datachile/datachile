@@ -78,7 +78,8 @@ module.exports = {
     immigration: {
       title:
         "Estadísticas de Migración — Departamento de Extranjería y Migración",
-      url: "http://www.extranjeria.gob.cl/estadisticas-migratorias/"
+      url: "http://www.extranjeria.gob.cl/estadisticas-migratorias/",
+      year: 2016
     },
     tax_data: {
       title: "Servicio de Impuestos Internos",
