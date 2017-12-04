@@ -2,18 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { Link } from "react-router";
-import { select, selectAll, event } from "d3-selection";
-
-import { GEO } from "helpers/dictionary";
-import { GEOMAP } from "helpers/GeoData";
 
 import FeaturedBox from "components/FeaturedBox";
 import Nav from "components/Nav";
 import Search from "components/Search";
 import DynamicHomeHeader from "components/DynamicHomeHeader";
-import CustomPrevArrow from "components/CustomPrevArrow";
-import CustomNextArrow from "components/CustomNextArrow";
 
 import "./Home.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
@@ -87,12 +80,10 @@ class Home extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps, nextState) {}
-
   render() {
-    const { message, t } = this.props;
+    const { t } = this.props;
 
-    const { profiles, header, selected, focus } = this.state;
+    const { profiles, header, focus } = this.state;
 
     const changeProfileHeader = p => {
       this.setState({ header: p });
@@ -105,7 +96,7 @@ class Home extends Component {
 
           <div className="splash">
             {profiles &&
-              profiles.map(p => (
+              profiles.map((p, i) => (
                 <div
                   className={
                     p.slug == this.state.header.slug
@@ -113,6 +104,7 @@ class Home extends Component {
                       : "image bg-" + p.slug
                   }
                   id={p.slug}
+                  key={i}
                 />
               ))}
             <div className="gradient" />
@@ -140,9 +132,10 @@ class Home extends Component {
 
           <div className="home-slider">
             {profiles &&
-              profiles.map(p => (
+              profiles.map((p, i) => (
                 <div
                   id={`home-slide-${p.slug}`}
+                  key={i}
                   className={
                     p.slug == header.slug
                       ? "home-slide-item selected"
@@ -171,8 +164,12 @@ class Home extends Component {
             <h2>{t("Explore Featured Profiles")}</h2>
             <div className="home-featured-tiles">
               {focus &&
-                focus.map(f => (
-                  <FeaturedBox item={f} className="home-featured-profile" />
+                focus.map((f, i) => (
+                  <FeaturedBox
+                    item={f}
+                    className="home-featured-profile"
+                    key={i}
+                  />
                 ))}
             </div>
           </div>

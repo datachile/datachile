@@ -14,7 +14,7 @@ class EnrollmentSlide extends Section {
       simpleDatumNeed(
         "datum_enrollment_special_education",
         "education_enrollment",
-        ["Number of visas"],
+        ["Number of records"],
         {
           options: { parents: false },
           cuts: ["Special Education Teachings", `[Date].[Date].[Year].&[2015]`]

@@ -1,14 +1,11 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
-import { Link } from "react-router";
-import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 
 import d3plus from "helpers/d3plus";
-import { numeral, slugifyItem } from "helpers/formatters";
+import { slugifyItem } from "helpers/formatters";
 import mondrianClient, {
-  getMembersQuery,
   getMemberQuery,
   levelCut
 } from "helpers/MondrianClient";
@@ -263,9 +260,7 @@ class InstitutionProfile extends Component {
   componentDidMount() {}
 
   render() {
-    const { subnav, activeSub } = this.state;
-    const { institution } = this.props.routeParams;
-    const { focus, t, i18n } = this.props;
+    const { t, i18n } = this.props;
 
     const locale = i18n.locale;
     const obj = this.props.data.institution;
