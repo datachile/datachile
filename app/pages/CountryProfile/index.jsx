@@ -23,10 +23,13 @@ import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
 
 import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
+import InternationalTradeOriginDestinationSlide from "./InternationalTrade/InternationalTradeOriginDestinationSlide";
 import InternationalTradeBalanceSlide from "./InternationalTrade/InternationalTradeBalanceSlide";
 
 import ExportsByProduct from "./InternationalTrade/charts/ExportsByProduct";
 import ImportsByProduct from "./InternationalTrade/charts/ImportsByProduct";
+import ExportsByOrigin from "./InternationalTrade/charts/ExportsByOrigin";
+import ImportsByDestination from "./InternationalTrade/charts/ImportsByDestination";
 import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 
 /* BEGIN DEMOGRAPHY */
@@ -256,8 +259,11 @@ class CountryProfile extends Component {
     },
     InternationalTradeSlide,
     InternationalTradeBalanceSlide,
+    InternationalTradeOriginDestinationSlide,
     ImportsByProduct,
+    ImportsByDestination,
     ExportsByProduct,
+    ExportsByOrigin,
     TradeBalance,
 
     MigrationSlide,
@@ -537,6 +543,14 @@ class CountryProfile extends Component {
                     <ExportsByProduct className="lost-1-2" />
                   </SectionColumns>
                 </InternationalTradeSlide>
+              </div>
+              <div>
+                <InternationalTradeOriginDestinationSlide>
+                  <SectionColumns>
+                    <ImportsByDestination className="lost-1-2" />
+                    <ExportsByOrigin className="lost-1-2" />
+                  </SectionColumns>
+                </InternationalTradeOriginDestinationSlide>
               </div>
               <div>
                 <InternationalTradeBalanceSlide>

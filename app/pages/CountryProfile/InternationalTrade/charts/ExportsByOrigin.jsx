@@ -5,17 +5,16 @@ import { Treemap } from "d3plus-react";
 import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
-import { numeral, slugifyItem } from "helpers/formatters";
-import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
+import { ordinalColorScale } from "helpers/colors";
+import { numeral, slugifyItem } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 
-class ExportsByProduct extends Section {
+class ExportsByOrigin extends Section {
   static need = [
     (params, store) => {
       const country = getLevelObject(params);
-
       const prm = mondrianClient.cube("exports").then(cube => {
         const q = levelCut(
           country,
@@ -23,8 +22,8 @@ class ExportsByProduct extends Section {
           "Country",
           cube.query
             .option("parents", true)
-            .drilldown("Export HS", "HS", "HS2")
             .drilldown("Date", "Year")
+            .drilldown("Geography", "Comuna")
             .measure("FOB US"),
           "Subregion",
           "Country",
@@ -33,7 +32,7 @@ class ExportsByProduct extends Section {
         );
 
         return {
-          key: "path_exports_by_product_country",
+          key: "path_country_exports_by_origin",
           data: store.env.CANON_API + q.path("jsonrecords")
         };
       });
@@ -48,55 +47,54 @@ class ExportsByProduct extends Section {
   render() {
     const { t, className, i18n } = this.props;
 
+    const path = this.context.data.path_country_exports_by_origin;
     const locale = i18n.locale;
-    const path = this.context.data.path_exports_by_product_country;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Exports by product")}</span>
+          <span>{t("Exports By Origin")}</span>
           <ExportLink path={path} />
         </h3>
+
         <Treemap
           config={{
             height: 500,
             data: path,
-            groupBy: ["ID HS0", "ID HS2"],
-            label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
+            groupBy: ["ID Region", "ID Comuna"],
+            label: d => d["Comuna"],
             sum: d => d["FOB US"],
             time: "ID Year",
-            legendConfig: {
-              label: false,
-              shapeConfig: {
-                backgroundImage: d =>
-                  "/images/legend/hs/hs_" + d["ID HS0"] + ".png",
-                width: 25,
-                height: 25,
-                fill: d => productsColorScale("hs" + d["ID HS0"])
-              }
-            },
             shapeConfig: {
-              fill: d => productsColorScale("hs" + d["ID HS0"])
+              fill: d => ordinalColorScale(d["ID Region"])
             },
             on: {
               click: d => {
                 var url = slugifyItem(
-                  "products",
-                  d["ID HS0"],
-                  d["HS0"],
-                  d["ID HS2"] instanceof Array ? false : d["ID HS2"],
-                  d["HS2"] instanceof Array ? false : d["HS2"]
+                  "geo",
+                  d["ID Region"],
+                  d["Region"],
+                  d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
+                  d["Comuna"] instanceof Array ? false : d["Comuna"]
                 );
                 browserHistory.push(url);
               }
             },
             tooltipConfig: {
-              title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
+              title: d => {
+                return d["Comuna"] instanceof Array
+                  ? d["Region"]
+                  : d["Comuna"] + " - " + d["Region"];
+              },
               body: d =>
                 numeral(d["FOB US"], locale).format("(USD 0 a)") +
                 "<br/><a>" +
                 t("tooltip.to_profile") +
                 "</a>"
+            },
+            legendConfig: {
+              label: false,
+              shapeConfig: false
             }
           }}
           dataFormat={data => data.data}
@@ -105,4 +103,4 @@ class ExportsByProduct extends Section {
     );
   }
 }
-export default translate()(ExportsByProduct);
+export default translate()(ExportsByOrigin);
