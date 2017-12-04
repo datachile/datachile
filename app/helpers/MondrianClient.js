@@ -150,12 +150,12 @@ function simpleDatumNeed(
 ) {
   return (params, store) => {
     const geo = getGeoObject(params);
-    const cube = client.cube(cube);
-    const msrName = measures[0];
 
-    const prm = cube
+    const prm = client
+      .cube(cube)
       .then(cube => {
         const q = cube.query;
+
         measures.forEach(m => {
           q.measure(m);
         });
@@ -165,12 +165,7 @@ function simpleDatumNeed(
         Object.entries(options).forEach(([k, v]) => q.option(k, v));
         cuts.forEach(c => q.cut(c));
 
-        var query = geoCut(
-          geo,
-          "Geography",
-          q,
-          store.i18n.locale
-        );
+        var query = geoCut(geo, "Geography", q, store.i18n.locale);
         return client.query(query);
       })
       .then(res => {
@@ -184,7 +179,7 @@ function simpleDatumNeed(
       type: "GET_DATA",
       promise: prm
     };
-  }
+  };
 }
 
 export {
