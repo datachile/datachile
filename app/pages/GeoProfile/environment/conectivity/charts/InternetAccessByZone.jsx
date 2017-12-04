@@ -10,6 +10,7 @@ import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
+import ExportLink from "components/ExportLink";
 
 class InternetAccessByZone extends Section {
   static need = [
@@ -50,8 +51,8 @@ class InternetAccessByZone extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_internet_access;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
     const geo = this.context.data.geo;
 
     const geoChartName =
@@ -60,7 +61,8 @@ class InternetAccessByZone extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Internet Access By Zone in ") + geoChartName}
+          <span>{t("Internet Access By Zone in ") + geoChartName}</span>
+          <ExportLink path={path} />
         </h3>
         <BarChart
           config={{

@@ -86,6 +86,10 @@ import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollme
 
 import PerformanceSlide from "./education/performance/PerformanceSlide";
 import PerformanceByType from "./education/performance/charts/PerformanceByType";
+
+import HigherEducationSlide from "./education/higher/HigherEducationSlide";
+import PSUResultsBySex from "./education/higher/charts/PSUResultsBySex";
+
 /*end Education*/
 
 /* Housing and Environment */
@@ -120,12 +124,19 @@ import MigrationByActivity from "./demography/origins/charts/MigrationByActivity
 import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
 
 import PopulationSlide from "./demography/population/PopulationSlide";
+import PopulationProjection from "./demography/population/charts/PopulationProjection";
 
 /*end Demography*/
 
 /* Health */
 import AccessSlide from "./health/access/AccessSlide";
 import HealthInsurance from "./health/access/charts/HealthInsurance";
+
+import DisabilitySlide from "./health/disability/DisabilitySlide";
+import Disability from "./health/disability/charts/Disability";
+
+import DeathCausesSlide from "./health/death/DeathCausesSlide";
+import DeathCauses from "./health/death/charts/DeathCauses";
 
 /* end Health */
 
@@ -217,6 +228,11 @@ class GeoProfile extends Component {
     EnrollmentSlide,
     CollegeByEnrollment,
 
+    HigherEducationSlide,
+    PSUResultsBySex,
+
+    /** DEMOGRAPHY */
+
     MigrationSlide,
     MigrationByOrigin,
     MigrationByEducation,
@@ -230,15 +246,19 @@ class GeoProfile extends Component {
 
     MigrationByVisa,
 
+    PopulationSlide,
+    PopulationProjection,
+
     AccessSlide,
-    HealthInsurance
+    HealthInsurance,
+
+    DeathCausesSlide,
+    DeathCauses
   ];
 
   render() {
     const { t, i18n } = this.props;
-
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    const { locale } = i18n;
 
     const geoObj = getGeoObject(this.props.routeParams);
     const showRanking = geoObj.type == "country" ? false : true;
@@ -358,9 +378,7 @@ class GeoProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/${
-                    geoObj.image
-                  }')`
+                  backgroundImage: `url('/images/profile-bg/geo/${geoObj.image}')`
                 }}
               />
               <div className="gradient" />
@@ -723,6 +741,10 @@ class GeoProfile extends Component {
                 {
                   name: t("Performance"),
                   slides: [t("By School Type")]
+                },
+                {
+                  name: t("Higher Education"),
+                  slides: [t("PSU Results")]
                 }
               ]}
             >
@@ -740,6 +762,13 @@ class GeoProfile extends Component {
                     <Placeholder className="lost-1" text="Performance" />
                   </SectionColumns>
                 </PerformanceSlide>
+              </div>
+              <div>
+                <HigherEducationSlide>
+                  <SectionColumns>
+                    <PSUResultsBySex className="lost-1-2" />
+                  </SectionColumns>
+                </HigherEducationSlide>
               </div>
             </Topic>
 
@@ -856,8 +885,8 @@ class GeoProfile extends Component {
               <div>
                 <MigrationActivitySlide>
                   <SectionColumns>
-                    <MigrationByActivity className="lost-2-3" />
-                    <MigrationByVisa className="lost-1-3" />
+                    <MigrationByActivity className="lost-1-2" />
+                    <MigrationByVisa className="lost-1-2" />
                   </SectionColumns>
                 </MigrationActivitySlide>
               </div>
@@ -868,7 +897,7 @@ class GeoProfile extends Component {
                       className="lost-1-2"
                       text="Population Pyramid (issue 81)"
                     />
-                    <Placeholder
+                    <PopulationProjection
                       className="lost-1-2"
                       text="Population Projection (issue 82)"
                     />
@@ -888,6 +917,10 @@ class GeoProfile extends Component {
                 {
                   name: t("Disability"),
                   slides: [t("Disability")]
+                },
+                {
+                  name: t("Death Causes"),
+                  slides: [t("Death Causes")]
                 }
               ]}
             >
@@ -897,6 +930,20 @@ class GeoProfile extends Component {
                     <HealthInsurance className="lost-1" />
                   </SectionColumns>
                 </AccessSlide>
+              </div>
+              <div>
+                <DisabilitySlide>
+                  <SectionColumns>
+                    <Disability className="lost-1" />
+                  </SectionColumns>
+                </DisabilitySlide>
+              </div>
+              <div>
+                <DeathCausesSlide>
+                  <SectionColumns>
+                    <DeathCauses className="lost-1" />
+                  </SectionColumns>
+                </DeathCausesSlide>
               </div>
             </Topic>
           </div>

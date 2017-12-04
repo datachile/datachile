@@ -7,6 +7,8 @@ import { industriesColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import ExportLink from "components/ExportLink";
+
 class IndustryBySector extends Section {
   static need = [
     simpleGeoChartNeed("path_industry_output", "tax_data", ["Output"], {
@@ -20,7 +22,10 @@ class IndustryBySector extends Section {
     const { t, className } = this.props;
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Industry By Employment")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Industry By Employment")}</span>
+          <ExportLink path={path} />
+        </h3>
         <Treemap
           config={{
             height: 500,

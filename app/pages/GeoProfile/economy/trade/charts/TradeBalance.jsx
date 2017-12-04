@@ -6,8 +6,10 @@ import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { tradeBalanceColorScale } from "helpers/colors";
-import { melt, getGeoObject, replaceKeyNames } from "helpers/dataUtils";
+import { melt, replaceKeyNames } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
+
+import ExportLink from "components/ExportLink";
 
 class TradeBalance extends Section {
   static need = [
@@ -22,12 +24,15 @@ class TradeBalance extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_trade_balance;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    // const locale = i18n.locale;
+    const locale = i18n.locale;
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Trade Balance")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Trade Balance")}</span>
+          <ExportLink path={path} />
+        </h3>
         <LinePlot
           config={{
             height: 200,

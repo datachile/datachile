@@ -11,11 +11,15 @@ class IDSpendingCategorySlide extends Section {
 
   render() {
     const { children, t } = this.props;
-
+    const geo = this.context.data.geo;
+    
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("R&D spending")}</div>
+          <div className="topic-slide-title">
+            {geo.type !== "country" ? t("Regional ") : ""}
+            {t("R&D spending")}
+          </div>
           <div className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
             orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,

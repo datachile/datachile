@@ -1,7 +1,7 @@
 .export-link {
   font-family: var(--font-family-text);
   position: relative;
-  width: 60px;
+  width: 30px;
   display: inline-flex;
   & .toggle {
     font-size: 12px;
@@ -17,6 +17,10 @@
     &.close {
       background-color: transparent;
     }
+    &image {
+      width: 100%;
+      cursor: pointer;
+    }
   }
   & ul {
     position: absolute;
@@ -28,9 +32,9 @@
     margin: 0px;
     padding: 0px;
     z-index: 14;
-    left: 0px;
+    left: -15px;
     width: 60px;
-    top: 25px;
+    top: 30px;
     &.open {
       max-height: 200px;
     }

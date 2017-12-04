@@ -10,6 +10,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
+import ExportLink from "components/ExportLink";
 
 class HousingByConstructionType extends Section {
   static need = [
@@ -37,8 +38,8 @@ class HousingByConstructionType extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_housing_construction_type;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
     const geo = this.context.data.geo;
     const msrName =
       geo.type == "comuna"
@@ -47,7 +48,10 @@ class HousingByConstructionType extends Section {
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Material of Walls")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Material of Walls")}</span>
+          <ExportLink path={path} />
+        </h3>
         <BarChart
           config={{
             height: 500,
@@ -70,7 +74,8 @@ class HousingByConstructionType extends Section {
             yConfig: {
               barConfig: { "stroke-width": 0 },
               tickSize: 0,
-              title: false
+              title: false,
+              width: 200
             },
             ySort: (a, b) => {
               return a[msrName] > b[msrName] ? 1 : -1;

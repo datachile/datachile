@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonComponent, SectionColumns } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
@@ -15,11 +15,24 @@ import mondrianClient, {
 import { getLevelObject, ingestParent } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
+import Placeholder from "components/Placeholder";
 import SvgImage from "components/SvgImage";
+import Topic from "components/Topic";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
 import LoadingWithProgress from "components/LoadingWithProgress";
+
+import EconomySlide from "./economy/EconomySlide";
+import OutputByLocation from "./economy/charts/OutputByLocation";
+import InvestmentByLocation from "./economy/charts/InvestmentByLocation";
+
+import RDSlide from "./economy/RDSlide";
+import RDByBusinessType from "./economy/charts/RDByBusinessType";
+import RDByOwnershipType from "./economy/charts/RDByOwnershipType";
+
+import OccupationSlide from "./employment/OccupationSlide";
+import SalariesSlide from "./employment/SalariesSlide";
 
 import "../intro.css";
 
@@ -81,29 +94,35 @@ class IndustryProfile extends Component {
             cube.query
               .option("parents", true)
               .drilldown("Date", "Date", "Month")
-              .measure("Expansion factor"),
+              .measure("Expansion factor")
+              .measure("Expansion Factor Rank")
+              .measure("Expansion Factor Decile"),
             "Level 1",
             "Level 2",
             store.i18n.locale
           );
-          //q.cut(`[Date].[Year].&[${store.nene_year}]`);
-          q.cut(`[Date].[Month].&[1]&[2017]`);
+          q.cut(`[Date].[Month].&[${store.nene_month}]&[${store.nene_year}]`);
+
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          var source = "NENE Survey";
-          source += level2 ? " - " + res.data.data[0]["Level 1"] : "";
-          return {
-            key: "employees_by_industry",
-            data: {
-              value: res.data.data[0]["Expansion factor"],
-              decile: 5,
-              rank: 1,
-              total: 1,
-              year: store.nene_year,
-              source: source
-            }
-          };
+          if (!res.data.data[0]["Expansion factor"]) {
+            return false;
+          } else {
+            var source = "NENE Survey";
+            source += level2 ? " - " + res.data.data[0]["Level 1"] : "";
+            return {
+              key: "employees_by_industry",
+              data: {
+                value: res.data.data[0]["Expansion factor"],
+                decile: res.data.data[0]["Expansion Factor Decile"],
+                rank: res.data.data[0]["Expansion Factor Rank"],
+                total: 1,
+                year: store.nene_month + "/" + store.nene_year,
+                source: source
+              }
+            };
+          }
         });
 
       return {
@@ -146,41 +165,16 @@ class IndustryProfile extends Component {
         promise: prm
       };
     },
-    (params, store) => {
-      var ids = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("education_employability")
-        .then(cube => {
-          var q = levelCut(
-            ids,
-            "Higher Institutions",
-            "Higher Institutions",
-            cube.query
-              .option("parents", true)
-              .drilldown(
-                "Avg Income 4th year",
-                "Avg Income 4th year",
-                "Avg Income 4th year"
-              )
-              .measure("Number of records"),
-            "Higher Institution Subgroup",
-            "Higher Institution",
-            store.i18n.locale
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "institution_avgincome",
-            data: res.data.data[0]["Number of records"]
-          };
-        });
+    EconomySlide,
+    OutputByLocation,
+    InvestmentByLocation,
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    RDSlide,
+    RDByOwnershipType,
+    RDByBusinessType,
+
+    OccupationSlide,
+    SalariesSlide
   ];
 
   componentDidMount() {}
@@ -194,8 +188,7 @@ class IndustryProfile extends Component {
 
     const obj = this.props.data.industry;
 
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    const locale = i18n.locale;
 
     const ids = getLevelObject(this.props.routeParams);
 
@@ -221,11 +214,16 @@ class IndustryProfile extends Component {
 
     const stats = {
       employees: this.props.data.employees_by_industry,
-      income: this.props.data.institution_avgincome,
-      studies: {
-        value: 1000,
+      income: {
+        value: "xxx",
         decile: 5,
-        year: 2010,
+        year: 0,
+        source: "source"
+      },
+      studies: {
+        value: "xxx",
+        decile: 5,
+        year: 0,
         source: "source"
       }
     };
@@ -236,7 +234,11 @@ class IndustryProfile extends Component {
         title: t("About")
       },
       {
-        slug: "employment",
+        slug: "economy",
+        title: t("Economy")
+      },
+      {
+        slug: "education",
         title: t("Employment")
       }
     ];
@@ -377,6 +379,76 @@ class IndustryProfile extends Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="topics-container">
+            <Topic
+              name={t("Economy")}
+              id="economy"
+              slider={false}
+              sections={[
+                {
+                  name: t("Trade"),
+                  slides: [t("Occupation")]
+                }
+              ]}
+            >
+              <div>
+                <EconomySlide>
+                  <SectionColumns>
+                    <OutputByLocation className="lost-1-2" />
+                    <InvestmentByLocation className="lost-1-2" />
+                  </SectionColumns>
+                </EconomySlide>
+              </div>
+              <div>
+                <RDSlide>
+                  <SectionColumns>
+                    <RDByBusinessType className="lost-1-2" />
+                    <RDByOwnershipType className="lost-1-2" />
+                  </SectionColumns>
+                </RDSlide>
+              </div>
+            </Topic>
+            <Topic
+              name={t("Employment")}
+              id="education"
+              slider={false}
+              sections={[
+                {
+                  name: t("Summary"),
+                  slides: [t("Occupation")]
+                }
+              ]}
+            >
+              <div>
+                <OccupationSlide>
+                  <SectionColumns>
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Occupation By Sector"
+                    />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Occupied By Category"
+                    />
+                  </SectionColumns>
+                </OccupationSlide>
+              </div>
+              <div>
+                <SalariesSlide>
+                  <SectionColumns>
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Salaries By Sector"
+                    />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="Salaries By Occupation"
+                    />
+                  </SectionColumns>
+                </SalariesSlide>
+              </div>
+            </Topic>
           </div>
         </div>
       </CanonComponent>

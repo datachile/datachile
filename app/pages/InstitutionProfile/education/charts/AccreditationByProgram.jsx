@@ -9,8 +9,10 @@ import { getLevelObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 export default translate()(
-  class EmployabilityByProgram extends Section {
+  class AccreditationByProgram extends Section {
     static need = [
       (params, store) => {
         const institution = getLevelObject(params);
@@ -24,7 +26,7 @@ export default translate()(
               cube.query
                 .option("parents", true)
                 .drilldown("Careers", "Careers", "Career")
-                .measure("Avg employability 1st year")
+                .drilldown("Accreditations", "Accreditations", "Accreditation")
                 .measure("Number of records"),
               "Higher Institution Subgroup",
               "Higher Institution",
@@ -33,7 +35,7 @@ export default translate()(
             );
 
             return {
-              key: "path_institution_employability_by_program",
+              key: "path_institution_accreditation_by_program",
               data: store.env.CANON_API + q.path("jsonrecords")
             };
           });
@@ -47,21 +49,24 @@ export default translate()(
 
     render() {
       const { t, className, i18n } = this.props;
-      const path = this.context.data.path_institution_employability_by_program;
-      if (!i18n.language) return null;
-      const locale = i18n.language.split("-")[0];
+      const path = this.context.data.path_institution_accreditation_by_program;
+
+      const locale = i18n.locale;
 
       return (
         <div className={className}>
-          <h3 className="chart-title">{t("Employability by Program")}</h3>
+          <h3 className="chart-title">
+            <span>{t("Accreditation by Program")}</span>
+            <ExportLink path={path} />
+          </h3>
           <BarChart
             config={{
               height: 500,
               data: path,
               groupBy: "ID Career",
-              label: d => d["Avg employability 1st year"],
+              label: d => d["Number of records"],
               x: "Career",
-              y: "Avg employability 1st year",
+              y: "Number of records",
               shapeConfig: {
                 fill: d => ordinalColorScale(3)
               },
@@ -70,14 +75,11 @@ export default translate()(
                 title: false
               },
               yConfig: {
-                title: t("Employability"),
+                title: t("Accreditation"),
                 tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
               },
               xSort: (a, b) => {
-                return a["Avg employability 1st year"] >
-                  b["Avg employability 1st year"]
-                  ? -1
-                  : 1;
+                return a["Number of records"] > b["Number of records"] ? -1 : 1;
               },
               barPadding: 20,
               groupPadding: 40,
@@ -97,17 +99,13 @@ export default translate()(
               var filtered = _.filter(
                 data.data,
                 o =>
-                  o["Avg employability 1st year"] != null &&
-                  o["Avg employability 1st year"] > 0 &&
+                  o["Number of records"] != null &&
+                  o["Number of records"] > 0 &&
                   o["Number of records"] != null &&
                   o["Number of records"] > 0
               );
               console.log(filtered);
-              return _.orderBy(
-                filtered,
-                ["Avg employability 1st year"],
-                ["desc"]
-              );
+              return _.orderBy(filtered, ["Number of records"], ["desc"]);
             }}
           />
         </div>

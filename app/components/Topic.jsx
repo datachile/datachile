@@ -21,7 +21,7 @@ class Topic extends Component {
   }
 
   render() {
-    const { t, children, name, id } = this.props;
+    const { t, children, name, id, slider } = this.props;
     const { selected } = this.state;
 
     let i = 0;
@@ -41,6 +41,19 @@ class Topic extends Component {
       });
     });
 
+    /*var canUseDOM = !!(
+      typeof window !== "undefined" &&
+      window.document &&
+      window.document.createElement
+    );
+
+    //disgusting code, just to trigger the new slide's charts render (d3plus).
+    if (canUseDOM) {
+      setTimeout(function() {
+        window.dispatchEvent(new Event("scroll"));
+      }, 100);
+    }*/
+
     return (
       <div className="topic-block" id={id}>
         <div className="topic-header">
@@ -52,31 +65,42 @@ class Topic extends Component {
                 {selectedSection.name}
               </span>
             </h2>
-            <TopicSliderBullets
-              name={id}
-              slides={children}
-              selected={selected}
-              goTo={this.goTo}
-            />
+            {slider && (
+              <TopicSliderBullets
+                name={id}
+                slides={children}
+                selected={selected}
+                goTo={this.goTo}
+              />
+            )}
           </div>
-          <div className="topic-go-to-targets">
-            <TopicSliderSections
-              name={id}
-              sections={sections}
-              selected={selected}
-              goTo={this.goTo}
-            />
-          </div>
+          {slider && (
+            <div className="topic-go-to-targets">
+              <TopicSliderSections
+                name={id}
+                sections={sections}
+                selected={selected}
+                goTo={this.goTo}
+              />
+            </div>
+          )}
         </div>
         <div className="topic-slide-container">
-          <TopicSlider selected={selected} goTo={this.goTo}>
-            {children}
-          </TopicSlider>
+          {slider && (
+            <TopicSlider selected={selected} goTo={this.goTo}>
+              {children}
+            </TopicSlider>
+          )}
+          {!slider && <div> {children} </div>}
         </div>
       </div>
     );
   }
 }
+
+Topic.defaultProps = {
+  slider: true
+};
 
 export default translate()(
   connect(

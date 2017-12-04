@@ -8,6 +8,8 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 class Disability extends Section {
   static need = [
     (params, store) => {
@@ -42,12 +44,15 @@ class Disability extends Section {
     const path = this.context.data.path_health_insurance;
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+
+    const locale = i18n.locale;
 
     return (
       <div className={className}>
-        <h3 className="chart-title">{t("Access to Health Insurance")}</h3>
+        <h3 className="chart-title">
+          <span>{t("Access to Health Insurance")}</span>
+          <ExportLink path={path} />
+        </h3>
         <Treemap
           config={{
             height: 500,

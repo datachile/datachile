@@ -15,7 +15,7 @@ class InternationalTradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("International Trade")}</div>
+          <div className="topic-slide-title">{t("Imports & Exports")}</div>
           <div className="topic-slide-text">
             <p>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec

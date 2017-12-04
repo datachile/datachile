@@ -62,6 +62,7 @@ module.exports = {
   imports_year: 2015,
   tax_data_year: 2014,
   nene_year: 2017,
+  nene_month: 1,
   sources: {
     exports: {
       title: "Servicio Nacional de Aduanas",

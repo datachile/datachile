@@ -23,11 +23,12 @@ import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import FeaturedMapSplash from "components/FeaturedMapSplash";
 import LinksList from "components/LinksList";
 import LoadingWithProgress from "components/LoadingWithProgress";
+import Topic from "components/Topic";
 
-import InternationalTrade from "./InternationalTrade/InternationalTrade";
+import InternationalTradeBalanceSlide from "./InternationalTrade/InternationalTradeBalanceSlide";
 import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
 import ExportsByDestination from "./InternationalTrade/charts/ExportsByDestination";
-import ImportsByDestination from "./InternationalTrade/charts/ImportsByDestination";
+import ImportsByOrigin from "./InternationalTrade/charts/ImportsByOrigin";
 import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 
 import "../intro.css";
@@ -253,10 +254,10 @@ class ProductProfile extends Component {
       };
     },
 
-    InternationalTrade,
+    InternationalTradeBalanceSlide,
     InternationalTradeSlide,
     ExportsByDestination,
-    ImportsByDestination /*,
+    ImportsByOrigin /*,
     TradeBalance */
   ];
 
@@ -268,8 +269,7 @@ class ProductProfile extends Component {
     const { industry } = this.props.routeParams;
     const obj = this.props.data.product;
 
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    const locale = i18n.locale;
 
     const ids = getLevelObject(this.props.routeParams);
     const list = this.props.data.product_list_detail;
@@ -474,38 +474,33 @@ class ProductProfile extends Component {
             </div>
           </div>
           <div className="topics-container">
-            <InternationalTrade>
+            <Topic
+              name={t("Trade")}
+              id="trade"
+              slider={false}
+              sections={[
+                {
+                  name: t("Products"),
+                  slides: [t("Trade")]
+                }
+              ]}
+            >
               <div>
                 <InternationalTradeSlide>
                   <SectionColumns>
                     <ExportsByDestination className="lost-1-2" />
-                    <ImportsByDestination className="lost-1-2" />
-                  </SectionColumns>
-                  <SectionColumns>
-                    {/* }
-                                    <TradeBalance className="lost-1" />
-                                    { */}
-                    <Placeholder className="lost-1" text="Trade Balance" />
+                    <ImportsByOrigin className="lost-1-2" />
                   </SectionColumns>
                 </InternationalTradeSlide>
               </div>
               <div>
-                <p>
-                  Nullam eu ante vel est convallis dignissim. Fusce suscipit,
-                  wisi nec facilisis facilisis, est dui fermentum leo, quis
-                  tempor ligula erat quis odio. Nunc porta vulputate tellus.
-                  Nunc rutrum turpis sed pede. Sed bibendum. Aliquam posuere.
-                  Nunc aliquet, augue nec adipiscing interdum, lacus tellus
-                  malesuada massa, quis varius mi purus non odio. Pellentesque
-                  condimentum, magna ut suscipit hendrerit, ipsum augue ornare
-                  nulla, non luctus diam neque sit amet urna. Curabitur
-                  vulputate vestibulum lorem. Fusce sagittis, libero non
-                  molestie mollis, magna orci ultrices dolor, at vulputate neque
-                  nulla lacinia eros. Sed id ligula quis est convallis tempor.
-                  Curabitur lacinia pulvinar nibh. Nam a sapien.
-                </p>
+                <InternationalTradeBalanceSlide>
+                  <SectionColumns>
+                    <Placeholder className="lost-1" text="Trade Balance" />
+                  </SectionColumns>
+                </InternationalTradeBalanceSlide>
               </div>
-            </InternationalTrade>
+            </Topic>
           </div>
         </div>
       </CanonComponent>

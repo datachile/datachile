@@ -11,30 +11,39 @@ import { slugifyItem } from "helpers/formatters";
 import "./Nav.css";
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      subnav_visible: false
-    };
-    this.toggleSubNav = this.toggleSubNav.bind(this);
-    this.visibleSubNav = this.visibleSubNav.bind(this);
-    this.toggleSearch = this.toggleSearch.bind(this);
-  }
+  state = {
+    subnav_visible: false,
+    search_visible: false
+  };
 
-  toggleSubNav() {
+  toggleSubNav = () => {
     this.setState(prevState => ({
       subnav_visible: !prevState.subnav_visible
     }));
-  }
+  };
 
-  toggleSearch() {
+  toggleSearch = () => {
     this.setState(prevState => ({
       search_visible: !prevState.search_visible
     }));
+  };
+
+  refSubNav = instance => {
+    if (instance) this._nodeSubNav = instance.container;
+  };
+
+  manageOutsideClick = evt => {
+    const subnav = this._nodeSubNav;
+    if (!subnav.isSameNode(evt.target) && !subnav.contains(evt.target))
+      this.setState({ subnav_visible: false });
+  };
+
+  componentDidMount() {
+    document.addEventListener("click", this.manageOutsideClick, true);
   }
 
-  visibleSubNav() {
-    return this.state.subnav_visible;
+  componentWillUnmount() {
+    document.removeEventListener("click", this.manageOutsideClick, true);
   }
 
   render() {
@@ -51,10 +60,8 @@ class Nav extends Component {
       topics
     } = this.props;
 
-    if (!i18n.language) return null;
-
-    const currentLang = i18n.language.split("-")[0];
-    const otherLang = currentLang === "es" ? "en" : "es";
+    const locale = i18n.locale;
+    const otherLang = locale === "es" ? "en" : "es";
 
     const { subnav_visible, search_visible } = this.state;
 
@@ -77,12 +84,17 @@ class Nav extends Component {
     if (canUseDOM) {
       url = window.location.href;
     }
-    url = url.replace(currentLang, otherLang);
+    url = url.replace(locale, otherLang);
 
     return (
       <div id="navs-container">
         <nav className="nav">
-          <SubNav type="scroll" anchor="left" visible={this.visibleSubNav}>
+          <SubNav
+            type="scroll"
+            anchor="left"
+            visible={subnav_visible}
+            ref={this.refSubNav}
+          >
             <div className="close-btn-container">
               <div className="menu-button">
                 <a onClick={this.toggleSubNav}>
@@ -93,7 +105,7 @@ class Nav extends Component {
             <ul>
               <li className="title">{t("Navigation")}</li>
               <li className="lang-selector">
-                <span className="lang-current">{currentLang}</span>
+                <span className="lang-current">{locale}</span>
                 <span> | </span>
                 <span className="lang-other">
                   <a href={url}>{otherLang}</a>
@@ -145,16 +157,16 @@ class Nav extends Component {
 
             <div className="r-col">
               <div
-                className={`search-nav-container ${search_visible
-                  ? "open"
-                  : "close"}`}
+                className={`search-nav-container ${
+                  search_visible ? "open" : "close"
+                }`}
               >
-                <a className="search-toggle-nav" onClick={this.toggleSearch}>
-                  <img src={`/images/icons/${search_icon}.svg`} />
-                </a>
                 <div className={`search-nav-wrapper`}>
                   <Search className="search-nav" />
                 </div>
+                <a className="search-toggle-nav" onClick={this.toggleSearch}>
+                  <img src={`/images/icons/${search_icon}.svg`} />
+                </a>
               </div>
             </div>
           </div>

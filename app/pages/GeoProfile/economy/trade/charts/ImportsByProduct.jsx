@@ -10,6 +10,8 @@ import { productsColorScale } from "helpers/colors";
 import { getGeoObject } from "helpers/dataUtils";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
+import ExportLink from "components/ExportLink";
+
 class ImportsByProduct extends Section {
   static need = [
     simpleGeoChartNeed("path_imports_by_product", "imports", ["CIF US"], {
@@ -20,14 +22,15 @@ class ImportsByProduct extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    const geo = this.context.data.geo;
+    const locale = i18n.locale;
     const path = this.context.data.path_imports_by_product;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          {t("Imports of firms registered in this location")}
+          <span>{t(`Imports of firms located in ${geo.name}`)}</span>
+          <ExportLink path={path} />
         </h3>
         <Treemap
           config={{

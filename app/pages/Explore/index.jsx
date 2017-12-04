@@ -15,17 +15,14 @@ import mondrianClient, {
 import Nav from "components/Nav";
 import Search from "components/Search";
 import FeaturedBox from "components/FeaturedBox";
-import ResultItem from "components/ResultItem";
+import ResultsElement from "./results";
 
 import "./explore.css";
 
 class Explore extends Component {
-  constructor() {
-    super();
-    this.state = {
-      level1ID: false
-    };
-  }
+  state = {
+    level1ID: false
+  };
 
   static need = [
     (params, store) => {
@@ -252,23 +249,6 @@ class Explore extends Component {
           })
         : [];
 
-    const results =
-      typeof members != "undefined" && entity && entity_id
-        ? members.filter(m => m.key == entity_id).map(m => {
-            if (type) {
-              m.children = m.children.map(c => {
-                return {
-                  key: c.key,
-                  name: c.name,
-                  type: type,
-                  url: slugifyItem(entity, m.key, m.name, c.key, c.name)
-                };
-              });
-            }
-            return m;
-          })
-        : [];
-
     return (
       <CanonComponent id="explore" data={this.props.data} topics={[]}>
         <div className="explore-page">
@@ -339,6 +319,7 @@ class Explore extends Component {
                       filters &&
                       filters.map(f => (
                         <div
+                          key={f.key}
                           className={
                             entity_id == f.key
                               ? "level1-filter selected"
@@ -353,61 +334,32 @@ class Explore extends Component {
                       ))}
                   </div>
                 </div>
-                <div id={`results`} className="results-block">
-                  {entity &&
-                    results.length > 0 && (
-                      <div className="">
-                        <h3>
-                          {t("Results for")} {typeTitle} : "{results[0].name}"
-                        </h3>
-                        <div>
-                          {type == "geo" && (
-                            <div className="list-title">
-                              <ResultItem
-                                item={{
-                                  key: "chile",
-                                  name: "Chile",
-                                  type: "geo",
-                                  url: "/geo/chile"
-                                }}
-                              />
-                            </div>
-                          )}
-                          {members &&
-                            entity &&
-                            results &&
-                            results.map(m => (
-                              <div>
-                                <div className="list-title">
-                                  <ResultItem
-                                    item={{
-                                      key: m.key,
-                                      name: m.caption,
-                                      type: type,
-                                      url: slugifyItem(entity, m.key, m.name)
-                                    }}
-                                  />
-                                </div>
-
-                                <ul className="explore-list">
-                                  {m.children &&
-                                    m.children.map(c => (
-                                      <li>
-                                        <ResultItem item={c} />
-                                      </li>
-                                    ))}
-                                </ul>
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                    )}
-                </div>
+                {this.renderResultComponent(this.props)}
               </div>
             </div>
           </div>
         </div>
       </CanonComponent>
+    );
+  }
+
+  renderResultComponent(props) {
+    const { entity, entity_id } = props.routeParams;
+    const { data, t } = props;
+
+    if (!entity || !entity_id || !data || !t) return null;
+
+    const member = [].concat(data.members).find(m => m.key == entity_id);
+
+    if (!member) return null;
+
+    return React.createElement(
+      ResultsElement[entity] || ResultsElement.undefined,
+      {
+        t,
+        entity,
+        profile: { ...member }
+      }
     );
   }
 }

@@ -9,8 +9,10 @@ import { getLevelObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import ExportLink from "components/ExportLink";
+
 export default translate()(
-  class WagesByProgram extends Section {
+  class RetentionByProgram extends Section {
     static need = [
       (params, store) => {
         const institution = getLevelObject(params);
@@ -24,11 +26,7 @@ export default translate()(
               cube.query
                 .option("parents", true)
                 .drilldown("Careers", "Careers", "Career")
-                .drilldown(
-                  "Avg Income 4th year",
-                  "Avg Income 4th year",
-                  "Avg Income 4th year"
-                )
+                .measure("Avg Retention 1st year")
                 .measure("Number of records"),
               "Higher Institution Subgroup",
               "Higher Institution",
@@ -37,7 +35,7 @@ export default translate()(
             );
 
             return {
-              key: "path_institution_wages_by_program",
+              key: "path_institution_retention_by_program",
               data: store.env.CANON_API + q.path("jsonrecords")
             };
           });
@@ -51,21 +49,23 @@ export default translate()(
 
     render() {
       const { t, className, i18n } = this.props;
-      const path = this.context.data.path_institution_wages_by_program;
-      if (!i18n.language) return null;
-      const locale = i18n.language.split("-")[0];
+      const path = this.context.data.path_institution_retention_by_program;
+      const locale = i18n.locale;
 
       return (
         <div className={className}>
-          <h3 className="chart-title">{t("Wages by Program")}</h3>
+          <h3 className="chart-title">
+            <span>{t("Retention by Program")}</span>
+            <ExportLink path={path} />
+          </h3>
           <BarChart
             config={{
               height: 500,
               data: path,
               groupBy: "ID Career",
-              label: d => d["ID Avg Income 4th year"],
+              label: d => d["Avg Retention 1st year"],
               x: "Career",
-              y: "ID Avg Income 4th year",
+              y: "Avg Retention 1st year",
               shapeConfig: {
                 fill: d => ordinalColorScale(3)
               },
@@ -74,11 +74,11 @@ export default translate()(
                 title: false
               },
               yConfig: {
-                title: t("Wages"),
+                title: t("Retention"),
                 tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
               },
               xSort: (a, b) => {
-                return a["ID Avg Income 4th year"] > b["ID Avg Income 4th year"]
+                return a["Avg Retention 1st year"] > b["Avg Retention 1st year"]
                   ? -1
                   : 1;
               },
@@ -100,13 +100,13 @@ export default translate()(
               var filtered = _.filter(
                 data.data,
                 o =>
-                  o["ID Avg Income 4th year"] != null &&
-                  o["ID Avg Income 4th year"] > 0 &&
+                  o["Avg Retention 1st year"] != null &&
+                  o["Avg Retention 1st year"] > 0 &&
                   o["Number of records"] != null &&
                   o["Number of records"] > 0
               );
               console.log(filtered);
-              return _.orderBy(filtered, ["ID Avg Income 4th year"], ["desc"]);
+              return _.orderBy(filtered, ["Avg Retention 1st year"], ["desc"]);
             }}
           />
         </div>

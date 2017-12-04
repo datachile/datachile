@@ -45,8 +45,7 @@ class EnrollmentSlide extends Section {
     const { children, t, i18n } = this.props;
     const { datum_enrollment_special_education } = this.context.data;
 
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    const locale = i18n.locale;
 
     return (
       <div className="topic-slide-block">

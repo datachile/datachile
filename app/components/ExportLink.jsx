@@ -25,6 +25,8 @@ class ExportLink extends Component {
   render() {
     const { t, path } = this.props;
 
+    if (!path) return null; //Prevent error when path is not loaded yet
+
     const { open } = this.state;
 
     const options = [
@@ -39,7 +41,7 @@ class ExportLink extends Component {
           className={open ? "toggle open" : "toggle close"}
           onClick={this.toggleMenu}
         >
-          {t("Data")}
+          <img src={`/images/icons/icon-download.svg`} />
         </a>
         <ul className={open ? "open" : "close"}>
           {options.map(o => (
