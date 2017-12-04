@@ -41,8 +41,8 @@ services:
       - CANON_LANGUAGES=es
       - CANON_LANGUAGES_DEFAULT=en
       - APP_HOME=/datachile
-      - VIRTUAL_HOST=en.datachile.datawheel.us,es.datachile.datawheel.us,datachile.datawheel.us,datachile.io,en.datachile.io,es.datachile.io,www.datachile.io
-      - LETSENCRYPT_HOST=en.datachile.datawheel.us,es.datachile.datawheel.us,datachile.datawheel.us,datachile.io,en.datachile.io,es.datachile.io,www.datachile.io
+      - VIRTUAL_HOST=datachile.io,en.datachile.io,es.datachile.io,www.datachile.io
+      - LETSENCRYPT_HOST=datachile.io,en.datachile.io,es.datachile.io,www.datachile.io
       - LETSENCRYPT_EMAIL=datachile@datawheel.us
     volumes:
       - canon-static:/datachile/static-shared
@@ -67,6 +67,7 @@ services:
       - ./dockerfiles/nginx/vhost.d:/etc/nginx/vhost.d
       - ./dockerfiles/nginx/html:/usr/share/nginx/html
       - ./dockerfiles/nginx/certs:/etc/nginx/certs:ro
+      - ./dockerfiles/datachile-htpasswd:/etc/nginx/htpasswd:ro
     tmpfs: /nginx-cache:exec,mode=777
 
   nginx-gen:
