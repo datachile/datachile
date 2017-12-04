@@ -1,29 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 
-import Select from "components/Select";
-
 import "./ExportLink.css";
 
-class ExportLink extends Component {
-  constructor(props) {
-    super(props);
+class ExportLink extends React.Component {
+  state = {
+    open: false
+  };
 
-    this.state = {
-      open: false
-    };
-    this.toggleMenu = this.toggleMenu.bind(this);
-  }
-
-  toggleMenu() {
+  toggleMenu = () => {
     this.setState(prevState => ({
       open: !prevState.open
     }));
+  };
+
+  containerRef = node => {
+    if (node) this._container = node;
+  };
+
+  manageOutsideClick = evt => {
+    const node = this._container;
+    if (!node.isSameNode(evt.target) && !node.contains(evt.target))
+      this.setState({ open: false });
+  };
+
+  componentDidMount() {
+    document.addEventListener("click", this.manageOutsideClick, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.manageOutsideClick, true);
   }
 
   render() {
-    const { t, path } = this.props;
+    const { path } = this.props;
 
     if (!path) return null; //Prevent error when path is not loaded yet
 
@@ -36,17 +47,17 @@ class ExportLink extends Component {
     ];
 
     return (
-      <div className="export-link">
-        <a
-          className={open ? "toggle open" : "toggle close"}
-          onClick={this.toggleMenu}
-        >
+      <div
+        className={open ? "export-link open" : "export-link"}
+        ref={this.containerRef}
+      >
+        <a className="toggle" onClick={this.toggleMenu}>
           <img src={`/images/icons/icon-download.svg`} />
         </a>
-        <ul className={open ? "open" : "close"}>
+        <ul>
           {options.map(o => (
-            <li>
-              <a target="_blank" href={o.path}>
+            <li key={o.caption}>
+              <a target="_blank" download={""} href={o.path}>
                 {o.caption}
               </a>
             </li>

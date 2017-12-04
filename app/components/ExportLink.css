@@ -1,55 +1,51 @@
 .export-link {
   font-family: var(--font-family-text);
   position: relative;
-  width: 30px;
-  display: inline-flex;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+
   & .toggle {
-    font-size: 12px;
+    display: block;
     color: var(--snow);
-    text-transform: uppercase;
+    margin: -5px 0;
     padding: 5px;
-    text-align: center;
+    background-color: transparent;
     transition: background-color 0.5s ease;
-    width: 100%;
-    &.open {
-      background-color: var(--accent);
-    }
-    &.close {
-      background-color: transparent;
-    }
-    &image {
-      width: 100%;
-      cursor: pointer;
+    & img {
+      width: 20px;
     }
   }
+  &.open .toggle {
+    background-color: var(--accent);
+  }
+
   & ul {
     position: absolute;
-    display: inline-block;
-    transition: max-height 0.5s ease;
-    height: auto;
-    overflow: hidden;
-    background-color: var(--accent);
-    margin: 0px;
-    padding: 0px;
     z-index: 14;
     left: -15px;
-    width: 60px;
     top: 30px;
-    &.open {
-      max-height: 200px;
-    }
-    &.close {
-      max-height: 0px;
-    }
-    & li {
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: 60px;
+    max-height: 0;
+    background-color: var(--accent);
+    transition: max-height 0.5s ease;
+
+    & a {
+      display: block;
       padding: 5px;
-      text-align: center;
-      & a {
-        color: var(--snow);
-        font-size: 12px;
-        text-transform: uppercase;
-        width: 100%;
+      color: var(--snow);
+      &:hover {
+        background: var(--nice-blue);
       }
     }
+  }
+  &.open ul {
+    max-height: 100px;
   }
 }
