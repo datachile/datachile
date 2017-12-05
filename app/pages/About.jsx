@@ -6,9 +6,6 @@ import { CanonComponent, TopicTitle } from "datawheel-canon";
 import Nav from "components/Nav";
 import "./About.css";
 
-import { GLOSSARY } from "helpers/glossary";
-import { titleCase } from "d3plus-text";
-
 class About extends Component {
   constructor() {
     super();
@@ -47,7 +44,7 @@ class About extends Component {
         title: t("Terms of Use")
       }
     ];
-    const { activeSub, subnav } = this.state;
+
     return (
       <CanonComponent id="about" data={this.props.data} topics={topics}>
         <Nav
@@ -62,7 +59,7 @@ class About extends Component {
               <div className="image" />
               <div className="gradient" />
             </div>
-            <div ref="sublinks" className="sublinks">
+            <div className="sublinks">
               {topics.map(topic => (
                 <a key={topic.slug} className="sublink" href={`#${topic.slug}`}>
                   {topic.title}
@@ -213,4 +210,4 @@ class About extends Component {
   }
 }
 
-export default translate()(connect(state => ({}), {})(About));
+export default translate()(About);
