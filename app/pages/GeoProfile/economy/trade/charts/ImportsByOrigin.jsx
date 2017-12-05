@@ -36,8 +36,7 @@ class ImportsByOrigin extends Section {
             height: 500,
             data: path,
             groupBy: ["ID Continent", "ID Country"],
-            label: d =>
-              d["Country"] instanceof Array ? d["Continent"] : d["Country"],
+            label: d => d["Country"],
             sum: d => d["CIF US"],
             time: "ID Year",
             shapeConfig: {
@@ -72,6 +71,7 @@ class ImportsByOrigin extends Section {
               }
             },
             legendConfig: {
+              label: d => d["Continent"],
               shapeConfig: {
                 width: 40,
                 height: 40,

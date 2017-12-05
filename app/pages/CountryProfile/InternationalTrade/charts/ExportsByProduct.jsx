@@ -68,6 +68,7 @@ class ExportsByProduct extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
+                label: d => d["HS0"],
                 backgroundImage: d =>
                   "/images/legend/hs/hs_" + d["ID HS0"] + ".png",
                 width: 25,
