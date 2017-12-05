@@ -47,6 +47,12 @@ export default {
     fontFamily: "'Yantramanav', sans-serif",
     fontWeight: 600
   },
+  totalConfig: {
+    fontSize: 16,
+    fontColor: "#FFFFFF",
+    resize: false,
+    textAnchor: "middle"
+  },
   xConfig: axisConfig,
   yConfig: axisConfig
 };

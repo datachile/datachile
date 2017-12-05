@@ -3,7 +3,9 @@ import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  geoCut
+} from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { institutionsColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
@@ -66,6 +68,11 @@ class CollegeByEnrollment extends Section {
                 : d["Institution"],
             sum: d => d["Number of records"],
             time: "ID Year",
+            total: d => d["Number of records"],
+            totalConfig: {
+              text: d =>
+                "Total: " + numeral(d.text.split(": ")[1], locale).format("0,0")
+            },
             shapeConfig: {
               fill: d => institutionsColorScale(d["ID Administration"])
             },
