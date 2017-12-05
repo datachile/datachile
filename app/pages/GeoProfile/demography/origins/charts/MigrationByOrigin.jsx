@@ -82,6 +82,7 @@ export default translate()(
                   t("people")
               },
               legendConfig: {
+                label: d => d["Continent"],
                 shapeConfig: {
                   width: 40,
                   height: 40,

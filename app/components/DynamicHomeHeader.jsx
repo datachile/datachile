@@ -161,7 +161,7 @@ class DynamicHomeHeader extends Component {
               .measure("FOB US")
               .cut(`[Date].[Year].&[${store.exports_year}]`)
               .cut(
-                "{[Export HS].[HS].[HS2].&[08],[Export HS].[HS].[HS2].&[74],[Export HS].[HS].[HS2].&[12],[Export HS].[HS].[HS2].&[16],[Export HS].[HS].[HS2].&[10],[Export HS].[HS].[HS2].&[27],[Export HS].[HS].[HS2].&[44],[Export HS].[HS].[HS2].&[02],[Export HS].[HS].[HS2].&[19],[Export HS].[HS].[HS2].&[07],[Export HS].[HS].[HS2].&[48],[Export HS].[HS].[HS2].&[06],[Export HS].[HS].[HS2].&[27],[Export HS].[HS].[HS2].&[51]}"
+                "{[Export HS].[HS].[HS2].&[2501],[Export HS].[HS].[HS2].&[0805],[Export HS].[HS].[HS2].&[7403],[Export HS].[HS].[HS2].&[1509],[Export HS].[HS].[HS2].&[0305],[Export HS].[HS].[HS2].&[0806],[Export HS].[HS].[HS2].&[2204],[Export HS].[HS].[HS2].&[1103],[Export HS].[HS].[HS2].&[2710],[Export HS].[HS].[HS2].&[4404],[Export HS].[HS].[HS2].&[0201],[Export HS].[HS].[HS2].&[0401],[Export HS].[HS].[HS2].&[0812],[Export HS].[HS].[HS2].&[4811],[Export HS].[HS].[HS2].&[1212],[Export HS].[HS].[HS2].&[2711],[Export HS].[HS].[HS2].&[5101]}"
               ),
             store.i18n.locale
           );
