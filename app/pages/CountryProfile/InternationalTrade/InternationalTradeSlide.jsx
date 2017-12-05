@@ -1,8 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router";
+import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
 

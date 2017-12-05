@@ -27,7 +27,7 @@ class TopicSlider extends Component {
 
       //disgusting code, just to trigger the new slide's charts render (d3plus).
       if (canUseDOM) {
-        setTimeout(function() {
+        setTimeout(() => {
           window.dispatchEvent(new Event("scroll"));
           this.state.chartsRendered = true;
         }, 100);

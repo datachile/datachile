@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral, moneyRangeFormat } from "helpers/formatters";
 
@@ -84,7 +83,7 @@ class IncomeByAge extends Section {
               shapeConfig: {
                 width: 40,
                 height: 40,
-                backgroundImage: d => "/images/legend/occupation/person.png"
+                backgroundImage: () => "/images/legend/occupation/person.png"
               }
             }
           }}

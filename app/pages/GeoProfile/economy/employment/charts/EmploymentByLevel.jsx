@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
@@ -79,8 +79,8 @@ class EmploymentByLevel extends Section {
               title: t("People"),
               tickFormat: tick => numeral(tick, locale).format("(0 a)")
             },
-            xSort: (a, b) => {
-              return 1;
+            xSort: () => {
+              return 1; // TODO Why?
             },
             barPadding: 0,
             groupPadding: 5,
@@ -98,7 +98,7 @@ class EmploymentByLevel extends Section {
               shapeConfig: {
                 width: 40,
                 height: 40,
-                backgroundImage: d => "/images/legend/college/hat.png"
+                backgroundImage: () => "/images/legend/college/hat.png"
               }
             }
           }}

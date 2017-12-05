@@ -4,17 +4,9 @@ import _ from "lodash";
 import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
 
-import { ordinalColorScale, continentColorScale } from "helpers/colors";
-import mondrianClient, {
-  geoCut,
-  getMembersQuery,
-  simpleGeoChartNeed
-} from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
+import { continentColorScale } from "helpers/colors";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
-
-import Select from "components/Select";
-import ExportLink from "components/ExportLink";
 
 class MigrationByVisa extends Section {
   static need = [
@@ -91,7 +83,6 @@ class MigrationByVisa extends Section {
           }}
           //dataFormat={data => data.data}
           dataFormat={function(data) {
-            var others = {};
             var limit = 0;
             var resp = [];
             if (data.data.length > 0) {

@@ -41,19 +41,6 @@ class Topic extends Component {
       });
     });
 
-    /*var canUseDOM = !!(
-      typeof window !== "undefined" &&
-      window.document &&
-      window.document.createElement
-    );
-
-    //disgusting code, just to trigger the new slide's charts render (d3plus).
-    if (canUseDOM) {
-      setTimeout(function() {
-        window.dispatchEvent(new Event("scroll"));
-      }, 100);
-    }*/
-
     return (
       <div className="topic-block" id={id}>
         <div className="topic-header">
