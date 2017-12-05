@@ -381,7 +381,10 @@ class GeoProfile extends Component {
       title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
     }
 
-    let opengraphImage = (geoObj.image || '').replace('/profile-bg/', '/opengraph/')
+    let opengraphImage = (geoObj.image || "").replace(
+      "/profile-bg/",
+      "/opengraph/"
+    );
 
     return (
       <CanonComponent
