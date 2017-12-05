@@ -43,6 +43,11 @@ class ImportsByOrigin extends Section {
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])
             },
+            total: d => d["CIF US"],
+            totalConfig: {
+              text: d =>
+                "Total: " + numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+            },
             on: {
               click: d => {
                 if (!(d["ID Country"] instanceof Array)) {

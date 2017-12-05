@@ -42,6 +42,11 @@ class ExportsByDestination extends Section {
               d["Country"] instanceof Array ? d["Continent"] : d["Country"],
             sum: d => d["FOB US"],
             time: "ID Year",
+            total: d => d["FOB US"],
+            totalConfig: {
+              text: d =>
+                "Total: " + numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+            },
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])
             },
