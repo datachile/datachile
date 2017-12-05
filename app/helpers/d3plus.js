@@ -47,6 +47,9 @@ export default {
     fontFamily: "'Yantramanav', sans-serif",
     fontWeight: 600
   },
+  timelineConfig: {
+    brushing: false
+  },
   totalConfig: {
     fontSize: 16,
     fontColor: "#FFFFFF",
