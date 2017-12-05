@@ -21,19 +21,16 @@ class MigrationByOrigin extends Section {
     (params, store) => {
       const geo = getGeoObject(params);
       const promise = mondrianClient.cube("immigration").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("Date", "Date", "Year")
-            .drilldown("Origin Country", "Country", "Country")
-            .measure("Number of visas"),
-          store.i18n.locale
-        );
+        var q = cube.query
+          .option("parents", true)
+          .drilldown("Date", "Date", "Year")
+          .drilldown("Origin Country", "Country", "Country")
+          .measure("Number of visas");
+        q = geoCut(geo, "Geography", q, store.i18n.locale);
+
         return {
           key: "path_migration_by_origin",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 
