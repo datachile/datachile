@@ -23,12 +23,26 @@ class MigrationByEducation extends Section {
     )
   ];
 
-  render() {
-    const { t, className, i18n } = this.props;
+  setCurrentSelection = point => {
+    const { onSharedStateChange, sharedKey, sharedValue } = this.props;
+    const drilldown = encodeURIComponent(`[Education].[Education].[Education]`);
 
+    if (onSharedStateChange)
+      onSharedStateChange({
+        key: sharedKey,
+        value:
+          "string" == typeof sharedValue && sharedValue.indexOf(drilldown) > -1
+            ? null
+            : `&cut%5B%5D=${drilldown}.%26%5B${point["ID Education"]}%5D`
+      });
+  };
+
+  render() {
+    const { t, className, i18n, sharedValue } = this.props;
     const locale = i18n.locale;
 
-    const path = this.context.data.path_country_migration_by_education;
+    let path = this.context.data.path_country_migration_by_education;
+    if (sharedValue) path = path.replace("&cut", sharedValue + "&cut");
 
     return (
       <div className={className}>
@@ -38,6 +52,7 @@ class MigrationByEducation extends Section {
         </h3>
         <Treemap
           config={{
+            on: { click: this.setCurrentSelection },
             height: 500,
             data: path,
             groupBy: "ID Education",
