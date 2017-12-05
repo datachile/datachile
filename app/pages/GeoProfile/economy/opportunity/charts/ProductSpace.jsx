@@ -43,7 +43,7 @@ class ProductSpace extends Section {
             zoomScroll: false,
             shapeConfig: {
               Path: {
-                stroke: "#666"
+                stroke: "#555"
               }
             },
             tooltipConfig: {

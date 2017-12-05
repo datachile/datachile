@@ -44,7 +44,7 @@ class IndustrySpace extends Section {
             zoomScroll: false,
             shapeConfig: {
               Path: {
-                stroke: "#666"
+                stroke: "#555"
               }
             },
             legend: false,
