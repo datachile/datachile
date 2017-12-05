@@ -101,6 +101,7 @@
     lost-center: 3/4;
     position: relative;
     top: -7px;
+    z-index: 8;
 
     & .home-slide-item {
       padding: 0 15px;

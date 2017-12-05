@@ -220,101 +220,96 @@ class DynamicHomeHeader extends Component {
     this.state = {
       illustration: ""
     };
-
-    this.callbackSvg = this.callbackSvg.bind(this);
   }
 
-  callbackSvg(error, response, src) {
+  callbackSvg = (error, response, src) => {
     const { header, data } = this.props;
     var xml = response.responseText ? response.responseText : response;
     var that = this;
+
     if (!xml.startsWith("<?xml")) {
-      this.setState({
-        illustration: "Error loading SVG"
-      });
+      this.setState({ illustration: "Error loading SVG" });
       console.error("Error loading " + src);
-    } else {
-      this.cache.setSvg(src, xml);
-      this.setState(
-        {
-          illustration: xml
-        },
-        () => {
-          if (typeof document != "undefined") {
-            select(".dynamic-home-image")
+      return;
+    }
+
+    this.cache.setSvg(src, xml);
+    this.setState({ illustration: xml }, () => {
+      if (typeof document != "undefined") {
+        select(".dynamic-home-image")
+          .transition()
+          .duration(500)
+          .style("opacity", 1);
+
+        var div = select("#tooltip-home");
+
+        function getCoords(x, y) {
+          const w = window.innerWidth,
+            imgW = 1366,
+            imgH = 241;
+          const h = imgH * w / imgW;
+
+          return [x * w / imgW, y * h / imgH];
+        }
+
+        selectAll(".dynamic-home-hotspots g.hotspot")
+          .on("mouseover", function(d) {
+            var hotspot = select(this);
+            var region_id = hotspot.attr("id");
+            var elem = hotspot.select("circle.st0");
+            var coords = getCoords(elem.attr("cx"), elem.attr("cy"));
+
+            div
+              .transition()
+              .duration(200)
+              .style("opacity", 1);
+            div
+              .style("left", coords[0] - 75 + "px")
+              .style("top", coords[1] + 9 + "px");
+
+            const name = that.getTooltipName(region_id);
+            div.select(".tooltip-title").html(name);
+
+            const data_collection = that.getTooltipData(region_id);
+            div
+              .select(".tooltip-body")
+              .html(
+                data_collection
+                  .map(
+                    d =>
+                      "<div class='tooltip-data-value color-" +
+                      that.props.header.slug +
+                      "'>" +
+                      d.value +
+                      "</div><div class='tooltip-data-title'>" +
+                      d.title +
+                      "</div>"
+                  )
+                  .join("")
+              );
+          })
+          .on("mouseout", function(d) {
+            div
               .transition()
               .duration(500)
-              .style("opacity", 1);
+              .style("opacity", 0);
+          })
+          .on("click", function(d) {
+            var elem = select(this).select("circle.st0");
+            const id = elem.attr("id");
 
-            var div = select("#tooltip-home");
-
-            function getCoords(x, y) {
-              const w = window.innerWidth,
-                imgW = 1366,
-                imgH = 241;
-              const h = imgH * w / imgW;
-
-              return [x * w / imgW, y * h / imgH];
+            if (id === null) {
+              console.error("No attribute 'id' on svg file");
+            } else {
+              var url = that.getTooltipUrl(id);
+              if (url) {
+                browserHistory.push(url);
+              }
             }
-
-            selectAll(".dynamic-home-hotspots ellipse.st0")
-              .on("mouseover", function(d) {
-                var elem = select(this);
-                var coords = getCoords(elem.attr("cx"), elem.attr("cy"));
-
-                div
-                  .transition()
-                  .duration(200)
-                  .style("opacity", 1);
-                div
-                  .style("left", coords[0] - 75 + "px")
-                  .style("top", coords[1] + 9 + "px");
-
-                const name = that.getTooltipName(elem.attr("id"));
-                div.select(".tooltip-title").html(name);
-
-                const data_collection = that.getTooltipData(elem.attr("id"));
-                div
-                  .select(".tooltip-body")
-                  .html(
-                    data_collection
-                      .map(
-                        d =>
-                          "<div class='tooltip-data-value color-" +
-                          that.props.header.slug +
-                          "'>" +
-                          d.value +
-                          "</div><div class='tooltip-data-title'>" +
-                          d.title +
-                          "</div>"
-                      )
-                      .join("")
-                  );
-              })
-              .on("mouseout", function(d) {
-                div
-                  .transition()
-                  .duration(500)
-                  .style("opacity", 0);
-              })
-              .on("click", function(d) {
-                var elem = select(this);
-                const id = elem.attr("id");
-
-                if (id === null) {
-                  console.error("No attribute 'id' on svg file");
-                } else {
-                  var url = that.getTooltipUrl(id);
-                  if (url) {
-                    browserHistory.push(url);
-                  }
-                }
-              });
-          }
-        }
-      );
-    }
-  }
+          });
+      }
+    });
+  };
 
   getTooltipName(id) {
     const { t, header, data } = this.props;
@@ -519,26 +514,17 @@ class DynamicHomeHeader extends Component {
             <div className={`tooltip-body`} />
           </div>
           <div id="mountains-home">
-            <svg
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              viewBox="0 0 1960 281"
-            >
-              <g>
-                <polyline
-                  className="back"
-                  points="1.4,282.6 0,82 154.6,142 422.5,60 908.2,124 1169.2,60 1529.4,101 1966,0.3 1963.9,279.6     "
-                  style={{ fill: header.colors[1] }}
-                />
-                <polyline
-                  className="front"
-                  points="0.7,283.6 0,224.4 66.2,163.2 251.6,236.7 453.2,126.2 735.9,263.3 1003.6,142.7 1160.4,174.7 
-                    1358.5,114.1 1502.8,138.7 1778.6,59 1959,229.6 1959.1,280.6"
-                  style={{ fill: header.colors[0] }}
-                />
-              </g>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1960 281">
+              <path
+                className="back"
+                d="M1.4 282.6L0 82l154.6 60 267.9-82 485.7 64 261-64 360.2 41L1966 .3l-2.1 279.3"
+                style={{ fill: header.colors[1] }}
+              />
+              <path
+                className="front"
+                d="M.7 283.6L0 224.4l66.2-61.2 185.4 73.5 201.6-110.5 282.7 137.1 267.7-120.6 156.8 32 198.1-60.6 144.3 24.6L1778.6 59 1959 229.6l.1 51"
+                style={{ fill: header.colors[0] }}
+              />
             </svg>
           </div>
           <div
