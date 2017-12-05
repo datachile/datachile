@@ -20,7 +20,7 @@ class MigrationByOrigin extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("immigration").then(cube => {
+      const promise = mondrianClient.cube("immigration").then(cube => {
         var q = geoCut(
           geo,
           "Geography",
@@ -37,10 +37,7 @@ class MigrationByOrigin extends Section {
         };
       });
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
+      return { type: "GET_DATA", promise };
     }
   ];
 
@@ -55,7 +52,7 @@ class MigrationByOrigin extends Section {
       onSharedStateChange({
         key: sharedKey,
         value:
-          "string" == typeof sharedValue && sharedValue.indexOf(drilldown) > -1
+          "string" == typeof sharedValue && sharedValue.includes(drilldown)
             ? null
             : "&cut%5B%5D=" +
               (points.length == 1
@@ -66,99 +63,96 @@ class MigrationByOrigin extends Section {
 
   render() {
     const { t, className, i18n, sharedValue } = this.props;
-      const locale = i18n.language;
-      
-      let path = this.context.data.path_migration_by_origin;
-      if (sharedValue) path = path.replace("&cut", sharedValue + "&cut");
+    const locale = i18n.language;
 
-      return (
-        <div className={className}>
-          <h3 className="chart-title">
-            <span>{t("Migration By Origin")}</span>
-            <ExportLink path={path} />
-          </h3>
-          <TreemapStacked
-            path={path}
-            msrName="Number of visas"
-            drilldowns={["Continent", "Country"]}
-            depth={true}
-            config={{
-              label: d => {
+    let path = this.context.data.path_migration_by_origin;
+    if (sharedValue) path = path.replace("&cut", sharedValue + "&cut");
+
+    return (
+      <div className={className}>
+        <h3 className="chart-title">
+          <span>{t("Migration By Origin")}</span>
+          <ExportLink path={path} />
+        </h3>
+        <TreemapStacked
+          on={{ click: this.setCurrentSelection }}
+          path={path}
+          msrName="Number of visas"
+          drilldowns={["Continent", "Country"]}
+          depth={true}
+          config={{
+            label: d => {
+              d["Country"] = d["Country"] == "Chile" ? ["Chile"] : d["Country"];
+              return d["Country"] instanceof Array
+                ? d["Continent"]
+                : d["Country"];
+            },
+            total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0,0"
+                ) +
+                " " +
+                t("visas")
+            },
+            shapeConfig: {
+              fill: d => continentColorScale(d["ID Continent"])
+            },
+            on: {
+              click: d => {
+                if (!(d["ID Country"] instanceof Array)) {
+                  var url = slugifyItem(
+                    "countries",
+                    d["ID Continent"],
+                    d["Continent"],
+                    d["ID Country"] instanceof Array ? false : d["ID Country"],
+                    d["Country"] instanceof Array ? false : d["Country"]
+                  );
+                  browserHistory.push(url);
+                }
+              }
+            },
+            tooltipConfig: {
+              title: d => {
                 d["Country"] =
                   d["Country"] == "Chile" ? ["Chile"] : d["Country"];
                 return d["Country"] instanceof Array
                   ? d["Continent"]
                   : d["Country"];
               },
-              total: d => d["Number of visas"],
-              totalConfig: {
-                text: d =>
-                  "Total: " +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "0,0"
-                  ) +
+              body: d => {
+                const link =
+                  d["ID Country"] instanceof Array
+                    ? ""
+                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                return (
+                  numeral(d["Number of visas"], locale).format("(0 a)") +
                   " " +
-                  t("visas")
-              },
-              shapeConfig: {
-                fill: d => continentColorScale(d["ID Continent"])
-              },
-              on: {
-                click: d => {
-                  if (!(d["ID Country"] instanceof Array)) {
-                    var url = slugifyItem(
-                      "countries",
-                      d["ID Continent"],
-                      d["Continent"],
-                      d["ID Country"] instanceof Array
-                        ? false
-                        : d["ID Country"],
-                      d["Country"] instanceof Array ? false : d["Country"]
-                    );
-                    browserHistory.push(url);
-                  }
-                }
-              },
-              tooltipConfig: {
-                title: d => {
-                  d["Country"] =
-                    d["Country"] == "Chile" ? ["Chile"] : d["Country"];
-                  return d["Country"] instanceof Array
-                    ? d["Continent"]
-                    : d["Country"];
-                },
-                body: d => {
-                  const link =
-                    d["ID Country"] instanceof Array
-                      ? ""
-                      : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                  return (
-                    numeral(d["Number of visas"], locale).format("(0 a)") +
-                    " " +
-                    t("people") +
-                    link
-                  );
-                }
-              },
-              legendConfig: {
-                label: d => d["Continent"],
-                shapeConfig: {
-                  width: 40,
-                  height: 40,
-                  backgroundImage: d =>
-                    "/images/legend/continent/" + d["ID Continent"] + ".png"
-                }
-              },
-              yConfig: {
-                title: t("Number of visas"),
-                tickFormat: tick => numeral(tick, locale).format("0,0")
+                  t("people") +
+                  link
+                );
               }
-            }}
-          />
-          <SourceNote cube="immigration" />
-        </div>
-      );
-    }
+            },
+            legendConfig: {
+              label: d => d["Continent"],
+              shapeConfig: {
+                width: 40,
+                height: 40,
+                backgroundImage: d =>
+                  "/images/legend/continent/" + d["ID Continent"] + ".png"
+              }
+            },
+            yConfig: {
+              title: t("Number of visas"),
+              tickFormat: tick => numeral(tick, locale).format("0,0")
+            }
+          }}
+        />
+        <SourceNote cube="immigration" />
+      </div>
+    );
   }
 }
 
