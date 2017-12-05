@@ -378,7 +378,9 @@ class GeoProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/${geoObj.image}')`
+                  backgroundImage: `url('/images/profile-bg/geo/${
+                    geoObj.image
+                  }')`
                 }}
               />
               <div className="gradient" />
@@ -777,6 +779,10 @@ class GeoProfile extends Component {
               id="environment"
               sections={[
                 {
+                  name: t("Amenities"),
+                  slides: [t("Access to services")]
+                },
+                {
                   name: t("Quality"),
                   slides: [t("Housing Conditions")]
                 },
@@ -787,13 +793,16 @@ class GeoProfile extends Component {
                     t("Devices"),
                     t("Internet use")
                   ]
-                },
-                {
-                  name: t("Amenities"),
-                  slides: [t("Access to services")]
                 }
               ]}
             >
+              <div>
+                <ServicesAccessSlide>
+                  <SectionColumns>
+                    <Services className="lost-1" />
+                  </SectionColumns>
+                </ServicesAccessSlide>
+              </div>
               <div>
                 <QualitySlide>
                   <SectionColumns>
@@ -830,13 +839,6 @@ class GeoProfile extends Component {
                     <Placeholder className="lost-1-2" text="Internet uses" />
                   </SectionColumns>
                 </InternetUseSlide>
-              </div>
-              <div>
-                <ServicesAccessSlide>
-                  <SectionColumns>
-                    <Services className="lost-1" />
-                  </SectionColumns>
-                </ServicesAccessSlide>
               </div>
             </Topic>
 
