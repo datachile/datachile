@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale, COLORS_GENDER } from "helpers/colors";
+import { COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
@@ -50,7 +49,7 @@ class SalariesByOccupation extends Section {
             y: "Median Income",
             shapeConfig: {
               fill: d => COLORS_GENDER[d["ID Sex"]],
-              label: d => ""
+              label: () => ""
             },
             xConfig: {
               tickSize: 0,

@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import _ from "lodash";
+import React from "react";
 import { Section } from "datawheel-canon";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { melt, getGeoObject } from "helpers/dataUtils";
 import { employmentColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
@@ -35,8 +33,8 @@ class EmploymentBySex extends Section {
       selectedObj: {
         path: "",
         groupBy: [],
-        label: d => "",
-        sum: d => ""
+        label: () => "",
+        sum: () => ""
       },
       chartVariations: []
     };
