@@ -246,8 +246,6 @@ class GeoProfile extends Component {
     //MayorResults
   ];
 
-  state = {};
-
   setSharedState = evt => {
     /** This is how this works:
      * The component with the chart needs 3 parameters:

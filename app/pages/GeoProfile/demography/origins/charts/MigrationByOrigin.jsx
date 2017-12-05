@@ -20,27 +20,21 @@ class MigrationByOrigin extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("immigration").then(cube => {
-        var q = geoCut(
-          geo,
-          "Geography",
-          cube.query
-            .option("parents", true)
-            .drilldown("Date", "Date", "Year")
-            .drilldown("Origin Country", "Country", "Country")
-            .measure("Number of visas"),
-          store.i18n.locale
-        );
+      const promise = mondrianClient.cube("immigration").then(cube => {
+        var q = cube.query
+          .option("parents", true)
+          .drilldown("Date", "Date", "Year")
+          .drilldown("Origin Country", "Country", "Country")
+          .measure("Number of visas");
+        q = geoCut(geo, "Geography", q, store.i18n.locale);
+
         return {
           key: "path_migration_by_origin",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
+      return { type: "GET_DATA", promise };
     }
   ];
 
@@ -91,6 +85,14 @@ class MigrationByOrigin extends Section {
             },
             sum: d => d["Number of visas"],
             time: "ID Year",
+            total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("0,0") +
+                " " +
+                t("visas")
+            },
             shapeConfig: {
               fill: d => continentColorScale(d["ID Continent"])
             },
@@ -108,6 +110,7 @@ class MigrationByOrigin extends Section {
                 t("people")
             },
             legendConfig: {
+              label: d => d["Continent"],
               shapeConfig: {
                 width: 40,
                 height: 40,
@@ -118,6 +121,7 @@ class MigrationByOrigin extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }
