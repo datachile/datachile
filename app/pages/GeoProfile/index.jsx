@@ -256,6 +256,8 @@ class GeoProfile extends Component {
     DeathCauses
   ];
 
+  state = {};
+
   setSharedState = evt => {
     /** This is how this works:
      * The component with the chart needs 3 parameters:
