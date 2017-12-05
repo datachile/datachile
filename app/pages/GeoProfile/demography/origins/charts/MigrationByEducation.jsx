@@ -23,12 +23,26 @@ class MigrationByEducation extends Section {
     )
   ];
 
+  setCurrentSelection = point => {
+    const { onSharedStateChange, sharedKey, sharedValue } = this.props;
+    const drilldown = encodeURIComponent(`[Education].[Education].[Education]`);
+
+    if (onSharedStateChange)
+      onSharedStateChange({
+        key: sharedKey,
+        value:
+          "string" == typeof sharedValue && sharedValue.indexOf(drilldown) > -1
+            ? null
+            : `&cut%5B%5D=${drilldown}.%26%5B${point["ID Education"]}%5D`
+      });
+  };
+
   render() {
-    const { t, className, i18n } = this.props;
+    const { t, className, i18n, sharedValue } = this.props;
+    const locale = i18n.locale;
 
-    const locale = i18n.language;
-
-    const path = this.context.data.path_country_migration_by_education;
+    let path = this.context.data.path_country_migration_by_education;
+    if (sharedValue) path = path.replace("&cut", sharedValue + "&cut");
 
     return (
       <div className={className}>
@@ -42,6 +56,7 @@ class MigrationByEducation extends Section {
           drilldowns={["Education", "Education"]}
           depth={true}
           config={{
+            on: { click: this.setCurrentSelection },
             height: 500,
             data: path,
             label: d => d["Education"],
