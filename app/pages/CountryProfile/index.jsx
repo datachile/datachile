@@ -367,7 +367,7 @@ class CountryProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
+                  backgroundImage: `url('/images/profile-bg/country/${obj.key}.jpg')`
                 }}
               />
               <div className="gradient" />
