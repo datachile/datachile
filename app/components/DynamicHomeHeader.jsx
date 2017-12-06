@@ -295,8 +295,7 @@ class DynamicHomeHeader extends Component {
               .style("opacity", 0);
           })
           .on("click", function(d) {
-            var elem = select(this).select("circle.st0");
-            const id = elem.attr("id");
+            const id = select(this).attr("id");
 
             if (id === null) {
               console.error("No attribute 'id' on svg file");
