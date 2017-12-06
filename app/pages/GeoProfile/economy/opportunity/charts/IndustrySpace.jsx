@@ -42,6 +42,11 @@ class IndustrySpace extends Section {
             sizeMin: 1,
             sizeMax: 15,
             zoomScroll: false,
+            shapeConfig: {
+              Path: {
+                stroke: "#555"
+              }
+            },
             legend: false,
             tooltipConfig: {
               title: d => {
@@ -55,7 +60,8 @@ class IndustrySpace extends Section {
             data.data.map(d => ({
               id: d["ID Level 4"],
               ...d
-            }))}
+            }))
+          }
         />
       </div>
     );

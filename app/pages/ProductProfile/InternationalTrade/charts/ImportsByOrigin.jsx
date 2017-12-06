@@ -96,6 +96,7 @@ class ImportsByDestination extends Section {
               }
             },
             legendConfig: {
+              label: d => d["Continent"],
               shapeConfig: {
                 width: 40,
                 height: 40,
