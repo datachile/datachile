@@ -43,7 +43,8 @@ class ImportsByProduct extends Section {
             total: d => d["CIF US"],
             totalConfig: {
               text: d =>
-                "Total: " + numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
             },
             legendConfig: {
               label: false,

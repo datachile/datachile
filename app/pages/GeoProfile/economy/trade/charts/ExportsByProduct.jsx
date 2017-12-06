@@ -54,7 +54,8 @@ export default translate()(
               total: d => d["FOB US"],
               totalConfig: {
                 text: d =>
-                  "Total: " + numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                  "Total: US" +
+                  numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
               },
               shapeConfig: {
                 fill: d => productsColorScale("hs" + d["ID HS0"])

@@ -3,7 +3,10 @@ import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 import { melt, getGeoObject } from "helpers/dataUtils";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  geoCut,
+  simpleDatumNeed
+} from "helpers/MondrianClient";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
 import FeaturedDatum from "components/FeaturedDatum";
@@ -11,6 +14,18 @@ import SourceNote from "components/SourceNote";
 
 class TradeSlide extends Section {
   static need = [
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_exports_and_imports",
+        "exports_and_import",
+        ["FOB", "CIF"],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[2015]`]
+        }
+      )(params, store),
+
     (params, store) => {
       const geo = getGeoObject(params);
       const cube = mondrianClient.cube("exports");

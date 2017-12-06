@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Treemap } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
+import { numeral } from "helpers/formatters";
 import { industriesColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -19,7 +19,8 @@ class IndustryBySector extends Section {
 
   render() {
     const path = this.context.data.path_industry_output;
-    const { t, className } = this.props;
+    const { t, className, i18n } = this.props;
+    const locale = i18n.locale;
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -34,6 +35,12 @@ class IndustryBySector extends Section {
             label: d =>
               d["Level 2"] instanceof Array ? d["Level 1"] : d["Level 2"],
             sum: d => d["Output"],
+            total: d => d["Output"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0,0 a)")
+            },
             time: "ID Year",
             shapeConfig: {
               fill: d => industriesColorScale(d["ID Level 1"])

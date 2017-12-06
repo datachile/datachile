@@ -7,6 +7,7 @@ import mondrianClient, {
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
+import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -51,7 +52,8 @@ class SpendingByIndustry extends Section {
 
   render() {
     const path = this.context.data.path_spending_by_industry;
-    const { t, className } = this.props;
+    const { t, className, i18n } = this.props;
+    const locale = i18n.locale;
     const geo = this.context.data.geo;
     const regionID = geo.type === "comuna" ? geo.ancestors[0].key : "";
     const measureName = getMeasureByGeo(
@@ -78,6 +80,12 @@ class SpendingByIndustry extends Section {
             label: d => d["Level 1"],
             sum: d => d[measureName],
             time: "ID Year",
+            total: d => d[measureName],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("$ (0,0)")
+            },
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Level 1"])
             },
