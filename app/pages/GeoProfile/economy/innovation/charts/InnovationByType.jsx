@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
+import { numeral } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";

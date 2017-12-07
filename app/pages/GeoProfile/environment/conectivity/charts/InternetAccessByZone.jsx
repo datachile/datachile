@@ -2,6 +2,7 @@ import React from "react";
 import _ from "lodash";
 import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
+import { mean } from "d3-array";
 import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
@@ -68,6 +69,9 @@ class InternetAccessByZone extends Section {
           config={{
             height: 500,
             data: path,
+            aggs: {
+              ["Expansion factor"]: mean
+            },
             groupBy: "ID Binary Survey Response",
             label: d => d["ID Binary Survey Response"],
             x: "Zone",

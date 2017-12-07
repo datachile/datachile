@@ -80,6 +80,12 @@ class SpendingBySector extends Section {
             groupBy: "ID Ownership Type",
             label: d => d["Ownership Type"],
             sum: d => d[measureName],
+            total: d => d[measureName],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("$ (0,0)")
+            },
             time: "ID Year",
             total: d => d[measureName],
             totalConfig: {

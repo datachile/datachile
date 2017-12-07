@@ -8,7 +8,6 @@ import mondrianClient, {
   geoCut,
   simpleDatumNeed
 } from "helpers/MondrianClient";
-
 import { sources } from "helpers/consts";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
