@@ -5,26 +5,54 @@ import { Section } from "datawheel-canon";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
+import { sources } from "helpers/consts";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
 class EnrollmentSlide extends Section {
   static need = [
-    (params, store) =>
-      simpleDatumNeed(
-        "datum_enrollment_special_education",
-        "education_enrollment",
-        ["Number of records"],
-        {
-          options: { parents: false },
-          cuts: ["Special Education Teachings", `[Date].[Date].[Year].&[2015]`]
-        }
-      )(params, store)
+    simpleDatumNeed(
+      "datum_enrollment_special_education",
+      "education_enrollment",
+      ["Number of records"],
+      {
+        options: { parents: false },
+        cuts: [
+          "Special Education Teachings",
+          `[Date].[Date].[Year].&[${sources.education_enrollment.year}]`
+        ]
+      }
+    ),
+    simpleDatumNeed(
+      "datum_enrollment_rural_education",
+      "education_enrollment",
+      ["Number of records"],
+      {
+        options: { parents: false },
+        cuts: [
+          "[Zone].[Zone].[Zone].&[2]",
+          `[Date].[Date].[Year].&[${sources.education_enrollment.year}]`
+        ]
+      }
+    ),
+    simpleDatumNeed(
+      "datum_enrollment_education",
+      "education_enrollment",
+      ["Number of records"],
+      {
+        options: { parents: false },
+        cuts: [`[Date].[Date].[Year].&[${sources.education_enrollment.year}]`]
+      }
+    )
   ];
 
   render() {
     const { children, t, i18n } = this.props;
-    const { datum_enrollment_special_education } = this.context.data;
+    const {
+      datum_enrollment_education,
+      datum_enrollment_special_education,
+      datum_enrollment_rural_education
+    } = this.context.data;
 
     const locale = i18n.locale;
 
@@ -50,14 +78,31 @@ class EnrollmentSlide extends Section {
                 "(0,0)"
               )}
               title={t("Students in Special Education")}
-              subtitle="Lorem blabla"
+              subtitle={
+                numeral(
+                  datum_enrollment_special_education /
+                    datum_enrollment_education,
+                  locale
+                ).format("(0.0%)") +
+                " " +
+                t("of Total")
+              }
             />
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={numeral(datum_enrollment_rural_education, locale).format(
+                "(0,0)"
+              )}
+              title={t("Students in Rural Education")}
+              subtitle={
+                numeral(
+                  datum_enrollment_rural_education / datum_enrollment_education,
+                  locale
+                ).format("(0.0%)") +
+                " " +
+                t("of Total")
+              }
             />
             <FeaturedDatum
               className="l-1-3"

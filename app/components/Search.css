@@ -43,6 +43,9 @@
         background-color: var(--snow);
         color: var(--accent);
       }
+      &:focus::placeholder {
+        color: var(--dark);
+      }
       &.loading {
         background-image: url("/images/icons/icon-mini-loader.svg");
       }
