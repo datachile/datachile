@@ -38,15 +38,15 @@
     <path class="st1" d="M727 61v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <path class="st2" id="draw-505" d="M683.2 91.2H764v99.1h-80.8z"/>
   </g>
-  <g class="hotspot" id="201">
+  <g class="hotspot" id="216">
     <circle class="st0" cx="824" cy="61" r="11"/>
     <path class="st1" d="M829 60v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
-    <path class="st2" id="draw-201" d="M785.6 90.7h80.8v99.1h-80.8z"/>
+    <path class="st2" id="draw-216" d="M785.6 90.7h80.8v99.1h-80.8z"/>
   </g>
-  <g class="hotspot" id="216">
+  <g class="hotspot" id="201">
     <circle class="st0" cx="928" cy="57" r="11"/>
     <path class="st1" d="M933 56v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
-    <path class="st2" id="draw-216" d="M887.3 87H971v102.4h-83.7z"/>
+    <path class="st2" id="draw-201" d="M887.3 87H971v102.4h-83.7z"/>
   </g>
   <g class="hotspot" id="208">
     <circle class="st0" cx="1033" cy="61" r="11"/>
