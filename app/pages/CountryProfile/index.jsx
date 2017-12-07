@@ -290,7 +290,9 @@ class CountryProfile extends Component {
 
     const list = this.props.data.country_list_detail;
 
-    
+    const bgImage = obj.key
+      ? `url('/images/profile-bg/country/${obj.key}.jpg')`
+      : "";
 
     obj && ids && list
       ? list.map(c => {
@@ -325,8 +327,6 @@ class CountryProfile extends Component {
       exports: this.props.data.country_exports,
       product: this.props.data.top_imported_product_from_country
     };
-
-    console.log(stats)
 
     const topics = [
       {
@@ -371,7 +371,7 @@ class CountryProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/country/${obj.key}.jpg')`
+                  backgroundImage: bgImage
                 }}
               />
               <div className="gradient" />
