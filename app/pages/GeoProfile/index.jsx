@@ -140,6 +140,13 @@ import DeathCauses from "./health/death/charts/DeathCauses";
 
 /* end Health */
 
+/** Politics */
+
+import ElectionSlide from "./politics/election/ElectionSlide";
+import MayorResults from "./politics/election/charts/MayorResults";
+
+/** end Politics */
+
 import "../intro.css";
 import "../topics.css";
 
@@ -253,7 +260,10 @@ class GeoProfile extends Component {
     HealthInsurance,
 
     DeathCausesSlide,
-    DeathCauses
+    DeathCauses,
+
+    ElectionSlide,
+    MayorResults
   ];
 
   render() {
@@ -667,18 +677,8 @@ class GeoProfile extends Component {
               <div>
                 <IDSpendingCategorySlide>
                   <SectionColumns>
-                    {/*
-                                        <SpendingByFundingSource className="lost-1-2" />
-                                        <SpendingByArea className="lost-1-2" />
-                                      */}
-                    <Placeholder
-                      className="lost-1-2"
-                      text="RD - By Funding Source"
-                    />
-                    <Placeholder
-                      className="lost-1-2"
-                      text="RD - By Knowledge Area"
-                    />
+                    <SpendingByFundingSource className="lost-1-2" />
+                    <SpendingByArea className="lost-1-2" />
                   </SectionColumns>
                 </IDSpendingCategorySlide>
               </div>
@@ -946,6 +946,25 @@ class GeoProfile extends Component {
                     <DeathCauses className="lost-1" />
                   </SectionColumns>
                 </DeathCausesSlide>
+              </div>
+            </Topic>
+
+            <Topic
+              name={t("Politics")}
+              id="politics"
+              sections={[
+                {
+                  name: t("Mayor Election"),
+                  slides: [t("Results")]
+                }
+              ]}
+            >
+              <div>
+                <ElectionSlide>
+                  <SectionColumns>
+                    <MayorResults className="lost-1" />
+                  </SectionColumns>
+                </ElectionSlide>
               </div>
             </Topic>
           </div>

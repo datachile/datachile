@@ -4,6 +4,7 @@ import { Treemap } from "d3plus-react";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
+import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -40,7 +41,8 @@ class InnovationBySize extends Section {
 
   render() {
     const path = this.context.data.path_industry_output;
-    const { t, className } = this.props;
+    const { t, className, i18n } = this.props;
+    const locale = i18n.locale;
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -55,6 +57,12 @@ class InnovationBySize extends Section {
             label: d =>
               d["Level 2"] instanceof Array ? d["Level 1"] : d["Level 2"],
             sum: d => d["Output"],
+            total: d => d["Output"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("(0,0)")
+            },
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Level 1"])

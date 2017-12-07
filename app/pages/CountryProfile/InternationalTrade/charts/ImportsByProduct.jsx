@@ -64,6 +64,12 @@ class ImportsByProduct extends Section {
             groupBy: ["ID HS0", "ID HS2"],
             label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
             sum: d => d["CIF US"],
+            total: d => d["CIF US"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0,0 a)")
+            },
             time: "ID Year",
             legendConfig: {
               label: false,

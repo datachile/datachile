@@ -1,5 +1,7 @@
 import { Client as MondrianClient } from "mondrian-rest-client";
-import { getGeoObject } from "helpers/dataUtils";
+import { getGeoObject, getLevelObject } from "helpers/dataUtils";
+
+import flattenDeep from "lodash/flattenDeep";
 
 const client = new MondrianClient("https://chilecube.datawheel.us/");
 //const client = new MondrianClient("http://localhost:9292/");
@@ -182,6 +184,55 @@ function simpleDatumNeed(
   };
 }
 
+function simpleCountryDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const geo = getLevelObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = cube.query;
+
+        measures.forEach(m => {
+          q.measure(m);
+        });
+        drillDowns.forEach(([...dd]) => {
+          q.drilldown(...dd);
+        });
+        Object.entries(options).forEach(([k, v]) => q.option(k, v));
+        cuts.forEach(c => q.cut(c));
+
+        var query = levelCut(
+          geo,
+          "Origin Country",
+          "Country",
+          q,
+          "Subregion",
+          "Country",
+          store.i18n.locale,
+          false
+        );
+        return client.query(query);
+      })
+      .then(res => {
+        return {
+          key: key,
+          data: flattenDeep(res.data.values)
+        };
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 export {
   levelCut,
   geoCut,
@@ -191,6 +242,7 @@ export {
   setLangCaptions,
   getMeasureByGeo,
   simpleGeoChartNeed,
-  simpleDatumNeed
+  simpleDatumNeed,
+  simpleCountryDatumNeed
 };
 export default client;
