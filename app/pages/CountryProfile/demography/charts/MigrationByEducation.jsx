@@ -67,6 +67,14 @@ class MigrationByEducation extends Section {
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Education"])
             },
+            total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                " " +
+                t("visas")
+            },
             tooltipConfig: {
               title: d => d["Education"],
               body: d =>
