@@ -5,7 +5,6 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
