@@ -47,7 +47,8 @@ class MigrationByEducation extends Section {
               text: d =>
                 "Total: " +
                 numeral(d.text.split(": ")[1], locale).format("0,0") +
-                t(" immigrants")
+                " " +
+                t("visas")
             },
             time: "ID Year",
             shapeConfig: {

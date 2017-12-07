@@ -5,10 +5,7 @@ import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, {
-  levelCut,
-  simpleCountryDatumNeed
-} from "helpers/MondrianClient";
+import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 import { calculateYearlyGrowth } from "helpers/dataUtils";
 import { sources } from "helpers/consts";
 
@@ -47,7 +44,7 @@ class MigrationSlide extends Section {
   ];
 
   render() {
-    const { children, t, i18n, immigration_year } = this.props;
+    const { children, t, i18n } = this.props;
     const {
       datum_migration_origin,
       datum_migration_origin_female

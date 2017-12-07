@@ -70,7 +70,8 @@ export default translate()(
                 text: d =>
                   "Total: " +
                   numeral(d.text.split(": ")[1], locale).format("0,0") +
-                  t(" immigrants")
+                  " " +
+                  t("visas")
               },
               shapeConfig: {
                 fill: d => continentColorScale(d["ID Continent"])
