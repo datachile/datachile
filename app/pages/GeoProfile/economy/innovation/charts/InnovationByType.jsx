@@ -5,6 +5,7 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
+import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -61,7 +62,7 @@ class InnovationByType extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("$ (0,0)")
+                numeral(d.text.split(": ")[1], locale).format("(0,0)")
             },
             time: "ID Year",
             shapeConfig: {

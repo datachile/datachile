@@ -84,7 +84,7 @@ class SpendingByIndustry extends Section {
             totalConfig: {
               text: d =>
                 "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("$ (0,0)")
+                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
             },
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Level 1"])

@@ -68,7 +68,8 @@ class SpendingBySector extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("R&D Spending By Sector")} {geo && geo.type == "comuna" && t("Regional")}
+            {t("R&D Spending By Sector")}{" "}
+            {geo && geo.type == "comuna" && t("Regional")}
           </span>
           <ExportLink path={path} />
         </h3>
@@ -86,6 +87,12 @@ class SpendingBySector extends Section {
                 numeral(d.text.split(": ")[1], locale).format("$ (0,0)")
             },
             time: "ID Year",
+            total: d => d[measureName],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+            },
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Ownership Type"])
             },

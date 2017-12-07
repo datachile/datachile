@@ -61,8 +61,7 @@ class InnovationByActivity extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("0,0") +
-                t(" immigrants")
+                numeral(d.text.split(": ")[1], locale).format("(0,0)")
             },
             time: "ID Year",
             shapeConfig: {
