@@ -2,7 +2,7 @@ import React from "react";
 
 import { Treemap } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-
+import { numeral } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -103,8 +103,9 @@ class IndustryByOccupation extends Section {
   }
 
   render() {
-    const { t, className } = this.props;
-
+    const { t, className, i18n } = this.props;
+    const locale = i18n.locale;
+    console.log(this.state.selectedObj.sum)
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -125,6 +126,12 @@ class IndustryByOccupation extends Section {
             groupBy: this.state.selectedObj.groupBy,
             label: this.state.selectedObj.label,
             sum: this.state.selectedObj.sum,
+            total: this.state.selectedObj.sum,
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("(0,0)")
+            },
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID ISCO"])
