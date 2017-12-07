@@ -50,8 +50,8 @@
         & a.search-toggle-nav {
           position: absolute;
           z-index: 40;
-          width: 46px;
-          line-height: 42px;
+          width: 48px;
+          line-height: 46px;
           text-align: center;
           & img {
             display: inline-block;
