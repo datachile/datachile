@@ -86,6 +86,7 @@ import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollme
 
 import PerformanceSlide from "./education/performance/PerformanceSlide";
 import PerformanceByType from "./education/performance/charts/PerformanceByType";
+import PerformanceBySchool from "./education/performance/charts/PerformanceBySchool";
 
 import HigherEducationSlide from "./education/higher/HigherEducationSlide";
 import PSUResultsBySex from "./education/higher/charts/PSUResultsBySex";
@@ -231,6 +232,7 @@ class GeoProfile extends Component {
 
     PerformanceSlide,
     PerformanceByType,
+    PerformanceBySchool,
 
     EnrollmentSlide,
     CollegeByEnrollment,
@@ -760,8 +762,7 @@ class GeoProfile extends Component {
               <div>
                 <PerformanceSlide>
                   <SectionColumns>
-                    {/* <PerformanceByType className="lost-1" /> */}
-                    <Placeholder className="lost-1" text="Performance" />
+                    <PerformanceBySchool className="lost-1-2" />
                   </SectionColumns>
                 </PerformanceSlide>
               </div>

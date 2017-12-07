@@ -1,3 +1,6 @@
+import groupBy from "lodash/groupBy";
+import flatten from "lodash/flatten";
+
 export function melt(data, id_vars, value_vars) {
   const rv = [];
 
@@ -118,4 +121,17 @@ export function calculateYearlyGrowth(tensor) {
       return a + b;
     }, 0) / yearly_growth.length
   );
+}
+
+export function getTopCategories(data, msrName, top = 10) {
+  let obj = groupBy(data, "ID Year");
+  let output = Object.keys(obj).map(item => {
+    return obj[item]
+      .sort((a, b) => {
+        return b[msrName] - a[msrName];
+      })
+      .slice(0, top);
+  });
+
+  return flatten(output);
 }
