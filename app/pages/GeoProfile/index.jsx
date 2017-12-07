@@ -142,8 +142,8 @@ import DeathCauses from "./health/death/charts/DeathCauses";
 
 /** Politics */
 
-import ElectionSlide from "./politics/election/ElectionSlide";
-import MayorResults from "./politics/election/charts/MayorResults";
+//import ElectionSlide from "./politics/election/ElectionSlide";
+//import MayorResults from "./politics/election/charts/MayorResults";
 
 /** end Politics */
 
@@ -260,10 +260,10 @@ class GeoProfile extends Component {
     HealthInsurance,
 
     DeathCausesSlide,
-    DeathCauses,
+    DeathCauses
 
-    ElectionSlide,
-    MayorResults
+    //ElectionSlide,
+    //MayorResults
   ];
 
   render() {
@@ -948,7 +948,7 @@ class GeoProfile extends Component {
                 </DeathCausesSlide>
               </div>
             </Topic>
-
+            {/*
             <Topic
               name={t("Politics")}
               id="politics"
@@ -967,6 +967,7 @@ class GeoProfile extends Component {
                 </ElectionSlide>
               </div>
             </Topic>
+            */}
           </div>
         </div>
       </CanonComponent>
