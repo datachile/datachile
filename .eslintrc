@@ -22,6 +22,7 @@
     "document": true,
     "console": true,
     "event": true,
-    "Promise": true
+    "Promise": true,
+    "setTimeout": true
   }
 }
