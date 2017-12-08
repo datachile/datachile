@@ -41,16 +41,20 @@ class ProductSpace extends Section {
             sizeMin: 1,
             sizeMax: 15,
             zoomScroll: false,
+            shapeConfig: {
+              Path: {
+                stroke: "#555"
+              }
+            },
             tooltipConfig: {
               title: d => {
-                console.log(d);
-                return d["HS4"];
+                return d["HS2"];
               },
               body: d => numeral(d["FOB US"], locale).format("(USD 0 a)")
             },
             legend: false
           }}
-          dataFormat={data => data.data.map(d => ({ id: d["ID HS4"], ...d }))}
+          dataFormat={data => data.data.map(d => ({ id: d["ID HS2"], ...d }))}
         />
       </div>
     );

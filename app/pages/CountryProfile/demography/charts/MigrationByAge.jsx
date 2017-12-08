@@ -67,7 +67,7 @@ export default translate()(
               x: "Age Range",
               y: "Number of visas",
               shapeConfig: {
-                fill: d => ordinalColorScale(3)
+                fill: () => ordinalColorScale(2)
               },
               xConfig: {
                 tickSize: 0,

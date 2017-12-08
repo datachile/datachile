@@ -64,6 +64,14 @@ class MigrationByRegion extends Section {
             label: d => d["Comuna"],
             sum: d => d["Number of visas"],
             time: "ID Year",
+            total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                " " +
+                t("visas")
+            },
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Region"])
             },

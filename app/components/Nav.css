@@ -50,8 +50,8 @@
         & a.search-toggle-nav {
           position: absolute;
           z-index: 40;
-          width: 46px;
-          line-height: 42px;
+          width: 48px;
+          line-height: 46px;
           text-align: center;
           & img {
             display: inline-block;
@@ -182,7 +182,7 @@
 .subnav {
   background-color: var(--footer-bg);
   padding: 15px 15px;
-  z-index: 11;
+  z-index: 100;
   & .close-btn-container {
     text-align: right;
   }

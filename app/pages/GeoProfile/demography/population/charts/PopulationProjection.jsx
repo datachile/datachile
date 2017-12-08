@@ -4,7 +4,6 @@ import { translate } from "react-i18next";
 import { LinePlot } from "d3plus-react";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";

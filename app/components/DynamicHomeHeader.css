@@ -64,13 +64,13 @@
         margin-right: auto;
         left: 0;
         right: 0;
-        z-index: 10;
+        z-index: 9;
         animation: fadein 2s;
         -moz-animation: fadein 2s; /* Firefox */
         -webkit-animation: fadein 2s; /* Safari and Chrome */
         -o-animation: fadein 2s; /* Opera */
         & svg {
-          & ellipse.st0 {
+          & circle.st0 {
             opacity: 0.5;
             transition: opacity 0.5s;
             cursor: pointer;
@@ -93,6 +93,7 @@
         left: 0;
         right: 0;
         z-index: 8;
+        pointer-events: none;
         animation: fadein 2s;
         -moz-animation: fadein 2s; /* Firefox */
         -webkit-animation: fadein 2s; /* Safari and Chrome */

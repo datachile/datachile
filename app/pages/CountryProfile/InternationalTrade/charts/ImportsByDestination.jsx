@@ -64,6 +64,12 @@ class ImportsByDestination extends Section {
             groupBy: ["ID Region", "ID Comuna"],
             label: d => d["Comuna"],
             sum: d => d["CIF US"],
+            total: d => d["CIF US"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0,0 a)")
+            },
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Region"])

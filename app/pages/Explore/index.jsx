@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { Link } from "react-router";
@@ -6,11 +6,8 @@ import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 
 import { ingestChildren } from "helpers/dataUtils";
-import { slugifyItem } from "helpers/formatters";
-import mondrianClient, {
-  getMembersQuery,
-  getMemberQuery
-} from "helpers/MondrianClient";
+
+import { getMembersQuery } from "helpers/MondrianClient";
 
 import Nav from "components/Nav";
 import Search from "components/Search";
@@ -33,7 +30,6 @@ class Explore extends Component {
       if (entity) {
         switch (entity) {
           case undefined: {
-            type = "";
             break;
           }
           case "geo": {
@@ -187,46 +183,38 @@ class Explore extends Component {
   render() {
     const { entity, entity_id } = this.props.routeParams;
 
-    const { focus, t } = this.props;
+    const { t } = this.props;
 
     const members = this.props.data.members;
 
-    var typeTitle = "";
     var type = "";
     var mainLink = false;
     switch (entity) {
       case undefined: {
         type = "";
-        typeTitle = "";
         break;
       }
       case "countries": {
-        typeTitle = t("Countries");
         type = "countries";
         break;
       }
       case "institutions": {
-        typeTitle = t("Institutions");
         type = "institutions";
         break;
       }
       case "careers": {
-        typeTitle = t("Careers");
         type = "careers";
         break;
       }
       case "products": {
-        typeTitle = t("Products");
         type = "products";
         break;
       }
       case "industries": {
-        typeTitle = t("Industries");
         type = "industries";
         break;
       }
       case "geo": {
-        typeTitle = t("Geo");
         type = "geo";
         mainLink = true;
         break;

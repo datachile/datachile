@@ -85,6 +85,14 @@ class MigrationByOrigin extends Section {
             },
             sum: d => d["Number of visas"],
             time: "ID Year",
+            total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("0,0") +
+                " " +
+                t("visas")
+            },
             shapeConfig: {
               fill: d => continentColorScale(d["ID Continent"])
             },
@@ -102,6 +110,7 @@ class MigrationByOrigin extends Section {
                 t("people")
             },
             legendConfig: {
+              label: d => d["Continent"],
               shapeConfig: {
                 width: 40,
                 height: 40,

@@ -65,6 +65,14 @@ export default translate()(
               label: d => d["Activity"],
               sum: d => d["Number of visas"],
               time: "ID Year",
+              total: d => d["Number of visas"],
+              totalConfig: {
+                text: d =>
+                  "Total: " +
+                  numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                  " " +
+                  "visas"
+              },
               shapeConfig: {
                 fill: d => ordinalColorScale(d["ID Activity"])
               },

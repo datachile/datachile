@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 

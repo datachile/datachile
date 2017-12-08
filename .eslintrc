@@ -5,8 +5,10 @@
     "prettier"
   ],
   "rules": {
+    "no-unused-vars": 1,
     "prettier/prettier": "error",
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/jsx-uses-vars": 1
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -17,6 +19,10 @@
   "parser": "babel-eslint",
   "globals": {
     "window": true,
-    "document": true
+    "document": true,
+    "console": true,
+    "event": true,
+    "Promise": true,
+    "setTimeout": true
   }
 }

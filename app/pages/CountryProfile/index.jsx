@@ -1,8 +1,7 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
-import { Link } from "react-router";
-import { browserHistory } from "react-router";
+import _ from "lodash";
 import { translate } from "react-i18next";
 
 import d3plus from "helpers/d3plus";
@@ -281,18 +280,19 @@ class CountryProfile extends Component {
   componentDidMount() {}
 
   render() {
-    const { subnav, activeSub } = this.state;
     const { t, i18n } = this.props;
 
     const locale = i18n.locale;
-
-    const { country } = this.props.routeParams;
 
     const obj = this.props.data.country;
 
     const ids = getLevelObject(this.props.routeParams);
 
     const list = this.props.data.country_list_detail;
+
+    const bgImage = obj.key
+      ? `url('/images/profile-bg/country/${obj.key}.jpg')`
+      : "";
 
     obj && ids && list
       ? list.map(c => {
@@ -371,7 +371,7 @@ class CountryProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
+                  backgroundImage: bgImage
                 }}
               />
               <div className="gradient" />

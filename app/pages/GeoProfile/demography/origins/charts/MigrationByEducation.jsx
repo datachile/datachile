@@ -57,6 +57,14 @@ class MigrationByEducation extends Section {
             groupBy: "ID Education",
             label: d => d["Education"],
             sum: d => d["Number of visas"],
+            total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("0,0") +
+                " " +
+                t("visas")
+            },
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Education"])
