@@ -4,28 +4,48 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import { sources } from "helpers/consts";
+import { calculateYearlyGrowth } from "helpers/dataUtils";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 class MigrationSlide extends Section {
   static need = [
-    (params, store) =>
-      simpleDatumNeed(
-        "datum_migration_origin",
-        "immigration",
-        ["Number of visas"],
-        {
-          drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: false },
-          cuts: [`[Date].[Date].[Year].&[${store.sources.immigration.year}]`]
-        }
-      )(params, store)
+    simpleDatumNeed(
+      "datum_migration_origin_female",
+      "immigration",
+      ["Number of visas"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false },
+        cuts: [
+          `[Date].[Date].[Year].&[${sources.immigration.year}]`,
+          `[Sex].[Sex].[Sex].&[1]`
+        ]
+      }
+    ),
+    simpleDatumNeed(
+      "datum_migration_origin",
+      "immigration",
+      ["Number of visas"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false },
+        cuts: [
+          `{[Date].[Date].[Year].&[${sources.immigration.year -
+            1}],[Date].[Date].[Year].&[${sources.immigration.year}]}`
+        ]
+      }
+    )
   ];
 
   render() {
     const { children, t, i18n, immigration_year } = this.props;
-    const { datum_migration_origin } = this.context.data;
+    const {
+      datum_migration_origin,
+      datum_migration_origin_female
+    } = this.context.data;
 
     const locale = i18n.locale;
 
@@ -47,23 +67,35 @@ class MigrationSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum={numeral(datum_migration_origin, locale).format("(0,0)")}
+              datum={numeral(datum_migration_origin[1], locale).format("(0,0)")}
               title={t("Immigrant visas")}
               subtitle={t("granted in") + " " + immigration_year}
             />
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={numeral(
+                datum_migration_origin_female / datum_migration_origin[1],
+                locale
+              ).format("(0.0 %)")}
+              title={t("Female percent of visas")}
+              subtitle={t("granted in") + " " + sources.immigration.year}
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              icon="empleo"
+              datum={numeral(
+                calculateYearlyGrowth(datum_migration_origin),
+                locale
+              ).format("0.0 %")}
+              title={t("Growth number of visas")}
+              subtitle={
+                t("In period") +
+                " " +
+                (sources.immigration.year - 1) +
+                "-" +
+                sources.immigration.year
+              }
             />
           </div>
         </div>

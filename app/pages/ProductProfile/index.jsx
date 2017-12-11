@@ -396,7 +396,7 @@ class ProductProfile extends Component {
 
                 {stats.region && (
                   <FeaturedMapSplash
-                    title={t("Top producer region")}
+                    title={t("Top exporter region")}
                     type="region"
                     code={stats.region.id}
                     datum={stats.region.name}
