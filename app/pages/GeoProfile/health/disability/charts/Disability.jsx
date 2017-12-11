@@ -13,22 +13,21 @@ import ExportLink from "components/ExportLink";
 class Disability extends Section {
   static need = [
     (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient.cube("casen_health_system").then(cube => {
+      let geo = getGeoObject(params);
+      if (geo.type === "comuna") {
+        geo = { ...geo.ancestor };
+      }
+      const prm = mondrianClient.cube("disabilities").then(cube => {
         var query = cube.query
           .option("parents", true)
           .drilldown("Date", "Date", "Year")
-          .drilldown("Health System", "Health System", "Health System")
-          .measure(
-            geo.type == "comuna"
-              ? "Expansion Factor Comuna"
-              : "Expansion Factor Region"
-          );
+          .drilldown("Disability Grade", "Disability Grade", "Disability Grade")
+          .measure("Expansion Factor Region");
 
         var q = geoCut(geo, "Geography", query, store.i18n.locale);
 
         return {
-          key: "path_health_insurance",
+          key: "path_health_disabilities_by_grade",
           data: store.env.CANON_API + q.path("jsonrecords")
         };
       });
@@ -41,7 +40,7 @@ class Disability extends Section {
   ];
 
   render() {
-    const path = this.context.data.path_health_insurance;
+    const path = this.context.data.path_health_disabilities_by_grade;
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
 
@@ -50,29 +49,24 @@ class Disability extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Access to Health Insurance")}</span>
+          <span>{t("Disabilities by Grade")}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
           config={{
             height: 500,
             data: path,
-            groupBy: "ID Health System",
-            label: d => d["Health System"],
-            sum: d =>
-              geo.type == "comuna"
-                ? "Expansion Factor Comuna"
-                : "Expansion Factor Region",
+            groupBy: ["ID Disability Grade"],
+            label: d => d["Disability Grade"],
+            sum: d => d["Expansion Factor Region"],
             time: "ID Year",
             shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Health System"])
+              fill: d => ordinalColorScale(d["ID Disability Grade"])
             },
             legendConfig: {
               shapeConfig: {
                 width: 40,
-                height: 40,
-                backgroundImage: d =>
-                  "/images/legend/college/administration.png"
+                height: 40
               }
             }
           }}
