@@ -11,7 +11,11 @@ import mondrianClient, {
   getMemberQuery,
   levelCut
 } from "helpers/MondrianClient";
-import { getLevelObject, ingestParent } from "helpers/dataUtils";
+import {
+  getLevelObject,
+  ingestParent,
+  clearStoreData
+} from "helpers/dataUtils";
 import LoadingWithProgress from "components/LoadingWithProgress";
 import Topic from "components/Topic";
 
@@ -57,6 +61,8 @@ class CountryProfile extends Component {
       activeSub: false
     };
   }
+
+  static preneed = [clearStoreData];
 
   static need = [
     (params, store) => {

@@ -8,7 +8,7 @@ import { selectAll } from "d3-selection";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
-import { getGeoObject } from "helpers/dataUtils";
+import { getGeoObject, clearStoreData } from "helpers/dataUtils";
 
 // needs (data fetchers)
 import {
@@ -158,6 +158,8 @@ const chileObj = {
 };
 
 class GeoProfile extends Component {
+  static preneed = [clearStoreData];
+
   static need = [
     needGetGeo,
     needGetPopulationDatum,

@@ -1,6 +1,14 @@
 import groupBy from "lodash/groupBy";
 import flatten from "lodash/flatten";
 
+export function clearStoreData(params, store) {
+  store.data = { __cubes__: store.data.cubes };
+  return {
+    type: "GET_DATA",
+    prm: Promise.resolve({})
+  };
+}
+
 export function melt(data, id_vars, value_vars) {
   const rv = [];
 
