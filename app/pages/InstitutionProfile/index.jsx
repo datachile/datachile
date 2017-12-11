@@ -9,7 +9,11 @@ import mondrianClient, {
   getMemberQuery,
   levelCut
 } from "helpers/MondrianClient";
-import { getLevelObject, ingestParent } from "helpers/dataUtils";
+import {
+  getLevelObject,
+  ingestParent,
+  clearStoreData
+} from "helpers/dataUtils";
 
 import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
@@ -51,6 +55,7 @@ class InstitutionProfile extends Component {
     };
   }
 
+  static preneed = [clearStoreData];
   static need = [
     (params, store) => {
       var ids = getLevelObject(params);

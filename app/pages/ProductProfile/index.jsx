@@ -11,7 +11,11 @@ import mondrianClient, {
   getMemberQuery,
   levelCut
 } from "helpers/MondrianClient";
-import { getLevelObject, ingestParent } from "helpers/dataUtils";
+import {
+  getLevelObject,
+  ingestParent,
+  clearStoreData
+} from "helpers/dataUtils";
 import Placeholder from "components/Placeholder";
 
 import Nav from "components/Nav";
@@ -39,6 +43,8 @@ class ProductProfile extends Component {
       activeSub: false
     };
   }
+
+  static preneed = [clearStoreData];
 
   static need = [
     (params, store) => {

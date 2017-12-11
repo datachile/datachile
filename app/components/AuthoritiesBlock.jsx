@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PersonItem from "components/PersonItem";
 import { translate } from "react-i18next";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import mondrianClient from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import "./AuthoritiesBlock.css";
 
 class AuthoritiesBlock extends Component {
   static need = [
     (params, store) => {
-      const geo = getGeoObject(params);
-
       const prm = mondrianClient
         .cube("election_results")
         .then(cube => {
@@ -59,9 +57,9 @@ class AuthoritiesBlock extends Component {
               .cut("[Elected].[Elected].&[1]")
               .cut("[Election Type].[Election Type].&[3]")
               .cut(
-                `{[Date].[Date].[Year].&[${store
-                  .senators_election_year[0]}],[Date].[Date].[Year].&[${store
-                  .senators_election_year[1]}]}`
+                `{[Date].[Date].[Year].&[${
+                  store.senators_election_year[0]
+                }],[Date].[Date].[Year].&[${store.senators_election_year[1]}]}`
               );
 
             var id = 99999;
@@ -74,7 +72,7 @@ class AuthoritiesBlock extends Component {
                 break;
             }
 
-            q.cut(`[GeographyR].[Geography].[Region].&[${id}]`);
+            q.cut(`[GeographyR].[Geography Region].[Region].&[${id}]`);
 
             return mondrianClient.query(q, "jsonrecords");
           })
@@ -88,7 +86,7 @@ class AuthoritiesBlock extends Component {
               };
             },
             error => {
-              console.error("error", error);
+              console.error("AuthoritiesBlock need:", error);
               return {
                 key: "election_senators",
                 data: []
@@ -144,7 +142,7 @@ class AuthoritiesBlock extends Component {
   ];
 
   render() {
-    const { t, geo, ancestor } = this.props;
+    const { t } = this.props;
 
     const president = {
       id: this.props.data.election_president["ID Candidate"],
@@ -160,7 +158,7 @@ class AuthoritiesBlock extends Component {
         }
       : false;
 
-    const senators = _.map(this.props.data.election_senators, d => {
+    const senators = this.props.data.election_senators.map(d => {
       return {
         id: d["ID Candidate"],
         name: d["Candidate"],
@@ -186,6 +184,7 @@ class AuthoritiesBlock extends Component {
                 name={s.name}
                 subtitle={t("Senator") + " " + s.party + ""}
                 className="senator lost-1-4"
+                key={ix}
               />
             ))}
         </div>
