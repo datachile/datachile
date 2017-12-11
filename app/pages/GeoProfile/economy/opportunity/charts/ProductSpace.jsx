@@ -38,13 +38,14 @@ class ProductSpace extends Section {
             nodes: "/json/hs92_4_nodes_circular_spring_d3p2.json",
             data: path,
             size: "FOB US",
-            sizeMin: 1,
-            sizeMax: 15,
+            sizeMin: 4,
+            sizeMax: 18,
             zoomScroll: false,
             shapeConfig: {
               Path: {
                 stroke: "#555"
-              }
+              },
+              fill: d => ordinalColorScale("hs0" + d["ID HS0"])
             },
             tooltipConfig: {
               title: d => {
