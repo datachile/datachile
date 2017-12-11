@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener(
+    /*document.addEventListener(
       "keydown",
       () => {
         // 's' key
@@ -55,7 +55,7 @@ class App extends Component {
         }
       },
       false
-    );
+    );*/
   }
 }
 
