@@ -2,6 +2,7 @@
   lost-flex-container: row;
   & .featured-datum-icon {
     margin-right: 15px;
+    max-width: 56px;
   }
   & .featured-datum-text {
     color: var(--snow);
