@@ -3,18 +3,56 @@ import { connect } from "react-redux";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
+import flattenDeep from "lodash/flattenDeep";
+
+import { sources } from "helpers/consts";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
 class DevicesSlide extends Section {
-  static need = [];
+  static need = [
+    (params, store) => {
+      let geo = getGeoObject(params);
+      if (geo.type === "comuna") {
+        geo = { ...geo.ancestor };
+      }
+      const prm = mondrianClient
+        .cube("internet_access")
+        .then(cube => {
+          var q = geoCut(
+            geo,
+            "Geography",
+            cube.query
+              .option("parents", false)
+              .drilldown("Geography", "Geography", "Region")
+              .measure("Expansion factor")
+          );
+          return mondrianClient.query(q);
+        })
+        .then(res => {
+          return {
+            key: "datum_devices_internet_access",
+            data: flattenDeep(res.data.values)
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
+  ];
 
   render() {
-    const { children, t } = this.props;
-    const { datum_rural_households } = this.context.data;
+    const { children, t, i18n } = this.props;
+    const { datum_devices_internet_access } = this.context.data;
+    const locale = i18n.locale;
+
+    console.log(this.context.data);
 
     return (
       <div className="topic-slide-block">
@@ -34,9 +72,11 @@ class DevicesSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={numeral(datum_devices_internet_access, locale).format(
+                "(0,0)"
+              )}
+              title={t("Immigrant visas")}
+              subtitle={t("granted in") + " "}
             />
             <FeaturedDatum
               className="l-1-3"

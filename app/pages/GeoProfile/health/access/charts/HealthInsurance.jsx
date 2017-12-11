@@ -57,17 +57,30 @@ class HealthInsurance extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: ["ID Health System"],
+            groupBy: ["ID Health System Group", "ID Health System"],
             label: d => d["Health System"],
             sum: d =>
               geo.type == "comuna"
                 ? d["Expansion Factor Comuna"]
                 : d["Expansion Factor Region"],
             time: "ID Year",
+            total: d =>
+              geo.type == "comuna"
+                ? d["Expansion Factor Comuna"]
+                : d["Expansion Factor Region"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("0,0") +
+                " " +
+                t("people")
+            },
             shapeConfig: {
-              fill: d => ordinalColorScale("health" + d["ID Health System"])
+              fill: d =>
+                ordinalColorScale("health" + d["ID Health System Group"])
             },
             legendConfig: {
+              label: d => d["Health System Group"],
               shapeConfig: {
                 width: 40,
                 height: 40,

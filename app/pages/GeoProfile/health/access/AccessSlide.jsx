@@ -4,13 +4,50 @@ import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import { sources } from "helpers/consts";
+import { calculateYearlyGrowth, getGeoObject } from "helpers/dataUtils";
+
+import { simpleDatumNeed } from "helpers/MondrianClient";
+import { numeral } from "helpers/formatters";
+
 import FeaturedDatum from "components/FeaturedDatum";
 
 class AccessSlide extends Section {
-  static need = [];
+  static need = [
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const years = sources.casen.available;
+      const key = years.length;
+      const msrName =
+        geo.type === "comuna"
+          ? "Expansion Factor Comuna"
+          : "Expansion Factor Region";
+
+      return simpleDatumNeed(
+        "datum_health_system_isapre",
+        "casen_health_system",
+        [msrName],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [
+            `{[Date].[Date].[Year].&[${
+              years[key - 2]
+            }],[Date].[Date].[Year].&[${years[key - 1]}]}`,
+            `[Health System].[Health System].[Health System Group].&[3]`
+          ]
+        }
+      )(params, store);
+    }
+  ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, t, i18n } = this.props;
+    const { datum_health_system_isapre } = this.context.data;
+    const locale = i18n.locale;
+
+    const years = sources.casen.available;
+    const key = years.length;
 
     return (
       <div className="topic-slide-block">
@@ -43,10 +80,15 @@ class AccessSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              icon="empleo"
+              datum={numeral(
+                calculateYearlyGrowth(datum_health_system_isapre),
+                locale
+              ).format("0.0 %")}
+              title={t("Growth affiliates in ISAPRES")}
+              subtitle={
+                t("In period") + " " + years[key - 2] + "-" + years[key - 1]
+              }
             />
           </div>
         </div>

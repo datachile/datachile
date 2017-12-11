@@ -790,8 +790,8 @@ class GeoProfile extends Component {
                 {
                   name: t("Connectivity"),
                   slides: [
-                    t("Internet access"),
                     t("Devices"),
+                    t("Internet access"),
                     t("Internet use")
                   ]
                 }
@@ -813,6 +813,13 @@ class GeoProfile extends Component {
                 </QualitySlide>
               </div>
               <div>
+                <DevicesSlide>
+                  <SectionColumns>
+                    <Devices className="lost-1" />
+                  </SectionColumns>
+                </DevicesSlide>
+              </div>
+              <div>
                 <InternetAccessSlide>
                   <SectionColumns>
                     <InternetAccessByZone className="lost-1-2" />
@@ -822,13 +829,6 @@ class GeoProfile extends Component {
                     />
                   </SectionColumns>
                 </InternetAccessSlide>
-              </div>
-              <div>
-                <DevicesSlide>
-                  <SectionColumns>
-                    <Devices className="lost-1" />
-                  </SectionColumns>
-                </DevicesSlide>
               </div>
               <div>
                 <InternetUseSlide>

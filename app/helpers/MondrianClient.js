@@ -173,7 +173,7 @@ function simpleDatumNeed(
       .then(res => {
         return {
           key: key,
-          data: res.data.values
+          data: flattenDeep(res.data.values)
         };
       });
 
