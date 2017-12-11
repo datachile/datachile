@@ -131,7 +131,9 @@ import PopulationProjection from "./demography/population/charts/PopulationProje
 
 /* Health */
 import AccessSlide from "./health/access/AccessSlide";
+import HealthCareSlide from "./health/access/HealthCareSlide";
 import HealthInsurance from "./health/access/charts/HealthInsurance";
+import HealthCare from "./health/access/charts/HealthCare";
 
 import DisabilitySlide from "./health/disability/DisabilitySlide";
 import Disability from "./health/disability/charts/Disability";
@@ -261,7 +263,11 @@ class GeoProfile extends Component {
     PopulationProjection,
 
     AccessSlide,
+    HealthCareSlide,
     HealthInsurance,
+    HealthCare,
+    Disability,
+    DisabilitySlide,
 
     DeathCausesSlide,
     DeathCauses
@@ -916,8 +922,8 @@ class GeoProfile extends Component {
               id="health"
               sections={[
                 {
-                  name: t("Social Security"),
-                  slides: [t("Social Security")]
+                  name: t("Healthcare"),
+                  slides: [t("Healthcare"), t("Social Security")]
                 },
                 {
                   name: t("Disability"),
@@ -929,6 +935,13 @@ class GeoProfile extends Component {
                 }
               ]}
             >
+              <div>
+                <HealthCareSlide>
+                  <SectionColumns>
+                    <HealthCare className="lost-1" />
+                  </SectionColumns>
+                </HealthCareSlide>
+              </div>
               <div>
                 <AccessSlide>
                   <SectionColumns>
