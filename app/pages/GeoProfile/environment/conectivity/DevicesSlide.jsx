@@ -52,7 +52,10 @@ class DevicesSlide extends Section {
     const { datum_devices_internet_access } = this.context.data;
     const locale = i18n.locale;
 
-    console.log(this.context.data);
+    let geo = this.context.data.geo;
+    if (geo.type === "comuna") {
+      geo = { ...geo.ancestors[0] };
+    }
 
     return (
       <div className="topic-slide-block">
@@ -75,8 +78,8 @@ class DevicesSlide extends Section {
               datum={numeral(datum_devices_internet_access, locale).format(
                 "(0,0)"
               )}
-              title={t("Immigrant visas")}
-              subtitle={t("granted in") + " "}
+              title={t("Internet Access")}
+              subtitle={t("in") + " " + geo.name}
             />
             <FeaturedDatum
               className="l-1-3"
