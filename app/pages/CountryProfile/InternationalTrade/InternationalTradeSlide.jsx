@@ -1,14 +1,108 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
+import maxBy from "lodash/maxBy";
+import sumBy from "lodash/sumBy";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
+import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
+import { sources } from "helpers/consts";
+import { numeral } from "helpers/formatters";
+
 class InternationalTradeSlide extends Section {
-  static need = [];
+  static need = [
+    function datumImportsNeed(params, store) {
+      const lang = store.i18n.locale;
+
+      const level1 = (params.level1 || "").split("-").pop();
+      const level2 = (params.level2 || "").split("-").pop();
+
+      const geoCut = level2
+        ? `[Country].&[${level2}]`
+        : `[Subregion].&[${level1}]`;
+
+      const promise = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          const query = cube.query
+            .drilldown("Import HS", "HS", "HS2")
+            .cut(`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`)
+            .cut(`[Country].[Country].${geoCut}`)
+            .measure("CIF US")
+            .option("parents", false);
+
+          setLangCaptions(query, lang);
+
+          return mondrianClient.query(query, "jsonrecords");
+        })
+        .then(res => {
+          const max = maxBy(res.data.data, "CIF US");
+          const total = sumBy(res.data.data, "CIF US");
+          return {
+            key: "datum_trade_import",
+            data: {
+              max,
+              year: sources.exports_and_imports.year,
+              percentage: numeral(max["CIF US"] / total, lang).format("0.0%")
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise
+      };
+    },
+    function datumExportsNeed(params, store) {
+      const lang = store.i18n.locale;
+
+      const level1 = (params.level1 || "").split("-").pop();
+      const level2 = (params.level2 || "").split("-").pop();
+
+      const geoCut = level2
+        ? `[Country].&[${level2}]`
+        : `[Subregion].&[${level1}]`;
+
+      const promise = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          const query = cube.query
+            .drilldown("Export HS", "HS", "HS2")
+            .cut(`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`)
+            .cut(`[Country].[Country].${geoCut}`)
+            .measure("FOB US")
+            .option("parents", false);
+
+          setLangCaptions(query, lang);
+
+          return mondrianClient.query(query, "jsonrecords");
+        })
+        .then(res => {
+          const max = maxBy(res.data.data, "FOB US");
+          const total = sumBy(res.data.data, "FOB US");
+          return {
+            key: "datum_trade_export",
+            data: {
+              max,
+              year: sources.exports_and_imports.year,
+              percentage: numeral(max["FOB US"] / total, lang).format("0.0%")
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise
+      };
+    }
+  ];
 
   render() {
     const { children, t } = this.props;
+
+    const trade_import = this.context.data.datum_trade_import;
+    const trade_export = this.context.data.datum_trade_export;
 
     return (
       <div className="topic-slide-block">
@@ -16,35 +110,28 @@ class InternationalTradeSlide extends Section {
           <div className="topic-slide-title">{t("Imports & Exports")}</div>
           <div className="topic-slide-text">
             <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              hendrerit tempor tellus. Donec pretium posuere tellus. Proin quam
-              nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus.
+              InternationalTradeSlide - Lorem ipsum dolor sit amet, consectetuer
+              adipiscing elit. Donec hendrerit tempor tellus. Donec pretium
+              posuere tellus. Proin quam nisl, tincidunt et, mattis eget,
+              convallis nec, purus. Cum sociis natoque penatibus et magnis dis
+              parturient montes, nascetur ridiculus mus.
             </p>
           </div>
 
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={"x"}
-              title={t("Trade volume")}
-              subtitle="XXXX - YYYY"
+              className="l-1-2"
+              icon="product-import"
+              datum={trade_import.max["HS2"]}
+              title={t("Main imported product")}
+              subtitle={`${trade_import.percentage} - ${trade_import.year}`}
             />
             <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={"x"}
-              title={t("Trade volume")}
-              subtitle="XXXX - YYYY"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={"x"}
-              title={t("Trade volume")}
-              subtitle="XXXX - YYYY"
+              className="l-1-2"
+              icon="product-export"
+              datum={trade_export.max["HS2"]}
+              title={t("Main exported product")}
+              subtitle={`${trade_export.percentage} - ${trade_export.year}`}
             />
           </div>
         </div>
