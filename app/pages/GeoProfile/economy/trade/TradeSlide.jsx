@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { translate, Trans } from "react-i18next";
 import { Section } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
@@ -37,6 +37,7 @@ class TradeSlide extends Section {
             geo,
             "Geography",
             cube.query
+              .option("parents", true)
               .drilldown("Date", "Year")
               .drilldown("Export HS", "HS2")
               .measure("FOB US")
@@ -72,7 +73,9 @@ class TradeSlide extends Section {
     const text_data = this.context.data.text_data_exports_by_product;
     if (text_data) {
       text_data.geo = this.context.data.geo;
-      text_data.increased_or_decreased = t(text_data.increased_or_decreased);
+      text_data.increased_or_decreased = text_data.increased
+        ? t("increased")
+        : t("decreased");
     }
     const locale = this.props.i18n.locale;
 
@@ -86,17 +89,7 @@ class TradeSlide extends Section {
             <p>
               <span
                 dangerouslySetInnerHTML={{
-                  __html: t("export_by_product.line1", text_data)
-                }}
-              />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("export_by_product.line2", text_data)
-                }}
-              />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("export_by_product.line3", text_data)
+                  __html: t("geo_profile.trade_slide.text", text_data)
                 }}
               />
             </p>
@@ -105,16 +98,12 @@ class TradeSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={text_data.trade_volume}
-              title={t("Trade volume") + " " + text_data.last_year}
+              datum={numeral(datum_trade_exports, locale).format("($ 0.00 a)")}
+              title={t("Exports") + " " + text_data.last_year}
               subtitle={
                 <span>
                   <span>
-                    {t("Exports") + " "}
-                    {numeral(datum_trade_exports, locale).format("($ 0.00 a)")}
-                  </span>
-                  <span>
-                    {t("Imports") + " "}
+                    {t("Imports") + ": "}
                     {numeral(datum_trade_imports, locale).format("($ 0.00 a)")}
                   </span>
                 </span>

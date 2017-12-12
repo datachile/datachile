@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 
 function annualized_growth(last_v, first_v, last_time, first_time) {
   var temp = parseFloat(last_time) - parseFloat(first_time);
@@ -70,9 +70,15 @@ function trade_by_time_and_product(
     last_year: max_year,
     trade_last_year: numeral(trade_last_year, locale).format("($ 0.00 a)"),
     annualized_rate: numeral(annualized_rate, locale).format("0%"),
-    increased_or_decreased: annualized_rate > 0 ? "increased" : "decreased",
+    increased: annualized_rate > 0 ? true : false,
     trade_first_product: top_trade_latest_year[0].HS2,
-    trade_first_product_link: top_trade_latest_year[0]["ID HS2"],
+    trade_first_product_link: slugifyItem(
+      "products",
+      top_trade_latest_year[0]["ID HS0"],
+      top_trade_latest_year[0]["HS0"],
+      top_trade_latest_year[0]["ID HS2"],
+      top_trade_latest_year[0]["HS2"]
+    ),
     trade_first_val: parseInt(top_trade_latest_year[0][trade_measure]),
     trade_first_share: numeral(
       parseInt(top_trade_latest_year[0][trade_measure]) /
@@ -84,8 +90,13 @@ function trade_by_time_and_product(
 
   if (top_trade_latest_year.length > 2) {
     p_text_values.trade_second_product = top_trade_latest_year[1].HS2;
-    p_text_values.trade_second_product_link =
-      top_trade_latest_year[1]["ID HS2"];
+    p_text_values.trade_second_product_link = slugifyItem(
+      "products",
+      top_trade_latest_year[1]["ID HS0"],
+      top_trade_latest_year[1]["HS0"],
+      top_trade_latest_year[1]["ID HS2"],
+      top_trade_latest_year[1]["HS2"]
+    );
     p_text_values.trade_second_share = numeral(
       parseInt(top_trade_latest_year[1][trade_measure]) /
         total_trade_latest_year,

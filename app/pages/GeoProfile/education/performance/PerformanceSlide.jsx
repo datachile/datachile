@@ -54,7 +54,7 @@ class PerformanceSlide extends Section {
     const text_data = this.context.data.text_data_exports_by_product;
     if (text_data) {
       text_data.geo = this.context.data.geo;
-      text_data.increased_or_decreased = t(text_data.increased_or_decreased);
+      text_data.increased_or_decreased = text_data.increased_or_decreased;
     }
 
     return (
