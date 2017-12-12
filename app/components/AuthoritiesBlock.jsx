@@ -72,7 +72,7 @@ class AuthoritiesBlock extends Component {
                 break;
             }
 
-            q.cut(`[GeographyR].[Geography Region].[Region].&[${id}]`);
+            q.cut(`[GeographyR].[Geography].[Region].&[${id}]`);
 
             return mondrianClient.query(q, "jsonrecords");
           })

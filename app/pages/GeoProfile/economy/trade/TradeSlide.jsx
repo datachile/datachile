@@ -108,16 +108,16 @@ class TradeSlide extends Section {
               datum={text_data.trade_volume}
               title={t("Trade volume") + " " + text_data.last_year}
               subtitle={
-                <div>
-                  <div>
+                <span>
+                  <span>
                     {t("Exports") + " "}
                     {numeral(datum_trade_exports, locale).format("($ 0.00 a)")}
-                  </div>
-                  <div>
+                  </span>
+                  <span>
                     {t("Imports") + " "}
                     {numeral(datum_trade_imports, locale).format("($ 0.00 a)")}
-                  </div>
-                </div>
+                  </span>
+                </span>
               }
             />
             <TradeBalance className="l-2-3" />

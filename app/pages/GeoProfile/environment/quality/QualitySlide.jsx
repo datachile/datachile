@@ -3,8 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
+import { sources } from "helpers/consts";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  geoCut,
+  simpleDatumNeed
+} from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 
 import { numeral } from "helpers/formatters";
@@ -14,43 +18,77 @@ class QualitySlide extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      const cube = mondrianClient.cube("casen_household");
       const msrName =
         geo.type == "comuna"
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
-
-      const prm = cube
-        .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .drilldown("Zone Id", "Zone Id", "Zone Id")
-              .cut("[Date].[Date].[Year].&[2015]")
-              .cut("[Zone Id].[Zone Id].[Zone Id].&[2]")
-              .measure(msrName),
-            store.i18n.locale
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "datum_rural_households",
-            data: res.data.data[0][msrName]
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
+      return simpleDatumNeed(
+        "datum_rural_households",
+        "casen_household",
+        [msrName],
+        {
+          drillDowns: [["Zone Id", "Zone Id", "Zone Id"]],
+          options: { parents: false },
+          cuts: [
+            `[Date].[Date].[Year].&[${sources.casen_household.year}]`,
+            "[Zone Id].[Zone Id].[Zone Id].&[2]"
+          ]
+        }
+      )(params, store);
+    },
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const msrName =
+        geo.type == "comuna"
+          ? "Expansion Factor Comuna"
+          : "Expansion Factor Region";
+      return simpleDatumNeed(
+        "datum_less_30mts_sq",
+        "casen_household",
+        [msrName],
+        {
+          drillDowns: [
+            [
+              "Household Sq Meters",
+              "Household Sq Meters",
+              "Household Sq Meters"
+            ]
+          ],
+          options: { parents: false },
+          cuts: [
+            `[Date].[Date].[Year].&[${sources.casen_household.year}]`,
+            "[Household Sq Meters].[Household Sq Meters].[Household Sq Meters].&[1]"
+          ]
+        }
+      )(params, store);
+    },
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const msrName =
+        geo.type == "comuna"
+          ? "Expansion Factor Comuna"
+          : "Expansion Factor Region";
+      return simpleDatumNeed(
+        "datum_household_total",
+        "casen_household",
+        [msrName],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${sources.casen_household.year}]`]
+        }
+      )(params, store);
     }
   ];
 
   render() {
     const { children, t, i18n } = this.props;
-    const { datum_rural_households } = this.context.data;
+    const {
+      datum_rural_households,
+      datum_less_30mts_sq,
+      datum_household_total,
+      geo
+    } = this.context.data;
 
     const locale = i18n.locale;
 
@@ -74,14 +112,28 @@ class QualitySlide extends Section {
               icon="empleo"
               datum={numeral(datum_rural_households, locale).format("(0,0)")}
               title={t("Rural households")}
-              subtitle="Lorem blabla"
+              subtitle={
+                numeral(
+                  datum_rural_households / datum_household_total,
+                  locale
+                ).format("(0.0%)") +
+                t(" of ") +
+                geo.caption
+              }
             />
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={numeral(datum_less_30mts_sq, locale).format("(0,0)")}
+              title={t("Less than 30 square meter households")}
+              subtitle={
+                numeral(
+                  datum_less_30mts_sq / datum_household_total,
+                  locale
+                ).format("(0.0%)") +
+                t(" of ") +
+                geo.caption
+              }
             />
             <FeaturedDatum
               className="l-1-3"

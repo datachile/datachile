@@ -11,6 +11,12 @@ export const sources = {
   casen_health_system: {
     year: 2014
   },
+  casen_health_system: {
+    year: 2014
+  },
+  casen_household: {
+    year: 2015
+  },
   casen: {
     available: [2000, 2003, 2006, 2009, 2011, 2013, 2015]
   }
