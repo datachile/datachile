@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="28px" height="24px" viewBox="0 0 28 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>ico-menu</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="ico-menu" fill="#FFFFFF">
-            <polygon id="Fill-24" points="0.176 23.264 27.824 23.264 27.824 21.216 0.176 21.216"></polygon>
-            <polygon id="Fill-26" points="0.176 13.024 27.824 13.024 27.824 10.976 0.176 10.976"></polygon>
-            <polygon id="Fill-27" points="0.176 2.784 27.824 2.784 27.824 0.736 0.176 0.736"></polygon>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+  <path d="M0 26h28v-2H0zm0-11h28v-2H0zM0 4h28V2H0z" fill="#fff"/>
 </svg>

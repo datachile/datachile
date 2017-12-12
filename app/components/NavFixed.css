@@ -8,6 +8,7 @@
   z-index: 10;
   opacity: 1;
   transition: all 400ms;
+
   &.hidden {
     opacity: 0;
     top: -200px;
@@ -42,15 +43,15 @@
         letter-spacing: 0.1px;
 
         & .svg-image {
-          width: 30px;
+          width: 32px;
           display: block;
           margin: 0px auto;
           & svg {
-            width: 100%;
             & path,
             & line,
-            & polygon {
-              fill: var(--snow);
+            & rect,
+            & circle {
+              fill: none;
               stroke: var(--snow);
             }
           }
@@ -64,8 +65,9 @@
           & .svg-image {
             & path,
             & line,
-            & polygon {
-              fill: var(--accent);
+            & rect,
+            & circle {
+              fill: none;
               stroke: var(--accent);
             }
           }
@@ -84,33 +86,47 @@
     align-items: center;
     align-content: center;
     justify-content: space-between;
-    & .nav-titles {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding: calc(var(--gutter)/2) var(--gutter);
-      & .nav-titles-action {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
 
-        & .datachile {
-          color: var(--snow);
-          font-family: var(--font-family-title);
-          font-weight: 300;
-          font-size: 18px;
-          letter-spacing: 0.03px;
-          margin: 0 calc(var(--gutter)/2);
-        }
-      }
-      & .title {
-        color: var(--accent);
-        font-family: var(--font-family-title);
-        font-weight: 300;
-        font-size: 18px;
-        letter-spacing: 0.03px;
-      }
+    & .menu-button a,
+    & .menu-button img,
+    & svg {
+      display: block;
     }
+  }
+
+  & .nav-titles {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 24px;
+  }
+
+  & .nav-titles-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & .menu-button a {
+      padding: calc(var(--gutter)/2) var(--gutter);
+      padding-right: 0;
+    }
+
+    & .datachile {
+      color: var(--snow);
+      font-family: var(--font-family-title);
+      font-weight: 300;
+      font-size: 18px;
+      letter-spacing: 0.03px;
+      margin: 0 calc(var(--gutter)/2);
+    }
+  }
+
+  & .title {
+    color: var(--accent);
+    font-family: var(--font-family-title);
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 0.03px;
   }
 
   & .nav-menu {
