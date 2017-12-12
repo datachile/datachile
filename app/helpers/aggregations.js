@@ -110,4 +110,43 @@ function trade_by_time_and_product(
   return p_text_values;
 }
 
-export { trade_by_time_and_product };
+function maxMinGrowthByYear(aggregation, measure, locale = "en") {
+  const last_year = _.maxBy(aggregation, function(o) {
+    return o["ID Year"];
+  })["ID Year"];
+
+  const by_date_array = _.groupBy(aggregation, function(obj, children) {
+    return obj["ID Year"];
+  });
+
+  const by_date = _.mapValues(by_date_array, function(array) {
+    return _.sumBy(array, function(o) {
+      return o[measure] && !isNaN(o[measure]) ? parseInt(o[measure]) : 0;
+    });
+  });
+
+  const first_year = _.minBy(aggregation, function(o) {
+    return o["ID Year"];
+  })["ID Year"];
+
+  const value_first_year = by_date[first_year];
+  const value_last_year = by_date[last_year];
+  const annualized_rate = annualized_growth(
+    value_last_year,
+    value_first_year,
+    last_year,
+    first_year
+  );
+
+  return {
+    first_year: first_year,
+    first_year_value: numeral(value_first_year, locale).format("($ 0.0 a)"),
+    last_year: last_year,
+    last_year_value: numeral(value_last_year, locale).format("($ 0.0 a)"),
+    annualized_rate: numeral(annualized_rate, locale).format("0%"),
+    increased: annualized_rate > 0 ? true : false,
+    number_of_years: last_year - first_year
+  };
+}
+
+export { trade_by_time_and_product, maxMinGrowthByYear };

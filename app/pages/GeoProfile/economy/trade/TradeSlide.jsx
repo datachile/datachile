@@ -86,13 +86,11 @@ class TradeSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Trade")}</div>
           <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("geo_profile.trade_slide.text", text_data)
-                }}
-              />
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.trade_slide.text", text_data)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
