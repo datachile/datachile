@@ -33,6 +33,10 @@ import ExportsByDestination from "./InternationalTrade/charts/ExportsByDestinati
 import ImportsByOrigin from "./InternationalTrade/charts/ImportsByOrigin";
 import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 
+import GeoTradeSlide from "./GeoTrade/GeoTradeSlide";
+import ExportsByRegion from "./GeoTrade/charts/ExportsByRegion";
+import ImportsByRegion from "./GeoTrade/charts/ImportsByRegion";
+
 import "../intro.css";
 
 class ProductProfile extends Component {
@@ -261,8 +265,12 @@ class ProductProfile extends Component {
     InternationalTradeBalanceSlide,
     InternationalTradeSlide,
     ExportsByDestination,
-    ImportsByOrigin /*,
-    TradeBalance */
+    ImportsByOrigin,
+
+    GeoTradeSlide,
+    ExportsByRegion,
+    ImportsByRegion,
+    TradeBalance
   ];
 
   componentDidMount() {}
@@ -272,6 +280,8 @@ class ProductProfile extends Component {
     const obj = this.props.data.product;
 
     const locale = i18n.locale;
+    
+    const key = obj && obj.depth === 1 ? obj.key : obj.ancestors[0].key;
 
     const ids = getLevelObject(this.props.routeParams);
     const list = this.props.data.product_list_detail;
@@ -347,7 +357,9 @@ class ProductProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
+                  backgroundImage: `url('/images/profile-bg/product/${
+                    key
+                  }.jpg')`
                 }}
               />
               <div className="gradient" />
@@ -496,9 +508,17 @@ class ProductProfile extends Component {
                 </InternationalTradeSlide>
               </div>
               <div>
+                <GeoTradeSlide>
+                  <SectionColumns>
+                    <ExportsByRegion className="lost-1-2" />
+                    <ImportsByRegion className="lost-1-2" />
+                  </SectionColumns>
+                </GeoTradeSlide>
+              </div>
+              <div>
                 <InternationalTradeBalanceSlide>
                   <SectionColumns>
-                    <Placeholder className="lost-1" text="Trade Balance" />
+                    <TradeBalance className="lost-1" />
                   </SectionColumns>
                 </InternationalTradeBalanceSlide>
               </div>

@@ -64,6 +64,12 @@ class ImportsByDestination extends Section {
               d["Country"] instanceof Array ? d["Continent"] : d["Country"],
             sum: d => d["CIF US"],
             time: "ID Year",
+            total: d => d["CIF US"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+            },
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])
             },

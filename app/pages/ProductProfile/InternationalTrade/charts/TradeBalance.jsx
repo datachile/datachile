@@ -1,30 +1,110 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import _ from "lodash";
+import flattenDeep from "lodash/flattenDeep";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import { simpleGeoChartNeed } from "helpers/MondrianClient";
+import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { tradeBalanceColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
+import { melt, getLevelObject, replaceKeyNames } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 
 class TradeBalance extends Section {
   static need = [
-    simpleGeoChartNeed(
-      "path_trade_balance",
-      "exports_and_imports",
-      ["FOB", "CIF", "Trade Balance"],
-      { drillDowns: [["Date", "Year"]] }
-    )
+    (params, store) => {
+      const product = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = levelCut(
+            product,
+            "Export HS",
+            "HS",
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Date", "Year")
+              .measure("FOB US"),
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          return mondrianClient.query(q);
+        })
+        .then(res => {
+          return {
+            key: "datum_exports_per_year",
+            data: flattenDeep(res.data.values)
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const product = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          var q = levelCut(
+            product,
+            "Import HS",
+            "HS",
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Date", "Year")
+              .measure("CIF US"),
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          return mondrianClient.query(q);
+        })
+        .then(res => {
+          return {
+            key: "datum_imports_per_year",
+            data: flattenDeep(res.data.values)
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
   ];
 
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_trade_balance;
 
+    const {
+      datum_imports_per_year,
+      datum_exports_per_year
+    } = this.context.data;
     const locale = i18n.locale;
+
+    const data = datum_exports_per_year.reduce((all, item, key) => {
+      all.push({ variable: "Exports", value: item, year: key + 2002 });
+      all.push({
+        variable: "Imports",
+        value: datum_imports_per_year[key],
+        year: key + 2002
+      });
+      all.push({
+        variable: "Trade Balance",
+        value: datum_imports_per_year[key] - item,
+        year: key + 2002
+      });
+
+      return all;
+    }, []);
 
     return (
       <div className={className}>
@@ -35,9 +115,9 @@ class TradeBalance extends Section {
         <LinePlot
           config={{
             height: 500,
-            data: path,
+            data: data,
             groupBy: "variable",
-            x: "ID Year",
+            x: "year",
             y: "value",
             xConfig: {
               tickSize: 0,
@@ -53,15 +133,6 @@ class TradeBalance extends Section {
                 strokeWidth: 2
               }
             }
-          }}
-          dataFormat={data => {
-            const tKeys = {
-              FOB: t("trade_balance.fob"),
-              CIF: t("trade_balance.cif"),
-              "Trade Balance": t("trade_balance.trade_balance")
-            };
-            data.data = replaceKeyNames(data.data, tKeys);
-            return melt(data.data, ["ID Year"], _.values(tKeys));
           }}
         />
       </div>
