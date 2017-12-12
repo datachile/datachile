@@ -4,14 +4,14 @@ import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
-import { continentColorScale } from "helpers/colors";
+import { regionsColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 
-class ExportsByDestination extends Section {
+class ExportsByRegion extends Section {
   static need = [
     (params, store) => {
       const product = getLevelObject(params);
@@ -22,7 +22,7 @@ class ExportsByDestination extends Section {
           "HS",
           cube.query
             .option("parents", true)
-            .drilldown("Destination Country", "Country", "Country")
+            .drilldown("Geography", "Geography", "Comuna")
             .drilldown("Date", "Date", "Year")
             .measure("FOB US"),
           "HS0",
@@ -31,7 +31,7 @@ class ExportsByDestination extends Section {
         );
 
         return {
-          key: "product_exports_by_destination",
+          key: "product_exports_by_region",
           data: store.env.CANON_API + q.path("jsonrecords")
         };
       });
@@ -45,23 +45,23 @@ class ExportsByDestination extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    const path = this.context.data.product_exports_by_destination;
+    const path = this.context.data.product_exports_by_region;
 
     const locale = i18n.locale;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Exports By Destination")}</span>
+          <span>{t("Exports By Region")}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
           config={{
             height: 500,
             data: path,
-            groupBy: ["ID Continent", "ID Country"],
+            groupBy: ["ID Region", "ID Comuna"],
             label: d =>
-              d["Country"] instanceof Array ? d["Continent"] : d["Country"],
+              d["Country"] instanceof Array ? d["Region"] : d["Comuna"],
             sum: d => d["FOB US"],
             time: "ID Year",
             total: d => d["FOB US"],
@@ -71,17 +71,17 @@ class ExportsByDestination extends Section {
                 numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
             },
             shapeConfig: {
-              fill: d => continentColorScale("c" + d["ID Continent"])
+              fill: d => regionsColorScale("c" + d["ID Region"])
             },
             on: {
               click: d => {
-                if (!(d["ID Country"] instanceof Array)) {
+                if (!(d["ID Comuna"] instanceof Array)) {
                   var url = slugifyItem(
                     "countries",
                     d["ID Subregion"],
                     d["Subregion"],
-                    d["ID Country"] instanceof Array ? false : d["ID Country"],
-                    d["Country"] instanceof Array ? false : d["Country"]
+                    d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
+                    d["Comuna"] instanceof Array ? false : d["Comuna"]
                   );
                   browserHistory.push(url);
                 }
@@ -89,25 +89,23 @@ class ExportsByDestination extends Section {
             },
             tooltipConfig: {
               title: d => {
-                return d["Country"] instanceof Array
-                  ? d["Continent"]
-                  : d["Country"];
+                return d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"];
               },
               body: d => {
                 const link =
-                  d["ID Country"] instanceof Array
+                  d["ID Comuna"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
               }
             },
             legendConfig: {
-              label: d => d["Continent"],
+              label: false,
               shapeConfig: {
-                width: 40,
-                height: 40,
-                backgroundImage: d =>
-                  "/images/legend/continent/" + d["ID Continent"] + ".png"
+                width: 10,
+                height: 10
+                //backgroundImage: d =>
+                //  "/images/legend/continent/" + d["ID Continent"] + ".png"
               }
             }
           }}
@@ -118,4 +116,4 @@ class ExportsByDestination extends Section {
   }
 }
 
-export default translate()(ExportsByDestination);
+export default translate()(ExportsByRegion);
