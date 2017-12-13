@@ -1,18 +1,15 @@
 import React, { Component } from "react";
-import _ from "lodash";
+//import _ from "lodash";
+import keyBy from "lodash/keyBy";
 import { connect } from "react-redux";
 import { Link, browserHistory } from "react-router";
 import { translate } from "react-i18next";
-import { text as loadSvgAsString, request as d3Request } from "d3-request";
-import { Geomap } from "d3plus-react";
-import { select, selectAll, event, mouse } from "d3-selection";
+import { request as d3Request } from "d3-request";
+import { select, selectAll } from "d3-selection";
 
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import SVGCache from "helpers/svg";
-import { FORMATTERS } from "helpers/formatters";
-
-import SvgImage from "components/SvgImage";
 
 import "./DynamicHomeHeader.css";
 
@@ -37,7 +34,7 @@ class DynamicHomeHeader extends Component {
         .then(res => {
           return {
             key: "home_geo_population",
-            data: _.keyBy(res.data.data, function(o) {
+            data: keyBy(res.data.data, function(o) {
               return "geo_" + o["ID Region"];
             })
           };
@@ -70,7 +67,7 @@ class DynamicHomeHeader extends Component {
         .then(res => {
           return {
             key: "home_countries_export",
-            data: _.keyBy(res.data.data, function(o) {
+            data: keyBy(res.data.data, function(o) {
               return "countries_" + o["ID Country"];
             })
           };
@@ -106,7 +103,7 @@ class DynamicHomeHeader extends Component {
         .then(res => {
           return {
             key: "home_institutions_employability",
-            data: _.keyBy(res.data.data, function(o) {
+            data: keyBy(res.data.data, function(o) {
               return "institutions_" + o["ID Higher Institution"];
             })
           };
@@ -138,7 +135,7 @@ class DynamicHomeHeader extends Component {
         .then(res => {
           return {
             key: "home_careers_employability",
-            data: _.keyBy(res.data.data, function(o) {
+            data: keyBy(res.data.data, function(o) {
               return "careers_" + o["ID Career"];
             })
           };
@@ -171,7 +168,7 @@ class DynamicHomeHeader extends Component {
         .then(res => {
           return {
             key: "home_product_exports",
-            data: _.keyBy(res.data.data, function(o) {
+            data: keyBy(res.data.data, function(o) {
               return "products_" + o["ID HS2"];
             })
           };
@@ -201,7 +198,7 @@ class DynamicHomeHeader extends Component {
         .then(res => {
           return {
             key: "home_industries_tax_data",
-            data: _.keyBy(res.data.data, function(o) {
+            data: keyBy(res.data.data, function(o) {
               return "industries_" + o["ID Level 1"];
             })
           };

@@ -1,5 +1,5 @@
 import React from "react";
-import _ from "lodash";
+import orderBy from "lodash/orderBy";
 import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
@@ -95,7 +95,7 @@ class HousingType extends Section {
             }
           }}
           dataFormat={data => {
-            return _.orderBy(data.data, [msrName], ["ASC"]);
+            return orderBy(data.data, [msrName], ["ASC"]);
           }}
         />
         <SourceNote cube="casen_household" />

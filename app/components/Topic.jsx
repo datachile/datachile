@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-import { find } from "lodash";
+import find from "lodash/find";
 
 import TopicSlider from "components/TopicSlider";
 import TopicSliderBullets from "components/TopicSliderBullets";

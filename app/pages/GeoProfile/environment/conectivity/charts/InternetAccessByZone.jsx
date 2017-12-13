@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { mean } from "d3-array";

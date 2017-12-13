@@ -1,6 +1,5 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import _ from "lodash";
 import flattenDeep from "lodash/flattenDeep";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
@@ -8,7 +7,7 @@ import { translate } from "react-i18next";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { tradeBalanceColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
-import { melt, getLevelObject, replaceKeyNames } from "helpers/dataUtils";
+import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 

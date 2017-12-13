@@ -1,12 +1,11 @@
 import React from "react";
-import _ from "lodash";
+import keyBy from "lodash/keyBy";
+import sumBy from "lodash/sumBy";
 import { Section } from "datawheel-canon";
-import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import InfoLogoItem from "components/InfoLogoItem";
@@ -63,9 +62,9 @@ class Services extends Section {
       var prm = Promise.all(prms).then(res => {
         return {
           key: "environment_services_data",
-          data: _.keyBy(
+          data: keyBy(
             res.map((r, ix) => {
-              const total = _.sumBy(r.data.data, msrName);
+              const total = sumBy(r.data.data, msrName);
               const response = r.data.data.map(rr => {
                 rr["total"] = total;
                 rr["percentage"] = rr[msrName] / total;
@@ -74,7 +73,7 @@ class Services extends Section {
               return {
                 key: services[ix],
                 expansion_factor_total: total,
-                values: _.keyBy(response, function(o) {
+                values: keyBy(response, function(o) {
                   return "response_" + o["ID Binary Survey Response"];
                 })
               };
@@ -207,7 +206,7 @@ class Services extends Section {
         </h3>
         <div className="info-logo-container">
           {services.length == 0 && <NoDataAvailable text="" />}
-          {services.map(d => <InfoLogoItem item={d} />)}
+          {services.map((d, i) => <InfoLogoItem item={d} key={i} />)}
         </div>
         <SourceNote cube="casen_household" />
       </div>

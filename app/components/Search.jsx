@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { toggleSearch } from "actions/index";
 import { translate } from "react-i18next";
 import { Link, browserHistory } from "react-router";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 
 import { request } from "d3-request";
 

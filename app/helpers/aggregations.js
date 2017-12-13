@@ -1,4 +1,9 @@
-import _ from "lodash";
+import maxBy from "lodash/maxBy";
+import minBy from "lodash/minBy";
+import groupBy from "lodash/groupBy";
+import mapValues from "lodash/mapValues";
+import sumBy from "lodash/sumBy";
+
 import { numeral } from "helpers/formatters";
 
 function annualized_growth(last_v, first_v, last_time, first_time) {
@@ -17,23 +22,23 @@ function trade_by_time_and_product(
   show_rank = true,
   locale = "en"
 ) {
-  const max_year = _.maxBy(aggregation, function(o) {
+  const max_year = maxBy(aggregation, function(o) {
     return o["ID Year"];
   })["ID Year"];
 
-  const by_date_array = _.groupBy(aggregation, function(obj, children) {
+  const by_date_array = groupBy(aggregation, function(obj, children) {
     return obj["ID Year"];
   });
 
-  const by_date = _.mapValues(by_date_array, function(array) {
-    return _.sumBy(array, function(o) {
+  const by_date = mapValues(by_date_array, function(array) {
+    return sumBy(array, function(o) {
       return o[trade_measure] && !isNaN(o[trade_measure])
         ? parseInt(o[trade_measure])
         : 0;
     });
   });
 
-  const first_year = _.minBy(aggregation, function(o) {
+  const first_year = minBy(aggregation, function(o) {
     return o["ID Year"];
   })["ID Year"];
 
@@ -52,7 +57,7 @@ function trade_by_time_and_product(
     return b[trade_measure] - a[trade_measure];
   });
 
-  const total_trade_latest_year = _.sumBy(top_trade_latest_year, function(o) {
+  const total_trade_latest_year = sumBy(top_trade_latest_year, function(o) {
     return o[trade_measure] && !isNaN(o[trade_measure])
       ? parseInt(o[trade_measure])
       : 0;

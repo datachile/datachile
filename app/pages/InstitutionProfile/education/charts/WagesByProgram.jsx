@@ -1,5 +1,7 @@
 import React from "react";
-import _ from "lodash";
+import filter from "lodash/filter";
+import orderBy from "lodash/orderBy";
+
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
@@ -102,8 +104,7 @@ export default translate()(
               }
             }}
             dataFormat={function(data) {
-              console.log("data->", data.data);
-              var filtered = _.filter(
+              var filtered = filter(
                 data.data,
                 o =>
                   o["ID Avg Income 4th year"] != null &&
@@ -111,8 +112,7 @@ export default translate()(
                   o["Number of records"] != null &&
                   o["Number of records"] > 0
               );
-              console.log("filtered->", filtered);
-              return _.orderBy(filtered, ["ID Avg Income 4th year"], ["desc"]);
+              return orderBy(filtered, ["ID Avg Income 4th year"], ["desc"]);
             }}
           />
         </div>

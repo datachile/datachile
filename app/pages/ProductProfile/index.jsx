@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
-import _ from "lodash";
+import orderBy from "lodash/orderBy";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -16,7 +16,6 @@ import {
   ingestParent,
   clearStoreData
 } from "helpers/dataUtils";
-import Placeholder from "components/Placeholder";
 
 import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
@@ -24,7 +23,6 @@ import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import FeaturedMapSplash from "components/FeaturedMapSplash";
 import LinksList from "components/LinksList";
-import LoadingWithProgress from "components/LoadingWithProgress";
 import Topic from "components/Topic";
 
 import InternationalTradeBalanceSlide from "./InternationalTrade/InternationalTradeBalanceSlide";
@@ -108,7 +106,7 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          res.data.data = orderBy(res.data.data, ["FOB US"], ["desc"]);
           const top_country = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "top_destination_country_per_product",
@@ -148,7 +146,7 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          res.data.data = orderBy(res.data.data, ["FOB US"], ["desc"]);
           const top_region = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "top_region_producer_per_product",
@@ -191,7 +189,7 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          res.data.data = orderBy(res.data.data, ["FOB US"], ["desc"]);
           const total = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "total_exports_per_product",
@@ -280,7 +278,7 @@ class ProductProfile extends Component {
     const obj = this.props.data.product;
 
     const locale = i18n.locale;
-    
+
     const key = obj && obj.depth === 1 ? obj.key : obj.ancestors[0].key;
 
     const ids = getLevelObject(this.props.routeParams);
@@ -330,12 +328,7 @@ class ProductProfile extends Component {
     ];
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<LoadingWithProgress />}
-      >
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {obj && (

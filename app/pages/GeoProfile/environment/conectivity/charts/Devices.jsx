@@ -1,5 +1,8 @@
 import React from "react";
-import _ from "lodash";
+
+import keyBy from "lodash/keyBy";
+import sumBy from "lodash/sumBy";
+
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 
@@ -57,9 +60,9 @@ class Devices extends Section {
       var prm = Promise.all(prms).then(res => {
         return {
           key: "internet_data",
-          data: _.keyBy(
+          data: keyBy(
             res.map((r, ix) => {
-              const total = _.sumBy(r.data.data, "Expansion factor");
+              const total = sumBy(r.data.data, "Expansion factor");
               const response = r.data.data.map(rr => {
                 rr["total"] = total;
                 rr["percentage"] = rr["Expansion factor"] / total;
@@ -68,7 +71,7 @@ class Devices extends Section {
               return {
                 key: devices[ix],
                 expansion_factor_total: total,
-                values: _.keyBy(response, function(o) {
+                values: keyBy(response, function(o) {
                   return "response_" + o["ID Binary Survey Response"];
                 })
               };
