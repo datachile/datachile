@@ -1,12 +1,10 @@
 import React from "react";
 import _ from "lodash";
 import { Section } from "datawheel-canon";
-import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import InfoLogoItem from "components/InfoLogoItem";
@@ -164,7 +162,7 @@ class Devices extends Section {
           <span>{t("Devices' use in ") + geoChartName}</span>
         </h3>
         <div className="info-logo-container">
-          {devices.map(d => <InfoLogoItem item={d} />)}
+          {devices.map((d, i) => <InfoLogoItem key={i} item={d} />)}
         </div>
         <SourceNote cube="internet_access" />
       </div>
