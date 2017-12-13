@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, {
-  geoCut
-} from "helpers/MondrianClient";
+import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { institutionsColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
@@ -90,7 +88,7 @@ class CollegeByEnrollment extends Section {
               shapeConfig: {
                 width: 40,
                 height: 40,
-                backgroundImage: d =>
+                backgroundImage: () =>
                   "/images/legend/college/administration.png"
               }
             }
