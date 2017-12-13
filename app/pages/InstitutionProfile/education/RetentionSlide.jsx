@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
+import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -47,11 +45,4 @@ class RetentionSlide extends Section {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(RetentionSlide)
-);
+export default translate()(RetentionSlide);

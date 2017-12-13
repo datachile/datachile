@@ -1,11 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
+import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 import flattenDeep from "lodash/flattenDeep";
-
-import { sources } from "helpers/consts";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
@@ -103,11 +99,4 @@ class DevicesSlide extends Section {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(DevicesSlide)
-);
+export default translate()(DevicesSlide);

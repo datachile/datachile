@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -60,11 +59,4 @@ class ServicesAccessSlide extends Section {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(ServicesAccessSlide)
-);
+export default translate()(ServicesAccessSlide);
