@@ -14,7 +14,6 @@ import { maxMinGrowthByYear } from "helpers/aggregations";
 import { getGeoObject } from "helpers/dataUtils";
 
 import FeaturedDatum from "components/FeaturedDatum";
-import SourceNote from "components/SourceNote";
 
 class IncomeSexAgeSlide extends Section {
   static need = [
@@ -135,7 +134,6 @@ class IncomeSexAgeSlide extends Section {
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
-        <SourceNote cube="nesi_income" />
       </div>
     );
   }

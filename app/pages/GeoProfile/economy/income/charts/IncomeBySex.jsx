@@ -8,6 +8,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { COLORS_GENDER } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class IncomeBySex extends Section {
   static need = [
@@ -90,6 +91,7 @@ class IncomeBySex extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="nesi_income" />
       </div>
     );
   }

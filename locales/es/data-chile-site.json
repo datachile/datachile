@@ -96,5 +96,8 @@
 
   "tooltip": {
     "to_profile": "Click to see the full profile"
-  }
+  },
+
+  "no_info":
+    "{{no}} no tiene datos disponibles para este tópico. La información que se muestra es de la región {{yes}}."
 }

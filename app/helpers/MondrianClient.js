@@ -184,6 +184,85 @@ function simpleDatumNeed(
   };
 }
 
+function createFreshQuery(
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  const q = cube.query;
+
+  measures.forEach(m => {
+    q.measure(m);
+  });
+  drillDowns.forEach(([...dd]) => {
+    q.drilldown(...dd);
+  });
+  Object.entries(options).forEach(([k, v]) => q.option(k, v));
+  cuts.forEach(c => q.cut(c));
+
+  return q;
+}
+
+/* Receive params and make a query. If zero results make another query with ancestors' information and add a suffix "_region" to the given key. */
+function simpleFallbackGeoDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const geo = getGeoObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+        var query = geoCut(geo, "Geography", q, store.i18n.locale);
+        return client.query(query);
+      })
+      .then(res => {
+        if (res.data.values && res.data.values.length > 0) {
+          return {
+            key: key,
+            data: { data: flattenDeep(res.data.values), fallback: false }
+          };
+        } else {
+          return client
+            .cube(cube)
+            .then(cube => {
+              const q = createFreshQuery(cube, measures, {
+                drillDowns: drillDowns,
+                options: options,
+                cuts: cuts
+              });
+              var query = geoCut(
+                geo.ancestor,
+                "Geography",
+                q,
+                store.i18n.locale
+              );
+              return client.query(query);
+            })
+            .then(res => {
+              return {
+                key: key,
+                data: { data: flattenDeep(res.data.values), fallback: true }
+              };
+            });
+        }
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 function simpleCountryDatumNeed(
   key,
   cube,
@@ -243,6 +322,7 @@ export {
   getMeasureByGeo,
   simpleGeoChartNeed,
   simpleDatumNeed,
+  simpleFallbackGeoDatumNeed,
   simpleCountryDatumNeed
 };
 export default client;

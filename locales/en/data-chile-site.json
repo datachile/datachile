@@ -17,5 +17,8 @@
 
 	"tooltip": {
 		"to_profile": "Click to see the full profile"
-	}
+	},
+
+	"no_info":
+		"{{no}} has not data for this topic. The information you are seeing is from {{yes}} region."
 }
