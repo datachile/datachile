@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
 import { translate } from "react-i18next";
+import { find } from "lodash";
 
 import TopicSlider from "components/TopicSlider";
 import TopicSliderBullets from "components/TopicSliderBullets";
@@ -35,8 +34,8 @@ class Topic extends Component {
       };
     });
 
-    const selectedSection = _.find(sections, function(s) {
-      return _.find(s.slides, function(slid) {
+    const selectedSection = find(sections, function(s) {
+      return find(s.slides, function(slid) {
         return slid.ix == selected;
       });
     });
@@ -89,11 +88,4 @@ Topic.defaultProps = {
   slider: true
 };
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(Topic)
-);
+export default translate()(Topic);
