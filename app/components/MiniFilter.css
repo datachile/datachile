@@ -1,0 +1,35 @@
+section.section .mini-filter {
+  margin: -10px 0;
+  padding: 0 15px;
+  color: var(--snow);
+  text-transform: none;
+
+  & .filter {
+    margin-right: 1em;
+    padding-left: 1em;
+    border-left: 1px solid;
+
+    &:first-child {
+      border: 0 none;
+      padding: 0;
+    }
+  }
+
+  & .filter-name {
+    font-weight: bold;
+
+    &::after {
+      content: ":";
+    }
+  }
+
+  & .filter-item {
+    margin-left: 1em;
+    opacity: 0.5;
+    cursor: pointer;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
