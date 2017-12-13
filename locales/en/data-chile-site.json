@@ -15,6 +15,11 @@
 		"trade_balance": "Trade Balance"
 	},
 
+	"trade_product_profile": {
+		"text": "En {{last_year}}, las exportaciones de {{product.name}} fueron de {{exports.total_last_year}}, siendo {{exports.first_country}} el principal destino de las exportaciones, alcanzando un {{exports.first_share}}, seguido de {{exports.second_country}} y {{exports.third_country}}, con un {{exports.second_share}} y {{exports.third_share}} respectivamente.",
+		"line2": ""
+	},
+
 	"tooltip": {
 		"to_profile": "Click to see the full profile"
 	}

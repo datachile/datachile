@@ -25,7 +25,7 @@ class InternationalTradeSlide extends Section {
             "Export HS",
             "HS",
             cube.query
-              .option("parents", true)
+              .option("parents", false)
               .drilldown("Date", "Date", "Year")
               .measure("FOB US")
               .cut(
@@ -63,7 +63,7 @@ class InternationalTradeSlide extends Section {
             "Import HS",
             "HS",
             cube.query
-              .option("parents", true)
+              .option("parents", false)
               .drilldown("Date", "Date", "Year")
               .measure("CIF US")
               .cut(
@@ -90,6 +90,72 @@ class InternationalTradeSlide extends Section {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      const product = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = levelCut(
+            product,
+            "Export HS",
+            "HS",
+            cube.query
+              .option("parents", true)
+              .drilldown("Destination Country", "Country", "Country")
+              .measure("FOB US")
+              ,
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          return mondrianClient.query(q);
+        })
+        .then(res => {
+          return {
+            key: "datum_exports_per_country",
+            data: res.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const product = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          var q = levelCut(
+            product,
+            "Import HS",
+            "HS",
+            cube.query
+              .option("parents", true)
+              .drilldown("Destination Country", "Country", "Country")
+              .measure("CIF US"),
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          return mondrianClient.query(q);
+        })
+        .then(res => {
+          console.log(res.data);
+          return {
+            key: "datum_imports_per_country",
+            data: res.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -97,9 +163,12 @@ class InternationalTradeSlide extends Section {
     const { t, children, i18n } = this.props;
     const {
       datum_imports_per_year,
-      datum_exports_per_year
+      datum_exports_per_year,
+      datum_exports_per_country,
+      datum_imports_per_country
     } = this.context.data;
     const locale = i18n.locale;
+    const text_product = { last_year: 2015, product: this.context.data };
 
     return (
       <div className="topic-slide-block">
@@ -107,11 +176,11 @@ class InternationalTradeSlide extends Section {
           <div className="topic-slide-title">{t("International Trade")}</div>
           <div className="topic-slide-text">
             <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              hendrerit tempor tellus. Donec pretium posuere tellus. Proin quam
-              nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus.
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t("trade_product_profile.text", text_product)
+                }}
+              />
             </p>
           </div>
 

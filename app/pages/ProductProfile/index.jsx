@@ -16,7 +16,6 @@ import {
   ingestParent,
   clearStoreData
 } from "helpers/dataUtils";
-import Placeholder from "components/Placeholder";
 
 import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
@@ -280,8 +279,11 @@ class ProductProfile extends Component {
     const obj = this.props.data.product;
 
     const locale = i18n.locale;
-    
-    const key = obj && obj.depth === 1 ? obj.key : obj.ancestors[0].key;
+
+    const key =
+      typeof obj === "object"
+        ? obj.depth === 1 ? obj.key : obj.ancestors[0].key
+        : "";
 
     const ids = getLevelObject(this.props.routeParams);
     const list = this.props.data.product_list_detail;
