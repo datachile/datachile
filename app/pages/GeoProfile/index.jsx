@@ -81,6 +81,9 @@ import InnovationByActivity from "./economy/innovation/charts/InnovationByActivi
 
 /*Education*/
 
+import PSUNEMSlide from "./education/performance/PSUNEMSlide";
+import PSUNEMScatter from "./education/performance/charts/PSUNEMScatter";
+
 import EnrollmentSlide from "./education/enrollment/EnrollmentSlide";
 import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollment";
 
@@ -233,6 +236,10 @@ class GeoProfile extends Component {
 
     ServicesAccessSlide,
     Services,
+
+    /** EDUCATION */
+    PSUNEMSlide,
+    PSUNEMScatter,
 
     PerformanceSlide,
     PerformanceByType,
@@ -697,9 +704,9 @@ class GeoProfile extends Component {
                 <IDStaffSlide>
                   <SectionColumns>
                     {/*
-                                        <StaffByOccupation className="lost-1-2" />
-                                        <StaffBySex className="lost-1-2" />
-                                      */}
+                        <StaffByOccupation className="lost-1-2" />
+                        <StaffBySex className="lost-1-2" />
+                      */}
                     <Placeholder
                       className="lost-1-2"
                       text="RD - By Occupation"
@@ -713,9 +720,9 @@ class GeoProfile extends Component {
                 <InnovationCompanySlide>
                   <SectionColumns>
                     {/*
-                                        <InnovationRate className="lost-2-3" />
-                                        <InnovationByType className="lost-1-3" />
-                                      */}
+                        <InnovationRate className="lost-2-3" />
+                        <InnovationByType className="lost-1-3" />
+                      */}
                     <Placeholder
                       className="lost-1-2"
                       text="RD - Innovation Rate"
@@ -732,9 +739,9 @@ class GeoProfile extends Component {
                 <CompanyInnovationSlide>
                   <SectionColumns>
                     {/*
-                                        <InnovationBySize className="lost-2-3" />
-                                        <InnovationByActivity className="lost-1-3" />
-                                      */}
+                        <InnovationBySize className="lost-2-3" />
+                        <InnovationByActivity className="lost-1-3" />
+                      */}
                     <Placeholder className="lost-1-2" text="RD - by Size" />
                     <Placeholder className="lost-1-2" text="RD - by Activity" />
                   </SectionColumns>
@@ -747,11 +754,11 @@ class GeoProfile extends Component {
               id="education"
               sections={[
                 {
-                  name: t("Enrollment"),
-                  slides: [t("By School Type")]
+                  name: t("Performance"),
+                  slides: [t("PSU vs NEM"), t("By School Type")]
                 },
                 {
-                  name: t("Performance"),
+                  name: t("Enrollment"),
                   slides: [t("By School Type")]
                 },
                 {
@@ -761,11 +768,11 @@ class GeoProfile extends Component {
               ]}
             >
               <div>
-                <EnrollmentSlide>
+                <PSUNEMSlide>
                   <SectionColumns>
-                    <CollegeByEnrollment className="lost-1" />
+                    <PSUNEMScatter className="lost-1" />
                   </SectionColumns>
-                </EnrollmentSlide>
+                </PSUNEMSlide>
               </div>
               <div>
                 <PerformanceSlide>
@@ -773,6 +780,13 @@ class GeoProfile extends Component {
                     <PerformanceBySchool className="lost-1-2" />
                   </SectionColumns>
                 </PerformanceSlide>
+              </div>
+              <div>
+                <EnrollmentSlide>
+                  <SectionColumns>
+                    <CollegeByEnrollment className="lost-1" />
+                  </SectionColumns>
+                </EnrollmentSlide>
               </div>
               <div>
                 <HigherEducationSlide>
@@ -863,18 +877,18 @@ class GeoProfile extends Component {
                     t("By Activity & Visa Type")
                   ]
                 } /*
-                                 {
-                                 name: t("Diversity"),
-                                 slides: [t("By Sex & Age")]
-                                 },*/,
+                     {
+                     name: t("Diversity"),
+                     slides: [t("By Sex & Age")]
+                     },*/,
                 {
                   name: t("Population"),
                   slides: [t("By Sex & Age")]
                 } /*,
-                                 {
-                                 name: t("Ethnicity"),
-                                 slides: [t("By Sex & Age")]
-                                 }*/
+                     {
+                     name: t("Ethnicity"),
+                     slides: [t("By Sex & Age")]
+                     }*/
               ]}
             >
               <div>
@@ -965,25 +979,25 @@ class GeoProfile extends Component {
               </div>
             </Topic>
             {/*
-            <Topic
-              name={t("Politics")}
-              id="politics"
-              sections={[
+                <Topic
+                name={t("Politics")}
+                id="politics"
+                sections={[
                 {
-                  name: t("Mayor Election"),
-                  slides: [t("Results")]
+                name: t("Mayor Election"),
+                slides: [t("Results")]
                 }
-              ]}
-            >
-              <div>
+                ]}
+                >
+                <div>
                 <ElectionSlide>
-                  <SectionColumns>
-                    <MayorResults className="lost-1" />
-                  </SectionColumns>
+                <SectionColumns>
+                <MayorResults className="lost-1" />
+                </SectionColumns>
                 </ElectionSlide>
-              </div>
-            </Topic>
-            */}
+                </div>
+                </Topic>
+              */}
           </div>
         </div>
       </CanonComponent>
