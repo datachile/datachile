@@ -77,6 +77,8 @@ class TradeSlide extends Section {
         ? t("increased")
         : t("decreased");
     }
+
+    console.log(text_data);
     const locale = this.props.i18n.locale;
 
     const { datum_trade_exports, datum_trade_imports } = this.context.data;
