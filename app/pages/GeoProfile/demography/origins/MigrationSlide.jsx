@@ -105,11 +105,4 @@ class MigrationSlide extends Section {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      immigration_year: state.sources.immigration.year
-    }),
-    {}
-  )(MigrationSlide)
-);
+export default translate()(MigrationSlide);

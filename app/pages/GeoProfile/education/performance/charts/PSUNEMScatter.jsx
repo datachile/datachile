@@ -1,13 +1,14 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-
 import { Plot } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { translate } from "react-i18next";
 
+import { sources } from "helpers/consts";
 import { institutionsColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
 
 class PSUNEMScatter extends Section {
@@ -18,7 +19,9 @@ class PSUNEMScatter extends Section {
       ["Average PSU", "Average NEM", "Number of records"],
       {
         drillDowns: [["Institution", "Institution", "Institution"]],
-        cuts: [`[Year].[Year].[Year].&[2016]`],
+        cuts: [
+          `[Year].[Year].[Year].&[${sources.education_performance_new.year}]`
+        ],
         options: { parents: true }
       }
     )
@@ -40,7 +43,7 @@ class PSUNEMScatter extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: ["Administration", "Institution"],
+            groupBy: "ID Institution",
             label: d => d["Administration"],
             x: "Average NEM",
             y: "Average PSU",
@@ -55,7 +58,10 @@ class PSUNEMScatter extends Section {
               title: t("Average PSU")
             },
             tooltipConfig: {
-              title: d => d["Institution"],
+              title: d =>
+                d["ID Institution"] instanceof Array
+                  ? d["Administration"]
+                  : d["Institution"],
               body: d =>
                 t("Average NEM: ") +
                 numeral(d["Average NEM"], locale).format("(0)") +
@@ -64,6 +70,7 @@ class PSUNEMScatter extends Section {
                 numeral(d["Average PSU"], locale).format("(0)")
             },
             legendConfig: {
+              label: d => d["Administration"],
               shapeConfig: {
                 width: 40,
                 height: 40,
@@ -76,6 +83,7 @@ class PSUNEMScatter extends Section {
             return data.data;
           }}
         />
+        <SourceNote cube="education_performance_new" />
       </div>
     );
   }

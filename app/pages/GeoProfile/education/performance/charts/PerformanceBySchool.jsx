@@ -31,7 +31,7 @@ class PerformanceBySchool extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Performance By School")}</span>
+          <span>{t("Top Schools By Performance")}</span>
           <ExportLink path={path} />
         </h3>
         <BarChart

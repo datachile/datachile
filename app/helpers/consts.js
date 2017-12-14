@@ -1,23 +1,73 @@
 export const sources = {
-  immigration: {
-    year: 2016
+  exports: {
+    title: "Servicio Nacional de Aduanas",
+    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
+    year: 2015,
+    min_year: 2002
+  },
+  imports: {
+    title: "Servicio Nacional de Aduanas",
+    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
+    year: 2015
   },
   exports_and_imports: {
+    title: "Servicio Nacional de Aduanas",
+    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
     year: 2015
   },
-  education_enrollment: {
+  immigration: {
+    title:
+      "Estadísticas de Migración — Departamento de Extranjería y Migración",
+    url: "http://www.extranjeria.gob.cl/estadisticas-migratorias/",
+    year: 2016
+  },
+  tax_data: {
+    title: "Servicio de Impuestos Internos",
+    url: "http://homer.sii.cl/"
+  },
+  rd_survey: {
+    title: "Ministerio de Economía, Fomento y Turismo",
+    url:
+      "http://www.economia.gob.cl/estudios-y-encuestas/encuestas/encuestas-de-innovacion-e-id/encuestas-de-innovacion"
+  },
+  nesi_income: {
+    title: "Encuesta Suplementaria de Ingresos — INE",
+    url: "http://www.ine.cl/estadisticas/ingresos-y-gastos/esi",
     year: 2015
   },
-  casen_health_system: {
-    year: 2014
+  internet_access: {
+    title: "Encuesta de Acceso, Usos y Usuarios de Internet — INE",
+    url: "http://anda.ine.cl/index.php/catalog/9222",
+    year: "2016"
   },
-  casen_household: {
-    year: 2015
+  nene: {
+    title: "Encuesta Nacional de Empleo — INE",
+    url: "http://www.ine.cl/estadisticas/laborales/ene"
   },
   casen: {
     available: [2000, 2003, 2006, 2009, 2011, 2013, 2015]
   },
-  nesi_income: {
+  casen_household: {
+    title: "Encuesta CASEN",
+    url:
+      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
     year: 2015
+  },
+  casen_health_system: {
+    title: "Encuesta CASEN",
+    url:
+      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
+    year: 2014
+  },
+  casen_banking: {
+    title: "Encuesta CASEN",
+    url:
+      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php"
+  },
+  education_enrollment: {
+    year: 2015
+  },
+  education_performance_new: {
+    year: 2016
   }
 };

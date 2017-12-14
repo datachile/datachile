@@ -2,27 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 
+import { sources } from "helpers/consts";
+
 import "./SourceNote.css";
 
 class SourceNote extends Component {
-  constructor(props) {
-    super(props);
-    const { sources } = props;
-
-    this.state = {
-      sources: sources
-    };
-  }
-
   render() {
     const { t, cube } = this.props;
-
-    const { sources } = this.state;
 
     const source = sources[cube];
 
     if (!source) {
-      console.error("Missing source key:" + cube);
+      console.warn("Missing source key:" + cube);
       return null;
     }
 
@@ -37,11 +28,4 @@ class SourceNote extends Component {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      sources: state.sources
-    }),
-    {}
-  )(SourceNote)
-);
+export default translate()(SourceNote);
