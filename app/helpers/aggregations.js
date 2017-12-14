@@ -106,15 +106,24 @@ function info_from_data(
   locale = "en",
   format = "($ 0.00 a)"
 ) {
+  aggregation = aggregation.sort((a, b) => {
+    return b[msrName] - a[msrName];
+  });
+  
   const total = aggregation.reduce((all, item) => {
     return all + item[msrName];
   }, 0);
   return {
     total: numeral(total, locale).format(format),
+    territory: {
+      first: aggregation[0][territoryKey],
+      second: aggregation[1][territoryKey],
+      third: aggregation[2][territoryKey]
+    },
     share: {
-      first: numeral(aggregation[0][msrName] / total, locale).format("0%"),
-      second: numeral(aggregation[1][msrName] / total, locale).format("0%"),
-      third: numeral(aggregation[2][msrName] / total, locale).format("0%")
+      first: numeral(aggregation[0][msrName] / total, locale).format("0.0 %"),
+      second: numeral(aggregation[1][msrName] / total, locale).format("0.0 %"),
+      third: numeral(aggregation[2][msrName] / total, locale).format("0.0 %")
     },
     values: {
       first: aggregation[0][msrName],

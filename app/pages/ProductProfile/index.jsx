@@ -396,8 +396,6 @@ class ProductProfile extends Component {
       datum_imports_per_country
     } = this.props.data;
 
-    console.log(this.props.data.product);
-
     const text_product = {
       year: 2015,
       product: this.props.data.product,
@@ -408,6 +406,8 @@ class ProductProfile extends Component {
         ? info_from_data(datum_imports_per_country, "CIF US", "Country", locale)
         : {}
     };
+
+    console.log(text_product)
 
     const topics = [
       {
