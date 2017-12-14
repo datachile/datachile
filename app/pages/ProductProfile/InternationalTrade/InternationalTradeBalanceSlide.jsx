@@ -11,6 +11,8 @@ import { getLevelObject } from "helpers/dataUtils";
 import { calculateYearlyGrowth } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
+import { trade_balance_text } from "helpers/aggregations";
+
 import FeaturedDatum from "components/FeaturedDatum";
 
 class InternationalTradeSlide extends Section {
@@ -27,13 +29,7 @@ class InternationalTradeSlide extends Section {
             cube.query
               .option("parents", false)
               .drilldown("Date", "Date", "Year")
-              .measure("FOB US")
-              .cut(
-                `{[Date].[Date].[Year].&[${sources.exports_and_imports.year -
-                  1}],[Date].[Date].[Year].&[${
-                  sources.exports_and_imports.year
-                }]}`
-              ),
+              .measure("FOB US"),
             "HS0",
             "HS2",
             store.i18n.locale
@@ -65,13 +61,7 @@ class InternationalTradeSlide extends Section {
             cube.query
               .option("parents", false)
               .drilldown("Date", "Date", "Year")
-              .measure("CIF US")
-              .cut(
-                `{[Date].[Date].[Year].&[${sources.exports_and_imports.year -
-                  1}],[Date].[Date].[Year].&[${
-                  sources.exports_and_imports.year
-                }]}`
-              ),
+              .measure("CIF US"),
             "HS0",
             "HS2",
             store.i18n.locale
@@ -101,6 +91,16 @@ class InternationalTradeSlide extends Section {
     } = this.context.data;
     const locale = i18n.locale;
 
+    const text_product = {
+      year: {
+        number: 2015 - 2002,
+        first: 2002,
+        last: 2015
+      },
+      exports: trade_balance_text(datum_product_export_growth),
+      imports: trade_balance_text(datum_product_import_growth)
+    };
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -109,27 +109,24 @@ class InternationalTradeSlide extends Section {
           </div>
           <div className="topic-slide-text">
             <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              hendrerit tempor tellus. Donec pretium posuere tellus. Proin quam
-              nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus.
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t("product_profile.balance", text_product)
+                }}
+              />
             </p>
           </div>
 
           <div className="topic-slide-data">
-          <FeaturedDatum
+            <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum={numeral(
-                calculateYearlyGrowth(datum_product_export_growth),
-                locale
-              ).format("0.0 %")}
+              datum={text_product.exports.growth_rate}
               title={t("Growth Exports")}
               subtitle={
                 t("In period") +
                 " " +
-                (sources.exports_and_imports.year - 1) +
+                2002 +
                 "-" +
                 sources.exports_and_imports.year
               }
@@ -137,15 +134,12 @@ class InternationalTradeSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum={numeral(
-                calculateYearlyGrowth(datum_product_import_growth),
-                locale
-              ).format("0.0 %")}
+              datum={text_product.imports.growth_rate}
               title={t("Growth Imports")}
               subtitle={
                 t("In period") +
                 " " +
-                (sources.exports_and_imports.year - 1) +
+                2002 +
                 "-" +
                 sources.exports_and_imports.year
               }
