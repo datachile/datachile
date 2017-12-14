@@ -439,7 +439,7 @@ class IndustryProfile extends Component {
                   </SectionColumns>
                 </OccupationSlide>
               </div>
-              <div>
+              {/*<div>
                 <SalariesSlide>
                   <SectionColumns>
                     <Placeholder
@@ -452,7 +452,7 @@ class IndustryProfile extends Component {
                     />
                   </SectionColumns>
                 </SalariesSlide>
-              </div>
+              </div>*/}
             </Topic>
           </div>
         </div>

@@ -22,7 +22,7 @@ class EconomySlide extends Section {
   ];
 
   render() {
-    const { t, className, i18n, children } = this.props;
+    const { t, i18n, children } = this.props;
     const { datum_industry_investment } = this.context.data;
 
     const growth = Math.log(
