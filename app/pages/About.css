@@ -78,27 +78,81 @@
       }
     }
   }
-  & .section {
+  & .section-container {
+    lost-utility: clearfix;
+    lost-flex-container: row;
     background-color: var(--dark);
+  }
+  & .section {
     padding: var(--gutter);
-    & .topic-title {
-      margin: var(--gutter) 0;
-      padding-bottom: 16px;
-      lost-center: 2/3;
-      & a {
-        color: var(--snow);
-        font-family: var(--font-family-title);
-        text-transform: uppercase;
-        font-size: 40px;
-      }
+    margin-bottom: var(--gutter);
+    lost-center: 2/3;
+    & h2 {
+      color: var(--snow);
+      font-family: var(--font-family-title);
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 70px;
+      margin-bottom: var(--gutter);
+      lost-column: 1;
+      line-height: 1em;
     }
-    & .paragraph {
+    & h3 {
+      color: var(--snow);
+      font-family: var(--font-family-title);
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.1em;
+      margin: var(--gutter) 0 calc(var(--gutter)/2) 0;
+      lost-column: 1;
+      line-height: 1em;
+    }
+    & p {
       font-family: var(--font-family-text);
       color: var(--snow);
       font-size: 20px;
       font-weight: 300;
       line-height: 1.5;
-      lost-center: 2/3;
+      lost-column: 1;
+    }
+    & .use {
+      font-family: var(--font-family-text);
+      color: var(--accent);
+      background-color: var(--snow);
+      font-size: 17px;
+      text-transform: uppercase;
+      font-weight: 300;
+      line-height: 1.5;
+      lost-column: 1;
+      padding: calc(var(--gutter)/2);
+    }
+    & table {
+      border-collapse: collapse;
+
+      & thead {
+        & th {
+          color: var(--accent);
+          text-transform: uppercase;
+          width: 50%;
+          padding: calc(var(--gutter)/2);
+          vertical-align: middle;
+          text-align: left;
+        }
+      }
+      & tbody {
+        & td {
+          width: 50%;
+          border: 1px solid var(--snow);
+          color: var(--snow);
+          padding: calc(var(--gutter)/2);
+          vertical-align: middle;
+          & a {
+            color: var(--snow);
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
 }
@@ -119,13 +173,9 @@
       }
     }
     & .section {
-      & .topic-title {
-        lost-column: 1;
-        & a {
-        }
-      }
-      & .paragraph {
-        lost-column: 1;
+      lost-column: 1;
+      & h2 {
+        font-size: 30px;
       }
     }
   }

@@ -95,5 +95,38 @@
 
   "tooltip": {
     "to_profile": "Click to see the full profile"
+  },
+
+  "about": {
+    "background": {
+      "title": "Background",
+      "subtitle1": "¿En qué consiste este proyecto?",
+      "text1":
+        "<p>DataChile es un proyecto desarrollado por Datawheel con el objetivo de centralizar y mostrar parte importante de la información pública del país. Este proyecto reúne información económica, demográfica, educacional y de salud.</p><p>Presentamos una \"radiografía\" a las comunas y regiones del país para mostrar varias dimensiones que tienen impacto en el día a día de los ciudadanos en las distintas localidades del Chile.</p>",
+      "subtitle2": "¿Qué soluciona o mejora DataChile?",
+      "text2":
+        "<p>Facilitamos el acceso a la información. A cualquier persona que consulte nuestro portal le garantizamos una economía de tiempo y esfuerzo. Todo el trabajo de reunir datos de distintas fuentes y hacer múltiples solicitudes de transparencia ya lo hicimos y dejamos los datos en tus manos.</p><p>Hicimos DataChile pensando en hacer un museo y no una bodega. La API de DataChile permite a todos los usuarios, con o sin conocimientos de programación, descargar los datos del portal o incluirlos en otra página fuera de DataChile en pocos clicks.</p>"
+    },
+    "data": {
+      "title": "Datos",
+      "text":
+        "Las fuentes de datos integradas en Datachile son las siguientes:",
+      "dataset": "Fuente de datos",
+      "source": "Organismo responsable",
+      "casen": {
+        "title": "CASEN (1990-2015)",
+        "text":
+          "<p>Datos levantados por el MInisterio de Desarrollo Social (MDS). La Encuesta Casen tiene por objetivo entregar una “ radiografía” de la  situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para la medición de la pobreza y desigualdad y ha sido ampliamente utilizada por Organismos Internacionales y ONGs.</p><p>Los resultados de la Encuesta Casen 2015 incluyen la medición de pobreza por ingresos y multidimensional, destacando la incorporación un conjunto de indicadores que permiten medir carencias que afectan a los hogares en relación al entorno en el que habitan. La medición de pobreza multidimensional considera 5 dimensiones relevantes para el bienestar de los hogares y sus integrantes: Educación; Salud; Trabajo y Seguridad Social; Vivienda y Entorno; Redes y Cohesión Social.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía, vivienda y entorno y salud"
+      },
+      "nene": {
+        "title": "NENE (2010-2016)",
+        "text":
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Nueva Encuesta Nacional de Empleo (NENE) se realiza mensualmente y clasifica a la población en edad de trabajar (PET), todas las personas de 15 años y más, según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT), en las que se basa el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de empleo."
+      }
+    }
   }
 }
