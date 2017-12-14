@@ -2,10 +2,9 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import { RDTypesColorScale } from "helpers/colors";
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral } from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 

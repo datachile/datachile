@@ -103,13 +103,6 @@ class EnrollmentSlide extends Section {
                 t("of Total")
               }
             />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
