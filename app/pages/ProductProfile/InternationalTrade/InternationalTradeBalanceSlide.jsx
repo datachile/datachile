@@ -8,7 +8,6 @@ import { sources } from "helpers/consts";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
-import { calculateYearlyGrowth } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import { trade_balance_text } from "helpers/aggregations";
@@ -87,7 +86,9 @@ class InternationalTradeSlide extends Section {
     const { t, children, i18n } = this.props;
     const {
       datum_product_import_growth,
-      datum_product_export_growth
+      datum_product_export_growth,
+      total_exports_chile,
+      total_exports_per_product
     } = this.context.data;
     const locale = i18n.locale;
 
@@ -101,6 +102,8 @@ class InternationalTradeSlide extends Section {
       exports: trade_balance_text(datum_product_export_growth),
       imports: trade_balance_text(datum_product_import_growth)
     };
+
+    const exports_size = total_exports_per_product.value / total_exports_chile;
 
     return (
       <div className="topic-slide-block">
@@ -148,9 +151,9 @@ class InternationalTradeSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"4343k"}
+              datum={numeral(exports_size, locale).format("(0.0 %)")}
               title={t("Trade volume")}
-              subtitle="XXXX - YYYY"
+              subtitle="In 2015"
             />
           </div>
         </div>

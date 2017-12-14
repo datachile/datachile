@@ -336,6 +336,32 @@ class ProductProfile extends Component {
       };
     },
 
+    (params, store) => {
+      const product = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = cube.query
+            .option("parents", false)
+            .drilldown("Date", "Date", "Year")
+            .measure("FOB US")
+            .cut(`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`);
+
+          return mondrianClient.query(q);
+        })
+        .then(res => {
+          return {
+            key: "total_exports_chile",
+            data: flattenDeep(res.data.values)
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+
     InternationalTradeBalanceSlide,
     InternationalTradeSlide,
     ExportsByDestination,
@@ -393,7 +419,9 @@ class ProductProfile extends Component {
 
     const {
       datum_exports_per_country,
-      datum_imports_per_country
+      datum_imports_per_country,
+      total_exports_per_product,
+      total_exports_chile
     } = this.props.data;
 
     const text_product = {
@@ -407,7 +435,23 @@ class ProductProfile extends Component {
         : {}
     };
 
-    console.log(text_product)
+    const text_about = {
+      product: this.props.data.product,
+      region: this.props.data.top_region_producer_per_product,
+      total_exports: total_exports_per_product
+    };
+    text_about.total_exports.rank = numeral(
+      text_about.total_exports.rank,
+      locale
+    ).format("0o");
+    text_about.product.share = numeral(
+      total_exports_per_product.value / total_exports_chile,
+      locale
+    ).format("0.0 %");
+    text_about.region.share = numeral(
+      text_about.region.value / total_exports_per_product.value,
+      locale
+    ).format("0.0 %");
 
     const topics = [
       {
@@ -555,7 +599,7 @@ class ProductProfile extends Component {
                     <p>
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: t("product_profile.about", text_product)
+                          __html: t("product_profile.about1", text_about)
                         }}
                       />
                     </p>
@@ -564,7 +608,7 @@ class ProductProfile extends Component {
                     <p>
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: t("product_profile.about", text_product)
+                          __html: t("product_profile.about2", text_product)
                         }}
                       />
                     </p>
