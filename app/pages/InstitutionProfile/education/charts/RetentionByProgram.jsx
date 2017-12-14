@@ -107,7 +107,7 @@ export default translate()(
                   o["Number of records"] != null &&
                   o["Number of records"] > 0
               );
-              console.log(filtered);
+
               return orderBy(filtered, ["Avg Retention 1st year"], ["desc"]);
             }}
           />
