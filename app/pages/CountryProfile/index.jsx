@@ -16,6 +16,8 @@ import {
   ingestParent,
   clearStoreData
 } from "helpers/dataUtils";
+import { sources } from "helpers/consts";
+
 import Topic from "components/Topic";
 
 import Nav from "components/Nav";
@@ -176,7 +178,7 @@ class CountryProfile extends Component {
               value: res.data.data[0]["CIF US"],
               decile: null,
               year: store.imports_year,
-              source: store.sources.imports.title
+              source: sources.imports.title
             }
           };
         });
@@ -210,7 +212,7 @@ class CountryProfile extends Component {
               value: res.data.data[0]["FOB US"],
               decile: null,
               year: store.exports_year,
-              source: store.sources.exports.title
+              source: sources.exports.title
             }
           };
         });
@@ -250,8 +252,8 @@ class CountryProfile extends Component {
             data: {
               name: top_product ? top_product["HS2"] : "",
               value: top_product ? top_product["CIF US"] : "",
-              source: store.sources.imports.title,
-              year: store.sources.imports.year
+              source: sources.imports.title,
+              year: sources.imports.year
             }
           };
         });
@@ -295,9 +297,8 @@ class CountryProfile extends Component {
 
     const list = this.props.data.country_list_detail;
 
-    const bgImage = obj.key
-      ? `url('/images/profile-bg/country/${obj.key}.jpg')`
-      : "";
+    const bgImage =
+      obj && obj.key ? `url('/images/profile-bg/country/${obj.key}.jpg')` : "";
 
     obj && ids && list
       ? list.map(c => {
@@ -385,7 +386,7 @@ class CountryProfile extends Component {
                     icon="ingreso"
                     decile={stats.imports.decile}
                     datum={numeral(stats.imports.value, locale).format(
-                      "($ 0,0 a)"
+                      "($ 0.0 a)"
                     )}
                     source={stats.imports.year + " - " + stats.imports.source}
                     className=""
@@ -398,7 +399,7 @@ class CountryProfile extends Component {
                     icon="ingreso"
                     decile={stats.exports.decile}
                     datum={numeral(stats.exports.value, locale).format(
-                      "($ 0,0 a)"
+                      "($ 0.0 a)"
                     )}
                     source={stats.exports.year + " - " + stats.exports.source}
                     className=""
@@ -411,7 +412,7 @@ class CountryProfile extends Component {
                     icon="check"
                     datum={stats.product.name}
                     source={`${numeral(stats.product.value, locale).format(
-                      "$ 0,0 a"
+                      "$ 0.0 a"
                     )} - ${stats.product.year} - ${stats.product.source}`}
                     className=""
                   />

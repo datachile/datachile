@@ -85,5 +85,24 @@ export const sources = {
     title: "Estimación de crecimiento poblacional - INE",
     url: "http://www.ine.cl/estadisticas/demograficas-y-vitales",
     year: 2017
+  },
+  death_causes: {
+    title: "Causas de muerte",
+    url: "",
+    year: 2014
+  },
+  disabilities: {
+    title: "Discapacidad",
+    url: "",
+    year: 2015
+  },
+  health_access: {
+    title: "Acceso a la salud",
+    url: "",
+    year: 2015
+  },
+  psu: {
+    title: "DEMRE",
+    year: 2016
   }
 };

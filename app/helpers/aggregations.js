@@ -171,19 +171,25 @@ function info_from_data(
   return {
     total: numeral(total, locale).format(format),
     territory: {
-      first: aggregation[0][territoryKey],
-      second: aggregation[1][territoryKey],
-      third: aggregation[2][territoryKey]
+      first: aggregation[0] ? aggregation[0][territoryKey] : "",
+      second: aggregation[1] ? aggregation[1][territoryKey] : "",
+      third: aggregation[2] ? aggregation[2][territoryKey] : ""
     },
     share: {
-      first: numeral(aggregation[0][msrName] / total, locale).format("0.0 %"),
-      second: numeral(aggregation[1][msrName] / total, locale).format("0.0 %"),
-      third: numeral(aggregation[2][msrName] / total, locale).format("0.0 %")
+      first: aggregation[0]
+        ? numeral(aggregation[0][msrName] / total, locale).format("0.0 %")
+        : "",
+      second: aggregation[1]
+        ? numeral(aggregation[1][msrName] / total, locale).format("0.0 %")
+        : "",
+      third: aggregation[2]
+        ? numeral(aggregation[2][msrName] / total, locale).format("0.0 %")
+        : ""
     },
     values: {
-      first: aggregation[0][msrName],
-      second: aggregation[1][msrName],
-      third: aggregation[2][msrName]
+      first: aggregation[0] ? aggregation[0][msrName] : "",
+      second: aggregation[1] ? aggregation[1][msrName] : "",
+      third: aggregation[2] ? aggregation[2][msrName] : ""
     }
   };
 }
