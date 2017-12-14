@@ -36,6 +36,10 @@ import GeoTradeSlide from "./GeoTrade/GeoTradeSlide";
 import ExportsByRegion from "./GeoTrade/charts/ExportsByRegion";
 import ImportsByRegion from "./GeoTrade/charts/ImportsByRegion";
 
+import { info_from_data } from "helpers/aggregations";
+import flattenDeep from "lodash/flattenDeep";
+import { sources } from "helpers/consts";
+
 import "../intro.css";
 
 class ProductProfile extends Component {
@@ -261,6 +265,77 @@ class ProductProfile extends Component {
       };
     },
 
+    (params, store) => {
+      const product = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = levelCut(
+            product,
+            "Export HS",
+            "HS",
+            cube.query
+              .option("parents", true)
+              .drilldown("Destination Country", "Country", "Country")
+              .measure("FOB US")
+              .cut(
+                `[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`
+              ),
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "datum_exports_per_country",
+            data: res.data.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const product = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          var q = levelCut(
+            product,
+            "Import HS",
+            "HS",
+            cube.query
+              .option("parents", true)
+              .drilldown("Origin Country", "Country", "Country")
+              .measure("CIF US")
+              .cut(
+                `[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`
+              ),
+            "HS0",
+            "HS2",
+            store.i18n.locale
+          );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "datum_imports_per_country",
+            data: res.data.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+
     InternationalTradeBalanceSlide,
     InternationalTradeSlide,
     ExportsByDestination,
@@ -314,6 +389,28 @@ class ProductProfile extends Component {
       country: this.props.data.top_destination_country_per_product,
       region: this.props.data.top_region_producer_per_product,
       exports: this.props.data.total_exports_per_product
+    };
+
+    const {
+      datum_exports_per_country,
+      datum_imports_per_country
+    } = this.props.data;
+
+    const text_product = {
+      year: 2015,
+      product: this.props.data.product,
+      exports: info_from_data(
+        datum_exports_per_country,
+        "FOB US",
+        "Country",
+        locale
+      ),
+      imports: info_from_data(
+        datum_imports_per_country,
+        "CIF US",
+        "Country",
+        locale
+      )
     };
 
     const topics = [
@@ -459,16 +556,11 @@ class ProductProfile extends Component {
               <div className="topic-slide-block">
                 <div className="topic-slide-intro">
                   <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: t("trade_product_profile.text", text_product)
+                      }}
+                    />
                   </div>
                   <div className="topic-slide-text">
                     <p>

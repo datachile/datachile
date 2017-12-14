@@ -16,8 +16,7 @@
 	},
 
 	"trade_product_profile": {
-		"text": "En {{last_year}}, las exportaciones de {{product.name}} fueron de {{exports.total_last_year}}, siendo {{exports.first_country}} el principal destino de las exportaciones, alcanzando un {{exports.first_share}}, seguido de {{exports.second_country}} y {{exports.third_country}}, con un {{exports.second_share}} y {{exports.third_share}} respectivamente.",
-		"line2": ""
+		"text": "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente."
 	},
 
 	"tooltip": {

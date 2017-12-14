@@ -8,7 +8,7 @@ import { translate } from "react-i18next";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { tradeBalanceColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
-import { melt, getLevelObject, replaceKeyNames } from "helpers/dataUtils";
+import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 
