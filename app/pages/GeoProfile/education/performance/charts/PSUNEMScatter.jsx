@@ -5,6 +5,9 @@ import { Plot } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { translate } from "react-i18next";
 
+import { institutionsColorScale } from "helpers/colors";
+import { numeral } from "helpers/formatters";
+
 import ExportLink from "components/ExportLink";
 
 class PSUNEMScatter extends Section {
@@ -25,6 +28,8 @@ class PSUNEMScatter extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_education_psu_vs_nem_by_school;
 
+    const locale = i18n.locale;
+
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -35,28 +40,40 @@ class PSUNEMScatter extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: ["Administration"],
-            //label: d =>
-            //  d["Country"] instanceof Array ? d["Region"] : d["Country"],
+            groupBy: ["Administration", "Institution"],
+            label: d => d["Administration"],
             x: "Average NEM",
             y: "Average PSU",
-            colorScale: "Administration",
             colorScalePosition: false,
-            colorScaleConfig: {
-              color: ["#9eca83", "#35a576", "#299479", "#1b7f7d", "#117180"]
-            },
-            legendConfig: {
-              label: false,
-              shapeConfig: false
+            shapeConfig: {
+              fill: d => institutionsColorScale(d["ID Administration"])
             },
             xConfig: {
-              //domain: [1, 7],
               title: t("Average NEM")
             },
             yConfig: {
-              width: 0,
               title: t("Average PSU")
+            },
+            tooltipConfig: {
+              title: d => d["Institution"],
+              body: d =>
+                t("Average NEM: ") +
+                numeral(d["Average NEM"], locale).format("(0)") +
+                "<br/>" +
+                t("Average PSU: ") +
+                numeral(d["Average PSU"], locale).format("(0)")
+            },
+            legendConfig: {
+              shapeConfig: {
+                width: 40,
+                height: 40,
+                backgroundImage: d =>
+                  "/images/legend/college/administration.png"
+              }
             }
+          }}
+          dataFormat={data => {
+            return data.data;
           }}
         />
       </div>
