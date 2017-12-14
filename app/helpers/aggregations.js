@@ -106,21 +106,11 @@ function info_from_data(
   locale = "en",
   format = "($ 0.00 a)"
 ) {
-  aggregation = aggregation.sort((a, b) => {
-    return b[msrName] - a[msrName];
-  });
-
   const total = aggregation.reduce((all, item) => {
     return all + item[msrName];
   }, 0);
-
   return {
     total: numeral(total, locale).format(format),
-    territory: {
-      first: aggregation[0][territoryKey],
-      second: aggregation[1][territoryKey],
-      third: aggregation[2][territoryKey]
-    },
     share: {
       first: numeral(aggregation[0][msrName] / total, locale).format("0%"),
       second: numeral(aggregation[1][msrName] / total, locale).format("0%"),
@@ -134,4 +124,26 @@ function info_from_data(
   };
 }
 
-export { trade_by_time_and_product, info_from_data };
+function trade_balance_text(
+  aggregation,
+  msrName,
+  territoryKey,
+  locale = "en",
+  format = "($ 0.00 a)"
+) {
+  const last_value = aggregation[aggregation.length - 1];
+  const first_value = aggregation[0];
+
+  const growth_rate = Math.log(last_value / first_value);
+
+  return {
+    growth_rate: numeral(growth_rate, locale).format("0.0 %"),
+    increased_or_decreased: growth_rate > 0 ? "increased" : "decreased",
+    value: {
+      first: numeral(first_value, locale).format(format),
+      last: numeral(last_value, locale).format(format)
+    }
+  };
+}
+
+export { trade_by_time_and_product, info_from_data, trade_balance_text };
