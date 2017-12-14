@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -104,13 +103,6 @@ class EnrollmentSlide extends Section {
                 t("of Total")
               }
             />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
@@ -119,11 +111,4 @@ class EnrollmentSlide extends Section {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(EnrollmentSlide)
-);
+export default translate()(EnrollmentSlide);

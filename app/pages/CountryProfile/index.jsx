@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
-import _ from "lodash";
+import orderBy from "lodash/orderBy";
 import { translate } from "react-i18next";
 
 import d3plus from "helpers/d3plus";
@@ -16,7 +16,6 @@ import {
   ingestParent,
   clearStoreData
 } from "helpers/dataUtils";
-import LoadingWithProgress from "components/LoadingWithProgress";
 import Topic from "components/Topic";
 
 import Nav from "components/Nav";
@@ -244,7 +243,7 @@ class CountryProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ["CIF US"], ["desc"]);
+          res.data.data = orderBy(res.data.data, ["CIF US"], ["desc"]);
           const top_product = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "top_imported_product_from_country",
@@ -350,12 +349,7 @@ class CountryProfile extends Component {
     ];
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<LoadingWithProgress />}
-      >
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {obj && (

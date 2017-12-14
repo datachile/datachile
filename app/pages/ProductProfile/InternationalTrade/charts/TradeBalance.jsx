@@ -1,6 +1,5 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import _ from "lodash";
 import flattenDeep from "lodash/flattenDeep";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";

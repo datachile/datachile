@@ -1,14 +1,11 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonComponent, SectionColumns } from "datawheel-canon";
-import { Link } from "react-router";
-import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
-  getMembersQuery,
   getMemberQuery,
   levelCut
 } from "helpers/MondrianClient";
@@ -25,7 +22,6 @@ import Topic from "components/Topic";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
-import LoadingWithProgress from "components/LoadingWithProgress";
 
 import EconomySlide from "./economy/EconomySlide";
 import OutputByLocation from "./economy/charts/OutputByLocation";
@@ -249,12 +245,7 @@ class IndustryProfile extends Component {
     ];
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<LoadingWithProgress />}
-      >
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {obj && (

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import ReactImageFallback from "react-image-fallback";
-import _ from "lodash";
-import { Link } from "react-router";
 import "./PersonItem.css";
 
 class PersonItem extends Component {

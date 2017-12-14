@@ -21,7 +21,6 @@ import TopicMenu from "components/TopicMenu";
 import Topic from "components/Topic";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import LinksList from "components/LinksList";
-import LoadingWithProgress from "components/LoadingWithProgress";
 
 /* BEGIN WAGES */
 import WagesSlide from "./education/WagesSlide";
@@ -322,12 +321,7 @@ class InstitutionProfile extends Component {
     ];
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<LoadingWithProgress />}
-      >
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {obj && (

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
-import _ from "lodash";
+import orderBy from "lodash/orderBy";
+import flattenDeep from "lodash/flattenDeep";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -23,7 +24,6 @@ import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import FeaturedMapSplash from "components/FeaturedMapSplash";
 import LinksList from "components/LinksList";
-import LoadingWithProgress from "components/LoadingWithProgress";
 import Topic from "components/Topic";
 
 import InternationalTradeBalanceSlide from "./InternationalTrade/InternationalTradeBalanceSlide";
@@ -37,7 +37,6 @@ import ExportsByRegion from "./GeoTrade/charts/ExportsByRegion";
 import ImportsByRegion from "./GeoTrade/charts/ImportsByRegion";
 
 import { info_from_data } from "helpers/aggregations";
-import flattenDeep from "lodash/flattenDeep";
 import { sources } from "helpers/consts";
 
 import "../intro.css";
@@ -111,7 +110,7 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          res.data.data = orderBy(res.data.data, ["FOB US"], ["desc"]);
           const top_country = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "top_destination_country_per_product",
@@ -151,7 +150,7 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          res.data.data = orderBy(res.data.data, ["FOB US"], ["desc"]);
           const top_region = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "top_region_producer_per_product",
@@ -194,7 +193,7 @@ class ProductProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          res.data.data = _.orderBy(res.data.data, ["FOB US"], ["desc"]);
+          res.data.data = orderBy(res.data.data, ["FOB US"], ["desc"]);
           const total = res.data.data[0] ? res.data.data[0] : false;
           return {
             key: "total_exports_per_product",
@@ -469,12 +468,7 @@ class ProductProfile extends Component {
     ];
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<LoadingWithProgress />}
-      >
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {obj && (

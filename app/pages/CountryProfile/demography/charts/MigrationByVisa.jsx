@@ -1,6 +1,8 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import _ from "lodash";
+
+import filter from "lodash/filter";
+import orderBy from "lodash/orderBy";
 import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
 
@@ -93,11 +95,11 @@ class MigrationByVisa extends Section {
             }
           }}
           dataFormat={function(data) {
-            var filtered = _.filter(
+            var filtered = filter(
               data.data,
               o => o["Number of visas"] != null && o["Number of visas"] > 0
             );
-            return _.orderBy(filtered, ["Number of visas"], ["asc"]);
+            return orderBy(filtered, ["Number of visas"], ["asc"]);
           }}
         />
       </div>
