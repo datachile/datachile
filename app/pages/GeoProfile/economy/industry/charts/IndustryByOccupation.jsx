@@ -105,6 +105,7 @@ class IndustryByOccupation extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const locale = i18n.locale;
+
     return (
       <div className={className}>
         <h3 className="chart-title">
