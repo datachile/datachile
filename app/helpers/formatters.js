@@ -3,6 +3,7 @@ import { timeFormat } from "d3-time-format";
 import n from "numeral";
 
 function slugifyStr(str) {
+  if (!str) return "";
   str = str.replace(/^\s+|\s+$/g, ""); // trim
   str = str.toLowerCase();
 

@@ -68,6 +68,8 @@ export const sources = {
     year: 2015
   },
   education_performance_new: {
+    title: "Rendimiento escolar y PSU - DEMRE",
+    url: "http://psu.demre.cl/",
     year: 2016
   }
 };

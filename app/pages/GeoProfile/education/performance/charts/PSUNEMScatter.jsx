@@ -49,7 +49,7 @@ class PSUNEMScatter extends Section {
             y: "Average PSU",
             colorScalePosition: false,
             shapeConfig: {
-              fill: d => institutionsColorScale(d["ID Administration"])
+              fill: d => institutionsColorScale("adm" + d["ID Administration"])
             },
             xConfig: {
               title: t("Average NEM")

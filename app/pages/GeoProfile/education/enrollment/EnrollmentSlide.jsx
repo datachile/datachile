@@ -19,6 +19,7 @@ class EnrollmentSlide extends Section {
       "education_enrollment",
       ["Number of records"],
       {
+        drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false },
         cuts: [
           "Special Education Teachings",
@@ -31,6 +32,7 @@ class EnrollmentSlide extends Section {
       "education_enrollment",
       ["Number of records"],
       {
+        drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false },
         cuts: [
           "[Zone].[Zone].[Zone].&[2]",
@@ -43,6 +45,7 @@ class EnrollmentSlide extends Section {
       "education_enrollment",
       ["Number of records"],
       {
+        drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false },
         cuts: [`[Date].[Date].[Year].&[${sources.education_enrollment.year}]`]
       }

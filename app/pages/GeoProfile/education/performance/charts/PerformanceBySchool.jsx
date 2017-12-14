@@ -3,6 +3,7 @@ import { Section } from "datawheel-canon";
 
 import { BarChart } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
+import { institutionsColorScale } from "helpers/colors";
 import { getTopCategories } from "helpers/dataUtils";
 import { translate } from "react-i18next";
 
@@ -46,13 +47,8 @@ class PerformanceBySchool extends Section {
             discrete: "y",
             x: "Average Score Average (?)",
             y: "Institution",
-            colorScale: "Average Score Average (?)",
-            colorScalePosition: false,
-            colorScaleConfig: {
-              color: ["#9eca83", "#35a576", "#299479", "#1b7f7d", "#117180"]
-            },
             shapeConfig: {
-              //fill: d => ordinalColorScale(2),
+              fill: d => institutionsColorScale(d["ID Administration"]),
               label: d => d["Institution"]
             },
             xDomain: [1, 7],
@@ -75,6 +71,15 @@ class PerformanceBySchool extends Section {
                 b["Average Score Average (?)"]
                 ? 1
                 : -1;
+            },
+            legendConfig: {
+              label: d => d["Administration"],
+              shapeConfig: {
+                width: 40,
+                height: 40,
+                backgroundImage: d =>
+                  "/images/legend/college/administration.png"
+              }
             }
           }}
           dataFormat={data =>

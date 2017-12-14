@@ -771,6 +771,7 @@ class GeoProfile extends Component {
                 <PerformanceSlide>
                   <SectionColumns>
                     <PerformanceBySchool className="lost-1-2" />
+                    <PerformanceByType className="lost-1-2" />
                   </SectionColumns>
                 </PerformanceSlide>
               </div>
