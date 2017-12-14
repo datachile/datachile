@@ -57,7 +57,7 @@ function setLangCaptions(query, lang) {
   if (lang.substring(0, 2) == "es") {
     const drilldowns = query.getDrilldowns();
 
-    drilldowns.forEach(level => {
+    (drilldowns || []).forEach(level => {
       const es = level.annotations["es_caption"];
       if (es) {
         query.caption(level.hierarchy.dimension.name, level.name, es);
@@ -162,7 +162,7 @@ function simpleDatumNeed(
         measures.forEach(m => {
           q.measure(m);
         });
-        drillDowns.forEach(([...dd]) => {
+        (drillDowns || []).forEach(([...dd]) => {
           q.drilldown(...dd);
         });
         Object.entries(options).forEach(([k, v]) => q.option(k, v));

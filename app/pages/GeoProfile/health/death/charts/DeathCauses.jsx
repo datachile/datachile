@@ -3,13 +3,7 @@ import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import { continentColorScale } from "helpers/colors";
-import mondrianClient, {
-  geoCut,
-  simpleGeoChartNeed
-} from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
