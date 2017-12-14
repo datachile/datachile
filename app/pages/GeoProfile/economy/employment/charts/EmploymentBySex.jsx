@@ -9,6 +9,7 @@ import { numeral } from "helpers/formatters";
 
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class EmploymentBySex extends Section {
   static need = [
@@ -82,7 +83,6 @@ class EmploymentBySex extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>{t("Employment By Sex and Situation")}</span>
-          <ExportLink path={path} />
           <Select
             id="variations"
             options={this.state.chartVariations}
@@ -91,6 +91,7 @@ class EmploymentBySex extends Section {
             valueField="id"
             onChange={this.handleChange}
           />
+          <ExportLink path={path} />
         </h3>
         <LinePlot
           config={{
@@ -145,6 +146,7 @@ class EmploymentBySex extends Section {
             return melted;
           }}
         />
+        <SourceNote cube="nene" />
       </div>
     );
   }

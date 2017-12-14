@@ -4,7 +4,7 @@ import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 import { mean } from "d3-array";
 
-import { ordinalColorScale } from "helpers/colors";
+import { COLORS_GENDER } from "helpers/colors";
 import mondrianClient, {
   geoCut,
   simpleGeoChartNeed
@@ -13,13 +13,14 @@ import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class PSUResultsBySex extends Section {
   static need = [
     simpleGeoChartNeed(
       "path_higher_psu_by_sex",
       "psu",
-      ["PSU Average", "Avg language test", "Avg math test"],
+      ["Avg language test", "Avg math test"],
       {
         drillDowns: [["Sex", "Sex", "Sex"], ["Date", "Date", "Year"]],
         options: { parents: true }
@@ -45,60 +46,52 @@ class PSUResultsBySex extends Section {
           config={{
             height: 500,
             data: path,
-            aggs: {
-              value: mean
-            },
-            groupBy: "item",
-            label: d => t(d["item"]),
-            x: "sex",
+            groupBy: "id_sex",
+            label: d => t(d["sex"]),
+            x: "item",
             y: "value",
-            time: "Year",
+            time: "year",
             shapeConfig: {
-              fill: d => ordinalColorScale(d["item"])
+              fill: d => COLORS_GENDER[d["id_sex"]],
+              label: d => d["sex"]
             },
             xConfig: {
               title: false
             },
-            /*tooltipConfig: {
-                title: d => {
-                  d["Country"] =
-                    d["Country"] == "Chile" ? ["Chile"] : d["Country"];
-                  return d["Country"] instanceof Array
-                    ? d["Continent"]
-                    : d["Country"];
-                },
-                body: d =>
-                  numeral(d["Casualities Count SUM"], locale).format("(0 a)") +
-                  " " +
-                  t("people")
-              },*/
-
+            yConfig: {
+              title: "PSU"
+            },
             legendConfig: {
+              label: false,
               shapeConfig: {
                 width: 40,
-                height: 40
+                height: 40,
+                backgroundImage: d => "/images/legend/sex/" + d.id_sex + ".png"
               }
             }
           }}
           dataFormat={data => {
-            return data.data.reduce((all, item) => {
+            const reduced = data.data.reduce((all, item) => {
               all.push({
                 value: item["Avg language test"],
-                item: "Language",
+                item: t("Language"),
                 sex: item["Sex"],
-                Year: item["Year"]
+                id_sex: item["ID Sex"],
+                year: item["Year"]
               });
               all.push({
                 value: item["Avg math test"],
-                item: "Math",
+                item: t("Math"),
                 sex: item["Sex"],
-                Year: item["Year"]
+                id_sex: item["ID Sex"],
+                year: item["Year"]
               });
-              console.log(all);
               return all;
             }, []);
+            return reduced;
           }}
         />
+        <SourceNote cube="psu" />
       </div>
     );
   }

@@ -15,6 +15,9 @@ import { continentColorScale } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
+import SourceNote from "components/SourceNote";
+import ExportLink from "components/ExportLink";
+
 class MigrationByVisa extends Section {
   static need = [
     simpleGeoChartNeed(
@@ -131,6 +134,7 @@ class MigrationByVisa extends Section {
             return resp;
           }}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }

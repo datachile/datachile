@@ -10,6 +10,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
 
 class MigrationByActivity extends Section {
@@ -101,6 +102,7 @@ class MigrationByActivity extends Section {
             return orderBy(filtered, ["Number of visas"], ["desc"]);
           }}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }

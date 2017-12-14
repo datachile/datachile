@@ -3,10 +3,12 @@ import { Section } from "datawheel-canon";
 
 import { BarChart } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
+import { institutionsColorScale } from "helpers/colors";
 import { getTopCategories } from "helpers/dataUtils";
 import { translate } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class PerformanceBySchool extends Section {
   static need = [
@@ -31,7 +33,7 @@ class PerformanceBySchool extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Performance By School")}</span>
+          <span>{t("Top Schools By Performance")}</span>
           <ExportLink path={path} />
         </h3>
         <BarChart
@@ -46,13 +48,8 @@ class PerformanceBySchool extends Section {
             discrete: "y",
             x: "Average Score Average (?)",
             y: "Institution",
-            colorScale: "Average Score Average (?)",
-            colorScalePosition: false,
-            colorScaleConfig: {
-              color: ["#9eca83", "#35a576", "#299479", "#1b7f7d", "#117180"]
-            },
             shapeConfig: {
-              //fill: d => ordinalColorScale(2),
+              fill: d => institutionsColorScale(d["ID Administration"]),
               label: d => d["Institution"]
             },
             xDomain: [1, 7],
@@ -75,12 +72,22 @@ class PerformanceBySchool extends Section {
                 b["Average Score Average (?)"]
                 ? 1
                 : -1;
+            },
+            legendConfig: {
+              label: d => d["Administration"],
+              shapeConfig: {
+                width: 40,
+                height: 40,
+                backgroundImage: d =>
+                  "/images/legend/college/administration.png"
+              }
             }
           }}
           dataFormat={data =>
             getTopCategories(data.data, "Average Score Average (?)")
           }
         />
+        <SourceNote cube="education_performance" />
       </div>
     );
   }

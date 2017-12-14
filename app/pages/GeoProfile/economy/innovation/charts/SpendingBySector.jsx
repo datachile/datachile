@@ -12,6 +12,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class SpendingBySector extends Section {
   static need = [
@@ -109,6 +110,7 @@ class SpendingBySector extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="rd_survey" />
       </div>
     );
   }

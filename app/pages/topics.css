@@ -99,6 +99,18 @@
           fill: var(--snow) !important;
         }
       }
+      & .d3plus-plot-x2-axis {
+        & line.bar {
+          stroke: none;
+        }
+      }
+      & .d3plus-plot-y-axis {
+        & g:last-child {
+          & line.bar {
+            stroke: none;
+          }
+        }
+      }
       & .d3plus-viz-timeline {
         & .bar {
           stroke: var(--snow);

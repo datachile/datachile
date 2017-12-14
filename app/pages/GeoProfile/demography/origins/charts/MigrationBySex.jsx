@@ -8,6 +8,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
 
 export default translate()(
@@ -92,6 +93,7 @@ export default translate()(
             }}
             dataFormat={data => data.data}
           />
+          <SourceNote cube="immigration" />
         </div>
       );
     }

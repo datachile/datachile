@@ -21,7 +21,7 @@ class ExportLink extends React.Component {
 
   manageOutsideClick = evt => {
     const node = this._container;
-    if (!node.isSameNode(evt.target) && !node.contains(evt.target))
+    if (!node || (!node.isSameNode(evt.target) && !node.contains(evt.target)))
       this.setState({ open: false });
   };
 

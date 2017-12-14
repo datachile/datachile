@@ -7,6 +7,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class PopulationProjection extends Section {
   static need = [
@@ -57,6 +58,7 @@ class PopulationProjection extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="population_estimate" />
       </div>
     );
   }

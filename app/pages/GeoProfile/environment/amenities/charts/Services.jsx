@@ -15,14 +15,6 @@ import NoDataAvailable from "components/NoDataAvailable";
 class Services extends Section {
   static need = [
     (params, store) => {
-      var geo = getGeoObject(params);
-      const cube = mondrianClient.cube("casen_household");
-
-      const msrName =
-        geo.type == "comuna"
-          ? "Expansion Factor Comuna"
-          : "Expansion Factor Region";
-
       const services = [
         "Less Than 8 Blocks Public Transport",
         "Less Than 20 Blocks Educational Center",
@@ -35,33 +27,37 @@ class Services extends Section {
         "Less Than 20 Blocks Pharmacy"
       ];
 
-      var prms = [];
+      const createPromises = (geo, msrName) => {
+        var prms = [];
 
-      services.forEach(d => {
-        prms.push(
-          cube.then(cube => {
-            var q = geoCut(
-              geo,
-              "Geography",
-              cube.query
-                .drilldown(
-                  d,
-                  "Binary Survey Response",
-                  "Binary Survey Response"
-                )
-                .measure("Number of records")
-                .measure(msrName),
-              store.i18n.locale
-            );
+        services.forEach(d => {
+          prms.push(
+            mondrianClient.cube("casen_household").then(cube => {
+              var q = geoCut(
+                geo,
+                "Geography",
+                cube.query
+                  .drilldown(
+                    d,
+                    "Binary Survey Response",
+                    "Binary Survey Response"
+                  )
+                  .measure("Number of records")
+                  .measure(msrName),
+                store.i18n.locale
+              );
 
-            return mondrianClient.query(q, "jsonrecords");
-          })
-        );
-      });
+              return mondrianClient.query(q, "jsonrecords");
+            })
+          );
+        });
 
-      var prm = Promise.all(prms).then(res => {
+        return prms;
+      };
+
+      const parseResponse = (res, msrName, fallback) => {
         return {
-          key: "environment_services_data",
+          fallback: fallback,
           data: keyBy(
             res.map((r, ix) => {
               const total = sumBy(r.data.data, msrName);
@@ -81,6 +77,36 @@ class Services extends Section {
             "key"
           )
         };
+      };
+
+      var geo = getGeoObject(params);
+
+      const msrName =
+        geo.type == "comuna"
+          ? "Expansion Factor Comuna"
+          : "Expansion Factor Region";
+
+      var prms = createPromises(geo, msrName);
+
+      var prm = Promise.all(prms).then(res => {
+        if (res[0].data.data.length == 0) {
+          var geoFallback = geo.ancestor;
+          var prmsFallback = createPromises(
+            geoFallback,
+            "Expansion Factor Region"
+          );
+          return Promise.all(prmsFallback).then(resRegion => {
+            return {
+              key: "environment_services_data",
+              data: parseResponse(resRegion, "Expansion Factor Region", true)
+            };
+          });
+        } else {
+          return {
+            key: "environment_services_data",
+            data: parseResponse(res, msrName, false)
+          };
+        }
       });
 
       return {
@@ -102,15 +128,17 @@ class Services extends Section {
 
     if (
       environment_services_data &&
-      environment_services_data["Less Than 8 Blocks Public Transport"].values
-        .response_2
+      environment_services_data.data &&
+      environment_services_data.data["Less Than 8 Blocks Public Transport"]
+        .values.response_2
     ) {
       services = [
         {
           logo: "public-transportation",
           value: numeral(
-            environment_services_data["Less Than 8 Blocks Public Transport"]
-              .values.response_2.percentage,
+            environment_services_data.data[
+              "Less Than 8 Blocks Public Transport"
+            ].values.response_2.percentage,
             locale
           ).format("0.0%"),
           verb: t("Less Than 8 Blocks from"),
@@ -119,8 +147,9 @@ class Services extends Section {
         {
           logo: "educational-center",
           value: numeral(
-            environment_services_data["Less Than 20 Blocks Educational Center"]
-              .values.response_2.percentage,
+            environment_services_data.data[
+              "Less Than 20 Blocks Educational Center"
+            ].values.response_2.percentage,
             locale
           ).format("0.0%"),
           verb: t("Less Than 20 Blocks from"),
@@ -129,7 +158,7 @@ class Services extends Section {
         {
           logo: "health-center",
           value: numeral(
-            environment_services_data["Less Than 20 Blocks Health Center"]
+            environment_services_data.data["Less Than 20 Blocks Health Center"]
               .values.response_2.percentage,
             locale
           ).format("0.0%"),
@@ -139,7 +168,7 @@ class Services extends Section {
         {
           logo: "market",
           value: numeral(
-            environment_services_data["Less Than 20 Blocks Market"].values
+            environment_services_data.data["Less Than 20 Blocks Market"].values
               .response_2.percentage,
             locale
           ).format("0.0%"),
@@ -149,7 +178,7 @@ class Services extends Section {
         {
           logo: "atm",
           value: numeral(
-            environment_services_data["Less Than 20 Blocks Atm"].values
+            environment_services_data.data["Less Than 20 Blocks Atm"].values
               .response_2.percentage,
             locale
           ).format("0.0%"),
@@ -159,7 +188,7 @@ class Services extends Section {
         {
           logo: "sports-center",
           value: numeral(
-            environment_services_data["Less Than 20 Blocks Sports Center"]
+            environment_services_data.data["Less Than 20 Blocks Sports Center"]
               .values.response_2.percentage,
             locale
           ).format("0.0%"),
@@ -169,8 +198,8 @@ class Services extends Section {
         {
           logo: "green-areas",
           value: numeral(
-            environment_services_data["Less Than 20 Blocks Green Areas"].values
-              .response_2.percentage,
+            environment_services_data.data["Less Than 20 Blocks Green Areas"]
+              .values.response_2.percentage,
             locale
           ).format("0.0%"),
           verb: t("Less Than 20 Blocks from"),
@@ -179,8 +208,9 @@ class Services extends Section {
         {
           logo: "community-equipment",
           value: numeral(
-            environment_services_data["Less Than 20 Blocks Community Equipment"]
-              .values.response_2.percentage,
+            environment_services_data.data[
+              "Less Than 20 Blocks Community Equipment"
+            ].values.response_2.percentage,
             locale
           ).format("0.0%"),
           verb: t("Less Than 20 Blocks from"),
@@ -189,8 +219,8 @@ class Services extends Section {
         {
           logo: "pharmacy",
           value: numeral(
-            environment_services_data["Less Than 20 Blocks Pharmacy"].values
-              .response_2.percentage,
+            environment_services_data.data["Less Than 20 Blocks Pharmacy"]
+              .values.response_2.percentage,
             locale
           ).format("0.0%"),
           verb: t("Less Than 20 Blocks from"),
@@ -202,7 +232,12 @@ class Services extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Main services in ") + geo.name}</span>
+          <span>
+            {t("Main services in ")}{" "}
+            {environment_services_data.fallback
+              ? geo.ancestors[0].name
+              : geo.name}
+          </span>
         </h3>
         <div className="info-logo-container">
           {services.length == 0 && <NoDataAvailable text="" />}

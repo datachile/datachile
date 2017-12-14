@@ -2,7 +2,11 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import { simpleDatumNeed } from "helpers/MondrianClient";
+import mondrianClient, {
+  simpleDatumNeed,
+  geoCut
+} from "helpers/MondrianClient";
+
 import { numeral } from "helpers/formatters";
 import { sources } from "helpers/consts";
 
@@ -15,6 +19,7 @@ class EnrollmentSlide extends Section {
       "education_enrollment",
       ["Number of records"],
       {
+        drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false },
         cuts: [
           "Special Education Teachings",
@@ -27,6 +32,7 @@ class EnrollmentSlide extends Section {
       "education_enrollment",
       ["Number of records"],
       {
+        drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false },
         cuts: [
           "[Zone].[Zone].[Zone].&[2]",
@@ -39,18 +45,51 @@ class EnrollmentSlide extends Section {
       "education_enrollment",
       ["Number of records"],
       {
+        drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false },
         cuts: [`[Date].[Date].[Year].&[${sources.education_enrollment.year}]`]
       }
-    )
+    ),
+    (params, store) => {
+      // I did not use simpleDatumNeed because it is a full country query.
+      const geo = { type: "country", key: "chile" };
+      const prm = mondrianClient
+        .cube("education_enrollment")
+        .then(cube => {
+          var q = geoCut(
+            geo,
+            "Geography",
+            cube.query
+              .drilldown("Date", "Date", "Year")
+              .measure("Number of records"),
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Date].[Year].&[${sources.education_enrollment.year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "datum_enrollment_education_country",
+            data: res.data.data[0]["Number of records"]
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
   ];
 
   render() {
     const { children, t, i18n } = this.props;
     const {
+      geo,
       datum_enrollment_education,
       datum_enrollment_special_education,
-      datum_enrollment_rural_education
+      datum_enrollment_rural_education,
+      datum_enrollment_education_country
     } = this.context.data;
 
     const locale = i18n.locale;
@@ -73,6 +112,23 @@ class EnrollmentSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
+              datum={numeral(datum_enrollment_education, locale).format(
+                "(0,0)"
+              )}
+              title={t("Total Students")}
+              subtitle={
+                numeral(
+                  datum_enrollment_education /
+                    datum_enrollment_education_country,
+                  locale
+                ).format("(0.0%)") +
+                t(" of ") +
+                "Chile"
+              }
+            />
+            <FeaturedDatum
+              className="l-1-3"
+              icon="empleo"
               datum={numeral(datum_enrollment_special_education, locale).format(
                 "(0,0)"
               )}
@@ -83,8 +139,8 @@ class EnrollmentSlide extends Section {
                     datum_enrollment_education,
                   locale
                 ).format("(0.0%)") +
-                " " +
-                t("of Total")
+                t(" of ") +
+                geo.caption
               }
             />
             <FeaturedDatum
@@ -99,8 +155,8 @@ class EnrollmentSlide extends Section {
                   datum_enrollment_rural_education / datum_enrollment_education,
                   locale
                 ).format("(0.0%)") +
-                " " +
-                t("of Total")
+                t(" of ") +
+                geo.caption
               }
             />
           </div>

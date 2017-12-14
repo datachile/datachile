@@ -8,6 +8,7 @@ import { COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class SalariesByOccupation extends Section {
   static need = [
@@ -73,6 +74,7 @@ class SalariesByOccupation extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="nesi_income" />
       </div>
     );
   }

@@ -8,6 +8,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral, moneyRangeFormat } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class IncomeByAge extends Section {
   static need = [
@@ -89,6 +90,7 @@ class IncomeByAge extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="nesi_income" />
       </div>
     );
   }

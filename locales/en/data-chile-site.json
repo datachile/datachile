@@ -1,12 +1,12 @@
 {
-	"export_by_product": {
-		"title": "Exports by product",
-		"line1":
-			"In {{latest_year}}, the firms based on {{geo.caption}} exported <i>{{trade_volume}}</i> making it the {{rank}} largest exporter in Chile. ",
-		"line2":
-			"During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. ",
-		"line3":
-			"The most recent exports are led by <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> which represent {{trade_first_share}} of the total exports of {{geo.caption}}, followed by <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a>, which account for {{trade_second_share}} Top Exported Product in {{latest_year}}"
+	"geo_profile": {
+		"trade_slide": {
+			"text":
+				"In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
+		},
+		"income_sex_age_slide": {
+			"text": "Icome by sex and age slide."
+		}
 	},
 
 	"trade_balance": {
@@ -23,5 +23,8 @@
 
 	"tooltip": {
 		"to_profile": "Click to see the full profile"
-	}
+	},
+
+	"no_info":
+		"{{no}} has not data for this topic. The information you are seeing is from {{yes}} region."
 }

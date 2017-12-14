@@ -9,6 +9,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class HealthInsurance extends Section {
   static need = [
@@ -91,6 +92,7 @@ class HealthInsurance extends Section {
           }}
           dataFormat={data => data.data.filter(h => h["ID Health System"] != 0)}
         />
+        <SourceNote cube="casen_health_system" />
       </div>
     );
   }
