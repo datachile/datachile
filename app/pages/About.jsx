@@ -20,11 +20,11 @@ class About extends Component {
     const topics = [
       {
         slug: "background",
-        title: t("Background")
+        title: t("about.background.title")
       },
       {
         slug: "data",
-        title: t("Data Sources")
+        title: t("about.data.title")
       },
       {
         slug: "glossary",
@@ -32,7 +32,7 @@ class About extends Component {
       },
       {
         slug: "teams",
-        title: t("Teams")
+        title: t("Team")
       },
       {
         slug: "acknowledgement",
@@ -67,12 +67,88 @@ class About extends Component {
             </div>
           </div>
 
-          <section className="section">
-            <TopicTitle slug="background">{t("Background")}</TopicTitle>
-            <p className="paragraph">
-              https://docs.google.com/document/d/1iMqwlteoYnR-r5H3JPBu5wSsUM8ncixSGK9YwR6hE3M/edit#
-            </p>
-          </section>
+          <div className="section-container">
+            /* ABOUT */
+            <section className="section" id="background">
+              <h2>{t("about.background.title")}</h2>
+
+              <h3>{t("about.background.subtitle1")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.background.text1")
+                }}
+              />
+
+              <h3>{t("about.background.subtitle2")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.background.text2")
+                }}
+              />
+            </section>
+            /* DATA */
+            <section className="section" id="data">
+              <h2>{t("about.data.title")}</h2>
+
+              <p>{t("about.data.text")}</p>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>{t("about.data.dataset")}</th>
+                    <th>{t("about.data.source")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="#dataset_casen">
+                        Encuesta de Caracterización Socioeconómica Nacional
+                        (CASEN)
+                      </a>
+                    </td>
+                    <td>Instituto Nacional de Estadísticas (INE)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_nene">
+                        Nueva Encuesta Nacional de Empleo (NENE)
+                      </a>
+                    </td>
+                    <td>Instituto Nacional de Estadísticas (INE)</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3 id="dataset_casen">{t("about.data.casen.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.casen.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.casen.use")
+                }}
+              />
+
+              <h3 id="dataset_nene">{t("about.data.nene.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.nene.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.nene.use")
+                }}
+              />
+            </section>
+          </div>
         </div>
       </CanonComponent>
     );
