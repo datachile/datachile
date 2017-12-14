@@ -9,6 +9,7 @@ import { numeral } from "helpers/formatters";
 
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class EmploymentBySex extends Section {
   static need = [
@@ -145,6 +146,7 @@ class EmploymentBySex extends Section {
             return melted;
           }}
         />
+        <SourceNote cube="nene" />
       </div>
     );
   }

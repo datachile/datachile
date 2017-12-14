@@ -9,6 +9,7 @@ import { Section } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ProductSpace extends Section {
   static need = [
@@ -57,6 +58,7 @@ class ProductSpace extends Section {
           }}
           dataFormat={data => data.data.map(d => ({ id: d["ID HS2"], ...d }))}
         />
+        <SourceNote cube="tax_data" />
       </div>
     );
   }

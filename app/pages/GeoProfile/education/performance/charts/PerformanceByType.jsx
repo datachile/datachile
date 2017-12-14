@@ -8,6 +8,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { translate } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 export default translate()(
   class PerformanceByType extends Section {
@@ -83,6 +84,7 @@ export default translate()(
             }}
             dataFormat={data => data.data}
           />
+          <SourceNote cube="education_performance_new" />
         </div>
       );
     }

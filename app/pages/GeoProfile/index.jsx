@@ -687,8 +687,18 @@ class GeoProfile extends Component {
               <div>
                 <IDSpendingCategorySlide>
                   <SectionColumns>
+                    {/*
                     <SpendingByFundingSource className="lost-1-2" />
                     <SpendingByArea className="lost-1-2" />
+                    */}
+                    <Placeholder
+                      className="lost-1-2"
+                      text="RD - Funding Source"
+                    />
+                    <Placeholder
+                      className="lost-1-2"
+                      text="RD - By Knowledge Area"
+                    />
                   </SectionColumns>
                 </IDSpendingCategorySlide>
               </div>

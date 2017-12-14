@@ -13,6 +13,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class PSUResultsBySex extends Section {
   static need = [
@@ -87,10 +88,10 @@ class PSUResultsBySex extends Section {
               });
               return all;
             }, []);
-            console.log(reduced);
             return reduced;
           }}
         />
+        <SourceNote cube="psu" />
       </div>
     );
   }

@@ -7,6 +7,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
 
 class MigrationByEducation extends Section {
@@ -68,6 +69,7 @@ class MigrationByEducation extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }

@@ -9,6 +9,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class Disability extends Section {
   static need = [
@@ -72,6 +73,7 @@ class Disability extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="disabilities" />
       </div>
     );
   }

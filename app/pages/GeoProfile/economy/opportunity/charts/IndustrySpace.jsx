@@ -9,6 +9,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class IndustrySpace extends Section {
   static need = [
@@ -66,6 +67,7 @@ class IndustrySpace extends Section {
             }))
           }
         />
+        <SourceNote cube="tax_data" />
       </div>
     );
   }

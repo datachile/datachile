@@ -8,6 +8,7 @@ import { getTopCategories } from "helpers/dataUtils";
 import { translate } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class PerformanceBySchool extends Section {
   static need = [
@@ -86,6 +87,7 @@ class PerformanceBySchool extends Section {
             getTopCategories(data.data, "Average Score Average (?)")
           }
         />
+        <SourceNote cube="education_performance" />
       </div>
     );
   }

@@ -9,6 +9,7 @@ import { educationLevelColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class EmploymentByLevel extends Section {
   static need = [
@@ -104,6 +105,7 @@ class EmploymentByLevel extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="nene" />
       </div>
     );
   }

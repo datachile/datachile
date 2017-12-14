@@ -71,5 +71,15 @@ export const sources = {
     title: "Rendimiento escolar y PSU - DEMRE",
     url: "http://psu.demre.cl/",
     year: 2016
+  },
+  education_performance: {
+    title: "Rendimiento escolar y PSU - DEMRE",
+    url: "http://psu.demre.cl/",
+    year: 2016
+  },
+  population_estimate: {
+    title: "Estimación de crecimiento poblacional - INE",
+    url: "http://www.ine.cl/estadisticas/demograficas-y-vitales",
+    year: 2017
   }
 };

@@ -12,6 +12,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class DeathCauses extends Section {
   static need = [
@@ -82,6 +83,7 @@ class DeathCauses extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="death_causes" />
       </div>
     );
   }
