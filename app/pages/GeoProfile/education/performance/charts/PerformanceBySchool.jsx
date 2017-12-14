@@ -3,13 +3,10 @@ import { Section } from "datawheel-canon";
 
 import { BarChart } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { ordinalColorScale } from "helpers/colors";
 import { getTopCategories } from "helpers/dataUtils";
 import { translate } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
-import groupBy from "lodash/groupBy";
-import flatten from "lodash/flatten";
 
 class PerformanceBySchool extends Section {
   static need = [

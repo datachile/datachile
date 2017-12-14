@@ -1,6 +1,13 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import _ from "lodash";
+import map from "lodash/map";
+import groupBy from "lodash/groupBy";
+import orderBy from "lodash/orderBy";
+import filter from "lodash/filter";
+import reduce from "lodash/reduce";
+import clone from "lodash/clone";
+import flatMap from "lodash/flatMap";
+
 import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
 
@@ -86,12 +93,12 @@ class MigrationByVisa extends Section {
             var limit = 0;
             var resp = [];
             if (data.data.length > 0) {
-              var grouped = _.map(_.groupBy(data.data, "ID Year"), function(
+              var grouped = map(groupBy(data.data, "ID Year"), function(
                 children,
                 year
               ) {
-                children = _.orderBy(
-                  _.filter(
+                children = orderBy(
+                  filter(
                     children,
                     o =>
                       o["Number of visas"] != null && o["Number of visas"] != 0
@@ -101,15 +108,15 @@ class MigrationByVisa extends Section {
                 );
                 if (children.length > 20) {
                   limit = children[19]["Number of visas"];
-                  var othersCount = _.reduce(
-                    _.filter(children, o => o["Number of visas"] <= limit),
+                  var othersCount = reduce(
+                    filter(children, o => o["Number of visas"] <= limit),
                     (sum, r) => sum + r["Number of visas"],
                     0
                   );
-                  var others = _.clone(children[0]);
+                  var others = clone(children[0]);
                   others["Number of visas"] = othersCount;
                   others["Country"] = t("Others");
-                  children = _.filter(
+                  children = filter(
                     children,
                     o => o["Number of visas"] > limit
                   );
@@ -118,7 +125,7 @@ class MigrationByVisa extends Section {
                 return children;
               });
 
-              resp = _.flatMap(grouped, m => m);
+              resp = flatMap(grouped, m => m);
             }
 
             return resp;

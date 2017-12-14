@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -48,11 +47,4 @@ class MigrationEducationSlide extends Section {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(MigrationEducationSlide)
-);
+export default translate()(MigrationEducationSlide);

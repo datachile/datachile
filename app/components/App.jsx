@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { activateSearch } from "actions/users";
 import Footer from "components/Footer";
 
 import mondrianClient from "helpers/MondrianClient";

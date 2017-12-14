@@ -1,12 +1,13 @@
 import React from "react";
-import _ from "lodash";
+
+import keyBy from "lodash/keyBy";
+import sumBy from "lodash/sumBy";
+
 import { Section } from "datawheel-canon";
-import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import InfoLogoItem from "components/InfoLogoItem";
@@ -59,9 +60,9 @@ class Devices extends Section {
       var prm = Promise.all(prms).then(res => {
         return {
           key: "internet_data",
-          data: _.keyBy(
+          data: keyBy(
             res.map((r, ix) => {
-              const total = _.sumBy(r.data.data, "Expansion factor");
+              const total = sumBy(r.data.data, "Expansion factor");
               const response = r.data.data.map(rr => {
                 rr["total"] = total;
                 rr["percentage"] = rr["Expansion factor"] / total;
@@ -70,7 +71,7 @@ class Devices extends Section {
               return {
                 key: devices[ix],
                 expansion_factor_total: total,
-                values: _.keyBy(response, function(o) {
+                values: keyBy(response, function(o) {
                   return "response_" + o["ID Binary Survey Response"];
                 })
               };
@@ -164,7 +165,7 @@ class Devices extends Section {
           <span>{t("Devices' use in ") + geoChartName}</span>
         </h3>
         <div className="info-logo-container">
-          {devices.map(d => <InfoLogoItem item={d} />)}
+          {devices.map((d, i) => <InfoLogoItem key={i} item={d} />)}
         </div>
         <SourceNote cube="internet_access" />
       </div>

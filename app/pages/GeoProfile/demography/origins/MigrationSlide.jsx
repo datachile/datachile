@@ -108,7 +108,6 @@ class MigrationSlide extends Section {
 export default translate()(
   connect(
     state => ({
-      data: state.data,
       immigration_year: state.sources.immigration.year
     }),
     {}

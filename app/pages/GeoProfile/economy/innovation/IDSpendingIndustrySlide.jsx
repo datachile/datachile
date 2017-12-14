@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
+import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -12,7 +10,7 @@ class IDSpendingCategorySlide extends Section {
   render() {
     const { children, t } = this.props;
     const geo = this.context.data.geo;
-    
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -60,11 +58,4 @@ class IDSpendingCategorySlide extends Section {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(IDSpendingCategorySlide)
-);
+export default translate()(IDSpendingCategorySlide);

@@ -25,8 +25,6 @@ import SvgImage from "components/SvgImage";
 import AuthoritiesBlock from "components/AuthoritiesBlock";
 import TopicMenu from "components/TopicMenu";
 import Topic from "components/Topic";
-import LoadingWithProgress from "components/LoadingWithProgress";
-
 import Placeholder from "components/Placeholder";
 
 /*Economy*/
@@ -370,12 +368,7 @@ class GeoProfile extends Component {
     }
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<LoadingWithProgress />}
-      >
+      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
         <div className="profile">
           <div className="intro">
             {geo &&

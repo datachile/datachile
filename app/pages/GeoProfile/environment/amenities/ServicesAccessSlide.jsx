@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
+import sum from "lodash/sum";
 
 import { sources } from "helpers/consts";
 import mondrianClient, {
@@ -69,7 +69,7 @@ class ServicesAccessSlide extends Section {
       ? geo.ancestors[0].caption
       : geo.caption;
 
-    const total_network_electricity = _.sum(
+    const total_network_electricity = sum(
       datum_network_electricity_households.data
     );
 
@@ -130,11 +130,4 @@ class ServicesAccessSlide extends Section {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(ServicesAccessSlide)
-);
+export default translate()(ServicesAccessSlide);

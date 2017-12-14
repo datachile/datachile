@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import _ from "lodash";
+import values from "lodash/values";
 import { translate } from "react-i18next";
 import { LinePlot } from "d3plus-react";
 
@@ -87,7 +87,7 @@ class TradeBalance extends Section {
               "Trade Balance": t("trade_balance.trade_balance")
             };
             data.data = replaceKeyNames(data.data, tKeys);
-            return melt(data.data, ["ID Year"], _.values(tKeys));
+            return melt(data.data, ["ID Year"], values(tKeys));
           }}
         />
       </div>

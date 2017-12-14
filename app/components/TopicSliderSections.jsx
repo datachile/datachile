@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import _ from "lodash";
-import { Link } from "react-router";
-import Slider from "react-slick";
+import find from "lodash/find";
+
 import "./TopicSliderSections.css";
 
 class TopicSliderSections extends Component {
   render() {
     const { name, sections, selected, goTo } = this.props;
 
-    const selectedSection = _.find(sections, function(s) {
-      return _.find(s.slides, function(slid) {
+    const selectedSection = find(sections, function(s) {
+      return find(s.slides, function(slid) {
         return slid.ix == selected;
       });
     });
