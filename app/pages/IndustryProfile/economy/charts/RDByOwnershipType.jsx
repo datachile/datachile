@@ -75,6 +75,12 @@ class RDByOwnershipType extends Section {
             label: d => d["Ownership Type"],
             sum: d => d["Total Spending"],
             time: "ID Year",
+            total: d => d["Total Spending"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+            },
             shapeConfig: {
               fill: d => RDTypesColorScale("ot" + d["ID Ownership Type"])
             },

@@ -76,6 +76,12 @@ class OutputByLocation extends Section {
               d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
             sum: d => d["Output"],
             time: "ID Year",
+            total: d => d["Output"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+            },
             shapeConfig: {
               fill: d => regionsColorScale("r" + d["ID Region"])
             },

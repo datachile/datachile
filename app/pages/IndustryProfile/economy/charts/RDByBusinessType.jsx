@@ -75,6 +75,12 @@ class RDByBusinessType extends Section {
             label: d => d["Business Type"],
             sum: d => d["Total Spending"],
             time: "ID Year",
+            total: d => d["Total Spending"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+            },
             shapeConfig: {
               fill: d => RDTypesColorScale("r" + d["ID Business Type"])
             },
