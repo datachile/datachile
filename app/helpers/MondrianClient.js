@@ -113,10 +113,11 @@ function simpleGeoChartNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  { drillDowns = [], options = {}, cuts = [] },
+  overrideGeo = false
 ) {
   return (params, store) => {
-    const geo = getGeoObject(params);
+    const geo = overrideGeo ? overrideGeo : getGeoObject(params);
 
     const prm = client.cube(cube).then(cube => {
       const q = cube.query;

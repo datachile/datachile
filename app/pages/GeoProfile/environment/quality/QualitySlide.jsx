@@ -114,8 +114,6 @@ class QualitySlide extends Section {
         ? geo.ancestors[0].caption
         : geo.caption;
 
-    console.log(datum_rural_households);
-
     const locale = i18n.locale;
 
     return (
