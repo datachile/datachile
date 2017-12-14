@@ -92,6 +92,7 @@ class InternationalTradeSlide extends Section {
     const locale = i18n.locale;
 
     const text_product = {
+      product: this.context.data.product,
       year: {
         number: 2015 - 2002,
         first: 2002,
