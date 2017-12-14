@@ -23,12 +23,16 @@ export const sources = {
   },
   tax_data: {
     title: "Servicio de Impuestos Internos",
-    url: "http://homer.sii.cl/"
+    url: "http://homer.sii.cl/",
+    first_year: 2005,
+    last_year: 2015
   },
   rd_survey: {
     title: "Ministerio de Economía, Fomento y Turismo",
     url:
-      "http://www.economia.gob.cl/estudios-y-encuestas/encuestas/encuestas-de-innovacion-e-id/encuestas-de-innovacion"
+      "http://www.economia.gob.cl/estudios-y-encuestas/encuestas/encuestas-de-innovacion-e-id/encuestas-de-innovacion",
+    first_year: 2009,
+    last_year: 2014
   },
   nesi_income: {
     title: "Encuesta Suplementaria de Ingresos — INE",

@@ -145,6 +145,49 @@ function simpleGeoChartNeed(
   };
 }
 
+function simpleIndustryChartNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const industry = getLevelObject(params);
+    industry.level2 = false;
+    const prm = client.cube(cube).then(cube => {
+      const q = cube.query;
+      measures.forEach(m => {
+        q.measure(m);
+      });
+      drillDowns.forEach(([...dd]) => {
+        q.drilldown(...dd);
+      });
+      Object.entries(options).forEach(([k, v]) => q.option(k, v));
+      cuts.forEach(c => q.cut(c));
+
+      return {
+        key: key,
+        data:
+          store.env.CANON_API +
+          levelCut(
+            industry,
+            "ISICrev4",
+            "ISICrev4",
+            q,
+            "Level 1",
+            "Level 2",
+            store.i18n.locale
+          ).path("jsonrecords")
+      };
+    });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 function simpleDatumNeed(
   key,
   cube,
@@ -264,6 +307,54 @@ function simpleFallbackGeoDatumNeed(
   };
 }
 
+function simpleIndustryDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    var industry = getLevelObject(params);
+    industry.level2 = false;
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = cube.query;
+
+        measures.forEach(m => {
+          q.measure(m);
+        });
+        drillDowns.forEach(([...dd]) => {
+          q.drilldown(...dd);
+        });
+        Object.entries(options).forEach(([k, v]) => q.option(k, v));
+        cuts.forEach(c => q.cut(c));
+
+        var query = levelCut(
+          industry,
+          "ISICrev4",
+          "ISICrev4",
+          q,
+          "Level 1",
+          "Level 2",
+          store.i18n.locale
+        );
+        return client.query(query);
+      })
+      .then(res => {
+        return {
+          key: key,
+          data: flattenDeep(res.data.values)
+        };
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 function simpleCountryDatumNeed(
   key,
   cube,
@@ -322,8 +413,10 @@ export {
   setLangCaptions,
   getMeasureByGeo,
   simpleGeoChartNeed,
+  simpleIndustryChartNeed,
   simpleDatumNeed,
   simpleFallbackGeoDatumNeed,
-  simpleCountryDatumNeed
+  simpleCountryDatumNeed,
+  simpleIndustryDatumNeed
 };
 export default client;
