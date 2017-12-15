@@ -10,15 +10,31 @@ class MigrationActivitySlide extends Section {
   render() {
     const { children, t } = this.props;
 
+    const { country } = this.context.data;
+
+    const txt_slide = t("country_profile.migration_activity_slide.text", {
+      level: country.caption,
+      visa_type: {
+        first: "VISA_TYPE_FIRST",
+        second: "VISA_TYPE_SECOND",
+        percent: "VISA_TYPE_PERCENT"
+      },
+      first_occupation: {
+        name: "FIRST_OCCUPATION_NAME",
+        percent: "FIRST_OCCUPATION_PERCENT",
+        growth: "FIRST_OCCUPATION_GROWTH"
+      },
+      unoccupied_percent: "unoccupied_percent".toUpperCase(),
+      unknown_percent: "unknown_percent".toUpperCase()
+    });
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Migration")}</div>
           <div
             className="topic-slide-text"
-            dangerouslySetInnerHTML={{
-              __html: t("country_profile.migration_activity_slide.text")
-            }}
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
             <FeaturedDatum

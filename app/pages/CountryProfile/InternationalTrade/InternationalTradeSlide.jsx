@@ -10,6 +10,8 @@ import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
+const last_year = sources.exports_and_imports.year;
+
 class InternationalTradeSlide extends Section {
   static need = [
     function datumImportsNeed(params, store) {
@@ -101,8 +103,28 @@ class InternationalTradeSlide extends Section {
   render() {
     const { children, t } = this.props;
 
-    const trade_import = this.context.data.datum_trade_import;
-    const trade_export = this.context.data.datum_trade_export;
+    const {
+      country,
+      datum_trade_import,
+      datum_trade_export
+    } = this.context.data;
+
+    const txt_slide = t("country_profile.intltrade_slide.text", {
+      level: country.caption,
+      year_latest: last_year,
+      main_import: {
+        name: "name".toUpperCase(),
+        local_percent: "local_percent".toUpperCase(),
+        global_percent: "global_percent".toUpperCase(),
+        total_percent: "total_percent".toUpperCase()
+      },
+      main_export: {
+        name: "name".toUpperCase(),
+        local_percent: "local_percent".toUpperCase(),
+        global_percent: "global_percent".toUpperCase(),
+        total_percent: "total_percent".toUpperCase()
+      }
+    });
 
     return (
       <div className="topic-slide-block">
@@ -110,25 +132,27 @@ class InternationalTradeSlide extends Section {
           <div className="topic-slide-title">{t("Imports & Exports")}</div>
           <div
             className="topic-slide-text"
-            dangerouslySetInnerHTML={{
-              __html: t("country_profile.intltrade_slide.text")
-            }}
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
 
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-2"
               icon="product-import"
-              datum={trade_import.max["HS2"]}
+              datum={datum_trade_import.max["HS2"]}
               title={t("Main imported product")}
-              subtitle={`${trade_import.percentage} - ${trade_import.year}`}
+              subtitle={`${datum_trade_import.percentage} - ${
+                datum_trade_import.year
+              }`}
             />
             <FeaturedDatum
               className="l-1-2"
               icon="product-export"
-              datum={trade_export.max["HS2"]}
+              datum={datum_trade_export.max["HS2"]}
               title={t("Main exported product")}
-              subtitle={`${trade_export.percentage} - ${trade_export.year}`}
+              subtitle={`${datum_trade_export.percentage} - ${
+                datum_trade_export.year
+              }`}
             />
           </div>
         </div>

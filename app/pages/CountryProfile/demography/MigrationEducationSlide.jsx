@@ -10,15 +10,29 @@ class MigrationEducationSlide extends Section {
   render() {
     const { children, t } = this.props;
 
+    const { country } = this.context.data;
+
+    const txt_slide = t("country_profile.migration_education_slide.text", {
+      level: country.caption,
+      high: {
+        percent: "HIGH_PERCENT",
+        growth: "HIGH_GROWTH"
+      },
+      college: {
+        percent: "COLLEGE_PERCENT",
+        growth: "COLLEGE_GROWTH"
+      },
+      percent_noop: "percent_noop".toUpperCase(),
+      percent_unknown: "percent_unknown".toUpperCase()
+    });
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Migration")}</div>
           <div
             className="topic-slide-text"
-            dangerouslySetInnerHTML={{
-              __html: t("country_profile.migration_education_slide.text")
-            }}
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
             <FeaturedDatum

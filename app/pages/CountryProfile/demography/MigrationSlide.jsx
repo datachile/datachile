@@ -44,11 +44,25 @@ class MigrationSlide extends Section {
 
   render() {
     const { children, t, i18n } = this.props;
+    const locale = i18n.locale;
+
     const {
+      country,
       datum_migration_origin,
       datum_migration_origin_female
     } = this.context.data;
-    const locale = i18n.locale;
+
+    const txt_slide = t("country_profile.migration_slide.text", {
+      level: country.caption,
+      year_latest: "year_latest".toUpperCase(),
+      destination: {
+        region: "destination.region".toUpperCase(),
+        municipality: "destination.municipality".toUpperCase(),
+        mun_percent: "destination.mun_percent".toUpperCase(),
+        reg_percent: "destination.reg_percent".toUpperCase(),
+        mun_growth: "destination.mun_growth".toUpperCase()
+      }
+    });
 
     return (
       <div className="topic-slide-block">
@@ -56,9 +70,7 @@ class MigrationSlide extends Section {
           <div className="topic-slide-title">{t("Migration")}</div>
           <div
             className="topic-slide-text"
-            dangerouslySetInnerHTML={{
-              __html: t("country_profile.migration_slide.text")
-            }}
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
             <FeaturedDatum

@@ -10,6 +10,28 @@ class InternationalTradeBalanceSlide extends Section {
   render() {
     const { children, t } = this.props;
 
+    const { country } = this.context.data;
+
+    const txt_slide = t("country_profile.intltrade_balance_slide.text", {
+      level: country.caption,
+      year: {
+        first: "year.first".toUpperCase(),
+        last: "year.last".toUpperCase()
+      },
+      import: {
+        growth: "import.growth".toUpperCase(),
+        direction: "import.direction".toUpperCase(),
+        volume_first: "import.volume_first".toUpperCase(),
+        volume_last: "import.volume_last".toUpperCase()
+      },
+      export: {
+        growth: "export.growth".toUpperCase(),
+        direction: "export.direction".toUpperCase(),
+        volume_first: "export.volume_first".toUpperCase(),
+        volume_last: "export.volume_last".toUpperCase()
+      }
+    });
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -18,9 +40,7 @@ class InternationalTradeBalanceSlide extends Section {
           </div>
           <div
             className="topic-slide-text"
-            dangerouslySetInnerHTML={{
-              __html: t("country_profile.intltrade_balance_slide.text")
-            }}
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
 
           <div className="topic-slide-data">
