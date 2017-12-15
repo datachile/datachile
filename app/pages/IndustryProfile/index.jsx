@@ -194,6 +194,7 @@ class IndustryProfile extends Component {
     const { industry } = this.props.routeParams;
 
     const obj = this.props.data.industry;
+    const industryImg = obj ? (obj.depth === 1 ? obj.key : obj.parent.key) : "";
 
     const locale = i18n.locale;
 
@@ -273,7 +274,7 @@ class IndustryProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
+                  backgroundImage: `url('/images/profile-bg/industry/${industryImg.toLowerCase()}.jpg')`
                 }}
               />
               <div className="gradient" />

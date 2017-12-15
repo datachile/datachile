@@ -59,22 +59,33 @@ class RDSlide extends Section {
       industry.depth === 1 ? industry.name : industry.parent.name;
 
     const locale = i18n.locale;
+
+    const text_rd = {
+      year: sources.rd_survey.last_year,
+      industry: {
+        name: industryName,
+        exports: numeral(datum_industry_rd_exports, locale).format("$ 0.0 a"),
+        spending: numeral(
+          datum_industry_rd_spending[datum_industry_rd_spending.length - 1],
+          locale
+        ).format("$ 0.0 a")
+      }
+    };
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Research & Development")}</div>
           <div className="topic-slide-text">
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              hendrerit tempor tellus. Donec pretium posuere tellus. Proin quam
-              nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus.
-            </p>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("industry_profile.r&d", text_rd)
+              }}
+            />
           </div>
 
           <div className="topic-slide-data">
-          <FeaturedDatum
+            <FeaturedDatum
               className="l-1-3"
               icon="industria"
               datum={numeral(datum_industry_rd_exports, locale).format(

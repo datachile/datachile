@@ -22,7 +22,8 @@
 	},
 
 	"industry_profile": {
-		"r&d": ""
+		"economy": "",
+		"r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>"
 	},
 
 	"tooltip": {
