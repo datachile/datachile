@@ -4,13 +4,20 @@ import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import { recentChampionsBy } from "helpers/aggregations";
-import mondrianClient, { levelCut } from "helpers/MondrianClient";
+import { onlyMostRecent, championsBy } from "helpers/aggregations";
+import { sources } from "helpers/consts";
 import { getLevelObject } from "helpers/dataUtils";
+import mondrianClient, { levelCut } from "helpers/MondrianClient";
+
+const last_year = sources.exports_and_imports.year;
+const groupingKey = (a, b, c) => {
+  if (a.Region == b.Region) return b.Region == c.Region ? "3" : "21";
+  else return b.Region == c.Region ? "12" : "";
+};
 
 class InternationalTradeOriginDestinationSlide extends Section {
   static need = [
-    function slideImport(params, store) {
+    function slideImportDestinations(params, store) {
       const country = getLevelObject(params);
 
       const prm = mondrianClient
@@ -22,8 +29,8 @@ class InternationalTradeOriginDestinationSlide extends Section {
             "Country",
             cube.query
               .option("parents", true)
-              .drilldown("Date", "Year")
               .drilldown("Geography", "Comuna")
+              .cut(`[Date].[Date].[Year].&[${last_year}]`)
               .measure("CIF US"),
             "Subregion",
             "Country",
@@ -33,24 +40,63 @@ class InternationalTradeOriginDestinationSlide extends Section {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          const { first, second, third } = recentChampionsBy(
-            recent_data,
-            "CIF US"
-          );
-          console.log(first, second, third);
+          const { first, second, third } = championsBy(res.data.data, "CIF US");
 
-          // if (first["ID Comuna"])
           return {
             key: "slide_country_trade_destination",
             data: {
-              // grouping: groupKeyByAdministration(first, second, third),
-              grouping: "21",
-              first_municipality: "",
-              first_region: "",
-              second_municipality: "",
-              second_region: "",
-              third_municipality: "",
-              third_region: ""
+              grouping: groupingKey(first, second, third),
+              first_municipality: first.Comuna,
+              first_region: first.Region,
+              second_municipality: second.Comuna,
+              second_region: second.Region,
+              third_municipality: third.Comuna,
+              third_region: third.Region
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    function slideExportOrigins(params, store) {
+      const country = getLevelObject(params);
+
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          const q = levelCut(
+            country,
+            "Destination Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Geography", "Comuna")
+              .cut(`[Date].[Date].[Year].&[${last_year}]`)
+              .measure("FOB US"),
+            "Subregion",
+            "Country",
+            store.i18n.locale,
+            false
+          );
+
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          const { first, second, third } = championsBy(res.data.data, "FOB US");
+
+          return {
+            key: "slide_country_trade_origin",
+            data: {
+              grouping: groupingKey(first, second, third),
+              first_municipality: first.Comuna,
+              first_region: first.Region,
+              second_municipality: second.Comuna,
+              second_region: second.Region,
+              third_municipality: third.Comuna,
+              third_region: third.Region
             }
           };
         });
@@ -65,7 +111,11 @@ class InternationalTradeOriginDestinationSlide extends Section {
   render() {
     const { children, t } = this.props;
 
-    const { country, slide_country_trade_destination } = this.context.data;
+    const {
+      country,
+      slide_country_trade_destination,
+      slide_country_trade_origin
+    } = this.context.data;
 
     const txt_slide =
       t("country_profile.intltrade_origin_dest_slide.import", {
@@ -74,16 +124,9 @@ class InternationalTradeOriginDestinationSlide extends Section {
         destination: slide_country_trade_destination
       }) +
       t("country_profile.intltrade_origin_dest_slide.export", {
-        context: "3",
+        context: slide_country_trade_origin.grouping,
         level: country.caption,
-        origin: {
-          first_municipality: "",
-          first_region: "",
-          second_municipality: "",
-          second_region: "",
-          third_municipality: "",
-          third_region: ""
-        }
+        origin: slide_country_trade_origin
       });
 
     return (

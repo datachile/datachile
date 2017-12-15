@@ -120,11 +120,11 @@
       "export":
         "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
       "export_21":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y a la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
       "export_12":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
       "export_3":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>"
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde {{origin.first_region}}, donde destacan las comunas de {{origin.first_municipality}}, {{origin.second_municipality}} y {{origin.third_municipality}}.</p>"
     },
     "intltrade_balance_slide": {
       "text":
@@ -139,11 +139,13 @@
   },
 
   "product_profile": {
-		"about1": "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
-		"about2": "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
-		"balance": "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
-	},
-
+    "about1":
+      "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
+    "about2":
+      "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
+    "balance":
+      "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
+  },
 
   "Exports by Destination": "Exportación por destino",
   "Imports by Origin Country": "Importación por país de origen",
