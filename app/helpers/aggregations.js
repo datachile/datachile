@@ -228,11 +228,21 @@ function championsBy(collection, iteratee) {
   return { first: sorted.pop(), second: sorted.pop(), third: sorted.pop() };
 }
 
+function accumulated_growth(aggregation, locale = "en") {
+  if (aggregation) {
+    return numeral(
+      Math.log(aggregation[aggregation.length - 1] / aggregation[0]),
+      locale
+    ).format("0.0 %");
+  }
+}
+
 export {
   info_from_data,
   maxMinGrowthByYear,
   onlyMostRecent,
   championsBy,
   trade_balance_text,
+  accumulated_growth,
   trade_by_time_and_product
 };

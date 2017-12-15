@@ -494,19 +494,19 @@ class CountryProfile extends Component {
                 </MigrationDetailsSlide>
               </div>
               <div>
+                <MigrationEducationSlide>
+                  <SectionColumns>
+                    <MigrationByEducation className="lost-1" />
+                  </SectionColumns>
+                </MigrationEducationSlide>
+              </div>
+              <div>
                 <MigrationActivitySlide>
                   <SectionColumns>
                     <MigrationByVisa className="lost-1-2" />
                     <MigrationByActivity className="lost-1-2" />
                   </SectionColumns>
                 </MigrationActivitySlide>
-              </div>
-              <div>
-                <MigrationEducationSlide>
-                  <SectionColumns>
-                    <MigrationByEducation className="lost-1" />
-                  </SectionColumns>
-                </MigrationEducationSlide>
               </div>
             </Topic>
             <Topic
