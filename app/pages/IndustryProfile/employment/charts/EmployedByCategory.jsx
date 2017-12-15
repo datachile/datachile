@@ -3,7 +3,7 @@ import { Section } from "datawheel-canon";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import { employmentColorScale } from "helpers/colors";
+import { ordinalColorScale } from "helpers/colors";
 
 import { numeral } from "helpers/formatters";
 import { simpleIndustryChartNeed } from "helpers/MondrianClient";
@@ -55,16 +55,22 @@ class EmployedByCategory extends Section {
             },
             shapeConfig: {
               Line: {
-                stroke: d => employmentColorScale(d["ICSE"]),
+                stroke: d => ordinalColorScale(d["ICSE"]),
                 strokeWidth: 2
               }
             },
-            tooltipConfig: {
+            /*tooltipConfig: {
               title: d => d["Month"],
               body: d =>
                 numeral(d["Expansion factor"], locale).format("(0 a)") +
                 " " +
                 t("people")
+            },*/
+            legendConfig: {
+              shapeConfig: {
+                width: 20,
+                height: 20
+              }
             }
           }}
           dataFormat={data => {

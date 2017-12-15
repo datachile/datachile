@@ -21,6 +21,10 @@
 		"balance": "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
 	},
 
+	"industry_profile": {
+		"r&d": ""
+	},
+
 	"tooltip": {
 		"to_profile": "Click to see the full profile"
 	},

@@ -33,7 +33,7 @@ import RDByOwnershipType from "./economy/charts/RDByOwnershipType";
 
 import OccupationSlide from "./employment/OccupationSlide";
 import EmployedByCategory from "./employment/charts/EmployedByCategory";
-import EmployedBySex from "./employment/charts/EmployedBySex";
+import EmployedByEducation from "./employment/charts/EmployedByEducation";
 
 import SalariesSlide from "./employment/SalariesSlide";
 
@@ -174,7 +174,7 @@ class IndustryProfile extends Component {
     InvestmentByLocation,
 
     EmployedByCategory,
-    EmployedBySex,
+    EmployedByEducation,
 
     RDSlide,
     RDByOwnershipType,
@@ -425,7 +425,7 @@ class IndustryProfile extends Component {
               <div>
                 <OccupationSlide>
                   <SectionColumns>
-                    <EmployedBySex className="lost-1-2" />
+                    <EmployedByEducation className="lost-1-2" />
                     <EmployedByCategory className="lost-1-2" />
                   </SectionColumns>
                 </OccupationSlide>
