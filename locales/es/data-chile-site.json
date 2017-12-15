@@ -86,19 +86,19 @@
     "about2": "",
     "migration_slide": {
       "text":
-        "<p>Para el {{year_latest}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, específicamente en la comunas de {{destination.municipality}}.</p><p>Los inmigrantes en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al período anterior, el crecimiento en visas de inmigración hacia {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
+        "<p>Para el {{year_latest}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, principalmente en la comuna de {{destination.municipality}}.</p><p>Los inmigrantes de {{level}} en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al {{year_previous}}, el crecimiento en visas de inmigración de gente establecida en {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
     },
     "migration_details_slide": {
       "tendency_stay":
         ", lo cual es una tendencia desde el año {{year_first}}, con un crecimiento de un {{sex.growth}}",
       "tendency_change":
-        ", lo cual representa una variación respecto al año {{year_first}}, donde la mayoría era de sexo {{sex.before}}",
+        ", lo cual ha sido la tendencia desde el año {{year_first}}, donde la mayoría era de sexo {{sex.before}}",
       "text":
         "<p>De los inmigrantes que llegan desde {{level}}, la mayoría son de sexo {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{agerange.first}}, seguidos de gente en el rango {{agerange.second}}. Los primeros representan un {{agerange.first_percent}} del total en {{year_latest}}, lo cual se traduce en un crecimiento de {{agerange.first_growth}} respecto al año {{year_previous}}.</p>"
     },
     "migration_activity_slide": {
       "text":
-        "<p>Según los registros, la mayoría de los inmigrantes provenientes desde {{level}} vienen con una Visa {{visa_type.first}} o una Visa {{visa_type.second}}. Estos representan un {{visa_type.percent}} del total de inmigrantes.</p><p>El {{first_occupation.percent}} de los inmigrantes desde {{level}} declara que trabaja como {{first_occupation.name}}. Esto representa un crecimiento del {{first_occupation.growth}}. Por otro lado, el {{activity.unoccupied_percent}} declara no trabajar en alguna actividad, y el {{activity.unknown_percent}} no declara una actividad formal.</p>"
+        "<p>Según los registros, la mayoría de los inmigrantes provenientes desde {{level}} vienen con una Visa {{visa_type.first}} o una Visa {{visa_type.second}}. Estos representan un {{visa_type.percent}} del total de inmigrantes.</p><p>Para el {{year_last}}, el {{first_occupation.percent}} de los inmigrantes desde {{level}} declara que trabaja como {{first_occupation.name}}. Esto representa un crecimiento del {{first_occupation.growth}} con respecto al año {{year_prev}}. Por otro lado, el {{activity.unoccupied_percent}} declara no trabajar en alguna actividad, y el {{activity.unknown_percent}} no declara una actividad formal.</p>"
     },
     "migration_education_slide": {
       "text":
