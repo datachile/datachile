@@ -59,13 +59,13 @@ class EmployedByCategory extends Section {
                 strokeWidth: 2
               }
             },
-            /*tooltipConfig: {
-              title: d => d["Month"],
+            tooltipConfig: {
+              title: d => d["ICSE"],
               body: d =>
                 numeral(d["Expansion factor"], locale).format("(0 a)") +
                 " " +
                 t("people")
-            },*/
+            },
             legendConfig: {
               shapeConfig: {
                 width: 20,

@@ -20,6 +20,16 @@ class RDSlide extends Section {
       }
     ),
     simpleIndustryDatumNeed(
+      "datum_industry_rd_exports",
+      "rd_survey",
+      ["exports"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        cuts: [`[Date].[Date].[Year].&[${sources.rd_survey.last_year}]`],
+        options: { parents: false }
+      }
+    ),
+    simpleIndustryDatumNeed(
       "datum_industry_rd_sales_last_year",
       "rd_survey",
       ["sales"],
@@ -35,6 +45,7 @@ class RDSlide extends Section {
     const { t, i18n, children } = this.props;
     const {
       datum_industry_rd_spending,
+      datum_industry_rd_exports,
       datum_industry_rd_sales_last_year,
       industry
     } = this.context.data;
@@ -63,6 +74,15 @@ class RDSlide extends Section {
           </div>
 
           <div className="topic-slide-data">
+          <FeaturedDatum
+              className="l-1-3"
+              icon="industria"
+              datum={numeral(datum_industry_rd_exports, locale).format(
+                "$ 0.0 a"
+              )}
+              title={t("Exports in ") + industryName}
+              subtitle={`During ${sources.rd_survey.last_year}`}
+            />
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
@@ -80,13 +100,6 @@ class RDSlide extends Section {
               subtitle={`${sources.rd_survey.first_year} - ${
                 sources.rd_survey.last_year
               }`}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={"xxx k"}
-              title={t("Lorem Datum")}
-              subtitle="XXXX - YYYY"
             />
           </div>
         </div>

@@ -2,13 +2,67 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
+import { sources } from "helpers/consts";
+import { numeral } from "helpers/formatters";
+
 import FeaturedDatum from "components/FeaturedDatum";
 
 class OccupationSlide extends Section {
-  static need = [];
+  static need = [
+    simpleIndustryDatumNeed(
+      "datum_industry_occupation_growth",
+      "nene",
+      ["Expansion factor"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false }
+      }
+    ),
+    simpleIndustryDatumNeed(
+      "datum_industry_occupation_total",
+      "nene",
+      ["Expansion factor"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        cuts: [`[Date].[Date].[Year].&[${sources.nene.last_year}]`],
+        options: { parents: false }
+      }
+    ),
+    simpleIndustryDatumNeed(
+      "datum_industry_occupation_female_total",
+      "nene",
+      ["Expansion factor"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        cuts: [
+          `[Date].[Date].[Year].&[${sources.nene.last_year}]`,
+          "[Sex].[Sex].[Sex].&[1]"
+        ],
+        options: { parents: false }
+      }
+    )
+  ];
 
   render() {
-    const { children, t } = this.props;
+    const { t, i18n, children } = this.props;
+    const {
+      datum_industry_occupation_total,
+      datum_industry_occupation_female_total,
+      datum_industry_occupation_growth,
+      industry
+    } = this.context.data;
+
+    const growth = Math.log(
+      datum_industry_occupation_growth[
+        datum_industry_occupation_growth.length - 1
+      ] / datum_industry_occupation_growth[0]
+    );
+
+    const industryName =
+      industry.depth === 1 ? industry.name : industry.parent.name;
+
+    const locale = i18n.locale;
 
     return (
       <div className="topic-slide-block">
@@ -28,23 +82,31 @@ class OccupationSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"434k"}
-              title={t("Lorem Datum")}
-              subtitle="XXXX - YYYY"
+              datum={numeral(datum_industry_occupation_total, locale).format(
+                "0,0"
+              )}
+              title={t("Employees in ") + industryName}
+              subtitle={`During ${sources.nene.last_year}`}
             />
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"434k"}
-              title={t("Lorem Datum")}
-              subtitle="XXXX - YYYY"
+              datum={numeral(
+                datum_industry_occupation_female_total /
+                  datum_industry_occupation_total,
+                locale
+              ).format("0.0 %")}
+              title={t("Female percent in ") + industryName}
+              subtitle={`During ${sources.nene.last_year}`}
             />
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"4343k"}
-              title={t("Lorem Datum")}
-              subtitle="XXXX - YYYY"
+              datum={numeral(growth, locale).format("0.0 %")}
+              title={t("Employment growth")}
+              subtitle={`${sources.nene.first_year} - ${
+                sources.nene.last_year
+              }`}
             />
           </div>
         </div>

@@ -63,7 +63,9 @@ class EmployedByEducation extends Section {
               }
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={data => {
+            return data.data.filter(item => item.Year !== "2017");
+          }}
         />
         <SourceNote cube="nene" />
       </div>
