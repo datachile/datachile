@@ -2,14 +2,11 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
-import { numeral, slugifyItem } from "helpers/formatters";
-import mondrianClient, {
-  simpleIndustryChartNeed,
-  levelCut
-} from "helpers/MondrianClient";
-import { getLevelObject } from "helpers/dataUtils";
+import { employmentColorScale } from "helpers/colors";
+
+import { numeral } from "helpers/formatters";
+import { simpleIndustryChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -21,8 +18,7 @@ class EmployedByCategory extends Section {
       "nene",
       ["Expansion factor"],
       {
-        drillDowns: [["Date", "Date", "Year"], ["ICSE", "ICSE", "ICSE"]],
-        options: { parents: false }
+        drillDowns: [["ICSE", "ICSE", "ICSE"], ["Quaterly Reporting"]]
       }
     )
   ];
@@ -30,8 +26,6 @@ class EmployedByCategory extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_industry_employed_by_category;
-    console.log(this.context.data)
-    const industry = this.context.data.industry;
 
     const locale = i18n.locale;
 
@@ -46,8 +40,11 @@ class EmployedByCategory extends Section {
             height: 500,
             data: path,
             groupBy: "ICSE",
-            x: "ID Year",
+            x: "Month",
             y: "Expansion factor",
+            time: "Month",
+            timeline: false,
+            scale: "time",
             xConfig: {
               tickSize: 0,
               title: false
@@ -58,12 +55,21 @@ class EmployedByCategory extends Section {
             },
             shapeConfig: {
               Line: {
-                //stroke: d => tradeBalanceColorScale(d["variable"]),
+                stroke: d => employmentColorScale(d["ICSE"]),
                 strokeWidth: 2
               }
+            },
+            tooltipConfig: {
+              title: d => d["Month"],
+              body: d =>
+                numeral(d["Expansion factor"], locale).format("(0 a)") +
+                " " +
+                t("people")
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={data => {
+            return data.data.filter(item => item.Month !== "2016/12");
+          }}
         />
         <SourceNote cube="nene" />
       </div>
