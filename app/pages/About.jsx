@@ -102,20 +102,77 @@ class About extends Component {
                 <tbody>
                   <tr>
                     <td>
-                      <a href="#dataset_casen">
-                        Encuesta de Caracterización Socioeconómica Nacional
-                        (CASEN)
-                      </a>
+                      <a href="#dataset_casen">{t("about.data.casen.title")}</a>
                     </td>
-                    <td>Instituto Nacional de Estadísticas (INE)</td>
+                    <td>{t("about.data.casen.source")}</td>
                   </tr>
                   <tr>
                     <td>
-                      <a href="#dataset_nene">
-                        Nueva Encuesta Nacional de Empleo (NENE)
+                      <a href="#dataset_nene">{t("about.data.nene.title")}</a>
+                    </td>
+                    <td>{t("about.data.nene.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_nesi">{t("about.data.nesi.title")}</a>
+                    </td>
+                    <td>{t("about.data.nesi.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_matricula">
+                        {t("about.data.matricula.title")}
                       </a>
                     </td>
-                    <td>Instituto Nacional de Estadísticas (INE)</td>
+                    <td>{t("about.data.matricula.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_psu">{t("about.data.psu.title")}</a>
+                    </td>
+                    <td>{t("about.data.psu.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_empleabilidad">
+                        {t("about.data.empleabilidad.title")}
+                      </a>
+                    </td>
+                    <td>{t("about.data.empleabilidad.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_salud">{t("about.data.salud.title")}</a>
+                    </td>
+                    <td>{t("about.data.salud.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_vida">{t("about.data.vida.title")}</a>
+                    </td>
+                    <td>{t("about.data.vida.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_migracion">
+                        {t("about.data.migracion.title")}
+                      </a>
+                    </td>
+                    <td>{t("about.data.migracion.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_discapacidad">
+                        {t("about.data.discapacidad.title")}
+                      </a>
+                    </td>
+                    <td>{t("about.data.discapacidad.title")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_gasto">{t("about.data.gasto.title")}</a>
+                    </td>
+                    <td>{t("about.data.gasto.title")}</td>
                   </tr>
                 </tbody>
               </table>
@@ -148,7 +205,7 @@ class About extends Component {
                 }}
               />
 
-              <h3 id="dataset_nene">{t("about.data.nesi.title")}</h3>
+              <h3 id="dataset_nesi">{t("about.data.nesi.title")}</h3>
               <div
                 dangerouslySetInnerHTML={{
                   __html: t("about.data.nesi.text")
@@ -159,6 +216,136 @@ class About extends Component {
                 className="use"
                 dangerouslySetInnerHTML={{
                   __html: t("about.data.nesi.use")
+                }}
+              />
+
+              <h3 id="dataset_vida">{t("about.data.vida.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.vida.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.vida.use")
+                }}
+              />
+
+              <h3 id="dataset_matricula">{t("about.data.matricula.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.matricula.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.matricula.use")
+                }}
+              />
+
+              <h3 id="dataset_psu">{t("about.data.psu.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.psu.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.psu.use")
+                }}
+              />
+
+              <h3 id="dataset_empleabilidad">
+                {t("about.data.empleabilidad.title")}
+              </h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.empleabilidad.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.empleabilidad.use")
+                }}
+              />
+
+              <h3 id="dataset_salud">{t("about.data.salud.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.salud.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.salud.use")
+                }}
+              />
+
+              <h3 id="dataset_vida">{t("about.data.vida.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.vida.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.vida.use")
+                }}
+              />
+
+              <h3 id="dataset_migracion">{t("about.data.migracion.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.migracion.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.migracion.use")
+                }}
+              />
+
+              <h3 id="dataset_discapacidad">
+                {t("about.data.discapacidad.title")}
+              </h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.discapacidad.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.discapacidad.use")
+                }}
+              />
+
+              <h3 id="dataset_gasto">{t("about.data.gasto.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.gasto.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.gasto.use")
                 }}
               />
             </section>
