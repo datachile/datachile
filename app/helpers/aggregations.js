@@ -219,7 +219,6 @@ function trade_balance_text(
 
 function onlyMostRecent(collection, iteratee = "Year") {
   const max_year = maxBy(collection, iteratee)[iteratee];
-  console.log(max_year);
   return collection.filter(d => d.Year == max_year);
 }
 

@@ -106,7 +106,7 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>El principal producto que Chile importa desde {{level}} es {{main_import.name}}. Para el año {{year_latest}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, un {{main_import.global_percent}} de las importaciones de {{main_import.name}} al país, y un {{main_import.total_percent}} del total de importaciones hacia Chile.</p><p>Por otro lado, Chile exporta hacia {{level}} principalmente {{main_export.name}}. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, un {{main_export.global_percent}} de las exportaciones de {{main_export.name}} desde Chile, y un {{main_export.total_percent}} de las exportaciones totales del país durante {{year_latest}}.</p>"
+        "<p>El principal producto que Chile importa desde {{level}} es {{main_import.name}}. Para el año {{year_latest}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, y un {{main_import.global_percent}} de las importaciones totales de {{main_import.name}} hacia Chile.</p><p>Por otro lado, Chile exporta hacia {{level}} principalmente {{main_export.name}}. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, y un {{main_export.global_percent}} de las exportaciones de {{main_export.name}} desde Chile durante {{year_latest}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "import":
