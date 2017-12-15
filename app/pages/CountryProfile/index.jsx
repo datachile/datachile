@@ -55,13 +55,10 @@ import "../intro.css";
 import "../topics.css";
 
 class CountryProfile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      subnav: false,
-      activeSub: false
-    };
-  }
+  state = {
+    subnav: false,
+    activeSub: false
+  };
 
   static preneed = [clearStoreData];
 
@@ -284,8 +281,6 @@ class CountryProfile extends Component {
     MigrationByEducation
   ];
 
-  componentDidMount() {}
-
   render() {
     const { t, i18n } = this.props;
 
@@ -451,30 +446,18 @@ class CountryProfile extends Component {
             <div className="topic-slide-container">
               <div className="topic-slide-block">
                 <div className="topic-slide-intro">
-                  <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
-                  <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
+                  <div
+                    className="topic-slide-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("country_profile.about1")
+                    }}
+                  />
+                  <div
+                    className="topic-slide-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("country_profile.about2")
+                    }}
+                  />
                   <div className="topic-slide-link-list">
                     <LinksList title={listTitle} list={list} />
                   </div>

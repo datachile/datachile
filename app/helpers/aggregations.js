@@ -3,6 +3,7 @@ import minBy from "lodash/minBy";
 import groupBy from "lodash/groupBy";
 import mapValues from "lodash/mapValues";
 import sumBy from "lodash/sumBy";
+import sortBy from "lodash/sortBy";
 
 import { numeral, slugifyItem } from "helpers/formatters";
 
@@ -216,9 +217,17 @@ function trade_balance_text(
   };
 }
 
+function recentChampionsBy(collection, key_value, key_time = "Year") {
+  const max_year = maxBy(collection, key_time)[key_time];
+  const collection_recent = collection.filter(d => d.Year == max_year);
+  const sorted = sortBy(collection_recent, key_value);
+  return { first: sorted[0], second: sorted[1], third: sorted[2] };
+}
+
 export {
-  trade_by_time_and_product,
-  maxMinGrowthByYear,
   info_from_data,
-  trade_balance_text
+  maxMinGrowthByYear,
+  recentChampionsBy,
+  trade_balance_text,
+  trade_by_time_and_product
 };

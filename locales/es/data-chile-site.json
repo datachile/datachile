@@ -81,6 +81,57 @@
     }
   },
 
+  "country_profile": {
+    "about1": "",
+    "about2": "",
+    "migration_slide": {
+      "text":
+        "<p>Para el {{year_latest}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, específicamente en la comunas de {{destination.municipality}}.</p><p>Los inmigrantes en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al período anterior, el crecimiento en visas de inmigración hacia {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
+    },
+    "migration_details_slide": {
+      "tendency_stay":
+        "es una tendencia desde el año {{year_first}}, con un crecimiento de un {{detail.sex_growth}}.",
+      "tendency_change":
+        "representa una variación respecto al año {{year_first}}, donde la mayoría era de sexo {{detail.sex_before}}.",
+      "text":
+        "<p>De los inmigrantes que llegan desde {{level}}, la mayoría son de sexo {{detail.sex_current}}, lo cual $t(tendency, {'context': {{tendency}} })</p><p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{detail.agerange_first}}, seguidos de gente en el rango {{detail.agerange_second}}. Los primeros representan un {{detail.agerange_first_percent}} del total en {{year_latest}}, lo cual se traduce en un crecimiento de {{detail.agerange_first_growth}} respecto al año {{year_previous}}.</p>"
+    },
+    "migration_activity_slide": {
+      "text":
+        "<p>Según los registros, la mayoría de los inmigrantes provenientes desde {{level}} vienen con una Visa {{activity.visa_type12_first}} o una Visa {{activity.visa_type12_second}}. Estos representan un {{activity.visa_type12_percent}} del total de inmigrantes.</p><p>El {{activity.occupation_first_percent}} de los inmigrantes desde {{level}} declara que trabaja como {{activity.occupation_first}}. Esto representa un crecimiento del {{activity.occupation_first_growth}}. Por otro lado, el {{activity.unoccupied_percent}} declara no trabajar en alguna actividad, y el {{activity.occupation_unknown_percent}} no declara una actividad formal.</p>"
+    },
+    "migration_education_slide": {
+      "text":
+        "<p>De los inmigrantes provenientes desde {{level}}, el {{education.percent_high}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{education.percent_college}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento de {{education.growth_high}} para inmigrantes con estudios completos, y un {{education.growth_college}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{education.percent_noop}} se declara sin educación formal, y el {{education.percent_unknown}} no la declara en absoluto.</p>"
+    },
+    "intltrade_slide": {
+      "text":
+        "<p>El principal producto que Chile importa desde {{level}} es {{main_import}}. Para el año {{year_latest}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, un {{main_import.global_percent}} de las importaciones de {{main_import}} al país, y un {{main_import.total_percent}} del total de importaciones hacia Chile.</p><p>Por otro lado, Chile exporta hacia {{level}} principalmente {{main_export}}. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, un {{main_export.global_percent}} de las exportaciones de {{{{main_export}} desde Chile, y un {{main_export.total_percent}} de las exportaciones totales del país durante {{year_latest}}.</p>"
+    },
+    "intltrade_origin_dest_slide": {
+      "import":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}}, en {{destination.second_region}}, y {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "import_21":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "import_12":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
+      "import_3":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>",
+      "export":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+      "export_21":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "export_12":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
+      "export_3":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>"
+    },
+    "intltrade_balance_slide": {
+      "text":
+        "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones desde {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
+    }
+  },
+
   "trade_balance": {
     "fob": "Exportaciones",
     "cif": "Importaciones",

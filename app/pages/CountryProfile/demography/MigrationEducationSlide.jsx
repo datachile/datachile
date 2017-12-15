@@ -14,9 +14,12 @@ class MigrationEducationSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Migration")}</div>
-          <div className="topic-slide-text">
-            <p>Lorem ipsum</p>
-          </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{
+              __html: t("country_profile.migration_education_slide.text")
+            }}
+          />
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"

@@ -108,15 +108,12 @@ class InternationalTradeSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Imports & Exports")}</div>
-          <div className="topic-slide-text">
-            <p>
-              InternationalTradeSlide - Lorem ipsum dolor sit amet, consectetuer
-              adipiscing elit. Donec hendrerit tempor tellus. Donec pretium
-              posuere tellus. Proin quam nisl, tincidunt et, mattis eget,
-              convallis nec, purus. Cum sociis natoque penatibus et magnis dis
-              parturient montes, nascetur ridiculus mus.
-            </p>
-          </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{
+              __html: t("country_profile.intltrade_slide.text")
+            }}
+          />
 
           <div className="topic-slide-data">
             <FeaturedDatum
