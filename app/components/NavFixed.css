@@ -53,6 +53,7 @@
             & circle {
               fill: none;
               stroke: var(--snow);
+              stroke-width: 1.5;
             }
           }
         }
