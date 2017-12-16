@@ -172,8 +172,8 @@
               justify-content: center;
               margin-right: 5px;
               & .icon {
+                display: block;
                 height: 15px;
-                width: 15px;
               }
             }
             &:hover {
