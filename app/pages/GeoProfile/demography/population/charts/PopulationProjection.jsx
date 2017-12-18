@@ -37,7 +37,7 @@ class PopulationProjection extends Section {
         </h3>
         <LinePlot
           config={{
-            height: 300,
+            height: 500,
             data: path,
             //groupBy: "Year",
             x: "Year",

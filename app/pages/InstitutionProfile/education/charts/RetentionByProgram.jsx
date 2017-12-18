@@ -64,12 +64,12 @@ export default translate()(
             config={{
               height: 500,
               data: path,
-              groupBy: "ID Career",
+              groupBy: "ID Career Group",
               label: d => d["Avg Retention 1st year"],
               x: "Career",
               y: "Avg Retention 1st year",
               shapeConfig: {
-                fill: d => ordinalColorScale(3)
+                fill: d => ordinalColorScale(d["ID Career Group"])
               },
               xConfig: {
                 tickSize: 0,
@@ -77,21 +77,30 @@ export default translate()(
               },
               yConfig: {
                 title: t("Retention"),
-                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+                tickFormat: tick => numeral(tick, locale).format("0 %")
               },
               xSort: (a, b) => {
                 return a["Avg Retention 1st year"] > b["Avg Retention 1st year"]
                   ? -1
                   : 1;
               },
-              barPadding: 20,
-              groupPadding: 40,
+              //barPadding: 20,
+              //groupPadding: 40,
               tooltipConfig: {
-                title: d => d["Career"],
+                title: d =>
+                  d["Career"] instanceof Array
+                    ? d["Career Group"]
+                    : d["Career"],
                 body: d =>
-                  numeral(d["Number of records"], locale).format("( 0,0 )") +
-                  " " +
-                  t("val")
+                  d["Career"] instanceof Array
+                    ? numeral(d["Number of records"], locale).format(
+                        "( 0,0 )"
+                      ) +
+                      " " +
+                      t("careers")
+                    : numeral(d["Avg Retention 1st year"], locale).format(
+                        "( 0.0 % )"
+                      )
               },
               legendConfig: {
                 label: false,

@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="23px" height="24px" viewBox="0 0 23 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>ico-industries-color</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="iconos-navegacion-slides-ilustrados-home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="iconos-slides-nav-home" transform="translate(-842.000000, -34.000000)" fill="#2A8090">
-            <g id="icons-type-profile-slides" transform="translate(61.000000, 34.000000)">
-                <g id="ico-industries-color" transform="translate(781.000000, 0.000000)">
-                    <path d="M10.717,18.941 L12.292,18.941 L12.292,17.687 L10.717,17.687 L10.717,18.941 Z M9.55,20.106 L13.458,20.106 L13.458,16.519 L9.55,16.519 L9.55,20.106 Z M7.451,3.719 L11.417,3.719 C13.05,3.719 14.362,2.406 14.362,0.773 L13.195,0.773 C13.195,1.765 12.379,2.552 11.417,2.552 L7.451,2.552 C5.818,2.552 4.506,3.864 4.506,5.497 L5.672,5.497 C5.672,4.535 6.459,3.719 7.451,3.719 L7.451,3.719 Z M15.703,18.941 L17.278,18.941 L17.278,17.687 L15.703,17.687 L15.703,18.941 Z M14.537,20.106 L18.445,20.106 L18.445,16.519 L14.537,16.519 L14.537,20.106 Z M19.902,22.061 L8.588,22.061 L7.743,14.596 L10.921,12.554 L10.921,14.771 L15.382,12.437 L15.382,14.683 L19.902,12.408 L19.902,22.061 Z M2.756,22.061 L4.126,7.83 L5.789,7.83 L7.422,22.061 L2.756,22.061 Z M21.068,22.061 L21.068,10.513 L16.549,12.787 L16.549,10.513 L12.087,12.846 L12.087,10.426 L7.597,13.312 L6.838,6.635 L3.077,6.635 L1.59,22.061 L0.423,22.061 L0.423,23.227 L22.177,23.227 L22.177,22.061 L21.068,22.061 Z" id="Fill-151"></path>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+  <g fill="none" stroke="#2a8090" stroke-width="1.2">
+    <path d="M0 19h20M1.5 19L3 6h3l1.5 13"/>
+    <path d="M6.5 11.5l4-2v2l4-2v2l4-2V19"/>
+    <path d="M12.5.5a2 2 0 0 1-2 2h-4a2 2 0 0 0-2 2"/>
+    <path d="M9 14.5h2.5v2H9zm5 0h2.5v2H14z"/>
+  </g>
 </svg>

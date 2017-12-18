@@ -64,6 +64,7 @@ class InternationalTradeSlide extends Section {
           }));
       });
 
+
       return {
         type: "GET_DATA",
         promise
@@ -71,7 +72,6 @@ class InternationalTradeSlide extends Section {
     },
     function datumExportsNeed(params, store) {
       const lang = store.i18n.locale;
-
       const promise = mondrianClient.cube("exports").then(cube => {
         const query = cube.query
           .drilldown("Export HS", "HS", "HS2")
@@ -156,6 +156,9 @@ class InternationalTradeSlide extends Section {
       }
     });
 
+    const trade_import = this.context.data.datum_trade_import;
+    const trade_export = this.context.data.datum_trade_export;
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -169,16 +172,16 @@ class InternationalTradeSlide extends Section {
             <FeaturedDatum
               className="l-1-2"
               icon="product-import"
-              datum={import_local.max["HS2"]}
+              datum={trade_import.max["HS2"]}
               title={t("Main imported product")}
-              subtitle={`${import_local.percentage} - ${last_year}`}
+              subtitle={`${trade_import.percentage} - ${trade_import.year}`}
             />
             <FeaturedDatum
               className="l-1-2"
               icon="product-export"
-              datum={export_local.max["HS2"]}
+              datum={trade_export.max["HS2"]}
               title={t("Main exported product")}
-              subtitle={`${export_local.percentage} - ${last_year}`}
+              subtitle={`${trade_export.percentage} - ${trade_export.year}`}
             />
           </div>
         </div>

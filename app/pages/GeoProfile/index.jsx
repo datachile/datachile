@@ -127,7 +127,7 @@ import MigrationByVisa from "./demography/origins/charts/MigrationByVisa";
 
 import PopulationSlide from "./demography/population/PopulationSlide";
 import PopulationProjection from "./demography/population/charts/PopulationProjection";
-
+import PopulationPyramid from "./demography/population/charts/PopulationPyramid";
 /*end Demography*/
 
 /* Health */
@@ -266,6 +266,7 @@ class GeoProfile extends Component {
 
     PopulationSlide,
     PopulationProjection,
+    PopulationPyramid,
 
     AccessSlide,
     HealthCareSlide,
@@ -922,13 +923,11 @@ class GeoProfile extends Component {
               <div>
                 <PopulationSlide>
                   <SectionColumns>
-                    <Placeholder
+                    <PopulationPyramid
                       className="lost-1-2"
-                      text="Population Pyramid (issue 81)"
                     />
                     <PopulationProjection
                       className="lost-1-2"
-                      text="Population Projection (issue 82)"
                     />
                   </SectionColumns>
                 </PopulationSlide>
@@ -941,7 +940,7 @@ class GeoProfile extends Component {
               sections={[
                 {
                   name: t("Healthcare"),
-                  slides: [t("Healthcare"), t("Social Security")]
+                  slides: [t("Health Insurance"), t("Healthcare")]
                 },
                 {
                   name: t("Disability"),
@@ -954,18 +953,18 @@ class GeoProfile extends Component {
               ]}
             >
               <div>
-                <HealthCareSlide>
-                  <SectionColumns>
-                    <HealthCare className="lost-1" />
-                  </SectionColumns>
-                </HealthCareSlide>
-              </div>
-              <div>
                 <AccessSlide>
                   <SectionColumns>
                     <HealthInsurance className="lost-1" />
                   </SectionColumns>
                 </AccessSlide>
+              </div>
+              <div>
+                <HealthCareSlide>
+                  <SectionColumns>
+                    <HealthCare className="lost-1" />
+                  </SectionColumns>
+                </HealthCareSlide>
               </div>
               <div>
                 <DisabilitySlide>

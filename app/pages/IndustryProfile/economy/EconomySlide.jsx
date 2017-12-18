@@ -6,6 +6,8 @@ import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
+import { calculateYearlyGrowth } from "helpers/dataUtils";
+
 import FeaturedDatum from "components/FeaturedDatum";
 
 class EconomySlide extends Section {
@@ -25,10 +27,7 @@ class EconomySlide extends Section {
     const { t, i18n, children } = this.props;
     const { datum_industry_investment } = this.context.data;
 
-    const growth = Math.log(
-      datum_industry_investment[datum_industry_investment.length - 1] /
-        datum_industry_investment[0]
-    );
+    const growth = calculateYearlyGrowth(datum_industry_investment);
 
     const locale = i18n.locale;
 

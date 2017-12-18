@@ -33,7 +33,7 @@ import RDByOwnershipType from "./economy/charts/RDByOwnershipType";
 
 import OccupationSlide from "./employment/OccupationSlide";
 import EmployedByCategory from "./employment/charts/EmployedByCategory";
-import EmployedBySex from "./employment/charts/EmployedBySex";
+import EmployedByEducation from "./employment/charts/EmployedByEducation";
 
 import SalariesSlide from "./employment/SalariesSlide";
 
@@ -174,7 +174,7 @@ class IndustryProfile extends Component {
     InvestmentByLocation,
 
     EmployedByCategory,
-    EmployedBySex,
+    EmployedByEducation,
 
     RDSlide,
     RDByOwnershipType,
@@ -194,6 +194,7 @@ class IndustryProfile extends Component {
     const { industry } = this.props.routeParams;
 
     const obj = this.props.data.industry;
+    const industryImg = obj ? (obj.depth === 1 ? obj.key : obj.parent.key) : "";
 
     const locale = i18n.locale;
 
@@ -273,7 +274,7 @@ class IndustryProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
+                  backgroundImage: `url('/images/profile-bg/industry/${industryImg.toLowerCase()}.jpg')`
                 }}
               />
               <div className="gradient" />
@@ -425,7 +426,7 @@ class IndustryProfile extends Component {
               <div>
                 <OccupationSlide>
                   <SectionColumns>
-                    <EmployedBySex className="lost-1-2" />
+                    <EmployedByEducation className="lost-1-2" />
                     <EmployedByCategory className="lost-1-2" />
                   </SectionColumns>
                 </OccupationSlide>
