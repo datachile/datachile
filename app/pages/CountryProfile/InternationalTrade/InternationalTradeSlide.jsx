@@ -64,7 +64,6 @@ class InternationalTradeSlide extends Section {
           }));
       });
 
-
       return {
         type: "GET_DATA",
         promise
@@ -135,29 +134,29 @@ class InternationalTradeSlide extends Section {
     const import_local = datum_trade_import.local;
     const export_local = datum_trade_export.local;
 
-    const txt_slide = t("country_profile.intltrade_slide.text", {
-      level: country.caption,
-      year_latest: last_year,
-      main_import: {
-        name: import_local.max["HS2"],
-        local_percent: import_local.percentage,
-        global_percent: numeral(
-          import_local.max["CIF US"] / datum_trade_import.global[0],
-          lang
-        ).format("0.0%")
-      },
-      main_export: {
-        name: export_local.max["HS2"],
-        local_percent: export_local.percentage,
-        global_percent: numeral(
-          export_local.max["FOB US"] / datum_trade_export.global[0],
-          lang
-        ).format("0.0%")
-      }
-    });
-
-    const trade_import = this.context.data.datum_trade_import;
-    const trade_export = this.context.data.datum_trade_export;
+    var txt_slide = "";
+    if (import_local.max && export_local.max) {
+      txt_slide = t("country_profile.intltrade_slide.text", {
+        level: country.caption,
+        year_latest: last_year,
+        main_import: {
+          name: import_local.max["HS2"],
+          local_percent: import_local.percentage,
+          global_percent: numeral(
+            import_local.max["CIF US"] / datum_trade_import.global[0],
+            lang
+          ).format("0.0%")
+        },
+        main_export: {
+          name: export_local.max["HS2"],
+          local_percent: export_local.percentage,
+          global_percent: numeral(
+            export_local.max["FOB US"] / datum_trade_export.global[0],
+            lang
+          ).format("0.0%")
+        }
+      });
+    }
 
     return (
       <div className="topic-slide-block">
@@ -169,20 +168,27 @@ class InternationalTradeSlide extends Section {
           />
 
           <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-2"
-              icon="product-import"
-              datum={trade_import.max["HS2"]}
-              title={t("Main imported product")}
-              subtitle={`${trade_import.percentage} - ${trade_import.year}`}
-            />
-            <FeaturedDatum
-              className="l-1-2"
-              icon="product-export"
-              datum={trade_export.max["HS2"]}
-              title={t("Main exported product")}
-              subtitle={`${trade_export.percentage} - ${trade_export.year}`}
-            />
+            {import_local &&
+              import_local.max && (
+                <FeaturedDatum
+                  className="l-1-2"
+                  icon="product-import"
+                  datum={import_local.max["HS2"]}
+                  title={t("Main imported product")}
+                  subtitle={`${import_local.percentage} - ${last_year}`}
+                />
+              )}
+
+            {export_local &&
+              export_local.max && (
+                <FeaturedDatum
+                  className="l-1-2"
+                  icon="product-export"
+                  datum={export_local.max["HS2"]}
+                  title={t("Main exported product")}
+                  subtitle={`${export_local.percentage} - ${last_year}`}
+                />
+              )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
