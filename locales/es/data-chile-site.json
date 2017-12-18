@@ -159,5 +159,110 @@
   },
 
   "no_info":
-    "{{no}} no tiene datos disponibles para este tópico. La información que se muestra es de la región {{yes}}."
+    "{{no}} no tiene datos disponibles para este tópico. La información que se muestra es de la región {{yes}}.",
+
+  "about": {
+    "background": {
+      "title": "Background",
+      "subtitle1": "¿En qué consiste este proyecto?",
+      "text1":
+        "<p>DataChile es un proyecto desarrollado por Datawheel con el objetivo de centralizar y mostrar parte importante de la información pública del país. Este proyecto reúne información económica, demográfica, educacional y de salud.</p><p>Presentamos una \"radiografía\" a las comunas y regiones del país para mostrar varias dimensiones que tienen impacto en el día a día de los ciudadanos en las distintas localidades del Chile.</p>",
+      "subtitle2": "¿Qué soluciona o mejora DataChile?",
+      "text2":
+        "<p>Facilitamos el acceso a la información. A cualquier persona que consulte nuestro portal le garantizamos una economía de tiempo y esfuerzo. Todo el trabajo de reunir datos de distintas fuentes y hacer múltiples solicitudes de transparencia ya lo hicimos y dejamos los datos en tus manos.</p><p>Hicimos DataChile pensando en hacer un museo de datos y no una bodega de datos. La API de DataChile permite a todos los usuarios, con o sin conocimientos de programación, descargar los datos del portal o incluirlos en otra página fuera de DataChile en pocos clicks.</p>"
+    },
+    "data": {
+      "title": "Datos",
+      "text":
+        "Las fuentes de datos integradas en Datachile son las siguientes:",
+      "dataset": "Fuente de datos",
+      "source": "Organismo responsable",
+      "casen": {
+        "title": "CASEN (1990-2015)",
+        "text":
+          "<p>Datos levantados por el Ministerio de Desarrollo Social (MDS). La Encuesta Casen tiene por objetivo entregar una “ radiografía” de la  situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para la medición de la pobreza y desigualdad y ha sido ampliamente utilizada por Organismos Internacionales y ONGs.</p><p>Los resultados de la Encuesta Casen 2015 incluyen la medición de pobreza por ingresos y multidimensional, destacando la incorporación un conjunto de indicadores que permiten medir carencias que afectan a los hogares en relación al entorno en el que habitan. La medición de pobreza multidimensional considera 5 dimensiones relevantes para el bienestar de los hogares y sus integrantes: Educación; Salud; Trabajo y Seguridad Social; Vivienda y Entorno; Redes y Cohesión Social.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía, vivienda y entorno y salud",
+        "source": "Ministerio de Desarrollo Social (MDS)"
+      },
+      "nene": {
+        "title": "NENE (2010-2016)",
+        "text":
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Nueva Encuesta Nacional de Empleo (NENE) se realiza mensualmente y clasifica a la población en edad de trabajar (PET), todas las personas de 15 años y más, según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT), en las que se basa el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de empleo.",
+        "source": "Instituto Nacional de Estadísticas (INE)"
+      },
+      "nesi": {
+        "title": "NESI (2010-2016)",
+        "text":
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Encuesta Suplementaria de Ingresos (ESI) es un módulo complementario de la Encuesta Nacional de Empleo (ENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la ENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.</p><p>La encuesta comprende una batería de preguntas estrechamente asociada al formulario habitual de la encuesta de empleo, por lo que constituye una fuente de información complementaria de la caracterización de la población ocupada. Es la única encuesta que levanta información de ingresos de las personas en Chile con regularidad anual y con representatividad para todas las regiones.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de ingresos.",
+        "source": "Instituto Nacional de Estadísticas (INE)"
+      },
+      "matricula": {
+        "title": "Matrícula y rendimiento escolar (2004-2015)",
+        "text":
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensión de educación.",
+        "source": "Ministerio de Educación (MINEDUC)"
+      },
+      "psu": {
+        "title": "PSU (2004-2016)",
+        "text":
+          "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensión de educación.",
+        "source": "Ministerio de Educación (MINEDUC)"
+      },
+      "empleabilidad": {
+        "title": "Empleabilidad e Ingresos (2014-2015)",
+        "text":
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Se obtiene combinando los datos que entregan las instituciones de Educación Superior con los datos de la Subdirección de Estudios del SII sobre la base de las declaraciones de impuestos de los contribuyentes.</p>",
+        "use": "Se usa en el perfil de carreras.",
+        "source": "Ministerio de Educación (MINEDUC)"
+      },
+      "salud": {
+        "title": "Indicadores de acceso a la salud (2014)",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de salud.",
+        "source": "Departamento de Estadísticas e Información de Salud (DEIS)"
+      },
+      "vida": {
+        "title": "Esperanza de vida (2010-2014)",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensión de salud.",
+        "source": "Departamento de Estadísticas e Información de Salud (DEIS)"
+      },
+      "migracion": {
+        "title": "Estadísticas Migratorias (2005 - 2016)",
+        "text":
+          "<p>Datos generados por el Departamento de Extranjería y Migración, que es la entidad encargada de otorgar permisos de residencia a población extranjera en el país. Este registro corresponde a la población migrante en situación regular.</p><p>Las información de visas otorgadas muestran los permisos migratorios otorgados y no da cuenta del stock de migrantes, sino solo de tendencias. No es un registro exhaustivo, pues por su naturaleza no puede incluir población migrante en situación irregular y se debe considerar que una persona puede obtener más de un permiso migratorio durante su estadía en nuestro país. Por ejemplo, a lo largo de tres años a una misma persona se le podría haber otorgado tres visas o dos visas y una permanencia definitiva. En este caso, el registro indicará las tres visas o las dos visas y la permanencia definitiva, sin considerar que se trata solo de una persona.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de demografía.",
+        "source": "Departamento de Extranjería y Migración"
+      },
+      "discapacidad": {
+        "title": "Encuesta Nacional de Discapacidad (2016)",
+        "text":
+          "<p>Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.</p>",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de salud.",
+        "source": "Servicio Nacional de Discapacidad (SENADIS)"
+      },
+      "gasto": {
+        "title": "Encuesta Sobre Gasto y Personal en I+D",
+        "text":
+          "<p>Datos levantados por el Ministerio de Economía (MINECON) y entregados por el Servicio de Impuestos Internos (SII). Esta encuesta busca recoger información de los recursos financieros y cantidad de personal, destinados a actividades de investigación y desarrollo, durante los años de medición, en el sector Empresas, en el Estado, en la Educación Superior (universidades) y en las Instituciones Privadas sin Fines de Lucro (IPSFL).</p>",
+        "use": "Se usa en el perfil industrias.",
+        "source": "Ministerio de Economía (MINECON)"
+      }
+    }
+  }
 }
