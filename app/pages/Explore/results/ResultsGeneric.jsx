@@ -19,7 +19,12 @@ class TemplateResults extends React.PureComponent {
   renderTitle() {
     const { t, profile, entity } = this.props;
 
-    return <h3>{`${t("Results for")} ${t(entity)} : "${profile.name}"`}</h3>;
+    return (
+      <h3>
+        {t("Results for")}
+        {`${entity} : "${profile.name}"`}
+      </h3>
+    );
   }
 
   renderElementPrepended() {

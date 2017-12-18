@@ -9,6 +9,7 @@ import { institutionsColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class CollegeByEnrollment extends Section {
   static need = [
@@ -95,6 +96,7 @@ class CollegeByEnrollment extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="education_enrollment" />
       </div>
     );
   }

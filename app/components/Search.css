@@ -93,8 +93,9 @@
           align-items: center;
           justify-content: center;
           & .icon {
-            height: 15px;
-            width: 15px;
+            display: block;
+            height: 16px;
+            width: 16px;
           }
         }
         & .content {

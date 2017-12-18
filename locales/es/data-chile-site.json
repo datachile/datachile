@@ -15,8 +15,8 @@
   "Explore": "Explorar",
   "Explore featured profiles": "Explorar perfiles destacados",
 
-  "Interactive data visualization platform about Chilean public data":
-    "Plataforma interactiva de visualización de datos sobre información pública de Chile",
+  "The most comprehensive effort to integrate and visualize Chile’s Public Data":
+    "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
   "Pic by": "Foto de",
 
   "Home": "Inicio",
@@ -70,14 +70,66 @@
   "increased": "crecido",
   "decreased": "decrecido",
 
-  "export_by_product": {
-    "title": "Exportación por producto",
-    "line1":
-      "En {{latest_year}}, las firmas basadas en {{geo.caption}} exportaron <i>{{trade_volume}}</i> convirtiéndolo en el {{rank}} mayor exportador en Chile. ",
-    "line2":
-      "Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual de {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}} ",
-    "line3":
-      "Las principales exportaciones más recientes son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> que representan {{trade_first_share}} de las exportaciones de {{geo.caption}}, seguidas por <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a>, que representan el {{trade_second_share}} de los principales productos exportados en {{latest_year}}"
+  "geo_profile": {
+    "trade_slide": {
+      "text":
+        "En {{latest_year}} las firmas con domicilio fiscal en {{geo.caption}} exportaron <i>{{trade_volume}}</i>, llevando a {{geo.caption}} al {{rank}} puesto de los mayores exportadores de Chile. Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}. Los principales productos de exportación de {{geo.caption}} son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} del total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} del total)"
+    },
+    "income_sex_age_slide": {
+      "text":
+        "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
+    }
+  },
+
+  "country_profile": {
+    "about1": "",
+    "about2": "",
+    "migration_slide": {
+      "text":
+        "<p>Para el {{year_latest}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, principalmente en la comuna de {{destination.municipality}}.</p><p>Los inmigrantes de {{level}} en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al {{year_previous}}, el crecimiento en visas de inmigración de gente establecida en {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
+    },
+    "migration_details_slide": {
+      "tendency_stay":
+        ", lo cual es una tendencia desde el año {{year_first}}, con un crecimiento de un {{sex.growth}}",
+      "tendency_change":
+        ", lo cual ha sido la tendencia desde el año {{year_first}}, donde la mayoría era de sexo {{sex.before}}",
+      "text":
+        "<p>De los inmigrantes que llegan desde {{level}}, la mayoría son de sexo {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{agerange.first}}, seguidos de gente en el rango {{agerange.second}}. Los primeros representan un {{agerange.first_percent}} del total en {{year_latest}}, lo cual se traduce en un crecimiento de {{agerange.first_growth}} respecto al año {{year_previous}}.</p>"
+    },
+    "migration_activity_slide": {
+      "text":
+        "<p>Según los registros, la mayoría de los inmigrantes provenientes desde {{level}} vienen con una Visa {{visa_type.first}} o una Visa {{visa_type.second}}. Estos representan un {{visa_type.percent}} del total de inmigrantes.</p><p>Para el {{year_last}}, el {{first_occupation.percent}} de los inmigrantes desde {{level}} declara que trabaja como {{first_occupation.name}}. Esto representa un crecimiento del {{first_occupation.growth}} con respecto al año {{year_prev}}. Por otro lado, el {{activity.unoccupied_percent}} declara no trabajar en alguna actividad, y el {{activity.unknown_percent}} no declara una actividad formal.</p>"
+    },
+    "migration_education_slide": {
+      "text":
+        "<p>De los inmigrantes provenientes desde {{level}}, el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{college.percent}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento de {{high.growth}} para inmigrantes con estudios completos, y un {{college.growth}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no la declara en absoluto.</p>"
+    },
+    "intltrade_slide": {
+      "text":
+        "<p>El principal producto que Chile importa desde {{level}} es {{main_import.name}}. Para el año {{year_latest}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, y un {{main_import.global_percent}} de las importaciones totales de {{main_import.name}} hacia Chile.</p><p>Por otro lado, Chile exporta hacia {{level}} principalmente {{main_export.name}}. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, y un {{main_export.global_percent}} de las exportaciones de {{main_export.name}} desde Chile durante {{year_latest}}.</p>"
+    },
+    "intltrade_origin_dest_slide": {
+      "import":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}}, en {{destination.second_region}}, y {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "import_21":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "import_12":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
+      "import_3":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>",
+      "export":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+      "export_21":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y a la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+      "export_12":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
+      "export_3":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde {{origin.first_region}}, donde destacan las comunas de {{origin.first_municipality}}, {{origin.second_municipality}} y {{origin.third_municipality}}.</p>"
+    },
+    "intltrade_balance_slide": {
+      "text":
+        "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones desde {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
+    }
   },
 
   "trade_balance": {
@@ -106,108 +158,6 @@
     "to_profile": "Click to see the full profile"
   },
 
-  "about": {
-    "background": {
-      "title": "Background",
-      "subtitle1": "¿En qué consiste este proyecto?",
-      "text1":
-        "<p>DataChile es un proyecto desarrollado por Datawheel con el objetivo de centralizar y mostrar parte importante de la información pública del país. Este proyecto reúne información económica, demográfica, educacional y de salud.</p><p>Presentamos una \"radiografía\" a las comunas y regiones del país para mostrar varias dimensiones que tienen impacto en el día a día de los ciudadanos en las distintas localidades del Chile.</p>",
-      "subtitle2": "¿Qué soluciona o mejora DataChile?",
-      "text2":
-        "<p>Facilitamos el acceso a la información. A cualquier persona que consulte nuestro portal le garantizamos una economía de tiempo y esfuerzo. Todo el trabajo de reunir datos de distintas fuentes y hacer múltiples solicitudes de transparencia ya lo hicimos y dejamos los datos en tus manos.</p><p>Hicimos DataChile pensando en hacer un museo de datos y no una bodega de datos. La API de DataChile permite a todos los usuarios, con o sin conocimientos de programación, descargar los datos del portal o incluirlos en otra página fuera de DataChile en pocos clicks.</p>"
-    },
-    "data": {
-      "title": "Datos",
-      "text":
-        "Las fuentes de datos integradas en Datachile son las siguientes:",
-      "dataset": "Fuente de datos",
-      "source": "Organismo responsable",
-      "casen": {
-        "title": "CASEN (1990-2015)",
-        "text":
-          "<p>Datos levantados por el Ministerio de Desarrollo Social (MDS). La Encuesta Casen tiene por objetivo entregar una “ radiografía” de la  situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para la medición de la pobreza y desigualdad y ha sido ampliamente utilizada por Organismos Internacionales y ONGs.</p><p>Los resultados de la Encuesta Casen 2015 incluyen la medición de pobreza por ingresos y multidimensional, destacando la incorporación un conjunto de indicadores que permiten medir carencias que afectan a los hogares en relación al entorno en el que habitan. La medición de pobreza multidimensional considera 5 dimensiones relevantes para el bienestar de los hogares y sus integrantes: Educación; Salud; Trabajo y Seguridad Social; Vivienda y Entorno; Redes y Cohesión Social.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en las dimensiones de economía, vivienda y entorno y salud",
-        "source": "Ministerio de Desarrollo Social (MDS)"
-      },
-      "nene": {
-        "title": "NENE (2010-2016)",
-        "text":
-          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Nueva Encuesta Nacional de Empleo (NENE) se realiza mensualmente y clasifica a la población en edad de trabajar (PET), todas las personas de 15 años y más, según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT), en las que se basa el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de empleo.",
-        "source": "Instituto Nacional de Estadísticas (INE)"
-      },
-      "nesi": {
-        "title": "NESI (2010-2016)",
-        "text":
-          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Encuesta Suplementaria de Ingresos (ESI) es un módulo complementario de la Encuesta Nacional de Empleo (ENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la ENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.</p><p>La encuesta comprende una batería de preguntas estrechamente asociada al formulario habitual de la encuesta de empleo, por lo que constituye una fuente de información complementaria de la caracterización de la población ocupada. Es la única encuesta que levanta información de ingresos de las personas en Chile con regularidad anual y con representatividad para todas las regiones.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de ingresos.",
-        "source": "Instituto Nacional de Estadísticas (INE)"
-      },
-      "matricula": {
-        "title": "Matrícula y rendimiento escolar (2004-2015)",
-        "text":
-          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en las dimensión de educación.",
-        "source": "Ministerio de Educación (MINEDUC)"
-      },
-      "psu": {
-        "title": "PSU (2004-2016)",
-        "text":
-          "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en las dimensión de educación.",
-        "source": "Ministerio de Educación (MINEDUC)"
-      },
-      "empleabilidad": {
-        "title": "Empleabilidad e Ingresos (2014-2015)",
-        "text":
-          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Se obtiene combinando los datos que entregan las instituciones de Educación Superior con los datos de la Subdirección de Estudios del SII sobre la base de las declaraciones de impuestos de los contribuyentes.</p>",
-        "use": "Se usa en el perfil de carreras.",
-        "source": "Ministerio de Educación (MINEDUC)"
-      },
-      "salud": {
-        "title": "Indicadores de acceso a la salud (2014)",
-        "text":
-          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en las dimensiones de salud.",
-        "source": "Departamento de Estadísticas e Información de Salud (DEIS)"
-      },
-      "vida": {
-        "title": "Esperanza de vida (2010-2014)",
-        "text":
-          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en las dimensión de salud.",
-        "source": "Departamento de Estadísticas e Información de Salud (DEIS)"
-      },
-      "migracion": {
-        "title": "Estadísticas Migratorias (2005 - 2016)",
-        "text":
-          "<p>Datos generados por el Departamento de Extranjería y Migración, que es la entidad encargada de otorgar permisos de residencia a población extranjera en el país. Este registro corresponde a la población migrante en situación regular.</p><p>Las información de visas otorgadas muestran los permisos migratorios otorgados y no da cuenta del stock de migrantes, sino solo de tendencias. No es un registro exhaustivo, pues por su naturaleza no puede incluir población migrante en situación irregular y se debe considerar que una persona puede obtener más de un permiso migratorio durante su estadía en nuestro país. Por ejemplo, a lo largo de tres años a una misma persona se le podría haber otorgado tres visas o dos visas y una permanencia definitiva. En este caso, el registro indicará las tres visas o las dos visas y la permanencia definitiva, sin considerar que se trata solo de una persona.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en la dimensión de demografía.",
-        "source": "Departamento de Extranjería y Migración"
-      },
-      "discapacidad": {
-        "title": "Encuesta Nacional de Discapacidad (2016)",
-        "text":
-          "<p>Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.</p>",
-        "use":
-          "Se usa en los perfiles país, región y comuna en las dimensiones de salud.",
-        "source": "Servicio Nacional de Discapacidad (SENADIS)"
-      },
-      "gasto": {
-        "title": "Encuesta Sobre Gasto y Personal en I+D",
-        "text":
-          "<p>Datos levantados por el Ministerio de Economía (MINECON) y entregados por el Servicio de Impuestos Internos (SII). Esta encuesta busca recoger información de los recursos financieros y cantidad de personal, destinados a actividades de investigación y desarrollo, durante los años de medición, en el sector Empresas, en el Estado, en la Educación Superior (universidades) y en las Instituciones Privadas sin Fines de Lucro (IPSFL).</p>",
-        "use": "Se usa en el perfil industrias.",
-        "source": "Ministerio de Economía (MINECON)"
-      }
-    }
-  }
+  "no_info":
+    "{{no}} no tiene datos disponibles para este tópico. La información que se muestra es de la región {{yes}}."
 }

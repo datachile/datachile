@@ -2,13 +2,17 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import { simpleInstitutionDatumNeed } from "helpers/MondrianClient";
+import { numeral } from "helpers/formatters";
+
 import FeaturedDatum from "components/FeaturedDatum";
 
 class AccreditationSlide extends Section {
   static need = [];
 
   render() {
-    const { children, t } = this.props;
+    const { t, i18n, children } = this.props;
+    const locale = i18n.locale;
 
     return (
       <div className="topic-slide-block">
@@ -20,10 +24,12 @@ class AccreditationSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              icon="industria"
+              datum={numeral(datum_accreditation_avg_retention, locale).format(
+                "0.0 %"
+              )}
+              title={t("Average Retention")}
+              subtitle={t("1st year")}
             />
             <FeaturedDatum
               className="l-1-3"

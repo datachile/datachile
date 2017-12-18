@@ -9,6 +9,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class IndustrySpace extends Section {
   static need = [
@@ -39,12 +40,15 @@ class IndustrySpace extends Section {
             nodes: "/json/isic_4_02_nodes_d3p2.json",
             data: path,
             size: "Output",
-            sizeMin: 1,
-            sizeMax: 15,
+            sizeMin: 4,
+            sizeMax: 18,
             zoomScroll: false,
             shapeConfig: {
               Path: {
                 stroke: "#555"
+              },
+              fill: d => {
+                return ordinalColorScale("isl1" + d["ID Level 1"]);
               }
             },
             legend: false,
@@ -63,6 +67,7 @@ class IndustrySpace extends Section {
             }))
           }
         />
+        <SourceNote cube="tax_data" />
       </div>
     );
   }

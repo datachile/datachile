@@ -6,7 +6,10 @@ import { numeral } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
+
 import Select from "components/Select";
+import SourceNote from "components/SourceNote";
+import ExportLink from "components/ExportLink";
 
 class IndustryByOccupation extends Section {
   static need = [
@@ -105,18 +108,21 @@ class IndustryByOccupation extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const locale = i18n.locale;
-    console.log(this.state.selectedObj.sum)
+
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <Select
-            id="variations"
-            options={this.state.chartVariations}
-            value={this.state.selectedOption}
-            labelField="title"
-            valueField="id"
-            onChange={this.handleChange}
-          />
+          <span>
+            <Select
+              id="variations"
+              options={this.state.chartVariations}
+              value={this.state.selectedOption}
+              labelField="title"
+              valueField="id"
+              onChange={this.handleChange}
+            />
+          </span>
+          <ExportLink path={this.state.selectedObj.path} />
         </h3>
 
         <Treemap
@@ -147,6 +153,7 @@ class IndustryByOccupation extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="nesi_income" />
       </div>
     );
   }

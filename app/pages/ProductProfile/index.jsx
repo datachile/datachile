@@ -118,8 +118,8 @@ class ProductProfile extends Component {
               id: top_country ? top_country["iso3"] : "",
               name: top_country ? top_country["Country"] : "",
               value: top_country ? top_country["FOB US"] : "",
-              source: store.sources.exports.title,
-              year: store.sources.exports.year
+              source: sources.exports.title,
+              year: sources.exports.year
             }
           };
         });
@@ -380,6 +380,13 @@ class ProductProfile extends Component {
 
     const locale = i18n.locale;
 
+    const {
+      datum_exports_per_country,
+      datum_imports_per_country,
+      total_exports_per_product,
+      total_exports_chile
+    } = this.props.data;
+
     const key =
       typeof obj === "object"
         ? obj.depth === 1 ? obj.key : obj.ancestors[0].key
@@ -413,15 +420,8 @@ class ProductProfile extends Component {
     const stats = {
       country: this.props.data.top_destination_country_per_product,
       region: this.props.data.top_region_producer_per_product,
-      exports: this.props.data.total_exports_per_product
+      exports: total_exports_per_product
     };
-
-    const {
-      datum_exports_per_country,
-      datum_imports_per_country,
-      total_exports_per_product,
-      total_exports_chile
-    } = this.props.data;
 
     const text_product = {
       year: 2015,
@@ -439,18 +439,21 @@ class ProductProfile extends Component {
       region: this.props.data.top_region_producer_per_product,
       total_exports: total_exports_per_product
     };
-    text_about.total_exports.rank = numeral(
-      text_about.total_exports.rank,
-      locale
-    ).format("0o");
-    text_about.product.share = numeral(
-      total_exports_per_product.value / total_exports_chile,
-      locale
-    ).format("0.0 %");
-    text_about.region.share = numeral(
-      text_about.region.value / total_exports_per_product.value,
-      locale
-    ).format("0.0 %");
+
+    if (text_about.total_exports && text_about.product && text_about.region) {
+      text_about.total_exports.rank = numeral(
+        text_about.total_exports.rank,
+        locale
+      ).format("0o");
+      text_about.product.share = numeral(
+        total_exports_per_product.value / total_exports_chile,
+        locale
+      ).format("0.0 %");
+      text_about.region.share = numeral(
+        text_about.region.value / total_exports_per_product.value,
+        locale
+      ).format("0.0 %");
+    }
 
     const topics = [
       {

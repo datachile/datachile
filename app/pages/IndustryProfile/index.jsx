@@ -32,6 +32,9 @@ import RDByBusinessType from "./economy/charts/RDByBusinessType";
 import RDByOwnershipType from "./economy/charts/RDByOwnershipType";
 
 import OccupationSlide from "./employment/OccupationSlide";
+import EmployedByCategory from "./employment/charts/EmployedByCategory";
+import EmployedByEducation from "./employment/charts/EmployedByEducation";
+
 import SalariesSlide from "./employment/SalariesSlide";
 
 import "../intro.css";
@@ -170,6 +173,9 @@ class IndustryProfile extends Component {
     OutputByLocation,
     InvestmentByLocation,
 
+    EmployedByCategory,
+    EmployedByEducation,
+
     RDSlide,
     RDByOwnershipType,
     RDByBusinessType,
@@ -188,6 +194,7 @@ class IndustryProfile extends Component {
     const { industry } = this.props.routeParams;
 
     const obj = this.props.data.industry;
+    const industryImg = obj ? (obj.depth === 1 ? obj.key : obj.parent.key) : "";
 
     const locale = i18n.locale;
 
@@ -267,7 +274,7 @@ class IndustryProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
+                  backgroundImage: `url('/images/profile-bg/industry/${industryImg.toLowerCase()}.jpg')`
                 }}
               />
               <div className="gradient" />
@@ -419,18 +426,12 @@ class IndustryProfile extends Component {
               <div>
                 <OccupationSlide>
                   <SectionColumns>
-                    <Placeholder
-                      className="lost-1-2"
-                      text="Occupation By Sector"
-                    />
-                    <Placeholder
-                      className="lost-1-2"
-                      text="Occupied By Category"
-                    />
+                    <EmployedByEducation className="lost-1-2" />
+                    <EmployedByCategory className="lost-1-2" />
                   </SectionColumns>
                 </OccupationSlide>
               </div>
-              <div>
+              {/*<div>
                 <SalariesSlide>
                   <SectionColumns>
                     <Placeholder
@@ -443,7 +444,7 @@ class IndustryProfile extends Component {
                     />
                   </SectionColumns>
                 </SalariesSlide>
-              </div>
+              </div>*/}
             </Topic>
           </div>
         </div>

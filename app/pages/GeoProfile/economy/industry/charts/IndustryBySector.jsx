@@ -8,6 +8,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class IndustryBySector extends Section {
   static need = [
@@ -58,6 +59,7 @@ class IndustryBySector extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="nesi_income" />
       </div>
     );
   }

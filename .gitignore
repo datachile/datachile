@@ -1,7 +1,7 @@
 node_modules/*
 static/assets/*
 */**/.DS_Store
-.env
+#.env
 .DS_Store
 npm-debug.log
 *~

@@ -113,10 +113,11 @@ function simpleGeoChartNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  { drillDowns = [], options = {}, cuts = [] },
+  overrideGeo = false
 ) {
   return (params, store) => {
-    const geo = getGeoObject(params);
+    const geo = overrideGeo ? overrideGeo : getGeoObject(params);
 
     const prm = client.cube(cube).then(cube => {
       const q = cube.query;
@@ -134,6 +135,49 @@ function simpleGeoChartNeed(
         data:
           store.env.CANON_API +
           geoCut(geo, "Geography", q, store.i18n.locale).path("jsonrecords")
+      };
+    });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
+function simpleIndustryChartNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const industry = getLevelObject(params);
+    industry.level2 = false;
+    const prm = client.cube(cube).then(cube => {
+      const q = cube.query;
+      measures.forEach(m => {
+        q.measure(m);
+      });
+      drillDowns.forEach(([...dd]) => {
+        q.drilldown(...dd);
+      });
+      Object.entries(options).forEach(([k, v]) => q.option(k, v));
+      cuts.forEach(c => q.cut(c));
+
+      return {
+        key: key,
+        data:
+          store.env.CANON_API +
+          levelCut(
+            industry,
+            "ISICrev4",
+            "ISICrev4",
+            q,
+            "Level 1",
+            "Level 2",
+            store.i18n.locale
+          ).path("jsonrecords")
       };
     });
 
@@ -184,15 +228,94 @@ function simpleDatumNeed(
   };
 }
 
-function simpleCountryDatumNeed(
+function createFreshQuery(
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  const q = cube.query;
+
+  measures.forEach(m => {
+    q.measure(m);
+  });
+  drillDowns.forEach(([...dd]) => {
+    q.drilldown(...dd);
+  });
+  Object.entries(options).forEach(([k, v]) => q.option(k, v));
+  cuts.forEach(c => q.cut(c));
+
+  return q;
+}
+
+/* Receive params and make a query. If zero results make another query with ancestors' information and add a suffix "_region" to the given key. */
+function simpleFallbackGeoDatumNeed(
   key,
   cube,
   measures,
   { drillDowns = [], options = {}, cuts = [] }
 ) {
   return (params, store) => {
-    const geo = getLevelObject(params);
+    const geo = getGeoObject(params);
 
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+        var query = geoCut(geo, "Geography", q, store.i18n.locale);
+        return client.query(query);
+      })
+      .then(res => {
+        if (res.data.values && res.data.values.length > 0) {
+          return {
+            key: key,
+            data: { data: flattenDeep(res.data.values), fallback: false }
+          };
+        } else {
+          return client
+            .cube(cube)
+            .then(cube => {
+              const q = createFreshQuery(cube, measures, {
+                drillDowns: drillDowns,
+                options: options,
+                cuts: cuts
+              });
+              var query = geoCut(
+                geo.ancestor,
+                "Geography",
+                q,
+                store.i18n.locale
+              );
+              return client.query(query);
+            })
+            .then(res => {
+              return {
+                key: key,
+                data: { data: flattenDeep(res.data.values), fallback: true }
+              };
+            });
+        }
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
+function simpleIndustryDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    var industry = getLevelObject(params);
+    industry.level2 = false;
     const prm = client
       .cube(cube)
       .then(cube => {
@@ -208,12 +331,122 @@ function simpleCountryDatumNeed(
         cuts.forEach(c => q.cut(c));
 
         var query = levelCut(
+          industry,
+          "ISICrev4",
+          "ISICrev4",
+          q,
+          "Level 1",
+          "Level 2",
+          store.i18n.locale
+        );
+        return client.query(query);
+      })
+      .then(res => {
+        return {
+          key: key,
+          data: flattenDeep(res.data.values)
+        };
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
+function simpleCountryDatumNeed(
+  key,
+  {
+    cube,
+    measures = [],
+    drillDowns = [],
+    cuts = [],
+    options = {},
+    format = null
+  }
+) {
+  return (params, store) => {
+    const geo = getLevelObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = cube.query;
+
+        measures.forEach(q.measure, q);
+        drillDowns.forEach(dd => q.drilldown(...dd));
+        cuts
+          .map(function(cut) {
+            return "string" == typeof cut
+              ? cut
+              : "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
+          })
+          .forEach(q.cut, q);
+        Object.entries(options).forEach(pairs => q.option(...pairs));
+
+        var query = levelCut(
           geo,
           "Origin Country",
           "Country",
           q,
           "Subregion",
           "Country",
+          store.i18n.locale,
+          false
+        );
+
+        return client.query(query, format);
+      })
+      .then(res => {
+        const data = res.data || {};
+        return {
+          key: key,
+          data: data.data || flattenDeep(data.values)
+        };
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
+const getCountryCut = params => {
+  const level1 = (params.level1 || "").split("-").pop();
+  const level2 = (params.level2 || "").split("-").pop();
+  return level2 ? `[Country].&[${level2}]` : `[Subregion].&[${level1}]`;
+};
+
+function simpleInstitutionDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const institution = getLevelObject(params);
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+
+        const query = levelCut(
+          institution,
+          "Higher Institutions",
+          "Higher Institutions",
+          cube.query
+            .option("parents", true)
+            .drilldown("Careers", "Careers", "Career")
+            .drilldown("Accreditations", "Accreditations", "Accreditation")
+            .measure("Number of records"),
+          "Higher Institution Subgroup",
+          "Higher Institution",
           store.i18n.locale,
           false
         );
@@ -241,8 +474,13 @@ export {
   getMemberQuery,
   setLangCaptions,
   getMeasureByGeo,
+  getCountryCut,
   simpleGeoChartNeed,
+  simpleIndustryChartNeed,
   simpleDatumNeed,
-  simpleCountryDatumNeed
+  simpleFallbackGeoDatumNeed,
+  simpleCountryDatumNeed,
+  simpleIndustryDatumNeed,
+  simpleInstitutionDatumNeed
 };
 export default client;

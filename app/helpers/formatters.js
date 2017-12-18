@@ -3,6 +3,7 @@ import { timeFormat } from "d3-time-format";
 import n from "numeral";
 
 function slugifyStr(str) {
+  if (!str) return "";
   str = str.replace(/^\s+|\s+$/g, ""); // trim
   str = str.toLowerCase();
 
@@ -91,7 +92,7 @@ export function numeral(number, locale = "en") {
 
 export function moneyRangeFormat(tick, locale = "en") {
   if (!tick) return "";
-  var ticks = tick.split("-").map(ti => numeral(ti, locale).format("($ 0 a)"));
+  var ticks = tick.split("-").map(ti => numeral(ti, locale).format("($0.0 a)"));
   if (ticks.length == 1) {
     ticks[0] = "+" + ticks[0];
   }

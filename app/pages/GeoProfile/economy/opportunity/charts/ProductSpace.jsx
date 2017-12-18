@@ -9,6 +9,7 @@ import { Section } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ProductSpace extends Section {
   static need = [
@@ -38,13 +39,14 @@ class ProductSpace extends Section {
             nodes: "/json/hs92_4_nodes_circular_spring_d3p2.json",
             data: path,
             size: "FOB US",
-            sizeMin: 1,
-            sizeMax: 15,
+            sizeMin: 4,
+            sizeMax: 18,
             zoomScroll: false,
             shapeConfig: {
               Path: {
                 stroke: "#555"
-              }
+              },
+              fill: d => ordinalColorScale("hs0" + d["ID HS0"])
             },
             tooltipConfig: {
               title: d => {
@@ -56,6 +58,7 @@ class ProductSpace extends Section {
           }}
           dataFormat={data => data.data.map(d => ({ id: d["ID HS2"], ...d }))}
         />
+        <SourceNote cube="tax_data" />
       </div>
     );
   }

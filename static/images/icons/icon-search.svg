@@ -1,26 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="28px" height="17px" viewBox="0 0 28 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
-    <title>icon-search</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="home-geo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g transform="translate(-520.000000, -286.000000)" id="buscador">
-            <g transform="translate(491.000000, 273.000000)">
-                <g id="icon-search" transform="translate(30.000000, 14.000000)">
-                    <polygon id="Fill-28" fill="#4B71B5" fill-rule="evenodd" points="21.792 7.0537 4.327 6.0767 4.327 2.6337 21.792 1.6557"></polygon>
-                    <polygon id="Stroke-30" stroke="#FFFFFF" stroke-width="1" points="21.792 7.0537 4.327 6.0767 4.327 2.6337 21.792 1.6557"></polygon>
-                    <polygon id="Fill-32" fill="#4B71B5" fill-rule="evenodd" points="0.371 5.371 4.287 5.371 4.287 3.34 0.371 3.34"></polygon>
-                    <polygon id="Stroke-34" stroke="#FFFFFF" stroke-width="1" points="0.371 5.371 4.287 5.371 4.287 3.34 0.371 3.34"></polygon>
-                    <polygon id="Fill-35" fill="#4B71B5" fill-rule="evenodd" points="21.307 8.457 25.741 8.457 25.741 0.254 21.307 0.254"></polygon>
-                    <polygon id="Stroke-36" stroke="#FFFFFF" stroke-width="1" points="21.307 8.457 25.741 8.457 25.741 0.254 21.307 0.254"></polygon>
-                    <path d="M14.979,6.3618 C14.979,7.2698 14.243,8.0058 13.335,8.0058 C12.427,8.0058 11.691,7.2698 11.691,6.3618 C11.691,5.4538 12.427,4.7178 13.335,4.7178 C14.243,4.7178 14.979,5.4538 14.979,6.3618" id="Fill-37" fill="#708BBB" fill-rule="evenodd"></path>
-                    <polygon id="Fill-38" fill="#708BBB" fill-rule="evenodd" points="10.0796 14.7095 9.1656 14.3225 12.5706 6.2765 13.4836 6.6665"></polygon>
-                    <path d="M10.8213,14.5781 C10.8213,15.2911 10.2423,15.8691 9.5303,15.8691 C8.8173,15.8691 8.2393,15.2911 8.2393,14.5781 C8.2393,13.8651 8.8173,13.2871 9.5303,13.2871 C10.2423,13.2871 10.8213,13.8651 10.8213,14.5781" id="Fill-39" fill="#708BBB" fill-rule="evenodd"></path>
-                    <polygon id="Fill-40" fill="#708BBB" fill-rule="evenodd" points="16.7192 14.7095 17.6342 14.3225 14.2282 6.2765 13.3152 6.6665"></polygon>
-                    <path d="M15.9775,14.5781 C15.9775,15.2911 16.5555,15.8691 17.2685,15.8691 C17.9815,15.8691 18.5595,15.2911 18.5595,14.5781 C18.5595,13.8651 17.9815,13.2871 17.2685,13.2871 C16.5555,13.2871 15.9775,13.8651 15.9775,14.5781" id="Fill-41" fill="#708BBB" fill-rule="evenodd"></path>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="27" height="17">
+  <path d="M.5 6.5h4v-2h-4z" fill="#4b71b5" stroke="#f2f4f9"/>
+  <path d="M22.5 1.5h4v8h-4z" fill="#4b71b5" stroke="#f2f4f9" stroke-linecap="round" paint-order="markers fill stroke"/>
+  <path d="M22.5 8.5l-18-1v-4l18-1z" fill="#4b71b5" stroke="#f2f4f9"/>
+  <circle cx="13" cy="8" r="1.55" fill="#708bbb" paint-order="markers fill stroke"/>
+  <circle cx="10.25" cy="15.75" r="1.25" fill="#708bbb" paint-order="markers fill stroke"/>
+  <circle cx="16.25" cy="15.75" r="1.25" fill="#708bbb" paint-order="markers fill stroke"/>
+  <path d="M10.2352 15.8215l2.8023-7.9092 3.1951 7.883" fill="none" stroke="#708bbb" stroke-width="1.25" stroke-linejoin="bevel"/>
 </svg>

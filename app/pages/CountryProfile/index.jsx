@@ -16,6 +16,8 @@ import {
   ingestParent,
   clearStoreData
 } from "helpers/dataUtils";
+import { sources } from "helpers/consts";
+
 import Topic from "components/Topic";
 
 import Nav from "components/Nav";
@@ -53,13 +55,10 @@ import "../intro.css";
 import "../topics.css";
 
 class CountryProfile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      subnav: false,
-      activeSub: false
-    };
-  }
+  state = {
+    subnav: false,
+    activeSub: false
+  };
 
   static preneed = [clearStoreData];
 
@@ -176,7 +175,7 @@ class CountryProfile extends Component {
               value: res.data.data[0]["CIF US"],
               decile: null,
               year: store.imports_year,
-              source: store.sources.imports.title
+              source: sources.imports.title
             }
           };
         });
@@ -210,7 +209,7 @@ class CountryProfile extends Component {
               value: res.data.data[0]["FOB US"],
               decile: null,
               year: store.exports_year,
-              source: store.sources.exports.title
+              source: sources.exports.title
             }
           };
         });
@@ -250,8 +249,8 @@ class CountryProfile extends Component {
             data: {
               name: top_product ? top_product["HS2"] : "",
               value: top_product ? top_product["CIF US"] : "",
-              source: store.sources.imports.title,
-              year: store.sources.imports.year
+              source: sources.imports.title,
+              year: sources.imports.year
             }
           };
         });
@@ -282,8 +281,6 @@ class CountryProfile extends Component {
     MigrationByEducation
   ];
 
-  componentDidMount() {}
-
   render() {
     const { t, i18n } = this.props;
 
@@ -295,9 +292,8 @@ class CountryProfile extends Component {
 
     const list = this.props.data.country_list_detail;
 
-    const bgImage = obj.key
-      ? `url('/images/profile-bg/country/${obj.key}.jpg')`
-      : "";
+    const bgImage =
+      obj && obj.key ? `url('/images/profile-bg/country/${obj.key}.jpg')` : "";
 
     obj && ids && list
       ? list.map(c => {
@@ -385,7 +381,7 @@ class CountryProfile extends Component {
                     icon="ingreso"
                     decile={stats.imports.decile}
                     datum={numeral(stats.imports.value, locale).format(
-                      "($ 0,0 a)"
+                      "($ 0.0 a)"
                     )}
                     source={stats.imports.year + " - " + stats.imports.source}
                     className=""
@@ -398,7 +394,7 @@ class CountryProfile extends Component {
                     icon="ingreso"
                     decile={stats.exports.decile}
                     datum={numeral(stats.exports.value, locale).format(
-                      "($ 0,0 a)"
+                      "($ 0.0 a)"
                     )}
                     source={stats.exports.year + " - " + stats.exports.source}
                     className=""
@@ -411,7 +407,7 @@ class CountryProfile extends Component {
                     icon="check"
                     datum={stats.product.name}
                     source={`${numeral(stats.product.value, locale).format(
-                      "$ 0,0 a"
+                      "$ 0.0 a"
                     )} - ${stats.product.year} - ${stats.product.source}`}
                     className=""
                   />
@@ -450,30 +446,18 @@ class CountryProfile extends Component {
             <div className="topic-slide-container">
               <div className="topic-slide-block">
                 <div className="topic-slide-intro">
-                  <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
-                  <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
+                  <div
+                    className="topic-slide-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("country_profile.about1")
+                    }}
+                  />
+                  <div
+                    className="topic-slide-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t("country_profile.about2")
+                    }}
+                  />
                   <div className="topic-slide-link-list">
                     <LinksList title={listTitle} list={list} />
                   </div>
@@ -510,19 +494,19 @@ class CountryProfile extends Component {
                 </MigrationDetailsSlide>
               </div>
               <div>
+                <MigrationEducationSlide>
+                  <SectionColumns>
+                    <MigrationByEducation className="lost-1" />
+                  </SectionColumns>
+                </MigrationEducationSlide>
+              </div>
+              <div>
                 <MigrationActivitySlide>
                   <SectionColumns>
                     <MigrationByVisa className="lost-1-2" />
                     <MigrationByActivity className="lost-1-2" />
                   </SectionColumns>
                 </MigrationActivitySlide>
-              </div>
-              <div>
-                <MigrationEducationSlide>
-                  <SectionColumns>
-                    <MigrationByEducation className="lost-1" />
-                  </SectionColumns>
-                </MigrationEducationSlide>
               </div>
             </Topic>
             <Topic
