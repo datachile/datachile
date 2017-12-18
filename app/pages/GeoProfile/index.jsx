@@ -941,7 +941,7 @@ class GeoProfile extends Component {
               sections={[
                 {
                   name: t("Healthcare"),
-                  slides: [t("Healthcare"), t("Social Security")]
+                  slides: [t("Health Insurance"), t("Healthcare")]
                 },
                 {
                   name: t("Disability"),
@@ -954,18 +954,18 @@ class GeoProfile extends Component {
               ]}
             >
               <div>
-                <HealthCareSlide>
-                  <SectionColumns>
-                    <HealthCare className="lost-1" />
-                  </SectionColumns>
-                </HealthCareSlide>
-              </div>
-              <div>
                 <AccessSlide>
                   <SectionColumns>
                     <HealthInsurance className="lost-1" />
                   </SectionColumns>
                 </AccessSlide>
+              </div>
+              <div>
+                <HealthCareSlide>
+                  <SectionColumns>
+                    <HealthCare className="lost-1" />
+                  </SectionColumns>
+                </HealthCareSlide>
               </div>
               <div>
                 <DisabilitySlide>

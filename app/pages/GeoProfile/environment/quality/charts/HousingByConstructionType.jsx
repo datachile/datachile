@@ -1,7 +1,7 @@
 import React from "react";
 import orderBy from "lodash/orderBy";
 import { Section } from "datawheel-canon";
-import { BarChart } from "d3plus-react";
+import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -91,38 +91,24 @@ class HousingByConstructionType extends Section {
           <span>{t("Material of Walls")}</span>
           <ExportLink path={path} />
         </h3>
-        <BarChart
+        <Treemap
           config={{
             height: 500,
             data: path,
-            groupBy: "ID Walls Material",
+            groupBy: ["ID Walls Material"],
             label: d => d["Walls Material"],
             time: "ID Year",
-            x: msrName,
-            y: "Walls Material",
+            sum: d => d[msrName],
             shapeConfig: {
-              fill: d => ordinalColorScale(2),
-              label: false
+              fill: d => ordinalColorScale(d["ID Walls Material"])
             },
-            discrete: "y",
-            xConfig: {
-              tickSize: 0,
-              title: t("Number of houses"),
-              tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+            total: d => d[msrName],
+            totalConfig: {
+              text: d =>
+                "Total: " + numeral(d.text.split(": ")[1], locale).format("0,0")
             },
-            yConfig: {
-              barConfig: { "stroke-width": 0 },
-              tickSize: 0,
-              title: false,
-              width: 200
-            },
-            ySort: (a, b) => {
-              return a[msrName] > b[msrName] ? 1 : -1;
-            },
-            barPadding: 0,
-            groupPadding: 5,
             tooltipConfig: {
-              title: d => d["Activity"],
+              title: d => d["Walls Material"],
               body: d =>
                 `${numeral(d[msrName], locale).format("( 0,0 )")} ${t(
                   "houses"

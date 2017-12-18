@@ -404,6 +404,53 @@ function simpleCountryDatumNeed(
   };
 }
 
+function simpleInstitutionDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const institution = getLevelObject(params);
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+
+        const query = levelCut(
+          institution,
+          "Higher Institutions",
+          "Higher Institutions",
+          cube.query
+            .option("parents", true)
+            .drilldown("Careers", "Careers", "Career")
+            .drilldown("Accreditations", "Accreditations", "Accreditation")
+            .measure("Number of records"),
+          "Higher Institution Subgroup",
+          "Higher Institution",
+          store.i18n.locale,
+          false
+        );
+        return client.query(query);
+      })
+      .then(res => {
+        return {
+          key: key,
+          data: flattenDeep(res.data.values)
+        };
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 export {
   levelCut,
   geoCut,
@@ -417,6 +464,7 @@ export {
   simpleDatumNeed,
   simpleFallbackGeoDatumNeed,
   simpleCountryDatumNeed,
-  simpleIndustryDatumNeed
+  simpleIndustryDatumNeed,
+  simpleInstitutionDatumNeed
 };
 export default client;
