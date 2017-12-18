@@ -56,8 +56,8 @@ class OccupationSlide extends Section {
     } = this.context.data;
 
     // Remove 2017 to results
-    console.log(datum_industry_occupation_growth)
     datum_industry_occupation_growth.pop();
+
     const industryName =
       industry.depth === 1 ? industry.name : industry.parent.name;
 
