@@ -116,7 +116,7 @@ class Home extends Component {
                 </h1>
                 <p className="lead">
                   {t(
-                    "Interactive data visualization platform about Chilean public data"
+                    "The most comprehensive effort to integrate and visualize Chile’s Public Data"
                   )}
                 </p>
               </div>
