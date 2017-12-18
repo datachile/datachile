@@ -3,14 +3,29 @@ import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { LinePlot } from "d3plus-react";
 
-import { simpleGeoChartNeed } from "helpers/MondrianClient";
+import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
 class PopulationProjection extends Section {
+  constructor(props) {
+    super(props);
+    this.state = {
+      minValue: 99999999
+    };
+  }
   static need = [
+    simpleDatumNeed(
+      "datum_population_projection",
+      "population_estimate",
+      ["Population"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: true }
+      }
+    ),
     simpleGeoChartNeed(
       "path_population_projection",
       "population_estimate",
@@ -27,7 +42,12 @@ class PopulationProjection extends Section {
 
     const locale = i18n.locale;
 
+    const population = this.context.data.population;
+
     const path = this.context.data.path_population_projection;
+    const minPopulation = Math.min(
+      ...this.context.data.datum_population_projection
+    );
 
     return (
       <div className={className}>
@@ -42,6 +62,28 @@ class PopulationProjection extends Section {
             //groupBy: "Year",
             x: "Year",
             y: "Population",
+            annotations: [
+              {
+                data: [
+                  { x: population.year, y: minPopulation },
+                  { x: population.year, y: population.value }
+                ],
+                shape: "Line",
+                stroke: "#ddd",
+                strokeDasharray: "10",
+                strokeWidth: 2
+              }
+              /*{
+                data: [
+                  { x: 2005, y: population.value },
+                  { x: population.year, y: population.value }
+                ],
+                shape: "Line",
+                stroke: "#ddd",
+                strokeDasharray: "10",
+                strokeWidth: 2
+              }*/
+            ],
             xConfig: {
               tickSize: 0,
               title: false
@@ -50,13 +92,19 @@ class PopulationProjection extends Section {
               title: t("Population")
               //tickFormat: tick => numeral(tick, locale).format("(0 a)")
             },
+            tooltipConfig: {
+              title: d => d["Year"],
+              body: d => numeral(d["Population"], locale).format("(0,0)")
+            },
             shapeConfig: {
               Line: {
                 strokeWidth: 2
               }
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={data => {
+            return data.data;
+          }}
         />
         <SourceNote cube="population_estimate" />
       </div>
