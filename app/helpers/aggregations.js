@@ -3,6 +3,7 @@ import minBy from "lodash/minBy";
 import groupBy from "lodash/groupBy";
 import mapValues from "lodash/mapValues";
 import sumBy from "lodash/sumBy";
+import sortBy from "lodash/sortBy";
 
 import { numeral, slugifyItem } from "helpers/formatters";
 
@@ -216,9 +217,31 @@ function trade_balance_text(
   };
 }
 
+function onlyMostRecent(collection, iteratee = "Year") {
+  const max_year = maxBy(collection, iteratee)[iteratee];
+  return collection.filter(d => d.Year == max_year);
+}
+
+function championsBy(collection, iteratee) {
+  const sorted = sortBy(collection, iteratee);
+  return { first: sorted.pop(), second: sorted.pop(), third: sorted.pop() };
+}
+
+function accumulated_growth(aggregation, locale = "en") {
+  if (aggregation) {
+    return numeral(
+      Math.log(aggregation[aggregation.length - 1] / aggregation[0]),
+      locale
+    ).format("0.0 %");
+  }
+}
+
 export {
-  trade_by_time_and_product,
-  maxMinGrowthByYear,
   info_from_data,
-  trade_balance_text
+  maxMinGrowthByYear,
+  onlyMostRecent,
+  championsBy,
+  trade_balance_text,
+  accumulated_growth,
+  trade_by_time_and_product
 };

@@ -357,9 +357,14 @@ function simpleIndustryDatumNeed(
 
 function simpleCountryDatumNeed(
   key,
-  cube,
-  measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  {
+    cube,
+    measures = [],
+    drillDowns = [],
+    cuts = [],
+    options = {},
+    format = null
+  }
 ) {
   return (params, store) => {
     const geo = getLevelObject(params);
@@ -369,14 +374,16 @@ function simpleCountryDatumNeed(
       .then(cube => {
         const q = cube.query;
 
-        measures.forEach(m => {
-          q.measure(m);
-        });
-        drillDowns.forEach(([...dd]) => {
-          q.drilldown(...dd);
-        });
-        Object.entries(options).forEach(([k, v]) => q.option(k, v));
-        cuts.forEach(c => q.cut(c));
+        measures.forEach(q.measure, q);
+        drillDowns.forEach(dd => q.drilldown(...dd));
+        cuts
+          .map(function(cut) {
+            return "string" == typeof cut
+              ? cut
+              : "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
+          })
+          .forEach(q.cut, q);
+        Object.entries(options).forEach(pairs => q.option(...pairs));
 
         var query = levelCut(
           geo,
@@ -388,12 +395,14 @@ function simpleCountryDatumNeed(
           store.i18n.locale,
           false
         );
-        return client.query(query);
+
+        return client.query(query, format);
       })
       .then(res => {
+        const data = res.data || {};
         return {
           key: key,
-          data: flattenDeep(res.data.values)
+          data: data.data || flattenDeep(data.values)
         };
       });
 
@@ -403,6 +412,12 @@ function simpleCountryDatumNeed(
     };
   };
 }
+
+const getCountryCut = params => {
+  const level1 = (params.level1 || "").split("-").pop();
+  const level2 = (params.level2 || "").split("-").pop();
+  return level2 ? `[Country].&[${level2}]` : `[Subregion].&[${level1}]`;
+};
 
 function simpleInstitutionDatumNeed(
   key,
@@ -459,6 +474,7 @@ export {
   getMemberQuery,
   setLangCaptions,
   getMeasureByGeo,
+  getCountryCut,
   simpleGeoChartNeed,
   simpleIndustryChartNeed,
   simpleDatumNeed,
