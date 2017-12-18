@@ -13,11 +13,17 @@
 			font-size: 12px;
 		}
 		& .svg-image {
+			& svg {
+				width: 48px;
+				height: 60px;
+			}
 			& path,
 			& line,
-			& polygon  {
-				fill: var(--snow);
+			& rect,
+			& circle {
+				fill: none;
 				stroke: var(--snow);
+				stroke-width: 1.5;
 			}
 		}
 		&:hover {
@@ -28,8 +34,9 @@
 			& .svg-image {
 				& path,
 				& line,
-				& polygon {
-					fill: var(--accent);
+				& rect,
+				& circle {
+					fill: none;
 					stroke: var(--accent);
 				}
 			}
