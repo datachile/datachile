@@ -6,6 +6,8 @@ import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
+import { calculateYearlyGrowth } from "helpers/dataUtils";
+
 import FeaturedDatum from "components/FeaturedDatum";
 
 class RDSlide extends Section {
@@ -50,10 +52,7 @@ class RDSlide extends Section {
       industry
     } = this.context.data;
 
-    const growth = Math.log(
-      datum_industry_rd_spending[datum_industry_rd_spending.length - 1] /
-        datum_industry_rd_spending[0]
-    );
+    const growth = calculateYearlyGrowth(datum_industry_rd_spending);
 
     const industryName =
       industry.depth === 1 ? industry.name : industry.parent.name;

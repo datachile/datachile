@@ -6,6 +6,8 @@ import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
+import { calculateYearlyGrowth } from "helpers/dataUtils";
+
 import FeaturedDatum from "components/FeaturedDatum";
 
 class OccupationSlide extends Section {
@@ -15,7 +17,7 @@ class OccupationSlide extends Section {
       "nene",
       ["Expansion factor"],
       {
-        drillDowns: [["Date", "Date", "Year"]],
+        drillDowns: [["Quaterly Reporting"]],
         options: { parents: false }
       }
     ),
@@ -53,16 +55,39 @@ class OccupationSlide extends Section {
       industry
     } = this.context.data;
 
-    const growth = Math.log(
-      datum_industry_occupation_growth[
-        datum_industry_occupation_growth.length - 1
-      ] / datum_industry_occupation_growth[0]
-    );
-
+    // Remove 2017 to results
+    console.log(datum_industry_occupation_growth)
+    datum_industry_occupation_growth.pop();
     const industryName =
       industry.depth === 1 ? industry.name : industry.parent.name;
 
     const locale = i18n.locale;
+
+    const rate = numeral(
+      calculateYearlyGrowth(datum_industry_occupation_growth),
+      locale
+    ).format("0.0 %");
+
+    const text_slide = {
+      increased_or_decreased: rate > 0 ? "increased" : "decreased",
+      industry: { name: industryName },
+      rate,
+      year: {
+        first: sources.nene.first_year,
+        last: sources.nene.last_year
+      },
+      values: {
+        first: numeral(datum_industry_occupation_growth[0], locale).format(
+          "0,0a"
+        ),
+        last: numeral(
+          datum_industry_occupation_growth[
+            datum_industry_occupation_growth.length - 1
+          ],
+          locale
+        ).format("0,0a")
+      }
+    };
 
     return (
       <div className="topic-slide-block">
@@ -70,11 +95,11 @@ class OccupationSlide extends Section {
           <div className="topic-slide-title">{t("Occupation")}</div>
           <div className="topic-slide-text">
             <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              hendrerit tempor tellus. Donec pretium posuere tellus. Proin quam
-              nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus.
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t("industry_profile.employment", text_slide)
+                }}
+              />
             </p>
           </div>
 
@@ -102,7 +127,7 @@ class OccupationSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={numeral(growth, locale).format("0.0 %")}
+              datum={rate}
               title={t("Employment growth")}
               subtitle={`${sources.nene.first_year} - ${
                 sources.nene.last_year

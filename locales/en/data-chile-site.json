@@ -23,7 +23,8 @@
 
 	"industry_profile": {
 		"economy": "",
-		"r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>"
+		"r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
+		"employment": "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees."
 	},
 
 	"tooltip": {
