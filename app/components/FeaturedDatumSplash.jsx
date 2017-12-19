@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
 import { translate } from "react-i18next";
-import { FORMATTERS } from "helpers/formatters";
 import SvgImage from "components/SvgImage";
 
 import "./FeaturedDatumSplash.css";
@@ -67,4 +64,4 @@ class FeaturedDatumSplash extends Component {
   }
 }
 
-export default translate()(connect(state => ({}), {})(FeaturedDatumSplash));
+export default translate()(FeaturedDatumSplash);
