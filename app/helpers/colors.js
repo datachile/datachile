@@ -124,3 +124,12 @@ export const ORDINAL_COLORS = [
   "blue"
 ];
 export const ordinalColorScale = scaleOrdinal().range(ORDINAL_COLORS);
+
+export const administrationColorScale = scaleOrdinal().range([
+  "#84386E",
+  "#5D5DA8",
+  "#335cb5",
+  "#3C8181",
+  "#E89CA2",
+  "#CCBC4A"
+]);
