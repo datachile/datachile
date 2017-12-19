@@ -24,12 +24,25 @@ section.section .mini-filter {
   }
 
   & .filter-item {
-    margin-left: 1em;
+    margin-left: 0.8em;
     opacity: 0.5;
     cursor: pointer;
 
+    &::before {
+      content: "";
+      display: inline-block;
+      vertical-align: top;
+      width: 16px;
+      height: 18px;
+      background: url("/images/icons/icon-checked-off.svg") no-repeat;
+    }
+
     &.active {
       opacity: 1;
+
+      &:before {
+        background-image: url("/images/icons/icon-checked-on.svg");
+      }
     }
   }
 }

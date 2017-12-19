@@ -1,19 +1,19 @@
 import React from "react";
-import filter from "lodash/filter";
-import orderBy from "lodash/orderBy";
-import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
+
+import { Treemap } from "d3plus-react";
+import { Section } from "datawheel-canon";
 import groupBy from "lodash/groupBy";
-import isEqual from "lodash/isEqual";
+import orderBy from "lodash/orderBy";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
 import { employmentColorScale } from "helpers/colors";
+import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
+import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
-import MiniFilter from "components/MiniFilter";
 import ExportLink from "components/ExportLink";
+import MiniFilter from "components/MiniFilter";
+import SourceNote from "components/SourceNote";
 
 class MigrationByActivity extends Section {
   state = {
@@ -24,34 +24,32 @@ class MigrationByActivity extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      const prm = mondrianClient
+      const promise = mondrianClient
         .cube("immigration")
         .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .option("parents", false)
-              .drilldown("Date", "Date", "Year")
-              .drilldown("Sex", "Sex", "Sex")
-              .drilldown(
-                "Calculated Age Range",
-                "Calculated Age Range",
-                "Age Range"
-              )
-              .drilldown("Activity", "Activity", "Activity")
-              .measure("Number of visas"),
-            store.i18n.locale
-          );
+          var q = cube.query
+            .option("parents", false)
+            .drilldown("Date", "Date", "Year")
+            .drilldown("Sex", "Sex", "Sex")
+            .drilldown(
+              "Calculated Age Range",
+              "Calculated Age Range",
+              "Age Range"
+            )
+            .drilldown("Activity", "Activity", "Activity")
+            .measure("Number of visas");
 
-          return mondrianClient.query(q, "jsonrecords");
+          return mondrianClient.query(
+            geoCut(geo, "Geography", q, store.i18n.locale),
+            "jsonrecords"
+          );
         })
         .then(res => {
           return {
-            key: "path_migration_by_activity",
+            key: "chart_migration_by_activity",
             data: {
               path: res.url.replace("aggregate", "aggregate.jsonrecords"),
-              raw: res.data,
+              raw: res.data.data,
               age_ranges: Object.keys(groupBy(res.data.data, "Age Range")).sort(
                 (a, b) => parseInt(a.split("-")[0]) - parseInt(b.split("-")[0])
               )
@@ -59,47 +57,37 @@ class MigrationByActivity extends Section {
           };
         });
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
+      return { type: "GET_DATA", promise };
     }
   ];
 
   toggleFilter = (key, flag) => {
-    console.log(key, flag, this.state[key] ^ flag);
     this.setState(prevState => ({ [key]: prevState[key] ^ flag }));
   };
 
   render() {
     const { t, className, i18n } = this.props;
-
+    const { filter_sex, filter_age } = this.state;
     const locale = i18n.locale;
-    const migration_data = this.context.data.path_migration_by_activity;
 
-    const filter_sex = this.state.filter_sex;
-    const filter_age = this.state.filter_age;
+    const chart_data = this.context.data.chart_migration_by_activity;
 
     const flags_ageranges = {};
-    const age_ranges = migration_data.age_ranges || [];
 
     const filters = [
       {
         name: t("Gender"),
         key: "filter_sex",
         value: filter_sex,
-        items: [{ label: t("Male"), flag: 1 }, { label: t("Female"), flag: 2 }]
+        items: [{ label: t("Female"), flag: 1 }, { label: t("Male"), flag: 2 }]
       },
       {
         name: t("Age"),
         key: "filter_age",
         value: filter_age,
-        items: age_ranges.map((range, i) => {
+        items: chart_data.age_ranges.map((range, i) => {
           flags_ageranges[range] = Math.pow(2, i);
-          return {
-            label: range,
-            flag: Math.pow(2, i)
-          };
+          return { label: range, flag: Math.pow(2, i) };
         })
       }
     ];
@@ -108,13 +96,13 @@ class MigrationByActivity extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>{t("Migration By Activity")}</span>
-          <ExportLink path={migration_data.path} />
+          <ExportLink path={chart_data.path} />
         </h3>
         <MiniFilter onClick={this.toggleFilter} filters={filters} />
         <Treemap
           config={{
             height: 500,
-            data: migration_data.raw,
+            data: chart_data.raw,
             groupBy: ["ID Activity"],
             label: d => d["Activity"],
             time: "ID Year",
@@ -126,9 +114,11 @@ class MigrationByActivity extends Section {
             tooltipConfig: {
               title: d => d["Activity"],
               body: d =>
-                numeral(d["Number of visas"], locale).format("( 0,0 )") +
-                " " +
-                t("visas")
+                t("{{number}} visas", {
+                  number: numeral(d["Number of visas"], locale).format(
+                    "( 0,0 )"
+                  )
+                })
             },
             legendConfig: {
               label: false,
@@ -136,19 +126,18 @@ class MigrationByActivity extends Section {
             }
           }}
           dataFormat={data => {
-            // console.log(data.data);
-            const flag_ar = flags_ageranges[d["Age Range"]];
-            console.log(flag_ar);
-
-            const filtered = data.data.filter(
-              d =>
+            const filtered = data.filter(d => {
+              const age_range = flags_ageranges[d["Age Range"]];
+              return (
                 d["Number of visas"] > 0 &&
-                (d["ID Sex"] & filter_sex) == filter_sex &&
-                (flag_ar & filter_age) == flag_ar
-            );
-            return _.orderBy(filtered, ["Number of visas"], ["desc"]);
+                (filter_sex & d["ID Sex"]) == d["ID Sex"] &&
+                (filter_age & age_range) == age_range
+              );
+            });
+            return orderBy(filtered, ["Number of visas"], ["desc"]);
           }}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }
