@@ -16,7 +16,6 @@ class InvestmentByLocation extends Section {
   static need = [
     (params, store) => {
       var industry = getLevelObject(params);
-      industry.level2 = false;
       const prm = mondrianClient.cube("tax_data").then(cube => {
         var q = levelCut(
           industry,
