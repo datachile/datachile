@@ -6,64 +6,76 @@ footer {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: var(--gutter);
-    & .collaboration {
-      font-family: var(--font-family-text);
-      text-transform: uppercase;
-      color: var(--snow);
-      font-size: 14px;
-      letter-spacing: 0.05px;
-      font-weight: 300;
-      padding: 20px 0px;
-      & .line {
-        display: block;
-        width: 25px;
-        height: 2px;
-        background-color: var(--snow);
-        margin-top: 15px;
+  }
+
+  & .footer-title {
+    margin-bottom: var(--gutter);
+    font-family: var(--font-family-text);
+    text-transform: uppercase;
+    color: var(--snow);
+    font-size: 14px;
+    letter-spacing: 0.05px;
+    font-weight: 300;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 25px;
+      height: 2px;
+      background-color: var(--snow);
+      margin-top: 15px;
+    }
+  }
+
+  & .collaboration {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: var(--gutter) 0px;
+
+    & .column {
+      &.developed {
+        lost-column: 2/9;
+      }
+      &.sponsored {
+        lost-column: 4/9;
+      }
+      &.supported {
+        lost-column: 3/9;
       }
     }
 
     & .logos {
-      box-sizing: border-box;
-      padding: var(--gutter) 0px;
-      width: 100%;
-
-      & img {
-        margin: 25px;
-        vertical-align: middle;
-
-        &[src$="econ.png"] {
-            height: 80px;
-        }
-
-      }
-
-      & .logo {
-      }
-
-      & .logo-datawheel {
-        width: 200px;
-        margin-left: -8px;
-      }
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
     }
 
-    & .nav-links  {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      & .link {
-        font-family: var(--font-family-text);
-        font-weight: 300;
-        font-size: 12px;
-        color: var(--snow);
-        padding: 40px 10px;
-        text-transform: uppercase;
-        text-decoration: none;
-        cursor: pointer;
-      }
-      & .link-dot {
-        font-weight: 400;
-      }
+    & .logo {
+      display: inline-block;
+      max-height: 120px;
+      margin: 0 var(--gutter) 0 0;
+    }
+  }
+
+  & .nav-links  {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    & .link {
+      font-family: var(--font-family-text);
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--snow);
+      padding: 40px 10px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    & .link-dot {
+      font-weight: 400;
     }
   }
 }
