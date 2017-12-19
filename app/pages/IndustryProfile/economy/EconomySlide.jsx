@@ -3,6 +3,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
+import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
@@ -20,36 +21,62 @@ class EconomySlide extends Section {
         drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false }
       }
+    ),
+    simpleIndustryDatumNeed(
+      "datum_industry_output_by_comuna",
+      "tax_data",
+      ["Output"],
+      {
+        drillDowns: [["Tax Geography", "Geography", "Comuna"]],
+        options: { parents: false },
+        cuts: [`[Date].[Date].[Year].&[${sources.tax_data.last_year}]`]
+      },
+      false
     )
   ];
 
   render() {
     const { t, i18n, children } = this.props;
-    const { datum_industry_investment } = this.context.data;
+    const {
+      datum_industry_investment,
+      datum_industry_output_by_comuna,
+      industry
+    } = this.context.data;
+    console.log(datum_industry_output_by_comuna);
 
-    const growth = calculateYearlyGrowth(datum_industry_investment);
+    const rate = calculateYearlyGrowth(datum_industry_investment);
 
     const locale = i18n.locale;
+
+    const text_economy = {
+      year: {
+        first: sources.tax_data.first_year,
+        last: sources.tax_data.last_year
+      },
+      rate: numeral(rate, locale).format("0.0 %"),
+      increased_or_decreased: rate > 0 ? "increased" : "decreased",
+      industry: {
+        name: industry.name
+      }
+    };
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Economy")}</div>
           <div className="topic-slide-text">
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              hendrerit tempor tellus. Donec pretium posuere tellus. Proin quam
-              nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus.
-            </p>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("industry_profile.economy", text_economy)
+              }}
+            />
           </div>
 
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={numeral(growth, locale).format("0.0 %")}
+              datum={numeral(rate, locale).format("0.0 %")}
               title={t("Growth Investment")}
               subtitle={`${sources.tax_data.first_year} - ${
                 sources.tax_data.last_year
