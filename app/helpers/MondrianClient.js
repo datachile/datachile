@@ -311,7 +311,8 @@ function simpleIndustryDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  { drillDowns = [], options = {}, cuts = [] },
+  flatten = true
 ) {
   return (params, store) => {
     var industry = getLevelObject(params);
@@ -339,12 +340,16 @@ function simpleIndustryDatumNeed(
           "Level 2",
           store.i18n.locale
         );
-        return client.query(query);
+        return flatten
+          ? client.query(query)
+          : client.query(query, "jsonrecords");
       })
       .then(res => {
         return {
           key: key,
-          data: flattenDeep(res.data.values)
+          data: flatten
+            ? flattenDeep(res.data.values)
+            : flattenDeep(res.data.data)
         };
       });
 
