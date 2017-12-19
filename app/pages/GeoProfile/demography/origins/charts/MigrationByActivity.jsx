@@ -101,7 +101,7 @@ class MigrationByActivity extends Section {
         <MiniFilter onClick={this.toggleFilter} filters={filters} />
         <Treemap
           config={{
-            height: 500,
+            height: 480,
             data: chart_data.raw,
             groupBy: ["ID Activity"],
             label: d => d["Activity"],

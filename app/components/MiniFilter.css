@@ -1,10 +1,13 @@
 section.section .mini-filter {
-  margin: -10px 0;
+  margin: -10px 0 0;
   padding: 0 15px;
   color: var(--snow);
   text-transform: none;
 
   & .filter {
+    display: block;
+    margin-bottom: 2px;
+    /* 
     margin-right: 1em;
     padding-left: 1em;
     border-left: 1px solid;
@@ -12,7 +15,8 @@ section.section .mini-filter {
     &:first-child {
       border: 0 none;
       padding: 0;
-    }
+    } 
+    */
   }
 
   & .filter-name {
