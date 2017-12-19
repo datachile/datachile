@@ -31,7 +31,7 @@ class ImportsByRegion extends Section {
 
         return {
           key: "product_imports_by_region",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

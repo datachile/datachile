@@ -33,7 +33,7 @@ export default translate()(
 
           return {
             key: "path_country_migration_by_activity",
-            data: store.env.CANON_API + q.path("jsonrecords")
+            data: __API__ + q.path("jsonrecords")
           };
         });
 

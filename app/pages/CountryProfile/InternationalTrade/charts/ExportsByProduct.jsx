@@ -34,7 +34,7 @@ class ExportsByProduct extends Section {
 
         return {
           key: "path_exports_by_product_country",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 
