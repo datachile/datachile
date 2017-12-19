@@ -1,0 +1,52 @@
+section.section .mini-filter {
+  margin: -10px 0 0;
+  padding: 0 15px;
+  color: var(--snow);
+  text-transform: none;
+
+  & .filter {
+    display: block;
+    margin-bottom: 2px;
+    /* 
+    margin-right: 1em;
+    padding-left: 1em;
+    border-left: 1px solid;
+
+    &:first-child {
+      border: 0 none;
+      padding: 0;
+    } 
+    */
+  }
+
+  & .filter-name {
+    font-weight: bold;
+
+    &::after {
+      content: ":";
+    }
+  }
+
+  & .filter-item {
+    margin-left: 0.8em;
+    opacity: 0.5;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      vertical-align: top;
+      width: 16px;
+      height: 18px;
+      background: url("/images/icons/icon-checked-off.svg") no-repeat;
+    }
+
+    &.active {
+      opacity: 1;
+
+      &:before {
+        background-image: url("/images/icons/icon-checked-on.svg");
+      }
+    }
+  }
+}

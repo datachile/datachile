@@ -90,6 +90,7 @@
       line-height: 1em;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
     & .topic-slide-charts {
       & .ticks .d3plus-Rect-text,
