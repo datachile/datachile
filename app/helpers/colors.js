@@ -19,7 +19,23 @@ export const COLORS_INSTITUTIONS = [
 ];
 export const institutionsColorScale = scaleOrdinal().range(COLORS_INSTITUTIONS);
 
-export const COLORS_EMPLOYMENT = ["#E8B25D", "#049FA3", "#E2646E", "#7167B2"];
+export const COLORS_EMPLOYMENT = [
+  "#74C0E2",
+  "#406662",
+  "#549E95",
+  "#8ABDB6",
+  "#BCD8AF",
+  "#A8C380",
+  "#EDE788",
+  "#D6C650",
+  "#DC8E7A",
+  "#D05555",
+  "#BF3251",
+  "#872A41",
+  "#993F7B",
+  "#7454A6",
+  "#A17CB0"
+];
 export const employmentColorScale = scaleOrdinal().range(COLORS_EMPLOYMENT);
 
 export const COLORS_EDUCATION_LEVEL = [

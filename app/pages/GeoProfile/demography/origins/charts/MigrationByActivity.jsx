@@ -108,6 +108,13 @@ class MigrationByActivity extends Section {
             time: "ID Year",
             sum: d => d["Number of visas"],
             total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                " " +
+                "visas"
+            },
             shapeConfig: {
               fill: d => employmentColorScale(d["ID Activity"])
             },
