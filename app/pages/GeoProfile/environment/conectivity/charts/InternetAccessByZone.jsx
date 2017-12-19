@@ -37,7 +37,7 @@ class InternetAccessByZone extends Section {
 
         return {
           key: "path_internet_access",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

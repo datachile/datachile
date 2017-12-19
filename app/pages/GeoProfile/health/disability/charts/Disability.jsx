@@ -28,7 +28,7 @@ class Disability extends Section {
 
         return {
           key: "path_health_disabilities_by_grade",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

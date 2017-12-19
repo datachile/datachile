@@ -23,6 +23,7 @@
     "console": true,
     "event": true,
     "Promise": true,
-    "setTimeout": true
+    "setTimeout": true,
+    "__API__": true
   }
 }

@@ -38,7 +38,7 @@ export default translate()(
 
             return {
               key: "path_institution_retention_by_program",
-              data: store.env.CANON_API + q.path("jsonrecords")
+              data: __API__ + q.path("jsonrecords")
             };
           });
 

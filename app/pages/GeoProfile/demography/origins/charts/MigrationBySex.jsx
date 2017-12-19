@@ -29,7 +29,7 @@ export default translate()(
           );
           return {
             key: "path_migration_by_sex",
-            data: store.env.CANON_API + q.path("jsonrecords")
+            data: __API__ + q.path("jsonrecords")
           };
         });
 

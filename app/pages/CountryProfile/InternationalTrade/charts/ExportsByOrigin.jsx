@@ -33,7 +33,7 @@ class ExportsByOrigin extends Section {
 
         return {
           key: "path_country_exports_by_origin",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

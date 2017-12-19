@@ -32,7 +32,7 @@ class HealthCare extends Section {
 
         return {
           key: "path_health_healthcare",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 
