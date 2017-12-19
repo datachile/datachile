@@ -3,8 +3,8 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
-import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
+import { getTopCategories } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import { calculateYearlyGrowth } from "helpers/dataUtils";
@@ -28,7 +28,7 @@ class EconomySlide extends Section {
       ["Output"],
       {
         drillDowns: [["Tax Geography", "Geography", "Comuna"]],
-        options: { parents: false },
+        options: { parents: true },
         cuts: [`[Date].[Date].[Year].&[${sources.tax_data.last_year}]`]
       },
       false
@@ -42,13 +42,24 @@ class EconomySlide extends Section {
       datum_industry_output_by_comuna,
       industry
     } = this.context.data;
-    console.log(datum_industry_output_by_comuna);
-
+    const top = getTopCategories(datum_industry_output_by_comuna, "Output", 2);
     const rate = calculateYearlyGrowth(datum_industry_investment);
-
+    const total = datum_industry_output_by_comuna.reduce((all, item) => {
+      return all + item["Output"];
+    }, 0);
     const locale = i18n.locale;
 
     const text_economy = {
+      territory: {
+        name: {
+          first: top[0].Comuna,
+          second: top[1].Comuna
+        },
+        share: {
+          first: numeral(top[0].Output / total).format("0.0 %"),
+          second: numeral(top[1].Output / total).format("0.0 %")
+        }
+      },
       year: {
         first: sources.tax_data.first_year,
         last: sources.tax_data.last_year
