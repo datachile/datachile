@@ -32,7 +32,7 @@ class ImportsByDestination extends Section {
 
         return {
           key: "product_imports_by_destination",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

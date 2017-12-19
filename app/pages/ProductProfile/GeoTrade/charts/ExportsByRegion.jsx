@@ -32,7 +32,7 @@ class ExportsByRegion extends Section {
 
         return {
           key: "product_exports_by_region",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

@@ -35,7 +35,7 @@ class MigrationByVisa extends Section {
 
         return {
           key: "path_country_migration_by_visa",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 
