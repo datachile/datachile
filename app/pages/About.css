@@ -54,6 +54,7 @@
       margin: var(--gutter);
       text-align: center;
       lost-flex-container: row;
+      lost-align: center;
       & .sublink {
         font-family: var(--font-family-title);
         font-weight: 300;
@@ -65,8 +66,6 @@
         text-decoration: none;
         text-transform: uppercase;
         transition: opacity 0.2s;
-        lost-column: 1/6;
-
         &:hover {
           text-decoration: underline;
         }
@@ -80,7 +79,7 @@
   }
   & .section-container {
     lost-utility: clearfix;
-    lost-flex-container: row;
+    lost-flex-container: column;
     background-color: var(--dark);
   }
   & .section {
@@ -106,7 +105,7 @@
       letter-spacing: 0.1em;
       margin: var(--gutter) 0 calc(var(--gutter)/2) 0;
       lost-column: 1;
-      line-height: 1em;
+      line-height: 1.2em;
     }
     & p {
       font-family: var(--font-family-text);
@@ -115,6 +114,10 @@
       font-weight: 300;
       line-height: 1.5;
       lost-column: 1;
+      & a {
+        color: var(--accent);
+        font-weight: 800;
+      }
     }
     & .use {
       font-family: var(--font-family-text);
@@ -129,7 +132,7 @@
     }
     & table {
       border-collapse: collapse;
-
+      width: 100%;
       & thead {
         & th {
           color: var(--accent);
@@ -174,6 +177,7 @@
     }
     & .section {
       lost-column: 1;
+      margin-bottom: 0px;
       & h2 {
         font-size: 30px;
       }

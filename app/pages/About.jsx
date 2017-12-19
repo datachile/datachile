@@ -26,21 +26,21 @@ class About extends Component {
         slug: "data",
         title: t("about.data.title")
       },
-      {
+      /*{
         slug: "glossary",
         title: t("Glossary")
-      },
+      },*/
       {
-        slug: "teams",
-        title: t("Team")
+        slug: "team",
+        title: t("about.team.title")
       },
       {
         slug: "acknowledgement",
-        title: t("Acknowledgement")
+        title: t("about.ack.title")
       },
       {
         slug: "terms",
-        title: t("Terms of Use")
+        title: t("about.terms.title")
       }
     ];
 
@@ -110,13 +110,13 @@ class About extends Component {
                     <td>
                       <a href="#dataset_nene">{t("about.data.nene.title")}</a>
                     </td>
-                    <td>{t("about.data.nene.title")}</td>
+                    <td>{t("about.data.nene.source")}</td>
                   </tr>
                   <tr>
                     <td>
                       <a href="#dataset_nesi">{t("about.data.nesi.title")}</a>
                     </td>
-                    <td>{t("about.data.nesi.title")}</td>
+                    <td>{t("about.data.nesi.source")}</td>
                   </tr>
                   <tr>
                     <td>
@@ -124,13 +124,13 @@ class About extends Component {
                         {t("about.data.matricula.title")}
                       </a>
                     </td>
-                    <td>{t("about.data.matricula.title")}</td>
+                    <td>{t("about.data.matricula.source")}</td>
                   </tr>
                   <tr>
                     <td>
                       <a href="#dataset_psu">{t("about.data.psu.title")}</a>
                     </td>
-                    <td>{t("about.data.psu.title")}</td>
+                    <td>{t("about.data.psu.source")}</td>
                   </tr>
                   <tr>
                     <td>
@@ -138,19 +138,19 @@ class About extends Component {
                         {t("about.data.empleabilidad.title")}
                       </a>
                     </td>
-                    <td>{t("about.data.empleabilidad.title")}</td>
+                    <td>{t("about.data.empleabilidad.source")}</td>
                   </tr>
                   <tr>
                     <td>
                       <a href="#dataset_salud">{t("about.data.salud.title")}</a>
                     </td>
-                    <td>{t("about.data.salud.title")}</td>
+                    <td>{t("about.data.salud.source")}</td>
                   </tr>
                   <tr>
                     <td>
                       <a href="#dataset_vida">{t("about.data.vida.title")}</a>
                     </td>
-                    <td>{t("about.data.vida.title")}</td>
+                    <td>{t("about.data.vida.source")}</td>
                   </tr>
                   <tr>
                     <td>
@@ -158,7 +158,7 @@ class About extends Component {
                         {t("about.data.migracion.title")}
                       </a>
                     </td>
-                    <td>{t("about.data.migracion.title")}</td>
+                    <td>{t("about.data.migracion.source")}</td>
                   </tr>
                   <tr>
                     <td>
@@ -166,13 +166,13 @@ class About extends Component {
                         {t("about.data.discapacidad.title")}
                       </a>
                     </td>
-                    <td>{t("about.data.discapacidad.title")}</td>
+                    <td>{t("about.data.discapacidad.source")}</td>
                   </tr>
                   <tr>
                     <td>
                       <a href="#dataset_gasto">{t("about.data.gasto.title")}</a>
                     </td>
-                    <td>{t("about.data.gasto.title")}</td>
+                    <td>{t("about.data.gasto.source")}</td>
                   </tr>
                 </tbody>
               </table>
@@ -346,6 +346,43 @@ class About extends Component {
                 className="use"
                 dangerouslySetInnerHTML={{
                   __html: t("about.data.gasto.use")
+                }}
+              />
+            </section>
+            /* TEAM */
+            <section className="section" id="team">
+              <h2>{t("about.team.title")}</h2>
+
+              <h3>{t("about.team.dw.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.team.dw.text")
+                }}
+              />
+            </section>
+            /* ACK */
+            <section className="section" id="acknowledgement">
+              <h2>{t("about.ack.title")}</h2>
+              <h3>{t("about.ack.partners.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.ack.partners.text")
+                }}
+              />
+              <h3>{t("about.ack.credits.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.ack.credits.text")
+                }}
+              />
+            </section>
+            /* TERMS */
+            <section className="section" id="terms">
+              <h2>{t("about.terms.title")}</h2>
+
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.terms.text")
                 }}
               />
             </section>

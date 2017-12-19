@@ -22,7 +22,7 @@
   "Home": "Inicio",
   "Profiles": "Perfiles",
   "Topics": "Temas",
-  "About": "Acerca",
+  "About": "Acerca de Datachile",
   "Contact": "Contacto",
 
   "Country": "País",
@@ -163,7 +163,7 @@
 
   "about": {
     "background": {
-      "title": "Background",
+      "title": "Datachile",
       "subtitle1": "¿En qué consiste este proyecto?",
       "text1":
         "<p>DataChile es un proyecto desarrollado por Datawheel con el objetivo de centralizar y mostrar parte importante de la información pública del país. Este proyecto reúne información económica, demográfica, educacional y de salud.</p><p>Presentamos una \"radiografía\" a las comunas y regiones del país para mostrar varias dimensiones que tienen impacto en el día a día de los ciudadanos en las distintas localidades del Chile.</p>",
@@ -206,7 +206,7 @@
         "text":
           "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
         "use":
-          "Se usa en los perfiles país, región y comuna en las dimensión de educación.",
+          "Se usa en los perfiles país, región y comuna en la dimensión de educación.",
         "source": "Ministerio de Educación (MINEDUC)"
       },
       "psu": {
@@ -214,7 +214,7 @@
         "text":
           "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
         "use":
-          "Se usa en los perfiles país, región y comuna en las dimensión de educación.",
+          "Se usa en los perfiles país, región y comuna en la dimensión de educación.",
         "source": "Ministerio de Educación (MINEDUC)"
       },
       "empleabilidad": {
@@ -237,7 +237,7 @@
         "text":
           "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
         "use":
-          "Se usa en los perfiles país, región y comuna en las dimensión de salud.",
+          "Se usa en los perfiles país, región y comuna en la dimensión de salud.",
         "source": "Departamento de Estadísticas e Información de Salud (DEIS)"
       },
       "migracion": {
@@ -263,6 +263,33 @@
         "use": "Se usa en el perfil industrias.",
         "source": "Ministerio de Economía (MINECON)"
       }
+    },
+    "team": {
+      "title": "Equipo",
+      "dw": {
+        "title": "Datawheel",
+        "text":
+          "<p><a href='http://datawheel.us' target='_blank'>Datawheel</a> es un equipo pequeño pero poderoso de programadores y diseñadores apasionados por elaborar datos en herramientas predictivas, de toma de decisiones y narración de historias. Cada plataforma de visualización construida por Datawheel es una solución a medida que combina las necesidades de los usuarios y los datos que la respaldan.</p>"
+      }
+    },
+    "ack": {
+      "title": "Reconocimiento y créditos",
+      "partners": {
+        "title": "Participantes",
+        "text":
+          "<p>Este trabajo fue desarrollado por <a href='http://datawheel.us' target='_blank'>Datawheel</a> con el financiamiento de <a href='http://www.aminerals.cl/' target='_blank'>Antofagasta Minerals</a>, <a href='https://www.corfo.cl/' target='_blank'>Corporación de Fomento de la Producción</a>, <a href='http://www.economia.gob.cl/minecon' target='_blank'>Ministerio de Economía, Fomento y Turismo</a> y <a href='http://www.entel.cl/' target='_blank'>ENTEL</a>. Apoyaron además: <a href='https://www.direcon.gob.cl/' target='_blank'>Dirección General de Relaciones Económicas Internacionales</a> y <a href='https://www.asech.cl/' target='_blank'>Asociación de empremdedores de Chile</a>.</p>"
+      },
+      "credits": {
+        "title": "Citación",
+        "subtitle": "Para citar DataChile por favor utilice:",
+        "text":
+          "<p>Datawheel, 2017. https://datachile.io. Fecha de acceso [fecha de hoy].</p>"
+      }
+    },
+    "terms": {
+      "title": "Términos de uso",
+      "text":
+        "<p>La información en este sitio se proporciona 'tal como está' y 'según esté disponible'. DataChile hace todo lo posible para garantizar, pero no garantiza, la exactitud o integridad de la información en el sitio web de DataChile. Nuestro objetivo es mantener esta información oportuna y precisa. Si los errores son traídos a nuestra atención, trataremos de corregirlos. DataChile puede agregar, cambiar, mejorar o actualizar la información del sitio web sin previo aviso.</p><p>DataChile se reserva el derecho exclusivo a su entera discreción de alterar, limitar o descontinuar parte de este sitio. Bajo ninguna circunstancia DataChile será responsable de ninguna pérdida, daño, responsabilidad o gasto sufrido que se alegue como resultado del uso de este sitio, incluyendo, sin limitación, cualquier falla, error, omisión, interrupción o retraso. El uso de este sitio es bajo el exclusivo riesgo del usuario. Hacemos todo lo posible para minimizar las interrupciones causadas por errores técnicos. Sin embargo, algunos datos o información en el sitio web de DataChile pueden haber sido creados o estructurados en archivos o formatos que no están libres de errores y no podemos garantizar que nuestro servicio no se vea interrumpido o afectado por tales problemas. DataChile no acepta ninguna responsabilidad con respecto a tales problemas (fallas de funcionamiento, virus informáticos, fallas en la línea de comunicación, alteración del contenido, etc.) incurridos como resultado del uso del sitio web de DataChile o cualquier enlace a sitios externos.</p><p>El Usuario reconoce y acepta específicamente que DataChile no es responsable de ninguna conducta de ningún otro Usuario, incluidos, entre otros, los tipos de conducta enumerados anteriormente.</p><p>DataChile se reserva el derecho de denegar a su exclusivo criterio el acceso de cualquier Usuario al sitio web de DataChile o cualquier parte del mismo sin previo aviso.</p><p>Para fines de seguridad del sitio y para asegurar que el sitio web de DataChile permanezca disponible para todos los usuarios, emplea programas de software para monitorear el tráfico de red para identificar intentos no autorizados de cargar o cambiar información o causar daños y detectar otras posibles violaciones de seguridad.</p>"
     }
   }
 }
