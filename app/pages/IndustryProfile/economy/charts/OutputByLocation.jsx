@@ -79,7 +79,7 @@ class OutputByLocation extends Section {
             total: d => d["Output"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: CLP" +
                 numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
             },
             shapeConfig: {

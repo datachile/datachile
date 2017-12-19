@@ -22,6 +22,10 @@ class EconomySlide extends Section {
         options: { parents: false }
       }
     ),
+    simpleIndustryDatumNeed("datum_industry_labour", "tax_data", ["Labour"], {
+      drillDowns: [["Date", "Date", "Year"]],
+      options: { parents: false }
+    }),
     simpleIndustryDatumNeed(
       "datum_industry_output_by_comuna",
       "tax_data",
@@ -40,8 +44,10 @@ class EconomySlide extends Section {
     const {
       datum_industry_investment,
       datum_industry_output_by_comuna,
+      datum_industry_labour,
       industry
     } = this.context.data;
+
     const top = getTopCategories(datum_industry_output_by_comuna, "Output", 2);
     const rate = calculateYearlyGrowth(datum_industry_investment);
     const total = datum_industry_output_by_comuna.reduce((all, item) => {
@@ -96,16 +102,24 @@ class EconomySlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"xxx k"}
-              title={t("Lorem Datum")}
-              subtitle="XXXX - YYYY"
+              datum={numeral(
+                datum_industry_labour[datum_industry_labour.length - 1],
+                locale
+              ).format("0 a")}
+              title={t("Number of jobs")}
+              subtitle={`In ${sources.tax_data.last_year}`}
             />
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={"xxx k"}
-              title={t("Lorem Datum")}
-              subtitle="XXXX - YYYY"
+              datum={numeral(
+                calculateYearlyGrowth(datum_industry_labour),
+                locale
+              ).format("0.0 %")}
+              title={t("Growth Labour")}
+              subtitle={`${sources.tax_data.first_year} - ${
+                sources.tax_data.last_year
+              }`}
             />
           </div>
         </div>
