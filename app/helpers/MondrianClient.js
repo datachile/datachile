@@ -315,21 +315,18 @@ function simpleIndustryDatumNeed(
   flatten = true
 ) {
   return (params, store) => {
-    var industry = getLevelObject(params);
-    industry.level2 = false;
+    const industry = getLevelObject(params);
+    if (cube !== "tax_data") {
+      industry.level2 = false;
+    }
     const prm = client
       .cube(cube)
       .then(cube => {
-        const q = cube.query;
-
-        measures.forEach(m => {
-          q.measure(m);
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
         });
-        drillDowns.forEach(([...dd]) => {
-          q.drilldown(...dd);
-        });
-        Object.entries(options).forEach(([k, v]) => q.option(k, v));
-        cuts.forEach(c => q.cut(c));
 
         var query = levelCut(
           industry,

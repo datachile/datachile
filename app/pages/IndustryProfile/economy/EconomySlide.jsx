@@ -105,7 +105,7 @@ class EconomySlide extends Section {
               datum={numeral(
                 datum_industry_labour[datum_industry_labour.length - 1],
                 locale
-              ).format("0 a")}
+              ).format("0,0")}
               title={t("Number of jobs")}
               subtitle={`In ${sources.tax_data.last_year}`}
             />
