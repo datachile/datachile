@@ -23,13 +23,12 @@ function trade_by_time_and_product(
   show_rank = true,
   locale = "en"
 ) {
-  const max_year = maxBy(aggregation, function(o) {
-    return o["ID Year"];
-  })["ID Year"];
+  if (!aggregation.length) return {};
 
-  const by_date_array = groupBy(aggregation, function(obj, children) {
-    return obj["ID Year"];
-  });
+  const first_year = minBy(aggregation, "ID Year")["ID Year"];
+  const last_year = maxBy(aggregation, "ID Year")["ID Year"];
+
+  const by_date_array = groupBy(aggregation, "ID Year");
 
   const by_date = mapValues(by_date_array, function(array) {
     return sumBy(array, function(o) {
@@ -39,20 +38,16 @@ function trade_by_time_and_product(
     });
   });
 
-  const first_year = minBy(aggregation, function(o) {
-    return o["ID Year"];
-  })["ID Year"];
-
   const trade_first_year = by_date[first_year];
-  const trade_last_year = by_date[max_year];
+  const trade_last_year = by_date[last_year];
   const annualized_rate = annualized_growth(
     trade_last_year,
     trade_first_year,
-    max_year,
+    last_year,
     first_year
   );
 
-  const current_trade_array = by_date_array[max_year];
+  const current_trade_array = by_date_array[last_year];
 
   const top_trade_latest_year = current_trade_array.sort(function(a, b) {
     return b[trade_measure] - a[trade_measure];
@@ -65,18 +60,18 @@ function trade_by_time_and_product(
   });
 
   var p_text_values = {
-    latest_year: max_year,
+    first_year: first_year,
+    last_year: last_year,
+    latest_year: last_year,
     rank: numeral(
       current_trade_array[0]["Geo Rank Across Time"],
       locale
     ).format("0o"),
     trade_volume: numeral(total_trade_latest_year, locale).format("($ 0.00 a)"),
-    first_year: first_year,
     trade_first_year: numeral(trade_first_year, locale).format("($ 0.00 a)"),
-    last_year: max_year,
     trade_last_year: numeral(trade_last_year, locale).format("($ 0.00 a)"),
     annualized_rate: numeral(annualized_rate, locale).format("0%"),
-    increased: annualized_rate > 0 ? true : false,
+    increased: annualized_rate > 0,
     trade_first_product: top_trade_latest_year[0].HS2,
     trade_first_product_link: slugifyItem(
       "products",
@@ -91,7 +86,7 @@ function trade_by_time_and_product(
         total_trade_latest_year,
       locale
     ).format("0%"),
-    number_of_years: max_year - first_year
+    number_of_years: last_year - first_year
   };
 
   if (top_trade_latest_year.length > 2) {
@@ -117,23 +112,16 @@ function trade_by_time_and_product(
 }
 
 function maxMinGrowthByYear(aggregation, measure, locale = "en") {
-  const last_year = maxBy(aggregation, function(o) {
-    return o["ID Year"];
-  })["ID Year"];
+  const first_year = minBy(aggregation, "ID Year")["ID Year"];
+  const last_year = maxBy(aggregation, "ID Year")["ID Year"];
 
-  const by_date_array = groupBy(aggregation, function(obj, children) {
-    return obj["ID Year"];
-  });
+  const by_date_array = groupBy(aggregation, "ID Year");
 
   const by_date = mapValues(by_date_array, function(array) {
     return sumBy(array, function(o) {
       return o[measure] && !isNaN(o[measure]) ? parseInt(o[measure]) : 0;
     });
   });
-
-  const first_year = minBy(aggregation, function(o) {
-    return o["ID Year"];
-  })["ID Year"];
 
   const value_first_year = by_date[first_year];
   const value_last_year = by_date[last_year];
@@ -162,13 +150,9 @@ function info_from_data(
   locale = "en",
   format = "($ 0.00 a)"
 ) {
-  aggregation = aggregation.sort((a, b) => {
-    return b[msrName] - a[msrName];
-  });
+  aggregation = sortBy(aggregation, [msrName], ["desc"]);
+  const total = sumBy(aggregation, msrName);
 
-  const total = aggregation.reduce((all, item) => {
-    return all + item[msrName];
-  }, 0);
   return {
     total: numeral(total, locale).format(format),
     territory: {
@@ -233,6 +217,9 @@ function onlyMostRecent(collection, iteratee = "Year") {
   return collection.filter(d => d.Year == max_year);
 }
 
+/**
+ * Retrieves the highest three elements of a collection
+ */
 function championsBy(collection, iteratee) {
   const sorted = sortBy(collection, iteratee);
   return { first: sorted.pop(), second: sorted.pop(), third: sorted.pop() };
