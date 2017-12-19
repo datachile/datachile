@@ -81,13 +81,6 @@ class IncomeSexAgeSlide extends Section {
         : t("decreased");
     }
 
-    var gap;
-    var inFavor;
-    if (datum_income_mean_sex) {
-      gap = calculateYearlyGrowth(datum_income_mean_sex);
-      inFavor = gap > 0 ? t("men") : t("women");
-    }
-
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -120,15 +113,6 @@ class IncomeSexAgeSlide extends Section {
               )}
               title={t("Male Mean Income")}
               subtitle={t("in ") + geo.caption}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={numeral(Math.abs(gap), locale).format("(0.0%)")}
-              title={t("Gender income gap")}
-              subtitle={
-                t("in favor of ") + inFavor + " in " + sources.nesi_income.year
-              }
             />
           </div>
         </div>
