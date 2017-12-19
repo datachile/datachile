@@ -3,7 +3,7 @@ import { getGeoObject, getLevelObject } from "helpers/dataUtils";
 
 import flattenDeep from "lodash/flattenDeep";
 
-const client = new MondrianClient("https://chilecube.datawheel.us/");
+const client = new MondrianClient(__API__);
 //const client = new MondrianClient("http://localhost:9292/");
 
 /**
@@ -133,7 +133,7 @@ function simpleGeoChartNeed(
       return {
         key: key,
         data:
-          store.env.CANON_API +
+          __API__ +
           geoCut(geo, "Geography", q, store.i18n.locale).path("jsonrecords")
       };
     });
@@ -168,7 +168,7 @@ function simpleIndustryChartNeed(
       return {
         key: key,
         data:
-          store.env.CANON_API +
+          __API__ +
           levelCut(
             industry,
             "ISICrev4",

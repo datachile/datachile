@@ -33,7 +33,7 @@ class RDByBusinessType extends Section {
 
         return {
           key: "industry_rd_by_business_type",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

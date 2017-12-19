@@ -27,7 +27,7 @@ class StaffBySex extends Section {
 
         return {
           key: "path_industry_output",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

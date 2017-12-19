@@ -30,7 +30,7 @@ class HealthInsurance extends Section {
 
         return {
           key: "path_health_insurance",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

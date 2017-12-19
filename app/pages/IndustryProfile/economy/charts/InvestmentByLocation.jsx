@@ -34,7 +34,7 @@ class InvestmentByLocation extends Section {
 
         return {
           key: "industry_investment_by_region",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

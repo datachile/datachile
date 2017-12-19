@@ -36,7 +36,7 @@ class EmploymentByLevel extends Section {
 
         return {
           key: "path_employment_by_level",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

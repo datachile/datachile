@@ -34,7 +34,7 @@ class OutputByLocation extends Section {
 
         return {
           key: "industry_output_by_region",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 

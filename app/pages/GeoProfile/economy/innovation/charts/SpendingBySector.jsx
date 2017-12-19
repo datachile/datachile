@@ -40,7 +40,7 @@ class SpendingBySector extends Section {
 
         return {
           key: "path_spending_by_sector",
-          data: store.env.CANON_API + q.path("jsonrecords")
+          data: __API__ + q.path("jsonrecords")
         };
       });
 
