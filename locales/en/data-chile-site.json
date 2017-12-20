@@ -6,6 +6,12 @@
 		},
 		"income_sex_age_slide": {
 			"text": "Income by sex and age slide."
+		},
+		"health": {
+			"access": "",
+			"healthcare": "",
+			"disability": "",
+			"death_causes": ""
 		}
 	},
 
