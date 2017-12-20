@@ -5,10 +5,10 @@ import { Section } from "datawheel-canon";
 import { sources } from "helpers/consts";
 import mondrianClient, {
   geoCut,
-  simpleFallbackGeoDatumNeed
+  simpleAvailableGeoDatumNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -20,7 +20,7 @@ class QualitySlide extends Section {
         geo.type == "comuna"
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
-      return simpleFallbackGeoDatumNeed(
+      return simpleAvailableGeoDatumNeed(
         "datum_rural_households",
         "casen_household",
         [msrName],
@@ -40,7 +40,7 @@ class QualitySlide extends Section {
         geo.type == "comuna"
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
-      return simpleFallbackGeoDatumNeed(
+      return simpleAvailableGeoDatumNeed(
         "datum_less_30mts_sq",
         "casen_household",
         [msrName],
@@ -66,7 +66,7 @@ class QualitySlide extends Section {
         geo.type == "comuna"
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
-      return simpleFallbackGeoDatumNeed(
+      return simpleAvailableGeoDatumNeed(
         "datum_credit_banco_estado",
         "casen_household",
         [msrName],
@@ -86,7 +86,7 @@ class QualitySlide extends Section {
         geo.type == "comuna"
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
-      return simpleFallbackGeoDatumNeed(
+      return simpleAvailableGeoDatumNeed(
         "datum_household_total",
         "casen_household",
         [msrName],
@@ -110,9 +110,9 @@ class QualitySlide extends Section {
     } = this.context.data;
 
     const area =
-      datum_rural_households && datum_rural_households.fallback
-        ? geo.ancestors[0].caption
-        : geo.caption;
+      datum_rural_households && datum_rural_households.available
+        ? geo
+        : geo.ancestors[0];
 
     const locale = i18n.locale;
 
@@ -122,8 +122,16 @@ class QualitySlide extends Section {
           <div className="topic-slide-title">{t("Quality")}</div>
           <div className="topic-slide-text">
             {datum_rural_households &&
-              datum_rural_households.fallback && (
-                <p>{t("no_info", { yes: area, no: geo.caption })}</p>
+              !datum_rural_households.available && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("no_info", {
+                      yes: area.caption,
+                      link: slugifyItem("geo", area.key, area.name),
+                      no: geo.caption
+                    })
+                  }}
+                />
               )}
             <p>
               Sed diam. Praesent fermentum tempor tellus. Nullam tempus. Mauris
@@ -140,17 +148,24 @@ class QualitySlide extends Section {
                 <FeaturedDatum
                   className="l-1-3"
                   icon="empleo"
-                  datum={numeral(datum_rural_households.data, locale).format(
-                    "(0.0 a)"
-                  )}
+                  datum={
+                    datum_rural_households.available
+                      ? numeral(datum_rural_households.data, locale).format(
+                          "(0.0 a)"
+                        )
+                      : t("no_datum")
+                  }
                   title={t("Rural households")}
                   subtitle={
-                    numeral(
-                      datum_rural_households.data / datum_household_total.data,
-                      locale
-                    ).format("(0.0%)") +
-                    t(" of ") +
-                    area
+                    datum_rural_households.available
+                      ? numeral(
+                          datum_rural_households.data /
+                            datum_household_total.data,
+                          locale
+                        ).format("(0.0%)") +
+                        t(" of ") +
+                        area.caption
+                      : ""
                   }
                 />
               )}
@@ -159,17 +174,23 @@ class QualitySlide extends Section {
                 <FeaturedDatum
                   className="l-1-3"
                   icon="empleo"
-                  datum={numeral(datum_less_30mts_sq.data, locale).format(
-                    "(0.0 a)"
-                  )}
+                  datum={
+                    datum_less_30mts_sq.available
+                      ? numeral(datum_less_30mts_sq.data, locale).format(
+                          "(0.0 a)"
+                        )
+                      : t("no_datum")
+                  }
                   title={t("Less than 30 square meter households")}
                   subtitle={
-                    numeral(
-                      datum_less_30mts_sq.data / datum_household_total.data,
-                      locale
-                    ).format("(0.0%)") +
-                    t(" of ") +
-                    area
+                    datum_less_30mts_sq.available
+                      ? numeral(
+                          datum_less_30mts_sq.data / datum_household_total.data,
+                          locale
+                        ).format("(0.0%)") +
+                        t(" of ") +
+                        area.caption
+                      : ""
                   }
                 />
               )}
@@ -178,18 +199,24 @@ class QualitySlide extends Section {
                 <FeaturedDatum
                   className="l-1-3"
                   icon="empleo"
-                  datum={numeral(datum_credit_banco_estado.data, locale).format(
-                    "(0.0 a)"
-                  )}
+                  datum={
+                    datum_credit_banco_estado.available
+                      ? numeral(datum_credit_banco_estado.data, locale).format(
+                          "(0.0 a)"
+                        )
+                      : t("no_datum")
+                  }
                   title={t("Households with credit in state bank")}
                   subtitle={
-                    numeral(
-                      datum_credit_banco_estado.data /
-                        datum_household_total.data,
-                      locale
-                    ).format("(0.0%)") +
-                    t(" of ") +
-                    area
+                    datum_credit_banco_estado.available
+                      ? numeral(
+                          datum_credit_banco_estado.data /
+                            datum_household_total.data,
+                          locale
+                        ).format("(0.0%)") +
+                        t(" of ") +
+                        area.caption
+                      : ""
                   }
                 />
               )}
