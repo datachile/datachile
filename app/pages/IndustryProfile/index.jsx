@@ -16,7 +16,6 @@ import {
 } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
-import Placeholder from "components/Placeholder";
 import SvgImage from "components/SvgImage";
 import Topic from "components/Topic";
 import TopicMenu from "components/TopicMenu";
@@ -187,11 +186,7 @@ class IndustryProfile extends Component {
   componentDidMount() {}
 
   render() {
-    const { subnav, activeSub } = this.state;
-
-    const { focus, t, i18n } = this.props;
-
-    const { industry } = this.props.routeParams;
+    const { t, i18n } = this.props;
 
     const obj = this.props.data.industry;
     const industryImg = obj ? (obj.depth === 1 ? obj.key : obj.parent.key) : "";

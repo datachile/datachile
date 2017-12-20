@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router";
-import { translate, Trans } from "react-i18next";
+import React from "react";
+import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
