@@ -307,6 +307,48 @@ function simpleFallbackGeoDatumNeed(
   };
 }
 
+/* Receive params and make a query. If zero results set available: false */
+function simpleAvailableGeoDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const geo = getGeoObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+        var query = geoCut(geo, "Geography", q, store.i18n.locale);
+        return client.query(query);
+      })
+      .then(res => {
+        if (res.data.values && res.data.values.length > 0) {
+          return {
+            key: key,
+            data: { data: flattenDeep(res.data.values), available: true }
+          };
+        } else {
+          return {
+            key: key,
+            data: { data: [], available: false }
+          };
+        }
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 function simpleIndustryDatumNeed(
   key,
   cube,
@@ -479,6 +521,7 @@ export {
   simpleIndustryChartNeed,
   simpleDatumNeed,
   simpleFallbackGeoDatumNeed,
+  simpleAvailableGeoDatumNeed,
   simpleCountryDatumNeed,
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed

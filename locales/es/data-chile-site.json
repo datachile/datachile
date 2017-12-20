@@ -159,7 +159,8 @@
   },
 
   "no_info":
-    "{{no}} no tiene datos disponibles para este tópico. La información que se muestra es de la región {{yes}}.",
+    "{{no}} no tiene información disponible para este tópico. Puede acceder a los datos a nivel regional en el perfil de <a href='{{link}}'>{{yes}}</a>.",
+  "no_datum": "No hay datos",
 
   "about": {
     "background": {

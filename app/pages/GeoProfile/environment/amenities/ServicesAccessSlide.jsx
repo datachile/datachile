@@ -7,10 +7,10 @@ import sum from "lodash/sum";
 import { sources } from "helpers/consts";
 import mondrianClient, {
   geoCut,
-  simpleFallbackGeoDatumNeed
+  simpleAvailableGeoDatumNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -22,7 +22,7 @@ class ServicesAccessSlide extends Section {
         geo.type == "comuna"
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
-      return simpleFallbackGeoDatumNeed(
+      return simpleAvailableGeoDatumNeed(
         "datum_network_electricity_households",
         "casen_household",
         [msrName],
@@ -42,7 +42,7 @@ class ServicesAccessSlide extends Section {
         geo.type == "comuna"
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
-      return simpleFallbackGeoDatumNeed(
+      return simpleAvailableGeoDatumNeed(
         "datum_household_total",
         "casen_household",
         [msrName],
@@ -65,13 +65,20 @@ class ServicesAccessSlide extends Section {
 
     const locale = i18n.locale;
 
-    const area = datum_network_electricity_households.fallback
-      ? geo.ancestors[0].caption
-      : geo.caption;
+    const area = datum_network_electricity_households.available
+      ? geo
+      : geo.ancestors[0];
 
     const total_network_electricity = sum(
       datum_network_electricity_households.data
     );
+
+    const datum = datum_network_electricity_households.available
+      ? numeral(
+          total_network_electricity / datum_household_total.data,
+          locale
+        ).format("(0.0%)")
+      : t("no_datum");
 
     return (
       <div className="topic-slide-block">
@@ -79,8 +86,16 @@ class ServicesAccessSlide extends Section {
           <div className="topic-slide-title">{t("Services Access")}</div>
           <div className="topic-slide-text">
             {datum_network_electricity_households &&
-              datum_network_electricity_households.fallback && (
-                <p>{t("no_info", { yes: area, no: geo.caption })}</p>
+              !datum_network_electricity_households.available && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("no_info", {
+                      yes: area.caption,
+                      link: slugifyItem("geo", area.key, area.name),
+                      no: geo.caption
+                    })
+                  }}
+                />
               )}
             <p>
               Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat
@@ -94,17 +109,16 @@ class ServicesAccessSlide extends Section {
                 <FeaturedDatum
                   className="l-1-3"
                   icon="empleo"
-                  datum={numeral(
-                    total_network_electricity / datum_household_total.data,
-                    locale
-                  ).format("(0.0%)")}
+                  datum={datum}
                   title={t("Connected to electricity network")}
                   subtitle={
-                    numeral(total_network_electricity, locale).format(
-                      "(0.0 a)"
-                    ) +
-                    t(" in ") +
-                    area
+                    datum_network_electricity_households.available
+                      ? numeral(total_network_electricity, locale).format(
+                          "(0.0 a)"
+                        ) +
+                        t(" in ") +
+                        area.caption
+                      : ""
                   }
                 />
               )}
