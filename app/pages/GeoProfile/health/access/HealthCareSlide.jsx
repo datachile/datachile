@@ -1,59 +1,54 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
-import flattenDeep from "lodash/flattenDeep";
 
 import { sources } from "helpers/consts";
 
-import { getGeoObject } from "helpers/dataUtils";
+import { calculateYearlyGrowth } from "helpers/dataUtils";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
 class HealthCareSlide extends Section {
   static need = [
-    (params, store) => {
-      let geo = getGeoObject(params);
-      if (geo.type === "comuna") {
-        geo = { ...geo.ancestor };
+    simpleDatumNeed(
+      "datum_health_access",
+      "health_access",
+      [
+        "Dental Discharges Per 100 inhabitants AVG",
+        "Primary Healthcare AVG",
+        "Specialized Healthcare AVG",
+        "Urgency Healthcare AVG",
+        "Primary Healthcare SUM",
+        "Specialized Healthcare SUM",
+        "Urgency Healthcare SUM"
+      ],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false },
+        cuts: [`[Date].[Date].[Year].&[${sources.health_access.year}]`]
+      },
+      false
+    ),
+    simpleDatumNeed(
+      "datum_health_access_specialized_per_year",
+      "health_access",
+      ["Specialized Healthcare SUM"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false }
       }
-      const prm = mondrianClient
-        .cube("health_access")
-        .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .option("parents", false)
-              .drilldown("Date", "Date", "Year")
-              .measure("Primary Healthcare AVG")
-              .measure("Specialized Healthcare AVG")
-              .measure("Urgency Healthcare AVG")
-              .cut(
-                `[Date].[Date].[Year].&[${sources.casen_health_system.year}]`
-              )
-          );
-          return mondrianClient.query(q);
-        })
-        .then(res => {
-          return {
-            key: "datum_health_healthcare_avg",
-            data: flattenDeep(res.data.values)
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    )
   ];
 
   render() {
     const { children, t, i18n } = this.props;
-    const { datum_health_healthcare_avg } = this.context.data;
+    const {
+      datum_health_access,
+      datum_health_access_specialized_per_year
+    } = this.context.data;
     const locale = i18n.locale;
 
     let geo = this.context.data.geo;
@@ -61,45 +56,74 @@ class HealthCareSlide extends Section {
       geo = { ...geo.ancestors[0] };
     }
 
+    const share_specialized_healthcare =
+      datum_health_access[0]["Specialized Healthcare SUM"] /
+      (datum_health_access[0]["Specialized Healthcare SUM"] +
+        datum_health_access[0]["Primary Healthcare SUM"]);
+
+    const text_healthcare = {
+      geo,
+      year: {
+        first: 2010,
+        last: sources.health_access.year
+      },
+      healthcare: {
+        urgency: {
+          total: numeral(
+            datum_health_access[0]["Urgency Healthcare SUM"],
+            locale
+          ).format("0,0")
+        },
+        specialized: {
+          rate: numeral(
+            calculateYearlyGrowth(datum_health_access_specialized_per_year),
+            locale
+          ).format("0.0 %"),
+          share: numeral(share_specialized_healthcare, locale).format("0.0 %")
+        }
+      }
+    };
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Access")}</div>
           <div className="topic-slide-text">
-            Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
-            orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
-            lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
-            Nullam tempus. Mauris ac felis vel velit tristique imperdiet. Donec
-            at pede. Etiam vel neque nec dui dignissim bibendum. Vivamus id
-            enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
-            Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
-            euismod tellus id erat.
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.health.healthcare", text_healthcare)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
-              datum={numeral(datum_health_healthcare_avg[0], locale).format(
-                "0,0"
-              )}
-              title={t("Primary Healthcare Average")}
-              subtitle={t("in") + " " + geo.name}
+              icon="health-dental"
+              datum={numeral(
+                datum_health_access[0][
+                  "Dental Discharges Per 100 inhabitants AVG"
+                ],
+                locale
+              ).format("0,0")}
+              title={t("Dental Discharges")}
+              subtitle={t("Per 100 inhabitants in") + " " + geo.name}
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
-              datum={numeral(datum_health_healthcare_avg[1], locale).format(
-                "0,0"
+              icon="health-firstaid"
+              datum={numeral(share_specialized_healthcare, locale).format(
+                "0.0 %"
               )}
-              title={t("Specialized Healthcare Average")}
-              subtitle={t("in") + " " + geo.name}
+              title={t("Specialized Healthcares")}
+              subtitle={t("During") + " " + sources.health_access.year}
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
-              datum={numeral(datum_health_healthcare_avg[2], locale).format(
-                "0,0"
-              )}
+              icon="health-urgency"
+              datum={numeral(
+                datum_health_access[0]["Urgency Healthcare AVG"],
+                locale
+              ).format("0,0")}
               title={t("Urgency Healthcare Average")}
               subtitle={t("in") + " " + geo.name}
             />
