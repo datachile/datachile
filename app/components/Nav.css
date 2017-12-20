@@ -88,7 +88,7 @@
             text-decoration: none;
             font-family: var(--font-family-text);
             font-weight: 400;
-            font-size: 12px;
+            font-size: 14px;
             color: var(--snow);
             letter-spacing: 0.08px;
             text-transform: uppercase;
@@ -197,7 +197,7 @@
     padding: 0px;
     margin: 0px 15px;
     & li {
-      margin: 15px 0px;
+      margin: 5px 0px;
     }
     & li.link a,
     & li.topic a {
@@ -213,6 +213,7 @@
       letter-spacing: 0.08px;
       text-transform: uppercase;
       lost-column: 1 flex;
+      padding-left: 15px;
       &:hover {
         opacity: 1;
       }
@@ -252,9 +253,8 @@
       color: var(--gray);
       font-family: var(--font-family-text);
       font-weight: 400;
-      font-size: 12px;
-      text-align: center;
-      letter-spacing: 5px;
+      font-size: 14px;
+      padding-top: 15px;
     }
   }
 }

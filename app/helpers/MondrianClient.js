@@ -4,7 +4,6 @@ import { getGeoObject, getLevelObject } from "helpers/dataUtils";
 import flattenDeep from "lodash/flattenDeep";
 
 const client = new MondrianClient(__API__);
-//const client = new MondrianClient("http://localhost:9292/");
 
 /**
  * Returns the provided query with the appropiate cut
