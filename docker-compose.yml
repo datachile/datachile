@@ -68,7 +68,7 @@ services:
       - ./dockerfiles/nginx/html:/usr/share/nginx/html
       - ./dockerfiles/nginx/certs:/etc/nginx/certs:ro
       - ./dockerfiles/datachile-htpasswd:/etc/nginx/htpasswd:ro
-    tmpfs: /nginx-cache:exec,mode=777
+    tmpfs: /nginx-cache:exec,mode=1777
 
   nginx-gen:
     image: jwilder/docker-gen
