@@ -78,7 +78,13 @@
     "income_sex_age_slide": {
       "text":
         "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
-    }
+    },
+    "health": {
+			"access": "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+			"healthcare": "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+			"disability": "",
+			"death_causes": ""
+		}
   },
 
   "country_profile": {
@@ -165,7 +171,8 @@
   },
 
   "no_info":
-    "{{no}} no tiene datos disponibles para este tópico. La información que se muestra es de la región {{yes}}.",
+    "{{no}} no tiene información disponible para este tópico. Puede acceder a los datos a nivel regional en el perfil de <a href='{{link}}'>{{yes}}</a>.",
+  "no_datum": "No hay datos",
 
   "about": {
     "background": {

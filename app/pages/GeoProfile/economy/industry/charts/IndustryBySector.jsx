@@ -25,7 +25,7 @@ class IndustryBySector extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Industry By Employment")}</span>
+          <span>{t("Industry By Employment (CLP)")}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
@@ -39,7 +39,7 @@ class IndustryBySector extends Section {
             total: d => d["Output"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: CL " +
                 numeral(d.text.split(": ")[1], locale).format("($ 0,0 a)")
             },
             time: "ID Year",

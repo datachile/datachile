@@ -28,6 +28,9 @@ class HealthCare extends Section {
             .measure("Primary Healthcare SUM")
             .measure("Specialized Healthcare SUM")
             .measure("Urgency Healthcare SUM")
+            .measure("Primary Healthcare AVG")
+            .measure("Specialized Healthcare AVG")
+            .measure("Urgency Healthcare AVG")
         );
 
         return {
@@ -69,7 +72,19 @@ class HealthCare extends Section {
                 "Total: " +
                 numeral(d.text.split(": ")[1], locale).format("0,0") +
                 " " +
-                t("healthcare per year")
+                t("health cares")
+            },
+            tooltipConfig: {
+              body: d =>
+                "<div>" +
+                t("Total") +
+                ": " +
+                numeral(d.value, locale).format("0,0") +
+                "</div><div>" +
+                t("Average") +
+                ": " +
+                numeral(d.avg, locale).format("0,0") +
+                "</div>"
             },
             shapeConfig: {
               fill: d => ordinalColorScale(d["label"])
@@ -88,19 +103,22 @@ class HealthCare extends Section {
                 "ID Year": item["ID Year"],
                 Year: item["Year"],
                 label: "Primary Healthcare",
-                value: item["Primary Healthcare SUM"]
+                value: item["Primary Healthcare SUM"],
+                avg: item["Primary Healthcare AVG"]
               });
               all.push({
                 "ID Year": item["ID Year"],
                 Year: item["Year"],
                 label: "Specialized Healthcare",
-                value: item["Specialized Healthcare SUM"]
+                value: item["Specialized Healthcare SUM"],
+                avg: item["Specialized Healthcare AVG"]
               });
               all.push({
                 "ID Year": item["ID Year"],
                 Year: item["Year"],
                 label: "Urgency Healthcare",
-                value: item["Urgency Healthcare SUM"]
+                value: item["Urgency Healthcare SUM"],
+                avg: item["Urgency Healthcare AVG"]
               });
               return all;
             }, []);

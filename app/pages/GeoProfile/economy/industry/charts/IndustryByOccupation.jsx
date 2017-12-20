@@ -14,15 +14,6 @@ import ExportLink from "components/ExportLink";
 class IndustryByOccupation extends Section {
   static need = [
     simpleGeoChartNeed(
-      "path_industry_occupation_common",
-      "nesi_income",
-      ["Expansion Factor"],
-      {
-        drillDowns: [["ISCO", "ISCO", "ISCO"], ["Date", "Date", "Year"]],
-        options: { parents: true }
-      }
-    ),
-    simpleGeoChartNeed(
       "path_industry_occupation_income",
       "nesi_income",
       ["Expansion Factor", "Median Income"],
@@ -30,113 +21,35 @@ class IndustryByOccupation extends Section {
         drillDowns: [["ISCO", "ISCO", "ISCO"], ["Date", "Date", "Year"]],
         options: { parents: true }
       }
-    ),
-    simpleGeoChartNeed(
-      "path_industry_occupation_specialized",
-      "nesi_income",
-      ["Expansion Factor", "Median Income"],
-      {
-        drillDowns: [
-          ["ISCED", "ISCED", "ISCED"],
-          ["ISCO", "ISCO", "ISCO"],
-          ["Date", "Date", "Year"]
-        ],
-        options: { parents: true }
-      }
     )
   ];
 
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {
-      selectedOption: 0,
-      selectedObj: {
-        path: "",
-        groupBy: [],
-        label: () => "",
-        sum: () => ""
-      },
-      chartVariations: []
-    };
-  }
-
-  componentDidMount() {
-    const { t } = this.props;
-
-    var variations = [
-      {
-        id: 0,
-        title: t("Most common occupations"),
-        path: this.context.data.path_industry_occupation_common,
-        groupBy: ["ID ISCO"],
-        label: d => d["ISCO"],
-        sum: d => d["Expansion Factor"]
-      },
-      {
-        id: 1,
-        title: t("Best paid occupations"),
-        path: this.context.data.path_industry_occupation_income,
-        groupBy: ["ID ISCO"],
-        label: d => d["ISCO"],
-        sum: d => d["Median Income"]
-      },
-      {
-        id: 2,
-        title: t("Most Specialized occupations"),
-        path: this.context.data.path_industry_occupation_specialized,
-        groupBy: ["ID ISCO", "ID ISCED"],
-        label: d => d["ISCO"] + " - " + d["ISCED"],
-        sum: d => d["Expansion Factor"]
-      }
-    ];
-
-    this.setState({
-      selectedOption: 0,
-      selectedObj: variations[0],
-      chartVariations: variations
-    });
-  }
-
-  handleChange(ev) {
-    this.setState({
-      selectedOption: ev.newValue,
-      selectedObj: this.state.chartVariations[ev.newValue]
-    });
-  }
-
   render() {
+    const path = this.context.data.path_industry_occupation_income;
     const { t, className, i18n } = this.props;
     const locale = i18n.locale;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>
-            <Select
-              id="variations"
-              options={this.state.chartVariations}
-              value={this.state.selectedOption}
-              labelField="title"
-              valueField="id"
-              onChange={this.handleChange}
-            />
-          </span>
-          <ExportLink path={this.state.selectedObj.path} />
+          <span>{t("Most Common Occupations")}</span>
+          <ExportLink path={path} />
         </h3>
 
         <Treemap
           config={{
             height: 500,
-            data: this.state.selectedObj.path,
-            groupBy: this.state.selectedObj.groupBy,
-            label: this.state.selectedObj.label,
-            sum: this.state.selectedObj.sum,
-            total: this.state.selectedObj.sum,
+            data: path,
+            groupBy: ["ID ISCO"],
+            label: d => d["ISCO"],
+            sum: d => d["Expansion Factor"],
+            total: d => d["Expansion Factor"],
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("(0,0)")
+                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                " " +
+                t("people")
             },
             time: "ID Year",
             shapeConfig: {
@@ -149,6 +62,17 @@ class IndustryByOccupation extends Section {
                 height: 20,
                 backgroundImage: d => "/images/legend/occupation/occupation.png"
               }
+            },
+            tooltipConfig: {
+              title: d => d["ISCO"],
+              body: d =>
+                "<p>" +
+                "People: " +
+                numeral(d["Expansion Factor"], locale).format("(0,0)") +
+                "<br/>" +
+                "Avg Income: " +
+                numeral(d["Median Income"], locale).format("$ (0,0)") +
+                "</p>"
             }
           }}
           dataFormat={data => data.data}

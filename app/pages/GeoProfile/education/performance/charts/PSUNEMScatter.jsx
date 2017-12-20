@@ -5,7 +5,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { translate } from "react-i18next";
 
 import { sources } from "helpers/consts";
-import { institutionsColorScale } from "helpers/colors";
+import { administrationColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
@@ -47,9 +47,10 @@ class PSUNEMScatter extends Section {
             label: d => d["Administration"],
             x: "Average NEM",
             y: "Average PSU",
+            size: "Number of records",
             colorScalePosition: false,
             shapeConfig: {
-              fill: d => institutionsColorScale("adm" + d["ID Administration"])
+              fill: d => administrationColorScale(d["Administration"])
             },
             xConfig: {
               title: t("Average NEM")
@@ -63,11 +64,13 @@ class PSUNEMScatter extends Section {
                   ? d["Administration"]
                   : d["Institution"],
               body: d =>
-                t("Average NEM: ") +
-                numeral(d["Average NEM"], locale).format("(0)") +
+                "<p>" +
+                "NEM: " +
+                numeral(d["Average NEM"], locale).format("(0.0)") +
                 "<br/>" +
-                t("Average PSU: ") +
-                numeral(d["Average PSU"], locale).format("(0)")
+                "PSU: " +
+                numeral(d["Average PSU"], locale).format("(0)") +
+                "</p>"
             },
             legendConfig: {
               label: d => d["Administration"],
@@ -80,7 +83,14 @@ class PSUNEMScatter extends Section {
             }
           }}
           dataFormat={data => {
-            return data.data;
+            return data.data
+              .filter(f => {
+                return f["Average NEM"] && f["Average PSU"];
+              })
+              .map(m => {
+                //m["Average NEM"] = m["Average NEM"] / 100;
+                return m;
+              });
           }}
         />
         <SourceNote cube="education_performance_new" />

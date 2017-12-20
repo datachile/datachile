@@ -55,9 +55,9 @@ class Services extends Section {
         return prms;
       };
 
-      const parseResponse = (res, msrName, fallback) => {
+      const parseResponse = (res, msrName, available) => {
         return {
-          fallback: fallback,
+          available: available,
           data: keyBy(
             res.map((r, ix) => {
               const total = sumBy(r.data.data, msrName);
@@ -90,21 +90,17 @@ class Services extends Section {
 
       var prm = Promise.all(prms).then(res => {
         if (res[0].data.data.length == 0) {
-          var geoFallback = geo.ancestor;
-          var prmsFallback = createPromises(
-            geoFallback,
-            "Expansion Factor Region"
-          );
-          return Promise.all(prmsFallback).then(resRegion => {
-            return {
-              key: "environment_services_data",
-              data: parseResponse(resRegion, "Expansion Factor Region", true)
-            };
-          });
+          return {
+            key: "environment_services_data",
+            data: {
+              available: false,
+              data: []
+            }
+          };
         } else {
           return {
             key: "environment_services_data",
-            data: parseResponse(res, msrName, false)
+            data: parseResponse(res, msrName, true)
           };
         }
       });
@@ -126,103 +122,119 @@ class Services extends Section {
 
     var services = [];
 
-    if (
-      environment_services_data &&
-      environment_services_data.data &&
-      environment_services_data.data["Less Than 8 Blocks Public Transport"]
-        .values.response_2
-    ) {
+    if (environment_services_data) {
       services = [
         {
           logo: "public-transportation",
-          value: numeral(
-            environment_services_data.data[
-              "Less Than 8 Blocks Public Transport"
-            ].values.response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data[
+                  "Less Than 8 Blocks Public Transport"
+                ].values.response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 8 Blocks from"),
           title: t("Public Transport")
         },
         {
           logo: "educational-center",
-          value: numeral(
-            environment_services_data.data[
-              "Less Than 20 Blocks Educational Center"
-            ].values.response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data[
+                  "Less Than 20 Blocks Educational Center"
+                ].values.response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 20 Blocks from"),
           title: t("Educational Center")
         },
         {
           logo: "health-center",
-          value: numeral(
-            environment_services_data.data["Less Than 20 Blocks Health Center"]
-              .values.response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data[
+                  "Less Than 20 Blocks Health Center"
+                ].values.response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 20 Blocks from"),
           title: t("Health Center")
         },
         {
           logo: "market",
-          value: numeral(
-            environment_services_data.data["Less Than 20 Blocks Market"].values
-              .response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data["Less Than 20 Blocks Market"]
+                  .values.response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 20 Blocks from"),
           title: t("Market")
         },
         {
           logo: "atm",
-          value: numeral(
-            environment_services_data.data["Less Than 20 Blocks Atm"].values
-              .response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data["Less Than 20 Blocks Atm"].values
+                  .response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 20 Blocks from"),
           title: t("ATM")
         },
         {
           logo: "sports-center",
-          value: numeral(
-            environment_services_data.data["Less Than 20 Blocks Sports Center"]
-              .values.response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data[
+                  "Less Than 20 Blocks Sports Center"
+                ].values.response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 20 Blocks from"),
           title: t("Sport Center")
         },
         {
           logo: "green-areas",
-          value: numeral(
-            environment_services_data.data["Less Than 20 Blocks Green Areas"]
-              .values.response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data[
+                  "Less Than 20 Blocks Green Areas"
+                ].values.response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 20 Blocks from"),
           title: t("Green Areas")
         },
         {
           logo: "community-equipment",
-          value: numeral(
-            environment_services_data.data[
-              "Less Than 20 Blocks Community Equipment"
-            ].values.response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data[
+                  "Less Than 20 Blocks Community Equipment"
+                ].values.response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 20 Blocks from"),
           title: t("Community Equipment")
         },
         {
           logo: "pharmacy",
-          value: numeral(
-            environment_services_data.data["Less Than 20 Blocks Pharmacy"]
-              .values.response_2.percentage,
-            locale
-          ).format("0.0%"),
+          value: environment_services_data.available
+            ? numeral(
+                environment_services_data.data["Less Than 20 Blocks Pharmacy"]
+                  .values.response_2.percentage,
+                locale
+              ).format("0.0%")
+            : t("no_datum"),
           verb: t("Less Than 20 Blocks from"),
           title: t("Pharmacy")
         }
@@ -233,14 +245,10 @@ class Services extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("Main services in ")}{" "}
-            {environment_services_data.fallback
-              ? geo.ancestors[0].name
-              : geo.name}
+            {t("Main services in ")} {geo.name}
           </span>
         </h3>
         <div className="info-logo-container">
-          {services.length == 0 && <NoDataAvailable text="" />}
           {services.map((d, i) => <InfoLogoItem item={d} key={i} />)}
         </div>
         <SourceNote cube="casen_household" />

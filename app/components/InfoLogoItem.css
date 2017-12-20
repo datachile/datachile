@@ -1,8 +1,10 @@
 .info-logo-item {
   padding: calc(var(--gutter)/2);
+  min-height: 290px;
   & .logo {
     max-width: 80%;
     margin: 0 auto;
+    height: auto;
   }
   & .value {
     text-align: center;
