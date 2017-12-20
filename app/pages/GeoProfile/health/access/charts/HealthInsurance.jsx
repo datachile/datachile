@@ -88,6 +88,17 @@ class HealthInsurance extends Section {
                 backgroundImage: d =>
                   "/images/legend/college/administration.png"
               }
+            },
+            tooltipConfig: {
+              body: d =>
+                numeral(
+                  geo.type == "comuna"
+                    ? d["Expansion Factor Comuna"]
+                    : d["Expansion Factor Region"],
+                  locale
+                ).format("0,0") +
+                " " +
+                t("affiliates")
             }
           }}
           dataFormat={data => data.data.filter(h => h["ID Health System"] != 0)}

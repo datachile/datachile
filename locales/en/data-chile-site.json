@@ -6,6 +6,12 @@
 		},
 		"income_sex_age_slide": {
 			"text": "Income by sex and age slide."
+		},
+		"health": {
+			"access": "",
+			"healthcare": "",
+			"disability": "",
+			"death_causes": ""
 		}
 	},
 
@@ -22,7 +28,7 @@
 	},
 
 	"industry_profile": {
-		"economy": "",
+		"economy": "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
 		"r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
 		"employment": "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees."
 	},
