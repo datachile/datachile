@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { text as loadSvgAsString } from "d3-request";
 import { Geomap } from "d3plus-react";
 
 import SVGCache from "helpers/svg";
-import { FORMATTERS } from "helpers/formatters";
-
-import SvgImage from "components/SvgImage";
 
 import "./FeaturedDatumSplash.css";
 import "./FeaturedMapSplash.css";
@@ -122,4 +117,4 @@ class FeaturedMapSplash extends Component {
   }
 }
 
-export default translate()(connect(state => ({}), {})(FeaturedMapSplash));
+export default translate()(FeaturedMapSplash);

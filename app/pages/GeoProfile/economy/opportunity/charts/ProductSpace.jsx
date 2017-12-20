@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Network } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";

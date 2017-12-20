@@ -6,7 +6,6 @@ import { SubNav } from "datawheel-canon";
 
 import NavFixed from "components/NavFixed";
 import Search from "components/Search";
-import { slugifyItem } from "helpers/formatters";
 
 import "./Nav.css";
 

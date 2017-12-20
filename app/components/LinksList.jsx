@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
-import { FORMATTERS } from "helpers/formatters";
 
 import "./LinksList.css";
 
@@ -40,8 +38,8 @@ class LinksList extends Component {
           <div>
             <h5>{title}</h5>
             <ul className={`links-list ${openClass}`}>
-              {list.map(l => (
-                <li>
+              {list.map((l, i) => (
+                <li key={i}>
                   <Link to={l.link}>
                     <span className="pt-icon-standard pt-icon-chevron-right" />{" "}
                     {l.label}
@@ -62,4 +60,4 @@ class LinksList extends Component {
   }
 }
 
-export default translate()(connect(state => ({}), {})(LinksList));
+export default translate()(LinksList);

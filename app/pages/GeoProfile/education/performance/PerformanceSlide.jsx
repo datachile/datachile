@@ -1,9 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
-import { getGeoObject } from "helpers/dataUtils";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { trade_by_time_and_product } from "helpers/aggregations";
 
 import FeaturedDatum from "components/FeaturedDatum";
 

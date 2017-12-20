@@ -72,9 +72,9 @@ class NavFixed extends Component {
                   {topics.map(topic => (
                     <a
                       key={topic.slug}
-                      className={`topic-link ${active == topic.slug
-                        ? " active"
-                        : ""}`}
+                      className={`topic-link ${
+                        active == topic.slug ? " active" : ""
+                      }`}
                       href={`#${topic.slug}`}
                     >
                       <SvgImage

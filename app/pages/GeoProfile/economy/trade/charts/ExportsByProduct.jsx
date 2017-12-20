@@ -7,8 +7,6 @@ import { browserHistory } from "react-router";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral, slugifyItem } from "helpers/formatters";
 import { productsColorScale } from "helpers/colors";
-import { getGeoObject } from "helpers/dataUtils";
-import { trade_by_time_and_product } from "helpers/aggregations";
 
 import ExportLink from "components/ExportLink";
 

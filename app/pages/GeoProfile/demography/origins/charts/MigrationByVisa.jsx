@@ -3,8 +3,6 @@ import { translate } from "react-i18next";
 
 import { BarChart } from "d3plus-react";
 import { Section } from "datawheel-canon";
-import clone from "lodash/clone";
-import flatMap from "lodash/flatMap";
 import groupBy from "lodash/groupBy";
 import orderBy from "lodash/orderBy";
 

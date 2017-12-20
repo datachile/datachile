@@ -1,14 +1,10 @@
 import React from "react";
-import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 import sum from "lodash/sum";
 
 import { sources } from "helpers/consts";
-import mondrianClient, {
-  geoCut,
-  simpleAvailableGeoDatumNeed
-} from "helpers/MondrianClient";
+import { simpleAvailableGeoDatumNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { numeral, slugifyItem } from "helpers/formatters";
 

@@ -7,7 +7,6 @@ import { browserHistory } from "react-router";
 import { numeral, slugifyItem } from "helpers/formatters";
 import { continentColorScale } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 

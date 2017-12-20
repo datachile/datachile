@@ -2,7 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import { simpleInstitutionDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
