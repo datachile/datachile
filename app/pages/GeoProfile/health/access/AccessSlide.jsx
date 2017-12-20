@@ -100,20 +100,36 @@ class AccessSlide extends Section {
     }, 0);
     const years = sources.casen.available;
     const key = years.length;
+    const growth_isapre_affiliates = calculateYearlyGrowth(
+      datum_health_system_isapre
+    );
+    const text_access = {
+      geo,
+      year: {
+        first: 2013,
+        last: sources.casen_health_system.year
+      },
+      insurance: {
+        total: numeral(total, locale).format("0,0"),
+        isapre: {
+          increased_or_decreased:
+            growth_isapre_affiliates > 0 ? t("increased") : t("decreased"),
+          rate: numeral(growth_isapre_affiliates, locale).format("0.0 %")
+        },
+        share: numeral(top[0][msrName] / total, locale).format("0.0 %")
+      }
+    };
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Access")}</div>
           <div className="topic-slide-text">
-            Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
-            orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
-            lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
-            Nullam tempus. Mauris ac felis vel velit tristique imperdiet. Donec
-            at pede. Etiam vel neque nec dui dignissim bibendum. Vivamus id
-            enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
-            Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
-            euismod tellus id erat.
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.health.access", text_access)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
@@ -140,10 +156,7 @@ class AccessSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="health-firstaid"
-              datum={numeral(
-                calculateYearlyGrowth(datum_health_system_isapre),
-                locale
-              ).format("0.0 %")}
+              datum={text_access.insurance.isapre.rate}
               title={t("Growth affiliates in ISAPRES")}
               subtitle={
                 t("In period") + " " + years[key - 2] + "-" + years[key - 1]

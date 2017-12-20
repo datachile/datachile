@@ -1,16 +1,12 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
-import flattenDeep from "lodash/flattenDeep";
 
 import { sources } from "helpers/consts";
 
-import { getGeoObject } from "helpers/dataUtils";
+import { calculateYearlyGrowth } from "helpers/dataUtils";
 
-import mondrianClient, {
-  geoCut,
-  simpleDatumNeed
-} from "helpers/MondrianClient";
+import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
@@ -35,12 +31,24 @@ class HealthCareSlide extends Section {
         cuts: [`[Date].[Date].[Year].&[${sources.health_access.year}]`]
       },
       false
+    ),
+    simpleDatumNeed(
+      "datum_health_access_specialized_per_year",
+      "health_access",
+      ["Specialized Healthcare SUM"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false }
+      }
     )
   ];
 
   render() {
     const { children, t, i18n } = this.props;
-    const { datum_health_access } = this.context.data;
+    const {
+      datum_health_access,
+      datum_health_access_specialized_per_year
+    } = this.context.data;
     const locale = i18n.locale;
 
     let geo = this.context.data.geo;
@@ -53,19 +61,39 @@ class HealthCareSlide extends Section {
       (datum_health_access[0]["Specialized Healthcare SUM"] +
         datum_health_access[0]["Primary Healthcare SUM"]);
 
+    const text_healthcare = {
+      geo,
+      year: {
+        first: 2010,
+        last: sources.health_access.year
+      },
+      healthcare: {
+        urgency: {
+          total: numeral(
+            datum_health_access[0]["Urgency Healthcare SUM"],
+            locale
+          ).format("0,0")
+        },
+        specialized: {
+          rate: numeral(
+            calculateYearlyGrowth(datum_health_access_specialized_per_year),
+            locale
+          ).format("0.0 %"),
+          share: numeral(share_specialized_healthcare, locale).format("0.0 %")
+        }
+      }
+    };
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Access")}</div>
           <div className="topic-slide-text">
-            Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
-            orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
-            lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
-            Nullam tempus. Mauris ac felis vel velit tristique imperdiet. Donec
-            at pede. Etiam vel neque nec dui dignissim bibendum. Vivamus id
-            enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
-            Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
-            euismod tellus id erat.
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.health.healthcare", text_healthcare)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
