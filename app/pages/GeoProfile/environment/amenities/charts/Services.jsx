@@ -122,8 +122,6 @@ class Services extends Section {
 
     var services = [];
 
-    console.log(environment_services_data);
-
     if (environment_services_data) {
       services = [
         {
