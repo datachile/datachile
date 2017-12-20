@@ -47,6 +47,7 @@ class PSUNEMScatter extends Section {
             label: d => d["Administration"],
             x: "Average NEM",
             y: "Average PSU",
+            size: "Number of records",
             colorScalePosition: false,
             shapeConfig: {
               fill: d => administrationColorScale(d["Administration"])
@@ -70,24 +71,6 @@ class PSUNEMScatter extends Section {
                 "PSU: " +
                 numeral(d["Average PSU"], locale).format("(0)") +
                 "</p>"
-              /*data: d => [d],
-              nem: numeral(d["Average NEM"], locale).format("(0.0)"),
-              psu: numeral(d["Average PSU"], locale).format("(0)"),
-              thead: [t("Score"), t("value")],
-              tbody: [
-                [
-                  "NEM",
-                  function(d) {
-                    return d.nem;
-                  }
-                ],
-                [
-                  "PSU",
-                  function(d) {
-                    return d.su;
-                  }
-                ]
-              ]*/
             },
             legendConfig: {
               label: d => d["Administration"],
