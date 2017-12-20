@@ -4,7 +4,6 @@ import { getGeoObject, getLevelObject } from "helpers/dataUtils";
 import flattenDeep from "lodash/flattenDeep";
 
 const client = new MondrianClient(__API__);
-//const client = new MondrianClient("http://localhost:9292/");
 
 /**
  * Returns the provided query with the appropiate cut
@@ -192,32 +191,37 @@ function simpleDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  { drillDowns = [], options = {}, cuts = [] },
+  byValues = true
 ) {
   return (params, store) => {
-    const geo = getGeoObject(params);
+    let geo = getGeoObject(params);
+
+    if (cube === "health_access" && geo.type === "comuna") {
+      geo = { ...geo.ancestor };
+    }
 
     const prm = client
       .cube(cube)
       .then(cube => {
-        const q = cube.query;
-
-        measures.forEach(m => {
-          q.measure(m);
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
         });
-        (drillDowns || []).forEach(([...dd]) => {
-          q.drilldown(...dd);
-        });
-        Object.entries(options).forEach(([k, v]) => q.option(k, v));
-        cuts.forEach(c => q.cut(c));
 
         var query = geoCut(geo, "Geography", q, store.i18n.locale);
-        return client.query(query);
+
+        return byValues
+          ? client.query(query)
+          : client.query(query, "jsonrecords");
       })
       .then(res => {
         return {
           key: key,
-          data: flattenDeep(res.data.values)
+          data: byValues
+            ? flattenDeep(res.data.values)
+            : flattenDeep(res.data.data)
         };
       });
 
@@ -307,12 +311,54 @@ function simpleFallbackGeoDatumNeed(
   };
 }
 
+/* Receive params and make a query. If zero results set available: false */
+function simpleAvailableGeoDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    const geo = getGeoObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+        var query = geoCut(geo, "Geography", q, store.i18n.locale);
+        return client.query(query);
+      })
+      .then(res => {
+        if (res.data.values && res.data.values.length > 0) {
+          return {
+            key: key,
+            data: { data: flattenDeep(res.data.values), available: true }
+          };
+        } else {
+          return {
+            key: key,
+            data: { data: [], available: false }
+          };
+        }
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 function simpleIndustryDatumNeed(
   key,
   cube,
   measures,
   { drillDowns = [], options = {}, cuts = [] },
-  flatten = true
+  byValues = true
 ) {
   return (params, store) => {
     const industry = getLevelObject(params);
@@ -337,14 +383,14 @@ function simpleIndustryDatumNeed(
           "Level 2",
           store.i18n.locale
         );
-        return flatten
+        return byValues
           ? client.query(query)
           : client.query(query, "jsonrecords");
       })
       .then(res => {
         return {
           key: key,
-          data: flatten
+          data: byValues
             ? flattenDeep(res.data.values)
             : flattenDeep(res.data.data)
         };
@@ -481,6 +527,7 @@ export {
   simpleIndustryChartNeed,
   simpleDatumNeed,
   simpleFallbackGeoDatumNeed,
+  simpleAvailableGeoDatumNeed,
   simpleCountryDatumNeed,
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed

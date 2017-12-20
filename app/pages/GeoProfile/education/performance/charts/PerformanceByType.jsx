@@ -4,7 +4,6 @@ import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { institutionsColorScale } from "helpers/colors";
-import { getGeoObject } from "helpers/dataUtils";
 import { translate } from "react-i18next";
 
 import ExportLink from "components/ExportLink";

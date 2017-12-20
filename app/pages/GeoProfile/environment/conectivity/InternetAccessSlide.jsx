@@ -2,9 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-
 import FeaturedDatum from "components/FeaturedDatum";
 
 class InternetAccessSlide extends Section {

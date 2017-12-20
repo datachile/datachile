@@ -6,7 +6,6 @@ import { SubNav } from "datawheel-canon";
 
 import NavFixed from "components/NavFixed";
 import Search from "components/Search";
-import { slugifyItem } from "helpers/formatters";
 
 import "./Nav.css";
 
@@ -60,7 +59,8 @@ class Nav extends Component {
       topics
     } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
+
     const otherLang = locale === "es" ? "en" : "es";
 
     const { subnav_visible, search_visible } = this.state;
@@ -103,7 +103,6 @@ class Nav extends Component {
               </div>
             </div>
             <ul>
-              <li className="title">{t("Navigation")}</li>
               <li className="lang-selector">
                 <span className="lang-current">{locale}</span>
                 <span> | </span>
@@ -111,6 +110,7 @@ class Nav extends Component {
                   <a href={url}>{otherLang}</a>
                 </span>
               </li>
+              <li className="title">{t("Profiles")}</li>
               <li className="link">
                 <Link to="/explore/geo">{t("Regions & Comunas")}</Link>
               </li>
@@ -129,6 +129,7 @@ class Nav extends Component {
               <li className="link">
                 <Link to="/explore/industries">{t("Industries")}</Link>
               </li>
+              <li className="title">{t("Extras")}</li>
               <li className="link">
                 <Link to="/explore/map">{t("Map explore")}</Link>
               </li>

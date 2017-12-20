@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { translate } from "react-i18next";
 
 import "./Select.css";
@@ -86,4 +85,4 @@ class Select extends Component {
   }
 }
 
-export default translate()(connect(state => ({}), {})(Select));
+export default translate()(Select);

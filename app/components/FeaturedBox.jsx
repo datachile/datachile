@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import Shiitake from "shiitake";
-import { FORMATTERS } from "helpers/formatters";
 
 import "./FeaturedBox.css";
 
@@ -43,4 +41,4 @@ class FeaturedBox extends Component {
   }
 }
 
-export default translate()(connect(state => ({}), {})(FeaturedBox));
+export default translate()(FeaturedBox);

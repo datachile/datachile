@@ -2,9 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-
 import FeaturedDatum from "components/FeaturedDatum";
 
 class InternetUseSlide extends Section {
@@ -12,7 +9,6 @@ class InternetUseSlide extends Section {
 
   render() {
     const { children, t } = this.props;
-    const { datum_rural_households } = this.context.data;
 
     return (
       <div className="topic-slide-block">

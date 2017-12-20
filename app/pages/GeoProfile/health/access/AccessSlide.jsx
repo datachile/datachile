@@ -80,29 +80,28 @@ class AccessSlide extends Section {
     const { children, t, i18n } = this.props;
     const {
       datum_health_system_isapre,
-      datum_health_system_total_affiliates
+      datum_health_system_total_affiliates,
+      datum_population_for_health_access,
+      geo
     } = this.context.data;
     const locale = i18n.locale;
-
-    const geo = this.context.data.geo;
-    const years = sources.casen.available;
-    const key = years.length;
     const msrName =
       geo.type === "comuna"
         ? "Expansion Factor Comuna"
         : "Expansion Factor Region";
 
-    const top = datum_health_system_total_affiliates.available
-      ? getTopCategories(datum_health_system_total_affiliates.data, msrName, 2)
-      : [];
-    const total = datum_health_system_total_affiliates.available
-      ? datum_health_system_total_affiliates.data.reduce((all, item) => {
-          return all + item[msrName];
-        }, 0)
-      : 0;
-
+    const top = getTopCategories(
+      datum_health_system_total_affiliates,
+      msrName,
+      2
+    );
+    const total = datum_health_system_total_affiliates.reduce((all, item) => {
+      return all + item[msrName];
+    }, 0);
+    const years = sources.casen.available;
+    const key = years.length;
     const growth_isapre_affiliates = calculateYearlyGrowth(
-      datum_health_system_isapre.data
+      datum_health_system_isapre
     );
     const text_access = {
       geo,
@@ -129,14 +128,11 @@ class AccessSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Access")}</div>
           <div className="topic-slide-text">
-            Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
-            orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
-            lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
-            Nullam tempus. Mauris ac felis vel velit tristique imperdiet. Donec
-            at pede. Etiam vel neque nec dui dignissim bibendum. Vivamus id
-            enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
-            Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
-            euismod tellus id erat.
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.health.access", text_access)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             {datum_health_system_total_affiliates.available &&

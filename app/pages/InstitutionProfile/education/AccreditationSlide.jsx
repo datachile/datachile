@@ -2,7 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import { simpleInstitutionDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
@@ -24,12 +23,10 @@ class AccreditationSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="industria"
-              datum={numeral(datum_accreditation_avg_retention, locale).format(
-                "0.0 %"
-              )}
-              title={t("Average Retention")}
-              subtitle={t("1st year")}
+              icon="empleo"
+              datum="xx"
+              title="Lorem ipsum"
+              subtitle="Lorem blabla"
             />
             <FeaturedDatum
               className="l-1-3"

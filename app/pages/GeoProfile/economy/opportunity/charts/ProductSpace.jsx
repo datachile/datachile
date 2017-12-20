@@ -1,24 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Network } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
+import { sources } from "helpers/consts";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
 class ProductSpace extends Section {
   static need = [
-    (params, store) =>
-      simpleGeoChartNeed("path_exports_last_year", "exports", ["FOB US"], {
+    simpleGeoChartNeed(
+      "path_exports_last_year",
+      "exports",
+      ["FOB US", "Exports RCA"],
+      {
         drillDowns: [["Export HS", "HS4"]],
         options: { parents: true },
-        cuts: [`[Date].[Date].[Year].&[${store.exports_year}]`]
-      })(params, store)
+        cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
+      }
+    )
   ];
 
   render() {
@@ -38,7 +42,8 @@ class ProductSpace extends Section {
             links: "/json/hs92_4_links_circular_spring_d3p2.json",
             nodes: "/json/hs92_4_nodes_circular_spring_d3p2.json",
             data: path,
-            size: "FOB US",
+            //size: "FOB US",
+            size: "Exports RCA",
             sizeMin: 4,
             sizeMax: 18,
             zoomScroll: false,
@@ -56,7 +61,11 @@ class ProductSpace extends Section {
             },
             legend: false
           }}
-          dataFormat={data => data.data.map(d => ({ id: d["ID HS2"], ...d }))}
+          dataFormat={data =>
+            data.data
+              .filter(d => d["Exports RCA"] > 1)
+              .map(d => ({ id: d["ID HS2"], ...d }))
+          }
         />
         <SourceNote cube="tax_data" />
       </div>

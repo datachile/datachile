@@ -2,10 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
-
 import FeaturedDatum from "components/FeaturedDatum";
 
 class HigherEducationSlide extends Section {

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { CanonComponent, TopicTitle } from "datawheel-canon";
 
@@ -21,27 +20,27 @@ class About extends Component {
     const topics = [
       {
         slug: "background",
-        title: t("Background")
+        title: t("about.background.title")
       },
       {
         slug: "data",
-        title: t("Data Sources")
+        title: t("about.data.title")
       },
-      {
+      /*{
         slug: "glossary",
         title: t("Glossary")
-      },
+      },*/
       {
-        slug: "teams",
-        title: t("Teams")
+        slug: "team",
+        title: t("about.team.title")
       },
       {
         slug: "acknowledgement",
-        title: t("Acknowledgement")
+        title: t("about.ack.title")
       },
       {
         slug: "terms",
-        title: t("Terms of Use")
+        title: t("about.terms.title")
       }
     ];
 
@@ -68,142 +67,326 @@ class About extends Component {
             </div>
           </div>
 
-          <section className="section">
-            <TopicTitle slug="background">{t("Background")}</TopicTitle>
-            <p className="paragraph">
-              Data Chile is ...ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est
-              laborum.
-            </p>
-            <p className="paragraph">
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-              officia deserunt mollit anim id est laborum.
-            </p>
-          </section>
+          <div className="section-container">
+            /* ABOUT */
+            <section className="section" id="background">
+              <h2>{t("about.background.title")}</h2>
 
-          <section className="section">
-            <TopicTitle slug="data">{t("Data")}</TopicTitle>
-            <p className="paragraph">
-              The data contained in this site draws from a variety of sources,
-              including:
-            </p>
-            <ul className="paragraph">
-              <li>
-                <a href="http://dataset1" target="_blank">
-                  Dataset 1
-                </a>
-              </li>
-              <li>
-                <a href="http://dataset2" target="_blank">
-                  Dataset 2
-                </a>
-              </li>
-            </ul>
-          </section>
+              <h3>{t("about.background.subtitle1")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.background.text1")
+                }}
+              />
 
-          <section className="section glossary">
-            <TopicTitle slug="glossary">{t("Glossary")}</TopicTitle>
-            <p className="paragraph">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              velit, sed quia non numquam eius modi tempora incidunt ut labore
-              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-              veniam, quis nostrum exercitationem ullam corporis suscipit
-              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-              vel eum iure reprehenderit qui in ea voluptate velit esse quam
-              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-              voluptas nulla pariatur?
-            </p>
-          </section>
+              <h3>{t("about.background.subtitle2")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.background.text2")
+                }}
+              />
+            </section>
+            /* DATA */
+            <section className="section" id="data">
+              <h2>{t("about.data.title")}</h2>
 
-          <section className="section teams">
-            <TopicTitle slug="team">{t("Teams")}</TopicTitle>
-            <p className="paragraph">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              velit, sed quia non numquam eius modi tempora incidunt ut labore
-              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-              veniam, quis nostrum exercitationem ullam corporis suscipit
-              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-              vel eum iure reprehenderit qui in ea voluptate velit esse quam
-              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-              voluptas nulla pariatur?
-            </p>
-          </section>
+              <p>{t("about.data.text")}</p>
 
-          <section className="section acknowledgement">
-            <TopicTitle slug="acknowledgement">
-              {t("Acknowledgement")}
-            </TopicTitle>
-            <p className="paragraph">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              velit, sed quia non numquam eius modi tempora incidunt ut labore
-              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-              veniam, quis nostrum exercitationem ullam corporis suscipit
-              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-              vel eum iure reprehenderit qui in ea voluptate velit esse quam
-              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-              voluptas nulla pariatur?
-            </p>
-          </section>
+              <table>
+                <thead>
+                  <tr>
+                    <th>{t("about.data.dataset")}</th>
+                    <th>{t("about.data.source")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="#dataset_casen">{t("about.data.casen.title")}</a>
+                    </td>
+                    <td>{t("about.data.casen.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_nene">{t("about.data.nene.title")}</a>
+                    </td>
+                    <td>{t("about.data.nene.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_nesi">{t("about.data.nesi.title")}</a>
+                    </td>
+                    <td>{t("about.data.nesi.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_matricula">
+                        {t("about.data.matricula.title")}
+                      </a>
+                    </td>
+                    <td>{t("about.data.matricula.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_psu">{t("about.data.psu.title")}</a>
+                    </td>
+                    <td>{t("about.data.psu.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_empleabilidad">
+                        {t("about.data.empleabilidad.title")}
+                      </a>
+                    </td>
+                    <td>{t("about.data.empleabilidad.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_salud">{t("about.data.salud.title")}</a>
+                    </td>
+                    <td>{t("about.data.salud.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_vida">{t("about.data.vida.title")}</a>
+                    </td>
+                    <td>{t("about.data.vida.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_migracion">
+                        {t("about.data.migracion.title")}
+                      </a>
+                    </td>
+                    <td>{t("about.data.migracion.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_discapacidad">
+                        {t("about.data.discapacidad.title")}
+                      </a>
+                    </td>
+                    <td>{t("about.data.discapacidad.source")}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#dataset_gasto">{t("about.data.gasto.title")}</a>
+                    </td>
+                    <td>{t("about.data.gasto.source")}</td>
+                  </tr>
+                </tbody>
+              </table>
 
-          <section className="section">
-            <TopicTitle slug="terms">{t("Terms of Use")}</TopicTitle>
-            <p className="paragraph">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              velit, sed quia non numquam eius modi tempora incidunt ut labore
-              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-              veniam, quis nostrum exercitationem ullam corporis suscipit
-              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-              vel eum iure reprehenderit qui in ea voluptate velit esse quam
-              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-              voluptas nulla pariatur?
-            </p>
+              <h3 id="dataset_casen">{t("about.data.casen.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.casen.text")
+                }}
+              />
 
-            <p className="paragraph">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              velit, sed quia non numquam eius modi tempora incidunt ut labore
-              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-              veniam, quis nostrum exercitationem ullam corporis suscipit
-              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-              vel eum iure reprehenderit qui in ea voluptate velit esse quam
-              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-              voluptas nulla pariatur?
-            </p>
-          </section>
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.casen.use")
+                }}
+              />
+
+              <h3 id="dataset_nene">{t("about.data.nene.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.nene.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.nene.use")
+                }}
+              />
+
+              <h3 id="dataset_nesi">{t("about.data.nesi.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.nesi.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.nesi.use")
+                }}
+              />
+
+              <h3 id="dataset_vida">{t("about.data.vida.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.vida.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.vida.use")
+                }}
+              />
+
+              <h3 id="dataset_matricula">{t("about.data.matricula.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.matricula.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.matricula.use")
+                }}
+              />
+
+              <h3 id="dataset_psu">{t("about.data.psu.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.psu.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.psu.use")
+                }}
+              />
+
+              <h3 id="dataset_empleabilidad">
+                {t("about.data.empleabilidad.title")}
+              </h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.empleabilidad.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.empleabilidad.use")
+                }}
+              />
+
+              <h3 id="dataset_salud">{t("about.data.salud.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.salud.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.salud.use")
+                }}
+              />
+
+              <h3 id="dataset_vida">{t("about.data.vida.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.vida.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.vida.use")
+                }}
+              />
+
+              <h3 id="dataset_migracion">{t("about.data.migracion.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.migracion.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.migracion.use")
+                }}
+              />
+
+              <h3 id="dataset_discapacidad">
+                {t("about.data.discapacidad.title")}
+              </h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.discapacidad.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.discapacidad.use")
+                }}
+              />
+
+              <h3 id="dataset_gasto">{t("about.data.gasto.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.gasto.text")
+                }}
+              />
+
+              <div
+                className="use"
+                dangerouslySetInnerHTML={{
+                  __html: t("about.data.gasto.use")
+                }}
+              />
+            </section>
+            /* TEAM */
+            <section className="section" id="team">
+              <h2>{t("about.team.title")}</h2>
+
+              <h3>{t("about.team.dw.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.team.dw.text")
+                }}
+              />
+            </section>
+            /* ACK */
+            <section className="section" id="acknowledgement">
+              <h2>{t("about.ack.title")}</h2>
+              <h3>{t("about.ack.partners.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.ack.partners.text")
+                }}
+              />
+              <h3>{t("about.ack.credits.title")}</h3>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.ack.credits.text")
+                }}
+              />
+            </section>
+            /* TERMS */
+            <section className="section" id="terms">
+              <h2>{t("about.terms.title")}</h2>
+
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t("about.terms.text")
+                }}
+              />
+            </section>
+          </div>
         </div>
       </CanonComponent>
     );
