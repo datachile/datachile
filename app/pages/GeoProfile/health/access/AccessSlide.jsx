@@ -5,11 +5,11 @@ import { Section } from "datawheel-canon";
 import { sources } from "helpers/consts";
 import {
   calculateYearlyGrowth,
-  getTopCategories,
-  getGeoObject
+  getGeoObject,
+  getTopCategories
 } from "helpers/dataUtils";
 
-import { simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleAvailableGeoDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
@@ -25,7 +25,7 @@ class AccessSlide extends Section {
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
 
-      return simpleDatumNeed(
+      return simpleAvailableGeoDatumNeed(
         "datum_health_system_isapre",
         "casen_health_system",
         [msrName],
@@ -50,7 +50,7 @@ class AccessSlide extends Section {
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
 
-      return simpleDatumNeed(
+      return simpleAvailableGeoDatumNeed(
         "datum_health_system_total_affiliates",
         "casen_health_system",
         [msrName],
@@ -64,7 +64,7 @@ class AccessSlide extends Section {
         false
       )(params, store);
     },
-    simpleDatumNeed(
+    simpleAvailableGeoDatumNeed(
       "datum_population_for_health_access",
       "population_estimate",
       ["Population"],
@@ -116,7 +116,10 @@ class AccessSlide extends Section {
             growth_isapre_affiliates > 0 ? t("increased") : t("decreased"),
           rate: numeral(growth_isapre_affiliates, locale).format("0.0 %")
         },
-        share: numeral(top[0][msrName] / total, locale).format("0.0 %")
+        share:
+          top.length > 0
+            ? numeral(top[0][msrName] / total, locale).format("0.0 %")
+            : ""
       }
     };
 
@@ -132,36 +135,47 @@ class AccessSlide extends Section {
             />
           </div>
           <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="health-firstaid"
-              datum={numeral(top[0][msrName], locale).format("0,0")}
-              title={t("Affiliates in") + " " + top[0]["Health System Group"]}
-              subtitle={
-                numeral(top[0][msrName] / total, locale).format("0.0 %") +
-                " " +
-                t("of total")
-              }
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="health-firstaid"
-              datum={numeral(
-                total / datum_population_for_health_access,
-                locale
-              ).format("0.0 %")}
-              title={t("Population with Health Insurance")}
-              subtitle={t("In") + " " + sources.casen_health_system.year}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="health-firstaid"
-              datum={text_access.insurance.isapre.rate}
-              title={t("Growth affiliates in ISAPRES")}
-              subtitle={
-                t("In period") + " " + years[key - 2] + "-" + years[key - 1]
-              }
-            />
+            {datum_health_system_total_affiliates.available &&
+              datum_health_system_isapre.available && (
+                <div>
+                  <FeaturedDatum
+                    className="l-1-3"
+                    icon="health-firstaid"
+                    datum={numeral(top[0][msrName], locale).format("0,0")}
+                    title={
+                      t("Affiliates in") + " " + top[0]["Health System Group"]
+                    }
+                    subtitle={
+                      numeral(top[0][msrName] / total, locale).format("0.0 %") +
+                      " " +
+                      t("of total")
+                    }
+                  />
+                  <FeaturedDatum
+                    className="l-1-3"
+                    icon="health-firstaid"
+                    datum={numeral(
+                      total / datum_population_for_health_access,
+                      locale
+                    ).format("0.0 %")}
+                    title={t("Population with Health Insurance")}
+                    subtitle={t("In") + " " + sources.casen_health_system.year}
+                  />
+                  <FeaturedDatum
+                    className="l-1-3"
+                    icon="health-firstaid"
+                    datum={text_access.insurance.isapre.rate}
+                    title={t("Growth affiliates in ISAPRES")}
+                    subtitle={
+                      t("In period") +
+                      " " +
+                      years[key - 2] +
+                      "-" +
+                      years[key - 1]
+                    }
+                  />
+                </div>
+              )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
