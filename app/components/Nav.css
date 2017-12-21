@@ -121,7 +121,7 @@
     margin: var(--gutter) auto;
     & .nav-title {
       text-align: center;
-      lost-center: 500px;
+      lost-center: 75%;
       & h1 {
         text-transform: uppercase;
         color: var(--snow);
@@ -290,6 +290,7 @@
   .nav {
     & .title-container {
       & .nav-title {
+        lost-center: 90%;
         & h1 {
           font-size: 30px;
         }

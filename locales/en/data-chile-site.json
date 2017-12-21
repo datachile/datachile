@@ -1,4 +1,10 @@
 {
+	"loading": {
+		"description": "Loading {{progress}} of {{total}} datasets",
+		"developed": "Designed and Engineered by Datawheel",
+		"title": "Please Wait"
+	},
+
 	"geo_profile": {
 		"trade_slide": {
 			"text":

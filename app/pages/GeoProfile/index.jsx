@@ -19,6 +19,7 @@ import {
 } from "./index_needs";
 
 import Nav from "components/Nav";
+import DatachileLoading from "components/DatachileLoading";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
@@ -376,7 +377,12 @@ class GeoProfile extends Component {
     }
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<DatachileLoading />}
+      >
         <div className="profile">
           <div className="intro">
             {geo &&
@@ -923,12 +929,8 @@ class GeoProfile extends Component {
               <div>
                 <PopulationSlide>
                   <SectionColumns>
-                    <PopulationPyramid
-                      className="lost-1-2"
-                    />
-                    <PopulationProjection
-                      className="lost-1-2"
-                    />
+                    <PopulationPyramid className="lost-1-2" />
+                    <PopulationProjection className="lost-1-2" />
                   </SectionColumns>
                 </PopulationSlide>
               </div>
