@@ -55,7 +55,7 @@ class AuthoritiesBlock extends Component {
         prm = new Promise((resolve, reject) => {
           resolve({
             key: "election_senators",
-            data: []
+            data: false
           });
         });
       } else {
@@ -101,7 +101,7 @@ class AuthoritiesBlock extends Component {
               console.error("AuthoritiesBlock need:", error);
               return {
                 key: "election_senators",
-                data: []
+                data: false
               };
             }
           );
@@ -158,11 +158,13 @@ class AuthoritiesBlock extends Component {
 
     const geo = this.props.data.geo;
 
-    const president = {
-      id: this.props.data.election_president["ID Candidate"],
-      name: this.props.data.election_president["Candidate"],
-      party: false
-    };
+    const president = this.props.data.election_president
+      ? {
+          id: this.props.data.election_president["ID Candidate"],
+          name: this.props.data.election_president["Candidate"],
+          party: false
+        }
+      : false;
 
     const mayor = this.props.data.election_mayor
       ? {
@@ -172,17 +174,19 @@ class AuthoritiesBlock extends Component {
         }
       : false;
 
-    const senators = this.props.data.election_senators.map(d => {
-      return {
-        id: d["ID Candidate"],
-        name: d["Candidate"],
-        party: d["Party"]
-      };
-    });
+    const senators = this.props.data.election_senators
+      ? this.props.data.election_senators.map(d => {
+          return {
+            id: d["ID Candidate"],
+            name: d["Candidate"],
+            party: d["Party"]
+          };
+        })
+      : false;
 
     return (
       <div className="splash-authorities">
-        {geo.type === "country" && (
+        {president && (
           <div className="splash-authorities-president">
             <div className="title">{t("President")}</div>
             <PersonItem
@@ -193,10 +197,10 @@ class AuthoritiesBlock extends Component {
             />
           </div>
         )}
-        <div className="splash-authorities-senators">
-          <div className="title">{t("Senators")}</div>
-          {senators &&
-            senators.map((s, ix) => (
+        {senators && (
+          <div className="splash-authorities-senators">
+            <div className="title">{t("Senators")}</div>
+            {senators.map((s, ix) => (
               <PersonItem
                 imgpath={"/images/authorities/" + s.id + ".png"}
                 name={s.name}
@@ -205,7 +209,8 @@ class AuthoritiesBlock extends Component {
                 key={ix}
               />
             ))}
-        </div>
+          </div>
+        )}
         {mayor && (
           <div className="splash-authorities-mayor">
             <div className="title">{t("Mayor")}</div>
