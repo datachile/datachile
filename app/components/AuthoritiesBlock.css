@@ -3,14 +3,23 @@
   & .splash-authorities-president {
     lost-flex-container: row;
     justify-content: center;
+    & .president {
+      lost-center: 1/3;
+    }
   }
   & .splash-authorities-senators {
     lost-flex-container: row;
     justify-content: center;
+    & .senator {
+      lost-column: 1/4;
+    }
   }
   & .splash-authorities-mayor {
     lost-flex-container: row;
     justify-content: center;
+    & .mayor {
+      lost-center: 1/4;
+    }
   }
   & .title {
     width: 100%;

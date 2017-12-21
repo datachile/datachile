@@ -187,39 +187,45 @@ class AuthoritiesBlock extends Component {
     return (
       <div className="splash-authorities">
         {president && (
-          <div className="splash-authorities-president">
+          <div>
             <div className="title">{t("President")}</div>
-            <PersonItem
-              imgpath={"/images/authorities/" + president.id + ".png"}
-              name={president.name}
-              subtitle={president.party}
-              className="president lost-1-3"
-            />
+            <div className="splash-authorities-president">
+              <PersonItem
+                imgpath={"/images/authorities/" + president.id + ".png"}
+                name={president.name}
+                subtitle={president.party}
+                className="president"
+              />
+            </div>
           </div>
         )}
         {senators && (
-          <div className="splash-authorities-senators">
+          <div>
             <div className="title">{t("Senators")}</div>
-            {senators.map((s, ix) => (
-              <PersonItem
-                imgpath={"/images/authorities/" + s.id + ".png"}
-                name={s.name}
-                subtitle={s.party}
-                className="senator lost-1-4"
-                key={ix}
-              />
-            ))}
+            <div className="splash-authorities-senators">
+              {senators.map((s, ix) => (
+                <PersonItem
+                  imgpath={"/images/authorities/" + s.id + ".png"}
+                  name={s.name}
+                  subtitle={s.party}
+                  className="senator"
+                  key={ix}
+                />
+              ))}
+            </div>
           </div>
         )}
         {mayor && (
-          <div className="splash-authorities-mayor">
+          <div>
             <div className="title">{t("Mayor")}</div>
-            <PersonItem
-              imgpath={"/images/authorities/" + mayor.id + ".png"}
-              name={mayor.name}
-              subtitle={mayor.party}
-              className="mayor lost-1-4"
-            />
+            <div className="splash-authorities-mayor">
+              <PersonItem
+                imgpath={"/images/authorities/" + mayor.id + ".png"}
+                name={mayor.name}
+                subtitle={mayor.party}
+                className="mayor"
+              />
+            </div>
           </div>
         )}
       </div>
