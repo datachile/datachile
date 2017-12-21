@@ -3,6 +3,7 @@ import { translate } from "react-i18next";
 import { CanonComponent, TopicTitle } from "datawheel-canon";
 
 import Nav from "components/Nav";
+import DatachileLoading from "components/DatachileLoading";
 import "./About.css";
 
 class About extends Component {
@@ -45,7 +46,12 @@ class About extends Component {
     ];
 
     return (
-      <CanonComponent id="about" data={this.props.data} topics={topics}>
+      <CanonComponent
+        id="about"
+        data={this.props.data}
+        topics={topics}
+        loadingComponent={<DatachileLoading />}
+      >
         <Nav
           title={t("About")}
           typeTitle={t("Home")}

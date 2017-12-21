@@ -16,6 +16,7 @@ import {
 } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
+import DatachileLoading from "components/DatachileLoading";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
@@ -208,7 +209,12 @@ class CareerProfile extends Component {
     ];
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<DatachileLoading />}
+      >
         <div className="profile">
           <div className="intro">
             {obj &&

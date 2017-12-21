@@ -10,6 +10,7 @@ import { ingestChildren } from "helpers/dataUtils";
 import { getMembersQuery } from "helpers/MondrianClient";
 
 import Nav from "components/Nav";
+import DatachileLoading from "components/DatachileLoading";
 import Search from "components/Search";
 import FeaturedBox from "components/FeaturedBox";
 import ResultsElement from "./results";
@@ -238,7 +239,12 @@ class Explore extends Component {
         : [];
 
     return (
-      <CanonComponent id="explore" data={this.props.data} topics={[]}>
+      <CanonComponent
+        id="explore"
+        data={this.props.data}
+        topics={[]}
+        loadingComponent={<DatachileLoading />}
+      >
         <div className="explore-page">
           <Nav
             title={type != "" ? type : t("Explore")}
