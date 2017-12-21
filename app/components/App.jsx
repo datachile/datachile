@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import Footer from "components/Footer";
 
 import mondrianClient from "helpers/MondrianClient";
@@ -58,9 +57,4 @@ class App extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    data: state.data
-  }),
-  {}
-)(App);
+export default App;
