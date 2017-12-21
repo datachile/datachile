@@ -187,6 +187,55 @@ function simpleIndustryChartNeed(
   };
 }
 
+function getGeoMembersDimension(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] }
+) {
+  return (params, store) => {
+    let geo = getGeoObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+        var query = geoCut(geo, "Geography", q, store.i18n.locale);
+        return client.query(query);
+      })
+      .then(res => {
+        if (res.data.values && res.data.values.length > 0) {
+          const data = res.data || null;
+          const level = drillDowns[0][2];
+          const customKey = data.axis_dimensions.find(
+            item => item.level === level
+          ).level_depth;
+
+          return {
+            key: key,
+            data: data.axes[customKey].members
+              .map(item => item.name)
+              .sort((a, b) => a - b)
+          };
+        } else {
+          return {
+            key: key,
+            data: []
+          };
+        }
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 function simpleDatumNeed(
   key,
   cube,
@@ -316,7 +365,8 @@ function simpleAvailableGeoDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  { drillDowns = [], options = {}, cuts = [] },
+  byValues = true
 ) {
   return (params, store) => {
     const geo = getGeoObject(params);
@@ -330,13 +380,23 @@ function simpleAvailableGeoDatumNeed(
           cuts: cuts
         });
         var query = geoCut(geo, "Geography", q, store.i18n.locale);
-        return client.query(query);
+        return byValues
+          ? client.query(query)
+          : client.query(query, "jsonrecords");
       })
       .then(res => {
-        if (res.data.values && res.data.values.length > 0) {
+        if (
+          (res.data.values && res.data.values.length > 0) ||
+          (res.data.data && res.data.data.length > 0)
+        ) {
           return {
             key: key,
-            data: { data: flattenDeep(res.data.values), available: true }
+            data: {
+              data: byValues
+                ? flattenDeep(res.data.values)
+                : flattenDeep(res.data.data),
+              available: true
+            }
           };
         } else {
           return {
@@ -530,6 +590,8 @@ export {
   simpleAvailableGeoDatumNeed,
   simpleCountryDatumNeed,
   simpleIndustryDatumNeed,
-  simpleInstitutionDatumNeed
+  simpleInstitutionDatumNeed,
+  getGeoMembersDimension,
+  getGeoMembersDimension2
 };
 export default client;
