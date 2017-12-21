@@ -112,7 +112,10 @@ class Home extends Component {
             <div className="intro">
               <div className="text">
                 <h1 className="title">
-                  <span>DATACHILE</span>
+                  <img
+                    title="Datachile"
+                    src="/images/logos/logo-dc-small.svg"
+                  />
                 </h1>
                 <p className="lead">
                   {t(

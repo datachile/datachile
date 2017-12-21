@@ -2,7 +2,7 @@
 
 .nav {
   width: 100%;
-  margin: var(--gutter) auto 60px auto;
+  margin: 0 auto 60px auto;
   padding: 0px var(--gutter);
 
   & .nav-container {
@@ -11,7 +11,7 @@
     justify-content: space-between;
     & .l-col {
       lost-column: 1/3;
-
+      padding-top: var(--gutter);
       & .menu-button {
         & a,
         & img {
@@ -38,13 +38,19 @@
     & .c-col {
       lost-column: 1/3;
       text-align: center;
+      padding-top: 10px;
       & .logo {
         text-decoration: none;
         text-transform: uppercase;
+        & img {
+          margin: 0 auto;
+          max-width: 40%;
+        }
       }
     }
     & .r-col {
       lost-column: 1/3;
+      padding-top: var(--gutter);
       & .search-nav-container {
         position: relative;
         text-align: right;
@@ -78,36 +84,6 @@
             opacity: 1;
           }
           & a.search-toggle-nav {
-          }
-        }
-      }
-      & .nav-lang {
-        & .lang-selector {
-          & span {
-            margin: 0px 2px;
-            text-decoration: none;
-            font-family: var(--font-family-text);
-            font-weight: 400;
-            font-size: 14px;
-            color: var(--snow);
-            letter-spacing: 0.08px;
-            text-transform: uppercase;
-            &.lang-current {
-              color: var(--snow);
-              text-decoration: underline;
-              opacity: 1;
-            }
-            &.lang-other {
-              & a {
-                transition: opacity 0.2s;
-                color: var(--snow);
-                opacity: 0.8;
-                text-decoration: none;
-                &:hover {
-                  opacity: 1;
-                }
-              }
-            }
           }
         }
       }
