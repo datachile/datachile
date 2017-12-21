@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
+import { Link } from "react-router";
 
 import FeaturedBox from "components/FeaturedBox";
 import Nav from "components/Nav";
@@ -119,8 +120,13 @@ class Home extends Component {
               <div className="text">
                 <h1 className="title">
                   <img
-                    title="Datachile"
+                    title="DataChile"
                     src="/images/logos/logo-dc-small.svg"
+                  />
+                  <Link
+                    className="easter"
+                    title=";)"
+                    to="/geo/valparaiso-5/isla-de-pascua-115"
                   />
                 </h1>
                 <p className="lead">

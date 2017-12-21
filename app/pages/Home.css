@@ -70,13 +70,23 @@
       & .text {
         padding: 0px var(--gutter);
         & .title {
+          position: relative;
           font-size: 50px;
           letter-spacing: -1.25px;
           color: var(--snow);
           font-weight: 300;
-          margin: var(--gutter) 0px;
+          margin: 0px;
           font-family: var(--font-family-title);
           text-align: center;
+          & .easter {
+            position: absolute;
+            left: 60%;
+            top: 20%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: block;
+          }
         }
 
         & .lead {
