@@ -2,7 +2,7 @@
 
 .nav {
   width: 100%;
-  margin: 0 auto 60px auto;
+  margin: 0 auto 30px auto;
   padding: 0px var(--gutter);
 
   & .nav-container {

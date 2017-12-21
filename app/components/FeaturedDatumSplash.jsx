@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 
+import { sources } from "helpers/consts";
+
 import "./FeaturedDatumSplash.css";
 
 class FeaturedDatumSplash extends Component {
@@ -25,6 +27,8 @@ class FeaturedDatumSplash extends Component {
     }
 
     const iconUrl = `/images/splash-icon/icon-${icon}.svg`;
+
+    const sourceData = sources[source];
 
     return (
       <div className={"featured-datum-splash " + className}>
@@ -55,9 +59,13 @@ class FeaturedDatumSplash extends Component {
             </div>
           )}
         <div className="featured-datum-splash-data">
-          <p className="featured-datum-data">{datum}</p>
+          <div className="featured-datum-data">{datum}</div>
+          {sourceData && (
+            <div className="featured-datum-splash-source">
+              {sourceData.title} - {sourceData.year}
+            </div>
+          )}
         </div>
-        <h6 className="featured-datum-splash-source">{source}</h6>
       </div>
     );
   }

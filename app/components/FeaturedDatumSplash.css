@@ -55,16 +55,13 @@
     color: var(--snow);
     font-weight: 300;
     margin-bottom: 0px;
-    & p {
-      margin-bottom: 0px;
-    }
   }
   &.population {
     & .featured-datum-splash-icons {
       & .icon-img {
         margin-right: 20px;
-        height: 40px;
-        width: 30px;
+        height: 30px;
+        width: 20px;
       }
       & .icon-img:last-child {
         margin-right: 0px;
