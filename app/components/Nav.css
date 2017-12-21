@@ -65,6 +65,7 @@
           width: 48px;
           line-height: 46px;
           text-align: center;
+          right: 0;
           & img {
             display: inline-block;
             vertical-align: middle;

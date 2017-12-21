@@ -53,7 +53,7 @@ class About extends Component {
         loadingComponent={<DatachileLoading />}
       >
         <Nav
-          title={t("About")}
+          title={t("About DataChile")}
           typeTitle={t("Home")}
           type={false}
           exploreLink={"/"}

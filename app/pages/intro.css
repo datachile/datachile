@@ -146,10 +146,8 @@
 
     & .map-comuna {
       lost-column: 1/3 flex;
-      align-self: center;
       pointer-events: all;
       position: relative;
-      min-height: 500px;
       padding-right: 60px;
     }
 
