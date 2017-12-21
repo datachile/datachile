@@ -9,26 +9,38 @@ import "./AuthoritiesBlock.css";
 class AuthoritiesBlock extends Component {
   static need = [
     (params, store) => {
-      const prm = mondrianClient
-        .cube("election_results")
-        .then(cube => {
-          var q = cube.query
-            .drilldown("Candidates", "Candidates", "Candidate")
-            .drilldown("Party", "Party", "Party")
-            .measure("Votes")
-            .cut("[Elected].[Elected].&[1]")
-            .cut("[Election Type].[Election Type].&[2]");
+      const geo = getGeoObject(params);
 
-          q.cut(`[Date].[Year].&[${store.presidential_election_year}]`);
-
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
+      var prm;
+      if (geo.type != "country") {
+        prm = new Promise((resolve, reject) => {
+          resolve({
             key: "election_president",
-            data: res.data.data[0]
-          };
+            data: false
+          });
         });
+      } else {
+        prm = mondrianClient
+          .cube("election_results")
+          .then(cube => {
+            var q = cube.query
+              .drilldown("Candidates", "Candidates", "Candidate")
+              .drilldown("Party", "Party", "Party")
+              .measure("Votes")
+              .cut("[Elected].[Elected].&[1]")
+              .cut("[Election Type].[Election Type].&[2]");
+
+            q.cut(`[Date].[Year].&[${store.presidential_election_year}]`);
+
+            return mondrianClient.query(q, "jsonrecords");
+          })
+          .then(res => {
+            return {
+              key: "election_president",
+              data: res.data.data[0]
+            };
+          });
+      }
 
       return {
         type: "GET_DATA",
@@ -43,7 +55,7 @@ class AuthoritiesBlock extends Component {
         prm = new Promise((resolve, reject) => {
           resolve({
             key: "election_senators",
-            data: []
+            data: false
           });
         });
       } else {
@@ -89,7 +101,7 @@ class AuthoritiesBlock extends Component {
               console.error("AuthoritiesBlock need:", error);
               return {
                 key: "election_senators",
-                data: []
+                data: false
               };
             }
           );
@@ -144,11 +156,15 @@ class AuthoritiesBlock extends Component {
   render() {
     const { t } = this.props;
 
-    const president = {
-      id: this.props.data.election_president["ID Candidate"],
-      name: this.props.data.election_president["Candidate"],
-      party: false
-    };
+    const geo = this.props.data.geo;
+
+    const president = this.props.data.election_president
+      ? {
+          id: this.props.data.election_president["ID Candidate"],
+          name: this.props.data.election_president["Candidate"],
+          party: false
+        }
+      : false;
 
     const mayor = this.props.data.election_mayor
       ? {
@@ -158,44 +174,58 @@ class AuthoritiesBlock extends Component {
         }
       : false;
 
-    const senators = this.props.data.election_senators.map(d => {
-      return {
-        id: d["ID Candidate"],
-        name: d["Candidate"],
-        party: d["Party"]
-      };
-    });
+    const senators = this.props.data.election_senators
+      ? this.props.data.election_senators.map(d => {
+          return {
+            id: d["ID Candidate"],
+            name: d["Candidate"],
+            party: d["Party"]
+          };
+        })
+      : false;
 
     return (
       <div className="splash-authorities">
-        <div className="splash-authorities-president">
-          <PersonItem
-            imgpath={"/images/authorities/" + president.id + ".png"}
-            name={president.name}
-            subtitle={t("President")}
-            className="president lost-1-3"
-          />
-        </div>
-        <div className="splash-authorities-senators">
-          {senators &&
-            senators.map((s, ix) => (
+        {president && (
+          <div>
+            <div className="title">{t("President")}</div>
+            <div className="splash-authorities-president">
               <PersonItem
-                imgpath={"/images/authorities/" + s.id + ".png"}
-                name={s.name}
-                subtitle={t("Senator") + " " + s.party + ""}
-                className="senator lost-1-4"
-                key={ix}
+                imgpath={"/images/authorities/" + president.id + ".png"}
+                name={president.name}
+                subtitle={president.party}
+                className="president"
               />
-            ))}
-        </div>
+            </div>
+          </div>
+        )}
+        {senators && (
+          <div>
+            <div className="title">{t("Senators")}</div>
+            <div className="splash-authorities-senators">
+              {senators.map((s, ix) => (
+                <PersonItem
+                  imgpath={"/images/authorities/" + s.id + ".png"}
+                  name={s.name}
+                  subtitle={s.party}
+                  className="senator"
+                  key={ix}
+                />
+              ))}
+            </div>
+          </div>
+        )}
         {mayor && (
-          <div className="splash-authorities-mayor">
-            <PersonItem
-              imgpath={"/images/authorities/" + mayor.id + ".png"}
-              name={mayor.name}
-              subtitle={t("Mayor")}
-              className="mayor lost-1-4"
-            />
+          <div>
+            <div className="title">{t("Mayor")}</div>
+            <div className="splash-authorities-mayor">
+              <PersonItem
+                imgpath={"/images/authorities/" + mayor.id + ".png"}
+                name={mayor.name}
+                subtitle={mayor.party}
+                className="mayor"
+              />
+            </div>
           </div>
         )}
       </div>

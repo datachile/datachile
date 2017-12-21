@@ -5,15 +5,15 @@ import { ProgressBar } from "@blueprintjs/core";
 import "./DatachileProgressBar.css";
 
 class DatachileProgressBar extends Component {
-  render() {
-    const { value } = this.props;
-    return (
-      <div className="datachile-progress-bar">
-        <img className="logo" src="/images/logos/logo-dc.svg" />
-        <ProgressBar value={value} />
-      </div>
-    );
-  }
+	render() {
+		const { value } = this.props;
+		return (
+			<div className="datachile-progress-bar">
+				<img className="logo" src="/images/logos/logo-dc-small.svg" />
+				<ProgressBar value={value} />
+			</div>
+		);
+	}
 }
 
 DatachileProgressBar = translate()(DatachileProgressBar);

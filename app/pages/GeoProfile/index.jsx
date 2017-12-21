@@ -432,10 +432,8 @@ class GeoProfile extends Component {
                     datum={numeral(stats.population.value, locale).format(
                       "(0,0)"
                     )}
-                    source={
-                      stats.population.year + " - " + stats.population.source
-                    }
-                    className=""
+                    source="population_estimate"
+                    className="population"
                   />
                 )}
                 {stats.income && (
@@ -455,7 +453,7 @@ class GeoProfile extends Component {
                     datum={numeral(stats.income.value, locale).format(
                       "($ 0,0)"
                     )}
-                    source={stats.income.year + " - " + stats.income.source}
+                    source="nesi_income"
                     className=""
                   />
                 )}
@@ -476,7 +474,7 @@ class GeoProfile extends Component {
                     datum={
                       numeral(stats.psu.value, locale).format("(0,0)") + " psu"
                     }
-                    source={stats.psu.year + " - " + stats.psu.source}
+                    source="psu"
                     className=""
                   />
                 )}
@@ -497,7 +495,7 @@ class GeoProfile extends Component {
                   <Geomap
                     config={{
                       data: [
-                        { id: 1, name: "Arica y Parinacota" },
+                        { id: 1, name: "Tarapacá" },
                         { id: 2, name: "Antofagasta" },
                         { id: 3, name: "Atacama" },
                         { id: 4, name: "Coquimbo" },
@@ -511,7 +509,7 @@ class GeoProfile extends Component {
                         { id: 12, name: "Magallanes" },
                         { id: 13, name: "Región Metropolitana" },
                         { id: 14, name: "Los Ríos" },
-                        { id: 15, name: "pepe" }
+                        { id: 15, name: "Arica y Parinacota" }
                       ],
                       id: "id",
                       downloadButton: false,

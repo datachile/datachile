@@ -19,6 +19,7 @@ import {
 import { sources } from "helpers/consts";
 
 import Topic from "components/Topic";
+import DatachileLoading from "components/DatachileLoading";
 
 import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
@@ -345,7 +346,12 @@ class CountryProfile extends Component {
     ];
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<DatachileLoading />}
+      >
         <div className="profile">
           <div className="intro">
             {obj && (

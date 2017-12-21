@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
 
+import DatachileLoading from "components/DatachileLoading";
 import Nav from "components/Nav";
 
 import "./explore-map.css";
@@ -26,7 +27,12 @@ class ExploreMap extends Component {
     const { t } = this.props;
 
     return (
-      <CanonComponent id="explore-map" data={this.props.data} topics={[]}>
+      <CanonComponent
+        id="explore-map"
+        data={this.props.data}
+        topics={[]}
+        loadingComponent={<DatachileLoading />}
+      >
         <div className="explore-map-page">
           <Nav
             title={t("Map Explore")}

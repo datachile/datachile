@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
+import { Link } from "react-router";
 
 import FeaturedBox from "components/FeaturedBox";
 import Nav from "components/Nav";
+import DatachileLoading from "components/DatachileLoading";
 import Search from "components/Search";
 import DynamicHomeHeader from "components/DynamicHomeHeader";
 
@@ -90,7 +92,12 @@ class Home extends Component {
     };
 
     return (
-      <CanonComponent id="home" data={this.props.data} topics={[]}>
+      <CanonComponent
+        id="home"
+        data={this.props.data}
+        topics={[]}
+        loadingComponent={<DatachileLoading />}
+      >
         <div className="home">
           <Nav />
 
@@ -112,7 +119,15 @@ class Home extends Component {
             <div className="intro">
               <div className="text">
                 <h1 className="title">
-                  <span>DATACHILE</span>
+                  <img
+                    title="DataChile"
+                    src="/images/logos/logo-dc-small.svg"
+                  />
+                  <Link
+                    className="easter"
+                    title=";)"
+                    to="/geo/valparaiso-5/isla-de-pascua-115"
+                  />
                 </h1>
                 <p className="lead">
                   {t(
