@@ -9,26 +9,38 @@ import "./AuthoritiesBlock.css";
 class AuthoritiesBlock extends Component {
   static need = [
     (params, store) => {
-      const prm = mondrianClient
-        .cube("election_results")
-        .then(cube => {
-          var q = cube.query
-            .drilldown("Candidates", "Candidates", "Candidate")
-            .drilldown("Party", "Party", "Party")
-            .measure("Votes")
-            .cut("[Elected].[Elected].&[1]")
-            .cut("[Election Type].[Election Type].&[2]");
+      const geo = getGeoObject(params);
 
-          q.cut(`[Date].[Year].&[${store.presidential_election_year}]`);
-
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
+      var prm;
+      if (geo.type != "country") {
+        prm = new Promise((resolve, reject) => {
+          resolve({
             key: "election_president",
-            data: res.data.data[0]
-          };
+            data: false
+          });
         });
+      } else {
+        prm = mondrianClient
+          .cube("election_results")
+          .then(cube => {
+            var q = cube.query
+              .drilldown("Candidates", "Candidates", "Candidate")
+              .drilldown("Party", "Party", "Party")
+              .measure("Votes")
+              .cut("[Elected].[Elected].&[1]")
+              .cut("[Election Type].[Election Type].&[2]");
+
+            q.cut(`[Date].[Year].&[${store.presidential_election_year}]`);
+
+            return mondrianClient.query(q, "jsonrecords");
+          })
+          .then(res => {
+            return {
+              key: "election_president",
+              data: res.data.data[0]
+            };
+          });
+      }
 
       return {
         type: "GET_DATA",
@@ -144,6 +156,8 @@ class AuthoritiesBlock extends Component {
   render() {
     const { t } = this.props;
 
+    const geo = this.props.data.geo;
+
     const president = {
       id: this.props.data.election_president["ID Candidate"],
       name: this.props.data.election_president["Candidate"],
@@ -168,21 +182,25 @@ class AuthoritiesBlock extends Component {
 
     return (
       <div className="splash-authorities">
-        <div className="splash-authorities-president">
-          <PersonItem
-            imgpath={"/images/authorities/" + president.id + ".png"}
-            name={president.name}
-            subtitle={t("President")}
-            className="president lost-1-3"
-          />
-        </div>
+        {geo.type === "country" && (
+          <div className="splash-authorities-president">
+            <div className="title">{t("President")}</div>
+            <PersonItem
+              imgpath={"/images/authorities/" + president.id + ".png"}
+              name={president.name}
+              subtitle={president.party}
+              className="president lost-1-3"
+            />
+          </div>
+        )}
         <div className="splash-authorities-senators">
+          <div className="title">{t("Senators")}</div>
           {senators &&
             senators.map((s, ix) => (
               <PersonItem
                 imgpath={"/images/authorities/" + s.id + ".png"}
                 name={s.name}
-                subtitle={t("Senator") + " " + s.party + ""}
+                subtitle={s.party}
                 className="senator lost-1-4"
                 key={ix}
               />
@@ -190,10 +208,11 @@ class AuthoritiesBlock extends Component {
         </div>
         {mayor && (
           <div className="splash-authorities-mayor">
+            <div className="title">{t("Mayor")}</div>
             <PersonItem
               imgpath={"/images/authorities/" + mayor.id + ".png"}
               name={mayor.name}
-              subtitle={t("Mayor")}
+              subtitle={mayor.party}
               className="mayor lost-1-4"
             />
           </div>

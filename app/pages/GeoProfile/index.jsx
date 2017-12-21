@@ -435,7 +435,7 @@ class GeoProfile extends Component {
                     source={
                       stats.population.year + " - " + stats.population.source
                     }
-                    className=""
+                    className="population"
                   />
                 )}
                 {stats.income && (

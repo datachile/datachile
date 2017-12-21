@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-import SvgImage from "components/SvgImage";
 
 import "./FeaturedDatumSplash.css";
 
@@ -36,20 +35,20 @@ class FeaturedDatumSplash extends Component {
           decile !== undefined && (
             <div className="featured-datum-splash-icons">
               {[...Array(full)].map((x, i) => (
-                <SvgImage
-                  extraClass="full"
+                <img
+                  className="icon-img full"
                   src={`/images/splash-icon/icon-${icon}-full.svg`}
                 />
               ))}
               {half == 1 && (
-                <SvgImage
-                  extraClass="half"
+                <img
+                  className="icon-img half"
                   src={`/images/splash-icon/icon-${icon}-half.svg`}
                 />
               )}
               {[...Array(none)].map((x, i) => (
-                <SvgImage
-                  extraClass="none"
+                <img
+                  className="icon-img none"
                   src={`/images/splash-icon/icon-${icon}-none.svg`}
                 />
               ))}

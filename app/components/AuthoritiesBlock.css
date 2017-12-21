@@ -12,4 +12,13 @@
     lost-flex-container: row;
     justify-content: center;
   }
+  & .title {
+    width: 100%;
+    font-family: var(--font-family-title);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: -0.01px;
+    font-weight: 300;
+  }
 }
