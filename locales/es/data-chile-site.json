@@ -80,6 +80,8 @@
 
   "increased": "crecido",
   "decreased": "decrecido",
+  "an increase": "un incremento",
+  "a decrease": "un descenso",
 
   "geo_profile": {
     "trade_slide": {
@@ -121,7 +123,7 @@
     },
     "migration_education_slide": {
       "text":
-        "<p>De los inmigrantes provenientes desde {{level}}, el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{college.percent}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento de {{high.growth}} para inmigrantes con estudios completos, y un {{college.growth}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no la declara en absoluto.</p>"
+        "<p>De los inmigrantes provenientes desde {{level}}, el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{college.percent}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento respecto al año anterior de {{high.growth}} para inmigrantes con estudios completos, y un {{college.growth}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no la declara en absoluto.</p>"
     },
     "intltrade_slide": {
       "text":
@@ -139,7 +141,7 @@
       "export":
         "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
       "export_21":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y a la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y desde la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
       "export_12":
         "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
       "export_3":
@@ -147,7 +149,7 @@
     },
     "intltrade_balance_slide": {
       "text":
-        "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones desde {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
+        "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones hacia {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
     }
   },
 

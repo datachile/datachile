@@ -10,7 +10,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
-import { getLevelObject } from "helpers/dataUtils";
+import { calculateYearlyGrowth, getLevelObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 const year_last = sources.immigration.year;
@@ -114,10 +114,10 @@ class MigrationActivitySlide extends Section {
                   locale
                 ).format("0.0%"),
                 growth: numeral(
-                  Math.log(
-                    max_latest["Number of visas"] /
-                      max_previous["Number of visas"]
-                  ),
+                  calculateYearlyGrowth([
+                    max_previous["Number of visas"],
+                    max_latest["Number of visas"]
+                  ]),
                   locale
                 ).format("0.0%")
               },
