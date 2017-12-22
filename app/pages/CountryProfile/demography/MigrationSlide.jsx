@@ -89,9 +89,10 @@ class MigrationSlide extends Section {
                 locale
               ).format("0.0%"),
               mun_growth: numeral(
-                Math.log(
-                  max_last["Number of visas"] / max_prev["Number of visas"]
-                ),
+                calculateYearlyGrowth([
+                  max_prev["Number of visas"],
+                  max_last["Number of visas"]
+                ]),
                 locale
               ).format("0.0%")
             }
