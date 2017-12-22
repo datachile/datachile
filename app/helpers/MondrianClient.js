@@ -116,7 +116,14 @@ function simpleGeoChartNeed(
   overrideGeo = false
 ) {
   return (params, store) => {
-    const geo = overrideGeo ? overrideGeo : getGeoObject(params);
+    let geo = overrideGeo ? overrideGeo : getGeoObject(params);
+
+    if (
+      ["death_causes", "disabilities", "health_access"].includes(cube) &&
+      geo.type === "comuna"
+    ) {
+      geo = { ...geo.ancestor };
+    }
 
     const prm = client.cube(cube).then(cube => {
       const q = cube.query;
@@ -591,7 +598,6 @@ export {
   simpleCountryDatumNeed,
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed,
-  getGeoMembersDimension,
-  getGeoMembersDimension2
+  getGeoMembersDimension
 };
 export default client;

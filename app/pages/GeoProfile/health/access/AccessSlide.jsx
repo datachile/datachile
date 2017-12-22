@@ -107,7 +107,10 @@ class AccessSlide extends Section {
       total = 0,
       top = [];
 
-    if (members_casen_health_system) {
+    if (
+      typeof members_casen_health_system !== "undefined" &&
+      members_casen_health_system.length > 0
+    ) {
       const membersTotal = members_casen_health_system.length;
 
       top = getTopCategories(
@@ -136,6 +139,13 @@ class AccessSlide extends Section {
           first: members_casen_health_system[0],
           last: members_casen_health_system[membersTotal - 1]
         },
+        share:
+          top.length > 0
+            ? numeral(
+                total / datum_population_for_health_access.data,
+                locale
+              ).format("0.0 %")
+            : "",
         insurance: {
           total: numeral(total, locale).format("0,0"),
           isapre: {
@@ -153,7 +163,8 @@ class AccessSlide extends Section {
 
     return (
       <div className="topic-slide-block">
-        {members_casen_health_system.length > 0 ? (
+        {typeof members_casen_health_system !== "undefined" &&
+        members_casen_health_system.length > 0 ? (
           <div className="topic-slide-intro">
             <div className="topic-slide-title">{t("Access")}</div>
             <div className="topic-slide-text">
@@ -178,7 +189,7 @@ class AccessSlide extends Section {
               <FeaturedDatum
                 className="l-1-3"
                 icon="health-firstaid"
-                datum={text_access.insurance.share}
+                datum={text_access.share}
                 title={t("Population with Health Insurance")}
                 subtitle={t("In") + " " + text_access.year.last}
               />
