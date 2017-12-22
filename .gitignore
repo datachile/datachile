@@ -2,6 +2,7 @@ node_modules/*
 static/assets/*
 */**/.DS_Store
 .env
+.envrc
 .DS_Store
 npm-debug.log
 *~
