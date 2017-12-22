@@ -63,14 +63,32 @@ class PSUNEMScatter extends Section {
                 d["ID Institution"] instanceof Array
                   ? d["Administration"]
                   : d["Institution"],
-              body: d =>
-                "<p>" +
-                "NEM: " +
-                numeral(d["Average NEM"], locale).format("(0.0)") +
-                "<br/>" +
-                "PSU: " +
-                numeral(d["Average PSU"], locale).format("(0)") +
-                "</p>"
+              body: d => {
+                var body = "";
+                if (!(d["ID Institution"] instanceof Array)) {
+                  var body = "<table class='tooltip-table'>";
+                  body +=
+                    "<tr><td class='title'>" +
+                    t("Average NEM") +
+                    "</td><td class='data'>" +
+                    numeral(d["Average NEM"], locale).format("(0.0)") +
+                    "</td></tr>";
+                  body +=
+                    "<tr><td class='title'>" +
+                    t("Average PSU") +
+                    "</td><td class='data'>" +
+                    numeral(d["Average PSU"], locale).format("(0)") +
+                    "</td></tr>";
+                  body +=
+                    "<tr><td class='title'>" +
+                    t("Enrollment") +
+                    "</td><td class='data'>" +
+                    numeral(d["Number of records"], locale).format("(0,0)") +
+                    "</td></tr>";
+                  body += "</table>";
+                }
+                return body;
+              }
             },
             legendConfig: {
               label: d => d["Administration"],

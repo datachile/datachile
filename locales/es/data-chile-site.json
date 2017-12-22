@@ -1,4 +1,9 @@
 {
+  "loading": {
+    "description": "Cargando {{progress}} de {{total}} series de datos",
+    "developed": "Diseñado y construído por Datawheel",
+    "title": "Por favor espere"
+  },
   "%B %d, %Y": "",
   ",": {
     "0f": ""
@@ -19,10 +24,16 @@
     "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
   "Pic by": "Foto de",
 
+  "LoadingComponent": {
+    "description": "Cargando {{progress}} de {{total}} series de datos",
+    "title": "Por favor espere"
+  },
+
   "Home": "Inicio",
   "Profiles": "Perfiles",
   "Topics": "Temas",
-  "About": "Acerca de Datachile",
+  "About DataChile": "Acerca de DataChile",
+  "About": "Introducción",
   "Contact": "Contacto",
 
   "Country": "País",
@@ -48,6 +59,7 @@
   "Product Type": "Tipo de Producto",
 
   "Industry": "Industria",
+  "Sector": "Sector",
   "Industries": "Industrias",
   "Industry Type": "Tipo de Industria",
 
@@ -69,6 +81,8 @@
 
   "increased": "crecido",
   "decreased": "decrecido",
+  "an increase": "un incremento",
+  "a decrease": "un descenso",
 
   "geo_profile": {
     "trade_slide": {
@@ -80,11 +94,13 @@
         "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
     },
     "health": {
-			"access": "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-			"healthcare": "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-			"disability": "",
-			"death_causes": ""
-		}
+      "access":
+        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+      "healthcare":
+        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+      "disability": "",
+      "death_causes": ""
+    }
   },
 
   "country_profile": {
@@ -108,7 +124,7 @@
     },
     "migration_education_slide": {
       "text":
-        "<p>De los inmigrantes provenientes desde {{level}}, el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{college.percent}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento de {{high.growth}} para inmigrantes con estudios completos, y un {{college.growth}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no la declara en absoluto.</p>"
+        "<p>De los inmigrantes provenientes desde {{level}}, el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{college.percent}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento respecto al año anterior de {{high.growth}} para inmigrantes con estudios completos, y un {{college.growth}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no la declara en absoluto.</p>"
     },
     "intltrade_slide": {
       "text":
@@ -126,7 +142,7 @@
       "export":
         "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
       "export_21":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y a la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y desde la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
       "export_12":
         "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
       "export_3":
@@ -134,7 +150,7 @@
     },
     "intltrade_balance_slide": {
       "text":
-        "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones desde {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
+        "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones hacia {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
     }
   },
 
@@ -154,10 +170,13 @@
   },
 
   "industry_profile": {
-		"economy": "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.name}}, con {{}}, representando el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
-		"r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
-		"employment": "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees."
-	},
+    "economy":
+      "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.name}}, con {{}}, representando el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+    "r&d":
+      "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
+    "employment":
+      "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees."
+  },
 
   "Exports by Destination": "Exportación por destino",
   "Imports by Origin Country": "Importación por país de origen",

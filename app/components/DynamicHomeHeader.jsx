@@ -498,7 +498,7 @@ class DynamicHomeHeader extends Component {
         <div className="dynamic-home-explore-btn">
           <Link
             className={`explore-btn background-${header.slug}`}
-            href={`/explore/${header.slug}`}
+            to={`/explore/${header.slug}`}
           >
             <span>{t("Explore profiles")}</span>
             <span className="pt-icon-standard pt-icon-chevron-right" />

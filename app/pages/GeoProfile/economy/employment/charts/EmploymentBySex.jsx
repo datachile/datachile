@@ -6,6 +6,7 @@ import { translate } from "react-i18next";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { employmentColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
+import { getGeoObject } from "helpers/dataUtils";
 
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
@@ -13,17 +14,30 @@ import SourceNote from "components/SourceNote";
 
 class EmploymentBySex extends Section {
   static need = [
-    simpleGeoChartNeed("path_employment_by_sex", "nene", ["Expansion factor"], {
-      drillDowns: [
-        [
-          "Occupational Situation",
-          "Occupational Situation",
-          "Occupational Situation"
-        ],
-        ["Sex", "Sex", "Sex"],
-        ["Quaterly Reporting"]
-      ]
-    })
+    (params, store) => {
+      var geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type == "comuna") {
+        geo = geo.ancestor;
+      }
+      return simpleGeoChartNeed(
+        "path_employment_by_sex",
+        "nene",
+        ["Expansion factor"],
+        {
+          drillDowns: [
+            [
+              "Occupational Situation",
+              "Occupational Situation",
+              "Occupational Situation"
+            ],
+            ["Sex", "Sex", "Sex"],
+            ["Quaterly Reporting"]
+          ]
+        },
+        geo
+      )(params, store);
+    }
   ];
 
   constructor(props) {
@@ -82,7 +96,7 @@ class EmploymentBySex extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Employment By Sex and Situation")}</span>
+          <span>{t("Regional Employment By Sex and Situation")}</span>
           <Select
             id="variations"
             options={this.state.chartVariations}

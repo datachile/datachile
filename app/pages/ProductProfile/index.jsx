@@ -19,6 +19,7 @@ import {
 } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
+import DatachileLoading from "components/DatachileLoading";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
@@ -471,7 +472,12 @@ class ProductProfile extends Component {
     ];
 
     return (
-      <CanonComponent data={this.props.data} d3plus={d3plus} topics={topics}>
+      <CanonComponent
+        data={this.props.data}
+        d3plus={d3plus}
+        topics={topics}
+        loadingComponent={<DatachileLoading />}
+      >
         <div className="profile">
           <div className="intro">
             {obj && (
@@ -509,13 +515,10 @@ class ProductProfile extends Component {
                     type="country"
                     code={stats.country.id}
                     datum={stats.country.name}
-                    source={
-                      numeral(stats.country.value, locale).format("($ 0,0 a)") +
-                      " - " +
-                      stats.country.year +
-                      " - " +
-                      stats.country.source
-                    }
+                    subtitle={numeral(stats.country.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
+                    source="exports"
                     className=""
                   />
                 )}
@@ -537,7 +540,7 @@ class ProductProfile extends Component {
                     datum={numeral(stats.exports.value, locale).format(
                       "($ 0,0 a)"
                     )}
-                    source={stats.exports.year + " - " + stats.exports.source}
+                    source="exports"
                     className=""
                   />
                 )}
@@ -548,13 +551,10 @@ class ProductProfile extends Component {
                     type="region"
                     code={stats.region.id}
                     datum={stats.region.name}
-                    source={
-                      numeral(stats.region.value, locale).format("($ 0,0 a)") +
-                      " - " +
-                      stats.region.year +
-                      " - " +
-                      stats.region.source
-                    }
+                    subtitle={numeral(stats.region.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
+                    source="exports"
                     className=""
                   />
                 )}

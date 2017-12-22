@@ -157,3 +157,15 @@ color-industries: "#2A8090"*/
   font-family: var(--font-family-text);
   color: var(--near-black);
 }
+
+table.tooltip-table {
+  width: 100%;
+  & tr {
+    & td {
+      width: 50%;
+      &.data {
+        text-align: right;
+      }
+    }
+  }
+}

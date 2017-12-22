@@ -1,51 +1,107 @@
 {
-	"geo_profile": {
-		"trade_slide": {
-			"text":
-				"In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
-		},
-		"income_sex_age_slide": {
-			"text": "Income by sex and age slide."
-		},
-		"health": {
-			"access":
-				"<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-			"healthcare":
-				"<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-			"disability": "",
-			"death_causes": ""
-		}
-	},
+  "loading": {
+    "description": "Loading {{progress}} of {{total}} datasets",
+    "developed": "Designed and Engineered by Datawheel",
+    "title": "Please Wait"
+  },
 
-	"trade_balance": {
-		"fob": "Exports",
-		"cif": "Imports",
-		"trade_balance": "Trade Balance"
-	},
+  "geo_profile": {
+    "trade_slide": {
+      "text":
+        "In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
+    },
+    "income_sex_age_slide": {
+      "text": "Income by sex and age slide."
+    },
+    "health": {
+      "access":
+        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+      "healthcare":
+        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+      "disability": "",
+      "death_causes": ""
+    }
+  },
 
-	"product_profile": {
-		"about1":
-			"{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
-		"about2":
-			"En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
-		"balance":
-			"During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
-	},
+  "trade_balance": {
+    "fob": "Exports",
+    "cif": "Imports",
+    "trade_balance": "Trade Balance"
+  },
+  "country_profile": {
+    "about1": "",
+    "about2": "",
+    "migration_slide": {
+      "text":
+        "<p>By {{year_latest}}, most immigrants from {{level}} arrive to establish in {{destination.region}}, mainly in the comuna of {{destination.municipality}}.</p><p>The immigrants from {{level}} in this comuna account for {{destination.mun_percent}} of the national total, and {{destination.reg_percent}} of the regional total. Compared to {{year_previous}}, the growth in immigration visas for people living in {{destination.municipality}} is {{destination.mun_growth}}.</p>"
+    },
+    "migration_details_slide": {
+      "tendency_stay":
+        ", which is a tendency since {{year_first}}, with an accumulated growth of {{sex.growth}}",
+      "tendency_change":
+        ", which has been a tendency since {{year_first}}, when most people were {{sex.before}}",
+      "text":
+        "<p>Of the immigrants that come from {{level}}, most are {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_latest}}, which translates into a growth of {{agerange.first_growth}} since {{year_previous}}.</p>"
+    },
+    "migration_activity_slide": {
+      "text":
+        "<p>According to the records, the majority of immigrants from {{level}} arrive with {{visa_type.first}} visa or {{visa_type.second}} visa. These combined represent a {{visa_type.percent}} from the total of immigrants.</p><p>For the year {{year_last}}, {{first_occupation.percent}} of the immigrants coming from {{level}} declare they work as {{first_occupation.name}}. This translates into a growth of {{first_occupation.growth}} compared to year {{year_prev}}. On the other side, {{activity.unoccupied_percent}} declares being unemployed, and {{activity.unknown_percent}} doesn't disclose their current activity.</p>"
+    },
+    "migration_education_slide": {
+      "text":
+        "<p>Of the immigrants arriving from {{level}}, {{high.percent}} have an academic degree equivalent to Chilean High School. Regarding Higher Education, {{college.percent}} declare to have a technical or university degree. This translates to a growth since last year of {{high.growth}} for high school graduate immigrants, and a {{college.growth}} for higher-education student or graduate immigrants.</p><p>By contrast, {{percent_noop}} declare not having any formal education, and {{percent_unknown}} don't disclose their education level.</p>"
+    },
+    "intltrade_slide": {
+      "text":
+        "<p>The principal product Chile imports from {{level}} is {{main_import.name}}. For {{year_latest}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of {{main_import.name}} to Chile.</p><p>On the other side, Chile exports to {{level}} mainly {{main_export.name}}. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of {{main_export.name}} from Chile during {{year_latest}}.</p>"
+    },
+    "intltrade_origin_dest_slide": {
+      "import":
+        "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after, the comunas of {{destination.second_municipality}}, in {{destination.second_region}}, and {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
+      "import_21":
+        "<p>Most of the imports coming to Chile from {{level}} arrive to the comunas of {{destination.first_municipality}} and {{destination.second_municipality}}, in {{destination.first_region}}, and the comuna of {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
+      "import_12":
+        "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after the comunas of {{destination.second_municipality}} and {{destination.third_municipality}}, in {{destination.second_region}}.</p>",
+      "import_3":
+        "<p>Most of the imports coming to Chile from {{level}} arrive to the region of {{destination.first_region}}, mainly to the comunas of {{destination.first_municipality}}, {{destination.second_municipality}}, and {{destination.third_municipality}}.</p>",
+      "export":
+        "<p>Most exports coming out from Chile to {{level}} depart from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}}, in {{origin.second_region}}, and {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
+      "export_21":
+        "<p>Most exports coming out from Chile to {{level}} depart from the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}, in {{origin.first_region}}, and from the comuna of {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
+      "export_12":
+        "<p>Most exports coming out from Chile to {{level}} depart from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}} and {{origin.third_municipality}}, in {{origin.second_region}}.</p>",
+      "export_3":
+        "<p>Most export coming out from Chile to {{level}} depart from {{origin.first_region}}, mainly from the comunas of {{origin.first_municipality}}, {{origin.second_municipality}}, and {{origin.third_municipality}}.</p>"
+    },
+    "intltrade_balance_slide": {
+      "text":
+        "<p>Between years {{year.first}} and {{year.last}}, the imports from {{level}} to Chile have registered a growth of {{import.growth}}, having shown a {{import.direction}} from {{import.volume_first}} to {{import.volume_last}}. In the same period, the exports from Chile to {{level}} have registered a growth of {{export.growth}}, with {{export.direction}} from {{export.volume_first}} to {{export.volume_last}}.</p>"
+    }
+  },
 
-	"industry_profile": {
-		"economy":
-			"<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
-		"r&d":
-			"<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
-		"employment":
-			"From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees."
-	},
+  "product_profile": {
+    "about1":
+      "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
+    "about2":
+      "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
+    "balance":
+      "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
+  },
 
-	"tooltip": {
-		"to_profile": "Click to see the full profile"
-	},
+  "industry_profile": {
+    "economy":
+      "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+    "r&d":
+      "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
+    "employment":
+      "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees."
+  },
 
-	"no_info":
-		"{{no}} has not data for this topic. You can see information at regional level in <a href='{{link}}'>{{yes}}</a>'s profile.",
-	"no_datum": "No data"
+  "tooltip": {
+    "to_profile": "Click to see the full profile"
+  },
+
+  "no_info":
+    "{{no}} has not data for this topic. You can see information at regional level in <a href='{{link}}'>{{yes}}</a>'s profile.",
+  "no_datum": "No data"
 }

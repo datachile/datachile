@@ -86,6 +86,11 @@ class Nav extends Component {
     }
     url = url.replace(locale, otherLang);
 
+    var hideLogo = location.pathname === "/";
+    if (canUseDOM) {
+      hideLogo = window.location.pathname === "/";
+    }
+
     return (
       <div id="navs-container">
         <nav className="nav">
@@ -101,6 +106,9 @@ class Nav extends Component {
                   <img src="/images/icons/icon-close.svg" />
                 </a>
               </div>
+            </div>
+            <div className={`search-nav-wrapper`}>
+              <Search className="search-nav" />
             </div>
             <ul>
               <li className="lang-selector">
@@ -134,7 +142,7 @@ class Nav extends Component {
                 <Link to="/explore/map">{t("Map explore")}</Link>
               </li>
               <li className="link">
-                <Link to="/about">{t("About")}</Link>
+                <Link to="/about">{t("About DataChile")}</Link>
               </li>
               {topics &&
                 topics.length > 0 && <li className="title">{t("Topics")}</li>}
@@ -151,9 +159,11 @@ class Nav extends Component {
             </div>
 
             <div className="c-col">
-              <Link className="logo" to="/">
-                <img src="/images/logos/logo-datachile.png" />
-              </Link>
+              {!hideLogo && (
+                <Link className="logo" to="/">
+                  <img src="/images/logos/logo-dc-small.svg" />
+                </Link>
+              )}
             </div>
 
             <div className="r-col">

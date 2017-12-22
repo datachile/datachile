@@ -63,7 +63,7 @@ class InternationalTradeBalanceSlide extends Section {
   ];
 
   direction(a, t) {
-    return a[0] < a[a.length - 1] ? t("incremento") : t("decrecimiento");
+    return a[0] < a[a.length - 1] ? t("an increase") : t("a decrease");
   }
 
   render() {

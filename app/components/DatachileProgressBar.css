@@ -1,0 +1,10 @@
+.datachile-progress-bar {
+	& .logo {
+		margin: 0;
+	}
+	& .pt-progress-bar {
+		& .pt-progress-meter {
+			background: var(--accent) !important;
+		}
+	}
+}

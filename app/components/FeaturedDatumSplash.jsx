@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-import SvgImage from "components/SvgImage";
+
+import { sources } from "helpers/consts";
 
 import "./FeaturedDatumSplash.css";
 
@@ -12,6 +13,7 @@ class FeaturedDatumSplash extends Component {
       datum,
       decile,
       title,
+      subtitle,
       source,
       className,
       rank
@@ -25,7 +27,7 @@ class FeaturedDatumSplash extends Component {
       none = 5 - half - full;
     }
 
-    const iconUrl = `/images/splash-icon/icon-${icon}.svg`;
+    const sourceData = sources[source];
 
     return (
       <div className={"featured-datum-splash " + className}>
@@ -36,29 +38,36 @@ class FeaturedDatumSplash extends Component {
           decile !== undefined && (
             <div className="featured-datum-splash-icons">
               {[...Array(full)].map((x, i) => (
-                <SvgImage
-                  extraClass="full"
+                <img
+                  className="icon-img full"
                   src={`/images/splash-icon/icon-${icon}-full.svg`}
                 />
               ))}
               {half == 1 && (
-                <SvgImage
-                  extraClass="half"
+                <img
+                  className="icon-img half"
                   src={`/images/splash-icon/icon-${icon}-half.svg`}
                 />
               )}
               {[...Array(none)].map((x, i) => (
-                <SvgImage
-                  extraClass="none"
+                <img
+                  className="icon-img none"
                   src={`/images/splash-icon/icon-${icon}-none.svg`}
                 />
               ))}
             </div>
           )}
         <div className="featured-datum-splash-data">
-          <p className="featured-datum-data">{datum}</p>
+          <div className="featured-datum-data">{datum}</div>
+          {subtitle && (
+            <div className="featured-datum-splash-subtitle">{subtitle}</div>
+          )}
+          {sourceData && (
+            <div className="featured-datum-splash-source">
+              {sourceData.title} - {sourceData.year}
+            </div>
+          )}
         </div>
-        <h6 className="featured-datum-splash-source">{source}</h6>
       </div>
     );
   }

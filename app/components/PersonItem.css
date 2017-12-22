@@ -3,7 +3,7 @@
 	& .person-item-img {
 		text-align: center;
 		& img {
-			width: 100%;
+			width: 80%;
 			border: 1px solid var(--snow);
 			border-radius: 50%;
 			opacity: 0.8;

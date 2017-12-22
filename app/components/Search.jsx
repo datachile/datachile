@@ -145,7 +145,7 @@ class Search extends Component {
         break;
       }
       case "industries": {
-        profileType = result.ancestor_key ? t("Sector") : t("Sector Type");
+        profileType = result.ancestor_key ? t("Industry") : t("Sector");
         break;
       }
       case "geo": {
