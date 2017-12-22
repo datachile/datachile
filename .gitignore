@@ -13,3 +13,5 @@ yarn.lock
 .vscode/*
 jsconfig.json
 index.js
+static/reports
+static/assets
