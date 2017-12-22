@@ -4,7 +4,7 @@
   font-family: var(--font-family-text);
   & .nav {
     position: absolute;
-    z-index: 10;
+    z-index: 100;
   }
 
   & .splash {

@@ -107,6 +107,9 @@ class Nav extends Component {
                 </a>
               </div>
             </div>
+            <div className={`search-nav-wrapper`}>
+              <Search className="search-nav" />
+            </div>
             <ul>
               <li className="lang-selector">
                 <span className="lang-current">{locale}</span>

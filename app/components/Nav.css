@@ -166,6 +166,9 @@
   background-color: var(--footer-bg);
   padding: 15px 15px;
   z-index: 100;
+  & .search-nav-wrapper {
+    padding: calc(var(--gutter)/2);
+  }
   & .close-btn-container {
     text-align: right;
   }
@@ -281,6 +284,15 @@
         }
       }
     }
+    & .nav-container {
+      & .c-col {
+        & .logo {
+          & img {
+            max-width: 80%;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -293,6 +305,11 @@
       }
       & .c-col {
         lost-column: 2/4;
+        & .logo {
+          & img {
+            max-width: 100%;
+          }
+        }
       }
       & .r-col {
         display: none;
