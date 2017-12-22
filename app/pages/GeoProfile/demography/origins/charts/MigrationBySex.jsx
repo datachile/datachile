@@ -75,7 +75,7 @@ export default translate()(
               barPadding: 20,
               groupPadding: 40,
               tooltipConfig: {
-                title: d => d["Sex"],
+                title: d => t(d["Sex"]),
                 body: d =>
                   numeral(d["Number of visas"], locale).format("( 0,0 )") +
                   " " +

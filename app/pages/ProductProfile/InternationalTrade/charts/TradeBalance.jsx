@@ -89,21 +89,23 @@ class TradeBalance extends Section {
     } = this.context.data;
     const locale = i18n.locale;
 
-    const data = datum_exports_per_year.reduce((all, item, key) => {
-      all.push({ variable: "Exports", value: item, year: key + 2002 });
-      all.push({
-        variable: "Imports",
-        value: datum_imports_per_year[key],
-        year: key + 2002
-      });
-      all.push({
-        variable: "Trade Balance",
-        value: datum_imports_per_year[key] - item,
-        year: key + 2002
-      });
+    const data = datum_exports_per_year
+      ? datum_exports_per_year.reduce((all, item, key) => {
+          all.push({ variable: "Exports", value: item, year: key + 2002 });
+          all.push({
+            variable: "Imports",
+            value: datum_imports_per_year[key],
+            year: key + 2002
+          });
+          all.push({
+            variable: "Trade Balance",
+            value: datum_imports_per_year[key] - item,
+            year: key + 2002
+          });
 
-      return all;
-    }, []);
+          return all;
+        }, [])
+      : [];
 
     return (
       <div className={className}>
@@ -131,6 +133,9 @@ class TradeBalance extends Section {
                 stroke: d => tradeBalanceColorScale(d["variable"]),
                 strokeWidth: 2
               }
+            },
+            tooltipConfig: {
+              body: d => "<div>" + t("Value") + ": " + d["value"] + "</div>"
             }
           }}
         />

@@ -3,7 +3,10 @@ import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  geoCut,
+  simpleGeoChartNeed
+} from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 

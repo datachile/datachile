@@ -103,7 +103,9 @@ class InternationalTradeSlide extends Section {
       imports: trade_balance_text(datum_product_import_growth)
     };
 
-    const exports_size = total_exports_per_product.value / total_exports_chile;
+    const exports_size = total_exports_per_product
+      ? total_exports_per_product.value / total_exports_chile
+      : 0;
 
     return (
       <div className="topic-slide-block">

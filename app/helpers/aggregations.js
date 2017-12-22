@@ -202,19 +202,30 @@ function trade_balance_text(
   locale = "en",
   format = "($ 0.00 a)"
 ) {
-  const last_value = aggregation[aggregation.length - 1];
-  const first_value = aggregation[0];
+  if (aggregation) {
+    const last_value = aggregation[aggregation.length - 1];
+    const first_value = aggregation[0];
 
-  const growth_rate = Math.log(last_value / first_value);
+    const growth_rate = Math.log(last_value / first_value);
 
-  return {
-    growth_rate: numeral(growth_rate, locale).format("0.0 %"),
-    increased_or_decreased: growth_rate > 0 ? "increased" : "decreased",
-    value: {
-      first: numeral(first_value, locale).format(format),
-      last: numeral(last_value, locale).format(format)
-    }
-  };
+    return {
+      growth_rate: numeral(growth_rate, locale).format("0.0 %"),
+      increased_or_decreased: growth_rate > 0 ? "increased" : "decreased",
+      value: {
+        first: numeral(first_value, locale).format(format),
+        last: numeral(last_value, locale).format(format)
+      }
+    };
+  } else {
+    return {
+      growth_rate: "No data",
+      increased_or_decreased: "No data",
+      value: {
+        first: "No data",
+        last: "No data"
+      }
+    };
+  }
 }
 
 function onlyMostRecent(collection, iteratee = "Year") {
