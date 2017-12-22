@@ -113,8 +113,6 @@ class IndustryProfile extends Component {
           if (!res.data.data[0]["Expansion factor"]) {
             return false;
           } else {
-            var source = "NENE Survey";
-            source += level2 ? " - " + res.data.data[0]["Level 1"] : "";
             return {
               key: "employees_by_industry",
               data: {
@@ -122,8 +120,7 @@ class IndustryProfile extends Component {
                 decile: res.data.data[0]["Expansion Factor Decile"],
                 rank: res.data.data[0]["Expansion Factor Rank"],
                 total: 1,
-                year: store.nene_month + "/" + store.nene_year,
-                source: source
+                year: store.nene_month + "/" + store.nene_year
               }
             };
           }
@@ -221,14 +218,12 @@ class IndustryProfile extends Component {
       income: {
         value: "xxx",
         decile: 5,
-        year: 0,
-        source: "source"
+        year: 0
       },
       studies: {
         value: "xxx",
         decile: 5,
-        year: 0,
-        source: "source"
+        year: 0
       }
     };
 
@@ -291,9 +286,7 @@ class IndustryProfile extends Component {
                     datum={numeral(stats.employees.value, locale).format(
                       "(0,0)"
                     )}
-                    source={
-                      stats.employees.year + " - " + stats.employees.source
-                    }
+                    source="nene"
                     className=""
                   />
                 )}
@@ -304,7 +297,7 @@ class IndustryProfile extends Component {
                     icon="ingreso"
                     decile={stats.income.decile}
                     datum={numeral(stats.income.value, locale).format("(0,0)")}
-                    source={stats.income.year + " - " + stats.income.source}
+                    source=""
                     className=""
                   />
                 )}
@@ -315,7 +308,7 @@ class IndustryProfile extends Component {
                     icon="psu"
                     decile={stats.studies.decile}
                     datum={numeral(stats.studies.value, locale).format("(0,0)")}
-                    source={stats.studies.year + " - " + stats.studies.source}
+                    source=""
                     className=""
                   />
                 )}

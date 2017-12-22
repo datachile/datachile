@@ -163,6 +163,9 @@ table.tooltip-table {
   & tr {
     & td {
       width: 50%;
+      &.data {
+        text-align: right;
+      }
     }
   }
 }

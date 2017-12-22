@@ -13,6 +13,7 @@ class FeaturedDatumSplash extends Component {
       datum,
       decile,
       title,
+      subtitle,
       source,
       className,
       rank
@@ -60,6 +61,9 @@ class FeaturedDatumSplash extends Component {
           )}
         <div className="featured-datum-splash-data">
           <div className="featured-datum-data">{datum}</div>
+          {subtitle && (
+            <div className="featured-datum-splash-subtitle">{subtitle}</div>
+          )}
           {sourceData && (
             <div className="featured-datum-splash-source">
               {sourceData.title} - {sourceData.year}

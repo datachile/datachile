@@ -26,23 +26,22 @@ module.exports = {
       img: "/images/profile-bg/geo/region-13.jpg"
     },
     {
-      name: "ORES, SLAG AND ASH",
+      name: "MINERAL PRODUCTS",
       type: "products",
-      url: "/products/mineral-products-05/ores-slag-and-ash-26",
-      img: "/images/profile-bg/geo/region-13.jpg"
+      url: "/products/mineral-products-05",
+      img: "/images/profile-bg/product/05.jpg"
     },
     {
-      name: "VETERINARY ACTIVITIES",
+      name: "CONSTRUCCION",
       type: "industries",
-      url:
-        "/industries/professional-scientific-and-technical-activities-M/veterinary-activities-75",
-      img: "/images/profile-bg/geo/region-13.jpg"
+      url: "/industries/construccion-F",
+      img: "/images/profile-bg/industry/f.jpg"
     },
     {
       name: "MEXICO",
       type: "countries",
       url: "/countries/central-america-13/mexico-216",
-      img: "/images/profile-bg/geo/region-13.jpg"
+      img: "/images/profile-bg/country/216.jpg"
     },
     {
       name: "INGENIERÍA DE EJECUCIÓN EN GEOMENSURA",

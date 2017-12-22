@@ -29,6 +29,15 @@
     font-weight: 300;
     margin-bottom: 0px;
   }
+  & .featured-datum-splash-subtitle {
+    font-family: var(--font-family-title);
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: -0.01px;
+    color: var(--snow);
+    font-weight: 300;
+    margin-bottom: 0px;
+  }
   & .featured-datum-splash-icons {
     lost-flex-container: row;
     color: var(--snow);

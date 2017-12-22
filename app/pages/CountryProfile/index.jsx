@@ -389,7 +389,7 @@ class CountryProfile extends Component {
                     datum={numeral(stats.imports.value, locale).format(
                       "($ 0.0 a)"
                     )}
-                    source={stats.imports.year + " - " + stats.imports.source}
+                    source="imports"
                     className=""
                   />
                 )}
@@ -402,7 +402,7 @@ class CountryProfile extends Component {
                     datum={numeral(stats.exports.value, locale).format(
                       "($ 0.0 a)"
                     )}
-                    source={stats.exports.year + " - " + stats.exports.source}
+                    source="exports"
                     className=""
                   />
                 )}
@@ -412,9 +412,10 @@ class CountryProfile extends Component {
                     title={t("Main imported product")}
                     icon="check"
                     datum={stats.product.name}
-                    source={`${numeral(stats.product.value, locale).format(
+                    subtitle={`${numeral(stats.product.value, locale).format(
                       "$ 0.0 a"
-                    )} - ${stats.product.year} - ${stats.product.source}`}
+                    )}`}
+                    source="imports"
                     className=""
                   />
                 )}
