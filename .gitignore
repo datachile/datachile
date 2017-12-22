@@ -12,3 +12,4 @@ package-lock.json
 yarn.lock
 .vscode/*
 jsconfig.json
+index.js
