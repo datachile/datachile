@@ -19,6 +19,8 @@ class FeaturedDatumSplash extends Component {
       rank
     } = this.props;
 
+    console.log(subtitle);
+
     let full, half, none;
 
     if (decile !== null && decile !== undefined) {
@@ -26,8 +28,6 @@ class FeaturedDatumSplash extends Component {
       half = decile % 2 != 0 ? 1 : 0;
       none = 5 - half - full;
     }
-
-    const iconUrl = `/images/splash-icon/icon-${icon}.svg`;
 
     const sourceData = sources[source];
 

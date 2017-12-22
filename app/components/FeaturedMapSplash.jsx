@@ -3,6 +3,8 @@ import { translate } from "react-i18next";
 import { text as loadSvgAsString } from "d3-request";
 import { Geomap } from "d3plus-react";
 
+import { sources } from "helpers/consts";
+
 import SVGCache from "helpers/svg";
 
 import "./FeaturedDatumSplash.css";
@@ -58,7 +60,18 @@ class FeaturedMapSplash extends Component {
   }
 
   render() {
-    const { t, datum, type, title, code, source, className } = this.props;
+    const {
+      t,
+      datum,
+      type,
+      title,
+      subtitle,
+      code,
+      source,
+      className
+    } = this.props;
+
+    const sourceData = sources[source];
 
     return (
       <div className={"featured-datum-splash featured-map-splash " + className}>
@@ -111,7 +124,14 @@ class FeaturedMapSplash extends Component {
         <div className="featured-datum-splash-data">
           <p className="featured-datum-data">{datum}</p>
         </div>
-        <h6 className="featured-datum-splash-source">{source}</h6>
+        {subtitle && (
+          <div className="featured-datum-splash-subtitle">{subtitle}</div>
+        )}
+        {sourceData && (
+          <div className="featured-datum-splash-source">
+            {sourceData.title} - {sourceData.year}
+          </div>
+        )}
       </div>
     );
   }

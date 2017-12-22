@@ -515,13 +515,10 @@ class ProductProfile extends Component {
                     type="country"
                     code={stats.country.id}
                     datum={stats.country.name}
-                    source={
-                      numeral(stats.country.value, locale).format("($ 0,0 a)") +
-                      " - " +
-                      stats.country.year +
-                      " - " +
-                      stats.country.source
-                    }
+                    subtitle={numeral(stats.country.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
+                    source="exports"
                     className=""
                   />
                 )}
@@ -543,7 +540,7 @@ class ProductProfile extends Component {
                     datum={numeral(stats.exports.value, locale).format(
                       "($ 0,0 a)"
                     )}
-                    source={stats.exports.year + " - " + stats.exports.source}
+                    source="exports"
                     className=""
                   />
                 )}
@@ -554,13 +551,10 @@ class ProductProfile extends Component {
                     type="region"
                     code={stats.region.id}
                     datum={stats.region.name}
-                    source={
-                      numeral(stats.region.value, locale).format("($ 0,0 a)") +
-                      " - " +
-                      stats.region.year +
-                      " - " +
-                      stats.region.source
-                    }
+                    subtitle={numeral(stats.region.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
+                    source="exports"
                     className=""
                   />
                 )}
