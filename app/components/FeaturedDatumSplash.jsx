@@ -19,8 +19,6 @@ class FeaturedDatumSplash extends Component {
       rank
     } = this.props;
 
-    console.log(subtitle);
-
     let full, half, none;
 
     if (decile !== null && decile !== undefined) {
