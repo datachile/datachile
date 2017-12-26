@@ -2,8 +2,8 @@ import { annualized_growth } from "helpers/calculator";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
-const first_year = sources.exports_and_imports.min_year;
-const last_year = sources.exports_and_imports.year;
+const first_year = sources.exports.min_year;
+const last_year = sources.exports.year;
 
 const base = {
   year: {

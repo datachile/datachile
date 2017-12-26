@@ -89,9 +89,9 @@ class InternationalTradeBalanceSlide extends Section {
               subtitle={
                 t("In period") +
                 " " +
-                sources.exports_and_imports.min_year +
+                sources.exports.min_year +
                 "-" +
-                sources.exports_and_imports.year
+                sources.exports.year
               }
             />
             <FeaturedDatum
@@ -102,9 +102,9 @@ class InternationalTradeBalanceSlide extends Section {
               subtitle={
                 t("In period") +
                 " " +
-                sources.exports_and_imports.min_year +
+                sources.imports.min_year +
                 "-" +
-                sources.exports_and_imports.year
+                sources.imports.year
               }
             />
             <FeaturedDatum

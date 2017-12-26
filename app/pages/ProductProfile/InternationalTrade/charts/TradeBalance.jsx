@@ -4,6 +4,8 @@ import flattenDeep from "lodash/flattenDeep";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
+import { sources } from "helpers/consts";
+
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { tradeBalanceColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
@@ -91,16 +93,20 @@ class TradeBalance extends Section {
 
     const data = datum_exports_per_year
       ? datum_exports_per_year.reduce((all, item, key) => {
-          all.push({ variable: "Exports", value: item, year: key + 2002 });
+          all.push({
+            variable: "Exports",
+            value: item,
+            year: key + sources.exports.min_year
+          });
           all.push({
             variable: "Imports",
             value: datum_imports_per_year[key],
-            year: key + 2002
+            year: key + sources.imports.min_year
           });
           all.push({
             variable: "Trade Balance",
             value: datum_imports_per_year[key] - item,
-            year: key + 2002
+            year: key + sources.imports.min_year
           });
 
           return all;
