@@ -74,7 +74,6 @@ class About extends Component {
           </div>
 
           <div className="section-container">
-            /* ABOUT */
             <section className="section" id="background">
               <h2>{t("about.background.title")}</h2>
 
@@ -92,7 +91,7 @@ class About extends Component {
                 }}
               />
             </section>
-            /* DATA */
+
             <section className="section" id="data">
               <h2>{t("about.data.title")}</h2>
 
@@ -355,7 +354,7 @@ class About extends Component {
                 }}
               />
             </section>
-            /* TEAM */
+
             <section className="section" id="team">
               <h2>{t("about.team.title")}</h2>
 
@@ -366,7 +365,7 @@ class About extends Component {
                 }}
               />
             </section>
-            /* ACK */
+
             <section className="section" id="acknowledgement">
               <h2>{t("about.ack.title")}</h2>
               <h3>{t("about.ack.partners.title")}</h3>
@@ -382,7 +381,7 @@ class About extends Component {
                 }}
               />
             </section>
-            /* TERMS */
+
             <section className="section" id="terms">
               <h2>{t("about.terms.title")}</h2>
 

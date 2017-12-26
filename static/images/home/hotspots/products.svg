@@ -3,87 +3,87 @@
   <style>
     .st0{fill:#ff7058;stroke:#fff;stroke-miterlimit:10}.st1{fill:#fff}.st2{fill:transparent}
   </style>
-  <g class="hotspot" id="2501">
+  <g class="hotspot" id="052501">
     <circle class="st0" r="11" cx="99" cy="91"/>
     <path class="st1" d="M104 90v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-2501" cx="99" cy="169.9" r="31.4"/>
   </g>
-  <g class="hotspot" id="0805">
+  <g class="hotspot" id="020814">
     <circle class="st0" r="11" cx="171" cy="103"/>
     <path class="st1" d="M176 102v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-0805" cx="171" cy="179.8" r="27.3"/>
   </g>
-  <g class="hotspot" id="7403">
+  <g class="hotspot" id="157403">
     <circle class="st0" r="11" cx="242" cy="109"/>
     <path class="st1" d="M247 108v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-7403" cx="242" cy="180" r="31.9"/>
   </g>
-  <g class="hotspot" id="1509">
+  <g class="hotspot" id="031509">
     <circle class="st0" r="11" cx="316" cy="92"/>
     <path class="st1" d="M321 91v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-1509" cx="316" cy="172.6" r="28.6"/>
   </g>
-  <g class="hotspot" id="0305">
+  <g class="hotspot" id="010305">
     <circle class="st0" r="11" cx="392" cy="90"/>
     <path class="st1" d="M397 89v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-0305" cx="392" cy="177.8" r="32.8"/>
   </g>
-  <g class="hotspot" id="0806">
+  <g class="hotspot" id="020806">
     <circle class="st0" r="11" cx="477" cy="109"/>
     <path class="st1" d="M482 108v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-0806" cx="477" cy="179.2" r="28.4"/>
   </g>
-  <g class="hotspot" id="2204">
+  <g class="hotspot" id="042204">
     <circle class="st0" r="11" cx="551" cy="86"/>
     <path class="st1" d="M556 85v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-2204" cx="551" cy="165.9" r="30.5"/>
   </g>
-  <g class="hotspot" id="1103">
+  <g class="hotspot" id="021104">
     <circle class="st0" r="11" cx="625" cy="86"/>
     <path class="st1" d="M630 85v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-1103" cx="625" cy="168.7" r="30"/>
   </g>
-  <g class="hotspot" id="2710">
+  <g class="hotspot" id="052710">
     <circle class="st0" r="11" cx="704" cy="91"/>
     <path class="st1" d="M709 90v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-2710" cx="704" cy="170.4" r="29.5"/>
   </g>
-  <g class="hotspot" id="4404">
+  <g class="hotspot" id="094404">
     <circle class="st0" r="11" cx="776" cy="104"/>
     <path class="st1" d="M781 103v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-4404" cx="776" cy="176.5" r="25.1"/>
   </g>
-  <g class="hotspot" id="0201">
+  <g class="hotspot" id="010201">
     <circle class="st0" r="11" cx="851" cy="102"/>
     <path class="st1" d="M856 101v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-0201" cx="851" cy="174.9" r="34"/>
   </g>
-  <g class="hotspot" id="0401">
+  <g class="hotspot" id="010401">
     <circle class="st0" r="11" cx="930" cy="93"/>
     <path class="st1" d="M935 92v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-0401" cx="930" cy="174.2" r="31.1"/>
   </g>
-  <g class="hotspot" id="0812">
+  <g class="hotspot" id="020808">
     <circle class="st0" r="11" cx="1000" cy="101"/>
     <path class="st1" d="M1005 100v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-0812" cx="1000" cy="174.2" r="30.8"/>
   </g>
-  <g class="hotspot" id="4811">
+  <g class="hotspot" id="104811">
     <circle class="st0" r="11" cx="1067" cy="93"/>
     <path class="st1" d="M1072 92v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-4811" cx="1067" cy="171.4" r="27.9"/>
   </g>
-  <g class="hotspot" id="1212">
+  <g class="hotspot" id="021212">
     <circle class="st0" r="11" cx="1127" cy="101"/>
     <path class="st1" d="M1132 100v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-1212" cx="1127" cy="172.3" r="30.2"/>
   </g>
-  <g class="hotspot" id="2711">
+  <g class="hotspot" id="052711">
     <circle class="st0" r="11" cx="1188" cy="92"/>
     <path class="st1" d="M1193 91v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-2711" cx="1188" cy="171.7" r="28.6"/>
   </g>
-  <g class="hotspot" id="5101">
+  <g class="hotspot" id="115101">
     <circle class="st0" r="11" cx="1247" cy="108"/>
     <path class="st1" d="M1252 107v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <circle class="st2" id="draw-5101" cx="1247" cy="178.1" r="28.9"/>

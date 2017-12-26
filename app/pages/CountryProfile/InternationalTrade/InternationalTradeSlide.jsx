@@ -36,7 +36,7 @@ class InternationalTradeSlide extends Section {
           .then(res => {
             const total = sumBy(res.data.data, "CIF US");
             const max = maxBy(
-              res.data.data.filter(d => d["ID HS2"] < 9999),
+              res.data.data,
               "CIF US"
             );
             const percentage = numeral(max["CIF US"] / total, lang).format(
@@ -84,9 +84,10 @@ class InternationalTradeSlide extends Section {
         return mondrianClient
           .query(query, "jsonrecords")
           .then(res => {
+
             const total = sumBy(res.data.data, "FOB US");
             const max = maxBy(
-              res.data.data.filter(d => d["ID HS2"] < 9999),
+              res.data.data,
               "FOB US"
             );
             const percentage = numeral(max["FOB US"] / total, lang).format(

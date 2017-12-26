@@ -2,20 +2,19 @@ export const sources = {
   exports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    year: 2015,
-    min_year: 2002
+    year: 2016,
+    min_year: 2007
   },
   imports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    year: 2015,
-    min_year: 2002
+    year: 2016,
+    min_year: 2009
   },
   exports_and_imports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    min_year: 2002,
-    year: 2015
+    year: 2016
   },
   immigration: {
     title:
@@ -27,7 +26,8 @@ export const sources = {
     title: "Servicio de Impuestos Internos",
     url: "http://homer.sii.cl/",
     first_year: 2004,
-    last_year: 2014
+    last_year: 2014,
+    year: 2014
   },
   rd_survey: {
     title: "Ministerio de Economía, Fomento y Turismo",
