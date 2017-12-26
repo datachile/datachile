@@ -96,7 +96,7 @@ class EmploymentBySex extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Regional Employment By Sex and Situation")}</span>
+          <span>{t("Regional Employment By Sex")}</span>
           <Select
             id="variations"
             options={this.state.chartVariations}

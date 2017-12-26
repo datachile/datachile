@@ -108,5 +108,11 @@ export const sources = {
   psu: {
     title: "DEMRE",
     year: 2016
+  },
+  fonasa_website: {
+    title: "www.fonasa.cl",
+    url:
+      "https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos",
+    year: 2017
   }
 };

@@ -92,6 +92,13 @@
       justify-content: space-between;
       align-items: center;
     }
+    & .chart-text {
+      font-family: var(--font-family-text);
+      padding: 0 15px;
+      color: var(--snow);
+      font-size: 14px;
+      font-weight: 300;
+    }
     & .topic-slide-charts {
       & .ticks .d3plus-Rect-text,
       & .d3plus-Line-text,

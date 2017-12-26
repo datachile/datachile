@@ -113,6 +113,7 @@ class HousingType extends Section {
                     "houses"
                   )}`
               },
+              legend: false,
               legendConfig: {
                 label: false,
                 shapeConfig: false

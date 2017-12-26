@@ -26,6 +26,7 @@ class Home extends Component {
         explore: "/explore/geo",
         colors: ["#445e81", "#263b58", "#1B2E44"],
         slug: "geo",
+        available: true,
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
         )
@@ -35,31 +36,17 @@ class Home extends Component {
         explore: "/explore/countries",
         colors: ["#1bc4d3", "#3f93a0", "#31999B"],
         slug: "countries",
+        available: true,
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         )
-      },
-      {
-        name: t("Institutions"),
-        explore: "/explore/institutions",
-        colors: ["#595a8f", "#393a6a", "#393954"],
-        slug: "institutions",
-        description: t(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
-        )
-      },
-      {
-        name: t("Careers"),
-        explore: "/explore/careers",
-        colors: ["#676258", "#9b8365", "#776551"],
-        slug: "careers",
-        description: t("Lorem ipsum dolor sit amet, consectetur .")
       },
       {
         name: t("Products"),
         explore: "/explore/products",
         colors: ["#a45c58", "#794f57", "#91453B"],
         slug: "products",
+        available: true,
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
         )
@@ -69,8 +56,27 @@ class Home extends Component {
         explore: "/explore/industries",
         colors: ["#0b5151", "#143e48", "#205258"],
         slug: "industries",
+        available: true,
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
+        )
+      },
+      {
+        name: t("Careers"),
+        explore: "/explore/careers",
+        colors: ["#676258", "#9b8365", "#776551"],
+        slug: "careers",
+        available: false,
+        description: t("Lorem ipsum dolor sit amet, consectetur .")
+      },
+      {
+        name: t("Institutions"),
+        explore: "/explore/institutions",
+        colors: ["#595a8f", "#393a6a", "#393954"],
+        slug: "institutions",
+        available: false,
+        description: t(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
         )
       }
     ];

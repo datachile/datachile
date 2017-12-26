@@ -46,7 +46,7 @@
   "Comuna": "Comuna",
   "Comunas": "Comunas",
 
-  "Institution": "Institución",
+  "Institution": "Institución ",
   "Institutions": "Instituciones",
   "Institution Type": "Tipo de Institución",
 
@@ -84,6 +84,10 @@
   "an increase": "un incremento",
   "a decrease": "un descenso",
 
+  "Source": "Fuente",
+
+  "Soon": "Próximamente",
+
   "geo_profile": {
     "trade_slide": {
       "text":
@@ -94,6 +98,14 @@
         "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
     },
     "health": {
+      "fonasa": {
+        "text":
+          "* Cuando un nuevo beneficiario se incorpora al Seguro Público de Salud, la primera tarea de FONASA es colocarlo en uno de sus 4 tramos de ingreso. Esta clasificación, de tipo escala, permite levantar caracterizaciones socioeconómicas de la población beneficiaria, y están definidos de la siguiente manera:",
+        "tramos":
+          "<ul><li><strong>Grupo A</strong>: Beneficiarios carentes de recursos para cotizar en salud, o en condición de indigencia (no cotizantes).</li><li><strong>Grupo B</strong>: Beneficiarios con ingresos menores a $270.000 al mes (cotizantes). Trabajadores del sector público de salud.</li><li><strong>Grupo C</strong>: Beneficiarios con ingresos de entre $270.000 y $394.200 al mes (cotizantes)</li><li><strong>Grupo D</strong>: Beneficiarios con ingresos de $394.200 y más al mes (cotizantes)</li></ul>",
+        "copago":
+          "Sin embargo, la utilidad concreta de esta distribución de la población beneficiaria pasa por el copago que éstos hacen en retribución a las atenciones médicas otorgadas con nuestra cobertura. Copago es el concepto para referirse a un pago por servicios compartido entre el beneficiario y el seguro, donde FONASA financia o bonifica una parte (porcentaje) del costo de una atención de salud cualquiera, y el beneficiario aporta de su bolsillo la parte que no financiamos/bonificamos."
+      },
       "access":
         "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
       "healthcare":

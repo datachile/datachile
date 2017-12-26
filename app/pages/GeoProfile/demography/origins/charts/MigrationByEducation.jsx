@@ -62,6 +62,7 @@ class MigrationByEducation extends Section {
                 " " +
                 t("visas")
             },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: false

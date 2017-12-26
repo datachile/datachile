@@ -133,6 +133,7 @@ class MigrationByActivity extends Section {
                   )
                 })
             },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: false
