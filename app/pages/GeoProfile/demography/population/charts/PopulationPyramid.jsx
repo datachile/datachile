@@ -8,6 +8,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class PopulationPyramid extends Section {
   static need = [
@@ -28,7 +29,6 @@ class PopulationPyramid extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-
     const locale = i18n.locale;
 
     const path = this.context.data.path_population_projection;
@@ -72,6 +72,7 @@ class PopulationPyramid extends Section {
             shapeConfig: {
               fill: d => COLORS_GENDER[d["ID Sex"]]
             },
+            timeFilter: d => d.Year === "2018",
             total: d => Math.abs(d["Population"]),
             totalConfig: {
               text: d =>
@@ -82,7 +83,7 @@ class PopulationPyramid extends Section {
             },
             yConfig: {
               title: t("Age Range"),
-              tickFormat: tick => age_range[tick - 1]
+              tickFormat: tick => t(age_range[tick - 1])
             },
             xConfig: {
               tickFormat: tick => numeral(Math.abs(tick), locale).format("0,0"),
@@ -121,6 +122,7 @@ class PopulationPyramid extends Section {
             return output;
           }}
         />
+        <SourceNote cube="population_estimate" />
       </div>
     );
   }
