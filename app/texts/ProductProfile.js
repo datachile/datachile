@@ -1,0 +1,51 @@
+import { annualized_growth } from "helpers/calculator";
+import { sources } from "helpers/consts";
+import { numeral } from "helpers/formatters";
+
+const first_year = sources.exports_and_imports.min_year;
+const last_year = sources.exports_and_imports.year;
+
+const base = {
+  year: {
+    number: last_year - first_year,
+    first: first_year,
+    last: last_year
+  }
+};
+
+function InternationalTradeBalance(product, exports, imports) {
+  return {
+    ...base,
+    product,
+    exports: trade_balance_text(exports),
+    imports: trade_balance_text(imports)
+  };
+}
+
+function trade_balance_text(aggregation, locale = "en", format = "($ 0.00 a)") {
+  if (aggregation) {
+    const growth_rate = annualized_growth(aggregation);
+
+    return {
+      growth_rate: numeral(growth_rate, locale).format("0.0 %"),
+      increased_or_decreased: growth_rate > 0 ? "increased" : "decreased",
+      value: {
+        first: numeral(aggregation[0], locale).format(format),
+        last: numeral(aggregation[aggregation.length - 1], locale).format(
+          format
+        )
+      }
+    };
+  } else {
+    return {
+      growth_rate: "No data",
+      increased_or_decreased: "No data",
+      value: {
+        first: "No data",
+        last: "No data"
+      }
+    };
+  }
+}
+
+export { InternationalTradeBalance };

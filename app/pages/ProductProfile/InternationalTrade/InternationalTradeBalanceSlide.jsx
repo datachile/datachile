@@ -10,7 +10,7 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import { numeral } from "helpers/formatters";
 
-import { trade_balance_text } from "helpers/aggregations";
+import { InternationalTradeBalance } from "texts/ProductProfile";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -88,20 +88,16 @@ class InternationalTradeSlide extends Section {
       datum_product_import_growth,
       datum_product_export_growth,
       total_exports_chile,
-      total_exports_per_product
+      total_exports_per_product,
+      product
     } = this.context.data;
     const locale = i18n.locale;
 
-    const text_product = {
-      product: this.context.data.product,
-      year: {
-        number: 2015 - 2002,
-        first: 2002,
-        last: 2015
-      },
-      exports: trade_balance_text(datum_product_export_growth),
-      imports: trade_balance_text(datum_product_import_growth)
-    };
+    const text_product = InternationalTradeBalance(
+      product,
+      datum_product_export_growth,
+      datum_product_import_growth
+    );
 
     const exports_size = total_exports_per_product
       ? total_exports_per_product.value / total_exports_chile
@@ -126,26 +122,26 @@ class InternationalTradeSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="product-export"
               datum={text_product.exports.growth_rate}
-              title={t("Growth Exports")}
+              title={t("Annual Growth Exports")}
               subtitle={
                 t("In period") +
                 " " +
-                2002 +
+                sources.exports_and_imports.min_year +
                 "-" +
                 sources.exports_and_imports.year
               }
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="product-import"
               datum={text_product.imports.growth_rate}
-              title={t("Growth Imports")}
+              title={t("Annual Growth Imports")}
               subtitle={
                 t("In period") +
                 " " +
-                2002 +
+                sources.exports_and_imports.min_year +
                 "-" +
                 sources.exports_and_imports.year
               }

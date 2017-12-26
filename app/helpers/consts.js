@@ -14,6 +14,7 @@ export const sources = {
   exports_and_imports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
+    min_year: 2002,
     year: 2015
   },
   immigration: {

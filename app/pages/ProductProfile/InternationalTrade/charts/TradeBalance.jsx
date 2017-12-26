@@ -126,7 +126,7 @@ class TradeBalance extends Section {
             },
             yConfig: {
               title: t("USD"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
             },
             shapeConfig: {
               Line: {
@@ -135,7 +135,12 @@ class TradeBalance extends Section {
               }
             },
             tooltipConfig: {
-              body: d => "<div>" + t("Value") + ": " + d["value"] + "</div>"
+              body: d =>
+                "<div>" +
+                d["year"] +
+                ": " +
+                numeral(d["value"], locale).format("(0.00 a)") +
+                "</div>"
             }
           }}
         />

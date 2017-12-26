@@ -33,6 +33,8 @@ import ExportsByDestination from "./InternationalTrade/charts/ExportsByDestinati
 import ImportsByOrigin from "./InternationalTrade/charts/ImportsByOrigin";
 import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 
+//import ExportsGeoMap from "./InternationalTrade/charts/ExportsGeoMap";
+
 import GeoTradeSlide from "./GeoTrade/GeoTradeSlide";
 import ExportsByRegion from "./GeoTrade/charts/ExportsByRegion";
 import ImportsByRegion from "./GeoTrade/charts/ImportsByRegion";
@@ -367,6 +369,8 @@ class ProductProfile extends Component {
     ExportsByDestination,
     ImportsByOrigin,
 
+    //ExportsGeoMap,
+
     GeoTradeSlide,
     ExportsByRegion,
     ImportsByRegion,
@@ -633,6 +637,7 @@ class ProductProfile extends Component {
                 <InternationalTradeSlide>
                   <SectionColumns>
                     <ExportsByDestination className="lost-1-2" />
+            {/*<ExportsGeoMap className="lost-1-2" />*/}
                     <ImportsByOrigin className="lost-1-2" />
                   </SectionColumns>
                 </InternationalTradeSlide>
