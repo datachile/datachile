@@ -6,14 +6,14 @@ import { sources } from "helpers/consts";
 
 import { calculateYearlyGrowth } from "helpers/dataUtils";
 
-import { simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleGeoDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
 class HealthCareSlide extends Section {
   static need = [
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_health_access",
       "health_access",
       [
@@ -32,7 +32,7 @@ class HealthCareSlide extends Section {
       },
       false
     ),
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_health_access_specialized_per_year",
       "health_access",
       ["Specialized Healthcare SUM"],

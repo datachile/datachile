@@ -17,8 +17,14 @@ function InternationalTradeBalance(product, exports, imports) {
   return {
     ...base,
     product,
-    exports: trade_balance_text(exports),
-    imports: trade_balance_text(imports)
+    exports: trade_balance_text(exports.data),
+    imports: trade_balance_text(imports.data),
+    format:
+      exports.available && imports.available
+        ? "default"
+        : exports.available
+          ? "exports"
+          : imports.available ? "imports" : "neither"
   };
 }
 

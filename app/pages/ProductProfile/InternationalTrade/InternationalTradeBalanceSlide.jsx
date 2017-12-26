@@ -5,7 +5,10 @@ import { Section } from "datawheel-canon";
 import flattenDeep from "lodash/flattenDeep";
 
 import { sources } from "helpers/consts";
-import mondrianClient, { levelCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  levelCut,
+  simpleDatumNeed
+} from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import { numeral } from "helpers/formatters";
@@ -14,79 +17,31 @@ import { InternationalTradeBalance } from "texts/ProductProfile";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-class InternationalTradeSlide extends Section {
+class InternationalTradeBalanceSlide extends Section {
   static need = [
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = levelCut(
-            product,
-            "Export HS",
-            "HS",
-            cube.query
-              .option("parents", false)
-              .drilldown("Date", "Date", "Year")
-              .measure("FOB US"),
-            "HS0",
-            "HS2",
-            store.i18n.locale
-          );
-
-          return mondrianClient.query(q);
-        })
-        .then(res => {
-          return {
-            key: "datum_product_export_growth",
-            data: flattenDeep(res.data.values)
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("imports")
-        .then(cube => {
-          var q = levelCut(
-            product,
-            "Import HS",
-            "HS",
-            cube.query
-              .option("parents", false)
-              .drilldown("Date", "Date", "Year")
-              .measure("CIF US"),
-            "HS0",
-            "HS2",
-            store.i18n.locale
-          );
-
-          return mondrianClient.query(q);
-        })
-        .then(res => {
-          return {
-            key: "datum_product_import_growth",
-            data: flattenDeep(res.data.values)
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_exports_by_year",
+        "exports",
+        ["FOB US"],
+        { drillDowns: [["Date", "Date", "Year"]], options: { parents: true } },
+        "product.export"
+      )(params, store),
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_imports_by_year",
+        "imports",
+        ["CIF US"],
+        { drillDowns: [["Date", "Date", "Year"]], options: { parents: true } },
+        "product.import"
+      )(params, store)
   ];
 
   render() {
     const { t, children, i18n } = this.props;
     const {
-      datum_product_import_growth,
-      datum_product_export_growth,
+      datum_exports_by_year,
+      datum_imports_by_year,
       total_exports_chile,
       total_exports_per_product,
       product
@@ -95,9 +50,12 @@ class InternationalTradeSlide extends Section {
 
     const text_product = InternationalTradeBalance(
       product,
-      datum_product_export_growth,
-      datum_product_import_growth
+      datum_exports_by_year,
+      datum_imports_by_year
     );
+
+    console.log(datum_exports_by_year)
+    console.log(datum_imports_by_year)
 
     const exports_size = total_exports_per_product
       ? total_exports_per_product.value / total_exports_chile
@@ -113,7 +71,10 @@ class InternationalTradeSlide extends Section {
             <p>
               <span
                 dangerouslySetInnerHTML={{
-                  __html: t("product_profile.balance", text_product)
+                  __html: t(
+                    `product_profile.balance.${text_product.format}`,
+                    text_product
+                  )
                 }}
               />
             </p>
@@ -161,4 +122,4 @@ class InternationalTradeSlide extends Section {
   }
 }
 
-export default translate()(InternationalTradeSlide);
+export default translate()(InternationalTradeBalanceSlide);

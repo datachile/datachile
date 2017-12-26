@@ -543,9 +543,7 @@ function simpleDatumNeed(
   byValues = true
 ) {
   return (params, store) => {
-    let obj = ["product"].contain(profile)
-      ? getLevelObject(params)
-      : getGeoObject(params);
+    let obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
 
     const prm = client
       .cube(cube)
@@ -557,7 +555,9 @@ function simpleDatumNeed(
         });
 
         var query = [];
-        switch (obj) {
+
+        // Add cuts in query
+        switch (profile) {
           case "geo":
             query = geoCut(obj, "Geography", q, store.i18n.locale);
             break;
@@ -607,6 +607,8 @@ function simpleDatumNeed(
             );
             break;
         }
+
+        console.log(query)
 
         return byValues
           ? client.query(query)
@@ -705,6 +707,7 @@ export {
   simpleCountryDatumNeed,
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed,
-  getGeoMembersDimension
+  getGeoMembersDimension,
+  simpleDatumNeed
 };
 export default client;

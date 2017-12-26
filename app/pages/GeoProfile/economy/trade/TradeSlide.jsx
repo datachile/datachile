@@ -5,7 +5,7 @@ import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 import mondrianClient, {
   geoCut,
-  simpleDatumNeed
+  simpleGeoDatumNeed
 } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { trade_by_time_and_product } from "helpers/aggregations";
@@ -16,17 +16,27 @@ import SourceNote from "components/SourceNote";
 class TradeSlide extends Section {
   static need = [
     (params, store) =>
-      simpleDatumNeed("datum_trade_exports", "exports_and_imports", ["FOB"], {
-        drillDowns: [["Date", "Date", "Year"]],
-        options: { parents: false },
-        cuts: [`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`]
-      })(params, store),
+      simpleGeoDatumNeed(
+        "datum_trade_exports",
+        "exports_and_imports",
+        ["FOB"],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`]
+        }
+      )(params, store),
     (params, store) =>
-      simpleDatumNeed("datum_trade_imports", "exports_and_imports", ["CIF"], {
-        drillDowns: [["Date", "Date", "Year"]],
-        options: { parents: false },
-        cuts: [`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`]
-      })(params, store),
+      simpleGeoDatumNeed(
+        "datum_trade_imports",
+        "exports_and_imports",
+        ["CIF"],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`]
+        }
+      )(params, store),
     (params, store) => {
       const geo = getGeoObject(params);
       const cube = mondrianClient.cube("exports");
