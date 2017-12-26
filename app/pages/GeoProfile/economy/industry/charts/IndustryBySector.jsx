@@ -25,7 +25,7 @@ class IndustryBySector extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Industry By Employment (CLP)")}</span>
+          <span>{t("Industry By Output (CLP)")}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap

@@ -27,7 +27,7 @@
         padding: 0px;
         & li {
           margin: 15px 0px var(--gutter) 0px;
-          & a {
+          & a.link {
             display: flex;
             align-items: center;
             & img {
@@ -46,6 +46,9 @@
             }
             &:hover {
               text-decoration: none;
+            }
+            &.link-soon {
+              opacity: 0.5;
             }
           }
         }

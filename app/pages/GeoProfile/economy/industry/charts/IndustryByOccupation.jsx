@@ -32,7 +32,7 @@ class IndustryByOccupation extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Most Common Occupations")}</span>
+          <span>{t("Occupations by workers")}</span>
           <ExportLink path={path} />
         </h3>
 

@@ -90,6 +90,7 @@ class SpendingByIndustry extends Section {
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Level 1"])
             },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: {

@@ -517,10 +517,12 @@ class DynamicHomeHeader extends Component {
         <div className="dynamic-home-explore-btn">
           <Link
             className={`explore-btn background-${header.slug}`}
-            to={`/explore/${header.slug}`}
+            to={`${header.available ? "/explore/" + header.slug : ""}`}
           >
-            <span>{t("Explore profiles")}</span>
-            <span className="pt-icon-standard pt-icon-chevron-right" />
+            <span>{header.available ? "Explore profiles" : t("Soon")}</span>
+            {header.available && (
+              <span className="pt-icon-standard pt-icon-chevron-right" />
+            )}
           </Link>
         </div>
         <div className="dynamic-home-illustration">
@@ -548,10 +550,12 @@ class DynamicHomeHeader extends Component {
           />
           {header && (
             <div className={`dynamic-home-items illustration-${header.slug}`}>
-              <div
-                className="dynamic-home-hotspots"
-                dangerouslySetInnerHTML={{ __html: this.state.illustration }}
-              />
+              {header.available && (
+                <div
+                  className="dynamic-home-hotspots"
+                  dangerouslySetInnerHTML={{ __html: this.state.illustration }}
+                />
+              )}
               <div className={`dynamic-home-image`}>
                 <img src={`/images/home/headers/${header.slug}.png`} />
               </div>

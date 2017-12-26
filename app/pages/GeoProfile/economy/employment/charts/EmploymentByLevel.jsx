@@ -53,10 +53,22 @@ class EmploymentByLevel extends Section {
 
     const locale = i18n.locale;
 
+    const ISCED_SORT = {
+      i8: 0, //Ignorado
+      i9: 1, //Nunca estudió
+      i2: 2, //Preescolar
+      i3: 3, //Primaria 1
+      i4: 4, //Primaria 2
+      i5: 5, //Secundaria
+      i6: 6, //Técnica
+      i7: 7, //Universidad
+      i1: 8 //Doctorado
+    };
+
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Regional Employment By Level")}</span>
+          <span>{t("Regional Employment By Education")}</span>
           <ExportLink path={path} />
         </h3>
         <BarChart
@@ -80,8 +92,11 @@ class EmploymentByLevel extends Section {
               title: t("People"),
               tickFormat: tick => numeral(tick, locale).format("(0 a)")
             },
-            xSort: () => {
-              return 1; // TODO Why?
+            xSort: (a, b) => {
+              return ISCED_SORT["i" + a["ID ISCED"]] >
+                ISCED_SORT["i" + b["ID ISCED"]]
+                ? 1
+                : -1;
             },
             barPadding: 0,
             groupPadding: 5,
@@ -103,7 +118,15 @@ class EmploymentByLevel extends Section {
               }
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={data =>
+            data.data.sort(
+              (a, b) =>
+                ISCED_SORT["i" + a["ID ISCED"]] >
+                ISCED_SORT["i" + b["ID ISCED"]]
+                  ? 1
+                  : -1
+            )
+          }
         />
         <SourceNote cube="nene" />
       </div>

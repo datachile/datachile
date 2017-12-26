@@ -48,10 +48,17 @@ class HealthInsurance extends Section {
 
     const locale = i18n.locale;
 
+    const CONST_SYSTEM = {
+      h1: 1, //fonasa
+      h3: 2, //isapre
+      h4: 3, //Otro
+      h2: 4 //FFAA
+    };
+
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Access to Health Insurance")}</span>
+          <span>{t("Access to Health Insurance")}*</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
@@ -101,9 +108,35 @@ class HealthInsurance extends Section {
                 t("affiliates")
             }
           }}
-          dataFormat={data => data.data.filter(h => h["ID Health System"] != 0)}
+          dataFormat={data =>
+            data.data.filter(h => h["ID Health System"] != 0).sort((a, b) => {
+              return CONST_SYSTEM["h" + a["ID Health System Group"]] >
+                CONST_SYSTEM["h" + b["ID Health System Group"]]
+                ? 1
+                : -1;
+            })
+          }
         />
         <SourceNote cube="casen_health_system" />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.health.fonasa.text")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.health.fonasa.tramos")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.health.fonasa.copago")
+          }}
+        />
+        <SourceNote cube="fonasa_website" />
       </div>
     );
   }

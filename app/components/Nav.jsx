@@ -3,9 +3,11 @@ import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { SubNav } from "datawheel-canon";
+import { select } from "d3-selection";
 
 import NavFixed from "components/NavFixed";
 import Search from "components/Search";
+import ComingSoon from "components/ComingSoon";
 
 import "./Nav.css";
 
@@ -91,6 +93,25 @@ class Nav extends Component {
       hideLogo = window.location.pathname === "/";
     }
 
+    if (canUseDOM) {
+      const nodeSide = select(".search-sidebar input").node();
+      if (nodeSide) {
+        if (subnav_visible) {
+          nodeSide.focus();
+        } else {
+          nodeSide.blur();
+        }
+      }
+      const nodeNav = select(".search-nav-main input").node();
+      if (nodeNav) {
+        if (search_visible) {
+          nodeNav.focus();
+        } else {
+          nodeNav.blur();
+        }
+      }
+    }
+
     return (
       <div id="navs-container">
         <nav className="nav">
@@ -108,7 +129,7 @@ class Nav extends Component {
               </div>
             </div>
             <div className={`search-nav-wrapper`}>
-              <Search className="search-nav" />
+              <Search className="search-nav search-sidebar" />
             </div>
             <ul>
               <li className="lang-selector">
@@ -126,16 +147,22 @@ class Nav extends Component {
                 <Link to="/explore/countries">{t("Countries")}</Link>
               </li>
               <li className="link">
-                <Link to="/explore/institutions">{t("Institutions")}</Link>
-              </li>
-              <li className="link">
-                <Link to="/explore/careers">{t("Careers")}</Link>
-              </li>
-              <li className="link">
                 <Link to="/explore/products">{t("Products")}</Link>
               </li>
               <li className="link">
                 <Link to="/explore/industries">{t("Industries")}</Link>
+              </li>
+              <li className="link link-soon">
+                <Link to="">
+                  {t("Careers")}
+                  <ComingSoon />
+                </Link>
+              </li>
+              <li className="link link-soon">
+                <Link to="">
+                  {t("Institutions")}
+                  <ComingSoon />
+                </Link>
               </li>
               <li className="title">{t("Extras")}</li>
               <li className="link">
@@ -173,7 +200,7 @@ class Nav extends Component {
                 }`}
               >
                 <div className={`search-nav-wrapper`}>
-                  <Search className="search-nav" />
+                  <Search className="search-nav search-nav-main" />
                 </div>
                 <a className="search-toggle-nav" onClick={this.toggleSearch}>
                   <img src={`/images/icons/${search_icon}.svg`} />

@@ -53,6 +53,21 @@ class TradeBalance extends Section {
                 stroke: d => tradeBalanceColorScale(d["variable"]),
                 strokeWidth: 2
               }
+            },
+            tooltipConfig: {
+              title: d => {
+                return d.variable;
+              },
+              body: d => {
+                var body = "";
+                if (!(d["ID Year"] instanceof Array)) {
+                  body =
+                    numeral(d.value, locale).format("(0 a)") +
+                    " - " +
+                    d["ID Year"];
+                }
+                return body;
+              }
             }
           }}
           dataFormat={data => {

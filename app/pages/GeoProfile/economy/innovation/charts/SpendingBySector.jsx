@@ -97,6 +97,7 @@ class SpendingBySector extends Section {
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Ownership Type"])
             },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: {
