@@ -26,7 +26,8 @@ export const sources = {
     title: "Servicio de Impuestos Internos",
     url: "http://homer.sii.cl/",
     first_year: 2004,
-    last_year: 2014
+    last_year: 2014,
+    year: 2014
   },
   rd_survey: {
     title: "Ministerio de Economía, Fomento y Turismo",

@@ -6,6 +6,7 @@ import { Link, browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import { request as d3Request } from "d3-request";
 import { select, selectAll } from "d3-selection";
+import { sources } from "helpers/consts";
 
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
@@ -25,7 +26,7 @@ class DynamicHomeHeader extends Component {
               .drilldown("Date", "Year")
               .drilldown("Geography", "Geography", "Region")
               .measure("Population")
-              .cut(`[Date].[Year].&[${store.population_year}]`),
+              .cut(`[Date].[Year].&[${sources.population_estimate.year}]`),
             store.i18n.locale
           );
 
@@ -55,7 +56,7 @@ class DynamicHomeHeader extends Component {
               .drilldown("Destination Country", "Country", "Country")
               .drilldown("Date", "Date", "Year")
               .measure("FOB US")
-              .cut(`[Date].[Year].&[${store.exports_year}]`)
+              .cut(`[Date].[Year].&[${sources.exports.year}]`)
               .cut(
                 "{[Destination Country].[Country].[Country].&[202],[Destination Country].[Country].[Country].&[219],[Destination Country].[Country].[Country].&[208],[Destination Country].[Country].[Country].&[201],[Destination Country].[Country].[Country].&[216],[Destination Country].[Country].[Country].&[505],[Destination Country].[Country].[Country].&[112],[Destination Country].[Country].[Country].&[406],[Destination Country].[Country].[Country].&[563],[Destination Country].[Country].[Country].&[220],[Destination Country].[Country].[Country].&[225],[Destination Country].[Country].[Country].&[336]}"
               ),
@@ -156,11 +157,29 @@ class DynamicHomeHeader extends Component {
               .drilldown("Export HS", "HS", "HS2")
               .drilldown("Date", "Date", "Year")
               .measure("FOB US")
-              .cut(`[Date].[Year].&[${store.exports_year}]`)
-              .cut(
-                "{[Export HS].[HS].[HS2].&[2501],[Export HS].[HS].[HS2].&[0805],[Export HS].[HS].[HS2].&[7403],[Export HS].[HS].[HS2].&[1509],[Export HS].[HS].[HS2].&[0305],[Export HS].[HS].[HS2].&[0806],[Export HS].[HS].[HS2].&[2204],[Export HS].[HS].[HS2].&[1103],[Export HS].[HS].[HS2].&[2710],[Export HS].[HS].[HS2].&[4404],[Export HS].[HS].[HS2].&[0201],[Export HS].[HS].[HS2].&[0401],[Export HS].[HS].[HS2].&[0812],[Export HS].[HS].[HS2].&[4811],[Export HS].[HS].[HS2].&[1212],[Export HS].[HS].[HS2].&[2711],[Export HS].[HS].[HS2].&[5101]}"
-              ),
-            store.i18n.locale
+              .cut(`[Date].[Year].&[${sources.exports.year}]`),
+            /*.cut(
+                "{" +
+                  /*"[Export HS].[HS].[HS2].&[052501]," +
+                  "[Export HS].[HS].[HS2].&[020814]," +
+                  "[Export HS].[HS].[HS2].&[157403]," +
+                  "[Export HS].[HS].[HS2].&[031509]," +
+                  "[Export HS].[HS].[HS2].&[010305]," +
+                  "[Export HS].[HS].[HS2].&[020806]," +
+                  "[Export HS].[HS].[HS2].&[042204]," +
+                  "[Export HS].[HS].[HS2].&[021104]," +
+                  "[Export HS].[HS].[HS2].&[052710]," +
+                  "[Export HS].[HS].[HS2].&[094404]," +
+                  "[Export HS].[HS].[HS2].&[010201]," +
+                  "[Export HS].[HS].[HS2].&[010401]," +
+                  "[Export HS].[HS].[HS2].&[020812]," +
+                  "[Export HS].[HS].[HS2].&[104811]," +
+                  "[Export HS].[HS].[HS2].&[021212]," +
+                  "[Export HS].[HS].[HS2].&[052711]," +
+                  "[Export HS].[HS].[HS2].&[115101]" +
+                  "}"
+              )*/ store
+              .i18n.locale
           );
 
           return mondrianClient.query(q, "jsonrecords");
@@ -189,7 +208,7 @@ class DynamicHomeHeader extends Component {
               .drilldown("ISICrev4", "ISICrev4", "Level 1")
               .drilldown("Date", "Date", "Year")
               .measure("Output")
-              .cut(`[Date].[Year].&[${store.tax_data_year}]`),
+              .cut(`[Date].[Year].&[${sources.tax_data.year}]`),
             store.i18n.locale
           );
 
