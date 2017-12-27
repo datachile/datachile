@@ -28,7 +28,7 @@ function Footer(props) {
               <img className="logo" src="/images/logos/logo-aminerals.svg" />
               <img className="logo" src="/images/logos/logo-corfo.svg" />
               <img className="logo" src="/images/logos/logo-minecon.svg" />
-              <img className="logo" src="/images/logos/logo-entel.svg" />
+              <img className="logo" src="/images/logos/logo-entel-lab.svg" />
             </p>
           </div>
           <div className="column supported">
