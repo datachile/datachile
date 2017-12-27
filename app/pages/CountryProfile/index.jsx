@@ -25,7 +25,7 @@ import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
-import LinksList from "components/LinksList";
+// import LinksList from "components/LinksList";
 
 import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
 import InternationalTradeOriginDestinationSlide from "./InternationalTrade/InternationalTradeOriginDestinationSlide";
@@ -284,13 +284,11 @@ class CountryProfile extends Component {
 
   render() {
     const { t, i18n } = this.props;
-
-    const locale = i18n.language;
-
-    const obj = this.props.data.country;
+    const locale = i18n.locale;
 
     const ids = getLevelObject(this.props.routeParams);
 
+    const obj = this.props.data.country;
     const list = this.props.data.country_list_detail;
 
     const bgImage =
@@ -331,10 +329,10 @@ class CountryProfile extends Component {
     };
 
     const topics = [
-      {
-        slug: "about",
-        title: t("About")
-      },
+      // {
+      //   slug: "about",
+      //   title: t("About")
+      // },
       {
         slug: "demography",
         title: t("Demography")
@@ -433,7 +431,7 @@ class CountryProfile extends Component {
             </div>
           </div>
 
-          <div className="topic-block" id="about">
+          {/* <div className="topic-block" id="about">
             <div className="topic-header">
               <div className="topic-title">
                 <h2 className="full-width">
@@ -471,7 +469,7 @@ class CountryProfile extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="topics-container">
             <Topic

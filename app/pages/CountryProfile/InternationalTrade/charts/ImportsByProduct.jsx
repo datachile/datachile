@@ -10,6 +10,7 @@ import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ImportsByProduct extends Section {
   static need = [
@@ -107,6 +108,7 @@ class ImportsByProduct extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="imports" />
       </div>
     );
   }
