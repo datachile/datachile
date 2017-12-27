@@ -51,7 +51,7 @@ class SalariesByCategory extends Section {
             xConfig: {
               tickSize: 0,
               title: t("Monthly Median Income CLP"),
-              tickFormat: tick => numeral(tick, locale).format("(0.00 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
             },
             ySort: (a, b) => {
               return a["Median Income"] > b["Median Income"] ? 1 : -1;
@@ -64,12 +64,9 @@ class SalariesByCategory extends Section {
             },
             barPadding: 0,
             groupPadding: 5,
+            legend: false,
             legendConfig: {
-              label: false,
-              shapeConfig: {
-                width: 1,
-                height: 1
-              }
+              label: false
             }
           }}
           dataFormat={data => data.data}

@@ -188,7 +188,7 @@ class Nav extends Component {
             <div className="c-col">
               {!hideLogo && (
                 <Link className="logo" to="/">
-                  <img src="/images/logos/logo-dc-small.svg" />
+                  <img src="/images/logos/logo-dc-beta-small.svg" />
                 </Link>
               )}
             </div>

@@ -61,7 +61,7 @@ class IncomeBySex extends Section {
               a["ID Income Range"] > b["ID Income Range"] ? 1 : -1,
             yConfig: {
               title: t("People"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
             },
             barPadding: 0,
             groupPadding: 5,
@@ -75,7 +75,7 @@ class IncomeBySex extends Section {
                 return title;
               },
               body: d =>
-                numeral(d["Expansion Factor"], locale).format("(0 a)") +
+                numeral(d["Expansion Factor"], locale).format("(0.[0] a)") +
                 " " +
                 t("people")
             },

@@ -6,7 +6,7 @@ import { translate } from "react-i18next";
 import { continentColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
@@ -70,7 +70,9 @@ export default translate()(
               totalConfig: {
                 text: d =>
                   "Total: " +
-                  numeral(d.text.split(": ")[1], locale).format("0,0") +
+                  numeral(getNumberFromTotalString(d.text), locale).format(
+                    "0,0"
+                  ) +
                   " " +
                   t("visas")
               },

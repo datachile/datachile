@@ -71,7 +71,7 @@ class PSUNEMScatter extends Section {
                     "<tr><td class='title'>" +
                     t("Average NEM") +
                     "</td><td class='data'>" +
-                    numeral(d["Average NEM"], locale).format("(0.0)") +
+                    numeral(d["Average NEM"], locale).format("(0.[0])") +
                     "</td></tr>";
                   body +=
                     "<tr><td class='title'>" +

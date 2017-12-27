@@ -5,7 +5,11 @@ import { Treemap } from "d3plus-react";
 import { browserHistory } from "react-router";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral, slugifyItem } from "helpers/formatters";
+import {
+  numeral,
+  slugifyItem,
+  getNumberFromTotalString
+} from "helpers/formatters";
 import { productsColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
@@ -53,7 +57,9 @@ export default translate()(
               totalConfig: {
                 text: d =>
                   "Total: US" +
-                  numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                  numeral(getNumberFromTotalString(d.text), locale).format(
+                    "($ 0.[00] a)"
+                  )
               },
               shapeConfig: {
                 fill: d => productsColorScale("hs" + d["ID HS0"])

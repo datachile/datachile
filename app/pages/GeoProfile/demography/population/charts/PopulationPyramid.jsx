@@ -5,7 +5,7 @@ import { BarChart } from "d3plus-react";
 
 import { COLORS_GENDER } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -77,7 +77,9 @@ class PopulationPyramid extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("0,0") +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0,0"
+                ) +
                 " " +
                 t("people")
             },
@@ -86,7 +88,8 @@ class PopulationPyramid extends Section {
               tickFormat: tick => t(age_range[tick - 1])
             },
             xConfig: {
-              tickFormat: tick => numeral(Math.abs(tick), locale).format("0,0"),
+              tickFormat: tick =>
+                numeral(Math.abs(tick), locale).format("0,0.[0] a"),
               title: false
             },
             tooltipConfig: {

@@ -6,7 +6,7 @@ import { translate } from "react-i18next";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -70,7 +70,9 @@ class HealthCare extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("0,0") +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0,0"
+                ) +
                 " " +
                 t("health cares")
             },
