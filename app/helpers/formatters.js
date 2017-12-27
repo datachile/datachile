@@ -85,12 +85,12 @@ n.register("locale", "en-cl", {
   }
 });
 
-export function numeral(number, locale = "en") {
+export function numeral(number, locale = "es") {
   n.locale(locale + "-cl");
   return n(number);
 }
 
-export function moneyRangeFormat(tick, locale = "en") {
+export function moneyRangeFormat(tick, locale = "es") {
   if (!tick) return "";
   var ticks = tick.split("-").map(ti => numeral(ti, locale).format("($0.0 a)"));
   if (ticks.length == 1) {

@@ -22,7 +22,7 @@ class ImportsByOrigin extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_imports_by_origin;
     const geo = this.context.data.geo;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

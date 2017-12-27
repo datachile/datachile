@@ -120,7 +120,6 @@ import HealthInsurance from "./health/access/charts/HealthInsurance";
 import HealthCare from "./health/access/charts/HealthCare";
 
 import DisabilitySlide from "./health/disability/DisabilitySlide";
-import Disability from "./health/disability/charts/Disability";
 import DisabilityBySex from "./health/disability/charts/DisabilityBySex";
 
 import DeathCausesSlide from "./health/death/DeathCausesSlide";
@@ -238,7 +237,6 @@ class GeoProfile extends Component {
     HealthCareSlide,
     HealthInsurance,
     HealthCare,
-    Disability,
     DisabilityBySex,
     DisabilitySlide,
 
@@ -851,8 +849,7 @@ class GeoProfile extends Component {
               <div>
                 <DisabilitySlide>
                   <SectionColumns>
-                    {/*<Disability className="lost-1-2" />*/}
-                    <DisabilityBySex className="lost-1-2" />
+                    <DisabilityBySex className="lost-1" />
                   </SectionColumns>
                 </DisabilitySlide>
               </div>

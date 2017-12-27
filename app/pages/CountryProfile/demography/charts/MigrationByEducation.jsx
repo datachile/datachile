@@ -46,7 +46,7 @@ class MigrationByEducation extends Section {
   render() {
     const { t, className, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const path = this.context.data.path_country_migration_by_education;
 

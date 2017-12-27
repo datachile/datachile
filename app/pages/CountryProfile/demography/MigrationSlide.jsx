@@ -108,7 +108,7 @@ class MigrationSlide extends Section {
 
   render() {
     const { children, t, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const {
       country,

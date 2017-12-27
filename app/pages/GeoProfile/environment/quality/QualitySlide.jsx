@@ -114,7 +114,7 @@ class QualitySlide extends Section {
         ? geo
         : geo.ancestors[0];
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className="topic-slide-block">

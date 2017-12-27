@@ -27,7 +27,7 @@ class IndustryByOccupation extends Section {
   render() {
     const path = this.context.data.path_industry_occupation_income;
     const { t, className, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

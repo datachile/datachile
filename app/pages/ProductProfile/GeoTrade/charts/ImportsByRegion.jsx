@@ -46,7 +46,7 @@ class ImportsByRegion extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.product_imports_by_region;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

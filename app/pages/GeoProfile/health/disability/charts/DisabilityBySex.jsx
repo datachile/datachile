@@ -49,7 +49,7 @@ class DisabilityBySex extends Section {
       console.log(geo);
     };
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

@@ -358,7 +358,7 @@ class DynamicHomeHeader extends Component {
 
   getTooltipData(id) {
     const { t, header, data, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     var datas = [];
     switch (header.slug) {

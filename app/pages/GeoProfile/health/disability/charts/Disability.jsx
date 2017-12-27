@@ -47,7 +47,7 @@ class Disability extends Section {
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

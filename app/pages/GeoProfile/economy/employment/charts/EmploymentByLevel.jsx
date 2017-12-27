@@ -51,7 +51,7 @@ class EmploymentByLevel extends Section {
     const path = this.context.data.path_employment_by_level;
     const { t, className, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const ISCED_SORT = {
       i8: 0, //Ignorado

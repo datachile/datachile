@@ -23,7 +23,7 @@ class RetentionSlide extends Section {
   render() {
     const { t, i18n, children } = this.props;
     const { datum_accreditation_avg_retention } = this.context.data;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className="topic-slide-block">
