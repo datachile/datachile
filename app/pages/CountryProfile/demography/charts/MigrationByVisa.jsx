@@ -12,6 +12,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class MigrationByVisa extends Section {
   static need = [
@@ -102,6 +103,7 @@ class MigrationByVisa extends Section {
             return orderBy(filtered, ["Number of visas"], ["asc"]);
           }}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }

@@ -9,6 +9,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class MigrationByRegion extends Section {
   static need = [
@@ -93,6 +94,7 @@ class MigrationByRegion extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }
