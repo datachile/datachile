@@ -10,6 +10,7 @@ import { melt, getLevelObject, replaceKeyNames } from "helpers/dataUtils";
 import { tradeBalanceColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class TradeBalance extends Section {
   static need = [
@@ -90,6 +91,7 @@ class TradeBalance extends Section {
             return melt(data.data, ["ID Year"], values(tKeys));
           }}
         />
+        <SourceNote cube="exports_and_imports" />
       </div>
     );
   }
