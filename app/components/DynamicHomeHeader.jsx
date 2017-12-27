@@ -312,8 +312,6 @@ class DynamicHomeHeader extends Component {
     const { t, header, data } = this.props;
     var name = "";
 
-    console.log(header.slug, id);
-
     switch (header.slug) {
       case "geo":
         name = data.home_geo_population["geo_" + id].Region;
@@ -343,8 +341,6 @@ class DynamicHomeHeader extends Component {
   getTooltipData(id) {
     const { t, header, data, i18n } = this.props;
     const locale = i18n.language;
-
-    console.log(header.slug, id);
 
     var datas = [];
     switch (header.slug) {
