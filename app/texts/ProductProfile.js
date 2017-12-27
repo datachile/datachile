@@ -13,12 +13,12 @@ const base = {
   }
 };
 
-function InternationalTradeBalance(product, exports, imports) {
+function InternationalTradeBalance(product, exports, imports, t) {
   return {
     ...base,
     product,
-    exports: trade_balance_text(exports.data),
-    imports: trade_balance_text(imports.data),
+    exports: trade_balance_text(exports.data, t),
+    imports: trade_balance_text(imports.data, t),
     format:
       exports.available && imports.available
         ? "default"
@@ -28,13 +28,18 @@ function InternationalTradeBalance(product, exports, imports) {
   };
 }
 
-function trade_balance_text(aggregation, locale = "en", format = "($ 0.00 a)") {
+function trade_balance_text(
+  aggregation,
+  t,
+  locale = "en",
+  format = "($ 0.00 a)"
+) {
   if (aggregation) {
     const growth_rate = annualized_growth(aggregation);
 
     return {
       growth_rate: numeral(growth_rate, locale).format("0.0 %"),
-      increased_or_decreased: growth_rate > 0 ? "increased" : "decreased",
+      increased_or_decreased: growth_rate > 0 ? t("increased") : t("decreased"),
       value: {
         first: numeral(aggregation[0], locale).format(format),
         last: numeral(aggregation[aggregation.length - 1], locale).format(

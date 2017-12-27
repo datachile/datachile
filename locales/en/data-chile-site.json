@@ -81,14 +81,14 @@
 
   "product_profile": {
     "about1":
-      "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
+      "{{product.caption}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
     "about2":
-      "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
+      "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
     "balance": {
-      "default": "During the last {{year.number}} years, exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}.",
+      "default": "During the last {{year.number}} years, exports of {{product.caption}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, imports of {{product.caption}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}.",
       "exports": "",
       "imports": "",
-      "neither": "There are not data of exports/imports for {{product.name}} in period {{year.first}}-{{year.last}}"
+      "neither": "There are not data of exports/imports for {{product.caption}} in period {{year.first}}-{{year.last}}"
     }
   },
 

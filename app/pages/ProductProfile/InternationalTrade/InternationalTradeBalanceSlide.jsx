@@ -2,14 +2,8 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import flattenDeep from "lodash/flattenDeep";
-
 import { sources } from "helpers/consts";
-import mondrianClient, {
-  levelCut,
-  simpleDatumNeed
-} from "helpers/MondrianClient";
-import { getLevelObject } from "helpers/dataUtils";
+import { simpleDatumNeed } from "helpers/MondrianClient";
 
 import { numeral } from "helpers/formatters";
 
@@ -51,11 +45,9 @@ class InternationalTradeBalanceSlide extends Section {
     const text_product = InternationalTradeBalance(
       product,
       datum_exports_by_year,
-      datum_imports_by_year
+      datum_imports_by_year,
+      t
     );
-
-    console.log(datum_exports_by_year)
-    console.log(datum_imports_by_year)
 
     const exports_size = total_exports_per_product
       ? total_exports_per_product.value / total_exports_chile
