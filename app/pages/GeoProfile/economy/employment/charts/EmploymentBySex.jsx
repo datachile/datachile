@@ -122,7 +122,7 @@ class EmploymentBySex extends Section {
             },
             yConfig: {
               title: t("People"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
             },
             shapeConfig: {
               Line: {
@@ -133,7 +133,9 @@ class EmploymentBySex extends Section {
             tooltipConfig: {
               title: d => d["Month"],
               body: d =>
-                numeral(d["value"], locale).format("(0 a)") + " " + t("people")
+                numeral(d["value"], locale).format("(0.[0] a)") +
+                " " +
+                t("people")
             }
           }}
           dataFormat={function(data) {

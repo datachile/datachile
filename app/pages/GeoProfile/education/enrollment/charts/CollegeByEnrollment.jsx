@@ -70,7 +70,8 @@ class CollegeByEnrollment extends Section {
             total: d => d["Number of records"],
             totalConfig: {
               text: d =>
-                "Total: " + numeral(d.text.split(": ")[1], locale).format("0,0")
+                "Total: " +
+                numeral(d.text.split(": ")[1], locale).format("0.[0] a")
             },
             shapeConfig: {
               fill: d => institutionsColorScale(d["ID Administration"])
@@ -81,7 +82,7 @@ class CollegeByEnrollment extends Section {
                   ? d["Administration"]
                   : d["Institution"],
               body: d =>
-                numeral(d["Number of records"], locale).format("(0 a)") +
+                numeral(d["Number of records"], locale).format("(0,0 a)") +
                 " " +
                 t("students")
             },

@@ -58,7 +58,7 @@ class SalariesByOccupation extends Section {
             },
             yConfig: {
               title: t("Median Income CLP"),
-              tickFormat: tick => numeral(tick, locale).format("(0.00 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
             },
             barPadding: 0,
             groupPadding: 10,

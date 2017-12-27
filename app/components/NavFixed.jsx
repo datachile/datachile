@@ -85,7 +85,7 @@ class NavFixed extends Component {
               </div>
             </div>
             <div className="datachile" onClick={this.toggleSearch}>
-              <img src="/images/logos/logo-dc-small.svg" />
+              <img src="/images/logos/logo-dc-beta-small.svg" />
             </div>
             <span
               className={`title ${search_visible ? "close" : "open"}`}

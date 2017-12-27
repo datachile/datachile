@@ -2,7 +2,7 @@ import React from "react";
 
 import { Treemap } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { industriesColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -39,8 +39,10 @@ class IndustryBySector extends Section {
             total: d => d["Output"],
             totalConfig: {
               text: d =>
-                "Total: CL " +
-                numeral(d.text.split(": ")[1], locale).format("($ 0,0 a)")
+                "Total: CL" +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[0] a)"
+                )
             },
             time: "ID Year",
             shapeConfig: {

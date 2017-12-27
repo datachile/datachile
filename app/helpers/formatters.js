@@ -45,10 +45,10 @@ n.register("locale", "es-cl", {
     decimal: ","
   },
   abbreviations: {
-    thousand: "m",
-    million: "mill.",
-    billion: "miles de mill.",
-    trillion: "bill."
+    thousand: "mil",
+    million: "millones",
+    billion: "miles de millones",
+    trillion: "billones"
   },
   ordinal: function(number) {
     var b = number % 10;
@@ -90,9 +90,15 @@ export function numeral(number, locale = "es") {
   return n(number);
 }
 
+export function getNumberFromTotalString(str) {
+  return parseFloat(str.split(": ")[1]);
+}
+
 export function moneyRangeFormat(tick, locale = "es") {
   if (!tick) return "";
-  var ticks = tick.split("-").map(ti => numeral(ti, locale).format("($0.0 a)"));
+  var ticks = tick
+    .split("-")
+    .map(ti => numeral(ti, locale).format("($0.[0] a)"));
   if (ticks.length == 1) {
     ticks[0] = "+" + ticks[0];
   }

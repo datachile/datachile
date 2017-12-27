@@ -90,7 +90,7 @@ class EmploymentByLevel extends Section {
             },
             yConfig: {
               title: t("People"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
             },
             xSort: (a, b) => {
               return ISCED_SORT["i" + a["ID ISCED"]] >
@@ -105,7 +105,7 @@ class EmploymentByLevel extends Section {
                 return d["ISCED"];
               },
               body: d =>
-                numeral(d["Expansion factor"], locale).format("(0 a)") +
+                numeral(d["Expansion factor"], locale).format("(0.[0] a)") +
                 " " +
                 t("people")
             },

@@ -8,7 +8,7 @@ import orderBy from "lodash/orderBy";
 
 import { employmentColorScale } from "helpers/colors";
 import { getGeoObject } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
@@ -117,7 +117,9 @@ class MigrationByActivity extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "(0,0)"
+                ) +
                 " " +
                 "visas"
             },
