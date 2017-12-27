@@ -1,107 +1,559 @@
 {
+  " in ": " in ",
+  " of ": " of ",
+  " people": " people",
+  "1st year": "1st year",
+  "ATM": "ATM",
+  "About": "About",
+  "About DataChile": "About DataChile",
+  "Access": "Access",
+  "Access to Health Insurance": "Access to Health Insurance",
+  "Access to services": "Access to services",
+  "Accreditation": "Accreditation",
+  "Accreditation by Program": "Accreditation by Program",
+  "Activate": {
+    "actions": {
+      "ACTIVATE_SEND_FAILURE": "Error sending activation to {{email}}.",
+      "ACTIVATE_SEND_SUCCESS": "{{email}} has been sent an activation link. Please check your inbox.",
+      "ACTIVATE_TOKEN_FAILURE": "Activation token is invalid or has expired."
+    },
+    "button": "Send Verification"
+  },
+  "Admin": "Admin",
+  "Administration": "Administration",
+  "Affiliates in": "Affiliates in",
+  "Age": "Age",
+  "Age Range": "Age Range",
+  "Amenities": "Amenities",
+  "Area": "Area",
+  "Average": "Average",
+  "Average Employability (1st year)": "Average Employability (1st year)",
+  "Average Income": "Average Income",
+  "Average Income (4th year)": "Average Income (4th year)",
+  "Average Income 1st year": "Average Income 1st year",
+  "Average NEM": "Average NEM",
+  "Average PSU": "Average PSU",
+  "Average Retention": "Average Retention",
+  "Average Score": "Average Score",
+  "Average psu": "Average psu",
+  "Avg anual payment 2016": "Avg anual payment 2016",
+  "By Activity & Visa Type": "By Activity & Visa Type",
+  "By Industry": "By Industry",
+  "By Occupation": "By Occupation",
+  "By Origin Country": "By Origin Country",
+  "By School Type": "By School Type",
+  "By Sex & Age": "By Sex & Age",
+  "By Sex & Education Level": "By Sex & Education Level",
+  "Career": "Career",
+  "Careers": "Careers",
+  "Chile Exports": "Chile Exports",
+  "Community Equipment": "Community Equipment",
+  "Comuna": "Comuna",
+  "Connected to electricity network": "Connected to electricity network",
+  "Connectivity": "Connectivity",
+  "Contributor": "Contributor",
+  "Countries": "Countries",
+  "Country": "Country",
+  "Death Causes": "Death Causes",
+  "Death Causes By Casualities": "Death Causes By Casualities",
+  "Demography": "Demography",
+  "Dental Discharges": "Dental Discharges",
+  "Desktop computer": "Desktop computer",
+  "Developed by": "Developed by",
+  "Devices": "Devices",
+  "Devices' use in ": "Devices' use in ",
+  "Disabilities by Grade": "Disabilities by Grade",
+  "Disabilities by Sex": "Disabilities by Sex",
+  "Disability": "Disability",
+  "Disbilities": "Disbilities",
+  "Diversity": "Diversity",
+  "During": "During",
+  "Economy": "Economy",
+  "Education": "Education",
+  "Educational Center": "Educational Center",
+  "Employability": "Employability",
+  "Employability 1st Year": "Employability 1st Year",
+  "Employability by Program": "Employability by Program",
+  "Employees": "Employees",
+  "Employees in ": "Employees in ",
+  "Employment": "Employment",
+  "Employment by Category": "Employment by Category",
+  "Employment by Education": "Employment by Education",
+  "Employment by category": "Employment by category",
+  "Employment growth": "Employment growth",
+  "Enrollment": "Enrollment",
+  "Environment": "Environment",
+  "Estimate Population": "Estimate Population",
+  "Ethnicity": "Ethnicity",
+  "Explore": "Explore",
+  "Explore Featured Profiles": "Explore Featured Profiles",
+  "Explore profiles by category": "Explore profiles by category",
+  "Exports": "Exports",
+  "Exports By Destination": "Exports By Destination",
+  "Exports By Origin": "Exports By Origin",
+  "Exports By Region": "Exports By Region",
+  "Exports by product": "Exports by product",
+  "Exports in ": "Exports in ",
+  "Exports {{last_year}}": "Exports {{last_year}}",
+  "Extras": "Extras",
+  "Female": "Female",
+  "Female Mean Income": "Female Mean Income",
+  "Female percent in ": "Female percent in ",
+  "Female percent of visas": "Female percent of visas",
+  "Field of Science": "Field of Science",
+  "Gender": "Gender",
+  "Geo": "Geo",
+  "Geographical": "Geographical",
+  "Glossary": "Glossary",
+  "Green Areas": "Green Areas",
+  "Growth Exports": "Growth Exports",
+  "Growth Imports": "Growth Imports",
+  "Growth Investment": "Growth Investment",
+  "Growth Labour": "Growth Labour",
+  "Growth R&D Spending in ": "Growth R&D Spending in ",
+  "Growth affiliates in ISAPRES": "Growth affiliates in ISAPRES",
+  "Growth number of visas": "Growth number of visas",
+  "Health": "Health",
+  "Health Center": "Health Center",
+  "Health Insurance": "Health Insurance",
+  "Healthcare": "Healthcare",
+  "Healthcare by Type": "Healthcare by Type",
+  "Higher Education": "Higher Education",
+  "Home": "Home",
+  "Households with credit in state bank": "Households with credit in state bank",
+  "Housing Conditions": "Housing Conditions",
+  "Housing Type": "Housing Type",
+  "Housing and Environment": "Housing and Environment",
+  "Immigrant visas": "Immigrant visas",
+  "Imports & Exports": "Imports & Exports",
+  "Imports By Destination": "Imports By Destination",
+  "Imports By Origin": "Imports By Origin",
+  "Imports By Region": "Imports By Region",
+  "Imports by product": "Imports by product",
+  "Imports from Chile": "Imports from Chile",
+  "In": "In",
+  "In period": "In period",
+  "In period {{year_first}} - {{year_last}}": "In period {{year_first}} - {{year_last}}",
+  "Income": "Income",
+  "Income By Age": "Income By Age",
+  "Income By Sex": "Income By Sex",
+  "Income Range CLP": "Income Range CLP",
+  "Industries": "Industries",
+  "Industry": "Industry",
+  "Industry & Occupations": "Industry & Occupations",
+  "Industry By Output (CLP)": "Industry By Output (CLP)",
+  "Industry Space": "Industry Space",
+  "Industry Type": "Industry Type",
+  "Industry output": "Industry output",
+  "Innovation": "Innovation",
+  "Institution": "Institution",
+  "Institution Type": "Institution Type",
+  "Institutions": "Institutions",
+  "International Trade": "International Trade",
+  "International Trade Balance": "International Trade Balance",
+  "International trade": "International trade",
+  "Internet Access": "Internet Access",
+  "Internet Access By Zone in ": "Internet Access By Zone in ",
+  "Internet access": "Internet access",
+  "Internet use": "Internet use",
+  "Investment By Comuna (Legal address)": "Investment By Comuna (Legal address)",
+  "Language": "Language",
+  "Laptop computer": "Laptop computer",
+  "Less Than 20 Blocks from": "Less Than 20 Blocks from",
+  "Less Than 8 Blocks from": "Less Than 8 Blocks from",
+  "Less than 30 square meter households": "Less than 30 square meter households",
+  "LoadingComponent": {
+    "description": "Loading {{progress}} of {{total}} datasets",
+    "title": "Please Wait"
+  },
+  "Login": {
+    "E-mail": "E-mail",
+    "Facebook": "Facebook",
+    "Instagram": "Instagram",
+    "Login": "Login",
+    "Password": "Password",
+    "Twitter": "Twitter",
+    "error": "Wrong Username or Password",
+    "success": "Successfully Logged In"
+  },
+  "Lorem datum": "Lorem datum",
+  "Lorem ipsum dolor sit amet, consectetur ": {
+    "": "Lorem ipsum dolor sit amet, consectetur ."
+  },
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit": {
+    "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
+    "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.",
+    " Lorem ipsum dolor sit amet": {
+      "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
+    },
+    " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
+      "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
+    }
+  },
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon": {
+    "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
+  },
+  "Main exported product": "Main exported product",
+  "Main imported product": "Main imported product",
+  "Main services in ": "Main services in ",
+  "Male": "Male",
+  "Male Mean Income": "Male Mean Income",
+  "Map Explore": "Map Explore",
+  "Map explore": "Map explore",
+  "Market": "Market",
+  "Material of Walls": "Material of Walls",
+  "Math": "Math",
+  "Mayor": "Mayor",
+  "Mayor Election": "Mayor Election",
+  "Median Income CLP": "Median Income CLP",
+  "Migration": "Migration",
+  "Migration By Activity": "Migration By Activity",
+  "Migration By Age": "Migration By Age",
+  "Migration By Calculated Age Range": "Migration By Calculated Age Range",
+  "Migration By Educational Level": "Migration By Educational Level",
+  "Migration By Origin": "Migration By Origin",
+  "Migration By Region": "Migration By Region",
+  "Migration By Sex": "Migration By Sex",
+  "Migration By Visa": "Migration By Visa",
+  "Migration By Visa Type": "Migration By Visa Type",
+  "Mobile phone": "Mobile phone",
+  "Monthly Median Income CLP": "Monthly Median Income CLP",
+  "Municipalities": "Municipalities",
+  "NEM Performance By Administration": "NEM Performance By Administration",
+  "Number of jobs": "Number of jobs",
+  "Number of visas": "Number of visas",
+  "Occupation": "Occupation",
+  "Occupational Category": "Occupational Category",
+  "Occupations by workers": "Occupations by workers",
+  "Opportunities": "Opportunities",
+  "Opportunity": "Opportunity",
+  "Origin & Destination": "Origin & Destination",
+  "Origins": "Origins",
+  "Other products": "Other products",
+  "Other regions": "Other regions",
+  "Others": "Others",
+  "Output By Comuna (Legal address)": "Output By Comuna (Legal address)",
+  "PSU Results": "PSU Results",
+  "PSU Results By Sex": "PSU Results By Sex",
+  "PSU vs NEM": "PSU vs NEM",
+  "PSU vs NEM by school": "PSU vs NEM by school",
+  "People": "People",
+  "Per 100 inhabitants in": "Per 100 inhabitants in",
+  "Performance": "Performance",
+  "Pharmacy": "Pharmacy",
+  "Politics": "Politics",
+  "Population": "Population",
+  "Population Projection": "Population Projection",
+  "Population Pyramid": "Population Pyramid",
+  "Population with Health Insurance": "Population with Health Insurance",
+  "President": "President",
+  "Product": "Product",
+  "Product Space": "Product Space",
+  "Product Type": "Product Type",
+  "Products": "Products",
+  "Profiles": "Profiles",
+  "Public Transport": "Public Transport",
+  "Quality": "Quality",
+  "R&D Spending By Industry": "R&D Spending By Industry",
+  "R&D Spending By Sector": "R&D Spending By Sector",
+  "R&D spending": "R&D spending",
+  "Region": "Region",
+  "Regional": "Regional",
+  "Regional ": "Regional ",
+  "Regional Employment By Education": "Regional Employment By Education",
+  "Regional Employment By Sex": "Regional Employment By Sex",
+  "Regions & Comunas": "Regions & Comunas",
+  "Research & Development": "Research & Development",
+  "Reset": {
+    "Confirm Password": "Confirm New Password",
+    "E-mail": "E-mail",
+    "Password": "New Password",
+    "actions": {
+      "RESET_SEND_FAILURE": "No account associated with {{email}}.",
+      "RESET_SEND_SUCCESS": "{{email}} has been sent a password reset. Please check your inbox.",
+      "RESET_TOKEN_FAILURE": "Password reset token is invalid or has expired."
+    },
+    "button": "Reset Password"
+  },
+  "Results": "Results",
+  "Results for": "Results for",
+  "Retention": "Retention",
+  "Retention by Program": "Retention by Program",
+  "Role": "Role",
+  "Rural households": "Rural households",
+  "Salaries": "Salaries",
+  "Salaries By Category": "Salaries By Category",
+  "Salaries By Occupation": "Salaries By Occupation",
+  "Sales in ": "Sales in ",
+  "School": "School",
+  "School By Enrollment": "School By Enrollment",
+  "Search a location, industry, product, career, etc": "Search a location, industry, product, career, etc",
+  "Sector": "Sector",
+  "See less": "See less",
+  "See more": "See more",
+  "Senators": "Senators",
+  "Services Access": "Services Access",
+  "SignUp": {
+    "Confirm Password": "Confirm Password",
+    "E-mail": "E-mail",
+    "Facebook": "Facebook",
+    "Instagram": "Instagram",
+    "Password": "Password",
+    "PrivacyTermsText": "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a> and <a href='{{privacy}}'>Privacy Policy</a>",
+    "PrivacyText": "By checking this box, you agree to our <a href='{{privacy}}'>Privacy Policy</a>",
+    "Sign Up": "Sign Up",
+    "TermsText": "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a>",
+    "Twitter": "Twitter",
+    "Username": "Username",
+    "error": {
+      "Exists": "E-mail or Username already in use",
+      "IncompleteFields": "Please set all fields",
+      "PasswordMatch": "Passwords don't match",
+      "TermsAgree": "Must agree to terms to continue"
+    },
+    "success": "Successfully Signed Up"
+  },
+  "Smart TV": "Smart TV",
+  "Soon": "Soon",
+  "Source": "Source",
+  "Specialized Healthcares": "Specialized Healthcares",
+  "Sponsored by": "Sponsored by",
+  "Sport Center": "Sport Center",
+  "Students in Rural Education": "Students in Rural Education",
+  "Students in Special Education": "Students in Special Education",
+  "Summary": "Summary",
+  "Supported by": "Supported by",
+  "Tablet": "Tablet",
+  "The most comprehensive effort to integrate and visualize Chile’s Public Data": "The most comprehensive effort to integrate and visualize Chile’s Public Data",
+  "Top Schools By Performance": "Top Schools By Performance",
+  "Top destination country": "Top destination country",
+  "Top exporter region": "Top exporter region",
+  "Topics": "Topics",
+  "Total": "Total",
+  "Total Enrollment": "Total Enrollment",
+  "Total Exports": "Total Exports",
+  "Total Imports": "Total Imports",
+  "Total R&D spending by Business Type": "Total R&D spending by Business Type",
+  "Total R&D spending by Ownership Type": "Total R&D spending by Ownership Type",
+  "Total Students": "Total Students",
+  "Trade": "Trade",
+  "Trade Balance": "Trade Balance",
+  "Trade volume": "Trade volume",
+  "USD": "USD",
+  "Urgency Healthcare Average": "Urgency Healthcare Average",
+  "User": "User",
+  "Username": "Username",
+  "Value": "Value",
+  "Videogame console": "Videogame console",
+  "Visas": "Visas",
+  "Wages": "Wages",
+  "Wages by Program": "Wages by Program",
+  "Years of Studies": "Years of Studies",
+  "Zone": "Zone",
+  "a decrease": "a decrease",
+  "about": {
+    "ack": {
+      "credits": {
+        "text": "about.ack.credits.text",
+        "title": "about.ack.credits.title"
+      },
+      "partners": {
+        "text": "about.ack.partners.text",
+        "title": "about.ack.partners.title"
+      },
+      "title": "about.ack.title"
+    },
+    "background": {
+      "subtitle1": "about.background.subtitle1",
+      "subtitle2": "about.background.subtitle2",
+      "text1": "about.background.text1",
+      "text2": "about.background.text2",
+      "title": "about.background.title"
+    },
+    "data": {
+      "casen": {
+        "source": "about.data.casen.source",
+        "text": "about.data.casen.text",
+        "title": "about.data.casen.title",
+        "use": "about.data.casen.use"
+      },
+      "dataset": "about.data.dataset",
+      "discapacidad": {
+        "source": "about.data.discapacidad.source",
+        "text": "about.data.discapacidad.text",
+        "title": "about.data.discapacidad.title",
+        "use": "about.data.discapacidad.use"
+      },
+      "empleabilidad": {
+        "source": "about.data.empleabilidad.source",
+        "text": "about.data.empleabilidad.text",
+        "title": "about.data.empleabilidad.title",
+        "use": "about.data.empleabilidad.use"
+      },
+      "gasto": {
+        "source": "about.data.gasto.source",
+        "text": "about.data.gasto.text",
+        "title": "about.data.gasto.title",
+        "use": "about.data.gasto.use"
+      },
+      "matricula": {
+        "source": "about.data.matricula.source",
+        "text": "about.data.matricula.text",
+        "title": "about.data.matricula.title",
+        "use": "about.data.matricula.use"
+      },
+      "migracion": {
+        "source": "about.data.migracion.source",
+        "text": "about.data.migracion.text",
+        "title": "about.data.migracion.title",
+        "use": "about.data.migracion.use"
+      },
+      "nene": {
+        "source": "about.data.nene.source",
+        "text": "about.data.nene.text",
+        "title": "about.data.nene.title",
+        "use": "about.data.nene.use"
+      },
+      "nesi": {
+        "source": "about.data.nesi.source",
+        "text": "about.data.nesi.text",
+        "title": "about.data.nesi.title",
+        "use": "about.data.nesi.use"
+      },
+      "psu": {
+        "source": "about.data.psu.source",
+        "text": "about.data.psu.text",
+        "title": "about.data.psu.title",
+        "use": "about.data.psu.use"
+      },
+      "salud": {
+        "source": "about.data.salud.source",
+        "text": "about.data.salud.text",
+        "title": "about.data.salud.title",
+        "use": "about.data.salud.use"
+      },
+      "source": "about.data.source",
+      "text": "about.data.text",
+      "title": "about.data.title",
+      "vida": {
+        "source": "about.data.vida.source",
+        "text": "about.data.vida.text",
+        "title": "about.data.vida.title",
+        "use": "about.data.vida.use"
+      }
+    },
+    "team": {
+      "dw": {
+        "text": "about.team.dw.text",
+        "title": "about.team.dw.title"
+      },
+      "title": "about.team.title"
+    },
+    "terms": {
+      "text": "about.terms.text",
+      "title": "about.terms.title"
+    }
+  },
+  "affiliates": "affiliates",
+  "an increase": "an increase",
+  "careers": "careers",
+  "country_profile": {
+    "about1": "country_profile.about1",
+    "about2": "country_profile.about2",
+    "intltrade_balance_slide": {
+      "text": "<p>Between years {{year.first}} and {{year.last}}, the imports from {{level}} to Chile have registered a growth of {{import.growth}}, having shown a {{import.direction}} from {{import.volume_first}} to {{import.volume_last}}. In the same period, the exports from Chile to {{level}} have registered a growth of {{export.growth}}, with {{export.direction}} from {{export.volume_first}} to {{export.volume_last}}.</p>"
+    },
+    "intltrade_origin_dest_slide": {
+      "export": "<p>Most exports coming out from Chile to {{level}} depart from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}}, in {{origin.second_region}}, and {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
+      "export_": "",
+      "export_12": "<p>Most exports coming out from Chile to {{level}} depart from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}} and {{origin.third_municipality}}, in {{origin.second_region}}.</p>",
+      "export_21": "<p>Most exports coming out from Chile to {{level}} depart from the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}, in {{origin.first_region}}, and from the comuna of {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
+      "export_3": "<p>Most export coming out from Chile to {{level}} depart from {{origin.first_region}}, mainly from the comunas of {{origin.first_municipality}}, {{origin.second_municipality}}, and {{origin.third_municipality}}.</p>",
+      "import": "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after, the comunas of {{destination.second_municipality}}, in {{destination.second_region}}, and {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
+      "import_": "",
+      "import_12": "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after the comunas of {{destination.second_municipality}} and {{destination.third_municipality}}, in {{destination.second_region}}.</p>",
+      "import_21": "<p>Most of the imports coming to Chile from {{level}} arrive to the comunas of {{destination.first_municipality}} and {{destination.second_municipality}}, in {{destination.first_region}}, and the comuna of {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
+      "import_3": "<p>Most of the imports coming to Chile from {{level}} arrive to the region of {{destination.first_region}}, mainly to the comunas of {{destination.first_municipality}}, {{destination.second_municipality}}, and {{destination.third_municipality}}.</p>"
+    },
+    "intltrade_slide": {
+      "text": "<p>The principal product Chile imports from {{level}} is {{main_import.name}}. For {{year_latest}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of {{main_import.name}} to Chile.</p><p>On the other side, Chile exports to {{level}} mainly {{main_export.name}}. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of {{main_export.name}} from Chile during {{year_latest}}.</p>"
+    },
+    "migration_activity_slide": {
+      "text": "<p>According to the records, the majority of immigrants from {{level}} arrive with {{visa_type.first}} visa or {{visa_type.second}} visa. These combined represent a {{visa_type.percent}} from the total of immigrants.</p><p>For the year {{year_last}}, {{first_occupation.percent}} of the immigrants coming from {{level}} declare they work as {{first_occupation.name}}. This translates into a growth of {{first_occupation.growth}} compared to year {{year_prev}}. On the other side, {{activity.unoccupied_percent}} declares being unemployed, and {{activity.unknown_percent}} doesn't disclose their current activity.</p>"
+    },
+    "migration_details_slide": {
+      "tendency_change": ", which has been a tendency since {{year_first}}, when most people were {{sex.before}}",
+      "tendency_stay": ", which is a tendency since {{year_first}}, with an accumulated growth of {{sex.growth}}",
+      "text": "<p>Of the immigrants that come from {{level}}, most are {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_latest}}, which translates into a growth of {{agerange.first_growth}} since {{year_previous}}.</p>"
+    },
+    "migration_education_slide": {
+      "text": "<p>Of the immigrants arriving from {{level}}, {{high.percent}} have an academic degree equivalent to Chilean High School. Regarding Higher Education, {{college.percent}} declare to have a technical or university degree. This translates to a growth since last year of {{high.growth}} for high school graduate immigrants, and a {{college.growth}} for higher-education student or graduate immigrants.</p><p>By contrast, {{percent_noop}} declare not having any formal education, and {{percent_unknown}} don't disclose their education level.</p>"
+    },
+    "migration_slide": {
+      "text": "<p>By {{year_latest}}, most immigrants from {{level}} arrive to establish in {{destination.region}}, mainly in the comuna of {{destination.municipality}}.</p><p>The immigrants from {{level}} in this comuna account for {{destination.mun_percent}} of the national total, and {{destination.reg_percent}} of the regional total. Compared to {{year_previous}}, the growth in immigration visas for people living in {{destination.municipality}} is {{destination.mun_growth}}.</p>"
+    }
+  },
+  "decreased": "decreased",
+  "disabilities": "disabilities",
+  "geo_profile": {
+    "health": {
+      "access": "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+      "death_causes": "",
+      "disability": "",
+      "fonasa": {
+        "copago": "geo_profile.health.fonasa.copago",
+        "text": "geo_profile.health.fonasa.text",
+        "tramos": "geo_profile.health.fonasa.tramos"
+      },
+      "healthcare": "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
+    },
+    "income_sex_age_slide": {
+      "text": "Income by sex and age slide."
+    },
+    "trade_slide": {
+      "text": "In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
+    }
+  },
+  "granted in": "granted in",
+  "granted in {{year}}": "granted in {{year}}",
+  "health cares": "health cares",
+  "houses": "houses",
+  "in": "in",
+  "in ": "in ",
+  "increased": "increased",
+  "industry_profile": {
+    "economy": "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+    "employment": "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.",
+    "r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>"
+  },
   "loading": {
     "description": "Loading {{progress}} of {{total}} datasets",
     "developed": "Designed and Engineered by Datawheel",
     "title": "Please Wait"
   },
-
-  "geo_profile": {
-    "trade_slide": {
-      "text":
-        "In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
-    },
-    "income_sex_age_slide": {
-      "text": "Income by sex and age slide."
-    },
-    "health": {
-      "access":
-        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-      "healthcare":
-        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-      "disability": "",
-      "death_causes": ""
-    }
-  },
-
-  "trade_balance": {
-    "fob": "Exports",
-    "cif": "Imports",
-    "trade_balance": "Trade Balance"
-  },
-  "country_profile": {
-    "about1": "",
-    "about2": "",
-    "migration_slide": {
-      "text":
-        "<p>By {{year_latest}}, most immigrants from {{level}} arrive to establish in {{destination.region}}, mainly in the comuna of {{destination.municipality}}.</p><p>The immigrants from {{level}} in this comuna account for {{destination.mun_percent}} of the national total, and {{destination.reg_percent}} of the regional total. Compared to {{year_previous}}, the growth in immigration visas for people living in {{destination.municipality}} is {{destination.mun_growth}}.</p>"
-    },
-    "migration_details_slide": {
-      "tendency_stay":
-        ", which is a tendency since {{year_first}}, with an accumulated growth of {{sex.growth}}",
-      "tendency_change":
-        ", which has been a tendency since {{year_first}}, when most people were {{sex.before}}",
-      "text":
-        "<p>Of the immigrants that come from {{level}}, most are {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_latest}}, which translates into a growth of {{agerange.first_growth}} since {{year_previous}}.</p>"
-    },
-    "migration_activity_slide": {
-      "text":
-        "<p>According to the records, the majority of immigrants from {{level}} arrive with {{visa_type.first}} visa or {{visa_type.second}} visa. These combined represent a {{visa_type.percent}} from the total of immigrants.</p><p>For the year {{year_last}}, {{first_occupation.percent}} of the immigrants coming from {{level}} declare they work as {{first_occupation.name}}. This translates into a growth of {{first_occupation.growth}} compared to year {{year_prev}}. On the other side, {{activity.unoccupied_percent}} declares being unemployed, and {{activity.unknown_percent}} doesn't disclose their current activity.</p>"
-    },
-    "migration_education_slide": {
-      "text":
-        "<p>Of the immigrants arriving from {{level}}, {{high.percent}} have an academic degree equivalent to Chilean High School. Regarding Higher Education, {{college.percent}} declare to have a technical or university degree. This translates to a growth since last year of {{high.growth}} for high school graduate immigrants, and a {{college.growth}} for higher-education student or graduate immigrants.</p><p>By contrast, {{percent_noop}} declare not having any formal education, and {{percent_unknown}} don't disclose their education level.</p>"
-    },
-    "intltrade_slide": {
-      "text":
-        "<p>The principal product Chile imports from {{level}} is {{main_import.name}}. For {{year_latest}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of {{main_import.name}} to Chile.</p><p>On the other side, Chile exports to {{level}} mainly {{main_export.name}}. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of {{main_export.name}} from Chile during {{year_latest}}.</p>"
-    },
-    "intltrade_origin_dest_slide": {
-      "import":
-        "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after, the comunas of {{destination.second_municipality}}, in {{destination.second_region}}, and {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
-      "import_21":
-        "<p>Most of the imports coming to Chile from {{level}} arrive to the comunas of {{destination.first_municipality}} and {{destination.second_municipality}}, in {{destination.first_region}}, and the comuna of {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
-      "import_12":
-        "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after the comunas of {{destination.second_municipality}} and {{destination.third_municipality}}, in {{destination.second_region}}.</p>",
-      "import_3":
-        "<p>Most of the imports coming to Chile from {{level}} arrive to the region of {{destination.first_region}}, mainly to the comunas of {{destination.first_municipality}}, {{destination.second_municipality}}, and {{destination.third_municipality}}.</p>",
-      "export":
-        "<p>Most exports coming out from Chile to {{level}} depart from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}}, in {{origin.second_region}}, and {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
-      "export_21":
-        "<p>Most exports coming out from Chile to {{level}} depart from the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}, in {{origin.first_region}}, and from the comuna of {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
-      "export_12":
-        "<p>Most exports coming out from Chile to {{level}} depart from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}} and {{origin.third_municipality}}, in {{origin.second_region}}.</p>",
-      "export_3":
-        "<p>Most export coming out from Chile to {{level}} depart from {{origin.first_region}}, mainly from the comunas of {{origin.first_municipality}}, {{origin.second_municipality}}, and {{origin.third_municipality}}.</p>"
-    },
-    "intltrade_balance_slide": {
-      "text":
-        "<p>Between years {{year.first}} and {{year.last}}, the imports from {{level}} to Chile have registered a growth of {{import.growth}}, having shown a {{import.direction}} from {{import.volume_first}} to {{import.volume_last}}. In the same period, the exports from Chile to {{level}} have registered a growth of {{export.growth}}, with {{export.direction}} from {{export.volume_first}} to {{export.volume_last}}.</p>"
-    }
-  },
-
+  "no_datum": "No data",
+  "no_info": "{{no}} has not data for this topic. You can see information at regional level in <a href='{{link}}'>{{yes}}</a>'s profile.",
+  "of": "of",
+  "of total": "of total",
+  "people": "people",
   "product_profile": {
-    "about1":
-      "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
-    "about2":
-      "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
-    "balance":
-      "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
+    "about1": "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
+    "about2": "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
+    "balance": "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
   },
-
-  "industry_profile": {
-    "economy":
-      "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
-    "r&d":
-      "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
-    "employment":
-      "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees."
-  },
-
+  "students": "students",
   "tooltip": {
     "to_profile": "Click to see the full profile"
   },
-
-  "no_info":
-    "{{no}} has not data for this topic. You can see information at regional level in <a href='{{link}}'>{{yes}}</a>'s profile.",
-  "no_datum": "No data"
+  "trade_balance": {
+    "cif": "Imports",
+    "fob": "Exports",
+    "trade_balance": "Trade Balance"
+  },
+  "use device": "use device",
+  "val": "val",
+  "visas": "visas",
+  "{{number}} visas": "{{number}} visas"
 }
