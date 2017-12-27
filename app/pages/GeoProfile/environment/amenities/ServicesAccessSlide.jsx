@@ -59,7 +59,7 @@ class ServicesAccessSlide extends Section {
       geo
     } = this.context.data;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const area = datum_network_electricity_households.available
       ? geo

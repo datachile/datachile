@@ -189,7 +189,7 @@ class IndustryProfile extends Component {
     const obj = this.props.data.industry;
     const industryImg = obj ? (obj.depth === 1 ? obj.key : obj.parent.key) : "";
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const ids = getLevelObject(this.props.routeParams);
 

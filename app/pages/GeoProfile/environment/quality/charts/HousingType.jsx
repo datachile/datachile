@@ -73,7 +73,7 @@ class HousingType extends Section {
 
     const { path_housing_type_fallback } = this.context.data;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const geo = this.context.data.geo;
 
     var msrName = "Expansion Factor Comuna";

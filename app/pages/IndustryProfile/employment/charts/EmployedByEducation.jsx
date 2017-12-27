@@ -27,7 +27,7 @@ class EmployedByEducation extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_industry_employed_by_education;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

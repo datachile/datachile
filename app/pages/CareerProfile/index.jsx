@@ -132,7 +132,7 @@ class CareerProfile extends Component {
   render() {
     const { t, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const obj = this.props.data.career;
 

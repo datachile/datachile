@@ -31,7 +31,7 @@ class PSUNEMScatter extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_education_psu_vs_nem_by_school;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

@@ -92,7 +92,7 @@ class Devices extends Section {
     const { t, className, i18n } = this.props;
     const internet_data = this.context.data.internet_data;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const geo = this.context.data.geo;
 
     const geoChartName =

@@ -87,7 +87,7 @@ class TradeBalance extends Section {
       datum_imports_per_year,
       datum_exports_per_year
     } = this.context.data;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const data = datum_exports_per_year
       ? datum_exports_per_year.reduce((all, item, key) => {

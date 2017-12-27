@@ -29,7 +29,7 @@ class ProductSpace extends Section {
     const path = this.context.data.path_exports_last_year;
     const { t, className, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
     return (
       <div className={className}>
         <h3 className="chart-title">

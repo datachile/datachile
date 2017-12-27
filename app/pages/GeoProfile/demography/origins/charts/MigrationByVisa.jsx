@@ -73,7 +73,7 @@ class MigrationByVisa extends Section {
   render() {
     const { t, className, i18n } = this.props;
     // const { filter_sex, filter_age } = this.state;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const chart_path = this.context.data.path_migration_by_visa_type;
 

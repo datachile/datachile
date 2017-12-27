@@ -379,7 +379,7 @@ class ProductProfile extends Component {
     const { t, i18n } = this.props;
     const obj = this.props.data.product;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const {
       datum_exports_per_country,

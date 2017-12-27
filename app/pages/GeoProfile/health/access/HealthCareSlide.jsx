@@ -49,7 +49,7 @@ class HealthCareSlide extends Section {
       datum_health_access,
       datum_health_access_specialized_per_year
     } = this.context.data;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     let geo = this.context.data.geo;
     if (geo.type === "comuna") {

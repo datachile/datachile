@@ -57,7 +57,7 @@ class RDSlide extends Section {
     const industryName =
       industry.depth === 1 ? industry.name : industry.parent.name;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const text_rd = {
       year: sources.rd_survey.last_year,

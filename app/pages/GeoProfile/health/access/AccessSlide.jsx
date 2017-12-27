@@ -97,7 +97,7 @@ class AccessSlide extends Section {
       geo
     } = this.context.data;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const msrName =
       geo.type === "comuna"
         ? "Expansion Factor Comuna"

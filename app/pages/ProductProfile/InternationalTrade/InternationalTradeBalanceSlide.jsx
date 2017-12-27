@@ -90,7 +90,7 @@ class InternationalTradeSlide extends Section {
       total_exports_chile,
       total_exports_per_product
     } = this.context.data;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const text_product = {
       product: this.context.data.product,

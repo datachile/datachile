@@ -49,7 +49,7 @@ class InvestmentByLocation extends Section {
     const path = this.context.data.industry_investment_by_region;
     const industry = this.context.data.industry;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

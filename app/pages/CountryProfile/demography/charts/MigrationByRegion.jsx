@@ -47,7 +47,7 @@ class MigrationByRegion extends Section {
     const { t, className, i18n } = this.props;
 
     const path = this.context.data.path_country_migration_by_region;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

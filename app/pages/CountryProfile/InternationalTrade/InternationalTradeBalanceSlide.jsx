@@ -68,7 +68,7 @@ class InternationalTradeBalanceSlide extends Section {
 
   render() {
     const { t, children, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const {
       country,
