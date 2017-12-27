@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
+
+import ComingSoon from "components/ComingSoon";
+
 import "./Footer.css";
 
 function Footer(props) {
@@ -46,16 +49,8 @@ function Footer(props) {
             {t("Regions & Comunas")}
           </Link>
           <span className="link link-dot">&#183;</span>
-          <Link className="link" to="/explore/industries">
-            {t("Industries")}
-          </Link>
-          <span className="link link-dot">&#183;</span>
-          <Link className="link" to="/explore/institutions">
-            {t("Institutions")}
-          </Link>
-          <span className="link link-dot">&#183;</span>
-          <Link className="link" to="/explore/careers">
-            {t("Careers")}
+          <Link className="link" to="/explore/countries">
+            {t("Countries")}
           </Link>
           <span className="link link-dot">&#183;</span>
           <Link className="link" to="/explore/products">
@@ -66,17 +61,23 @@ function Footer(props) {
             {t("Industries")}
           </Link>
           <span className="link link-dot">&#183;</span>
+          <Link className="link link-soon">
+            {t("Careers")}
+            <ComingSoon />
+          </Link>
+          <span className="link link-dot">&#183;</span>
+          <Link className="link link-soon">
+            {t("Institutions")}
+            <ComingSoon />
+          </Link>
+          <span className="link link-dot">&#183;</span>
           <Link className="link" to="/explore/map">
-            {t("Map")}
+            {t("Map explore")}
           </Link>
           <span className="link link-dot">&#183;</span>
           <Link className="link" to="/about">
-            {t("About")}
+            {t("About DataChile")}
           </Link>
-          <span className="link link-dot">&#183;</span>
-          <a className="link" href="#" target="_blank">
-            {t("Contact")}
-          </a>
         </div>
       </div>
     </footer>
