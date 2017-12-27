@@ -45,10 +45,10 @@ n.register("locale", "es-cl", {
     decimal: ","
   },
   abbreviations: {
-    thousand: "k",
-    million: "mm",
-    billion: "miles de millones",
-    trillion: "t"
+    thousand: "m",
+    million: "mill.",
+    billion: "miles de mill.",
+    trillion: "bill."
   },
   ordinal: function(number) {
     var b = number % 10;
