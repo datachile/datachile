@@ -10,7 +10,8 @@ import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
   getMemberQuery,
-  levelCut
+  levelCut,
+  simpleDatumNeed
 } from "helpers/MondrianClient";
 import {
   getLevelObject,
@@ -41,6 +42,8 @@ import ImportsByRegion from "./GeoTrade/charts/ImportsByRegion";
 
 import { info_from_data } from "helpers/aggregations";
 import { sources } from "helpers/consts";
+
+import { IndexProductProfile } from "texts/ProductProfile";
 
 import "../intro.css";
 
@@ -267,76 +270,33 @@ class ProductProfile extends Component {
       };
     },
 
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = levelCut(
-            product,
-            "Export HS",
-            "HS",
-            cube.query
-              .option("parents", true)
-              .drilldown("Destination Country", "Country", "Country")
-              .measure("FOB US")
-              .cut(
-                `[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`
-              ),
-            "HS0",
-            "HS2",
-            store.i18n.locale
-          );
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_exports_per_country",
+        "exports",
+        ["FOB US"],
+        {
+          drillDowns: [["Destination Country", "Country", "Country"]],
+          options: { parents: true },
+          cut: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
+        },
+        "product.export",
+        false
+      )(params, store),
 
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "datum_exports_per_country",
-            data: res.data.data
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("imports")
-        .then(cube => {
-          var q = levelCut(
-            product,
-            "Import HS",
-            "HS",
-            cube.query
-              .option("parents", true)
-              .drilldown("Origin Country", "Country", "Country")
-              .measure("CIF US")
-              .cut(
-                `[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`
-              ),
-            "HS0",
-            "HS2",
-            store.i18n.locale
-          );
-
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "datum_imports_per_country",
-            data: res.data.data
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_imports_per_country",
+        "imports",
+        ["CIF US"],
+        {
+          drillDowns: [["Origin Country", "Country", "Country"]],
+          options: { parents: true },
+          cut: [`[Date].[Date].[Year].&[${sources.imports.year}]`]
+        },
+        "product.import",
+        false
+      )(params, store),
 
     (params, store) => {
       const product = getLevelObject(params);
@@ -428,18 +388,18 @@ class ProductProfile extends Component {
       exports: total_exports_per_product
     };
 
-    const text_product = {
-      year: 2015,
-      product: this.props.data.product,
-      exports: datum_exports_per_country
-        ? info_from_data(datum_exports_per_country, "FOB US", "Country", locale)
-        : {},
-      imports: datum_imports_per_country
-        ? info_from_data(datum_imports_per_country, "CIF US", "Country", locale)
-        : {}
-    };
+    const text_product = IndexProductProfile(
+      this.props.data.product,
+      datum_exports_per_country,
+      datum_imports_per_country,
+      locale,
+      t
+    );
 
     const text_about = {
+      year: {
+        last: sources.exports.year
+      },
       product: this.props.data.product,
       region: this.props.data.top_region_producer_per_product,
       total_exports: total_exports_per_product
@@ -459,6 +419,8 @@ class ProductProfile extends Component {
         locale
       ).format("0.0 %");
     }
+
+    console.log(datum_exports_per_country)
 
     const topics = [
       {
@@ -637,7 +599,7 @@ class ProductProfile extends Component {
                 <InternationalTradeSlide>
                   <SectionColumns>
                     <ExportsByDestination className="lost-1-2" />
-            {/*<ExportsGeoMap className="lost-1-2" />*/}
+                    {/*<ExportsGeoMap className="lost-1-2" />*/}
                     <ImportsByOrigin className="lost-1-2" />
                   </SectionColumns>
                 </InternationalTradeSlide>

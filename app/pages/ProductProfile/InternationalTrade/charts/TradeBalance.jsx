@@ -12,6 +12,7 @@ import { numeral } from "helpers/formatters";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class TradeBalance extends Section {
   static need = [
@@ -150,6 +151,7 @@ class TradeBalance extends Section {
             }
           }}
         />
+        <SourceNote cube="imports" />
       </div>
     );
   }

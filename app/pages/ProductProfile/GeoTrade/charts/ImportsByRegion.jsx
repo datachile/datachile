@@ -9,6 +9,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ImportsByRegion extends Section {
   static need = [
@@ -103,13 +104,12 @@ class ImportsByRegion extends Section {
               shapeConfig: {
                 width: 10,
                 height: 10
-                //backgroundImage: d =>
-                //  "/images/legend/continent/" + d["ID Continent"] + ".png"
               }
             }
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="imports" />
       </div>
     );
   }

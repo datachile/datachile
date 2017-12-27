@@ -28,6 +28,67 @@ function InternationalTradeBalance(product, exports, imports, t) {
   };
 }
 
+function IndexProductProfile(product, exports, imports, locale, t) {
+  return {
+    ...base,
+    product,
+    exports: about_text(exports, "FOB US", "Country", t, locale),
+    imports: about_text(imports, "CIF US", "Country", t, locale),
+    format:
+      exports.available && imports.available
+        ? "default"
+        : exports.available
+          ? "exports"
+          : imports.available ? "imports" : "neither"
+  };
+}
+
+function about_text(
+  aggregation,
+  msrName,
+  territoryKey,
+  t,
+  locale = "en",
+  format = "($ 0.00 a)"
+) {
+  if (aggregation.available) {
+    aggregation = aggregation.data.sort((a, b) => {
+      return b[msrName] - a[msrName];
+    });
+
+    const total = aggregation.reduce((all, item) => {
+      return all + item[msrName];
+    }, 0);
+    return {
+      available: true,
+      total: numeral(total, locale).format(format),
+      territory: {
+        first: aggregation[0] ? aggregation[0][territoryKey] : "",
+        second: aggregation[1] ? aggregation[1][territoryKey] : "",
+        third: aggregation[2] ? aggregation[2][territoryKey] : ""
+      },
+      share: {
+        first: aggregation[0]
+          ? numeral(aggregation[0][msrName] / total, locale).format("0.0 %")
+          : "",
+        second: aggregation[1]
+          ? numeral(aggregation[1][msrName] / total, locale).format("0.0 %")
+          : "",
+        third: aggregation[2]
+          ? numeral(aggregation[2][msrName] / total, locale).format("0.0 %")
+          : ""
+      },
+      values: {
+        first: aggregation[0] ? aggregation[0][msrName] : "",
+        second: aggregation[1] ? aggregation[1][msrName] : "",
+        third: aggregation[2] ? aggregation[2][msrName] : ""
+      }
+    };
+  } else {
+    return { available: false };
+  }
+}
+
 function trade_balance_text(
   aggregation,
   t,
@@ -59,4 +120,4 @@ function trade_balance_text(
   }
 }
 
-export { InternationalTradeBalance };
+export { IndexProductProfile, InternationalTradeBalance };

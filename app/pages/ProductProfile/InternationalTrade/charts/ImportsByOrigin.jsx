@@ -10,6 +10,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ImportsByDestination extends Section {
   static need = [
@@ -113,6 +114,7 @@ class ImportsByDestination extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="imports" />
       </div>
     );
   }
