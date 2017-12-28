@@ -1,0 +1,24 @@
+@import "../pages/mixins";
+
+.no-data-available {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  height: 450px;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+
+  & .no-data-image {
+      width: 50%;
+  }
+
+  & .no-data-title {
+    font-size: 24px;
+  }
+
+  & .no-data-message {
+    font-size: 18px;
+  }
+}

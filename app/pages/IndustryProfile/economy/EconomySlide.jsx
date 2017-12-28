@@ -73,7 +73,7 @@ class EconomySlide extends Section {
       rate: numeral(rate, locale).format("0.0 %"),
       increased_or_decreased: rate > 0 ? "increased" : "decreased",
       industry: {
-        name: industry.name
+        caption: industry.caption
       }
     };
 

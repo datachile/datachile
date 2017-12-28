@@ -551,6 +551,36 @@
         "In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
     }
   },
+
+  "product_profile": {
+    "about1": {
+      "default": "In {{year.last}}, {{product.caption}} was {{total_exports.rank}} most exported product by Chile, of a total {{total_exports.total}} categories. Represented the {{product.share}} of the country exports, where {{region.name}} was main exported region, with a share of {{region.share}}.",
+      "no_data": "There are not data of exports for {{product.caption}} in {{year.last}}"
+    },
+      
+    "about2":{
+      "exp_1_imp_0": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny, and no imports were recorded.</p>",
+      "exp_1_imp_1": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny, and {{imports.territory.first}} was the only imports destiny.</p>",
+      "exp_1_imp_2": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny</p>. <p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}}, with a {{imports.share.second}}.</p>",
+      "exp_1_imp_3": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny.</p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
+      "exp_2_imp_0": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}, and no imports were recorded.</p>",
+      "exp_2_imp_1": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, {{imports.territory.first}} was the only imports destiny.</p>",
+      "exp_2_imp_2": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}}, with a {{imports.share.second}}.</p>",
+      "exp_2_imp_3": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
+      "exp_3_imp_0": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively, and no imports were recorded.</p>",
+      "exp_3_imp_1": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, {{imports.territory.first}} was the only imports destiny.</p>",
+      "exp_3_imp_2": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} with a {{imports.share.second}}.</p>",
+      "exp_3_imp_3": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
+      "no_data": "There are not data of exports for {{product.caption}} in {{year.last}}"
+    },
+    "balance": {
+      "default": "During the last {{year.number}} years, exports of {{product.caption}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, imports of {{product.caption}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}.",
+      "exports": "During the last {{year.number}} years, exports of {{product.caption}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, there are not data of imports for {{product.caption}}.",
+      "imports": "During the last {{year.number}} years, imports of {{product.caption}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}. In the same period, there are not data of exports for {{product.caption}}.",
+      "neither": "There are not data of exports/imports for {{product.caption}} in period {{year.first}}-{{year.last}}"
+    }
+  },
+
   "granted in": "granted in",
   "granted in {{year}}": "granted in {{year}}",
   "health cares": "health cares",
@@ -559,12 +589,10 @@
   "in ": "in ",
   "increased": "increased",
   "industry_profile": {
-    "economy":
-      "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
-    "employment":
-      "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.",
-    "r&d":
-      "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>"
+    "economy": "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+    "employment": "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.",
+    "r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
+    "warning": "Showing data about {{industry.caption}}"
   },
   "loading": {
     "description": "Loading {{progress}} of {{total}} datasets",
@@ -577,14 +605,6 @@
   "of": "of",
   "of total": "of total",
   "people": "people",
-  "product_profile": {
-    "about1":
-      "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
-    "about2":
-      "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
-    "balance":
-      "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
-  },
   "students": "students",
   "tooltip": {
     "to_profile": "Click to see the full profile"

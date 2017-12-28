@@ -3,13 +3,13 @@ export const sources = {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
     year: 2016,
-    min_year: 2007
+    min_year: 2011
   },
   imports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
     year: 2016,
-    min_year: 2009
+    min_year: 2011
   },
   exports_and_imports: {
     title: "Servicio Nacional de Aduanas",
