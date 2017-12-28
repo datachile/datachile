@@ -249,7 +249,8 @@ class GeoProfile extends Component {
 
   render() {
     const { t, i18n } = this.props;
-    const { locale } = i18n;
+
+    const locale = i18n.language;
 
     const geoObj = getGeoObject(this.props.routeParams);
     const showRanking = geoObj.type == "country" ? false : true;

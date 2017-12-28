@@ -85,7 +85,13 @@ n.register("locale", "en-cl", {
   }
 });
 
-export function numeral(number, locale = "es") {
+export function numeral(number, lang) {
+  var locale = "es";
+  if (["es", "en"].indexOf(lang) == -1) {
+    console.warn("Missing lang " + lang + " to set up numeral for:", number);
+  } else {
+    locale = lang;
+  }
   n.locale(locale + "-cl");
   return n(number);
 }
