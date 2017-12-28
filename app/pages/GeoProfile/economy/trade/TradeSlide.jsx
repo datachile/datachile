@@ -70,7 +70,7 @@ class TradeSlide extends Section {
       ? t("increased")
       : t("decreased");
 
-    const locale = this.props.i18n.locale;
+    const locale = this.props.i18n.language;
 
     const { datum_trade_exports, datum_trade_imports } = this.context.data;
 

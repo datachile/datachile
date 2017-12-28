@@ -25,7 +25,8 @@
   "Activate": {
     "actions": {
       "ACTIVATE_SEND_FAILURE": "Error sending activation to {{email}}.",
-      "ACTIVATE_SEND_SUCCESS": "{{email}} has been sent an activation link. Please check your inbox.",
+      "ACTIVATE_SEND_SUCCESS":
+        "{{email}} has been sent an activation link. Please check your inbox.",
       "ACTIVATE_TOKEN_FAILURE": "Activation token is invalid or has expired."
     },
     "button": "Send Verification"
@@ -142,7 +143,8 @@
   "Healthcare by Type": "Healthcare by Type",
   "Higher Education": "Higher Education",
   "Home": "Inicio",
-  "Households with credit in state bank": "Hogares con crédito en banco estatal",
+  "Households with credit in state bank":
+    "Hogares con crédito en banco estatal",
   "Housing Conditions": "Condiciones habitacionales",
   "Housing Type": "Housing Type",
   "Housing and Environment": "Housing and Environment",
@@ -156,7 +158,8 @@
   "Imports from Chile": "Imports from Chile",
   "In": "En",
   "In period": "En el período",
-  "In period {{year_first}} - {{year_last}}": "En el período {{year_first}} - {{year_last}}",
+  "In period {{year_first}} - {{year_last}}":
+    "En el período {{year_first}} - {{year_last}}",
   "Income": "Ingreso",
   "Income By Age": "Ingreso por Edad",
   "Income By Sex": "Ingreso por Sexo",
@@ -179,7 +182,8 @@
   "Internet Access By Zone in ": "Acceso a internet por zona en ",
   "Internet access": "Acceso a Internet",
   "Internet use": "Uso de Internet",
-  "Investment By Comuna (Legal address)": "Inversión por comuna (dirección legal)",
+  "Investment By Comuna (Legal address)":
+    "Inversión por comuna (dirección legal)",
   "Language": "Idioma",
   "Laptop computer": "Laptop computer",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
@@ -207,16 +211,20 @@
     "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
-    "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.",
+    "":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.",
     " Lorem ipsum dolor sit amet": {
-      "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
+      "":
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
     },
     " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
-      "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
+      "":
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
     }
   },
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon": {
-    "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
+    "":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
   },
   "Main exported product": "Principal producto exportado",
   "Main imported product": "Principal producto importado",
@@ -298,7 +306,8 @@
     "Password": "New Password",
     "actions": {
       "RESET_SEND_FAILURE": "No account associated with {{email}}.",
-      "RESET_SEND_SUCCESS": "{{email}} has been sent a password reset. Please check your inbox.",
+      "RESET_SEND_SUCCESS":
+        "{{email}} has been sent a password reset. Please check your inbox.",
       "RESET_TOKEN_FAILURE": "Password reset token is invalid or has expired."
     },
     "button": "Reset Password"
@@ -315,7 +324,8 @@
   "Sales in ": "Sales in ",
   "School": "Escuela",
   "School By Enrollment": "Escuela según matrícula",
-  "Search a location, industry, product, career, etc": "Busque lugares, industrias, productos…",
+  "Search a location, industry, product, career, etc":
+    "Busque lugares, industrias, productos…",
   "Sector": "Sector",
   "See less": "Ver menos",
   "See more": "Ver más",
@@ -327,10 +337,13 @@
     "Facebook": "Facebook",
     "Instagram": "Instagram",
     "Password": "Password",
-    "PrivacyTermsText": "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a> and <a href='{{privacy}}'>Privacy Policy</a>",
-    "PrivacyText": "By checking this box, you agree to our <a href='{{privacy}}'>Privacy Policy</a>",
+    "PrivacyTermsText":
+      "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a> and <a href='{{privacy}}'>Privacy Policy</a>",
+    "PrivacyText":
+      "By checking this box, you agree to our <a href='{{privacy}}'>Privacy Policy</a>",
     "Sign Up": "Sign Up",
-    "TermsText": "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a>",
+    "TermsText":
+      "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a>",
     "Twitter": "Twitter",
     "Username": "Username",
     "error": {
@@ -352,7 +365,8 @@
   "Summary": "Sumario",
   "Supported by": "Apoyado por",
   "Tablet": "Tablet",
-  "The most comprehensive effort to integrate and visualize Chile’s Public Data": "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
+  "The most comprehensive effort to integrate and visualize Chile’s Public Data":
+    "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
   "Top Schools By Performance": "Principales escuelas según rendimiento",
   "Top destination country": "Principal país de destino",
   "Top exporter region": "Principal región exportadora",
@@ -361,8 +375,10 @@
   "Total Enrollment": "Matrícula total",
   "Total Exports": "Total exportaciones",
   "Total Imports": "Total importaciones",
-  "Total R&D spending by Business Type": "Inversión total en I+D según tipo de empresa",
-  "Total R&D spending by Ownership Type": "Total R&D spending by Ownership Type",
+  "Total R&D spending by Business Type":
+    "Inversión total en I+D según tipo de empresa",
+  "Total R&D spending by Ownership Type":
+    "Total R&D spending by Ownership Type",
   "Total Students": "Cantidad de estudiantes",
   "Trade": "Comercio",
   "Trade Balance": "Balanza comercial",
@@ -383,11 +399,13 @@
     "ack": {
       "credits": {
         "subtitle": "Para citar DataChile por favor utilice:",
-        "text": "<p>Datawheel, 2017. https://datachile.io. Fecha de acceso [fecha de hoy].</p>",
+        "text":
+          "<p>Datawheel, 2017. https://datachile.io. Fecha de acceso [fecha de hoy].</p>",
         "title": "Citación"
       },
       "partners": {
-        "text": "<p>Este trabajo fue desarrollado por <a href='http://datawheel.us' target='_blank'>Datawheel</a> con el financiamiento de <a href='http://www.aminerals.cl/' target='_blank'>Antofagasta Minerals</a>, <a href='https://www.corfo.cl/' target='_blank'>Corporación de Fomento de la Producción</a>, <a href='http://www.economia.gob.cl/minecon' target='_blank'>Ministerio de Economía, Fomento y Turismo</a> y <a href='http://www.entel.cl/' target='_blank'>ENTEL</a>. Apoyaron además: <a href='https://www.direcon.gob.cl/' target='_blank'>Dirección General de Relaciones Económicas Internacionales</a> y <a href='https://www.asech.cl/' target='_blank'>Asociación de empremdedores de Chile</a>.</p>",
+        "text":
+          "<p>Este trabajo fue desarrollado por <a href='http://datawheel.us' target='_blank'>Datawheel</a> con el financiamiento de <a href='http://www.aminerals.cl/' target='_blank'>Antofagasta Minerals</a>, <a href='https://www.corfo.cl/' target='_blank'>Corporación de Fomento de la Producción</a>, <a href='http://www.economia.gob.cl/minecon' target='_blank'>Ministerio de Economía, Fomento y Turismo</a> y <a href='http://www.entel.cl/' target='_blank'>ENTEL</a>. Apoyaron además: <a href='https://www.direcon.gob.cl/' target='_blank'>Dirección General de Relaciones Económicas Internacionales</a> y <a href='https://www.asech.cl/' target='_blank'>Asociación de empremdedores de Chile</a>.</p>",
         "title": "Participantes"
       },
       "title": "Reconocimiento y créditos"
@@ -395,91 +413,116 @@
     "background": {
       "subtitle1": "¿En qué consiste este proyecto?",
       "subtitle2": "¿Qué soluciona o mejora DataChile?",
-      "text1": "<p>DataChile es un proyecto desarrollado por Datawheel con el objetivo de centralizar y mostrar parte importante de la información pública del país. Este proyecto reúne información económica, demográfica, educacional y de salud.</p><p>Presentamos una \"radiografía\" a las comunas y regiones del país para mostrar varias dimensiones que tienen impacto en el día a día de los ciudadanos en las distintas localidades del Chile.</p>",
-      "text2": "<p>Facilitamos el acceso a la información. A cualquier persona que consulte nuestro portal le garantizamos una economía de tiempo y esfuerzo. Todo el trabajo de reunir datos de distintas fuentes y hacer múltiples solicitudes de transparencia ya lo hicimos y dejamos los datos en tus manos.</p><p>Hicimos DataChile pensando en hacer un museo de datos y no una bodega de datos. La API de DataChile permite a todos los usuarios, con o sin conocimientos de programación, descargar los datos del portal o incluirlos en otra página fuera de DataChile en pocos clicks.</p>",
+      "text1":
+        "<p>DataChile es un proyecto desarrollado por Datawheel con el objetivo de centralizar y mostrar parte importante de la información pública del país. Este proyecto reúne información económica, demográfica, educacional y de salud.</p><p>Presentamos una \"radiografía\" a las comunas y regiones del país para mostrar varias dimensiones que tienen impacto en el día a día de los ciudadanos en las distintas localidades del Chile.</p>",
+      "text2":
+        "<p>Facilitamos el acceso a la información. A cualquier persona que consulte nuestro portal le garantizamos una economía de tiempo y esfuerzo. Todo el trabajo de reunir datos de distintas fuentes y hacer múltiples solicitudes de transparencia ya lo hicimos y dejamos los datos en tus manos.</p><p>Hicimos DataChile pensando en hacer un museo de datos y no una bodega de datos. La API de DataChile permite a todos los usuarios, con o sin conocimientos de programación, descargar los datos del portal o incluirlos en otra página fuera de DataChile en pocos clicks.</p>",
       "title": "Datachile"
     },
     "data": {
       "casen": {
         "source": "Ministerio de Desarrollo Social (MDS)",
-        "text": "<p>Datos levantados por el Ministerio de Desarrollo Social (MDS). La Encuesta Casen tiene por objetivo entregar una “ radiografía” de la  situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para la medición de la pobreza y desigualdad y ha sido ampliamente utilizada por Organismos Internacionales y ONGs.</p><p>Los resultados de la Encuesta Casen 2015 incluyen la medición de pobreza por ingresos y multidimensional, destacando la incorporación un conjunto de indicadores que permiten medir carencias que afectan a los hogares en relación al entorno en el que habitan. La medición de pobreza multidimensional considera 5 dimensiones relevantes para el bienestar de los hogares y sus integrantes: Educación; Salud; Trabajo y Seguridad Social; Vivienda y Entorno; Redes y Cohesión Social.</p>",
+        "text":
+          "<p>Datos levantados por el Ministerio de Desarrollo Social (MDS). La Encuesta Casen tiene por objetivo entregar una “ radiografía” de la  situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para la medición de la pobreza y desigualdad y ha sido ampliamente utilizada por Organismos Internacionales y ONGs.</p><p>Los resultados de la Encuesta Casen 2015 incluyen la medición de pobreza por ingresos y multidimensional, destacando la incorporación un conjunto de indicadores que permiten medir carencias que afectan a los hogares en relación al entorno en el que habitan. La medición de pobreza multidimensional considera 5 dimensiones relevantes para el bienestar de los hogares y sus integrantes: Educación; Salud; Trabajo y Seguridad Social; Vivienda y Entorno; Redes y Cohesión Social.</p>",
         "title": "CASEN (1990-2015)",
-        "use": "Se usa en los perfiles país, región y comuna en las dimensiones de economía, vivienda y entorno y salud"
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía, vivienda y entorno y salud"
       },
       "dataset": "Fuente de datos",
       "discapacidad": {
         "source": "Servicio Nacional de Discapacidad (SENADIS)",
-        "text": "<p>Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.</p>",
+        "text":
+          "<p>Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.</p>",
         "title": "Encuesta Nacional de Discapacidad (2016)",
-        "use": "Se usa en los perfiles país, región y comuna en las dimensiones de salud."
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de salud."
       },
       "empleabilidad": {
         "source": "Ministerio de Educación (MINEDUC)",
-        "text": "<p>Datos generados por el Ministerio de Educación (MINEDUC). Se obtiene combinando los datos que entregan las instituciones de Educación Superior con los datos de la Subdirección de Estudios del SII sobre la base de las declaraciones de impuestos de los contribuyentes.</p>",
+        "text":
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Se obtiene combinando los datos que entregan las instituciones de Educación Superior con los datos de la Subdirección de Estudios del SII sobre la base de las declaraciones de impuestos de los contribuyentes.</p>",
         "title": "Empleabilidad e Ingresos (2014-2015)",
         "use": "Se usa en el perfil de carreras."
       },
       "gasto": {
         "source": "Ministerio de Economía (MINECON)",
-        "text": "<p>Datos levantados por el Ministerio de Economía (MINECON) y entregados por el Servicio de Impuestos Internos (SII). Esta encuesta busca recoger información de los recursos financieros y cantidad de personal, destinados a actividades de investigación y desarrollo, durante los años de medición, en el sector Empresas, en el Estado, en la Educación Superior (universidades) y en las Instituciones Privadas sin Fines de Lucro (IPSFL).</p>",
+        "text":
+          "<p>Datos levantados por el Ministerio de Economía (MINECON) y entregados por el Servicio de Impuestos Internos (SII). Esta encuesta busca recoger información de los recursos financieros y cantidad de personal, destinados a actividades de investigación y desarrollo, durante los años de medición, en el sector Empresas, en el Estado, en la Educación Superior (universidades) y en las Instituciones Privadas sin Fines de Lucro (IPSFL).</p>",
         "title": "Encuesta Sobre Gasto y Personal en I+D",
         "use": "Se usa en el perfil industrias."
       },
       "matricula": {
         "source": "Ministerio de Educación (MINEDUC)",
-        "text": "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
+        "text":
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
         "title": "Matrícula y rendimiento escolar (2004-2015)",
-        "use": "Se usa en los perfiles país, región y comuna en la dimensión de educación."
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de educación."
       },
       "migracion": {
         "source": "Departamento de Extranjería y Migración",
-        "text": "<p>Datos generados por el Departamento de Extranjería y Migración, que es la entidad encargada de otorgar permisos de residencia a población extranjera en el país. Este registro corresponde a la población migrante en situación regular.</p><p>Las información de visas otorgadas muestran los permisos migratorios otorgados y no da cuenta del stock de migrantes, sino solo de tendencias. No es un registro exhaustivo, pues por su naturaleza no puede incluir población migrante en situación irregular y se debe considerar que una persona puede obtener más de un permiso migratorio durante su estadía en nuestro país. Por ejemplo, a lo largo de tres años a una misma persona se le podría haber otorgado tres visas o dos visas y una permanencia definitiva. En este caso, el registro indicará las tres visas o las dos visas y la permanencia definitiva, sin considerar que se trata solo de una persona.</p>",
+        "text":
+          "<p>Datos generados por el Departamento de Extranjería y Migración, que es la entidad encargada de otorgar permisos de residencia a población extranjera en el país. Este registro corresponde a la población migrante en situación regular.</p><p>Las información de visas otorgadas muestran los permisos migratorios otorgados y no da cuenta del stock de migrantes, sino solo de tendencias. No es un registro exhaustivo, pues por su naturaleza no puede incluir población migrante en situación irregular y se debe considerar que una persona puede obtener más de un permiso migratorio durante su estadía en nuestro país. Por ejemplo, a lo largo de tres años a una misma persona se le podría haber otorgado tres visas o dos visas y una permanencia definitiva. En este caso, el registro indicará las tres visas o las dos visas y la permanencia definitiva, sin considerar que se trata solo de una persona.</p>",
         "title": "Estadísticas Migratorias (2005 - 2016)",
-        "use": "Se usa en los perfiles país, región y comuna en la dimensión de demografía."
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de demografía."
       },
       "nene": {
         "source": "Instituto Nacional de Estadísticas (INE)",
-        "text": "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Nueva Encuesta Nacional de Empleo (NENE) se realiza mensualmente y clasifica a la población en edad de trabajar (PET), todas las personas de 15 años y más, según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT), en las que se basa el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
+        "text":
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Nueva Encuesta Nacional de Empleo (NENE) se realiza mensualmente y clasifica a la población en edad de trabajar (PET), todas las personas de 15 años y más, según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT), en las que se basa el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
         "title": "NENE (2010-2016)",
-        "use": "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de empleo."
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de empleo."
       },
       "nesi": {
         "source": "Instituto Nacional de Estadísticas (INE)",
-        "text": "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Encuesta Suplementaria de Ingresos (ESI) es un módulo complementario de la Encuesta Nacional de Empleo (ENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la ENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.</p><p>La encuesta comprende una batería de preguntas estrechamente asociada al formulario habitual de la encuesta de empleo, por lo que constituye una fuente de información complementaria de la caracterización de la población ocupada. Es la única encuesta que levanta información de ingresos de las personas en Chile con regularidad anual y con representatividad para todas las regiones.</p>",
+        "text":
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Encuesta Suplementaria de Ingresos (ESI) es un módulo complementario de la Encuesta Nacional de Empleo (ENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la ENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.</p><p>La encuesta comprende una batería de preguntas estrechamente asociada al formulario habitual de la encuesta de empleo, por lo que constituye una fuente de información complementaria de la caracterización de la población ocupada. Es la única encuesta que levanta información de ingresos de las personas en Chile con regularidad anual y con representatividad para todas las regiones.</p>",
         "title": "NESI (2010-2016)",
-        "use": "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de ingresos."
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de ingresos."
       },
       "psu": {
         "source": "Ministerio de Educación (MINEDUC)",
-        "text": "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
+        "text":
+          "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
         "title": "PSU (2004-2016)",
-        "use": "Se usa en los perfiles país, región y comuna en la dimensión de educación."
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de educación."
       },
       "salud": {
         "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
-        "text": "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
         "title": "Indicadores de acceso a la salud (2014)",
-        "use": "Se usa en los perfiles país, región y comuna en las dimensiones de salud."
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de salud."
       },
       "source": "Organismo responsable",
-      "text": "Las fuentes de datos integradas en Datachile son las siguientes:",
+      "text":
+        "Las fuentes de datos integradas en Datachile son las siguientes:",
       "title": "Datos",
       "vida": {
         "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
-        "text": "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
         "title": "Esperanza de vida (2010-2014)",
-        "use": "Se usa en los perfiles país, región y comuna en la dimensión de salud."
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de salud."
       }
     },
     "team": {
       "dw": {
-        "text": "<p><a href='http://datawheel.us' target='_blank'>Datawheel</a> es un equipo pequeño pero poderoso de programadores y diseñadores apasionados por elaborar datos en herramientas predictivas, de toma de decisiones y narración de historias. Cada plataforma de visualización construida por Datawheel es una solución a medida que combina las necesidades de los usuarios y los datos que la respaldan.</p>",
+        "text":
+          "<p><a href='http://datawheel.us' target='_blank'>Datawheel</a> es un equipo pequeño pero poderoso de programadores y diseñadores apasionados por elaborar datos en herramientas predictivas, de toma de decisiones y narración de historias. Cada plataforma de visualización construida por Datawheel es una solución a medida que combina las necesidades de los usuarios y los datos que la respaldan.</p>",
         "title": "Datawheel"
       },
       "title": "Equipo"
     },
     "terms": {
-      "text": "<p>La información en este sitio se proporciona 'tal como está' y 'según esté disponible'. DataChile hace todo lo posible para garantizar, pero no garantiza, la exactitud o integridad de la información en el sitio web de DataChile. Nuestro objetivo es mantener esta información oportuna y precisa. Si los errores son traídos a nuestra atención, trataremos de corregirlos. DataChile puede agregar, cambiar, mejorar o actualizar la información del sitio web sin previo aviso.</p><p>DataChile se reserva el derecho exclusivo a su entera discreción de alterar, limitar o descontinuar parte de este sitio. Bajo ninguna circunstancia DataChile será responsable de ninguna pérdida, daño, responsabilidad o gasto sufrido que se alegue como resultado del uso de este sitio, incluyendo, sin limitación, cualquier falla, error, omisión, interrupción o retraso. El uso de este sitio es bajo el exclusivo riesgo del usuario. Hacemos todo lo posible para minimizar las interrupciones causadas por errores técnicos. Sin embargo, algunos datos o información en el sitio web de DataChile pueden haber sido creados o estructurados en archivos o formatos que no están libres de errores y no podemos garantizar que nuestro servicio no se vea interrumpido o afectado por tales problemas. DataChile no acepta ninguna responsabilidad con respecto a tales problemas (fallas de funcionamiento, virus informáticos, fallas en la línea de comunicación, alteración del contenido, etc.) incurridos como resultado del uso del sitio web de DataChile o cualquier enlace a sitios externos.</p><p>El Usuario reconoce y acepta específicamente que DataChile no es responsable de ninguna conducta de ningún otro Usuario, incluidos, entre otros, los tipos de conducta enumerados anteriormente.</p><p>DataChile se reserva el derecho de denegar a su exclusivo criterio el acceso de cualquier Usuario al sitio web de DataChile o cualquier parte del mismo sin previo aviso.</p><p>Para fines de seguridad del sitio y para asegurar que el sitio web de DataChile permanezca disponible para todos los usuarios, emplea programas de software para monitorear el tráfico de red para identificar intentos no autorizados de cargar o cambiar información o causar daños y detectar otras posibles violaciones de seguridad.</p>",
+      "text":
+        "<p>La información en este sitio se proporciona 'tal como está' y 'según esté disponible'. DataChile hace todo lo posible para garantizar, pero no garantiza, la exactitud o integridad de la información en el sitio web de DataChile. Nuestro objetivo es mantener esta información oportuna y precisa. Si los errores son traídos a nuestra atención, trataremos de corregirlos. DataChile puede agregar, cambiar, mejorar o actualizar la información del sitio web sin previo aviso.</p><p>DataChile se reserva el derecho exclusivo a su entera discreción de alterar, limitar o descontinuar parte de este sitio. Bajo ninguna circunstancia DataChile será responsable de ninguna pérdida, daño, responsabilidad o gasto sufrido que se alegue como resultado del uso de este sitio, incluyendo, sin limitación, cualquier falla, error, omisión, interrupción o retraso. El uso de este sitio es bajo el exclusivo riesgo del usuario. Hacemos todo lo posible para minimizar las interrupciones causadas por errores técnicos. Sin embargo, algunos datos o información en el sitio web de DataChile pueden haber sido creados o estructurados en archivos o formatos que no están libres de errores y no podemos garantizar que nuestro servicio no se vea interrumpido o afectado por tales problemas. DataChile no acepta ninguna responsabilidad con respecto a tales problemas (fallas de funcionamiento, virus informáticos, fallas en la línea de comunicación, alteración del contenido, etc.) incurridos como resultado del uso del sitio web de DataChile o cualquier enlace a sitios externos.</p><p>El Usuario reconoce y acepta específicamente que DataChile no es responsable de ninguna conducta de ningún otro Usuario, incluidos, entre otros, los tipos de conducta enumerados anteriormente.</p><p>DataChile se reserva el derecho de denegar a su exclusivo criterio el acceso de cualquier Usuario al sitio web de DataChile o cualquier parte del mismo sin previo aviso.</p><p>Para fines de seguridad del sitio y para asegurar que el sitio web de DataChile permanezca disponible para todos los usuarios, emplea programas de software para monitorear el tráfico de red para identificar intentos no autorizados de cargar o cambiar información o causar daños y detectar otras posibles violaciones de seguridad.</p>",
       "title": "Términos de uso"
     }
   },
@@ -490,57 +533,80 @@
     "about1": "country_profile.about1",
     "about2": "country_profile.about2",
     "intltrade_balance_slide": {
-      "text": "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones hacia {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
+      "text":
+        "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones hacia {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
     },
     "intltrade_origin_dest_slide": {
-      "export": "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+      "export":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
       "export_": "",
-      "export_12": "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
-      "export_21": "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y desde la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
-      "export_3": "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde {{origin.first_region}}, donde destacan las comunas de {{origin.first_municipality}}, {{origin.second_municipality}} y {{origin.third_municipality}}.</p>",
-      "import": "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}}, en {{destination.second_region}}, y {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "export_12":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
+      "export_21":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y desde la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+      "export_3":
+        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde {{origin.first_region}}, donde destacan las comunas de {{origin.first_municipality}}, {{origin.second_municipality}} y {{origin.third_municipality}}.</p>",
+      "import":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}}, en {{destination.second_region}}, y {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
       "import_": "",
-      "import_12": "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
-      "import_21": "<p>La mayor parte de las importaciones desde {{level}} al país llegan a las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
-      "import_3": "<p>La mayor parte de las importaciones desde {{level}} al país llegan a {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>"
+      "import_12":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
+      "import_21":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "import_3":
+        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>"
     },
     "intltrade_slide": {
-      "text": "<p>El principal producto que Chile importa desde {{level}} es {{main_import.name}}. Para el año {{year_latest}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, y un {{main_import.global_percent}} de las importaciones totales de {{main_import.name}} hacia Chile.</p><p>Por otro lado, Chile exporta hacia {{level}} principalmente {{main_export.name}}. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, y un {{main_export.global_percent}} de las exportaciones de {{main_export.name}} desde Chile durante {{year_latest}}.</p>"
+      "text":
+        "<p>El principal producto que Chile importa desde {{level}} es {{main_import.name}}. Para el año {{year_latest}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, y un {{main_import.global_percent}} de las importaciones totales de {{main_import.name}} hacia Chile.</p><p>Por otro lado, Chile exporta hacia {{level}} principalmente {{main_export.name}}. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, y un {{main_export.global_percent}} de las exportaciones de {{main_export.name}} desde Chile durante {{year_latest}}.</p>"
     },
     "migration_activity_slide": {
-      "text": "<p>Según los registros, la mayoría de los inmigrantes provenientes desde {{level}} vienen con una Visa {{visa_type.first}} o una Visa {{visa_type.second}}. Estos representan un {{visa_type.percent}} del total de inmigrantes.</p><p>Para el {{year_last}}, el {{first_occupation.percent}} de los inmigrantes desde {{level}} declara que trabaja como {{first_occupation.name}}. Esto representa un crecimiento del {{first_occupation.growth}} con respecto al año {{year_prev}}. Por otro lado, el {{activity.unoccupied_percent}} declara no trabajar en alguna actividad, y el {{activity.unknown_percent}} no declara una actividad formal.</p>"
+      "text":
+        "<p>Según los registros, la mayoría de los inmigrantes provenientes desde {{level}} vienen con una Visa {{visa_type.first}} o una Visa {{visa_type.second}}. Estos representan un {{visa_type.percent}} del total de inmigrantes.</p><p>Para el {{year_last}}, el {{first_occupation.percent}} de los inmigrantes desde {{level}} declara que trabaja como {{first_occupation.name}}. Esto representa un crecimiento del {{first_occupation.growth}} con respecto al año {{year_prev}}. Por otro lado, el {{activity.unoccupied_percent}} declara no trabajar en alguna actividad, y el {{activity.unknown_percent}} no declara una actividad formal.</p>"
     },
     "migration_details_slide": {
-      "tendency_change": ", lo cual ha sido la tendencia desde el año {{year_first}}, donde la mayoría era de sexo {{sex.before}}",
-      "tendency_stay": ", lo cual es una tendencia desde el año {{year_first}}, con un crecimiento de un {{sex.growth}}",
-      "text": "<p>De los inmigrantes que llegan desde {{level}}, la mayoría son de sexo {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{agerange.first}}, seguidos de gente en el rango {{agerange.second}}. Los primeros representan un {{agerange.first_percent}} del total en {{year_latest}}, lo cual se traduce en un crecimiento de {{agerange.first_growth}} respecto al año {{year_previous}}.</p>"
+      "tendency_change":
+        ", lo cual ha sido la tendencia desde el año {{year_first}}, donde la mayoría era de sexo {{sex.before}}",
+      "tendency_stay":
+        ", lo cual es una tendencia desde el año {{year_first}}, con un crecimiento de un {{sex.growth}}",
+      "text":
+        "<p>De los inmigrantes que llegan desde {{level}}, la mayoría son de sexo {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{agerange.first}}, seguidos de gente en el rango {{agerange.second}}. Los primeros representan un {{agerange.first_percent}} del total en {{year_latest}}, lo cual se traduce en un crecimiento de {{agerange.first_growth}} respecto al año {{year_previous}}.</p>"
     },
     "migration_education_slide": {
-      "text": "<p>De los inmigrantes provenientes desde {{level}}, el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{college.percent}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento respecto al año anterior de {{high.growth}} para inmigrantes con estudios completos, y un {{college.growth}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no la declara en absoluto.</p>"
+      "text":
+        "<p>De los inmigrantes provenientes desde {{level}}, el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{college.percent}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento respecto al año anterior de {{high.growth}} para inmigrantes con estudios completos, y un {{college.growth}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no la declara en absoluto.</p>"
     },
     "migration_slide": {
-      "text": "<p>Para el {{year_latest}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, principalmente en la comuna de {{destination.municipality}}.</p><p>Los inmigrantes de {{level}} en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al {{year_previous}}, el crecimiento en visas de inmigración de gente establecida en {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
+      "text":
+        "<p>Para el {{year_latest}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, principalmente en la comuna de {{destination.municipality}}.</p><p>Los inmigrantes de {{level}} en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al {{year_previous}}, el crecimiento en visas de inmigración de gente establecida en {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
     }
   },
   "decreased": "decrecido",
   "disabilities": "discapacidades",
   "geo_profile": {
     "health": {
-      "access": "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+      "access":
+        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
       "death_causes": "",
       "disability": "",
       "fonasa": {
-        "copago": "Sin embargo, la utilidad concreta de esta distribución de la población beneficiaria pasa por el copago que éstos hacen en retribución a las atenciones médicas otorgadas con nuestra cobertura. Copago es el concepto para referirse a un pago por servicios compartido entre el beneficiario y el seguro, donde FONASA financia o bonifica una parte (porcentaje) del costo de una atención de salud cualquiera, y el beneficiario aporta de su bolsillo la parte que no financiamos/bonificamos.",
-        "text": "* Cuando un nuevo beneficiario se incorpora al Seguro Público de Salud, la primera tarea de FONASA es colocarlo en uno de sus 4 tramos de ingreso. Esta clasificación, de tipo escala, permite levantar caracterizaciones socioeconómicas de la población beneficiaria, y están definidos de la siguiente manera:",
-        "tramos": "<ul><li><strong>Grupo A</strong>: Beneficiarios carentes de recursos para cotizar en salud, o en condición de indigencia (no cotizantes).</li><li><strong>Grupo B</strong>: Beneficiarios con ingresos menores a $270.000 al mes (cotizantes). Trabajadores del sector público de salud.</li><li><strong>Grupo C</strong>: Beneficiarios con ingresos de entre $270.000 y $394.200 al mes (cotizantes)</li><li><strong>Grupo D</strong>: Beneficiarios con ingresos de $394.200 y más al mes (cotizantes)</li></ul>"
+        "copago":
+          "Sin embargo, la utilidad concreta de esta distribución de la población beneficiaria pasa por el copago que éstos hacen en retribución a las atenciones médicas otorgadas con nuestra cobertura. Copago es el concepto para referirse a un pago por servicios compartido entre el beneficiario y el seguro, donde FONASA financia o bonifica una parte (porcentaje) del costo de una atención de salud cualquiera, y el beneficiario aporta de su bolsillo la parte que no financiamos/bonificamos.",
+        "text":
+          "* Cuando un nuevo beneficiario se incorpora al Seguro Público de Salud, la primera tarea de FONASA es colocarlo en uno de sus 4 tramos de ingreso. Esta clasificación, de tipo escala, permite levantar caracterizaciones socioeconómicas de la población beneficiaria, y están definidos de la siguiente manera:",
+        "tramos":
+          "<ul><li><strong>Grupo A</strong>: Beneficiarios carentes de recursos para cotizar en salud, o en condición de indigencia (no cotizantes).</li><li><strong>Grupo B</strong>: Beneficiarios con ingresos menores a $270.000 al mes (cotizantes). Trabajadores del sector público de salud.</li><li><strong>Grupo C</strong>: Beneficiarios con ingresos de entre $270.000 y $394.200 al mes (cotizantes)</li><li><strong>Grupo D</strong>: Beneficiarios con ingresos de $394.200 y más al mes (cotizantes)</li></ul>"
       },
-      "healthcare": "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
+      "healthcare":
+        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
     },
     "income_sex_age_slide": {
-      "text": "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
+      "text":
+        "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
     },
     "trade_slide": {
-      "text": "En {{latest_year}} las firmas con domicilio fiscal en {{geo.caption}} exportaron <i>{{trade_volume}}</i>, llevando a {{geo.caption}} al {{rank}} puesto de los mayores exportadores de Chile. Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}. Los principales productos de exportación de {{geo.caption}} son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} del total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} del total)"
+      "text":
+        "En {{latest_year}} las firmas con domicilio fiscal en {{geo.caption}} exportaron <i>{{trade_volume}}</i>, llevando a {{geo.caption}} al {{rank}} puesto de los mayores exportadores de Chile. Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}. Los principales productos de exportación de {{geo.caption}} son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} del total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} del total)"
     }
   },
   "granted in": "granted in",
@@ -551,9 +617,12 @@
   "in ": "in ",
   "increased": "crecido",
   "industry_profile": {
-    "economy": "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.name}}, con {{}}, representando el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
-    "employment": "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.",
-    "r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>"
+    "economy":
+      "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.name}}, con {{}}, representando el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+    "employment":
+      "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.",
+    "r&d":
+      "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>"
   },
   "loading": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
@@ -561,14 +630,18 @@
     "title": "Por favor espere"
   },
   "no_datum": "No hay datos",
-  "no_info": "{{no}} no tiene información disponible para este tópico. Puede acceder a los datos a nivel regional en el perfil de <a href='{{link}}'>{{yes}}</a>.",
+  "no_info":
+    "{{no}} no tiene información disponible para este tópico. Puede acceder a los datos a nivel regional en el perfil de <a href='{{link}}'>{{yes}}</a>.",
   "of": "of",
   "of total": "del total",
   "people": "personas",
   "product_profile": {
-    "about1": "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
-    "about2": "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
-    "balance": "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
+    "about1":
+      "{{product.name}} son el {{total_exports.rank}} producto más exportado por Chile de un total de {{total_exports.total}} categorías. Representa al {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, representando el {{region.share}} del total.",
+    "about2":
+      "En {{year}}, las exportaciones de {{product.name}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.name}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
+    "balance":
+      "During the last {{year.number}} years the exports of {{product.name}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, the imports of {{product.name}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}."
   },
   "students": "students",
   "tooltip": {
@@ -578,6 +651,11 @@
     "cif": "Importaciones",
     "fob": "Exportaciones",
     "trade_balance": "Balanza comercial"
+  },
+  "not_found": {
+    "title": "Página no encontrada",
+    "oops": "Oops! No encontramos la página que estás buscando.",
+    "text": "Intenta navegar hacia otro perfil desde el buscador:"
   },
   "use device": "use device",
   "val": "val",
