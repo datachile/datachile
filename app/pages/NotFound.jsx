@@ -1,32 +1,43 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import { translate } from "react-i18next";
 import { CanonComponent } from "datawheel-canon";
+
 import Nav from "components/Nav";
+import Search from "components/Search";
 
 import "./NotFound.css";
 
-class Search extends Component {
+class NotFound extends Component {
   render() {
+    const { t } = this.props;
     return (
-      <CanonComponent id="not-found" data={this.props.data} topics={[]}>
-        <Nav />
-        <div className="about">
+      <CanonComponent data={this.props.data} topics={[]}>
+        <div className="profile not-found">
           <div className="intro">
+            <Nav
+              title={t("not_found.title")}
+              typeTitle={t("Home")}
+              type={false}
+              exploreLink={"/"}
+            />
             <div className="splash">
               <div className="image" />
               <div className="gradient" />
             </div>
             <div className="header">
-              <div className="meta">
-                <div className="title">Oops!</div>
+              <div className="text-container">
+                <h2>{t("not_found.oops")}</h2>
+                <p>{t("not_found.text")}</p>
+              </div>
+              <div className="search-container">
+                <Search />
               </div>
             </div>
           </div>
-          <h2>404 NOT FOUND</h2>
         </div>
       </CanonComponent>
     );
   }
 }
 
-export default connect(() => ({}), {})(Search);
+export default translate()(NotFound);
