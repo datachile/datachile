@@ -2,6 +2,8 @@ import { annualized_growth } from "helpers/calculator";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
+import sum from "lodash/sum";
+
 const first_year = sources.exports.min_year;
 const last_year = sources.exports.year;
 
@@ -17,14 +19,14 @@ function InternationalTradeBalance(product, exports, imports, t) {
   return {
     ...base,
     product,
-    exports: trade_balance_text(exports.data, t),
-    imports: trade_balance_text(imports.data, t),
+    exports: trade_balance_text(exports, t),
+    imports: trade_balance_text(imports, t),
     format:
-      exports.available && imports.available
+      sum(exports) > 0 && sum(imports) > 0
         ? "default"
-        : exports.available
+        : sum(exports) > 0
           ? "exports"
-          : imports.available ? "imports" : "neither"
+          : sum(imports) > 0 ? "imports" : "neither"
   };
 }
 
@@ -32,8 +34,22 @@ function IndexProductProfile(product, exports, imports, locale, t) {
   return {
     ...base,
     product,
-    exports: about_text(exports, "FOB US", "Country", t, locale),
-    imports: about_text(imports, "CIF US", "Country", t, locale),
+    exports: about_text(
+      exports,
+      "FOB US",
+      "Country",
+      base.year.last,
+      t,
+      locale
+    ),
+    imports: about_text(
+      imports,
+      "CIF US",
+      "Country",
+      base.year.last,
+      t,
+      locale
+    ),
     format:
       exports.available && imports.available
         ? "default"
@@ -47,6 +63,7 @@ function about_text(
   aggregation,
   msrName,
   territoryKey,
+  last_year,
   t,
   locale = "en",
   format = "($ 0.00 a)"
@@ -59,9 +76,11 @@ function about_text(
     const total = aggregation.reduce((all, item) => {
       return all + item[msrName];
     }, 0);
+
     return {
       available: true,
       total: numeral(total, locale).format(format),
+      n_countries: aggregation.length > 3 ? 3 : aggregation.length,
       territory: {
         first: aggregation[0] ? aggregation[0][territoryKey] : "",
         second: aggregation[1] ? aggregation[1][territoryKey] : "",
@@ -110,11 +129,11 @@ function trade_balance_text(
     };
   } else {
     return {
-      growth_rate: "No data",
-      increased_or_decreased: "No data",
+      growth_rate: t("No data"),
+      increased_or_decreased: t("No data"),
       value: {
-        first: "No data",
-        last: "No data"
+        first: t("No data"),
+        last: t("No data")
       }
     };
   }

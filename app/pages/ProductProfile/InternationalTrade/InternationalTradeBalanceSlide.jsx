@@ -4,6 +4,7 @@ import { Section } from "datawheel-canon";
 
 import { sources } from "helpers/consts";
 import { simpleDatumNeed } from "helpers/MondrianClient";
+import { joinDataByYear } from "helpers/dataUtils";
 
 import { numeral } from "helpers/formatters";
 
@@ -19,7 +20,8 @@ class InternationalTradeBalanceSlide extends Section {
         "exports",
         ["FOB US"],
         { drillDowns: [["Date", "Date", "Year"]], options: { parents: true } },
-        "product.export"
+        "product.export",
+        false
       )(params, store),
     (params, store) =>
       simpleDatumNeed(
@@ -27,13 +29,14 @@ class InternationalTradeBalanceSlide extends Section {
         "imports",
         ["CIF US"],
         { drillDowns: [["Date", "Date", "Year"]], options: { parents: true } },
-        "product.import"
+        "product.import",
+        false
       )(params, store)
   ];
 
   render() {
     const { t, children, i18n } = this.props;
-    const {
+    let {
       datum_exports_by_year,
       datum_imports_by_year,
       total_exports_chile,
@@ -41,6 +44,19 @@ class InternationalTradeBalanceSlide extends Section {
       product
     } = this.context.data;
     const locale = i18n.locale;
+
+    datum_exports_by_year = joinDataByYear(
+      datum_exports_by_year,
+      "FOB US",
+      sources.exports.min_year,
+      sources.exports.year
+    );
+    datum_imports_by_year = joinDataByYear(
+      datum_imports_by_year,
+      "CIF US",
+      sources.exports.min_year,
+      sources.exports.year
+    );
 
     const text_product = InternationalTradeBalance(
       product,

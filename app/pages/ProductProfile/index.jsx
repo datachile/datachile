@@ -40,7 +40,6 @@ import GeoTradeSlide from "./GeoTrade/GeoTradeSlide";
 import ExportsByRegion from "./GeoTrade/charts/ExportsByRegion";
 import ImportsByRegion from "./GeoTrade/charts/ImportsByRegion";
 
-import { info_from_data } from "helpers/aggregations";
 import { sources } from "helpers/consts";
 
 import { IndexProductProfile } from "texts/ProductProfile";
@@ -112,7 +111,7 @@ class ProductProfile extends Component {
             store.i18n.locale
           );
 
-          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          q.cut(`[Date].[Year].&[${sources.exports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -152,7 +151,7 @@ class ProductProfile extends Component {
             store.i18n.locale
           );
 
-          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          q.cut(`[Date].[Year].&[${sources.exports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -165,7 +164,7 @@ class ProductProfile extends Component {
               name: top_region ? top_region["Region"] : "",
               value: top_region ? top_region["FOB US"] : "",
               source: "Source Lorem",
-              year: store.exports_year
+              year: sources.exports.year
             }
           };
         });
@@ -195,7 +194,7 @@ class ProductProfile extends Component {
             store.i18n.locale
           );
 
-          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          q.cut(`[Date].[Year].&[${sources.exports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -208,8 +207,8 @@ class ProductProfile extends Component {
               decile: total ? total["HS Rank Decile"] : "",
               rank: total ? total["HS Rank"] : "",
               total: total ? total["HS Rank Total"] : "",
-              year: store.exports_year,
-              source: "Source Lorem"
+              year: sources.exports.year,
+              source: sources.exports.title
             }
           };
         });
@@ -278,7 +277,7 @@ class ProductProfile extends Component {
         {
           drillDowns: [["Destination Country", "Country", "Country"]],
           options: { parents: true },
-          cut: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
+          cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
         },
         "product.export",
         false
@@ -292,37 +291,24 @@ class ProductProfile extends Component {
         {
           drillDowns: [["Origin Country", "Country", "Country"]],
           options: { parents: true },
-          cut: [`[Date].[Date].[Year].&[${sources.imports.year}]`]
+          cuts: [`[Date].[Date].[Year].&[${sources.imports.year}]`]
         },
         "product.import",
         false
       )(params, store),
 
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = cube.query
-            .option("parents", false)
-            .drilldown("Date", "Date", "Year")
-            .measure("FOB US")
-            .cut(`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`);
-
-          return mondrianClient.query(q);
-        })
-        .then(res => {
-          return {
-            key: "total_exports_chile",
-            data: flattenDeep(res.data.values)
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
+    (params, store) =>
+      simpleDatumNeed(
+        "total_exports_chile",
+        "exports",
+        ["FOB US"],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${sources.imports.year}]`]
+        },
+        "product.export"
+      )(params, store),
 
     InternationalTradeBalanceSlide,
     InternationalTradeSlide,
@@ -420,8 +406,6 @@ class ProductProfile extends Component {
       ).format("0.0 %");
     }
 
-    console.log(datum_exports_per_country)
-
     const topics = [
       {
         slug: "about",
@@ -436,6 +420,8 @@ class ProductProfile extends Component {
         title: t("Opportunities")
       }
     ];
+
+    console.log(text_product)
 
     return (
       <CanonComponent
@@ -562,7 +548,9 @@ class ProductProfile extends Component {
                     <p>
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: t("product_profile.about1", text_about)
+                          __html: total_exports_per_product.value
+                            ? t("product_profile.about1.default", text_about)
+                            : t("product_profile.about1.no_data", text_about)
                         }}
                       />
                     </p>
@@ -571,7 +559,14 @@ class ProductProfile extends Component {
                     <p>
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: t("product_profile.about2", text_product)
+                          __html: total_exports_per_product.value
+                            ? t(
+                                `product_profile.about2.exp_${
+                                  text_product.exports.n_countries
+                                }_imp_${text_product.imports.n_countries}`,
+                                text_product
+                              )
+                            : ""
                         }}
                       />
                     </p>
