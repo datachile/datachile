@@ -243,7 +243,7 @@ function getGeoMembersDimension(
   };
 }
 
-function simpleDatumNeed(
+function simpleGeoDatumNeed(
   key,
   cube,
   measures,
@@ -535,6 +535,116 @@ const getCountryCut = params => {
   return level2 ? `[Country].&[${level2}]` : `[Subregion].&[${level1}]`;
 };
 
+function simpleDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] },
+  profile,
+  byValues = true
+) {
+  return (params, store) => {
+    let obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+
+        var query = [];
+
+        // Add cuts in query
+        switch (profile) {
+          case "geo":
+            query = geoCut(obj, "Geography", q, store.i18n.locale);
+            break;
+          case "country":
+            query = levelCut(
+              obj,
+              "Origin Country",
+              "Country",
+              q,
+              "Subregion",
+              "Country",
+              store.i18n.locale,
+              false
+            );
+            break;
+          case "industry":
+            query = levelCut(
+              obj,
+              "ISICrev4",
+              "ISICrev4",
+              q,
+              "Level 1",
+              "Level 2",
+              store.i18n.locale
+            );
+            break;
+          case "product.export":
+            query = levelCut(
+              obj,
+              "Export HS",
+              "HS",
+              q,
+              "HS0",
+              "HS2",
+              store.i18n.locale
+            );
+            break;
+          case "product.import":
+            query = levelCut(
+              obj,
+              "Import HS",
+              "HS",
+              q,
+              "HS0",
+              "HS2",
+              store.i18n.locale
+            );
+            break;
+          case "no_cut":
+            query = setLangCaptions(q, store.i18n.locale);
+            break;
+        }
+
+        return byValues
+          ? client.query(query)
+          : client.query(query, "jsonrecords");
+      })
+      .then(res => {
+        if (
+          (res.data.values && res.data.values.length > 0) ||
+          (res.data.data && res.data.data.length > 0)
+        ) {
+          return {
+            key: key,
+            data: {
+              data: byValues
+                ? flattenDeep(res.data.values)
+                : flattenDeep(res.data.data),
+              available: true
+            }
+          };
+        } else {
+          return {
+            key: key,
+            data: { data: [], available: false }
+          };
+        }
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
+
 function simpleInstitutionDatumNeed(
   key,
   cube,
@@ -593,12 +703,13 @@ export {
   getCountryCut,
   simpleGeoChartNeed,
   simpleIndustryChartNeed,
-  simpleDatumNeed,
+  simpleGeoDatumNeed,
   simpleFallbackGeoDatumNeed,
   simpleAvailableGeoDatumNeed,
   simpleCountryDatumNeed,
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed,
-  getGeoMembersDimension
+  getGeoMembersDimension,
+  simpleDatumNeed
 };
 export default client;

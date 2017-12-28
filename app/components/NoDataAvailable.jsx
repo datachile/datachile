@@ -1,19 +1,21 @@
 import React, { Component } from "react";
+import { translate } from "react-i18next";
 
-export default class NoDataAvailable extends Component {
+import "./NoDataAvailable.css";
+
+class NoDataAvailable extends Component {
   render() {
-    let { text } = this.props;
-    if (text === null || text === "") text = "No Data Available";
+    const { t } = this.props;
     return (
       <div className="no-data-available" style={{ padding: "15px" }}>
-        <img
-          src={`https://via.placeholder.com/350x150?text=${text.replace(
-            / /g,
-            "+"
-          )}`}
-          style={{ width: "100%" }}
-        />
+        <img className="no-data-image" src={`/images/no-data/default.svg`} />
+        <p className="no-data-title">Oops!</p>
+        <p className="no-data-message">
+          {t("There are not data available for this chart")}
+        </p>
       </div>
     );
   }
 }
+
+export default translate()(NoDataAvailable);

@@ -4,7 +4,7 @@ import { Section } from "datawheel-canon";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
-import { simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleGeoDatumNeed } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -16,7 +16,7 @@ class EmploymentSlide extends Section {
       if (geo.type == "comuna") {
         geo = geo.ancestor;
       }
-      return simpleDatumNeed(
+      return simpleGeoDatumNeed(
         "datum_employment_occupied",
         "nene",
         ["Expansion factor"],
@@ -39,7 +39,7 @@ class EmploymentSlide extends Section {
       if (geo.type == "comuna") {
         geo = geo.ancestor;
       }
-      return simpleDatumNeed(
+      return simpleGeoDatumNeed(
         "datum_employment_unemployment",
         "nene",
         ["Expansion factor"],

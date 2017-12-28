@@ -6,16 +6,16 @@ import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import { simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleGeoDatumNeed } from "helpers/MondrianClient";
 
 class IndustrySlide extends Section {
   static need = [
-    simpleDatumNeed("datum_industry_output", "tax_data", ["Investment"], {
+    simpleGeoDatumNeed("datum_industry_output", "tax_data", ["Investment"], {
       drillDowns: [["Date", "Date", "Year"]],
       options: { parents: false },
       cuts: [`[Date].[Date].[Year].&[${sources.tax_data.year}]`]
     }),
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_industry_income_mean",
       "nesi_income",
       ["Median Income"],

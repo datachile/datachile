@@ -4,10 +4,9 @@ import { Section } from "datawheel-canon";
 
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
-import { calculateYearlyGrowth } from "helpers/dataUtils";
 import mondrianClient, {
   geoCut,
-  simpleDatumNeed
+  simpleGeoDatumNeed
 } from "helpers/MondrianClient";
 import { maxMinGrowthByYear } from "helpers/aggregations";
 import { getGeoObject } from "helpers/dataUtils";
@@ -16,11 +15,16 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 class IncomeSexAgeSlide extends Section {
   static need = [
-    simpleDatumNeed("datum_income_mean_sex", "nesi_income", ["Median Income"], {
-      drillDowns: [["Date", "Date", "Year"], ["Sex", "Sex", "Sex"]],
-      options: { parents: false },
-      cuts: [`[Date].[Date].[Year].&[${sources.nesi_income.year}]`]
-    }),
+    simpleGeoDatumNeed(
+      "datum_income_mean_sex",
+      "nesi_income",
+      ["Median Income"],
+      {
+        drillDowns: [["Date", "Date", "Year"], ["Sex", "Sex", "Sex"]],
+        options: { parents: false },
+        cuts: [`[Date].[Date].[Year].&[${sources.nesi_income.year}]`]
+      }
+    ),
     (params, store) => {
       const geo = getGeoObject(params);
       const cube = mondrianClient.cube("nesi_income");

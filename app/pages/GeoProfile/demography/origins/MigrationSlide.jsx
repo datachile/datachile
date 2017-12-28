@@ -6,12 +6,12 @@ import FeaturedDatum from "components/FeaturedDatum";
 import { sources } from "helpers/consts";
 import { calculateYearlyGrowth } from "helpers/dataUtils";
 
-import { simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleGeoDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 class MigrationSlide extends Section {
   static need = [
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_migration_origin_female",
       "immigration",
       ["Number of visas"],
@@ -24,7 +24,7 @@ class MigrationSlide extends Section {
         ]
       }
     ),
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_migration_origin",
       "immigration",
       ["Number of visas"],

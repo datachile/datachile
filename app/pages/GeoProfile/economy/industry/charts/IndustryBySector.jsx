@@ -61,11 +61,9 @@ class IndustryBySector extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
-                fill: d => industriesColorScale(d["ID Level 1"]),
-                backgroundImage: d =>
-                  "https://datausa.io/static/img/attrs/thing_apple.png"
+                width: 20,
+                height: 20,
+                fill: d => industriesColorScale(d["ID Level 1"])
               }
             },
             on: {

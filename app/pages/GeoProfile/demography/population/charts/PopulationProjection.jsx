@@ -3,7 +3,7 @@ import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { LinePlot } from "d3plus-react";
 
-import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleGeoChartNeed, simpleGeoDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
@@ -17,7 +17,7 @@ class PopulationProjection extends Section {
     };
   }
   static need = [
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_population_projection",
       "population_estimate",
       ["Population"],
