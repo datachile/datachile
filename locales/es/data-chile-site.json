@@ -712,13 +712,13 @@
   "no_datum": "No hay datos",
   "no_info":
     "{{no}} no tiene información disponible para este tópico. Puede acceder a los datos a nivel regional en el perfil de <a href='{{link}}'>{{yes}}</a>.",
-  "of": "of",
+  "of": "de",
   "of total": "del total",
   "people": "personas",
   "students": "students",
   "There are not data available for this chart": "Noy hay datos disponibles para este gráfico",
   "tooltip": {
-    "to_profile": "Click to see the full profile"
+    "to_profile": "Clic para ver el perfil completo"
   },
   "trade_balance": {
     "cif": "Importaciones",

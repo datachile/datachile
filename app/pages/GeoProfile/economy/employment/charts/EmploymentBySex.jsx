@@ -33,6 +33,7 @@ class EmploymentBySex extends Section {
             ],
             ["Sex", "Sex", "Sex"],
             ["Quaterly Reporting"]
+            /*["Date", "Date", "Month"]*/
           ]
         },
         geo
@@ -131,11 +132,16 @@ class EmploymentBySex extends Section {
               }
             },
             tooltipConfig: {
-              title: d => d["Month"],
-              body: d =>
-                numeral(d["value"], locale).format("(0.[0] a)") +
-                " " +
-                t("people")
+              title: d => d["variable"],
+              body: d => {
+                return d["Month"] instanceof Array
+                  ? ""
+                  : numeral(d["value"], locale).format("(0.[0] a)") +
+                      " " +
+                      t("people") +
+                      "<br/>" +
+                      d["Month"];
+              }
             }
           }}
           dataFormat={function(data) {

@@ -79,7 +79,8 @@ export default translate()(
               tooltipConfig: {
                 title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
                 body: d =>
-                  numeral(d["FOB US"], locale).format("(USD 0 a)") +
+                  "US" +
+                  numeral(d["FOB US"], locale).format("$ (USD 0 a)") +
                   "<br/><a>" +
                   t("tooltip.to_profile") +
                   "</a>"

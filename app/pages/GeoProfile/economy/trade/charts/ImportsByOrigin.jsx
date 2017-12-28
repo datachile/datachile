@@ -78,7 +78,9 @@ class ImportsByOrigin extends Section {
                   d["ID Country"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["CIF US"], locale).format("(USD 0 a)") + link;
+                return (
+                  "US" + numeral(d["CIF US"], locale).format("$ (0 a)") + link
+                );
               }
             },
             legendConfig: {

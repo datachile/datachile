@@ -15,17 +15,16 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 class IncomeSexAgeSlide extends Section {
   static need = [
-    (params, store) =>
-      simpleGeoDatumNeed(
-        "datum_income_mean_sex",
-        "nesi_income",
-        ["Median Income"],
-        {
-          drillDowns: [["Date", "Date", "Year"], ["Sex", "Sex", "Sex"]],
-          options: { parents: false },
-          cuts: [`[Date].[Date].[Year].&[${sources.nesi_income.year}]`]
-        }
-      )(params, store),
+    simpleGeoDatumNeed(
+      "datum_income_mean_sex",
+      "nesi_income",
+      ["Median Income"],
+      {
+        drillDowns: [["Date", "Date", "Year"], ["Sex", "Sex", "Sex"]],
+        options: { parents: false },
+        cuts: [`[Date].[Date].[Year].&[${sources.nesi_income.year}]`]
+      }
+    ),
     (params, store) => {
       const geo = getGeoObject(params);
       const cube = mondrianClient.cube("nesi_income");
@@ -96,7 +95,7 @@ class IncomeSexAgeSlide extends Section {
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="l-1-3"
+              className="l-1-2"
               icon="empleo"
               datum={numeral(datum_income_mean_sex[0], locale).format(
                 "($ 0 a)"
@@ -105,7 +104,7 @@ class IncomeSexAgeSlide extends Section {
               subtitle={t("in ") + geo.caption}
             />
             <FeaturedDatum
-              className="l-1-3"
+              className="l-1-2"
               icon="empleo"
               datum={numeral(datum_income_mean_sex[1], locale).format(
                 "($ 0 a)"
