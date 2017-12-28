@@ -3,8 +3,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { sources } from "helpers/consts";
-
-import { calculateYearlyGrowth } from "helpers/dataUtils";
+import { annualized_growth } from "helpers/calculator";
 
 import { simpleGeoDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
@@ -57,32 +56,50 @@ class HealthCareSlide extends Section {
     }
 
     const share_specialized_healthcare =
-      datum_health_access[0]["Specialized Healthcare SUM"] /
-      (datum_health_access[0]["Specialized Healthcare SUM"] +
-        datum_health_access[0]["Primary Healthcare SUM"]);
+      datum_health_access && datum_health_access.length > 0
+        ? datum_health_access[0]["Specialized Healthcare SUM"] /
+          (datum_health_access[0]["Specialized Healthcare SUM"] +
+            datum_health_access[0]["Primary Healthcare SUM"])
+        : t("No data");
 
-    const text_healthcare = {
-      geo,
-      year: {
-        first: 2010,
-        last: sources.health_access.year
-      },
-      healthcare: {
-        urgency: {
-          total: numeral(
-            datum_health_access[0]["Urgency Healthcare SUM"],
-            locale
-          ).format("0,0")
-        },
-        specialized: {
-          rate: numeral(
-            calculateYearlyGrowth(datum_health_access_specialized_per_year),
-            locale
-          ).format("0.0 %"),
-          share: numeral(share_specialized_healthcare, locale).format("0.0 %")
-        }
-      }
-    };
+    const text_healthcare =
+      datum_health_access && datum_health_access.length > 0
+        ? {
+            geo,
+            year: {
+              first: 2010,
+              last: sources.health_access.year
+            },
+            healthcare: {
+              urgency: {
+                total:
+                  datum_health_access.length > 0
+                    ? numeral(
+                        datum_health_access[0]["Urgency Healthcare SUM"],
+                        locale
+                      ).format("0,0")
+                    : t("No data")
+              },
+              specialized: {
+                rate:
+                  datum_health_access.length > 0
+                    ? numeral(
+                        annualized_growth(
+                          datum_health_access_specialized_per_year
+                        ),
+                        locale
+                      ).format("0.0 %")
+                    : t("No data"),
+                share:
+                  datum_health_access.length > 0
+                    ? numeral(share_specialized_healthcare, locale).format(
+                        "0.0 %"
+                      )
+                    : t("No data")
+              }
+            }
+          }
+        : {};
 
     return (
       <div className="topic-slide-block">
@@ -99,12 +116,16 @@ class HealthCareSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="health-dental"
-              datum={numeral(
-                datum_health_access[0][
-                  "Dental Discharges Per 100 inhabitants AVG"
-                ],
-                locale
-              ).format("0,0")}
+              datum={
+                datum_health_access.length > 0
+                  ? numeral(
+                      datum_health_access[0][
+                        "Dental Discharges Per 100 inhabitants AVG"
+                      ],
+                      locale
+                    ).format("0,0")
+                  : t("No data")
+              }
               title={t("Dental Discharges")}
               subtitle={t("Per 100 inhabitants in") + " " + geo.name}
             />
@@ -120,10 +141,14 @@ class HealthCareSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="health-urgency"
-              datum={numeral(
-                datum_health_access[0]["Urgency Healthcare AVG"],
-                locale
-              ).format("0,0")}
+              datum={
+                datum_health_access.length > 0
+                  ? numeral(
+                      datum_health_access[0]["Urgency Healthcare AVG"],
+                      locale
+                    ).format("0,0")
+                  : t("No data")
+              }
               title={t("Urgency Healthcare Average")}
               subtitle={t("in") + " " + geo.name}
             />
