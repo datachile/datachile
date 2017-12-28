@@ -13,6 +13,8 @@ import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
 import Search from "components/Search";
 import FeaturedBox from "components/FeaturedBox";
+import ComingSoon from "components/ComingSoon";
+
 import ResultsElement from "./results";
 
 import "./explore.css";
@@ -277,18 +279,6 @@ class Explore extends Component {
                       <span>{t("Countries")}</span>
                     </Link>
                   </li>
-                  <li className={type == "institutions" ? "selected" : ""}>
-                    <Link className="link" to="/explore/institutions">
-                      <img src="/images/icons/icon-institutions.svg" />
-                      <span>{t("Institutions")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "careers" ? "selected" : ""}>
-                    <Link className="link" to="/explore/careers">
-                      <img src="/images/icons/icon-careers.svg" />
-                      <span>{t("Careers")}</span>
-                    </Link>
-                  </li>
                   <li className={type == "products" ? "selected" : ""}>
                     <Link className="link" to="/explore/products">
                       <img src="/images/icons/icon-products.svg" />
@@ -299,6 +289,24 @@ class Explore extends Component {
                     <Link className="link" to="/explore/industries">
                       <img src="/images/icons/icon-industries.svg" />
                       <span>{t("Industries")}</span>
+                    </Link>
+                  </li>
+                  <li className={type == "careers" ? "selected" : ""}>
+                    <Link className="link link-soon" to="">
+                      <img src="/images/icons/icon-careers.svg" />
+                      <span>
+                        {t("Careers")}
+                        <ComingSoon />
+                      </span>
+                    </Link>
+                  </li>
+                  <li className={type == "institutions" ? "selected" : ""}>
+                    <Link className="link link-soon" to="">
+                      <img src="/images/icons/icon-institutions.svg" />
+                      <span>
+                        {t("Institutions")}
+                        <ComingSoon />
+                      </span>
                     </Link>
                   </li>
                 </ul>

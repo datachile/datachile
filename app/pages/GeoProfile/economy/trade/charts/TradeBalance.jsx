@@ -24,8 +24,8 @@ class TradeBalance extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_trade_balance;
-    // const locale = i18n.locale;
-    const locale = i18n.locale;
+    // const locale = i18n.language;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
@@ -52,6 +52,21 @@ class TradeBalance extends Section {
               Line: {
                 stroke: d => tradeBalanceColorScale(d["variable"]),
                 strokeWidth: 2
+              }
+            },
+            tooltipConfig: {
+              title: d => {
+                return d.variable;
+              },
+              body: d => {
+                var body = "";
+                if (!(d["ID Year"] instanceof Array)) {
+                  body =
+                    numeral(d.value, locale).format("(0.[0] a)") +
+                    " - " +
+                    d["ID Year"];
+                }
+                return body;
               }
             }
           }}

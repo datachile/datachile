@@ -10,6 +10,7 @@ import { melt, getLevelObject, replaceKeyNames } from "helpers/dataUtils";
 import { tradeBalanceColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class TradeBalance extends Section {
   static need = [
@@ -49,7 +50,7 @@ class TradeBalance extends Section {
   render() {
     const { t, className, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const path = this.context.data.path_trade_balance_country;
 
     return (
@@ -90,6 +91,7 @@ class TradeBalance extends Section {
             return melt(data.data, ["ID Year"], values(tKeys));
           }}
         />
+        <SourceNote cube="exports_and_imports" />
       </div>
     );
   }

@@ -100,6 +100,43 @@
     flex-direction: row;
     align-items: center;
     line-height: 24px;
+    & .search-nav-container {
+      width: 400px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      & .search-nav-wrapper {
+        transition: all 0.5s ease;
+      }
+      & a.search-toggle-nav {
+        height: 100%;
+        margin: 5px 15px;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+        & img {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      &.close {
+        & a.search-toggle-nav {
+        }
+        & .search-nav-wrapper {
+          width: 0px;
+          opacity: 0;
+        }
+      }
+      &.open {
+        transition-delay: 0.5s;
+        & .search-nav-wrapper {
+          width: 100%;
+          opacity: 1;
+        }
+        & a.search-toggle-nav {
+        }
+      }
+    }
   }
 
   & .nav-titles-action {
@@ -111,15 +148,10 @@
       padding: calc(var(--gutter)/2) var(--gutter);
       padding-right: 0;
     }
-
-    & .datachile {
-      color: var(--snow);
-      font-family: var(--font-family-title);
-      font-weight: 300;
-      font-size: 18px;
-      letter-spacing: 0.03px;
-      margin: 0 calc(var(--gutter)/2);
-    }
+  }
+  & .datachile {
+    margin: 5px calc(var(--gutter)/2) 0px calc(var(--gutter)/2);
+    width: 110px;
   }
 
   & .title {
@@ -128,6 +160,17 @@
     font-weight: 300;
     font-size: 18px;
     letter-spacing: 0.03px;
+    transition: all 0.5s ease;
+    margin: 5px 5px 0 5px;
+    cursor: pointer;
+    &.close {
+      max-width: 0px;
+      opacity: 0;
+    }
+    &.open {
+      max-width: 500px;
+      opacity: 1;
+    }
   }
 
   & .nav-menu {

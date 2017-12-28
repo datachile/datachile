@@ -48,7 +48,7 @@ class ExportsByDestination extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.product_exports_by_destination;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

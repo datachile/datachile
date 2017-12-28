@@ -10,6 +10,7 @@ import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ExportsByProduct extends Section {
   static need = [
@@ -48,7 +49,7 @@ class ExportsByProduct extends Section {
   render() {
     const { t, className, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const path = this.context.data.path_exports_by_product_country;
 
     return (
@@ -108,6 +109,7 @@ class ExportsByProduct extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="exports" />
       </div>
     );
   }

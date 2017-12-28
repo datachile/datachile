@@ -31,7 +31,7 @@ class SalariesByOccupation extends Section {
     const path = this.context.data.path_salaries_by_occupation;
     const { t, className, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
@@ -58,7 +58,7 @@ class SalariesByOccupation extends Section {
             },
             yConfig: {
               title: t("Median Income CLP"),
-              tickFormat: tick => numeral(tick, locale).format("(0.00 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
             },
             barPadding: 0,
             groupPadding: 10,

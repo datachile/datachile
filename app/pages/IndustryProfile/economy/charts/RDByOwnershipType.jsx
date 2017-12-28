@@ -49,7 +49,7 @@ class RDByOwnershipType extends Section {
     const path = this.context.data.industry_rd_by_ownership_type;
     const industry = this.context.data.industry;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

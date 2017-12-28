@@ -12,6 +12,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class MigrationByVisa extends Section {
   static need = [
@@ -50,7 +51,7 @@ class MigrationByVisa extends Section {
     const { t, className, i18n } = this.props;
 
     const path = this.context.data.path_country_migration_by_visa;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
@@ -102,6 +103,7 @@ class MigrationByVisa extends Section {
             return orderBy(filtered, ["Number of visas"], ["asc"]);
           }}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Treemap } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -27,12 +27,12 @@ class IndustryByOccupation extends Section {
   render() {
     const path = this.context.data.path_industry_occupation_income;
     const { t, className, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Most Common Occupations")}</span>
+          <span>{t("Occupations by workers")}</span>
           <ExportLink path={path} />
         </h3>
 
@@ -47,7 +47,9 @@ class IndustryByOccupation extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "(0.[0] a)"
+                ) +
                 " " +
                 t("people")
             },

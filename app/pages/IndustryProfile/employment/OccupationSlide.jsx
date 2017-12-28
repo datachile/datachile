@@ -61,7 +61,7 @@ class OccupationSlide extends Section {
     const industryName =
       industry.depth === 1 ? industry.name : industry.parent.name;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const rate = numeral(
       calculateYearlyGrowth(datum_industry_occupation_growth),

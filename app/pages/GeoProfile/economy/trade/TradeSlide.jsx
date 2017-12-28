@@ -39,22 +39,20 @@ class TradeSlide extends Section {
       )(params, store),
     (params, store) => {
       const geo = getGeoObject(params);
-      const cube = mondrianClient.cube("exports");
-      const prm = cube
+      const promise = mondrianClient
+        .cube("exports")
         .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Year")
-              .drilldown("Export HS", "HS2")
-              .measure("FOB US")
-              .measure("Geo Rank Across Time"),
-            store.i18n.locale
-          );
+          var q = cube.query
+            .option("parents", true)
+            .drilldown("Date", "Year")
+            .drilldown("Export HS", "HS2")
+            .measure("FOB US")
+            .measure("Geo Rank Across Time");
 
-          return mondrianClient.query(q, "jsonrecords");
+          return mondrianClient.query(
+            geoCut(geo, "Geography", q, store.i18n.locale),
+            "jsonrecords"
+          );
         })
         .then(res => {
           const result = trade_by_time_and_product(
@@ -69,10 +67,7 @@ class TradeSlide extends Section {
           };
         });
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
+      return { type: "GET_DATA", promise };
     }
   ];
 
@@ -80,12 +75,10 @@ class TradeSlide extends Section {
     const { children, t, TradeBalance } = this.props;
 
     const text_data = this.context.data.text_data_exports_by_product;
-    if (text_data) {
-      text_data.geo = this.context.data.geo;
-      text_data.increased_or_decreased = text_data.increased
-        ? t("increased")
-        : t("decreased");
-    }
+    text_data.geo = this.context.data.geo;
+    text_data.increased_or_decreased = text_data.increased
+      ? t("increased")
+      : t("decreased");
 
     const locale = this.props.i18n.locale;
 
@@ -107,15 +100,12 @@ class TradeSlide extends Section {
               className="l-1-3"
               icon="industria"
               datum={numeral(datum_trade_exports, locale).format("($ 0.00 a)")}
-              title={t("Exports") + " " + text_data.last_year}
-              subtitle={
-                <span>
-                  <span>
-                    {t("Imports") + ": "}
-                    {numeral(datum_trade_imports, locale).format("($ 0.00 a)")}
-                  </span>
-                </span>
-              }
+              title={t("Exports {{last_year}}", text_data)}
+              subtitle={t("Imports: {{imports}}", {
+                imports: numeral(datum_trade_imports, locale).format(
+                  "($ 0.00 a)"
+                )
+              })}
             />
             <TradeBalance className="l-2-3" />
           </div>
@@ -125,6 +115,12 @@ class TradeSlide extends Section {
       </div>
     );
   }
+}
+
+try {
+  window.debugComponent = TradeSlide.need;
+} catch (e) {
+  ("pass");
 }
 
 export default translate()(TradeSlide);

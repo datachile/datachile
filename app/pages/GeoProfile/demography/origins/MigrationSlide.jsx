@@ -46,7 +46,7 @@ class MigrationSlide extends Section {
       datum_migration_origin_female
     } = this.context.data;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className="topic-slide-block">

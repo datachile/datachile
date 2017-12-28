@@ -43,7 +43,7 @@ class InternationalTradeBalanceSlide extends Section {
       total_exports_per_product,
       product
     } = this.context.data;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     datum_exports_by_year = joinDataByYear(
       datum_exports_by_year,

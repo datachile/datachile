@@ -141,6 +141,19 @@ extrabold 800
   background-color: var(--color-industries) !important;
 }
 
+.color-gray {
+  color: var(--darker-gray);
+}
+.border-gray {
+  border-color: var(--darker-gray);
+}
+.fill-gray {
+  fill: var(--darker-gray) !important;
+}
+.background-gray {
+  background-color: var(--darker-gray) !important;
+}
+
 /*color-geo: "#4B71B5"
 color-countries: "#1ECBD8"
 color-institutions: "#7777ED"

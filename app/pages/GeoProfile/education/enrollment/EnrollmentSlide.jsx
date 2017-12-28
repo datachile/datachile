@@ -92,7 +92,7 @@ class EnrollmentSlide extends Section {
       datum_enrollment_education_country
     } = this.context.data;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className="topic-slide-block">

@@ -9,6 +9,7 @@ import { COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 export default translate()(
   class MigrationBySex extends Section {
@@ -48,7 +49,7 @@ export default translate()(
       const { t, className, i18n } = this.props;
 
       const path = this.context.data.path_country_migration_by_sex;
-      const locale = i18n.locale;
+      const locale = i18n.language;
 
       return (
         <div className={className}>
@@ -97,6 +98,7 @@ export default translate()(
             }}
             dataFormat={data => data.data}
           />
+          <SourceNote cube="immigration" />
         </div>
       );
     }

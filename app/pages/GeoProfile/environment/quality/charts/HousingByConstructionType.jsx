@@ -7,7 +7,7 @@ import { translate } from "react-i18next";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
@@ -73,7 +73,7 @@ class HousingByConstructionType extends Section {
 
     const { path_housing_construction_type_fallback } = this.context.data;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const geo = this.context.data.geo;
 
     var msrName = "Expansion Factor Comuna";
@@ -105,7 +105,10 @@ class HousingByConstructionType extends Section {
             total: d => d[msrName],
             totalConfig: {
               text: d =>
-                "Total: " + numeral(d.text.split(": ")[1], locale).format("0,0")
+                "Total: " +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0.[0] a"
+                )
             },
             tooltipConfig: {
               title: d => d["Walls Material"],
@@ -114,6 +117,7 @@ class HousingByConstructionType extends Section {
                   "houses"
                 )}`
             },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: false

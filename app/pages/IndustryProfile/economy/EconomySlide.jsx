@@ -53,7 +53,7 @@ class EconomySlide extends Section {
     const total = datum_industry_output_by_comuna.reduce((all, item) => {
       return all + item["Output"];
     }, 0);
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const text_economy = {
       territory: {

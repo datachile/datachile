@@ -9,7 +9,10 @@ class DatachileProgressBar extends Component {
 		const { value } = this.props;
 		return (
 			<div className="datachile-progress-bar">
-				<img className="logo" src="/images/logos/logo-dc-small.svg" />
+				<img
+					className="logo"
+					src="/images/logos/logo-dc-beta-small.svg"
+				/>
 				<ProgressBar value={value} />
 			</div>
 		);

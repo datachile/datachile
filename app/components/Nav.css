@@ -198,6 +198,11 @@
         opacity: 1;
       }
     }
+    & li.link.link-soon {
+      & a {
+        opacity: 0.3;
+      }
+    }
     & li.lang-selector {
       lost-column: 1 flex;
       & span {

@@ -5,7 +5,11 @@ import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral, slugifyItem } from "helpers/formatters";
+import {
+  numeral,
+  slugifyItem,
+  getNumberFromTotalString
+} from "helpers/formatters";
 import { productsColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
@@ -21,7 +25,7 @@ class ImportsByProduct extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const path = this.context.data.path_imports_by_product;
 
     return (
@@ -42,7 +46,9 @@ class ImportsByProduct extends Section {
             totalConfig: {
               text: d =>
                 "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
             },
             legendConfig: {
               label: false,

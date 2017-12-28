@@ -6,9 +6,10 @@ import { Treemap } from "d3plus-react";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class MigrationByEducation extends Section {
   static need = [
@@ -46,7 +47,7 @@ class MigrationByEducation extends Section {
   render() {
     const { t, className, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const path = this.context.data.path_country_migration_by_education;
 
@@ -71,17 +72,20 @@ class MigrationByEducation extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0,0"
+                ) +
                 " " +
                 t("visas")
             },
             tooltipConfig: {
               title: d => d["Education"],
               body: d =>
-                numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                numeral(d["Number of visas"], locale).format("0,0") +
                 " " +
                 t("visas")
             },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: false
@@ -89,6 +93,7 @@ class MigrationByEducation extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="immigration" />
       </div>
     );
   }

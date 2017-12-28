@@ -1,5 +1,5 @@
 .source-note {
-  padding: calc(var(--gutter)/2) var(--gutter);
+  padding: calc(var(--gutter)/2) calc(var(--gutter)/2);
   font-family: var(--font-family-text);
   font-size: 10px;
   & .source-note-txt {

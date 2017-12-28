@@ -5,9 +5,10 @@ import { BarChart } from "d3plus-react";
 
 import { COLORS_GENDER } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class PopulationPyramid extends Section {
   static need = [
@@ -28,8 +29,7 @@ class PopulationPyramid extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const path = this.context.data.path_population_projection;
     const age_range = [
@@ -72,20 +72,24 @@ class PopulationPyramid extends Section {
             shapeConfig: {
               fill: d => COLORS_GENDER[d["ID Sex"]]
             },
+            timeFilter: d => d.Year === "2018",
             total: d => Math.abs(d["Population"]),
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("0,0") +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0,0"
+                ) +
                 " " +
                 t("people")
             },
             yConfig: {
               title: t("Age Range"),
-              tickFormat: tick => age_range[tick - 1]
+              tickFormat: tick => t(age_range[tick - 1])
             },
             xConfig: {
-              tickFormat: tick => numeral(Math.abs(tick), locale).format("0,0"),
+              tickFormat: tick =>
+                numeral(Math.abs(tick), locale).format("0,0.[0] a"),
               title: false
             },
             tooltipConfig: {
@@ -121,6 +125,7 @@ class PopulationPyramid extends Section {
             return output;
           }}
         />
+        <SourceNote cube="population_estimate" />
       </div>
     );
   }

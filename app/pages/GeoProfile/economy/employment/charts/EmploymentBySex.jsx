@@ -89,14 +89,14 @@ class EmploymentBySex extends Section {
     const { t, className, i18n } = this.props;
     const { selectedObj } = this.state;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const path = this.context.data.path_employment_by_sex;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Regional Employment By Sex and Situation")}</span>
+          <span>{t("Regional Employment By Sex")}</span>
           <Select
             id="variations"
             options={this.state.chartVariations}
@@ -122,7 +122,7 @@ class EmploymentBySex extends Section {
             },
             yConfig: {
               title: t("People"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
             },
             shapeConfig: {
               Line: {
@@ -133,7 +133,9 @@ class EmploymentBySex extends Section {
             tooltipConfig: {
               title: d => d["Month"],
               body: d =>
-                numeral(d["value"], locale).format("(0 a)") + " " + t("people")
+                numeral(d["value"], locale).format("(0.[0] a)") +
+                " " +
+                t("people")
             }
           }}
           dataFormat={function(data) {

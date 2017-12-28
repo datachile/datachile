@@ -78,10 +78,11 @@
           margin: 0px;
           font-family: var(--font-family-title);
           text-align: center;
+          margin-right: -30px;
           & .easter {
             position: absolute;
-            left: 60%;
-            top: 20%;
+            left: 57%;
+            top: 16%;
             width: 10px;
             height: 10px;
             border-radius: 50%;

@@ -61,6 +61,9 @@ footer {
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
+      &.link-soon {
+        opacity: 0.5;
+      }
     }
     & .link-dot {
       font-weight: 400;
