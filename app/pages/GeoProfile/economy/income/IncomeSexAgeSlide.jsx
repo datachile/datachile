@@ -65,7 +65,7 @@ class IncomeSexAgeSlide extends Section {
   render() {
     const { children, t } = this.props;
 
-    const locale = this.props.i18n.locale;
+    const locale = this.props.i18n.language;
 
     const {
       datum_income_mean_sex,
