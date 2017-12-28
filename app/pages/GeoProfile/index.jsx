@@ -5,6 +5,7 @@ import { Geomap } from "d3plus-react";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
+import Helmet from "react-helmet";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -341,6 +342,13 @@ class GeoProfile extends Component {
       return c;
     }
 
+    let title = "Chile";
+    if (geo && geo.type === "region") {
+      title = t("Region") + t(" of ") + geo.caption;
+    } else if (geo && geoObj.type === "comuna") {
+      title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
+    }
+
     return (
       <CanonComponent
         data={this.props.data}
@@ -348,6 +356,9 @@ class GeoProfile extends Component {
         topics={topics}
         loadingComponent={<DatachileLoading />}
       >
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
         <div className="profile">
           <div className="intro">
             {geo &&

@@ -18,6 +18,8 @@ module.exports = {
     { name: "mobile-web-app-capable", content: "yes" },
     { name: "apple-mobile-web-app-capable", content: "yes" },
     { name: "apple-mobile-web-app-status-bar-style", content: "black" },
-    { name: "apple-mobile-web-app-title", content: "Data Chile" }
-  ]
+    { name: "apple-mobile-web-app-title", content: "DataChile" }
+  ],
+  titleTemplate: "%s — DataChile",
+  defaultTitle: "DataChile"
 };
