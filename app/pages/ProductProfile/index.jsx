@@ -67,7 +67,7 @@ class ProductProfile extends Component {
           "Export HS",
           "HS0",
           ids.level1,
-          store.i18n.locale
+          store.i18n.language
         )
       ];
 
@@ -78,7 +78,7 @@ class ProductProfile extends Component {
             "Export HS",
             "HS2",
             ids.level2,
-            store.i18n.locale
+            store.i18n.language
           )
         );
       }
@@ -108,7 +108,7 @@ class ProductProfile extends Component {
               .property("Destination Country", "Country", "iso3"),
             "HS0",
             "HS2",
-            store.i18n.locale
+            store.i18n.language
           );
 
           q.cut(`[Date].[Year].&[${sources.exports.year}]`);
@@ -148,7 +148,7 @@ class ProductProfile extends Component {
               .measure("FOB US"),
             "HS0",
             "HS2",
-            store.i18n.locale
+            store.i18n.language
           );
 
           q.cut(`[Date].[Year].&[${sources.exports.year}]`);
@@ -191,7 +191,7 @@ class ProductProfile extends Component {
               .measure("HS Rank Total"),
             "HS0",
             "HS2",
-            store.i18n.locale
+            store.i18n.language
           );
 
           q.cut(`[Date].[Year].&[${sources.exports.year}]`);
@@ -227,7 +227,7 @@ class ProductProfile extends Component {
           "exports",
           "Export HS",
           "HS0",
-          store.i18n.locale,
+          store.i18n.language,
           false
         ).then(res => {
           return {
@@ -249,7 +249,7 @@ class ProductProfile extends Component {
                 .measure("FOB US"),
               "HS0",
               "HS2",
-              store.i18n.locale,
+              store.i18n.language,
               false
             );
 

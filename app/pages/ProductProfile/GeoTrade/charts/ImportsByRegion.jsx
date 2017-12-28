@@ -4,7 +4,7 @@ import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { regionsColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
@@ -27,7 +27,7 @@ class ImportsByRegion extends Section {
             .measure("CIF US"),
           "HS0",
           "HS2",
-          store.i18n.locale
+          store.i18n.language
         );
 
         return {
@@ -68,7 +68,9 @@ class ImportsByRegion extends Section {
             totalConfig: {
               text: d =>
                 "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
             },
             shapeConfig: {
               fill: d => regionsColorScale("c" + d["ID Region"])

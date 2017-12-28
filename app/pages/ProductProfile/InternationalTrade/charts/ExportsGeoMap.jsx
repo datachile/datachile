@@ -30,7 +30,7 @@ class ExportsGeoMap extends Section {
             .property("Destination Country", "Country", "iso3"),
           "HS0",
           "HS2",
-          store.i18n.locale
+          store.i18n.language
         );
 
         q.cut(`[Date].[Year].&[2015]`);
@@ -52,7 +52,7 @@ class ExportsGeoMap extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.product_exports_by_destination;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>

@@ -5,7 +5,11 @@ import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
 import { continentColorScale } from "helpers/colors";
-import { numeral, slugifyItem } from "helpers/formatters";
+import {
+  numeral,
+  slugifyItem,
+  getNumberFromTotalString
+} from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
@@ -28,7 +32,7 @@ class ImportsByDestination extends Section {
             .measure("CIF US"),
           "HS0",
           "HS2",
-          store.i18n.locale
+          store.i18n.language
         );
 
         return {
@@ -69,7 +73,9 @@ class ImportsByDestination extends Section {
             totalConfig: {
               text: d =>
                 "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
             },
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])

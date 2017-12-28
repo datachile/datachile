@@ -1,16 +1,13 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import flattenDeep from "lodash/flattenDeep";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { sources } from "helpers/consts";
 import { joinDataByYear } from "helpers/dataUtils";
 
-import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { tradeBalanceColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
-import { getLevelObject } from "helpers/dataUtils";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -23,7 +20,7 @@ class TradeBalance extends Section {
     const path = this.context.data.path_trade_balance;
 
     let { datum_exports_by_year, datum_imports_by_year } = this.context.data;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     datum_exports_by_year = joinDataByYear(
       datum_exports_by_year,
@@ -80,7 +77,7 @@ class TradeBalance extends Section {
             },
             yConfig: {
               title: t("USD"),
-              tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+              tickFormat: tick => numeral(tick, locale).format("($ 0.[00] a)")
             },
             shapeConfig: {
               Line: {
