@@ -305,9 +305,9 @@ class ProductProfile extends Component {
         {
           drillDowns: [["Date", "Date", "Year"]],
           options: { parents: false },
-          cuts: [`[Date].[Date].[Year].&[${sources.imports.year}]`]
+          cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
         },
-        "product.export"
+        "no_cut"
       )(params, store),
 
     InternationalTradeBalanceSlide,
@@ -374,13 +374,16 @@ class ProductProfile extends Component {
       exports: total_exports_per_product
     };
 
-    const text_product = IndexProductProfile(
-      this.props.data.product,
-      datum_exports_per_country,
-      datum_imports_per_country,
-      locale,
-      t
-    );
+    const text_product =
+      typeof total_exports_per_product !== "undefined"
+        ? IndexProductProfile(
+            this.props.data.product,
+            datum_exports_per_country,
+            datum_imports_per_country,
+            locale,
+            t
+          )
+        : { available: false };
 
     const text_about = {
       year: {
@@ -397,7 +400,7 @@ class ProductProfile extends Component {
         locale
       ).format("0o");
       text_about.product.share = numeral(
-        total_exports_per_product.value / total_exports_chile,
+        total_exports_per_product.value / total_exports_chile.data[0],
         locale
       ).format("0.0 %");
       text_about.region.share = numeral(
@@ -420,8 +423,6 @@ class ProductProfile extends Component {
         title: t("Opportunities")
       }
     ];
-
-    console.log(text_product)
 
     return (
       <CanonComponent
@@ -548,7 +549,7 @@ class ProductProfile extends Component {
                     <p>
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: total_exports_per_product.value
+                          __html: total_exports_per_product
                             ? t("product_profile.about1.default", text_about)
                             : t("product_profile.about1.no_data", text_about)
                         }}
@@ -556,20 +557,21 @@ class ProductProfile extends Component {
                     </p>
                   </div>
                   <div className="topic-slide-text">
-                    <p>
+                    {text_product.available && (
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: total_exports_per_product.value
-                            ? t(
-                                `product_profile.about2.exp_${
-                                  text_product.exports.n_countries
-                                }_imp_${text_product.imports.n_countries}`,
-                                text_product
-                              )
-                            : ""
+                          __html:
+                            text_product.exports.n_countries > 0
+                              ? t(
+                                  `product_profile.about2.exp_${
+                                    text_product.exports.n_countries
+                                  }_imp_${text_product.imports.n_countries}`,
+                                  text_product
+                                )
+                              : ""
                         }}
                       />
-                    </p>
+                    )}
                   </div>
                   <div className="topic-slide-link-list">
                     <LinksList title={listTitle} list={list} />

@@ -15,6 +15,7 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class ImportsByDestination extends Section {
   state = {
@@ -127,17 +128,15 @@ class ImportsByDestination extends Section {
               }
             }}
             dataFormat={data => {
-              console.log(data)
               if (data.data && data.data.length > 0) {
                 return data.data;
               } else {
-                console.log("Hello hello")
                 this.setState({ treemap: false });
               }
             }}
           />
         ) : (
-          <img height="500px" src="/images/404/chart.svg" />
+          <NoDataAvailable />
         )}
         <SourceNote cube="imports" />
       </div>

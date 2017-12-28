@@ -606,9 +606,10 @@ function simpleDatumNeed(
               store.i18n.locale
             );
             break;
+          case "no_cut":
+            query = setLangCaptions(q, store.i18n.locale);
+            break;
         }
-
-        console.log(query)
 
         return byValues
           ? client.query(query)

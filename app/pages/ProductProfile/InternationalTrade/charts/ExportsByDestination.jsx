@@ -15,8 +15,12 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class ExportsByDestination extends Section {
+  state = {
+    treemap: true
+  };
   static need = [
     (params, store) => {
       const product = getLevelObject(params);
@@ -60,66 +64,80 @@ class ExportsByDestination extends Section {
           <span>{t("Exports By Destination")}</span>
           <ExportLink path={path} />
         </h3>
-        <Treemap
-          config={{
-            height: 500,
-            data: path,
-            groupBy: ["ID Continent", "ID Country"],
-            label: d =>
-              d["Country"] instanceof Array ? d["Continent"] : d["Country"],
-            sum: d => d["FOB US"],
-            time: "ID Year",
-            total: d => d["FOB US"],
-            totalConfig: {
-              text: d =>
-                "Total: US" +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
-                )
-            },
-            shapeConfig: {
-              fill: d => continentColorScale("c" + d["ID Continent"])
-            },
-            on: {
-              click: d => {
-                if (!(d["ID Country"] instanceof Array)) {
-                  var url = slugifyItem(
-                    "countries",
-                    d["ID Subregion"],
-                    d["Subregion"],
-                    d["ID Country"] instanceof Array ? false : d["ID Country"],
-                    d["Country"] instanceof Array ? false : d["Country"]
+        {this.state.treemap ? (
+          <Treemap
+            config={{
+              height: 500,
+              data: path,
+              groupBy: ["ID Continent", "ID Country"],
+              label: d =>
+                d["Country"] instanceof Array ? d["Continent"] : d["Country"],
+              sum: d => d["FOB US"],
+              time: "ID Year",
+              total: d => d["FOB US"],
+              totalConfig: {
+                text: d =>
+                  "Total: US" +
+                  numeral(getNumberFromTotalString(d.text), locale).format(
+                    "($ 0.[00] a)"
+                  )
+              },
+              shapeConfig: {
+                fill: d => continentColorScale("c" + d["ID Continent"])
+              },
+              on: {
+                click: d => {
+                  if (!(d["ID Country"] instanceof Array)) {
+                    var url = slugifyItem(
+                      "countries",
+                      d["ID Subregion"],
+                      d["Subregion"],
+                      d["ID Country"] instanceof Array
+                        ? false
+                        : d["ID Country"],
+                      d["Country"] instanceof Array ? false : d["Country"]
+                    );
+                    browserHistory.push(url);
+                  }
+                }
+              },
+              tooltipConfig: {
+                title: d => {
+                  return d["Country"] instanceof Array
+                    ? d["Continent"]
+                    : d["Country"];
+                },
+                body: d => {
+                  const link =
+                    d["ID Country"] instanceof Array
+                      ? ""
+                      : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                  return (
+                    numeral(d["FOB US"], locale).format("(USD 0 a)") + link
                   );
-                  browserHistory.push(url);
+                }
+              },
+              legendConfig: {
+                label: d => d["Continent"],
+                shapeConfig: {
+                  width: 40,
+                  height: 40,
+                  backgroundImage: d =>
+                    "/images/legend/continent/" + d["ID Continent"] + ".png"
                 }
               }
-            },
-            tooltipConfig: {
-              title: d => {
-                return d["Country"] instanceof Array
-                  ? d["Continent"]
-                  : d["Country"];
-              },
-              body: d => {
-                const link =
-                  d["ID Country"] instanceof Array
-                    ? ""
-                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
+            }}
+            dataFormat={data => {
+              if (data.data && data.data.length > 0) {
+                return data.data;
+              } else {
+                this.setState({ treemap: false });
               }
-            },
-            legendConfig: {
-              label: d => d["Continent"],
-              shapeConfig: {
-                width: 40,
-                height: 40,
-                backgroundImage: d =>
-                  "/images/legend/continent/" + d["ID Continent"] + ".png"
-              }
-            }
-          }}
-          dataFormat={data => data.data}
-        />
+            }}
+          />
+        ) : (
+          <NoDataAvailable />
+        )}
         <SourceNote cube="exports" />
       </div>
     );

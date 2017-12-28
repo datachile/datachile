@@ -12,7 +12,8 @@ const base = {
     number: last_year - first_year,
     first: first_year,
     last: last_year
-  }
+  },
+  available: true
 };
 
 function InternationalTradeBalance(product, exports, imports, t) {
@@ -50,12 +51,7 @@ function IndexProductProfile(product, exports, imports, locale, t) {
       t,
       locale
     ),
-    format:
-      exports.available && imports.available
-        ? "default"
-        : exports.available
-          ? "exports"
-          : imports.available ? "imports" : "neither"
+    format: "default"
   };
 }
 
@@ -68,7 +64,7 @@ function about_text(
   locale = "en",
   format = "($ 0.00 a)"
 ) {
-  if (aggregation.available) {
+  if (typeof aggregation !== "undefined") {
     aggregation = aggregation.data.sort((a, b) => {
       return b[msrName] - a[msrName];
     });
@@ -78,7 +74,7 @@ function about_text(
     }, 0);
 
     return {
-      available: true,
+      available: aggregation.available,
       total: numeral(total, locale).format(format),
       n_countries: aggregation.length > 3 ? 3 : aggregation.length,
       territory: {
