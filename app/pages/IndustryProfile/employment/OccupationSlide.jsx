@@ -6,7 +6,7 @@ import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
-import { calculateYearlyGrowth } from "helpers/dataUtils";
+import { annualized_growth } from "helpers/calculator";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -64,13 +64,13 @@ class OccupationSlide extends Section {
     const locale = i18n.language;
 
     const rate = numeral(
-      calculateYearlyGrowth(datum_industry_occupation_growth),
+      annualized_growth(datum_industry_occupation_growth),
       locale
     ).format("0.0 %");
 
     const text_slide = {
       increased_or_decreased: rate > 0 ? "increased" : "decreased",
-      industry: { name: industryName },
+      industry: { caption: industryName },
       rate,
       year: {
         first: sources.nene.first_year,
@@ -92,7 +92,18 @@ class OccupationSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Occupation")}</div>
+          <div className="topic-slide-title">
+            {t("Occupation")}
+            <div className="topic-slide-subtitle">
+              <p>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("industry_profile.warning", text_slide)
+                  }}
+                />
+              </p>
+            </div>
+          </div>
           <div className="topic-slide-text">
             <p>
               <span

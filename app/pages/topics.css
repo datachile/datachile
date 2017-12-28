@@ -47,6 +47,14 @@
         font-weight: 300;
         text-transform: uppercase;
         margin-bottom: var(--gutter);
+
+        & .topic-slide-subtitle {
+          color: #FFE0B2;
+          lost-column: 1 flex;
+          font-size: 14px;
+          font-weight: 300;
+          text-transform: none;
+        }
       }
       & .topic-slide-text {
         lost-column: 1/3 flex;
