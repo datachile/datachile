@@ -1,8 +1,13 @@
 import React from "react";
 
 import { Treemap } from "d3plus-react";
+import { browserHistory } from "react-router";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import {
+  numeral,
+  getNumberFromTotalString,
+  slugifyItem
+} from "helpers/formatters";
 import { industriesColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -12,10 +17,15 @@ import SourceNote from "components/SourceNote";
 
 class IndustryBySector extends Section {
   static need = [
-    simpleGeoChartNeed("path_industry_output", "tax_data", ["Output"], {
-      drillDowns: [["ISICrev4", "Level 2"], ["Date", "Date", "Year"]],
-      options: { parents: true }
-    })
+    simpleGeoChartNeed(
+      "path_industry_output",
+      "tax_data",
+      ["Output", "Investment"],
+      {
+        drillDowns: [["ISICrev4", "Level 2"], ["Date", "Date", "Year"]],
+        options: { parents: true }
+      }
+    )
   ];
 
   render() {
@@ -39,7 +49,7 @@ class IndustryBySector extends Section {
             total: d => d["Output"],
             totalConfig: {
               text: d =>
-                "Total: CL" +
+                "Total: " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
                   "($ 0.[0] a)"
                 )
@@ -57,11 +67,46 @@ class IndustryBySector extends Section {
                 backgroundImage: d =>
                   "https://datausa.io/static/img/attrs/thing_apple.png"
               }
+            },
+            on: {
+              click: d => {
+                var url = slugifyItem(
+                  "industries",
+                  d["ID Level 1"],
+                  d["Level 1"],
+                  d["ID Level 2"] instanceof Array ? false : d["ID Level 2"],
+                  d["Level 2"] instanceof Array ? false : d["Level 2"]
+                );
+                browserHistory.push(url);
+              }
+            },
+            tooltipConfig: {
+              title: d =>
+                d["Level 2"] instanceof Array ? d["Level 1"] : d["Level 2"],
+              body: d => {
+                var body = "<table class='tooltip-table'>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("Output") +
+                  "</td><td class='data'>" +
+                  numeral(d["Output"], locale).format("($ 0,0.[0] a)") +
+                  "</td></tr>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("Investment") +
+                  "</td><td class='data'>" +
+                  numeral(d["Investment"], locale).format("($ 0,0.[0] a)") +
+                  "</td></tr>";
+                body += "</table>";
+                if (!(d["Level 2"] instanceof Array))
+                  body += "<a>" + t("tooltip.to_profile") + "</a>";
+                return body;
+              }
             }
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="nesi_income" />
+        <SourceNote cube="tax_data" />
       </div>
     );
   }

@@ -89,9 +89,11 @@ class TradeSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={numeral(datum_trade_exports, locale).format("($ 0.00 a)")}
+              datum={
+                "US" + numeral(datum_trade_exports, locale).format("($ 0.00 a)")
+              }
               title={t("Exports {{last_year}}", text_data)}
-              subtitle={t("Imports: {{imports}}", {
+              subtitle={t("Imports: US{{imports}}", {
                 imports: numeral(datum_trade_imports, locale).format(
                   "($ 0.00 a)"
                 )

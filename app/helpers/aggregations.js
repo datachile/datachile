@@ -67,9 +67,12 @@ function trade_by_time_and_product(
       current_trade_array[0]["Geo Rank Across Time"],
       locale
     ).format("0o"),
-    trade_volume: numeral(total_trade_latest_year, locale).format("($ 0.00 a)"),
-    trade_first_year: numeral(trade_first_year, locale).format("($ 0.00 a)"),
-    trade_last_year: numeral(trade_last_year, locale).format("($ 0.00 a)"),
+    trade_volume:
+      "US" + numeral(total_trade_latest_year, locale).format("($ 0.00 a)"),
+    trade_first_year:
+      "US" + numeral(trade_first_year, locale).format("($ 0.00 a)"),
+    trade_last_year:
+      "US" + numeral(trade_last_year, locale).format("($ 0.00 a)"),
     annualized_rate: numeral(annualized_rate, locale).format("0%"),
     increased: annualized_rate > 0,
     trade_first_product: top_trade_latest_year[0].HS2,
@@ -134,9 +137,11 @@ function maxMinGrowthByYear(aggregation, measure, locale = "en") {
 
   return {
     first_year: first_year,
-    first_year_value: numeral(value_first_year, locale).format("($ 0.0 a)"),
+    first_year_value:
+      "US" + numeral(value_first_year, locale).format("($ 0.0 a)"),
     last_year: last_year,
-    last_year_value: numeral(value_last_year, locale).format("($ 0.0 a)"),
+    last_year_value:
+      "US" + numeral(value_last_year, locale).format("($ 0.0 a)"),
     annualized_rate: numeral(annualized_rate, locale).format("0%"),
     increased: annualized_rate > 0 ? true : false,
     number_of_years: last_year - first_year

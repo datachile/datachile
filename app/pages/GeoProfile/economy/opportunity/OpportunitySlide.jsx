@@ -14,16 +14,7 @@ class OpportunitySlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Opportunity")}</div>
-          <div className="topic-slide-text">
-            Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
-            orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
-            lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
-            Nullam tempus. Mauris ac felis vel velit tristique imperdiet. Donec
-            at pede. Etiam vel neque nec dui dignissim bibendum. Vivamus id
-            enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
-            Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
-            euismod tellus id erat.
-          </div>
+          <div className="topic-slide-text">text</div>
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"

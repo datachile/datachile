@@ -67,14 +67,23 @@ class IndustryByOccupation extends Section {
             },
             tooltipConfig: {
               title: d => d["ISCO"],
-              body: d =>
-                "<p>" +
-                "People: " +
-                numeral(d["Expansion Factor"], locale).format("(0,0)") +
-                "<br/>" +
-                "Avg Income: " +
-                numeral(d["Median Income"], locale).format("$ (0,0)") +
-                "</p>"
+              body: d => {
+                var body = "<table class='tooltip-table'>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("People") +
+                  "</td><td class='data'>" +
+                  numeral(d["Expansion Factor"], locale).format("(0,0)") +
+                  "</td></tr>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("Average Income") +
+                  "</td><td class='data'>" +
+                  numeral(d["Median Income"], locale).format("$ (0,0)") +
+                  "</td></tr>";
+                body += "</table>";
+                return body;
+              }
             }
           }}
           dataFormat={data => data.data}

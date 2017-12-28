@@ -248,10 +248,11 @@ function simpleDatumNeed(
   cube,
   measures,
   { drillDowns = [], options = {}, cuts = [] },
-  byValues = true
+  byValues = true,
+  overrideGeo = false
 ) {
   return (params, store) => {
-    let geo = getGeoObject(params);
+    let geo = overrideGeo ? overrideGeo : getGeoObject(params);
 
     if (cube === "health_access" && geo.type === "comuna") {
       geo = { ...geo.ancestor };

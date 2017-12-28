@@ -17,6 +17,7 @@
       font-weight: 700;
       font-size: 20px;
       color: var(--snow);
+      line-height: 1.1em;
     }
     & .featured-datum-subtitle {
       font-family: var(--font-family-text);

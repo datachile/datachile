@@ -49,6 +49,7 @@ export const sources = {
   nene: {
     title: "Encuesta Nacional de Empleo — INE",
     url: "http://www.ine.cl/estadisticas/laborales/ene",
+    year: 2016,
     last_year: 2016,
     first_year: 2010
   },

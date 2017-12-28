@@ -24,7 +24,7 @@ class TradeBalance extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_trade_balance;
-    // const locale = i18n.language;
+
     const locale = i18n.language;
 
     return (
@@ -45,7 +45,7 @@ class TradeBalance extends Section {
               title: false
             },
             yConfig: {
-              title: t("USD"),
+              title: t("US$"),
               tickFormat: tick => numeral(tick, locale).format("(0 a)")
             },
             shapeConfig: {
@@ -62,7 +62,8 @@ class TradeBalance extends Section {
                 var body = "";
                 if (!(d["ID Year"] instanceof Array)) {
                   body =
-                    numeral(d.value, locale).format("(0.[0] a)") +
+                    "US" +
+                    numeral(d.value, locale).format("$ (0.[0] a)") +
                     " - " +
                     d["ID Year"];
                 }

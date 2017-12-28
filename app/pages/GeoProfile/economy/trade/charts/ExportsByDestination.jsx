@@ -80,7 +80,9 @@ class ExportsByDestination extends Section {
                   d["ID Country"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["FOB US"], locale).format("(US$ 0 a)") + link;
+                return (
+                  "US" + numeral(d["FOB US"], locale).format("$ (0 a)") + link
+                );
               }
             },
             legendConfig: {
