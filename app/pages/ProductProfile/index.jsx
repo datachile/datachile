@@ -4,6 +4,7 @@ import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
 import orderBy from "lodash/orderBy";
 import flattenDeep from "lodash/flattenDeep";
+import Helmet from "react-helmet";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -379,6 +380,8 @@ class ProductProfile extends Component {
     const { t, i18n } = this.props;
     const obj = this.props.data.product;
 
+    if (!obj) return null;
+
     const locale = i18n.language;
 
     const {
@@ -478,13 +481,18 @@ class ProductProfile extends Component {
         topics={topics}
         loadingComponent={<DatachileLoading />}
       >
+        <Helmet>
+          <title>{`${obj.caption}${
+            obj.parent ? " (" + obj.parent.caption + ")" : ""
+          }`}</title>
+        </Helmet>
         <div className="profile">
           <div className="intro">
             {obj && (
               <Nav
                 title={obj.caption}
                 typeTitle={obj.parent ? t("Product") : t("Product Type")}
-                type={"products"}
+                type="products"
                 exploreLink={"/explore/products"}
                 ancestor={obj.parent ? obj.parent.caption : ""}
                 ancestorLink={

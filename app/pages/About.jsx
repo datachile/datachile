@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-import { CanonComponent, TopicTitle } from "datawheel-canon";
+import { CanonComponent } from "datawheel-canon";
+import Helmet from "react-helmet";
 
 import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
@@ -52,6 +53,9 @@ class About extends Component {
         topics={topics}
         loadingComponent={<DatachileLoading />}
       >
+        <Helmet>
+          <title>{t("About")}</title>
+        </Helmet>
         <Nav
           title={t("About DataChile")}
           typeTitle={t("Home")}

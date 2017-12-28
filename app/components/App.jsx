@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import Footer from "components/Footer";
+import { translate } from "react-i18next";
+import Helmet from "react-helmet";
 
+import Footer from "components/Footer";
 import mondrianClient from "helpers/MondrianClient";
 
 import "./App.css";
@@ -27,34 +29,20 @@ class App extends Component {
   ];
 
   render() {
-    const { children } = this.props;
+    const { children, t } = this.props;
     return (
       <div className="main-container">
+        <Helmet titleTemplate="%s — DataChile" defaultTitle="DataChile">
+          <meta
+            name="description"
+            content={t("Visualizing the open data landscape of Chile")}
+          />
+        </Helmet>
         {children}
         <Footer />
       </div>
     );
   }
-
-  componentDidMount() {
-    /*document.addEventListener(
-      "keydown",
-      () => {
-        // 's' key
-        if (event.keyCode === 83) {
-          if (event.target.tagName !== "INPUT") {
-            event.preventDefault();
-            this.props.activateSearch();
-          }
-        } else if (event.keyCode === 27) {
-          // 'esc' key
-          event.preventDefault();
-          this.props.activateSearch();
-        }
-      },
-      false
-    );*/
-  }
 }
 
-export default App;
+export default translate()(App);
