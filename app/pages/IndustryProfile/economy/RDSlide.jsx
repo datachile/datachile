@@ -3,7 +3,10 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { annualized_growth } from "helpers/calculator";
-import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
+import {
+  simpleDatumNeed,
+  simpleIndustryDatumNeed
+} from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
@@ -11,6 +14,18 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 class RDSlide extends Section {
   static need = [
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_total_rd_exports_chile",
+        "rd_survey",
+        ["exports"],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${sources.rd_survey.last_year}]`]
+        },
+        "no_cut"
+      )(params, store),
     simpleIndustryDatumNeed(
       "datum_industry_rd_spending",
       "rd_survey",
@@ -45,6 +60,7 @@ class RDSlide extends Section {
   render() {
     const { t, i18n, children } = this.props;
     let {
+      datum_total_rd_exports_chile,
       datum_industry_rd_spending,
       datum_industry_rd_exports,
       datum_industry_rd_sales_last_year,
@@ -66,7 +82,11 @@ class RDSlide extends Section {
         spending: numeral(
           datum_industry_rd_spending[datum_industry_rd_spending.length - 1],
           locale
-        ).format("$ 0.0 a")
+        ).format("$ 0.0 a"),
+        share: numeral(
+          datum_industry_rd_exports / datum_total_rd_exports_chile.data,
+          locale
+        ).format("0.0 %")
       }
     };
 

@@ -110,8 +110,8 @@
   "Employees in ": "Empleados en ",
   "Employment": "Empleo",
   "Employment by Category": "Empleo por categoría",
-  "Employment by Education": "Employment por nivel educativo",
-  "Employment by category": "Employment por categoría",
+  "Employment by Education": "Empleo por nivel educativo",
+  "Employment by category": "Empleo por categoría",
   "Employment growth": "Crecimiento de empleo",
   "Enrollment": "Matrícula",
   "Enter a location": "Busca un lugar",
@@ -443,7 +443,7 @@
   "Total R&D spending by Business Type":
     "Inversión total en I+D según tipo de empresa",
   "Total R&D spending by Ownership Type":
-    "Total R&D spending by Ownership Type",
+    "Total gasto I+D por Tipo de Propiedad",
   "Total Students": "Cantidad de estudiantes",
   "Trade": "Comercio",
   "Trade Balance": "Balanza comercial",
@@ -683,9 +683,9 @@
   "increased": "crecido",
   "industry_profile": {
     "economy":
-      "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+      "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
     "employment":
-      "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",
+      "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} han {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",
     "r&d":
       "<p>En {{year}}, las exportaciones de {{industry.caption}} fueron de {{industry.exports}}, representando al {{industry.share}} del total. Por otra parte, el nivel gasto de {{industry.caption}} en Investigación y Desarrollo fue de {{industry.spending}}.</p>",
     "warning": "Se muestran datos sobre {{industry.caption}}"

@@ -69,7 +69,7 @@ class OccupationSlide extends Section {
     ).format("0.0 %");
 
     const text_slide = {
-      increased_or_decreased: rate > 0 ? "increased" : "decreased",
+      increased_or_decreased: rate > 0 ? t("increased") : t("decreased"),
       industry: { caption: industryName },
       rate,
       year: {
