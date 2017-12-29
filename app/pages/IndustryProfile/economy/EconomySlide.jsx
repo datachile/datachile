@@ -71,7 +71,7 @@ class EconomySlide extends Section {
         last: sources.tax_data.last_year
       },
       rate: numeral(rate, locale).format("0.0 %"),
-      increased_or_decreased: rate > 0 ? "increased" : "decreased",
+      increased_or_decreased: rate > 0 ? t("increased") : t("decreased"),
       industry: {
         caption: industry.caption
       }
@@ -107,7 +107,7 @@ class EconomySlide extends Section {
                 locale
               ).format("0,0")}
               title={t("Number of jobs")}
-              subtitle={`In ${sources.tax_data.last_year}`}
+              subtitle={t("During") + " " + sources.tax_data.last_year}
             />
             <FeaturedDatum
               className="l-1-3"
