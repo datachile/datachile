@@ -7,10 +7,7 @@ import flattenDeep from "lodash/flattenDeep";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, {
-  setLangCaptions,
-  getCountryCut
-} from "helpers/MondrianClient";
+import mondrianClient, { simpleCountryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
@@ -18,113 +15,82 @@ const last_year = sources.exports_and_imports.year;
 
 class InternationalTradeSlide extends Section {
   static need = [
-    function datumImportsNeed(params, store) {
-      const lang = store.i18n.locale;
-
-      const promise = mondrianClient.cube("imports").then(cube => {
-        const query = cube.query
-          .drilldown("Import HS", "HS", "HS2")
-          .cut(`[Date].[Date].[Year].&[${last_year}]`)
-          .cut(`[Country].[Country].${getCountryCut(params)}`)
-          .measure("CIF US")
-          .option("parents", false);
-
-        setLangCaptions(query, lang);
-
-        return mondrianClient
-          .query(query, "jsonrecords")
-          .then(res => {
-            const total = sumBy(res.data.data, "CIF US");
-            const max = maxBy(
-              res.data.data,
-              "CIF US"
-            );
-            const percentage = numeral(max["CIF US"] / total, lang).format(
-              "0.0%"
-            );
-
-            const query_global = cube.query
-              .drilldown("Import HS", "HS", "HS2")
-              .cut(`[Date].[Date].[Year].&[${last_year}]`)
-              .cut(`[Import HS].[HS].[HS2].&[${max["ID HS2"]}]`)
-              .measure("CIF US")
-              .option("parents", false);
-
-            return Promise.all([
-              { max, percentage },
-              mondrianClient.query(query_global)
-            ]);
-          })
-          .then(res => ({
-            key: "datum_trade_import",
-            data: {
-              local: res[0],
-              global: flattenDeep(res[1].data.values)
-            }
-          }));
-      });
-
-      return {
-        type: "GET_DATA",
-        promise
-      };
-    },
-    function datumExportsNeed(params, store) {
-      const lang = store.i18n.locale;
-      const promise = mondrianClient.cube("exports").then(cube => {
-        const query = cube.query
-          .drilldown("Export HS", "HS", "HS2")
-          .cut(`[Date].[Date].[Year].&[${last_year}]`)
-          .cut(`[Country].[Country].${getCountryCut(params)}`)
-          .measure("FOB US")
-          .option("parents", false);
-
-        setLangCaptions(query, lang);
+    simpleCountryDatumNeed(
+      "datum_trade_import",
+      {
+        cube: "imports",
+        measures: ["CIF US"],
+        drillDowns: [["Import HS", "HS", "HS2"]],
+        cuts: [`[Date].[Date].[Year].&[${last_year}]`],
+        options: { parents: false },
+        format: "jsonrecords"
+      },
+      (result, lang) => {
+        const data = result.data.data;
+        const total = sumBy(data, "CIF US");
+        const max = maxBy(data, "CIF US");
+        const percentage = numeral(max["CIF US"] / total, lang).format("0.0%");
 
         return mondrianClient
-          .query(query, "jsonrecords")
-          .then(res => {
-
-            const total = sumBy(res.data.data, "FOB US");
-            const max = maxBy(
-              res.data.data,
-              "FOB US"
-            );
-            const percentage = numeral(max["FOB US"] / total, lang).format(
-              "0.0%"
-            );
-
-            const query_global = cube.query
-              .drilldown("Export HS", "HS", "HS2")
-              .cut(`[Date].[Date].[Year].&[${last_year}]`)
-              .cut(`[Export HS].[HS].[HS2].&[${max["ID HS2"]}]`)
-              .measure("FOB US")
-              .option("parents", false);
-
-            return Promise.all([
-              { max, percentage },
-              mondrianClient.query(query_global)
-            ]);
-          })
+          .cube("imports")
+          .then(cube =>
+            mondrianClient.query(
+              cube.query
+                .drilldown("Import HS", "HS", "HS2")
+                .cut(`[Date].[Date].[Year].&[${last_year}]`)
+                .cut(`[Import HS].[HS].[HS2].&[${max["ID HS2"]}]`)
+                .measure("CIF US")
+                .option("parents", false)
+            )
+          )
           .then(res => ({
-            key: "datum_trade_export",
-            data: {
-              local: res[0],
-              global: flattenDeep(res[1].data.values)
-            }
+            local: { max, percentage },
+            global: flattenDeep(res.data.values),
+            total_lastyear: total
           }));
-      });
+      }
+    ),
 
-      return {
-        type: "GET_DATA",
-        promise
-      };
-    }
+    simpleCountryDatumNeed(
+      "datum_trade_export",
+      {
+        cube: "exports",
+        measures: ["FOB US"],
+        drillDowns: [["Export HS", "HS", "HS2"]],
+        cuts: [`[Date].[Date].[Year].&[${last_year}]`],
+        options: { parents: false },
+        format: "jsonrecords"
+      },
+      (result, lang) => {
+        const data = result.data.data;
+        const total = sumBy(data, "FOB US");
+        const max = maxBy(data, "FOB US");
+        const percentage = numeral(max["FOB US"] / total, lang).format("0.0%");
+
+        return mondrianClient
+          .cube("exports")
+          .then(cube =>
+            mondrianClient.query(
+              cube.query
+                .drilldown("Export HS", "HS", "HS2")
+                .cut(`[Date].[Date].[Year].&[${last_year}]`)
+                .cut(`[Export HS].[HS].[HS2].&[${max["ID HS2"]}]`)
+                .measure("FOB US")
+                .option("parents", false)
+            )
+          )
+          .then(res => ({
+            local: { max, percentage },
+            global: flattenDeep(res.data.values),
+            total_lastyear: total
+          }));
+      }
+    )
   ];
 
   render() {
     const { children, t, i18n } = this.props;
-    const lang = i18n.locale;
+    const locale = i18n.language;
 
     const {
       country,
@@ -139,13 +105,13 @@ class InternationalTradeSlide extends Section {
     if (import_local.max && export_local.max) {
       txt_slide = t("country_profile.intltrade_slide.text", {
         level: country.caption,
-        year_latest: last_year,
+        year_last: last_year,
         main_import: {
           name: import_local.max["HS2"],
           local_percent: import_local.percentage,
           global_percent: numeral(
             import_local.max["CIF US"] / datum_trade_import.global[0],
-            lang
+            locale
           ).format("0.0%")
         },
         main_export: {
@@ -153,7 +119,7 @@ class InternationalTradeSlide extends Section {
           local_percent: export_local.percentage,
           global_percent: numeral(
             export_local.max["FOB US"] / datum_trade_export.global[0],
-            lang
+            locale
           ).format("0.0%")
         }
       });
