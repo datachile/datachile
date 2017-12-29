@@ -9,12 +9,26 @@ import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
 import Search from "components/Search";
 import DynamicHomeHeader from "components/DynamicHomeHeader";
+import ProfileCarousel from "components/ProfileCarousel";
+
+import {
+  needHomeComunasExports,
+  needHomeComunasPopulation,
+  needHomeProductsExports,
+  needHomeCountriesExports
+} from "./home_needs";
 
 import "./Home.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
 
 class Home extends Component {
-  static need = [DynamicHomeHeader];
+  static need = [
+    DynamicHomeHeader,
+    needHomeComunasExports,
+    needHomeComunasPopulation,
+    needHomeProductsExports,
+    needHomeCountriesExports
+  ];
 
   constructor(props) {
     super(props);
@@ -96,6 +110,13 @@ class Home extends Component {
     const changeProfileHeader = p => {
       this.setState({ header: p });
     };
+
+    const {
+      home_comunas_population,
+      home_comunas_exports,
+      home_products_exports,
+      home_countries_exports
+    } = this.props.data;
 
     return (
       <CanonComponent
@@ -224,15 +245,31 @@ class Home extends Component {
                 </div>
                 <h2>{t("Explore")}</h2>
               </div>
-              <div className="home-featured-tiles">
-                {focus &&
-                  focus.map((f, i) => (
-                    <FeaturedBox
-                      item={f}
-                      className="home-featured-profile"
-                      key={i}
-                    />
-                  ))}
+              <div className="home-profile-carousels-container">
+                <ProfileCarousel
+                  title={t("home.carousel.comunas_population")}
+                  type="geo"
+                  items={home_comunas_population}
+                  limit={5}
+                />
+                <ProfileCarousel
+                  title={t("home.carousel.comunas_exports")}
+                  type="geo"
+                  items={home_comunas_exports}
+                  limit={5}
+                />
+                <ProfileCarousel
+                  title={t("home.carousel.products_exports")}
+                  type="products"
+                  items={home_products_exports}
+                  limit={5}
+                />
+                <ProfileCarousel
+                  title={t("home.carousel.countries_exports")}
+                  type="countries"
+                  items={home_countries_exports}
+                  limit={5}
+                />
               </div>
             </div>
             <div className="home-sources">

@@ -778,6 +778,12 @@
     },
     "sources": {
       "title": "DataChile integra datos de todas estas fuentes"
+    },
+    "carousel": {
+      "comunas_population": "Comunas más pobladas",
+      "comunas_exports": "Comunas más exportadoras",
+      "products_exports": "Productos más exportados",
+      "countries_exports": "Principales destinos comerciales"
     }
   }
 }
