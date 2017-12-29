@@ -128,6 +128,7 @@ class Home extends Component {
                   <img
                     title="DataChile"
                     src="/images/logos/logo-dc-beta-small.svg"
+                    alt="DataChile"
                   />
                   <Link
                     className="easter"
@@ -150,7 +151,6 @@ class Home extends Component {
               <DynamicHomeHeader header={header} />
             </div>
           </div>
-
           <div className="home-slider">
             {profiles &&
               profiles.map((p, i) => (
@@ -181,17 +181,76 @@ class Home extends Component {
               ))}
           </div>
 
-          <div className="home-featured-profiles">
-            <h2>{t("Explore Featured Profiles")}</h2>
-            <div className="home-featured-tiles">
-              {focus &&
-                focus.map((f, i) => (
-                  <FeaturedBox
-                    item={f}
-                    className="home-featured-profile"
-                    key={i}
-                  />
-                ))}
+          <div className="home-content">
+            <div className="home-text">
+              <div className="l-col">
+                <h2>{t("home.what.title")}¿Qué es DataChile?</h2>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text1")
+                  }}
+                />
+                <p>
+                  {" "}
+                  Ofrece una radiografía de las{" "}
+                  <span>temáticas más importantes</span> para el desarrollo del
+                  país.
+                </p>
+                <p>
+                  Ayuda a conocer <span>tendencias y necesidades</span> para el
+                  diseño e implementación de políticas públicas, programas de la
+                  sociedad civil, oportunidades de negocios y estrategias de
+                  marketing del sector privado.
+                </p>
+                <p>
+                  Colabora en la toma de <span>decisiones</span> tanto del
+                  sector público como privado.
+                </p>
+              </div>
+              <div className="r-col">
+                <h2>
+                  ¿En qué se diferencia de otros proyectos de datos abiertos?
+                </h2>
+                <p>
+                  Integra información de{" "}
+                  <span>más de 15 fuentes distintas</span> pertenecientes a más
+                  de 10 organismos de Gobierno.
+                </p>
+                <p>
+                  Crea y combina <span>visualizaciones interactivas</span>.
+                </p>
+                <p>
+                  Piensa los <span>datos como historias</span> y no como
+                  archivos.
+                </p>
+              </div>
+            </div>
+
+            <div className="home-featured-profiles">
+              <div className="home-section-title">
+                <div className="home-section-title-img">
+                  <img src="/images/icons/icon-search.svg" alt="explore" />
+                </div>
+                <h2>{t("Explore")}</h2>
+              </div>
+              <div className="home-featured-tiles">
+                {focus &&
+                  focus.map((f, i) => (
+                    <FeaturedBox
+                      item={f}
+                      className="home-featured-profile"
+                      key={i}
+                    />
+                  ))}
+              </div>
+            </div>
+            <div className="home-sources">
+              <div className="home-section-title">
+                <div className="home-section-title-img">
+                  <img src="/images/icons/icon-source.svg" alt="sources" />
+                </div>
+                <h2>{t("DataChile integra datos de todas estas fuentes")}</h2>
+              </div>
             </div>
           </div>
         </div>
