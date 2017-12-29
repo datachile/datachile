@@ -7,7 +7,7 @@ import { sources } from "helpers/consts";
 import { getTopCategories } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
-import { calculateYearlyGrowth } from "helpers/dataUtils";
+import { annualized_growth } from "helpers/calculator";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -49,7 +49,7 @@ class EconomySlide extends Section {
     } = this.context.data;
 
     const top = getTopCategories(datum_industry_output_by_comuna, "Output", 2);
-    const rate = calculateYearlyGrowth(datum_industry_investment);
+    const rate = annualized_growth(datum_industry_investment);
     const total = datum_industry_output_by_comuna.reduce((all, item) => {
       return all + item["Output"];
     }, 0);
@@ -113,7 +113,7 @@ class EconomySlide extends Section {
               className="l-1-3"
               icon="industria"
               datum={numeral(
-                calculateYearlyGrowth(datum_industry_labour),
+                annualized_growth(datum_industry_labour),
                 locale
               ).format("0.0 %")}
               title={t("Growth Labour")}
