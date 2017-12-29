@@ -342,8 +342,6 @@
   "Summary": "Summary",
   "Supported by": "Supported by",
   "Tablet": "Tablet",
-  "The most comprehensive effort to integrate and visualize Chile’s Public Data":
-    "The most comprehensive effort to integrate and visualize Chile’s Public Data",
   "Top Schools By Performance": "Top Schools By Performance",
   "Top destination country": "Top destination country",
   "Top exporter region": "Top exporter region",
@@ -653,5 +651,28 @@
   "{{number}} visas": "{{number}} visas",
   "{{percent}} of the country - {{last_year}}":
     "{{percent}} of the country - {{last_year}}",
-  "{{number}} visas granted in {{year}}": "{{number}} visas granted in {{year}}"
+  "{{number}} visas granted in {{year}}": "{{number}} visas granted in {{year}}",
+  "home": {
+    "subtitle":
+      "The most comprehensive effort to integrate and visualize Chile’s Public Data",
+    "what": {
+      "title": "What is DataChile?",
+      "text1":
+        "It offers an x-ray of the <span>most important  topics</span> for the development of the country.",
+      "text2":
+        "It helps to know <span>trends and needs</span> for the design and implementation of public policies, civil society programs, business opportunities and marketing strategies of the private sector.",
+      "text3":
+        "Collaborate in making <span>decisions</span> in public and private sector."
+    },
+    "diff": {
+      "title": "Why is DataChile different from other open data projects?",
+      "text1":
+        "Integrates information from <span>more than 15 different sources</span> belonging to more than 10 government agencies.",
+      "text2": "Creates and combines <span>interactive visualizations</span>.",
+      "text3": "Thinks the <span>data as stories</span> and not as files."
+    },
+    "sources": {
+      "title": "DataChile integrates data from all these sources"
+    }
+  }
 }
