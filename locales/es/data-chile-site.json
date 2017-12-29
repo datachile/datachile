@@ -144,7 +144,7 @@
   "Growth Exports": "Crecimiento exportaciones",
   "Growth Imports": "Crecimiento importaciones",
   "Growth Investment": "Crecimiento inversión",
-  "Growth Labour": "Crecimiento labor",
+  "Growth Labour": "Crecimiento de empleos",
   "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
   "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
   "Growth number of visas": "Crecimiento número de visas",
@@ -171,7 +171,6 @@
   "Annual Growth Exports": "Crecimiento Anual de Exportaciones",
   "Annual Growth Imports": "Crecimiento Anual de Importaciones",
   "In period": "En el periodo",
-  
 
   "geo_profile": {
     "trade_slide": {
@@ -190,179 +189,163 @@
       "disability": "",
       "death_causes": ""
     },
-  "Health Center": "Centro de salud",
-  "Health Insurance": "Health Insurance",
-  "Healthcare": "Healthcare",
-  "Healthcare by Type": "Healthcare by Type",
-  "Higher Education": "Higher Education",
-  "Home": "Inicio",
-  "Households with credit in state bank":
-    "Hogares con crédito en banco estatal",
-  "Housing Conditions": "Condiciones habitacionales",
-  "Housing Type": "Housing Type",
-  "Housing and Environment": "Housing and Environment",
-  "Immigrant visas": "Visas de inmigrante",
-  "Imports & Exports": "Importaciones y Exportaciones",
-  "Imports By Destination": "Importaciones por Destino",
-  "Imports By Origin": "Importaciones por origen",
-  "Imports By Region": "Importaciones por Región",
-  "Imports by Origin Country": "Importación por país de origen",
-  "Imports by product": "Importaciones por producto",
-  "Imports from Chile": "Imports from Chile",
-  "In": "En",
-  "In period": "En el período",
-  "In period {{year_first}} - {{year_last}}":
-    "En el período {{year_first}} - {{year_last}}",
-  "Income": "Ingreso",
-  "Income By Age": "Ingreso por Edad",
-  "Income By Sex": "Ingreso por Sexo",
-  "Income Range CLP": "Rango de ingreso CLP",
-  "Industries": "Industrias",
-  "Industry": "Industria",
-  "Industry & Occupations": "Industria y ocupaciones",
-  "Industry By Output (CLP)": "Industry By Output (CLP)",
-  "Industry Space": "Espacio de Industrias",
-  "Industry Type": "Tipo de Industria",
-  "Industry output": "Industry output",
-  "Innovation": "Innovación",
-  "Institution": "Institución",
-  "Institution Type": "Tipo de Institución",
-  "Institutions": "Instituciones",
-  "International Trade": "Comercio Internacional",
-  "International Trade Balance": "Balanza comercial internacional",
-  "International trade": "Comercion internacional",
-  "Internet Access": "Acceso a Internet",
-  "Internet Access By Zone in ": "Acceso a internet por zona en ",
-  "Internet access": "Acceso a Internet",
-  "Internet use": "Uso de Internet",
-  "Investment By Comuna (Legal address)":
-    "Inversión por comuna (dirección legal)",
-  "Language": "Idioma",
-  "Laptop computer": "Laptop computer",
-  "Less Than 20 Blocks from": "Menos de 20 cuadras de",
-  "Less Than 8 Blocks from": "Menos de 8 cuadras de",
-  "Less than 30 square meter households": "Hogares de menos de 30m²",
-  "LoadingComponent": {
-    "description": "Cargando {{progress}} de {{total}} series de datos",
-    "title": "Por favor espere"
-  },
-  "Login": {
-    "E-mail": "E-mail",
-    "Facebook": "Facebook",
-    "Instagram": "Instagram",
-    "Login": "Login",
-    "Password": "Password",
-    "Twitter": "Twitter",
-    "error": "Wrong Username or Password",
-    "success": "Successfully Logged In"
-  },
-  "Lorem datum": "Lorem datum",
-  "Lorem ipsum dolor sit amet, consectetur ": {
-    "": "Lorem ipsum dolor sit amet, consectetur ."
-  },
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit": {
-    "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-  },
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
-    "":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.",
-    " Lorem ipsum dolor sit amet": {
-      "":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
+    "Health Center": "Centro de salud",
+    "Health Insurance": "Health Insurance",
+    "Healthcare": "Healthcare",
+    "Healthcare by Type": "Healthcare by Type",
+    "Higher Education": "Higher Education",
+    "Home": "Inicio",
+    "Households with credit in state bank":
+      "Hogares con crédito en banco estatal",
+    "Housing Conditions": "Condiciones habitacionales",
+    "Housing Type": "Housing Type",
+    "Housing and Environment": "Housing and Environment",
+    "Immigrant visas": "Visas de inmigrante",
+    "Imports & Exports": "Importaciones y Exportaciones",
+    "Imports By Destination": "Importaciones por Destino",
+    "Imports By Origin": "Importaciones por origen",
+    "Imports By Region": "Importaciones por Región",
+    "Imports by Origin Country": "Importación por país de origen",
+    "Imports by product": "Importaciones por producto",
+    "Imports from Chile": "Imports from Chile",
+    "In": "En",
+    "In period": "En el período",
+    "In period {{year_first}} - {{year_last}}":
+      "En el período {{year_first}} - {{year_last}}",
+    "Income": "Ingreso",
+    "Income By Age": "Ingreso por Edad",
+    "Income By Sex": "Ingreso por Sexo",
+    "Income Range CLP": "Rango de ingreso CLP",
+    "Industries": "Industrias",
+    "Industry": "Industria",
+    "Industry & Occupations": "Industria y ocupaciones",
+    "Industry By Output (CLP)": "Industry By Output (CLP)",
+    "Industry Space": "Espacio de Industrias",
+    "Industry Type": "Tipo de Industria",
+    "Industry output": "Industry output",
+    "Innovation": "Innovación",
+    "Institution": "Institución",
+    "Institution Type": "Tipo de Institución",
+    "Institutions": "Instituciones",
+    "International Trade": "Comercio Internacional",
+    "International Trade Balance": "Balanza comercial internacional",
+    "International trade": "Comercion internacional",
+    "Internet Access": "Acceso a Internet",
+    "Internet Access By Zone in ": "Acceso a internet por zona en ",
+    "Internet access": "Acceso a Internet",
+    "Internet use": "Uso de Internet",
+    "Investment By Comuna (Legal address)":
+      "Inversión por comuna (dirección legal)",
+    "Language": "Idioma",
+    "Laptop computer": "Laptop computer",
+    "Less Than 20 Blocks from": "Menos de 20 cuadras de",
+    "Less Than 8 Blocks from": "Menos de 8 cuadras de",
+    "Less than 30 square meter households": "Hogares de menos de 30m²",
+    "LoadingComponent": {
+      "description": "Cargando {{progress}} de {{total}} series de datos",
+      "title": "Por favor espere"
     },
-    " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
+    "Login": {
+      "E-mail": "E-mail",
+      "Facebook": "Facebook",
+      "Instagram": "Instagram",
+      "Login": "Login",
+      "Password": "Password",
+      "Twitter": "Twitter",
+      "error": "Wrong Username or Password",
+      "success": "Successfully Logged In"
+    },
+    "Lorem datum": "Lorem datum",
+    "Lorem ipsum dolor sit amet, consectetur ": {
+      "": "Lorem ipsum dolor sit amet, consectetur ."
+    },
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit": {
+      "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
       "":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
-    }
-  },
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon": {
-    "":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
-  },
-      
-  "Main exported product": "Principal producto exportado",
-  "Main imported product": "Principal producto importado",
-  "Main services in ": "Main services in ",
-  "Male": "Hombre",
-  "Male Mean Income": "Ingreso promedio hombres",
-  "Map Explore": "Map Explore",
-  "Map explore": "Exploración con Mapa",
-  "Market": "Mercado",
-  "Material of Walls": "Material de las paredes",
-  "Math": "Matemática",
-  "Mayor": "Alcalde",
-  "Mayor Election": "Elección de alcalde",
-  "Median Income CLP": "Ingreso medio CLP",
-  "Migration": "Migración",
-  "Migration By Activity": "Migración por actividad",
-  "Migration By Age": "Migración por edad",
-  "Migration By Calculated Age Range": "Migration By Calculated Age Range",
-  "Migration By Educational Level": "Migración por nivel educativo",
-  "Migration By Origin": "Migración por origen",
-  "Migration By Region": "Migración por región",
-  "Migration By Sex": "Migración por sexo",
-  "Migration By Visa": "Migración por visa",
-  "Migration By Visa Type": "Migración por tipo de visa",
-  "Mobile phone": "Teléfono móvil",
-  "Monthly Median Income CLP": "Ingreso medio mensual CLP",
-  "Municipalities": "Municipalidades",
-  "NEM Performance By Administration": "NEM Performance By Administration",
-  "Number of jobs": "Cantidad de puestos de trabajo",
-  "Number of visas": "Cantidad de Visas",
-  "Occupation": "Ocupación",
-  "Occupational Category": "Categoría ocupacional",
-  "Occupations by workers": "Ocupaciones por cantidad de trabajadores",
-  "Opportunities": "Oportunidades",
-  "Opportunity": "Oportunidad",
-  "Origin & Destination": "Origen y Destino",
-  "Origins": "Orígenes",
-  "Other products": "Otros productos",
-  "Other regions": "Otras regiones",
-  "Others": "Otros",
-  "Output By Comuna (Legal address)": "Output By Comuna (Legal address)",
-  "Output by Industry": "Producción por industria",
-  "PSU Results": "Resultados PSU",
-  "PSU Results By Sex": "Resultados PSU por sexo",
-  "PSU vs NEM": "PSU vs NEM",
-  "PSU vs NEM by school": "PSU vs NEM por escuela",
-  "People": "Personas",
-  "Per 100 inhabitants in": "Cada 100 habitantes en",
-  "Performance": "Performance",
-  "Pharmacy": "Farmacia",
-  "Pic by": "Foto de",
-  "Politics": "Política",
-  "Population": "Población",
-  "Population Projection": "Proyección poblacional",
-  "Population Pyramid": "Pirámide poblacional",
-  "Population with Health Insurance": "Population with Health Insurance",
-  "President": "Presidente",
-  "Product": "Productos",
-  "product_profile": {
-    "about1": {
-      "default":"En {{year.last}}, {{product.caption}} fueron el {{total_exports.rank}} producto más exportado por Chile, de un total de {{total_exports.total}} categorías. Representó el {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, abarcando el {{region.share}} del total.",
-      "no_data": "No se registran datos de exportaciones de {{product.caption}} en {{year.last}}"
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.",
+      " Lorem ipsum dolor sit amet": {
+        "":
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
+      },
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
+        "":
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
+      }
+    },
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon": {
+      "":
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
     },
 
-    "about2": {
-      "exp_1_imp_0": "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
-      "exp_1_imp_1": "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
-      "exp_1_imp_2": "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
-      "exp_1_imp_3": "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. </p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.</p>",
-      "exp_2_imp_0": "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
-      "exp_2_imp_1": "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
-      "exp_2_imp_2": "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
-      "exp_2_imp_3": "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.</p>",
-      "exp_3_imp_0": "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
-      "exp_3_imp_1": "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
-      "exp_3_imp_2": "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
-      "exp_3_imp_3":"En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente."
-    },
-      
+    "Main exported product": "Principal producto exportado",
+    "Main imported product": "Principal producto importado",
+    "Main services in ": "Main services in ",
+    "Male": "Hombre",
+    "Male Mean Income": "Ingreso promedio hombres",
+    "Map Explore": "Map Explore",
+    "Map explore": "Exploración con Mapa",
+    "Market": "Mercado",
+    "Material of Walls": "Material de las paredes",
+    "Math": "Matemática",
+    "Mayor": "Alcalde",
+    "Mayor Election": "Elección de alcalde",
+    "Median Income CLP": "Ingreso medio CLP",
+    "Migration": "Migración",
+    "Migration By Activity": "Migración por actividad",
+    "Migration By Age": "Migración por edad",
+    "Migration By Calculated Age Range": "Migration By Calculated Age Range",
+    "Migration By Educational Level": "Migración por nivel educativo",
+    "Migration By Origin": "Migración por origen",
+    "Migration By Region": "Migración por región",
+    "Migration By Sex": "Migración por sexo",
+    "Migration By Visa": "Migración por visa",
+    "Migration By Visa Type": "Migración por tipo de visa",
+    "Mobile phone": "Teléfono móvil",
+    "Monthly Median Income CLP": "Ingreso medio mensual CLP",
+    "Municipalities": "Municipalidades",
+    "NEM Performance By Administration": "NEM Performance By Administration",
+    "Number of jobs": "Cantidad de puestos de trabajo",
+    "Number of visas": "Cantidad de Visas",
+    "Occupation": "Ocupación",
+    "Occupational Category": "Categoría ocupacional",
+    "Occupations by workers": "Ocupaciones por cantidad de trabajadores",
+    "Opportunities": "Oportunidades",
+    "Opportunity": "Oportunidad",
+    "Origin & Destination": "Origen y Destino",
+    "Origins": "Orígenes",
+    "Other products": "Otros productos",
+    "Other regions": "Otras regiones",
+    "Others": "Otros",
+    "Output By Comuna (Legal address)": "Output By Comuna (Legal address)",
+    "Output by Industry": "Producción por industria",
+    "PSU Results": "Resultados PSU",
+    "PSU Results By Sex": "Resultados PSU por sexo",
+    "PSU vs NEM": "PSU vs NEM",
+    "PSU vs NEM by school": "PSU vs NEM por escuela",
+    "People": "Personas",
+    "Per 100 inhabitants in": "Cada 100 habitantes en",
+    "Performance": "Performance",
+    "Pharmacy": "Farmacia",
+    "Pic by": "Foto de",
+    "Politics": "Política",
+    "Population": "Población",
+    "Population Projection": "Proyección poblacional",
+    "Population Pyramid": "Pirámide poblacional",
+    "Population with Health Insurance": "Population with Health Insurance",
+    "President": "Presidente",
+    "Product": "Productos",
+
     "balance": {
-      "default": "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. En el mismo periodo, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
-      "exports": "Durante los últimos {{year.number}} años, no se registraron exportaciones de {{product.caption}. Por otra parte, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
-      "imports": "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. Por otra parte, no se registraron importaciones de {{product.caption}} en este periodo de tiempo.",
-      "neither": "No se registraron exportaciones e importaciones para {{product.caption}} en el periodo {{year.first}}-{{year.last}}"
+      "default":
+        "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. En el mismo periodo, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
+      "exports":
+        "Durante los últimos {{year.number}} años, no se registraron exportaciones de {{product.caption}. Por otra parte, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
+      "imports":
+        "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. Por otra parte, no se registraron importaciones de {{product.caption}} en este periodo de tiempo.",
+      "neither":
+        "No se registraron exportaciones e importaciones para {{product.caption}} en el periodo {{year.first}}-{{year.last}}"
     }
   },
   "Product Space": "Espacio de Producto",
@@ -699,9 +682,12 @@
   "in ": "in ",
   "increased": "crecido",
   "industry_profile": {
-    "economy": "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.name}}, con {{}}, representando el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
-    "employment": "From {{year.first}} to {{year.last}}, employment in {{industry.name}} {{increased_or_decreased}} at a quaterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.",
-    "r&d": "<p>En {{year}}, las exportaciones de {{industry.name}} fueron de {{industry.exports}}, representando al {{industry.share}} del total.</p><p>Por otra parte, el nivel gasto de {{industry.name}} en Investigación y Desarrollo fue de {{industry.spending}}, donde empresas de {{}} representan el {{}} del total.</p>",
+    "economy":
+      "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+    "employment":
+      "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",
+    "r&d":
+      "<p>En {{year}}, las exportaciones de {{industry.caption}} fueron de {{industry.exports}}, representando al {{industry.share}} del total. Por otra parte, el nivel gasto de {{industry.caption}} en Investigación y Desarrollo fue de {{industry.spending}}.</p>",
     "warning": "Se muestran datos sobre {{industry.caption}}"
   },
   "loading": {
@@ -715,8 +701,44 @@
   "of": "de",
   "of total": "del total",
   "people": "personas",
+  "product_profile": {
+    "about1": {
+      "default":
+        "En {{year.last}}, {{product.caption}} fueron el {{total_exports.rank}} producto más exportado por Chile, de un total de {{total_exports.total}} categorías. Representó el {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, abarcando el {{region.share}} del total.",
+      "no_data":
+        "No se registran datos de exportaciones de {{product.caption}} en {{year.last}}"
+    },
+
+    "about2": {
+      "exp_1_imp_0":
+        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
+      "exp_1_imp_1":
+        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
+      "exp_1_imp_2":
+        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
+      "exp_1_imp_3":
+        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. </p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.</p>",
+      "exp_2_imp_0":
+        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
+      "exp_2_imp_1":
+        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
+      "exp_2_imp_2":
+        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
+      "exp_2_imp_3":
+        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.</p>",
+      "exp_3_imp_0":
+        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
+      "exp_3_imp_1":
+        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
+      "exp_3_imp_2":
+        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
+      "exp_3_imp_3":
+        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente."
+    }
+  },
   "students": "students",
-  "There are not data available for this chart": "Noy hay datos disponibles para este gráfico",
+  "There are not data available for this chart":
+    "Noy hay datos disponibles para este gráfico",
   "tooltip": {
     "to_profile": "Clic para ver el perfil completo"
   },
