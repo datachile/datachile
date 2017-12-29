@@ -15,11 +15,11 @@ class ProductSpace extends Section {
   static need = [
     simpleGeoChartNeed(
       "path_exports_last_year",
-      "exports",
+      "exports_hs1992",
       ["FOB US", "Exports RCA"],
       {
         drillDowns: [["Export HS", "HS4"]],
-        options: { parents: true },
+        options: { parents: true, sparse: false },
         cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
       }
     )
@@ -57,15 +57,25 @@ class ProductSpace extends Section {
               title: d => {
                 return d["HS2"];
               },
-              body: d => numeral(d["FOB US"], locale).format("(USD 0 a)")
+              body: d => {
+                var body = `<table class='tooltip-table'>
+                           <tr><td class='title'>${t("Exports USD")}</td></tr>
+                           <td class='data'>${numeral(
+                             d["FOB US"],
+                             locale
+                           ).format("(USD 0 a)")}</td></tr>
+                         </table>`;
+                return body;
+              }
             },
             legend: false
           }}
-          dataFormat={data =>
-            data.data
+          dataFormat={data => {
+            // console.log("xxxxx", data);
+            return data.data
               .filter(d => d["Exports RCA"] > 1)
-              .map(d => ({ id: d["ID HS2"], ...d }))
-          }
+              .map(d => ({ id: d["ID HS2"], ...d }));
+          }}
         />
         <SourceNote cube="tax_data" />
       </div>
