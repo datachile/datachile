@@ -114,6 +114,8 @@
   "Growth R&D Spending in ": "Growth R&D Spending in ",
   "Growth affiliates in ISAPRES": "Growth affiliates in ISAPRES",
   "Growth number of visas": "Growth number of visas",
+  "Growth number of visas for {{current}} immigrants":
+    "Growth number of visas for {{current}} immigrants",
   "Health": "Health",
   "Health Center": "Health Center",
   "Health Insurance": "Health Insurance",
@@ -362,6 +364,10 @@
   "Value": "Value",
   "Videogame console": "Videogame console",
   "Visas": "Visas",
+  "Visas for Female immigrants": "Visas for Female immigrants",
+  "Visas for females in range {{range}}":
+    "Visas for females in range {{range}}",
+  "Visas for males in range {{range}}": "Visas for males in range {{range}}",
   "Wages": "Wages",
   "Wages by Program": "Wages by Program",
   "Years of Studies": "Years of Studies",
@@ -492,7 +498,7 @@
         "<p>Most export coming out from Chile to {{level}} depart from {{origin.first_region}}, mainly from the comunas of {{origin.first_municipality}}, {{origin.second_municipality}}, and {{origin.third_municipality}}.</p>",
       "import":
         "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after, the comunas of {{destination.second_municipality}}, in {{destination.second_region}}, and {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
-      "import_": "",
+      "import_": "t(country_profile.intltrade_origin_dest_slide.import)",
       "import_12":
         "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after the comunas of {{destination.second_municipality}} and {{destination.third_municipality}}, in {{destination.second_region}}.</p>",
       "import_21":
@@ -502,7 +508,7 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>The principal product Chile imports from {{level}} is {{main_import.name}}. For {{year_latest}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of {{main_import.name}} to Chile.</p><p>On the other side, Chile exports to {{level}} mainly {{main_export.name}}. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of {{main_export.name}} from Chile during {{year_latest}}.</p>"
+        "<p>The principal product Chile imports from {{level}} is {{main_import.name}}. For {{year_last}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of {{main_import.name}} to Chile.</p><p>On the other side, Chile exports to {{level}} mainly {{main_export.name}}. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of {{main_export.name}} from Chile during {{year_last}}.</p>"
     },
     "migration_activity_slide": {
       "text":
@@ -514,7 +520,7 @@
       "tendency_stay":
         ", which is a tendency since {{year_first}}, with an accumulated growth of {{sex.growth}}",
       "text":
-        "<p>Of the immigrants that come from {{level}}, most are {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_latest}}, which translates into a growth of {{agerange.first_growth}} since {{year_previous}}.</p>"
+        "<p>Of the immigrants that come from {{level}}, most are {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_last}}, which translates into a growth of {{agerange.first_growth}} since {{year_previous}}.</p>"
     },
     "migration_education_slide": {
       "text":
@@ -522,7 +528,7 @@
     },
     "migration_slide": {
       "text":
-        "<p>By {{year_latest}}, most immigrants from {{level}} arrive to establish in {{destination.region}}, mainly in the comuna of {{destination.municipality}}.</p><p>The immigrants from {{level}} in this comuna account for {{destination.mun_percent}} of the national total, and {{destination.reg_percent}} of the regional total. Compared to {{year_previous}}, the growth in immigration visas for people living in {{destination.municipality}} is {{destination.mun_growth}}.</p>"
+        "<p>By {{year_last}}, most immigrants from {{level}} arrive to establish in {{destination.region}}, mainly in the comuna of {{destination.municipality}}.</p><p>The immigrants from {{level}} in this comuna account for {{destination.mun_percent}} of the national total, and {{destination.reg_percent}} of the regional total. Compared to {{year_previous}}, the growth in immigration visas for people living in {{destination.municipality}} is {{destination.mun_growth}}.</p>"
     }
   },
   "decreased": "decreased",
@@ -643,6 +649,9 @@
   "val": "val",
   "visas": "visas",
   "{{number}} visas": "{{number}} visas",
+  "{{percent}} of the country - {{last_year}}":
+    "{{percent}} of the country - {{last_year}}",
+  "{{number}} visas granted in {{year}}": "{{number}} visas granted in {{year}}",
   "home": {
     "subtitle":
       "The most comprehensive effort to integrate and visualize Chile’s Public Data",

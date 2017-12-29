@@ -129,6 +129,7 @@
   "Exports by Destination": "Exportación por destino",
   "Exports by product": "Exportaciones por producto",
   "Exports in ": "Exportaciones en ",
+  "Exports volume": "Volumen de exportaciones",
   "Exports {{last_year}}": "Exportaciones {{last_year}}",
   "Extras": "Extras",
   "Female": "Mujeres",
@@ -148,6 +149,8 @@
   "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
   "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
   "Growth number of visas": "Crecimiento número de visas",
+  "Growth number of visas for {{current}} immigrants":
+    "Crecimiento número de visas para inmigrantes de sexo {{current}}",
   "Health": "Salud",
   "Politics": "Política",
 
@@ -281,7 +284,9 @@
   },
 
   "Main exported product": "Principal producto exportado",
+  "Main exporting Region": "Principal Región exportadora",
   "Main imported product": "Principal producto importado",
+  "Main importing Region": "Principal Región importadora",
   "Main services in ": "Main services in ",
   "Male": "Hombre",
   "Male Mean Income": "Ingreso promedio hombres",
@@ -455,6 +460,11 @@
   "Value": "Valor",
   "Videogame console": "Consola de videojuegos",
   "Visas": "Visas",
+  "Visas for Female immigrants": "Visas para inmigrantes de sexo Femenino",
+  "Visas for females in range {{range}}":
+    "Visas para mujeres en el rango {{range}}",
+  "Visas for males in range {{range}}":
+    "Visas para hombres en el rango {{range}}",
   "Wages": "Salarios",
   "Wages by Program": "Salarios por programa",
   "Years of Studies": "Años de estudio",
@@ -623,7 +633,7 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>El principal producto que Chile importa desde {{level}} es {{main_import.name}}. Para el año {{year_latest}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, y un {{main_import.global_percent}} de las importaciones totales de {{main_import.name}} hacia Chile.</p><p>Por otro lado, Chile exporta hacia {{level}} principalmente {{main_export.name}}. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, y un {{main_export.global_percent}} de las exportaciones de {{main_export.name}} desde Chile durante {{year_latest}}.</p>"
+        "<p>El principal producto que Chile importa desde {{level}} es {{main_import.name}}. Para el año {{year_last}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, y un {{main_import.global_percent}} de las importaciones totales de {{main_import.name}} hacia Chile.</p><p>Por otro lado, Chile exporta hacia {{level}} principalmente {{main_export.name}}. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, y un {{main_export.global_percent}} de las exportaciones de {{main_export.name}} desde Chile durante {{year_last}}.</p>"
     },
     "migration_activity_slide": {
       "text":
@@ -635,7 +645,7 @@
       "tendency_stay":
         ", lo cual es una tendencia desde el año {{year_first}}, con un crecimiento de un {{sex.growth}}",
       "text":
-        "<p>De los inmigrantes que llegan desde {{level}}, la mayoría son de sexo {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{agerange.first}}, seguidos de gente en el rango {{agerange.second}}. Los primeros representan un {{agerange.first_percent}} del total en {{year_latest}}, lo cual se traduce en un crecimiento de {{agerange.first_growth}} respecto al año {{year_previous}}.</p>"
+        "<p>De los inmigrantes que llegan desde {{level}}, la mayoría son de sexo {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{agerange.first}}, seguidos de gente en el rango {{agerange.second}}. Los primeros representan un {{agerange.first_percent}} del total en {{year_last}}, lo cual se traduce en un crecimiento de {{agerange.first_growth}} respecto al año {{year_previous}}.</p>"
     },
     "migration_education_slide": {
       "text":
@@ -643,7 +653,7 @@
     },
     "migration_slide": {
       "text":
-        "<p>Para el {{year_latest}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, principalmente en la comuna de {{destination.municipality}}.</p><p>Los inmigrantes de {{level}} en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al {{year_previous}}, el crecimiento en visas de inmigración de gente establecida en {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
+        "<p>Para el {{year_last}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, principalmente en la comuna de {{destination.municipality}}.</p><p>Los inmigrantes de {{level}} en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al {{year_previous}}, el crecimiento en visas de inmigración de gente establecida en {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
     }
   },
   "decreased": "decrecido",
@@ -674,12 +684,12 @@
         "En {{latest_year}} las firmas con domicilio fiscal en {{geo.caption}} exportaron <i>{{trade_volume}}</i>, llevando a {{geo.caption}} al {{rank}} puesto de los mayores exportadores de Chile. Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}. Los principales productos de exportación de {{geo.caption}} son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} del total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} del total)"
     }
   },
-  "granted in": "granted in",
-  "granted in {{year}}": "granted in {{year}}",
-  "health cares": "health cares",
-  "houses": "houses",
-  "in": "in",
-  "in ": "in ",
+  "granted in": "otorgadas en",
+  "granted in {{year}}": "otorgadas en {{year}}",
+  "health cares": "atenciones de salud",
+  "houses": "viviendas",
+  "in": "en",
+  "in ": "en ",
   "increased": "crecido",
   "industry_profile": {
     "economy":
@@ -736,6 +746,8 @@
         "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente."
     }
   },
+  "relative to exports to the world":
+    "relativo a exportaciones a todo el mundo",
   "students": "students",
   "There are not data available for this chart":
     "Noy hay datos disponibles para este gráfico",
@@ -756,6 +768,10 @@
   "val": "val",
   "visas": "visas",
   "{{number}} visas": "{{number}} visas",
+  "{{percent}} of the country - {{last_year}}":
+    "{{percent}} del país - {{last_year}}",
+  "{{number}} visas granted in {{year}}":
+    "{{number}} visas otorgadas en {{year}}",
   "home": {
     "subtitle":
       "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
