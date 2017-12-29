@@ -188,165 +188,165 @@
         "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
       "disability": "",
       "death_causes": ""
-    },
-    "Health Center": "Centro de salud",
-    "Health Insurance": "Health Insurance",
-    "Healthcare": "Healthcare",
-    "Healthcare by Type": "Healthcare by Type",
-    "Higher Education": "Higher Education",
-    "Home": "Inicio",
-    "Households with credit in state bank":
-      "Hogares con crédito en banco estatal",
-    "Housing Conditions": "Condiciones habitacionales",
-    "Housing Type": "Housing Type",
-    "Housing and Environment": "Housing and Environment",
-    "Immigrant visas": "Visas de inmigrante",
-    "Imports & Exports": "Importaciones y Exportaciones",
-    "Imports By Destination": "Importaciones por Destino",
-    "Imports By Origin": "Importaciones por origen",
-    "Imports By Region": "Importaciones por Región",
-    "Imports by Origin Country": "Importación por país de origen",
-    "Imports by product": "Importaciones por producto",
-    "Imports from Chile": "Imports from Chile",
-    "In": "En",
-    "In period": "En el período",
-    "In period {{year_first}} - {{year_last}}":
-      "En el período {{year_first}} - {{year_last}}",
-    "Income": "Ingreso",
-    "Income By Age": "Ingreso por Edad",
-    "Income By Sex": "Ingreso por Sexo",
-    "Income Range CLP": "Rango de ingreso CLP",
-    "Industries": "Industrias",
-    "Industry": "Industria",
-    "Industry & Occupations": "Industria y ocupaciones",
-    "Industry By Output (CLP)": "Industry By Output (CLP)",
-    "Industry Space": "Espacio de Industrias",
-    "Industry Type": "Tipo de Industria",
-    "Industry output": "Industry output",
-    "Innovation": "Innovación",
-    "Institution": "Institución",
-    "Institution Type": "Tipo de Institución",
-    "Institutions": "Instituciones",
-    "International Trade": "Comercio Internacional",
-    "International Trade Balance": "Balanza comercial internacional",
-    "International trade": "Comercion internacional",
-    "Internet Access": "Acceso a Internet",
-    "Internet Access By Zone in ": "Acceso a internet por zona en ",
-    "Internet access": "Acceso a Internet",
-    "Internet use": "Uso de Internet",
-    "Investment By Comuna (Legal address)":
-      "Inversión por comuna (dirección legal)",
-    "Language": "Idioma",
-    "Laptop computer": "Laptop computer",
-    "Less Than 20 Blocks from": "Menos de 20 cuadras de",
-    "Less Than 8 Blocks from": "Menos de 8 cuadras de",
-    "Less than 30 square meter households": "Hogares de menos de 30m²",
-    "LoadingComponent": {
-      "description": "Cargando {{progress}} de {{total}} series de datos",
-      "title": "Por favor espere"
-    },
-    "Login": {
-      "E-mail": "E-mail",
-      "Facebook": "Facebook",
-      "Instagram": "Instagram",
-      "Login": "Login",
-      "Password": "Password",
-      "Twitter": "Twitter",
-      "error": "Wrong Username or Password",
-      "success": "Successfully Logged In"
-    },
-    "Lorem datum": "Lorem datum",
-    "Lorem ipsum dolor sit amet, consectetur ": {
-      "": "Lorem ipsum dolor sit amet, consectetur ."
-    },
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit": {
-      "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    },
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
-      "":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.",
-      " Lorem ipsum dolor sit amet": {
-        "":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
-      },
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
-        "":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
-      }
-    },
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon": {
-      "":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
-    },
-
-    "Main exported product": "Principal producto exportado",
-    "Main imported product": "Principal producto importado",
-    "Main services in ": "Main services in ",
-    "Male": "Hombre",
-    "Male Mean Income": "Ingreso promedio hombres",
-    "Map Explore": "Map Explore",
-    "Map explore": "Exploración con Mapa",
-    "Market": "Mercado",
-    "Material of Walls": "Material de las paredes",
-    "Math": "Matemática",
-    "Mayor": "Alcalde",
-    "Mayor Election": "Elección de alcalde",
-    "Median Income CLP": "Ingreso medio CLP",
-    "Migration": "Migración",
-    "Migration By Activity": "Migración por actividad",
-    "Migration By Age": "Migración por edad",
-    "Migration By Calculated Age Range": "Migration By Calculated Age Range",
-    "Migration By Educational Level": "Migración por nivel educativo",
-    "Migration By Origin": "Migración por origen",
-    "Migration By Region": "Migración por región",
-    "Migration By Sex": "Migración por sexo",
-    "Migration By Visa": "Migración por visa",
-    "Migration By Visa Type": "Migración por tipo de visa",
-    "Mobile phone": "Teléfono móvil",
-    "Monthly Median Income CLP": "Ingreso medio mensual CLP",
-    "Municipalities": "Municipalidades",
-    "NEM Performance By Administration": "NEM Performance By Administration",
-    "Number of jobs": "Cantidad de puestos de trabajo",
-    "Number of visas": "Cantidad de Visas",
-    "Occupation": "Ocupación",
-    "Occupational Category": "Categoría ocupacional",
-    "Occupations by workers": "Ocupaciones por cantidad de trabajadores",
-    "Opportunities": "Oportunidades",
-    "Opportunity": "Oportunidad",
-    "Origin & Destination": "Origen y Destino",
-    "Origins": "Orígenes",
-    "Other products": "Otros productos",
-    "Other regions": "Otras regiones",
-    "Others": "Otros",
-    "Output By Comuna (Legal address)": "Output By Comuna (Legal address)",
-    "Output by Industry": "Producción por industria",
-    "PSU Results": "Resultados PSU",
-    "PSU Results By Sex": "Resultados PSU por sexo",
-    "PSU vs NEM": "PSU vs NEM",
-    "PSU vs NEM by school": "PSU vs NEM por escuela",
-    "People": "Personas",
-    "Per 100 inhabitants in": "Cada 100 habitantes en",
-    "Performance": "Performance",
-    "Pharmacy": "Farmacia",
-    "Pic by": "Foto de",
-    "Politics": "Política",
-    "Population": "Población",
-    "Population Projection": "Proyección poblacional",
-    "Population Pyramid": "Pirámide poblacional",
-    "Population with Health Insurance": "Population with Health Insurance",
-    "President": "Presidente",
-    "Product": "Productos",
-
-    "balance": {
-      "default":
-        "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. En el mismo periodo, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
-      "exports":
-        "Durante los últimos {{year.number}} años, no se registraron exportaciones de {{product.caption}. Por otra parte, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
-      "imports":
-        "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. Por otra parte, no se registraron importaciones de {{product.caption}} en este periodo de tiempo.",
-      "neither":
-        "No se registraron exportaciones e importaciones para {{product.caption}} en el periodo {{year.first}}-{{year.last}}"
     }
+  },
+  "Health Center": "Centro de salud",
+  "Health Insurance": "Health Insurance",
+  "Healthcare": "Healthcare",
+  "Healthcare by Type": "Healthcare by Type",
+  "Higher Education": "Higher Education",
+  "Home": "Inicio",
+  "Households with credit in state bank":
+    "Hogares con crédito en banco estatal",
+  "Housing Conditions": "Condiciones habitacionales",
+  "Housing Type": "Housing Type",
+  "Housing and Environment": "Housing and Environment",
+  "Immigrant visas": "Visas de inmigrante",
+  "Imports & Exports": "Importaciones y Exportaciones",
+  "Imports By Destination": "Importaciones por Destino",
+  "Imports By Origin": "Importaciones por origen",
+  "Imports By Region": "Importaciones por Región",
+  "Imports by Origin Country": "Importación por país de origen",
+  "Imports by product": "Importaciones por producto",
+  "Imports from Chile": "Imports from Chile",
+  "In": "En",
+  "In period": "En el período",
+  "In period {{year_first}} - {{year_last}}":
+    "En el período {{year_first}} - {{year_last}}",
+  "Income": "Ingreso",
+  "Income By Age": "Ingreso por Edad",
+  "Income By Sex": "Ingreso por Sexo",
+  "Income Range CLP": "Rango de ingreso CLP",
+  "Industries": "Industrias",
+  "Industry": "Industria",
+  "Industry & Occupations": "Industria y ocupaciones",
+  "Industry By Output (CLP)": "Industry By Output (CLP)",
+  "Industry Space": "Espacio de Industrias",
+  "Industry Type": "Tipo de Industria",
+  "Industry output": "Industry output",
+  "Innovation": "Innovación",
+  "Institution": "Institución",
+  "Institution Type": "Tipo de Institución",
+  "Institutions": "Instituciones",
+  "International Trade": "Comercio Internacional",
+  "International Trade Balance": "Balanza comercial internacional",
+  "International trade": "Comercion internacional",
+  "Internet Access": "Acceso a Internet",
+  "Internet Access By Zone in ": "Acceso a internet por zona en ",
+  "Internet access": "Acceso a Internet",
+  "Internet use": "Uso de Internet",
+  "Investment By Comuna (Legal address)":
+    "Inversión por comuna (dirección legal)",
+  "Language": "Idioma",
+  "Laptop computer": "Laptop computer",
+  "Less Than 20 Blocks from": "Menos de 20 cuadras de",
+  "Less Than 8 Blocks from": "Menos de 8 cuadras de",
+  "Less than 30 square meter households": "Hogares de menos de 30m²",
+  "LoadingComponent": {
+    "description": "Cargando {{progress}} de {{total}} series de datos",
+    "title": "Por favor espere"
+  },
+  "Login": {
+    "E-mail": "E-mail",
+    "Facebook": "Facebook",
+    "Instagram": "Instagram",
+    "Login": "Login",
+    "Password": "Password",
+    "Twitter": "Twitter",
+    "error": "Wrong Username or Password",
+    "success": "Successfully Logged In"
+  },
+  "Lorem datum": "Lorem datum",
+  "Lorem ipsum dolor sit amet, consectetur ": {
+    "": "Lorem ipsum dolor sit amet, consectetur ."
+  },
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit": {
+    "": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
+    "":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.",
+    " Lorem ipsum dolor sit amet": {
+      "":
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
+    },
+    " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo": {
+      "":
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
+    }
+  },
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon": {
+    "":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
+  },
+
+  "Main exported product": "Principal producto exportado",
+  "Main imported product": "Principal producto importado",
+  "Main services in ": "Main services in ",
+  "Male": "Hombre",
+  "Male Mean Income": "Ingreso promedio hombres",
+  "Map Explore": "Map Explore",
+  "Map explore": "Exploración con Mapa",
+  "Market": "Mercado",
+  "Material of Walls": "Material de las paredes",
+  "Math": "Matemática",
+  "Mayor": "Alcalde",
+  "Mayor Election": "Elección de alcalde",
+  "Median Income CLP": "Ingreso medio CLP",
+  "Migration": "Migración",
+  "Migration By Activity": "Migración por actividad",
+  "Migration By Age": "Migración por edad",
+  "Migration By Calculated Age Range": "Migration By Calculated Age Range",
+  "Migration By Educational Level": "Migración por nivel educativo",
+  "Migration By Origin": "Migración por origen",
+  "Migration By Region": "Migración por región",
+  "Migration By Sex": "Migración por sexo",
+  "Migration By Visa": "Migración por visa",
+  "Migration By Visa Type": "Migración por tipo de visa",
+  "Mobile phone": "Teléfono móvil",
+  "Monthly Median Income CLP": "Ingreso medio mensual CLP",
+  "Municipalities": "Municipalidades",
+  "NEM Performance By Administration": "NEM Performance By Administration",
+  "Number of jobs": "Cantidad de puestos de trabajo",
+  "Number of visas": "Cantidad de Visas",
+  "Occupation": "Ocupación",
+  "Occupational Category": "Categoría ocupacional",
+  "Occupations by workers": "Ocupaciones por cantidad de trabajadores",
+  "Opportunities": "Oportunidades",
+  "Opportunity": "Oportunidad",
+  "Origin & Destination": "Origen y Destino",
+  "Origins": "Orígenes",
+  "Other products": "Otros productos",
+  "Other regions": "Otras regiones",
+  "Others": "Otros",
+  "Output By Comuna (Legal address)": "Output By Comuna (Legal address)",
+  "Output by Industry": "Producción por industria",
+  "PSU Results": "Resultados PSU",
+  "PSU Results By Sex": "Resultados PSU por sexo",
+  "PSU vs NEM": "PSU vs NEM",
+  "PSU vs NEM by school": "PSU vs NEM por escuela",
+  "People": "Personas",
+  "Per 100 inhabitants in": "Cada 100 habitantes en",
+  "Performance": "Performance",
+  "Pharmacy": "Farmacia",
+  "Pic by": "Foto de",
+  "Politics": "Política",
+  "Population": "Población",
+  "Population Projection": "Proyección poblacional",
+  "Population Pyramid": "Pirámide poblacional",
+  "Population with Health Insurance": "Population with Health Insurance",
+  "President": "Presidente",
+  "Product": "Productos",
+
+  "balance": {
+    "default":
+      "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. En el mismo periodo, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
+    "exports":
+      "Durante los últimos {{year.number}} años, no se registraron exportaciones de {{product.caption}. Por otra parte, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
+    "imports":
+      "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. Por otra parte, no se registraron importaciones de {{product.caption}} en este periodo de tiempo.",
+    "neither":
+      "No se registraron exportaciones e importaciones para {{product.caption}} en el periodo {{year.first}}-{{year.last}}"
   },
   "Product Space": "Espacio de Producto",
   "Product Type": "Tipo de Producto",
