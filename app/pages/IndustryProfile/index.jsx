@@ -333,7 +333,7 @@ class IndustryProfile extends Component {
             </div>
           </div>
 
-          <div className="topic-block" id="about">
+          {/*<div className="topic-block" id="about">
             <div className="topic-header">
               <div className="topic-title">
                 <h2 className="full-width">
@@ -383,7 +383,7 @@ class IndustryProfile extends Component {
                 </div>
               </div>
             </div>
-          </div>
+                </div>*/}
           <div className="topics-container">
             <Topic
               name={t("Economy")}

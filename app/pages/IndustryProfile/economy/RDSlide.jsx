@@ -75,15 +75,19 @@ class RDSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">
             {t("Research & Development")}
-            <div className="topic-slide-subtitle">
-              <p>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: t("industry_profile.warning", text_rd)
-                  }}
-                />
-              </p>
-            </div>
+            {industry.depth > 1 ? (
+              <div className="topic-slide-subtitle">
+                <p>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("industry_profile.warning", text_rd)
+                    }}
+                  />
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
 
           <div className="topic-slide-text">
@@ -104,7 +108,7 @@ class RDSlide extends Section {
                 "$ 0.0 a"
               )}
               title={t("Exports in ") + industryName}
-              subtitle={`During ${sources.rd_survey.last_year}`}
+              subtitle={t("During") + " " + sources.rd_survey.last_year}
             />
             <FeaturedDatum
               className="l-1-3"
@@ -113,7 +117,7 @@ class RDSlide extends Section {
                 "$ 0.0 a"
               )}
               title={t("Sales in ") + industryName}
-              subtitle={`During ${sources.rd_survey.last_year}`}
+              subtitle={t("During") + " " + sources.rd_survey.last_year}
             />
             <FeaturedDatum
               className="l-1-3"

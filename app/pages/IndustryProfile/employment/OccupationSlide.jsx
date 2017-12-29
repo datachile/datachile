@@ -59,7 +59,7 @@ class OccupationSlide extends Section {
     datum_industry_occupation_growth.pop();
 
     const industryName =
-      industry.depth === 1 ? industry.name : industry.parent.name;
+      industry.depth === 1 ? industry.caption : industry.parent.caption;
 
     const locale = i18n.language;
 
@@ -94,15 +94,19 @@ class OccupationSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">
             {t("Occupation")}
-            <div className="topic-slide-subtitle">
-              <p>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: t("industry_profile.warning", text_slide)
-                  }}
-                />
-              </p>
-            </div>
+            {industry.depth > 1 ? (
+              <div className="topic-slide-subtitle">
+                <p>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("industry_profile.warning", text_slide)
+                    }}
+                  />
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="topic-slide-text">
             <p>
@@ -122,7 +126,7 @@ class OccupationSlide extends Section {
                 "0,0"
               )}
               title={t("Employees in ") + industryName}
-              subtitle={`During ${sources.nene.last_year}`}
+              subtitle={t("During") + " " + sources.nene.last_year}
             />
             <FeaturedDatum
               className="l-1-3"
@@ -133,7 +137,7 @@ class OccupationSlide extends Section {
                 locale
               ).format("0.0 %")}
               title={t("Female percent in ") + industryName}
-              subtitle={`During ${sources.nene.last_year}`}
+              subtitle={t("During") + " " + sources.nene.last_year}
             />
             <FeaturedDatum
               className="l-1-3"
