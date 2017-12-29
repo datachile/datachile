@@ -734,26 +734,26 @@
         "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
       "exp_3_imp_3":
         "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente."
-    },
-    "students": "students",
-    "There are not data available for this chart":
-      "Noy hay datos disponibles para este gráfico",
-    "tooltip": {
-      "to_profile": "Click to see the full profile"
-    },
-    "trade_balance": {
-      "cif": "Importaciones",
-      "fob": "Exportaciones",
-      "trade_balance": "Balanza comercial"
-    },
-    "not_found": {
-      "title": "Página no encontrada",
-      "oops": "Oops! No encontramos la página que estás buscando.",
-      "text": "Intenta navegar hacia otro perfil desde el buscador:"
-    },
-    "use device": "use device",
-    "val": "val",
-    "visas": "visas",
-    "{{number}} visas": "{{number}} visas"
-  }
+    }
+  },
+  "students": "students",
+  "There are not data available for this chart":
+    "Noy hay datos disponibles para este gráfico",
+  "tooltip": {
+    "to_profile": "Click to see the full profile"
+  },
+  "trade_balance": {
+    "cif": "Importaciones",
+    "fob": "Exportaciones",
+    "trade_balance": "Balanza comercial"
+  },
+  "not_found": {
+    "title": "Página no encontrada",
+    "oops": "Oops! No encontramos la página que estás buscando.",
+    "text": "Intenta navegar hacia otro perfil desde el buscador:"
+  },
+  "use device": "use device",
+  "val": "val",
+  "visas": "visas",
+  "{{number}} visas": "{{number}} visas"
 }
