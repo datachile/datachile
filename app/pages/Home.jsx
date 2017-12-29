@@ -136,11 +136,7 @@ class Home extends Component {
                     to="/geo/valparaiso-5/isla-de-pascua-115"
                   />
                 </h1>
-                <p className="lead">
-                  {t(
-                    "The most comprehensive effort to integrate and visualize Chile’s Public Data"
-                  )}
-                </p>
+                <p className="lead">{t("home.subtitle")}</p>
               </div>
               <div className="search-home-wrapper">
                 <Search className="search-home" limit={5} />
@@ -184,45 +180,40 @@ class Home extends Component {
           <div className="home-content">
             <div className="home-text">
               <div className="l-col">
-                <h2>{t("home.what.title")}¿Qué es DataChile?</h2>
+                <h2>{t("home.what.title")}</h2>
                 <p
                   dangerouslySetInnerHTML={{
                     __html: t("home.what.text1")
                   }}
                 />
-                <p>
-                  {" "}
-                  Ofrece una radiografía de las{" "}
-                  <span>temáticas más importantes</span> para el desarrollo del
-                  país.
-                </p>
-                <p>
-                  Ayuda a conocer <span>tendencias y necesidades</span> para el
-                  diseño e implementación de políticas públicas, programas de la
-                  sociedad civil, oportunidades de negocios y estrategias de
-                  marketing del sector privado.
-                </p>
-                <p>
-                  Colabora en la toma de <span>decisiones</span> tanto del
-                  sector público como privado.
-                </p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text2")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text3")
+                  }}
+                />
               </div>
               <div className="r-col">
-                <h2>
-                  ¿En qué se diferencia de otros proyectos de datos abiertos?
-                </h2>
-                <p>
-                  Integra información de{" "}
-                  <span>más de 15 fuentes distintas</span> pertenecientes a más
-                  de 10 organismos de Gobierno.
-                </p>
-                <p>
-                  Crea y combina <span>visualizaciones interactivas</span>.
-                </p>
-                <p>
-                  Piensa los <span>datos como historias</span> y no como
-                  archivos.
-                </p>
+                <h2>{t("home.diff.title")}</h2>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text1")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text2")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text3")
+                  }}
+                />
               </div>
             </div>
 
@@ -249,7 +240,87 @@ class Home extends Component {
                 <div className="home-section-title-img">
                   <img src="/images/icons/icon-source.svg" alt="sources" />
                 </div>
-                <h2>{t("DataChile integra datos de todas estas fuentes")}</h2>
+                <h2>{t("home.sources.title")}</h2>
+              </div>
+
+              <div className="dataset-list">
+                <div className="l-col">
+                  <div className="dataset">
+                    <span className="name">{t("about.data.casen.title")}</span>
+                    <span className="source">
+                      {t("about.data.casen.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.nene.title")}</span>
+                    <span className="source">
+                      {t("about.data.nene.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.nesi.title")}</span>
+                    <span className="source">
+                      {t("about.data.nesi.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.matricula.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.matricula.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.psu.title")}</span>
+                    <span className="source">{t("about.data.psu.source")}</span>
+                  </div>
+                </div>
+
+                <div className="r-col">
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.empleabilidad.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.empleabilidad.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.salud.title")}</span>
+                    <span className="source">
+                      {t("about.data.salud.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.vida.title")}</span>
+                    <span className="source">
+                      {t("about.data.vida.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.migracion.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.migracion.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.discapacidad.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.discapacidad.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.gasto.title")}</span>
+                    <span className="source">
+                      {t("about.data.gasto.source")}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

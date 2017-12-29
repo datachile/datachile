@@ -755,5 +755,29 @@
   "use device": "use device",
   "val": "val",
   "visas": "visas",
-  "{{number}} visas": "{{number}} visas"
+  "{{number}} visas": "{{number}} visas",
+  "home": {
+    "subtitle":
+      "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
+    "what": {
+      "title": "¿Qué es DataChile?",
+      "text1":
+        "Ofrece una radiografía de las <span>temáticas más importantes</span> para el desarrollo del país.",
+      "text2":
+        "Ayuda a conocer <span>tendencias y necesidades</span> para el diseño e implementación de políticas públicas, programas de la sociedad civil, oportunidades de negocios y estrategias de marketing del sector privado.",
+      "text3":
+        "Colabora en la toma de <span>decisiones</span> tanto del sector público como privado."
+    },
+    "diff": {
+      "title": "¿En qué se diferencia de otros proyectos de datos abiertos?",
+      "text1":
+        "Integra información de <span>más de 15 fuentes distintas</span> pertenecientes a más de 10 organismos de Gobierno.",
+      "text2": "Crea y combina <span>visualizaciones interactivas</span>.",
+      "text3":
+        "Piensa los <span>datos como historias</span> y no como archivos."
+    },
+    "sources": {
+      "title": "DataChile integra datos de todas estas fuentes"
+    }
+  }
 }
