@@ -10,6 +10,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ImportsByDestination extends Section {
   static need = [
@@ -48,7 +49,7 @@ class ImportsByDestination extends Section {
     const { t, className, i18n } = this.props;
 
     const path = this.context.data.path_country_imports_by_destination;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
@@ -105,6 +106,7 @@ class ImportsByDestination extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="imports" />
       </div>
     );
   }

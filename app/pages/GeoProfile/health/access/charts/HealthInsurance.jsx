@@ -6,7 +6,7 @@ import { translate } from "react-i18next";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -46,12 +46,19 @@ class HealthInsurance extends Section {
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
+
+    const CONST_SYSTEM = {
+      h1: 1, //fonasa
+      h3: 2, //isapre
+      h4: 3, //Otro
+      h2: 4 //FFAA
+    };
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Access to Health Insurance")}</span>
+          <span>{t("Access to Health Insurance")}*</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
@@ -72,7 +79,9 @@ class HealthInsurance extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("0,0") +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0,0"
+                ) +
                 " " +
                 t("people")
             },
@@ -101,9 +110,35 @@ class HealthInsurance extends Section {
                 t("affiliates")
             }
           }}
-          dataFormat={data => data.data.filter(h => h["ID Health System"] != 0)}
+          dataFormat={data =>
+            data.data.filter(h => h["ID Health System"] != 0).sort((a, b) => {
+              return CONST_SYSTEM["h" + a["ID Health System Group"]] >
+                CONST_SYSTEM["h" + b["ID Health System Group"]]
+                ? 1
+                : -1;
+            })
+          }
         />
         <SourceNote cube="casen_health_system" />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.health.fonasa.text")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.health.fonasa.tramos")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.health.fonasa.copago")
+          }}
+        />
+        <SourceNote cube="fonasa_website" />
       </div>
     );
   }

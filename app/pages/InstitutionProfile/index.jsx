@@ -267,7 +267,7 @@ class InstitutionProfile extends Component {
   render() {
     const { t, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const obj = this.props.data.institution;
     const ids = getLevelObject(this.props.routeParams);
     const list = this.props.data.institution_list_detail;

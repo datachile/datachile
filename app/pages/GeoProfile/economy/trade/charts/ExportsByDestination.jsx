@@ -5,7 +5,11 @@ import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
 import { continentColorScale } from "helpers/colors";
-import { numeral, slugifyItem } from "helpers/formatters";
+import {
+  numeral,
+  slugifyItem,
+  getNumberFromTotalString
+} from "helpers/formatters";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
@@ -22,7 +26,7 @@ class ExportsByDestination extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_exports_by_destination;
     const geo = this.context.data.geo;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
@@ -44,7 +48,9 @@ class ExportsByDestination extends Section {
             totalConfig: {
               text: d =>
                 "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
             },
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])
@@ -74,7 +80,9 @@ class ExportsByDestination extends Section {
                   d["ID Country"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
+                return (
+                  "US" + numeral(d["FOB US"], locale).format("$ (0 a)") + link
+                );
               }
             },
             legendConfig: {

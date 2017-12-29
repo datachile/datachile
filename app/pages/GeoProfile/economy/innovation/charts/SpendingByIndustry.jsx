@@ -54,7 +54,7 @@ class SpendingByIndustry extends Section {
   render() {
     const path = this.context.data.path_spending_by_industry;
     const { t, className, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
     const geo = this.context.data.geo;
     const regionID = geo.type === "comuna" ? geo.ancestors[0].key : "";
     const measureName = getMeasureByGeo(
@@ -85,11 +85,14 @@ class SpendingByIndustry extends Section {
             totalConfig: {
               text: d =>
                 "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                numeral(parseInt(d.text.split(": ")[1]), locale).format(
+                  "($ 0.[00] a)"
+                )
             },
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Level 1"])
             },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: {

@@ -6,6 +6,7 @@
     lost-flex-container: row;
     align-items: center;
     justify-content: center;
+    min-height: 48px;
     & .explore-btn {
       background-color: #ccc;
       transition: all 1s ease;
@@ -100,6 +101,15 @@
         -o-animation: fadein 2s; /* Opera */
         & img {
           width: 100%;
+        }
+        &.grayscale {
+          & img {
+            filter: gray; /* IE6-9 */
+            -webkit-filter: grayscale(
+              1
+            ); /* Google Chrome, Safari 6+ & Opera 15+ */
+            filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+          }
         }
       }
     }

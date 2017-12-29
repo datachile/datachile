@@ -10,8 +10,13 @@ import { simpleIndustryChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class EmployedByCategory extends Section {
+  state = {
+    lineplot: true
+  };
+
   static need = [
     simpleIndustryChartNeed(
       "path_industry_employed_by_category",
@@ -27,7 +32,7 @@ class EmployedByCategory extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_industry_employed_by_category;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
@@ -35,48 +40,56 @@ class EmployedByCategory extends Section {
           <span>{t("Employment by Category")}</span>
           <ExportLink path={path} />
         </h3>
-        <LinePlot
-          config={{
-            height: 500,
-            data: path,
-            groupBy: "ICSE",
-            x: "Month",
-            y: "Expansion factor",
-            time: "Month",
-            timeline: false,
-            scale: "time",
-            xConfig: {
-              tickSize: 0,
-              title: false
-            },
-            yConfig: {
-              title: t("Employment by category"),
-              tickFormat: tick => numeral(tick, locale).format("0 a")
-            },
-            shapeConfig: {
-              Line: {
-                stroke: d => ordinalColorScale(d["ICSE"]),
-                strokeWidth: 2
-              }
-            },
-            tooltipConfig: {
-              title: d => d["ICSE"],
-              body: d =>
-                numeral(d["Expansion factor"], locale).format("(0 a)") +
-                " " +
-                t("people")
-            },
-            legendConfig: {
+        {this.state.lineplot ? (
+          <LinePlot
+            config={{
+              height: 500,
+              data: path,
+              groupBy: "ICSE",
+              x: "Month",
+              y: "Expansion factor",
+              time: "Month",
+              timeline: false,
+              scale: "time",
+              xConfig: {
+                tickSize: 0,
+                title: false
+              },
+              yConfig: {
+                title: t("Employment by category"),
+                tickFormat: tick => numeral(tick, locale).format("0 a")
+              },
               shapeConfig: {
-                width: 20,
-                height: 20
+                Line: {
+                  stroke: d => ordinalColorScale(d["ICSE"]),
+                  strokeWidth: 2
+                }
+              },
+              tooltipConfig: {
+                title: d => d["ICSE"],
+                body: d =>
+                  numeral(d["Expansion factor"], locale).format("(0 a)") +
+                  " " +
+                  t("people")
+              },
+              legendConfig: {
+                shapeConfig: {
+                  width: 20,
+                  height: 20
+                }
               }
-            }
-          }}
-          dataFormat={data => {
-            return data.data.filter(item => item.Month !== "2016/12");
-          }}
-        />
+            }}
+            dataFormat={data => {
+              if (data.data && data.data.length > 0) {
+                return data.data.filter(item => item.Month !== "2016/12");
+              } else {
+                this.setState({ lineplot: false });
+              }
+            }}
+          />
+        ) : (
+          <NoDataAvailable />
+        )}
         <SourceNote cube="nene" />
       </div>
     );

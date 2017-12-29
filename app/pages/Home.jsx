@@ -9,12 +9,26 @@ import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
 import Search from "components/Search";
 import DynamicHomeHeader from "components/DynamicHomeHeader";
+import ProfileCarousel from "components/ProfileCarousel";
+
+import {
+  needHomeComunasExports,
+  needHomeComunasPopulation,
+  needHomeProductsExports,
+  needHomeCountriesExports
+} from "./home_needs";
 
 import "./Home.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
 
 class Home extends Component {
-  static need = [DynamicHomeHeader];
+  static need = [
+    DynamicHomeHeader,
+    needHomeComunasExports,
+    needHomeComunasPopulation,
+    needHomeProductsExports,
+    needHomeCountriesExports
+  ];
 
   constructor(props) {
     super(props);
@@ -26,6 +40,7 @@ class Home extends Component {
         explore: "/explore/geo",
         colors: ["#445e81", "#263b58", "#1B2E44"],
         slug: "geo",
+        available: true,
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
         )
@@ -35,31 +50,17 @@ class Home extends Component {
         explore: "/explore/countries",
         colors: ["#1bc4d3", "#3f93a0", "#31999B"],
         slug: "countries",
+        available: true,
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         )
-      },
-      {
-        name: t("Institutions"),
-        explore: "/explore/institutions",
-        colors: ["#595a8f", "#393a6a", "#393954"],
-        slug: "institutions",
-        description: t(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
-        )
-      },
-      {
-        name: t("Careers"),
-        explore: "/explore/careers",
-        colors: ["#676258", "#9b8365", "#776551"],
-        slug: "careers",
-        description: t("Lorem ipsum dolor sit amet, consectetur .")
       },
       {
         name: t("Products"),
         explore: "/explore/products",
         colors: ["#a45c58", "#794f57", "#91453B"],
         slug: "products",
+        available: true,
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
         )
@@ -69,8 +70,27 @@ class Home extends Component {
         explore: "/explore/industries",
         colors: ["#0b5151", "#143e48", "#205258"],
         slug: "industries",
+        available: true,
         description: t(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
+        )
+      },
+      {
+        name: t("Careers"),
+        explore: "/explore/careers",
+        colors: ["#676258", "#9b8365", "#776551"],
+        slug: "careers",
+        available: false,
+        description: t("Lorem ipsum dolor sit amet, consectetur .")
+      },
+      {
+        name: t("Institutions"),
+        explore: "/explore/institutions",
+        colors: ["#595a8f", "#393a6a", "#393954"],
+        slug: "institutions",
+        available: false,
+        description: t(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
         )
       }
     ];
@@ -90,6 +110,13 @@ class Home extends Component {
     const changeProfileHeader = p => {
       this.setState({ header: p });
     };
+
+    const {
+      home_comunas_population,
+      home_comunas_exports,
+      home_products_exports,
+      home_countries_exports
+    } = this.props.data;
 
     return (
       <CanonComponent
@@ -121,7 +148,8 @@ class Home extends Component {
                 <h1 className="title">
                   <img
                     title="DataChile"
-                    src="/images/logos/logo-dc-small.svg"
+                    src="/images/logos/logo-dc-beta-small.svg"
+                    alt="DataChile"
                   />
                   <Link
                     className="easter"
@@ -129,11 +157,7 @@ class Home extends Component {
                     to="/geo/valparaiso-5/isla-de-pascua-115"
                   />
                 </h1>
-                <p className="lead">
-                  {t(
-                    "The most comprehensive effort to integrate and visualize Chile’s Public Data"
-                  )}
-                </p>
+                <p className="lead">{t("home.subtitle")}</p>
               </div>
               <div className="search-home-wrapper">
                 <Search className="search-home" limit={5} />
@@ -144,7 +168,6 @@ class Home extends Component {
               <DynamicHomeHeader header={header} />
             </div>
           </div>
-
           <div className="home-slider">
             {profiles &&
               profiles.map((p, i) => (
@@ -175,17 +198,167 @@ class Home extends Component {
               ))}
           </div>
 
-          <div className="home-featured-profiles">
-            <h2>{t("Explore Featured Profiles")}</h2>
-            <div className="home-featured-tiles">
-              {focus &&
-                focus.map((f, i) => (
-                  <FeaturedBox
-                    item={f}
-                    className="home-featured-profile"
-                    key={i}
-                  />
-                ))}
+          <div className="home-content">
+            <div className="home-text">
+              <div className="l-col">
+                <h2>{t("home.what.title")}</h2>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text1")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text2")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text3")
+                  }}
+                />
+              </div>
+              <div className="r-col">
+                <h2>{t("home.diff.title")}</h2>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text1")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text2")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text3")
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="home-featured-profiles">
+              <div className="home-section-title">
+                <div className="home-section-title-img">
+                  <img src="/images/icons/icon-search.svg" alt="explore" />
+                </div>
+                <h2>{t("Explore")}</h2>
+              </div>
+              <div className="home-profile-carousels-container">
+                <ProfileCarousel
+                  title={t("home.carousel.comunas_population")}
+                  type="geo"
+                  items={home_comunas_population}
+                  limit={5}
+                />
+                <ProfileCarousel
+                  title={t("home.carousel.comunas_exports")}
+                  type="geo"
+                  items={home_comunas_exports}
+                  limit={5}
+                />
+                <ProfileCarousel
+                  title={t("home.carousel.products_exports")}
+                  type="products"
+                  items={home_products_exports}
+                  limit={5}
+                />
+                <ProfileCarousel
+                  title={t("home.carousel.countries_exports")}
+                  type="countries"
+                  items={home_countries_exports}
+                  limit={5}
+                />
+              </div>
+            </div>
+            <div className="home-sources">
+              <div className="home-section-title">
+                <div className="home-section-title-img">
+                  <img src="/images/icons/icon-source.svg" alt="sources" />
+                </div>
+                <h2>{t("home.sources.title")}</h2>
+              </div>
+
+              <div className="dataset-list">
+                <div className="l-col">
+                  <div className="dataset">
+                    <span className="name">{t("about.data.casen.title")}</span>
+                    <span className="source">
+                      {t("about.data.casen.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.nene.title")}</span>
+                    <span className="source">
+                      {t("about.data.nene.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.nesi.title")}</span>
+                    <span className="source">
+                      {t("about.data.nesi.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.matricula.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.matricula.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.psu.title")}</span>
+                    <span className="source">{t("about.data.psu.source")}</span>
+                  </div>
+                </div>
+
+                <div className="r-col">
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.empleabilidad.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.empleabilidad.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.salud.title")}</span>
+                    <span className="source">
+                      {t("about.data.salud.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.vida.title")}</span>
+                    <span className="source">
+                      {t("about.data.vida.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.migracion.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.migracion.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.discapacidad.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.discapacidad.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.gasto.title")}</span>
+                    <span className="source">
+                      {t("about.data.gasto.source")}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

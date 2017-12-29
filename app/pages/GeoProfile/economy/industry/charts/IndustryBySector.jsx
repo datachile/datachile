@@ -1,8 +1,13 @@
 import React from "react";
 
 import { Treemap } from "d3plus-react";
+import { browserHistory } from "react-router";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
+import {
+  numeral,
+  getNumberFromTotalString,
+  slugifyItem
+} from "helpers/formatters";
 import { industriesColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -12,20 +17,25 @@ import SourceNote from "components/SourceNote";
 
 class IndustryBySector extends Section {
   static need = [
-    simpleGeoChartNeed("path_industry_output", "tax_data", ["Output"], {
-      drillDowns: [["ISICrev4", "Level 2"], ["Date", "Date", "Year"]],
-      options: { parents: true }
-    })
+    simpleGeoChartNeed(
+      "path_industry_output",
+      "tax_data",
+      ["Output", "Investment"],
+      {
+        drillDowns: [["ISICrev4", "Level 2"], ["Date", "Date", "Year"]],
+        options: { parents: true }
+      }
+    )
   ];
 
   render() {
     const path = this.context.data.path_industry_output;
     const { t, className, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Industry By Employment (CLP)")}</span>
+          <span>{t("Industry By Output (CLP)")}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
@@ -39,8 +49,10 @@ class IndustryBySector extends Section {
             total: d => d["Output"],
             totalConfig: {
               text: d =>
-                "Total: CL " +
-                numeral(d.text.split(": ")[1], locale).format("($ 0,0 a)")
+                "Total: " +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[0] a)"
+                )
             },
             time: "ID Year",
             shapeConfig: {
@@ -49,17 +61,50 @@ class IndustryBySector extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
-                fill: d => industriesColorScale(d["ID Level 1"]),
-                backgroundImage: d =>
-                  "https://datausa.io/static/img/attrs/thing_apple.png"
+                width: 20,
+                height: 20,
+                fill: d => industriesColorScale(d["ID Level 1"])
+              }
+            },
+            on: {
+              click: d => {
+                var url = slugifyItem(
+                  "industries",
+                  d["ID Level 1"],
+                  d["Level 1"],
+                  d["ID Level 2"] instanceof Array ? false : d["ID Level 2"],
+                  d["Level 2"] instanceof Array ? false : d["Level 2"]
+                );
+                browserHistory.push(url);
+              }
+            },
+            tooltipConfig: {
+              title: d =>
+                d["Level 2"] instanceof Array ? d["Level 1"] : d["Level 2"],
+              body: d => {
+                var body = "<table class='tooltip-table'>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("Output") +
+                  "</td><td class='data'>" +
+                  numeral(d["Output"], locale).format("($ 0,0.[0] a)") +
+                  "</td></tr>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("Investment") +
+                  "</td><td class='data'>" +
+                  numeral(d["Investment"], locale).format("($ 0,0.[0] a)") +
+                  "</td></tr>";
+                body += "</table>";
+                if (!(d["Level 2"] instanceof Array))
+                  body += "<a>" + t("tooltip.to_profile") + "</a>";
+                return body;
               }
             }
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="nesi_income" />
+        <SourceNote cube="tax_data" />
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { LinePlot } from "d3plus-react";
 
-import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleGeoChartNeed, simpleGeoDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
@@ -17,7 +17,7 @@ class PopulationProjection extends Section {
     };
   }
   static need = [
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_population_projection",
       "population_estimate",
       ["Population"],
@@ -40,7 +40,7 @@ class PopulationProjection extends Section {
   render() {
     const { t, className, i18n } = this.props;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const population = this.context.data.population;
 
@@ -89,13 +89,14 @@ class PopulationProjection extends Section {
               title: false
             },
             yConfig: {
-              title: t("Population")
-              //tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              title: t("Population"),
+              tickFormat: tick => numeral(tick, locale).format("0.[0] a")
             },
             tooltipConfig: {
               title: d => d["Year"],
-              body: d => numeral(d["Population"], locale).format("(0,0)")
+              body: d => numeral(d["Population"], locale).format("0")
             },
+            padding: 3,
             shapeConfig: {
               Line: {
                 strokeWidth: 2

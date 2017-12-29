@@ -27,6 +27,7 @@ class MigrationSlide extends Section {
       options: { parents: false },
       format: "json"
     }),
+
     simpleCountryDatumNeed("datum_migration_origin", {
       cube: "immigration",
       measures: ["Number of visas"],
@@ -37,78 +38,56 @@ class MigrationSlide extends Section {
           values: [year_last - 1, year_last]
         }
       ],
-      options: { parents: false },
-      format: "json"
+      options: { parents: false }
     }),
-    function slideMigrationTargetMunicipality(params, store) {
-      const locale = store.i18n.locale;
-      const country = getLevelObject(params);
 
-      const prm = mondrianClient
-        .cube("immigration")
-        .then(cube => {
-          const q = levelCut(
-            country,
-            "Origin Country",
-            "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Year")
-              .drilldown("Geography", "Comuna")
-              .measure("Number of visas"),
-            "Subregion",
-            "Country",
-            locale,
-            false
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          const sorted = groupBy(res.data.data, "Year");
-          const max_last = maxBy(sorted[year_last], "Number of visas");
-          const max_prev = sorted[year_last - 1].find(
-            d => d.Comuna == max_last.Comuna
-          );
-          const total_country = sumBy(sorted[year_last], "Number of visas");
-          const total_region = sumBy(
-            sorted[year_last].filter(d => d.Region == max_last.Region),
-            "Number of visas"
-          );
+    simpleCountryDatumNeed(
+      "slide_migration_region_target",
+      {
+        cube: "immigration",
+        measures: ["Number of visas"],
+        drillDowns: [["Date", "Year"], ["Geography", "Comuna"]],
+        options: { parents: true },
+        format: "jsonrecords"
+      },
+      (result, locale) => {
+        const sorted = groupBy(result.data.data, "Year");
+        const max_last = maxBy(sorted[year_last], "Number of visas");
+        const max_prev = sorted[year_last - 1].find(
+          d => d.Comuna == max_last.Comuna
+        );
+        const total_country = sumBy(sorted[year_last], "Number of visas");
+        const total_region = sumBy(
+          sorted[year_last].filter(d => d.Region == max_last.Region),
+          "Number of visas"
+        );
 
-          return {
-            key: "slide_migration_region_target",
-            data: {
-              region: max_last.Region,
-              municipality: max_last.Comuna,
-              mun_percent: numeral(
-                max_last["Number of visas"] / total_country,
-                locale
-              ).format("0.0%"),
-              reg_percent: numeral(
-                max_last["Number of visas"] / total_region,
-                locale
-              ).format("0.0%"),
-              mun_growth: numeral(
-                calculateYearlyGrowth([
-                  max_prev["Number of visas"],
-                  max_last["Number of visas"]
-                ]),
-                locale
-              ).format("0.0%")
-            }
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+        return {
+          region: max_last.Region,
+          municipality: max_last.Comuna,
+          mun_percent: numeral(
+            max_last["Number of visas"] / total_country,
+            locale
+          ).format("0.0%"),
+          reg_percent: numeral(
+            max_last["Number of visas"] / total_region,
+            locale
+          ).format("0.0%"),
+          mun_growth: numeral(
+            calculateYearlyGrowth([
+              max_prev["Number of visas"],
+              max_last["Number of visas"]
+            ]),
+            locale
+          ).format("0.0%")
+        };
+      }
+    )
   ];
 
   render() {
     const { children, t, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const {
       country,
@@ -119,7 +98,7 @@ class MigrationSlide extends Section {
 
     const txt_slide = t("country_profile.migration_slide.text", {
       level: country.caption,
-      year_latest: year_last,
+      year_last: year_last,
       year_previous: year_last - 1,
       destination: slide_migration_region_target
     });
@@ -147,7 +126,7 @@ class MigrationSlide extends Section {
                 datum_migration_origin_female / datum_migration_origin[1],
                 locale
               ).format("(0.0 %)")}
-              title={t("Female percent of visas")}
+              title={t("Visas for Female immigrants")}
               subtitle={t("granted in {{year}}", sources.immigration)}
             />
             <FeaturedDatum

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonComponent, SectionColumns } from "datawheel-canon";
 import { translate } from "react-i18next";
+import Helmet from "react-helmet";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -187,9 +188,10 @@ class IndustryProfile extends Component {
     const { t, i18n } = this.props;
 
     const obj = this.props.data.industry;
+    if (!obj) return null;
     const industryImg = obj ? (obj.depth === 1 ? obj.key : obj.parent.key) : "";
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     const ids = getLevelObject(this.props.routeParams);
 
@@ -249,6 +251,11 @@ class IndustryProfile extends Component {
         topics={topics}
         loadingComponent={<DatachileLoading />}
       >
+        <Helmet>
+          <title>{`${obj.caption}${
+            obj.parent ? " (" + obj.parent.caption + ")" : ""
+          }`}</title>
+        </Helmet>
         <div className="profile">
           <div className="intro">
             {obj && (
@@ -326,7 +333,7 @@ class IndustryProfile extends Component {
             </div>
           </div>
 
-          <div className="topic-block" id="about">
+          {/*<div className="topic-block" id="about">
             <div className="topic-header">
               <div className="topic-title">
                 <h2 className="full-width">
@@ -376,7 +383,7 @@ class IndustryProfile extends Component {
                 </div>
               </div>
             </div>
-          </div>
+                </div>*/}
           <div className="topics-container">
             <Topic
               name={t("Economy")}

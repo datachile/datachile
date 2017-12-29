@@ -5,7 +5,11 @@ import { Treemap } from "d3plus-react";
 import { browserHistory } from "react-router";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral, slugifyItem } from "helpers/formatters";
+import {
+  numeral,
+  slugifyItem,
+  getNumberFromTotalString
+} from "helpers/formatters";
 import { productsColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
@@ -22,7 +26,7 @@ export default translate()(
     render() {
       const { t, className, i18n } = this.props;
       const geo = this.context.data.geo;
-      const locale = i18n.locale;
+      const locale = i18n.language;
       const path = this.context.data.path_exports_by_product;
 
       return (
@@ -53,7 +57,9 @@ export default translate()(
               totalConfig: {
                 text: d =>
                   "Total: US" +
-                  numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
+                  numeral(getNumberFromTotalString(d.text), locale).format(
+                    "($ 0.[00] a)"
+                  )
               },
               shapeConfig: {
                 fill: d => productsColorScale("hs" + d["ID HS0"])
@@ -73,7 +79,8 @@ export default translate()(
               tooltipConfig: {
                 title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
                 body: d =>
-                  numeral(d["FOB US"], locale).format("(USD 0 a)") +
+                  "US" +
+                  numeral(d["FOB US"], locale).format("$ (USD 0 a)") +
                   "<br/><a>" +
                   t("tooltip.to_profile") +
                   "</a>"

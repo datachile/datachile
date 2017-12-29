@@ -3,7 +3,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import mondrianClient, {
-  simpleDatumNeed,
+  simpleGeoDatumNeed,
   geoCut
 } from "helpers/MondrianClient";
 
@@ -14,7 +14,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 class EnrollmentSlide extends Section {
   static need = [
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_enrollment_special_education",
       "education_enrollment",
       ["Number of records"],
@@ -27,7 +27,7 @@ class EnrollmentSlide extends Section {
         ]
       }
     ),
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_enrollment_rural_education",
       "education_enrollment",
       ["Number of records"],
@@ -40,7 +40,7 @@ class EnrollmentSlide extends Section {
         ]
       }
     ),
-    simpleDatumNeed(
+    simpleGeoDatumNeed(
       "datum_enrollment_education",
       "education_enrollment",
       ["Number of records"],
@@ -51,7 +51,7 @@ class EnrollmentSlide extends Section {
       }
     ),
     (params, store) => {
-      // I did not use simpleDatumNeed because it is a full country query.
+      // I did not use simpleGeoDatumNeed because it is a full country query.
       const geo = { type: "country", key: "chile" };
       const prm = mondrianClient
         .cube("education_enrollment")
@@ -92,7 +92,7 @@ class EnrollmentSlide extends Section {
       datum_enrollment_education_country
     } = this.context.data;
 
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className="topic-slide-block">

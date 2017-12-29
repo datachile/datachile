@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
+import { Link } from "react-router";
 import { connect } from "react-redux";
+import { select } from "d3-selection";
+import Search from "components/Search";
 
 import SvgImage from "components/SvgImage";
 
@@ -9,10 +12,16 @@ import "./NavFixed.css";
 class NavFixed extends Component {
   constructor(props) {
     super(props);
-    this.state = { visible: false, active: "about" };
+    this.state = { visible: false, active: "about", search_visible: false };
 
     this.handleScroll = this.handleScroll.bind(this);
   }
+
+  toggleSearch = () => {
+    this.setState(prevState => ({
+      search_visible: !prevState.search_visible
+    }));
+  };
 
   componentDidMount() {
     if (typeof window !== "undefined") {
@@ -49,7 +58,20 @@ class NavFixed extends Component {
 
   render() {
     const { t, topics, title, toggleSubNav } = this.props;
-    const { visible, active } = this.state;
+    const { visible, active, search_visible } = this.state;
+
+    const search_icon = search_visible ? "icon-close" : "icon-search";
+
+    if (typeof document != "undefined") {
+      const node = select(".search-nav-fixed input").node();
+      if (node) {
+        if (search_visible) {
+          node.focus();
+        } else {
+          node.blur();
+        }
+      }
+    }
 
     return (
       <nav className={`nav-fixed${visible ? "" : " hidden"}`}>
@@ -61,9 +83,28 @@ class NavFixed extends Component {
                   <img src="/images/icons/icon-menu.svg" />
                 </a>
               </div>
-              <span className="datachile">DataChile:</span>
             </div>
-            <span className="title">{title}</span>
+            <div className="datachile" onClick={this.toggleSearch}>
+              <img src="/images/logos/logo-dc-beta-small.svg" />
+            </div>
+            <span
+              className={`title ${search_visible ? "close" : "open"}`}
+              onClick={this.toggleSearch}
+            >
+              {title}
+            </span>
+            <div
+              className={`search-nav-container ${
+                search_visible ? "open" : "close"
+              }`}
+            >
+              <div className={`search-nav-wrapper`}>
+                <Search className="search-nav search-nav-fixed" />
+              </div>
+              <a className="search-toggle-nav" onClick={this.toggleSearch}>
+                <img src={`/images/icons/${search_icon}.svg`} />
+              </a>
+            </div>
           </div>
           <div className="nav-topic">
             {topics &&

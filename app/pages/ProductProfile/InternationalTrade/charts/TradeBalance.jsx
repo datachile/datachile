@@ -1,106 +1,57 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import flattenDeep from "lodash/flattenDeep";
 import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, { levelCut } from "helpers/MondrianClient";
+import { sources } from "helpers/consts";
+import { joinDataByYear } from "helpers/dataUtils";
+
 import { tradeBalanceColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
-import { getLevelObject } from "helpers/dataUtils";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class TradeBalance extends Section {
-  static need = [
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = levelCut(
-            product,
-            "Export HS",
-            "HS",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Date", "Year")
-              .measure("FOB US"),
-            "HS0",
-            "HS2",
-            store.i18n.locale
-          );
-
-          return mondrianClient.query(q);
-        })
-        .then(res => {
-          return {
-            key: "datum_exports_per_year",
-            data: flattenDeep(res.data.values)
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("imports")
-        .then(cube => {
-          var q = levelCut(
-            product,
-            "Import HS",
-            "HS",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Date", "Year")
-              .measure("CIF US"),
-            "HS0",
-            "HS2",
-            store.i18n.locale
-          );
-
-          return mondrianClient.query(q);
-        })
-        .then(res => {
-          return {
-            key: "datum_imports_per_year",
-            data: flattenDeep(res.data.values)
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
-  ];
+  static need = [];
 
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.path_trade_balance;
 
-    const {
-      datum_imports_per_year,
-      datum_exports_per_year
-    } = this.context.data;
-    const locale = i18n.locale;
+    let { datum_exports_by_year, datum_imports_by_year } = this.context.data;
+    const locale = i18n.language;
 
-    const data = datum_exports_per_year
-      ? datum_exports_per_year.reduce((all, item, key) => {
-          all.push({ variable: "Exports", value: item, year: key + 2002 });
+    datum_exports_by_year = joinDataByYear(
+      datum_exports_by_year,
+      "FOB US",
+      sources.exports.min_year,
+      sources.exports.year
+    );
+
+    datum_imports_by_year = joinDataByYear(
+      datum_imports_by_year,
+      "CIF US",
+      sources.exports.min_year,
+      sources.exports.year
+    );
+
+    const data = datum_exports_by_year
+      ? datum_exports_by_year.reduce((all, item, key) => {
+          all.push({
+            variable: "Exports",
+            value: item,
+            year: key + sources.exports.min_year
+          });
           all.push({
             variable: "Imports",
-            value: datum_imports_per_year[key],
-            year: key + 2002
+            value: datum_imports_by_year[key],
+            year: key + sources.imports.min_year
           });
           all.push({
             variable: "Trade Balance",
-            value: datum_imports_per_year[key] - item,
-            year: key + 2002
+            value: item - datum_imports_by_year[key],
+            year: key + sources.imports.min_year
           });
 
           return all;
@@ -126,7 +77,7 @@ class TradeBalance extends Section {
             },
             yConfig: {
               title: t("USD"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("($ 0.[00] a)")
             },
             shapeConfig: {
               Line: {
@@ -135,10 +86,16 @@ class TradeBalance extends Section {
               }
             },
             tooltipConfig: {
-              body: d => "<div>" + t("Value") + ": " + d["value"] + "</div>"
+              body: d =>
+                "<div>" +
+                d["year"] +
+                ": USD " +
+                numeral(d["value"], locale).format("($ 0.00 a)") +
+                "</div>"
             }
           }}
         />
+        <SourceNote cube="imports" />
       </div>
     );
   }

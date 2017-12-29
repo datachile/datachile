@@ -39,14 +39,15 @@ export const COLORS_EMPLOYMENT = [
 export const employmentColorScale = scaleOrdinal().range(COLORS_EMPLOYMENT);
 
 export const COLORS_EDUCATION_LEVEL = [
-  "#381643",
-  "#663058",
-  "#9A5F8E",
-  "#A090B1",
-  "#7C7C77",
-  "#C8CFD8",
-  "#8EA3BA",
-  "#596F84"
+  "#574162",
+  "#695475",
+  "#7b6788",
+  "#8d7b9d",
+  "#a090b1",
+  "#8e88a6",
+  "#7d7f9a",
+  "#6b778f",
+  "#596f84"
 ];
 export const educationLevelColorScale = scaleOrdinal().range(
   COLORS_EDUCATION_LEVEL

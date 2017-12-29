@@ -46,7 +46,7 @@ class DevicesSlide extends Section {
   render() {
     const { children, t, i18n } = this.props;
     const { datum_devices_internet_access } = this.context.data;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     let geo = this.context.data.geo;
     if (geo.type === "comuna") {

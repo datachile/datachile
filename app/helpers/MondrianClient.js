@@ -243,15 +243,16 @@ function getGeoMembersDimension(
   };
 }
 
-function simpleDatumNeed(
+function simpleGeoDatumNeed(
   key,
   cube,
   measures,
   { drillDowns = [], options = {}, cuts = [] },
-  byValues = true
+  byValues = true,
+  overrideGeo = false
 ) {
   return (params, store) => {
-    let geo = getGeoObject(params);
+    let geo = overrideGeo ? overrideGeo : getGeoObject(params);
 
     if (cube === "health_access" && geo.type === "comuna") {
       geo = { ...geo.ancestor };
@@ -470,6 +471,21 @@ function simpleIndustryDatumNeed(
   };
 }
 
+const COUNTRY_LEVEL_CUBES_CUT = {
+  immigration: {
+    level1: ["Origin Country", "Country", "Subregion"],
+    level2: ["Origin Country", "Country", "Country"]
+  },
+  exports: {
+    level1: ["Destination Country", "Country", "Subregion"],
+    level2: ["Destination Country", "Country", "Country"]
+  },
+  imports: {
+    level1: ["Origin Country", "Country", "Subregion"],
+    level2: ["Origin Country", "Country", "Country"]
+  }
+};
+
 function simpleCountryDatumNeed(
   key,
   {
@@ -478,16 +494,25 @@ function simpleCountryDatumNeed(
     drillDowns = [],
     cuts = [],
     options = {},
+    drillLevel = false,
     format = null
+  },
+  postprocess = (res, lang, params, store) => {
+    const data = res.data || {};
+    return data.values ? flattenDeep(data.values) : data.data;
   }
 ) {
   return (params, store) => {
-    const geo = getLevelObject(params);
+    const locale = store.i18n.locale;
+    const ddlevel =
+      COUNTRY_LEVEL_CUBES_CUT[cube][params.level2 ? "level2" : "level1"];
 
-    const prm = client
+    const promise = client
       .cube(cube)
       .then(cube => {
         const q = cube.query;
+
+        if (drillLevel) drillDowns.push(ddlevel);
 
         measures.forEach(q.measure, q);
         drillDowns.forEach(dd => q.drilldown(...dd));
@@ -497,34 +522,19 @@ function simpleCountryDatumNeed(
               ? cut
               : "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
           })
+          .concat(`[${ddlevel[0]}].[${ddlevel[1]}].${getCountryCut(params)}`)
           .forEach(q.cut, q);
-        Object.entries(options).forEach(pairs => q.option(...pairs));
+        for (let option in options) q.option(option, options[option]);
 
-        var query = levelCut(
-          geo,
-          "Origin Country",
-          "Country",
-          q,
-          "Subregion",
-          "Country",
-          store.i18n.locale,
-          false
-        );
+        setLangCaptions(q, locale);
 
-        return client.query(query, format);
+        // console.log(__API__ + q.path("jsonrecords"));
+        return client.query(q, format);
       })
-      .then(res => {
-        const data = res.data || {};
-        return {
-          key: key,
-          data: data.data || flattenDeep(data.values)
-        };
-      });
+      .then(res => postprocess(res, locale, params, store))
+      .then(data => ({ key, data }));
 
-    return {
-      type: "GET_DATA",
-      promise: prm
-    };
+    return { type: "GET_DATA", promise };
   };
 }
 
@@ -533,6 +543,116 @@ const getCountryCut = params => {
   const level2 = (params.level2 || "").split("-").pop();
   return level2 ? `[Country].&[${level2}]` : `[Subregion].&[${level1}]`;
 };
+
+function simpleDatumNeed(
+  key,
+  cube,
+  measures,
+  { drillDowns = [], options = {}, cuts = [] },
+  profile,
+  byValues = true
+) {
+  return (params, store) => {
+    let obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
+
+    const prm = client
+      .cube(cube)
+      .then(cube => {
+        const q = createFreshQuery(cube, measures, {
+          drillDowns: drillDowns,
+          options: options,
+          cuts: cuts
+        });
+
+        var query = [];
+
+        // Add cuts in query
+        switch (profile) {
+          case "geo":
+            query = geoCut(obj, "Geography", q, store.i18n.locale);
+            break;
+          case "country":
+            query = levelCut(
+              obj,
+              "Origin Country",
+              "Country",
+              q,
+              "Subregion",
+              "Country",
+              store.i18n.locale,
+              false
+            );
+            break;
+          case "industry":
+            query = levelCut(
+              obj,
+              "ISICrev4",
+              "ISICrev4",
+              q,
+              "Level 1",
+              "Level 2",
+              store.i18n.locale
+            );
+            break;
+          case "product.export":
+            query = levelCut(
+              obj,
+              "Export HS",
+              "HS",
+              q,
+              "HS0",
+              "HS2",
+              store.i18n.locale
+            );
+            break;
+          case "product.import":
+            query = levelCut(
+              obj,
+              "Import HS",
+              "HS",
+              q,
+              "HS0",
+              "HS2",
+              store.i18n.locale
+            );
+            break;
+          case "no_cut":
+            query = setLangCaptions(q, store.i18n.locale);
+            break;
+        }
+
+        return byValues
+          ? client.query(query)
+          : client.query(query, "jsonrecords");
+      })
+      .then(res => {
+        if (
+          (res.data.values && res.data.values.length > 0) ||
+          (res.data.data && res.data.data.length > 0)
+        ) {
+          return {
+            key: key,
+            data: {
+              data: byValues
+                ? flattenDeep(res.data.values)
+                : flattenDeep(res.data.data),
+              available: true
+            }
+          };
+        } else {
+          return {
+            key: key,
+            data: { data: [], available: false }
+          };
+        }
+      });
+
+    return {
+      type: "GET_DATA",
+      promise: prm
+    };
+  };
+}
 
 function simpleInstitutionDatumNeed(
   key,
@@ -592,12 +712,13 @@ export {
   getCountryCut,
   simpleGeoChartNeed,
   simpleIndustryChartNeed,
-  simpleDatumNeed,
+  simpleGeoDatumNeed,
   simpleFallbackGeoDatumNeed,
   simpleAvailableGeoDatumNeed,
   simpleCountryDatumNeed,
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed,
-  getGeoMembersDimension
+  getGeoMembersDimension,
+  simpleDatumNeed
 };
 export default client;

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
 import orderBy from "lodash/orderBy";
 import { translate } from "react-i18next";
+import Helmet from "react-helmet";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -25,7 +26,7 @@ import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
-import LinksList from "components/LinksList";
+// import LinksList from "components/LinksList";
 
 import InternationalTradeSlide from "./InternationalTrade/InternationalTradeSlide";
 import InternationalTradeOriginDestinationSlide from "./InternationalTrade/InternationalTradeOriginDestinationSlide";
@@ -284,12 +285,12 @@ class CountryProfile extends Component {
 
   render() {
     const { t, i18n } = this.props;
-
     const locale = i18n.locale;
 
-    const obj = this.props.data.country;
-
     const ids = getLevelObject(this.props.routeParams);
+
+    const obj = this.props.data.country;
+    if (!obj) return null;
 
     const list = this.props.data.country_list_detail;
 
@@ -331,10 +332,10 @@ class CountryProfile extends Component {
     };
 
     const topics = [
-      {
-        slug: "about",
-        title: t("About")
-      },
+      // {
+      //   slug: "about",
+      //   title: t("About")
+      // },
       {
         slug: "demography",
         title: t("Demography")
@@ -352,6 +353,9 @@ class CountryProfile extends Component {
         topics={topics}
         loadingComponent={<DatachileLoading />}
       >
+        <Helmet>
+          <title>{obj.caption}</title>
+        </Helmet>
         <div className="profile">
           <div className="intro">
             {obj && (
@@ -433,45 +437,45 @@ class CountryProfile extends Component {
             </div>
           </div>
 
-          <div className="topic-block" id="about">
-            <div className="topic-header">
+          {/* <div className="topic-block" id="about">
+              <div className="topic-header">
               <div className="topic-title">
-                <h2 className="full-width">
-                  {t("About")}
-                  {obj && (
-                    <span className="small">
-                      <span className="pipe"> | </span>
-                      {obj.caption}
-                    </span>
-                  )}
-                </h2>
+              <h2 className="full-width">
+              {t("About")}
+              {obj && (
+              <span className="small">
+              <span className="pipe"> | </span>
+              {obj.caption}
+              </span>
+              )}
+              </h2>
               </div>
               <div className="topic-go-to-targets">
-                <div className="topic-slider-sections" />
+              <div className="topic-slider-sections" />
               </div>
-            </div>
-            <div className="topic-slide-container">
+              </div>
+              <div className="topic-slide-container">
               <div className="topic-slide-block">
-                <div className="topic-slide-intro">
-                  <div
-                    className="topic-slide-text"
-                    dangerouslySetInnerHTML={{
-                      __html: t("country_profile.about1")
-                    }}
-                  />
-                  <div
-                    className="topic-slide-text"
-                    dangerouslySetInnerHTML={{
-                      __html: t("country_profile.about2")
-                    }}
-                  />
-                  <div className="topic-slide-link-list">
-                    <LinksList title={listTitle} list={list} />
-                  </div>
-                </div>
+              <div className="topic-slide-intro">
+              <div
+              className="topic-slide-text"
+              dangerouslySetInnerHTML={{
+              __html: t("country_profile.about1")
+              }}
+              />
+              <div
+              className="topic-slide-text"
+              dangerouslySetInnerHTML={{
+              __html: t("country_profile.about2")
+              }}
+              />
+              <div className="topic-slide-link-list">
+              <LinksList title={listTitle} list={list} />
               </div>
-            </div>
-          </div>
+              </div>
+              </div>
+              </div>
+              </div> */}
 
           <div className="topics-container">
             <Topic

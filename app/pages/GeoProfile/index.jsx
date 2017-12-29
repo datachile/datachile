@@ -5,6 +5,7 @@ import { Geomap } from "d3plus-react";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
+import Helmet from "react-helmet";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -60,22 +61,6 @@ import IDSpendingIndustrySlide from "./economy/innovation/IDSpendingIndustrySlid
 import SpendingBySector from "./economy/innovation/charts/SpendingBySector";
 import SpendingByIndustry from "./economy/innovation/charts/SpendingByIndustry";
 
-import IDSpendingCategorySlide from "./economy/innovation/IDSpendingCategorySlide";
-import SpendingByArea from "./economy/innovation/charts/SpendingByArea";
-import SpendingByFundingSource from "./economy/innovation/charts/SpendingByFundingSource";
-
-import IDStaffSlide from "./economy/innovation/IDStaffSlide";
-import StaffByOccupation from "./economy/innovation/charts/StaffByOccupation";
-import StaffBySex from "./economy/innovation/charts/StaffBySex";
-
-import CompanyInnovationSlide from "./economy/innovation/CompanyInnovationSlide";
-import InnovationRate from "./economy/innovation/charts/InnovationRate";
-import InnovationByType from "./economy/innovation/charts/InnovationByType";
-
-import InnovationCompanySlide from "./economy/innovation/InnovationCompanySlide";
-import InnovationBySize from "./economy/innovation/charts/InnovationBySize";
-import InnovationByActivity from "./economy/innovation/charts/InnovationByActivity";
-
 /*end Economy*/
 
 /*Education*/
@@ -105,8 +90,6 @@ import InternetAccessByZone from "./environment/conectivity/charts/InternetAcces
 
 import DevicesSlide from "./environment/conectivity/DevicesSlide";
 import Devices from "./environment/conectivity/charts/Devices";
-
-import InternetUseSlide from "./environment/conectivity/InternetUseSlide";
 
 import ServicesAccessSlide from "./environment/amenities/ServicesAccessSlide";
 import Services from "./environment/amenities/charts/Services";
@@ -138,7 +121,6 @@ import HealthInsurance from "./health/access/charts/HealthInsurance";
 import HealthCare from "./health/access/charts/HealthCare";
 
 import DisabilitySlide from "./health/disability/DisabilitySlide";
-import Disability from "./health/disability/charts/Disability";
 import DisabilityBySex from "./health/disability/charts/DisabilityBySex";
 
 import DeathCausesSlide from "./health/death/DeathCausesSlide";
@@ -202,25 +184,9 @@ class GeoProfile extends Component {
     SalariesByCategory,
     SalariesByOccupation,
 
-    IDSpendingCategorySlide,
+    IDSpendingIndustrySlide,
     SpendingByIndustry,
     SpendingBySector,
-
-    IDSpendingIndustrySlide,
-    SpendingByArea,
-    SpendingByFundingSource,
-
-    IDStaffSlide,
-    StaffByOccupation,
-    StaffBySex,
-
-    InnovationCompanySlide,
-    InnovationRate,
-    InnovationByType,
-
-    CompanyInnovationSlide,
-    InnovationBySize,
-    InnovationByActivity,
 
     QualitySlide,
     HousingType,
@@ -231,8 +197,6 @@ class GeoProfile extends Component {
 
     DevicesSlide,
     Devices,
-
-    InternetUseSlide,
 
     ServicesAccessSlide,
     Services,
@@ -274,7 +238,6 @@ class GeoProfile extends Component {
     HealthCareSlide,
     HealthInsurance,
     HealthCare,
-    Disability,
     DisabilityBySex,
     DisabilitySlide,
 
@@ -287,7 +250,8 @@ class GeoProfile extends Component {
 
   render() {
     const { t, i18n } = this.props;
-    const { locale } = i18n;
+
+    const locale = i18n.language;
 
     const geoObj = getGeoObject(this.props.routeParams);
     const showRanking = geoObj.type == "country" ? false : true;
@@ -378,6 +342,13 @@ class GeoProfile extends Component {
       return c;
     }
 
+    let title = "Chile";
+    if (geo && geo.type === "region") {
+      title = t("Region") + t(" of ") + geo.caption;
+    } else if (geo && geoObj.type === "comuna") {
+      title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
+    }
+
     return (
       <CanonComponent
         data={this.props.data}
@@ -385,6 +356,9 @@ class GeoProfile extends Component {
         topics={topics}
         loadingComponent={<DatachileLoading />}
       >
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
         <div className="profile">
           <div className="intro">
             {geo &&
@@ -614,13 +588,7 @@ class GeoProfile extends Component {
                 },
                 {
                   name: t("Innovation"),
-                  slides: [
-                    t("By Industry"),
-                    t("By Funding & Area"),
-                    t("By Staff"),
-                    t("By Type"),
-                    t("By Sector")
-                  ]
+                  slides: [t("By Industry")]
                 }
               ]}
             >
@@ -689,73 +657,6 @@ class GeoProfile extends Component {
                     <SpendingByIndustry className="lost-2-3" />
                   </SectionColumns>
                 </IDSpendingIndustrySlide>
-              </div>
-
-              <div>
-                <IDSpendingCategorySlide>
-                  <SectionColumns>
-                    {/*
-                    <SpendingByFundingSource className="lost-1-2" />
-                    <SpendingByArea className="lost-1-2" />
-                    */}
-                    <Placeholder
-                      className="lost-1-2"
-                      text="RD - Funding Source"
-                    />
-                    <Placeholder
-                      className="lost-1-2"
-                      text="RD - By Knowledge Area"
-                    />
-                  </SectionColumns>
-                </IDSpendingCategorySlide>
-              </div>
-
-              <div>
-                <IDStaffSlide>
-                  <SectionColumns>
-                    {/*
-                        <StaffByOccupation className="lost-1-2" />
-                        <StaffBySex className="lost-1-2" />
-                      */}
-                    <Placeholder
-                      className="lost-1-2"
-                      text="RD - By Occupation"
-                    />
-                    <Placeholder className="lost-1-2" text="RD - By Sex" />
-                  </SectionColumns>
-                </IDStaffSlide>
-              </div>
-
-              <div>
-                <InnovationCompanySlide>
-                  <SectionColumns>
-                    {/*
-                        <InnovationRate className="lost-2-3" />
-                        <InnovationByType className="lost-1-3" />
-                      */}
-                    <Placeholder
-                      className="lost-1-2"
-                      text="RD - Innovation Rate"
-                    />
-                    <Placeholder
-                      className="lost-1-2"
-                      text="RD - Innovation Type"
-                    />
-                  </SectionColumns>
-                </InnovationCompanySlide>
-              </div>
-
-              <div>
-                <CompanyInnovationSlide>
-                  <SectionColumns>
-                    {/*
-                        <InnovationBySize className="lost-2-3" />
-                        <InnovationByActivity className="lost-1-3" />
-                      */}
-                    <Placeholder className="lost-1-2" text="RD - by Size" />
-                    <Placeholder className="lost-1-2" text="RD - by Activity" />
-                  </SectionColumns>
-                </CompanyInnovationSlide>
               </div>
             </Topic>
 
@@ -863,17 +764,6 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </InternetAccessSlide>
               </div>
-              <div>
-                <InternetUseSlide>
-                  <SectionColumns>
-                    <Placeholder
-                      className="lost-1-2"
-                      text="Internet purposes"
-                    />
-                    <Placeholder className="lost-1-2" text="Internet uses" />
-                  </SectionColumns>
-                </InternetUseSlide>
-              </div>
             </Topic>
 
             <Topic
@@ -971,8 +861,7 @@ class GeoProfile extends Component {
               <div>
                 <DisabilitySlide>
                   <SectionColumns>
-                    {/*<Disability className="lost-1-2" />*/}
-                    <DisabilityBySex className="lost-1-2" />
+                    <DisabilityBySex className="lost-1" />
                   </SectionColumns>
                 </DisabilitySlide>
               </div>

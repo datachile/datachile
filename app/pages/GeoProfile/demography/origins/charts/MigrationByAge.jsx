@@ -48,7 +48,7 @@ export default translate()(
       const { t, className, i18n } = this.props;
       const path = this.context.data.path_migration_by_age;
 
-      const locale = i18n.locale;
+      const locale = i18n.language;
 
       return (
         <div className={className}>
@@ -74,7 +74,7 @@ export default translate()(
               },
               yConfig: {
                 title: t("Visas"),
-                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+                tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
               },
               barPadding: 20,
               groupPadding: 40,

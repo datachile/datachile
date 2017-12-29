@@ -4,13 +4,15 @@ import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
 import orderBy from "lodash/orderBy";
 import flattenDeep from "lodash/flattenDeep";
+import Helmet from "react-helmet";
 
 import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
   getMemberQuery,
-  levelCut
+  levelCut,
+  simpleDatumNeed
 } from "helpers/MondrianClient";
 import {
   getLevelObject,
@@ -33,12 +35,15 @@ import ExportsByDestination from "./InternationalTrade/charts/ExportsByDestinati
 import ImportsByOrigin from "./InternationalTrade/charts/ImportsByOrigin";
 import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 
+//import ExportsGeoMap from "./InternationalTrade/charts/ExportsGeoMap";
+
 import GeoTradeSlide from "./GeoTrade/GeoTradeSlide";
 import ExportsByRegion from "./GeoTrade/charts/ExportsByRegion";
 import ImportsByRegion from "./GeoTrade/charts/ImportsByRegion";
 
-import { info_from_data } from "helpers/aggregations";
 import { sources } from "helpers/consts";
+
+import { IndexProductProfile } from "texts/ProductProfile";
 
 import "../intro.css";
 
@@ -63,7 +68,7 @@ class ProductProfile extends Component {
           "Export HS",
           "HS0",
           ids.level1,
-          store.i18n.locale
+          store.i18n.language
         )
       ];
 
@@ -74,7 +79,7 @@ class ProductProfile extends Component {
             "Export HS",
             "HS2",
             ids.level2,
-            store.i18n.locale
+            store.i18n.language
           )
         );
       }
@@ -104,10 +109,10 @@ class ProductProfile extends Component {
               .property("Destination Country", "Country", "iso3"),
             "HS0",
             "HS2",
-            store.i18n.locale
+            store.i18n.language
           );
 
-          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          q.cut(`[Date].[Year].&[${sources.exports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -144,10 +149,10 @@ class ProductProfile extends Component {
               .measure("FOB US"),
             "HS0",
             "HS2",
-            store.i18n.locale
+            store.i18n.language
           );
 
-          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          q.cut(`[Date].[Year].&[${sources.exports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -160,7 +165,7 @@ class ProductProfile extends Component {
               name: top_region ? top_region["Region"] : "",
               value: top_region ? top_region["FOB US"] : "",
               source: "Source Lorem",
-              year: store.exports_year
+              year: sources.exports.year
             }
           };
         });
@@ -187,10 +192,10 @@ class ProductProfile extends Component {
               .measure("HS Rank Total"),
             "HS0",
             "HS2",
-            store.i18n.locale
+            store.i18n.language
           );
 
-          q.cut(`[Date].[Year].&[${store.exports_year}]`);
+          q.cut(`[Date].[Year].&[${sources.exports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -203,8 +208,8 @@ class ProductProfile extends Component {
               decile: total ? total["HS Rank Decile"] : "",
               rank: total ? total["HS Rank"] : "",
               total: total ? total["HS Rank Total"] : "",
-              year: store.exports_year,
-              source: "Source Lorem"
+              year: sources.exports.year,
+              source: sources.exports.title
             }
           };
         });
@@ -223,7 +228,7 @@ class ProductProfile extends Component {
           "exports",
           "Export HS",
           "HS0",
-          store.i18n.locale,
+          store.i18n.language,
           false
         ).then(res => {
           return {
@@ -245,7 +250,7 @@ class ProductProfile extends Component {
                 .measure("FOB US"),
               "HS0",
               "HS2",
-              store.i18n.locale,
+              store.i18n.language,
               false
             );
 
@@ -265,107 +270,53 @@ class ProductProfile extends Component {
       };
     },
 
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = levelCut(
-            product,
-            "Export HS",
-            "HS",
-            cube.query
-              .option("parents", true)
-              .drilldown("Destination Country", "Country", "Country")
-              .measure("FOB US")
-              .cut(
-                `[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`
-              ),
-            "HS0",
-            "HS2",
-            store.i18n.locale
-          );
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_exports_per_country",
+        "exports",
+        ["FOB US"],
+        {
+          drillDowns: [["Destination Country", "Country", "Country"]],
+          options: { parents: true },
+          cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
+        },
+        "product.export",
+        false
+      )(params, store),
 
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "datum_exports_per_country",
-            data: res.data.data
-          };
-        });
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_imports_per_country",
+        "imports",
+        ["CIF US"],
+        {
+          drillDowns: [["Origin Country", "Country", "Country"]],
+          options: { parents: true },
+          cuts: [`[Date].[Date].[Year].&[${sources.imports.year}]`]
+        },
+        "product.import",
+        false
+      )(params, store),
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("imports")
-        .then(cube => {
-          var q = levelCut(
-            product,
-            "Import HS",
-            "HS",
-            cube.query
-              .option("parents", true)
-              .drilldown("Origin Country", "Country", "Country")
-              .measure("CIF US")
-              .cut(
-                `[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`
-              ),
-            "HS0",
-            "HS2",
-            store.i18n.locale
-          );
-
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "datum_imports_per_country",
-            data: res.data.data
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = cube.query
-            .option("parents", false)
-            .drilldown("Date", "Date", "Year")
-            .measure("FOB US")
-            .cut(`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`);
-
-          return mondrianClient.query(q);
-        })
-        .then(res => {
-          return {
-            key: "total_exports_chile",
-            data: flattenDeep(res.data.values)
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
+    (params, store) =>
+      simpleDatumNeed(
+        "total_exports_chile",
+        "exports",
+        ["FOB US"],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
+        },
+        "no_cut"
+      )(params, store),
 
     InternationalTradeBalanceSlide,
     InternationalTradeSlide,
     ExportsByDestination,
     ImportsByOrigin,
+
+    //ExportsGeoMap,
 
     GeoTradeSlide,
     ExportsByRegion,
@@ -379,7 +330,9 @@ class ProductProfile extends Component {
     const { t, i18n } = this.props;
     const obj = this.props.data.product;
 
-    const locale = i18n.locale;
+    if (!obj) return null;
+
+    const locale = i18n.language;
 
     const {
       datum_exports_per_country,
@@ -424,18 +377,21 @@ class ProductProfile extends Component {
       exports: total_exports_per_product
     };
 
-    const text_product = {
-      year: 2015,
-      product: this.props.data.product,
-      exports: datum_exports_per_country
-        ? info_from_data(datum_exports_per_country, "FOB US", "Country", locale)
-        : {},
-      imports: datum_imports_per_country
-        ? info_from_data(datum_imports_per_country, "CIF US", "Country", locale)
-        : {}
-    };
+    const text_product =
+      typeof total_exports_per_product !== "undefined"
+        ? IndexProductProfile(
+            this.props.data.product,
+            datum_exports_per_country,
+            datum_imports_per_country,
+            locale,
+            t
+          )
+        : { available: false };
 
     const text_about = {
+      year: {
+        last: sources.exports.year
+      },
       product: this.props.data.product,
       region: this.props.data.top_region_producer_per_product,
       total_exports: total_exports_per_product
@@ -447,7 +403,7 @@ class ProductProfile extends Component {
         locale
       ).format("0o");
       text_about.product.share = numeral(
-        total_exports_per_product.value / total_exports_chile,
+        total_exports_per_product.value / total_exports_chile.data[0],
         locale
       ).format("0.0 %");
       text_about.region.share = numeral(
@@ -478,13 +434,18 @@ class ProductProfile extends Component {
         topics={topics}
         loadingComponent={<DatachileLoading />}
       >
+        <Helmet>
+          <title>{`${obj.caption}${
+            obj.parent ? " (" + obj.parent.caption + ")" : ""
+          }`}</title>
+        </Helmet>
         <div className="profile">
           <div className="intro">
             {obj && (
               <Nav
                 title={obj.caption}
                 typeTitle={obj.parent ? t("Product") : t("Product Type")}
-                type={"products"}
+                type="products"
                 exploreLink={"/explore/products"}
                 ancestor={obj.parent ? obj.parent.caption : ""}
                 ancestorLink={
@@ -596,19 +557,29 @@ class ProductProfile extends Component {
                     <p>
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: t("product_profile.about1", text_about)
+                          __html: total_exports_per_product
+                            ? t("product_profile.about1.default", text_about)
+                            : t("product_profile.about1.no_data", text_about)
                         }}
                       />
                     </p>
                   </div>
                   <div className="topic-slide-text">
-                    <p>
+                    {text_product.available && (
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: t("product_profile.about2", text_product)
+                          __html:
+                            text_product.exports.n_countries > 0
+                              ? t(
+                                  `product_profile.about2.exp_${
+                                    text_product.exports.n_countries
+                                  }_imp_${text_product.imports.n_countries}`,
+                                  text_product
+                                )
+                              : ""
                         }}
                       />
-                    </p>
+                    )}
                   </div>
                   <div className="topic-slide-link-list">
                     <LinksList title={listTitle} list={list} />
@@ -633,6 +604,7 @@ class ProductProfile extends Component {
                 <InternationalTradeSlide>
                   <SectionColumns>
                     <ExportsByDestination className="lost-1-2" />
+                    {/*<ExportsGeoMap className="lost-1-2" />*/}
                     <ImportsByOrigin className="lost-1-2" />
                   </SectionColumns>
                 </InternationalTradeSlide>

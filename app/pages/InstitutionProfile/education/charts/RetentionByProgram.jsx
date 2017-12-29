@@ -52,7 +52,7 @@ export default translate()(
     render() {
       const { t, className, i18n } = this.props;
       const path = this.context.data.path_institution_retention_by_program;
-      const locale = i18n.locale;
+      const locale = i18n.language;
 
       return (
         <div className={className}>

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Treemap } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { ordinalColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -27,12 +27,12 @@ class IndustryByOccupation extends Section {
   render() {
     const path = this.context.data.path_industry_occupation_income;
     const { t, className, i18n } = this.props;
-    const locale = i18n.locale;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Most Common Occupations")}</span>
+          <span>{t("Occupations by workers")}</span>
           <ExportLink path={path} />
         </h3>
 
@@ -47,7 +47,9 @@ class IndustryByOccupation extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "(0.[0] a)"
+                ) +
                 " " +
                 t("people")
             },
@@ -65,14 +67,23 @@ class IndustryByOccupation extends Section {
             },
             tooltipConfig: {
               title: d => d["ISCO"],
-              body: d =>
-                "<p>" +
-                "People: " +
-                numeral(d["Expansion Factor"], locale).format("(0,0)") +
-                "<br/>" +
-                "Avg Income: " +
-                numeral(d["Median Income"], locale).format("$ (0,0)") +
-                "</p>"
+              body: d => {
+                var body = "<table class='tooltip-table'>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("People") +
+                  "</td><td class='data'>" +
+                  numeral(d["Expansion Factor"], locale).format("(0,0)") +
+                  "</td></tr>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("Average Income") +
+                  "</td><td class='data'>" +
+                  numeral(d["Median Income"], locale).format("$ (0,0)") +
+                  "</td></tr>";
+                body += "</table>";
+                return body;
+              }
             }
           }}
           dataFormat={data => data.data}

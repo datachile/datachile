@@ -2,19 +2,19 @@ export const sources = {
   exports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    year: 2015,
-    min_year: 2002
+    year: 2016,
+    min_year: 2011
   },
   imports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    year: 2015,
-    min_year: 2002
+    year: 2016,
+    min_year: 2011
   },
   exports_and_imports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    year: 2015
+    year: 2016
   },
   immigration: {
     title:
@@ -26,7 +26,8 @@ export const sources = {
     title: "Servicio de Impuestos Internos",
     url: "http://homer.sii.cl/",
     first_year: 2004,
-    last_year: 2014
+    last_year: 2014,
+    year: 2014
   },
   rd_survey: {
     title: "Ministerio de Economía, Fomento y Turismo",
@@ -48,6 +49,7 @@ export const sources = {
   nene: {
     title: "Encuesta Nacional de Empleo — INE",
     url: "http://www.ine.cl/estadisticas/laborales/ene",
+    year: 2016,
     last_year: 2016,
     first_year: 2010
   },
@@ -107,5 +109,11 @@ export const sources = {
   psu: {
     title: "DEMRE",
     year: 2016
+  },
+  fonasa_website: {
+    title: "www.fonasa.cl",
+    url:
+      "https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos",
+    year: 2017
   }
 };
