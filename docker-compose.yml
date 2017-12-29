@@ -36,7 +36,7 @@ services:
       - NODE_ENV=production
       - CANON_PORT=4444
       - ROOT=/datachile
-      - CANON_API=https://chilecube.datawheel.us/
+      - CANON_CONST_API=https://chilecube.datawheel.us/
       - CANON_GOOGLE_ANALYTICS=UA-109603240-1
       - CANON_LANGUAGES=es
       - CANON_LANGUAGES_DEFAULT=en
