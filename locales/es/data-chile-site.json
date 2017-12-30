@@ -134,7 +134,7 @@
   "Female": "Mujeres",
   "Female Mean Income": "Ingreso promedio mujeres",
   "Female percent in ": "Porcentaje mujeres en ",
-  "Female percent of visas": "visas a mujeres inmigrantes",
+  "Female percent in industry": "Porcentaje femenino en la industria",
   "Field of Science": "Área de Conocimiento",
   "Gender": "Género",
   "Geo": "Geo",
@@ -165,6 +165,7 @@
   "Imports By Origin": "Importaciones por Origen",
 
   "Top exporter region": "Top región exportadora",
+  "Top output region": "Top región productora",
 
   "International Trade": "Comercio Internacional",
   "International Trade Balance": "Balance Comercial Internacional",
@@ -323,16 +324,6 @@
   "President": "Presidente",
   "Product": "Productos",
 
-  "balance": {
-    "default":
-      "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. En el mismo periodo, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
-    "exports":
-      "Durante los últimos {{year.number}} años, no se registraron exportaciones de {{product.caption}. Por otra parte, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
-    "imports":
-      "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} in {{year.last}}. Por otra parte, no se registraron importaciones de {{product.caption}} en este periodo de tiempo.",
-    "neither":
-      "No se registraron exportaciones e importaciones para {{product.caption}} en el periodo {{year.first}}-{{year.last}}"
-  },
   "Product Space": "Espacio de Producto",
   "Product Type": "Tipo de Producto",
   "Products": "Productos",
@@ -371,7 +362,7 @@
   "Salaries": "Salarios",
   "Salaries By Category": "Salarios por Categoría",
   "Salaries By Occupation": "Salarios por ocupación",
-  "Sales in ": "Sales in ",
+  "Sales in ": "Ventas en ",
   "School": "Escuela",
   "School By Enrollment": "Escuela según matrícula",
   "Search a location, industry, product, career, etc":
@@ -685,7 +676,7 @@
       "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} han {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",
     "r&d":
       "<p>En {{year}}, las exportaciones de {{industry.caption}} fueron de {{industry.exports}}, representando al {{industry.share}} del total. Por otra parte, el nivel gasto de {{industry.caption}} en Investigación y Desarrollo fue de {{industry.spending}}.</p>",
-    "warning": "Se muestran datos sobre {{industry.caption}}"
+    "warning": "Se muestran datos de {{caption}}"
   },
   "loading": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
@@ -708,29 +699,40 @@
 
     "about2": {
       "exp_1_imp_0":
-        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
+        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
       "exp_1_imp_1":
-        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
+        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
       "exp_1_imp_2":
-        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
+        "<p>Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
       "exp_1_imp_3":
-        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. </p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.</p>",
+        "<p>Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el único destino de las exportaciones. </p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.</p>",
       "exp_2_imp_0":
-        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
+        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
       "exp_2_imp_1":
-        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
+        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
       "exp_2_imp_2":
-        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
+        "<p>Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
       "exp_2_imp_3":
-        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.</p>",
+        "<p>Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}}, con un {{exports.share.second}}.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.</p>",
       "exp_3_imp_0":
-        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
+        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
       "exp_3_imp_1":
-        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
+        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} el único destino de las importaciones.",
       "exp_3_imp_2":
-        "<p>En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
+        "<p>Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} con un {{imports.share.second}}.</p>",
       "exp_3_imp_3":
-        "En {{year}}, las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente."
+        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo {{exports.territory.first}} el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de {{exports.territory.second}} y {{exports.territory.third}}, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo {{imports.territory.first}} la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de {{imports.territory.second}} y {{imports.territory.third}}, con un {{imports.share.second}} y {{imports.share.third}} respectivamente."
+    },
+
+    "balance": {
+      "default":
+        "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} en {{year.last}}. En el mismo periodo, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
+      "exports":
+        "Durante los últimos {{year.number}} años, no se registraron exportaciones de {{product.caption}. Por otra parte, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
+      "imports":
+        "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} en {{year.last}}. Por otra parte, no se registraron importaciones de {{product.caption}} en este periodo de tiempo.",
+      "neither":
+        "No se registraron exportaciones e importaciones para {{product.caption}} en el periodo {{year.first}}-{{year.last}}"
     }
   },
   "relative to exports to the world":

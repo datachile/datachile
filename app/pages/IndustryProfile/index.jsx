@@ -8,21 +8,26 @@ import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMemberQuery,
-  levelCut
+  levelCut,
+  simpleDatumNeed
 } from "helpers/MondrianClient";
 import {
   getLevelObject,
   ingestParent,
   clearStoreData
 } from "helpers/dataUtils";
+import { sources } from "helpers/consts";
+
+import orderBy from "lodash/orderBy";
 
 import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
 import SvgImage from "components/SvgImage";
 import Topic from "components/Topic";
 import TopicMenu from "components/TopicMenu";
+
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
-import LinksList from "components/LinksList";
+import FeaturedMapSplash from "components/FeaturedMapSplash";
 
 import EconomySlide from "./economy/EconomySlide";
 import OutputByLocation from "./economy/charts/OutputByLocation";
@@ -106,7 +111,7 @@ class IndustryProfile extends Component {
             "Level 2",
             store.i18n.locale
           );
-          q.cut(`[Date].[Month].&[${store.nene_month}]&[${store.nene_year}]`);
+          q.cut(`[Date].[Month].&[11]&[2016]`);
 
           return mondrianClient.query(q, "jsonrecords");
         })
@@ -125,6 +130,47 @@ class IndustryProfile extends Component {
               }
             };
           }
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("tax_data")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "ISICrev4",
+            "ISICrev4",
+            cube.query
+              .drilldown("Tax Geography", "Geography", "Region")
+              .drilldown("Date", "Date", "Year")
+              .measure("Output"),
+            "Level 1",
+            "Level 2",
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${sources.tax_data.last_year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          res.data.data = orderBy(res.data.data, ["Output"], ["desc"]);
+          const top_region = res.data.data[0] ? res.data.data[0] : false;
+          return {
+            key: "top_industry_output_by_region",
+            data: {
+              id: top_region ? top_region["ID Region"] : "",
+              name: top_region ? top_region["Region"] : "",
+              value: top_region ? top_region["Output"] : "",
+              source: "Source Lorem",
+              year: sources.tax_data.last_year
+            }
+          };
         });
 
       return {
@@ -167,6 +213,33 @@ class IndustryProfile extends Component {
         promise: prm
       };
     },
+
+    simpleDatumNeed(
+      "datum_industry_occupation_total",
+      "nene",
+      ["Expansion factor"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        cuts: [`[Date].[Date].[Year].&[${sources.nene.last_year}]`],
+        options: { parents: false }
+      },
+      "industry"
+    ),
+    simpleDatumNeed(
+      "datum_industry_occupation_female_total",
+      "nene",
+      ["Expansion factor"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        cuts: [
+          `[Date].[Date].[Year].&[${sources.nene.last_year}]`,
+          "[Sex].[Sex].[Sex].&[1]"
+        ],
+        options: { parents: false }
+      },
+      "industry"
+    ),
+
     EconomySlide,
     OutputByLocation,
     InvestmentByLocation,
@@ -187,9 +260,11 @@ class IndustryProfile extends Component {
   render() {
     const { t, i18n } = this.props;
 
-    const obj = this.props.data.industry;
-    if (!obj) return null;
-    const industryImg = obj ? (obj.depth === 1 ? obj.key : obj.parent.key) : "";
+    const industry = this.props.data.industry;
+    if (!industry) return null;
+    const industryImg = industry
+      ? industry.depth === 1 ? industry.key : industry.parent.key
+      : "";
 
     const locale = i18n.language;
 
@@ -197,7 +272,7 @@ class IndustryProfile extends Component {
 
     const list = this.props.data.industry_list_detail;
 
-    obj && ids && list
+    industry && ids && list
       ? list.map(c => {
           c.label = c["Level 2"];
           c.link = slugifyItem(
@@ -215,19 +290,23 @@ class IndustryProfile extends Component {
       ? ids.level2 ? t("Industries") : t("Industries")
       : "";
 
+    const female_percent = this.props.data
+      .datum_industry_occupation_female_total
+      ? this.props.data.datum_industry_occupation_female_total /
+        this.props.data.datum_industry_occupation_total
+      : 0;
+
     const stats = {
       employees: this.props.data.employees_by_industry,
-      income: {
-        value: "xxx",
-        decile: 5,
-        year: 0
-      },
-      studies: {
-        value: "xxx",
-        decile: 5,
-        year: 0
+      region: this.props.data.top_industry_output_by_region,
+      female: {
+        value: female_percent,
+        decile: female_percent * 10,
+        name: "Female percent"
       }
     };
+
+    console.log(this.props.data.datum_industry_occupation_female_total);
 
     const topics = [
       {
@@ -252,22 +331,26 @@ class IndustryProfile extends Component {
         loadingComponent={<DatachileLoading />}
       >
         <Helmet>
-          <title>{`${obj.caption}${
-            obj.parent ? " (" + obj.parent.caption + ")" : ""
+          <title>{`${industry.caption}${
+            industry.parent ? " (" + industry.parent.caption + ")" : ""
           }`}</title>
         </Helmet>
         <div className="profile">
           <div className="intro">
-            {obj && (
+            {industry && (
               <Nav
-                title={obj.caption}
-                typeTitle={obj.parent ? t("Industry") : t("Industry Type")}
+                title={industry.caption}
+                typeTitle={industry.parent ? t("Industry") : t("Industry Type")}
                 type={"industries"}
                 exploreLink={"/explore/industries"}
-                ancestor={obj.parent ? obj.parent.caption : ""}
+                ancestor={industry.parent ? industry.parent.caption : ""}
                 ancestorLink={
-                  obj.parent
-                    ? slugifyItem("industries", obj.parent.key, obj.parent.name)
+                  industry.parent
+                    ? slugifyItem(
+                        "industries",
+                        industry.parent.key,
+                        industry.parent.name
+                      )
                     : ""
                 }
                 topics={topics}
@@ -295,27 +378,37 @@ class IndustryProfile extends Component {
                     )}
                     source="nene"
                     className=""
+                    level={industry.depth > 1 ? "industry_profile" : false}
+                    name={industry.depth > 1 ? industry.parent : industry}
                   />
                 )}
 
-                {stats.income && (
-                  <FeaturedDatumSplash
-                    title={t("Average Income")}
-                    icon="ingreso"
-                    decile={stats.income.decile}
-                    datum={numeral(stats.income.value, locale).format("(0,0)")}
-                    source=""
-                    className=""
-                  />
-                )}
+                {stats.female &&
+                  female_percent > 0 && (
+                    <FeaturedDatumSplash
+                      title={t("Female percent in industry")}
+                      icon="poblacion"
+                      decile={stats.female.decile}
+                      datum={numeral(stats.female.value, locale).format(
+                        "(0.0 %)"
+                      )}
+                      source="nene"
+                      className=""
+                      level={industry.depth > 1 ? "industry_profile" : false}
+                      name={industry.depth > 1 ? industry.parent : industry}
+                    />
+                  )}
 
-                {stats.studies && (
-                  <FeaturedDatumSplash
-                    title={t("Years of Studies")}
-                    icon="psu"
-                    decile={stats.studies.decile}
-                    datum={numeral(stats.studies.value, locale).format("(0,0)")}
-                    source=""
+                {stats.region && (
+                  <FeaturedMapSplash
+                    title={t("Top output region")}
+                    type="region"
+                    code={stats.region.id}
+                    datum={stats.region.name}
+                    subtitle={numeral(stats.region.value, locale).format(
+                      "($ 0,0 a)"
+                    )}
+                    source="tax_data"
                     className=""
                   />
                 )}

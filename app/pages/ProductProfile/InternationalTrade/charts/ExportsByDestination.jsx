@@ -36,7 +36,7 @@ class ExportsByDestination extends Section {
             .measure("FOB US"),
           "HS0",
           "HS2",
-          store.i18n.language
+          store.i18n.locale
         );
 
         return {

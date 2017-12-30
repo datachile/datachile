@@ -38,6 +38,12 @@
     font-weight: 300;
     margin-bottom: 0px;
   }
+  & .featured-datum-splash-level {
+    font-size: 12px;
+    color: #FFE0B2;
+    font-weight: 300;
+    margin-bottom: 0px;
+  }
   & .featured-datum-splash-icons {
     lost-flex-container: row;
     color: var(--snow);

@@ -16,12 +16,14 @@ class FeaturedDatumSplash extends Component {
       subtitle,
       source,
       className,
-      rank
+      rank,
+      level,
+      name
     } = this.props;
 
     let full, half, none;
 
-    if (decile !== null && decile !== undefined) {
+    if (decile !== null && decile !== undefined && !isNaN(decile)) {
       full = Math.floor(decile / 2);
       half = decile % 2 != 0 ? 1 : 0;
       none = 5 - half - full;
@@ -35,7 +37,8 @@ class FeaturedDatumSplash extends Component {
           {title} {rank && <small>{rank}</small>}
         </h4>
         {decile !== null &&
-          decile !== undefined && (
+          decile !== undefined &&
+          !isNaN(decile) && (
             <div className="featured-datum-splash-icons">
               {[...Array(full)].map((x, i) => (
                 <img
@@ -67,6 +70,11 @@ class FeaturedDatumSplash extends Component {
           {sourceData && (
             <div className="featured-datum-splash-source">
               {sourceData.title} - {sourceData.year}
+            </div>
+          )}
+          {level && (
+            <div className="featured-datum-splash-level">
+              {t(`${level}.warning`, name)}
             </div>
           )}
         </div>
