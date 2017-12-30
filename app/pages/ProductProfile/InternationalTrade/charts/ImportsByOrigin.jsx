@@ -36,7 +36,7 @@ class ImportsByDestination extends Section {
             .measure("CIF US"),
           "HS0",
           "HS2",
-          store.i18n.language
+          store.i18n.locale
         );
 
         return {

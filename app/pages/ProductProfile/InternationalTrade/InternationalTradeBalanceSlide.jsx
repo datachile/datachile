@@ -115,13 +115,13 @@ class InternationalTradeBalanceSlide extends Section {
                 sources.imports.year
               }
             />
-            <FeaturedDatum
+            {/*<FeaturedDatum
               className="l-1-3"
               icon="industria"
               datum={numeral(exports_size, locale).format("(0.0 %)")}
               title={t("Trade volume")}
               subtitle="In 2015"
-            />
+            />*/}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

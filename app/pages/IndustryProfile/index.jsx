@@ -229,6 +229,8 @@ class IndustryProfile extends Component {
       }
     };
 
+    console.log(stats)
+
     const topics = [
       {
         slug: "about",
