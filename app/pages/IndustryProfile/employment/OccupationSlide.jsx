@@ -91,65 +91,70 @@ class OccupationSlide extends Section {
 
     return (
       <div className="topic-slide-block">
-        <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Occupation")}
-            {industry.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("industry_profile.warning", text_slide)
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("industry_profile.employment", text_slide)
-                }}
-              />
-            </p>
-          </div>
-
-          <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={numeral(datum_industry_occupation_total, locale).format(
-                "0,0"
+        {datum_industry_occupation_total > 0 && (
+          <div className="topic-slide-intro">
+            <div className="topic-slide-title">
+              {t("Occupation")}
+              {industry.depth > 1 ? (
+                <div className="topic-slide-subtitle">
+                  <p>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: t(
+                          "industry_profile.warning",
+                          industry.depth > 1 ? industry.parent : industry
+                        )
+                      }}
+                    />
+                  </p>
+                </div>
+              ) : (
+                ""
               )}
-              title={t("Employees in ") + industryName}
-              subtitle={t("During") + " " + sources.nene.last_year}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={numeral(
-                datum_industry_occupation_female_total /
-                  datum_industry_occupation_total,
-                locale
-              ).format("0.0 %")}
-              title={t("Female percent in ") + industryName}
-              subtitle={t("During") + " " + sources.nene.last_year}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={rate}
-              title={t("Employment growth")}
-              subtitle={`${sources.nene.first_year} - ${
-                sources.nene.last_year
-              }`}
-            />
+            </div>
+            <div className="topic-slide-text">
+              <p>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("industry_profile.employment", text_slide)
+                  }}
+                />
+              </p>
+            </div>
+
+            <div className="topic-slide-data">
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={numeral(datum_industry_occupation_total, locale).format(
+                  "0,0"
+                )}
+                title={t("Employees in ") + industryName}
+                subtitle={t("During") + " " + sources.nene.last_year}
+              />
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={numeral(
+                  datum_industry_occupation_female_total /
+                    datum_industry_occupation_total,
+                  locale
+                ).format("0.0 %")}
+                title={t("Female percent in ") + industryName}
+                subtitle={t("During") + " " + sources.nene.last_year}
+              />
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={rate}
+                title={t("Employment growth")}
+                subtitle={`${sources.nene.first_year} - ${
+                  sources.nene.last_year
+                }`}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="topic-slide-charts">{children}</div>
       </div>
     );

@@ -30,7 +30,7 @@ class ExportsGeoMap extends Section {
             .property("Destination Country", "Country", "iso3"),
           "HS0",
           "HS2",
-          store.i18n.language
+          store.i18n.locale
         );
 
         q.cut(`[Date].[Year].&[2015]`);

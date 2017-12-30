@@ -100,7 +100,10 @@ class RDSlide extends Section {
                 <p>
                   <span
                     dangerouslySetInnerHTML={{
-                      __html: t("industry_profile.warning", text_rd)
+                      __html: t(
+                        "industry_profile.warning",
+                        industry.depth > 1 ? industry.parent : industry
+                      )
                     }}
                   />
                 </p>
