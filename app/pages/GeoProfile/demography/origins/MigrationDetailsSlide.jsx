@@ -79,7 +79,7 @@ class MigrationDetailsSlide extends Section {
                   datum_migration_origin_avg_age_sex[0],
                   locale
                 ).format("(0.0)")}
-                title={t("Female average age")}
+                title={t("Female Average Age")}
                 subtitle={t("in ") + sources.immigration.year}
               />
               <FeaturedDatum
@@ -89,7 +89,7 @@ class MigrationDetailsSlide extends Section {
                   datum_migration_origin_avg_age_sex[1],
                   locale
                 ).format("(0.0)")}
-                title={t("Male average age")}
+                title={t("Male Average Age")}
                 subtitle={t("in ") + sources.immigration.year}
               />
             </div>

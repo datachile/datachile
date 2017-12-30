@@ -5,7 +5,7 @@ import { Section } from "datawheel-canon";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
-import { getGeoObject, calculateYearlyGrowth } from "helpers/dataUtils";
+import { getGeoObject } from "helpers/dataUtils";
 
 import mondrianClient, {
   geoCut,
@@ -152,7 +152,7 @@ class MigrationActivitySlide extends Section {
               className="l-1-2"
               icon="empleo"
               datum={data_slide.activity}
-              title={t("Most common visa activity")}
+              title={t("Most Common Visa Activity")}
               subtitle={
                 data_slide.number_activity +
                 " visas " +
@@ -164,7 +164,7 @@ class MigrationActivitySlide extends Section {
               className="l-1-2"
               icon="empleo"
               datum={data_slide.type}
-              title={t("Most common visa type")}
+              title={t("Most Common Visa Type")}
               subtitle={
                 data_slide.number_type +
                 " visas " +
