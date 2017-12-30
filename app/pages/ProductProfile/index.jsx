@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { SectionColumns, CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
 import orderBy from "lodash/orderBy";
-import flattenDeep from "lodash/flattenDeep";
 import Helmet from "react-helmet";
 
 import d3plus from "helpers/d3plus";
