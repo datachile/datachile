@@ -656,10 +656,12 @@
     },
     "demography": {
       "origin_by_country":
-        "<p>Durante {{last_year}} se entregaron {{visas}} visas a inmigrantes que declararon domicilio en {{area}}. Los principales países de origen son: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> y <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. La mayoría de ellos cuenta con un nivel educativo de {{education_level}}.</p>",
-      "origin_by_sex_age": "",
-      "origin_by_activity": "",
-      "population_by_sex_age": ""
+        "<p>Durante {{last_year}} se entregaron {{visas}} visas a inmigrantes que declararon domicilio en {{area}}.</p><p>Los principales países de origen son: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> y <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. La mayoría de ellos cuenta con un nivel educativo de {{education_level}}.</p>",
+      "origin_by_sex_age":
+        "<p>La edad promedio según las visas entregadas en {{last_year}} a inmigrantes residentes en {{area}} es de {{avg_age}} años.</p><p>En {{area}} las visas entregadas se dividen en {{percentage_female}} para mujeres y {{percentage_male}} para hombres.</p>",
+      "origin_by_activity":
+        "<p>En {{last_year}} el {{percentage_activity}} del las {{visas}} visas entregadas en {{area}} correspondent a la actividad más común entre los inmigrantes: {{activity}} visas).</p><p>Asímismo el tipo de visa más popular en {{area}} es {{type}} con un {{percentage_type}}.</p>",
+      "population_by_sex_age": "<p></p>"
     }
   },
   "granted in": "otorgadas en",
