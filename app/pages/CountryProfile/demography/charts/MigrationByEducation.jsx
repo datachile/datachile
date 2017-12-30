@@ -25,7 +25,7 @@ class MigrationByEducation extends Section {
             .drilldown("Date", "Year")
             .drilldown("Education", "Education")
             .measure("Number of visas"),
-          "Subregion",
+          "Continent",
           "Country",
           store.i18n.locale,
           false

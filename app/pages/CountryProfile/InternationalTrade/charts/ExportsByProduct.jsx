@@ -27,7 +27,7 @@ class ExportsByProduct extends Section {
             .drilldown("Export HS", "HS", "HS2")
             .drilldown("Date", "Year")
             .measure("FOB US"),
-          "Subregion",
+          "Continent",
           "Country",
           store.i18n.locale,
           false

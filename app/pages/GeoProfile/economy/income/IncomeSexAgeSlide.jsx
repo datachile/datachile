@@ -100,7 +100,7 @@ class IncomeSexAgeSlide extends Section {
               datum={numeral(datum_income_mean_sex[0], locale).format(
                 "($ 0 a)"
               )}
-              title={t("Female Mean Income")}
+              title={t("Female Median Income")}
               subtitle={t("in ") + geo.caption}
             />
             <FeaturedDatum
@@ -109,7 +109,7 @@ class IncomeSexAgeSlide extends Section {
               datum={numeral(datum_income_mean_sex[1], locale).format(
                 "($ 0 a)"
               )}
-              title={t("Male Mean Income")}
+              title={t("Male Median Income")}
               subtitle={t("in ") + geo.caption}
             />
           </div>

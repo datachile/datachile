@@ -58,7 +58,9 @@ class FeaturedDatumSplash extends Component {
             </div>
           )}
         <div className="featured-datum-splash-data">
-          <div className="featured-datum-data">{datum}</div>
+          <div className="featured-datum-data">
+            {datum ? datum : t("no_datum")}
+          </div>
           {subtitle && (
             <div className="featured-datum-splash-subtitle">{subtitle}</div>
           )}

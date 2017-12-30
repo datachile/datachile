@@ -138,7 +138,7 @@
         }
         & .home-slide-clickable {
           cursor: pointer;
-          margin: 10px;
+          padding: 10px;
           height: auto;
           & h3 {
             display: flex;

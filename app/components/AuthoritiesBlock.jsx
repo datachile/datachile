@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PersonItem from "components/PersonItem";
 import { translate } from "react-i18next";
-import mondrianClient from "helpers/MondrianClient";
+import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import "./AuthoritiesBlock.css";
 
@@ -32,7 +32,10 @@ class AuthoritiesBlock extends Component {
 
             q.cut(`[Date].[Year].&[${store.presidential_election_year}]`);
 
-            return mondrianClient.query(q, "jsonrecords");
+            return mondrianClient.query(
+              setLangCaptions(q, store.i18n.locale),
+              "jsonrecords"
+            );
           })
           .then(res => {
             return {
@@ -86,7 +89,10 @@ class AuthoritiesBlock extends Component {
 
             q.cut(`[GeographyR].[Geography].[Region].&[${id}]`);
 
-            return mondrianClient.query(q, "jsonrecords");
+            return mondrianClient.query(
+              setLangCaptions(q, store.i18n.locale),
+              "jsonrecords"
+            );
           })
           .then(
             res => {
@@ -129,7 +135,10 @@ class AuthoritiesBlock extends Component {
               .cut(`[Date].[Year].&[${store.mayor_election_year}]`)
               .cut(`[GeographyC].[Geography].[Comuna].&[${geo.key}]`);
 
-            return mondrianClient.query(q, "jsonrecords");
+            return mondrianClient.query(
+              setLangCaptions(q, store.i18n.locale),
+              "jsonrecords"
+            );
           })
           .then(res => {
             return {

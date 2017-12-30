@@ -4,6 +4,8 @@ import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
+import { employmentColorScale } from "helpers/colors";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -25,8 +27,7 @@ class DeathCauses extends Section {
     const { t, className, i18n } = this.props;
 
     const path = this.context.data.path_health_death_causes;
-    if (!i18n.language) return null;
-    const locale = i18n.language.split("-")[0];
+    const locale = i18n.language;
 
     return (
       <div className={className}>
@@ -40,40 +41,30 @@ class DeathCauses extends Section {
             height: 500,
             data: path,
             groupBy: ["CIE 10"],
-            /*label: d => {
-                d["Country"] =
-                  d["Country"] == "Chile" ? ["Chile"] : d["Country"];
-                return d["Country"] instanceof Array
-                  ? d["Continent"]
-                  : d["Country"];
-              },*/
+            label: d => d["CIE 10"],
             sum: d => d["Casualities Count SUM"],
-            time: "Year"
-            /*shapeConfig: {
-                fill: d => continentColorScale(d["ID Continent"])
-              },*/
-            /*tooltipConfig: {
-                title: d => {
-                  d["Country"] =
-                    d["Country"] == "Chile" ? ["Chile"] : d["Country"];
-                  return d["Country"] instanceof Array
-                    ? d["Continent"]
-                    : d["Country"];
-                },
-                body: d =>
-                  numeral(d["Casualities Count SUM"], locale).format("(0 a)") +
-                  " " +
-                  t("people")
-              },*/
-            /*
-              legendConfig: {
-                shapeConfig: {
-                  width: 40,
-                  height: 40,
-                  backgroundImage: d =>
-                    "/images/legend/continent/" + d["ID Continent"] + ".png"
-                }
-              }*/
+            time: "Year",
+            shapeConfig: {
+              fill: d => employmentColorScale("CIE" + d["ID CIE 10"])
+            },
+            tooltipConfig: {
+              title: d => d["CIE 10"],
+              body: d =>
+                numeral(d["Casualities Count SUM"], locale).format("(0 a)") +
+                " " +
+                t("people")
+            },
+            total: d => d["Casualities Count SUM"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "( 0.[00] a)"
+                ) +
+                " " +
+                t("people")
+            },
+            legend: false
           }}
           dataFormat={data => data.data}
         />

@@ -162,8 +162,8 @@ export function needHomeCountriesExports(params, store) {
               type: "geo",
               url: slugifyItem(
                 "countries",
-                r["ID Subregion"],
-                r["Subregion"],
+                r["ID Continent"],
+                r["Continent"],
                 r["ID Country"],
                 r["Country"]
               ),

@@ -39,6 +39,42 @@ export function slugifyItem(prefix, id1, name1, id2, name2) {
   return link;
 }
 
+export function getImageFromMember(prefix, id1, id2 = false) {
+  const chile = "/images/profile-bg/geo/chile.jpg";
+  const link = "/images/profile-bg";
+  var file = "";
+
+  if (prefix == "geo" && id1 == "chile") {
+    return chile;
+  }
+  switch (prefix) {
+    case "countries": {
+      file = id2
+        ? "/country/" + id2 + ".jpg"
+        : "/country/continent/" + id1 + ".jpg";
+      break;
+    }
+    case "products": {
+      file = "/product/" + id1 + ".jpg";
+      break;
+    }
+    case "industries": {
+      file = "/industry/" + id1 + ".jpg";
+      break;
+    }
+    case "geo": {
+      file = "/geo/" + "region-" + id1 + ".jpg";
+      break;
+    }
+    default: {
+      return chile;
+      break;
+    }
+  }
+
+  return link + file;
+}
+
 n.register("locale", "es-cl", {
   delimiters: {
     thousands: ".",
