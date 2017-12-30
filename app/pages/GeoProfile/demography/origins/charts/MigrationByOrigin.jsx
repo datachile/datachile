@@ -2,11 +2,16 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
+import { browserHistory } from "react-router";
 
 import { continentColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import {
+  numeral,
+  getNumberFromTotalString,
+  slugifyItem
+} from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
@@ -79,6 +84,22 @@ export default translate()(
               shapeConfig: {
                 fill: d => continentColorScale(d["ID Continent"])
               },
+              on: {
+                click: d => {
+                  if (!(d["ID Country"] instanceof Array)) {
+                    var url = slugifyItem(
+                      "countries",
+                      d["ID Continent"],
+                      d["Continent"],
+                      d["ID Country"] instanceof Array
+                        ? false
+                        : d["ID Country"],
+                      d["Country"] instanceof Array ? false : d["Country"]
+                    );
+                    browserHistory.push(url);
+                  }
+                }
+              },
               tooltipConfig: {
                 title: d => {
                   d["Country"] =
@@ -87,10 +108,18 @@ export default translate()(
                     ? d["Continent"]
                     : d["Country"];
                 },
-                body: d =>
-                  numeral(d["Number of visas"], locale).format("(0 a)") +
-                  " " +
-                  t("people")
+                body: d => {
+                  const link =
+                    d["ID Country"] instanceof Array
+                      ? ""
+                      : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                  return (
+                    numeral(d["Number of visas"], locale).format("(0 a)") +
+                    " " +
+                    t("people") +
+                    link
+                  );
+                }
               },
               legendConfig: {
                 label: d => d["Continent"],
