@@ -5,7 +5,11 @@ import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
-import { numeral, slugifyItem } from "helpers/formatters";
+import {
+  numeral,
+  slugifyItem,
+  getNumberFromTotalString
+} from "helpers/formatters";
 import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
@@ -69,7 +73,9 @@ class ImportsByProduct extends Section {
             totalConfig: {
               text: d =>
                 "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("($ 0,0 a)")
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
             },
             time: "ID Year",
             legendConfig: {

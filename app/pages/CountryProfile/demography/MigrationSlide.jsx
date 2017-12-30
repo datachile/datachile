@@ -24,8 +24,7 @@ class MigrationSlide extends Section {
       measures: ["Number of visas"],
       drillDowns: [["Date", "Date", "Year"]],
       cuts: [`[Date].[Date].[Year].&[${year_last}]`, `[Sex].[Sex].[Sex].&[1]`],
-      options: { parents: false },
-      format: "json"
+      options: { parents: false }
     }),
 
     simpleCountryDatumNeed("datum_migration_origin", {
@@ -33,10 +32,7 @@ class MigrationSlide extends Section {
       measures: ["Number of visas"],
       drillDowns: [["Date", "Date", "Year"]],
       cuts: [
-        {
-          key: "[Date].[Date].[Year]",
-          values: [year_last - 1, year_last]
-        }
+        { key: "[Date].[Date].[Year]", values: [year_last - 1, year_last] }
       ],
       options: { parents: false }
     }),
