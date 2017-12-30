@@ -1,15 +1,16 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
+import sumBy from "lodash/sumBy";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import { onlyMostRecent, championsBy } from "helpers/aggregations";
+import { championsBy } from "helpers/aggregations";
 import { sources } from "helpers/consts";
-import { getLevelObject } from "helpers/dataUtils";
-import mondrianClient, { levelCut } from "helpers/MondrianClient";
+import { numeral } from "helpers/formatters";
+import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 
-const last_year = sources.exports_and_imports.year;
+const last_year = sources.imports.year;
 const groupingKey = (a, b, c) => {
   if (a.Region == b.Region) return b.Region == c.Region ? "3" : "21";
   else return b.Region == c.Region ? "12" : "";
@@ -17,95 +18,67 @@ const groupingKey = (a, b, c) => {
 
 class InternationalTradeOriginDestinationSlide extends Section {
   static need = [
-    function slideImportDestinations(params, store) {
-      const country = getLevelObject(params);
+    simpleCountryDatumNeed(
+      "slide_country_trade_destination",
+      {
+        cube: "imports",
+        measures: ["CIF US"],
+        drillDowns: [["Geography", "Comuna"]],
+        cuts: [`[Date].[Date].[Year].&[${last_year}]`],
+        options: { parents: true },
+        format: "jsonrecords"
+      },
+      (result, locale) => {
+        const data = result.data.data;
+        const { first, second, third } = championsBy(data, "CIF US");
 
-      const prm = mondrianClient
-        .cube("imports")
-        .then(cube => {
-          const q = levelCut(
-            country,
-            "Origin Country",
-            "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Geography", "Comuna")
-              .cut(`[Date].[Date].[Year].&[${last_year}]`)
-              .measure("CIF US"),
-            "Subregion",
-            "Country",
-            store.i18n.locale,
-            false
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          const { first, second, third } = championsBy(res.data.data, "CIF US");
+        return {
+          grouping: groupingKey(first, second, third),
+          first_municipality: first.Comuna,
+          first_region: first.Region,
+          first_percentage: numeral(
+            sumBy(data.filter(d => d.Region == first.Region), "CIF US") /
+              sumBy(data, "CIF US"),
+            locale
+          ).format("0.0%"),
+          second_municipality: second.Comuna,
+          second_region: second.Region,
+          third_municipality: third.Comuna,
+          third_region: third.Region
+        };
+      }
+    ),
 
-          return {
-            key: "slide_country_trade_destination",
-            data: {
-              grouping: groupingKey(first, second, third),
-              first_municipality: first.Comuna,
-              first_region: first.Region,
-              second_municipality: second.Comuna,
-              second_region: second.Region,
-              third_municipality: third.Comuna,
-              third_region: third.Region
-            }
-          };
-        });
+    simpleCountryDatumNeed(
+      "slide_country_trade_origin",
+      {
+        cube: "exports",
+        measures: ["FOB US"],
+        drillDowns: [["Geography", "Comuna"]],
+        cuts: [`[Date].[Date].[Year].&[${last_year}]`],
+        options: { parents: true },
+        format: "jsonrecords"
+      },
+      (result, locale) => {
+        const data = result.data.data;
+        const { first, second, third } = championsBy(data, "FOB US");
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    function slideExportOrigins(params, store) {
-      const country = getLevelObject(params);
-
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          const q = levelCut(
-            country,
-            "Destination Country",
-            "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Geography", "Comuna")
-              .cut(`[Date].[Date].[Year].&[${last_year}]`)
-              .measure("FOB US"),
-            "Subregion",
-            "Country",
-            store.i18n.locale,
-            false
-          );
-
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          const { first, second, third } = championsBy(res.data.data, "FOB US");
-
-          return {
-            key: "slide_country_trade_origin",
-            data: {
-              grouping: groupingKey(first, second, third),
-              first_municipality: first.Comuna,
-              first_region: first.Region,
-              second_municipality: second.Comuna,
-              second_region: second.Region,
-              third_municipality: third.Comuna,
-              third_region: third.Region
-            }
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+        return {
+          grouping: groupingKey(first, second, third),
+          first_municipality: first.Comuna,
+          first_region: first.Region,
+          first_percentage: numeral(
+            sumBy(data.filter(d => d.Region == first.Region), "FOB US") /
+              sumBy(data, "FOB US"),
+            locale
+          ).format("0.0%"),
+          second_municipality: second.Comuna,
+          second_region: second.Region,
+          third_municipality: third.Comuna,
+          third_region: third.Region
+        };
+      }
+    )
   ];
 
   render() {
@@ -140,25 +113,24 @@ class InternationalTradeOriginDestinationSlide extends Section {
 
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={"x"}
-              title={t("Trade volume")}
-              subtitle="XXXX - YYYY"
+              className="l-1-2"
+              icon="product-import"
+              datum={slide_country_trade_destination.first_region}
+              title={t("Main importing Region")}
+              subtitle={t("{{percent}} of the country - {{last_year}}", {
+                percent: slide_country_trade_destination.first_percentage,
+                last_year
+              })}
             />
             <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={"x"}
-              title={t("Trade volume")}
-              subtitle="XXXX - YYYY"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={"x"}
-              title={t("Trade volume")}
-              subtitle="XXXX - YYYY"
+              className="l-1-2"
+              icon="product-export"
+              datum={slide_country_trade_origin.first_region}
+              title={t("Main exporting Region")}
+              subtitle={t("{{percent}} of the country - {{last_year}}", {
+                percent: slide_country_trade_origin.first_percentage,
+                last_year
+              })}
             />
           </div>
         </div>
