@@ -7,7 +7,7 @@ import "./FeaturedBox.css";
 
 class FeaturedBox extends Component {
   render() {
-    const { t, item } = this.props;
+    const { t, item, className } = this.props;
 
     const icon =
       ["country", "region", "comuna"].indexOf(item.type) > -1
@@ -17,7 +17,7 @@ class FeaturedBox extends Component {
     return (
       <Link
         key={item.name + "anchor"}
-        className="tile"
+        className={"tile " + className}
         to={item.url}
         title={item.name}
         style={{

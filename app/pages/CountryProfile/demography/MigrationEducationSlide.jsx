@@ -30,7 +30,7 @@ class MigrationEducationSlide extends Section {
               .drilldown("Date", "Year")
               .drilldown("Education", "Education")
               .measure("Number of visas"),
-            "Subregion",
+            "Continent",
             "Country",
             locale,
             false

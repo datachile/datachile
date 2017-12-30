@@ -68,7 +68,7 @@ class MigrationSlide extends Section {
               icon="empleo"
               datum={numeral(datum_migration_origin[1], locale).format("(0,0)")}
               title={t("Immigrant visas")}
-              subtitle={t("granted in") + " " + immigration_year}
+              subtitle={t("granted in") + " " + sources.immigration.year}
             />
             <FeaturedDatum
               className="l-1-3"

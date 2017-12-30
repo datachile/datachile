@@ -28,7 +28,7 @@ class MigrationByVisa extends Section {
             .drilldown("Date", "Year")
             .drilldown("Visa Type", "Visa Type")
             .measure("Number of visas"),
-          "Subregion",
+          "Continent",
           "Country",
           store.i18n.locale,
           false

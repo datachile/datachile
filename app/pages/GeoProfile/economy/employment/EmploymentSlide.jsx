@@ -68,8 +68,6 @@ class EmploymentSlide extends Section {
 
     const locale = i18n.language;
 
-    console.log(datum_employment_occupied);
-
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">

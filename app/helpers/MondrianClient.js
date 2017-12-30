@@ -471,6 +471,21 @@ function simpleIndustryDatumNeed(
   };
 }
 
+const COUNTRY_LEVEL_CUBES_CUT = {
+  immigration: {
+    level1: ["Origin Country", "Country", "Continent"],
+    level2: ["Origin Country", "Country", "Country"]
+  },
+  exports: {
+    level1: ["Destination Country", "Country", "Continent"],
+    level2: ["Destination Country", "Country", "Country"]
+  },
+  imports: {
+    level1: ["Origin Country", "Country", "Continent"],
+    level2: ["Origin Country", "Country", "Country"]
+  }
+};
+
 function simpleCountryDatumNeed(
   key,
   {
@@ -479,16 +494,25 @@ function simpleCountryDatumNeed(
     drillDowns = [],
     cuts = [],
     options = {},
+    drillLevel = false,
     format = null
+  },
+  postprocess = (res, lang, params, store) => {
+    const data = res.data || {};
+    return data.values ? flattenDeep(data.values) : data.data;
   }
 ) {
   return (params, store) => {
-    const geo = getLevelObject(params);
+    const locale = store.i18n.locale;
+    const ddlevel =
+      COUNTRY_LEVEL_CUBES_CUT[cube][params.level2 ? "level2" : "level1"];
 
-    const prm = client
+    const promise = client
       .cube(cube)
       .then(cube => {
         const q = cube.query;
+
+        if (drillLevel) drillDowns.push(ddlevel);
 
         measures.forEach(q.measure, q);
         drillDowns.forEach(dd => q.drilldown(...dd));
@@ -498,41 +522,26 @@ function simpleCountryDatumNeed(
               ? cut
               : "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
           })
+          .concat(`[${ddlevel[0]}].[${ddlevel[1]}].${getCountryCut(params)}`)
           .forEach(q.cut, q);
-        Object.entries(options).forEach(pairs => q.option(...pairs));
+        for (let option in options) q.option(option, options[option]);
 
-        var query = levelCut(
-          geo,
-          "Origin Country",
-          "Country",
-          q,
-          "Subregion",
-          "Country",
-          store.i18n.locale,
-          false
-        );
+        setLangCaptions(q, locale);
 
-        return client.query(query, format);
+        // console.log(__API__ + q.path("jsonrecords"));
+        return client.query(q, format);
       })
-      .then(res => {
-        const data = res.data || {};
-        return {
-          key: key,
-          data: data.data || flattenDeep(data.values)
-        };
-      });
+      .then(res => postprocess(res, locale, params, store))
+      .then(data => ({ key, data }));
 
-    return {
-      type: "GET_DATA",
-      promise: prm
-    };
+    return { type: "GET_DATA", promise };
   };
 }
 
 const getCountryCut = params => {
   const level1 = (params.level1 || "").split("-").pop();
   const level2 = (params.level2 || "").split("-").pop();
-  return level2 ? `[Country].&[${level2}]` : `[Subregion].&[${level1}]`;
+  return level2 ? `[Country].&[${level2}]` : `[Continent].&[${level1}]`;
 };
 
 function simpleDatumNeed(
@@ -568,7 +577,7 @@ function simpleDatumNeed(
               "Origin Country",
               "Country",
               q,
-              "Subregion",
+              "Continent",
               "Country",
               store.i18n.locale,
               false

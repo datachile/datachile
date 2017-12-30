@@ -6,8 +6,8 @@ import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 
 import { ingestChildren } from "helpers/dataUtils";
-
 import { getMembersQuery } from "helpers/MondrianClient";
+import { getImageFromMember } from "helpers/formatters";
 
 import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
@@ -60,7 +60,7 @@ class Explore extends Component {
             var prm1 = getMembersQuery(
               "exports",
               "Destination Country",
-              "Subregion",
+              "Continent",
               store.i18n.locale,
               false
             );
@@ -193,22 +193,22 @@ class Explore extends Component {
     var type = "";
     var mainLink = false;
     switch (entity) {
-      case undefined: {
+      /*case undefined: {
         type = "";
         break;
-      }
+      }*/
       case "countries": {
         type = "countries";
         break;
       }
-      case "institutions": {
+      /*case "institutions": {
         type = "institutions";
         break;
       }
       case "careers": {
         type = "careers";
         break;
-      }
+      }*/
       case "products": {
         type = "products";
         break;
@@ -223,9 +223,13 @@ class Explore extends Component {
         break;
       }
       default: {
-        browserHistory.push("/explore");
+        if (browserHistory) {
+          browserHistory.push("/404");
+        }
+        break;
       }
     }
+    if (type == "") return null;
 
     const filters =
       typeof members != "undefined" && entity
@@ -235,7 +239,7 @@ class Explore extends Component {
               name: m.caption,
               type: type,
               url: "/explore/" + type + "/" + m.key + "#results",
-              img: "/images/profile-bg/geo/chile.jpg"
+              img: getImageFromMember(type, m.key)
             };
           })
         : [];

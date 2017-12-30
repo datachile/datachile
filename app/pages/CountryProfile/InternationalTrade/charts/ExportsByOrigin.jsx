@@ -26,7 +26,7 @@ class ExportsByOrigin extends Section {
             .drilldown("Date", "Year")
             .drilldown("Geography", "Comuna")
             .measure("FOB US"),
-          "Subregion",
+          "Continent",
           "Country",
           store.i18n.locale,
           false

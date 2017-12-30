@@ -90,8 +90,8 @@ class ExportsByDestination extends Section {
                   if (!(d["ID Country"] instanceof Array)) {
                     var url = slugifyItem(
                       "countries",
-                      d["ID Subregion"],
-                      d["Subregion"],
+                      d["ID Continent"],
+                      d["Continent"],
                       d["ID Country"] instanceof Array
                         ? false
                         : d["ID Country"],

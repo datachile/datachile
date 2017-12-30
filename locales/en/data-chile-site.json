@@ -47,7 +47,7 @@
   "By Sex & Education Level": "By Sex & Education Level",
   "Career": "Career",
   "Careers": "Careers",
-  "Chile Exports": "Chile Exports",
+  "Chile Exports": "Chile Exported",
   "Community Equipment": "Community Equipment",
   "Comuna": "Comuna",
   "Connected to electricity network": "Connected to electricity network",
@@ -87,7 +87,7 @@
   "Estimate Population": "Estimate Population",
   "Ethnicity": "Ethnicity",
   "Explore": "Explore",
-  "Explore Featured Profiles": "Explore Featured Profiles",
+  "Explore profiles": "Explore profiles",
   "Explore profiles by category": "Explore profiles by category",
   "Exports": "Exports",
   "Exports By Destination": "Exports By Destination",
@@ -114,6 +114,8 @@
   "Growth R&D Spending in ": "Growth R&D Spending in ",
   "Growth affiliates in ISAPRES": "Growth affiliates in ISAPRES",
   "Growth number of visas": "Growth number of visas",
+  "Growth number of visas for {{current}} immigrants":
+    "Growth number of visas for {{current}} immigrants",
   "Health": "Health",
   "Health Center": "Health Center",
   "Health Insurance": "Health Insurance",
@@ -340,8 +342,6 @@
   "Summary": "Summary",
   "Supported by": "Supported by",
   "Tablet": "Tablet",
-  "The most comprehensive effort to integrate and visualize Chile’s Public Data":
-    "The most comprehensive effort to integrate and visualize Chile’s Public Data",
   "Top Schools By Performance": "Top Schools By Performance",
   "Top destination country": "Top destination country",
   "Top exporter region": "Top exporter region",
@@ -364,6 +364,10 @@
   "Value": "Value",
   "Videogame console": "Videogame console",
   "Visas": "Visas",
+  "Visas for Female immigrants": "Visas for Female immigrants",
+  "Visas for females in range {{range}}":
+    "Visas for females in range {{range}}",
+  "Visas for males in range {{range}}": "Visas for males in range {{range}}",
   "Wages": "Wages",
   "Wages by Program": "Wages by Program",
   "Years of Studies": "Years of Studies",
@@ -390,65 +394,95 @@
     },
     "data": {
       "casen": {
-        "source": "about.data.casen.source",
-        "text": "about.data.casen.text",
-        "title": "about.data.casen.title",
-        "use": "about.data.casen.use"
+        "source": "Ministerio de Desarrollo Social (MDS)",
+        "text":
+          "<p>Datos levantados por el Ministerio de Desarrollo Social (MDS). La Encuesta Casen tiene por objetivo entregar una “ radiografía” de la  situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para la medición de la pobreza y desigualdad y ha sido ampliamente utilizada por Organismos Internacionales y ONGs.</p><p>Los resultados de la Encuesta Casen 2015 incluyen la medición de pobreza por ingresos y multidimensional, destacando la incorporación un conjunto de indicadores que permiten medir carencias que afectan a los hogares en relación al entorno en el que habitan. La medición de pobreza multidimensional considera 5 dimensiones relevantes para el bienestar de los hogares y sus integrantes: Educación; Salud; Trabajo y Seguridad Social; Vivienda y Entorno; Redes y Cohesión Social.</p>",
+        "title": "CASEN (1990-2015)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía, vivienda y entorno y salud"
       },
-      "dataset": "about.data.dataset",
+      "dataset": "Fuente de datos",
       "discapacidad": {
-        "source": "about.data.discapacidad.source",
-        "text": "about.data.discapacidad.text",
-        "title": "about.data.discapacidad.title",
-        "use": "about.data.discapacidad.use"
+        "source": "Servicio Nacional de Discapacidad (SENADIS)",
+        "text":
+          "<p>Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.</p>",
+        "title": "Encuesta Nacional de Discapacidad (2016)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de salud."
       },
       "empleabilidad": {
-        "source": "about.data.empleabilidad.source",
-        "text": "about.data.empleabilidad.text",
-        "title": "about.data.empleabilidad.title",
-        "use": "about.data.empleabilidad.use"
+        "source": "Ministerio de Educación (MINEDUC)",
+        "text":
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Se obtiene combinando los datos que entregan las instituciones de Educación Superior con los datos de la Subdirección de Estudios del SII sobre la base de las declaraciones de impuestos de los contribuyentes.</p>",
+        "title": "Empleabilidad e Ingresos (2014-2015)",
+        "use": "Se usa en el perfil de carreras."
       },
       "gasto": {
-        "source": "about.data.gasto.source",
-        "text": "about.data.gasto.text",
-        "title": "about.data.gasto.title",
-        "use": "about.data.gasto.use"
+        "source": "Ministerio de Economía (MINECON)",
+        "text":
+          "<p>Datos levantados por el Ministerio de Economía (MINECON) y entregados por el Servicio de Impuestos Internos (SII). Esta encuesta busca recoger información de los recursos financieros y cantidad de personal, destinados a actividades de investigación y desarrollo, durante los años de medición, en el sector Empresas, en el Estado, en la Educación Superior (universidades) y en las Instituciones Privadas sin Fines de Lucro (IPSFL).</p>",
+        "title": "Encuesta Sobre Gasto y Personal en I+D",
+        "use": "Se usa en el perfil industrias."
       },
       "matricula": {
-        "source": "about.data.matricula.source",
-        "text": "about.data.matricula.text",
-        "title": "about.data.matricula.title",
-        "use": "about.data.matricula.use"
+        "source": "Ministerio de Educación (MINEDUC)",
+        "text":
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
+        "title": "Matrícula y rendimiento escolar (2004-2015)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de educación."
       },
       "migracion": {
-        "source": "about.data.migracion.source",
-        "text": "about.data.migracion.text",
-        "title": "about.data.migracion.title",
-        "use": "about.data.migracion.use"
+        "source": "Departamento de Extranjería y Migración",
+        "text":
+          "<p>Datos generados por el Departamento de Extranjería y Migración, que es la entidad encargada de otorgar permisos de residencia a población extranjera en el país. Este registro corresponde a la población migrante en situación regular.</p><p>Las información de visas otorgadas muestran los permisos migratorios otorgados y no da cuenta del stock de migrantes, sino solo de tendencias. No es un registro exhaustivo, pues por su naturaleza no puede incluir población migrante en situación irregular y se debe considerar que una persona puede obtener más de un permiso migratorio durante su estadía en nuestro país. Por ejemplo, a lo largo de tres años a una misma persona se le podría haber otorgado tres visas o dos visas y una permanencia definitiva. En este caso, el registro indicará las tres visas o las dos visas y la permanencia definitiva, sin considerar que se trata solo de una persona.</p>",
+        "title": "Estadísticas Migratorias (2005 - 2016)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de demografía."
       },
       "nene": {
-        "source": "about.data.nene.source",
-        "text": "about.data.nene.text",
-        "title": "about.data.nene.title",
-        "use": "about.data.nene.use"
+        "source": "Instituto Nacional de Estadísticas (INE)",
+        "text":
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Nueva Encuesta Nacional de Empleo (NENE) se realiza mensualmente y clasifica a la población en edad de trabajar (PET), todas las personas de 15 años y más, según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT), en las que se basa el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
+        "title": "NENE (2010-2016)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de empleo."
       },
       "nesi": {
-        "source": "about.data.nesi.source",
-        "text": "about.data.nesi.text",
-        "title": "about.data.nesi.title",
-        "use": "about.data.nesi.use"
+        "source": "Instituto Nacional de Estadísticas (INE)",
+        "text":
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas (INE). La Encuesta Suplementaria de Ingresos (ESI) es un módulo complementario de la Encuesta Nacional de Empleo (ENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la ENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.</p><p>La encuesta comprende una batería de preguntas estrechamente asociada al formulario habitual de la encuesta de empleo, por lo que constituye una fuente de información complementaria de la caracterización de la población ocupada. Es la única encuesta que levanta información de ingresos de las personas en Chile con regularidad anual y con representatividad para todas las regiones.</p>",
+        "title": "NESI (2010-2016)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de economía y en el perfil de industria en la dimensión de ingresos."
       },
       "psu": {
-        "source": "about.data.psu.source",
-        "text": "about.data.psu.text",
-        "title": "about.data.psu.title",
-        "use": "about.data.psu.use"
+        "source": "Ministerio de Educación (MINEDUC)",
+        "text":
+          "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
+        "title": "PSU (2004-2016)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de educación."
       },
       "salud": {
-        "source": "about.data.salud.source",
-        "text": "about.data.salud.text",
-        "title": "about.data.salud.title",
-        "use": "about.data.salud.use"
+        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
+        "title": "Indicadores de acceso a la salud (2014)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en las dimensiones de salud."
+      },
+      "source": "Organismo responsable",
+      "text":
+        "Las fuentes de datos integradas en Datachile son las siguientes:",
+      "title": "Datos",
+      "vida": {
+        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
+        "title": "Esperanza de vida (2010-2014)",
+        "use":
+          "Se usa en los perfiles país, región y comuna en la dimensión de salud."
       },
       "source": "about.data.source",
       "text": "about.data.text",
@@ -494,7 +528,7 @@
         "<p>Most export coming out from Chile to {{level}} depart from {{origin.first_region}}, mainly from the comunas of {{origin.first_municipality}}, {{origin.second_municipality}}, and {{origin.third_municipality}}.</p>",
       "import":
         "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after, the comunas of {{destination.second_municipality}}, in {{destination.second_region}}, and {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
-      "import_": "",
+      "import_": "t(country_profile.intltrade_origin_dest_slide.import)",
       "import_12":
         "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after the comunas of {{destination.second_municipality}} and {{destination.third_municipality}}, in {{destination.second_region}}.</p>",
       "import_21":
@@ -504,7 +538,7 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>The principal product Chile imports from {{level}} is {{main_import.name}}. For {{year_latest}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of {{main_import.name}} to Chile.</p><p>On the other side, Chile exports to {{level}} mainly {{main_export.name}}. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of {{main_export.name}} from Chile during {{year_latest}}.</p>"
+        "<p>The principal product Chile imports from {{level}} is {{main_import.name}}. For {{year_last}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of {{main_import.name}} to Chile.</p><p>On the other side, Chile exports to {{level}} mainly {{main_export.name}}. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of {{main_export.name}} from Chile during {{year_last}}.</p>"
     },
     "migration_activity_slide": {
       "text":
@@ -516,7 +550,7 @@
       "tendency_stay":
         ", which is a tendency since {{year_first}}, with an accumulated growth of {{sex.growth}}",
       "text":
-        "<p>Of the immigrants that come from {{level}}, most are {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_latest}}, which translates into a growth of {{agerange.first_growth}} since {{year_previous}}.</p>"
+        "<p>Of the immigrants that come from {{level}}, most are {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_last}}, which translates into a growth of {{agerange.first_growth}} since {{year_previous}}.</p>"
     },
     "migration_education_slide": {
       "text":
@@ -524,7 +558,7 @@
     },
     "migration_slide": {
       "text":
-        "<p>By {{year_latest}}, most immigrants from {{level}} arrive to establish in {{destination.region}}, mainly in the comuna of {{destination.municipality}}.</p><p>The immigrants from {{level}} in this comuna account for {{destination.mun_percent}} of the national total, and {{destination.reg_percent}} of the regional total. Compared to {{year_previous}}, the growth in immigration visas for people living in {{destination.municipality}} is {{destination.mun_growth}}.</p>"
+        "<p>By {{year_last}}, most immigrants from {{level}} arrive to establish in {{destination.region}}, mainly in the comuna of {{destination.municipality}}.</p><p>The immigrants from {{level}} in this comuna account for {{destination.mun_percent}} of the national total, and {{destination.reg_percent}} of the regional total. Compared to {{year_previous}}, the growth in immigration visas for people living in {{destination.municipality}} is {{destination.mun_growth}}.</p>"
     }
   },
   "decreased": "decreased",
@@ -554,30 +588,49 @@
 
   "product_profile": {
     "about1": {
-      "default": "In {{year.last}}, {{product.caption}} was {{total_exports.rank}} most exported product by Chile, of a total {{total_exports.total}} categories. Represented the {{product.share}} of the country exports, where {{region.name}} was main exported region, with a share of {{region.share}}.",
-      "no_data": "There are not data of exports for {{product.caption}} in {{year.last}}"
+      "default":
+        "In {{year.last}}, {{product.caption}} was {{total_exports.rank}} most exported product by Chile, of a total {{total_exports.total}} categories. Represented the {{product.share}} of the country exports, where {{region.name}} was main exported region, with a share of {{region.share}}.",
+      "no_data":
+        "There are not data of exports for {{product.caption}} in {{year.last}}"
     },
-      
-    "about2":{
-      "exp_1_imp_0": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny, and no imports were recorded.</p>",
-      "exp_1_imp_1": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny, and {{imports.territory.first}} was the only imports destiny.</p>",
-      "exp_1_imp_2": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny</p>. <p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}}, with a {{imports.share.second}}.</p>",
-      "exp_1_imp_3": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny.</p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
-      "exp_2_imp_0": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}, and no imports were recorded.</p>",
-      "exp_2_imp_1": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, {{imports.territory.first}} was the only imports destiny.</p>",
-      "exp_2_imp_2": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}}, with a {{imports.share.second}}.</p>",
-      "exp_2_imp_3": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
-      "exp_3_imp_0": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively, and no imports were recorded.</p>",
-      "exp_3_imp_1": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, {{imports.territory.first}} was the only imports destiny.</p>",
-      "exp_3_imp_2": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} with a {{imports.share.second}}.</p>",
-      "exp_3_imp_3": "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
-      "no_data": "There are not data of exports for {{product.caption}} in {{year.last}}"
+
+    "about2": {
+      "exp_1_imp_0":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny, and no imports were recorded.</p>",
+      "exp_1_imp_1":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny, and {{imports.territory.first}} was the only imports destiny.</p>",
+      "exp_1_imp_2":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny</p>. <p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}}, with a {{imports.share.second}}.</p>",
+      "exp_1_imp_3":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the only exports destiny.</p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
+      "exp_2_imp_0":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}, and no imports were recorded.</p>",
+      "exp_2_imp_1":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, {{imports.territory.first}} was the only imports destiny.</p>",
+      "exp_2_imp_2":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}}, with a {{imports.share.second}}.</p>",
+      "exp_2_imp_3":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} with a {{exports.share.second}}. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
+      "exp_3_imp_0":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively, and no imports were recorded.</p>",
+      "exp_3_imp_1":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, {{imports.territory.first}} was the only imports destiny.</p>",
+      "exp_3_imp_2":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} with a {{imports.share.second}}.</p>",
+      "exp_3_imp_3":
+        "<p>Exports of {{product.caption}} was {{exports.total}}, where {{exports.territory.first}} was the first exports destiny, with a share of {{exports.share.first}}, followed by {{exports.territory.second}} and {{exports.territory.third}}, with a {{exports.share.second}} and {{exports.share.third}} respectively. </p><p>Moreover, imports of {{product.caption}} was {{imports.total}}, where {{imports.territory.first}} was the first imports destiny, with a share of {{imports.share.first}}, followed by {{imports.territory.second}} and {{imports.territory.third}}, with a {{imports.share.second}} and {{imports.share.third}} respectively.</p>",
+      "no_data":
+        "There are not data of exports for {{product.caption}} in {{year.last}}"
     },
     "balance": {
-      "default": "During the last {{year.number}} years, exports of {{product.caption}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, imports of {{product.caption}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}.",
-      "exports": "During the last {{year.number}} years, exports of {{product.caption}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, there are not data of imports for {{product.caption}}.",
-      "imports": "During the last {{year.number}} years, imports of {{product.caption}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}. In the same period, there are not data of exports for {{product.caption}}.",
-      "neither": "There are not data of exports/imports for {{product.caption}} in period {{year.first}}-{{year.last}}"
+      "default":
+        "During the last {{year.number}} years, exports of {{product.caption}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, imports of {{product.caption}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}.",
+      "exports":
+        "During the last {{year.number}} years, exports of {{product.caption}} have {{exports.increased_or_decreased}} at an annualized rate of {{exports.growth_rate}}, from {{exports.value.first}} in {{year.first}} to {{exports.value.last}} in {{year.last}}. In the same period, there are not data of imports for {{product.caption}}.",
+      "imports":
+        "During the last {{year.number}} years, imports of {{product.caption}} have {{imports.increased_or_decreased}} at an annualized rate of {{imports.growth_rate}}, from {{imports.value.first}} in {{year.first}} to {{imports.value.last}} in {{year.last}}. In the same period, there are not data of exports for {{product.caption}}.",
+      "neither":
+        "There are not data of exports/imports for {{product.caption}} in period {{year.first}}-{{year.last}}"
     }
   },
 
@@ -622,5 +675,38 @@
   "use device": "use device",
   "val": "val",
   "visas": "visas",
-  "{{number}} visas": "{{number}} visas"
+  "{{number}} visas": "{{number}} visas",
+  "{{percent}} of the country - {{last_year}}":
+    "{{percent}} of the country - {{last_year}}",
+  "{{number}} visas granted in {{year}}":
+    "{{number}} visas granted in {{year}}",
+  "home": {
+    "subtitle":
+      "The most comprehensive effort to integrate and visualize Chile’s Public Data",
+    "what": {
+      "title": "What is DataChile?",
+      "text1":
+        "It offers an x-ray of the <span>most important  topics</span> for the development of the country.",
+      "text2":
+        "It helps to know <span>trends and needs</span> for the design and implementation of public policies, civil society programs, business opportunities and marketing strategies of the private sector.",
+      "text3":
+        "Collaborate in making <span>decisions</span> in public and private sector."
+    },
+    "diff": {
+      "title": "Why is DataChile different from other open data projects?",
+      "text1":
+        "Integrates information from <span>more than 15 different sources</span> belonging to more than 10 government agencies.",
+      "text2": "Creates and combines <span>interactive visualizations</span>.",
+      "text3": "Thinks the <span>data as stories</span> and not as files."
+    },
+    "sources": {
+      "title": "DataChile integrates data from all these sources"
+    },
+    "carousel": {
+      "comunas_population": "Top populated Comunas",
+      "comunas_exports": "Top exporter Comunas",
+      "products_exports": "Top exports Products",
+      "countries_exports": "Top exports Destinations"
+    }
+  }
 }

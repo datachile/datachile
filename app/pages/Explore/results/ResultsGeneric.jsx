@@ -22,7 +22,7 @@ class TemplateResults extends React.PureComponent {
     return (
       <h3>
         {t("Results for")}
-        {`${entity} : "${profile.name}"`}
+        {`: "${profile.name}"`}
       </h3>
     );
   }

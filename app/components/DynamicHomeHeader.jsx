@@ -408,8 +408,8 @@ class DynamicHomeHeader extends Component {
         var obj = data.home_countries_export[header.slug + "_" + id];
         url = slugifyItem(
           "countries",
-          obj["ID Subregion"],
-          obj["Subregion"],
+          obj["ID Continent"],
+          obj["Continent"],
           id,
           this.getTooltipName(id)
         );
@@ -501,7 +501,7 @@ class DynamicHomeHeader extends Component {
             className={`explore-btn background-${header.slug}`}
             to={`${header.available ? "/explore/" + header.slug : ""}`}
           >
-            <span>{header.available ? "Explore profiles" : t("Soon")}</span>
+            <span>{header.available ? t("Explore profiles") : t("Soon")}</span>
             {header.available && (
               <span className="pt-icon-standard pt-icon-chevron-right" />
             )}

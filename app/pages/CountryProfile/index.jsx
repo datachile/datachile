@@ -72,7 +72,7 @@ class CountryProfile extends Component {
         getMemberQuery(
           "exports",
           "Destination Country",
-          "Subregion",
+          "Continent",
           ids.level1,
           store.i18n.locale
         )
@@ -108,7 +108,7 @@ class CountryProfile extends Component {
         prm = getMembersQuery(
           "exports",
           "Destination Country",
-          "Subregion",
+          "Continent",
           store.i18n.locale,
           false
         ).then(res => {
@@ -132,7 +132,7 @@ class CountryProfile extends Component {
                 .option("parents", true)
                 .drilldown("Destination Country", "Country", "Country")
                 .measure("FOB US"),
-              "Subregion",
+              "Continent",
               "Country",
               store.i18n.locale,
               false
@@ -163,7 +163,7 @@ class CountryProfile extends Component {
             "Origin Country",
             "Country",
             cube.query.option("parents", true).measure("CIF US"),
-            "Subregion",
+            "Continent",
             "Country",
             store.i18n.locale
           );
@@ -197,7 +197,7 @@ class CountryProfile extends Component {
             "Destination Country",
             "Country",
             cube.query.option("parents", true).measure("FOB US"),
-            "Subregion",
+            "Continent",
             "Country",
             store.i18n.locale
           );
@@ -235,7 +235,7 @@ class CountryProfile extends Component {
               .option("parents", true)
               .drilldown("Import HS", "HS", "HS2")
               .measure("CIF US"),
-            "Subregion",
+            "Continent",
             "Country",
             store.i18n.locale
           );
@@ -308,7 +308,7 @@ class CountryProfile extends Component {
               false,
               false
             );
-          } else if (ids.level1 && c["ID Subregion"]) {
+          } else if (ids.level1 && c["ID Continent"]) {
             c.link = slugifyItem(
               "countries",
               obj.key,

@@ -33,7 +33,7 @@ class MigrationActivitySlide extends Section {
               .drilldown("Date", "Year")
               .drilldown("Visa Type", "Visa Type")
               .measure("Number of visas"),
-            "Subregion",
+            "Continent",
             "Country",
             locale,
             false
@@ -89,7 +89,7 @@ class MigrationActivitySlide extends Section {
                   1}],[Date].[Date].[Year].&[${year_last}]}`
               )
               .measure("Number of visas"),
-            "Subregion",
+            "Continent",
             "Country",
             locale,
             false
