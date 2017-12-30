@@ -19,7 +19,7 @@ class ProductSpace extends Section {
       ["FOB US", "Exports RCA"],
       {
         drillDowns: [["Export HS", "HS4"]],
-        options: { parents: true, sparse: false },
+        options: { parents: true, sparse: false, nonempty: false },
         cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
       }
     )
@@ -44,14 +44,17 @@ class ProductSpace extends Section {
             data: path,
             //size: "FOB US",
             size: "Exports RCA",
-            sizeMin: 4,
+            sizeMin: 3,
             sizeMax: 18,
             zoomScroll: false,
             shapeConfig: {
               Path: {
                 stroke: "#555"
               },
-              fill: d => ordinalColorScale("hs0" + d["ID HS0"])
+              fill: d =>
+                d["Exports RCA"] < 1
+                  ? "#aaaaaa"
+                  : ordinalColorScale("hs0" + d["ID HS0"])
             },
             tooltipConfig: {
               title: d => {
@@ -70,12 +73,14 @@ class ProductSpace extends Section {
             },
             legend: false
           }}
-          dataFormat={data => {
-            // console.log("xxxxx", data);
-            return data.data
-              .filter(d => d["Exports RCA"] > 1)
-              .map(d => ({ id: d["ID HS2"], ...d }));
-          }}
+          dataFormat={data =>
+            data.data.map(d => ({
+              id: d["ID HS2"],
+              "Exports RCA":
+                d["Exports RCA"] === null ? 0 : d["Exports RCA"] === null,
+              ...d
+            }))
+          }
         />
         <SourceNote cube="tax_data" />
       </div>
