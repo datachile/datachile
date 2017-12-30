@@ -583,6 +583,13 @@
     "trade_slide": {
       "text":
         "In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
+    },
+    "demography": {
+      "origin_by_country":
+        "<p>During {{last_year}}, {{visas}} visas were granted to immigrants that declare residence in {{area}}. The main origin countries are: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> and <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. Most of them has {{education_level}} as an education level.</p>",
+      "origin_by_sex_age": "",
+      "origin_by_activity": "",
+      "population_by_sex_age": ""
     }
   },
 

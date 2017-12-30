@@ -4,9 +4,13 @@ import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
 import { sources } from "helpers/consts";
-import { calculateYearlyGrowth } from "helpers/dataUtils";
+import { getGeoObject, calculateYearlyGrowth } from "helpers/dataUtils";
+import { slugifyItem } from "helpers/formatters";
 
-import { simpleGeoDatumNeed } from "helpers/MondrianClient";
+import mondrianClient, {
+  geoCut,
+  simpleGeoDatumNeed
+} from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 class MigrationSlide extends Section {
@@ -36,32 +40,131 @@ class MigrationSlide extends Section {
             1}],[Date].[Date].[Year].&[${sources.immigration.year}]}`
         ]
       }
-    )
+    ),
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const promise = mondrianClient
+        .cube("immigration")
+        .then(cube => {
+          var q = cube.query
+            .option("parents", true)
+            .drilldown("Origin Country", "Country", "Country")
+            .measure("Number of visas")
+            .cut(`[Date].[Date].[Year].&[${sources.immigration.year}]`);
+
+          return mondrianClient.query(
+            geoCut(geo, "Geography", q, store.i18n.locale),
+            "jsonrecords"
+          );
+        })
+        .then(res => {
+          return {
+            key: "text_data_geo_demography_country",
+            data:
+              res.data.data && res.data.data.length
+                ? res.data.data
+                    .sort(
+                      (a, b) =>
+                        a["Number of visas"] < b["Number of visas"] ? 1 : -1
+                    )
+                    .slice(0, 2)
+                : []
+          };
+        });
+
+      return { type: "GET_DATA", promise };
+    },
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const promise = mondrianClient
+        .cube("immigration")
+        .then(cube => {
+          var q = cube.query
+            .option("parents", true)
+            .drilldown("Education", "Education", "Education")
+            .measure("Number of visas")
+            .cut(`[Date].[Date].[Year].&[${sources.immigration.year}]`);
+
+          return mondrianClient.query(
+            geoCut(geo, "Geography", q, store.i18n.locale),
+            "jsonrecords"
+          );
+        })
+        .then(res => {
+          return {
+            key: "text_data_geo_demography_education",
+            data:
+              res.data.data && res.data.data.length
+                ? res.data.data.sort(
+                    (a, b) =>
+                      a["Number of visas"] < b["Number of visas"] ? 1 : -1
+                  )[0]
+                : false
+          };
+        });
+
+      return { type: "GET_DATA", promise };
+    }
   ];
 
   render() {
     const { children, t, i18n, immigration_year } = this.props;
     const {
+      geo,
       datum_migration_origin,
-      datum_migration_origin_female
+      datum_migration_origin_female,
+      text_data_geo_demography_country,
+      text_data_geo_demography_education
     } = this.context.data;
 
+    const c1 =
+      text_data_geo_demography_country && text_data_geo_demography_country[0]
+        ? text_data_geo_demography_country[0]
+        : false;
+    const c2 =
+      text_data_geo_demography_country && text_data_geo_demography_country[1]
+        ? text_data_geo_demography_country[1]
+        : false;
+
     const locale = i18n.language;
+
+    const txt_slide = t("geo_profile.demography.origin_by_country", {
+      last_year: sources.immigration.year,
+      visas: numeral(datum_migration_origin[1], locale).format("(0,0)"),
+      area: geo.caption,
+      visa_first_country_link: c1
+        ? slugifyItem(
+            "countries",
+            c1["ID Continent"],
+            c1["Continent"],
+            c1["ID Country"],
+            c1["Country"]
+          )
+        : "",
+      visa_first_country_name: c1 ? c1["Country"] : "",
+      visa_second_country_name: c2 ? c2["Country"] : "",
+      visa_second_country_link: c2
+        ? slugifyItem(
+            "countries",
+            c2["ID Continent"],
+            c2["Continent"],
+            c2["ID Country"],
+            c2["Country"]
+          )
+        : "",
+      education_level: text_data_geo_demography_education
+        ? text_data_geo_demography_education["Education"]
+        : ""
+    });
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Migration")}</div>
-          <div className="topic-slide-text">
-            Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
-            orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
-            lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
-            Nullam tempus. Mauris ac felis vel velit tristique imperdiet. Donec
-            at pede. Etiam vel neque nec dui dignissim bibendum. Vivamus id
-            enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
-            Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
-            euismod tellus id erat.
-          </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
+          />
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
