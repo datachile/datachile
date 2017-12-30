@@ -19,7 +19,7 @@ class IndustrySpace extends Section {
       ["Output", "Output RCA"],
       {
         drillDowns: [["ISICrev4", "ISICrev4", "Level 4"]],
-        options: { parents: true },
+        options: { parents: true, sparse: false, nonempty: false },
         cuts: [`[Date].[Date].[Year].&[${sources.tax_data.last_year}]`]
       }
     )
@@ -43,18 +43,19 @@ class IndustrySpace extends Section {
             links: "/json/isic_4_02_links_d3p2.json",
             nodes: "/json/isic_4_02_nodes_d3p2.json",
             data: path,
-            //size: "Output",
             size: "Output RCA",
-            sizeMin: 4,
+            // size: "Output",
+            sizeMin: 3,
             sizeMax: 18,
             zoomScroll: false,
             shapeConfig: {
               Path: {
                 stroke: "#555"
               },
-              fill: d => {
-                return ordinalColorScale("isl1" + d["ID Level 1"]);
-              }
+              fill: d =>
+                d["Output RCA"] < 1
+                  ? "#aaaaaa"
+                  : ordinalColorScale("isl1" + d["ID Level 1"])
             },
             legend: false,
             tooltipConfig: {
@@ -65,8 +66,10 @@ class IndustrySpace extends Section {
             }
           }}
           dataFormat={data =>
-            data.data.filter(d => d["Output RCA"] > 1).map(d => ({
+            data.data.map(d => ({
               id: d["ID Level 4"],
+              "Output RCA":
+                d["Output RCA"] === null ? 0 : d["Output RCA"] === null,
               ...d
             }))
           }
