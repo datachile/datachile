@@ -473,15 +473,15 @@ function simpleIndustryDatumNeed(
 
 const COUNTRY_LEVEL_CUBES_CUT = {
   immigration: {
-    level1: ["Origin Country", "Country", "Subregion"],
+    level1: ["Origin Country", "Country", "Continent"],
     level2: ["Origin Country", "Country", "Country"]
   },
   exports: {
-    level1: ["Destination Country", "Country", "Subregion"],
+    level1: ["Destination Country", "Country", "Continent"],
     level2: ["Destination Country", "Country", "Country"]
   },
   imports: {
-    level1: ["Origin Country", "Country", "Subregion"],
+    level1: ["Origin Country", "Country", "Continent"],
     level2: ["Origin Country", "Country", "Country"]
   }
 };
@@ -541,7 +541,7 @@ function simpleCountryDatumNeed(
 const getCountryCut = params => {
   const level1 = (params.level1 || "").split("-").pop();
   const level2 = (params.level2 || "").split("-").pop();
-  return level2 ? `[Country].&[${level2}]` : `[Subregion].&[${level1}]`;
+  return level2 ? `[Country].&[${level2}]` : `[Continent].&[${level1}]`;
 };
 
 function simpleDatumNeed(
@@ -577,7 +577,7 @@ function simpleDatumNeed(
               "Origin Country",
               "Country",
               q,
-              "Subregion",
+              "Continent",
               "Country",
               store.i18n.locale,
               false

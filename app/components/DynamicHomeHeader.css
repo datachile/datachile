@@ -120,6 +120,7 @@
       opacity: 0;
       position: absolute;
       z-index: 9;
+      pointer-events: none;
       & .tooltip-title {
         color: var(--snow);
         padding: calc(var(--gutter)/2);

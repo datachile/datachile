@@ -28,7 +28,7 @@ class TradeBalance extends Section {
             .measure("FOB")
             .measure("CIF")
             .measure("Trade Balance"),
-          "Subregion",
+          "Continent",
           "Country",
           store.i18n.locale,
           false

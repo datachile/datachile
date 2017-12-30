@@ -287,6 +287,7 @@ class GeoProfile extends Component {
 
     //national
     if (geo && geo.type == "country") {
+      stats.income.population = 10;
       stats.income.decile = 5;
       stats.psu.decile = 5;
     }
@@ -416,7 +417,7 @@ class GeoProfile extends Component {
                   <FeaturedDatumSplash
                     title={t("Income")}
                     icon="ingreso"
-                    decile={stats.income.decile}
+                    decile={stats.income.value ? stats.income.decile : 0}
                     rank={
                       showRanking
                         ? numeral(stats.income.rank, locale).format("0o") +
@@ -426,9 +427,11 @@ class GeoProfile extends Component {
                           stats.income.total
                         : false
                     }
-                    datum={numeral(stats.income.value, locale).format(
-                      "($ 0,0)"
-                    )}
+                    datum={
+                      stats.income.value
+                        ? numeral(stats.income.value, locale).format("($ 0,0)")
+                        : false
+                    }
                     source="nesi_income"
                     className=""
                   />

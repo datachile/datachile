@@ -27,7 +27,7 @@ class ImportsByProduct extends Section {
             .drilldown("Import HS", "HS", "HS2")
             .drilldown("Date", "Year")
             .measure("CIF US"),
-          "Subregion",
+          "Continent",
           "Country",
           store.i18n.locale,
           false

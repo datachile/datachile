@@ -26,7 +26,7 @@ export default translate()(
               .drilldown("Date", "Year")
               .drilldown("Activity", "Activity")
               .measure("Number of visas"),
-            "Subregion",
+            "Continent",
             "Country",
             store.i18n.locale,
             false
