@@ -18,8 +18,8 @@
   "About": "Introducción",
   "About DataChile": "Acerca de DataChile",
   "Access": "Acceso",
-  "Access to Health Insurance": "Access to Health Insurance",
-  "Access to services": "Access to services",
+  "Access to Health Insurance": "Acceso a Previsión de Salud",
+  "Access to services": "Acceso a servicios",
   "Accreditation": "Acreditación",
   "Accreditation by Program": "Acreditación por Programa",
   "Activate": {
@@ -187,17 +187,18 @@
     },
     "health": {
       "access":
-        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
       "healthcare":
         "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
       "disability": "",
       "death_causes": ""
-    }
+    },
+    "warning": "Se muestran datos de {{caption}}"
   },
   "Health Center": "Centro de salud",
-  "Health Insurance": "Health Insurance",
-  "Healthcare": "Healthcare",
-  "Healthcare by Type": "Healthcare by Type",
+  "Health Insurance": "Previsión de Salud",
+  "Healthcare": "Atención de Salud",
+  "Healthcare by Type": "Atención de Salud por Tipo",
   "Higher Education": "Higher Education",
   "Home": "Inicio",
   "Households with credit in state bank":
@@ -340,7 +341,7 @@
   "Population": "Población",
   "Population Projection": "Proyección poblacional",
   "Population Pyramid": "Pirámide poblacional",
-  "Population with Health Insurance": "Population with Health Insurance",
+  "Population with Health Insurance": "Población con Previsión de Salud",
   "President": "Presidente",
   "Product": "Productos",
 
@@ -650,9 +651,10 @@
   "decreased": "decrecido",
   "disabilities": "discapacidades",
   "geo_profile": {
+    "warning": "Se muestran datos de {{caption}}",
     "health": {
       "access":
-        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{insurance.share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
       "death_causes": "",
       "disability": "",
       "fonasa": {

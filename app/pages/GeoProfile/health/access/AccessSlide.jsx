@@ -3,16 +3,12 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { sources } from "helpers/consts";
-import {
-  calculateYearlyGrowth,
-  getGeoObject,
-  getTopCategories
-} from "helpers/dataUtils";
+import { annualized_growth } from "helpers/calculator";
+import { getGeoObject, getTopCategories } from "helpers/dataUtils";
 
 import {
   simpleAvailableGeoDatumNeed,
-  getGeoMembersDimension,
-  getGeoMembersDimension2
+  getGeoMembersDimension
 } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
@@ -129,7 +125,7 @@ class AccessSlide extends Section {
           return all + item[msrName];
         }, 0);
 
-      const growth_isapre_affiliates = calculateYearlyGrowth(
+      const growth_isapre_affiliates = annualized_growth(
         datum_health_system_isapre.data
       );
 
