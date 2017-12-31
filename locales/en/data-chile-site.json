@@ -538,11 +538,11 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>The principal product Chile imports from {{level}} is {{main_import.name}}. For {{year_last}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of {{main_import.name}} to Chile.</p><p>On the other side, Chile exports to {{level}} mainly {{main_export.name}}. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of {{main_export.name}} from Chile during {{year_last}}.</p>"
+        "<p>The principal product Chile imports from {{level}} is <em>{{main_import.name}}</em>. For {{year_last}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of this product to Chile.</p><p>On the other side, Chile exports to {{level}} mainly <em>{{main_export.name}}</em>. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of this product from Chile during {{year_last}}.</p>"
     },
     "migration_activity_slide": {
       "text":
-        "<p>According to the records, the majority of immigrants from {{level}} arrive with {{visa_type.first}} visa or {{visa_type.second}} visa. These combined represent a {{visa_type.percent}} from the total of immigrants.</p><p>For the year {{year_last}}, {{first_occupation.percent}} of the immigrants coming from {{level}} declare they work as {{first_occupation.name}}. This translates into a growth of {{first_occupation.growth}} compared to year {{year_prev}}. On the other side, {{activity.unoccupied_percent}} declares being unemployed, and {{activity.unknown_percent}} doesn't disclose their current activity.</p>"
+        "<p>According to the records, the majority of immigrants from {{level}} arrive with <em>{{visa_type.first}} visa</em> or <em>{{visa_type.second}} visa</em>. These combined represent a {{visa_type.percent}} from the total of immigrants.</p><p>For the year {{year_last}}, {{first_occupation.percent}} of the immigrants coming from {{level}} declare they work as {{first_occupation.name}}. This translates into a growth of {{first_occupation.growth}} compared to year {{year_prev}}. On the other side, {{activity.unoccupied_percent}} declares being unemployed, and {{activity.unknown_percent}} doesn't disclose their current activity.</p>"
     },
     "migration_details_slide": {
       "tendency_change":
@@ -649,9 +649,12 @@
   "in ": "in ",
   "increased": "increased",
   "industry_profile": {
-    "economy": "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
-    "employment": "<p>From {{year.first}} to {{year.last}}, employment in {{industry.caption}} {{increased_or_decreased}} at a quarterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.</p>",
-    "r&d": "<p>In {{year}}, {{industry.name}} exports was {{industry.exports}}, with {{industry.share}} of total. Moreover, spending level of {{industry.caption}} in Research & Development was {{industry.spending}}.</p>",
+    "economy":
+      "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+    "employment":
+      "<p>From {{year.first}} to {{year.last}}, employment in {{industry.caption}} {{increased_or_decreased}} at a quarterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.</p>",
+    "r&d":
+      "<p>In {{year}}, {{industry.name}} exports was {{industry.exports}}, with {{industry.share}} of total. Moreover, spending level of {{industry.caption}} in Research & Development was {{industry.spending}}.</p>",
     "warning": "Showing data about {{caption}}"
   },
   "loading": {
