@@ -4,6 +4,29 @@ import { numeral } from "helpers/formatters";
 
 import groupBy from "lodash/groupBy";
 
+function Disability(data, geo, locale) {
+  const last_year = sources.disabilities.year;
+  if (data) {
+    const severe = data.data.find(item => item["ID Disability Grade"] === 2);
+    const total = data.data.reduce((all, item) => {
+      return all + item["Expansion Factor Region"];
+    }, 0);
+    return {
+      geo,
+      year: {
+        last: last_year
+      },
+      data: {
+        prep: total >= 1000000 ? " de" : "",
+        total: numeral(total, locale).format("0,0"),
+        severe: {
+          share: numeral(severe / total, locale).format("0.0 %")
+        }
+      }
+    };
+  }
+}
+
 function DeathCauses(data, geo, locale) {
   const first_year = sources.death_causes.min_year;
   const last_year = sources.death_causes.year;
@@ -48,4 +71,4 @@ function DeathCauses(data, geo, locale) {
   }
 }
 
-export { DeathCauses };
+export { DeathCauses, Disability };
