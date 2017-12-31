@@ -288,8 +288,14 @@ class GeoProfile extends Component {
     };
 
     //national
-    if (geo && geo.type == "country") {
-      stats.income.population = 10;
+    if (
+      geo &&
+      geo.type == "country" &&
+      stats.population &&
+      stats.income &&
+      stats.psu
+    ) {
+      stats.population.decile = 10;
       stats.income.decile = 5;
       stats.psu.decile = 5;
     }

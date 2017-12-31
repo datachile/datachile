@@ -236,7 +236,7 @@ class Explore extends Component {
     }
     if (type == "") return null;
 
-    const filters =
+    let filters =
       typeof members != "undefined" && entity
         ? members.filter(m => m.key != 0).map(m => {
             return {
@@ -248,6 +248,16 @@ class Explore extends Component {
             };
           })
         : [];
+
+    if (type == "geo" && filters.length) {
+      filters.unshift({
+        key: "chile",
+        name: "Chile",
+        type: "geo",
+        url: "/geo/chile",
+        img: getImageFromMember("geo", "chile")
+      });
+    }
 
     return (
       <CanonComponent
