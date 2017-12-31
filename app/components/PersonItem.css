@@ -2,11 +2,22 @@
 	margin: 10px 0;
 	& .person-item-img {
 		text-align: center;
+		width: 80%;
+		border: 1px solid #ffffff;
+		border-radius: 50%;
+		opacity: 0.8;
+		overflow: hidden;
+		position: relative;
+		margin: 0 auto;
 		& img {
-			width: 80%;
-			border: 1px solid var(--snow);
-			border-radius: 50%;
-			opacity: 0.8;
+			width: 100%;
+			position: absolute;
+			left: 0;
+		}
+		&:after {
+			content: "";
+			display: block;
+			padding-bottom: 100%;
 		}
 	}
 	& .person-item-name {
