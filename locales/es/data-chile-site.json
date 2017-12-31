@@ -658,8 +658,10 @@
     "health": {
       "access":
         "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-      "death_causes": "En el período {{year.first}} - {{year.last}}, la causa de muerte con la tasa de crecimiento anual más alta en {{geo.caption}} fueron {{data.first.caption}} con un {{data.first.rate}}, seguido de {{data.second.caption}} con {{data.second.rate}}.",
-      "disability": "En {{year.last}}, {{data.total}}{{data.prep}} personas en {{geo.caption}} presentaron algún tipo de discapacidad, donde el {{data.severe.share}} correspondió a una discapacidad severa.",
+      "death_causes":
+        "En el período {{year.first}} - {{year.last}}, la causa de muerte con la tasa de crecimiento anual más alta en {{geo.caption}} fueron {{data.first.caption}} con un {{data.first.rate}}, seguido de {{data.second.caption}} con {{data.second.rate}}.",
+      "disability":
+        "En {{year.last}}, {{data.total}}{{data.prep}} personas en {{geo.caption}} presentaron algún tipo de discapacidad, donde el {{data.severe.share}} correspondió a una discapacidad severa.",
       "fonasa": {
         "copago":
           "Sin embargo, la utilidad concreta de esta distribución de la población beneficiaria pasa por el copago que éstos hacen en retribución a las atenciones médicas otorgadas con nuestra cobertura. Copago es el concepto para referirse a un pago por servicios compartido entre el beneficiario y el seguro, donde FONASA financia o bonifica una parte (porcentaje) del costo de una atención de salud cualquiera, y el beneficiario aporta de su bolsillo la parte que no financiamos/bonificamos.",
@@ -673,8 +675,7 @@
       "disability": "",
       "death_causes": ""
     },
-    "warning": "Se muestran datos de {{caption}}"
-    },
+    "warning": "Se muestran datos de {{caption}}",
     "income_sex_age_slide": {
       "text":
         "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
