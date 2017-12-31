@@ -149,7 +149,11 @@ class Search extends Component {
         break;
       }
       case "geo": {
-        profileType = result.ancestor_key ? t("Comuna") : t("Region");
+        if (result.name.toLowerCase() == "chile") {
+          profileType = t("National Profile");
+        } else {
+          profileType = result.ancestor_key ? t("Comuna") : t("Region");
+        }
         break;
       }
     }
@@ -167,6 +171,25 @@ class Search extends Component {
     if (this.ref_input) {
       if (enabled) this.ref_input.focus();
       else this.ref_input.blur();
+    }
+
+    //chile national profile
+
+    if (
+      this.ref_input &&
+      "chile".indexOf(this.ref_input.value.toLowerCase()) > -1
+    ) {
+      if (results) {
+        results.unshift({
+          ancestor_key: 0,
+          ancestor_name: "All Geographys",
+          content: "Chile",
+          index_as: "geo",
+          key: "",
+          name: "Chile",
+          sim: 1
+        });
+      }
     }
 
     return (
