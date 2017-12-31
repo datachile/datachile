@@ -40,7 +40,7 @@ class DeathCausesStacked extends Section {
             tooltipConfig: {
               title: d => d["CIE 10"],
               body: d =>
-                numeral(d["Casualities Count SUM"], locale).format("(0 a)") +
+                numeral(d["Casualities Count SUM"], locale).format("0,0") +
                 " " +
                 t("people")
             },
