@@ -53,6 +53,7 @@ class MigrationEducationSlide extends Section {
         return {
           year_last,
           year_prev: year_last - 1,
+          year_first: year_last - 1,
           high: {
             percent: numeral(
               categories.high["Number of visas"] / total,
@@ -92,7 +93,7 @@ class MigrationEducationSlide extends Section {
     ),
 
     simpleCountryDatumNeed(
-      "datum_migration_education_any",
+      "datum_migration_education",
       {
         cube: "immigration",
         measures: ["Number of visas"],
@@ -102,8 +103,15 @@ class MigrationEducationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
-        const data = groupBy(result.data.data, "ID Sex");
+        const educated = [2, 4, 5];
+        const data = groupBy(
+          result.data.data.filter(
+            d => educated.indexOf(d["ID Education"]) > -1
+          ),
+          "ID Sex"
+        );
         return {
+          year: year_last,
           female: maxBy(data["1"], "Number of visas"),
           male: maxBy(data["2"], "Number of visas")
         };
@@ -118,7 +126,7 @@ class MigrationEducationSlide extends Section {
     const {
       country,
       slide_migration_education,
-      datum_migration_education_any
+      datum_migration_education
     } = this.context.data;
 
     const txt_slide = t("country_profile.migration_education_slide.text", {
@@ -139,26 +147,37 @@ class MigrationEducationSlide extends Section {
               className="l-1-3"
               icon="empleo"
               datum={numeral(
-                // datum_migration_education_any[1]["Number of visas"],
-                0,
+                datum_migration_education.female["Number of visas"],
                 locale
-              ).format("0.0 a")}
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              ).format("0 a")}
+              title={t("Female immigrants with complete schooling")}
+              subtitle={t(
+                "Number of visas granted in {{year}}",
+                datum_migration_education
+              )}
             />
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={numeral(
+                datum_migration_education.male["Number of visas"],
+                locale
+              ).format("0 a")}
+              title={t("Male immigrants with complete schooling")}
+              subtitle={t(
+                "Number of visas granted in {{year}}",
+                datum_migration_education
+              )}
             />
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={slide_migration_education.college.growth}
+              title={t("Growth of immigrants with higher education")}
+              subtitle={t(
+                "In period {{year_first}} - {{year_last}}",
+                slide_migration_education
+              )}
             />
           </div>
         </div>

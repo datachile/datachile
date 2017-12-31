@@ -18,25 +18,6 @@ class InternationalTradeBalanceSlide extends Section {
       options: { parents: false }
     }),
 
-    (param, state) => {
-      const promise = mondrianClient
-        .cube("imports")
-        .then(cube => {
-          const q = cube.query
-            .drilldown("Date", "Date", "Year")
-            .cut(`[Date].[Date].[Year].&[${sources.imports.year}]`)
-            .measure("CIF US")
-            .option("parents", false);
-
-          return mondrianClient.query(q);
-        })
-        .then(res => ({
-          key: "datum_global_imports_last_year",
-          data: res.data.values[0]
-        }));
-      return { type: "GET_DATA", promise };
-    },
-
     simpleCountryDatumNeed("datum_country_exports_per_year", {
       cube: "exports",
       measures: ["FOB US"],
@@ -44,24 +25,13 @@ class InternationalTradeBalanceSlide extends Section {
       options: { parents: false }
     }),
 
-    (params, store) => {
-      const promise = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          const query = cube.query
-            .drilldown("Date", "Date", "Year")
-            .cut(`[Date].[Date].[Year].&[${sources.exports.year}]`)
-            .measure("FOB US")
-            .option("parents", false);
-
-          return mondrianClient.query(query);
-        })
-        .then(res => ({
-          key: "datum_global_exports_last_year",
-          data: res.data.values[0]
-        }));
-      return { type: "GET_DATA", promise };
-    }
+    simpleCountryDatumNeed("datum_global_exports_last_year", {
+      cube: "exports",
+      measures: ["FOB US"],
+      drillDowns: [["Date", "Date", "Year"]],
+      cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`],
+      options: { parents: false }
+    })
   ];
 
   direction(a, t) {
@@ -79,7 +49,6 @@ class InternationalTradeBalanceSlide extends Section {
       datum_trade_import,
       datum_country_imports_per_year,
       datum_country_exports_per_year,
-      datum_global_imports_last_year,
       datum_global_exports_last_year
     } = this.context.data;
 
@@ -157,11 +126,14 @@ class InternationalTradeBalanceSlide extends Section {
               className="l-1-3"
               icon="industria"
               datum={numeral(
-                export_volume_last / datum_global_exports_last_year,
+                export_volume_last / datum_global_exports_last_year[0],
                 locale
               ).format("0.0%")}
               title={t("Exports volume")}
-              subtitle={t("relative to exports to the world")}
+              subtitle={t(
+                "relative to exports to the world in {{year}}",
+                sources.exports
+              )}
             />
           </div>
         </div>

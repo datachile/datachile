@@ -471,21 +471,6 @@ function simpleIndustryDatumNeed(
   };
 }
 
-const COUNTRY_LEVEL_CUBES_CUT = {
-  immigration: {
-    level1: ["Origin Country", "Country", "Continent"],
-    level2: ["Origin Country", "Country", "Country"]
-  },
-  exports: {
-    level1: ["Destination Country", "Country", "Continent"],
-    level2: ["Destination Country", "Country", "Country"]
-  },
-  imports: {
-    level1: ["Origin Country", "Country", "Continent"],
-    level2: ["Origin Country", "Country", "Country"]
-  }
-};
-
 function quickQuery({
   cube,
   measures = [],
@@ -516,6 +501,21 @@ function quickQuery({
   });
 }
 
+const COUNTRY_LEVEL_CUBES_CUT = {
+  immigration: {
+    level1: ["Origin Country", "Country", "Continent"],
+    level2: ["Origin Country", "Country", "Country"]
+  },
+  exports: {
+    level1: ["Destination Country", "Country", "Continent"],
+    level2: ["Destination Country", "Country", "Country"]
+  },
+  imports: {
+    level1: ["Origin Country", "Country", "Continent"],
+    level2: ["Origin Country", "Country", "Country"]
+  }
+};
+
 function simpleCountryDatumNeed(
   key,
   {
@@ -533,10 +533,10 @@ function simpleCountryDatumNeed(
     return data.values ? flattenDeep(data.values) : data.data;
   }
 ) {
+  const ddcube = COUNTRY_LEVEL_CUBES_CUT[cube] || {};
   return (params, store) => {
     const locale = store.i18n.locale;
-    const ddlevel =
-      COUNTRY_LEVEL_CUBES_CUT[cube][params.level2 ? "level2" : "level1"];
+    const ddlevel = ddcube[params.level2 ? "level2" : "level1"];
 
     cuts.push(`[${ddlevel[0]}].[${ddlevel[1]}].${getCountryCut(params)}`);
     if (drillLevel) drillDowns.push(ddlevel);
@@ -578,6 +578,13 @@ function simpleDatumNeed(
 ) {
   return (params, store) => {
     let obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
+
+    if (
+      ["death_causes", "disabilities", "health_access"].includes(cube) &&
+      obj.type === "comuna"
+    ) {
+      obj = { ...obj.ancestor };
+    }
 
     const prm = client
       .cube(cube)

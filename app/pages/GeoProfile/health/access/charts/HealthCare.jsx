@@ -30,7 +30,8 @@ class HealthCare extends Section {
             .measure("Urgency Healthcare SUM")
             .measure("Primary Healthcare AVG")
             .measure("Specialized Healthcare AVG")
-            .measure("Urgency Healthcare AVG")
+            .measure("Urgency Healthcare AVG"),
+          store.i18n.locale
         );
 
         return {
