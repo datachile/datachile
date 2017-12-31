@@ -43,6 +43,7 @@ class IndustrySpace extends Section {
             links: "/json/isic_4_02_links_d3p2.json",
             nodes: "/json/isic_4_02_nodes_d3p2.json",
             data: path,
+            label: d => d["Level 4"],
             size: "Output RCA",
             // size: "Output",
             sizeMin: 3,
@@ -59,9 +60,6 @@ class IndustrySpace extends Section {
             },
             legend: false,
             tooltipConfig: {
-              title: d => {
-                return d["Level 4"];
-              },
               body: d => numeral(d["Output"], locale).format("(USD 0 a)")
             }
           }}
