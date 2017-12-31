@@ -28,10 +28,11 @@ class MigrationActivitySlide extends Section {
       },
       (result, locale) => {
         const data = groupBy(result.data.data, "Year");
+
         const total = sumBy(data[year_last], "Number of visas");
         const latest_sorted = sortBy(data[year_last], "Number of visas");
-        const latest_first = latest_sorted.pop();
-        const latest_second = latest_sorted.pop();
+        const latest_first = latest_sorted.pop() || {};
+        const latest_second = latest_sorted.pop() || {};
 
         return {
           visa_type: {

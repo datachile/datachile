@@ -12,8 +12,11 @@ import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 
 const last_year = sources.imports.year;
 const groupingKey = (a, b, c) => {
+  if (!a) return "0";
+  if (!b) return "1";
+  if (!c) return "11";
   if (a.Region == b.Region) return b.Region == c.Region ? "3" : "21";
-  else return b.Region == c.Region ? "12" : "";
+  else return b.Region == c.Region ? "12" : "111";
 };
 
 class InternationalTradeOriginDestinationSlide extends Section {
@@ -34,17 +37,17 @@ class InternationalTradeOriginDestinationSlide extends Section {
 
         return {
           grouping: groupingKey(first, second, third),
-          first_municipality: first.Comuna,
-          first_region: first.Region,
+          first_municipality: first ? first.Comuna : undefined,
+          first_region: first ? first.Region : undefined,
           first_percentage: numeral(
             sumBy(data.filter(d => d.Region == first.Region), "CIF US") /
               sumBy(data, "CIF US"),
             locale
           ).format("0.0%"),
-          second_municipality: second.Comuna,
-          second_region: second.Region,
-          third_municipality: third.Comuna,
-          third_region: third.Region
+          second_municipality: second ? second.Comuna : undefined,
+          second_region: second ? second.Region : undefined,
+          third_municipality: third ? third.Comuna : undefined,
+          third_region: third ? third.Region : undefined
         };
       }
     ),
