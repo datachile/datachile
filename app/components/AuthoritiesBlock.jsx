@@ -167,8 +167,6 @@ class AuthoritiesBlock extends Component {
 
     const geo = this.props.data.geo;
 
-    console.log(geo);
-
     const president = this.props.data.election_president
       ? {
           id: this.props.data.election_president["ID Candidate"],

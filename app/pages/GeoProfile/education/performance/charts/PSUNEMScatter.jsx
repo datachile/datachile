@@ -24,26 +24,58 @@ class PSUNEMScatter extends Section {
         ],
         options: { parents: true }
       }
+    ),
+    simpleGeoChartNeed(
+      "path_education_psu_vs_nem_by_school_chile",
+      "education_performance_new",
+      ["Average PSU", "Average NEM", "Number of records"],
+      {
+        drillDowns: [
+          ["Geography", "Geography", "Comuna"],
+          ["Institution", "Institution", "Administration"]
+        ],
+        cuts: [
+          `[Year].[Year].[Year].&[${sources.education_performance_new.year}]`
+        ],
+        options: { parents: true }
+      }
     )
   ];
 
   render() {
     const { t, className, i18n } = this.props;
-    const path = this.context.data.path_education_psu_vs_nem_by_school;
+    const {
+      geo,
+      path_education_psu_vs_nem_by_school,
+      path_education_psu_vs_nem_by_school_chile
+    } = this.context.data;
+
+    const national = geo.key == "chile" ? true : false;
+
+    const path =
+      geo && national
+        ? path_education_psu_vs_nem_by_school_chile
+        : path_education_psu_vs_nem_by_school;
 
     const locale = i18n.language;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("PSU vs NEM by school")}</span>
+          <span>
+            {national
+              ? t("PSU vs NEM by Comuna & Administration")
+              : t("PSU vs NEM by school")}
+          </span>
           <ExportLink path={path} />
         </h3>
         <Plot
           config={{
             height: 500,
             data: path,
-            groupBy: "ID Institution",
+            groupBy: national
+              ? ["ID Comuna", "ID Administration"]
+              : ["ID Institution"],
             label: d => d["Administration"],
             x: "Average NEM",
             y: "Average PSU",
@@ -59,13 +91,34 @@ class PSUNEMScatter extends Section {
               title: t("Average PSU")
             },
             tooltipConfig: {
-              title: d =>
-                d["ID Institution"] instanceof Array
-                  ? d["Administration"]
-                  : d["Institution"],
+              title: d => {
+                var title = "";
+                if (d["ID Institution"]) {
+                  title =
+                    d["ID Institution"] instanceof Array
+                      ? d["Administration"]
+                      : d["Institution"] + " - " + d["Administration"];
+                }
+                if (d["ID Comuna"]) {
+                  title =
+                    d["ID Comuna"] instanceof Array
+                      ? d["Administration"]
+                      : d["Comuna"] +
+                        " (" +
+                        d["Region"] +
+                        ") - " +
+                        d["Administration"];
+                }
+
+                return title;
+              },
               body: d => {
                 var body = "";
-                if (!(d["ID Institution"] instanceof Array)) {
+                if (
+                  (d["ID Institution"] &&
+                    !(d["ID Institution"] instanceof Array)) ||
+                  (d["ID Comuna"] && !(d["ID Comuna"] instanceof Array))
+                ) {
                   var body = "<table class='tooltip-table'>";
                   body +=
                     "<tr><td class='title'>" +
@@ -81,7 +134,7 @@ class PSUNEMScatter extends Section {
                     "</td></tr>";
                   body +=
                     "<tr><td class='title'>" +
-                    t("Enrollment") +
+                    t("Students") +
                     "</td><td class='data'>" +
                     numeral(d["Number of records"], locale).format("(0,0)") +
                     "</td></tr>";
@@ -101,14 +154,9 @@ class PSUNEMScatter extends Section {
             }
           }}
           dataFormat={data => {
-            return data.data
-              .filter(f => {
-                return f["Average NEM"] && f["Average PSU"];
-              })
-              .map(m => {
-                //m["Average NEM"] = m["Average NEM"] / 100;
-                return m;
-              });
+            return data.data.filter(f => {
+              return f["Average NEM"] && f["Average PSU"];
+            });
           }}
         />
         <SourceNote cube="education_performance_new" />
