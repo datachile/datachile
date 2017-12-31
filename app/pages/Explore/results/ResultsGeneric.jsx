@@ -22,7 +22,7 @@ class TemplateResults extends React.PureComponent {
     return (
       <h3>
         {t("Results for")}
-        {`: "${profile.name}"`}
+        {`: "${profile.caption}"`}
       </h3>
     );
   }
@@ -69,7 +69,7 @@ class TemplateResults extends React.PureComponent {
               <ResultItem
                 item={{
                   key: c.key,
-                  name: c.name,
+                  name: c.caption,
                   type: entity,
                   url: slugifyItem(
                     entity,

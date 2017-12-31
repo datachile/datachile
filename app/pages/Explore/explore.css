@@ -25,6 +25,7 @@
       lost-column: 1/4 flex;
       & ul {
         padding: 0px;
+        list-style: none;
         & li {
           margin: 15px 0px var(--gutter) 0px;
           & a.link {
@@ -80,6 +81,7 @@
         & ul {
           margin: var(--gutter) 0;
           padding: 0;
+          list-style: none;
           & li.level1-filter {
             color: var(--snow);
             text-transform: uppercase;
@@ -115,6 +117,7 @@
           padding: 0;
           lost-flex-container: column;
           lost-center: 1;
+          list-style: none;
           & li {
             lost-waffle: 1/4;
           }
