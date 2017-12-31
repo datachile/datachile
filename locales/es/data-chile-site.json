@@ -87,7 +87,7 @@
   "Created in collaboration": "Creado en colaboración",
   "Data source": "Fuente",
   "Death Causes": "Causas de muerte",
-  "Death Causes By Casualities": "Causas de muerte",
+  "Death Causes By Diseases": "Causas de muerte por Enfermedades",
   "Death Causes Over Time": "Evolución de Muertes por Causas",
   "Demographics": "Demografía",
   "Demography": "Demografía",
@@ -671,9 +671,7 @@
           "<ul><li><strong>Grupo A</strong>: Beneficiarios carentes de recursos para cotizar en salud, o en condición de indigencia (no cotizantes).</li><li><strong>Grupo B</strong>: Beneficiarios con ingresos menores a $270.000 al mes (cotizantes). Trabajadores del sector público de salud.</li><li><strong>Grupo C</strong>: Beneficiarios con ingresos de entre $270.000 y $394.200 al mes (cotizantes)</li><li><strong>Grupo D</strong>: Beneficiarios con ingresos de $394.200 y más al mes (cotizantes)</li></ul>"
       },
       "healthcare":
-        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-      "disability": "",
-      "death_causes": ""
+        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
     },
     "warning": "Se muestran datos de {{caption}}",
     "income_sex_age_slide": {
