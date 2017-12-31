@@ -51,9 +51,9 @@ class DeathCauses extends Section {
               title: d => d["CIE 10"],
               body: d =>
                 "<div>" +
-                numeral(d["Casualities Count SUM"], locale).format("(0 a)") +
+                numeral(d["Casualities Count SUM"], locale).format("0,0") +
                 " " +
-                t("people") +
+                t("deaths") +
                 "</div><div>" +
                 numeral(
                   d["Casualities rate per 100 inhabitants"],
