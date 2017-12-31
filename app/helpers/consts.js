@@ -89,11 +89,14 @@ export const sources = {
   population_estimate: {
     title: "Estimación de crecimiento poblacional - INE",
     url: "http://www.ine.cl/estadisticas/demograficas-y-vitales",
-    year: 2017
+    year: 2018,
+    first_year: 2005,
+    last_year: 2020
   },
   death_causes: {
     title: "Causas de muerte",
     url: "",
+    min_year: 2010,
     year: 2014
   },
   disabilities: {

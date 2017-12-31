@@ -2,49 +2,80 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
+import { sources } from "helpers/consts";
+import { numeral } from "helpers/formatters";
+
+import { getGeoObject } from "helpers/dataUtils";
+import { annualized_growth } from "helpers/calculator";
+
+import mondrianClient, { simpleGeoDatumNeed } from "helpers/MondrianClient";
+
 import FeaturedDatum from "components/FeaturedDatum";
 
 class PopulationSlide extends Section {
-  static need = [];
+  static need = [
+    simpleGeoDatumNeed(
+      "datum_population_growth",
+      "population_estimate",
+      ["Population"],
+      {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false },
+        cuts: [
+          `{[Date].[Date].[Year].&[${
+            sources.population_estimate.first_year
+          }],[Date].[Date].[Year].&[${sources.population_estimate.last_year}]}`
+        ]
+      }
+    )
+  ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, t, i18n } = this.props;
+
+    const locale = i18n.language;
+
+    const { geo, population, datum_population_growth } = this.context.data;
+
+    const data_slide = {
+      year: sources.population_estimate.year,
+      area: geo.caption,
+      total: population
+        ? numeral(population.value, locale).format("(0,0)")
+        : "",
+      year_max: sources.population_estimate.last_year,
+      projected: datum_population_growth
+        ? numeral(datum_population_growth[1], locale).format("+0,0")
+        : ""
+    };
+
+    const txt_slide = t(
+      "geo_profile.demography.population_by_sex_age",
+      data_slide
+    );
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Population")}</div>
-          <div className="topic-slide-text">
-            Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
-            orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
-            lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
-            Nullam tempus. Mauris ac felis vel velit tristique imperdiet. Donec
-            at pede. Etiam vel neque nec dui dignissim bibendum. Vivamus id
-            enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
-            Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
-            euismod tellus id erat.
-          </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
+          />
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="l-1-3"
+              className="l-1-2"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={numeral(
+                annualized_growth(datum_population_growth),
+                locale
+              ).format("0.0 %")}
+              title={t("Estimated Population Growth")}
+              subtitle={
+                sources.population_estimate.first_year +
+                "-" +
+                sources.population_estimate.last_year
+              }
             />
           </div>
         </div>
