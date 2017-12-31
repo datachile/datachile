@@ -84,9 +84,9 @@ class HealthCare extends Section {
                 ": " +
                 numeral(d.value, locale).format("0,0") +
                 "</div><div>" +
-                t("Average") +
+                /*t("Average") +
                 ": " +
-                numeral(d.avg, locale).format("0,0") +
+                numeral(d.avg, locale).format("0,0") +*/
                 "</div>"
             },
             shapeConfig: {
@@ -105,21 +105,21 @@ class HealthCare extends Section {
               all.push({
                 "ID Year": item["ID Year"],
                 Year: item["Year"],
-                label: "Primary Healthcare",
+                label: t("Primary Healthcare"),
                 value: item["Primary Healthcare SUM"],
                 avg: item["Primary Healthcare AVG"]
               });
               all.push({
                 "ID Year": item["ID Year"],
                 Year: item["Year"],
-                label: "Specialized Healthcare",
+                label: t("Specialized Healthcare"),
                 value: item["Specialized Healthcare SUM"],
                 avg: item["Specialized Healthcare AVG"]
               });
               all.push({
                 "ID Year": item["ID Year"],
                 Year: item["Year"],
-                label: "Urgency Healthcare",
+                label: t("Urgency Healthcare"),
                 value: item["Urgency Healthcare SUM"],
                 avg: item["Urgency Healthcare AVG"]
               });

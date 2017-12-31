@@ -97,7 +97,7 @@ class DeathCausesSlide extends Section {
           <div className="topic-slide-data">
             {text && (
               <FeaturedDatum
-                className="l-1-3"
+                className="l-1-2"
                 icon="empleo"
                 datum={text.data.first.rate}
                 title={
@@ -108,7 +108,7 @@ class DeathCausesSlide extends Section {
             )}
             {text && (
               <FeaturedDatum
-                className="l-1-3"
+                className="l-1-2"
                 icon="empleo"
                 datum={numeral(
                   datum_health_death_causes_tumors.data,
