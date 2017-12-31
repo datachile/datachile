@@ -715,7 +715,7 @@ class GeoProfile extends Component {
             </Topic>
 
             <Topic
-              name={t("Housing and Environment")}
+              name={t("Housing")}
               id="environment"
               sections={[
                 {
@@ -728,11 +728,7 @@ class GeoProfile extends Component {
                 },
                 {
                   name: t("Connectivity"),
-                  slides: [
-                    t("Devices"),
-                    t("Internet access"),
-                    t("Internet use")
-                  ]
+                  slides: [t("Devices"), t("Internet access")]
                 }
               ]}
             >
