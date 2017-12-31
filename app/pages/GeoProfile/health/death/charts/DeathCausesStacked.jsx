@@ -44,6 +44,12 @@ class DeathCausesStacked extends Section {
                 " " +
                 t("people")
             },
+            xConfig: {
+              title: t("Year")
+            },
+            yConfig: {
+              title: t("Number of deaths")
+            },
             legend: false
           }}
           dataFormat={data => data.data}
