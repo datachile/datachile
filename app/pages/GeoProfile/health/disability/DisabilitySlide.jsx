@@ -17,12 +17,11 @@ class DisabilitySlide extends Section {
         ["Expansion Factor Region"],
         {
           drillDowns: [
+            ["Sex", "Sex", "Sex"],
             ["Disability Grade", "Disability Grade", "Disability Grade"]
           ],
           options: { parents: true },
-          cuts: [
-            "{[Disability Grade].[Disability Grade].[Disability Grade].&[2],[Disability Grade].[Disability Grade].[Disability Grade].&[3]}"
-          ]
+          cuts: []
         },
         "geo",
         false
@@ -72,28 +71,28 @@ class DisabilitySlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
-                datum="xx"
-                title="Lorem ipsum"
-                subtitle="Lorem blabla"
+                icon="health-firstaid"
+                datum={text.value}
+                title={t("Population with disability")}
+                subtitle={t("In") + " " + text.geo.caption}
+              />
+            )}
+            {text && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="health-firstaid"
+                datum={text.share}
+                title={t("Population with disability")}
+                subtitle={t("In") + " " + text.geo.caption}
               />
             )}
             {text && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="empleo"
-                datum="xx"
-                title="Lorem ipsum"
-                subtitle="Lorem blabla"
-              />
-            )}
-            {text && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="empleo"
-                datum="xx"
-                title="Lorem ipsum"
-                subtitle="Lorem blabla"
+                datum={text.gender.female.share}
+                title={t("Female percent with disability")}
+                subtitle={t("In") + " " + text.geo.caption}
               />
             )}
           </div>

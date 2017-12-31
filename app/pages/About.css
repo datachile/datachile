@@ -61,11 +61,17 @@
         color: var(--snow);
         display: inline-block;
         font-size: 12px;
-        margin: 25px;
+        padding: 25px;
         text-align: center;
         text-decoration: none;
         text-transform: uppercase;
         transition: opacity 0.2s;
+        letter-spacing: 0.1em;
+        &.selected {
+          color: var(--accent);
+          background-color: var(--snow);
+          font-weight: 800;
+        }
         &:hover {
           text-decoration: underline;
         }

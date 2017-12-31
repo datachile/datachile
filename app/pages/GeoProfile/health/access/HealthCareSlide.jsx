@@ -168,7 +168,7 @@ class HealthCareSlide extends Section {
                     ).format("0,0")
                   : t("No data")
               }
-              title={t("Urgency Healthcare Average")}
+              title={t("Urgency Healthcare")}
               subtitle={t("in") + " " + geo.name}
             />
           </div>

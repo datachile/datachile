@@ -7,15 +7,46 @@ import groupBy from "lodash/groupBy";
 function Disability(data, geo, locale) {
   const last_year = sources.disabilities.year;
   if (data) {
-    const severe = data.data.find(item => item["ID Disability Grade"] === 2);
-    const total = data.data.reduce((all, item) => {
-      return all + item["Expansion Factor Region"];
-    }, 0);
+    const no_disability = data.data
+      .filter(item => item["ID Disability Grade"] === 1)
+      .reduce((all, item) => {
+        return all + item["Expansion Factor Region"];
+      }, 0);
+    const leve = data.data
+      .filter(item => item["ID Disability Grade"] === 2)
+      .reduce((all, item) => {
+        return all + item["Expansion Factor Region"];
+      }, 0);
+    const severe = data.data
+      .filter(item => item["ID Disability Grade"] === 3)
+      .reduce((all, item) => {
+        return all + item["Expansion Factor Region"];
+      }, 0);
+
+    const total = leve + severe;
+    const disability_female = data.data
+      .filter(
+        item =>
+          [2, 3].includes(item["ID Disability Grade"]) && item["ID Sex"] === 1
+      )
+      .reduce((all, item) => {
+        return all + item["Expansion Factor Region"];
+      }, 0);
     return {
       geo,
       year: {
         last: last_year
       },
+      gender: {
+        female: {
+          share: numeral(disability_female / total, locale).format("0.0 %")
+        },
+        male: {
+          share: (total - disability_female) / total
+        }
+      },
+      value: numeral(total, locale).format("0,0 a"),
+      share: numeral(total / (total + no_disability), locale).format("0.0 %"),
       data: {
         prep: total >= 1000000 ? " de" : "",
         total: numeral(total, locale).format("0,0"),
