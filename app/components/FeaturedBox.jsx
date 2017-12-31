@@ -29,7 +29,12 @@ class FeaturedBox extends Component {
           <span className="icon-container">
             <img className="icon" src={`/images/icons/icon-${icon}.svg`} />
           </span>
-          <Shiitake tagName="span" className="name" lines={4}>
+          <Shiitake
+            tagName="span"
+            className="name"
+            lines={4}
+            renderFullOnServer={true}
+          >
             {item.name}
           </Shiitake>
         </span>

@@ -1,11 +1,16 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
+import groupBy from "lodash/groupBy";
+import maxBy from "lodash/maxBy";
 import sumBy from "lodash/sumBy";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, { levelCut } from "helpers/MondrianClient";
+import mondrianClient, {
+  levelCut,
+  simpleCountryDatumNeed
+} from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { calculateYearlyGrowth, getLevelObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
@@ -14,105 +19,107 @@ const year_last = sources.immigration.year;
 
 class MigrationEducationSlide extends Section {
   static need = [
-    function slideMigrationEducationLevel(params, store) {
-      const locale = store.i18n.locale;
-      const country = getLevelObject(params);
+    simpleCountryDatumNeed(
+      "slide_migration_education",
+      {
+        cube: "immigration",
+        measures: ["Number of visas"],
+        drillDowns: [["Date", "Year"], ["Education", "Education"]],
+        options: { parents: true },
+        format: "jsonrecords"
+      },
+      (result, locale) => {
+        const data = result.data.data.filter(d => d.Year == year_last);
+        const total = sumBy(data, "Number of visas");
+        const categories = {
+          unknown: data.find(d => d["ID Education"] == 1),
+          high: data.find(d => d["ID Education"] == 4),
+          college: data.find(
+            d => d["ID Education"] == 2 || d["ID Education"] == 6
+          ),
+          none: data.find(d => d["ID Education"] == 8)
+        };
+        const previous = {
+          high: result.data.data.find(
+            d => d.Year == year_last - 1 && d["ID Education"] == 4
+          ),
+          college: result.data.data.find(
+            d =>
+              d.Year == year_last - 1 &&
+              (d["ID Education"] == 2 || d["ID Education"] == 6)
+          )
+        };
 
-      const prm = mondrianClient
-        .cube("immigration")
-        .then(cube => {
-          const q = levelCut(
-            country,
-            "Origin Country",
-            "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Year")
-              .drilldown("Education", "Education")
-              .measure("Number of visas"),
-            "Continent",
-            "Country",
-            locale,
-            false
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          const data = res.data.data.filter(d => d.Year == year_last);
-          const total = sumBy(data, "Number of visas");
-          const categories = {
-            unknown: data.find(d => d["ID Education"] == 1),
-            high: data.find(d => d["ID Education"] == 4),
-            college: data.find(
-              d => d["ID Education"] == 2 || d["ID Education"] == 6
-            ),
-            none: data.find(d => d["ID Education"] == 8)
-          };
-          const previous = {
-            high: res.data.data.find(
-              d => d.Year == year_last - 1 && d["ID Education"] == 4
-            ),
-            college: res.data.data.find(
-              d =>
-                d.Year == year_last - 1 &&
-                (d["ID Education"] == 2 || d["ID Education"] == 6)
-            )
-          };
+        return {
+          year_last,
+          year_prev: year_last - 1,
+          high: {
+            percent: numeral(
+              categories.high["Number of visas"] / total,
+              locale
+            ).format("0.0%"),
+            growth: numeral(
+              calculateYearlyGrowth([
+                previous.high["Number of visas"],
+                categories.high["Number of visas"]
+              ]),
+              locale
+            ).format("0.0%")
+          },
+          college: {
+            percent: numeral(
+              categories.college["Number of visas"] / total,
+              locale
+            ).format("0.0%"),
+            growth: numeral(
+              calculateYearlyGrowth([
+                previous.college["Number of visas"],
+                categories.college["Number of visas"]
+              ]),
+              locale
+            ).format("0.0%")
+          },
+          percent_noop: numeral(
+            categories.none["Number of visas"] / total,
+            locale
+          ).format("0.0%"),
+          percent_unknown: numeral(
+            categories.unknown["Number of visas"] / total,
+            locale
+          ).format("0.0%")
+        };
+      }
+    ),
 
-          return {
-            key: "slide_migration_education",
-            data: {
-              year_last,
-              year_prev: year_last - 1,
-              high: {
-                percent: numeral(
-                  categories.high["Number of visas"] / total,
-                  locale
-                ).format("0.0%"),
-                growth: numeral(
-                  calculateYearlyGrowth([
-                    previous.high["Number of visas"],
-                    categories.high["Number of visas"]
-                  ]),
-                  locale
-                ).format("0.0%")
-              },
-              college: {
-                percent: numeral(
-                  categories.college["Number of visas"] / total,
-                  locale
-                ).format("0.0%"),
-                growth: numeral(
-                  calculateYearlyGrowth([
-                    previous.college["Number of visas"],
-                    categories.college["Number of visas"]
-                  ]),
-                  locale
-                ).format("0.0%")
-              },
-              percent_noop: numeral(
-                categories.none["Number of visas"] / total,
-                locale
-              ).format("0.0%"),
-              percent_unknown: numeral(
-                categories.unknown["Number of visas"] / total,
-                locale
-              ).format("0.0%")
-            }
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    simpleCountryDatumNeed(
+      "datum_migration_education_any",
+      {
+        cube: "immigration",
+        measures: ["Number of visas"],
+        drillDowns: [["Education", "Education"], ["Sex", "Sex"]],
+        cuts: [`[Date].[Date].[Year].&[${year_last}]`],
+        options: { parents: false },
+        format: "jsonrecords"
+      },
+      (result, locale) => {
+        const data = groupBy(result.data.data, "ID Sex");
+        return {
+          female: maxBy(data["1"], "Number of visas"),
+          male: maxBy(data["2"], "Number of visas")
+        };
+      }
+    )
   ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, t, i18n } = this.props;
+    const locale = i18n.language;
 
-    const { country, slide_migration_education } = this.context.data;
+    const {
+      country,
+      slide_migration_education,
+      datum_migration_education_any
+    } = this.context.data;
 
     const txt_slide = t("country_profile.migration_education_slide.text", {
       ...slide_migration_education,
@@ -131,7 +138,11 @@ class MigrationEducationSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum="xx"
+              datum={numeral(
+                // datum_migration_education_any[1]["Number of visas"],
+                0,
+                locale
+              ).format("0.0 a")}
               title="Lorem ipsum"
               subtitle="Lorem blabla"
             />

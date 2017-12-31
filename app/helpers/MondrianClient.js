@@ -486,6 +486,36 @@ const COUNTRY_LEVEL_CUBES_CUT = {
   }
 };
 
+function quickQuery({
+  cube,
+  measures = [],
+  drillDowns = [],
+  cuts = [],
+  options = {},
+  format = "json",
+  locale = "en"
+}) {
+  return client.cube(cube).then(cube => {
+    const q = cube.query;
+
+    measures.forEach(q.measure, q);
+    drillDowns.forEach(dd => q.drilldown(...dd));
+    cuts
+      .map(function(cut) {
+        return "string" == typeof cut
+          ? cut
+          : "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
+      })
+      .forEach(q.cut, q);
+    for (let option in options) q.option(option, options[option]);
+
+    setLangCaptions(q, locale);
+
+    // console.log(__API__ + q.path("jsonrecords"));
+    return client.query(q, format);
+  });
+}
+
 function simpleCountryDatumNeed(
   key,
   {
@@ -495,9 +525,10 @@ function simpleCountryDatumNeed(
     cuts = [],
     options = {},
     drillLevel = false,
-    format = null
+    format = undefined
   },
   postprocess = (res, lang, params, store) => {
+    // console.log(key, res, lang);
     const data = res.data || {};
     return data.values ? flattenDeep(data.values) : data.data;
   }
@@ -507,32 +538,25 @@ function simpleCountryDatumNeed(
     const ddlevel =
       COUNTRY_LEVEL_CUBES_CUT[cube][params.level2 ? "level2" : "level1"];
 
-    const promise = client
-      .cube(cube)
-      .then(cube => {
-        const q = cube.query;
+    cuts.push(`[${ddlevel[0]}].[${ddlevel[1]}].${getCountryCut(params)}`);
+    if (drillLevel) drillDowns.push(ddlevel);
 
-        if (drillLevel) drillDowns.push(ddlevel);
-
-        measures.forEach(q.measure, q);
-        drillDowns.forEach(dd => q.drilldown(...dd));
-        cuts
-          .map(function(cut) {
-            return "string" == typeof cut
-              ? cut
-              : "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
-          })
-          .concat(`[${ddlevel[0]}].[${ddlevel[1]}].${getCountryCut(params)}`)
-          .forEach(q.cut, q);
-        for (let option in options) q.option(option, options[option]);
-
-        setLangCaptions(q, locale);
-
-        // console.log(__API__ + q.path("jsonrecords"));
-        return client.query(q, format);
-      })
+    const promise = quickQuery({
+      cube,
+      measures,
+      drillDowns,
+      cuts,
+      options,
+      format,
+      locale
+    })
       .then(res => postprocess(res, locale, params, store))
-      .then(data => ({ key, data }));
+      .then(
+        data => ({ key, data }),
+        err => {
+          console.error(key, err.stack);
+        }
+      );
 
     return { type: "GET_DATA", promise };
   };

@@ -51,7 +51,7 @@
   "Average age": "Edad promedio",
   "Average psu": "Promedio PSU",
   "Avg anual payment 2016": "Avg anual payment 2016",
-  "By Activity & Visa Type": "By Activity & Visa Type",
+  "By Activity & Visa Type": "Por Actividad y Tipo de Visa",
   "By Industry": "Por Industria",
   "By Occupation": "Por Ocupación",
   "By Origin Country": "Por país de origen",
@@ -119,6 +119,7 @@
   "Enter a location": "Busca un lugar",
   "Environment": "Ambiente",
   "Estimate Population": "Población estimada",
+  "Estimate Population Growth": "Crecimiento de Población estimado",
   "Ethnicity": "Ethnicity",
   "Explore": "Explorar",
   "Explore profiles": "Explorar perfiles",
@@ -134,9 +135,11 @@
   "Exports {{last_year}}": "Exportaciones {{last_year}}",
   "Extras": "Extras",
   "Female": "Mujeres",
+  "Female Average Age": "Edad promedio mujeres",
   "Female Mean Income": "Ingreso promedio mujeres",
   "Female percent in ": "Porcentaje mujeres en ",
   "Female percent in industry": "Porcentaje femenino en la industria",
+  "Female percent of visas": "Porcentaje femenino de visas",
   "Field of Science": "Área de Conocimiento",
   "Gender": "Género",
   "Geo": "Geo",
@@ -292,6 +295,7 @@
   "Main importing Region": "Principal Región importadora",
   "Main services in ": "Main services in ",
   "Male": "Hombre",
+  "Male Average Age": "Edad promedio hombres",
   "Male Mean Income": "Ingreso promedio hombres",
   "Map Explore": "Map Explore",
   "Map explore": "Exploración con Mapa",
@@ -314,6 +318,8 @@
   "Mobile phone": "Teléfono móvil",
   "Monthly Median Income CLP": "Ingreso medio mensual CLP",
   "Municipalities": "Municipalidades",
+  "Most Common Visa Activity": "Principal Actividad de Visa",
+  "Most Common Visa Type": "Principal Tipo de Visa",
   "NEM Performance By Administration": "NEM Performance By Administration",
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of visas": "Cantidad de Visas",
@@ -679,10 +685,13 @@
     },
     "demography": {
       "origin_by_country":
-        "<p>Durante {{last_year}} se entregaron {{visas}} visas a inmigrantes que declararon domicilio en {{area}}. Los principales países de origen son: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> y <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. La mayoría de ellos cuenta con un nivel educativo de {{education_level}}.</p>",
-      "origin_by_sex_age": "",
-      "origin_by_activity": "",
-      "population_by_sex_age": ""
+        "<p>Durante {{last_year}} se entregaron {{visas}} visas a inmigrantes que declararon domicilio en {{area}}.</p><p>Los principales países de origen son: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> y <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. La mayoría de ellos cuenta con un nivel educativo de {{education_level}}.</p>",
+      "origin_by_sex_age":
+        "<p>La edad promedio según las visas entregadas en {{last_year}} a inmigrantes residentes en {{area}} es de {{avg_age}} años.</p><p>En {{area}} las visas entregadas se dividen en {{percentage_female}} para mujeres y {{percentage_male}} para hombres.</p>",
+      "origin_by_activity":
+        "<p>En {{last_year}} el {{percentage_activity}} del las {{visas}} visas entregadas en {{area}} correspondent a la actividad más común entre los inmigrantes: {{activity}} visas).</p><p>Asímismo el tipo de visa más popular en {{area}} es {{type}} con un {{percentage_type}}.</p>",
+      "population_by_sex_age":
+        "<p>Para el año {{year}} la población de {{area}}, según estimaciones del INE, es {{total}} personas.</p><p>La proyección poblacional para el año {{year_max}} es {{projected}} personas.</p>"
     }
   },
   "granted in": "otorgadas en",

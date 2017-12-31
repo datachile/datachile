@@ -7,7 +7,11 @@ import { browserHistory } from "react-router";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { numeral, slugifyItem } from "helpers/formatters";
+import {
+  numeral,
+  slugifyItem,
+  getNumberFromTotalString
+} from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -69,7 +73,9 @@ class ImportsByDestination extends Section {
             totalConfig: {
               text: d =>
                 "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("($ 0,0 a)")
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
             },
             time: "ID Year",
             shapeConfig: {

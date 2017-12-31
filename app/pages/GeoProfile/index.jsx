@@ -488,7 +488,7 @@ class GeoProfile extends Component {
                         { id: 10, name: "Los Lagos" },
                         { id: 11, name: "Aisén" },
                         { id: 12, name: "Magallanes" },
-                        { id: 13, name: "Región Metropolitana" },
+                        { id: 13, name: "Metropolitana" },
                         { id: 14, name: "Los Ríos" },
                         { id: 15, name: "Arica y Parinacota" }
                       ],
