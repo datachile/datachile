@@ -112,7 +112,10 @@ class HealthCareSlide extends Section {
                 <p>
                   <span
                     dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", this.context.data.geo)
+                      __html: t(
+                        "geo_profile.warning",
+                        this.context.data.geo.ancestors[0]
+                      )
                     }}
                   />
                 </p>

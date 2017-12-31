@@ -567,7 +567,7 @@
     "health": {
       "access":
         "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-      "death_causes": "",
+      "death_causes": "In the period {{year.first}} - {{year.last}}, death cause with the highest annual growth rate in {{geo.caption}} were {{data.first.caption}} with a {{data.first.rate}}, followed by {{data.second.caption}} with a {{data.second.rate}}.",
       "disability": "",
       "fonasa": {
         "copago": "geo_profile.health.fonasa.copago",

@@ -125,6 +125,7 @@ import DisabilityBySex from "./health/disability/charts/DisabilityBySex";
 
 import DeathCausesSlide from "./health/death/DeathCausesSlide";
 import DeathCauses from "./health/death/charts/DeathCauses";
+import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 
 /* end Health */
 
@@ -242,7 +243,8 @@ class GeoProfile extends Component {
     DisabilitySlide,
 
     DeathCausesSlide,
-    DeathCauses
+    DeathCauses,
+    DeathCausesStacked
 
     //ElectionSlide,
     //MayorResults
@@ -871,7 +873,8 @@ class GeoProfile extends Component {
               <div>
                 <DeathCausesSlide>
                   <SectionColumns>
-                    <DeathCauses className="lost-1" />
+                    <DeathCauses className="lost-1-2" />
+                    <DeathCausesStacked className="lost-1-2" />
                   </SectionColumns>
                 </DeathCausesSlide>
               </div>

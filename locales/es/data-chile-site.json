@@ -72,6 +72,7 @@
   "Industry Type": "Tipo de Industria",
   "Trade": "Comercio",
 
+  "Casualties rate per 100 inhabitants": "Tasa de muertes por 100 habitantes",
   "Chile Exports": "Exportaciones Chile",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Community Equipment",
@@ -86,7 +87,8 @@
   "Created in collaboration": "Creado en colaboración",
   "Data source": "Fuente",
   "Death Causes": "Causas de muerte",
-  "Death Causes By Casualities": "Death Causes By Casualities",
+  "Death Causes By Casualities": "Causas de muerte",
+  "Death Causes Over Time": "Evolución de Muertes por Causas",
   "Demographics": "Demografía",
   "Demography": "Demografía",
   "Dental Discharges": "Altas dentales",
@@ -658,7 +660,7 @@
     "health": {
       "access":
         "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-      "death_causes": "",
+      "death_causes": "En el período {{year.first}} - {{year.last}}, la causa de muerte con la tasa de crecimiento anual más alta en {{geo.caption}} fueron {{data.first.caption}} con un {{data.first.rate}}, seguido de {{data.second.caption}} con {{data.second.rate}}.",
       "disability": "",
       "fonasa": {
         "copago":
@@ -769,6 +771,7 @@
     "fob": "Exportaciones",
     "trade_balance": "Balanza comercial"
   },
+  "Tumors (Neoplasms) deaths": "Muertes por Tumores (Neoplasias)",
   "not_found": {
     "title": "Página no encontrada",
     "oops": "Oops! No encontramos la página que estás buscando.",
@@ -777,6 +780,7 @@
   "use device": "use device",
   "val": "val",
   "visas": "visas",
+  "Yearly growth in deaths by ": "Tasa crecimiento anual de muertes por ",
   "{{number}} visas": "{{number}} visas",
   "{{percent}} of the country - {{last_year}}":
     "{{percent}} del país - {{last_year}}",

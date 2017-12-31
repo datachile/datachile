@@ -555,6 +555,10 @@ function simpleDatumNeed(
   return (params, store) => {
     let obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
 
+    if (cube === "death_causes" && obj.type === "comuna") {
+      obj = { ...obj.ancestor };
+    }
+
     const prm = client
       .cube(cube)
       .then(cube => {
