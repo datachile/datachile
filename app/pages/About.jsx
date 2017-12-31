@@ -54,7 +54,6 @@ class About extends Component {
       <CanonComponent
         id="about"
         data={this.props.data}
-        topics={topics}
         loadingComponent={<DatachileLoading />}
       >
         <Helmet>
