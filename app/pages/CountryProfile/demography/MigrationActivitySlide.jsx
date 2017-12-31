@@ -8,140 +8,111 @@ import sumBy from "lodash/sumBy";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, { levelCut } from "helpers/MondrianClient";
+import mondrianClient, { simpleCountryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
-import { calculateYearlyGrowth, getLevelObject } from "helpers/dataUtils";
+import { calculateYearlyGrowth } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 const year_last = sources.immigration.year;
 
 class MigrationActivitySlide extends Section {
   static need = [
-    function slideMigrationVisaType(params, store) {
-      const locale = store.i18n.locale;
-      const country = getLevelObject(params);
+    simpleCountryDatumNeed(
+      "slide_migration_visa_type",
+      {
+        cube: "immigration",
+        measures: ["Number of visas"],
+        drillDowns: [["Date", "Year"], ["Visa Type", "Visa Type"]],
+        options: { parents: true },
+        format: "jsonrecords"
+      },
+      (result, locale) => {
+        const data = groupBy(result.data.data, "Year");
+        const total = sumBy(data[year_last], "Number of visas");
+        const latest_sorted = sortBy(data[year_last], "Number of visas");
+        const latest_first = latest_sorted.pop();
+        const latest_second = latest_sorted.pop();
 
-      const prm = mondrianClient
-        .cube("immigration")
-        .then(cube => {
-          const q = levelCut(
-            country,
-            "Origin Country",
-            "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Year")
-              .drilldown("Visa Type", "Visa Type")
-              .measure("Number of visas"),
-            "Continent",
-            "Country",
-            locale,
-            false
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          const data = groupBy(res.data.data, "Year");
-          const total = sumBy(data[year_last], "Number of visas");
-          const latest_sorted = sortBy(data[year_last], "Number of visas");
-          const latest_first = latest_sorted.pop();
-          const latest_second = latest_sorted.pop();
+        return {
+          visa_type: {
+            first: latest_first["Visa Type"],
+            second: latest_second["Visa Type"],
+            percent: numeral(
+              (latest_first["Number of visas"] +
+                latest_second["Number of visas"]) /
+                total,
+              locale
+            ).format("0.0%")
+          }
+        };
+      }
+    ),
 
-          return {
-            key: "slide_migration_visa_type",
-            data: {
-              visa_type: {
-                first: latest_first["Visa Type"],
-                second: latest_second["Visa Type"],
-                percent: numeral(
-                  (latest_first["Number of visas"] +
-                    latest_second["Number of visas"]) /
-                    total,
-                  locale
-                ).format("0.0%")
-              }
-            }
-          };
-        });
+    simpleCountryDatumNeed(
+      "slide_migration_activity",
+      {
+        cube: "immigration",
+        measures: ["Number of visas"],
+        drillDowns: [["Date", "Year"], ["Activity", "Activity"]],
+        cuts: [
+          {
+            key: "[Date].[Date].[Year]",
+            values: [year_last - 1, year_last]
+          }
+        ],
+        options: { parents: true },
+        format: "jsonrecords"
+      },
+      (result, locale) => {
+        const data = groupBy(result.data.data, "Year");
+        const total = sumBy(data[year_last], "Number of visas");
+        const max_latest = maxBy(data[year_last], "Number of visas");
+        const max_previous = data[year_last - 1].find(
+          d => d["ID Activity"] == max_latest["ID Activity"]
+        );
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    function slideMigrationActivity(params, store) {
-      const locale = store.i18n.locale;
-      const country = getLevelObject(params);
+        const last_year_students = data[year_last].find(
+          d => d["ID Activity"] == 2
+        );
 
-      const prm = mondrianClient
-        .cube("immigration")
-        .then(cube => {
-          const q = levelCut(
-            country,
-            "Origin Country",
-            "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Year")
-              .drilldown("Activity", "Activity")
-              .cut(
-                `{[Date].[Date].[Year].&[${year_last -
-                  1}],[Date].[Date].[Year].&[${year_last}]}`
-              )
-              .measure("Number of visas"),
-            "Continent",
-            "Country",
-            locale,
-            false
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          const data = groupBy(res.data.data, "Year");
-          const total = sumBy(data[year_last], "Number of visas");
-          const max_latest = maxBy(data[year_last], "Number of visas");
-          const max_previous = data[year_last - 1].find(
-            d => d["ID Activity"] == max_latest["ID Activity"]
-          );
-
-          return {
-            key: "slide_migration_activity",
-            data: {
-              first_occupation: {
-                name: max_latest["Activity"],
-                percent: numeral(
-                  max_latest["Number of visas"] / total,
-                  locale
-                ).format("0.0%"),
-                growth: numeral(
-                  calculateYearlyGrowth([
-                    max_previous["Number of visas"],
-                    max_latest["Number of visas"]
-                  ]),
-                  locale
-                ).format("0.0%")
-              },
-              unoccupied_percent: numeral(
-                data[year_last].find(d => d["ID Activity"] == 4)[
-                  "Number of visas"
-                ] / total,
-                locale
-              ).format("0.0%"),
-              unknown_percent: numeral(
-                data[year_last].find(d => d["ID Activity"] == 6)[
-                  "Number of visas"
-                ] / total,
-                locale
-              ).format("0.0%")
-            }
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+        return {
+          datum_students: numeral(
+            last_year_students["Number of visas"],
+            locale
+          ).format("(0,0)"),
+          first_occupation: {
+            year: year_last,
+            name: max_latest["Activity"],
+            number: numeral(max_latest["Number of visas"], locale).format(
+              "(0,0)"
+            ),
+            percent: numeral(
+              max_latest["Number of visas"] / total,
+              locale
+            ).format("0.0%"),
+            growth: numeral(
+              calculateYearlyGrowth([
+                max_previous["Number of visas"],
+                max_latest["Number of visas"]
+              ]),
+              locale
+            ).format("0.0%")
+          },
+          unoccupied_percent: numeral(
+            data[year_last].find(d => d["ID Activity"] == 4)[
+              "Number of visas"
+            ] / total,
+            locale
+          ).format("0.0%"),
+          unknown_percent: numeral(
+            data[year_last].find(d => d["ID Activity"] == 6)[
+              "Number of visas"
+            ] / total,
+            locale
+          ).format("0.0%")
+        };
+      }
+    )
   ];
 
   render() {
@@ -173,23 +144,19 @@ class MigrationActivitySlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={slide_migration_activity.datum_students}
+              title={t("Number of visas granted to students")}
+              subtitle={t("in ") + year_last}
             />
             <FeaturedDatum
-              className="l-1-3"
+              className="l-2-3"
               icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
+              datum={slide_migration_activity.first_occupation.name}
+              title={t("Most common activity")}
+              subtitle={t(
+                "{{number}} people on {{year}}",
+                slide_migration_activity.first_occupation
+              )}
             />
           </div>
         </div>

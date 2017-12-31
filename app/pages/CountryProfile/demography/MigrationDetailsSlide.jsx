@@ -172,6 +172,19 @@ class MigrationDetailsSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
+              datum={slide_migration_sex.sex.growth}
+              title={t(
+                "Growth number of visas for {{current}} immigrants",
+                slide_migration_sex.sex
+              )}
+              subtitle={t(
+                "In period {{year_first}} - {{year_last}}",
+                slide_migration_sex
+              )}
+            />
+            <FeaturedDatum
+              className="l-1-3"
+              icon="empleo"
               datum={datum_migration_agebysex.female.percent}
               title={t("Visas for females in range {{range}}", {
                 range: datum_migration_agebysex.female["Age Range"]
@@ -192,19 +205,6 @@ class MigrationDetailsSlide extends Section {
                 year: year_last,
                 number: datum_migration_agebysex.male["Number of visas"]
               })}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={slide_migration_sex.sex.growth}
-              title={t(
-                "Growth number of visas for {{current}} immigrants",
-                slide_migration_sex.sex
-              )}
-              subtitle={t(
-                "In period {{year_first}} - {{year_last}}",
-                slide_migration_sex
-              )}
             />
           </div>
         </div>
