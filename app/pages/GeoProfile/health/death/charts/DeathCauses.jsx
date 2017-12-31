@@ -15,7 +15,7 @@ class DeathCauses extends Section {
     simpleGeoChartNeed(
       "path_health_death_causes",
       "death_causes",
-      ["Casualities Count SUM"],
+      ["Casualities Count SUM", "Casualities rate per 100 inhabitants"],
       {
         drillDowns: [["CIE 10", "CIE 10", "CIE 10"], ["Date", "Date", "Year"]],
         options: { parents: true }
@@ -32,7 +32,7 @@ class DeathCauses extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Death Causes By Casualities")}</span>
+          <span>{t("Death Causes By Diseases")}</span>
           <ExportLink path={path} />
         </h3>
 
@@ -50,9 +50,18 @@ class DeathCauses extends Section {
             tooltipConfig: {
               title: d => d["CIE 10"],
               body: d =>
+                "<div>" +
                 numeral(d["Casualities Count SUM"], locale).format("(0 a)") +
                 " " +
-                t("people")
+                t("people") +
+                "</div><div>" +
+                numeral(
+                  d["Casualities rate per 100 inhabitants"],
+                  locale
+                ).format("0.0") +
+                " " +
+                "deaths per 100 inhabitants" +
+                "</div>"
             },
             total: d => d["Casualities Count SUM"],
             totalConfig: {
