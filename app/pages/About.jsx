@@ -117,6 +117,7 @@ class About extends Component {
                   <thead>
                     <tr>
                       <th>{t("about.data.dataset")}</th>
+                      <th>{t("about.data.year")}</th>
                       <th>{t("about.data.source")}</th>
                     </tr>
                   </thead>
@@ -127,41 +128,65 @@ class About extends Component {
                           {t("about.data.casen.title")}
                         </a>
                       </td>
+                      <td>{t("about.data.casen.year")}</td>
                       <td>{t("about.data.casen.source")}</td>
                     </tr>
                     <tr>
                       <td>
                         <a href="#dataset_nene">{t("about.data.nene.title")}</a>
                       </td>
+                      <td>{t("about.data.nene.year")}</td>
                       <td>{t("about.data.nene.source")}</td>
                     </tr>
                     <tr>
                       <td>
                         <a href="#dataset_nesi">{t("about.data.nesi.title")}</a>
                       </td>
+                      <td>{t("about.data.nesi.year")}</td>
                       <td>{t("about.data.nesi.source")}</td>
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_matricula">
-                          {t("about.data.matricula.title")}
+                        <a href="#dataset_aduana">
+                          {t("about.data.aduana.title")}
                         </a>
                       </td>
-                      <td>{t("about.data.matricula.source")}</td>
+                      <td>{t("about.data.aduana.year")}</td>
+                      <td>{t("about.data.aduana.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#dataset_iplusd">
+                          {t("about.data.iplusd.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.iplusd.year")}</td>
+                      <td>{t("about.data.iplusd.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#dataset_enrollment">
+                          {t("about.data.enrollment.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.enrollment.year")}</td>
+                      <td>{t("about.data.enrollment.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#dataset_performance">
+                          {t("about.data.performance.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.performance.year")}</td>
+                      <td>{t("about.data.performance.source")}</td>
                     </tr>
                     <tr>
                       <td>
                         <a href="#dataset_psu">{t("about.data.psu.title")}</a>
                       </td>
+                      <td>{t("about.data.psu.year")}</td>
                       <td>{t("about.data.psu.source")}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#dataset_empleabilidad">
-                          {t("about.data.empleabilidad.title")}
-                        </a>
-                      </td>
-                      <td>{t("about.data.empleabilidad.source")}</td>
                     </tr>
                     <tr>
                       <td>
@@ -169,21 +194,17 @@ class About extends Component {
                           {t("about.data.salud.title")}
                         </a>
                       </td>
+                      <td>{t("about.data.salud.year")}</td>
                       <td>{t("about.data.salud.source")}</td>
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_vida">{t("about.data.vida.title")}</a>
-                      </td>
-                      <td>{t("about.data.vida.source")}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#dataset_migracion">
-                          {t("about.data.migracion.title")}
+                        <a href="#dataset_muerte">
+                          {t("about.data.muerte.title")}
                         </a>
                       </td>
-                      <td>{t("about.data.migracion.source")}</td>
+                      <td>{t("about.data.muerte.year")}</td>
+                      <td>{t("about.data.muerte.source")}</td>
                     </tr>
                     <tr>
                       <td>
@@ -191,15 +212,42 @@ class About extends Component {
                           {t("about.data.discapacidad.title")}
                         </a>
                       </td>
+                      <td>{t("about.data.discapacidad.year")}</td>
                       <td>{t("about.data.discapacidad.source")}</td>
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_gasto">
-                          {t("about.data.gasto.title")}
+                        <a href="#dataset_vida">{t("about.data.vida.title")}</a>
+                      </td>
+                      <td>{t("about.data.vida.year")}</td>
+                      <td>{t("about.data.vida.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#dataset_poblacion">
+                          {t("about.data.poblacion.title")}
                         </a>
                       </td>
-                      <td>{t("about.data.gasto.source")}</td>
+                      <td>{t("about.data.poblacion.year")}</td>
+                      <td>{t("about.data.poblacion.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#dataset_migracion">
+                          {t("about.data.migracion.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.migracion.year")}</td>
+                      <td>{t("about.data.migracion.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#dataset_internet">
+                          {t("about.data.internet.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.internet.year")}</td>
+                      <td>{t("about.data.internet.source")}</td>
                     </tr>
                   </tbody>
                 </table>

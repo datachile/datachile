@@ -136,6 +136,16 @@
         font-weight: 800;
       }
     }
+    & ul {
+      & li {
+        font-family: var(--font-family-text);
+        color: var(--snow);
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.5;
+        text-align: justify;
+      }
+    }
     & .use {
       font-family: var(--font-family-text);
       color: var(--accent);
@@ -154,7 +164,7 @@
         & th {
           color: var(--accent);
           text-transform: uppercase;
-          width: 50%;
+          width: 32%;
           padding: calc(var(--gutter)/2);
           vertical-align: middle;
           text-align: left;
@@ -162,7 +172,7 @@
       }
       & tbody {
         & td {
-          width: 50%;
+          width: 32%;
           border: 1px solid var(--snow);
           color: var(--snow);
           padding: calc(var(--gutter)/2);
