@@ -167,6 +167,8 @@ class AuthoritiesBlock extends Component {
 
     const geo = this.props.data.geo;
 
+    console.log(geo);
+
     const president = this.props.data.election_president
       ? {
           id: this.props.data.election_president["ID Candidate"],
@@ -200,7 +202,9 @@ class AuthoritiesBlock extends Component {
             <div className="title">{t("President")}</div>
             <div className="splash-authorities-president">
               <PersonItem
-                imgpath={"/images/authorities/" + president.id + ".png"}
+                imgpath={
+                  "/images/authorities/president/" + president.id + ".png"
+                }
                 name={president.name}
                 subtitle={president.party}
                 className="president"
@@ -214,7 +218,7 @@ class AuthoritiesBlock extends Component {
             <div className="splash-authorities-senators">
               {senators.map((s, ix) => (
                 <PersonItem
-                  imgpath={"/images/authorities/" + s.id + ".png"}
+                  imgpath={"/images/authorities/senators/" + s.id + ".jpeg"}
                   name={s.name}
                   subtitle={s.party}
                   className="senator"
@@ -229,7 +233,13 @@ class AuthoritiesBlock extends Component {
             <div className="title">{t("Mayor")}</div>
             <div className="splash-authorities-mayor">
               <PersonItem
-                imgpath={"/images/authorities/" + mayor.id + ".png"}
+                imgpath={
+                  "/images/authorities/mayors/region-" +
+                  geo.ancestors[0].key +
+                  "/" +
+                  mayor.id +
+                  ".jpg"
+                }
                 name={mayor.name}
                 subtitle={mayor.party}
                 className="mayor"
