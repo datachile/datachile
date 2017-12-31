@@ -33,7 +33,7 @@ export default function RouteCreate() {
 
       <Route path="products/:level1(/:level2)" component={ProductProfile} />
       <Route path="industries/:level1(/:level2)" component={IndustryProfile} />
-      <Route path="about" component={About} />
+      <Route path="about(/:section)" component={About} />
       <Route path="*" component={NotFound} status={404} />
     </Route>
   );
