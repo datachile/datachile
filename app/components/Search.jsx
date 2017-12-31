@@ -174,22 +174,20 @@ class Search extends Component {
     }
 
     //chile national profile
-
     if (
       this.ref_input &&
-      "chile".indexOf(this.ref_input.value.toLowerCase()) > -1
+      "chile".indexOf(this.ref_input.value.toLowerCase()) > -1 &&
+      results.length
     ) {
-      if (results) {
-        results.unshift({
-          ancestor_key: 0,
-          ancestor_name: "All Geographys",
-          content: "Chile",
-          index_as: "geo",
-          key: "",
-          name: "Chile",
-          sim: 1
-        });
-      }
+      results.unshift({
+        ancestor_key: 0,
+        ancestor_name: "All Geographys",
+        content: "Chile",
+        index_as: "geo",
+        key: "",
+        name: "Chile",
+        sim: 1
+      });
     }
 
     return (

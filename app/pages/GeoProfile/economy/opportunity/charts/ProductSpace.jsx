@@ -42,11 +42,10 @@ class ProductSpace extends Section {
             links: "/json/hs92_4_links_circular_spring_d3p2.json",
             nodes: "/json/hs92_4_nodes_circular_spring_d3p2.json",
             data: path,
-            //size: "FOB US",
             label: d => d.HS2,
             size: "Exports RCA",
             sizeMin: 3,
-            sizeMax: 18,
+            sizeMax: 10,
             zoomScroll: false,
             shapeConfig: {
               Path: {
@@ -55,7 +54,8 @@ class ProductSpace extends Section {
               fill: d =>
                 d["Exports RCA"] < 1
                   ? "#aaaaaa"
-                  : ordinalColorScale("hs0" + d["ID HS0"])
+                  : ordinalColorScale("hs0" + d["ID HS0"]),
+              activeStyle: { stroke: "#ffffff" }
             },
             tooltipConfig: {
               body: d => {

@@ -22,7 +22,7 @@ class IndustryBySector extends Section {
       "tax_data",
       ["Output", "Investment"],
       {
-        drillDowns: [["ISICrev4", "Level 2"], ["Date", "Date", "Year"]],
+        drillDowns: [["ISICrev4", "Level 4"], ["Date", "Date", "Year"]],
         options: { parents: true }
       }
     )
@@ -42,9 +42,9 @@ class IndustryBySector extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: ["ID Level 1", "ID Level 2"],
+            groupBy: ["ID Level 1", "ID Level 4"],
             label: d =>
-              d["Level 2"] instanceof Array ? d["Level 1"] : d["Level 2"],
+              d["Level 4"] instanceof Array ? d["Level 1"] : d["Level 4"],
             sum: d => d["Output"],
             total: d => d["Output"],
             totalConfig: {
@@ -72,15 +72,15 @@ class IndustryBySector extends Section {
                   "industries",
                   d["ID Level 1"],
                   d["Level 1"],
-                  d["ID Level 2"] instanceof Array ? false : d["ID Level 2"],
-                  d["Level 2"] instanceof Array ? false : d["Level 2"]
+                  d["ID Level 4"] instanceof Array ? false : d["ID Level 2"],
+                  d["Level 4"] instanceof Array ? false : d["Level 2"]
                 );
                 browserHistory.push(url);
               }
             },
             tooltipConfig: {
               title: d =>
-                d["Level 2"] instanceof Array ? d["Level 1"] : d["Level 2"],
+                d["Level 4"] instanceof Array ? d["Level 1"] : d["Level 4"],
               body: d => {
                 var body = "<table class='tooltip-table'>";
                 body +=
@@ -96,7 +96,7 @@ class IndustryBySector extends Section {
                   numeral(d["Investment"], locale).format("($ 0,0.[0] a)") +
                   "</td></tr>";
                 body += "</table>";
-                if (!(d["Level 2"] instanceof Array))
+                if (!(d["Level 4"] instanceof Array))
                   body += "<a>" + t("tooltip.to_profile") + "</a>";
                 return body;
               }

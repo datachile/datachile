@@ -45,9 +45,8 @@ class IndustrySpace extends Section {
             data: path,
             label: d => d["Level 4"],
             size: "Output RCA",
-            // size: "Output",
             sizeMin: 3,
-            sizeMax: 18,
+            sizeMax: 10,
             zoomScroll: false,
             shapeConfig: {
               Path: {
@@ -56,7 +55,8 @@ class IndustrySpace extends Section {
               fill: d =>
                 d["Output RCA"] < 1
                   ? "#aaaaaa"
-                  : ordinalColorScale("isl1" + d["ID Level 1"])
+                  : ordinalColorScale("isl1" + d["ID Level 1"]),
+              activeStyle: { stroke: "#ffffff" }
             },
             legend: false,
             tooltipConfig: {
