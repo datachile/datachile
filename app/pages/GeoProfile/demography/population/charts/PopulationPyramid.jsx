@@ -33,23 +33,23 @@ class PopulationPyramid extends Section {
 
     const path = this.context.data.path_population_projection;
     const age_range = [
-      "0 to 4",
-      "5 to 9",
-      "10 to 14",
-      "15 to 19",
-      "20 to 24",
-      "25 to 29",
-      "30 to 34",
-      "35 to 39",
-      "40 to 44",
-      "45 to 49",
-      "50 to 54",
-      "55 to 59",
-      "60 to 64",
-      "65 to 69",
-      "70 to 74",
-      "75 to 79",
-      "80 and older"
+      "0 - 4",
+      "5 - 9",
+      "10 - 14",
+      "15 - 19",
+      "20 - 24",
+      "25 - 29",
+      "30 - 34",
+      "35 - 39",
+      "40 - 44",
+      "45 - 49",
+      "50 - 54",
+      "55 - 59",
+      "60 - 64",
+      "65 - 69",
+      "70 - 74",
+      "75 - 79",
+      "80 +"
     ];
 
     return (
@@ -116,7 +116,7 @@ class PopulationPyramid extends Section {
           dataFormat={data => {
             var output = data.data.reduce((all, item) => {
               let elm =
-                item.Sex === "Female"
+                item["ID Sex"] === 1
                   ? { ...item, Population: parseInt(item.Population) * -1 }
                   : { ...item };
               all.push(elm);

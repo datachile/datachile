@@ -96,6 +96,7 @@ export const sources = {
   death_causes: {
     title: "Causas de muerte",
     url: "",
+    min_year: 2010,
     year: 2014
   },
   disabilities: {

@@ -51,6 +51,7 @@ class HealthCareSlide extends Section {
     const locale = i18n.language;
 
     let geo = this.context.data.geo;
+
     if (geo.type === "comuna") {
       geo = { ...geo.ancestors[0] };
     }
@@ -104,7 +105,25 @@ class HealthCareSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Access")}</div>
+          <div className="topic-slide-title">
+            {t("Healthcare by Type")}
+            {this.context.data.geo.depth > 1 ? (
+              <div className="topic-slide-subtitle">
+                <p>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t(
+                        "geo_profile.warning",
+                        this.context.data.geo.ancestors[0]
+                      )
+                    }}
+                  />
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <div className="topic-slide-text">
             <span
               dangerouslySetInnerHTML={{
