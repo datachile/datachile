@@ -221,7 +221,18 @@
   }
 }
 
-@add-mixin for-xl {
+@add-mixin for-xx {
+  .nav-fixed {
+    & .title {
+      margin-top: 0;
+      &.open {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
 }
 
 @add-mixin for-lg {
@@ -231,8 +242,16 @@
 
 @add-mixin for-md {
   .nav-fixed {
+    & .nav-titles-action {
+      & .menu-button {
+        & a {
+          padding: 0 0 0 16px;
+        }
+      }
+    }
     & .nav-entity {
       & .nav-titles {
+        align-items: center;
       }
     }
     & .nav-topic {
@@ -246,6 +265,15 @@
         }
       }
     }
+    & .title {
+      margin-top: 0;
+      &.open {
+        //max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
   }
 }
 
@@ -253,8 +281,22 @@
   .nav-fixed {
     & .nav-entity {
       & .nav-titles {
-        flex-direction: column;
-        align-items: left;
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    & .nav-topic {
+      margin: auto;
+      & .topics {
+        margin: 0;
+      }
+    }
+    & .title {
+      margin-top: 0;
+      &.open {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }
@@ -263,6 +305,7 @@
 @add-mixin for-xs {
   .nav-fixed {
     & .nav-topic {
+      margin: auto;
       & .topics {
         & .topic-link {
         }
