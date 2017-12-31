@@ -191,6 +191,7 @@ class Explore extends Component {
     const members = this.props.data.members;
 
     var type = "";
+    var title = "";
     var mainLink = false;
     switch (entity) {
       /*case undefined: {
@@ -199,6 +200,7 @@ class Explore extends Component {
       }*/
       case "countries": {
         type = "countries";
+        title = t("Countries");
         break;
       }
       /*case "institutions": {
@@ -211,14 +213,17 @@ class Explore extends Component {
       }*/
       case "products": {
         type = "products";
+        title = t("Products");
         break;
       }
       case "industries": {
         type = "industries";
+        title = t("Industries");
         break;
       }
       case "geo": {
         type = "geo";
+        title = t("Geographical");
         mainLink = true;
         break;
       }
@@ -253,7 +258,7 @@ class Explore extends Component {
       >
         <div className="explore-page">
           <Nav
-            title={type != "" ? type : t("Explore")}
+            title={type != "" ? title : t("Explore")}
             typeTitle={t("Home")}
             type={type != "" ? type : false}
             exploreLink={"/"}
