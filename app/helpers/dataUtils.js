@@ -116,18 +116,17 @@ export function replaceKeyNames(list, keys) {
 }
 
 export function calculateYearlyGrowth(tensor) {
+  // all items but first
   const period = tensor.slice(1);
+  // all items but last
   const lastperiod = tensor.slice(0, -1);
 
   // Calculate Growth per Year
-  const yearly_growth = period.map((item, key) => {
-    return lastperiod[key] !== 0 ? item / lastperiod[key] - 1 : 1;
-  });
-
   return (
-    yearly_growth.reduce((a, b) => {
-      return a + b;
-    }, 0) / yearly_growth.length
+    lastperiod.reduce((sum, item, i) => {
+      if (item !== 0) return sum + (period[i] / item - 1);
+      else return sum + 1;
+    }, 0) / lastperiod.length
   );
 }
 
