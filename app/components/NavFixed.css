@@ -226,7 +226,7 @@
     & .title {
       margin-top: 0;
       &.open {
-        max-width: 100px;
+        max-width: 50px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -243,9 +243,11 @@
 @add-mixin for-md {
   .nav-fixed {
     & .nav-titles-action {
+      width: 56px;
       & .menu-button {
+        margin: auto;
         & a {
-          padding: 0 0 0 16px;
+          padding: 0;
         }
       }
     }
@@ -268,7 +270,6 @@
     & .title {
       margin-top: 0;
       &.open {
-        //max-width: 100px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -281,8 +282,26 @@
   .nav-fixed {
     & .nav-entity {
       & .nav-titles {
+        flex: 0 0 100%;
+        //justify-content: space-between;
         flex-direction: row;
         align-items: center;
+        & .datachile {
+          margin: 5px 0px 0px 0px;
+          width: 110px;
+          & img {
+            //width: 110px;
+          }
+        }
+
+        & .search-nav-container {
+          justify-content: flex-end;
+
+          flex: 0 0 auto;
+          &.close {
+            width: 52px;
+          }
+        }
       }
     }
     & .nav-topic {
@@ -294,6 +313,7 @@
     & .title {
       margin-top: 0;
       &.open {
+        flex: 1 1 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -304,6 +324,23 @@
 
 @add-mixin for-xs {
   .nav-fixed {
+    & .nav-titles-action {
+      & .menu-button {
+        & a {
+          //padding: 0px 32px 0px 16px;
+        }
+      }
+    }
+    & .title {
+      margin-top: 0;
+      &.open {
+        //max-width: 120px;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
     & .nav-topic {
       margin: auto;
       & .topics {

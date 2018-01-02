@@ -372,6 +372,13 @@
     & .splash {
       & .intro {
         lost-column: 1;
+        & .text {
+          & .title {
+            & img {
+              width: 75%;
+            }
+          }
+        }
       }
     }
     & .home-slider {
