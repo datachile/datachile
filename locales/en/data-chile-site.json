@@ -408,119 +408,120 @@
       "source": "Source",
       "year": "Available Years",
       "text":
-        "Las fuentes de datos integradas en Datachile son las siguientes:",
+        "DataChile integrates 16 datasets from these sources: All of these can be exported as CSV files.",
       "casen": {
-        "title": "",
+        "title": "Socio-Economic Characterization Survey (CASEN)",
         "year": "1990 - 2015",
-        "source": "",
+        "source": "Ministry of Social Development (MDS)",
         "text": "",
         "use": ""
       },
       "nene": {
-        "title": "",
+        "title": "New National Employment Survey (NENE)",
         "year": "2010 - 2016",
-        "source": "",
+        "source": "National Institute for Statistics (INE)",
         "text": "",
         "use": ""
       },
       "nesi": {
-        "title": "",
+        "title": "New Income Supplementary Survey (NESI)",
         "year": "2010 - 2016",
-        "source": "",
+        "source": "National Institute for Statistics (INE)",
         "text": "",
         "use": ""
       },
       "aduana": {
-        "title": "",
+        "title": "Exports and Imports Registry",
         "year": "2011 - 2016",
-        "source": "",
+        "source": "Chile Customs",
         "text": "",
         "use": ""
       },
       "iplusd": {
-        "title": "",
+        "title": "Expenditure and Employees in R+D Survey",
         "year": "2009 - 2014",
-        "source": "",
+        "source": "Ministry of Economy (MINECON)",
         "text": "",
         "use": ""
       },
       "enrollment": {
-        "title": "",
+        "title": "Schools Enrollment",
         "year": "2004 - 2015",
-        "source": "",
+        "source": "Ministry of Education (MINEDUC)",
         "text": "",
         "use": ""
       },
       "performance": {
-        "title": "",
+        "title": "Schools Performance",
         "year": "2004 - 2015",
-        "source": "",
+        "source": "Ministry of Education (MINEDUC)",
         "text": "",
         "use": ""
       },
       "psu": {
-        "title": "",
+        "title": "Universities Admission Test (PSU)",
         "year": "2004 - 2016",
-        "source": "",
+        "source":
+          "Educational Medition, Registry and Evaluation Department (DEMRE)",
         "text": "",
         "use": ""
       },
       "salud": {
-        "title": "",
+        "title": "Health Access Indicators",
         "year": "2014",
-        "source": "",
+        "source": "Health Statististics and Information Department (DEIS)",
         "text": "",
         "use": ""
       },
       "muerte": {
-        "title": "",
+        "title": "Death Causes",
         "year": "2014",
-        "source": "",
+        "source": "Health Statististics and Information Department (DEIS)",
         "text": "",
         "use": ""
       },
       "discapacidad": {
-        "title": "",
+        "title": "DIsability National Survey (ENDISC)",
         "year": "2016",
-        "source": "",
+        "source": "Disability National Service (SENADIS)",
         "text": "",
         "use": ""
       },
       "vida": {
-        "title": "",
+        "title": "Life Expectancy",
         "year": "2010 - 2014",
-        "source": "",
+        "source": "Health Statististics and Information Department (DEIS)",
         "text": "",
         "use": ""
       },
       "poblacion": {
-        "title": "",
+        "title": "Population Projects",
         "year": "2002 - 2020",
-        "source": "",
+        "source": "National Institute for Statistics (INE)",
         "text": "",
         "use": ""
       },
       "migracion": {
-        "title": "",
+        "title": "Migration Statistics",
         "year": "2005 - 2016",
-        "source": "",
+        "source": "Immigration Department",
         "text": "",
         "use": ""
       },
       "internet": {
-        "title": "",
+        "title": "Internet Use Survey",
         "year": "2016",
-        "source": "",
+        "source": "Telecommunications Office (SUBTEL)",
         "text": "",
         "use": ""
       }
     },
     "team": {
       "dw": {
-        "text": "about.team.dw.text",
-        "title": "about.team.dw.title"
+        "text": "",
+        "title": ""
       },
-      "title": "about.team.title"
+      "title": "Team"
     },
     "terms": {
       "text": "about.terms.text",
