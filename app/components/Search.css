@@ -65,12 +65,13 @@
     background-color: var(--gray);
     top: 66px;
     & .result {
+      padding: 2px 15px;
       transition: opacity 0.2s;
       height: 41px;
       display: flex;
       align-items: center;
       & a {
-        padding-left: 15px;
+        //padding-left: 15px;
         width: 100%;
         color: var(--darker-gray);
         display: block;
@@ -92,6 +93,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          padding: 16px;
           & .icon {
             display: block;
             height: 16px;
@@ -102,15 +104,22 @@
           margin-left: 15px;
           max-width: 70%;
           text-transform: uppercase;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
         & .separator {
           margin: 0 5px;
         }
         & .type {
           color: var(--accent);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
 
+      &:active,
       &:hover,
       &.highlighted {
         opacity: 1;
@@ -131,6 +140,7 @@
     }
     &.available {
       opacity: 1;
+      //padding: 5px 15px;
     }
     &.not-available {
       opacity: 0;
