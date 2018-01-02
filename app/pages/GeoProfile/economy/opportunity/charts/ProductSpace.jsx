@@ -15,10 +15,10 @@ class ProductSpace extends Section {
   static need = [
     simpleGeoChartNeed(
       "path_exports_last_year",
-      "exports_hs1992",
+      "exports",
       ["FOB US", "Exports RCA"],
       {
-        drillDowns: [["Export HS", "HS4"]],
+        drillDowns: [["Export HS", "HS2"]],
         options: { parents: true, sparse: false, nonempty: false },
         cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
       }
@@ -39,8 +39,8 @@ class ProductSpace extends Section {
         <Network
           config={{
             height: 500,
-            links: "/json/hs92_4_links_circular_spring_d3p2.json",
-            nodes: "/json/hs92_4_nodes_circular_spring_d3p2.json",
+            links: "/json/pspace_hs2012_links_d3p2.json",
+            nodes: "/json/pspace_hs2012_nodes_d3p2.json",
             data: path,
             label: d => d.HS2,
             size: "Exports RCA",
@@ -71,14 +71,17 @@ class ProductSpace extends Section {
             },
             legend: false
           }}
-          dataFormat={data =>
-            data.data.map(d => ({
-              id: d["ID HS2"],
-              "Exports RCA":
-                d["Exports RCA"] === null ? 0 : d["Exports RCA"] === null,
-              ...d
-            }))
-          }
+          dataFormat={data => {
+            const fixed = data.data.map(d => {
+              d.id = d["ID HS2"].slice(2, 6);
+              d["Exports RCA"] = d["Exports RCA"] ? d["Exports RCA"] : 0;
+              d["FOB US"] = d["FOB US"] ? d["FOB US"] : 0;
+              return d;
+            });
+            console.log(fixed);
+
+            return fixed;
+          }}
         />
         <SourceNote cube="tax_data" />
       </div>

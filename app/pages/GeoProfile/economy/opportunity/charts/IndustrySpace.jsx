@@ -2,7 +2,7 @@ import React from "react";
 
 import { Network } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { ordinalColorScale } from "helpers/colors";
+import { industriesColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
@@ -55,7 +55,7 @@ class IndustrySpace extends Section {
               fill: d =>
                 d["Output RCA"] < 1
                   ? "#aaaaaa"
-                  : ordinalColorScale("isl1" + d["ID Level 1"]),
+                  : industriesColorScale(d["ID Level 1"]),
               activeStyle: { stroke: "#ffffff" }
             },
             legend: false,
