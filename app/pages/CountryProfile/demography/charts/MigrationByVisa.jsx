@@ -13,8 +13,13 @@ import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class MigrationByVisa extends Section {
+  state = {
+    chart: true
+  };
+
   static need = [
     (params, store) => {
       const country = getLevelObject(params);
@@ -47,6 +52,18 @@ class MigrationByVisa extends Section {
     }
   ];
 
+  prepareData = data => {
+    const filtered = []
+      .concat(data.data)
+      .filter(o => o && o["Number of visas"] > 0);
+
+    if (filtered && filtered.length) {
+      return orderBy(filtered, ["Number of visas"], ["asc"]);
+    } else {
+      this.setState({ chart: false });
+    }
+  };
+
   render() {
     const { t, className, i18n } = this.props;
 
@@ -59,50 +76,48 @@ class MigrationByVisa extends Section {
           <span>{t("Migration By Visa")}</span>
           <ExportLink path={path} />
         </h3>
-        <BarChart
-          config={{
-            height: 500,
-            data: path,
-            groupBy: "ID Visa Type",
-            label: d => d["Visa Type"],
-            time: "ID Year",
-            y: "Visa Type",
-            x: "Number of visas",
-            discrete: "y",
-            shapeConfig: {
-              label: false,
-              fill: () => ordinalColorScale(3)
-            },
-            yConfig: {
-              tickSize: 0,
-              title: false
-            },
-            xConfig: {
-              title: t("Visas"),
-              tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
-            },
-            barPadding: 20,
-            groupPadding: 40,
-            tooltipConfig: {
-              title: d => d["Visa Type"],
-              body: d =>
-                numeral(d["Number of visas"], locale).format("( 0,0 )") +
-                " " +
-                t("visas")
-            },
-            legendConfig: {
-              label: false,
-              shapeConfig: false
-            }
-          }}
-          dataFormat={function(data) {
-            var filtered = filter(
-              data.data,
-              o => o["Number of visas"] != null && o["Number of visas"] > 0
-            );
-            return orderBy(filtered, ["Number of visas"], ["asc"]);
-          }}
-        />
+        {this.state.chart ? (
+          <BarChart
+            config={{
+              height: 500,
+              data: path,
+              groupBy: "ID Visa Type",
+              label: d => d["Visa Type"],
+              time: "ID Year",
+              y: "Visa Type",
+              x: "Number of visas",
+              discrete: "y",
+              shapeConfig: {
+                label: false,
+                fill: () => ordinalColorScale(3)
+              },
+              yConfig: {
+                tickSize: 0,
+                title: false
+              },
+              xConfig: {
+                title: t("Visas"),
+                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+              },
+              barPadding: 20,
+              groupPadding: 40,
+              tooltipConfig: {
+                title: d => d["Visa Type"],
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                  " " +
+                  t("visas")
+              },
+              legendConfig: {
+                label: false,
+                shapeConfig: false
+              }
+            }}
+            dataFormat={this.prepareData}
+          />
+        ) : (
+          <NoDataAvailable />
+        )}
         <SourceNote cube="immigration" />
       </div>
     );

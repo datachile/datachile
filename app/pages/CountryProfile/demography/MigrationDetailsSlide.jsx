@@ -79,16 +79,26 @@ class MigrationDetailsSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = { "Number of visas": 0 };
         const data = groupBy(result.data.data, "Year");
-
-        const latest_total = sumBy(data[year_last], "Number of visas");
-        const latest_sorted = sortBy(data[year_last], "Number of visas");
-        const latest_first = latest_sorted.pop();
-        const latest_second = latest_sorted.pop();
-
-        const previous_first = data[year_last - 1].find(
-          d => d["Age Range"] == latest_first["Age Range"]
+        const year = parseInt(
+          Object.keys(data)
+            .sort()
+            .pop() || year_last
         );
+
+        const latest_total = sumBy(data[year], "Number of visas");
+        const latest_sorted = sortBy(data[year], "Number of visas");
+
+        const latest_first = latest_sorted.pop() || zero;
+        const latest_second = latest_sorted.pop() || zero;
+        const previous_first =
+          sortBy(
+            []
+              .concat(data[year - 1])
+              .filter(Boolean)
+              .find(d => d["Age Range"] == latest_first["Age Range"])
+          ) || zero;
 
         return {
           agerange: {
@@ -124,18 +134,22 @@ class MigrationDetailsSlide extends Section {
         const group = groupBy(result.data.data, "ID Sex");
 
         const female = maxBy(group["1"], "Number of visas");
-        female.total = sumBy(group["1"], "Number of visas");
-        female.percent = numeral(
-          female["Number of visas"] / female.total,
-          locale
-        ).format("0.0%");
+        if (female) {
+          female.total = sumBy(group["1"], "Number of visas");
+          female.percent = numeral(
+            female["Number of visas"] / female.total,
+            locale
+          ).format("0.0%");
+        }
 
         const male = maxBy(group["2"], "Number of visas");
-        male.total = sumBy(group["2"], "Number of visas");
-        male.percent = numeral(
-          male["Number of visas"] / male.total,
-          locale
-        ).format("0.0%");
+        if (male) {
+          male.total = sumBy(group["2"], "Number of visas");
+          male.percent = numeral(
+            male["Number of visas"] / male.total,
+            locale
+          ).format("0.0%");
+        }
 
         return { female, male };
       }
@@ -148,7 +162,6 @@ class MigrationDetailsSlide extends Section {
 
     const {
       country,
-      datum_migration_agebysex,
       slide_migration_sex,
       slide_migration_age
     } = this.context.data;
@@ -159,6 +172,9 @@ class MigrationDetailsSlide extends Section {
       ...slide_migration_sex,
       ...slide_migration_age
     });
+
+    const datum_female = this.context.data.datum_migration_agebysex.female;
+    const datum_male = this.context.data.datum_migration_agebysex.male;
 
     return (
       <div className="topic-slide-block">
@@ -182,30 +198,34 @@ class MigrationDetailsSlide extends Section {
                 slide_migration_sex
               )}
             />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={datum_migration_agebysex.female.percent}
-              title={t("Visas for females in range {{range}}", {
-                range: datum_migration_agebysex.female["Age Range"]
-              })}
-              subtitle={t("{{number}} visas granted in {{year}}", {
-                year: year_last,
-                number: datum_migration_agebysex.female["Number of visas"]
-              })}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={datum_migration_agebysex.male.percent}
-              title={t("Visas for males in range {{range}}", {
-                range: datum_migration_agebysex.male["Age Range"]
-              })}
-              subtitle={t("{{number}} visas granted in {{year}}", {
-                year: year_last,
-                number: datum_migration_agebysex.male["Number of visas"]
-              })}
-            />
+            {datum_female && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="empleo"
+                datum={datum_female.percent}
+                title={t("Visas for females in range {{range}}", {
+                  range: datum_female["Age Range"]
+                })}
+                subtitle={t("{{number}} visas, granted in {{year}}", {
+                  year: year_last,
+                  number: datum_female["Number of visas"]
+                })}
+              />
+            )}
+            {datum_male && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="empleo"
+                datum={datum_male.percent}
+                title={t("Visas for males in range {{range}}", {
+                  range: datum_male["Age Range"]
+                })}
+                subtitle={t("{{number}} visas, granted in {{year}}", {
+                  year: year_last,
+                  number: datum_male["Number of visas"]
+                })}
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

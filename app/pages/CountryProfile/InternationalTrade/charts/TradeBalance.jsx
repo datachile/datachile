@@ -11,8 +11,13 @@ import { tradeBalanceColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class TradeBalance extends Section {
+  state = {
+    chart: true
+  };
+
   static need = [
     (params, store) => {
       const country = getLevelObject(params);
@@ -47,6 +52,21 @@ class TradeBalance extends Section {
     }
   ];
 
+  prepareData = data => {
+    const t = this.props.t;
+    if (data.data && data.data.length) {
+      const tKeys = {
+        FOB: t("trade_balance.fob"),
+        CIF: t("trade_balance.cif"),
+        "Trade Balance": t("trade_balance.trade_balance")
+      };
+      data.data = replaceKeyNames(data.data, tKeys);
+      return melt(data.data, ["ID Year"], values(tKeys));
+    } else {
+      this.setState({ chart: false });
+    }
+  };
+
   render() {
     const { t, className, i18n } = this.props;
 
@@ -59,38 +79,50 @@ class TradeBalance extends Section {
           <span>{t("Trade Balance")}</span>
           <ExportLink path={path} />
         </h3>
-        <LinePlot
-          config={{
-            height: 500,
-            data: path,
-            groupBy: "variable",
-            x: "ID Year",
-            y: "value",
-            xConfig: {
-              tickSize: 0,
-              title: false
-            },
-            yConfig: {
-              title: t("USD"),
-              tickFormat: tick => numeral(tick, locale).format("0 a")
-            },
-            shapeConfig: {
-              Line: {
-                stroke: d => tradeBalanceColorScale(d["variable"]),
-                strokeWidth: 2
+        {this.state.chart ? (
+          <LinePlot
+            config={{
+              height: 500,
+              data: path,
+              groupBy: "variable",
+              x: "ID Year",
+              y: "value",
+              xConfig: {
+                tickSize: 0,
+                title: false
+              },
+              yConfig: {
+                title: t("US$"),
+                tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
+              },
+              shapeConfig: {
+                Line: {
+                  stroke: d => tradeBalanceColorScale(d["variable"]),
+                  strokeWidth: 2
+                }
+              },
+              tooltipConfig: {
+                title: d => {
+                  return d.variable;
+                },
+                body: d => {
+                  var body = "";
+                  if (!(d["ID Year"] instanceof Array)) {
+                    body =
+                      "US" +
+                      numeral(d.value, locale).format("$ (0.[0] a)") +
+                      " - " +
+                      d["ID Year"];
+                  }
+                  return body;
+                }
               }
-            }
-          }}
-          dataFormat={data => {
-            const tKeys = {
-              FOB: t("trade_balance.fob"),
-              CIF: t("trade_balance.cif"),
-              "Trade Balance": t("trade_balance.trade_balance")
-            };
-            data.data = replaceKeyNames(data.data, tKeys);
-            return melt(data.data, ["ID Year"], values(tKeys));
-          }}
-        />
+            }}
+            dataFormat={this.prepareData}
+          />
+        ) : (
+          <NoDataAvailable />
+        )}
         <SourceNote cube="exports_and_imports" />
       </div>
     );

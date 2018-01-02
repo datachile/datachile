@@ -47,14 +47,21 @@ class MigrationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = { "Number of visas": 0, Comuna: NaN };
         const sorted = groupBy(result.data.data, "Year");
-        const max_last = maxBy(sorted[year_last], "Number of visas");
-        const max_prev = sorted[year_last - 1].find(
-          d => d.Comuna == max_last.Comuna
-        );
-        const total_country = sumBy(sorted[year_last], "Number of visas");
+
+        const visas_year_last = [].concat(sorted[year_last]).filter(Boolean);
+        const visas_year_prev = []
+          .concat(sorted[year_last - 1])
+          .filter(Boolean);
+
+        const max_last = maxBy(visas_year_last, "Number of visas") || zero;
+        const max_prev =
+          visas_year_prev.find(d => d.Comuna == max_last.Comuna) || zero;
+
+        const total_country = sumBy(visas_year_last, "Number of visas");
         const total_region = sumBy(
-          sorted[year_last].filter(d => d.Region == max_last.Region),
+          visas_year_last.filter(d => d.Region == max_last.Region),
           "Number of visas"
         );
 
@@ -96,6 +103,7 @@ class MigrationSlide extends Section {
       level: country.caption,
       year_last: year_last,
       year_previous: year_last - 1,
+      context: slide_migration_region_target.region ? "yes" : "no",
       destination: slide_migration_region_target
     });
 

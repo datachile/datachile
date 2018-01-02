@@ -552,7 +552,7 @@ function simpleCountryDatumNeed(
       .then(res => postprocess(res, locale, params, store))
       .then(
         data => {
-          console.log(key, data);
+          // console.log(key, data);
           return { key, data };
         },
         err => {
@@ -754,6 +754,7 @@ export {
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed,
   getGeoMembersDimension,
-  simpleDatumNeed
+  simpleDatumNeed,
+  quickQuery
 };
 export default client;
