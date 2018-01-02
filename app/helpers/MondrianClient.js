@@ -528,7 +528,6 @@ function simpleCountryDatumNeed(
     format = undefined
   },
   postprocess = (res, lang, params, store) => {
-    // console.log(key, res, lang);
     const data = res.data || {};
     return data.values ? flattenDeep(data.values) : data.data;
   }
@@ -552,9 +551,14 @@ function simpleCountryDatumNeed(
     })
       .then(res => postprocess(res, locale, params, store))
       .then(
-        data => ({ key, data }),
+        data => {
+          // console.log(key, data);
+          return { key, data };
+        },
         err => {
-          console.error(key, err.stack);
+          console.error("<Error> - ", key);
+          console.error(err.stack);
+          console.error("</Error> ------------");
         }
       );
 
@@ -750,6 +754,7 @@ export {
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed,
   getGeoMembersDimension,
-  simpleDatumNeed
+  simpleDatumNeed,
+  quickQuery
 };
 export default client;

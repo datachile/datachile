@@ -27,23 +27,27 @@ class MigrationActivitySlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = { "Number of visas": 0 };
         const data = groupBy(result.data.data, "Year");
         const total = sumBy(data[year_last], "Number of visas");
+
         const latest_sorted = sortBy(data[year_last], "Number of visas");
-        const latest_first = latest_sorted.pop();
-        const latest_second = latest_sorted.pop();
+        const latest_first = latest_sorted.pop() || {};
+        const latest_second = latest_sorted.pop() || {};
 
         return {
-          visa_type: {
-            first: latest_first["Visa Type"],
-            second: latest_second["Visa Type"],
-            percent: numeral(
-              (latest_first["Number of visas"] +
-                latest_second["Number of visas"]) /
-                total,
-              locale
-            ).format("0.0%")
-          }
+          context: (
+            (latest_first["Number of visas"] ? 1 : 0) +
+            (latest_second["Number of visas"] ? 1 : 0)
+          ).toString(),
+          first: latest_first["Visa Type"],
+          second: latest_second["Visa Type"],
+          percent: numeral(
+            (latest_first["Number of visas"] +
+              latest_second["Number of visas"]) /
+              total,
+            locale
+          ).format("0.0%")
         };
       }
     ),
@@ -64,16 +68,25 @@ class MigrationActivitySlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = { "Number of visas": 0 };
         const data = groupBy(result.data.data, "Year");
-        const total = sumBy(data[year_last], "Number of visas");
-        const max_latest = maxBy(data[year_last], "Number of visas");
-        const max_previous = data[year_last - 1].find(
-          d => d["ID Activity"] == max_latest["ID Activity"]
-        );
+        const data_year_last = [].concat(data[year_last]).filter(Boolean);
+        const data_year_prev = [].concat(data[year_last - 1]).filter(Boolean);
 
-        const last_year_students = data[year_last].find(
-          d => d["ID Activity"] == 2
-        );
+        const total = sumBy(data_year_last, "Number of visas");
+
+        const max_latest = maxBy(data_year_last, "Number of visas") || zero;
+        const max_previous =
+          data_year_prev.find(
+            d => d["ID Activity"] == max_latest["ID Activity"]
+          ) || zero;
+
+        const last_year_students =
+          data_year_last.find(d => d["ID Activity"] == 2) || zero;
+        const last_year_unoccupied =
+          data_year_last.find(d => d["ID Activity"] == 4) || zero;
+        const last_year_unknown =
+          data_year_last.find(d => d["ID Activity"] == 6) || zero;
 
         return {
           datum_students: numeral(
@@ -99,15 +112,11 @@ class MigrationActivitySlide extends Section {
             ).format("0.0%")
           },
           unoccupied_percent: numeral(
-            data[year_last].find(d => d["ID Activity"] == 4)[
-              "Number of visas"
-            ] / total,
+            last_year_unoccupied["Number of visas"] / total,
             locale
           ).format("0.0%"),
           unknown_percent: numeral(
-            data[year_last].find(d => d["ID Activity"] == 6)[
-              "Number of visas"
-            ] / total,
+            last_year_unknown["Number of visas"] / total,
             locale
           ).format("0.0%")
         };
@@ -124,13 +133,20 @@ class MigrationActivitySlide extends Section {
       slide_migration_visa_type
     } = this.context.data;
 
-    const txt_slide = t("country_profile.migration_activity_slide.text", {
-      ...slide_migration_activity,
-      ...slide_migration_visa_type,
-      level: country.caption,
-      year_last,
-      year_prev: year_last - 1
-    });
+    const txt_slide =
+      t("country_profile.migration_activity_slide.visa_type", {
+        ...slide_migration_visa_type,
+        level: country.caption,
+        year_last,
+        year_prev: year_last - 1
+      }) +
+      t("country_profile.migration_activity_slide.activity", {
+        ...slide_migration_activity,
+        context: slide_migration_visa_type.context,
+        level: country.caption,
+        year_last,
+        year_prev: year_last - 1
+      });
 
     return (
       <div className="topic-slide-block">
@@ -141,23 +157,27 @@ class MigrationActivitySlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={slide_migration_activity.datum_students}
-              title={t("Number of visas granted to students")}
-              subtitle={t("in ") + year_last}
-            />
-            <FeaturedDatum
-              className="l-2-3"
-              icon="empleo"
-              datum={slide_migration_activity.first_occupation.name}
-              title={t("Most common activity")}
-              subtitle={t(
-                "{{number}} people on {{year}}",
-                slide_migration_activity.first_occupation
-              )}
-            />
+            {slide_migration_activity.datum_students > 0 && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="empleo"
+                datum={slide_migration_activity.datum_students}
+                title={t("Number of visas granted to students")}
+                subtitle={t("in ") + year_last}
+              />
+            )}
+            {slide_migration_activity.first_occupation.name && (
+              <FeaturedDatum
+                className="l-2-3"
+                icon="empleo"
+                datum={slide_migration_activity.first_occupation.name}
+                title={t("Most common activity")}
+                subtitle={t(
+                  "{{number}} people on {{year}}",
+                  slide_migration_activity.first_occupation
+                )}
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

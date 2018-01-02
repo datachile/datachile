@@ -7,7 +7,10 @@ import flattenDeep from "lodash/flattenDeep";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, { simpleCountryDatumNeed } from "helpers/MondrianClient";
+import mondrianClient, {
+  simpleCountryDatumNeed,
+  quickQuery
+} from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
@@ -27,27 +30,40 @@ class InternationalTradeSlide extends Section {
       },
       (result, lang) => {
         const data = result.data.data;
+
         const total = sumBy(data, "CIF US");
         const max = maxBy(data, "CIF US");
-        const percentage = numeral(max["CIF US"] / total, lang).format("0.0%");
 
-        return mondrianClient
-          .cube("imports")
-          .then(cube =>
-            mondrianClient.query(
-              cube.query
-                .drilldown("Import HS", "HS", "HS2")
-                .cut(`[Date].[Date].[Year].&[${last_year}]`)
-                .cut(`[Import HS].[HS].[HS2].&[${max["ID HS2"]}]`)
-                .measure("CIF US")
-                .option("parents", false)
-            )
-          )
-          .then(res => ({
-            local: { max, percentage },
-            global: flattenDeep(res.data.values),
-            total_lastyear: total
-          }));
+        return max
+          ? quickQuery({
+              cube: "imports",
+              measures: ["CIF US"],
+              drillDowns: [["Import HS", "HS", "HS2"]],
+              cuts: [
+                `[Date].[Date].[Year].&[${last_year}]`,
+                `[Import HS].[HS].[HS2].&[${max["ID HS2"]}]`
+              ],
+              options: { parents: false },
+              locale: lang
+            }).then(res => {
+              const value = flattenDeep(res.data.values)[0];
+              return {
+                name: max["HS2"],
+                amount: max["FOB US"],
+                local_percent: numeral(max["CIF US"] / total, lang).format(
+                  "0.0%"
+                ),
+                global_percent: numeral(max["CIF US"] / value, lang).format(
+                  "0.0%"
+                )
+              };
+            })
+          : {
+              name: null,
+              amount: 0,
+              local_percent: numeral(0, lang).format("0.0%"),
+              global_percent: numeral(0, lang).format("0.0%")
+            };
       }
     ),
 
@@ -63,27 +79,40 @@ class InternationalTradeSlide extends Section {
       },
       (result, lang) => {
         const data = result.data.data;
+
         const total = sumBy(data, "FOB US");
         const max = maxBy(data, "FOB US");
-        const percentage = numeral(max["FOB US"] / total, lang).format("0.0%");
 
-        return mondrianClient
-          .cube("exports")
-          .then(cube =>
-            mondrianClient.query(
-              cube.query
-                .drilldown("Export HS", "HS", "HS2")
-                .cut(`[Date].[Date].[Year].&[${last_year}]`)
-                .cut(`[Export HS].[HS].[HS2].&[${max["ID HS2"]}]`)
-                .measure("FOB US")
-                .option("parents", false)
-            )
-          )
-          .then(res => ({
-            local: { max, percentage },
-            global: flattenDeep(res.data.values),
-            total_lastyear: total
-          }));
+        return max
+          ? quickQuery({
+              cube: "exports",
+              measures: ["FOB US"],
+              drillDowns: [["Export HS", "HS", "HS2"]],
+              cuts: [
+                `[Date].[Date].[Year].&[${last_year}]`,
+                `[Export HS].[HS].[HS2].&[${max["ID HS2"]}]`
+              ],
+              options: { parents: false },
+              locale: lang
+            }).then(res => {
+              const value = flattenDeep(res.data.values)[0];
+              return {
+                name: max["HS2"],
+                amount: max["FOB US"],
+                local_percent: numeral(max["FOB US"] / total, lang).format(
+                  "0.0%"
+                ),
+                global_percent: numeral(max["FOB US"] / value, lang).format(
+                  "0.0%"
+                )
+              };
+            })
+          : {
+              name: null,
+              amount: 0,
+              local_percent: numeral(0, lang).format("0.0%"),
+              global_percent: numeral(0, lang).format("0.0%")
+            };
       }
     )
   ];
@@ -98,32 +127,16 @@ class InternationalTradeSlide extends Section {
       datum_trade_export
     } = this.context.data;
 
-    const import_local = datum_trade_import.local;
-    const export_local = datum_trade_export.local;
+    const context =
+      (datum_trade_import.name ? 1 : 0) ^ (datum_trade_export.name ? 2 : 0);
 
-    var txt_slide = "";
-    if (import_local.max && export_local.max) {
-      txt_slide = t("country_profile.intltrade_slide.text", {
-        level: country.caption,
-        year_last: last_year,
-        main_import: {
-          name: import_local.max["HS2"],
-          local_percent: import_local.percentage,
-          global_percent: numeral(
-            import_local.max["CIF US"] / datum_trade_import.global[0],
-            locale
-          ).format("0.0%")
-        },
-        main_export: {
-          name: export_local.max["HS2"],
-          local_percent: export_local.percentage,
-          global_percent: numeral(
-            export_local.max["FOB US"] / datum_trade_export.global[0],
-            locale
-          ).format("0.0%")
-        }
-      });
-    }
+    const txt_slide = t("country_profile.intltrade_slide.text", {
+      level: country.caption,
+      year: last_year,
+      context: context.toString(),
+      main_import: datum_trade_import,
+      main_export: datum_trade_export
+    });
 
     return (
       <div className="topic-slide-block">
@@ -135,27 +148,24 @@ class InternationalTradeSlide extends Section {
           />
 
           <div className="topic-slide-data">
-            {import_local &&
-              import_local.max && (
-                <FeaturedDatum
-                  className="l-1-2"
-                  icon="product-import"
-                  datum={import_local.max["HS2"]}
-                  title={t("Main imported product")}
-                  subtitle={`${import_local.percentage} - ${last_year}`}
-                />
-              )}
-
-            {export_local &&
-              export_local.max && (
-                <FeaturedDatum
-                  className="l-1-2"
-                  icon="product-export"
-                  datum={export_local.max["HS2"]}
-                  title={t("Main exported product")}
-                  subtitle={`${export_local.percentage} - ${last_year}`}
-                />
-              )}
+            {datum_trade_import.name && (
+              <FeaturedDatum
+                className="l-1-2"
+                icon="product-import"
+                datum={datum_trade_import.name}
+                title={t("Main imported product")}
+                subtitle={`${datum_trade_import.local_percent} - ${last_year}`}
+              />
+            )}
+            {datum_trade_export.name && (
+              <FeaturedDatum
+                className="l-1-2"
+                icon="product-export"
+                datum={datum_trade_export.name}
+                title={t("Main exported product")}
+                subtitle={`${datum_trade_export.local_percent} - ${last_year}`}
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

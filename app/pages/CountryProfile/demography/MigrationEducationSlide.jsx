@@ -29,25 +29,29 @@ class MigrationEducationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = { "Number of visas": 0 };
         const data = result.data.data.filter(d => d.Year == year_last);
         const total = sumBy(data, "Number of visas");
+
         const categories = {
-          unknown: data.find(d => d["ID Education"] == 1),
-          high: data.find(d => d["ID Education"] == 4),
-          college: data.find(
-            d => d["ID Education"] == 2 || d["ID Education"] == 6
-          ),
-          none: data.find(d => d["ID Education"] == 8)
+          unknown: data.find(d => d["ID Education"] == 1) || zero,
+          high: data.find(d => d["ID Education"] == 4) || zero,
+          college:
+            data.find(d => d["ID Education"] == 2 || d["ID Education"] == 6) ||
+            zero,
+          none: data.find(d => d["ID Education"] == 8) || zero
         };
         const previous = {
-          high: result.data.data.find(
-            d => d.Year == year_last - 1 && d["ID Education"] == 4
-          ),
-          college: result.data.data.find(
-            d =>
-              d.Year == year_last - 1 &&
-              (d["ID Education"] == 2 || d["ID Education"] == 6)
-          )
+          high:
+            result.data.data.find(
+              d => d.Year == year_last - 1 && d["ID Education"] == 4
+            ) || zero,
+          college:
+            result.data.data.find(
+              d =>
+                d.Year == year_last - 1 &&
+                (d["ID Education"] == 2 || d["ID Education"] == 6)
+            ) || zero
         };
 
         return {
@@ -103,6 +107,7 @@ class MigrationEducationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = { "Number of visas": 0 };
         const educated = [2, 4, 5];
         const data = groupBy(
           result.data.data.filter(
@@ -112,8 +117,8 @@ class MigrationEducationSlide extends Section {
         );
         return {
           year: year_last,
-          female: maxBy(data["1"], "Number of visas"),
-          male: maxBy(data["2"], "Number of visas")
+          female: maxBy(data["1"], "Number of visas") || zero,
+          male: maxBy(data["2"], "Number of visas") || zero
         };
       }
     )
