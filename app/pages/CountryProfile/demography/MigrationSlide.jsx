@@ -7,11 +7,8 @@ import sumBy from "lodash/sumBy";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, {
-  levelCut,
-  simpleCountryDatumNeed
-} from "helpers/MondrianClient";
-import { calculateYearlyGrowth, getLevelObject } from "helpers/dataUtils";
+import { simpleCountryDatumNeed } from "helpers/MondrianClient";
+import { annualized_growth } from "helpers/calculator";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
@@ -77,7 +74,7 @@ class MigrationSlide extends Section {
             locale
           ).format("0.0%"),
           mun_growth: numeral(
-            calculateYearlyGrowth([
+            annualized_growth([
               max_prev["Number of visas"],
               max_last["Number of visas"]
             ]),
@@ -142,7 +139,7 @@ class MigrationSlide extends Section {
                   className="l-1-3"
                   icon="empleo"
                   datum={numeral(
-                    calculateYearlyGrowth(datum_migration_origin),
+                    annualized_growth(datum_migration_origin),
                     locale
                   ).format("0.0 %")}
                   title={t("Growth number of visas")}
