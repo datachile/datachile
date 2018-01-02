@@ -118,7 +118,7 @@
   "Employment growth": "Crecimiento de empleo",
   "Enrollment": "Matrícula",
   "Enter a location": "Busca un lugar",
-  "Environment": "Ambiente",
+  "Housing": "Vivienda",
   "Estimate Population": "Población estimada",
   "Estimate Population Growth": "Crecimiento de Población estimado",
   "Ethnicity": "Ethnicity",
@@ -284,7 +284,7 @@
     "Migrantes de sexo masculino con escolaridad completa",
   "Female immigrants with complete schooling":
     "Migrantes de sexo femenino con escolaridad completa",
-  "Map Explore": "Map Explore",
+  "Map": "Mapa",
   "Map explore": "Exploración con Mapa",
   "Market": "Mercado",
   "Material of Walls": "Material de las paredes",
@@ -487,10 +487,13 @@
     "background": {
       "subtitle1": "¿Qué es DataChile?",
       "subtitle2": "¿Qué datos incluye DataChile?",
+      "subtitle3": "¿Cómo incluyo mis datos en DataChile?",
       "text1":
         "<p>DataChile es una plataforma en línea  que integra, visualiza y distribuye datos públicos chilena. El objetivo de DataChile es mejorar la eficiencia y la eficacia de las decisiones públicas, a través de data integrada que ayude a revelar brechas en servicios públicos, identificar oportunidades de diversificación industrial y promover un debate público mejor informado.</p>",
       "text2":
         "<p>Al 8 de enero de 2018, DataChile incluye datos de 8 organismos oficiales. Éstos son:</p><ul><li>Ministerio de Desarrollo Social (MDS)</li><li>Instituto Nacional de Estadísticas (INE)</li><li>Aduanas Chile</li><li>Ministerio de Economía (MINECON)</li><li>Ministerio de Educación (MINEDUC)</li><li>Departamento de Medición y Registro Educacional (DEMRE)</li><li>Departamento de Extranjería y Migración, Ministerio del Interior</li><li>Subsecretaría de Telecomunicaciones (SUBTEL)</li></ul>",
+      "text3":
+        "<p>DataChile no es un proyecto enfocado en la cantidad de datos, sino en su integración y utilidad. Estamos interesados en bases de datos que sean completas a nivel nacional (con información para la mayoría de las municipalidades), relevantes y actualizadas de manera regular.</p><p>Si quiere que consideremos sus datos para incluirlos en DataChile, escríbanos a: XXX@XXX</p>",
       "title": "Datachile"
     },
     "data": {
@@ -608,12 +611,19 @@
       }
     },
     "team": {
-      "dw": {
-        "text":
-          "<p><a href='http://datawheel.us' target='_blank'>Datawheel</a> es un equipo pequeño pero poderoso de programadores y diseñadores apasionados por elaborar datos en herramientas predictivas, de toma de decisiones y narración de historias. Cada plataforma de visualización construida por Datawheel es una solución a medida que combina las necesidades de los usuarios y los datos que la respaldan.</p>",
-        "title": "Datawheel"
-      },
-      "title": "Equipo"
+      "title": "Equipo",
+      "title1": "¿Quién creó DataChile?",
+      "text1":
+        "<p>DataChile fue creada por Datawheel, una empresa que es líder global en servicios de integración, visualización y distribución de datos. DataWheel fue fundada en el 2013 en Estados Unidos por Cesar Hidalgo, Dave Landry y Alex Simoes. Datawheel ha creado DataUSA (ganador de un Information is Beautiful Award en 2016 y un Webby Award en 2017), DataAfrica, DataViva, y otros proyectos privados para gobiernos y empresas.</p>",
+      "title2": "¿Quién financió DataChile?",
+      "text2":
+        "<p>DataChile fue financiado por aportes públicos y privados. El primer aporte a la construcción de DataChile fue otorgado por Antofagasta Minerals a principios del 2016. A finales del 2016, se sumó Corfo y el Ministerio de Economía. A fines de 2017, DataChile recibió también el apoyo del Explora Lab de Entel.</p>",
+      "title3": "¿Quién es dueño de DataChile?",
+      "text3":
+        "<p>DataChile es un bien público (es de todos los chilenos), pero su administración pasará a manos del Gobierno de Chile en abril del 2018, una vez terminado el financiamiento de Corfo.</p>",
+      "title4": "¿Quién es responsable de actualizar DataChile?",
+      "text4":
+        "<p>Hasta abril del 2018, las actualizaciones de DataChile son responsabilidad de Datawheel. A partir de abril del 2018, la Dirección General de Relaciones Económicas Internacionales (DIRECON) del Ministerio de Relaciones Exteriores tomará posesión de la administración de DataChile y será responsable por actualizar los datos y la plataforma.</p>"
     },
     "terms": {
       "text":

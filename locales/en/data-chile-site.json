@@ -84,7 +84,7 @@
   "Employment by category": "Employment by category",
   "Employment growth": "Employment growth",
   "Enrollment": "Enrollment",
-  "Environment": "Environment",
+  "Housing": "Housing",
   "Estimate Population": "Estimate Population",
   "Ethnicity": "Ethnicity",
   "Explore": "Explore",
@@ -212,7 +212,7 @@
   "Main services in ": "Main services in ",
   "Male": "Male",
   "Male Mean Income": "Male Mean Income",
-  "Map Explore": "Map Explore",
+  "Map": "Map",
   "Map explore": "Map explore",
   "Market": "Market",
   "Material of Walls": "Material of Walls",
@@ -384,22 +384,28 @@
   "about": {
     "ack": {
       "credits": {
-        "text": "about.ack.credits.text",
-        "title": "about.ack.credits.title"
+        "subtitle": "To citate DataChile please use:",
+        "text":
+          "<p>Datawheel, 2017. https://datachile.io. Access date [today's date].</p>",
+        "title": "Citation"
       },
       "partners": {
-        "text": "about.ack.partners.text",
-        "title": "about.ack.partners.title"
+        "text":
+          "<p>This work was made by <a href='http://datawheel.us' target='_blank'>Datawheel</a> founded by <a href='http://www.aminerals.cl/' target='_blank'>Antofagasta Minerals</a>, <a href='https://www.corfo.cl/' target='_blank'>Corporación de Fomento de la Producción</a>, <a href='http://www.economia.gob.cl/minecon' target='_blank'>Ministerio de Economía, Fomento y Turismo</a> and <a href='http://www.entel.cl/' target='_blank'>ENTEL</a>. Also supported by: <a href='https://www.direcon.gob.cl/' target='_blank'>Dirección General de Relaciones Económicas Internacionales</a> and <a href='https://www.asech.cl/' target='_blank'>Asociación de empremdedores de Chile</a>.</p>",
+        "title": "Participants"
       },
-      "title": "about.ack.title"
+      "title": "Acknowledgement"
     },
     "background": {
       "subtitle1": "What is DataChile?",
       "subtitle2": "What Data is in DataChile?",
+      "subtitle3": "How do I get my data into DataChile?",
       "text1":
         "<p>DataChile is an online system that integrates, visualizes, and distributes chilean public data. DataChile’s goal is to improve the efficiency and efficacy of government decision making, by providing integrated data to reveal gaps in the provision of public services, identify industrial diversification opportunities, and promote a more informed public debate.</p>",
       "text2":
         "<p>As of January 8, 2018, DataChile integrates information from 8 different public sources. These are:</p><ul><li>Ministry of Social Development (MDS)</li><li>National Institute for Statistics (INE)</li><li>Chile’s Customs Office (ADUANAS)</li><li>Ministry of Economy (MINECON)</li><li>Ministry of Education (MINEDUC)</li><li>Educational Measurement, Registry, and Evaluation Department (DEMRE)</li><li>Immigration Department (MINISTERIO DEL INTERIOR)</li><li>Telecommunications Office (SUBTEL)</li></p>",
+      "text3":
+        "<p>DataChile is not a big data project, or a universal data repository, but a system focused on integrated data sources that are relevant for public decision making. We are interested in data that is nationally comprehensive (available for most municipalities), relevant, and regularly updated.</p><p>If you would like your dataset to be considered for inclusion, please contact us at: xx@xx</p>",
       "title": "Datachile"
     },
     "data": {
@@ -517,15 +523,24 @@
       }
     },
     "team": {
-      "dw": {
-        "text": "",
-        "title": ""
-      },
-      "title": "Team"
+      "title": "Team",
+      "title1": "Who made DataChile?",
+      "text1":
+        "<p>DataChile was created by Datawheel, a global leader in the creation of data integration, visualization, and distribution systems. Datawheel was founded by Cesar Hidalgo, Dave Landry and Alex Simoes in 2013. Datawheel is the creator of Data USA (winner of an Information is Beautiful Award in 2016 and a Webby Award in 2017), DataAfrica, DataViva, and other private systems for governments and firms.</p>",
+      "title2": "Who financed DataChile?",
+      "text2":
+        "<p>DataChile has received public and private financing. Initial support was given by Antofagasta Minerals early in 2016. At the end of 2016, Corfo and Chile’s Ministry of Economía joined the effort. Late in 2017, DataChile also received support from the Explora Lab of Entel.</p>",
+      "title3": "Who owns DataChile?",
+      "text3":
+        "<p>DataChile is a public good (owned by all Chileans), but it will be managed by the Chilean government starting April 2018, once Corfo funding finishes.</p>",
+      "title4": "Who is responsible for updating DataChile?",
+      "text4":
+        "<p>Until April 2018 DataChile updates are the responsibility of Datawheel. Starting April 2018, DIRECON (Dirección General de Relaciones Económicas Internacionales), which is a department from the Ministerio de Relaciones Exteriores, will take possession of DataChile and will be responsible for updating its data and features.</p>"
     },
     "terms": {
-      "text": "about.terms.text",
-      "title": "about.terms.title"
+      "text":
+        "<p>Information on this site is provided on an \"as is\" and \"as available\" basis. DataChile makes every effort to ensure, but does not guarantee, the accuracy or completeness of the information on the DataChile website. Our goal is to keep this information timely and accurate. If errors are brought to our attention, we will try to correct them. DataChile may add, change, improve, or update the information of the website without notice. DataChile reserves its exclusive right in its sole discretion to alter, limit or discontinue part of this site. Under no circumstances shall DataChile be liable for any loss, damage, liability or expense suffered which is claimed to result from use of this site, including without limitation, any fault, error, omission, interruption or delay. Use of this site is at User's sole risk. We make every effort to minimize disruption caused by technical errors. However some data or information on the DataChile website may have been created or structured in files or formats which are not error-free and we cannot guarantee that our service will not be interrupted or otherwise affected by such problems. DataChile accepts no responsibility with regards to such problems (failure of performance, computer virus, communication line failure, alteration of content, etc.) incurred as a result of using the DataChile website or any link to external sites. The User specifically acknowledges and agrees that DataChile is not liable for any conduct of any other User, including, but not limited to, the types of conduct listed above. DataChile reserves the right to deny at its sole discretion any User access to the DataChile website or any portion thereof without notice. For site security purpose and to ensure that the DataChile website remains available to all users, it employs software programs to monitor network traffic to identify unauthorised attempts to upload or change information, or otherwise cause damage and to detect other possible security breaches.</p>",
+      "title": "Terms of Use"
     }
   },
   "affiliates": "affiliates",
