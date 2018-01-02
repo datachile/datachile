@@ -3,26 +3,16 @@ import { Section } from "datawheel-canon";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
+import { numeral } from "helpers/formatters";
+
 import { COLORS_GENDER } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-
-import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
-class PSUResultsBySex extends Section {
-  static need = [
-    simpleGeoChartNeed(
-      "path_higher_psu_by_sex",
-      "psu",
-      ["Number of records", "Avg language test", "Avg math test"],
-      {
-        drillDowns: [["Sex", "Sex", "Sex"], ["Date", "Date", "Year"]],
-        options: { parents: true }
-      }
-    )
-  ];
+class PSUBySex extends Section {
+  static need = [];
 
   render() {
     const { t, className, i18n } = this.props;
@@ -34,7 +24,7 @@ class PSUResultsBySex extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("PSU Results By Sex")}</span>
+          <span>{t("PSU By Sex")}</span>
           <ExportLink path={path} />
         </h3>
 
@@ -55,7 +45,7 @@ class PSUResultsBySex extends Section {
               title: false
             },
             yConfig: {
-              title: "PSU"
+              title: "PSU exams"
             },
             legendConfig: {
               label: false,
@@ -68,7 +58,7 @@ class PSUResultsBySex extends Section {
             tooltipConfig: {
               body: d => {
                 return (
-                  d.item + ": " + numeral(d.value, locale).format("0,0.[0]")
+                  numeral(d.value, locale).format("0,0") + " " + t("PSU exams")
                 );
               }
             }
@@ -76,15 +66,8 @@ class PSUResultsBySex extends Section {
           dataFormat={data => {
             const reduced = data.data.reduce((all, item) => {
               all.push({
-                value: item["Avg language test"],
-                item: t("Language"),
-                sex: item["Sex"],
-                id_sex: item["ID Sex"],
-                year: item["Year"]
-              });
-              all.push({
-                value: item["Avg math test"],
-                item: t("Math"),
+                value: item["Number of records"],
+                item: t("Sex"),
                 sex: item["Sex"],
                 id_sex: item["ID Sex"],
                 year: item["Year"]
@@ -100,4 +83,4 @@ class PSUResultsBySex extends Section {
   }
 }
 
-export default translate()(PSUResultsBySex);
+export default translate()(PSUBySex);

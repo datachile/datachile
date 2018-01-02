@@ -198,7 +198,8 @@
         opacity: 1;
       }
     }
-    & li.link.link-soon {
+    & li.link.link-soon,
+    & li.title.link-soon {
       & a {
         opacity: 0.3;
       }
@@ -240,6 +241,9 @@
       font-weight: 400;
       font-size: 14px;
       padding-top: 15px;
+      & a {
+        color: var(--gray);
+      }
     }
   }
 }

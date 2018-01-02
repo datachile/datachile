@@ -71,8 +71,9 @@ function Footer(props) {
             <ComingSoon />
           </Link>
           <span className="link link-dot">&#183;</span>
-          <Link className="link" to="/explore/map">
-            {t("Map explore")}
+          <Link className="link link-soon" to="/explore/map">
+            {t("Map")}
+            <ComingSoon />
           </Link>
           <span className="link link-dot">&#183;</span>
           <Link className="link" to="/about">

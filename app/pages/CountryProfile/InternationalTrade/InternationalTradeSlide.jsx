@@ -7,7 +7,7 @@ import flattenDeep from "lodash/flattenDeep";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, {
+import {
   simpleCountryDatumNeed,
   quickQuery
 } from "helpers/MondrianClient";

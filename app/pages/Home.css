@@ -11,6 +11,13 @@
     z-index: 100;
   }
 
+  & .home-link {
+    color: var(--snow);
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+
   & .splash {
     height: auto;
     left: 0;
@@ -372,6 +379,13 @@
     & .splash {
       & .intro {
         lost-column: 1;
+        & .text {
+          & .title {
+            & img {
+              width: 75%;
+            }
+          }
+        }
       }
     }
     & .home-slider {
