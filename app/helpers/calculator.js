@@ -10,4 +10,9 @@ function annualized_growth(aggregation, time = null) {
   }
 }
 
-export { annualized_growth };
+function accumulatedGrowth(aggregation) {
+  if (!Array.isArray(aggregation)) return NaN;
+  return Math.log(aggregation[aggregation.length - 1] / aggregation[0]);
+}
+
+export { accumulatedGrowth, annualized_growth };

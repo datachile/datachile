@@ -4,12 +4,12 @@ import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, {
+import {
   simpleCountryDatumNeed,
   quickQuery
 } from "helpers/MondrianClient";
+import { accumulatedGrowth } from "helpers/calculator";
 import { sources } from "helpers/consts";
-import { accumulated_growth } from "helpers/aggregations";
 import { numeral } from "helpers/formatters";
 
 class InternationalTradeBalanceSlide extends Section {
@@ -64,14 +64,14 @@ class InternationalTradeBalanceSlide extends Section {
       datum_global_exports_last_year
     } = this.context.data;
 
-    const growth_export = accumulated_growth(
-      datum_country_exports_per_year,
+    const growth_export = numeral(
+      accumulatedGrowth(datum_country_exports_per_year),
       locale
-    );
-    const growth_import = accumulated_growth(
-      datum_country_imports_per_year,
+    ).format("0.0%");
+    const growth_import = numeral(
+      accumulatedGrowth(datum_country_imports_per_year),
       locale
-    );
+    ).format("0.0%");
 
     const import_volume_last =
       datum_country_imports_per_year[datum_country_imports_per_year.length - 1];
