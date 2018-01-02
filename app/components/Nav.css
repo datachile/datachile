@@ -188,12 +188,12 @@
       transition: opacity 0.2s;
       font-family: var(--font-family-text);
       font-weight: 400;
-      font-size: 12px;
+      font-size: 14px;
       color: var(--snow);
       letter-spacing: 0.08px;
       text-transform: uppercase;
       lost-column: 1 flex;
-      padding-left: 15px;
+      padding: 2px 0px 2px 15px;
       &:hover {
         opacity: 1;
       }
