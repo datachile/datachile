@@ -15,8 +15,13 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class ImportsByProduct extends Section {
+  state = {
+    chart: true
+  };
+
   static need = [
     (params, store) => {
       const country = getLevelObject(params);
@@ -50,6 +55,14 @@ class ImportsByProduct extends Section {
     }
   ];
 
+  prepareData = data => {
+    if (data.data && data.data.length) {
+      return data.data;
+    } else {
+      this.setState({ chart: false });
+    }
+  };
+
   render() {
     const { t, className, i18n } = this.props;
 
@@ -62,7 +75,8 @@ class ImportsByProduct extends Section {
           <span>{t("Imports by product")}</span>
           <ExportLink path={path} />
         </h3>
-        <Treemap
+        {this.state.chart ? (
+          <Treemap
           config={{
             height: 500,
             data: path,
@@ -112,8 +126,11 @@ class ImportsByProduct extends Section {
                 "</a>"
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={this.prepareData}
         />
+      ) : (
+        <NoDataAvailable />
+      )}
         <SourceNote cube="imports" />
       </div>
     );

@@ -10,9 +10,14 @@ import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 export default translate()(
   class MigrationBySex extends Section {
+    state = {
+      chart: true
+    };
+
     static need = [
       (params, store) => {
         const country = getLevelObject(params);
@@ -45,6 +50,14 @@ export default translate()(
       }
     ];
 
+    prepareData = data => {
+      if (data.data && data.data.length) {
+        return data.data;
+      } else {
+        this.setState({ chart: false });
+      }
+    };
+
     render() {
       const { t, className, i18n } = this.props;
 
@@ -57,47 +70,51 @@ export default translate()(
             <span>{t("Migration By Sex")}</span>
             <ExportLink path={path} />
           </h3>
-          <BarChart
-            config={{
-              height: 500,
-              data: path,
-              groupBy: "ID Sex",
-              label: d => d["Sex"],
-              time: "ID Year",
-              x: false,
-              y: "Number of visas",
-              shapeConfig: {
-                fill: d => COLORS_GENDER[d["ID Sex"]]
-              },
-              xConfig: {
-                tickSize: 0,
-                title: false
-              },
-              yConfig: {
-                title: t("Visas"),
-                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
-              },
-              barPadding: 20,
-              groupPadding: 40,
-              tooltipConfig: {
-                title: d => d["Sex"],
-                body: d =>
-                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
-                  " " +
-                  t("visas")
-              },
-              legendConfig: {
-                label: false,
+          {this.state.chart ? (
+            <BarChart
+              config={{
+                height: 500,
+                data: path,
+                groupBy: "ID Sex",
+                label: d => d["Sex"],
+                time: "ID Year",
+                x: false,
+                y: "Number of visas",
                 shapeConfig: {
-                  width: 40,
-                  height: 40,
-                  backgroundImage: d =>
-                    "/images/legend/sex/" + d["ID Sex"] + ".png"
+                  fill: d => COLORS_GENDER[d["ID Sex"]]
+                },
+                xConfig: {
+                  tickSize: 0,
+                  title: false
+                },
+                yConfig: {
+                  title: t("Visas"),
+                  tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+                },
+                barPadding: 20,
+                groupPadding: 40,
+                tooltipConfig: {
+                  title: d => d["Sex"],
+                  body: d =>
+                    numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                    " " +
+                    t("visas")
+                },
+                legendConfig: {
+                  label: false,
+                  shapeConfig: {
+                    width: 40,
+                    height: 40,
+                    backgroundImage: d =>
+                      "/images/legend/sex/" + d["ID Sex"] + ".png"
+                  }
                 }
-              }
-            }}
-            dataFormat={data => data.data}
-          />
+              }}
+              dataFormat={this.prepareData}
+            />
+          ) : (
+            <NoDataAvailable />
+          )}
           <SourceNote cube="immigration" />
         </div>
       );

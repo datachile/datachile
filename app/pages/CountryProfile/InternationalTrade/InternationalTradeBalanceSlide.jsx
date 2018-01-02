@@ -4,7 +4,10 @@ import { Section } from "datawheel-canon";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, { simpleCountryDatumNeed } from "helpers/MondrianClient";
+import mondrianClient, {
+  simpleCountryDatumNeed,
+  quickQuery
+} from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { accumulated_growth } from "helpers/aggregations";
 import { numeral } from "helpers/formatters";
@@ -25,13 +28,22 @@ class InternationalTradeBalanceSlide extends Section {
       options: { parents: false }
     }),
 
-    simpleCountryDatumNeed("datum_global_exports_last_year", {
-      cube: "exports",
-      measures: ["FOB US"],
-      drillDowns: [["Date", "Date", "Year"]],
-      cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`],
-      options: { parents: false }
-    })
+    (params, store) => {
+      return {
+        type: "GET_DATA",
+        promise: quickQuery({
+          cube: "exports",
+          measures: ["FOB US"],
+          drillDowns: [["Date", "Date", "Year"]],
+          cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`],
+          options: { parents: false },
+          locale: store.i18n.locale
+        }).then(result => ({
+          key: "datum_global_exports_last_year",
+          data: result.data.values[0]
+        }))
+      };
+    }
   ];
 
   direction(a, t) {
@@ -90,6 +102,9 @@ class InternationalTradeBalanceSlide extends Section {
       }
     });
 
+    const datum_export_volume =
+      export_volume_last / datum_global_exports_last_year[0];
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -102,6 +117,18 @@ class InternationalTradeBalanceSlide extends Section {
           />
 
           <div className="topic-slide-data">
+            {datum_export_volume > 1 && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={numeral(datum_export_volume, locale).format("0.0%")}
+                title={t("Exports volume")}
+                subtitle={t(
+                  "relative to exports to the world in {{year}}",
+                  sources.exports
+                )}
+              />
+            )}
             <FeaturedDatum
               className="l-1-3"
               icon="product-import"
@@ -121,19 +148,6 @@ class InternationalTradeBalanceSlide extends Section {
                 year_first: sources.exports.min_year,
                 year_last: sources.exports.year
               })}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={numeral(
-                export_volume_last / datum_global_exports_last_year[0],
-                locale
-              ).format("0.0%")}
-              title={t("Exports volume")}
-              subtitle={t(
-                "relative to exports to the world in {{year}}",
-                sources.exports
-              )}
             />
           </div>
         </div>

@@ -15,8 +15,13 @@ import {
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class ExportsByOrigin extends Section {
+  state = {
+    chart: true
+  };
+
   static need = [
     (params, store) => {
       const country = getLevelObject(params);
@@ -49,6 +54,14 @@ class ExportsByOrigin extends Section {
     }
   ];
 
+  prepareData = data => {
+    if (data.data && data.data.length) {
+      return data.data;
+    } else {
+      this.setState({ chart: false });
+    }
+  };
+
   render() {
     const { t, className, i18n } = this.props;
 
@@ -62,7 +75,8 @@ class ExportsByOrigin extends Section {
           <ExportLink path={path} />
         </h3>
 
-        <Treemap
+        {this.state.chart ? (
+          <Treemap
           config={{
             height: 500,
             data: path,
@@ -110,8 +124,11 @@ class ExportsByOrigin extends Section {
               shapeConfig: false
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={this.prepareData}
         />
+      ) : (
+        <NoDataAvailable />
+      )}
         <SourceNote cube="exports" />
       </div>
     );

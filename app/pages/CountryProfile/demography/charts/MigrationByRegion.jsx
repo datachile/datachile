@@ -10,8 +10,13 @@ import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class MigrationByRegion extends Section {
+  state = {
+    chart: true
+  };
+
   static need = [
     (params, store) => {
       const country = getLevelObject(params);
@@ -44,6 +49,14 @@ class MigrationByRegion extends Section {
     }
   ];
 
+  prepareData = data => {
+    if (data.data && data.data.length) {
+      return data.data;
+    } else {
+      this.setState({ chart: false });
+    }
+  };
+
   render() {
     const { t, className, i18n } = this.props;
 
@@ -56,44 +69,47 @@ class MigrationByRegion extends Section {
           <span>{t("Migration By Region")}</span>
           <ExportLink path={path} />
         </h3>
-
-        <Treemap
-          config={{
-            height: 500,
-            data: path,
-            groupBy: ["ID Region", "ID Comuna"],
-            label: d => d["Comuna"],
-            sum: d => d["Number of visas"],
-            time: "ID Year",
-            total: d => d["Number of visas"],
-            totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
-                " " +
-                t("visas")
-            },
-            shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Region"])
-            },
-            tooltipConfig: {
-              title: d => {
-                return d["Comuna"] instanceof Array
-                  ? d["Region"]
-                  : d["Comuna"] + " - " + d["Region"];
+        {this.state.chart ? (
+          <Treemap
+            config={{
+              height: 500,
+              data: path,
+              groupBy: ["ID Region", "ID Comuna"],
+              label: d => d["Comuna"],
+              sum: d => d["Number of visas"],
+              time: "ID Year",
+              total: d => d["Number of visas"],
+              totalConfig: {
+                text: d =>
+                  "Total: " +
+                  numeral(d.text.split(": ")[1], locale).format("(0,0)") +
+                  " " +
+                  t("visas")
               },
-              body: d =>
-                numeral(d["Number of visas"], locale).format("( 0,0 )") +
-                " " +
-                t("visas")
-            },
-            legendConfig: {
-              label: false,
-              shapeConfig: false
-            }
-          }}
-          dataFormat={data => data.data}
-        />
+              shapeConfig: {
+                fill: d => ordinalColorScale(d["ID Region"])
+              },
+              tooltipConfig: {
+                title: d => {
+                  return d["Comuna"] instanceof Array
+                    ? d["Region"]
+                    : d["Comuna"] + " - " + d["Region"];
+                },
+                body: d =>
+                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                  " " +
+                  t("visas")
+              },
+              legendConfig: {
+                label: false,
+                shapeConfig: false
+              }
+            }}
+            dataFormat={this.prepareData}
+          />
+        ) : (
+          <NoDataAvailable />
+        )}
         <SourceNote cube="immigration" />
       </div>
     );

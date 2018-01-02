@@ -10,54 +10,67 @@ import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import NoDataAvailable from "components/NoDataAvailable";
 
-export default translate()(
-  class MigrationByActivity extends Section {
-    static need = [
-      (params, store) => {
-        const country = getLevelObject(params);
-        const prm = mondrianClient.cube("immigration").then(cube => {
-          const q = levelCut(
-            country,
-            "Origin Country",
-            "Country",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Year")
-              .drilldown("Activity", "Activity")
-              .measure("Number of visas"),
-            "Continent",
-            "Country",
-            store.i18n.locale,
-            false
-          );
+class MigrationByActivity extends Section {
+  state = {
+    chart: true
+  };
 
-          return {
-            key: "path_country_migration_by_activity",
-            data: __API__ + q.path("jsonrecords")
-          };
-        });
+  static need = [
+    (params, store) => {
+      const country = getLevelObject(params);
+      const prm = mondrianClient.cube("immigration").then(cube => {
+        const q = levelCut(
+          country,
+          "Origin Country",
+          "Country",
+          cube.query
+            .option("parents", true)
+            .drilldown("Date", "Year")
+            .drilldown("Activity", "Activity")
+            .measure("Number of visas"),
+          "Continent",
+          "Country",
+          store.i18n.locale,
+          false
+        );
 
         return {
-          type: "GET_DATA",
-          promise: prm
+          key: "path_country_migration_by_activity",
+          data: __API__ + q.path("jsonrecords")
         };
-      }
-    ];
+      });
 
-    render() {
-      const { t, className, i18n } = this.props;
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
+  ];
 
-      const locale = i18n.language;
+  prepareData = data => {
+    if (data.data && data.data.length) {
+      return data.data;
+    } else {
+      this.setState({ chart: false });
+    }
+  };
 
-      const path = this.context.data.path_country_migration_by_activity;
+  render() {
+    const { t, className, i18n } = this.props;
 
-      return (
-        <div className={className}>
-          <h3 className="chart-title">
-            <span>{t("Migration By Activity")}</span>
-            <ExportLink path={path} />
-          </h3>
+    const locale = i18n.language;
+
+    const path = this.context.data.path_country_migration_by_activity;
+
+    return (
+      <div className={className}>
+        <h3 className="chart-title">
+          <span>{t("Migration By Activity")}</span>
+          <ExportLink path={path} />
+        </h3>
+        {this.state.chart ? (
           <Treemap
             config={{
               height: 500,
@@ -89,11 +102,15 @@ export default translate()(
                 shapeConfig: false
               }
             }}
-            dataFormat={data => data.data}
+            dataFormat={this.prepareData}
           />
-          <SourceNote cube="immigration" />
-        </div>
-      );
-    }
+        ) : (
+          <NoDataAvailable />
+        )}
+        <SourceNote cube="immigration" />
+      </div>
+    );
   }
-);
+}
+
+export default translate()(MigrationByActivity);
