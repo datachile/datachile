@@ -292,6 +292,9 @@
           & img {
             //width: 110px;
           }
+          &.close {
+            display: none;
+          }
         }
 
         & .search-nav-container {
@@ -324,6 +327,14 @@
 
 @add-mixin for-xs {
   .nav-fixed {
+    & .nav-entity {
+      & .search-nav-container {
+        &.open {
+          max-width: 260px;
+        }
+      }
+    }
+
     & .nav-titles-action {
       & .menu-button {
         & a {
