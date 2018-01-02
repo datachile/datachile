@@ -218,8 +218,10 @@ function trade_balance_text(
 }
 
 function onlyMostRecent(collection, iteratee = "Year") {
-  const max_year = maxBy(collection, iteratee)[iteratee];
-  return collection.filter(d => d.Year == max_year);
+  const max_year = maxBy(collection, iteratee);
+  if (!max_year) return [];
+  const max_value = max_year[iteratee];
+  return collection.filter(d => d.Year == max_value);
 }
 
 /**
@@ -230,21 +232,11 @@ function championsBy(collection, iteratee) {
   return { first: sorted.pop(), second: sorted.pop(), third: sorted.pop() };
 }
 
-function accumulated_growth(aggregation, locale = "en") {
-  if (aggregation) {
-    return numeral(
-      Math.log(aggregation[aggregation.length - 1] / aggregation[0]),
-      locale
-    ).format("0.0 %");
-  }
-}
-
 export {
   info_from_data,
   maxMinGrowthByYear,
   onlyMostRecent,
   championsBy,
   trade_balance_text,
-  accumulated_growth,
   trade_by_time_and_product
 };
