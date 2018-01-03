@@ -7,12 +7,9 @@ import sumBy from "lodash/sumBy";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, {
-  levelCut,
-  simpleCountryDatumNeed
-} from "helpers/MondrianClient";
+import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
-import { calculateYearlyGrowth, getLevelObject } from "helpers/dataUtils";
+import { annualized_growth } from "helpers/calculator";
 import { numeral } from "helpers/formatters";
 
 const year_last = sources.immigration.year;
@@ -24,101 +21,81 @@ class MigrationEducationSlide extends Section {
       {
         cube: "immigration",
         measures: ["Number of visas"],
-        drillDowns: [["Date", "Year"], ["Education", "Education"]],
+        drillDowns: [
+          ["Date", "Year"],
+          ["Sex", "Sex"],
+          ["Education", "Education"]
+        ],
         options: { parents: true },
         format: "jsonrecords"
       },
       (result, locale) => {
         const zero = { "Number of visas": 0 };
-        const data = result.data.data.filter(d => d.Year == year_last);
-        const total = sumBy(data, "Number of visas");
 
-        const categories = {
-          unknown: data.find(d => d["ID Education"] == 1) || zero,
-          high: data.find(d => d["ID Education"] == 4) || zero,
-          college:
-            data.find(d => d["ID Education"] == 2 || d["ID Education"] == 6) ||
-            zero,
-          none: data.find(d => d["ID Education"] == 8) || zero
-        };
-        const previous = {
-          high:
-            result.data.data.find(
-              d => d.Year == year_last - 1 && d["ID Education"] == 4
-            ) || zero,
-          college:
-            result.data.data.find(
-              d =>
-                d.Year == year_last - 1 &&
-                (d["ID Education"] == 2 || d["ID Education"] == 6)
-            ) || zero
-        };
-
-        return {
-          year_last,
-          year_prev: year_last - 1,
-          year_first: year_last - 1,
-          high: {
-            percent: numeral(
-              categories.high["Number of visas"] / total,
-              locale
-            ).format("0.0%"),
-            growth: numeral(
-              calculateYearlyGrowth([
-                previous.high["Number of visas"],
-                categories.high["Number of visas"]
-              ]),
-              locale
-            ).format("0.0%")
-          },
-          college: {
-            percent: numeral(
-              categories.college["Number of visas"] / total,
-              locale
-            ).format("0.0%"),
-            growth: numeral(
-              calculateYearlyGrowth([
-                previous.college["Number of visas"],
-                categories.college["Number of visas"]
-              ]),
-              locale
-            ).format("0.0%")
-          },
-          percent_noop: numeral(
-            categories.none["Number of visas"] / total,
-            locale
-          ).format("0.0%"),
-          percent_unknown: numeral(
-            categories.unknown["Number of visas"] / total,
-            locale
-          ).format("0.0%")
-        };
-      }
-    ),
-
-    simpleCountryDatumNeed(
-      "datum_migration_education",
-      {
-        cube: "immigration",
-        measures: ["Number of visas"],
-        drillDowns: [["Education", "Education"], ["Sex", "Sex"]],
-        cuts: [`[Date].[Date].[Year].&[${year_last}]`],
-        options: { parents: false },
-        format: "jsonrecords"
-      },
-      (result, locale) => {
-        const zero = { "Number of visas": 0 };
-        const educated = [2, 4, 5];
-        const data = groupBy(
-          result.data.data.filter(
-            d => educated.indexOf(d["ID Education"]) > -1
-          ),
-          "ID Sex"
+        const total = sumBy(result.data.data, "Number of visas");
+        const group_year = groupBy(result.data.data, "Year");
+        const lastyr = parseInt(
+          Object.keys(group_year)
+            .sort()
+            .pop()
         );
+
+        const group_lastyr = [].concat(group_year[lastyr]);
+        const check_edu_level = n => n == 2 || n == 4 || n == 5;
+        const lastyr_sex_female = group_lastyr.reduce(function(sum, d) {
+          if (d && d["ID Sex"] == 1 && check_edu_level(d["ID Education"]))
+            sum += d["Number of visas"] || 0;
+          return sum;
+        }, 0);
+        const lastyr_sex_male = group_lastyr.reduce(function(sum, d) {
+          if (d && d["ID Sex"] == 2 && check_edu_level(d["ID Education"]))
+            sum += d["Number of visas"] || 0;
+          return sum;
+        }, 0);
+
+        const prevyr_group_edu = groupBy(
+          group_year[lastyr - 1],
+          "ID Education"
+        );
+        const lastyr_group_edu = groupBy(group_lastyr, "ID Education");
+
+        const prevyr_edu_techni = sumBy(prevyr_group_edu[4], "Number of visas");
+        const prevyr_edu_higher = sumBy(prevyr_group_edu[5], "Number of visas");
+
+        const lastyr_edu_highsc = sumBy(lastyr_group_edu[2], "Number of visas");
+        const lastyr_edu_techni = sumBy(lastyr_group_edu[4], "Number of visas");
+        const lastyr_edu_higher = sumBy(lastyr_group_edu[5], "Number of visas");
+        const lastyr_edu_none = sumBy(lastyr_group_edu[6], "Number of visas");
+        const lastyr_edu_unknown =
+          sumBy(lastyr_group_edu[7], "Number of visas") +
+          sumBy(lastyr_group_edu[8], "Number of visas");
+
+        const prevyr_sum_college = prevyr_edu_techni + prevyr_edu_higher;
+        const lastyr_sum_college = lastyr_edu_techni + lastyr_edu_higher;
+        const higher_growth = annualized_growth([
+          prevyr_sum_college,
+          lastyr_sum_college
+        ]);
+
         return {
-          year: year_last,
-          female: maxBy(data["1"], "Number of visas") || zero,
-          male: maxBy(data["2"], "Number of visas") || zero
+          year_last: lastyr,
+          year_prev: lastyr - 1,
+          datum_male: lastyr_sex_male,
+          datum_female: lastyr_sex_female,
+          highsc_percent: numeral(lastyr_edu_highsc / total, locale).format(
+            "0.0%"
+          ),
+          higher_upgrowth: higher_growth > 0,
+          higher_growth: numeral(Math.abs(higher_growth), locale).format(
+            "0.0%"
+          ),
+          higher_percent: numeral(lastyr_sum_college / total, locale).format(
+            "0.0%"
+          ),
+          none_percent: numeral(lastyr_edu_none / total, locale).format("0.0%"),
+          unknown_percent: numeral(lastyr_edu_unknown / total, locale).format(
+            "0.0%"
+          )
         };
       }
     )
@@ -128,16 +105,17 @@ class MigrationEducationSlide extends Section {
     const { children, t, i18n } = this.props;
     const locale = i18n.language;
 
-    const {
-      country,
-      slide_migration_education,
-      datum_migration_education
-    } = this.context.data;
+    const { country, slide_migration_education } = this.context.data;
 
-    const txt_slide = t("country_profile.migration_education_slide.text", {
-      ...slide_migration_education,
-      level: country.caption
-    });
+    slide_migration_education.level = country.caption;
+    slide_migration_education.higher_behavior = slide_migration_education.higher_upgrowth
+      ? t("incremented")
+      : t("decremented");
+
+    const txt_slide = t(
+      "country_profile.migration_education_slide.text",
+      slide_migration_education
+    );
 
     return (
       <div className="topic-slide-block">
@@ -148,39 +126,43 @@ class MigrationEducationSlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={numeral(
-                datum_migration_education.female["Number of visas"],
-                locale
-              ).format("0 a")}
-              title={t("Female immigrants with complete schooling")}
-              subtitle={t(
-                "Number of visas granted in {{year}}",
-                datum_migration_education
-              )}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={numeral(
-                datum_migration_education.male["Number of visas"],
-                locale
-              ).format("0 a")}
-              title={t("Male immigrants with complete schooling")}
-              subtitle={t(
-                "Number of visas granted in {{year}}",
-                datum_migration_education
-              )}
-            />
+            {slide_migration_education.datum_female > 0 && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="empleo"
+                datum={numeral(
+                  slide_migration_education.datum_female,
+                  locale
+                ).format("0 a")}
+                title={t("Female immigrants with complete schooling")}
+                subtitle={t(
+                  "Number of visas granted in {{year_last}}",
+                  slide_migration_education
+                )}
+              />
+            )}
+            {slide_migration_education.datum_male > 0 && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="empleo"
+                datum={numeral(
+                  slide_migration_education.datum_male,
+                  locale
+                ).format("0 a")}
+                title={t("Male immigrants with complete schooling")}
+                subtitle={t(
+                  "Number of visas granted in {{year_last}}",
+                  slide_migration_education
+                )}
+              />
+            )}
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={slide_migration_education.college.growth}
+              datum={slide_migration_education.higher_growth}
               title={t("Growth of immigrants with higher education")}
               subtitle={t(
-                "In period {{year_first}} - {{year_last}}",
+                "in period {{year_prev}} - {{year_last}}",
                 slide_migration_education
               )}
             />

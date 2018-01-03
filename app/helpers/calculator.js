@@ -6,8 +6,13 @@ function annualized_growth(aggregation, time = null) {
     const final_v = aggregation[aggregation.length - 1];
     return Math.pow(final_v / initial_v, 1 / range) - 1;
   } else {
-    return false;
+    return NaN;
   }
 }
 
-export { annualized_growth };
+function accumulatedGrowth(aggregation) {
+  if (!Array.isArray(aggregation)) return NaN;
+  return Math.log(aggregation[aggregation.length - 1] / aggregation[0]);
+}
+
+export { accumulatedGrowth, annualized_growth };

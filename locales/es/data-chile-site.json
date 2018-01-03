@@ -118,7 +118,7 @@
   "Employment growth": "Crecimiento de empleo",
   "Enrollment": "Matrícula",
   "Enter a location": "Busca un lugar",
-  "Environment": "Ambiente",
+  "Housing": "Vivienda",
   "Estimate Population": "Población estimada",
   "Estimate Population Growth": "Crecimiento de Población estimado",
   "Ethnicity": "Ethnicity",
@@ -147,15 +147,20 @@
   "Geographical": "Geográfico",
   "Glossary": "Glosario",
   "Green Areas": "Áreas verdes",
+  "Change exports": "Cambio exportaciones",
+  "Change imports": "Cambio importaciones",
   "Growth Exports": "Crecimiento exportaciones",
   "Growth Imports": "Crecimiento importaciones",
   "Growth Investment": "Crecimiento inversión",
   "Growth Labour": "Crecimiento de empleos",
   "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
   "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
+  "Change number of visas": "Cambio número de visas",
   "Growth number of visas": "Crecimiento número de visas",
-  "Growth number of visas for {{current}} immigrants":
-    "Crecimiento número de visas para inmigrantes de sexo {{current}}",
+  "Growth number of visas for {{current_max}} immigrants":
+    "Crecimiento número de visas para inmigrantes de sexo {{current_max}}",
+  "Change number of visas for {{current_max}} immigrants":
+    "Cambio número de visas para inmigrantes de sexo {{current_max}}",
   "Health": "Salud",
   "Politics": "Política",
 
@@ -203,8 +208,10 @@
   "Imports from Chile": "Importaciones desde Chile",
   "In": "En",
   "In period": "En el período",
-  "In period {{year_first}} - {{year_last}}":
+  "in period {{year_first}} - {{year_last}}":
     "En el período {{year_first}} - {{year_last}}",
+  "in period {{year_prev}} - {{year_last}}":
+    "En el período {{year_prev}} - {{year_last}}",
   "Income": "Ingreso",
   "Income By Age": "Ingreso por Edad",
   "Income By Sex": "Ingreso por Sexo",
@@ -284,7 +291,7 @@
     "Migrantes de sexo masculino con escolaridad completa",
   "Female immigrants with complete schooling":
     "Migrantes de sexo femenino con escolaridad completa",
-  "Map Explore": "Map Explore",
+  "Map": "Mapa",
   "Map explore": "Exploración con Mapa",
   "Market": "Mercado",
   "Material of Walls": "Material de las paredes",
@@ -312,8 +319,8 @@
   "NEM Performance By Administration": "NEM Performance By Administration",
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of visas": "Cantidad de Visas",
-  "Number of visas granted in {{year}}":
-    "Número de visas otorgadas en {{year}}",
+  "Number of visas granted in {{year_last}}":
+    "Número de visas otorgadas en {{year_last}}",
   "Number of visas granted to students":
     "Número de visas otorgadas a estudiantes",
   "Number of deaths": "Cantidad de muertes",
@@ -487,10 +494,13 @@
     "background": {
       "subtitle1": "¿Qué es DataChile?",
       "subtitle2": "¿Qué datos incluye DataChile?",
+      "subtitle3": "¿Cómo incluyo mis datos en DataChile?",
       "text1":
         "<p>DataChile es una plataforma en línea  que integra, visualiza y distribuye datos públicos chilena. El objetivo de DataChile es mejorar la eficiencia y la eficacia de las decisiones públicas, a través de data integrada que ayude a revelar brechas en servicios públicos, identificar oportunidades de diversificación industrial y promover un debate público mejor informado.</p>",
       "text2":
         "<p>Al 8 de enero de 2018, DataChile incluye datos de 8 organismos oficiales. Éstos son:</p><ul><li>Ministerio de Desarrollo Social (MDS)</li><li>Instituto Nacional de Estadísticas (INE)</li><li>Aduanas Chile</li><li>Ministerio de Economía (MINECON)</li><li>Ministerio de Educación (MINEDUC)</li><li>Departamento de Medición y Registro Educacional (DEMRE)</li><li>Departamento de Extranjería y Migración, Ministerio del Interior</li><li>Subsecretaría de Telecomunicaciones (SUBTEL)</li></ul>",
+      "text3":
+        "<p>DataChile no es un proyecto enfocado en la cantidad de datos, sino en su integración y utilidad. Estamos interesados en bases de datos que sean completas a nivel nacional (con información para la mayoría de las municipalidades), relevantes y actualizadas de manera regular.</p><p>Si quiere que consideremos sus datos para incluirlos en DataChile, escríbanos a: XXX@XXX</p>",
       "title": "Datachile"
     },
     "data": {
@@ -608,12 +618,19 @@
       }
     },
     "team": {
-      "dw": {
-        "text":
-          "<p><a href='http://datawheel.us' target='_blank'>Datawheel</a> es un equipo pequeño pero poderoso de programadores y diseñadores apasionados por elaborar datos en herramientas predictivas, de toma de decisiones y narración de historias. Cada plataforma de visualización construida por Datawheel es una solución a medida que combina las necesidades de los usuarios y los datos que la respaldan.</p>",
-        "title": "Datawheel"
-      },
-      "title": "Equipo"
+      "title": "Equipo",
+      "title1": "¿Quién creó DataChile?",
+      "text1":
+        "<p>DataChile fue creada por Datawheel, una empresa que es líder global en servicios de integración, visualización y distribución de datos. DataWheel fue fundada en el 2013 en Estados Unidos por Cesar Hidalgo, Dave Landry y Alex Simoes. Datawheel ha creado DataUSA (ganador de un Information is Beautiful Award en 2016 y un Webby Award en 2017), DataAfrica, DataViva, y otros proyectos privados para gobiernos y empresas.</p>",
+      "title2": "¿Quién financió DataChile?",
+      "text2":
+        "<p>DataChile fue financiado por aportes públicos y privados. El primer aporte a la construcción de DataChile fue otorgado por Antofagasta Minerals a principios del 2016. A finales del 2016, se sumó Corfo y el Ministerio de Economía. A fines de 2017, DataChile recibió también el apoyo del Explora Lab de Entel.</p>",
+      "title3": "¿Quién es dueño de DataChile?",
+      "text3":
+        "<p>DataChile es un bien público (es de todos los chilenos), pero su administración pasará a manos del Gobierno de Chile en abril del 2018, una vez terminado el financiamiento de Corfo.</p>",
+      "title4": "¿Quién es responsable de actualizar DataChile?",
+      "text4":
+        "<p>Hasta abril del 2018, las actualizaciones de DataChile son responsabilidad de Datawheel. A partir de abril del 2018, la Dirección General de Relaciones Económicas Internacionales (DIRECON) del Ministerio de Relaciones Exteriores tomará posesión de la administración de DataChile y será responsable por actualizar los datos y la plataforma.</p>"
     },
     "terms": {
       "text":
@@ -625,101 +642,99 @@
   "an increase": "un incremento",
   "careers": "carreras",
   "country_profile": {
-    "about1": "country_profile.about1",
-    "about2": "country_profile.about2",
-    "intltrade_balance_slide": {
-      "text":
-        "<p>Entre los años {{year.first}} y {{year.last}}, las importaciones desde {{level}} han registrado un crecimiento de {{import.growth}}, presentando un {{import.direction}} desde un {{import.volume_first}} hasta un {{import.volume_last}}. En el mismo período, las exportaciones hacia {{level}} registraron un crecimiento de {{export.growth}}, presentando un {{export.direction}} desde {{export.volume_first}} hasta {{export.volume_last}}.</p>"
-    },
-    "intltrade_origin_dest_slide": {
-      "export": "t(country_profile.intltrade_origin_dest_slide.export_111)",
-      "export_": "t(country_profile.intltrade_origin_dest_slide.export_111)",
-      "export_0":
-        "<p>Durante {{year}} no se registraron exportaciones hacia {{level}}.</p>",
-      "export_1":
-        "<p>Durante {{year}}, las exportaciones desde Chile hacia {{level}} salieron únicamente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}.</p>",
-      "export_11":
-        "<p>Durante {{year}}, las exportaciones desde Chile hacia {{level}} salieron únicamente desde las comunas de {{origin.first_municipality}}, en {{origin.first_region}}, y {{origin.second_municipality}}, en {{origin.second_region}}.</p>",
-      "export_2":
-        "<p>Durante {{year}}, las exportaciones desde Chile hacia {{level}} salieron únicamente desde {{origin.first_region}}, específicamente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}.</p>",
-      "export_111":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
-      "export_12":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde la comuna de {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
-      "export_21":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y desde la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
-      "export_3":
-        "<p>Las exportaciones desde Chile hacia {{level}} salen principalmente desde {{origin.first_region}}, donde destacan las comunas de {{origin.first_municipality}}, {{origin.second_municipality}} y {{origin.third_municipality}}.</p>",
-      "import": "t(country_profile.intltrade_origin_dest_slide.import_111)",
-      "import_": "t(country_profile.intltrade_origin_dest_slide.import_111)",
-      "import_0":
-        "<p>No se registraron importaciones desde {{level}} durante {{year}}.</p>",
-      "import_1":
-        "<p>Durante {{year}}, las importaciones desde {{level}} hacia Chile llegaron únicamente hacia la comuna de {{origin.first_municipality}}, en {{origin.first_region}}.</p>",
-      "import_11":
-        "<p>Durante {{year}}, las importaciones desde {{level}} hacia Chile llegaron únicamente hacia las comunas de {{origin.first_municipality}}, en {{origin.first_region}}, y {{origin.second_municipality}}, en {{origin.second_region}}.</p>",
-      "import_2":
-        "<p>Durante {{year}}, las importaciones desde {{level}} hacia Chile llegaron únicamente hacia {{origin.first_region}}, específicamente hacia las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}.</p>",
-      "import_111":
-        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}}, en {{destination.second_region}}, y {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
-      "import_12":
-        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
-      "import_21":
-        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
-      "import_3":
-        "<p>La mayor parte de las importaciones desde {{level}} al país llegan a {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>"
-    },
-    "intltrade_slide": {
-      "import":
-        "<p>El principal producto que Chile importa desde {{level}} es <em>{{main_import.name}}</em>. Para el año {{year}}, este representa un {{main_import.local_percent}} del total de importaciones desde {{level}}, y un {{main_import.global_percent}} de las importaciones totales de este producto hacia Chile.</p>",
-      "import_zero":
-        "<p>Para el año {{year}}, no hay registros de importaciones hacia Chile desde {{level}}.</p>",
-      "export":
-        "<p>Por otro lado, Chile exporta hacia {{level}} principalmente <em>{{main_export.name}}</em>. Esto representó un {{main_export.local_percent}} de las exportaciones hacia {{level}}, y un {{main_export.global_percent}} de las exportaciones de este producto desde Chile durante {{year}}.</p>",
-      "export_zero":
-        "<p>No existen registros de exportaciones hacia {{level}} desde Chile durante {{year}}.</p>",
-      "text_0":
-        "$t(country_profile.intltrade_slide.import_zero) $t(country_profile.intltrade_slide.export_zero)",
-      "text_1":
-        "$t(country_profile.intltrade_slide.import) $t(country_profile.intltrade_slide.export_zero)",
-      "text_2":
-        "$t(country_profile.intltrade_slide.import_zero) $t(country_profile.intltrade_slide.export)",
-      "text_3":
-        "$t(country_profile.intltrade_slide.import) $t(country_profile.intltrade_slide.export)",
-      "text": "$t(country_profile.intltrade_slide.text_3)"
-    },
-    "migration_activity_slide": {
-      "visa_type": "$t(country_profile.migration_activity_slide.visa_type_2)",
-      "visa_type_0":
-        "<p>Según los registros, para el año {{year_last}} no hay registros de inmigrantes desde {{level}}.</p>",
-      "visa_type_1":
-        "<p>Según los registros, la mayoría de los inmigrantes provenientes desde {{level}} vienen con una <em>Visa {{visa_type.first}}</em>. Estos representan un {{visa_type.percent}} del total de inmigrantes.</p>",
-      "visa_type_2":
-        "<p>Según los registros, la mayoría de los inmigrantes provenientes desde {{level}} vienen con una <em>Visa {{visa_type.first}}</em> o una <em>Visa {{visa_type.second}}</em>. Estos representan un {{visa_type.percent}} del total de inmigrantes.</p>",
-      "activity_0": "",
-      "activity":
-        "<p>Para el {{year_last}}, el {{first_occupation.percent}} de los inmigrantes desde {{level}} declara que trabaja como <em>{{first_occupation.name}}</em>. Esto representa un crecimiento del {{first_occupation.growth}} con respecto al año {{year_prev}}. Por otro lado, el {{activity.unoccupied_percent}} declara no trabajar en alguna actividad, y el {{activity.unknown_percent}} no declara una actividad formal.</p>"
+    "migration_slide": {
+      "destination":
+        "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a {{region}}, principalmente a la comuna de {{comuna}}.</p>",
+      "growth":
+        "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una taza anual del {{growth}}.</p>",
+      "text": "$t(country_profile.migration_slide.destination)",
+      "text_no":
+        "<p>Durante {{year_last}}, no hay registros de visas otorgadas a inmigrantes desde {{level}}.</p>",
+      "text_full":
+        "$t(country_profile.migration_slide.destination)$t(country_profile.migration_slide.growth)"
     },
     "migration_details_slide": {
-      "tendency_change":
-        ", lo cual ha sido la tendencia desde el año {{year_first}}, donde la mayoría era de sexo {{sex.before}}",
-      "tendency_stay":
-        ", lo cual es una tendencia desde el año {{year_first}}, con un crecimiento de un {{sex.growth}}",
-      "text":
-        "<p>De los inmigrantes que llegan desde {{level}}, la mayoría son de sexo {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{agerange.first}}, seguidos de gente en el rango {{agerange.second}}. Los primeros representan un {{agerange.first_percent}} del total en {{year_last}}, lo cual se traduce en un crecimiento de {{agerange.first_growth}} respecto al año {{year_previous}}.</p>"
+      "sex": "$t(country_profile.migration_details_slide.sex_remained)",
+      "sex_none":
+        "<p>No hay registros de inmigrantes desde {{level}} durante {{year_last}}.</p>",
+      "sex_only":
+        "<p>{{year_last}} es el único año en el que hay registro de inmigraciones desde {{level}}. La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}.</p>",
+      "sex_changed":
+        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}, donde la mayoría era de sexo {{previous_max}}.</p>",
+      "sex_remained":
+        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}.</p>",
+      "age":
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}, seguidos de gente en el rango {{second}}. Los primeros representan un {{first_percent}} del total en {{year_last}}, lo cual se traduce en un cambio de {{first_growth}} respecto al año {{year_prev}}.</p>",
+      "age_unique":
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}.</p>",
+      "age_none": ""
     },
     "migration_education_slide": {
       "text":
-        "<p>De los inmigrantes provenientes desde {{level}}, el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. En cuanto a Educación Superior, el {{college.percent}} declara poseer algún título Técnico o Universitario. Esto corresponde a un crecimiento respecto al año anterior de {{high.growth}} para inmigrantes con estudios completos, y un {{college.growth}} para inmigrantes con estudios superiores.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no la declara en absoluto.</p>"
+        "<p>El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Superior, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con educación superior ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.</p>"
     },
-    "migration_slide": {
-      "text_no":
-        "<p>Durante {{year_last}}, no hay registros de visas otorgadas a inmigrantes desde {{level}}.",
+    "migration_activity_slide": {
+      "visa_type":
+        "<p>La mayoría de las visas entregadas en {{year_last}} a inmigrantes provenientes desde {{level}} son para {{first}}, y representan el {{first_percent}} de todas las visas entregadas a inmigrantes de {{level}}.</p>",
+      "visa_type_0":
+        "<p>Según los registros, para el año {{year_last}} no hay registros de inmigrantes desde {{level}}.</p>",
+      "activity_2":
+        "<p>Las visas más comunes entregadas en {{year_last}} a inmigrantes de {{level}} son para {{first}} ({{first_percent}}) y {{second}} ({{second_percent}}).</p>",
+      "activity_1":
+        "<p>Las visas más comunes entregadas en {{year_last}} a inmigrantes de {{level}} son para {{first}} ({{first_percent}}).</p>",
+      "activity_0": ""
+    },
+    "intltrade_slide": {
       "text":
-        "<p>Para el {{year_last}}, la mayoría de los inmigrantes provenientes de {{level}} llegan a establecerse en {{destination.region}}, principalmente en la comuna de {{destination.municipality}}.</p><p>Los inmigrantes de {{level}} en esta comuna representan un {{destination.mun_percent}} del total nacional, y un {{destination.reg_percent}} de la región. Respecto al {{year_previous}}, el crecimiento en visas de inmigración de gente establecida en {{destination.municipality}} es de un {{destination.mun_growth}}.</p>"
+        "<p>El {{year}} Chile exportó un total de US{{total_exports}} a {{level}}, e importó un total de US{{total_imports}}, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <em>{{main_import.name}}</em>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <em>{{main_export.name}}</em>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
+    },
+    "intltrade_origin_dest_slide": {
+      "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
+      "export_0":
+        "<p>Durante {{year}} no se registraron exportaciones hacia {{level}}.</p>",
+      "export_1":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}}, en {{origin.first_region}}.</p>",
+      "export_11":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}}, en {{origin.first_region}}, y {{origin.second_municipality}}, en {{origin.second_region}}.</p>",
+      "export_2":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}.</p>",
+      "export_111":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+      "export_12":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
+      "export_21":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y desde la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+      "export_3":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de {{origin.first_municipality}}, {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.first_region}}.</p>",
+      "import": "t(country_profile.intltrade_origin_dest_slide.import_1)",
+      "import_0":
+        "<p>No se registraron importaciones desde {{level}} durante {{year}}.</p>",
+      "import_1":
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de {{destination.first_municipality}}, en {{destination.first_region}}.</p>",
+      "import_11":
+        "<p>El principal destino de las importaciones desde {{level}} son las comunas de {{destination.first_municipality}}, en {{destination.first_region}}, y {{destination.second_municipality}}, en {{destination.second_region}}.</p>",
+      "import_2":
+        "<p>El principal destino de las importaciones desde {{level}} es {{destination.first_region}}, específicamente hacia las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}.</p>",
+      "import_111":
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}}, en {{destination.second_region}}, y {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "import_12":
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
+      "import_21":
+        "<p>El principal destino de las importaciones desde {{level}} son las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+      "import_3":
+        "<p>El principal destino de las importaciones desde {{level}} es {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>"
+    },
+    "intltrade_balance_slide": {
+      "text":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} en {{year.first}}, hasta US{{import.volume_last}} en {{year.last}}.</p><p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>"
     }
   },
-  "decreased": "decrecido",
+  "an increment": "un aumento",
+  "a decrement": "una disminución",
+  "incremented": "aumentado",
+  "decremented": "disminuído",
+  "positive": "positiva",
+  "negative": "negativa",
   "disabilities": "discapacidades",
   "geo_profile": {
     "warning": "Se muestran datos de {{caption}}",
@@ -753,21 +768,29 @@
     "demography": {
       "origin_by_country":
         "<p>Durante {{last_year}} se entregaron {{visas}} visas a inmigrantes que declararon domicilio en {{area}}.</p><p>Los principales países de origen son: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> y <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. La mayoría de ellos cuenta con un nivel educativo de {{education_level}}.</p>",
-      "origin_by_sex_age":
+      "origin_by_sex_age": 
         "<p>La edad promedio según las visas entregadas en {{last_year}} a inmigrantes residentes en {{area}} es de {{avg_age}} años.</p><p>En {{area}} las visas entregadas se dividen en {{percentage_female}} para mujeres y {{percentage_male}} para hombres.</p>",
       "origin_by_activity":
         "<p>En {{last_year}} el {{percentage_activity}} del las {{visas}} visas entregadas en {{area}} correspondent a la actividad más común entre los inmigrantes: {{activity}} visas).</p><p>Asímismo el tipo de visa más popular en {{area}} es {{type}} con un {{percentage_type}}.</p>",
       "population_by_sex_age":
         "<p>Para el año {{year}} la población de {{area}}, según estimaciones del INE, es {{total}} personas.</p><p>La proyección poblacional para el año {{year_max}} es {{projected}} personas.</p>"
+    },
+    "education": {
+      "enrollment": "En {{year.last}} hubo {{enrollment.total}} estudiantes matriculados en establecimientos educacionales de {{geo.caption}}. De éstos, {{enrollment.municipal}} estaban matriculados en colegios municipales, {{enrollment.subvencionado}} en colegios particulares subvencionadas, {{enrollment.particular}} en colegios privados y {{enrollment.adm_delegada}} en colegios de administración delegada.",
+      "performance": {
+        "byPSU": {
+          "level1": "<p>En {{year.last}}, el promedio PSU* de las escuelas particulares pagadas de {{unidad territorial}} fue {{psu.particular pagado}}, de las escuelas municipales fue  {{psu.municipal}}, de escuelas particulares subvencionadas fue  {{psu.subvencionado}}, y de escuelas de administración delegada fue {{psu.adm_delegada}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}}  ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+        }
+      }
     }
   },
   "granted in": "otorgadas en",
   "granted in {{year}}": "otorgadas en {{year}}",
+  "granted in {{year_last}}": "otorgadas en {{year_last}}",
   "health cares": "atenciones de salud",
   "houses": "viviendas",
   "in": "en",
   "in ": "en ",
-  "increased": "crecido",
   "industry_profile": {
     "economy":
       "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
@@ -859,6 +882,7 @@
   "Year": "Año",
   "Yearly growth in deaths by ": "Tasa crecimiento anual de muertes por ",
   "{{number}} visas": "{{number}} visas",
+  "{{number}} visas on {{year}}": "{{number}} visas en {{year}}",
   "{{number}} people on {{year}}": "{{number}} personas en {{year}}",
   "{{number}} on {{year}}": "{{number}} en {{year}}",
   "{{percent}} of the country - {{last_year}}":

@@ -302,27 +302,31 @@ class Home extends Component {
                   </div>
                   <div className="dataset">
                     <span className="name">
-                      {t("about.data.matricula.title")}
+                      {t("about.data.enrollment.title")}
                     </span>
                     <span className="source">
-                      {t("about.data.matricula.source")}
+                      {t("about.data.enrollment.source")}
                     </span>
                   </div>
                   <div className="dataset">
                     <span className="name">{t("about.data.psu.title")}</span>
                     <span className="source">{t("about.data.psu.source")}</span>
                   </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.aduana.title")}</span>
+                    <span className="source">
+                      {t("about.data.aduana.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">{t("about.data.muerte.title")}</span>
+                    <span className="source">
+                      {t("about.data.muerte.source")}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="r-col">
-                  <div className="dataset">
-                    <span className="name">
-                      {t("about.data.empleabilidad.title")}
-                    </span>
-                    <span className="source">
-                      {t("about.data.empleabilidad.source")}
-                    </span>
-                  </div>
                   <div className="dataset">
                     <span className="name">{t("about.data.salud.title")}</span>
                     <span className="source">
@@ -352,13 +356,40 @@ class Home extends Component {
                     </span>
                   </div>
                   <div className="dataset">
-                    <span className="name">{t("about.data.gasto.title")}</span>
+                    <span className="name">{t("about.data.iplusd.title")}</span>
                     <span className="source">
-                      {t("about.data.gasto.source")}
+                      {t("about.data.iplusd.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.performance.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.performance.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.poblacion.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.poblacion.source")}
+                    </span>
+                  </div>
+                  <div className="dataset">
+                    <span className="name">
+                      {t("about.data.internet.title")}
+                    </span>
+                    <span className="source">
+                      {t("about.data.internet.source")}
                     </span>
                   </div>
                 </div>
               </div>
+              <Link className="home-link" to="/about/data">
+                {t("See more")}
+              </Link>
             </div>
           </div>
         </div>

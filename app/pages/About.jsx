@@ -104,6 +104,13 @@ class About extends Component {
                     __html: t("about.background.text2")
                   }}
                 />
+
+                <h3>{t("about.background.subtitle3")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.background.text3")
+                  }}
+                />
               </section>
             )}
 
@@ -478,10 +485,31 @@ class About extends Component {
               <section className="section" id="team">
                 <h2>{t("about.team.title")}</h2>
 
-                <h3>{t("about.team.dw.title")}</h3>
+                <h3>{t("about.team.title1")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: t("about.team.dw.text")
+                    __html: t("about.team.text1")
+                  }}
+                />
+
+                <h3>{t("about.team.title2")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.team.text2")
+                  }}
+                />
+
+                <h3>{t("about.team.title3")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.team.text3")
+                  }}
+                />
+
+                <h3>{t("about.team.title4")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.team.text4")
                   }}
                 />
               </section>

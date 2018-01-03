@@ -7,11 +7,8 @@ import sumBy from "lodash/sumBy";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import mondrianClient, {
-  levelCut,
-  simpleCountryDatumNeed
-} from "helpers/MondrianClient";
-import { calculateYearlyGrowth, getLevelObject } from "helpers/dataUtils";
+import { simpleCountryDatumNeed } from "helpers/MondrianClient";
+import { annualized_growth } from "helpers/calculator";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
@@ -27,18 +24,8 @@ class MigrationSlide extends Section {
       options: { parents: false }
     }),
 
-    simpleCountryDatumNeed("datum_migration_origin", {
-      cube: "immigration",
-      measures: ["Number of visas"],
-      drillDowns: [["Date", "Date", "Year"]],
-      cuts: [
-        { key: "[Date].[Date].[Year]", values: [year_last - 1, year_last] }
-      ],
-      options: { parents: false }
-    }),
-
     simpleCountryDatumNeed(
-      "slide_migration_region_target",
+      "slide_migration_destination",
       {
         cube: "immigration",
         measures: ["Number of visas"],
@@ -47,42 +34,37 @@ class MigrationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
-        const zero = { "Number of visas": 0, Comuna: NaN };
+        const zero = { "Number of visas": 0, Comuna: "" };
         const sorted = groupBy(result.data.data, "Year");
+        const year = Object.keys(sorted)
+          .sort()
+          .pop();
 
-        const visas_year_last = [].concat(sorted[year_last]).filter(Boolean);
-        const visas_year_prev = []
-          .concat(sorted[year_last - 1])
-          .filter(Boolean);
+        const visas_year_last = [].concat(sorted[year]).filter(Boolean);
 
         const max_last = maxBy(visas_year_last, "Number of visas") || zero;
         const max_prev =
-          visas_year_prev.find(d => d.Comuna == max_last.Comuna) || zero;
+          []
+            .concat(sorted[year - 1])
+            .filter(Boolean)
+            .find(d => d.Comuna == max_last.Comuna) || zero;
 
-        const total_country = sumBy(visas_year_last, "Number of visas");
-        const total_region = sumBy(
-          visas_year_last.filter(d => d.Region == max_last.Region),
-          "Number of visas"
-        );
+        const growth = annualized_growth([
+          max_prev["Number of visas"],
+          max_last["Number of visas"]
+        ]);
 
         return {
+          context: max_last.Region
+            ? max_prev.Region ? "full" : "unique"
+            : "no",
+          year_prev: year - 1,
+          year_last: year,
+          number_visas: sumBy(visas_year_last, "Number of visas"),
+          behavior: growth > 0,
           region: max_last.Region,
-          municipality: max_last.Comuna,
-          mun_percent: numeral(
-            max_last["Number of visas"] / total_country,
-            locale
-          ).format("0.0%"),
-          reg_percent: numeral(
-            max_last["Number of visas"] / total_region,
-            locale
-          ).format("0.0%"),
-          mun_growth: numeral(
-            calculateYearlyGrowth([
-              max_prev["Number of visas"],
-              max_last["Number of visas"]
-            ]),
-            locale
-          ).format("0.0%")
+          comuna: max_last.Comuna,
+          growth: numeral(growth, locale).format("0.0%")
         };
       }
     )
@@ -94,17 +76,16 @@ class MigrationSlide extends Section {
 
     const {
       country,
-      datum_migration_origin,
       datum_migration_origin_female,
-      slide_migration_region_target
+      slide_migration_destination
     } = this.context.data;
 
     const txt_slide = t("country_profile.migration_slide.text", {
+      ...slide_migration_destination,
       level: country.caption,
-      year_last: year_last,
-      year_previous: year_last - 1,
-      context: slide_migration_region_target.region ? "yes" : "no",
-      destination: slide_migration_region_target
+      behavior: slide_migration_destination.behavior
+        ? t("increased")
+        : t("decreased")
     });
 
     return (
@@ -115,42 +96,45 @@ class MigrationSlide extends Section {
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
-          {datum_migration_origin &&
-            datum_migration_origin_female &&
-            slide_migration_region_target && (
+          {datum_migration_origin_female &&
+            slide_migration_destination && (
               <div className="topic-slide-data">
                 <FeaturedDatum
                   className="l-1-3"
                   icon="empleo"
-                  datum={numeral(datum_migration_origin[1], locale).format(
-                    "(0,0)"
-                  )}
+                  datum={numeral(
+                    slide_migration_destination.number_visas,
+                    locale
+                  ).format("(0,0)")}
                   title={t("Immigrant visas")}
-                  subtitle={t("granted in {{year}}", sources.immigration)}
+                  subtitle={t(
+                    "granted in {{year_last}}",
+                    slide_migration_destination
+                  )}
                 />
                 <FeaturedDatum
                   className="l-1-3"
                   icon="empleo"
                   datum={numeral(
-                    datum_migration_origin_female / datum_migration_origin[1],
+                    datum_migration_origin_female /
+                      slide_migration_destination.number_visas,
                     locale
                   ).format("(0.0 %)")}
                   title={t("Visas for Female immigrants")}
                   subtitle={t("granted in {{year}}", sources.immigration)}
                 />
-                <FeaturedDatum
-                  className="l-1-3"
-                  icon="empleo"
-                  datum={numeral(
-                    calculateYearlyGrowth(datum_migration_origin),
-                    locale
-                  ).format("0.0 %")}
-                  title={t("Growth number of visas")}
-                  subtitle={t("In period {{year_first}} - {{year_last}}", {
-                    year_first: year_last - 1,
-                    year_last
-                  })}
-                />
+                {slide_migration_destination.context == "full" && (
+                  <FeaturedDatum
+                    className="l-1-3"
+                    icon="empleo"
+                    datum={slide_migration_destination.growth}
+                    title={t("Change number of visas")}
+                    subtitle={t(
+                      "in period {{year_prev}} - {{year_last}}",
+                      slide_migration_destination
+                    )}
+                  />
+                )}
               </div>
             )}
         </div>

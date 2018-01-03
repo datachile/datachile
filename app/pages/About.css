@@ -122,6 +122,10 @@
       line-height: 1.2em;
     }
 
+    & div {
+      width: 100%;
+    }
+
     & p {
       font-family: var(--font-family-text);
       color: var(--snow);

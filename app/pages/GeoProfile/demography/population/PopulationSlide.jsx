@@ -67,7 +67,7 @@ class PopulationSlide extends Section {
               className="l-1-2"
               icon="empleo"
               datum={numeral(
-                annualized_growth(datum_population_growth),
+                annualized_growth(datum_population_growth, [2005, 2020]),
                 locale
               ).format("0.0 %")}
               title={t("Estimated Population Growth")}

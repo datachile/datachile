@@ -71,12 +71,9 @@ import PSUNEMScatter from "./education/performance/charts/PSUNEMScatter";
 import EnrollmentSlide from "./education/enrollment/EnrollmentSlide";
 import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollment";
 
-import PerformanceSlide from "./education/performance/PerformanceSlide";
-import PerformanceByType from "./education/performance/charts/PerformanceByType";
-import PerformanceBySchool from "./education/performance/charts/PerformanceBySchool";
-
 import HigherEducationSlide from "./education/higher/HigherEducationSlide";
 import PSUResultsBySex from "./education/higher/charts/PSUResultsBySex";
+import PSUBySex from "./education/higher/charts/PSUBySex";
 
 /*end Education*/
 
@@ -206,10 +203,6 @@ class GeoProfile extends Component {
     PSUNEMSlide,
     PSUNEMScatter,
 
-    PerformanceSlide,
-    PerformanceByType,
-    PerformanceBySchool,
-
     EnrollmentSlide,
     CollegeByEnrollment,
 
@@ -311,7 +304,7 @@ class GeoProfile extends Component {
       },
       {
         slug: "environment",
-        title: t("Environment")
+        title: t("Housing")
       },
       {
         slug: "demography",
@@ -677,15 +670,11 @@ class GeoProfile extends Component {
               sections={[
                 {
                   name: t("Performance"),
-                  slides: [t("PSU vs NEM"), t("By School Type")]
+                  slides: [t("PSU vs NEM"), t("PSU by sex")]
                 },
                 {
                   name: t("Enrollment"),
                   slides: [t("By School Type")]
-                },
-                {
-                  name: t("Higher Education"),
-                  slides: [t("PSU Results")]
                 }
               ]}
             >
@@ -697,12 +686,12 @@ class GeoProfile extends Component {
                 </PSUNEMSlide>
               </div>
               <div>
-                <PerformanceSlide>
+                <HigherEducationSlide>
                   <SectionColumns>
-                    <PerformanceBySchool className="lost-1-2" />
-                    <PerformanceByType className="lost-1-2" />
+                    <PSUBySex className="lost-1-2" />
+                    <PSUResultsBySex className="lost-1-2" />
                   </SectionColumns>
-                </PerformanceSlide>
+                </HigherEducationSlide>
               </div>
               <div>
                 <EnrollmentSlide>
@@ -710,13 +699,6 @@ class GeoProfile extends Component {
                     <CollegeByEnrollment className="lost-1" />
                   </SectionColumns>
                 </EnrollmentSlide>
-              </div>
-              <div>
-                <HigherEducationSlide>
-                  <SectionColumns>
-                    <PSUResultsBySex className="lost-1-2" />
-                  </SectionColumns>
-                </HigherEducationSlide>
               </div>
             </Topic>
 
@@ -734,7 +716,7 @@ class GeoProfile extends Component {
                 },
                 {
                   name: t("Connectivity"),
-                  slides: [t("Devices"), t("Internet access")]
+                  slides: [t("Internet access")]
                 }
               ]}
             >
@@ -759,17 +741,6 @@ class GeoProfile extends Component {
                     <Devices className="lost-1" />
                   </SectionColumns>
                 </DevicesSlide>
-              </div>
-              <div>
-                <InternetAccessSlide>
-                  <SectionColumns>
-                    <InternetAccessByZone className="lost-1-2" />
-                    <Placeholder
-                      className="lost-1-2"
-                      text="Internet Access Type - Blocked by issue 61"
-                    />
-                  </SectionColumns>
-                </InternetAccessSlide>
               </div>
             </Topic>
 

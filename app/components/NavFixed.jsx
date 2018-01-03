@@ -84,7 +84,10 @@ class NavFixed extends Component {
                 </a>
               </div>
             </div>
-            <Link className="datachile" to="/">
+            <Link
+              className={`datachile ${search_visible ? "close" : "open"}`}
+              to="/"
+            >
               <img src="/images/logos/logo-dc-beta-small.svg" />
             </Link>
             <span
