@@ -38,7 +38,7 @@ class TreemapStacked extends React.Component {
     );
   }
   render() {
-    const { t, path, i18n, msrName, drilldowns, custom } = this.props;
+    const { t, path, msrName, drilldowns, config } = this.props;
     const chart = this.state.chart;
 
     if (!chart) {
@@ -50,10 +50,11 @@ class TreemapStacked extends React.Component {
           <div>
             <Treemap
               config={{
-                ...custom,
+                ...config,
                 height: 500,
                 data: path,
-                groupBy: drilldowns,
+                label: d => d[drilldowns[1]],
+                groupBy: ["ID " + drilldowns[0], "ID " + drilldowns[1]],
                 sum: d => d[msrName],
                 time: "Year"
               }}
@@ -69,14 +70,15 @@ class TreemapStacked extends React.Component {
           <div>
             <StackedArea
               config={{
-                ...custom,
+                ...config,
+                label: d => d[drilldowns[0]],
                 total: false,
                 totalConfig: {
                   text: ""
                 },
                 height: 500,
                 data: path,
-                groupBy: drilldowns[0],
+                groupBy: "ID " + drilldowns[0],
                 y: d => d[msrName],
                 x: d => d["Year"],
 
