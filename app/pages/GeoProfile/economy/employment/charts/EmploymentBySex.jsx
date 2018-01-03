@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { LinePlot } from "d3plus-react";
+import { StackedArea } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -22,7 +22,7 @@ class EmploymentBySex extends Section {
       }
       return simpleGeoChartNeed(
         "path_employment_by_sex",
-        "nene",
+        "nene_quarter",
         ["Expansion factor"],
         {
           drillDowns: [
@@ -32,8 +32,7 @@ class EmploymentBySex extends Section {
               "Occupational Situation"
             ],
             ["Sex", "Sex", "Sex"],
-            ["Quaterly Reporting"]
-            /*["Date", "Date", "Month"]*/
+            ["Date", "Date", "Moving Quarter"]
           ]
         },
         geo
@@ -108,14 +107,15 @@ class EmploymentBySex extends Section {
           />
           <ExportLink path={path} />
         </h3>
-        <LinePlot
+        <StackedArea
           config={{
             height: 500,
             data: path,
-            groupBy: "variable",
-            x: "Month",
-            y: "value",
-            time: "Month",
+            groupBy: ["variable"],
+            label: d => d["variable"],
+            x: "month",
+            y: "percentage",
+            time: "month",
             timeline: false,
             scale: "time",
             xConfig: {
@@ -123,7 +123,7 @@ class EmploymentBySex extends Section {
             },
             yConfig: {
               title: t("People"),
-              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
+              tickFormat: tick => numeral(tick, locale).format("0%")
             },
             shapeConfig: {
               Line: {
@@ -134,13 +134,13 @@ class EmploymentBySex extends Section {
             tooltipConfig: {
               title: d => d["variable"],
               body: d => {
-                return d["Month"] instanceof Array
+                return d["month"] instanceof Array
                   ? ""
-                  : numeral(d["value"], locale).format("(0.[0] a)") +
+                  : numeral(d["percentage"], locale).format("0%") +
                       " " +
                       t("people") +
                       "<br/>" +
-                      d["Month"];
+                      d["quarter"];
               }
             }
           }}
@@ -149,22 +149,30 @@ class EmploymentBySex extends Section {
               return d["ID Sex"] == selectedObj.sex_id;
             });
             var melted = [];
+            var total = {};
             filtered.forEach(function(f) {
-              var a = {};
-              var month = f["Month"].split("/");
-              month =
-                month[0] +
-                "-" +
-                (parseInt(month[1]) < 10 ? "0" + month[1] : month[1]) +
-                "-01";
-              a["Month"] = month;
+              if (total[f["ID Moving Quarter"]]) {
+                total[f["ID Moving Quarter"]] += f["Expansion factor"];
+              } else {
+                total[f["ID Moving Quarter"]] = f["Expansion factor"];
+              }
+              var a = f;
+              var date = f["ID Moving Quarter"].split("_");
+              f["month"] = date[0] + "-" + date[1] + "-01";
+              f["quarter"] =
+                date[0] + " (" + date[1] + "," + date[2] + "," + date[3] + ")";
               a["variable"] = f["Occupational Situation"];
               a["value"] = f["Expansion factor"];
               melted.push(a);
             });
-            melted = melted.sort(function(a, b) {
-              return a["Month"] > b["Month"] ? 1 : -1;
-            });
+            melted = melted
+              .map(m => {
+                m["percentage"] = m["value"] / total[m["ID Moving Quarter"]];
+                return m;
+              })
+              .sort(function(a, b) {
+                return a["Month"] > b["Month"] ? 1 : -1;
+              });
             return melted;
           }}
         />
