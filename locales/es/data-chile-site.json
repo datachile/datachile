@@ -515,7 +515,7 @@
         "year": "1990 - 2015",
         "source": "Ministerio de Desarrollo Social (MDS)",
         "text":
-          "La encuesta CASEN es levantada por el Ministerio de Desarrollo Social (MDS). La encuesta CASEN tiene por objetivo entregar una “radiografía” de la situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para medir la pobreza y desigualdad.",
+          "<p>La encuesta CASEN es levantada por el Ministerio de Desarrollo Social (MDS). La encuesta CASEN tiene por objetivo entregar una “radiografía” de la situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para medir la pobreza y desigualdad.</p>",
         "use":
           "Los datos de la encuesta CASEN se encuentran en los perfiles nacional, regional y comunal, y en las dimensiones de economía, vivienda y entorno, y salud."
       },
@@ -524,7 +524,7 @@
         "year": "2010 - 2016",
         "source": "Instituto Nacional de Estadísticas (INE)",
         "text":
-          "La encuesta NENE es levantada por el Instituto Nacional de Estadísticas (INE). La encuesta NENE se realiza mensualmente y clasifica a la población en edad de trabajar (PET) (todas las personas de 15 años y más), según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT). La NENE se basa en el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.",
+          "<p>La encuesta NENE es levantada por el Instituto Nacional de Estadísticas (INE). La encuesta NENE se realiza mensualmente y clasifica a la población en edad de trabajar (PET) (todas las personas de 15 años y más), según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT). La NENE se basa en el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de economía, y en el perfil de industria en la dimensión de empleo."
       },
@@ -533,7 +533,7 @@
         "year": "2010 - 2016",
         "source": "Instituto Nacional de Estadísticas (INE)",
         "text":
-          "La encuesta NESI es levantada por el Instituto Nacional de Estadísticas como un módulo complementario de la Nueva Encuesta Nacional de Empleo (NENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la NENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.",
+          "<p>La encuesta NESI es levantada por el Instituto Nacional de Estadísticas como un módulo complementario de la Nueva Encuesta Nacional de Empleo (NENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la NENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en las dimensión de economía, y en el perfil de industria en la dimensión de ingresos."
       },
@@ -542,7 +542,7 @@
         "year": "2011 - 2016",
         "source": "Servicio Nacional de Aduanas",
         "text":
-          "Usamos registros administrativos de exportación e importación provenientes del Servicio Nacional de Aduanas. Estos registros mensuales cuentan las exportaciones a nivel de comunas, productos, y destinos. También cuentan las exportaciones a nivel de origen, producto, y comuna de destino. La data de Aduanas no representa información sobre las actividades económicas de una comuna, sino sobre las empresas con residencia fiscal en dicha comuna.  Es por eso que comunas como Las Condes exportan una gran cantidad de mineral de Cobre.",
+          "<p>Usamos registros administrativos de exportación e importación provenientes del Servicio Nacional de Aduanas. Estos registros mensuales cuentan las exportaciones a nivel de comunas, productos, y destinos. También cuentan las exportaciones a nivel de origen, producto, y comuna de destino. La data de Aduanas no representa información sobre las actividades económicas de una comuna, sino sobre las empresas con residencia fiscal en dicha comuna.  Es por eso que comunas como Las Condes exportan una gran cantidad de mineral de Cobre.</p>",
         "use":
           "Estos datos se encuentran en el perfil nacional, regional y comunal en la dimensión de economía, y en los perfiles de país (destino) y producto."
       },
@@ -551,7 +551,7 @@
         "year": "2009 - 2014",
         "source": "Ministerio de Economía (MINECON)",
         "text":
-          "Datos levantados por el Instituto Nacional de Estadísticas por encargo del Ministerio de Economía (MINECON). Esta encuesta busca recoger información de los recursos ejecutados, las fuentes de financiamiento y el personal destinado a actividades de investigación y desarrollo, durante los años de medición.",
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas por encargo del Ministerio de Economía (MINECON). Esta encuesta busca recoger información de los recursos ejecutados, las fuentes de financiamiento y el personal destinado a actividades de investigación y desarrollo, durante los años de medición.</p>",
         "use":
           "Los datos de la Encuesta sobre Gasto y Personal en I+D en el sector empresas se encuentra en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
       },
@@ -560,7 +560,7 @@
         "year": "2004 - 2015",
         "source": "Ministerio de Educación (MINEDUC)",
         "text":
-          "Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso, y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.",
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso, y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación."
       },
@@ -569,7 +569,7 @@
         "year": "2004 - 2015",
         "source": "Ministerio de Educación (MINEDUC)",
         "text":
-          "Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información acerca del rendimiento de los establecimientos medido en notas, teniendo en en cuenta el área geográfica, dependencia administrativa y región de los establecimientos educacionales.",
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información acerca del rendimiento de los establecimientos medido en notas, teniendo en en cuenta el área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación."
       },
@@ -579,7 +579,7 @@
         "source":
           "Departamento de Evaluación, Medición y Registro Educacional (DEMRE)",
         "text":
-          "Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.",
+          "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación."
       },
@@ -588,7 +588,7 @@
         "year": "2014",
         "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
         "text":
-          "Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.",
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud."
       },
@@ -597,7 +597,7 @@
         "year": "2014",
         "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
         "text":
-          "Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de mortalidad en las regiones de Chile tomando en cuenta la clasificación de enfermedades y accidentes definidas por la Organización Mundial de la Salud (OMS).",
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de mortalidad en las regiones de Chile tomando en cuenta la clasificación de enfermedades y accidentes definidas por la Organización Mundial de la Salud (OMS).</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud."
       },
@@ -606,7 +606,7 @@
         "year": "2016",
         "source": "Servicio Nacional de Discapacidad (SENADIS)",
         "text":
-          "Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.",
+          "<p>Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud."
       },
@@ -615,7 +615,7 @@
         "year": "2010 - 2014",
         "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
         "text":
-          "Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.",
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en las dimensión de salud."
       },
@@ -624,7 +624,7 @@
         "year": "2002 - 2020",
         "source": "Instituto Nacional de Estadísticas (INE)",
         "text":
-          "Estimaciones generadas por el Instituto Nacional de Estadísticas (INE) con base en el Censo del año 2002 que dan cuenta de la evolución de la población a nivel nacional, regional, comunal y de servicios de salud que agrupan a distintas comunas del país.",
+          "<p>Estimaciones generadas por el Instituto Nacional de Estadísticas (INE) con base en el Censo del año 2002 que dan cuenta de la evolución de la población a nivel nacional, regional, comunal y de servicios de salud que agrupan a distintas comunas del país.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de demografía."
       },
@@ -642,7 +642,7 @@
         "year": "2016",
         "source": "Subsecretaría de Telecomunicaciones (SUBTEL)",
         "text":
-          "Encuesta de la Subsecretaría de Telecomunicaciones (SUBTEL) que muestra a nivel regional el acceso a internet, los motivos por los cuales los hogares se conectan y cuáles son los dispositivos que emplean.",
+          "<p>Encuesta de la Subsecretaría de Telecomunicaciones (SUBTEL) que muestra a nivel regional el acceso a internet, los motivos por los cuales los hogares se conectan y cuáles son los dispositivos que emplean.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de vivienda y entorno."
       }
