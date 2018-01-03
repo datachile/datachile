@@ -4,6 +4,107 @@ import { numeral } from "helpers/formatters";
 
 import groupBy from "lodash/groupBy";
 
+// EDUCATION SECTION
+function Enrollment(data, geo, locale) {
+  const last_year = sources.education_enrollment.year;
+  if (data) {
+    const enrollment = {
+      municipal: numeral(
+        data.data
+          .filter(item => [1, 2].includes(item["ID Administration"]))
+          .reduce((all, item) => {
+            return all + item["Number of records"];
+          }, 0),
+        locale
+      ).format("0,0"),
+      subvencionado: numeral(
+        data.data
+          .filter(item => [3].includes(item["ID Administration"]))
+          .reduce((all, item) => {
+            return all + item["Number of records"];
+          }, 0),
+        locale
+      ).format("0,0"),
+      particular: numeral(
+        data.data
+          .filter(item => [4].includes(item["ID Administration"]))
+          .reduce((all, item) => {
+            return all + item["Number of records"];
+          }, 0),
+        locale
+      ).format("0,0"),
+      adm_delegada: numeral(
+        data.data
+          .filter(item => [5].includes(item["ID Administration"]))
+          .reduce((all, item) => {
+            return all + item["Number of records"];
+          }, 0),
+        locale
+      ).format("0,0")
+    };
+    return {
+      year: {
+        last: last_year
+      },
+      geo,
+      enrollment
+    };
+  } else {
+    return false;
+  }
+}
+
+function PerformanceByPSU(data, geo, locale) {
+  const last_year = sources.education_performance_new.year;
+  if (data) {
+    const psu = {
+      municipal: numeral(
+        data.data
+          .filter(item => item["ID Administration"] === 1)
+          .reduce((all, item) => {
+            return all + item["Average PSU"];
+          }, 0),
+        locale
+      ).format("0,0"),
+      subvencionado: numeral(
+        data.data
+          .filter(item => item["ID Administration"] === 2)
+          .reduce((all, item) => {
+            return all + item["Average PSU"];
+          }, 0),
+        locale
+      ).format("0,0"),
+      particular: numeral(
+        data.data
+          .filter(item => item["ID Administration"] === 3)
+          .reduce((all, item) => {
+            return all + item["Average PSU"];
+          }, 0),
+        locale
+      ).format("0,0"),
+      adm_delegada: numeral(
+        data.data
+          .filter(item => item["ID Administration"] === 4)
+          .reduce((all, item) => {
+            return all + item["Average PSU"];
+          }, 0),
+        locale
+      ).format("0,0")
+    };
+    return {
+      year: {
+        last: last_year
+      },
+      geo,
+      psu
+    };
+  } else {
+    return false;
+  }
+}
+
+// HEALTH SECTION
+
 function Disability(data, geo, locale) {
   const last_year = sources.disabilities.year;
   if (data) {
@@ -102,4 +203,4 @@ function DeathCauses(data, geo, locale) {
   }
 }
 
-export { DeathCauses, Disability };
+export { DeathCauses, Disability, Enrollment, PerformanceByPSU };

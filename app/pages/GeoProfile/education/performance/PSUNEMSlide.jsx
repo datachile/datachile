@@ -1,54 +1,40 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
-import { getGeoObject } from "helpers/dataUtils";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { trade_by_time_and_product } from "helpers/aggregations";
+import { simpleDatumNeed } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
+import { sources } from "helpers/consts";
+import { PerformanceByPSU } from "texts/GeoProfile";
+
 class PSUNEMSlide extends Section {
   static need = [
-    (params, store) => {
-      const geo = getGeoObject(params);
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = geoCut(
-            geo,
-            "Geography",
-            cube.query
-              .drilldown("Date", "Year")
-              .drilldown("Export HS", "HS2")
-              .measure("FOB US")
-              .measure("Geo Rank Across Time"),
-            store.i18n.locale
-          );
-
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          const result = trade_by_time_and_product(
-            res.data.data,
-            "FOB US",
-            geo.type != "country",
-            store.i18n.locale
-          );
-          return {
-            key: "text_data_exports_by_product",
-            data: result
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_performance_by_psu",
+        "education_performance_new",
+        ["Average PSU"],
+        {
+          drillDowns: [["Institution", "Institution", "Administration"]],
+          options: { parents: true }
+          //cuts: [
+            //`[Date].[Date].[Year].&[${sources.education_performance_new.year}]`
+          //]
+        },
+        "geo",
+        false
+      )(params, store)
   ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, t, i18n } = this.props;
+    let { geo, datum_performance_by_psu } = this.context.data;
+
+    const locale = i18n.language;
+
+    const text = PerformanceByPSU(datum_performance_by_psu, geo, locale);
+    console.log(this.context.data)
 
     return (
       <div className="topic-slide-block">
@@ -56,13 +42,14 @@ class PSUNEMSlide extends Section {
           <div className="topic-slide-title">Performance</div>
           <div className="topic-slide-text">
             <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              hendrerit tempor tellus. Donec pretium posuere tellus. Proin quam
-              nisl, tincidunt et, mattis eget, convallis nec, purus. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus. Nulla posuere. Donec vitae dolor. Nullam tristique
-              diam non turpis. Cras placerat accumsan nulla. Nullam rutrum. Nam
-              vestibulum accumsan nisl.
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t(
+                    "geo_profile.education.performance.byPSU.level1",
+                    text
+                  )
+                }}
+              />
             </p>
           </div>
           <div className="topic-slide-data">
