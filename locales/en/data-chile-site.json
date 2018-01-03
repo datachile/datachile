@@ -416,107 +416,136 @@
         "title": "Socio-Economic Characterization Survey (CASEN)",
         "year": "1990 - 2015",
         "source": "Ministry of Social Development (MDS)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the Ministry of Social Development (MDS). CASEN survey aims to deliver an \"xrays examination\" of socio-economic situation in Chilean households, being the principal data source to measure poverty and inequality, and it has been broadly used by international organizations and NGOs.</p>",
+        "use":
+          "This dataset is used in the nation,  region and comuna profiles in economy, household and health sections. "
       },
       "nene": {
         "title": "New National Employment Survey (NENE)",
         "year": "2010 - 2016",
         "source": "National Institute for Statistics (INE)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the National Institute for Statistics (INE). The New National Employment Survey (NENE) is realized on a monthly basis and classified the working age population (PET), all the people from 15 years old and more, by their occupational situation, by applying a set of worldwide accepted rules and defined by the International Labour Organization (ILO), from which is derived the approach to measure employment an unemployment and from households surveys.</p>",
+        "use":
+          "This dataset is used in the nation, region and comuna profiles in economy dimension."
       },
       "nesi": {
         "title": "New Income Supplementary Survey (NESI)",
         "year": "2010 - 2016",
         "source": "National Institute for Statistics (INE)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the National Institute for Statistics (INE). The New Income Supplementary Survey (NENE) is a complementary module for the NENE survey. It takes place on a yearly basis between October and December with the aim of characterising working incomes among occupied people in NENE survey and other sources of income, both at national and regional level.</p>",
+        "use":
+          "This dataset is used in the nation, region and comuna profiles in economy section."
       },
       "aduana": {
         "title": "Exports and Imports Registry",
         "year": "2011 - 2016",
         "source": "Chile Customs",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Administrative registry created by Chile Customs that gives account of our import origins by country and our export destinations  by comunas on monthly recordings. </p>",
+        "use":
+          "This dataset is used in the nation, region and comuna profiles in the economy section, and in the country (destination), and product profiles."
       },
       "iplusd": {
         "title": "Expenditure and Employees in R+D Survey",
         "year": "2009 - 2014",
         "source": "Ministry of Economy (MINECON)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the Ministry of Economy (MINECON) and provided by the Internal Tax Service (SII). The aim of this survey is to gather information on financial and human resources dedicated to research and development activities in private companies.</p>",
+        "use": "This dataset is used in the industry profile."
       },
       "enrollment": {
         "title": "Schools Enrollment",
         "year": "2004 - 2015",
         "source": "Ministry of Education (MINEDUC)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the Ministry of Education (MINEDUC). Provides statistical information about students on the schooling system by level, grade and sex, and also geographical area, administration system and region of the school.</p>",
+        "use":
+          "This dataset is used on the nation, region and comuna profiles in the education section. "
       },
       "performance": {
         "title": "Schools Performance",
         "year": "2004 - 2015",
         "source": "Ministry of Education (MINEDUC)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the Ministry of Education (MINEDUC). Provides statistical information about how well schools perform on grade scores. </p>",
+        "use":
+          "This dataset is used on the nation, region and comuna profiles in the education section."
       },
       "psu": {
         "title": "Universities Admission Test (PSU)",
         "year": "2004 - 2016",
         "source":
           "Educational Medition, Registry and Evaluation Department (DEMRE)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data delivered by the Ministry of Education (MINEDUC) and created by the Educational Medition, Registry and Evaluation Department (DEMRE) that contains information that provides PSU scores at school level, of schools by administration system (public or private), comunas and regions.</p>",
+        "use":
+          "This dataset is used on the nation, region and comuna profiles in the education section. "
       },
       "salud": {
         "title": "Health Access Indicators",
         "year": "2014",
         "source": "Health Statististics and Information Department (DEIS)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data published by the Health Statistics and Information Department (DEIS) with the aim of providing a general picture of the overall health situation in the country that gives information on the general medical, specialized medical and odontological attention.</p>",
+        "use":
+          "This dataset is used on the nation, region and comuna profiles in the health section. "
       },
       "muerte": {
         "title": "Death Causes",
         "year": "2014",
         "source": "Health Statististics and Information Department (DEIS)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data published by the Health Statistics and Information Department (DEIS) with the aim of providing a general picture of the overall cause of mortality in the country considering World Health Organization (WHO) diseases and accidents classification.</p>",
+        "use":
+          "This dataset is used on the nation, region and comuna profiles in the health section."
       },
       "discapacidad": {
-        "title": "DIsability National Survey (ENDISC)",
+        "title": "Disability National Survey (ENDISC)",
         "year": "2016",
         "source": "Disability National Service (SENADIS)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the Disability National Service (SENADIS). This study allows us to know the situation of people with different types of disabilities in Chile and their relationship with respect to the general population, their environment, their daily activities and their social participation among other variables.</p>",
+        "use":
+          "This dataset is used on the nation, region and comuna profiles in the health section. "
       },
       "vida": {
         "title": "Life Expectancy",
         "year": "2010 - 2014",
         "source": "Health Statististics and Information Department (DEIS)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the Health Statistics and Information Department (DEIS). This includes data on life expectancy at birth, which is an estimation of the average number of years that a group of people will be born in the same year, under constant mortality conditions in the evaluated country or region. This indicator allows us to do comparisons between countries across time.</p>",
+        "use":
+          "This dataset is used on the nation, region and comuna profiles in the health section. "
       },
       "poblacion": {
         "title": "Population Projects",
         "year": "2002 - 2020",
         "source": "National Institute for Statistics (INE)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the National Institute for Statistics (INE) based on 2002 Census that gives account for the general population at nation, region and comuna level and also health services that aggregate different comunas.</p>",
+        "use":
+          "This dataset is used on the nation, region and comuna profiles. "
       },
       "migracion": {
         "title": "Migration Statistics",
         "year": "2005 - 2016",
         "source": "Immigration Department",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Data created by the Immigration Department: the organization in charge of giving residency permits to the alien population in the country. This registry considers the migrant population in normal situations. For example, in three years the same individual could have obtained three visas or two visas and and permanent residency. In that case, the registry will show the three visas or the two visas and the permanent residency without considering that those documents refer to the same person.</p>",
+        "use":
+          "This dataset is used in the nation, region, and comuna profiles in the demography section."
       },
       "internet": {
         "title": "Internet Use Survey",
         "year": "2016",
         "source": "Telecommunications Office (SUBTEL)",
-        "text": "",
-        "use": ""
+        "text":
+          "<p>Survey distributed by the Telecommunications Office and created by IPSOS that attempts to show internet access and detailed reasons of why households are connected to the internet at national and regional levels.</p>",
+        "use":
+          "This dataset is used in the nation, region, and comuna profiles, in the housing section. "
       }
     },
     "team": {
