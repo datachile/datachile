@@ -54,8 +54,68 @@ function Enrollment(data, geo, locale) {
   }
 }
 
-function PerformanceByPSU(data, geo, locale) {
+function PerformanceByHighSchool(data, locale) {
+  if (data) {
+    let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
+    rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
+
+    let output = data.data.map(item => item["Institution"]);
+    output = output.length > 1 ? output.join(", ") : output;
+
+    if (output.length > 1) {
+      const lastComma = output.lastIndexOf(",");
+      output =
+        output.substring(0, lastComma) + " y" + output.substring(lastComma + 1);
+    }
+
+    return {
+      text_joined_schools: output
+    };
+  } else {
+    return false;
+  }
+}
+
+function PerformanceByPSUComuna(data, locale) {
+  if (data) {
+    let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
+    return {
+      location: {
+        first: {
+          caption: rank[0]["Comuna"],
+          prom: numeral(rank[0]["Average PSU"], locale).format("0.0")
+        },
+        second: {
+          caption: rank[1]["Comuna"],
+          prom: numeral(rank[1]["Average PSU"], locale).format("0.0")
+        },
+        third: {
+          caption: rank[2]["Comuna"],
+          prom: numeral(rank[2]["Average PSU"], locale).format("0.0")
+        }
+      }
+    };
+  } else {
+    return false;
+  }
+}
+
+function PerformanceByPSU(data, geo, locale, t) {
   const last_year = sources.education_performance_new.year;
+  const lang = {
+    en: {
+      1: "Municipales",
+      2: "Municipales",
+      3: "Municipales",
+      4: "Municipales"
+    },
+    es: {
+      1: "Municipales",
+      2: "Particulares Subvencionadas",
+      3: "Particulares Pagadas",
+      4: "de Administración Delegada"
+    }
+  };
   if (data) {
     const psu = {
       municipal: numeral(
@@ -91,12 +151,35 @@ function PerformanceByPSU(data, geo, locale) {
         locale
       ).format("0,0")
     };
+
+    let output = data.data.map(item => {
+      return (
+        "de escuelas" +
+        " " +
+        lang[locale][item["ID Administration"]] +
+        " " +
+        t("fue") +
+        " " +
+        numeral(item["Average PSU"], locale).format("0") +
+        " " +
+        "puntos"
+      );
+    });
+    output = output.length > 1 ? output.join(", ") : output;
+
+    if (output.length > 1) {
+      const lastComma = output.lastIndexOf(",");
+      output =
+        output.substring(0, lastComma) + " y" + output.substring(lastComma + 1);
+    }
+
     return {
       year: {
         last: last_year
       },
       geo,
-      psu
+      psu,
+      text_joined: output
     };
   } else {
     return false;
@@ -203,4 +286,11 @@ function DeathCauses(data, geo, locale) {
   }
 }
 
-export { DeathCauses, Disability, Enrollment, PerformanceByPSU };
+export {
+  DeathCauses,
+  Disability,
+  Enrollment,
+  PerformanceByPSU,
+  PerformanceByPSUComuna,
+  PerformanceByHighSchool
+};

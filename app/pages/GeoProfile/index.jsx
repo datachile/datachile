@@ -686,12 +686,12 @@ class GeoProfile extends Component {
                 </PSUNEMSlide>
               </div>
               <div>
-                <HigherEducationSlide>
+                <PSUNEMSlide>
                   <SectionColumns>
                     <PSUBySex className="lost-1-2" />
                     <PSUResultsBySex className="lost-1-2" />
                   </SectionColumns>
-                </HigherEducationSlide>
+                </PSUNEMSlide>
               </div>
               <div>
                 <EnrollmentSlide>

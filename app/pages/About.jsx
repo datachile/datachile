@@ -341,7 +341,7 @@ class About extends Component {
                 <div
                   className="use"
                   dangerouslySetInnerHTML={{
-                    __html: t("about.data.enrollment")
+                    __html: t("about.data.enrollment.use")
                   }}
                 />
 
@@ -357,7 +357,7 @@ class About extends Component {
                 <div
                   className="use"
                   dangerouslySetInnerHTML={{
-                    __html: t("about.data.performance")
+                    __html: t("about.data.performance.use")
                   }}
                 />
 

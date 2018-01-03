@@ -15,10 +15,10 @@ class ProductSpace extends Section {
   static need = [
     simpleGeoChartNeed(
       "path_exports_last_year",
-      "exports_hs1992",
+      "exports",
       ["FOB US", "Exports RCA"],
       {
-        drillDowns: [["Export HS", "HS4"]],
+        drillDowns: [["Export HS", "HS2"]],
         options: { parents: true, sparse: false, nonempty: false },
         cuts: [`[Date].[Date].[Year].&[${sources.exports.year}]`]
       }
@@ -37,48 +37,50 @@ class ProductSpace extends Section {
           <ExportLink path={path} />
         </h3>
         <Network
-          config={{
-            height: 500,
-            links: "/json/hs92_4_links_circular_spring_d3p2.json",
-            nodes: "/json/hs92_4_nodes_circular_spring_d3p2.json",
-            data: path,
-            label: d => d.HS2,
-            size: "Exports RCA",
-            sizeMin: 3,
-            sizeMax: 10,
-            zoomScroll: false,
-            shapeConfig: {
-              Path: {
-                stroke: "#555"
+            config={{
+              height: 500,
+              links: "/json/pspace_hs2012_links_d3p2.json",
+              nodes: "/json/pspace_hs2012_nodes_d3p2.json",
+              data: path,
+              label: d => d.HS2,
+              size: "Exports RCA",
+              sizeMin: 3,
+              sizeMax: 10,
+              zoomScroll: false,
+              shapeConfig: {
+                Path: {
+                  stroke: "#555"
+                },
+                fill: d =>
+                  d["Exports RCA"] < 1
+                       ? "#aaaaaa"
+                       : ordinalColorScale("hs0" + d["ID HS0"]),
+                activeStyle: { stroke: "#ffffff" }
               },
-              fill: d =>
-                d["Exports RCA"] < 1
-                  ? "#aaaaaa"
-                  : ordinalColorScale("hs0" + d["ID HS0"]),
-              activeStyle: { stroke: "#ffffff" }
-            },
-            tooltipConfig: {
-              body: d => {
-                var body = `<table class='tooltip-table'>
+              tooltipConfig: {
+                body: d => {
+                  var body = `<table class='tooltip-table'>
                            <tr><td class='title'>${t("Exports USD")}</td></tr>
                            <td class='data'>${numeral(
                              d["FOB US"],
                              locale
                            ).format("(USD 0 a)")}</td></tr>
                          </table>`;
-                return body;
-              }
-            },
-            legend: false
-          }}
-          dataFormat={data =>
-            data.data.map(d => ({
-              id: d["ID HS2"],
-              "Exports RCA":
-                d["Exports RCA"] === null ? 0 : d["Exports RCA"] === null,
-              ...d
-            }))
-          }
+                  return body;
+                }
+              },
+              legend: false
+            }}
+            dataFormat={data => (
+                data.data.map(d => (
+                  {
+                    ...d,
+                    id: d["ID HS2"].slice(2),
+                    "Exports RCA": d["Exports RCA"] ? d["Exports RCA"] : 0,
+                    "FOB US": d["FOB US"] ? d["FOB US"] : 0
+                  }
+                ))
+              )}
         />
         <SourceNote cube="tax_data" />
       </div>
