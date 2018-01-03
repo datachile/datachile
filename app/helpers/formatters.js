@@ -59,7 +59,7 @@ export function getImageFromMember(prefix, id1, id2 = false) {
       break;
     }
     case "industries": {
-      file = "/industry/" + id1 + ".jpg";
+      file = "/industry/" + id1.toLowerCase() + ".jpg";
       break;
     }
     case "geo": {
