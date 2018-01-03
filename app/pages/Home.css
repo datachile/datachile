@@ -14,8 +14,9 @@
   & .home-link {
     color: var(--snow);
     text-align: center;
-    display: block;
+    margin: 0 auto;
     width: 100%;
+    text-transform: uppercase;
   }
 
   & .splash {
