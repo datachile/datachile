@@ -18,14 +18,17 @@ class EmploymentSlide extends Section {
       }
       return simpleGeoDatumNeed(
         "datum_employment_occupied",
-        "nene",
+        "nene_quarter",
         ["Expansion factor"],
         {
-          drillDowns: [["Date", "Date", "Year"], ["Sex", "Sex", "Sex"]],
+          drillDowns: [
+            ["Date", "Date", "Moving Quarter"],
+            ["Sex", "Sex", "Sex"]
+          ],
           options: { parents: false },
           cuts: [
             "[ISCED].[ISCED].[ISCED].&[6]",
-            `[Date].[Date].[Year].&[${sources.nene.year}]`,
+            `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`,
             "[Occupational Situation].[Occupational Situation].[Occupational Situation].&[1]"
           ]
         },
@@ -41,14 +44,14 @@ class EmploymentSlide extends Section {
       }
       return simpleGeoDatumNeed(
         "datum_employment_unemployment",
-        "nene",
+        "nene_quarter",
         ["Expansion factor"],
         {
-          drillDowns: [["Date", "Date", "Year"]],
+          drillDowns: [["Date", "Date", "Moving Quarter"]],
           options: { parents: false },
           cuts: [
             "[Occupational Situation].[Occupational Situation].[Occupational Situation].&[2]",
-            `[Date].[Date].[Year].&[${sources.nene.year}]`
+            `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`
           ]
         },
         false,
@@ -68,43 +71,62 @@ class EmploymentSlide extends Section {
 
     const locale = i18n.language;
 
+    const ancestor = geo.depth > 1 ? geo.ancestors[0].caption : geo.caption;
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Employment")}</div>
-          <div className="topic-slide-text">text</div>
-          <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={numeral(
-                datum_employment_unemployment[0]["Expansion factor"],
-                locale
-              ).format("0,0")}
-              title={t("Unemployed people")}
-              subtitle={sources.nene.year + t(" in ") + geo.caption}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={numeral(
-                datum_employment_occupied[0]["Expansion factor"],
-                locale
-              ).format("0,0")}
-              title={t("Employed Women with Technical Education")}
-              subtitle={sources.nene.year + t(" in ") + geo.caption}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum={numeral(
-                datum_employment_occupied[1]["Expansion factor"],
-                locale
-              ).format("0,0")}
-              title={t("Employed Men with Technical Education")}
-              subtitle={sources.nene.year + t(" in ") + geo.caption}
-            />
+          <div className="topic-slide-title">
+            {t("Employment")}
+            {geo.depth > 1 ? (
+              <div className="topic-slide-subtitle">
+                <p>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("geo_profile.warning", geo.ancestors[0])
+                    }}
+                  />
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
+          <div className="topic-slide-text">text</div>
+          {datum_employment_unemployment && (
+            <div className="topic-slide-data">
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={numeral(
+                  datum_employment_unemployment[0]["Expansion factor"],
+                  locale
+                ).format("0.0 a")}
+                title={t("Unemployed people")}
+                subtitle={sources.nene.year + t(" in ") + ancestor}
+              />
+              <FeaturedDatum
+                className="l-1-3"
+                icon="empleo"
+                datum={numeral(
+                  datum_employment_occupied[0]["Expansion factor"],
+                  locale
+                ).format("0.0 a")}
+                title={t("Employed Women with Technical Education")}
+                subtitle={sources.nene.year + t(" in ") + ancestor}
+              />
+              <FeaturedDatum
+                className="l-1-3"
+                icon="empleo"
+                datum={numeral(
+                  datum_employment_occupied[1]["Expansion factor"],
+                  locale
+                ).format("0.0 a")}
+                title={t("Employed Men with Technical Education")}
+                subtitle={sources.nene.year + t(" in ") + ancestor}
+              />
+            </div>
+          )}
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

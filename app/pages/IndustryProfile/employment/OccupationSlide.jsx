@@ -14,31 +14,33 @@ class OccupationSlide extends Section {
   static need = [
     simpleIndustryDatumNeed(
       "datum_industry_occupation_growth",
-      "nene",
+      "nene_quarter",
       ["Expansion factor"],
       {
-        drillDowns: [["Quaterly Reporting"]],
+        drillDowns: [["Date", "Date", "Moving Quarter"]],
         options: { parents: false }
       }
     ),
     simpleIndustryDatumNeed(
       "datum_industry_occupation_total",
-      "nene",
+      "nene_quarter",
       ["Expansion factor"],
       {
-        drillDowns: [["Date", "Date", "Year"]],
-        cuts: [`[Date].[Date].[Year].&[${sources.nene.last_year}]`],
+        drillDowns: [["Date", "Date", "Moving Quarter"]],
+        cuts: [
+          `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`
+        ],
         options: { parents: false }
       }
     ),
     simpleIndustryDatumNeed(
       "datum_industry_occupation_female_total",
-      "nene",
+      "nene_quarter",
       ["Expansion factor"],
       {
-        drillDowns: [["Date", "Date", "Year"]],
+        drillDowns: [["Date", "Date", "Moving Quarter"]],
         cuts: [
-          `[Date].[Date].[Year].&[${sources.nene.last_year}]`,
+          `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`,
           "[Sex].[Sex].[Sex].&[1]"
         ],
         options: { parents: false }
@@ -55,18 +57,17 @@ class OccupationSlide extends Section {
       industry
     } = this.context.data;
 
-    // Remove 2017 to results
-    datum_industry_occupation_growth.pop();
-
     const industryName =
       industry.depth === 1 ? industry.caption : industry.parent.caption;
 
     const locale = i18n.language;
 
-    const rate = numeral(
-      annualized_growth(datum_industry_occupation_growth),
-      locale
-    ).format("0.0 %");
+    const rate = datum_industry_occupation_growth
+      ? numeral(
+          annualized_growth(datum_industry_occupation_growth),
+          locale
+        ).format("0.0 %")
+      : "";
 
     const text_slide = {
       increased_or_decreased: rate > 0 ? t("increased") : t("decreased"),
@@ -77,15 +78,17 @@ class OccupationSlide extends Section {
         last: sources.nene.last_year
       },
       values: {
-        first: numeral(datum_industry_occupation_growth[0], locale).format(
-          "0,0a"
-        ),
-        last: numeral(
-          datum_industry_occupation_growth[
-            datum_industry_occupation_growth.length - 1
-          ],
-          locale
-        ).format("0,0a")
+        first: datum_industry_occupation_growth
+          ? numeral(datum_industry_occupation_growth[0], locale).format("0,0a")
+          : "",
+        last: datum_industry_occupation_growth
+          ? numeral(
+              datum_industry_occupation_growth[
+                datum_industry_occupation_growth.length - 1
+              ],
+              locale
+            ).format("0,0a")
+          : ""
       }
     };
 
