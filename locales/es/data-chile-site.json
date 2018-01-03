@@ -155,9 +155,12 @@
   "Growth Labour": "Crecimiento de empleos",
   "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
   "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
+  "Change number of visas": "Cambio número de visas",
   "Growth number of visas": "Crecimiento número de visas",
-  "Growth number of visas for {{current}} immigrants":
-    "Crecimiento número de visas para inmigrantes de sexo {{current}}",
+  "Growth number of visas for {{current_max}} immigrants":
+    "Crecimiento número de visas para inmigrantes de sexo {{current_max}}",
+  "Change number of visas for {{current_max}} immigrants":
+    "Cambio número de visas para inmigrantes de sexo {{current_max}}",
   "Health": "Salud",
   "Politics": "Política",
 
@@ -205,9 +208,9 @@
   "Imports from Chile": "Importaciones desde Chile",
   "In": "En",
   "In period": "En el período",
-  "In period {{year_first}} - {{year_last}}":
+  "in period {{year_first}} - {{year_last}}":
     "En el período {{year_first}} - {{year_last}}",
-  "In period {{year_prev}} - {{year_last}}":
+  "in period {{year_prev}} - {{year_last}}":
     "En el período {{year_prev}} - {{year_last}}",
   "Income": "Ingreso",
   "Income By Age": "Ingreso por Edad",
@@ -316,8 +319,8 @@
   "NEM Performance By Administration": "NEM Performance By Administration",
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of visas": "Cantidad de Visas",
-  "Number of visas granted in {{year}}":
-    "Número de visas otorgadas en {{year}}",
+  "Number of visas granted in {{year_last}}":
+    "Número de visas otorgadas en {{year_last}}",
   "Number of visas granted to students":
     "Número de visas otorgadas a estudiantes",
   "Number of deaths": "Cantidad de muertes",
@@ -609,23 +612,35 @@
   "careers": "carreras",
   "country_profile": {
     "migration_slide": {
+      "destination":
+        "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a {{region}}, principalmente a la comuna de {{comuna}}.</p>",
+      "growth":
+        "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una taza anual del {{growth}}.</p>",
+      "text": "$t(country_profile.migration_slide.destination)",
       "text_no":
-        "<p>Durante {{year_last}}, no hay registros de visas otorgadas a inmigrantes desde {{level}}.",
-      "text":
-        "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a {{region}}, principalmente a la comuna de {{comuna}}.</p><p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} {{behavior}} a una taza anual del {{growth}}.</p>"
+        "<p>Durante {{year_last}}, no hay registros de visas otorgadas a inmigrantes desde {{level}}.</p>",
+      "text_full":
+        "$t(country_profile.migration_slide.destination)$t(country_profile.migration_slide.growth)"
     },
     "migration_details_slide": {
       "sex": "$t(country_profile.migration_details_slide.sex_remained)",
+      "sex_none":
+        "<p>No hay registros de inmigrantes desde {{level}} durante {{year_last}}.</p>",
+      "sex_only":
+        "<p>{{year_last}} es el único año en el que hay registro de inmigraciones desde {{level}}. La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}.</p>",
       "sex_changed":
-        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{sex.current}}. Esto ha sido la tendencia desde el año {{year_prev}}, donde la mayoría era de sexo {{sex.before}}.</p>",
+        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}, donde la mayoría era de sexo {{previous_max}}.</p>",
       "sex_remained":
-        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{sex.current}}. Esto ha sido la tendencia desde el año {{year_prev}}.</p>",
+        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}.</p>",
       "age":
-        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{agerange.first}}, seguidos de gente en el rango {{agerange.second}}. Los primeros representan un {{agerange.first_percent}} del total en {{year_last}}, lo cual se traduce en un crecimiento de {{agerange.first_growth}} respecto al año {{year_prev}}.</p>"
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}, seguidos de gente en el rango {{second}}. Los primeros representan un {{first_percent}} del total en {{year_last}}, lo cual se traduce en un cambio de {{first_growth}} respecto al año {{year_prev}}.</p>",
+      "age_unique":
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}.</p>",
+      "age_none": ""
     },
     "migration_education_slide": {
       "text":
-        "<p>El {{college.percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Superior, mientras que el {{high.percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con educación superior ha {{college.behavior}} un {{college.growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{percent_noop}} se declara sin educación formal, y el {{percent_unknown}} no indica su nivel educacional.</p>"
+        "<p>El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Superior, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con educación superior ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.</p>"
     },
     "migration_activity_slide": {
       "visa_type":
@@ -640,7 +655,7 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>El {{year}} Chile exportó un total de {{total_exports}} a {{level}}, e importó un total de {{total_imports}}, resultando en una balanza comercial {{behavior}} de {{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <em>{{main_import.name}}</em>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <em>{{main_export.name}}</em>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
+        "<p>El {{year}} Chile exportó un total de US{{total_exports}} a {{level}}, e importó un total de US{{total_imports}}, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <em>{{main_import.name}}</em>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <em>{{main_export.name}}</em>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",

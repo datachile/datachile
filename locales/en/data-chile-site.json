@@ -114,9 +114,6 @@
   "Growth Labour": "Growth Labour",
   "Growth R&D Spending in ": "Growth R&D Spending in ",
   "Growth affiliates in ISAPRES": "Growth affiliates in ISAPRES",
-  "Growth number of visas": "Growth number of visas",
-  "Growth number of visas for {{current}} immigrants":
-    "Growth number of visas for {{current}} immigrants",
   "Health": "Health",
   "Health Center": "Health Center",
   "Health Insurance": "Health Insurance",
@@ -138,8 +135,8 @@
   "Imports from Chile": "Imports from Chile",
   "In": "In",
   "In period": "In period",
-  "In period {{year_first}} - {{year_last}}":
-    "In period {{year_first}} - {{year_last}}",
+  "in period {{year_first}} - {{year_last}}":
+    "in period {{year_first}} - {{year_last}}",
   "Income": "Income",
   "Income By Age": "Income By Age",
   "Income By Sex": "Income By Sex",
@@ -519,23 +516,35 @@
   "careers": "careers",
   "country_profile": {
     "migration_slide": {
+      "destination":
+        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants de estos arrived to {{region}}, mainly to the comuna of {{comuna}}.</p>",
+      "growth":
+        "<p>Between {{year_prev}} and {{year_last}}, the number of visas granted to immigrants coming from {{level}} has {{behavior}} at a annual rate of {{growth}}.</p>",
+      "text": "$t(country_profile.migration_slide.destination)",
       "text_no":
-        "<p>During {{year_last}}, there are no records of visas granted to immigrants coming from {{level}}.",
-      "text":
-        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants de estos arrived to {{region}}, mainly to the comuna of {{comuna}}.</p><p>Between {{year_prev}} and {{year_last}}, the number of visas granted to immigrants coming from {{level}} {{behavior}} at a annual rate of {{growth}}.</p>"
+        "<p>During {{year_last}}, there are no records of visas granted to immigrants coming from {{level}}.</p>",
+      "text_full":
+        "$t(country_profile.migration_slide.destination)$t(country_profile.migration_slide.growth)"
     },
     "migration_details_slide": {
       "sex": "$t(country_profile.migration_details_slide.sex_remained)",
+      "sex_none":
+        "<p>There are no records of immigrants from {{level}} on {{year_last}}.</p>",
+      "sex_only":
+        "<p>{{year_last}} is the only year there's an official record about immigrants from {{level}}. Most of the immigrants coming from {{level}} are {{current_max}}.</p>",
       "sex_changed":
-        "<p>Most of the immigrants coming from {{level}} are {{sex.current}}. This has been a tendency since {{year_prev}}, when most people were {{sex.before}}.</p>",
+        "<p>Most of the immigrants coming from {{level}} are {{current_max}}. This has been a tendency since {{year_prev}}, when most people were {{previous_max}}.</p>",
       "sex_remained":
-        "<p>Most of the immigrants coming from {{level}} are {{sex.current}}. This has been a tendency since {{year_prev}}.</p>",
+        "<p>Most of the immigrants coming from {{level}} are {{current_max}}. This has been a tendency since {{year_prev}}.</p>",
       "age":
-        "<p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_last}}, which translates into a growth of {{agerange.first_growth}} since {{year_prev}}.</p>"
+        "<p>Most of the immigrants coming from {{level}} are people ages {{first}}, followed by ages {{second}}. The former represent a {{first_percent}} of the total in {{year_last}}, which translates into a change of {{first_growth}} since {{year_prev}}.</p>",
+      "age_unique":
+        "<p>Most of the immigrants coming from {{level}} are people ages {{first}}.</p>",
+      "age_none": ""
     },
     "migration_education_slide": {
       "text":
-        "<p>{{college.percent}} of the visas granted to immigrants from {{level}} have a technical or university degree, while {{high.percent}} have an academic degree equivalent to chilean High School. The number of visas granted to immigrants coming from {{level}} with higher education has {{college.behavior}} {{college.growth}} between {{year_prev}} and {{year_last}}.</p><p>By contrast, {{percent_noop}} declare not having any formal education, and {{percent_unknown}} don't disclose their education level.</p>"
+        "<p>{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School. The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.</p><p>By contrast, {{none_percent}} declare not having any formal education, and {{unknown_percent}} don't disclose their education level.</p>"
     },
     "migration_activity_slide": {
       "visa_type":
@@ -550,7 +559,7 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>During {{year}}, Chile exported a total of {{total_exports}} to {{level}}, and imported a total of {{total_imports}}, resulting in a {{behavior}} trade balance of {{total_balance}}.</p><p>The main product Chile imported from {{level}} is <em>{{main_import.name}}</em>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <em>{{main_export.name}}</em>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
+        "<p>During {{year}}, Chile exported a total of US{{total_exports}} to {{level}}, and imported a total of US{{total_imports}}, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <em>{{main_import.name}}</em>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <em>{{main_export.name}}</em>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",

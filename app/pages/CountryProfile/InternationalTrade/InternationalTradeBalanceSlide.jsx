@@ -143,7 +143,7 @@ class InternationalTradeBalanceSlide extends Section {
               icon="product-import"
               datum={numeral(growth_import, locale).format("0.0%")}
               title={t("Change imports")}
-              subtitle={t("In period {{year_first}} - {{year_last}}", {
+              subtitle={t("in period {{year_first}} - {{year_last}}", {
                 year_first: sources.imports.min_year,
                 year_last: sources.imports.year
               })}
@@ -153,7 +153,7 @@ class InternationalTradeBalanceSlide extends Section {
               icon="product-export"
               datum={numeral(growth_export, locale).format("0.0%")}
               title={t("Change exports")}
-              subtitle={t("In period {{year_first}} - {{year_last}}", {
+              subtitle={t("in period {{year_first}} - {{year_last}}", {
                 year_first: sources.exports.min_year,
                 year_last: sources.exports.year
               })}

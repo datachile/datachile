@@ -36,19 +36,18 @@ class MigrationSlide extends Section {
       (result, locale) => {
         const zero = { "Number of visas": 0, Comuna: "" };
         const sorted = groupBy(result.data.data, "Year");
-        const year = parseInt(
-          Object.keys(sorted)
-            .sort()
-            .pop()
-        );
+        const year = Object.keys(sorted)
+          .sort()
+          .pop();
 
         const visas_year_last = [].concat(sorted[year]).filter(Boolean);
-        const visas_year_prev = [].concat(sorted[year - 1]).filter(Boolean);
 
-        const total_last = sumBy(visas_year_last, "Number of visas") || zero;
         const max_last = maxBy(visas_year_last, "Number of visas") || zero;
         const max_prev =
-          visas_year_prev.find(d => d.Comuna == max_last.Comuna) || zero;
+          []
+            .concat(sorted[year - 1])
+            .filter(Boolean)
+            .find(d => d.Comuna == max_last.Comuna) || zero;
 
         const growth = annualized_growth([
           max_prev["Number of visas"],
@@ -56,10 +55,12 @@ class MigrationSlide extends Section {
         ]);
 
         return {
-          context: max_last.Region ? "yes" : "no",
+          context: max_last.Region
+            ? max_prev.Region ? "full" : "unique"
+            : "no",
           year_prev: year - 1,
           year_last: year,
-          number_visas: total_last["Number of visas"],
+          number_visas: sumBy(visas_year_last, "Number of visas"),
           behavior: growth > 0,
           region: max_last.Region,
           comuna: max_last.Comuna,
@@ -122,16 +123,18 @@ class MigrationSlide extends Section {
                   title={t("Visas for Female immigrants")}
                   subtitle={t("granted in {{year}}", sources.immigration)}
                 />
-                <FeaturedDatum
-                  className="l-1-3"
-                  icon="empleo"
-                  datum={slide_migration_destination.growth}
-                  title={t("Growth number of visas")}
-                  subtitle={t(
-                    "In period {{year_prev}} - {{year_last}}",
-                    slide_migration_destination
-                  )}
-                />
+                {slide_migration_destination.context == "full" && (
+                  <FeaturedDatum
+                    className="l-1-3"
+                    icon="empleo"
+                    datum={slide_migration_destination.growth}
+                    title={t("Change number of visas")}
+                    subtitle={t(
+                      "in period {{year_prev}} - {{year_last}}",
+                      slide_migration_destination
+                    )}
+                  />
+                )}
               </div>
             )}
         </div>
