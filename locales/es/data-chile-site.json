@@ -779,7 +779,8 @@
       "enrollment": "En {{year.last}} hubo {{enrollment.total}} estudiantes matriculados en establecimientos educacionales de {{geo.caption}}. De éstos, {{enrollment.municipal}} estaban matriculados en colegios municipales, {{enrollment.subvencionado}} en colegios particulares subvencionadas, {{enrollment.particular}} en colegios privados y {{enrollment.adm_delegada}} en colegios de administración delegada.",
       "performance": {
         "byPSU": {
-          "level1": "<p>En {{year.last}}, el promedio PSU* de las escuelas particulares pagadas de {{unidad territorial}} fue {{psu.particular pagado}}, de las escuelas municipales fue  {{psu.municipal}}, de escuelas particulares subvencionadas fue  {{psu.subvencionado}}, y de escuelas de administración delegada fue {{psu.adm_delegada}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}}  ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+          "level1": "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}}  ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+          "level2": "<p>Las escuelas de {{geo.caption}} con mejor desempeño en PSU en {{year.last}} son {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
         }
       }
     }
@@ -791,6 +792,7 @@
   "houses": "viviendas",
   "in": "en",
   "in ": "en ",
+  "In last year of high school in ": "En último año de enseñanza media durante ",
   "industry_profile": {
     "economy":
       "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
