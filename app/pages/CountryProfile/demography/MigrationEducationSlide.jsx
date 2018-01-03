@@ -27,59 +27,48 @@ class MigrationEducationSlide extends Section {
       },
       (result, locale) => {
         const zero = { "Number of visas": 0 };
-        const data = result.data.data.filter(d => d.Year == year_last);
-        const total = sumBy(data, "Number of visas");
+        const data_last = result.data.data.filter(d => d.Year == year_last);
+        const total = sumBy(data_last, "Number of visas");
+        const year_prev = year_last - 1;
+        const data_prev = result.data.data.filter(d => d.Year == year_prev);
 
         const categories = {
-          unknown: data.find(d => d["ID Education"] == 1) || zero,
-          high: data.find(d => d["ID Education"] == 4) || zero,
-          college:
-            data.find(d => d["ID Education"] == 2 || d["ID Education"] == 6) ||
-            zero,
-          none: data.find(d => d["ID Education"] == 8) || zero
+          high: data_last.find(d => d["ID Education"] == 2) || zero,
+          technical: data_last.find(d => d["ID Education"] == 4) || zero,
+          higher: data_last.find(d => d["ID Education"] == 5) || zero,
+          none: data_last.find(d => d["ID Education"] == 6) || zero,
+          unknown: data_last.find(d => d["ID Education"] > 6) || zero
         };
+
         const previous = {
-          high:
-            result.data.data.find(
-              d => d.Year == year_last - 1 && d["ID Education"] == 4
-            ) || zero,
-          college:
-            result.data.data.find(
-              d =>
-                d.Year == year_last - 1 &&
-                (d["ID Education"] == 2 || d["ID Education"] == 6)
-            ) || zero
+          high: data_prev.find(d => d["ID Education"] == 2) || zero,
+          technical: data_prev.find(d => d["ID Education"] == 4) || zero,
+          higher: data_prev.find(d => d["ID Education"] == 5) || zero,
+          none: data_prev.find(d => d["ID Education"] == 6) || zero,
+          unknown: data_prev.find(d => d["ID Education"] > 6) || zero
         };
+
+        const college_prev =
+          previous.technical["Number of visas"] +
+          previous.higher["Number of visas"];
+        const college_last =
+          categories.technical["Number of visas"] +
+          categories.higher["Number of visas"];
+        const growth_college = annualized_growth([college_prev, college_last]);
 
         return {
           year_last,
-          year_prev: year_last - 1,
-          year_first: year_last - 1,
+          year_prev,
           high: {
             percent: numeral(
               categories.high["Number of visas"] / total,
               locale
-            ).format("0.0%"),
-            growth: numeral(
-              annualized_growth([
-                previous.high["Number of visas"],
-                categories.high["Number of visas"]
-              ]),
-              locale
             ).format("0.0%")
           },
           college: {
-            percent: numeral(
-              categories.college["Number of visas"] / total,
-              locale
-            ).format("0.0%"),
-            growth: numeral(
-              annualized_growth([
-                previous.college["Number of visas"],
-                categories.college["Number of visas"]
-              ]),
-              locale
-            ).format("0.0%")
+            behavior: growth_college > 0,
+            growth: numeral(Math.abs(growth_college), locale).format("0.0%"),
+            percent: numeral(college_last / total, locale).format("0.0%")
           },
           percent_noop: numeral(
             categories.none["Number of visas"] / total,
@@ -131,10 +120,16 @@ class MigrationEducationSlide extends Section {
       datum_migration_education
     } = this.context.data;
 
-    const txt_slide = t("country_profile.migration_education_slide.text", {
-      ...slide_migration_education,
-      level: country.caption
-    });
+    slide_migration_education.level = country.caption;
+    slide_migration_education.college.behavior = slide_migration_education
+      .college.behavior
+      ? t("incremented")
+      : t("decremented");
+
+    const txt_slide = t(
+      "country_profile.migration_education_slide.text",
+      slide_migration_education
+    );
 
     return (
       <div className="topic-slide-block">
@@ -177,7 +172,7 @@ class MigrationEducationSlide extends Section {
               datum={slide_migration_education.college.growth}
               title={t("Growth of immigrants with higher education")}
               subtitle={t(
-                "In period {{year_first}} - {{year_last}}",
+                "In period {{year_prev}} - {{year_last}}",
                 slide_migration_education
               )}
             />

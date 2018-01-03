@@ -27,6 +27,7 @@ class MigrationDetailsSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = { "Number of visas": 0 };
         const data = groupBy(result.data.data, "Year");
         const total = sumBy(data[year_last], "Number of visas");
 
@@ -38,29 +39,30 @@ class MigrationDetailsSlide extends Section {
         const max_last = max_by_year.pop();
 
         let compared, changed;
-        while ((compared = max_by_year.pop())) {
-          if (compared["Sex"] != max_last["Sex"]) {
+        while ((changed = max_by_year.pop())) {
+          if (!changed) {
             changed = compared;
             break;
+          } else if (changed["Sex"] != max_last["Sex"]) {
+            break;
+          } else {
+            compared = changed;
           }
         }
 
+        const growth = annualized_growth(
+          [max_first["Number of visas"], max_last["Number of visas"]],
+          [max_first.Year, max_last.Year]
+        );
+
         return {
-          context: changed ? "change" : "stay",
-          year_first: changed ? changed["Year"] : max_first["Year"],
-          year_previous: year_last - 1,
-          year_last,
+          year_prev: changed.Year,
+          year_last: max_last.Year,
           sex: {
-            max_last,
-            current: max_last["Sex"],
-            growth: numeral(
-              annualized_growth([
-                max_first["Number of visas"],
-                max_last["Number of visas"]
-              ]),
-              locale
-            ).format("0.0%"),
-            before: changed ? changed["Sex"] : null
+            context: changed.Sex != max_last.Sex ? "changed" : "remained",
+            current: max_last.Sex,
+            before: changed.Sex,
+            growth: numeral(growth, locale).format("0.0%")
           }
         };
       }
@@ -101,8 +103,11 @@ class MigrationDetailsSlide extends Section {
           ) || zero;
 
         return {
+          year_prev: year_last - 1,
+          year_last,
           agerange: {
             first: latest_first["Age Range"],
+            second: latest_second["Age Range"],
             first_percent: numeral(
               latest_first["Number of visas"] / latest_total,
               locale
@@ -113,8 +118,7 @@ class MigrationDetailsSlide extends Section {
                 latest_first["Number of visas"]
               ]),
               locale
-            ).format("0.0%"),
-            second: latest_second["Age Range"]
+            ).format("0.0%")
           }
         };
       }
@@ -166,12 +170,12 @@ class MigrationDetailsSlide extends Section {
       slide_migration_age
     } = this.context.data;
 
-    const txt_slide = t("country_profile.migration_details_slide.text", {
-      context: "change",
-      level: country.caption,
-      ...slide_migration_sex,
-      ...slide_migration_age
-    });
+    slide_migration_sex.level = country.caption;
+    slide_migration_age.level = country.caption;
+
+    const txt_slide =
+      t("country_profile.migration_details_slide.sex", slide_migration_sex) +
+      t("country_profile.migration_details_slide.age", slide_migration_age);
 
     const datum_female = this.context.data.datum_migration_agebysex.female;
     const datum_male = this.context.data.datum_migration_agebysex.male;
@@ -194,7 +198,7 @@ class MigrationDetailsSlide extends Section {
                 slide_migration_sex.sex
               )}
               subtitle={t(
-                "In period {{year_first}} - {{year_last}}",
+                "In period {{year_prev}} - {{year_last}}",
                 slide_migration_sex
               )}
             />
