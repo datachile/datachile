@@ -17,10 +17,10 @@ class PSUNEMSlide extends Section {
         ["Average PSU"],
         {
           drillDowns: [["Institution", "Institution", "Administration"]],
-          options: { parents: true }
-          //cuts: [
-            //`[Date].[Date].[Year].&[${sources.education_performance_new.year}]`
-          //]
+          options: { parents: true },
+          cuts: [
+            `[Year].[Year].[Year].&[${sources.education_performance_new.year}]`
+          ]
         },
         "geo",
         false
@@ -34,7 +34,6 @@ class PSUNEMSlide extends Section {
     const locale = i18n.language;
 
     const text = PerformanceByPSU(datum_performance_by_psu, geo, locale);
-    console.log(this.context.data)
 
     return (
       <div className="topic-slide-block">
