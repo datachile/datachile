@@ -1,7 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { Treemap } from "d3plus-react";
 import { browserHistory } from "react-router";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -39,8 +38,8 @@ export default translate()(
           <TreemapStacked
             path={path}
             msrName="FOB US"
-            drilldowns={["ID HS0", "ID HS2"]}
-            custom={{
+            drilldowns={["HS0", "HS2"]}
+            config={{
               label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               legendConfig: {
                 label: false,

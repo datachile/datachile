@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
+import TreemapStacked from "components/TreemapStacked";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
@@ -57,11 +57,11 @@ export default translate()(
             <span>{t("Migration By Origin")}</span>
             <ExportLink path={path} />
           </h3>
-          <Treemap
+          <TreemapStacked
+            path={path}
+            msrName="Number of visas"
+            drilldowns={["Continent", "Country"]}
             config={{
-              height: 500,
-              data: path,
-              groupBy: ["ID Continent", "ID Country"],
               label: d => {
                 d["Country"] =
                   d["Country"] == "Chile" ? ["Chile"] : d["Country"];
@@ -69,8 +69,6 @@ export default translate()(
                   ? d["Continent"]
                   : d["Country"];
               },
-              sum: d => d["Number of visas"],
-              time: "ID Year",
               total: d => d["Number of visas"],
               totalConfig: {
                 text: d =>
@@ -129,9 +127,12 @@ export default translate()(
                   backgroundImage: d =>
                     "/images/legend/continent/" + d["ID Continent"] + ".png"
                 }
+              },
+              yConfig: {
+                title: t("Number of visas"),
+                tickFormat: tick => numeral(tick, locale).format("0,0")
               }
             }}
-            dataFormat={data => data.data}
           />
           <SourceNote cube="immigration" />
         </div>

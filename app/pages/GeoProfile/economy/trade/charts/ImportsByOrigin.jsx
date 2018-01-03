@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
+import TreemapStacked from "components/TreemapStacked";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
@@ -34,14 +34,11 @@ class ImportsByOrigin extends Section {
           <span>{t(`Imports by origin of firms located in ${geo.name}`)}</span>
           <ExportLink path={path} />
         </h3>
-        <Treemap
+        <TreemapStacked
+          path={path}
+          msrName="CIF US"
+          drilldowns={["Continent", "Country"]}
           config={{
-            height: 500,
-            data: path,
-            groupBy: ["ID Continent", "ID Country"],
-            label: d => d["Country"],
-            sum: d => d["CIF US"],
-            time: "ID Year",
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])
             },
@@ -68,11 +65,8 @@ class ImportsByOrigin extends Section {
               }
             },
             tooltipConfig: {
-              title: d => {
-                return d["ID Country"] instanceof Array
-                  ? d["Continent"]
-                  : d["Country"];
-              },
+              title: d =>
+                d["Country"] instanceof Array ? d["Continent"] : d["Country"],
               body: d => {
                 const link =
                   d["ID Country"] instanceof Array
@@ -91,6 +85,10 @@ class ImportsByOrigin extends Section {
                 backgroundImage: d =>
                   "/images/legend/continent/" + d["ID Continent"] + ".png"
               }
+            },
+            yConfig: {
+              title: t("US$"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
             }
           }}
           dataFormat={data => data.data}

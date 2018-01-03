@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
+import TreemapStacked from "components/TreemapStacked";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
@@ -34,14 +34,13 @@ class ImportsByProduct extends Section {
           <span>{t(`Imports of firms located in ${geo.name}`)}</span>
           <ExportLink path={path} />
         </h3>
-        <Treemap
+        <TreemapStacked
+          path={path}
+          msrName="CIF US"
+          drilldowns={["HS0", "HS2"]}
           config={{
             height: 500,
             data: path,
-            groupBy: ["ID HS0", "ID HS2"],
-            label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
-            sum: d => d["CIF US"],
-            time: "ID Year",
             total: d => d["CIF US"],
             totalConfig: {
               text: d =>
@@ -83,6 +82,10 @@ class ImportsByProduct extends Section {
                 "<br/><a>" +
                 t("tooltip.to_profile") +
                 "</a>"
+            },
+            yConfig: {
+              title: t("US$"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
             }
           }}
           dataFormat={data => data.data}

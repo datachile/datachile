@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { Treemap } from "d3plus-react";
+import TreemapStacked from "components/TreemapStacked";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { ordinalColorScale } from "helpers/colors";
@@ -36,13 +36,14 @@ class MigrationByEducation extends Section {
           <span>{t("Migration By Educational Level")}</span>
           <ExportLink path={path} />
         </h3>
-        <Treemap
+        <TreemapStacked
+          path={path}
+          msrName="Number of visas"
+          drilldowns={["Education", "Education"]}
           config={{
             height: 500,
             data: path,
-            groupBy: "ID Education",
             label: d => d["Education"],
-            sum: d => d["Number of visas"],
             total: d => d["Number of visas"],
             totalConfig: {
               text: d =>
@@ -51,7 +52,6 @@ class MigrationByEducation extends Section {
                 " " +
                 t("visas")
             },
-            time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Education"])
             },
@@ -66,9 +66,12 @@ class MigrationByEducation extends Section {
             legendConfig: {
               label: false,
               shapeConfig: false
+            },
+            yConfig: {
+              title: t("Number of visas"),
+              tickFormat: tick => numeral(tick, locale).format("0,0")
             }
           }}
-          dataFormat={data => data.data}
         />
         <SourceNote cube="immigration" />
       </div>
