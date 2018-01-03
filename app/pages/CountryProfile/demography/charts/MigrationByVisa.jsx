@@ -1,15 +1,14 @@
 import React from "react";
+import { translate } from "react-i18next";
+import { Treemap } from "d3plus-react";
 import { Section } from "datawheel-canon";
-
 import filter from "lodash/filter";
 import orderBy from "lodash/orderBy";
-import { translate } from "react-i18next";
-import { BarChart } from "d3plus-react";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -77,30 +76,27 @@ class MigrationByVisa extends Section {
           <ExportLink path={path} />
         </h3>
         {this.state.chart ? (
-          <BarChart
+          <Treemap
             config={{
               height: 500,
               data: path,
               groupBy: "ID Visa Type",
               label: d => d["Visa Type"],
+              sum: d => d["Number of visas"],
               time: "ID Year",
-              y: "Visa Type",
-              x: "Number of visas",
-              discrete: "y",
+              total: d => d["Number of visas"],
+              totalConfig: {
+                text: d =>
+                  "Total: " +
+                  numeral(getNumberFromTotalString(d.text), locale).format(
+                    "0,0"
+                  ) +
+                  " " +
+                  t("visas")
+              },
               shapeConfig: {
-                label: false,
-                fill: () => ordinalColorScale(3)
+                fill: d => ordinalColorScale(d["ID Visa Type"])
               },
-              yConfig: {
-                tickSize: 0,
-                title: false
-              },
-              xConfig: {
-                title: t("Visas"),
-                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
-              },
-              barPadding: 20,
-              groupPadding: 40,
               tooltipConfig: {
                 title: d => d["Visa Type"],
                 body: d =>

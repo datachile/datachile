@@ -114,9 +114,6 @@
   "Growth Labour": "Growth Labour",
   "Growth R&D Spending in ": "Growth R&D Spending in ",
   "Growth affiliates in ISAPRES": "Growth affiliates in ISAPRES",
-  "Growth number of visas": "Growth number of visas",
-  "Growth number of visas for {{current}} immigrants":
-    "Growth number of visas for {{current}} immigrants",
   "Health": "Health",
   "Health Center": "Health Center",
   "Health Insurance": "Health Insurance",
@@ -138,8 +135,8 @@
   "Imports from Chile": "Imports from Chile",
   "In": "In",
   "In period": "In period",
-  "In period {{year_first}} - {{year_last}}":
-    "In period {{year_first}} - {{year_last}}",
+  "in period {{year_first}} - {{year_last}}":
+    "in period {{year_first}} - {{year_last}}",
   "Income": "Income",
   "Income By Age": "Income By Age",
   "Income By Sex": "Income By Sex",
@@ -547,98 +544,91 @@
   "an increase": "an increase",
   "careers": "careers",
   "country_profile": {
-    "about1": "country_profile.about1",
-    "about2": "country_profile.about2",
-    "intltrade_balance_slide": {
-      "text":
-        "<p>Between years {{year.first}} and {{year.last}}, the imports from {{level}} to Chile have registered a growth of {{import.growth}}, having shown a {{import.direction}} from {{import.volume_first}} to {{import.volume_last}}. In the same period, the exports from Chile to {{level}} have registered a growth of {{export.growth}}, with {{export.direction}} from {{export.volume_first}} to {{export.volume_last}}.</p>"
-    },
-    "intltrade_origin_dest_slide": {
-      "export": "t(country_profile.intltrade_origin_dest_slide.export_111)",
-      "export_": "t(country_profile.intltrade_origin_dest_slide.export_111)",
-      "export_0":
-        "<p>There are no records of exports to {{level}} during {{year}}.</p>",
-      "export_1":
-        "<p>During {{year}}, the exports coming out from Chile to {{level}} departed only from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}.</p>",
-      "export_11":
-        "<p>During {{year}}, the exports coming out from Chile to {{level}} departed only from the comunas of {{origin.first_municipality}}, in {{origin.first_region}}, and {{origin.second_municipality}}, in {{origin.second_region}}.</p>",
-      "export_2":
-        "<p>During {{year}}, the exports coming out from Chile to {{level}} departed only from {{origin.first_region}}, specifically from the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}.</p>",
-      "export_111":
-        "<p>Most exports coming out from Chile to {{level}} depart from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}}, in {{origin.second_region}}, and {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
-      "export_12":
-        "<p>Most exports coming out from Chile to {{level}} depart from the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}} and {{origin.third_municipality}}, in {{origin.second_region}}.</p>",
-      "export_21":
-        "<p>Most exports coming out from Chile to {{level}} depart from the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}, in {{origin.first_region}}, and from the comuna of {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
-      "export_3":
-        "<p>Most export coming out from Chile to {{level}} depart from {{origin.first_region}}, mainly from the comunas of {{origin.first_municipality}}, {{origin.second_municipality}}, and {{origin.third_municipality}}.</p>",
-      "import": "t(country_profile.intltrade_origin_dest_slide.import_111)",
-      "import_": "t(country_profile.intltrade_origin_dest_slide.import_111)",
-      "import_0":
-        "<p>There are no records of imports from {{level}} to Chile during {{year}}.</p>",
-      "import_1":
-        "<p>During {{year}}, the imports coming to Chile from {{level}} arrived only to the comuna of {{origin.first_municipality}}, in {{origin.first_region}}.</p>",
-      "import_11":
-        "<p>During {{year}}, the imports coming to Chile from {{level}} arrived only to the comunas of {{origin.first_municipality}}, in {{origin.first_region}}, and {{origin.second_municipality}}, in {{origin.second_region}}.</p>",
-      "import_2":
-        "<p>During {{year}}, the imports coming to Chile from {{level}} arrived only to {{origin.first_region}}, specifically to the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}.</p>",
-      "import_111":
-        "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after, the comunas of {{destination.second_municipality}}, in {{destination.second_region}}, and {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
-      "import_12":
-        "<p>Most of the imports coming to Chile from {{level}} arrive to the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after the comunas of {{destination.second_municipality}} and {{destination.third_municipality}}, in {{destination.second_region}}.</p>",
-      "import_21":
-        "<p>Most of the imports coming to Chile from {{level}} arrive to the comunas of {{destination.first_municipality}} and {{destination.second_municipality}}, in {{destination.first_region}}, and the comuna of {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
-      "import_3":
-        "<p>Most of the imports coming to Chile from {{level}} arrive to the region of {{destination.first_region}}, mainly to the comunas of {{destination.first_municipality}}, {{destination.second_municipality}}, and {{destination.third_municipality}}.</p>"
-    },
-    "intltrade_slide": {
-      "import":
-        "<p>The principal product Chile imports from {{level}} is <em>{{main_import.name}}</em>. For {{year}}, this category represents a {{main_import.local_percent}} of all imports from {{level}}, and a {{main_import.global_percent}} of the total imports of this product to Chile.</p>",
-      "import_zero":
-        "<p>During {{year}}, there are no records of imports from {{level}} to Chile.</p>",
-      "export":
-        "<p>On the other side, Chile exports to {{level}} mainly <em>{{main_export.name}}</em>. This meant a {{main_export.local_percent}} of the exports to {{level}}, and a {{main_export.global_percent}} of the exports of this product from Chile during {{year}}.</p>",
-      "export_zero":
-        "<p>There are no records of exports from Chile to {{level}} during {{year}}.</p>",
-      "text_0":
-        "$t(country_profile.intltrade_slide.import_zero) $t(country_profile.intltrade_slide.export_zero)",
-      "text_1":
-        "$t(country_profile.intltrade_slide.import) $t(country_profile.intltrade_slide.export_zero)",
-      "text_2":
-        "$t(country_profile.intltrade_slide.import_zero) $t(country_profile.intltrade_slide.export)",
-      "text_3":
-        "$t(country_profile.intltrade_slide.import) $t(country_profile.intltrade_slide.export)",
-      "text": "$t(country_profile.intltrade_slide.text_3)"
-    },
-    "migration_activity_slide": {
-      "visa_type_0":
-        "<p>According to the records, by {{year_last}} there are no records of immigrants from {{level}}.</p>",
-      "visa_type_1":
-        "<p>According to the records, by {{year_last}} the majority of immigrants from {{level}} arrive with <em>{{visa_type.first}} visa</em>. These represent a {{visa_type.percent}} from the total of immigrants.</p>",
-      "visa_type_2":
-        "<p>According to the records, by {{year_last}} the majority of immigrants from {{level}} arrive with <em>{{visa_type.first}} visa</em> or <em>{{visa_type.second}} visa</em>. These combined represent a {{visa_type.percent}} from the total of immigrants.</p>",
-      "visa_type": "$t(country_profile.migration_activity_slide.visa_type_2)",
-      "activity_0": "",
-      "activity":
-        "<p>For the year {{year_last}}, {{first_occupation.percent}} of the immigrants coming from {{level}} declare they work as {{first_occupation.name}}. This translates into a growth of {{first_occupation.growth}} compared to year {{year_prev}}. On the other side, {{activity.unoccupied_percent}} declares being unemployed, and {{activity.unknown_percent}} doesn't disclose their current activity.</p>"
+    "migration_slide": {
+      "destination":
+        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants de estos arrived to {{region}}, mainly to the comuna of {{comuna}}.</p>",
+      "growth":
+        "<p>Between {{year_prev}} and {{year_last}}, the number of visas granted to immigrants coming from {{level}} has {{behavior}} at a annual rate of {{growth}}.</p>",
+      "text": "$t(country_profile.migration_slide.destination)",
+      "text_no":
+        "<p>During {{year_last}}, there are no records of visas granted to immigrants coming from {{level}}.</p>",
+      "text_full":
+        "$t(country_profile.migration_slide.destination)$t(country_profile.migration_slide.growth)"
     },
     "migration_details_slide": {
-      "tendency_change":
-        ", which has been a tendency since {{year_first}}, when most people were {{sex.before}}",
-      "tendency_stay":
-        ", which is a tendency since {{year_first}}, with an accumulated growth of {{sex.growth}}",
-      "text":
-        "<p>Of the immigrants that come from {{level}}, most are {{sex.current}}$t(country_profile.migration_details_slide.tendency).</p><p>Most of the immigrants coming from {{level}} are people ages {{agerange.first}}, followed by ages {{agerange.second}}. The former represent a {{agerange.first_percent}} of the total in {{year_last}}, which translates into a growth of {{agerange.first_growth}} since {{year_previous}}.</p>"
+      "sex": "$t(country_profile.migration_details_slide.sex_remained)",
+      "sex_none":
+        "<p>There are no records of immigrants from {{level}} on {{year_last}}.</p>",
+      "sex_only":
+        "<p>{{year_last}} is the only year there's an official record about immigrants from {{level}}. Most of the immigrants coming from {{level}} are {{current_max}}.</p>",
+      "sex_changed":
+        "<p>Most of the immigrants coming from {{level}} are {{current_max}}. This has been a tendency since {{year_prev}}, when most people were {{previous_max}}.</p>",
+      "sex_remained":
+        "<p>Most of the immigrants coming from {{level}} are {{current_max}}. This has been a tendency since {{year_prev}}.</p>",
+      "age":
+        "<p>Most of the immigrants coming from {{level}} are people ages {{first}}, followed by ages {{second}}. The former represent a {{first_percent}} of the total in {{year_last}}, which translates into a change of {{first_growth}} since {{year_prev}}.</p>",
+      "age_unique":
+        "<p>Most of the immigrants coming from {{level}} are people ages {{first}}.</p>",
+      "age_none": ""
     },
     "migration_education_slide": {
       "text":
-        "<p>Of the immigrants arriving from {{level}}, {{high.percent}} have an academic degree equivalent to Chilean High School. Regarding Higher Education, {{college.percent}} declare to have a technical or university degree. This translates to a growth since last year of {{high.growth}} for high school graduate immigrants, and a {{college.growth}} for higher-education student or graduate immigrants.</p><p>By contrast, {{percent_noop}} declare not having any formal education, and {{percent_unknown}} don't disclose their education level.</p>"
+        "<p>{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School. The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.</p><p>By contrast, {{none_percent}} declare not having any formal education, and {{unknown_percent}} don't disclose their education level.</p>"
     },
-    "migration_slide": {
-      "text_no":
-        "<p>During {{year_last}}, there are no records of visas granted to immigrants coming from {{level}}.",
+    "migration_activity_slide": {
+      "visa_type":
+        "<p>Most of the visas given in {{year_last}} to immigrants coming from {{level}} are for {{first}}, and represent {{first_percent}} of all the visas given to immigrants from {{level}}.</p>",
+      "visa_type_0":
+        "<p>According to the records, by {{year_last}} there are no records of immigrants from {{level}}.</p>",
+      "activity_2":
+        "<p>The most common visa granted on {{year_last}} to immigrants from {{level}} is for {{first}} ({{first_percent}}), and {{occupation.second}} ({{occupation.second_percent}}).</p>",
+      "activity_1":
+        "<p>The most common visa granted on {{year_last}} to immigrants from {{level}} is for {{first}} ({{first_percent}}).</p>",
+      "activity_0": ""
+    },
+    "intltrade_slide": {
       "text":
-        "<p>By {{year_last}}, most immigrants from {{level}} arrive to establish in {{destination.region}}, mainly in the comuna of {{destination.municipality}}.</p><p>The immigrants from {{level}} in this comuna account for {{destination.mun_percent}} of the national total, and {{destination.reg_percent}} of the regional total. Compared to {{year_previous}}, the growth in immigration visas for people living in {{destination.municipality}} is {{destination.mun_growth}}.</p>"
+        "<p>During {{year}}, Chile exported a total of US{{total_exports}} to {{level}}, and imported a total of US{{total_imports}}, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <em>{{main_import.name}}</em>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <em>{{main_export.name}}</em>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
+    },
+    "intltrade_origin_dest_slide": {
+      "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
+      "export_0":
+        "<p>There are no records of exports to {{level}} during {{year}}.</p>",
+      "export_1":
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of {{origin.first_municipality}}, in {{origin.first_region}}.</p>",
+      "export_11":
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in {{origin.first_municipality}}, in {{origin.first_region}}, and {{origin.second_municipality}}, in {{origin.second_region}}.</p>",
+      "export_2":
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in {{origin.first_region}}, specifically from the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}.</p>",
+      "export_111":
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}}, in {{origin.second_region}}, and {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
+      "export_12":
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}} and {{origin.third_municipality}}, in {{origin.second_region}}.</p>",
+      "export_21":
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}, in {{origin.first_region}}, and from the comuna of {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
+      "export_3":
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in {{origin.first_region}}, mainly from the comunas of {{origin.first_municipality}}, {{origin.second_municipality}}, and {{origin.third_municipality}}.</p>",
+      "import": "t(country_profile.intltrade_origin_dest_slide.import_1)",
+      "import_0":
+        "<p>There are no records of imports from {{level}} to Chile during {{year}}.</p>",
+      "import_1":
+        "<p>The main destination of the imports from {{level}} is the comuna of {{destination.first_municipality}}, in {{destination.first_region}}.</p>",
+      "import_11":
+        "<p>The main destination of the imports from {{level}} are the comunas of {{destination.first_municipality}}, in {{destination.first_region}}, and {{destination.second_municipality}}, in {{destination.second_region}}.</p>",
+      "import_2":
+        "<p>The main destination of the imports from {{level}} is {{destination.first_region}}, specifically to the comunas of {{destination.first_municipality}} and {{destination.second_municipality}}.</p>",
+      "import_111":
+        "<p>The main destination of the imports from {{level}} is the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after, the comunas of {{destination.second_municipality}}, in {{destination.second_region}}, and {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
+      "import_12":
+        "<p>The main destination of the imports from {{level}} is the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after the comunas of {{destination.second_municipality}} and {{destination.third_municipality}}, in {{destination.second_region}}.</p>",
+      "import_21":
+        "<p>The main destination of the imports from {{level}} are the comunas of {{destination.first_municipality}} and {{destination.second_municipality}}, in {{destination.first_region}}, and the comuna of {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
+      "import_3":
+        "<p>The main destination of the imports from {{level}} is {{destination.first_region}}, mainly to the comunas of {{destination.first_municipality}}, {{destination.second_municipality}}, and {{destination.third_municipality}}.</p>"
+    },
+    "intltrade_balance_slide": {
+      "text":
+        "<p>Between {{year.first}} and {{year.last}}, export to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} in {{year.first}}, to US{{export.volume_last}} in {{year.last}}. In the same period, imports from {{level}} registered {{import.behavior}} of {{import.growth}}, from US{{import.volume_first}} in {{year.first}}, to US{{import.volume_last}} in {{year.last}}.</p><p>In {{year.last}}, Chile had a {{balance.behavior}} trade balance with {{level}}, which favored {{balance.beneficiary}} in US{{balance.volume_last}}.</p>"
     }
   },
   "decreased": "decreased",
@@ -726,6 +716,7 @@
 
   "granted in": "granted in",
   "granted in {{year}}": "granted in {{year}}",
+  "granted in {{year_last}}": "granted in {{year_last}}",
   "health cares": "health cares",
   "houses": "houses",
   "in": "in",

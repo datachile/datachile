@@ -6,7 +6,7 @@ function annualized_growth(aggregation, time = null) {
     const final_v = aggregation[aggregation.length - 1];
     return Math.pow(final_v / initial_v, 1 / range) - 1;
   } else {
-    return false;
+    return NaN;
   }
 }
 

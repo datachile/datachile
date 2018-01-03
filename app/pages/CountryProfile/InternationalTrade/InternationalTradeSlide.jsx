@@ -7,10 +7,7 @@ import flattenDeep from "lodash/flattenDeep";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import {
-  simpleCountryDatumNeed,
-  quickQuery
-} from "helpers/MondrianClient";
+import { simpleCountryDatumNeed, quickQuery } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
@@ -35,34 +32,17 @@ class InternationalTradeSlide extends Section {
         const max = maxBy(data, "CIF US");
 
         return max
-          ? quickQuery({
-              cube: "imports",
-              measures: ["CIF US"],
-              drillDowns: [["Import HS", "HS", "HS2"]],
-              cuts: [
-                `[Date].[Date].[Year].&[${last_year}]`,
-                `[Import HS].[HS].[HS2].&[${max["ID HS2"]}]`
-              ],
-              options: { parents: false },
-              locale: lang
-            }).then(res => {
-              const value = flattenDeep(res.data.values)[0];
-              return {
-                name: max["HS2"],
-                amount: max["FOB US"],
-                local_percent: numeral(max["CIF US"] / total, lang).format(
-                  "0.0%"
-                ),
-                global_percent: numeral(max["CIF US"] / value, lang).format(
-                  "0.0%"
-                )
-              };
-            })
+          ? {
+              name: max["HS2"],
+              amount: max["FOB US"],
+              total: total,
+              percent: numeral(max["CIF US"] / total, lang).format("0.0%")
+            }
           : {
               name: null,
               amount: 0,
-              local_percent: numeral(0, lang).format("0.0%"),
-              global_percent: numeral(0, lang).format("0.0%")
+              total: total,
+              percent: numeral(0, lang).format("0.0%")
             };
       }
     ),
@@ -84,34 +64,17 @@ class InternationalTradeSlide extends Section {
         const max = maxBy(data, "FOB US");
 
         return max
-          ? quickQuery({
-              cube: "exports",
-              measures: ["FOB US"],
-              drillDowns: [["Export HS", "HS", "HS2"]],
-              cuts: [
-                `[Date].[Date].[Year].&[${last_year}]`,
-                `[Export HS].[HS].[HS2].&[${max["ID HS2"]}]`
-              ],
-              options: { parents: false },
-              locale: lang
-            }).then(res => {
-              const value = flattenDeep(res.data.values)[0];
-              return {
-                name: max["HS2"],
-                amount: max["FOB US"],
-                local_percent: numeral(max["FOB US"] / total, lang).format(
-                  "0.0%"
-                ),
-                global_percent: numeral(max["FOB US"] / value, lang).format(
-                  "0.0%"
-                )
-              };
-            })
+          ? {
+              name: max["HS2"],
+              amount: max["FOB US"],
+              total: total,
+              percent: numeral(max["FOB US"] / total, lang).format("0.0%")
+            }
           : {
               name: null,
               amount: 0,
-              local_percent: numeral(0, lang).format("0.0%"),
-              global_percent: numeral(0, lang).format("0.0%")
+              total: total,
+              percent: numeral(0, lang).format("0.0%")
             };
       }
     )
@@ -127,13 +90,19 @@ class InternationalTradeSlide extends Section {
       datum_trade_export
     } = this.context.data;
 
-    const context =
-      (datum_trade_import.name ? 1 : 0) ^ (datum_trade_export.name ? 2 : 0);
+    const import_volume = datum_trade_import.total;
+    const export_volume = datum_trade_export.total;
+    const balance_volume = export_volume - import_volume;
 
     const txt_slide = t("country_profile.intltrade_slide.text", {
       level: country.caption,
       year: last_year,
-      context: context.toString(),
+      total_imports: numeral(import_volume, locale).format("($ 0.00 a)"),
+      total_exports: numeral(export_volume, locale).format("($ 0.00 a)"),
+      total_balance: numeral(Math.abs(balance_volume), locale).format(
+        "($ 0.00 a)"
+      ),
+      behavior: balance_volume > 0 ? t("positive") : t("negative"),
       main_import: datum_trade_import,
       main_export: datum_trade_export
     });
@@ -154,7 +123,7 @@ class InternationalTradeSlide extends Section {
                 icon="product-import"
                 datum={datum_trade_import.name}
                 title={t("Main imported product")}
-                subtitle={`${datum_trade_import.local_percent} - ${last_year}`}
+                subtitle={`${datum_trade_import.percent} - ${last_year}`}
               />
             )}
             {datum_trade_export.name && (
@@ -163,7 +132,7 @@ class InternationalTradeSlide extends Section {
                 icon="product-export"
                 datum={datum_trade_export.name}
                 title={t("Main exported product")}
-                subtitle={`${datum_trade_export.local_percent} - ${last_year}`}
+                subtitle={`${datum_trade_export.percent} - ${last_year}`}
               />
             )}
           </div>
