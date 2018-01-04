@@ -93,10 +93,12 @@ class IndustrySlide extends Section {
       t
     );
     let text = merge(activity, occupation);
-    if(text) {
-      text.labour_productivity = datum_industry_by_labour_productivity.data;
+    if (text && datum_industry_by_labour_productivity) {
+      text.labour_productivity = numeral(
+        datum_industry_by_labour_productivity.data,
+        locale
+      ).format("$ 0,0.00 a");
     }
-
 
     return (
       <div className="topic-slide-block">
