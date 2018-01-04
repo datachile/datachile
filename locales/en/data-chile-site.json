@@ -546,6 +546,15 @@
           "<p>Survey distributed by the Telecommunications Office and created by IPSOS that attempts to show internet access and detailed reasons of why households are connected to the internet at national and regional levels.</p>",
         "use":
           "This dataset is used in the nation, region, and comuna profiles, in the housing section. "
+      },
+      "costes": {
+        "title": "Cost and Output Data",
+        "year": "2010-2014",
+        "source": "Tax Office (SII)",
+        "text":
+          "<p>Productivity data at the level of industry and comuna provided by the Tax Office (SII). This data tallies the number of workers, labour and capital cost, and output of each industry in a comuna.</p>",
+        "use":
+          "This dataset is used in the national, regional, and comuna profile, in the economy section, and in the industry profile."
       }
     },
     "team": {

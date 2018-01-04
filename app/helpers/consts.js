@@ -75,6 +75,9 @@ export const sources = {
       "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php"
   },
   education_enrollment: {
+    title: "Matricula escolar - MINEDUC",
+    url:
+      "http://datosabiertos.mineduc.cl/informacion-investigadores-establecimientos/",
     year: 2015
   },
   education_performance_new: {
@@ -96,22 +99,24 @@ export const sources = {
   },
   death_causes: {
     title: "Causas de muerte",
-    url: "",
+    url: "http://www.deis.cl/",
     min_year: 2010,
     year: 2014
   },
   disabilities: {
     title: "Discapacidad",
-    url: "",
+    url:
+      "http://www.senadis.cl/pag/355/1197/ii_estudio_nacional_de_discapacidad",
     year: 2015
   },
   health_access: {
     title: "Acceso a la salud",
-    url: "",
+    url: "http://www.deis.cl/",
     year: 2014
   },
   psu: {
     title: "DEMRE",
+    url: "http://demre.cl/",
     year: 2016
   },
   fonasa_website: {
