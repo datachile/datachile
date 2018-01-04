@@ -4,6 +4,58 @@ import { numeral } from "helpers/formatters";
 
 import groupBy from "lodash/groupBy";
 
+function getRank(data, msrName, dimName, t) {
+  let rank = data.sort((a, b) => b[msrName] - a[msrName]);
+  rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
+  let output = rank.map(item => item[dimName]);
+  output = output.length > 1 ? output.join(", ") : output;
+
+  if (output.length > 1) {
+    const lastComma = output.lastIndexOf(",");
+    output =
+      output.substring(0, lastComma) +
+      " " +
+      t("and") +
+      output.substring(lastComma + 1);
+  }
+
+  return output;
+}
+
+// ECONOMY SECTION
+
+function IndustryOccupation(data, locale, t) {
+  if( data) {
+    const rank = getRank(data.data, "Expansion Factor", "ISCO", t);
+    return {
+      text_joined_occupations: rank
+    };
+  } else {
+    return false;
+  }
+}
+
+function IndustryActivity(data, geo, locale, t) {
+  const last_year = sources.tax_data.year;
+  if (data) {
+    const rank = getRank(data.data, "Output", "Level 1", t);
+    const total = data.data.reduce((all, item) => {
+      return all + item["Output"];
+    }, 0);
+
+    return {
+      year: {
+        last: last_year
+      },
+      total: numeral(total, locale).format("$ 0,0.0 a"),
+      geo,
+      text_joined_activities: rank
+    };
+  } else {
+    return false;
+  }
+}
+
 // EDUCATION SECTION
 function Enrollment(data, geo, locale) {
   const last_year = sources.education_enrollment.year;
@@ -298,6 +350,8 @@ function DeathCauses(data, geo, locale) {
 }
 
 export {
+  IndustryActivity,
+  IndustryOccupation,
   DeathCauses,
   Disability,
   Enrollment,
