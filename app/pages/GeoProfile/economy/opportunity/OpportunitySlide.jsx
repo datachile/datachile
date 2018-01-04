@@ -9,12 +9,21 @@ class OpportunitySlide extends Section {
 
   render() {
     const { children, t } = this.props;
+    const { geo } = this.context.data;
+
+    const text = { geo };
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Opportunity")}</div>
-          <div className="topic-slide-text">text</div>
+          <div className="topic-slide-text">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.economy.opportunity", text)
+              }}
+            />
+          </div>
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
