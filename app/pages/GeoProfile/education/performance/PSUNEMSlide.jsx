@@ -183,34 +183,36 @@ class PSUNEMSlide extends Section {
                 }
               />
             )}
-            {text && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="industria"
-                datum={numeral(
-                  datum_performance_nem_average.data,
-                  locale
-                ).format("0.00")}
-                title={t("Average NEM")}
-                subtitle={
-                  t("In") + " " + sources.education_performance_new.year
-                }
-              />
-            )}
-            {text && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="industria"
-                datum={numeral(
-                  datum_performance_psu_average.data,
-                  locale
-                ).format("0,0")}
-                title={t("Average PSU")}
-                subtitle={
-                  t("In") + " " + sources.education_performance_new.year
-                }
-              />
-            )}
+            {text &&
+              (datum_performance_nem_average.data > 0 && (
+                <FeaturedDatum
+                  className="l-1-3"
+                  icon="industria"
+                  datum={numeral(
+                    datum_performance_nem_average.data,
+                    locale
+                  ).format("0.00")}
+                  title={t("Average NEM")}
+                  subtitle={
+                    t("In") + " " + sources.education_performance_new.year
+                  }
+                />
+              ))}
+            {text &&
+              (datum_performance_psu_average.data > 0 && (
+                <FeaturedDatum
+                  className="l-1-3"
+                  icon="industria"
+                  datum={numeral(
+                    datum_performance_psu_average.data,
+                    locale
+                  ).format("0.00")}
+                  title={t("Average PSU")}
+                  subtitle={
+                    t("In") + " " + sources.education_performance_new.year
+                  }
+                />
+              ))}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
