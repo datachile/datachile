@@ -82,7 +82,7 @@ class ProductSpace extends Section {
                 ))
               )}
         />
-        <SourceNote cube="tax_data" />
+        <SourceNote cube="exports" />
       </div>
     );
   }
