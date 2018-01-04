@@ -788,7 +788,7 @@
     },
     "economy": {
       "opportunity": "Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de industrias conecta industrias que tienden a estar presentes en las mismas comunas, y el espacio de productos conecta productos que tienden a ser exportados por los mismos países. Las industrias y productos con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.",
-      "industry": "<p>En {{year.last}}, {{geo.caption}} generó una producción total de {{total}}. La productividad laboral basada en ventas en {{geo.caption}} fue de {{labour_productivity}} pesos por empleado.</p><p>Las principales industrias de {{geo.caption}} son {{text_joined_activities}}. </p><p>Las ocupaciones más comunes en {{geo.caption}}, según el número de trabajadores, son {{text_joined_occupations}}.</p>"
+      "industry": "<p>En {{year.last}}, {{geo.caption}} generó una producción total de {{total}}. La productividad laboral basada en ventas en {{geo.caption}} fue de {{labour_productivity}} pesos anuales por empleado.</p><p>Las principales industrias de {{geo.caption}} son {{text_joined_activities}}. </p><p>Las ocupaciones más comunes en {{geo.caption}}, según el número de trabajadores, son {{text_joined_occupations}}.</p>"
     },
     "health": {
       "access":
