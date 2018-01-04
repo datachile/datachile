@@ -87,7 +87,13 @@ class PSUNEMScatter extends Section {
               size: "Number of records",
               colorScalePosition: false,
               shapeConfig: {
-                fill: d => administrationColorScale(d["Administration"])
+                fill: d => {
+                  if (d["Institution"] !== "hack") {
+                    return administrationColorScale(d["Administration"]);
+                  } else {
+                    return "transparent";
+                  }
+                }
               },
               xConfig: {
                 title: t("Average NEM")
@@ -95,66 +101,88 @@ class PSUNEMScatter extends Section {
               yConfig: {
                 title: t("Average PSU")
               },
+              tooltip: d => {
+                if (d["Institution"] === "hack") {
+                  return "";
+                }
+              },
               tooltipConfig: {
                 title: d => {
-                  var title = "";
-                  if (d["ID Institution"]) {
-                    title =
-                      d["ID Institution"] instanceof Array
-                        ? d["Administration"]
-                        : d["Institution"] + " - " + d["Administration"];
-                  }
-                  if (d["ID Comuna"]) {
-                    title =
-                      d["ID Comuna"] instanceof Array
-                        ? d["Administration"]
-                        : d["Comuna"] +
-                          " (" +
-                          d["Region"] +
-                          ") - " +
-                          d["Administration"];
-                  }
+                  if (d["Institution"] !== "hack") {
+                    var title = "";
+                    if (d["ID Institution"]) {
+                      title =
+                        d["ID Institution"] instanceof Array
+                          ? d["Administration"]
+                          : d["Institution"] + " - " + d["Administration"];
+                    }
+                    if (d["ID Comuna"]) {
+                      title =
+                        d["ID Comuna"] instanceof Array
+                          ? d["Administration"]
+                          : d["Comuna"] +
+                            " (" +
+                            d["Region"] +
+                            ") - " +
+                            d["Administration"];
+                    }
 
-                  return title;
+                    return title;
+                  }
                 },
                 body: d => {
-                  var body = "";
-                  if (
-                    (d["ID Institution"] &&
-                      !(d["ID Institution"] instanceof Array)) ||
-                    (d["ID Comuna"] && !(d["ID Comuna"] instanceof Array))
-                  ) {
-                    var body = "<table class='tooltip-table'>";
-                    body +=
-                      "<tr><td class='title'>" +
-                      t("Average NEM") +
-                      "</td><td class='data'>" +
-                      numeral(d["Average NEM"], locale).format("(0.[0])") +
-                      "</td></tr>";
-                    body +=
-                      "<tr><td class='title'>" +
-                      t("Average PSU") +
-                      "</td><td class='data'>" +
-                      numeral(d["Average PSU"], locale).format("(0)") +
-                      "</td></tr>";
-                    body +=
-                      "<tr><td class='title'>" +
-                      t("Students") +
-                      "</td><td class='data'>" +
-                      numeral(d["Number of records"], locale).format("(0,0)") +
-                      "</td></tr>";
-                    body += "</table>";
+                  if (d["Institution"] !== "hack") {
+                    var body = "";
+                    if (
+                      (d["ID Institution"] &&
+                        !(d["ID Institution"] instanceof Array)) ||
+                      (d["ID Comuna"] && !(d["ID Comuna"] instanceof Array))
+                    ) {
+                      var body = "<table class='tooltip-table'>";
+                      body +=
+                        "<tr><td class='title'>" +
+                        t("Average NEM") +
+                        "</td><td class='data'>" +
+                        numeral(d["Average NEM"], locale).format("(0.[0])") +
+                        "</td></tr>";
+                      body +=
+                        "<tr><td class='title'>" +
+                        t("Average PSU") +
+                        "</td><td class='data'>" +
+                        numeral(d["Average PSU"], locale).format("(0)") +
+                        "</td></tr>";
+                      body +=
+                        "<tr><td class='title'>" +
+                        t("Students") +
+                        "</td><td class='data'>" +
+                        numeral(d["Number of records"], locale).format(
+                          "(0,0)"
+                        ) +
+                        "</td></tr>";
+                      body += "</table>";
+                    }
+                    return body;
                   }
-                  return body;
                 }
               },
               legendConfig: {
-                label: d => d["Administration"],
+                label: d => {
+                  if (d["Number of records"] > 0) {
+                    return d["Administration"];
+                  } else {
+                    return false;
+                  }
+                },
                 shapeConfig: {
                   width: 40,
                   height: 40,
-                  backgroundImage: d =>
-                    "/images/legend/college/administration.png"
+                  backgroundImage: d => {
+                    if (d["Number of records"] > 0) {
+                      return "/images/legend/college/administration.png";
+                    } else {
+                      return false;
+                    }
+                  }
                 }
               }
             }}
@@ -162,7 +190,25 @@ class PSUNEMScatter extends Section {
               const d = data.data.filter(f => {
                 return f["Average NEM"] && f["Average PSU"];
               });
-              if (d && d.length > 0) {
+              if (d && d.length > 1) {
+                return d;
+              } else if (d.length === 1) {
+                d.push({
+                  //...d[0],
+                  "ID Institution": 999999999,
+                  Institution: "hack",
+                  "Number of records": 0,
+                  "Average NEM": d[0]["Average NEM"] + 0.5,
+                  "Average PSU": d[0]["Average PSU"] + 10
+                });
+                d.push({
+                  //...d[0],
+                  "ID Institution": 999999998,
+                  Institution: "hack",
+                  "Number of records": 0,
+                  "Average NEM": d[0]["Average NEM"] - 0.5,
+                  "Average PSU": d[0]["Average PSU"] - 10
+                });
                 return d;
               } else {
                 this.setState({ plot: false });

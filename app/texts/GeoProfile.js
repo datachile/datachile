@@ -54,22 +54,28 @@ function Enrollment(data, geo, locale) {
   }
 }
 
-function PerformanceByHighSchool(data, locale) {
+function PerformanceByHighSchool(data, locale, t) {
   if (data) {
     let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
-    rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
+    rank = rank.length >= 3 ? rank.splice(rank.length - 3, 2) : rank;
 
-    let output = data.data.map(item => item["Institution"]);
+    let output = rank.map(item => item["Institution"]);
     output = output.length > 1 ? output.join(", ") : output;
 
     if (output.length > 1) {
       const lastComma = output.lastIndexOf(",");
       output =
-        output.substring(0, lastComma) + " y" + output.substring(lastComma + 1);
+        output.substring(0, lastComma) +
+        " " +
+        t("and") +
+        output.substring(lastComma + 1);
     }
 
     return {
-      text_joined_schools: output
+      text_joined_schools:
+        (rank.length > 1 ? t("are") : t("is")) + " " + output,
+      type:
+        rank.length > 1 ? "plural" : rank.length === 1 ? "singular" : "no_data"
     };
   } else {
     return false;
@@ -81,17 +87,22 @@ function PerformanceByPSUComuna(data, locale) {
     let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
     return {
       location: {
+        n_comunas: rank.length > 3 ? 3 : rank.length,
         first: {
           caption: rank[0]["Comuna"],
           prom: numeral(rank[0]["Average PSU"], locale).format("0.0")
         },
         second: {
-          caption: rank[1]["Comuna"],
-          prom: numeral(rank[1]["Average PSU"], locale).format("0.0")
+          caption: rank[1] ? rank[1]["Comuna"] : "",
+          prom: rank[1]
+            ? numeral(rank[1]["Average PSU"], locale).format("0.0")
+            : ""
         },
         third: {
-          caption: rank[2]["Comuna"],
-          prom: numeral(rank[2]["Average PSU"], locale).format("0.0")
+          caption: rank[2] ? rank[2]["Comuna"] : "",
+          prom: rank[2]
+            ? numeral(rank[2]["Average PSU"], locale).format("0.0")
+            : ""
         }
       }
     };
