@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { BarChart } from "d3plus-react";
+import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
@@ -15,7 +15,7 @@ class EmploymentByLevel extends Section {
   static need = [
     (params, store) => {
       var geo = getGeoObject(params);
-      const prm = mondrianClient.cube("nene").then(cube => {
+      const prm = mondrianClient.cube("nene_quarter").then(cube => {
         //force to region query on comuna profile
         if (geo.type == "comuna") {
           geo = geo.ancestor;
@@ -26,7 +26,7 @@ class EmploymentByLevel extends Section {
           cube.query
             .option("parents", true)
             .drilldown("ISCED", "ISCED", "ISCED")
-            .drilldown("Date", "Month")
+            .drilldown("Date", "Date", "Moving Quarter")
             .measure("Expansion factor")
             .cut(
               "[Occupational Situation].[Occupational Situation].[Occupational Situation].&[1]"
@@ -68,47 +68,29 @@ class EmploymentByLevel extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Regional Employment By Education")}</span>
+          <span>{t("Employed People By Education Level")}</span>
           <ExportLink path={path} />
         </h3>
-        <BarChart
+        <Treemap
           config={{
             height: 500,
             data: path,
             groupBy: "ID ISCED",
             label: d => d["ISCED"],
-            time: "Month",
-            x: false,
-            y: "Expansion factor",
+            time: "month",
+            sum: d => d["Expansion factor"],
+            time: "month",
             shapeConfig: {
               fill: d => educationLevelColorScale(d["ID ISCED"]),
-              label: false
+              label: d => d["ISCED"]
             },
-            xConfig: {
-              tickSize: 0,
-              title: false
-            },
-            yConfig: {
-              title: t("People"),
-              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
-            },
-            xSort: (a, b) => {
-              return ISCED_SORT["i" + a["ID ISCED"]] >
-                ISCED_SORT["i" + b["ID ISCED"]]
-                ? 1
-                : -1;
-            },
-            barPadding: 0,
-            groupPadding: 5,
             tooltipConfig: {
               title: d => {
                 return d["ISCED"];
               },
-              body: d =>
-                numeral(d["Expansion factor"], locale).format("(0.[0] a)") +
-                " " +
-                t("people")
+              body: d => d["quarter"]
             },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: {
@@ -118,15 +100,16 @@ class EmploymentByLevel extends Section {
               }
             }
           }}
-          dataFormat={data =>
-            data.data.sort(
-              (a, b) =>
-                ISCED_SORT["i" + a["ID ISCED"]] >
-                ISCED_SORT["i" + b["ID ISCED"]]
-                  ? 1
-                  : -1
-            )
-          }
+          dataFormat={data => {
+            console.log("total", data.data);
+            return data.data.map(f => {
+              var date = f["ID Moving Quarter"].split("_");
+              f["month"] = date[0] + "-" + date[1] + "-01";
+              f["quarter"] =
+                date[0] + " (" + date[1] + "," + date[2] + "," + date[3] + ")";
+              return f;
+            });
+          }}
         />
         <SourceNote cube="nene" />
       </div>

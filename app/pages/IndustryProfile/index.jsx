@@ -95,7 +95,7 @@ class IndustryProfile extends Component {
       const level2 = ids.level2;
       ids.level2 = false;
       const prm = mondrianClient
-        .cube("nene")
+        .cube("nene_quarter")
         .then(cube => {
           var q = levelCut(
             ids,
@@ -103,27 +103,29 @@ class IndustryProfile extends Component {
             "ISICrev4",
             cube.query
               .option("parents", true)
-              .drilldown("Date", "Date", "Month")
-              .measure("Expansion factor")
+              .drilldown("Date", "Date", "Moving Quarter")
+              .measure("Expansion Factor Decile")
               .measure("Expansion Factor Rank")
-              .measure("Expansion Factor Decile"),
+              .measure("Expansion Factor Decile Number"),
             "Level 1",
             "Level 2",
             store.i18n.locale
           );
-          q.cut(`[Date].[Month].&[11]&[2016]`);
+          q.cut(
+            `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`
+          );
 
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
-          if (!res.data.data[0]["Expansion factor"]) {
+          if (!res.data.data[0]["Expansion Factor Decile"]) {
             return false;
           } else {
             return {
               key: "employees_by_industry",
               data: {
-                value: res.data.data[0]["Expansion factor"],
-                decile: res.data.data[0]["Expansion Factor Decile"],
+                value: res.data.data[0]["Expansion Factor Decile"],
+                decile: res.data.data[0]["Expansion Factor Decile Number"],
                 rank: res.data.data[0]["Expansion Factor Rank"],
                 total: 1,
                 year: store.nene_month + "/" + store.nene_year
@@ -216,23 +218,25 @@ class IndustryProfile extends Component {
 
     simpleDatumNeed(
       "datum_industry_occupation_total",
-      "nene",
+      "nene_quarter",
       ["Expansion factor"],
       {
-        drillDowns: [["Date", "Date", "Year"]],
-        cuts: [`[Date].[Date].[Year].&[${sources.nene.last_year}]`],
+        drillDowns: [["Date", "Date", "Moving Quarter"]],
+        cuts: [
+          `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`
+        ],
         options: { parents: false }
       },
       "industry"
     ),
     simpleDatumNeed(
       "datum_industry_occupation_female_total",
-      "nene",
+      "nene_quarter",
       ["Expansion factor"],
       {
-        drillDowns: [["Date", "Date", "Year"]],
+        drillDowns: [["Date", "Date", "Moving Quarter"]],
         cuts: [
-          `[Date].[Date].[Year].&[${sources.nene.last_year}]`,
+          `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`,
           "[Sex].[Sex].[Sex].&[1]"
         ],
         options: { parents: false }

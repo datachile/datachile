@@ -71,7 +71,7 @@ class ProductSpace extends Section {
               },
               legend: false
             }}
-            dataFormat={data => {
+            dataFormat={data => (
                 data.data.map(d => (
                   {
                     ...d,
@@ -79,8 +79,8 @@ class ProductSpace extends Section {
                     "Exports RCA": d["Exports RCA"] ? d["Exports RCA"] : 0,
                     "FOB US": d["FOB US"] ? d["FOB US"] : 0
                   }
-                ));
-              }}
+                ))
+              )}
         />
         <SourceNote cube="tax_data" />
       </div>

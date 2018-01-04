@@ -1,6 +1,7 @@
 FROM node:latest
 
 ENV APP_HOME /datachile
+ENV CANON_CONST_API https://chilecube.datawheel.us/
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 

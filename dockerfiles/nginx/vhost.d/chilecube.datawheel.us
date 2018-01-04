@@ -8,8 +8,10 @@ gzip_types text/css application/json application/javascript text/xml application
 
 proxy_buffering on;
 
+client_max_body_size 5m;
+
 location /ui {
         sub_filter '<head>' '<head><script>window.__API_ENDPOINT__ = "https://chilecube.datawheel.us"; window.__SITE_TITLE__ = "DataChile"; </script>';
 	sub_filter_once on;
-    	alias /mondrian-rest-ui-files;
+        alias /mondrian-rest-ui-files;
 }

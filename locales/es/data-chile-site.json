@@ -371,7 +371,8 @@
   "Region": "Región",
   "Regional": "Regional",
   "Regional ": "Regional ",
-  "Regional Employment By Education": "Empleo regional según nivel educativo",
+  "Employed People By Education Level":
+    "Personas empleadas según nivel educativo",
   "Regional Employment By Sex": "Empleo regional según sexo",
   "Regions": "Regiones",
   "Regions & Comunas": "Regiones y Comunas",
@@ -831,7 +832,8 @@
   "houses": "viviendas",
   "in": "en",
   "in ": "en ",
-  "In last year of high school in ": "En último año de enseñanza media durante ",
+  "In last year of high school in ":
+    "En último año de enseñanza media durante ",
   "industry_profile": {
     "economy":
       "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
