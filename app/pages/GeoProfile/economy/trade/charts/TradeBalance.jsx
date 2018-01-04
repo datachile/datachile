@@ -10,6 +10,7 @@ import { melt, replaceKeyNames } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class TradeBalance extends Section {
   static need = [
@@ -81,6 +82,7 @@ class TradeBalance extends Section {
             return melt(data.data, ["ID Year"], values(tKeys));
           }}
         />
+        <SourceNote cube="exports_and_imports" />
       </div>
     );
   }

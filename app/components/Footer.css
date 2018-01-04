@@ -135,3 +135,13 @@ $break-xxs: "320px";
     }
   }
 }
+
+@add-mixin for-sm {
+  footer {
+    & .nav-links  {
+      & .link {
+        padding: calc(var(--gutter)/2) 10px;
+      }
+    }
+  }
+}

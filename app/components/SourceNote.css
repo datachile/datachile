@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .source-note {
   padding: calc(var(--gutter)/2) calc(var(--gutter)/2);
   font-family: var(--font-family-text);
@@ -14,5 +16,11 @@
     $:hover {
       text-decoration: underline;
     }
+  }
+}
+
+@add-mixin for-sm {
+  .source-note {
+    padding: calc(var(--gutter)/2) 0;
   }
 }

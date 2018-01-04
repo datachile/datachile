@@ -1,11 +1,12 @@
 .topic-slider {
+  lost-utility: clearfix;
   & * {
     min-height: 0;
     min-width: 0;
   }
   /* Slider */
-  & .slick-loading .slick-list {
-    background: steelblue;
+  & .slick-list {
+    lost-utility: clearfix;
   }
 
   /* Arrows */
@@ -17,7 +18,6 @@
 
     position: absolute;
     top: 50%;
-
 
     width: 20px;
     height: 100%;
@@ -50,16 +50,16 @@
   }
   & .slick-prev.slick-disabled:before,
   & .slick-next.slick-disabled:before {
-    opacity: .25;
+    opacity: 0.25;
   }
 
   & .slick-prev:before,
   & .slick-next:before {
-    font-family: 'slick';
+    font-family: "slick";
     font-size: 20px;
     line-height: 1;
 
-    opacity: .75;
+    opacity: 0.75;
     color: white;
 
     -webkit-font-smoothing: antialiased;
@@ -69,29 +69,29 @@
   & .slick-prev {
     left: 0;
   }
-  & [dir='rtl'] .slick-prev {
+  & [dir="rtl"] .slick-prev {
     right: 0;
     left: auto;
   }
   & .slick-prev:before {
-    content: '←';
+    content: "←";
   }
-  & [dir='rtl'] .slick-prev:before {
-    content: '→';
+  & [dir="rtl"] .slick-prev:before {
+    content: "→";
   }
 
   & .slick-next {
     right: 0;
   }
-  & [dir='rtl'] .slick-next {
+  & [dir="rtl"] .slick-next {
     right: auto;
     left: 0;
   }
   & .slick-next:before {
-    content: '→';
+    content: "→";
   }
-  & [dir='rtl'] .slick-next:before {
-    content: '←';
+  & [dir="rtl"] .slick-next:before {
+    content: "←";
   }
 
   /* Dots */
@@ -151,7 +151,7 @@
     opacity: 1;
   }
   & .slick-dots li button:before {
-    font-family: 'slick';
+    font-family: "slick";
     font-size: 6px;
     line-height: 20px;
 
@@ -162,17 +162,17 @@
     width: 20px;
     height: 20px;
 
-    content: '•';
+    content: "•";
     text-align: center;
 
-    opacity: .25;
+    opacity: 0.25;
     color: black;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   & .slick-dots li.slick-active button:before {
-    opacity: .75;
+    opacity: 0.75;
     color: black;
   }
 }

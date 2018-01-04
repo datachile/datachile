@@ -11,7 +11,6 @@ import { sources } from "helpers/consts";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
 import FeaturedDatum from "components/FeaturedDatum";
-import SourceNote from "components/SourceNote";
 
 class TradeSlide extends Section {
   static need = [
@@ -109,11 +108,10 @@ class TradeSlide extends Section {
                 )
               })}
             />
-            <TradeBalance className="l-2-3" />
+            <TradeBalance className="l-2-3 trade-balance" />
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
-        <SourceNote cube="exports" />
       </div>
     );
   }

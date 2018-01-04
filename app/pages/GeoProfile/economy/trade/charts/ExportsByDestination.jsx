@@ -13,6 +13,7 @@ import {
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ExportsByDestination extends Section {
   static need = [
@@ -97,6 +98,7 @@ class ExportsByDestination extends Section {
             }
           }}
         />
+        <SourceNote cube="exports" />
       </div>
     );
   }
