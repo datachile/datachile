@@ -25,7 +25,7 @@ function getRank(data, msrName, dimName, t) {
 // ECONOMY SECTION
 
 function IndustryOccupation(data, locale, t) {
-  if( data) {
+  if(data) {
     const rank = getRank(data.data, "Expansion Factor", "ISCO", t);
     return {
       text_joined_occupations: rank
@@ -109,7 +109,7 @@ function Enrollment(data, geo, locale) {
 function PerformanceByHighSchool(data, locale, t) {
   if (data) {
     let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
-    rank = rank.length >= 3 ? rank.splice(rank.length - 3, 2) : rank;
+    rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
 
     let output = rank.map(item => item["Institution"]);
     output = output.length > 1 ? output.join(", ") : output;
