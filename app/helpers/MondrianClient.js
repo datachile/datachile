@@ -2,6 +2,7 @@ import { Client as MondrianClient } from "mondrian-rest-client";
 import { getGeoObject, getLevelObject } from "helpers/dataUtils";
 
 import flattenDeep from "lodash/flattenDeep";
+import rangeRight from "lodash/rangeRight";
 
 const client = new MondrianClient(__API__);
 
@@ -52,17 +53,32 @@ function levelCut(
   }
 }
 
-function setLangCaptions(query, lang) {
-  if (lang.substring(0, 2) == "es") {
-    const drilldowns = query.getDrilldowns();
-
-    (drilldowns || []).forEach(level => {
-      const es = level.annotations["es_caption"];
-      if (es) {
-        query.caption(level.hierarchy.dimension.name, level.name, es);
-      }
-    });
+function setCaptionForLevelAndLang(query, level, lang) {
+  const ann = level.annotations[`${lang}_caption`];
+  if (ann) {
+    query.caption(level.hierarchy.dimension.name, level.name, ann);
   }
+  return query;
+}
+
+function setLangCaptions(query, lang) {
+  // bail early if lang <> es
+  if (lang.substring(0, 2) !== "es") return query;
+
+  const drilldowns = query.getDrilldowns();
+
+  (drilldowns || []).forEach(level => {
+    query = setCaptionForLevelAndLang(query, level, lang);
+
+    // when parents requested, also get their i18n'd captions
+    if (query.options["parents"]) {
+      rangeRight(1, level.depth).forEach(d => {
+        const ancestor = level.hierarchy.levels.find(l => l.depth === d);
+        query = setCaptionForLevelAndLang(query, ancestor, lang);
+      });
+    }
+  });
+
   return query;
 }
 
