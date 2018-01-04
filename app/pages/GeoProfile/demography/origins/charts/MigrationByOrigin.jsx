@@ -61,6 +61,7 @@ export default translate()(
             path={path}
             msrName="Number of visas"
             drilldowns={["Continent", "Country"]}
+            depth={true}
             config={{
               label: d => {
                 d["Country"] =
