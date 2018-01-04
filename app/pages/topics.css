@@ -49,7 +49,7 @@
         margin-bottom: var(--gutter);
 
         & .topic-slide-subtitle {
-          color: #FFE0B2;
+          color: #ffe0b2;
           lost-column: 1 flex;
           font-size: 14px;
           font-weight: 300;
@@ -95,10 +95,18 @@
       color: var(--snow);
       font-weight: 300;
       padding: 0 15px;
-      line-height: 1em;
+      line-height: 1.2em;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    & .viz {
+      min-height: 500px;
+    }
+    & .trade-balance {
+      & .viz {
+        min-height: auto;
+      }
     }
     & .chart-text {
       font-family: var(--font-family-text);
@@ -216,6 +224,8 @@
   .topic-block {
     & .topic-header {
       & .topic-title {
+        margin: calc(var(--gutter)/2) calc(var(--gutter)/2) 0
+          calc(var(--gutter)/2);
         & h2 {
           font-size: 30px;
           & .small {
@@ -231,7 +241,14 @@
       }
     }
     & .topic-slide-block {
+      & .chart-title {
+        padding: 0;
+      }
+      & .viz {
+        margin: calc(var(--gutter)/2) 0;
+      }
       & .topic-slide-intro {
+        margin: 0 calc(var(--gutter)/2);
         & .topic-slide-title {
         }
         & .topic-slide-text {
@@ -244,14 +261,14 @@
           justify-content: space-around;
           & .featured-datum {
             &.l-1-3 {
-              lost-column: 1/2 flex;
+              lost-column: 1 1 flex;
             }
             &.l-1-2 {
-              lost-column: 1/2 flex;
+              lost-column: 1 1 flex;
             }
           }
           & .l-2-3 {
-            lost-column: 1/2 flex;
+            lost-column: 1 1 flex;
           }
         }
       }

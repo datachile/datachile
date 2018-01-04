@@ -255,6 +255,13 @@
           & ul {
             & li {
               lost-column: 1/2 flex;
+              & a.link-soon {
+                & span {
+                  & small {
+                    display: block;
+                  }
+                }
+              }
             }
           }
         }

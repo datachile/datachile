@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { translate } from "react-i18next";
 import Helmet from "react-helmet";
 
+import { isMobile } from "helpers/responsiveUtils";
+
 import Footer from "components/Footer";
 import mondrianClient from "helpers/MondrianClient";
 
@@ -31,7 +33,11 @@ class App extends Component {
   render() {
     const { children, t } = this.props;
     return (
-      <div className="main-container">
+      <div
+        className={
+          isMobile() ? "main-container mobile" : "main-container desktop"
+        }
+      >
         <Helmet titleTemplate="%s — DataChile" defaultTitle="DataChile">
           <meta
             name="description"

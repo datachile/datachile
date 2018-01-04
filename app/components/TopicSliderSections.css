@@ -87,6 +87,7 @@
 
 @add-mixin for-sm {
   .topic-slider-sections {
+    margin: 0 calc(var(--gutter)/2) calc(var(--gutter)/2) calc(var(--gutter)/2);
     & ul {
       margin-bottom: 15px;
     }

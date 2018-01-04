@@ -12,6 +12,7 @@ import {
 import { productsColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 import TreemapStacked from "components/TreemapStacked";
 
 export default translate()(
@@ -89,59 +90,7 @@ export default translate()(
               }
             }}
           />
-          {/*<Treemap
-            config={{
-              height: 500,
-              data: path,
-              groupBy: ["ID HS0", "ID HS2"],
-              label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
-              sum: d => d["FOB US"],
-              time: "ID Year",
-              legendConfig: {
-                label: false,
-                shapeConfig: {
-                  backgroundImage: d =>
-                    "/images/legend/hs/hs_" + d["ID HS0"] + ".png",
-                  width: 25,
-                  height: 25,
-                  fill: d => productsColorScale("hs" + d["ID HS0"])
-                }
-              },
-              total: d => d["FOB US"],
-              totalConfig: {
-                text: d =>
-                  "Total: US" +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "($ 0.[00] a)"
-                  )
-              },
-              shapeConfig: {
-                fill: d => productsColorScale("hs" + d["ID HS0"])
-              },
-              on: {
-                click: d => {
-                  var url = slugifyItem(
-                    "products",
-                    d["ID HS0"],
-                    d["HS0"],
-                    d["ID HS2"] instanceof Array ? false : d["ID HS2"],
-                    d["HS2"] instanceof Array ? false : d["HS2"]
-                  );
-                  browserHistory.push(url);
-                }
-              },
-              tooltipConfig: {
-                title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
-                body: d =>
-                  "US" +
-                  numeral(d["FOB US"], locale).format("$ (USD 0 a)") +
-                  "<br/><a>" +
-                  t("tooltip.to_profile") +
-                  "</a>"
-              }
-            }}
-            dataFormat={data => data.data}
-          />*/}
+          <SourceNote cube="exports" />
         </div>
       );
     }
