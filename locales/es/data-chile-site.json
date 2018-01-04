@@ -36,7 +36,7 @@
   "Affiliates in": "Afiliados en",
   "Age": "Edad",
   "Age Range": "Rango de Edad",
-  "Amenities": "Amenities",
+  "Amenities": "Comodidades",
   "Area": "Área",
   "are": "son",
   "Average": "Promedio",
@@ -183,13 +183,12 @@
 
   "International Trade": "Comercio Internacional",
   "International Trade Balance": "Balance Comercial Internacional",
-  "Other products": "Otros Productos",
+  "Other Products": "Otros Productos",
 
   "Annual Growth Exports": "Crecimiento Anual de Exportaciones",
   "Annual Growth Imports": "Crecimiento Anual de Importaciones",
   "Growth of immigrants with higher education":
     "Crecimiento de migrantes con educación superior",
-  "In period": "En el periodo",
   "Health Center": "Centro de salud",
   "Health Insurance": "Previsión de Salud",
   "Healthcare": "Atención de Salud",
@@ -224,23 +223,21 @@
   "Industry & Occupations": "Industria y ocupaciones",
   "Industry By Output (CLP)": "Industry By Output (CLP)",
   "Industry Space": "Espacio de Industrias",
-  "Industry Type": "Tipo de Industria",
   "Industry output": "Producción de la industria",
   "Innovation": "Innovación",
   "Institution": "Institución",
   "Institution Type": "Tipo de Institución",
   "Institutions": "Instituciones",
-  "International Trade": "Comercio Internacional",
-  "International Trade Balance": "Balanza comercial internacional",
   "International trade": "Comercio internacional",
   "Internet Access": "Acceso a Internet",
+  "Access using small screens": "Acceso usando una pantalla pequeña",
   "Internet Access By Zone in ": "Acceso a internet por zona en ",
   "Internet access": "Acceso a Internet",
   "Internet use": "Uso de Internet",
   "Investment By Comuna (Legal address)":
     "Inversión por comuna (dirección legal)",
   "Language": "Idioma",
-  "Laptop computer": "Laptop computer",
+  "Laptop computer": "Computador portátil",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
   "Less than 30 square meter households": "Hogares de menos de 30m²",
@@ -839,6 +836,53 @@
           }
         }
       }
+    },
+    "housing": {
+      "amenities": {
+        "text":
+          "<p>La encuesta CASEN junta información sobre el acceso a servicios y equipamiento de los habitantes de las distintas localidades del país.</p>"
+      },
+      "quality": {
+        "rural":
+          "<p>En {{level}} hay {{housing_rural_number}} viviendas rurales ({{housing_rural_percent}} del total de viviendas).</p>",
+        "material":
+          "<p>La mayoría de las viviendas en {{level}} son {{housing_common_type}}. El material de construcción más común en {{level}} es {{housing_common_material}}.</p>",
+        "text":
+          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)",
+        "text_0":
+          "La última encuesta CASEN tiene pocos o ningún dato de calidad de vivienda para {{level}}."
+      },
+      "connectivity": {
+        "total":
+          "<p>En {{level}}, en {{year_last}}, {{access_total}} personas tuvieron acceso a internet.</p>",
+        "mobile":
+          "{{access_mobile}} accedió a internet por medio de un teléfono móvil",
+        "laptop": "{{access_laptop}} mediante un computador portátil",
+        "laptop_2":
+          "{{access_laptop}} accedió a internet mediante un computador portátil",
+        "laptop_6": "$t(geo_profile.housing.connectivity.laptop_2)",
+        "desktop": "{{access_desktop}} a través de un computador de escritorio",
+        "desktop_4":
+          "{{access_desktop}} accedió a internet a través de un computador de escritorio",
+        "text": "$t(geo_profile.housing.connectivity.total)",
+        "text_0": "$t(geo_profile.housing.connectivity.total)",
+        "text_1":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile).</p>",
+        "text_2":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.laptop).</p>",
+        "text_3":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), y $t(geo_profile.housing.connectivity.laptop).</p>",
+        "text_4":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_5":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), y $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_6":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.laptop), y $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_7":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), $t(geo_profile.housing.connectivity.laptop), y $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_none":
+          "La encuesta CASEN de {{year_last}} no tiene datos sobre conectividad para {{level}}."
+      }
     }
   },
   "granted in": "otorgadas en",
@@ -935,7 +979,7 @@
     "oops": "Oops! No encontramos la página que estás buscando.",
     "text": "Intenta navegar hacia otro perfil desde el buscador:"
   },
-  "use device": "use device",
+  "use device": "accedió usando",
   "val": "val",
   "visas": "visas",
   "Year": "Año",

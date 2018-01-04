@@ -3,8 +3,12 @@ import orderBy from "lodash/orderBy";
 import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
+import sumBy from "lodash/sumBy";
 
-import { simpleGeoChartNeed } from "helpers/MondrianClient";
+import mondrianClient, {
+  geoCut,
+  simpleGeoChartNeed
+} from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
@@ -16,93 +20,54 @@ class HousingByConstructionType extends Section {
   static need = [
     (params, store) => {
       const geo = getGeoObject(params);
-      return simpleGeoChartNeed(
-        "path_housing_construction_type",
-        "casen_household",
-        [
-          geo.type == "comuna"
-            ? "Expansion Factor Comuna"
-            : "Expansion Factor Region"
-        ],
-        {
-          drillDowns: [
-            ["Walls Material", "Walls Material", "Walls Material"],
-            ["Date", "Date", "Year"]
-          ],
-          options: { parents: true }
-        }
-      )(params, store);
-    },
-    (params, store) => {
-      var geo = getGeoObject(params);
-      //Skip comuna and calculate region path in case of comuna has no data
-      if (geo.type == "comuna") {
-        geo = geo.ancestor;
-      }
-      return simpleGeoChartNeed(
-        "path_housing_construction_type_fallback",
-        "casen_household",
-        ["Expansion Factor Region"],
-        {
-          drillDowns: [
-            ["Walls Material", "Walls Material", "Walls Material"],
-            ["Date", "Date", "Year"]
-          ],
-          options: { parents: true }
-        },
-        geo
-      )(params, store);
+
+      const promise = mondrianClient.cube("casen_household").then(cube => {
+        const query = cube.query
+          .drilldown("Date", "Date", "Year")
+          .drilldown("Walls Material", "Walls Material", "Walls Material")
+          .measure("Expansion Factor Region")
+          .option("parents", true);
+
+        if (geo.type == "comuna") query.measure("Expansion Factor Comuna");
+
+        return {
+          key: "path_housing_construction_type",
+          data:
+            __API__ +
+            geoCut(geo, "Geography", query, store.i18n.locale).path(
+              "jsonrecords"
+            )
+        };
+      });
+
+      return { type: "GET_DATA", promise };
     }
   ];
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {};
-  }
-
-  componentDidMount() {
-    this.setState({
-      path: this.context.data.path_housing_construction_type
-    });
-  }
-
   render() {
     const { t, className, i18n } = this.props;
-
-    const { path } = this.state;
-
-    const { path_housing_construction_type_fallback } = this.context.data;
-
     const locale = i18n.language;
-    const geo = this.context.data.geo;
 
-    var msrName = "Expansion Factor Comuna";
-
-    if (
-      geo.type != "comuna" ||
-      path == path_housing_construction_type_fallback
-    ) {
-      msrName = "Expansion Factor Region";
-    }
+    const { path_housing_construction_type } = this.context.data;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
           <span>{t("Material of Walls")}</span>
-          <ExportLink path={path} />
+          <ExportLink path={path_housing_construction_type} />
         </h3>
         <Treemap
           config={{
             height: 500,
-            data: path,
+            data: path_housing_construction_type,
             groupBy: ["ID Walls Material"],
             label: d => d["Walls Material"],
             time: "ID Year",
-            sum: d => d[msrName],
+            sum: d => d["Expansion Factor"],
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Walls Material"])
             },
-            total: d => d[msrName],
+            total: d => d["Expansion Factor"],
             totalConfig: {
               text: d =>
                 "Total: " +
@@ -113,9 +78,9 @@ class HousingByConstructionType extends Section {
             tooltipConfig: {
               title: d => d["Walls Material"],
               body: d =>
-                `${numeral(d[msrName], locale).format("( 0,0 )")} ${t(
-                  "houses"
-                )}`
+                `${numeral(d["Expansion Factor"], locale).format(
+                  "( 0,0 )"
+                )} ${t("houses")}`
             },
             legend: false,
             legendConfig: {
@@ -124,12 +89,21 @@ class HousingByConstructionType extends Section {
             }
           }}
           dataFormat={data => {
-            if (data.data.length > 0) {
-              return orderBy(data.data, [msrName], ["ASC"]);
-            } else {
-              this.setState({ path: path_housing_construction_type_fallback });
-              return [{}];
-            }
+            console.log(data);
+            const total = sumBy(data.data, "Expansion Factor Comuna");
+
+            if (total)
+              data.data.forEach(d => {
+                d["Expansion Factor"] = d["Expansion Factor Comuna"];
+              });
+            else
+              data.data.forEach(d => {
+                d["Expansion Factor"] = d["Expansion Factor Region"];
+              });
+
+            return data.data.sort(
+              (a, b) => a["Expansion Factor"] - b["Expansion Factor"]
+            );
           }}
         />
         <SourceNote cube="casen_household" />
