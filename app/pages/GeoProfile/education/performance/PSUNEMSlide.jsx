@@ -161,7 +161,9 @@ class PSUNEMSlide extends Section {
                             text
                           )
                         : t(
-                            "geo_profile.education.performance.byPSU.level1",
+                            `geo_profile.education.performance.byPSU.level1.${
+                              text.location.n_comunas
+                            }`,
                             text
                           )
                   }}
