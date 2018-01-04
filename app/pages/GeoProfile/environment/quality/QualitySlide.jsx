@@ -101,6 +101,7 @@ class QualitySlide extends Section {
 
   render() {
     const { children, t, i18n } = this.props;
+    const locale = i18n.language;
     var {
       datum_rural_households,
       datum_less_30mts_sq,
@@ -109,39 +110,33 @@ class QualitySlide extends Section {
       geo
     } = this.context.data;
 
+    console.log(this.context.data);
+
     const area =
       datum_rural_households && datum_rural_households.available
         ? geo
         : geo.ancestors[0];
 
-    const locale = i18n.language;
+    const rural_number = datum_rural_households.data;
+    const rural_percent = rural_number / datum_household_total.data;
+
+    const txt_slide = t("geo_profile.housing.quality.text", {
+      // context:
+      level: geo.name,
+      housing_rural_number: rural_number,
+      housing_rural_percent: numeral(rural_percent, locale).format("(0.0%)")
+      // housing_common_type
+      // housing_common_material
+    });
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Quality")}</div>
-          <div className="topic-slide-text">
-            {datum_rural_households &&
-              !datum_rural_households.available && (
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("no_info", {
-                      yes: area.caption,
-                      link: slugifyItem("geo", area.key, area.name),
-                      no: geo.caption
-                    })
-                  }}
-                />
-              )}
-            <p>
-              Sed diam. Praesent fermentum tempor tellus. Nullam tempus. Mauris
-              ac felis vel velit tristique imperdiet. Donec at pede. Etiam vel
-              neque nec dui dignissim bibendum. Vivamus id enim. Phasellus neque
-              orci, porta a, aliquet quis, semper a, massa. Phasellus purus.
-              Pellentesque tristique imperdiet tortor. Nam euismod tellus id
-              erat.
-            </p>
-          </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
+          />
           <div className="topic-slide-data">
             {datum_rural_households &&
               datum_household_total && (
@@ -150,19 +145,13 @@ class QualitySlide extends Section {
                   icon="empleo"
                   datum={
                     datum_rural_households.available
-                      ? numeral(datum_rural_households.data, locale).format(
-                          "(0.0 a)"
-                        )
+                      ? numeral(rural_number, locale).format("(0.0 a)")
                       : t("no_datum")
                   }
                   title={t("Rural households")}
                   subtitle={
                     datum_rural_households.available
-                      ? numeral(
-                          datum_rural_households.data /
-                            datum_household_total.data,
-                          locale
-                        ).format("(0.0%)") +
+                      ? numeral(rural_percent, locale).format("(0.0%)") +
                         t(" of ") +
                         area.caption
                       : ""
