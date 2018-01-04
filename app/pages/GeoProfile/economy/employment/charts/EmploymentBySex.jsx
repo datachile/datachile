@@ -126,17 +126,14 @@ class EmploymentBySex extends Section {
               tickFormat: tick => numeral(tick, locale).format("0%")
             },
             shapeConfig: {
-              Line: {
-                stroke: d => employmentColorScale(d["variable"]),
-                strokeWidth: 2
-              }
+              fill: d => employmentColorScale(d["variable"])
             },
             tooltipConfig: {
               title: d => d["variable"],
               body: d => {
                 return d["month"] instanceof Array
                   ? ""
-                  : numeral(d["percentage"], locale).format("0%") +
+                  : numeral(d["percentage"], locale).format("0.[0]%") +
                       " " +
                       t("people") +
                       "<br/>" +

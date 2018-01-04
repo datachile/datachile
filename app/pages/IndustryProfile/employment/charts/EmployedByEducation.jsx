@@ -19,10 +19,13 @@ class EmployedByEducation extends Section {
   static need = [
     simpleIndustryChartNeed(
       "path_industry_employed_by_education",
-      "nene",
+      "nene_quarter",
       ["Expansion factor"],
       {
-        drillDowns: [["Date", "Date", "Year"], ["ISCED", "ISCED", "ISCED"]],
+        drillDowns: [
+          ["Date", "Date", "Moving Quarter"],
+          ["ISCED", "ISCED", "ISCED"]
+        ],
         options: { parents: true }
       }
     )
@@ -48,22 +51,23 @@ class EmployedByEducation extends Section {
               groupBy: ["ISCED"],
               label: d => d["ISCED"],
               sum: d => d["Expansion factor"],
-              time: "ID Year",
+              time: "month",
               total: d => d["Expansion factor"],
               totalConfig: {
                 text: d =>
                   "Total: " +
                   numeral(getNumberFromTotalString(d.text), locale).format(
-                    "(0,0)"
+                    "(0 a)"
                   )
               },
               shapeConfig: {
-                fill: d => ordinalColorScale(d["ID ISCED"])
+                fill: d => ordinalColorScale("ISCED" + d["ID ISCED"])
               },
               tooltipConfig: {
-                title: d => d["ISCED"],
-                body: d =>
-                  numeral(d["Expansion factor"], locale).format("(0 a)")
+                title: d => {
+                  return d["ISCED"];
+                },
+                body: d => d["quarter"]
               },
               legendConfig: {
                 shapeConfig: {
@@ -74,7 +78,20 @@ class EmployedByEducation extends Section {
             }}
             dataFormat={data => {
               if (data.data && data.data.length > 0) {
-                return data.data;
+                return data.data.map(f => {
+                  var date = f["ID Moving Quarter"].split("_");
+                  f["month"] = date[0] + "-" + date[1] + "-01";
+                  f["quarter"] =
+                    date[0] +
+                    " (" +
+                    date[1] +
+                    "," +
+                    date[2] +
+                    "," +
+                    date[3] +
+                    ")";
+                  return f;
+                });
               } else {
                 this.setState({ treemap: false });
               }

@@ -32,7 +32,7 @@ class HousingType extends Section {
           options: { parents: true }
         }
       )(params, store);
-    },
+    } /*,
     (params, store) => {
       var geo = getGeoObject(params);
       //Skip comuna and calculate region path in case of comuna has no data
@@ -52,7 +52,7 @@ class HousingType extends Section {
         },
         geo
       )(params, store);
-    }
+    }*/
   ];
 
   constructor(props, context) {
@@ -123,7 +123,6 @@ class HousingType extends Section {
               if (data.data.length > 0) {
                 return orderBy(data.data, [msrName], ["ASC"]);
               } else {
-                this.setState({ path: path_housing_type_fallback });
                 return [{}];
               }
             }}

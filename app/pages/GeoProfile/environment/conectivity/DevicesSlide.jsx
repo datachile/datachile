@@ -56,7 +56,18 @@ class DevicesSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Devices")}</div>
+          <div className="topic-slide-title">
+            {t("Devices")}
+            <div className="topic-slide-subtitle">
+              <p>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("geo_profile.warning", geo)
+                  }}
+                />
+              </p>
+            </div>
+          </div>
           <div className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
             orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
