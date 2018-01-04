@@ -1,7 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
-import sum from "lodash/sum";
 
 import { sources } from "helpers/consts";
 import { simpleAvailableGeoDatumNeed } from "helpers/MondrianClient";
@@ -53,20 +52,21 @@ class ServicesAccessSlide extends Section {
 
   render() {
     const { children, t, i18n } = this.props;
+    const locale = i18n.language;
+
     const {
       datum_network_electricity_households,
       datum_household_total,
       geo
     } = this.context.data;
 
-    const locale = i18n.language;
-
     const area = datum_network_electricity_households.available
       ? geo
       : geo.ancestors[0];
 
-    const total_network_electricity = sum(
-      datum_network_electricity_households.data
+    const total_network_electricity = datum_network_electricity_households.data.reduce(
+      (sum, d) => sum + d,
+      0
     );
 
     const datum = datum_network_electricity_households.available
@@ -76,29 +76,16 @@ class ServicesAccessSlide extends Section {
         ).format("(0.0%)")
       : t("no_datum");
 
+    const txt_slide = t("geo_profile.housing.amenities.text");
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Services Access")}</div>
-          <div className="topic-slide-text">
-            {datum_network_electricity_households &&
-              !datum_network_electricity_households.available && (
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("no_info", {
-                      yes: area.caption,
-                      link: slugifyItem("geo", area.key, area.name),
-                      no: geo.caption
-                    })
-                  }}
-                />
-              )}
-            <p>
-              Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat
-              non orci commodo lobortis. Proin neque massa, cursus ut, gravida
-              ut, lobortis eget, lacus.
-            </p>
-          </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
+          />
           <div className="topic-slide-data">
             {datum_network_electricity_households &&
               datum_household_total && (

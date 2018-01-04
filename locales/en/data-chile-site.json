@@ -702,6 +702,52 @@
       "origin_by_sex_age": "",
       "origin_by_activity": "",
       "population_by_sex_age": ""
+    },
+    "housing": {
+      "amenities": {
+        "text":
+          "<p>The CASEN survey gathers information on access to services and equipment for the inhabitants of the different localities of the country.</p>"
+      },
+      "quality": {
+        "rural":
+          "<p>In {{level}} there are {{housing_rural_number}} rural households ({{housing_rural_percent}} of the households total).</p>",
+        "material":
+          "<p>Most households in {{level}} are <em>{{housing_common_type}}</em>. The most common construction material in {{level}} is {{housing_common_material}}.</p>",
+        "text":
+          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)",
+        "text_0":
+          "The latest CASEN survey has few or no data on housing quality for {{level}}."
+      },
+      "connectivity": {
+        "total":
+          "<p>In {{level}}, by {{year_last}}, {{access_total}} people have internet access.</p>",
+        "mobile":
+          "{{access_mobile}} accessed the internet through a mobile phone",
+        "laptop": "{{access_laptop}} using a laptop",
+        "laptop_2": "{{access_laptop}} accessed the internet using a laptop",
+        "laptop_6": "$t(geo_profile.housing.connectivity.laptop_2)",
+        "desktop": "{{access_desktop}} through a desktop computer",
+        "desktop_4":
+          "{{access_desktop}} accessed the internet through a desktop computer",
+        "text": "$t(geo_profile.housing.connectivity.total)",
+        "text_0": "$t(geo_profile.housing.connectivity.total)",
+        "text_1":
+          "$t(geo_profile.housing.connectivity.total)<p>From these, $t(geo_profile.housing.connectivity.mobile).</p>",
+        "text_2":
+          "$t(geo_profile.housing.connectivity.total)<p>From these, $t(geo_profile.housing.connectivity.laptop).</p>",
+        "text_3":
+          "$t(geo_profile.housing.connectivity.total)<p>From these, $t(geo_profile.housing.connectivity.mobile), and $t(geo_profile.housing.connectivity.laptop).</p>",
+        "text_4":
+          "$t(geo_profile.housing.connectivity.total)<p>From these, $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_5":
+          "$t(geo_profile.housing.connectivity.total)<p>From these, $t(geo_profile.housing.connectivity.mobile), and $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_6":
+          "$t(geo_profile.housing.connectivity.total)<p>From these, $t(geo_profile.housing.connectivity.laptop), and $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_7":
+          "$t(geo_profile.housing.connectivity.total)<p>From these, $t(geo_profile.housing.connectivity.mobile), $t(geo_profile.housing.connectivity.laptop), and $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_none":
+          "The CASEN survey of {{year_last}} has no data about internet access for {{level}}."
+      }
     }
   },
 
