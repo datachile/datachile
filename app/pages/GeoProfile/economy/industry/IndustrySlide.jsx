@@ -94,7 +94,7 @@ class IndustrySlide extends Section {
     );
     let text = merge(activity, occupation);
     if(text) {
-      text.labour_productivity = 
+      text.labour_productivity = datum_industry_by_labour_productivity.data;
     }
 
 
