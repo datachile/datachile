@@ -645,6 +645,15 @@
           "<p>Encuesta de la Subsecretaría de Telecomunicaciones (SUBTEL) que muestra a nivel regional el acceso a internet, los motivos por los cuales los hogares se conectan y cuáles son los dispositivos que emplean.</p>",
         "use":
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de vivienda y entorno."
+      },
+      "costes": {
+        "title": "Datos de Costes y Producción",
+        "year": "2010-2014",
+        "source": "Servicio de Impuestos Internos (SII)",
+        "text":
+          "<p>Datos de productividad de las industrias chilenas que provienen de registros administrativos del Servicio de Impuestos Internos (SII). Estos datos proporcionan información respecto del número de trabajadores, el coste de capital y trabajo, y la salida o producción (output) de una industria en una comuna.</p>",
+        "use":
+          "Se usa en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
       }
     },
     "team": {
