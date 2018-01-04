@@ -1,6 +1,7 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Treemap, StackedArea } from "d3plus-react";
+import NoDataAvailable from "components/NoDataAvailable";
 
 import "./TreemapStacked.css";
 
@@ -8,7 +9,8 @@ class TreemapStacked extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chart: "treemap"
+      chart: "treemap",
+      show: true
     };
     this.toggleChart = this.toggleChart.bind(this);
   }
@@ -38,15 +40,16 @@ class TreemapStacked extends React.Component {
     );
   }
   render() {
-    const { t, path, msrName, drilldowns, config } = this.props;
+    const { t, path, msrName, drilldowns, config, depth } = this.props;
     const chart = this.state.chart;
 
     if (!chart) {
       return null;
     }
+
     switch (chart) {
       case "treemap": {
-        return (
+        return this.state.show ? (
           <div>
             <Treemap
               config={{
@@ -58,27 +61,37 @@ class TreemapStacked extends React.Component {
                 sum: d => d[msrName],
                 time: "Year"
               }}
-              dataFormat={data => data.data}
+              dataFormat={data => {
+                if (data.data && data.data.length > 0) {
+                  return data.data;
+                } else {
+                  this.setState({ show: false });
+                }
+              }}
             />
             {this.menuChart(chart)}
           </div>
+        ) : (
+          <NoDataAvailable />
         );
       }
 
       case "stacked": {
-        return (
+        return this.state.show ? (
           <div>
             <StackedArea
               config={{
                 ...config,
-                label: d => d[drilldowns[0]],
+                label: !depth ? d => d[drilldowns[0]] : config.label,
                 total: false,
                 totalConfig: {
                   text: ""
                 },
                 height: 500,
                 data: path,
-                groupBy: "ID " + drilldowns[0],
+                groupBy: !depth
+                  ? "ID " + drilldowns[0]
+                  : ["ID " + drilldowns[0], "ID " + drilldowns[1]],
                 y: d => d[msrName],
                 x: d => d["Year"],
 
@@ -87,10 +100,18 @@ class TreemapStacked extends React.Component {
                 }
                 //legend: false
               }}
-              dataFormat={data => data.data}
+              dataFormat={data => {
+                if (data.data && data.data.length > 0) {
+                  return data.data;
+                } else {
+                  this.setState({ show: false });
+                }
+              }}
             />
             {this.menuChart(chart)}
           </div>
+        ) : (
+          <NoDataAvailable />
         );
       }
     }

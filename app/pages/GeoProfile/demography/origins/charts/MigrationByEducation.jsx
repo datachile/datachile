@@ -40,6 +40,7 @@ class MigrationByEducation extends Section {
           path={path}
           msrName="Number of visas"
           drilldowns={["Education", "Education"]}
+          depth={true}
           config={{
             height: 500,
             data: path,
