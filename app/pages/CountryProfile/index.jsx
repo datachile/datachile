@@ -167,7 +167,7 @@ class CountryProfile extends Component {
             "Country",
             store.i18n.locale
           );
-          q.cut(`[Date].[Date].[Year].&[${store.imports_year}]`);
+          q.cut(`[Date].[Date].[Year].&[${sources.imports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -176,7 +176,7 @@ class CountryProfile extends Component {
             data: {
               value: res.data.data[0]["CIF US"],
               decile: null,
-              year: store.imports_year,
+              year: sources.imports.year,
               source: sources.imports.title
             }
           };
@@ -201,7 +201,7 @@ class CountryProfile extends Component {
             "Country",
             store.i18n.locale
           );
-          q.cut(`[Date].[Date].[Year].&[${store.exports_year}]`);
+          q.cut(`[Date].[Date].[Year].&[${sources.exports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
@@ -210,7 +210,7 @@ class CountryProfile extends Component {
             data: {
               value: res.data.data[0]["FOB US"],
               decile: null,
-              year: store.exports_year,
+              year: sources.exports.year,
               source: sources.exports.title
             }
           };
@@ -240,7 +240,7 @@ class CountryProfile extends Component {
             store.i18n.locale
           );
 
-          q.cut(`[Date].[Year].&[${store.imports_year}]`);
+          q.cut(`[Date].[Year].&[${sources.imports.year}]`);
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
