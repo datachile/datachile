@@ -134,7 +134,11 @@ class PSUNEMSlide extends Section {
     if (datum_performance_by_psu_comuna) {
       rank = PerformanceByPSUComuna(datum_performance_by_psu_comuna, locale);
     } else {
-      rank = PerformanceByHighSchool(datum_performance_by_highschool, locale);
+      rank = PerformanceByHighSchool(
+        datum_performance_by_highschool,
+        locale,
+        t
+      );
     }
 
     const text = merge(perf, rank);
@@ -145,20 +149,24 @@ class PSUNEMSlide extends Section {
           <div className="topic-slide-title">Performance</div>
           <div className="topic-slide-text">
             <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html:
-                    geo.type === "comuna"
-                      ? t(
-                          "geo_profile.education.performance.byPSU.level2",
-                          text
-                        )
-                      : t(
-                          "geo_profile.education.performance.byPSU.level1",
-                          text
-                        )
-                }}
-              />
+              {text && (
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      geo.type === "comuna"
+                        ? t(
+                            `geo_profile.education.performance.byPSU.level2.${
+                              text.type
+                            }`,
+                            text
+                          )
+                        : t(
+                            "geo_profile.education.performance.byPSU.level1",
+                            text
+                          )
+                  }}
+                />
+              )}
             </p>
           </div>
           <div className="topic-slide-data">
@@ -169,10 +177,9 @@ class PSUNEMSlide extends Section {
                 datum={numeral(datum_performance_total.data, locale).format(
                   "0,0"
                 )}
-                title={t("Students enrolled")}
+                title={t("Students that took the PSU")}
                 subtitle={
-                  t("In last year of high school in ") +
-                  sources.education_performance_new.year
+                  t("In") + " " + sources.education_performance_new.year
                 }
               />
             )}
