@@ -16,7 +16,7 @@ class IndustrySlide extends Section {
       simpleDatumNeed(
         "datum_industry_by_labour_productivity",
         "tax_data",
-        ["Labour Productivity Based on Sales"],
+        ["Production per worker"],
         {
           drillDowns: [["Date", "Date", "Year"]],
           options: { parents: true },
@@ -97,7 +97,7 @@ class IndustrySlide extends Section {
       text.labour_productivity = numeral(
         datum_industry_by_labour_productivity.data,
         locale
-      ).format("$ 0,0.00 a");
+      ).format("$ 0,0.[0] a");
     }
 
     return (
