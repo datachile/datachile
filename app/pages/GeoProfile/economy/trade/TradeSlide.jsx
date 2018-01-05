@@ -11,6 +11,7 @@ import { sources } from "helpers/consts";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import isEmpty from "lodash/isEmpty";
 
 class TradeSlide extends Section {
   static need = [
@@ -114,6 +115,8 @@ class TradeSlide extends Section {
       ? t("increased")
       : t("decreased");
 
+    console.log(text_data);
+
     const locale = this.props.i18n.language;
 
     const { datum_trade_exports, datum_trade_imports } = this.context.data;
@@ -123,9 +126,18 @@ class TradeSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Trade")}</div>
           <div className="topic-slide-text">
-            <p
+            <span
               dangerouslySetInnerHTML={{
-                __html: t("geo_profile.economy.trade", text_data)
+                __html: isEmpty(text_data.exports)
+                  ? t("geo_profile.economy.exports.no_data", text_data)
+                  : t("geo_profile.economy.exports.default", text_data)
+              }}
+            />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: isEmpty(text_data.imports)
+                  ? t("geo_profile.economy.imports.no_data", text_data)
+                  : t("geo_profile.economy.imports.default", text_data)
               }}
             />
           </div>
