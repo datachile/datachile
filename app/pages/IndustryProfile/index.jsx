@@ -310,8 +310,6 @@ class IndustryProfile extends Component {
       }
     };
 
-    console.log(this.props.data.datum_industry_occupation_female_total);
-
     const topics = [
       {
         slug: "about",

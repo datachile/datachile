@@ -39,12 +39,12 @@ class IndustrySpace extends Section {
         </h3>
         <Network
           config={{
-            height: 500,
+            height: 600,
             links: "/json/isic_4_02_links_d3p2.json",
             nodes: "/json/isic_4_02_nodes_d3p2.json",
             data: path,
             label: d => d["Level 4"],
-            size: "Output RCA",
+            size: "Output",
             sizeMin: 3,
             sizeMax: 10,
             zoomScroll: false,
@@ -60,19 +60,41 @@ class IndustrySpace extends Section {
             },
             legend: false,
             tooltipConfig: {
-              body: d => numeral(d["Output"], locale).format("(USD 0 a)")
+              body: d => {
+                var body = `<table class='tooltip-table'>
+                           <tr><td class='title'>${t("Output")}</td>
+                           <td class='data'>${numeral(
+                             d["Output"],
+                             locale
+                           ).format("$ 0 a")}</td></tr>
+                           <tr><td class='title'>${t("ISIC")}</td>
+                           <td class='data'>${d["ID Level 4"]}</td></tr>
+                           <tr><td class='title'>${t(
+                             "RCA"
+                           )}</td><td class='data'>${numeral(
+                  d["Output RCA"],
+                  locale
+                ).format("0.0")}</td></tr>
+                         </table>`;
+                return body;
+              }
             }
           }}
           dataFormat={data =>
             data.data.map(d => ({
               id: d["ID Level 4"],
-              "Output RCA":
-                d["Output RCA"] === null ? 0 : d["Output RCA"] === null,
+              "Output RCA": d["Output RCA"] === null ? 0 : d["Output RCA"],
               ...d
             }))
           }
         />
         <SourceNote cube="tax_data" />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.economy.rca")
+          }}
+        />
       </div>
     );
   }
