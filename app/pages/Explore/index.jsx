@@ -244,7 +244,7 @@ class Explore extends Component {
               name: m.caption,
               type: type,
               url: "/explore/" + type + "/" + m.key + "#results",
-              img: getImageFromMember("geo", m.key)
+              img: getImageFromMember(type == "region" ? "geo" : type, m.key)
             };
           })
         : [];

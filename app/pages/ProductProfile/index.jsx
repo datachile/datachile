@@ -329,8 +329,6 @@ class ProductProfile extends Component {
     const { t, i18n } = this.props;
     const obj = this.props.data.product;
 
-    if (!obj) return null;
-
     const locale = i18n.language;
 
     const {
@@ -419,10 +417,6 @@ class ProductProfile extends Component {
       {
         slug: "trade",
         title: t("Trade")
-      },
-      {
-        slug: "opportunities",
-        title: t("Opportunities")
       }
     ];
 
@@ -434,9 +428,11 @@ class ProductProfile extends Component {
         loadingComponent={<DatachileLoading />}
       >
         <Helmet>
-          <title>{`${obj.caption}${
-            obj.parent ? " (" + obj.parent.caption + ")" : ""
-          }`}</title>
+          {obj && (
+            <title>{`${obj.caption}${
+              obj.parent ? " (" + obj.parent.caption + ")" : ""
+            }`}</title>
+          )}
         </Helmet>
         <div className="profile">
           <div className="intro">
@@ -459,9 +455,7 @@ class ProductProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/product/${
-                    key
-                  }.jpg')`
+                  backgroundImage: `url('/images/profile-bg/product/${key}.jpg')`
                 }}
               />
               <div className="gradient" />
