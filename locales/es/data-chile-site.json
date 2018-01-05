@@ -80,6 +80,8 @@
   "Comuna": "Comuna",
   "Comunas": "Comunas",
   "Connected to electricity network": "Conectado a la red eléctrica",
+  "Use fire-based heating": "Usa calefacción basada en fuego",
+  "Connected to public tap water system": "Conectado a la red de agua pública",
   "Connectivity": "Conectividad",
   "Contact": "Contacto",
   "Contributor": "Contributor",
@@ -230,7 +232,11 @@
   "Institutions": "Instituciones",
   "International trade": "Comercio internacional",
   "Internet Access": "Acceso a Internet",
-  "Access using small screens": "Acceso usando una pantalla pequeña",
+  "Use small screens": "Usa pantallas pequeñas",
+  "to access the internet": "para acceder a Internet",
+  "Use unconventional internet browser":
+    "Usa navegadores de internet no convencionales",
+  "on Smart TV or Gaming Console": "en Smart TVs o Consolas de juego",
   "Internet Access By Zone in ": "Acceso a internet por zona en ",
   "Internet access": "Acceso a Internet",
   "Internet use": "Uso de Internet",
@@ -862,9 +868,11 @@
         "material":
           "<p>La mayoría de las viviendas en {{level}} son {{housing_common_type}}. El material de construcción más común en {{level}} es {{housing_common_material}}.</p>",
         "text":
-          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)",
-        "text_0":
-          "La última encuesta CASEN tiene pocos o ningún dato de calidad de vivienda para {{level}}."
+          "La última encuesta CASEN tiene pocos o ningún dato de calidad de vivienda para {{level}}.",
+        "text_1": "$t(geo_profile.housing.quality.rural)",
+        "text_2": "$t(geo_profile.housing.quality.material)",
+        "text_3":
+          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
       },
       "connectivity": {
         "total":

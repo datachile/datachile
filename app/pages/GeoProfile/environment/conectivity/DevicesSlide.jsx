@@ -11,13 +11,103 @@ import { sources } from "helpers/consts";
 import FeaturedDatum from "components/FeaturedDatum";
 
 class DevicesSlide extends Section {
-  static need = [];
+  static need = [
+    (params, store) => {
+      let geo = getGeoObject(params);
+      if (geo.type == "comuna") geo = geo.ancestor;
+
+      const promise = mondrianClient
+        .cube("internet_access")
+        .then(cube => {
+          const query = cube.query
+            .drilldown(
+              "Tablet Access",
+              "Binary Survey Response",
+              "Binary Survey Response"
+            )
+            .drilldown(
+              "Cellphone Access",
+              "Binary Survey Response",
+              "Binary Survey Response"
+            )
+            .measure("Expansion factor")
+            .option("parents", false);
+
+          return mondrianClient.query(
+            geoCut(geo, "Geography", query, store.i18n.locale),
+            "jsonrecords"
+          );
+        })
+        .then(result => {
+          return {
+            key: "datum_household_devices_small",
+            data: result.data.data.reduce(
+              (sum, answer) =>
+                sum +
+                (answer["ID Binary Survey Response"] == 2
+                  ? answer["Expansion factor"] || 0
+                  : 0),
+              0
+            )
+          };
+        });
+
+      return { type: "GET_DATA", promise };
+    },
+    (params, store) => {
+      let geo = getGeoObject(params);
+      if (geo.type == "comuna") geo = geo.ancestor;
+
+      const promise = mondrianClient
+        .cube("internet_access")
+        .then(cube => {
+          const query = cube.query
+            .drilldown(
+              "Games or Consoles Access",
+              "Binary Survey Response",
+              "Binary Survey Response"
+            )
+            .drilldown(
+              "TV Access",
+              "Binary Survey Response",
+              "Binary Survey Response"
+            )
+            .measure("Expansion factor")
+            .option("parents", false);
+
+          return mondrianClient.query(
+            geoCut(geo, "Geography", query, store.i18n.locale),
+            "jsonrecords"
+          );
+        })
+        .then(result => {
+          return {
+            key: "datum_household_devices_uncommon",
+            data: result.data.data.reduce(
+              (sum, answer) =>
+                sum +
+                (answer["ID Binary Survey Response"] == 2
+                  ? answer["Expansion factor"] || 0
+                  : 0),
+              0
+            )
+          };
+        });
+
+      return { type: "GET_DATA", promise };
+    }
+  ];
 
   render() {
     const { children, t, i18n } = this.props;
     const locale = i18n.language;
 
-    let { geo, internet_data } = this.context.data;
+    let {
+      datum_household_devices_small,
+      datum_household_devices_uncommon,
+      geo,
+      internet_data
+    } = this.context.data;
 
     if (geo.type === "comuna") {
       geo = { ...geo.ancestors[0] };
@@ -72,19 +162,20 @@ class DevicesSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="empleo"
-              datum={numeral(expf_phone + expf_tablet, locale).format(
+              datum={numeral(datum_household_devices_small, locale).format(
                 "(0,0 a)"
               )}
-              title={t("Access using small screens")}
+              title={t("Use small screens")}
+              subtitle={t("to access the internet")}
             />
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={numeral(expf_smarttv + expf_console, locale).format(
+              datum={numeral(datum_household_devices_uncommon, locale).format(
                 "(0,0 a)"
               )}
-              title={t("Access using unconventional browser")}
-              subtitle={t("Smart TV o")}
+              title={t("Use unconventional internet browser")}
+              subtitle={t("on Smart TV or Gaming Console")}
             />
           </div>
         </div>

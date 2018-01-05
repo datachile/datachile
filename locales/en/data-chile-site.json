@@ -714,9 +714,11 @@
         "material":
           "<p>Most households in {{level}} are <em>{{housing_common_type}}</em>. The most common construction material in {{level}} is {{housing_common_material}}.</p>",
         "text":
-          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)",
-        "text_0":
-          "The latest CASEN survey has few or no data on housing quality for {{level}}."
+          "The latest CASEN survey has few or no data on housing quality for {{level}}.",
+        "text_1": "$t(geo_profile.housing.quality.rural)",
+        "text_2": "$t(geo_profile.housing.quality.material)",
+        "text_3":
+          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
       },
       "connectivity": {
         "total":

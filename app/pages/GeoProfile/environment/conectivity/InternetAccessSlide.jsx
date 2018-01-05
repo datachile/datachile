@@ -45,7 +45,7 @@ class InternetAccessSlide extends Section {
   render() {
     const { children, t } = this.props;
 
-    const txt_slide = t("");
+    const txt_slide = t("geo_profile.housing.internet_access.text", {});
 
     return (
       <div className="topic-slide-block">
