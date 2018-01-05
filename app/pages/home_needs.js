@@ -115,7 +115,7 @@ export function needHomeProductsExports(params, store) {
           .map(r => {
             return {
               name: r["HS2"],
-              type: "geo",
+              type: "products",
               url: slugifyItem(
                 "products",
                 r["ID HS0"],
@@ -159,7 +159,7 @@ export function needHomeCountriesExports(params, store) {
           .map(r => {
             return {
               name: r["Country"],
-              type: "geo",
+              type: "countries",
               url: slugifyItem(
                 "countries",
                 r["ID Continent"],
