@@ -726,7 +726,7 @@ class GeoProfile extends Component {
                 },
                 {
                   name: t("Connectivity"),
-                  slides: [t("Internet access")]
+                  slides: [t("Devices")]
                 }
               ]}
             >
