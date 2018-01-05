@@ -222,7 +222,7 @@ class Explore extends Component {
         break;
       }
       case "geo": {
-        type = "geo";
+        type = "region";
         title = t("Geographical");
         mainLink = true;
         break;
@@ -244,16 +244,16 @@ class Explore extends Component {
               name: m.caption,
               type: type,
               url: "/explore/" + type + "/" + m.key + "#results",
-              img: getImageFromMember(type, m.key)
+              img: getImageFromMember("geo", m.key)
             };
           })
         : [];
 
-    if (type == "geo" && filters.length) {
+    if (type == "region" && filters.length) {
       filters.unshift({
         key: "chile",
         name: "Chile",
-        type: "geo",
+        type: "national",
         url: "/geo/chile",
         img: getImageFromMember("geo", "chile")
       });
