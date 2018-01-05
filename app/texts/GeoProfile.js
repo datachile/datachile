@@ -24,6 +24,35 @@ function getRank(data, msrName, dimName, t) {
 
 // ECONOMY SECTION
 
+function SpendingByIndustry(data, msrName, locale, t) {
+  if (data) {
+    const rank = getRank(data.data, msrName, "Level 1", t);
+    return {
+      industry: {
+        first: {
+          caption: rank[0]["Level 1"]
+        },
+        second: {
+          caption: rank[1]["Level 1"]
+        }
+      }
+    };
+  }
+}
+
+function SpendingBySector(data, msrName, geo, locale, t) {
+  if (data) {
+    const rank = getRank(data.data, msrName, "Ownership Type", t);
+    return {
+      year: {
+        last: sources.rd_survey.last_year
+      },
+      geo,
+      text_joined_industries: rank
+    };
+  }
+}
+
 function IndustryOccupation(data, locale, t) {
   if(data) {
     const rank = getRank(data.data, "Expansion Factor", "ISCO", t);
@@ -167,10 +196,10 @@ function PerformanceByPSU(data, geo, locale, t) {
   const last_year = sources.education_performance_new.year;
   const lang = {
     en: {
-      1: "Municipales",
-      2: "Municipales",
-      3: "Municipales",
-      4: "Municipales"
+      1: "Municipal",
+      2: "Subsidised",
+      3: "Private",
+      4: "Delegated Administration"
     },
     es: {
       1: "Municipales",
@@ -350,6 +379,8 @@ function DeathCauses(data, geo, locale) {
 }
 
 export {
+  SpendingByIndustry,
+  SpendingBySector,
   IndustryActivity,
   IndustryOccupation,
   DeathCauses,

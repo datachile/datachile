@@ -813,6 +813,7 @@
         "no_data":
           "<p>No existen datos de importaciones de empresas establecidas en {{geo.caption}}.</p>"
       },
+      "innovation": "<p>En {{year.last}}, las empresas de {{geo.caption}} que lideran la ejecución del gasto en I+D son de propiedad  {{industry.first.caption}}, seguidas por empresas de propiedad {{industry.second.caption}}.</p><p>Los sectores económicos de {{geo.caption}} que gastaron más en I+D son {{text_joined_industries}}.</p>",
       "trade": "",
       "rca":
         "La ventaja comparativa revelada (RCA) mide el nivel de especialización de una localidad en una industria o producto.  Cuando una localidad tiene RCA mayor que 1 en una actividad económica, esta actividad económica tiene mayor presencia en esa localidad que en la localidad promedio.",
