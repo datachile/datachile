@@ -12,6 +12,14 @@ import { numeral, slugifyItem } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
+const groupSumBy = (array, key_group, key_sum) => {
+  return array.reduce((sum, item) => {
+    const key = item[key_group];
+    sum[key] = (sum[key] || 0) + (parseFloat(item[key_sum]) || 0);
+    return sum;
+  }, {});
+};
+
 class QualitySlide extends Section {
   static need = [
     (params, store) => {
@@ -21,11 +29,11 @@ class QualitySlide extends Section {
           ? "Expansion Factor Comuna"
           : "Expansion Factor Region";
       return simpleAvailableGeoDatumNeed(
-        "datum_rural_households",
+        "datum_household_zone_rural",
         "casen_household",
         [msrName],
         {
-          drillDowns: [["Zone Id", "Zone Id", "Zone Id"]],
+          drillDowns: [["Date", "Date", "Year"]],
           options: { parents: false },
           cuts: [
             `[Date].[Date].[Year].&[${sources.casen_household.year}]`,
@@ -96,6 +104,75 @@ class QualitySlide extends Section {
           cuts: [`[Date].[Date].[Year].&[${sources.casen_household.year}]`]
         }
       )(params, store);
+    },
+    (params, store) => {
+      const geo = getGeoObject(params);
+
+      const promise = mondrianClient
+        .cube("casen_household")
+        .then(cube => {
+          const query = cube.query
+            .drilldown("Household Type", "Household Type", "Household Type")
+            .drilldown("Walls Material", "Walls Material", "Walls Material")
+            .measure("Expansion Factor Region")
+            .option("parents", false);
+
+          if (geo.type == "comuna") query.measure("Expansion Factor Comuna");
+
+          return mondrianClient.query(
+            geoCut(geo, "Geography", query, store.i18n.locale),
+            "jsonrecords"
+          );
+        })
+        .then(result => {
+          const data = result.data.data;
+
+          const is_comuna = data.some(d => d["Expansion Factor Comuna"]);
+          const labels = data.reduce(
+            (list, d) => {
+              d["Expansion Factor"] =
+                (is_comuna
+                  ? d["Expansion Factor Comuna"]
+                  : d["Expansion Factor Region"]) || 0;
+              const key_material = d["ID Walls Material"];
+              const key_type = d["ID Household Type"];
+              list.material[key_material] = d["Walls Material"];
+              list.type[key_type] = d["Household Type"];
+              return list;
+            },
+            { material: {}, type: {} }
+          );
+
+          const by_material = groupSumBy(
+            data,
+            "ID Walls Material",
+            "Expansion Factor"
+          );
+          const by_type = groupSumBy(
+            data,
+            "ID Household Type",
+            "Expansion Factor"
+          );
+
+          const max_material = Object.keys(by_material)
+            .sort((a, b) => by_material[a] - by_material[b])
+            .pop();
+          const max_type = Object.keys(by_type)
+            .sort((a, b) => by_type[a] - by_type[b])
+            .pop();
+
+          return {
+            key: "datum_household_quality",
+            data: {
+              type: labels.type[max_type],
+              type_number: by_type[max_type],
+              material: labels.material[max_material],
+              material_number: by_material[max_material]
+            }
+          };
+        });
+
+      return { type: "GET_DATA", promise };
     }
   ];
 
@@ -103,30 +180,36 @@ class QualitySlide extends Section {
     const { children, t, i18n } = this.props;
     const locale = i18n.language;
     var {
-      datum_rural_households,
+      datum_household_quality,
+      datum_household_zone_rural,
       datum_less_30mts_sq,
       datum_household_total,
       datum_credit_banco_estado,
       geo
     } = this.context.data;
 
-    console.log(this.context.data);
-
     const area =
-      datum_rural_households && datum_rural_households.available
+      datum_household_zone_rural && datum_household_zone_rural.available
         ? geo
         : geo.ancestors[0];
 
-    const rural_number = datum_rural_households.data;
+    const rural_number = datum_household_zone_rural.data[0];
     const rural_percent = rural_number / datum_household_total.data;
 
+    const bitwise_context = (
+      (rural_number ? 1 : 0) ^
+      (datum_household_quality.type_number &&
+      datum_household_quality.material_number
+        ? 2
+        : 0)
+    ).toString();
     const txt_slide = t("geo_profile.housing.quality.text", {
-      // context:
+      context: bitwise_context,
       level: geo.name,
       housing_rural_number: rural_number,
-      housing_rural_percent: numeral(rural_percent, locale).format("(0.0%)")
-      // housing_common_type
-      // housing_common_material
+      housing_rural_percent: numeral(rural_percent, locale).format("(0.0%)"),
+      housing_common_type: datum_household_quality.type,
+      housing_common_material: datum_household_quality.material
     });
 
     return (
@@ -138,19 +221,19 @@ class QualitySlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            {datum_rural_households &&
+            {datum_household_zone_rural &&
               datum_household_total && (
                 <FeaturedDatum
                   className="l-1-3"
                   icon="empleo"
                   datum={
-                    datum_rural_households.available
+                    datum_household_zone_rural.available
                       ? numeral(rural_number, locale).format("(0.0 a)")
                       : t("no_datum")
                   }
                   title={t("Rural households")}
                   subtitle={
-                    datum_rural_households.available
+                    datum_household_zone_rural.available
                       ? numeral(rural_percent, locale).format("(0.0%)") +
                         t(" of ") +
                         area.caption

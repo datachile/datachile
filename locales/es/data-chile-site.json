@@ -80,6 +80,8 @@
   "Comuna": "Comuna",
   "Comunas": "Comunas",
   "Connected to electricity network": "Conectado a la red eléctrica",
+  "Use fire-based heating": "Usa calefacción basada en fuego",
+  "Connected to public tap water system": "Conectado a la red de agua pública",
   "Connectivity": "Conectividad",
   "Contact": "Contacto",
   "Contributor": "Contributor",
@@ -230,7 +232,11 @@
   "Institutions": "Instituciones",
   "International trade": "Comercio internacional",
   "Internet Access": "Acceso a Internet",
-  "Access using small screens": "Acceso usando una pantalla pequeña",
+  "Use small screens": "Usa pantallas pequeñas",
+  "to access the internet": "para acceder a Internet",
+  "Use unconventional internet browser":
+    "Usa navegadores de internet no convencionales",
+  "on Smart TV or Gaming Console": "en Smart TVs o Consolas de juego",
   "Internet Access By Zone in ": "Acceso a internet por zona en ",
   "Internet access": "Acceso a Internet",
   "Internet use": "Uso de Internet",
@@ -784,8 +790,10 @@
         "En {{latest_year}} las firmas con domicilio fiscal en {{geo.caption}} exportaron <i>{{trade_volume}}</i>, llevando a {{geo.caption}} al {{rank}} puesto de los mayores exportadores de Chile. Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}. Los principales productos de exportación de {{geo.caption}} son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} del total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} del total)"
     },
     "economy": {
-      "opportunity": "Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de industrias conecta industrias que tienden a estar presentes en las mismas comunas, y el espacio de productos conecta productos que tienden a ser exportados por los mismos países. Las industrias y productos con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.",
-      "industry": "<p>En {{year.last}}, {{geo.caption}} generó una producción total de {{total}}. La productividad laboral basada en ventas en {{geo.caption}} fue de {{labour_productivity}} pesos anuales por empleado.</p><p>Las principales industrias de {{geo.caption}} son {{text_joined_activities}}. </p><p>Las ocupaciones más comunes en {{geo.caption}}, según el número de trabajadores, son {{text_joined_occupations}}.</p>"
+      "opportunity":
+        "Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de industrias conecta industrias que tienden a estar presentes en las mismas comunas, y el espacio de productos conecta productos que tienden a ser exportados por los mismos países. Las industrias y productos con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.",
+      "industry":
+        "<p>En {{year.last}}, {{geo.caption}} generó una producción total de {{total}}. La productividad laboral basada en ventas en {{geo.caption}} fue de {{labour_productivity}} pesos anuales por empleado.</p><p>Las principales industrias de {{geo.caption}} son {{text_joined_activities}}. </p><p>Las ocupaciones más comunes en {{geo.caption}}, según el número de trabajadores, son {{text_joined_occupations}}.</p>"
     },
     "health": {
       "access":
@@ -826,13 +834,18 @@
       "performance": {
         "byPSU": {
           "level1": {
-            "2": "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
-            "3": "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}} ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+            "2":
+              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+            "3":
+              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}} ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
           },
           "level2": {
-            "plural": "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
-            "singular": "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
-            "no_data": "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
+            "plural":
+              "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+            "singular":
+              "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+            "no_data":
+              "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
           }
         }
       }
@@ -848,9 +861,11 @@
         "material":
           "<p>La mayoría de las viviendas en {{level}} son {{housing_common_type}}. El material de construcción más común en {{level}} es {{housing_common_material}}.</p>",
         "text":
-          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)",
-        "text_0":
-          "La última encuesta CASEN tiene pocos o ningún dato de calidad de vivienda para {{level}}."
+          "La última encuesta CASEN tiene pocos o ningún dato de calidad de vivienda para {{level}}.",
+        "text_1": "$t(geo_profile.housing.quality.rural)",
+        "text_2": "$t(geo_profile.housing.quality.material)",
+        "text_3":
+          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
       },
       "connectivity": {
         "total":

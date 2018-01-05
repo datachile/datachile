@@ -566,19 +566,12 @@ function simpleCountryDatumNeed(
       locale
     })
       .then(res => postprocess(res, locale, params, store))
-      .then(
-        data => {
-          // console.log(key, data);
-          return { key, data };
-        },
-        err => {
-          console.error("<Error> - ", key);
-          console.error(err.stack);
-          console.error("</Error> ------------");
-        }
-      );
+      .then(data => {
+        // console.log(key, data);
+        return { key, data };
+      });
 
-    return { type: "GET_DATA", promise };
+    return { type: "GET_DATA", promise, description: key };
   };
 }
 
