@@ -688,6 +688,33 @@
       "healthcare":
         "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
     },
+    "economy": {
+      "exports": {
+        "default":
+          "<p>In {{exports.latest_year}} firms located in {{geo.caption}} exported <i>{{exports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} exports have <i>{{exports.increased_or_decreased}}</i> at an annual average rate of {{exports.annualized_rate}}, from <i>{{exports.trade_first_year}}</i> in {{first_year}} to <i>{{exports.trade_last_year}}</i> in {{exports.last_year}}. {{geo.caption}} main export is <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>, that represents {{exports.trade_first_share}} of {{geo.caption}} total exports, followed by <a href=\"{{exports.trade_second_product_link}}\">{{exports.trade_second_product}}</a> that represents {{exports.trade_second_share}}.</p>",
+        "one":
+          "<p>In {{exports.latest_year}} firms located in {{geo.caption}} exported <i>{{exports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} exports have <i>{{exports.increased_or_decreased}}</i> at an annual average rate of {{exports.annualized_rate}}, from <i>{{exports.trade_first_year}}</i> in {{first_year}} to <i>{{exports.trade_last_year}}</i> in {{exports.last_year}}. {{geo.caption}} only export is <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>.</p>",
+        "no_data":
+          "<p>There is no export data about firms located in {{geo.caption}}.</p>"
+      },
+      "imports": {
+        "default":
+          "<p>In {{imports.latest_year}} firms located in {{geo.caption}} imported <i>{{imports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} imports have <i>{{imports.increased_or_decreased}}</i> at an annual average rate of {{imports.annualized_rate}}, from <i>{{imports.trade_first_year}}</i> in {{first_year}} to <i>{{imports.trade_last_year}}</i> in {{imports.last_year}}. {{geo.caption}} main import is <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, that represents {{imports.trade_first_share}} of {{geo.caption}} total imports, followed by <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a> that represents {{imports.trade_second_share}}.</p>",
+        "one":
+          "<p>In {{imports.latest_year}} firms located in {{geo.caption}} imported <i>{{imports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} imports have <i>{{imports.increased_or_decreased}}</i> at an annual average rate of {{imports.annualized_rate}}, from <i>{{imports.trade_first_year}}</i> in {{first_year}} to <i>{{imports.trade_last_year}}</i> in {{imports.last_year}}. {{geo.caption}} only import is <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>.</p>",
+        "no_data":
+          "<p>There is no import data about firms located in {{geo.caption}}.</p>"
+      },
+      "trade": "",
+      "rca":
+        "La ventaja comparativa revelada (RCA) mide el nivel de especialización de una localidad en una industria o producto.  Cuando una localidad tiene RCA mayor que 1 en una actividad económica, esta actividad económica tiene mayor presencia en esa localidad que en la localidad promedio.",
+      "product_space":
+        "<p>Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de productos conecta productos que tienden a ser exportados por los mismos países.</p><p>Las productos con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.</p>",
+      "industry_space":
+        "<p>Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de industrias conecta industrias que tienden a estar presentes en las mismas comunas.</p><p>Las industrias con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.</p>",
+      "industry":
+        "<p>En {{year.last}}, {{geo.caption}} generó una producción total de {{total}}. La productividad laboral basada en ventas en {{geo.caption}} fue de {{labour_productivity}} pesos anuales por empleado.</p><p>Las principales industrias de {{geo.caption}} son {{text_joined_activities}}. </p><p>Las ocupaciones más comunes en {{geo.caption}}, según el número de trabajadores, son {{text_joined_occupations}}.</p>"
+    },
     "income_sex_age_slide": {
       "text": "Income by sex and age slide."
     },
