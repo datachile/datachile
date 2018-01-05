@@ -23,9 +23,7 @@ class FeaturedBox extends Component {
       products: t("Product")
     };
 
-    const type = i18nType[item.type]
-      ? i18nType[item.type]
-      : "LALA " + item.type;
+    const type = i18nType[item.type] ? i18nType[item.type] : item.type;
 
     return (
       <Link
