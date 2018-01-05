@@ -33,7 +33,7 @@ class ExportsByDestination extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t(`Exports by destination of firms located in ${geo.name}`)}
+            {t("geo_profile.economy.exports.by_destination")}
           </span>
           <ExportLink path={path} />
         </h3>
