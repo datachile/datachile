@@ -63,7 +63,9 @@ export function getImageFromMember(prefix, id1, id2 = false) {
       break;
     }
     case "geo": {
-      file = "/geo/" + "region-" + id1 + ".jpg";
+      file = id2
+        ? "/geo/region-" + id1 + "/comunas/" + id2 + ".jpg"
+        : "/geo/region-" + id1 + "/region-" + id1 + ".jpg";
       break;
     }
     default: {
