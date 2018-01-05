@@ -40,8 +40,13 @@ export function slugifyItem(prefix, id1, name1, id2, name2) {
   return link;
 }
 
-export function getImageFromMember(prefix, id1, id2 = false) {
-  if (isMobile()) return "";
+export function getImageFromMember(
+  prefix,
+  id1,
+  id2 = false,
+  considerMobile = false
+) {
+  //if (considerMobile && isMobile()) return "";
   const chile = "/images/profile-bg/geo/chile.jpg";
   const link = "/images/profile-bg";
   var file = "";
