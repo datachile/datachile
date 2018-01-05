@@ -111,11 +111,12 @@ class TradeSlide extends Section {
       imports: this.context.data.text_data_imports_by_product
     };
     text_data.geo = this.context.data.geo;
-    text_data.increased_or_decreased = text_data.increased
+    text_data.exports.increased_or_decreased = text_data.exports.increased
       ? t("increased")
       : t("decreased");
-
-    console.log(text_data);
+    text_data.imports.increased_or_decreased = text_data.imports.increased
+      ? t("increased")
+      : t("decreased");
 
     const locale = this.props.i18n.language;
 
@@ -130,14 +131,18 @@ class TradeSlide extends Section {
               dangerouslySetInnerHTML={{
                 __html: isEmpty(text_data.exports)
                   ? t("geo_profile.economy.exports.no_data", text_data)
-                  : t("geo_profile.economy.exports.default", text_data)
+                  : text_data.exports.trade_first_share === "100%"
+                    ? t("geo_profile.economy.exports.one", text_data)
+                    : t("geo_profile.economy.exports.default", text_data)
               }}
             />
             <span
               dangerouslySetInnerHTML={{
                 __html: isEmpty(text_data.imports)
                   ? t("geo_profile.economy.imports.no_data", text_data)
-                  : t("geo_profile.economy.imports.default", text_data)
+                  : text_data.imports.trade_first_share === "100%"
+                    ? t("geo_profile.economy.imports.one", text_data)
+                    : t("geo_profile.economy.imports.default", text_data)
               }}
             />
           </div>
