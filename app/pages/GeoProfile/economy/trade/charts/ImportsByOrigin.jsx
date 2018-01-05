@@ -32,7 +32,9 @@ class ImportsByOrigin extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t(`Imports by origin of firms located in ${geo.name}`)}</span>
+          <span>
+            {t("geo_profile.economy.imports.by_origin")}
+          </span>
           <ExportLink path={path} />
         </h3>
         <TreemapStacked

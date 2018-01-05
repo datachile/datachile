@@ -794,6 +794,8 @@
     },
     "economy": {
       "exports": {
+        "by_destination": "Destino de exportaciones",
+        "by_product": "Productos exportados",
         "default":
           "<p>En {{exports.latest_year}} las firmas establecidas en {{geo.caption}} exportaron <i>{{exports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, las exportaciones de {{geo.caption}} han <i>{{exports.increased_or_decreased}}</i> a una tasa promedio anual del {{exports.annualized_rate}}, desde <i>{{exports.trade_first_year}}</i> en {{first_year}} hasta <i>{{exports.trade_last_year}}</i> en {{exports.last_year}}. Las principales exportaciones de {{geo.caption}} son <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>, que representa {{exports.trade_first_share}} del total de las exportaciones de {{geo.caption}}, seguida por <a href=\"{{exports.trade_second_product_link}}\">{{exports.trade_second_product}}</a> que representa el {{exports.trade_second_share}}.</p>",
         "one":
@@ -802,6 +804,8 @@
           "<p>No existen datos de exportaciones por parte de las firmas establecidas en {{geo.caption}}.</p>"
       },
       "imports": {
+        "by_origin": "Origen de exportaciones",
+        "by_product": "Productos importados",
         "default":
           "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. Las principales importaciones de {{geo.caption}} son <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, que representa {{imports.trade_first_share}} del total de las importaciones de {{geo.caption}}, seguida por, <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a> {{imports.trade_second_share}} de éstas</p>",
         "one":
