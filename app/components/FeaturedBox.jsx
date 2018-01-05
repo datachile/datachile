@@ -10,9 +10,22 @@ class FeaturedBox extends Component {
     const { t, item, className } = this.props;
 
     const icon =
-      ["country", "region", "comuna"].indexOf(item.type) > -1
+      ["national", "region", "comuna"].indexOf(item.type) > -1
         ? "geo"
         : item.type;
+
+    const i18nType = {
+      national: t("National"),
+      region: t("Region"),
+      comuna: t("Comuna"),
+      countries: t("Country"),
+      industries: t("Industry"),
+      products: t("Product")
+    };
+
+    const type = i18nType[item.type]
+      ? i18nType[item.type]
+      : "LALA " + item.type;
 
     return (
       <Link
@@ -39,7 +52,7 @@ class FeaturedBox extends Component {
           </Shiitake>
         </span>
         <span className="col-r">
-          <span className="type">{item.type}</span>
+          <span className="type">{type}</span>
         </span>
       </Link>
     );

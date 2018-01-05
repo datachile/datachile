@@ -131,13 +131,13 @@ export const featured_profiles = {
     {
       img: "/images/profile-bg/geo/chile.jpg",
       name: "Chile",
-      type: "geo",
+      type: "national",
       url: "/geo/chile"
     },
     {
       img: "/images/profile-bg/geo/region-10/comunas/233.jpg",
       name: "Puerto Montt",
-      type: "geo",
+      type: "comuna",
       url: "/geo/los-lagos-10/puerto-montt-233"
     },
     {
@@ -149,7 +149,7 @@ export const featured_profiles = {
     {
       img: "/images/profile-bg/geo/region-3/region-3.jpg",
       name: "Atacama",
-      type: "geo",
+      type: "region",
       url: "/geo/atacama-3"
     },
     {
@@ -163,13 +163,13 @@ export const featured_profiles = {
     {
       img: "/images/profile-bg/geo/chile.jpg",
       name: "Chile",
-      type: "geo",
+      type: "national",
       url: "/geo/chile"
     },
     {
       img: "/images/profile-bg/geo/region-10/comunas/233.jpg",
       name: "Puerto Montt",
-      type: "geo",
+      type: "comuna",
       url: "/geo/los-lagos-10/puerto-montt-233"
     },
     {
@@ -181,7 +181,7 @@ export const featured_profiles = {
     {
       img: "/images/profile-bg/geo/region-3/region-3.jpg",
       name: "Atacama",
-      type: "geo",
+      type: "region",
       url: "/geo/atacama-3"
     },
     {

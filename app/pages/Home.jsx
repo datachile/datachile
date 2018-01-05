@@ -93,9 +93,9 @@ class Home extends Component {
 
     const locale = i18n.language;
 
-    const featured = featured_profiles[locale];
-
-    console.log("featured", featured);
+    const featured = featured_profiles[locale]
+      ? featured_profiles[locale]
+      : featured_profiles["es"];
 
     const { profiles, header, focus } = this.state;
 
@@ -109,8 +109,6 @@ class Home extends Component {
       home_products_exports,
       home_countries_exports
     } = this.props.data;
-
-    console.log("population", home_comunas_population);
 
     return (
       <CanonComponent
