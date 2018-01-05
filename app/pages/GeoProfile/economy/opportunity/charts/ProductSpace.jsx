@@ -53,7 +53,7 @@ class ProductSpace extends Section {
               },
               fill: d =>
                 d["Exports RCA"] < 1
-                  ? "#aaaaaa"
+                  ? "#888"
                   : productsColorScale("hs" + d["ID HS0"]),
               activeStyle: { stroke: "#ffffff" }
             },

@@ -1,6 +1,6 @@
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
-import { slugifyItem } from "helpers/formatters";
+import { slugifyItem, getImageFromMember } from "helpers/formatters";
 
 export function needHomeComunasPopulation(params, store) {
   const prm = mondrianClient
@@ -35,7 +35,7 @@ export function needHomeComunasPopulation(params, store) {
                 r["ID Comuna"],
                 r["Comuna"]
               ),
-              img: "/images/profile-bg/geo/region-" + r["ID Region"] + ".jpg"
+              img: getImageFromMember("geo", r["ID Region"], r["ID Comuna"])
             };
           })
       };
@@ -79,7 +79,7 @@ export function needHomeComunasExports(params, store) {
                 r["ID Comuna"],
                 r["Comuna"]
               ),
-              img: "/images/profile-bg/geo/region-" + r["ID Region"] + ".jpg"
+              img: getImageFromMember("geo", r["ID Region"], r["ID Comuna"])
             };
           })
       };

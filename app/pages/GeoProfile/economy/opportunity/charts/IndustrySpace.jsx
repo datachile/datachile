@@ -54,7 +54,7 @@ class IndustrySpace extends Section {
               },
               fill: d =>
                 d["Output RCA"] < 1
-                  ? "#aaaaaa"
+                  ? "#888"
                   : industriesColorScale(d["ID Level 1"]),
               activeStyle: { stroke: "#ffffff" }
             },
