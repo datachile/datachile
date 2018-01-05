@@ -63,7 +63,7 @@
   "Careers": "Carreras",
   "Field of Science": "Área de Conocimiento",
 
-  "Product": "Products",
+  "Product": "Product",
   "Products": "Productos",
   "Product Type": "Tipo de Producto",
 
@@ -321,6 +321,7 @@
   "Municipalities": "Municipalidades",
   "Most Common Visa Activity": "Principal Actividad de Visa",
   "Most Common Visa Type": "Principal Tipo de Visa",
+  "National": "Nacional",
   "National Profile": "Perfil Nacional",
   "NEM Performance By Administration": "NEM Performance By Administration",
   "Number of jobs": "Cantidad de puestos de trabajo",
@@ -363,8 +364,7 @@
   "Population with Health Insurance": "Población con Previsión de Salud",
   "President": "Presidente",
   "Primary Healthcare": "Atención de Salud Primaria",
-  "Product": "Productos",
-
+  "Product": "Producto",
   "Product Space": "Espacio de Producto",
   "Product Type": "Tipo de Producto",
   "Products": "Productos",
@@ -1059,6 +1059,7 @@
       "title": "DataChile integra datos de todas estas fuentes"
     },
     "carousel": {
+      "featured_profiles": "Perfiles destacados",
       "comunas_population": "Comunas más pobladas",
       "comunas_exports": "Comunas más exportadoras",
       "products_exports": "Productos más exportados",

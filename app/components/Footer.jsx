@@ -27,14 +27,14 @@ function Footer(props) {
             <p className="logos">
               <img className="logo" src="/images/logos/logo-aminerals.svg" />
               <img className="logo" src="/images/logos/logo-corfo.svg" />
-              <img className="logo" src="/images/logos/logo-minecon.svg" />
+              <img className="logo gobcl" src="/images/logos/logo-minecon.svg" />
               <img className="logo" src="/images/logos/logo-entel-lab.svg" />
             </p>
           </div>
           <div className="column supported">
             <p className="footer-title">{t("Supported by")}</p>
             <p className="logos">
-              <img className="logo" src="/images/logos/logo-direcon.svg" />
+              <img className="logo gobcl" src="/images/logos/logo-direcon.svg" />
               <img className="logo" src="/images/logos/logo-asech.svg" />
             </p>
           </div>

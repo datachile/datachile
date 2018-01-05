@@ -927,6 +927,7 @@
       "title": "DataChile integrates data from all these sources"
     },
     "carousel": {
+      "featured_profiles": "Featured Profiles",
       "comunas_population": "Top populated Comunas",
       "comunas_exports": "Top exporter Comunas",
       "products_exports": "Top exports Products",

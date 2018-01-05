@@ -2,6 +2,10 @@
 
 footer {
   width: 100%;
+  font-family: var(--font-family-text);
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--snow);
   background-color: var(--footer-bg);
 
   & .footer-container {
@@ -12,12 +16,8 @@ footer {
 
   & .footer-title {
     margin-bottom: var(--gutter);
-    font-family: var(--font-family-text);
-    text-transform: uppercase;
-    color: var(--snow);
     font-size: 14px;
     letter-spacing: 0.05px;
-    font-weight: 300;
 
     &::after {
       content: "";
@@ -39,8 +39,13 @@ footer {
 
     & .logo {
       display: inline-block;
+      vertical-align: middle;
       max-height: 120px;
-      margin: 0 var(--gutter) 0 0;
+      margin: 0 var(--gutter-half);
+
+      &.gobcl {
+        max-height: 100px;
+      }
     }
 
     & .column.developed .logos {
@@ -52,32 +57,26 @@ footer {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    padding: 30px 0;
+    font-size: 12px;
+    line-height: 2em;
+
     & .link {
-      font-family: var(--font-family-text);
-      font-weight: 300;
-      font-size: 12px;
-      color: var(--snow);
-      padding: 40px 10px;
-      text-transform: uppercase;
+      margin-right: 20px;
+      color: inherit;
       text-decoration: none;
       cursor: pointer;
+
       &.link-soon {
         opacity: 0.5;
       }
     }
+
     & .link-dot {
       font-weight: 400;
     }
   }
 }
-/*
-$break-xl: "1800px";
-$break-lg: "1200px";
-$break-md: "992px";
-$break-sm: "768px";
-$break-xs: "480px";
-$break-xxs: "320px";
-*/
 
 @add-mixin from-sm {
   footer .collaboration {
@@ -125,6 +124,10 @@ $break-xxs: "320px";
         & .logos {
           margin-top: 0;
         }
+
+        & .logo {
+          margin: 0 var(--gutter) 0 0;
+        }
       }
       &.sponsored {
         lost-column: 4/9;
@@ -140,7 +143,7 @@ $break-xxs: "320px";
   footer {
     & .nav-links  {
       & .link {
-        padding: calc(var(--gutter)/2) 10px;
+        padding: var(--gutter-half) 10px;
       }
     }
   }
