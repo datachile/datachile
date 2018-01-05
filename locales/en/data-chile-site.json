@@ -732,22 +732,22 @@
     },
     "education": {
       "enrollment":
-        "In {{year.last}} there were {{enrollment.total}} enrolled students in {{geo.caption}} schools. From these, {{enrollment.municipal}} were enrolled in municipal managed schools, {{enrollment.subvencionado}} in subsidised schools, {{enrollment.particular}} in private school, and {{enrollment.adm_delegada}} in delegated administration schools.",
+        "In {{year.last}} there were {{enrollment.total}} enrolled students in {{geo.caption}} schools. From these, {{enrollment.municipal}} were enrolled in municipal managed schools, {{enrollment.subvencionado}} in subsidised schools, {{enrollment.particular}} in private schools, and {{enrollment.adm_delegada}} in delegated administration schools.",
       "performance": {
         "byPSU": {
           "level1": {
             "2":
-              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>In {{year.last}}, PSU* average in {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
             "3":
-              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}} ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+              "<p>In {{year.last}}, PSU* average in {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}} ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
           },
           "level2": {
             "plural":
-              "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>Best PSU performing schools in {{geo.caption}} in {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
             "singular":
-              "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>The only school in {{geo.caption}} with PSU results in {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
             "no_data":
-              "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
+              "<p>There is no data for {{geo.caption}} in PSU records {{year.last}}.</p>"
           }
         }
       }
