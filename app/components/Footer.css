@@ -39,8 +39,13 @@ footer {
 
     & .logo {
       display: inline-block;
+      vertical-align: middle;
       max-height: 120px;
       margin: 0 var(--gutter-half);
+
+      &.gobcl {
+        max-height: 100px;
+      }
     }
 
     & .column.developed .logos {
@@ -72,14 +77,6 @@ footer {
     }
   }
 }
-/*
-$break-xl: "1800px";
-$break-lg: "1200px";
-$break-md: "992px";
-$break-sm: "768px";
-$break-xs: "480px";
-$break-xxs: "320px";
-*/
 
 @add-mixin from-sm {
   footer .collaboration {
@@ -146,7 +143,7 @@ $break-xxs: "320px";
   footer {
     & .nav-links  {
       & .link {
-        padding: calc(var(--gutter)/2) 10px;
+        padding: var(--gutter-half) 10px;
       }
     }
   }

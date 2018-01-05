@@ -74,18 +74,16 @@ class NavFixed extends React.Component {
           <div className={`nav-titles ${search_visible ? "close" : "open"}`}>
             <div className="nav-titles-action">
               <a className="menu-button" onClick={toggleSubNav}>
-                <img src="/images/icons/icon-menu.svg" />
+                {/* <img src="/images/icons/icon-menu.svg" /> */}
+                <img src={`/images/icons/${search_icon}.svg`} />
               </a>
             </div>
             <Link className="datachile" to="/">
               <img src="/images/logos/datachile-beta-navbar.svg" />
             </Link>
-            <span className="title" onClick={this.toggleSearch}>
+            <span className="title" onClick={toggleSubNav}>
               {title}
             </span>
-            <a className="search-toggle-nav" onClick={this.toggleSearch}>
-              <img src={`/images/icons/${search_icon}.svg`} />
-            </a>
           </div>
           <div className="nav-topic">
             {topics &&

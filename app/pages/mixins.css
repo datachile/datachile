@@ -2,32 +2,32 @@
 
 /*BREAKPOINTS mixins */
 @define-mixin for-xl {
-  @media (max-width: 1800px) {
+  @media (max-width: 1799px) {
     @mixin-content;
   }
 }
 @define-mixin for-lg {
-  @media (max-width: 1200px) {
+  @media (max-width: 1199px) {
     @mixin-content;
   }
 }
 @define-mixin for-md {
-  @media (max-width: 992px) {
+  @media (max-width: 991px) {
     @mixin-content;
   }
 }
 @define-mixin for-sm {
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     @mixin-content;
   }
 }
 @define-mixin for-xs {
-  @media (max-width: 480px) {
+  @media (max-width: 479px) {
     @mixin-content;
   }
 }
 @define-mixin for-xx {
-  @media (max-width: 320px) {
+  @media (max-width: 319px) {
     @mixin-content;
   }
 }

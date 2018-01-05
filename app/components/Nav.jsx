@@ -121,10 +121,17 @@ class Nav extends Component {
             visible={subnav_visible}
             ref={this.refSubNav}
           >
-            <div className="close-btn-container">
-              <div className="menu-button">
+            <div className="button-set-container">
+              <div className="close-btn-container">
                 <a onClick={this.toggleSubNav}>
                   <img src="/images/icons/icon-close.svg" />
+                </a>
+              </div>
+              <div className="lang-selector">
+                <span className="lang current">{locale}</span>
+                {" | "}
+                <a className="lang other" href={url}>
+                  {otherLang}
                 </a>
               </div>
             </div>
@@ -132,13 +139,6 @@ class Nav extends Component {
               <Search className="search-nav search-sidebar" />
             </div>
             <ul>
-              <li className="lang-selector">
-                <span className="lang-current">{locale}</span>
-                <span> | </span>
-                <span className="lang-other">
-                  <a href={url}>{otherLang}</a>
-                </span>
-              </li>
               <li className="title">{t("Profiles")}</li>
               <li className="link">
                 <Link to="/explore/geo">{t("Regions & Comunas")}</Link>
