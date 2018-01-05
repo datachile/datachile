@@ -240,7 +240,7 @@ class Home extends Component {
               <div className="home-profile-carousels-container">
                 <ProfileCarousel
                   title={t("home.carousel.featured_profiles")}
-                  type="geo"
+                  type="star"
                   items={featured}
                   limit={5}
                 />
