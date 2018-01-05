@@ -1,6 +1,7 @@
 import { format, formatPrefix } from "d3-format";
 import { timeFormat } from "d3-time-format";
 import n from "numeral";
+import { isMobile } from "helpers/responsiveUtils";
 
 function slugifyStr(str) {
   if (!str) return "";
@@ -40,6 +41,7 @@ export function slugifyItem(prefix, id1, name1, id2, name2) {
 }
 
 export function getImageFromMember(prefix, id1, id2 = false) {
+  if (isMobile()) return "";
   const chile = "/images/profile-bg/geo/chile.jpg";
   const link = "/images/profile-bg";
   var file = "";
