@@ -224,27 +224,39 @@
 
   & > ul {
     list-style: none;
-    padding: 0px;
-    margin: 0px 16px;
+    padding: 0;
+    margin: 0 10px;
+    font-family: var(--font-family-text);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.08px;
+    text-transform: uppercase;
+    color: var(--snow);
 
     & li {
-      margin: 5px 0px;
+      margin: 2px 0;
+
+      & a {
+        color: inherit;
+      }
     }
+
+    & li.title {
+      padding-top: 15px;
+      color: var(--gray);
+    }
+
     & li.link a,
     & li.topic a {
-      cursor: pointer;
-      display: inline-block;
-      opacity: 0.8;
+      display: block;
+      padding: 3px 0;
+      padding-left: 16px;
       text-decoration: none;
+      opacity: 0.8;
       transition: opacity 0.2s;
-      font-family: var(--font-family-text);
-      font-weight: 400;
-      font-size: 14px;
-      color: var(--snow);
-      letter-spacing: 0.08px;
-      text-transform: uppercase;
-      lost-column: 1 flex;
-      padding: 2px 0px 2px 15px;
+      cursor: pointer;
+
       &:hover {
         opacity: 1;
       }
@@ -254,18 +266,7 @@
     & li.title.link-soon {
       & a {
         opacity: 0.3;
-      }
-    }
-
-    & li.title {
-      text-transform: uppercase;
-      color: var(--gray);
-      font-family: var(--font-family-text);
-      font-weight: 400;
-      font-size: 14px;
-      padding-top: 15px;
-      & a {
-        color: var(--gray);
+        cursor: not-allowed;
       }
     }
   }
@@ -273,19 +274,28 @@
 
 @add-mixin from-xs {
   .nav .subnav {
-    padding: 16px;
     width: 370px;
   }
 }
 
 @add-mixin from-sm {
   .nav .subnav {
+  }
+}
+@add-mixin from-md {
+  .nav .subnav {
+    padding: 16px;
+
     & .button-set-container {
       padding: 10px;
     }
 
     & .search-nav-wrapper {
       padding: var(--gutter-half);
+    }
+
+    & > ul {
+      margin: 0 16px;
     }
   }
 }
