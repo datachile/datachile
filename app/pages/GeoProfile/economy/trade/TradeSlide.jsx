@@ -67,13 +67,48 @@ class TradeSlide extends Section {
         });
 
       return { type: "GET_DATA", promise };
+    },
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const promise = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          var q = cube.query
+            .option("parents", true)
+            .drilldown("Date", "Year")
+            .drilldown("Import HS", "HS2")
+            .measure("CIF US")
+            .measure("Geo Rank Across Time");
+
+          return mondrianClient.query(
+            geoCut(geo, "Geography", q, store.i18n.locale),
+            "jsonrecords"
+          );
+        })
+        .then(res => {
+          const result = trade_by_time_and_product(
+            res.data.data,
+            "CIF US",
+            geo.type != "country",
+            store.i18n.locale
+          );
+          return {
+            key: "text_data_imports_by_product",
+            data: result
+          };
+        });
+
+      return { type: "GET_DATA", promise };
     }
   ];
 
   render() {
     const { children, t, TradeBalance } = this.props;
 
-    const text_data = this.context.data.text_data_exports_by_product;
+    let text_data = {
+      exports: this.context.data.text_data_exports_by_product,
+      imports: this.context.data.text_data_imports_by_product
+    };
     text_data.geo = this.context.data.geo;
     text_data.increased_or_decreased = text_data.increased
       ? t("increased")
@@ -90,7 +125,7 @@ class TradeSlide extends Section {
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{
-                __html: t("geo_profile.trade_slide.text", text_data)
+                __html: t("geo_profile.economy.trade", text_data)
               }}
             />
           </div>
