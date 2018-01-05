@@ -688,6 +688,37 @@
       "healthcare":
         "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
     },
+    "economy": {
+      "exports": {
+        "by_destination": "Exports by Destination",
+        "by_product": "Exported Products",
+        "default":
+          "<p>In {{exports.latest_year}} firms located in {{geo.caption}} exported <i>{{exports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} exports have <i>{{exports.increased_or_decreased}}</i> at an annual average rate of {{exports.annualized_rate}}, from <i>{{exports.trade_first_year}}</i> in {{first_year}} to <i>{{exports.trade_last_year}}</i> in {{exports.last_year}}. {{geo.caption}} main export is <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>, that represents {{exports.trade_first_share}} of {{geo.caption}} total exports, followed by <a href=\"{{exports.trade_second_product_link}}\">{{exports.trade_second_product}}</a> that represents {{exports.trade_second_share}}.</p>",
+        "one":
+          "<p>In {{exports.latest_year}} firms located in {{geo.caption}} exported <i>{{exports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} exports have <i>{{exports.increased_or_decreased}}</i> at an annual average rate of {{exports.annualized_rate}}, from <i>{{exports.trade_first_year}}</i> in {{first_year}} to <i>{{exports.trade_last_year}}</i> in {{exports.last_year}}. {{geo.caption}} only export is <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>.</p>",
+        "no_data":
+          "<p>There is no export data about firms located in {{geo.caption}}.</p>"
+      },
+      "imports": {
+        "by_origin": "Imports by Origin",
+        "by_product": "Imported Products",
+        "default":
+          "<p>In {{imports.latest_year}} firms located in {{geo.caption}} imported <i>{{imports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} imports have <i>{{imports.increased_or_decreased}}</i> at an annual average rate of {{imports.annualized_rate}}, from <i>{{imports.trade_first_year}}</i> in {{first_year}} to <i>{{imports.trade_last_year}}</i> in {{imports.last_year}}. {{geo.caption}} main import is <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, that represents {{imports.trade_first_share}} of {{geo.caption}} total imports, followed by <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a> that represents {{imports.trade_second_share}}.</p>",
+        "one":
+          "<p>In {{imports.latest_year}} firms located in {{geo.caption}} imported <i>{{imports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} imports have <i>{{imports.increased_or_decreased}}</i> at an annual average rate of {{imports.annualized_rate}}, from <i>{{imports.trade_first_year}}</i> in {{first_year}} to <i>{{imports.trade_last_year}}</i> in {{imports.last_year}}. {{geo.caption}} only import is <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>.</p>",
+        "no_data":
+          "<p>There is no import data about firms located in {{geo.caption}}.</p>"
+      },
+      "trade": "",
+      "rca":
+        "Revealed Comparative Advantage (RCA) measures specialization level for a location in an industry or product. In case a locality has RCA greater than one at an economic activity, the referred activity has greater presence on that location with respect to an average location.",
+      "product_space":
+        "<p>Comunas, regions and countries have a greater probability of starting related economic activities with respect to those activities they already perform. The product space connects products that tend to be exported by the same countries.</p><p>Higher presence products in {{geo.caption}} are highlighted in colours. By clicking on networks you can see the most related products and industries (and with higher development probability) related to those already present in {{geo.caption}}.</p>",
+      "industry_space":
+        "<p>Comunas, regions and countries have a greater probability of starting related economic activities with respect to those activities they already perform. The industry space connects industries that tend to exist by the same countries.</p><p>Higher presence industries in {{geo.caption}} are highlighted in colours. By clicking on networks you can see the most related products and industries (and with higher development probability) related to those already present in {{geo.caption}}.</p>",
+      "industry":
+        "<p>In {{year.last}}, {{geo.caption}} created a total output of {{total}}. Labour productivity based on industry output in {{geo.caption}} was {{labour_productivity}} CLP per worker.</p><p>{{geo.caption}} principal industries are {{text_joined_activities}}. </p><p>{{geo.caption}} most common occupations, according to number of workers, are {{text_joined_occupations}}.</p>"
+    },
     "income_sex_age_slide": {
       "text": "Income by sex and age slide."
     },
@@ -702,6 +733,28 @@
       "origin_by_sex_age": "",
       "origin_by_activity": "",
       "population_by_sex_age": ""
+    },
+    "education": {
+      "enrollment":
+        "In {{year.last}} there were {{enrollment.total}} enrolled students in {{geo.caption}} schools. From these, {{enrollment.municipal}} were enrolled in municipal managed schools, {{enrollment.subvencionado}} in subsidised schools, {{enrollment.particular}} in private schools, and {{enrollment.adm_delegada}} in delegated administration schools.",
+      "performance": {
+        "byPSU": {
+          "level1": {
+            "2":
+              "<p>In {{year.last}}, PSU* average in {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+            "3":
+              "<p>In {{year.last}}, PSU* average in {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}} ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+          },
+          "level2": {
+            "plural":
+              "<p>Best PSU performing schools in {{geo.caption}} in {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+            "singular":
+              "<p>The only school in {{geo.caption}} with PSU results in {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+            "no_data":
+              "<p>There is no data for {{geo.caption}} in PSU records {{year.last}}.</p>"
+          }
+        }
+      }
     },
     "housing": {
       "amenities": {
