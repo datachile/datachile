@@ -43,6 +43,8 @@ foreground: "10"
 cover: "30"
 
 gutter: "32px"
+gutter-half: "16px"
+gutter-third: "11px"
 width: "1148px"
 
 break-xl: "1800px"
