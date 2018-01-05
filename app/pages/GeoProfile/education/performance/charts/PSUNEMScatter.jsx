@@ -98,6 +98,11 @@ class PSUNEMScatter extends Section {
               xConfig: {
                 title: t("Average NEM")
               },
+              x2Config: {
+                barConfig: {
+                  "stroke-width": 0
+                }
+              },
               yConfig: {
                 title: t("Average PSU")
               },
