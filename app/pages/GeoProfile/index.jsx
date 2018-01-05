@@ -386,9 +386,7 @@ class GeoProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/${
-                    geoObj.image
-                  }')`
+                  backgroundImage: `url('${geoObj.image}')`
                 }}
               />
               <div className="gradient" />
