@@ -690,6 +690,8 @@
     },
     "economy": {
       "exports": {
+        "by_destination": "Exports by Destination",
+        "by_product": "Exported Products",
         "default":
           "<p>In {{exports.latest_year}} firms located in {{geo.caption}} exported <i>{{exports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} exports have <i>{{exports.increased_or_decreased}}</i> at an annual average rate of {{exports.annualized_rate}}, from <i>{{exports.trade_first_year}}</i> in {{first_year}} to <i>{{exports.trade_last_year}}</i> in {{exports.last_year}}. {{geo.caption}} main export is <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>, that represents {{exports.trade_first_share}} of {{geo.caption}} total exports, followed by <a href=\"{{exports.trade_second_product_link}}\">{{exports.trade_second_product}}</a> that represents {{exports.trade_second_share}}.</p>",
         "one":
@@ -698,6 +700,8 @@
           "<p>There is no export data about firms located in {{geo.caption}}.</p>"
       },
       "imports": {
+        "by_origin": "Imports by Origin",
+        "by_product": "Imported Products",
         "default":
           "<p>In {{imports.latest_year}} firms located in {{geo.caption}} imported <i>{{imports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} imports have <i>{{imports.increased_or_decreased}}</i> at an annual average rate of {{imports.annualized_rate}}, from <i>{{imports.trade_first_year}}</i> in {{first_year}} to <i>{{imports.trade_last_year}}</i> in {{imports.last_year}}. {{geo.caption}} main import is <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, that represents {{imports.trade_first_share}} of {{geo.caption}} total imports, followed by <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a> that represents {{imports.trade_second_share}}.</p>",
         "one":
