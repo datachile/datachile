@@ -27,7 +27,7 @@ export function needHomeComunasPopulation(params, store) {
           .map(r => {
             return {
               name: r["Comuna"],
-              type: "geo",
+              type: "comuna",
               url: slugifyItem(
                 "geo",
                 r["ID Region"],
@@ -71,7 +71,7 @@ export function needHomeComunasExports(params, store) {
           .map(r => {
             return {
               name: r["Comuna"],
-              type: "geo",
+              type: "comuna",
               url: slugifyItem(
                 "geo",
                 r["ID Region"],
