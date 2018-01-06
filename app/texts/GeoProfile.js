@@ -26,7 +26,7 @@ function getRank(data, msrName, dimName, t) {
 
 function SpendingByIndustry(data, msrName, locale, t) {
   if (data) {
-    const rank = getRank(data.data, msrName, "Level 1", t);
+    const rank = data.data.sort((a, b) => b[msrName] - a[msrName]);
     return {
       industry: {
         first: {
@@ -35,6 +35,9 @@ function SpendingByIndustry(data, msrName, locale, t) {
         second: {
           caption: rank[1]["Level 1"]
         }
+      },
+      year: {
+        last: sources.rd_survey.last_year - 1
       }
     };
   }
@@ -44,8 +47,8 @@ function SpendingBySector(data, msrName, geo, locale, t) {
   if (data) {
     const rank = getRank(data.data, msrName, "Ownership Type", t);
     return {
-      year: {
-        last: sources.rd_survey.last_year
+      year_sector: {
+        last: sources.rd_survey.last_year - 1
       },
       geo,
       text_joined_industries: rank
