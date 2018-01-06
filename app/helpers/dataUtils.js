@@ -47,7 +47,7 @@ export function getGeoObject(params) {
     case "region": {
       const parts = params.region.split("-");
       geo.key = parseInt(parts[parts.length - 1]);
-      geo.image = getImageFromMember("geo", geo.key);
+      geo.image = getImageFromMember("geo", geo.key, false, true);
       geo.ancestor = {
         key: "chile",
         image: "chile.jpg",
@@ -59,10 +59,15 @@ export function getGeoObject(params) {
       const partsR = params.region.split("-");
       const partsC = params.comuna.split("-");
       geo.key = parseInt(partsC[partsC.length - 1]);
-      geo.image = getImageFromMember("geo", partsR[partsR.length - 1], geo.key);
+      geo.image = getImageFromMember(
+        "geo",
+        partsR[partsR.length - 1],
+        geo.key,
+        false
+      );
       geo.ancestor = {
         key: partsR[partsR.length - 1],
-        image: getImageFromMember("geo", partsR[partsR.length - 1]),
+        image: getImageFromMember("geo", partsR[partsR.length - 1], false),
         type: "region"
       };
       break;
