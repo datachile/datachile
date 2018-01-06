@@ -1,6 +1,5 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { regionsColorScale } from "helpers/colors";
@@ -10,12 +9,9 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
-import NoDataAvailable from "components/NoDataAvailable";
+import TreemapStacked from "components/TreemapStacked";
 
 class ImportsByRegion extends Section {
-  state = {
-    treemap: true
-  };
   static need = [
     (params, store) => {
       const product = getLevelObject(params);
@@ -59,62 +55,50 @@ class ImportsByRegion extends Section {
           <span>{t("Imports By Region")}</span>
           <ExportLink path={path} />
         </h3>
-        {this.state.treemap ? (
-          <Treemap
-            config={{
-              height: 500,
-              data: path,
-              groupBy: ["ID Region", "ID Comuna"],
-              label: d =>
-                d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
-              sum: d => d["CIF US"],
-              time: "ID Year",
-              total: d => d["CIF US"],
-              totalConfig: {
-                text: d =>
-                  "Total: US" +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "($ 0.[00] a)"
-                  )
+        <TreemapStacked
+          path={path}
+          msrName="CIF US"
+          drilldowns={["Region", "Comuna"]}
+          config={{
+            label: d =>
+              d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
+
+            total: d => d["CIF US"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
+            },
+            shapeConfig: {
+              fill: d => regionsColorScale("c" + d["ID Region"])
+            },
+            tooltipConfig: {
+              title: d => {
+                return d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"];
               },
+              body: d => {
+                const link =
+                  d["ID Comuna"] instanceof Array
+                    ? ""
+                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                return numeral(d["CIF US"], locale).format("(USD 0 a)") + link;
+              }
+            },
+            legendConfig: {
+              label: false,
               shapeConfig: {
-                fill: d => regionsColorScale("c" + d["ID Region"])
-              },
-              tooltipConfig: {
-                title: d => {
-                  return d["Comuna"] instanceof Array
-                    ? d["Region"]
-                    : d["Comuna"];
-                },
-                body: d => {
-                  const link =
-                    d["ID Comuna"] instanceof Array
-                      ? ""
-                      : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                  return (
-                    numeral(d["CIF US"], locale).format("(USD 0 a)") + link
-                  );
-                }
-              },
-              legendConfig: {
-                label: false,
-                shapeConfig: {
-                  width: 10,
-                  height: 10
-                }
+                width: 10,
+                height: 10
               }
-            }}
-            dataFormat={data => {
-              if (data.data && data.data.length > 0) {
-                return data.data;
-              } else {
-                this.setState({ treemap: false });
-              }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+            },
+            yConfig: {
+              title: t("US$"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+            }
+          }}
+        />
         <SourceNote cube="imports" />
       </div>
     );
