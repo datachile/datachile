@@ -41,7 +41,7 @@ export function getGeoObject(params) {
       geo.key = "chile";
       geo.name = "Chile";
       geo.caption = "Chile";
-      geo.image = "chile.jpg";
+      geo.image = getImageFromMember("geo", "chile");
       break;
     }
     case "region": {
@@ -50,7 +50,7 @@ export function getGeoObject(params) {
       geo.image = getImageFromMember("geo", geo.key, false, true);
       geo.ancestor = {
         key: "chile",
-        image: "chile.jpg",
+        image: getImageFromMember("geo", "chile"),
         type: "country"
       };
       break;
