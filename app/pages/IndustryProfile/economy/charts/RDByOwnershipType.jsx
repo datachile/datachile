@@ -97,6 +97,10 @@ class RDByOwnershipType extends Section {
                 width: 20,
                 height: 20
               }
+            },
+            yConfig: {
+              title: t("US$"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
             }
           }}
         />
