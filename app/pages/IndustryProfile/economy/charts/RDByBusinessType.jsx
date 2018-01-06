@@ -10,13 +10,9 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
-import NoDataAvailable from "components/NoDataAvailable";
+import TreemapStacked from "components/TreemapStacked";
 
 class RDByBusinessType extends Section {
-  state = {
-    treemap: true
-  };
-
   static need = [
     (params, store) => {
       var industry = getLevelObject(params);
@@ -71,49 +67,38 @@ class RDByBusinessType extends Section {
           </span>
           <ExportLink path={path} />
         </h3>
-        {this.state.treemap ? (
-          <Treemap
-            config={{
-              height: 500,
-              data: path,
-              groupBy: ["ID Business Type"],
-              label: d => d["Business Type"],
-              sum: d => d["Total Spending"],
-              time: "ID Year",
-              total: d => d["Total Spending"],
-              totalConfig: {
-                text: d =>
-                  "Total: US" +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "($ 0.[00] a)"
-                  )
-              },
+
+        <TreemapStacked
+          path={path}
+          msrName="Total Spending"
+          drilldowns={["Business Type", "Business Type"]}
+          config={{
+            label: d => d["Business Type"],
+            total: d => d["Total Spending"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
+            },
+            shapeConfig: {
+              fill: d => RDTypesColorScale("r" + d["ID Business Type"])
+            },
+            tooltipConfig: {
+              title: d => d["Business Type"],
+              body: d =>
+                numeral(d["Total Spending"], locale).format("(USD 0 a)")
+            },
+            legendConfig: {
               shapeConfig: {
-                fill: d => RDTypesColorScale("r" + d["ID Business Type"])
-              },
-              tooltipConfig: {
-                title: d => d["Business Type"],
-                body: d =>
-                  numeral(d["Total Spending"], locale).format("(USD 0 a)")
-              },
-              legendConfig: {
-                shapeConfig: {
-                  width: 20,
-                  height: 20
-                }
+                width: 20,
+                height: 20
               }
-            }}
-            dataFormat={data => {
-              if (data.data && data.data.length > 0) {
-                return data.data;
-              } else {
-                this.setState({ treemap: false });
-              }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+            }
+          }}
+        />
+
         <SourceNote cube="rd_survey" />
       </div>
     );
