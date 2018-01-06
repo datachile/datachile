@@ -27,8 +27,12 @@ function getRank(data, msrName, dimName, t) {
 function SpendingByIndustry(data, msrName, locale, t) {
   if (data) {
     const rank = data.data.sort((a, b) => b[msrName] - a[msrName]);
+    const total = data.data.reduce((all, item) => {
+      return all + item[msrName];
+    }, 0);
     return {
       industry: {
+        total: numeral(total, locale).format("($ 0.[00] a)"),
         first: {
           caption: rank[0]["Level 1"]
         },
@@ -37,7 +41,7 @@ function SpendingByIndustry(data, msrName, locale, t) {
         }
       },
       year: {
-        last: sources.rd_survey.last_year - 1
+        last: sources.rd_survey.last_year
       }
     };
   }
@@ -46,9 +50,15 @@ function SpendingByIndustry(data, msrName, locale, t) {
 function SpendingBySector(data, msrName, geo, locale, t) {
   if (data) {
     const rank = getRank(data.data, msrName, "Ownership Type", t);
+    const total = data.data.reduce((all, item) => {
+      return all + item[msrName];
+    }, 0);
     return {
       year_sector: {
         last: sources.rd_survey.last_year - 1
+      },
+      sector: {
+        total: numeral(total, locale).format("($ 0.[00] a)")
       },
       geo,
       text_joined_industries: rank
