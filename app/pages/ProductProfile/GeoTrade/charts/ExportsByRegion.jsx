@@ -1,6 +1,5 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
@@ -84,9 +83,9 @@ class ExportsByRegion extends Section {
               click: d => {
                 if (!(d["ID Comuna"] instanceof Array)) {
                   var url = slugifyItem(
-                    "countries",
-                    d["ID Continent"],
-                    d["Continent"],
+                    "geo",
+                    d["ID Region"],
+                    d["Region"],
                     d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
                     d["Comuna"] instanceof Array ? false : d["Comuna"]
                   );
