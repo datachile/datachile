@@ -83,7 +83,7 @@ class IDSpendingCategorySlide extends Section {
     const sector = SpendingBySector(
       datum_spending_by_sector,
       msrName,
-      geo,
+      geo.type === "comuna" ? geo.ancestors[0] : geo,
       locale,
       t
     );
