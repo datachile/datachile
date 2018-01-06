@@ -1,9 +1,14 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
+import { browserHistory } from "react-router";
 
 import { regionsColorScale } from "helpers/colors";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import {
+  numeral,
+  getNumberFromTotalString,
+  slugifyItem
+} from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
@@ -73,6 +78,20 @@ class ImportsByRegion extends Section {
             },
             shapeConfig: {
               fill: d => regionsColorScale("c" + d["ID Region"])
+            },
+            on: {
+              click: d => {
+                if (!(d["ID Comuna"] instanceof Array)) {
+                  var url = slugifyItem(
+                    "geo",
+                    d["ID Region"],
+                    d["Region"],
+                    d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
+                    d["Comuna"] instanceof Array ? false : d["Comuna"]
+                  );
+                  browserHistory.push(url);
+                }
+              }
             },
             tooltipConfig: {
               title: d => {
