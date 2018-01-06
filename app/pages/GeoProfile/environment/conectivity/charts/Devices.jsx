@@ -11,68 +11,7 @@ import InfoLogoItem from "components/InfoLogoItem";
 import SourceNote from "components/SourceNote";
 
 class Devices extends Section {
-  static need = [
-    (params, store) => {
-      var geo = getGeoObject(params);
-      const cube = mondrianClient.cube("internet_access");
-
-      //force to region query on comuna profile
-      if (geo.type == "comuna") {
-        geo = geo.ancestor;
-      }
-
-      const devices = [
-        "Desktop Access",
-        "Laptop Access",
-        "Tablet Access",
-        "Cellphone Access",
-        "Games or Consoles Access",
-        "TV Access"
-      ];
-
-      var prms = devices.map(d => {
-        return cube.then(cube => {
-          const query = cube.query
-            .drilldown(d, "Binary Survey Response", "Binary Survey Response")
-            .measure("Number of records")
-            .measure("Expansion factor");
-          const q = geoCut(geo, "Geography", query, store.i18n.locale);
-
-          return mondrianClient.query(q, "jsonrecords");
-        });
-      });
-
-      const empty_answer = { Percentage: 0 };
-      const promise = Promise.all(prms).then(results => ({
-        key: "internet_data",
-        data: results.reduce(function(output, result, i) {
-          const key = devices[i];
-          const total = sumBy(result.data.data, "Expansion factor");
-
-          output["total"] = total;
-          output[key] = result.data.data.reduce(
-            function(answers, answer) {
-              const key = "response_" + answer["ID Binary Survey Response"];
-              answer["Percentage"] = answer["Expansion factor"] / total;
-              answer["Total expansion factor"] = total;
-
-              answers[key] = answer;
-              return answers;
-            },
-            {
-              response_0: empty_answer,
-              response_1: empty_answer,
-              response_2: empty_answer
-            }
-          );
-
-          return output;
-        }, {})
-      }));
-
-      return { type: "GET_DATA", promise };
-    }
-  ];
+  static need = [];
 
   render() {
     const { t, className, i18n } = this.props;
