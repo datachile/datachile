@@ -1,6 +1,5 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { RDTypesColorScale } from "helpers/colors";
@@ -10,7 +9,7 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
-import NoDataAvailable from "components/NoDataAvailable";
+import TreemapStacked from "components/TreemapStacked";
 
 class RDByOwnershipType extends Section {
   state = {
@@ -71,49 +70,37 @@ class RDByOwnershipType extends Section {
           </span>
           <ExportLink path={path} />
         </h3>
-        {this.state.treemap ? (
-          <Treemap
-            config={{
-              height: 500,
-              data: path,
-              groupBy: ["ID Ownership Type"],
-              label: d => d["Ownership Type"],
-              sum: d => d["Total Spending"],
-              time: "ID Year",
-              total: d => d["Total Spending"],
-              totalConfig: {
-                text: d =>
-                  "Total: US" +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "($ 0.[00] a)"
-                  )
-              },
+        <TreemapStacked
+          path={path}
+          msrName="Total Spending"
+          drilldowns={["Ownership Type", "Ownership Type"]}
+          config={{
+            label: d => d["Ownership Type"],
+            total: d => d["Total Spending"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
+            },
+            shapeConfig: {
+              fill: d => RDTypesColorScale("ot" + d["ID Ownership Type"])
+            },
+            tooltipConfig: {
+              title: d => d["Ownership Type"],
+              body: d =>
+                numeral(d["Total Spending"], locale).format("(USD 0 a)")
+            },
+            legendConfig: {
               shapeConfig: {
-                fill: d => RDTypesColorScale("ot" + d["ID Ownership Type"])
-              },
-              tooltipConfig: {
-                title: d => d["Ownership Type"],
-                body: d =>
-                  numeral(d["Total Spending"], locale).format("(USD 0 a)")
-              },
-              legendConfig: {
-                shapeConfig: {
-                  width: 20,
-                  height: 20
-                }
+                width: 20,
+                height: 20
               }
-            }}
-            dataFormat={data => {
-              if (data.data && data.data.length > 0) {
-                return data.data;
-              } else {
-                this.setState({ treemap: false });
-              }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+            }
+          }}
+        />
+
         <SourceNote cube="rd_survey" />
       </div>
     );
