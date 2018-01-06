@@ -16,7 +16,7 @@
       border: 1px solid var(--snow);
       border-radius: 30px;
       box-sizing: border-box;
-      display: inline-block;
+      display: block;
       font-family: var(--font-family-text);
       font-weight: 300;
       font-size: 13px;

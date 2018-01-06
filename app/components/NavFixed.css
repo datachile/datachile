@@ -224,18 +224,3 @@
   .nav-fixed {
   }
 }
-/*
-@add-mixin for-xx {
-  .nav-fixed {
-    & .title {
-      margin-top: 0;
-      &.open {
-        max-width: 50px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
-  }
-}
-*/
