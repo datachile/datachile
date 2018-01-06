@@ -31,9 +31,9 @@ class IDSpendingCategorySlide extends Section {
         {
           drillDowns: [["Ownership Type", "Ownership Type", "Ownership Type"]],
           options: { parents: true },
-          cuts: [`[Date].[Date].[Year].&[${sources.rd_survey.last_year}]`]
+          cuts: [`[Date].[Date].[Year].&[${sources.rd_survey.last_year - 1}]`]
         },
-        "no_cut",
+        "rd_survey",
         false
       )(params, store);
     },
@@ -57,7 +57,7 @@ class IDSpendingCategorySlide extends Section {
           options: { parents: true },
           cuts: [`[Date].[Date].[Year].&[${sources.rd_survey.last_year}]`]
         },
-        "no_cut",
+        "rd_survey",
         false
       )(params, store);
     }
@@ -80,7 +80,7 @@ class IDSpendingCategorySlide extends Section {
       "gasto_region_" + regionID
     );
 
-    console.log(datum_spending_by_industry)
+    console.log(msrName)
 
     const sector = SpendingBySector(
       datum_spending_by_sector,
