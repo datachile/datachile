@@ -135,7 +135,7 @@
   }
 
   & .explore-column {
-    padding: 0px var(--gutter);
+    padding: 0px var(--gutter-half);
   }
 }
 
