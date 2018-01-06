@@ -80,8 +80,6 @@ class IDSpendingCategorySlide extends Section {
       "gasto_region_" + regionID
     );
 
-    console.log(msrName)
-
     const sector = SpendingBySector(
       datum_spending_by_sector,
       msrName,
@@ -96,7 +94,6 @@ class IDSpendingCategorySlide extends Section {
       t
     );
 
-    console.log(industry)
     const text = merge(sector, industry);
 
     return (
@@ -129,27 +126,15 @@ class IDSpendingCategorySlide extends Section {
             </p>
           </div>
           <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
+            {text && (
+              <FeaturedDatum
+                className="l-1-2"
+                icon="empleo"
+                datum={"US " + text.industry.total}
+                title={t("R&D spending")}
+                subtitle={t("In") + " " + sources.rd_survey.last_year}
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
