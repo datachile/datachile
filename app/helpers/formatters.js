@@ -66,6 +66,7 @@ export function getImageFromMember(
       break;
     }
     case "industries": {
+      id1 = "" + id1;
       file = "/industry/" + id1.toLowerCase() + ".jpg";
       break;
     }
