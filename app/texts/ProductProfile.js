@@ -1,6 +1,6 @@
 import { annualized_growth } from "helpers/calculator";
 import { sources } from "helpers/consts";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 
 import sum from "lodash/sum";
 
@@ -73,14 +73,51 @@ function about_text(
       return all + item[msrName];
     }, 0);
 
+    /**slugifyItem(
+      "products",
+      top_trade_latest_year[0]["ID HS0"],
+      top_trade_latest_year[0]["HS0"],
+      top_trade_latest_year[0]["ID HS2"],
+      top_trade_latest_year[0]["HS2"]
+    ) */
+
     return {
       available: aggregation.available,
       total: numeral(total, locale).format(format),
       n_countries: aggregation.length > 3 ? 3 : aggregation.length,
-      territory: {
+      location: {
         first: aggregation[0] ? aggregation[0][territoryKey] : "",
         second: aggregation[1] ? aggregation[1][territoryKey] : "",
         third: aggregation[2] ? aggregation[2][territoryKey] : ""
+      },
+      link: {
+        first: aggregation[0]
+          ? slugifyItem(
+              "countries",
+              aggregation[0]["ID Continent"],
+              aggregation[0]["Continent"],
+              aggregation[0]["ID Country"],
+              aggregation[0]["Country"]
+            )
+          : "",
+        second: aggregation[1]
+          ? slugifyItem(
+              "countries",
+              aggregation[1]["ID Continent"],
+              aggregation[1]["Continent"],
+              aggregation[1]["ID Country"],
+              aggregation[1]["Country"]
+            )
+          : "",
+        third: aggregation[2]
+          ? slugifyItem(
+              "countries",
+              aggregation[2]["ID Continent"],
+              aggregation[2]["Continent"],
+              aggregation[2]["ID Country"],
+              aggregation[2]["Country"]
+            )
+          : ""
       },
       share: {
         first: aggregation[0]
