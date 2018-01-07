@@ -5,7 +5,7 @@ import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { healthInsuranceColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
@@ -87,7 +87,9 @@ class HealthInsurance extends Section {
             },
             shapeConfig: {
               fill: d =>
-                ordinalColorScale("health" + d["ID Health System Group"])
+                healthInsuranceColorScale(
+                  "health" + d["ID Health System Group"]
+                )
             },
             legendConfig: {
               label: d => d["Health System Group"],

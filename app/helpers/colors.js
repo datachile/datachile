@@ -19,6 +19,17 @@ export const COLORS_INSTITUTIONS = [
 ];
 export const institutionsColorScale = scaleOrdinal().range(COLORS_INSTITUTIONS);
 
+export const COLORS_HEALTHINSURANCE = [
+  "#35468C",
+  "#7FB1F0",
+  "#3B88CD",
+  "#1B486D",
+  "#464960"
+];
+export const healthInsuranceColorScale = scaleOrdinal().range(
+  COLORS_HEALTHINSURANCE
+);
+
 export const COLORS_EMPLOYMENT = [
   "#74C0E2",
   "#406662",
