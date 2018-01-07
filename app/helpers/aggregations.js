@@ -6,16 +6,7 @@ import sumBy from "lodash/sumBy";
 import sortBy from "lodash/sortBy";
 
 import { numeral, slugifyItem } from "helpers/formatters";
-
-function annualized_growth(last_v, first_v, last_time, first_time) {
-  var temp = parseFloat(last_time) - parseFloat(first_time);
-  //bypass
-  if (temp === 0) {
-    temp = 1;
-  }
-
-  return Math.pow(last_v / first_v, 1 / temp) - 1;
-}
+import { annualized_growth } from "helpers/calculator";
 
 function trade_by_time_and_product(
   aggregation,
@@ -41,10 +32,8 @@ function trade_by_time_and_product(
   const trade_first_year = by_date[first_year];
   const trade_last_year = by_date[last_year];
   const annualized_rate = annualized_growth(
-    trade_last_year,
-    trade_first_year,
-    last_year,
-    first_year
+    [trade_first_year, trade_last_year],
+    [first_year, last_year]
   );
 
   const current_trade_array = by_date_array[last_year];
@@ -129,10 +118,8 @@ function maxMinGrowthByYear(aggregation, measure, locale = "en") {
   const value_first_year = by_date[first_year];
   const value_last_year = by_date[last_year];
   const annualized_rate = annualized_growth(
-    value_last_year,
-    value_first_year,
-    last_year,
-    first_year
+    [value_first_year, value_last_year],
+    [first_year, last_year]
   );
 
   return {
@@ -195,7 +182,7 @@ function trade_balance_text(
     const last_value = aggregation[aggregation.length - 1];
     const first_value = aggregation[0];
 
-    const growth_rate = Math.log(last_value / first_value);
+    const growth_rate = annualized_growth([first_value, last_value]);
 
     return {
       growth_rate: numeral(growth_rate, locale).format("0.0 %"),
