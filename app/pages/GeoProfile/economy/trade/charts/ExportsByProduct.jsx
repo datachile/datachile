@@ -32,9 +32,7 @@ class ExportsByProduct extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>
-            {t("geo_profile.economy.exports.by_product")}
-          </span>
+          <span>{t("geo_profile.economy.exports.by_product", geo)}</span>
           <ExportLink path={path} />
         </h3>
         <TreemapStacked

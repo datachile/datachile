@@ -462,7 +462,7 @@ class GeoProfile extends Component {
               </div>
 
               <div className="candidates">
-                <AuthoritiesBlock geo={geoObj} ancestor={ancestor} />
+                <AuthoritiesBlock geo={geoObj} ancestor={ancestor} data={this.props.data} />
               </div>
 
               <div className="map-comuna">
@@ -581,7 +581,7 @@ class GeoProfile extends Component {
                 },
                 {
                   name: t("Opportunity"),
-                  slides: [t("Product Space"), t("Industry Space")]
+                  slides: [t("Industry Space"), t("Product Space")]
                 },
                 {
                   name: t("Employment"),
@@ -620,19 +620,19 @@ class GeoProfile extends Component {
               </div>
 
               <div>
-                <ProductSpaceSlide>
-                  <SectionColumns>
-                    <ProductSpace className="lost-1" />
-                  </SectionColumns>
-                </ProductSpaceSlide>
-              </div>
-
-              <div>
                 <IndustrySpaceSlide>
                   <SectionColumns>
                     <IndustrySpace className="lost-1" />
                   </SectionColumns>
                 </IndustrySpaceSlide>
+              </div>
+
+              <div>
+                <ProductSpaceSlide>
+                  <SectionColumns>
+                    <ProductSpace className="lost-1" />
+                  </SectionColumns>
+                </ProductSpaceSlide>
               </div>
 
               <div>

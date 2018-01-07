@@ -95,6 +95,14 @@
 }
 
 @add-mixin for-xs {
+  .topic-block .topic-header .topic-title h2 {
+    & span.small {
+      display: block;
+      & .pipe {
+        display: none;
+      }
+    }
+  }
 }
 
 @add-mixin for-xx {

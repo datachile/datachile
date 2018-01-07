@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import PersonItem from "components/PersonItem";
 import { translate } from "react-i18next";
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
@@ -250,11 +249,4 @@ class AuthoritiesBlock extends Component {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(AuthoritiesBlock)
-);
+export default translate()(AuthoritiesBlock);

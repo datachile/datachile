@@ -399,11 +399,11 @@
       "subtitle2": "What Data is in DataChile?",
       "subtitle3": "How do I get my data into DataChile?",
       "text1":
-        "<p>DataChile is an online system that integrates, visualizes, and distributes chilean public data. DataChile’s goal is to improve the efficiency and efficacy of government decision making, by providing integrated data to reveal gaps in the provision of public services, identify industrial diversification opportunities, and promote a more informed public debate.</p>",
+        "<p>DataChile is a platform that integrates, visualises and distributes chilean public data. DataChile goal is improving efficacy and efficiency of public decision making, throughout integrated data that helps revealing gaps in public services, identifying industrial diversification opportunities, and fostering a better informed audience.</p>",
       "text2":
         "<p>As of January 8, 2018, DataChile integrates information from 8 different public sources. These are:</p><ul><li>Ministry of Social Development (MDS)</li><li>National Institute for Statistics (INE)</li><li>Chile’s Customs Office (ADUANAS)</li><li>Ministry of Economy (MINECON)</li><li>Ministry of Education (MINEDUC)</li><li>Educational Measurement, Registry, and Evaluation Department (DEMRE)</li><li>Immigration Department (MINISTERIO DEL INTERIOR)</li><li>Telecommunications Office (SUBTEL)</li></p>",
       "text3":
-        "<p>DataChile is not a big data project, or a universal data repository, but a system focused on integrated data sources that are relevant for public decision making. We are interested in data that is nationally comprehensive (available for most municipalities), relevant, and regularly updated.</p><p>If you would like your dataset to be considered for inclusion, please contact us at: xx@xx</p>",
+        "<p>DataChile is not a big data project, or a universal data repository, but a system focused on integrated data sources that are relevant for public decision making. We are interested in data that is nationally comprehensive (available for most municipalities), relevant, and regularly updated.</p><p>If you would like your dataset to be considered for inclusion, please complete <a href='https://docs.google.com/forms/d/e/1FAIpQLSdBmEkvqK1BQT8c6FrPyLkAjloimsjfH2EHxG_bRFVFF_iGkQ/viewform' target='_blank'>this form</a></p>",
       "title": "Datachile"
     },
     "data": {
@@ -690,8 +690,9 @@
     },
     "economy": {
       "exports": {
-        "by_destination": "Exports by Destination",
-        "by_product": "Exported Products",
+        "by_destination":
+          "Exports Destination of Companies Based in {{geo.caption}}",
+        "by_product": "Exported Products by Companies Based in {{geo.caption}}",
         "default":
           "<p>In {{exports.latest_year}} firms located in {{geo.caption}} exported <i>{{exports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} exports have <i>{{exports.increased_or_decreased}}</i> at an annual average rate of {{exports.annualized_rate}}, from <i>{{exports.trade_first_year}}</i> in {{first_year}} to <i>{{exports.trade_last_year}}</i> in {{exports.last_year}}. {{geo.caption}} main export is <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>, that represents {{exports.trade_first_share}} of {{geo.caption}} total exports, followed by <a href=\"{{exports.trade_second_product_link}}\">{{exports.trade_second_product}}</a> that represents {{exports.trade_second_share}}.</p>",
         "one":
@@ -700,8 +701,8 @@
           "<p>There is no export data about firms located in {{geo.caption}}.</p>"
       },
       "imports": {
-        "by_origin": "Imports by Origin",
-        "by_product": "Imported Products",
+        "by_origin": "Imports Origin of Companies Based in {{geo.caption}}",
+        "by_product": "Imported Products by Companies Based in {{geo.caption}}",
         "default":
           "<p>In {{imports.latest_year}} firms located in {{geo.caption}} imported <i>{{imports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} imports have <i>{{imports.increased_or_decreased}}</i> at an annual average rate of {{imports.annualized_rate}}, from <i>{{imports.trade_first_year}}</i> in {{first_year}} to <i>{{imports.trade_last_year}}</i> in {{imports.last_year}}. {{geo.caption}} main import is <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, that represents {{imports.trade_first_share}} of {{geo.caption}} total imports, followed by <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a> that represents {{imports.trade_second_share}}.</p>",
         "one":
@@ -933,5 +934,9 @@
       "products_exports": "Top exports Products",
       "countries_exports": "Top exports Destinations"
     }
+  },
+  "form": {
+    "data": "Did not find what you were looking for? Suggest data to add",
+    "error": "Did you find an error? Report it"
   }
 }

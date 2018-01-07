@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-//import _ from "lodash";
 import keyBy from "lodash/keyBy";
-import { connect } from "react-redux";
 import { Link, browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import { request as d3Request } from "d3-request";
@@ -549,11 +547,4 @@ class DynamicHomeHeader extends Component {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(DynamicHomeHeader)
-);
+export default translate()(DynamicHomeHeader);

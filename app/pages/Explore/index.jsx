@@ -239,12 +239,13 @@ class Explore extends Component {
     let filters =
       typeof members != "undefined" && entity
         ? members.filter(m => m.key != 0).map(m => {
+            const profileType = type == "region" ? "geo" : type;
             return {
               key: m.key,
               name: m.caption,
               type: type,
-              url: "/explore/" + type + "/" + m.key + "#results",
-              img: getImageFromMember(type == "region" ? "geo" : type, m.key)
+              url: "/explore/" + profileType + "/" + m.key + "#results",
+              img: getImageFromMember(profileType, m.key)
             };
           })
         : [];
