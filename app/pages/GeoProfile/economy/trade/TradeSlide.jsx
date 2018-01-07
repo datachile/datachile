@@ -110,13 +110,15 @@ class TradeSlide extends Section {
       exports: this.context.data.text_data_exports_by_product,
       imports: this.context.data.text_data_imports_by_product
     };
+
     text_data.geo = this.context.data.geo;
-    if (text_data.exports) {
+
+    if ("trade_volume" in text_data.exports) {
       text_data.exports.increased_or_decreased = text_data.exports.increased
         ? t("increased")
         : t("decreased");
     }
-    if (text_data.imports) {
+    if ("trade_volume" in text_data.imports) {
       text_data.imports.increased_or_decreased = text_data.imports.increased
         ? t("increased")
         : t("decreased");
@@ -133,7 +135,7 @@ class TradeSlide extends Section {
           <div className="topic-slide-text">
             <span
               dangerouslySetInnerHTML={{
-                __html: isEmpty(text_data.exports)
+                __html: !("trade_volume" in text_data.exports)
                   ? t("geo_profile.economy.exports.no_data", text_data)
                   : text_data.exports.trade_first_share === "100%"
                     ? t("geo_profile.economy.exports.one", text_data)
@@ -142,7 +144,7 @@ class TradeSlide extends Section {
             />
             <span
               dangerouslySetInnerHTML={{
-                __html: isEmpty(text_data.imports)
+                __html: !("trade_volume" in text_data.imports)
                   ? t("geo_profile.economy.imports.no_data", text_data)
                   : text_data.imports.trade_first_share === "100%"
                     ? t("geo_profile.economy.imports.one", text_data)
@@ -157,12 +159,18 @@ class TradeSlide extends Section {
               datum={
                 "US" + numeral(datum_trade_exports, locale).format("($ 0.00 a)")
               }
-              title={t("Exports {{last_year}}", text_data)}
-              subtitle={t("Imports: US{{imports}}", {
-                imports: numeral(datum_trade_imports, locale).format(
-                  "($ 0.00 a)"
-                )
+              title={t("Exports {{last_year}}", {
+                last_year: sources.exports.year
               })}
+              subtitle={
+                t("Imports") +
+                ": " +
+                t("US{{imports}}", {
+                  imports: numeral(datum_trade_imports, locale).format(
+                    "($ 0.00 a)"
+                  )
+                })
+              }
             />
             <TradeBalance className="l-2-3 trade-balance" />
           </div>

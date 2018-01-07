@@ -14,7 +14,7 @@
   },
   ",f": "",
   "1st year": "1er año",
-  "ATM": "ATM",
+  "ATM": "Cajero Automático",
   "About": "Introducción",
   "About DataChile": "Acerca de DataChile",
   "Access": "Acceso",
@@ -36,7 +36,7 @@
   "Affiliates in": "Afiliados en",
   "Age": "Edad",
   "Age Range": "Rango de Edad",
-  "Amenities": "Comodidades",
+  "Amenities": "Servicios",
   "Area": "Área",
   "are": "son",
   "Average": "Promedio",
@@ -76,7 +76,7 @@
   "Casualties rate per 100 inhabitants": "Tasa de muertes por 100 habitantes",
   "Chile Exports": "Exportaciones Chile",
   "Click to Highlight": "Clic para resaltar",
-  "Community Equipment": "Community Equipment",
+  "Community Equipment": "Equipamiento comunitario",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
   "Connected to electricity network": "Conectado a la red eléctrica",
@@ -176,6 +176,7 @@
 
   "Exports By Region": "Exportaciones por Región",
   "Imports By Region": "Importaciones por Región",
+  "Imports": "Importaciones",
 
   "Exports By Destination": "Exportaciones por Destino",
   "Imports By Origin": "Importaciones por Origen",
@@ -323,7 +324,8 @@
   "Most Common Visa Type": "Principal Tipo de Visa",
   "National": "Nacional",
   "National Profile": "Perfil Nacional",
-  "NEM Performance By Administration": "NEM Performance By Administration",
+  "NEM Performance By Administration":
+    "Desempeño NEM por Tipo de Administración",
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of visas": "Cantidad de Visas",
   "Number of visas granted in {{year_last}}":
@@ -339,7 +341,7 @@
   "Opportunity in Products": "Oportunidades en productos",
   "Opportunity in Industries": "Oportunidades en industrias",
   "Origin & Destination": "Origen y Destino",
-  "Origins": "Orígenes",
+  "Origins": "Migración",
   "Other products": "Otros productos",
   "Other regions": "Otras regiones",
   "Others": "Otros",
@@ -354,7 +356,7 @@
     "PSU vs NEM por Comuna & Administración",
   "People": "Personas",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
-  "Performance": "Performance",
+  "Performance": "Desempeño",
   "Pharmacy": "Farmacia",
   "Pic by": "Foto de",
   "Politics": "Política",
@@ -453,7 +455,7 @@
   "Tablet": "Tablet",
   "The most comprehensive effort to integrate and visualize Chile’s Public Data":
     "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
-  "Top Schools By Performance": "Principales escuelas según rendimiento",
+  "Top Schools By Performance": "Principales escuelas según desempeño",
   "Top destination country": "Principal país de destino",
   "Top exporter region": "Principal región exportadora",
   "Topics": "Temas",
@@ -511,7 +513,7 @@
       "text2":
         "<p>Al 8 de enero de 2018, DataChile incluye datos de 8 organismos oficiales. Éstos son:</p><ul><li>Ministerio de Desarrollo Social (MDS)</li><li>Instituto Nacional de Estadísticas (INE)</li><li>Aduanas Chile</li><li>Ministerio de Economía (MINECON)</li><li>Ministerio de Educación (MINEDUC)</li><li>Departamento de Medición y Registro Educacional (DEMRE)</li><li>Departamento de Extranjería y Migración, Ministerio del Interior</li><li>Subsecretaría de Telecomunicaciones (SUBTEL)</li></ul>",
       "text3":
-        "<p>DataChile no es un proyecto enfocado en la cantidad de datos, sino en su integración y utilidad. Estamos interesados en bases de datos que sean completas a nivel nacional (con información para la mayoría de las municipalidades), relevantes y actualizadas de manera regular.</p><p>Si quiere que consideremos sus datos para incluirlos en DataChile, escríbanos a: XXX@XXX</p>",
+        "<p>DataChile no es un proyecto enfocado en la cantidad de datos, sino en su integración y utilidad. Estamos interesados en bases de datos que sean completas a nivel nacional (con información para la mayoría de las municipalidades), relevantes y actualizadas de manera regular.</p><p>Si quiere que consideremos sus datos para incluirlos en DataChile, complete el <a href='https://docs.google.com/forms/d/e/1FAIpQLSdBmEkvqK1BQT8c6FrPyLkAjloimsjfH2EHxG_bRFVFF_iGkQ/viewform' target='_blank'>siguiente formulario</a></p>",
       "title": "Datachile"
     },
     "data": {
@@ -576,7 +578,7 @@
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación."
       },
       "performance": {
-        "title": "Rendimiento escolar",
+        "title": "Desempeño escolar",
         "year": "2004 - 2015",
         "source": "Ministerio de Educación (MINEDUC)",
         "text":
@@ -787,7 +789,8 @@
   "negative": "negativa",
   "disabilities": "discapacidades",
   "geo_profile": {
-    "warning": "Se muestran datos de {{caption}}",
+    "warning":
+      "Los datos que se muestran a continuación corresponden a {{caption}}",
     "trade_slide": {
       "text":
         "En {{latest_year}} las firmas con domicilio fiscal en {{geo.caption}} exportaron <i>{{trade_volume}}</i>, llevando a {{geo.caption}} al {{rank}} puesto de los mayores exportadores de Chile. Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}. Los principales productos de exportación de {{geo.caption}} son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} del total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} del total)"
@@ -843,7 +846,6 @@
       "healthcare":
         "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
     },
-    "warning": "Se muestran datos de {{caption}}",
     "income_sex_age_slide": {
       "text":
         "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
@@ -883,7 +885,7 @@
     "housing": {
       "amenities": {
         "text":
-          "<p>La encuesta CASEN junta información sobre el acceso a servicios y equipamiento de los habitantes de las distintas localidades del país.</p>"
+          "<p>La encuesta CASEN levanta información sobre el acceso a servicios y equipamiento de las viviendas de las distintas localidades del país.</p>"
       },
       "quality": {
         "rural":
@@ -891,7 +893,7 @@
         "material":
           "<p>La mayoría de las viviendas en {{level}} son {{housing_common_type}}. El material de construcción más común en {{level}} es {{housing_common_material}}.</p>",
         "text":
-          "La última encuesta CASEN tiene pocos o ningún dato de calidad de vivienda para {{level}}.",
+          "La última encuesta CASEN no tiene representatividad a nivel comunal para {{level}}.",
         "text_1": "$t(geo_profile.housing.quality.rural)",
         "text_2": "$t(geo_profile.housing.quality.material)",
         "text_3":
@@ -1067,5 +1069,10 @@
       "products_exports": "Productos más exportados",
       "countries_exports": "Principales destinos comerciales"
     }
+  },
+  "form": {
+    "data":
+      "¿No encontraste lo que estabas buscando? Sugiere datos para agregar",
+    "error": "¿Encontraste un error? Repórtalo"
   }
 }
