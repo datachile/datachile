@@ -354,6 +354,7 @@
 
             & .separator {
               display: inline;
+              padding: 0 5px;
             }
           }
         }

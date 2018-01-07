@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { translate } from "react-i18next";
 import "./TopicSlider.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
+import { isMobile } from "helpers/responsiveUtils";
 
 class TopicSlider extends Component {
   constructor(props) {
@@ -49,7 +50,8 @@ class TopicSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       adaptiveHeight: true,
-      lazyLoad: false
+      lazyLoad: false,
+      draggable: isMobile() ? true : false
     };
 
     return (

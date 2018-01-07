@@ -41,7 +41,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
           first_municipality: first ? first.Comuna : undefined,
           first_region: first ? first.Region : undefined,
           first_percentage: numeral(
-            sumBy(data.filter(d => d.Region == first.Region), "CIF US") /
+            sumBy(data.filter(d => d.Comuna == first.Comuna), "CIF US") /
               sumBy(data, "CIF US"),
             locale
           ).format("0.0%"),
@@ -72,7 +72,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
           first_municipality: first ? first.Comuna : undefined,
           first_region: first ? first.Region : undefined,
           first_percentage: numeral(
-            sumBy(data.filter(d => d.Region == first.Region), "FOB US") /
+            sumBy(data.filter(d => d.Comuna == first.Comuna), "FOB US") /
               sumBy(data, "FOB US"),
             locale
           ).format("0.0%"),

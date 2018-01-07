@@ -39,6 +39,7 @@
   & .topic-slide-block {
     & section.section {
       & .columns {
+        flex-direction: row;
       }
     }
     & .topic-slide-intro {
