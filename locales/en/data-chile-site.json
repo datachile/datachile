@@ -585,7 +585,7 @@
   "country_profile": {
     "migration_slide": {
       "destination":
-        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants de estos arrived to {{region}}, mainly to the comuna of {{comuna}}.</p>",
+        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants de estos arrived to <a href=\"{{links.region}}\">{{region}}</a>, mainly to the comuna of <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
       "growth":
         "<p>Between {{year_prev}} and {{year_last}}, the number of visas granted to immigrants coming from {{level}} has {{behavior}} at a annual rate of {{growth}}.</p>",
       "text": "$t(country_profile.migration_slide.destination)",
@@ -627,43 +627,43 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>During {{year}}, Chile exported a total of US{{total_exports}} to {{level}}, and imported a total of US{{total_imports}}, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <em>{{main_import.name}}</em>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <em>{{main_export.name}}</em>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
+        "<p>During {{year}}, Chile exported a total of US{{total_exports}} to {{level}}, and imported a total of US{{total_imports}}, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
       "export_0":
         "<p>There are no records of exports to {{level}} during {{year}}.</p>",
       "export_1":
-        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of {{origin.first_municipality}}, in {{origin.first_region}}.</p>",
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, in <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
       "export_11":
-        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in {{origin.first_municipality}}, in {{origin.first_region}}, and {{origin.second_municipality}}, in {{origin.second_region}}.</p>",
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, in <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, and <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, in <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>.</p>",
       "export_2":
-        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in {{origin.first_region}}, specifically from the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}.</p>",
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, specifically from the comunas of <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a> and <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>.</p>",
       "export_111":
-        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}}, in {{origin.second_region}}, and {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, in <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>. Follow after the comunas of <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, in <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>, and <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, in <a href=\"{{links.exp_3_region}}\">{{origin.third_region}}</a>.</p>",
       "export_12":
-        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of {{origin.first_municipality}}, in {{origin.first_region}}. Follow after the comunas of {{origin.second_municipality}} and {{origin.third_municipality}}, in {{origin.second_region}}.</p>",
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comuna of <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, in <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>. Follow after the comunas of <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a> and <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, in <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>.</p>",
       "export_21":
-        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comunas of {{origin.first_municipality}} and {{origin.second_municipality}}, in {{origin.first_region}}, and from the comuna of {{origin.third_municipality}}, in {{origin.third_region}}.</p>",
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in the comunas of <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a> and <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, in <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, and from the comuna of <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, in <a href=\"{{links.exp_3_region}}\">{{origin.third_region}}</a>.</p>",
       "export_3":
-        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in {{origin.first_region}}, mainly from the comunas of {{origin.first_municipality}}, {{origin.second_municipality}}, and {{origin.third_municipality}}.</p>",
+        "<p>The exports from Chile to {{level}} depart mainly from companies with tax residence in <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, mainly from the comunas of <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, and <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>.</p>",
       "import": "t(country_profile.intltrade_origin_dest_slide.import_1)",
       "import_0":
         "<p>There are no records of imports from {{level}} to Chile during {{year}}.</p>",
       "import_1":
-        "<p>The main destination of the imports from {{level}} is the comuna of {{destination.first_municipality}}, in {{destination.first_region}}.</p>",
+        "<p>The main destination of the imports from {{level}} is the comuna of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, in <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>.</p>",
       "import_11":
-        "<p>The main destination of the imports from {{level}} are the comunas of {{destination.first_municipality}}, in {{destination.first_region}}, and {{destination.second_municipality}}, in {{destination.second_region}}.</p>",
+        "<p>The main destination of the imports from {{level}} are the comunas of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, in <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, and <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, in <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>.</p>",
       "import_2":
-        "<p>The main destination of the imports from {{level}} is {{destination.first_region}}, specifically to the comunas of {{destination.first_municipality}} and {{destination.second_municipality}}.</p>",
+        "<p>The main destination of the imports from {{level}} is <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, specifically to the comunas of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a> and <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>.</p>",
       "import_111":
-        "<p>The main destination of the imports from {{level}} is the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after, the comunas of {{destination.second_municipality}}, in {{destination.second_region}}, and {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
+        "<p>The main destination of the imports from {{level}} is the comuna of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, in <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>. Follow after, the comunas of <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, in <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>, and <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, in <a href=\"{{links.imp_3_region}}\">{{destination.third_region}}</a>.</p>",
       "import_12":
-        "<p>The main destination of the imports from {{level}} is the comuna of {{destination.first_municipality}}, in {{destination.first_region}}. Follow after the comunas of {{destination.second_municipality}} and {{destination.third_municipality}}, in {{destination.second_region}}.</p>",
+        "<p>The main destination of the imports from {{level}} is the comuna of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, in <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>. Follow after the comunas of <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> and <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, in <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>.</p>",
       "import_21":
-        "<p>The main destination of the imports from {{level}} are the comunas of {{destination.first_municipality}} and {{destination.second_municipality}}, in {{destination.first_region}}, and the comuna of {{destination.third_municipality}}, in {{destination.third_region}}.</p>",
+        "<p>The main destination of the imports from {{level}} are the comunas of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a> and <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, in <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, and the comuna of <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, in <a href=\"{{links.imp_3_region}}\">{{destination.third_region}}</a>.</p>",
       "import_3":
-        "<p>The main destination of the imports from {{level}} is {{destination.first_region}}, mainly to the comunas of {{destination.first_municipality}}, {{destination.second_municipality}}, and {{destination.third_municipality}}.</p>"
+        "<p>The main destination of the imports from {{level}} is <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, mainly to the comunas of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, and <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
       "text":

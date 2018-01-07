@@ -7,7 +7,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 import { championsBy } from "helpers/aggregations";
 import { sources } from "helpers/consts";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 
 const last_year = sources.imports.year;
@@ -38,6 +38,44 @@ class InternationalTradeOriginDestinationSlide extends Section {
         return {
           year: last_year,
           grouping: groupingKey(first, second, third),
+          links: {
+            imp_1_comuna: slugifyItem(
+              "geo",
+              first["ID Region"],
+              first["Region"],
+              first["ID Comuna"],
+              first["Comuna"]
+            ),
+            imp_1_region: slugifyItem(
+              "geo",
+              first["ID Region"],
+              first["Region"]
+            ),
+            imp_2_comuna: slugifyItem(
+              "geo",
+              second["ID Region"],
+              second["Region"],
+              second["ID Comuna"],
+              second["Comuna"]
+            ),
+            imp_2_region: slugifyItem(
+              "geo",
+              second["ID Region"],
+              second["Region"]
+            ),
+            imp_3_comuna: slugifyItem(
+              "geo",
+              third["ID Region"],
+              third["Region"],
+              third["ID Comuna"],
+              third["Comuna"]
+            ),
+            imp_3_region: slugifyItem(
+              "geo",
+              third["ID Region"],
+              third["Region"]
+            )
+          },
           first_municipality: first ? first.Comuna : undefined,
           first_region: first ? first.Region : undefined,
           first_percentage: numeral(
@@ -69,6 +107,44 @@ class InternationalTradeOriginDestinationSlide extends Section {
 
         return {
           grouping: groupingKey(first, second, third),
+          links: {
+            exp_1_comuna: slugifyItem(
+              "geo",
+              first["ID Region"],
+              first["Region"],
+              first["ID Comuna"],
+              first["Comuna"]
+            ),
+            exp_1_region: slugifyItem(
+              "geo",
+              first["ID Region"],
+              first["Region"]
+            ),
+            exp_2_comuna: slugifyItem(
+              "geo",
+              second["ID Region"],
+              second["Region"],
+              second["ID Comuna"],
+              second["Comuna"]
+            ),
+            exp_2_region: slugifyItem(
+              "geo",
+              second["ID Region"],
+              second["Region"]
+            ),
+            exp_3_comuna: slugifyItem(
+              "geo",
+              third["ID Region"],
+              third["Region"],
+              third["ID Comuna"],
+              third["Comuna"]
+            ),
+            exp_3_region: slugifyItem(
+              "geo",
+              third["ID Region"],
+              third["Region"]
+            )
+          },
           first_municipality: first ? first.Comuna : undefined,
           first_region: first ? first.Region : undefined,
           first_percentage: numeral(
@@ -99,12 +175,14 @@ class InternationalTradeOriginDestinationSlide extends Section {
         context: slide_country_trade_destination.grouping,
         level: country.caption,
         year: last_year,
+        links: slide_country_trade_destination.links,
         destination: slide_country_trade_destination
       }) +
       t("country_profile.intltrade_origin_dest_slide.export", {
         context: slide_country_trade_origin.grouping,
         level: country.caption,
         year: last_year,
+        links: slide_country_trade_origin.links,
         origin: slide_country_trade_origin
       });
 
