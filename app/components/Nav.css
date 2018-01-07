@@ -362,6 +362,16 @@
   }
 }
 
+@add-mixin for-md {
+  .nav-search-wrapper {
+    & .search-component .input input {
+      background: none;
+      padding-left: 22px;
+      padding-right: 48px;
+    }
+  }
+}
+
 @add-mixin from-md {
   .nav {
     & .nav-container {
