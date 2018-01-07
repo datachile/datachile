@@ -151,6 +151,7 @@
   width: 100%;
   color: var(--snow);
   background-color: var(--footer-bg);
+  max-width: 370px;
 
   & .button-set-container {
     display: flex;

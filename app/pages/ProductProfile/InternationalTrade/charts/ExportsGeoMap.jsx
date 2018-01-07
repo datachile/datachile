@@ -68,11 +68,10 @@ class ExportsGeoMap extends Section {
             topojson: "/geo/countries.json",
             groupBy: "iso3",
             topojsonId: "id",
-            padding: -20,
-            tiles: false,
-            ocean: "transparent",
+            //padding: -20,
+            //tiles: false,
+            //ocean: "transparent",
             //padding: "100px 0px 90px 0px",
-            projection: "geoMercator",
             //tileUrl: "https://cartocdn_{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
             topojsonFilter: d => {
               return ["ATA"].indexOf(d.id) < 0;
@@ -85,17 +84,31 @@ class ExportsGeoMap extends Section {
             label: d => d["Country"],
             //sum: d => d["FOB US"],
             colorScale: "FOB US",
+            colorScalePosition: "bottom",
+            colorScaleConfig: {
+              shapeConfig: {
+                fill: "#000",
+                labelConfig: {
+                  fontColor: "#999999"
+                }
+              },
+              select: "#legend",
+              size: 20,
+              //width: 500,
+              height: 60,
+              align: "start",
+              padding: 12,
+              rectConfig: {
+                stroke: "#BBBBBB"
+              }
+            },
             //time: "ID Year",
             total: d => d["FOB US"],
-            zoom: true,
-            zoomBrushHandleSize: 3,
+
             totalConfig: {
               text: d =>
                 "Total: US" +
                 numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
-            },
-            shapeConfig: {
-              //fill: d => continentColorScale("c" + d["ID Continent"])
             },
             on: {
               click: d => {
@@ -136,12 +149,12 @@ class ExportsGeoMap extends Section {
             }
           }}
           dataFormat={data => {
-            console.log(data.data);
             return data.data.map(item => {
               return { ...item, ["FOB US"]: Math.log(item["FOB US"]) };
             });
           }}
         />
+        <svg id="legend"></svg>
       </div>
     );
   }
