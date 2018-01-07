@@ -37,6 +37,10 @@
     }
   }
   & .topic-slide-block {
+    & section.section {
+      & .columns {
+      }
+    }
     & .topic-slide-intro {
       margin: 0 var(--gutter);
       lost-flex-container: row;
@@ -182,7 +186,6 @@
   .topic-block {
     & .topic-header {
       & .topic-title {
-        lost-flex-container: column;
         & h2 {
           lost-column: 1 flex;
           font-size: 50px;
@@ -249,6 +252,11 @@
       }
     }
     & .topic-slide-block {
+      & section.section {
+        & .columns {
+          flex-direction: row;
+        }
+      }
       & .chart-title {
         padding: 0;
       }
@@ -298,6 +306,11 @@
 @add-mixin for-xs {
   .topic-block {
     & .topic-slide-block {
+      & section.section {
+        & .columns {
+          display: block;
+        }
+      }
       & .topic-slide-intro {
         & .topic-slide-data {
           & .featured-datum {
