@@ -152,11 +152,11 @@
   "Glossary": "Glosario",
   "Green Areas": "Áreas verdes",
   "Change exports": "Cambio exportaciones",
-  "Change imports": "Cambio importaciones",
-  "Growth Exports": "Crecimiento exportaciones",
-  "Growth Imports": "Crecimiento importaciones",
-  "Growth Investment": "Crecimiento inversión",
-  "Growth Labour": "Crecimiento de empleos",
+  "Change imports": "Cambio Importaciones",
+  "Growth Exports": "Cambio Exportaciones",
+  "Growth Imports": "Cambio Importaciones",
+  "Growth Investment": "Cambio inversión",
+  "Growth Labour": "Cambio de empleos",
   "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
   "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
   "Change number of visas": "Cambio número de visas",
@@ -959,7 +959,7 @@
     "En último año de enseñanza media durante ",
   "industry_profile": {
     "economy":
-      "<p>En {{year.last}}, {{territory.name.first}} fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por {{territory.name.second}}, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+      "<p>En {{year.last}}, <a href=\"{{territory.link.first}}\">{{territory.name.first}}</a> fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por <a href=\"{{territory.link.second}}\">{{territory.name.second}}</a>, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
     "employment":
       "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} han {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",
     "r&d":
