@@ -91,6 +91,9 @@
           font-family: var(--font-family-title);
           text-align: center;
           margin-right: -30px;
+          & img {
+            width: 100%;
+          }
           & .easter {
             position: absolute;
             left: 57%;
