@@ -205,7 +205,25 @@ class DevicesSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Devices")}</div>
+          <div className="topic-slide-title">
+            {t("Devices")}
+            {this.context.data.geo.depth > 1 ? (
+              <div className="topic-slide-subtitle">
+                <p>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t(
+                        "geo_profile.warning",
+                        this.context.data.geo.ancestors[0]
+                      )
+                    }}
+                  />
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <div
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}

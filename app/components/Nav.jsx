@@ -67,7 +67,7 @@ class Nav extends Component {
 
     const { subnav_visible, search_visible } = this.state;
 
-    const search_icon = search_visible ? "icon-close" : "icon-search";
+    const search_icon = search_visible ? "icon-close-black" : "icon-search";
 
     var canUseDOM = !!(
       typeof window !== "undefined" &&
@@ -179,12 +179,10 @@ class Nav extends Component {
           </SubNav>
 
           <div className="nav-container">
-            <div className="l-col">
-              <div className="menu-button">
-                <a onClick={this.toggleSubNav}>
-                  <img src="/images/icons/icon-menu.svg" />
-                </a>
-              </div>
+            <div className="l-col menu-button">
+              <a onClick={this.toggleSubNav}>
+                <img src="/images/icons/icon-menu.svg" />
+              </a>
             </div>
 
             <div className="c-col">
@@ -195,18 +193,27 @@ class Nav extends Component {
               )}
             </div>
 
-            <div className="r-col">
-              <div
-                className={`search-nav-container ${
-                  search_visible ? "open" : "close"
-                }`}
+            <div
+              className={`r-col nav-search ${
+                search_visible ? "open" : "closed"
+              }`}
+            >
+              <a
+                className="nav-search-toggle toggle-nav"
+                onClick={this.toggleSubNav}
               >
-                <div className={`search-nav-wrapper`}>
-                  <Search className="search-nav search-nav-main" />
-                </div>
-                <a className="search-toggle-nav" onClick={this.toggleSearch}>
+                <img src={`/images/icons/${search_icon}.svg`} />
+              </a>
+              <div className="nav-search-container">
+                <a
+                  className="nav-search-toggle toggle-input"
+                  onClick={this.toggleSearch}
+                >
                   <img src={`/images/icons/${search_icon}.svg`} />
                 </a>
+                <div className="nav-search-wrapper">
+                  <Search className="search-nav search-nav-main" />
+                </div>
               </div>
             </div>
           </div>

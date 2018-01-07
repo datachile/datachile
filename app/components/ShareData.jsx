@@ -1,9 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import { translate } from "react-i18next";
 
-import "./ExportLink.css";
+import "./ShareData.css";
 
-class ExportLink extends React.Component {
+class ShareData extends React.Component {
   state = {
     open: false
   };
@@ -46,14 +47,17 @@ class ExportLink extends React.Component {
     ];
 
     return (
-      <div
-        className={open ? "export-link open" : "export-link"}
-        ref={this.containerRef}
-      >
-        <a className="toggle" onClick={this.toggleMenu}>
-          <img src={`/images/icons/icon-download.svg`} />
-        </a>
-        <ul>
+      <div>
+        <div
+          className={open ? "export-link open" : "export-link"}
+          ref={this.containerRef}
+        >
+          <div className="content">This works with any content</div>
+          <a className="toggle" onClick={this.toggleMenu}>
+            <img src={`/images/icons/icon-download.svg`} />
+          </a>
+
+          {/*<ul>
           {options.map(o => (
             <li key={o.caption}>
               <a target="_blank" download={""} href={o.path}>
@@ -61,10 +65,18 @@ class ExportLink extends React.Component {
               </a>
             </li>
           ))}
-        </ul>
+        </ul>*/}
+        </div>
       </div>
     );
   }
 }
 
-export default translate()(ExportLink);
+export default translate()(
+  connect(
+    state => ({
+      sources: state.sources
+    }),
+    {}
+  )(ShareData)
+);

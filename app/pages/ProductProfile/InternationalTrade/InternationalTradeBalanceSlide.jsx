@@ -65,6 +65,10 @@ class InternationalTradeBalanceSlide extends Section {
       t
     );
 
+    const trade_balance =
+      datum_exports_by_year[datum_exports_by_year.length - 1] -
+      datum_imports_by_year[datum_imports_by_year.length - 1];
+
     const exports_size = total_exports_per_product
       ? total_exports_per_product.value / total_exports_chile
       : 0;
@@ -115,13 +119,17 @@ class InternationalTradeBalanceSlide extends Section {
                 sources.imports.year
               }
             />
-            {/*<FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={numeral(exports_size, locale).format("(0.0 %)")}
-              title={t("Trade volume")}
-              subtitle="In 2015"
-            />*/}
+            {true && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={
+                  "US" + numeral(trade_balance, locale).format("$ 0,0.00 a")
+                }
+                title={t("Trade Balance")}
+                subtitle={t("In") + " " + sources.imports.year}
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

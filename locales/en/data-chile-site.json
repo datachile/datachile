@@ -403,7 +403,7 @@
       "text2":
         "<p>As of January 8, 2018, DataChile integrates information from 8 different public sources. These are:</p><ul><li>Ministry of Social Development (MDS)</li><li>National Institute for Statistics (INE)</li><li>Chile’s Customs Office (ADUANAS)</li><li>Ministry of Economy (MINECON)</li><li>Ministry of Education (MINEDUC)</li><li>Educational Measurement, Registry, and Evaluation Department (DEMRE)</li><li>Immigration Department (MINISTERIO DEL INTERIOR)</li><li>Telecommunications Office (SUBTEL)</li></p>",
       "text3":
-        "<p>DataChile is not a big data project, or a universal data repository, but a system focused on integrated data sources that are relevant for public decision making. We are interested in data that is nationally comprehensive (available for most municipalities), relevant, and regularly updated.</p><p>If you would like your dataset to be considered for inclusion, please contact us at: xx@xx</p>",
+        "<p>DataChile is not a big data project, or a universal data repository, but a system focused on integrated data sources that are relevant for public decision making. We are interested in data that is nationally comprehensive (available for most municipalities), relevant, and regularly updated.</p><p>If you would like your dataset to be considered for inclusion, please complete <a href='https://docs.google.com/forms/d/e/1FAIpQLSdBmEkvqK1BQT8c6FrPyLkAjloimsjfH2EHxG_bRFVFF_iGkQ/viewform' target='_blank'>this form</a></p>",
       "title": "Datachile"
     },
     "data": {
@@ -933,5 +933,9 @@
       "products_exports": "Top exports Products",
       "countries_exports": "Top exports Destinations"
     }
+  },
+  "form": {
+    "data": "Did not find what you were looking for? Suggest data to add",
+    "error": "Did you find an error? Report it"
   }
 }

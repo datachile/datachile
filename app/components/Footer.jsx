@@ -27,14 +27,20 @@ function Footer(props) {
             <p className="logos">
               <img className="logo" src="/images/logos/logo-aminerals.svg" />
               <img className="logo" src="/images/logos/logo-corfo.svg" />
-              <img className="logo gobcl" src="/images/logos/logo-minecon.svg" />
+              <img
+                className="logo gobcl"
+                src="/images/logos/logo-minecon.svg"
+              />
               <img className="logo" src="/images/logos/logo-entel-lab.svg" />
             </p>
           </div>
           <div className="column supported">
             <p className="footer-title">{t("Supported by")}</p>
             <p className="logos">
-              <img className="logo gobcl" src="/images/logos/logo-direcon.svg" />
+              <img
+                className="logo gobcl"
+                src="/images/logos/logo-direcon.svg"
+              />
               <img className="logo" src="/images/logos/logo-asech.svg" />
             </p>
           </div>
@@ -79,6 +85,23 @@ function Footer(props) {
           <Link className="link" to="/about">
             {t("About DataChile")}
           </Link>
+        </div>
+        <div className="nav-links">
+          <a
+            className="link"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeSUbgmwnwb3yxr3PnttK6shv_JSNHnQGCDL9rPTl25ZZbW2A/viewform"
+            target="_blank"
+          >
+            {t("form.error")}
+          </a>
+          <span className="link link-dot">&#183;</span>
+          <a
+            className="link"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdBmEkvqK1BQT8c6FrPyLkAjloimsjfH2EHxG_bRFVFF_iGkQ/viewform"
+            target="_blank"
+          >
+            {t("form.data")}
+          </a>
         </div>
       </div>
     </footer>

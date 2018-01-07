@@ -135,7 +135,7 @@
   }
 
   & .explore-column {
-    padding: 0px var(--gutter);
+    padding: 0px var(--gutter-half);
   }
 }
 
@@ -184,6 +184,13 @@
             lost-flex-container: row;
             & li {
               lost-column: 1/6 flex;
+              & a.link-soon {
+                & span {
+                  & small {
+                    display: block;
+                  }
+                }
+              }
             }
           }
         }
@@ -255,13 +262,6 @@
           & ul {
             & li {
               lost-column: 1/2 flex;
-              & a.link-soon {
-                & span {
-                  & small {
-                    display: block;
-                  }
-                }
-              }
             }
           }
         }

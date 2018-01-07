@@ -290,7 +290,6 @@ class CountryProfile extends Component {
     const ids = getLevelObject(this.props.routeParams);
 
     const obj = this.props.data.country;
-    if (!obj) return null;
 
     const list = this.props.data.country_list_detail;
 
@@ -332,10 +331,6 @@ class CountryProfile extends Component {
     };
 
     const topics = [
-      // {
-      //   slug: "about",
-      //   title: t("About")
-      // },
       {
         slug: "demography",
         title: t("Demography")
@@ -353,9 +348,11 @@ class CountryProfile extends Component {
         topics={topics}
         loadingComponent={<DatachileLoading />}
       >
-        <Helmet>
-          <title>{obj.caption}</title>
-        </Helmet>
+        {obj && (
+          <Helmet>
+            <title>{obj.caption}</title>
+          </Helmet>
+        )}
         <div className="profile">
           <div className="intro">
             {obj && (
@@ -436,46 +433,6 @@ class CountryProfile extends Component {
               </a>
             </div>
           </div>
-
-          {/* <div className="topic-block" id="about">
-              <div className="topic-header">
-              <div className="topic-title">
-              <h2 className="full-width">
-              {t("About")}
-              {obj && (
-              <span className="small">
-              <span className="pipe"> | </span>
-              {obj.caption}
-              </span>
-              )}
-              </h2>
-              </div>
-              <div className="topic-go-to-targets">
-              <div className="topic-slider-sections" />
-              </div>
-              </div>
-              <div className="topic-slide-container">
-              <div className="topic-slide-block">
-              <div className="topic-slide-intro">
-              <div
-              className="topic-slide-text"
-              dangerouslySetInnerHTML={{
-              __html: t("country_profile.about1")
-              }}
-              />
-              <div
-              className="topic-slide-text"
-              dangerouslySetInnerHTML={{
-              __html: t("country_profile.about2")
-              }}
-              />
-              <div className="topic-slide-link-list">
-              <LinksList title={listTitle} list={list} />
-              </div>
-              </div>
-              </div>
-              </div>
-              </div> */}
 
           <div className="topics-container">
             <Topic
