@@ -9,7 +9,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 import { simpleCountryDatumNeed, quickQuery } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 
 const last_year = sources.exports_and_imports.year;
 
@@ -22,7 +22,7 @@ class InternationalTradeSlide extends Section {
         measures: ["CIF US"],
         drillDowns: [["Import HS", "HS", "HS2"]],
         cuts: [`[Date].[Date].[Year].&[${last_year}]`],
-        options: { parents: false },
+        options: { parents: true },
         format: "jsonrecords"
       },
       (result, lang) => {
@@ -36,13 +36,21 @@ class InternationalTradeSlide extends Section {
               name: max["HS2"],
               amount: max["FOB US"],
               total: total,
-              percent: numeral(max["CIF US"] / total, lang).format("0.0%")
+              percent: numeral(max["CIF US"] / total, lang).format("0.0%"),
+              link: slugifyItem(
+                "products",
+                max["ID HS0"],
+                max["HS0"],
+                max["ID HS2"],
+                max["HS2"]
+              )
             }
           : {
               name: null,
               amount: 0,
               total: total,
-              percent: numeral(0, lang).format("0.0%")
+              percent: numeral(0, lang).format("0.0%"),
+              link: ""
             };
       }
     ),
@@ -54,7 +62,7 @@ class InternationalTradeSlide extends Section {
         measures: ["FOB US"],
         drillDowns: [["Export HS", "HS", "HS2"]],
         cuts: [`[Date].[Date].[Year].&[${last_year}]`],
-        options: { parents: false },
+        options: { parents: true },
         format: "jsonrecords"
       },
       (result, lang) => {
@@ -68,13 +76,21 @@ class InternationalTradeSlide extends Section {
               name: max["HS2"],
               amount: max["FOB US"],
               total: total,
-              percent: numeral(max["FOB US"] / total, lang).format("0.0%")
+              percent: numeral(max["FOB US"] / total, lang).format("0.0%"),
+              link: slugifyItem(
+                "products",
+                max["ID HS0"],
+                max["HS0"],
+                max["ID HS2"],
+                max["HS2"]
+              )
             }
           : {
               name: null,
               amount: 0,
               total: total,
-              percent: numeral(0, lang).format("0.0%")
+              percent: numeral(0, lang).format("0.0%"),
+              link: ""
             };
       }
     )

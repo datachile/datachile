@@ -10,7 +10,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 import { annualized_growth } from "helpers/calculator";
 import { sources } from "helpers/consts";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 
 const year_last = sources.immigration.year;
 
@@ -64,6 +64,20 @@ class MigrationSlide extends Section {
           behavior: growth > 0,
           region: max_last.Region,
           comuna: max_last.Comuna,
+          links: {
+            region: max_last.Region
+              ? slugifyItem("geo", max_last["ID Region"], max_last["Region"])
+              : "",
+            comuna: max_last.Region
+              ? slugifyItem(
+                  "geo",
+                  max_last["ID Region"],
+                  max_last["Region"],
+                  max_last["ID Comuna"],
+                  max_last["Comuna"]
+                )
+              : ""
+          },
           growth: numeral(growth, locale).format("0.0%")
         };
       }

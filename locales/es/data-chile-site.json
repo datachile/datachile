@@ -741,7 +741,7 @@
   "country_profile": {
     "migration_slide": {
       "destination":
-        "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a {{region}}, principalmente a la comuna de {{comuna}}.</p>",
+        "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a <a href=\"{{links.region}}\">{{region}}</a>, principalmente a la comuna de <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
       "growth":
         "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una tasa anual del {{growth}}.</p>",
       "text": "$t(country_profile.migration_slide.destination)",
@@ -783,43 +783,43 @@
     },
     "intltrade_slide": {
       "text":
-        "<p>El {{year}} Chile exportó un total de US{{total_exports}} a {{level}}, e importó un total de US{{total_imports}}, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <em>{{main_import.name}}</em>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <em>{{main_export.name}}</em>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
+        "<p>El {{year}} Chile exportó un total de US{{total_exports}} a {{level}}, e importó un total de US{{total_imports}}, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
       "export_0":
         "<p>Durante {{year}} no se registraron exportaciones hacia {{level}}.</p>",
       "export_1":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}}, en {{origin.first_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
       "export_11":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}}, en {{origin.first_region}}, y {{origin.second_municipality}}, en {{origin.second_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>.</p>",
       "export_2":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a> y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
       "export_111":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}}, en {{origin.second_region}}, y {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>, y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_3_region}}\">{{origin.third_region}}</a>.</p>",
       "export_12":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}}, en {{origin.first_region}}. Lo siguen las comunas de {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.second_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a> y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>.</p>",
       "export_21":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en {{origin.first_municipality}} y {{origin.second_municipality}}, en {{origin.first_region}}, y desde la comuna de {{origin.third_municipality}}, en {{origin.third_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a> y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, y desde la comuna de <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_3_region}}\">{{origin.third_region}}</a>.</p>",
       "export_3":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de {{origin.first_municipality}}, {{origin.second_municipality}} y {{origin.third_municipality}}, en {{origin.first_region}}.</p>",
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a> y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
       "import": "t(country_profile.intltrade_origin_dest_slide.import_1)",
       "import_0":
         "<p>No se registraron importaciones desde {{level}} durante {{year}}.</p>",
       "import_1":
-        "<p>El principal destino de las importaciones desde {{level}} es la comuna de {{destination.first_municipality}}, en {{destination.first_region}}.</p>",
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>.</p>",
       "import_11":
-        "<p>El principal destino de las importaciones desde {{level}} son las comunas de {{destination.first_municipality}}, en {{destination.first_region}}, y {{destination.second_municipality}}, en {{destination.second_region}}.</p>",
+        "<p>El principal destino de las importaciones desde {{level}} son las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>.</p>",
       "import_2":
-        "<p>El principal destino de las importaciones desde {{level}} es {{destination.first_region}}, específicamente hacia las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}.</p>",
+        "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, específicamente hacia las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a> y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>.</p>",
       "import_111":
-        "<p>El principal destino de las importaciones desde {{level}} es la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}}, en {{destination.second_region}}, y {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>, y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_3_region}}\">{{destination.third_region}}</a>.</p>",
       "import_12":
-        "<p>El principal destino de las importaciones desde {{level}} es la comuna de {{destination.first_municipality}}, en {{destination.first_region}}. Lo siguen las comunas de {{destination.second_municipality}} y {{destination.third_municipality}}, en {{destination.second_region}}.</p>",
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>.</p>",
       "import_21":
-        "<p>El principal destino de las importaciones desde {{level}} son las comunas de {{destination.first_municipality}} y {{destination.second_municipality}}, en {{destination.first_region}}, y a la comuna de {{destination.third_municipality}}, en {{destination.third_region}}.</p>",
+        "<p>El principal destino de las importaciones desde {{level}} son las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a> y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, y a la comuna de <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_3_region}}\">{{destination.third_region}}</a>.</p>",
       "import_3":
-        "<p>El principal destino de las importaciones desde {{level}} es {{destination.first_region}}, donde destacan las comunas de {{destination.first_municipality}}, {{destination.second_municipality}} y {{destination.third_municipality}}.</p>"
+        "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, donde destacan las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
       "text":
