@@ -385,8 +385,6 @@ class ProductProfile extends Component {
           )
         : { available: false };
 
-    console.log(text_product)
-
     const text_about = {
       year: {
         last: sources.exports.year
