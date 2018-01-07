@@ -975,7 +975,7 @@
   "product_profile": {
     "about1": {
       "default":
-        "En {{year.last}}, {{product.caption}} fueron el {{total_exports.rank}} producto más exportado por Chile, de un total de {{total_exports.total}} categorías. Representó el {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, abarcando el {{region.share}} del total.",
+        "En {{year.last}}, {{product.caption}} fue el {{total_exports.rank}} producto más exportado por Chile, de un total de {{total_exports.total}} categorías. Representó el {{product.share}} de las exportaciones a nivel nacional, siendo {{region.name}} la principal región exportadora, abarcando el {{region.share}} del total.",
       "no_data":
         "No se registran datos de exportaciones de {{product.caption}} en {{year.last}}"
     },
