@@ -371,6 +371,8 @@ class Explore extends Component {
 
     if (!entity || !entity_id || !data || !t) return null;
 
+    if (!data.members) return null;
+
     const member = [].concat(data.members).find(m => m.key == entity_id);
 
     if (!member) return null;

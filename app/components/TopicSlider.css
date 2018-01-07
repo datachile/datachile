@@ -99,6 +99,13 @@
     margin-bottom: 30px;
   }
 
+  & .slick-slider {
+    user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+  }
+
   & .slick-dots {
     position: absolute;
     bottom: -25px;
