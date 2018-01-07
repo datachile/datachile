@@ -4,7 +4,7 @@ import { translate } from "react-i18next";
 import TreemapStacked from "components/TreemapStacked";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { ordinalColorScale } from "helpers/colors";
+import { migrationByEducationColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import SourceNote from "components/SourceNote";
@@ -54,7 +54,7 @@ class MigrationByEducation extends Section {
                 t("visas")
             },
             shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Education"])
+              fill: d => migrationByEducationColorScale("miged" + d["ID Education"])
             },
             tooltipConfig: {
               title: d => d["Education"],
