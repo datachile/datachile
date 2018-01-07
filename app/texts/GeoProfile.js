@@ -24,8 +24,50 @@ function getRank(data, msrName, dimName, t) {
 
 // ECONOMY SECTION
 
+function SpendingByIndustry(data, msrName, locale, t) {
+  if (data) {
+    const rank = data.data.sort((a, b) => b[msrName] - a[msrName]);
+    const total = data.data.reduce((all, item) => {
+      return all + item[msrName];
+    }, 0);
+    return {
+      industry: {
+        total: numeral(total, locale).format("($ 0.[00] a)"),
+        first: {
+          caption: rank[0]["Level 1"]
+        },
+        second: {
+          caption: rank[1]["Level 1"]
+        }
+      },
+      year: {
+        last: sources.rd_survey.last_year
+      }
+    };
+  }
+}
+
+function SpendingBySector(data, msrName, geo, locale, t) {
+  if (data) {
+    const rank = getRank(data.data, msrName, "Ownership Type", t);
+    const total = data.data.reduce((all, item) => {
+      return all + item[msrName];
+    }, 0);
+    return {
+      year_sector: {
+        last: sources.rd_survey.last_year - 1
+      },
+      sector: {
+        total: numeral(total, locale).format("($ 0.[00] a)")
+      },
+      geo,
+      text_joined_industries: rank
+    };
+  }
+}
+
 function IndustryOccupation(data, locale, t) {
-  if( data) {
+  if(data) {
     const rank = getRank(data.data, "Expansion Factor", "ISCO", t);
     return {
       text_joined_occupations: rank
@@ -109,7 +151,7 @@ function Enrollment(data, geo, locale) {
 function PerformanceByHighSchool(data, locale, t) {
   if (data) {
     let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
-    rank = rank.length >= 3 ? rank.splice(rank.length - 3, 2) : rank;
+    rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
 
     let output = rank.map(item => item["Institution"]);
     output = output.length > 1 ? output.join(", ") : output;
@@ -167,10 +209,10 @@ function PerformanceByPSU(data, geo, locale, t) {
   const last_year = sources.education_performance_new.year;
   const lang = {
     en: {
-      1: "Municipales",
-      2: "Municipales",
-      3: "Municipales",
-      4: "Municipales"
+      1: "Municipal",
+      2: "Subsidised",
+      3: "Private",
+      4: "Delegated Administration"
     },
     es: {
       1: "Municipales",
@@ -350,6 +392,8 @@ function DeathCauses(data, geo, locale) {
 }
 
 export {
+  SpendingByIndustry,
+  SpendingBySector,
   IndustryActivity,
   IndustryOccupation,
   DeathCauses,

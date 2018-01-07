@@ -222,7 +222,7 @@ class Explore extends Component {
         break;
       }
       case "geo": {
-        type = "geo";
+        type = "region";
         title = t("Geographical");
         mainLink = true;
         break;
@@ -239,21 +239,22 @@ class Explore extends Component {
     let filters =
       typeof members != "undefined" && entity
         ? members.filter(m => m.key != 0).map(m => {
+            const profileType = type == "region" ? "geo" : type;
             return {
               key: m.key,
               name: m.caption,
               type: type,
-              url: "/explore/" + type + "/" + m.key + "#results",
-              img: getImageFromMember(type, m.key)
+              url: "/explore/" + profileType + "/" + m.key + "#results",
+              img: getImageFromMember(profileType, m.key)
             };
           })
         : [];
 
-    if (type == "geo" && filters.length) {
+    if (type == "region" && filters.length) {
       filters.unshift({
         key: "chile",
         name: "Chile",
-        type: "geo",
+        type: "national",
         url: "/geo/chile",
         img: getImageFromMember("geo", "chile")
       });

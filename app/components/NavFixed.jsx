@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
 import { connect } from "react-redux";
@@ -9,13 +9,8 @@ import SvgImage from "components/SvgImage";
 
 import "./NavFixed.css";
 
-class NavFixed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { visible: false, active: "about", search_visible: false };
-
-    this.handleScroll = this.handleScroll.bind(this);
-  }
+class NavFixed extends React.Component {
+  state = { visible: false, active: "about", search_visible: false };
 
   toggleSearch = () => {
     this.setState(prevState => ({
@@ -23,19 +18,7 @@ class NavFixed extends Component {
     }));
   };
 
-  componentDidMount() {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", this.handleScroll);
-    }
-  }
-
-  componentWillUnmount() {
-    if (typeof window !== "undefined") {
-      window.removeEventListener("scroll", this.handleScroll);
-    }
-  }
-
-  handleScroll() {
+  handleScroll = () => {
     let { visible, active } = this.state;
 
     /*Show fixed nav*/
@@ -53,6 +36,18 @@ class NavFixed extends Component {
     }
     if (this.state.visible != visible || this.state.active != active) {
       this.setState({ visible: visible, active: active });
+    }
+  };
+
+  componentDidMount() {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", this.handleScroll);
+    }
+  }
+
+  componentWillUnmount() {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("scroll", this.handleScroll);
     }
   }
 
@@ -76,38 +71,19 @@ class NavFixed extends Component {
     return (
       <nav className={`nav-fixed${visible ? "" : " hidden"}`}>
         <div className="nav-entity">
-          <div className="nav-titles">
+          <div className={`nav-titles ${search_visible ? "close" : "open"}`}>
             <div className="nav-titles-action">
-              <div className="menu-button">
-                <a onClick={toggleSubNav}>
-                  <img src="/images/icons/icon-menu.svg" />
-                </a>
-              </div>
-            </div>
-            <Link
-              className={`datachile ${search_visible ? "close" : "open"}`}
-              to="/"
-            >
-              <img src="/images/logos/logo-dc-beta-small.svg" />
-            </Link>
-            <span
-              className={`title ${search_visible ? "close" : "open"}`}
-              onClick={this.toggleSearch}
-            >
-              {title}
-            </span>
-            <div
-              className={`search-nav-container ${
-                search_visible ? "open" : "close"
-              }`}
-            >
-              <div className={`search-nav-wrapper`}>
-                <Search className="search-nav search-nav-fixed" />
-              </div>
-              <a className="search-toggle-nav" onClick={this.toggleSearch}>
+              <a className="menu-button" onClick={toggleSubNav}>
+                {/* <img src="/images/icons/icon-menu.svg" /> */}
                 <img src={`/images/icons/${search_icon}.svg`} />
               </a>
             </div>
+            <Link className="datachile" to="/">
+              <img src="/images/logos/datachile-beta-navbar.svg" />
+            </Link>
+            <span className="title" onClick={toggleSubNav}>
+              {title}
+            </span>
           </div>
           <div className="nav-topic">
             {topics &&
@@ -136,11 +112,4 @@ class NavFixed extends Component {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      focus: state.focus
-    }),
-    {}
-  )(NavFixed)
-);
+export default translate()(NavFixed);

@@ -163,6 +163,15 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
+                        <a href="#dataset_costes">
+                          {t("about.data.costes.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.costes.year")}</td>
+                      <td>{t("about.data.costes.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
                         <a href="#dataset_iplusd">
                           {t("about.data.iplusd.title")}
                         </a>
@@ -312,6 +321,20 @@ class About extends Component {
                   className="use"
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.aduana.use")
+                  }}
+                />
+
+                <h3 id="dataset_aduana">{t("about.data.costes.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.costes.text")
+                  }}
+                />
+
+                <div
+                  className="use"
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.costes.use")
                   }}
                 />
 

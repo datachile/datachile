@@ -1,21 +1,22 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
+import { browserHistory } from "react-router";
 
 import { regionsColorScale } from "helpers/colors";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import {
+  numeral,
+  getNumberFromTotalString,
+  slugifyItem
+} from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
-import NoDataAvailable from "components/NoDataAvailable";
+import TreemapStacked from "components/TreemapStacked";
 
 class ImportsByRegion extends Section {
-  state = {
-    treemap: true
-  };
   static need = [
     (params, store) => {
       const product = getLevelObject(params);
@@ -59,62 +60,64 @@ class ImportsByRegion extends Section {
           <span>{t("Imports By Region")}</span>
           <ExportLink path={path} />
         </h3>
-        {this.state.treemap ? (
-          <Treemap
-            config={{
-              height: 500,
-              data: path,
-              groupBy: ["ID Region", "ID Comuna"],
-              label: d =>
-                d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
-              sum: d => d["CIF US"],
-              time: "ID Year",
-              total: d => d["CIF US"],
-              totalConfig: {
-                text: d =>
-                  "Total: US" +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "($ 0.[00] a)"
-                  )
-              },
-              shapeConfig: {
-                fill: d => regionsColorScale("c" + d["ID Region"])
-              },
-              tooltipConfig: {
-                title: d => {
-                  return d["Comuna"] instanceof Array
-                    ? d["Region"]
-                    : d["Comuna"];
-                },
-                body: d => {
-                  const link =
-                    d["ID Comuna"] instanceof Array
-                      ? ""
-                      : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                  return (
-                    numeral(d["CIF US"], locale).format("(USD 0 a)") + link
+        <TreemapStacked
+          path={path}
+          msrName="CIF US"
+          drilldowns={["Region", "Comuna"]}
+          config={{
+            label: d =>
+              d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
+
+            total: d => d["CIF US"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
+            },
+            shapeConfig: {
+              fill: d => regionsColorScale("c" + d["ID Region"])
+            },
+            on: {
+              click: d => {
+                if (!(d["ID Comuna"] instanceof Array)) {
+                  var url = slugifyItem(
+                    "geo",
+                    d["ID Region"],
+                    d["Region"],
+                    d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
+                    d["Comuna"] instanceof Array ? false : d["Comuna"]
                   );
+                  browserHistory.push(url);
                 }
+              }
+            },
+            tooltipConfig: {
+              title: d => {
+                return d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"];
               },
-              legendConfig: {
-                label: false,
-                shapeConfig: {
-                  width: 10,
-                  height: 10
-                }
+              body: d => {
+                const link =
+                  d["ID Comuna"] instanceof Array
+                    ? ""
+                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                return numeral(d["CIF US"], locale).format("(USD 0 a)") + link;
               }
-            }}
-            dataFormat={data => {
-              if (data.data && data.data.length > 0) {
-                return data.data;
-              } else {
-                this.setState({ treemap: false });
+            },
+            legendConfig: {
+              label: false,
+              shapeConfig: {
+                width: 10,
+                height: 10
               }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+            },
+            yConfig: {
+              title: t("US$"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+            }
+          }}
+        />
         <SourceNote cube="imports" />
       </div>
     );

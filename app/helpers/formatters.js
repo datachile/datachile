@@ -1,6 +1,7 @@
 import { format, formatPrefix } from "d3-format";
 import { timeFormat } from "d3-time-format";
 import n from "numeral";
+import { isMobile } from "helpers/responsiveUtils";
 
 function slugifyStr(str) {
   if (!str) return "";
@@ -39,7 +40,13 @@ export function slugifyItem(prefix, id1, name1, id2, name2) {
   return link;
 }
 
-export function getImageFromMember(prefix, id1, id2 = false) {
+export function getImageFromMember(
+  prefix,
+  id1,
+  id2 = false,
+  considerMobile = false
+) {
+  //if (considerMobile && isMobile()) return "";
   const chile = "/images/profile-bg/geo/chile.jpg";
   const link = "/images/profile-bg";
   var file = "";
@@ -59,11 +66,14 @@ export function getImageFromMember(prefix, id1, id2 = false) {
       break;
     }
     case "industries": {
+      id1 = "" + id1;
       file = "/industry/" + id1.toLowerCase() + ".jpg";
       break;
     }
     case "geo": {
-      file = "/geo/" + "region-" + id1 + ".jpg";
+      file = id2
+        ? "/geo/region-" + id1 + "/comunas/" + id2 + ".jpg"
+        : "/geo/region-" + id1 + "/region-" + id1 + ".jpg";
       break;
     }
     default: {

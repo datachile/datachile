@@ -1,5 +1,6 @@
 import groupBy from "lodash/groupBy";
 import flatten from "lodash/flatten";
+import { getImageFromMember } from "helpers/formatters";
 
 export function clearStoreData(params, store) {
   store.data = { __cubes__: store.data.cubes };
@@ -40,16 +41,16 @@ export function getGeoObject(params) {
       geo.key = "chile";
       geo.name = "Chile";
       geo.caption = "Chile";
-      geo.image = "chile.jpg";
+      geo.image = getImageFromMember("geo", "chile");
       break;
     }
     case "region": {
       const parts = params.region.split("-");
       geo.key = parseInt(parts[parts.length - 1]);
-      geo.image = geo.type + "-" + geo.key + ".jpg";
+      geo.image = getImageFromMember("geo", geo.key, false, true);
       geo.ancestor = {
         key: "chile",
-        image: "chile.jpg",
+        image: getImageFromMember("geo", "chile"),
         type: "country"
       };
       break;
@@ -58,10 +59,15 @@ export function getGeoObject(params) {
       const partsR = params.region.split("-");
       const partsC = params.comuna.split("-");
       geo.key = parseInt(partsC[partsC.length - 1]);
-      geo.image = "region-" + partsR[partsR.length - 1] + ".jpg";
+      geo.image = getImageFromMember(
+        "geo",
+        partsR[partsR.length - 1],
+        geo.key,
+        false
+      );
       geo.ancestor = {
         key: partsR[partsR.length - 1],
-        image: "region-" + partsR[partsR.length - 1] + ".jpg",
+        image: getImageFromMember("geo", partsR[partsR.length - 1], false),
         type: "region"
       };
       break;

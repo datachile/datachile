@@ -1,6 +1,5 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
@@ -15,7 +14,7 @@ import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
-import NoDataAvailable from "components/NoDataAvailable";
+import TreemapStacked from "components/TreemapStacked";
 
 class ImportsByDestination extends Section {
   state = {
@@ -64,80 +63,70 @@ class ImportsByDestination extends Section {
           <span>{t("Imports By Origin")}</span>
           <ExportLink path={path} />
         </h3>
-        {this.state.treemap ? (
-          <Treemap
-            config={{
-              height: 500,
-              data: path,
-              groupBy: ["ID Continent", "ID Country"],
-              label: d =>
-                d["Country"] instanceof Array ? d["Continent"] : d["Country"],
-              sum: d => d["CIF US"],
-              time: "ID Year",
-              total: d => d["CIF US"],
-              totalConfig: {
-                text: d =>
-                  "Total: US" +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "($ 0.[00] a)"
-                  )
-              },
-              shapeConfig: {
-                fill: d => continentColorScale("c" + d["ID Continent"])
-              },
-              on: {
-                click: d => {
-                  if (!(d["ID Country"] instanceof Array)) {
-                    var url = slugifyItem(
-                      "countries",
-                      d["ID Continent"],
-                      d["Continent"],
-                      d["ID Country"] instanceof Array
-                        ? false
-                        : d["ID Country"],
-                      d["Country"] instanceof Array ? false : d["Country"]
-                    );
-                    browserHistory.push(url);
-                  }
-                }
-              },
-              tooltipConfig: {
-                title: d => {
-                  return d["Country"] instanceof Array
-                    ? d["Continent"]
-                    : d["Country"];
-                },
-                body: d => {
-                  const link =
-                    d["ID Country"] instanceof Array
-                      ? ""
-                      : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                  return (
-                    numeral(d["CIF US"], locale).format("(USD 0 a)") + link
+
+        <TreemapStacked
+          path={path}
+          msrName="CIF US"
+          drilldowns={["Continent", "Country"]}
+          config={{
+            label: d =>
+              d["Country"] instanceof Array ? d["Continent"] : d["Country"],
+
+            total: d => d["CIF US"],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
+            },
+            shapeConfig: {
+              fill: d => continentColorScale("c" + d["ID Continent"])
+            },
+            on: {
+              click: d => {
+                if (!(d["ID Country"] instanceof Array)) {
+                  var url = slugifyItem(
+                    "countries",
+                    d["ID Continent"],
+                    d["Continent"],
+                    d["ID Country"] instanceof Array ? false : d["ID Country"],
+                    d["Country"] instanceof Array ? false : d["Country"]
                   );
+                  browserHistory.push(url);
                 }
+              }
+            },
+            tooltipConfig: {
+              title: d => {
+                return d["Country"] instanceof Array
+                  ? d["Continent"]
+                  : d["Country"];
               },
-              legendConfig: {
-                label: d => d["Continent"],
-                shapeConfig: {
-                  width: 40,
-                  height: 40,
-                  backgroundImage: d =>
-                    "/images/legend/continent/" + d["ID Continent"] + ".png"
-                }
+              body: d => {
+                const link =
+                  d["ID Country"] instanceof Array
+                    ? ""
+                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                return numeral(d["CIF US"], locale).format("(USD 0 a)") + link;
               }
-            }}
-            dataFormat={data => {
-              if (data.data && data.data.length > 0) {
-                return data.data;
-              } else {
-                this.setState({ treemap: false });
+            },
+            legendConfig: {
+              label: d => d["Continent"],
+              shapeConfig: {
+                width: 40,
+                height: 40,
+                backgroundImage: d =>
+                  "/images/legend/continent/" + d["ID Continent"] + ".png"
               }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+            },
+            yConfig: {
+              title: t("US$"),
+              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+            }
+          }}
+        />
+
         <SourceNote cube="imports" />
       </div>
     );

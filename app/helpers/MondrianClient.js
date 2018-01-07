@@ -566,19 +566,12 @@ function simpleCountryDatumNeed(
       locale
     })
       .then(res => postprocess(res, locale, params, store))
-      .then(
-        data => {
-          // console.log(key, data);
-          return { key, data };
-        },
-        err => {
-          console.error("<Error> - ", key);
-          console.error(err.stack);
-          console.error("</Error> ------------");
-        }
-      );
+      .then(data => {
+        // console.log(key, data);
+        return { key, data };
+      });
 
-    return { type: "GET_DATA", promise };
+    return { type: "GET_DATA", promise, description: key };
   };
 }
 
@@ -597,7 +590,10 @@ function simpleDatumNeed(
   byValues = true
 ) {
   return (params, store) => {
-    let obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
+    let obj = {};
+    if (profile !== "rd_survey") {
+      obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
+    }
 
     if (
       ["death_causes", "disabilities", "health_access"].includes(cube) &&
@@ -668,6 +664,9 @@ function simpleDatumNeed(
             );
             break;
           case "no_cut":
+            query = setLangCaptions(q, store.i18n.locale);
+            break;
+          case "rd_survey":
             query = setLangCaptions(q, store.i18n.locale);
             break;
         }

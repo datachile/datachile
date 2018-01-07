@@ -75,6 +75,9 @@ export const sources = {
       "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php"
   },
   education_enrollment: {
+    title: "Matricula escolar - MINEDUC",
+    url:
+      "http://datosabiertos.mineduc.cl/informacion-investigadores-establecimientos/",
     year: 2015
   },
   education_performance_new: {
@@ -96,22 +99,24 @@ export const sources = {
   },
   death_causes: {
     title: "Causas de muerte",
-    url: "",
+    url: "http://www.deis.cl/",
     min_year: 2010,
     year: 2014
   },
   disabilities: {
     title: "Discapacidad",
-    url: "",
+    url:
+      "http://www.senadis.cl/pag/355/1197/ii_estudio_nacional_de_discapacidad",
     year: 2015
   },
   health_access: {
     title: "Acceso a la salud",
-    url: "",
+    url: "http://www.deis.cl/",
     year: 2014
   },
   psu: {
     title: "DEMRE",
+    url: "http://demre.cl/",
     year: 2016
   },
   fonasa_website: {
@@ -120,4 +125,70 @@ export const sources = {
       "https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos",
     year: 2017
   }
+};
+export const featured_profiles = {
+  es: [
+    {
+      img: "/images/profile-bg/geo/chile.jpg",
+      name: "Chile",
+      type: "national",
+      url: "/geo/chile"
+    },
+    {
+      img: "/images/profile-bg/geo/region-10/comunas/233.jpg",
+      name: "Puerto Montt",
+      type: "comuna",
+      url: "/geo/los-lagos-10/puerto-montt-233"
+    },
+    {
+      img: "/images/profile-bg/product/02.jpg",
+      name: "PRODUCTOS DEL REINO VEGETAL",
+      type: "products",
+      url: "/products/productos-del-reino-vegetal-02"
+    },
+    {
+      img: "/images/profile-bg/geo/region-3/region-3.jpg",
+      name: "Atacama",
+      type: "region",
+      url: "/geo/atacama-3"
+    },
+    {
+      img: "/images/profile-bg/industry/B.jpg",
+      name: "EXPLOTACIÓN DE MINAS Y CANTERAS",
+      type: "industries",
+      url: "/industries/explotacion-de-minas-y-canteras-B"
+    }
+  ],
+  en: [
+    {
+      img: "/images/profile-bg/geo/chile.jpg",
+      name: "Chile",
+      type: "national",
+      url: "/geo/chile"
+    },
+    {
+      img: "/images/profile-bg/geo/region-10/comunas/233.jpg",
+      name: "Puerto Montt",
+      type: "comuna",
+      url: "/geo/los-lagos-10/puerto-montt-233"
+    },
+    {
+      img: "/images/profile-bg/product/02.jpg",
+      name: "vegetable products",
+      type: "products",
+      url: "/products/vegetable-products-02"
+    },
+    {
+      img: "/images/profile-bg/geo/region-3/region-3.jpg",
+      name: "Atacama",
+      type: "region",
+      url: "/geo/atacama-3"
+    },
+    {
+      img: "/images/profile-bg/industry/B.jpg",
+      name: "MINING AND QUARRYING",
+      type: "industries",
+      url: "/industries/mining-and-quarrying-B"
+    }
+  ]
 };

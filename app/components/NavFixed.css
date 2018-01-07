@@ -1,69 +1,194 @@
 @import "../pages/mixins";
 
 .nav-fixed {
-  width: 100%;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 50;
+  width: 100%;
   opacity: 1;
+  transform: translateY(0);
   transition: all 400ms;
 
   &.hidden {
     opacity: 0;
-    top: -200px;
+    transform: translateY(-200px);
     pointer-events: none;
   }
 
-  & .nav-topic {
+  & .nav-titles img,
+  & .nav-topic svg {
+    display: block;
+    margin: 0 auto;
+  }
+
+  & .nav-entity {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    background-color: var(--footer-bg);
+  }
+
+  & .nav-titles {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
+  }
+
+  & .nav-titles-action {
+    width: 56px;
+
+    & .menu-button {
+      display: block;
+      padding: var(--gutter-half) 0;
+    }
+  }
+
+  & .datachile {
+    width: 80px;
+    margin-right: 5px;
+
+    & img {
+      width: 100%;
+    }
+  }
+
+  & .title {
+    flex: 1;
+    display: block;
+    color: var(--accent);
+    font-family: var(--font-family-title);
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.15em;
+    letter-spacing: 0.03px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+
+  & a.search-toggle-nav {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  & .nav-topic {
+    font-family: var(--font-family-title);
+    font-size: 10px;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+
     & .topics {
-      margin: 0 calc(var(--gutter)/2);
-      text-align: right;
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      justify-content: space-around;
+    }
+
+    & .topic-link {
+      display: block;
+      padding: 5px 0;
+
+      text-decoration: none;
+      color: var(--snow);
+      letter-spacing: 0.1px;
+      border-bottom: 2px solid var(--snow);
+      opacity: 0.9;
+      transition: opacity 0.2s;
+      cursor: pointer;
+
+      &.active,
+      &:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        opacity: 1;
+      }
+
+      & .svg-image {
+        display: none;
+      }
+    }
+  }
+}
+
+@add-mixin from-xs {
+  .nav-fixed {
+    & .nav-titles-action {
+      width: 60px;
+    }
+
+    & .datachile {
+      width: 100px;
+      margin-right: 15px;
+    }
+
+    & .nav-topic {
+      padding: 0 25px;
+    }
+  }
+}
+
+@add-mixin from-sm {
+  .nav-fixed {
+    & .nav-entity {
+      flex-direction: row;
+    }
+
+    & .nav-titles {
+      flex: 1;
+    }
+
+    & .nav-titles-action {
+      width: auto;
+
+      & .menu-button {
+        display: block;
+        padding: 16px;
+        padding-left: 32px;
+      }
+    }
+
+    & .datachile {
+      width: 110px;
+    }
+
+    & .title {
+      font-size: 20px;
+    }
+
+    & .nav-topic {
+      padding: 0 32px 0 var(--gutter-third);
+
       & .topic-link {
-        color: var(--snow);
-        display: inline-block;
-        font-size: 10px;
-        margin: 0 calc(var(--gutter)/2) -2px calc(var(--gutter)/2);
-        text-align: center;
-        text-decoration: none;
-        text-transform: uppercase;
-        opacity: 0.9;
-        transition: opacity 0.2s;
-        font-family: var(--font-family-title);
-        font-weight: 300;
-        cursor: pointer;
-        border-bottom: 2px solid var(--snow);
-        padding-bottom: 5px;
-        letter-spacing: 0.1px;
+        margin: 0px 5px -1px;
+        padding: 3px 0 2px;
 
         & .svg-image {
-          width: 32px;
           display: block;
-          margin: 0px auto;
-          & svg {
-            & path,
-            & line,
-            & rect,
-            & circle {
-              fill: none;
-              stroke: var(--snow);
-              stroke-width: 1.5;
-            }
+          margin-bottom: 2px;
+        }
+
+        & svg {
+          height: 40px;
+
+          & path,
+          & line,
+          & rect,
+          & circle {
+            fill: none;
+            stroke: var(--snow);
+            stroke-width: 1.5;
           }
         }
 
         &.active,
         &:hover {
-          border-bottom-color: var(--accent);
-          color: var(--accent);
-          opacity: 1;
-          & .svg-image {
+          & svg {
             & path,
             & line,
             & rect,
@@ -76,291 +201,26 @@
       }
     }
   }
-
-  & .nav-entity {
-    z-index: 10;
-    position: relative;
-    background-color: var(--footer-bg);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: space-between;
-
-    & .menu-button a,
-    & .menu-button img,
-    & svg {
-      display: block;
-    }
-  }
-
-  & .nav-titles {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    line-height: 24px;
-    & .search-nav-container {
-      width: 400px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      & .search-nav-wrapper {
-        transition: all 0.5s ease;
-      }
-      & a.search-toggle-nav {
-        height: 100%;
-        margin: 5px 15px;
-        cursor: pointer;
-        position: relative;
-        z-index: 10;
-        & img {
-          display: inline-block;
-          vertical-align: middle;
-        }
-      }
-      &.close {
-        & a.search-toggle-nav {
-        }
-        & .search-nav-wrapper {
-          width: 0px;
-          opacity: 0;
-        }
-      }
-      &.open {
-        transition-delay: 0.5s;
-        & .search-nav-wrapper {
-          width: 100%;
-          opacity: 1;
-        }
-        & a.search-toggle-nav {
-        }
-      }
-    }
-  }
-
-  & .nav-titles-action {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    & .menu-button a {
-      padding: calc(var(--gutter)/2) var(--gutter);
-      padding-right: 0;
-    }
-  }
-  & .datachile {
-    margin: 5px calc(var(--gutter)/2) 0px calc(var(--gutter)/2);
-    width: 110px;
-  }
-
-  & .title {
-    color: var(--accent);
-    font-family: var(--font-family-title);
-    font-weight: 300;
-    font-size: 18px;
-    letter-spacing: 0.03px;
-    transition: all 0.5s ease;
-    margin: 5px 5px 0 5px;
-    cursor: pointer;
-    &.close {
-      max-width: 0px;
-      opacity: 0;
-    }
-    &.open {
-      max-width: 500px;
-      opacity: 1;
-    }
-  }
-
-  & .nav-menu {
-    position: absolute;
-    opacity: 1;
-    top: 0px;
-    transition: all 400ms;
-    color: var(--snow);
-    &.hidden {
-      opacity: 0;
-      top: -200px;
-      pointer-events: none;
-    }
-    & .content {
-      background-color: var(--footer-bg);
-      padding: 0px;
-      width: auto;
-      & ul {
-        padding: 0px;
-        list-style: none;
-        margin: 0px;
-        padding-bottom: calc(var(--gutter)/2);
-        & li {
-          color: var(--snow);
-          text-transform: uppercase;
-          padding: 0px;
-          & a {
-            cursor: pointer;
-            display: inline-block;
-            padding: calc(var(--gutter)/2) calc(var(--gutter)*5)
-              calc(var(--gutter)/2) var(--gutter);
-            opacity: 0.8;
-            text-decoration: none;
-            transition: opacity 0.2s;
-            font-family: var(--font-family-text);
-            font-weight: 400;
-            font-size: 12px;
-            color: var(--snow);
-            letter-spacing: 0.08px;
-            text-transform: uppercase;
-            &:hover {
-              opacity: 1;
-            }
-          }
-        }
-      }
-    }
-  }
 }
 
-@add-mixin for-xx {
+@add-mixin from-md {
   .nav-fixed {
-    & .title {
-      margin-top: 0;
-      &.open {
-        max-width: 50px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
-  }
-}
-
-@add-mixin for-lg {
-  .nav-fixed {
-  }
-}
-
-@add-mixin for-md {
-  .nav-fixed {
-    & .nav-titles-action {
-      width: 56px;
-      & .menu-button {
-        margin: auto;
-        & a {
-          padding: 0;
-        }
-      }
-    }
-    & .nav-entity {
-      & .nav-titles {
-        align-items: center;
-      }
-    }
     & .nav-topic {
-      & .topics {
-        & .topic-link {
-          margin: 0px 10px 5px 10px;
-          padding-bottom: 10px;
-          & .svg-image {
-            display: none;
-          }
+      padding: 0 var(--gutter-half);
+
+      & .topic-link {
+        margin: 0px 8px -1px;
+        padding: 5px 0;
+
+        & .svg-image {
+          margin-bottom: 5px;
         }
-      }
-    }
-    & .title {
-      margin-top: 0;
-      &.open {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
     }
   }
 }
 
-@add-mixin for-sm {
+@add-mixin from-lg {
   .nav-fixed {
-    & .nav-entity {
-      & .nav-titles {
-        flex: 0 0 100%;
-        //justify-content: space-between;
-        flex-direction: row;
-        align-items: center;
-        & .datachile {
-          margin: 5px 0px 0px 0px;
-          width: 110px;
-          & img {
-            //width: 110px;
-          }
-          &.close {
-            display: none;
-          }
-        }
-
-        & .search-nav-container {
-          justify-content: flex-end;
-
-          flex: 0 0 auto;
-          &.close {
-            width: 52px;
-          }
-        }
-      }
-    }
-    & .nav-topic {
-      margin: auto;
-      & .topics {
-        margin: 0;
-      }
-    }
-    & .title {
-      margin-top: 0;
-      &.open {
-        flex: 1 1 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
   }
-}
-
-@add-mixin for-xs {
-  .nav-fixed {
-    & .nav-entity {
-      & .search-nav-container {
-        &.open {
-          max-width: 260px;
-        }
-      }
-    }
-
-    & .nav-titles-action {
-      & .menu-button {
-        & a {
-          //padding: 0px 32px 0px 16px;
-        }
-      }
-    }
-    & .title {
-      margin-top: 0;
-      &.open {
-        //max-width: 120px;
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
-    & .nav-topic {
-      margin: auto;
-      & .topics {
-        & .topic-link {
-        }
-      }
-    }
-  }
-}
-
-@add-mixin for-xx {
 }

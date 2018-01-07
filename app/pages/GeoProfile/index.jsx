@@ -41,7 +41,8 @@ import IndustrySlide from "./economy/industry/IndustrySlide";
 import IndustryBySector from "./economy/industry/charts/IndustryBySector";
 import IndustryByOccupation from "./economy/industry/charts/IndustryByOccupation";
 
-import OpportunitySlide from "./economy/opportunity/OpportunitySlide";
+import ProductSpaceSlide from "./economy/opportunity/ProductSpaceSlide";
+import IndustrySpaceSlide from "./economy/opportunity/IndustrySpaceSlide";
 import ProductSpace from "./economy/opportunity/charts/ProductSpace";
 import IndustrySpace from "./economy/opportunity/charts/IndustrySpace";
 
@@ -166,8 +167,10 @@ class GeoProfile extends Component {
     ImportsByProduct,
     TradeBalance,
 
-    OpportunitySlide,
+    ProductSpaceSlide,
     ProductSpace,
+
+    IndustrySpaceSlide,
     IndustrySpace,
 
     EmploymentSlide,
@@ -383,9 +386,7 @@ class GeoProfile extends Component {
               <div
                 className="image"
                 style={{
-                  backgroundImage: `url('/images/profile-bg/geo/${
-                    geoObj.image
-                  }')`
+                  backgroundImage: `url('${geoObj.image}')`
                 }}
               />
               <div className="gradient" />
@@ -580,7 +581,7 @@ class GeoProfile extends Component {
                 },
                 {
                   name: t("Opportunity"),
-                  slides: [t("Opportunities")]
+                  slides: [t("Product Space"), t("Industry Space")]
                 },
                 {
                   name: t("Employment"),
@@ -619,12 +620,19 @@ class GeoProfile extends Component {
               </div>
 
               <div>
-                <OpportunitySlide>
+                <ProductSpaceSlide>
                   <SectionColumns>
-                    <IndustrySpace className="lost-1-2" />
-                    <ProductSpace className="lost-1-2" />
+                    <ProductSpace className="lost-1" />
                   </SectionColumns>
-                </OpportunitySlide>
+                </ProductSpaceSlide>
+              </div>
+
+              <div>
+                <IndustrySpaceSlide>
+                  <SectionColumns>
+                    <IndustrySpace className="lost-1" />
+                  </SectionColumns>
+                </IndustrySpaceSlide>
               </div>
 
               <div>
@@ -716,7 +724,7 @@ class GeoProfile extends Component {
                 },
                 {
                   name: t("Connectivity"),
-                  slides: [t("Internet access")]
+                  slides: [t("Devices")]
                 }
               ]}
             >

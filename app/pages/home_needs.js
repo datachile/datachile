@@ -1,6 +1,6 @@
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
-import { slugifyItem } from "helpers/formatters";
+import { slugifyItem, getImageFromMember } from "helpers/formatters";
 
 export function needHomeComunasPopulation(params, store) {
   const prm = mondrianClient
@@ -27,7 +27,7 @@ export function needHomeComunasPopulation(params, store) {
           .map(r => {
             return {
               name: r["Comuna"],
-              type: "geo",
+              type: "comuna",
               url: slugifyItem(
                 "geo",
                 r["ID Region"],
@@ -35,7 +35,7 @@ export function needHomeComunasPopulation(params, store) {
                 r["ID Comuna"],
                 r["Comuna"]
               ),
-              img: "/images/profile-bg/geo/region-" + r["ID Region"] + ".jpg"
+              img: getImageFromMember("geo", r["ID Region"], r["ID Comuna"])
             };
           })
       };
@@ -71,7 +71,7 @@ export function needHomeComunasExports(params, store) {
           .map(r => {
             return {
               name: r["Comuna"],
-              type: "geo",
+              type: "comuna",
               url: slugifyItem(
                 "geo",
                 r["ID Region"],
@@ -79,7 +79,7 @@ export function needHomeComunasExports(params, store) {
                 r["ID Comuna"],
                 r["Comuna"]
               ),
-              img: "/images/profile-bg/geo/region-" + r["ID Region"] + ".jpg"
+              img: getImageFromMember("geo", r["ID Region"], r["ID Comuna"])
             };
           })
       };
@@ -115,7 +115,7 @@ export function needHomeProductsExports(params, store) {
           .map(r => {
             return {
               name: r["HS2"],
-              type: "geo",
+              type: "products",
               url: slugifyItem(
                 "products",
                 r["ID HS0"],
@@ -159,7 +159,7 @@ export function needHomeCountriesExports(params, store) {
           .map(r => {
             return {
               name: r["Country"],
-              type: "geo",
+              type: "countries",
               url: slugifyItem(
                 "countries",
                 r["ID Continent"],

@@ -13,6 +13,7 @@ import {
 import { productsColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ImportsByProduct extends Section {
   static need = [
@@ -31,7 +32,7 @@ class ImportsByProduct extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t(`Imports of firms located in ${geo.name}`)}</span>
+          <span>{t("geo_profile.economy.imports.by_product")}</span>
           <ExportLink path={path} />
         </h3>
         <TreemapStacked
@@ -90,6 +91,7 @@ class ImportsByProduct extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="imports" />
       </div>
     );
   }

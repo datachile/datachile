@@ -37,12 +37,6 @@ import RDSlide from "./economy/RDSlide";
 import RDByBusinessType from "./economy/charts/RDByBusinessType";
 import RDByOwnershipType from "./economy/charts/RDByOwnershipType";
 
-import OccupationSlide from "./employment/OccupationSlide";
-import EmployedByCategory from "./employment/charts/EmployedByCategory";
-import EmployedByEducation from "./employment/charts/EmployedByEducation";
-
-import SalariesSlide from "./employment/SalariesSlide";
-
 import "../intro.css";
 
 class IndustryProfile extends Component {
@@ -218,27 +212,11 @@ class IndustryProfile extends Component {
 
     simpleDatumNeed(
       "datum_industry_occupation_total",
-      "nene_quarter",
-      ["Expansion factor"],
+      "tax_data",
+      ["Labour", "Production per worker"],
       {
-        drillDowns: [["Date", "Date", "Moving Quarter"]],
-        cuts: [
-          `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`
-        ],
-        options: { parents: false }
-      },
-      "industry"
-    ),
-    simpleDatumNeed(
-      "datum_industry_occupation_female_total",
-      "nene_quarter",
-      ["Expansion factor"],
-      {
-        drillDowns: [["Date", "Date", "Moving Quarter"]],
-        cuts: [
-          `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`,
-          "[Sex].[Sex].[Sex].&[1]"
-        ],
+        drillDowns: [["Date", "Date", "Year"]],
+        cuts: [`[Date].[Date].[Year].&[${sources.tax_data.last_year}]`],
         options: { parents: false }
       },
       "industry"
@@ -248,24 +226,18 @@ class IndustryProfile extends Component {
     OutputByLocation,
     InvestmentByLocation,
 
-    EmployedByCategory,
-    EmployedByEducation,
-
     RDSlide,
     RDByOwnershipType,
-    RDByBusinessType,
-
-    OccupationSlide,
-    SalariesSlide
+    RDByBusinessType
   ];
 
   componentDidMount() {}
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, data } = this.props;
 
-    const industry = this.props.data.industry;
-    if (!industry) return null;
+    const industry = data ? data.industry : null;
+
     const industryImg = industry
       ? industry.depth === 1 ? industry.key : industry.parent.key
       : "";
@@ -294,36 +266,21 @@ class IndustryProfile extends Component {
       ? ids.level2 ? t("Industries") : t("Industries")
       : "";
 
-    const female_percent = this.props.data
-      .datum_industry_occupation_female_total
-      ? this.props.data.datum_industry_occupation_female_total /
-        this.props.data.datum_industry_occupation_total
-      : 0;
+    console.log(this.props.data.datum_industry_occupation_total);
 
     const stats = {
-      employees: this.props.data.employees_by_industry,
-      region: this.props.data.top_industry_output_by_region,
-      female: {
-        value: female_percent,
-        decile: female_percent * 10,
-        name: "Female percent"
-      }
+      employees: this.props.data.datum_industry_occupation_total,
+      region: this.props.data.top_industry_output_by_region
     };
 
-    console.log(this.props.data.datum_industry_occupation_female_total);
-
     const topics = [
-      {
-        slug: "about",
-        title: t("About")
-      },
       {
         slug: "economy",
         title: t("Economy")
       },
       {
-        slug: "education",
-        title: t("Employment")
+        slug: "opportunities",
+        title: t("I+D")
       }
     ];
 
@@ -335,9 +292,11 @@ class IndustryProfile extends Component {
         loadingComponent={<DatachileLoading />}
       >
         <Helmet>
-          <title>{`${industry.caption}${
-            industry.parent ? " (" + industry.parent.caption + ")" : ""
-          }`}</title>
+          {industry && (
+            <title>{`${industry.caption}${
+              industry.parent ? " (" + industry.parent.caption + ")" : ""
+            }`}</title>
+          )}
         </Helmet>
         <div className="profile">
           <div className="intro">
@@ -372,31 +331,32 @@ class IndustryProfile extends Component {
 
             <div className="header">
               <div className="datum-full-width">
-                {stats.employees && (
-                  <FeaturedDatumSplash
-                    title={t("Employees")}
-                    icon="poblacion"
-                    decile={stats.employees.decile}
-                    datum={numeral(stats.employees.value, locale).format(
-                      "(0,0)"
-                    )}
-                    source="nene"
-                    className=""
-                    level={industry.depth > 1 ? "industry_profile" : false}
-                    name={industry.depth > 1 ? industry.parent : industry}
-                  />
-                )}
-
-                {stats.female &&
-                  female_percent > 0 && (
+                {stats.employees &&
+                  industry && (
                     <FeaturedDatumSplash
-                      title={t("Female percent in industry")}
-                      icon="poblacion"
-                      decile={stats.female.decile}
-                      datum={numeral(stats.female.value, locale).format(
-                        "(0.0 %)"
+                      title={t("Employees")}
+                      icon={null}
+                      decile={null}
+                      datum={numeral(stats.employees.data[0], locale).format(
+                        "(0,0)"
                       )}
-                      source="nene"
+                      source="tax_data"
+                      className=""
+                      level={industry.depth > 1 ? "industry_profile" : false}
+                      name={industry.depth > 1 ? industry.parent : industry}
+                    />
+                  )}
+
+                {stats.employees &&
+                  industry && (
+                    <FeaturedDatumSplash
+                      title={t("Production per worker")}
+                      icon={null}
+                      decile={null}
+                      datum={numeral(stats.employees.data[1], locale).format(
+                        "$ 0,0"
+                      )}
+                      source="tax_data"
                       className=""
                       level={industry.depth > 1 ? "industry_profile" : false}
                       name={industry.depth > 1 ? industry.parent : industry}
@@ -430,57 +390,6 @@ class IndustryProfile extends Component {
             </div>
           </div>
 
-          {/*<div className="topic-block" id="about">
-            <div className="topic-header">
-              <div className="topic-title">
-                <h2 className="full-width">
-                  {t("About")}
-                  {obj && (
-                    <span className="small">
-                      <span className="pipe"> | </span>
-                      {obj.caption}
-                    </span>
-                  )}
-                </h2>
-              </div>
-              <div className="topic-go-to-targets">
-                <div className="topic-slider-sections" />
-              </div>
-            </div>
-            <div className="topic-slide-container">
-              <div className="topic-slide-block">
-                <div className="topic-slide-intro">
-                  <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
-                  <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
-                  <div className="topic-slide-link-list">
-                    <LinksList title={listTitle} list={list} />
-                  </div>
-                </div>
-              </div>
-            </div>
-                </div>*/}
           <div className="topics-container">
             <Topic
               name={t("Economy")}
@@ -489,7 +398,7 @@ class IndustryProfile extends Component {
               sections={[
                 {
                   name: t("Trade"),
-                  slides: [t("Occupation")]
+                  slides: [t("")]
                 }
               ]}
             >
@@ -501,6 +410,18 @@ class IndustryProfile extends Component {
                   </SectionColumns>
                 </EconomySlide>
               </div>
+            </Topic>
+            <Topic
+              name={t("I+D")}
+              id="opportunities"
+              slider={false}
+              sections={[
+                {
+                  name: t("Summary"),
+                  slides: [t("")]
+                }
+              ]}
+            >
               <div>
                 <RDSlide>
                   <SectionColumns>
@@ -509,40 +430,6 @@ class IndustryProfile extends Component {
                   </SectionColumns>
                 </RDSlide>
               </div>
-            </Topic>
-            <Topic
-              name={t("Employment")}
-              id="education"
-              slider={false}
-              sections={[
-                {
-                  name: t("Summary"),
-                  slides: [t("Occupation")]
-                }
-              ]}
-            >
-              <div>
-                <OccupationSlide>
-                  <SectionColumns>
-                    <EmployedByEducation className="lost-1-2" />
-                    <EmployedByCategory className="lost-1-2" />
-                  </SectionColumns>
-                </OccupationSlide>
-              </div>
-              {/*<div>
-                <SalariesSlide>
-                  <SectionColumns>
-                    <Placeholder
-                      className="lost-1-2"
-                      text="Salaries By Sector"
-                    />
-                    <Placeholder
-                      className="lost-1-2"
-                      text="Salaries By Occupation"
-                    />
-                  </SectionColumns>
-                </SalariesSlide>
-              </div>*/}
             </Topic>
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Network } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { ordinalColorScale } from "helpers/colors";
+import { productsColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
@@ -37,52 +37,64 @@ class ProductSpace extends Section {
           <ExportLink path={path} />
         </h3>
         <Network
-            config={{
-              height: 500,
-              links: "/json/pspace_hs2012_links_d3p2.json",
-              nodes: "/json/pspace_hs2012_nodes_d3p2.json",
-              data: path,
-              label: d => d.HS2,
-              size: "Exports RCA",
-              sizeMin: 3,
-              sizeMax: 10,
-              zoomScroll: false,
-              shapeConfig: {
-                Path: {
-                  stroke: "#555"
-                },
-                fill: d =>
-                  d["Exports RCA"] < 1
-                       ? "#aaaaaa"
-                       : ordinalColorScale("hs0" + d["ID HS0"]),
-                activeStyle: { stroke: "#ffffff" }
+          config={{
+            height: 600,
+            links: "/json/pspace_hs2012_links_d3p2.json",
+            nodes: "/json/pspace_hs2012_nodes_d3p2.json",
+            data: path,
+            label: d => d.HS2,
+            size: "FOB US",
+            sizeMin: 3,
+            sizeMax: 10,
+            zoomScroll: false,
+            shapeConfig: {
+              Path: {
+                stroke: "#555"
               },
-              tooltipConfig: {
-                body: d => {
-                  var body = `<table class='tooltip-table'>
-                           <tr><td class='title'>${t("Exports USD")}</td></tr>
-                           <td class='data'>${numeral(
+              fill: d =>
+                d["Exports RCA"] < 1
+                  ? "#888"
+                  : productsColorScale("hs" + d["ID HS0"]),
+              activeStyle: { stroke: "#ffffff" }
+            },
+            tooltipConfig: {
+              body: d => {
+                var body = `<table class='tooltip-table'>
+                           <tr><td class='title'>${t("Exports")}</td>
+                           <td class='data'>US${numeral(
                              d["FOB US"],
                              locale
-                           ).format("(USD 0 a)")}</td></tr>
+                           ).format("$ 0 a")}</td></tr>
+                           <tr><td class='title'>${t("HS")}</td>
+                           <td class='data'>${d["ID HS2"].slice(2)}</td></tr>
+                           <tr><td class='title'>${t(
+                             "RCA"
+                           )}</td><td class='data'>${numeral(
+                  d["Exports RCA"],
+                  locale
+                ).format("0.0")}</td></tr>
                          </table>`;
-                  return body;
-                }
-              },
-              legend: false
-            }}
-            dataFormat={data => (
-                data.data.map(d => (
-                  {
-                    ...d,
-                    id: d["ID HS2"].slice(2),
-                    "Exports RCA": d["Exports RCA"] ? d["Exports RCA"] : 0,
-                    "FOB US": d["FOB US"] ? d["FOB US"] : 0
-                  }
-                ))
-              )}
+                return body;
+              }
+            },
+            legend: false
+          }}
+          dataFormat={data =>
+            data.data.map(d => ({
+              ...d,
+              id: d["ID HS2"].slice(2),
+              "Exports RCA": d["Exports RCA"] ? d["Exports RCA"] : 0,
+              "FOB US": d["FOB US"] ? d["FOB US"] : 0
+            }))
+          }
         />
         <SourceNote cube="exports" />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.economy.rca")
+          }}
+        />
       </div>
     );
   }

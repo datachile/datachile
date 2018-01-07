@@ -1,9 +1,9 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { LinePlot } from "d3plus-react";
+import { StackedArea } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import { ordinalColorScale } from "helpers/colors";
+import { employmentColorScale } from "helpers/colors";
 
 import { numeral } from "helpers/formatters";
 import { simpleIndustryChartNeed } from "helpers/MondrianClient";
@@ -20,10 +20,13 @@ class EmployedByCategory extends Section {
   static need = [
     simpleIndustryChartNeed(
       "path_industry_employed_by_category",
-      "nene",
+      "nene_quarter",
       ["Expansion factor"],
       {
-        drillDowns: [["ICSE", "ICSE", "ICSE"], ["Quaterly Reporting"]]
+        drillDowns: [
+          ["ICSE", "ICSE", "ICSE"],
+          ["Date", "Date", "Moving Quarter"]
+        ]
       }
     )
   ];
@@ -41,14 +44,15 @@ class EmployedByCategory extends Section {
           <ExportLink path={path} />
         </h3>
         {this.state.lineplot ? (
-          <LinePlot
+          <StackedArea
             config={{
               height: 500,
               data: path,
-              groupBy: "ICSE",
-              x: "Month",
-              y: "Expansion factor",
-              time: "Month",
+              groupBy: "variable",
+              label: d => d["variable"],
+              x: "month",
+              y: "percentage",
+              time: "month",
               timeline: false,
               scale: "time",
               xConfig: {
@@ -57,20 +61,22 @@ class EmployedByCategory extends Section {
               },
               yConfig: {
                 title: t("Employment by category"),
-                tickFormat: tick => numeral(tick, locale).format("0 a")
+                tickFormat: tick => numeral(tick, locale).format("0%")
               },
               shapeConfig: {
-                Line: {
-                  stroke: d => ordinalColorScale(d["ICSE"]),
-                  strokeWidth: 2
-                }
+                fill: d => employmentColorScale(d["variable"])
               },
               tooltipConfig: {
-                title: d => d["ICSE"],
-                body: d =>
-                  numeral(d["Expansion factor"], locale).format("(0 a)") +
-                  " " +
-                  t("people")
+                title: d => d["variable"],
+                body: d => {
+                  return d["month"] instanceof Array
+                    ? ""
+                    : numeral(d["percentage"], locale).format("0.[0]%") +
+                        " " +
+                        t("people") +
+                        "<br/>" +
+                        d["quarter"];
+                }
               },
               legendConfig: {
                 shapeConfig: {
@@ -81,7 +87,40 @@ class EmployedByCategory extends Section {
             }}
             dataFormat={data => {
               if (data.data && data.data.length > 0) {
-                return data.data.filter(item => item.Month !== "2016/12");
+                var melted = [];
+                var total = {};
+                data.data.forEach(function(f) {
+                  if (total[f["ID Moving Quarter"]]) {
+                    total[f["ID Moving Quarter"]] += f["Expansion factor"];
+                  } else {
+                    total[f["ID Moving Quarter"]] = f["Expansion factor"];
+                  }
+                  var a = f;
+                  var date = f["ID Moving Quarter"].split("_");
+                  f["month"] = date[0] + "-" + date[1] + "-01";
+                  f["quarter"] =
+                    date[0] +
+                    " (" +
+                    date[1] +
+                    "," +
+                    date[2] +
+                    "," +
+                    date[3] +
+                    ")";
+                  a["variable"] = f["ICSE"];
+                  a["value"] = f["Expansion factor"];
+                  melted.push(a);
+                });
+                melted = melted
+                  .map(m => {
+                    m["percentage"] =
+                      m["value"] / total[m["ID Moving Quarter"]];
+                    return m;
+                  })
+                  .sort(function(a, b) {
+                    return a["Month"] > b["Month"] ? 1 : -1;
+                  });
+                return melted;
               } else {
                 this.setState({ lineplot: false });
               }

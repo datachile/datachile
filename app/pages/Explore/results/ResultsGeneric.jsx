@@ -46,7 +46,7 @@ class TemplateResults extends React.PureComponent {
             key: profile.key,
             name: profile.caption,
             type: entity,
-            url: slugifyItem(entity, profile.key, profile.name)
+            url: slugifyItem(entity, profile.key, profile.caption)
           }}
         />
       </div>
@@ -74,9 +74,9 @@ class TemplateResults extends React.PureComponent {
                   url: slugifyItem(
                     entity,
                     profile.key,
-                    profile.name,
+                    profile.caption,
                     c.key,
-                    c.name
+                    c.caption
                   )
                 }}
               />

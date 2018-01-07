@@ -87,6 +87,7 @@
 
 @add-mixin for-sm {
   .topic-slider-sections {
+    margin: 0 calc(var(--gutter)/2) calc(var(--gutter)/2) calc(var(--gutter)/2);
     & ul {
       margin-bottom: 15px;
     }
@@ -94,6 +95,14 @@
 }
 
 @add-mixin for-xs {
+  .topic-block .topic-header .topic-title h2 {
+    & span.small {
+      display: block;
+      & .pipe {
+        display: none;
+      }
+    }
+  }
 }
 
 @add-mixin for-xx {

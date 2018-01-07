@@ -24,7 +24,7 @@ class FeaturedMapSplash extends Component {
   callbackSvg(error, xml) {
     if (error) throw error;
 
-    if (this.props.type == "region") {
+    if (this.props.code && this.props.type == "region") {
       this.cache.setSvg(
         "/images/maps/zoom/comunas-" + this.props.code + ".svg",
         xml
@@ -36,7 +36,7 @@ class FeaturedMapSplash extends Component {
   }
 
   componentDidMount() {
-    if (this.props.type == "region") {
+    if (this.props.code && this.props.type == "region") {
       var src = "/images/maps/zoom/comunas-" + this.props.code + ".svg";
       var cached = this.cache.getSvg(src);
       if (cached) {
@@ -49,6 +49,7 @@ class FeaturedMapSplash extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (
+      this.props.code &&
       nextProps == "region" &&
       this.props &&
       nextProps.code !== this.props.code

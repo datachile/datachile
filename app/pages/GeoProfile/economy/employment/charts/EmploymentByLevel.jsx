@@ -101,7 +101,6 @@ class EmploymentByLevel extends Section {
             }
           }}
           dataFormat={data => {
-            console.log("total", data.data);
             return data.data.map(f => {
               var date = f["ID Moving Quarter"].split("_");
               f["month"] = date[0] + "-" + date[1] + "-01";

@@ -4,6 +4,8 @@ import { CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
 
+import { featured_profiles } from "helpers/consts";
+
 import FeaturedBox from "components/FeaturedBox";
 import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
@@ -40,58 +42,42 @@ class Home extends Component {
         explore: "/explore/geo",
         colors: ["#445e81", "#263b58", "#1B2E44"],
         slug: "geo",
-        available: true,
-        description: t(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
-        )
+        available: true
       },
       {
         name: t("Countries"),
         explore: "/explore/countries",
         colors: ["#1bc4d3", "#3f93a0", "#31999B"],
         slug: "countries",
-        available: true,
-        description: t(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        )
+        available: true
       },
       {
         name: t("Products"),
         explore: "/explore/products",
         colors: ["#a45c58", "#794f57", "#91453B"],
         slug: "products",
-        available: true,
-        description: t(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo."
-        )
+        available: true
       },
       {
         name: t("Industries"),
         explore: "/explore/industries",
         colors: ["#0b5151", "#143e48", "#205258"],
         slug: "industries",
-        available: true,
-        description: t(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
-        )
+        available: true
       },
       {
         name: t("Careers"),
         explore: "/explore/careers",
         colors: ["#676258", "#9b8365", "#776551"],
         slug: "careers",
-        available: false,
-        description: t("Lorem ipsum dolor sit amet, consectetur .")
+        available: false
       },
       {
         name: t("Institutions"),
         explore: "/explore/institutions",
         colors: ["#595a8f", "#393a6a", "#393954"],
         slug: "institutions",
-        available: false,
-        description: t(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo. Lorem ipsum dolor sit amet."
-        )
+        available: false
       }
     ];
     this.state = {
@@ -103,7 +89,13 @@ class Home extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, i18n } = this.props;
+
+    const locale = i18n.language;
+
+    const featured = featured_profiles[locale]
+      ? featured_profiles[locale]
+      : featured_profiles["es"];
 
     const { profiles, header, focus } = this.state;
 
@@ -246,6 +238,12 @@ class Home extends Component {
                 <h2>{t("Explore")}</h2>
               </div>
               <div className="home-profile-carousels-container">
+                <ProfileCarousel
+                  title={t("home.carousel.featured_profiles")}
+                  type="star"
+                  items={featured}
+                  limit={5}
+                />
                 <ProfileCarousel
                   title={t("home.carousel.comunas_population")}
                   type="geo"

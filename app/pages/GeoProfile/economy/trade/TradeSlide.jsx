@@ -11,7 +11,7 @@ import { sources } from "helpers/consts";
 import { trade_by_time_and_product } from "helpers/aggregations";
 
 import FeaturedDatum from "components/FeaturedDatum";
-import SourceNote from "components/SourceNote";
+import isEmpty from "lodash/isEmpty";
 
 class TradeSlide extends Section {
   static need = [
@@ -63,6 +63,38 @@ class TradeSlide extends Section {
           );
           return {
             key: "text_data_exports_by_product",
+            data: result
+          };
+        });
+
+      return { type: "GET_DATA", promise };
+    },
+    (params, store) => {
+      const geo = getGeoObject(params);
+      const promise = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          var q = cube.query
+            .option("parents", true)
+            .drilldown("Date", "Year")
+            .drilldown("Import HS", "HS2")
+            .measure("CIF US")
+            .measure("Geo Rank Across Time");
+
+          return mondrianClient.query(
+            geoCut(geo, "Geography", q, store.i18n.locale),
+            "jsonrecords"
+          );
+        })
+        .then(res => {
+          const result = trade_by_time_and_product(
+            res.data.data,
+            "CIF US",
+            geo.type != "country",
+            store.i18n.locale
+          );
+          return {
+            key: "text_data_imports_by_product",
             data: result
           };
         });
@@ -140,11 +172,10 @@ class TradeSlide extends Section {
                 })
               }
             />
-            <TradeBalance className="l-2-3" />
+            <TradeBalance className="l-2-3 trade-balance" />
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
-        <SourceNote cube="exports" />
       </div>
     );
   }

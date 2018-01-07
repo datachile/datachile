@@ -13,6 +13,7 @@ import { continentColorScale } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ImportsByOrigin extends Section {
   static need = [
@@ -31,7 +32,9 @@ class ImportsByOrigin extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t(`Imports by origin of firms located in ${geo.name}`)}</span>
+          <span>
+            {t("geo_profile.economy.imports.by_origin")}
+          </span>
           <ExportLink path={path} />
         </h3>
         <TreemapStacked
@@ -93,6 +96,7 @@ class ImportsByOrigin extends Section {
           }}
           dataFormat={data => data.data}
         />
+        <SourceNote cube="imports" />
       </div>
     );
   }

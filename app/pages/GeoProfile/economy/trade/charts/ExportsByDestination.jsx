@@ -13,6 +13,7 @@ import {
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ExportsByDestination extends Section {
   static need = [
@@ -32,7 +33,7 @@ class ExportsByDestination extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t(`Exports by destination of firms located in ${geo.name}`)}
+            {t("geo_profile.economy.exports.by_destination")}
           </span>
           <ExportLink path={path} />
         </h3>
@@ -97,6 +98,7 @@ class ExportsByDestination extends Section {
             }
           }}
         />
+        <SourceNote cube="exports" />
       </div>
     );
   }

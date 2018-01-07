@@ -206,7 +206,7 @@ class Search extends Component {
         <ul className={`results ${availableClass}`}>
           {results.map((result, i) => {
             var url;
-            if (result.ancestor_key === 0) {
+            if (result.ancestor_key === 0 || result.ancestor_key === null) {
               url = slugifyItem(result.index_as, result.key, result.content);
             } else {
               url = slugifyItem(
