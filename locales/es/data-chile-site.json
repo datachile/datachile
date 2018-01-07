@@ -292,9 +292,11 @@
 
   "Mean Income": "Ingreso Medio",
   "Main exported product": "Principal producto exportado",
-  "Main exporting Region": "Principal Región exportadora",
+  "Main exporting region": "Principal región exportadora",
+  "Main exporting comuna": "Principal comuna exportadora",
   "Main imported product": "Principal producto importado",
-  "Main importing Region": "Principal Región importadora",
+  "Main importing region": "Principal región importadora",
+  "Main importing comuna": "Principal comuna importadora",
   "Main services in ": "Principales servicios en ",
   "Male": "Hombre",
   "Male Average Age": "Edad promedio hombres",
