@@ -30,10 +30,8 @@ class Search extends Component {
 
     this.setState({ loading: true });
 
-    // XXX TODO don't hardcode this once we're finally able to configure canon
-    // via env vars
     request(
-      `https://chilecube.datawheel.us/search?q=${encodeURIComponent(
+      `${__API__}/search?q=${encodeURIComponent(
         userQuery
       )}&limit=10&lang=${encodeURIComponent(this.props.i18n.language)}`,
       (error, data) =>
@@ -55,7 +53,7 @@ class Search extends Component {
 
     document.addEventListener(
       "keydown",
-      () => {
+      (event) => {
         const { local, searchActive, toggleSearch } = this.props;
         const { active } = this.state;
         const key = event.keyCode;
