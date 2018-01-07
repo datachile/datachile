@@ -70,7 +70,7 @@ class PopulationSlide extends Section {
                 annualized_growth(datum_population_growth, [2005, 2020]),
                 locale
               ).format("0.0 %")}
-              title={t("Estimated Population Growth")}
+              title={t("Estimate Population Growth")}
               subtitle={
                 sources.population_estimate.first_year +
                 "-" +
