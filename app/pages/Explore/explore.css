@@ -20,9 +20,10 @@
   }
   & .explore-container {
     lost-flex-container: row;
+    flex-basis: auto;
     margin-bottom: calc(var(--gutter)*3);
     & #explore-sidebar {
-      lost-column: 1/4 flex;
+      lost-column: 1/4;
       & ul {
         padding: 0px;
         list-style: none;
@@ -64,7 +65,7 @@
     }
 
     & #explore-results {
-      lost-column: 3/4 flex;
+      lost-column: 3/4;
       & .filter-block {
         & .explore-featured-tiles {
           lost-flex-container: column;
@@ -176,14 +177,13 @@
       margin: 0 var(--gutter) 0 var(--gutter);
     }
     & .explore-container {
-      lost-flex-container: column;
       & #explore-sidebar {
         lost-column: 1 flex;
         & .explore-column {
           & ul {
             lost-flex-container: row;
             & li {
-              lost-column: 1/6 flex;
+              lost-column: 1/4 flex;
               & a.link-soon {
                 & span {
                   & small {
