@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { getGeoObject } from "helpers/dataUtils";
 import FeaturedBox from "components/FeaturedBox";

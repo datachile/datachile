@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { translate } from "react-i18next";
 
 import "./ExportLink.css";
@@ -68,11 +67,4 @@ class ExportLink extends React.Component {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      sources: state.sources
-    }),
-    {}
-  )(ExportLink)
-);
+export default translate()(ExportLink);

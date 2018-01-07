@@ -462,7 +462,7 @@ class GeoProfile extends Component {
               </div>
 
               <div className="candidates">
-                <AuthoritiesBlock geo={geoObj} ancestor={ancestor} />
+                <AuthoritiesBlock geo={geoObj} ancestor={ancestor} data={this.props.data} />
               </div>
 
               <div className="map-comuna">
