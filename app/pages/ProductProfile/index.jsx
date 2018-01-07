@@ -469,9 +469,10 @@ class ProductProfile extends Component {
                     type="country"
                     code={stats.country.id}
                     datum={stats.country.name}
-                    subtitle={numeral(stats.country.value, locale).format(
-                      "($ 0,0 a)"
-                    )}
+                    subtitle={
+                      "US " +
+                      numeral(stats.country.value, locale).format("($ 0,0 a)")
+                    }
                     source="exports"
                     className=""
                   />
@@ -491,9 +492,10 @@ class ProductProfile extends Component {
                           stats.exports.total
                         : false
                     }
-                    datum={numeral(stats.exports.value, locale).format(
-                      "($ 0,0 a)"
-                    )}
+                    datum={
+                      "US " +
+                      numeral(stats.exports.value, locale).format("($ 0,0 a)")
+                    }
                     source="exports"
                     className=""
                   />
@@ -505,9 +507,10 @@ class ProductProfile extends Component {
                     type="region"
                     code={stats.region.id}
                     datum={stats.region.name}
-                    subtitle={numeral(stats.region.value, locale).format(
-                      "($ 0,0 a)"
-                    )}
+                    subtitle={
+                      "US " +
+                      numeral(stats.region.value, locale).format("($ 0,0 a)")
+                    }
                     source="exports"
                     className=""
                   />
