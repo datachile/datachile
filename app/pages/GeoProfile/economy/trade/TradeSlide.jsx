@@ -111,12 +111,16 @@ class TradeSlide extends Section {
       imports: this.context.data.text_data_imports_by_product
     };
     text_data.geo = this.context.data.geo;
-    text_data.exports.increased_or_decreased = text_data.exports.increased
-      ? t("increased")
-      : t("decreased");
-    text_data.imports.increased_or_decreased = text_data.imports.increased
-      ? t("increased")
-      : t("decreased");
+    if (text_data.exports) {
+      text_data.exports.increased_or_decreased = text_data.exports.increased
+        ? t("increased")
+        : t("decreased");
+    }
+    if (text_data.imports) {
+      text_data.imports.increased_or_decreased = text_data.imports.increased
+        ? t("increased")
+        : t("decreased");
+    }
 
     const locale = this.props.i18n.language;
 
