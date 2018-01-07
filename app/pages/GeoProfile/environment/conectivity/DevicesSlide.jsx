@@ -234,9 +234,8 @@ class DevicesSlide extends Section {
               icon="empleo"
               datum={numeral(internet_data.total, locale).format("(0,0 a)")}
               title={t("Internet Access")}
-              subtitle={`${t("in")} ${geo.name} - ${
-                sources.internet_access.year
-              }`}
+              subtitle={`${t("in")} ${geo.name} - ${sources.internet_access
+                .year}`}
             />
             <FeaturedDatum
               className="l-1-3"
