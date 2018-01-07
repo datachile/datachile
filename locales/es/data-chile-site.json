@@ -291,9 +291,9 @@
   },
 
   "Mean Income": "Ingreso Medio",
-  "Main exported product": "Principal producto exportado",
+  "Main exported product": "Principal producto exportado (CLP)",
   "Main exporting Region": "Principal Región exportadora",
-  "Main imported product": "Principal producto importado",
+  "Main imported product": "Principal producto importado (CLP)",
   "Main importing Region": "Principal Región importadora",
   "Main services in ": "Principales servicios en ",
   "Male": "Hombre",
@@ -466,8 +466,8 @@
   "Topics": "Temas",
   "Total": "Total",
   "Total Enrollment": "Matrícula total",
-  "Total Exports": "Total exportaciones",
-  "Total Imports": "Total importaciones",
+  "Total Exports": "Total Exportaciones (CLP)",
+  "Total Imports": "Total Importaciones (CLP)",
   "Total Investment": "Inversión Total",
   "Total R&D spending by Business Type":
     "Inversión total en I+D según tipo de empresa",

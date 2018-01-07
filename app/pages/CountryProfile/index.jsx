@@ -262,6 +262,48 @@ class CountryProfile extends Component {
         promise: prm
       };
     },
+
+    // main exported product
+    (params, store) => {
+      var ids = getLevelObject(params);
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = levelCut(
+            ids,
+            "Destination Country",
+            "Country",
+            cube.query
+              .option("parents", true)
+              .drilldown("Export HS", "HS", "HS2")
+              .measure("FOB US"),
+            "Continent",
+            "Country",
+            store.i18n.locale
+          );
+
+          q.cut(`[Date].[Year].&[${sources.exports.year}]`);
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          res.data.data = orderBy(res.data.data, ["FOB US"], ["desc"]);
+          const top_product = res.data.data[0] ? res.data.data[0] : false;
+          return {
+            key: "top_exported_product_from_country",
+            data: {
+              name: top_product ? top_product["HS2"] : "",
+              value: top_product ? top_product["FOB US"] : "",
+              source: sources.exports.title,
+              year: sources.exports.year
+            }
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
     InternationalTradeSlide,
     InternationalTradeBalanceSlide,
     InternationalTradeOriginDestinationSlide,
@@ -327,7 +369,7 @@ class CountryProfile extends Component {
     const stats = {
       imports: this.props.data.country_imports,
       exports: this.props.data.country_exports,
-      product: this.props.data.top_imported_product_from_country
+      product: this.props.data.top_exported_product_from_country
     };
 
     const topics = [
@@ -387,9 +429,10 @@ class CountryProfile extends Component {
                     title={t("Total Imports")}
                     icon="ingreso"
                     decile={stats.imports.decile}
-                    datum={numeral(stats.imports.value, locale).format(
-                      "($ 0.0 a)"
-                    )}
+                    datum={
+                      "US " +
+                      numeral(stats.imports.value, locale).format("($ 0.0 a)")
+                    }
                     source="imports"
                     className=""
                   />
@@ -410,13 +453,13 @@ class CountryProfile extends Component {
 
                 {stats.product && (
                   <FeaturedDatumSplash
-                    title={t("Main imported product")}
+                    title={t("Main exported product")}
                     icon="check"
                     datum={stats.product.name}
                     subtitle={`${numeral(stats.product.value, locale).format(
                       "$ 0.0 a"
                     )}`}
-                    source="imports"
+                    source="exports"
                     className=""
                   />
                 )}
