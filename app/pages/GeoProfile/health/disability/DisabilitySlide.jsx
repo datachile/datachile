@@ -34,7 +34,11 @@ class DisabilitySlide extends Section {
     const { datum_health_disabilities, geo } = this.context.data;
 
     const locale = i18n.language;
-    const text = Disability(datum_health_disabilities, geo, locale);
+    const text = Disability(
+      datum_health_disabilities,
+      geo.depth > 1 ? geo.ancestors[0] : geo,
+      locale
+    );
 
     return (
       <div className="topic-slide-block">
