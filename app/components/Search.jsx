@@ -227,7 +227,7 @@ class Search extends Component {
                       src={`/images/icons/icon-${result.index_as}.svg`}
                     />
                   </span>
-                  <span className="content">{result.content}</span>
+                  <span className="content">{result.content}{result.ancestor_key ? ` — ${result.ancestor_name}` : ''}</span>
                   <span className="separator">|</span>
                   <span className="type">{this.getProfileType(result)}</span>
                 </Link>
