@@ -140,6 +140,7 @@
   "Extras": "Extras",
   "Female": "Mujeres",
   "Female Average Age": "Edad promedio mujeres",
+  "Female Median Income": "Ingreso mediano mujeres",
   "Female Mean Income": "Ingreso promedio mujeres",
   "Female percent in ": "Porcentaje mujeres en ",
   "Female percent in industry": "Porcentaje femenino en la industria",
@@ -298,6 +299,7 @@
   "Main services in ": "Principales servicios en ",
   "Male": "Hombre",
   "Male Average Age": "Edad promedio hombres",
+  "Male Median Income": "Ingreso mediano hombres",
   "Male Mean Income": "Ingreso promedio hombres",
   "Male immigrants with complete schooling":
     "Migrantes de sexo masculino con escolaridad completa",
