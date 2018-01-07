@@ -86,6 +86,7 @@ class TradeBalance extends Section {
               }
             },
             tooltipConfig: {
+              title: d => t("Trade Balance"),
               body: d =>
                 "<div>" +
                 d["year"] +
