@@ -55,12 +55,13 @@ class MigrationDetailsSlide extends Section {
           }
         }
 
-        if (!changed)
+        if (!compared && !changed)
           return {
             context: "only",
             year_last: max_last.Year,
             current_max: max_last.Sex
           };
+        else changed = compared;
 
         const growth = annualized_growth(
           [changed["Number of visas"], max_last["Number of visas"]],
