@@ -168,10 +168,8 @@ export const ORDINAL_COLORS = [
 export const ordinalColorScale = scaleOrdinal().range(ORDINAL_COLORS);
 
 export const administrationColorScale = scaleOrdinal().range([
-  "#84386E",
-  "#5D5DA8",
-  "#335cb5",
-  "#3C8181",
-  "#E89CA2",
-  "#CCBC4A"
+  "#823A6D",
+  "#5D5FA6",
+  "#365ED2",
+  "#3F8180"
 ]);
