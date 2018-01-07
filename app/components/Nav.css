@@ -151,6 +151,7 @@
   width: 100%;
   color: var(--snow);
   background-color: var(--footer-bg);
+  max-width: 370px;
 
   & .button-set-container {
     display: flex;
@@ -325,7 +326,7 @@
         &.open {
           & .nav-search-toggle {
             & img {
-              margin: 10px 0;
+              margin: 12px 0;
             }
           }
           & .nav-search-wrapper {
@@ -357,6 +358,16 @@
           }
         }
       }
+    }
+  }
+}
+
+@add-mixin for-md {
+  .nav-search-wrapper {
+    & .search-component .input input {
+      background: none;
+      padding-left: 22px;
+      padding-right: 48px;
     }
   }
 }
