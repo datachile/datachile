@@ -224,7 +224,7 @@
   "Industries": "Industrias",
   "Industry": "Industria",
   "Industry & Occupations": "Industria y ocupaciones",
-  "Industry By Output (CLP)": "Industry By Output (CLP)",
+  "Industry By Output (CLP)": "Industrias por Producción (CLP)",
   "Industry Space": "Espacio de Industrias",
   "Industry output": "Producción de la industria",
   "Innovation": "Innovación",
@@ -286,6 +286,7 @@
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
   },
 
+  "Mean Income": "Ingreso Medio",
   "Main exported product": "Principal producto exportado",
   "Main exporting Region": "Principal Región exportadora",
   "Main imported product": "Principal producto importado",
@@ -463,6 +464,7 @@
   "Total Enrollment": "Matrícula total",
   "Total Exports": "Total exportaciones",
   "Total Imports": "Total importaciones",
+  "Total Investment": "Inversión Total",
   "Total R&D spending by Business Type":
     "Inversión total en I+D según tipo de empresa",
   "Total R&D spending by Ownership Type":
