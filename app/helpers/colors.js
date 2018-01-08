@@ -30,6 +30,20 @@ export const healthInsuranceColorScale = scaleOrdinal().range(
   COLORS_HEALTHINSURANCE
 );
 
+export const COLORS_INDUSTRY_OCCUPATION = [
+  "#BF6083",
+  "#734C6C",
+  "#F06060",
+  "#F2A679",
+  "#664848",
+  "#8E3D3D",
+  "#6B1C33",
+  "#99174C"
+];
+export const industryOccupationColorScale = scaleOrdinal().range(
+  COLORS_INDUSTRY_OCCUPATION
+);
+
 export const COLORS_MIGRATION_BY_EDUCATION = [
   "#12A29B",
   "#73BFB8",
