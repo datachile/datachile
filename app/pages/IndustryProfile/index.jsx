@@ -266,8 +266,6 @@ class IndustryProfile extends Component {
       ? ids.level2 ? t("Industries") : t("Industries")
       : "";
 
-    console.log(this.props.data.datum_industry_occupation_total);
-
     const stats = {
       employees: this.props.data.datum_industry_occupation_total,
       region: this.props.data.top_industry_output_by_region

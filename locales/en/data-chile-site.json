@@ -865,7 +865,7 @@
   "increased": "increased",
   "industry_profile": {
     "economy":
-      "<p>In {{year.last}}, {{territory.name.first}} was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by {{territory.name.second}} with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+      "<p>In {{year.last}}, <a href=\"{{territory.link.first}}\">{{territory.name.first}}</a> was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by <a href=\"{{territory.link.second}}\">{{territory.name.second}}</a> with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
     "employment":
       "<p>From {{year.first}} to {{year.last}}, employment in {{industry.caption}} {{increased_or_decreased}} at a quarterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.</p>",
     "r&d":

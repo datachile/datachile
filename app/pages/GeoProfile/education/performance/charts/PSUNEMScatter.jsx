@@ -89,7 +89,9 @@ class PSUNEMScatter extends Section {
               shapeConfig: {
                 fill: d => {
                   if (d["Institution"] !== "hack") {
-                    return administrationColorScale(d["Administration"]);
+                    return administrationColorScale(
+                      "education" + d["Administration"]
+                    );
                   } else {
                     return "transparent";
                   }

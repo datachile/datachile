@@ -5,7 +5,7 @@ import { Section } from "datawheel-canon";
 import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { getTopCategories } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
+import { numeral, slugifyItem } from "helpers/formatters";
 
 import { annualized_growth } from "helpers/calculator";
 
@@ -64,6 +64,22 @@ class EconomySlide extends Section {
         share: {
           first: numeral(top[0].Output / total).format("0.0 %"),
           second: numeral(top[1].Output / total).format("0.0 %")
+        },
+        link: {
+          first: slugifyItem(
+            "geo",
+            top[0]["ID Region"],
+            top[0]["Region"],
+            top[0]["ID Comuna"],
+            top[0]["Comuna"]
+          ),
+          second: slugifyItem(
+            "geo",
+            top[1]["ID Region"],
+            top[1]["Region"],
+            top[1]["ID Comuna"],
+            top[1]["Comuna"]
+          )
         }
       },
       year: {
