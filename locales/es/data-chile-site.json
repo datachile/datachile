@@ -191,7 +191,7 @@
   "Top output region": "Top región productora",
 
   "International Trade": "Comercio Internacional",
-  "International Trade Balance": "Balance Comercial Internacional",
+  "International Trade Balance": "Balanza Comercial Internacional",
   "Other Products": "Otros Productos",
 
   "Annual Growth Exports": "Cambio Anual de Exportaciones",
@@ -727,7 +727,7 @@
       "destination":
         "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a {{region}}, principalmente a la comuna de {{comuna}}.</p>",
       "growth":
-        "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una taza anual del {{growth}}.</p>",
+        "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una tasa anual del {{growth}}.</p>",
       "text": "$t(country_profile.migration_slide.destination)",
       "text_no":
         "<p>Durante {{year_last}}, no hay registros de visas otorgadas a inmigrantes desde {{level}}.</p>",
