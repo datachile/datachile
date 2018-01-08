@@ -271,7 +271,7 @@ class Explore extends Component {
           <Nav
             title={type != "" ? title : t("Explore")}
             typeTitle={t("Home")}
-            type={type != "" ? type : false}
+            type={type != "" ? (type == "region" ? "geo" : type) : false}
             exploreLink={"/"}
           />
 
