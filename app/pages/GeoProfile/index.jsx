@@ -678,7 +678,7 @@ class GeoProfile extends Component {
               sections={[
                 {
                   name: t("Performance"),
-                  slides: [t("PSU vs NEM"), t("PSU by sex")]
+                  slides: [t("PSU vs NEM"), t("PSU By Sex")]
                 },
                 {
                   name: t("Enrollment"),
