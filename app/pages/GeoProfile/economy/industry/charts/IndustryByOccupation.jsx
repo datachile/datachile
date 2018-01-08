@@ -3,7 +3,7 @@ import React from "react";
 import { Treemap } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
-import { ordinalColorScale } from "helpers/colors";
+import { industryOccupationColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
@@ -55,7 +55,7 @@ class IndustryByOccupation extends Section {
             },
             time: "ID Year",
             shapeConfig: {
-              fill: d => ordinalColorScale(d["ID ISCO"])
+              fill: d => industryOccupationColorScale("isco" + d["ID ISCO"])
             },
             legendConfig: {
               label: false,
