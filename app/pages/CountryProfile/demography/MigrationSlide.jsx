@@ -101,7 +101,7 @@ class MigrationSlide extends Section {
               <div className="topic-slide-data">
                 <FeaturedDatum
                   className="l-1-3"
-                  icon="empleo"
+                  icon="visas-inmigrantes"
                   datum={numeral(
                     slide_migration_destination.number_visas,
                     locale
@@ -114,7 +114,7 @@ class MigrationSlide extends Section {
                 />
                 <FeaturedDatum
                   className="l-1-3"
-                  icon="empleo"
+                  icon="visas-femeninas"
                   datum={numeral(
                     datum_migration_origin_female /
                       slide_migration_destination.number_visas,
@@ -126,7 +126,7 @@ class MigrationSlide extends Section {
                 {slide_migration_destination.context == "full" && (
                   <FeaturedDatum
                     className="l-1-3"
-                    icon="empleo"
+                    icon="cambio-numero-visas"
                     datum={slide_migration_destination.growth}
                     title={t("Change number of visas")}
                     subtitle={t(
