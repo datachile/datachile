@@ -611,6 +611,8 @@
       "age_none": ""
     },
     "migration_education_slide": {
+      "text_none":
+        "<p>There's no data for immigrants from {{level}} to Chile.</p>",
       "text":
         "<p>{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School. The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.</p><p>By contrast, {{none_percent}} declare not having any formal education, and {{unknown_percent}} don't disclose their education level.</p>"
     },
@@ -626,6 +628,8 @@
       "activity_0": ""
     },
     "intltrade_slide": {
+      "text_none":
+        "<p>There's no data on internation trade between Chile and {{level}} in the recent years.</p>",
       "text":
         "<p>During {{year}}, Chile exported a total of US{{total_exports}} to {{level}}, and imported a total of US{{total_imports}}, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
     },
@@ -666,6 +670,8 @@
         "<p>The main destination of the imports from {{level}} is <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, mainly to the comunas of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, and <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
+      "text_none":
+        "<p>There's no data on internation trade between Chile and {{level}} in the recent years.</p>",
       "text":
         "<p>Between {{year.first}} and {{year.last}}, export to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} in {{year.first}}, to US{{export.volume_last}} in {{year.last}}. In the same period, imports from {{level}} registered {{import.behavior}} of {{import.growth}}, from US{{import.volume_first}} in {{year.first}}, to US{{import.volume_last}} in {{year.last}}.</p><p>In {{year.last}}, Chile had a {{balance.behavior}} trade balance with {{level}}, which favored {{balance.beneficiary}} in US{{balance.volume_last}}.</p>"
     }

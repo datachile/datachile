@@ -78,6 +78,7 @@ class MigrationEducationSlide extends Section {
         ]);
 
         return {
+          context: isNaN(lastyr) ? "none" : "",
           year_last: lastyr,
           year_prev: lastyr - 1,
           datum_male: lastyr_sex_male,
@@ -85,6 +86,7 @@ class MigrationEducationSlide extends Section {
           highsc_percent: numeral(lastyr_edu_highsc / total, locale).format(
             "0.0%"
           ),
+          higher_rawgrowth: higher_growth || 0,
           higher_upgrowth: higher_growth > 0,
           higher_growth: numeral(Math.abs(higher_growth), locale).format(
             "0.0%"
@@ -156,16 +158,18 @@ class MigrationEducationSlide extends Section {
                 )}
               />
             )}
-            <FeaturedDatum
-              className="l-1-3"
-              icon="crecimiento-migrantes-educ-superior"
-              datum={slide_migration_education.higher_growth}
-              title={t("Growth of immigrants with higher education")}
-              subtitle={t(
-                "in period {{year_prev}} - {{year_last}}",
-                slide_migration_education
-              )}
-            />
+            {slide_migration_education.higher_rawgrowth != 0 && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="crecimiento-migrantes-educ-superior"
+                datum={slide_migration_education.higher_growth}
+                title={t("Growth of immigrants with higher education")}
+                subtitle={t(
+                  "in period {{year_prev}} - {{year_last}}",
+                  slide_migration_education
+                )}
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

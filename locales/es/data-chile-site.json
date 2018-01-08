@@ -767,6 +767,8 @@
       "age_none": ""
     },
     "migration_education_slide": {
+      "text_none":
+        "<p>No hay datos sobre inmigrantes desde {{level}} hacia Chile.</p>",
       "text":
         "<p>El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Superior, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con educación superior ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.</p>"
     },
@@ -782,6 +784,8 @@
       "activity_0": ""
     },
     "intltrade_slide": {
+      "text_none":
+        "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
       "text":
         "<p>El {{year}} Chile exportó un total de US{{total_exports}} a {{level}}, e importó un total de US{{total_imports}}, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
     },
@@ -822,6 +826,8 @@
         "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, donde destacan las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
+      "text_none":
+        "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
       "text":
         "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} en {{year.first}}, hasta US{{import.volume_last}} en {{year.last}}.</p><p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>"
     }

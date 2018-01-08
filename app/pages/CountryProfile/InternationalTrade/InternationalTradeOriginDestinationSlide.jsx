@@ -32,12 +32,18 @@ class InternationalTradeOriginDestinationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = {};
         const data = result.data.data;
-        const { first, second, third } = championsBy(data, "CIF US");
+        let { first, second, third } = championsBy(data, "CIF US");
+        const grouping = groupingKey(first, second, third);
+
+        if (!third) third = zero;
+        if (!second) second = zero;
+        if (!first) first = zero;
 
         return {
           year: last_year,
-          grouping: groupingKey(first, second, third),
+          grouping,
           links: {
             imp_1_comuna: slugifyItem(
               "geo",
@@ -76,17 +82,17 @@ class InternationalTradeOriginDestinationSlide extends Section {
               third["Region"]
             )
           },
-          first_municipality: first ? first.Comuna : undefined,
-          first_region: first ? first.Region : undefined,
+          first_municipality: first.Comuna,
+          first_region: first.Region,
           first_percentage: numeral(
             sumBy(data.filter(d => d.Comuna == first.Comuna), "CIF US") /
               sumBy(data, "CIF US"),
             locale
           ).format("0.0%"),
-          second_municipality: second ? second.Comuna : undefined,
-          second_region: second ? second.Region : undefined,
-          third_municipality: third ? third.Comuna : undefined,
-          third_region: third ? third.Region : undefined
+          second_municipality: second.Comuna,
+          second_region: second.Region,
+          third_municipality: third.Comuna,
+          third_region: third.Region
         };
       }
     ),
@@ -102,11 +108,17 @@ class InternationalTradeOriginDestinationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
+        const zero = {};
         const data = result.data.data;
-        const { first, second, third } = championsBy(data, "FOB US");
+        let { first, second, third } = championsBy(data, "FOB US");
+        const grouping = groupingKey(first, second, third);
+
+        if (!third) third = zero;
+        if (!second) second = zero;
+        if (!first) first = zero;
 
         return {
-          grouping: groupingKey(first, second, third),
+          grouping,
           links: {
             exp_1_comuna: slugifyItem(
               "geo",
@@ -145,17 +157,17 @@ class InternationalTradeOriginDestinationSlide extends Section {
               third["Region"]
             )
           },
-          first_municipality: first ? first.Comuna : undefined,
-          first_region: first ? first.Region : undefined,
+          first_municipality: first.Comuna,
+          first_region: first.Region,
           first_percentage: numeral(
             sumBy(data.filter(d => d.Comuna == first.Comuna), "FOB US") /
               sumBy(data, "FOB US"),
             locale
           ).format("0.0%"),
-          second_municipality: second ? second.Comuna : undefined,
-          second_region: second ? second.Region : undefined,
-          third_municipality: third ? third.Comuna : undefined,
-          third_region: third ? third.Region : undefined
+          second_municipality: second.Comuna,
+          second_region: second.Region,
+          third_municipality: third.Comuna,
+          third_region: third.Region
         };
       }
     )

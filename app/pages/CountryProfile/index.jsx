@@ -171,10 +171,11 @@ class CountryProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
+          const data = res.data.data[0] || {};
           return {
             key: "country_imports",
             data: {
-              value: res.data.data[0]["CIF US"],
+              value: data["CIF US"],
               decile: null,
               year: sources.imports.year,
               source: sources.imports.title
@@ -205,10 +206,11 @@ class CountryProfile extends Component {
           return mondrianClient.query(q, "jsonrecords");
         })
         .then(res => {
+          const data = res.data.data[0] || {};
           return {
             key: "country_exports",
             data: {
-              value: res.data.data[0]["FOB US"],
+              value: data["FOB US"],
               decile: null,
               year: sources.exports.year,
               source: sources.exports.title
