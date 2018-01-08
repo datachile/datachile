@@ -150,10 +150,14 @@ export function getTopCategories(data, msrName, top = 10) {
 }
 
 export function joinDataByYear(data, msrName, first_y, last_y) {
-  const len = last_y - first_y;
-  const values = new Array(len + 1).fill(0);
-  data.data.map(item => {
-    values[item["ID Year"] - first_y] = item[msrName];
-  });
-  return values;
+  if (data) {
+    const len = last_y - first_y;
+    const values = new Array(len + 1).fill(0);
+    data.data.map(item => {
+      values[item["ID Year"] - first_y] = item[msrName];
+    });
+    return values;
+  } else {
+    return false;
+  }
 }
