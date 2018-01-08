@@ -153,7 +153,7 @@ export const featured_profiles = {
       url: "/geo/atacama-3"
     },
     {
-      img: "/images/profile-bg/industry/B.jpg",
+      img: "/images/profile-bg/industry/b.jpg",
       name: "EXPLOTACIÓN DE MINAS Y CANTERAS",
       type: "industries",
       url: "/industries/explotacion-de-minas-y-canteras-B"

@@ -61,7 +61,9 @@ class MigrationDetailsSlide extends Section {
             year_last: max_last.Year,
             current_max: max_last.Sex
           };
-        else changed = compared;
+        else {
+          changed = compared;
+        }
 
         const growth = annualized_growth(
           [changed["Number of visas"], max_last["Number of visas"]],
