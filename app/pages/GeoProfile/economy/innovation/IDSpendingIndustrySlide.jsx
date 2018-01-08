@@ -100,7 +100,6 @@ class IDSpendingCategorySlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">
-            {geo.type !== "country" ? t("Regional ") : ""}
             {t("R&D spending")}
             {geo.depth > 1 ? (
               <div className="topic-slide-subtitle">
