@@ -32,10 +32,10 @@ class About extends Component {
         slug: "data",
         title: t("about.data.title")
       },
-      /*{
-        slug: "glossary",
-        title: t("Glossary")
-      },*/
+      {
+        slug: "api",
+        title: t("about.api.title")
+      },
       {
         slug: "team",
         title: t("about.team.title")
@@ -275,8 +275,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.casen.use")
                   }}
@@ -289,8 +288,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.nene.use")
                   }}
@@ -303,8 +301,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.nesi.use")
                   }}
@@ -317,22 +314,20 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.aduana.use")
                   }}
                 />
 
-                <h3 id="dataset_aduana">{t("about.data.costes.title")}</h3>
+                <h3 id="dataset_costes">{t("about.data.costes.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.costes.text")
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.costes.use")
                   }}
@@ -345,8 +340,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.iplusd.use")
                   }}
@@ -361,8 +355,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.enrollment.use")
                   }}
@@ -377,8 +370,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.performance.use")
                   }}
@@ -391,8 +383,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.psu.use")
                   }}
@@ -405,8 +396,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.salud.use")
                   }}
@@ -419,8 +409,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.muerte.use")
                   }}
@@ -435,8 +424,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.discapacidad.use")
                   }}
@@ -449,8 +437,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.vida.use")
                   }}
@@ -465,8 +452,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.poblacion.use")
                   }}
@@ -481,8 +467,7 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.migracion.use")
                   }}
@@ -495,10 +480,36 @@ class About extends Component {
                   }}
                 />
 
-                <div
-                  className="use"
+                <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.internet.use")
+                  }}
+                />
+              </section>
+            )}
+
+            {section == "api" && (
+              <section className="section" id="api">
+                <h2>{t("about.api.title")}</h2>
+
+                <h3>{t("about.api.title1")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.api.text1")
+                  }}
+                />
+
+                <h3>{t("about.api.title2")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.api.text2")
+                  }}
+                />
+
+                <h3>{t("about.api.title3")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.api.text3")
                   }}
                 />
               </section>
@@ -512,6 +523,11 @@ class About extends Component {
                 <div
                   dangerouslySetInnerHTML={{
                     __html: t("about.team.text1")
+                  }}
+                />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.team.members")
                   }}
                 />
 

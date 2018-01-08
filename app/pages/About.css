@@ -71,8 +71,7 @@
         letter-spacing: 0.1em;
 
         &.selected {
-          color: var(--accent);
-          background-color: var(--snow);
+          text-decoration: underline;
           font-weight: 800;
           margin: 0;
         }
@@ -82,7 +81,6 @@
 
         & img {
           display: block;
-          //margin: 5px auto;
         }
       }
     }
@@ -134,7 +132,11 @@
       line-height: 1.5;
       text-align: justify;
       lost-column: 1;
-
+      & img.icon {
+        width: 15px;
+        position: relative;
+        margin-bottom: -4px;
+      }
       & a {
         color: var(--accent);
         font-weight: 800;
