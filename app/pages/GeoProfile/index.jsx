@@ -356,246 +356,250 @@ class GeoProfile extends Component {
 
     return (
       <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<DatachileLoading />}
+          data={this.props.data}
+          d3plus={d3plus}
+          topics={topics}
+          loadingComponent={<DatachileLoading />}
       >
         <Helmet>
           <title>{title}</title>
+          <meta
+              name="description"
+              content={title}
+          />
         </Helmet>
         <div className="profile">
           <div className="intro">
             {geo &&
-              geoObj && (
-                <Nav
-                  title={geo.caption}
-                  typeTitle={geoObj.type}
-                  type={"geo"}
-                  exploreLink={"/explore/geo"}
-                  ancestor={ancestor ? ancestor.caption : ""}
-                  ancestorLink={slugifyItem(
-                    "geo",
-                    ancestor ? ancestor.key : "",
-                    ancestor ? ancestor.name : ""
-                  )}
-                  topics={topics}
-                />
-              )}
-            <div className="splash">
-              <div
-                className="image"
-                style={{
-                  backgroundImage: `url('${geoObj.image}')`
-                }}
-              />
-              <div className="gradient" />
-            </div>
+             geoObj && (
+               <Nav
+                   title={geo.caption}
+                   typeTitle={geoObj.type}
+                   type={"geo"}
+                   exploreLink={"/explore/geo"}
+                   ancestor={ancestor ? ancestor.caption : ""}
+                   ancestorLink={slugifyItem(
+                       "geo",
+                       ancestor ? ancestor.key : "",
+                       ancestor ? ancestor.name : ""
+                     )}
+                   topics={topics}
+               />
+             )}
+        <div className="splash">
+          <div
+              className="image"
+              style={{
+                backgroundImage: `url('${geoObj.image}')`
+              }}
+          />
+          <div className="gradient" />
+        </div>
 
-            <div className="header">
-              <div className="meta">
-                {stats.population && (
-                  <FeaturedDatumSplash
-                    title={t("Population")}
-                    icon="poblacion"
-                    decile={stats.population.decile}
-                    rank={
-                      showRanking
-                        ? numeral(stats.population.rank, locale).format("0o") +
-                          " " +
-                          t("of") +
-                          " " +
-                          stats.population.total
-                        : false
-                    }
-                    datum={numeral(stats.population.value, locale).format(
-                      "(0,0)"
-                    )}
-                    source="population_estimate"
-                    className="population"
-                  />
-                )}
+        <div className="header">
+          <div className="meta">
+            {stats.population && (
+               <FeaturedDatumSplash
+                   title={t("Population")}
+                   icon="poblacion"
+                   decile={stats.population.decile}
+                   rank={
+                     showRanking
+                       ? numeral(stats.population.rank, locale).format("0o") +
+                         " " +
+                         t("of") +
+                         " " +
+                         stats.population.total
+                       : false
+                        }
+                   datum={numeral(stats.population.value, locale).format(
+                       "(0,0)"
+                     )}
+                   source="population_estimate"
+                   className="population"
+               />
+             )}
                 {stats.income && (
-                  <FeaturedDatumSplash
-                    title={t("Income")}
-                    icon="ingreso"
-                    decile={stats.income.value ? stats.income.decile : 0}
-                    rank={
-                      showRanking
-                        ? numeral(stats.income.rank, locale).format("0o") +
-                          " " +
-                          t("of") +
-                          " " +
-                          stats.income.total
-                        : false
-                    }
-                    datum={
-                      stats.income.value
-                        ? numeral(stats.income.value, locale).format("($ 0,0)")
-                        : false
-                    }
-                    source="nesi_income"
-                    className=""
-                  />
-                )}
+                   <FeaturedDatumSplash
+                       title={t("Income")}
+                       icon="ingreso"
+                       decile={stats.income.value ? stats.income.decile : 0}
+                       rank={
+                         showRanking
+                           ? numeral(stats.income.rank, locale).format("0o") +
+                             " " +
+                             t("of") +
+                             " " +
+                             stats.income.total
+                           : false
+                            }
+                       datum={
+                         stats.income.value
+                            ? numeral(stats.income.value, locale).format("($ 0,0)")
+                            : false
+                             }
+                       source="nesi_income"
+                       className=""
+                   />
+                 )}
                 {stats.psu && (
-                  <FeaturedDatumSplash
-                    title={t("Education")}
-                    icon="psu"
-                    decile={stats.psu.decile}
-                    rank={
-                      showRanking
-                        ? numeral(stats.psu.rank, locale).format("0o") +
-                          " " +
-                          t("of") +
-                          " " +
-                          stats.psu.total
-                        : false
-                    }
-                    datum={
-                      numeral(stats.psu.value, locale).format("(0,0)") + " psu"
-                    }
-                    source="psu"
-                    className=""
-                  />
-                )}
-              </div>
+                   <FeaturedDatumSplash
+                       title={t("Education")}
+                       icon="psu"
+                       decile={stats.psu.decile}
+                       rank={
+                         showRanking
+                           ? numeral(stats.psu.rank, locale).format("0o") +
+                             " " +
+                             t("of") +
+                             " " +
+                             stats.psu.total
+                           : false
+                            }
+                       datum={
+                         numeral(stats.psu.value, locale).format("(0,0)") + " psu"
+                             }
+                       source="psu"
+                       className=""
+                   />
+                 )}
+          </div>
 
-              <div className="candidates">
-                <AuthoritiesBlock geo={geoObj} ancestor={ancestor} data={this.props.data} />
-              </div>
+          <div className="candidates">
+            <AuthoritiesBlock geo={geoObj} ancestor={ancestor} data={this.props.data} />
+          </div>
 
-              <div className="map-comuna">
-                {geoObj.type != "country" && (
-                  <SvgMap
-                    region={geoObj.type == "region" ? geo : ancestor}
-                    active={geoObj.type == "comuna" ? geo : false}
-                  />
-                )}
-                <div className="map-region">
-                  <Geomap
-                    config={{
-                      data: [
-                        { id: 1, name: "Tarapacá" },
-                        { id: 2, name: "Antofagasta" },
-                        { id: 3, name: "Atacama" },
-                        { id: 4, name: "Coquimbo" },
-                        { id: 5, name: "Valparaíso" },
-                        { id: 6, name: "O'Higgins" },
-                        { id: 7, name: "Maule" },
-                        { id: 8, name: "BíoBío" },
-                        { id: 9, name: "Araucanía" },
-                        { id: 10, name: "Los Lagos" },
-                        { id: 11, name: "Aisén" },
-                        { id: 12, name: "Magallanes" },
-                        { id: 13, name: "Metropolitana" },
-                        { id: 14, name: "Los Ríos" },
-                        { id: 15, name: "Arica y Parinacota" }
-                      ],
-                      id: "id",
-                      downloadButton: false,
-                      height: 500,
-                      label: d => {
-                        return "label";
-                      },
-                      legend: false,
-                      ocean: "transparent",
-                      on: {
-                        "click.shape": function(d) {
-                          selectAll(".d3plus-tooltip").style(
-                            "transform",
-                            "scale(0)"
-                          );
-                          browserHistory.push(slugifyItem("geo", d.id, d.name));
-                        }
-                      },
-                      padding: 10,
-                      shapeConfig: {
-                        hoverOpacity: 1,
-                        Path: {
-                          fill: fillShape,
-                          stroke: "rgba(255, 255, 255, 1)"
-                        }
-                      },
-                      tiles: false,
-                      tooltipConfig: {
-                        title: "",
-                        body: d => {
-                          return (
-                            "Región " +
-                            d.name +
-                            "<br/><a>" +
-                            t("tooltip.to_profile") +
-                            "</a>"
-                          );
-                        },
-                        bodyStyle: {
-                          "font-family": "'Yantramanav', sans-serif",
-                          "font-size": "12px",
-                          "text-align": "center",
-                          color: "#2F2F38"
-                        },
-                        footer: "",
-                        background: "white",
-                        footerStyle: {
-                          "margin-top": 0
-                        },
-                        padding: "10px",
-                        borderRadius: "0px",
-                        border: "1px solid #2F2F38"
-                      },
-                      topojson: "/geo/regiones.json",
-                      topojsonId: "id",
-                      topojsonKey: "regiones",
-                      width: 200,
-                      zoom: false
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
+          <div className="map-comuna">
+            {geoObj.type != "country" && (
+               <SvgMap
+                   region={geoObj.type == "region" ? geo : ancestor}
+                   active={geoObj.type == "comuna" ? geo : false}
+               />
+             )}
+        <div className="map-region">
+          <Geomap
+              config={{
+                data: [
+                  { id: 1, name: "Tarapacá" },
+                  { id: 2, name: "Antofagasta" },
+                  { id: 3, name: "Atacama" },
+                  { id: 4, name: "Coquimbo" },
+                  { id: 5, name: "Valparaíso" },
+                  { id: 6, name: "O'Higgins" },
+                  { id: 7, name: "Maule" },
+                  { id: 8, name: "BíoBío" },
+                  { id: 9, name: "Araucanía" },
+                  { id: 10, name: "Los Lagos" },
+                  { id: 11, name: "Aisén" },
+                  { id: 12, name: "Magallanes" },
+                  { id: 13, name: "Metropolitana" },
+                  { id: 14, name: "Los Ríos" },
+                  { id: 15, name: "Arica y Parinacota" }
+                ],
+                id: "id",
+                downloadButton: false,
+                height: 500,
+                label: d => {
+                  return "label";
+                },
+                legend: false,
+                ocean: "transparent",
+                on: {
+                  "click.shape": function(d) {
+                    selectAll(".d3plus-tooltip").style(
+                      "transform",
+                      "scale(0)"
+                    );
+                    browserHistory.push(slugifyItem("geo", d.id, d.name));
+                  }
+                },
+                padding: 10,
+                shapeConfig: {
+                  hoverOpacity: 1,
+                  Path: {
+                    fill: fillShape,
+                    stroke: "rgba(255, 255, 255, 1)"
+                  }
+                },
+                tiles: false,
+                tooltipConfig: {
+                  title: "",
+                  body: d => {
+                    return (
+                      "Región " +
+                      d.name +
+                      "<br/><a>" +
+                      t("tooltip.to_profile") +
+                      "</a>"
+                    );
+                  },
+                  bodyStyle: {
+                    "font-family": "'Yantramanav', sans-serif",
+                    "font-size": "12px",
+                    "text-align": "center",
+                    color: "#2F2F38"
+                  },
+                  footer: "",
+                  background: "white",
+                  footerStyle: {
+                    "margin-top": 0
+                  },
+                  padding: "10px",
+                  borderRadius: "0px",
+                  border: "1px solid #2F2F38"
+                },
+                topojson: "/geo/regiones.json",
+                topojsonId: "id",
+                topojsonKey: "regiones",
+                width: 200,
+                zoom: false
+              }}
+          />
+        </div>
+          </div>
+        </div>
 
-            <div className="topics-selector-container">
-              <TopicMenu topics={topics} />
-            </div>
+        <div className="topics-selector-container">
+          <TopicMenu topics={topics} />
+        </div>
 
-            <div className="arrow-container">
-              <a href="#economy">
-                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-              </a>
-            </div>
+        <div className="arrow-container">
+          <a href="#economy">
+            <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+          </a>
+        </div>
           </div>
 
           <div className="topics-container">
             <Topic
-              name={t("Economy")}
-              id="economy"
-              sections={[
-                {
-                  name: t("Trade"),
-                  slides: [t("International trade")]
-                },
-                {
-                  name: t("Industry"),
-                  slides: [t("Industry & Occupations")]
-                },
-                {
-                  name: t("Opportunity"),
-                  slides: [t("Industry Space"), t("Product Space")]
-                },
-                {
-                  name: t("Employment"),
-                  slides: [t("By Sex & Education Level")]
-                },
-                {
-                  name: t("Income"),
-                  slides: [t("By Sex & Age"), t("By Occupation")]
-                },
-                {
-                  name: t("Innovation"),
-                  slides: [t("By Industry")]
-                }
-              ]}
+                name={t("Economy")}
+                id="economy"
+                sections={[
+                  {
+                    name: t("Trade"),
+                    slides: [t("International trade")]
+                  },
+                  {
+                    name: t("Industry"),
+                    slides: [t("Industry & Occupations")]
+                  },
+                  {
+                    name: t("Opportunity"),
+                    slides: [t("Industry Space"), t("Product Space")]
+                  },
+                  {
+                    name: t("Employment"),
+                    slides: [t("By Sex & Education Level")]
+                  },
+                  {
+                    name: t("Income"),
+                    slides: [t("By Sex & Age"), t("By Occupation")]
+                  },
+                  {
+                    name: t("Innovation"),
+                    slides: [t("By Industry")]
+                  }
+                ]}
             >
               <div>
                 <TradeSlide TradeBalance={TradeBalance}>
@@ -673,18 +677,18 @@ class GeoProfile extends Component {
             </Topic>
 
             <Topic
-              name={t("Education")}
-              id="education"
-              sections={[
-                {
-                  name: t("Performance"),
-                  slides: [t("PSU vs NEM"), t("PSU By Sex")]
-                },
-                {
-                  name: t("Enrollment"),
-                  slides: [t("By School Type")]
-                }
-              ]}
+                name={t("Education")}
+                id="education"
+                sections={[
+                  {
+                    name: t("Performance"),
+                    slides: [t("PSU vs NEM"), t("PSU By Sex")]
+                  },
+                  {
+                    name: t("Enrollment"),
+                    slides: [t("By School Type")]
+                  }
+                ]}
             >
               <div>
                 <PSUNEMSlide>
@@ -711,22 +715,22 @@ class GeoProfile extends Component {
             </Topic>
 
             <Topic
-              name={t("Housing")}
-              id="environment"
-              sections={[
-                {
-                  name: t("Amenities"),
-                  slides: [t("Access to services")]
-                },
-                {
-                  name: t("Quality"),
-                  slides: [t("Housing Conditions")]
-                },
-                {
-                  name: t("Connectivity"),
-                  slides: [t("Devices")]
-                }
-              ]}
+                name={t("Housing")}
+                id="environment"
+                sections={[
+                  {
+                    name: t("Amenities"),
+                    slides: [t("Access to services")]
+                  },
+                  {
+                    name: t("Quality"),
+                    slides: [t("Housing Conditions")]
+                  },
+                  {
+                    name: t("Connectivity"),
+                    slides: [t("Devices")]
+                  }
+                ]}
             >
               <div>
                 <ServicesAccessSlide>
@@ -753,30 +757,30 @@ class GeoProfile extends Component {
             </Topic>
 
             <Topic
-              name={t("Demography")}
-              id="demography"
-              sections={[
-                {
-                  name: t("Origins"),
-                  slides: [
-                    t("By Origin Country"),
-                    t("By Sex & Age"),
-                    t("By Activity & Visa Type")
-                  ]
-                } /*
-                     {
-                     name: t("Diversity"),
-                     slides: [t("By Sex & Age")]
-                     },*/,
-                {
-                  name: t("Population"),
-                  slides: [t("By Sex & Age")]
-                } /*,
-                     {
-                     name: t("Ethnicity"),
-                     slides: [t("By Sex & Age")]
-                     }*/
-              ]}
+                name={t("Demography")}
+                id="demography"
+                sections={[
+                  {
+                    name: t("Origins"),
+                    slides: [
+                      t("By Origin Country"),
+                      t("By Sex & Age"),
+                      t("By Activity & Visa Type")
+                    ]
+                  } /*
+                       {
+                       name: t("Diversity"),
+                       slides: [t("By Sex & Age")]
+                       },*/,
+                  {
+                    name: t("Population"),
+                    slides: [t("By Sex & Age")]
+                  } /*,
+                       {
+                       name: t("Ethnicity"),
+                       slides: [t("By Sex & Age")]
+                       }*/
+                ]}
             >
               <div>
                 <MigrationSlide>
@@ -813,22 +817,22 @@ class GeoProfile extends Component {
             </Topic>
 
             <Topic
-              name={t("Health")}
-              id="health"
-              sections={[
-                {
-                  name: t("Healthcare"),
-                  slides: [t("Health Insurance"), t("Healthcare")]
-                },
-                {
-                  name: t("Disability"),
-                  slides: [t("Disability")]
-                },
-                {
-                  name: t("Death Causes"),
-                  slides: [t("Death Causes")]
-                }
-              ]}
+                name={t("Health")}
+                id="health"
+                sections={[
+                  {
+                    name: t("Healthcare"),
+                    slides: [t("Health Insurance"), t("Healthcare")]
+                  },
+                  {
+                    name: t("Disability"),
+                    slides: [t("Disability")]
+                  },
+                  {
+                    name: t("Death Causes"),
+                    slides: [t("Death Causes")]
+                  }
+                ]}
             >
               <div>
                 <AccessSlide>

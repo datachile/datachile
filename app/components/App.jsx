@@ -37,7 +37,7 @@ class App extends Component {
         <Helmet titleTemplate="%s — DataChile" defaultTitle="DataChile">
           <meta
             name="description"
-            content={t("Visualizing the open data landscape of Chile")}
+            content={t("home.subtitle")}
           />
         </Helmet>
         {children}

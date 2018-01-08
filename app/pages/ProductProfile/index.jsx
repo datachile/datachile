@@ -428,6 +428,10 @@ class ProductProfile extends Component {
       }
     ];
 
+    let title =
+      obj &&
+      `${obj.caption}${obj.parent ? " (" + obj.parent.caption + ")" : ""}`;
+
     return (
       <CanonComponent
         data={this.props.data}
@@ -436,11 +440,8 @@ class ProductProfile extends Component {
         loadingComponent={<DatachileLoading />}
       >
         <Helmet>
-          {obj && (
-            <title>{`${obj.caption}${
-              obj.parent ? " (" + obj.parent.caption + ")" : ""
-            }`}</title>
-          )}
+          <title>{title}</title>
+          <meta name="description" content={title} />
         </Helmet>
         <div className="profile">
           <div className="intro">
@@ -575,9 +576,9 @@ class ProductProfile extends Component {
                           __html:
                             text_product.exports.n_countries > 0
                               ? t(
-                                  `product_profile.about2.exp_${
-                                    text_product.exports.n_countries
-                                  }_imp_${text_product.imports.n_countries}`,
+                                  `product_profile.about2.exp_${text_product
+                                    .exports.n_countries}_imp_${text_product
+                                    .imports.n_countries}`,
                                   text_product
                                 )
                               : ""
