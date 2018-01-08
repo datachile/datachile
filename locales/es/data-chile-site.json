@@ -686,7 +686,7 @@
       "title": "Equipo",
       "title1": "¿Quién creó DataChile?",
       "text1":
-        "<p>DataChile fue creada por Datawheel, una empresa que es líder global en servicios de integración, visualización y distribución de datos. DataWheel fue fundada en el 2013 en Estados Unidos por Cesar Hidalgo, Dave Landry y Alex Simoes. Datawheel ha creado DataUSA (ganador de un Information is Beautiful Award en 2016 y un Webby Award en 2017), DataAfrica, DataViva, y otros proyectos privados para gobiernos y empresas.</p>",
+        "<p>DataChile fue creada por Datawheel, una empresa que es líder global en servicios de integración, visualización y distribución de datos. DataWheel fue fundada en el 2013 en Estados Unidos por César Hidalgo, Dave Landry y Alex Simoes. Datawheel ha creado DataUSA (ganador de un Information is Beautiful Award en 2016 y un Webby Award en 2017), DataAfrica, DataViva, y otros proyectos privados para gobiernos y empresas.</p>",
       "title2": "¿Quién financió DataChile?",
       "text2":
         "<p>DataChile fue financiado por aportes públicos y privados. El primer aporte a la construcción de DataChile fue otorgado por Antofagasta Minerals a principios del 2016. A finales del 2016, se sumó Corfo y el Ministerio de Economía. A fines de 2017, DataChile recibió también el apoyo del Explora Lab de Entel.</p>",
@@ -697,7 +697,7 @@
       "text4":
         "<p>Hasta abril del 2018, las actualizaciones de DataChile son responsabilidad de Datawheel. A partir de abril del 2018, la Dirección General de Relaciones Económicas Internacionales (DIRECON) del Ministerio de Relaciones Exteriores tomará posesión de la administración de DataChile y será responsable por actualizar los datos y la plataforma.</p>",
       "members":
-        "<p>El equipo de Datachile se compone por:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>Carlos Navarrete</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>"
+        "<p>El equipo de Datachile se compone por:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>César Hidalgo</li><li>Carlos Navarrete</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>"
     },
     "api": {
       "title": "API",
@@ -969,7 +969,8 @@
     }
   },
   "granted in": "otorgadas en",
-  "GAP between Private/Municipal": "Diferencia PSU Promedio Particular Pagado/Municipal",
+  "GAP between Private/Municipal":
+    "Diferencia PSU Promedio Particular Pagado/Municipal",
   "granted in {{year}}": "otorgadas en {{year}}",
   "granted in {{year_last}}": "otorgadas en {{year_last}}",
   "health cares": "atenciones de salud",
