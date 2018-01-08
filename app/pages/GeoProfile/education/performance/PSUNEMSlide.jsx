@@ -141,12 +141,23 @@ class PSUNEMSlide extends Section {
       );
     }
 
+    let gap = false;
+    if (geo.type === "region") {
+      gap =
+        datum_performance_by_psu.data.find(
+          item => item["ID Administration"] === 3
+        ) -
+        datum_performance_by_psu.data.find(
+          item => item["ID Administration"] === 1
+        );
+    }
+
     const text = merge(perf, rank);
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">Performance</div>
+          <div className="topic-slide-title">{t("Performance")}</div>
           <div className="topic-slide-text">
             <p>
               {text && (
@@ -200,8 +211,9 @@ class PSUNEMSlide extends Section {
                   }
                 />
               ))}
+
             {text &&
-              (datum_performance_psu_average.data > 0 && (
+              (datum_performance_psu_average.data > 0 && !gap ? (
                 <FeaturedDatum
                   className="l-1-3"
                   icon="industria"
@@ -210,6 +222,16 @@ class PSUNEMSlide extends Section {
                     locale
                   ).format("0.00")}
                   title={t("Average PSU")}
+                  subtitle={
+                    t("In") + " " + sources.education_performance_new.year
+                  }
+                />
+              ) : (
+                <FeaturedDatum
+                  className="l-1-3"
+                  icon="industria"
+                  datum={numeral(gap, locale).format("0.00")}
+                  title={t("GAP between Private/Municipal")}
                   subtitle={
                     t("In") + " " + sources.education_performance_new.year
                   }

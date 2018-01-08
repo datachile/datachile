@@ -17,6 +17,78 @@ class EmploymentSlide extends Section {
         geo = geo.ancestor;
       }
       return simpleGeoDatumNeed(
+        "datum_employment_text_sex",
+        "nene_quarter",
+        ["Expansion factor"],
+        {
+          drillDowns: [["Sex", "Sex", "Sex"]],
+          options: { parents: true },
+          cuts: [
+            `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`,
+            "{[Age Range].[Age Range].[Age Range].&[2],[Age Range].[Age Range].[Age Range].&[3],[Age Range].[Age Range].[Age Range].&[4],[Age Range].[Age Range].[Age Range].&[5]}"
+          ]
+        },
+        false,
+        geo
+      )(params, store);
+    },
+    (params, store) => {
+      var geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type == "comuna") {
+        geo = geo.ancestor;
+      }
+      return simpleGeoDatumNeed(
+        "datum_employment_text_employment",
+        "nene_quarter",
+        ["Expansion factor"],
+        {
+          drillDowns: [
+            [
+              "Occupational Situation",
+              "Occupational Situation",
+              "Occupational Situation"
+            ]
+          ],
+          options: { parents: true },
+          cuts: [
+            `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`,
+            "{[Age Range].[Age Range].[Age Range].&[2],[Age Range].[Age Range].[Age Range].&[3],[Age Range].[Age Range].[Age Range].&[4],[Age Range].[Age Range].[Age Range].&[5]}"
+          ]
+        },
+        false,
+        geo
+      )(params, store);
+    },
+    (params, store) => {
+      var geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type == "comuna") {
+        geo = geo.ancestor;
+      }
+      return simpleGeoDatumNeed(
+        "datum_employment_text_isced",
+        "nene_quarter",
+        ["Expansion factor"],
+        {
+          drillDowns: [["ISCED", "ISCED", "ISCED"]],
+          options: { parents: true },
+          cuts: [
+            `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`,
+            "{[Age Range].[Age Range].[Age Range].&[2],[Age Range].[Age Range].[Age Range].&[3],[Age Range].[Age Range].[Age Range].&[4],[Age Range].[Age Range].[Age Range].&[5]}"
+          ]
+        },
+        false,
+        geo
+      )(params, store);
+    },
+    (params, store) => {
+      var geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type == "comuna") {
+        geo = geo.ancestor;
+      }
+      return simpleGeoDatumNeed(
         "datum_employment_occupied",
         "nene_quarter",
         ["Expansion factor"],
@@ -66,12 +138,67 @@ class EmploymentSlide extends Section {
     const {
       geo,
       datum_employment_occupied,
-      datum_employment_unemployment
+      datum_employment_unemployment,
+
+      datum_employment_text_isced,
+      datum_employment_text_employment,
+      datum_employment_text_sex
     } = this.context.data;
 
     const locale = i18n.language;
 
     const ancestor = geo.depth > 1 ? geo.ancestors[0].caption : geo.caption;
+
+    const levels = datum_employment_text_isced.sort(
+      (a, b) => b["Expansion factor"] - a["Expansion factor"]
+    );
+
+    const total_female = datum_employment_text_sex.find(
+      item => item["ID Sex"] === 1
+    )["Expansion factor"];
+    const total_male = datum_employment_text_sex.find(
+      item => item["ID Sex"] === 2
+    )["Expansion factor"];
+    const text = {
+      year: {
+        last: "2016",
+        trim: ""
+      },
+      geo: ancestor,
+      total: {
+        total: numeral(total_female + total_male, locale).format("0,0.00 a"),
+        female: numeral(total_female, locale).format("0,0.00 a"),
+        male: numeral(total_female, locale).format("0,0.00 a"),
+        empleados: numeral(
+          datum_employment_text_employment.find(
+            item => item["ID Occupational Situation"] === 1
+          )["Expansion factor"],
+          locale
+        ).format("0,0.00 a"),
+        desempleados: numeral(
+          datum_employment_text_employment.find(
+            item => item["ID Occupational Situation"] === 2
+          )["Expansion factor"],
+          locale
+        ).format("0,0.00 a"),
+        inactivos: numeral(
+          datum_employment_text_employment.find(
+            item => item["ID Occupational Situation"] === 3
+          )["Expansion factor"],
+          locale
+        ).format("0,0.00 a")
+      },
+      level: {
+        first: {
+          caption: levels[0]["ISCED"]
+        },
+        second: {
+          caption: levels[1]["ISCED"]
+        }
+      }
+    };
+
+    console.log(text);
 
     return (
       <div className="topic-slide-block">
@@ -92,7 +219,15 @@ class EmploymentSlide extends Section {
               ""
             )}
           </div>
-          <div className="topic-slide-text">text</div>
+          <div className="topic-slide-text">
+            <p>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t("geo_profile.economy.employment.text", text)
+                }}
+              />
+            </p>
+          </div>
           {datum_employment_unemployment && (
             <div className="topic-slide-data">
               <FeaturedDatum
