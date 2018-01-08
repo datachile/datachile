@@ -7,30 +7,45 @@ import { annualized_growth } from "helpers/calculator";
 
 import { simpleGeoDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
+import { getGeoObject } from "helpers/dataUtils";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
 class HealthCareSlide extends Section {
   static need = [
-    simpleGeoDatumNeed(
-      "datum_health_access",
-      "health_access",
-      [
-        "Dental Discharges Per 100 inhabitants AVG",
-        "Primary Healthcare AVG",
-        "Specialized Healthcare AVG",
-        "Urgency Healthcare AVG",
-        "Primary Healthcare SUM",
-        "Specialized Healthcare SUM",
-        "Urgency Healthcare SUM"
-      ],
-      {
-        drillDowns: [["Date", "Date", "Year"]],
-        options: { parents: false },
-        cuts: [`[Date].[Date].[Year].&[${sources.health_access.year}]`]
-      },
-      false
-    ),
+    (params, store) => {
+      let geo = getGeoObject(params);
+
+      if (geo.type === "comuna") {
+        geo = geo.ancestor;
+      }
+
+      const year =
+        parseInt(geo.key) === 9
+          ? sources.health_access.year - 1
+          : sources.health_access.year;
+
+      return simpleGeoDatumNeed(
+        "datum_health_access",
+        "health_access",
+        [
+          "Dental Discharges Per 100 inhabitants AVG",
+          "Primary Healthcare AVG",
+          "Specialized Healthcare AVG",
+          "Urgency Healthcare AVG",
+          "Primary Healthcare SUM",
+          "Specialized Healthcare SUM",
+          "Urgency Healthcare SUM"
+        ],
+        {
+          drillDowns: [["Date", "Date", "Year"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${year}]`]
+        },
+        false
+      )(params, store);
+    },
+
     simpleGeoDatumNeed(
       "datum_health_access_specialized_per_year",
       "health_access",
@@ -69,7 +84,10 @@ class HealthCareSlide extends Section {
             geo,
             year: {
               first: 2010,
-              last: sources.health_access.year
+              last:
+                parseInt(geo.key) === 9
+                  ? sources.health_access.year - 1
+                  : sources.health_access.year
             },
             healthcare: {
               urgency: {
