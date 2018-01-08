@@ -340,7 +340,15 @@ class ProductProfile extends Component {
 
     const key =
       typeof obj === "object"
-        ? obj.depth === 1 ? obj.key : obj.ancestors[0].key
+        ? obj.depth === 1
+          ? obj.key
+          : ["0101", "0102", "0103", "0104", "0105", "0207"].includes(
+              obj.key.substr(obj.key.length - 4)
+            )
+            ? obj.key.substr(obj.key.length - 4)
+            : obj.key.substr(obj.key.length - 4).slice(0, 2) === "03"
+              ? "03x"
+              : obj.ancestors[0].key
         : "";
 
     const ids = getLevelObject(this.props.routeParams);
