@@ -112,13 +112,14 @@ class EnrollmentSlide extends Section {
     const locale = i18n.language;
 
     const text = Enrollment(datum_enrollment_by_administration, geo, locale);
-    if (text) {
+
+    /*if (text) {
       text.enrollment.total = numeral(
         datum_enrollment_education,
         locale
       ).format("(0,0)");
-    }
-
+    }*/
+    //console.log(datum_enrollment_education)
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -133,54 +134,64 @@ class EnrollmentSlide extends Section {
             </p>
           </div>
           <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="estudiantes-cantidad"
-              datum={text.enrollment.total}
-              title={t("Total Students")}
-              subtitle={
-                numeral(
-                  datum_enrollment_education /
-                    datum_enrollment_education_country,
+            {text && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="estudiantes-cantidad"
+                datum={text.enrollment.total}
+                title={t("Total Students")}
+                subtitle={
+                  geo.type !== "country"
+                    ? numeral(
+                        datum_enrollment_education /
+                          datum_enrollment_education_country,
+                        locale
+                      ).format("(0.0%)") +
+                      t(" of ") +
+                      "Chile"
+                    : ""
+                }
+              />
+            )}
+            {text && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="estudiantes-educ-especial"
+                datum={numeral(
+                  datum_enrollment_special_education,
                   locale
-                ).format("(0.0%)") +
-                t(" of ") +
-                "Chile"
-              }
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="estudiantes-educ-especial"
-              datum={numeral(datum_enrollment_special_education, locale).format(
-                "(0,0)"
-              )}
-              title={t("Students in Special Education")}
-              subtitle={
-                numeral(
-                  datum_enrollment_special_education /
-                    datum_enrollment_education,
-                  locale
-                ).format("(0.0%)") +
-                t(" of ") +
-                geo.caption
-              }
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="estudiantes-educ-rural"
-              datum={numeral(datum_enrollment_rural_education, locale).format(
-                "(0,0)"
-              )}
-              title={t("Students in Rural Education")}
-              subtitle={
-                numeral(
-                  datum_enrollment_rural_education / datum_enrollment_education,
-                  locale
-                ).format("(0.0%)") +
-                t(" of ") +
-                geo.caption
-              }
-            />
+                ).format("(0,0)")}
+                title={t("Students in Special Education")}
+                subtitle={
+                  numeral(
+                    datum_enrollment_special_education /
+                      text.enrollment.total_clean,
+                    locale
+                  ).format("(0.0%)") +
+                  t(" of ") +
+                  geo.caption
+                }
+              />
+            )}
+            {text && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="estudiantes-educ-rural"
+                datum={numeral(datum_enrollment_rural_education, locale).format(
+                  "(0,0)"
+                )}
+                title={t("Students in Rural Education")}
+                subtitle={
+                  numeral(
+                    datum_enrollment_rural_education /
+                      text.enrollment.total_clean,
+                    locale
+                  ).format("(0.0%)") +
+                  t(" of ") +
+                  geo.caption
+                }
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

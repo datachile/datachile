@@ -67,7 +67,7 @@ function SpendingBySector(data, msrName, geo, locale, t) {
 }
 
 function IndustryOccupation(data, locale, t) {
-  if(data) {
+  if (data) {
     const rank = getRank(data.data, "Expansion Factor", "ISCO", t);
     return {
       text_joined_occupations: rank
@@ -134,7 +134,16 @@ function Enrollment(data, geo, locale) {
             return all + item["Number of records"];
           }, 0),
         locale
-      ).format("0,0")
+      ).format("0,0"),
+      total: numeral(
+        data.data.reduce((all, item) => {
+          return all + item["Number of records"];
+        }, 0),
+        locale
+      ).format("0,0"),
+      total_clean: data.data.reduce((all, item) => {
+        return all + item["Number of records"];
+      }, 0)
     };
     return {
       year: {
