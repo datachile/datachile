@@ -65,6 +65,7 @@ class About extends Component {
           type={false}
           exploreLink={"/"}
         />
+
         <div className="about">
           <div className="intro">
             <div className="splash">
@@ -265,6 +266,15 @@ class About extends Component {
                       <td>{t("about.data.internet.year")}</td>
                       <td>{t("about.data.internet.source")}</td>
                     </tr>
+                    <tr>
+                      <td>
+                        <a href="#dataset_servel">
+                          {t("about.data.servel.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.servel.year")}</td>
+                      <td>{t("about.data.servel.source")}</td>
+                    </tr>
                   </tbody>
                 </table>
 
@@ -281,6 +291,33 @@ class About extends Component {
                   }}
                 />
 
+                <p>
+                  <a href="casen_household_clean_data.zip" target="_blank">
+                    {t("Download data")} vivienda
+                  </a>{" "}
+                  |{" "}
+                  <a href="casen_banking_clean_data.zip" target="_blank">
+                    {t("Download data")} bancarización
+                  </a>{" "}
+                  |{" "}
+                  <a href="casen_health_system_clean_data.zip" target="_blank">
+                    {t("Download data")} salud
+                  </a>{" "}
+                  |{" "}
+                  <a href="casen_income_clean_data.zip" target="_blank">
+                    {t("Download data")} ingreso
+                  </a>
+                </p>
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/casen_documentation.zip"
+                    target="_blank"
+                  >
+                    {t("Download documentation")}
+                  </a>
+                </p>
+
                 <h3 id="dataset_nene">{t("about.data.nene.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
@@ -293,6 +330,22 @@ class About extends Component {
                     __html: t("about.data.nene.use")
                   }}
                 />
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/nene_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>{" "}
+                  |{" "}
+                  <a
+                    href="https://docs.datachile.io/nene_documentation.zip"
+                    target="_blank"
+                  >
+                    {t("Download documentation")}
+                  </a>
+                </p>
 
                 <h3 id="dataset_nesi">{t("about.data.nesi.title")}</h3>
                 <div
@@ -307,6 +360,22 @@ class About extends Component {
                   }}
                 />
 
+                <p>
+                  <a
+                    href="https://docs.datachile.io/nesi_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>{" "}
+                  |{" "}
+                  <a
+                    href="https://docs.datachile.io/nesi_documentation.zip"
+                    target="_blank"
+                  >
+                    {t("Download documentation")}
+                  </a>
+                </p>
+
                 <h3 id="dataset_aduana">{t("about.data.aduana.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
@@ -319,6 +388,15 @@ class About extends Component {
                     __html: t("about.data.aduana.use")
                   }}
                 />
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/aduanas_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
 
                 <h3 id="dataset_costes">{t("about.data.costes.title")}</h3>
                 <div
@@ -333,6 +411,15 @@ class About extends Component {
                   }}
                 />
 
+                <p>
+                  <a
+                    href="https://docs.datachile.io/production_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
                 <h3 id="dataset_iplusd">{t("about.data.iplusd.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
@@ -345,6 +432,14 @@ class About extends Component {
                     __html: t("about.data.iplusd.use")
                   }}
                 />
+                <p>
+                  <a
+                    href="https://docs.datachile.io/research_and_development_survey_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
 
                 <h3 id="dataset_enrollment">
                   {t("about.data.enrollment.title")}
@@ -361,6 +456,15 @@ class About extends Component {
                   }}
                 />
 
+                <p>
+                  <a
+                    href="https://docs.datachile.io/education_enrollment_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
                 <h3 id="dataset_performance">
                   {t("about.data.performance.title")}
                 </h3>
@@ -375,6 +479,15 @@ class About extends Component {
                     __html: t("about.data.performance.use")
                   }}
                 />
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/education_performance_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
 
                 <h3 id="dataset_psu">{t("about.data.psu.title")}</h3>
                 <div
@@ -402,6 +515,15 @@ class About extends Component {
                   }}
                 />
 
+                <p>
+                  <a
+                    href="https://docs.datachile.io/basic_health_indicators_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
                 <h3 id="dataset_muerte">{t("about.data.muerte.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
@@ -414,6 +536,37 @@ class About extends Component {
                     __html: t("about.data.muerte.use")
                   }}
                 />
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/basic_health_indicators_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
+                <h3 id="dataset_vida">{t("about.data.vida.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.vida.text")
+                  }}
+                />
+
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.vida.use")
+                  }}
+                />
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/basic_health_indicators_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
 
                 <h3 id="dataset_discapacidad">
                   {t("about.data.discapacidad.title")}
@@ -430,18 +583,14 @@ class About extends Component {
                   }}
                 />
 
-                <h3 id="dataset_vida">{t("about.data.vida.title")}</h3>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: t("about.data.vida.text")
-                  }}
-                />
-
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("about.data.vida.use")
-                  }}
-                />
+                <p>
+                  <a
+                    href="https://docs.datachile.io/disability_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
 
                 <h3 id="dataset_poblacion">
                   {t("about.data.poblacion.title")}
@@ -458,6 +607,15 @@ class About extends Component {
                   }}
                 />
 
+                <p>
+                  <a
+                    href="https://docs.datachile.io/population_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
                 <h3 id="dataset_migracion">
                   {t("about.data.migracion.title")}
                 </h3>
@@ -473,6 +631,15 @@ class About extends Component {
                   }}
                 />
 
+                <p>
+                  <a
+                    href="https://docs.datachile.io/immigration_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
                 <h3 id="dataset_internet">{t("about.data.internet.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
@@ -485,6 +652,53 @@ class About extends Component {
                     __html: t("about.data.internet.use")
                   }}
                 />
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/internet_use_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
+                <h3 id="dataset_servel">{t("about.data.servel.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.servel.text")
+                  }}
+                />
+
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.servel.use")
+                  }}
+                />
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/polls_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
+                <h3 id="dataset_ids">{t("about.data.ids.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.ids.text")
+                  }}
+                />
+
+                <p>
+                  <a
+                    href="https://docs.datachile.io/official_ids.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
               </section>
             )}
 

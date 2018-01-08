@@ -89,6 +89,7 @@
   "Country": "País",
   "Created in collaboration": "Creado en colaboración",
   "Data source": "Fuente",
+  "Download data": "Descargar datos",
   "Death Causes": "Causas de muerte",
   "Death Causes By Diseases": "Causas de muerte por Enfermedades",
   "Death Causes Over Time": "Evolución de Muertes por Causas",
@@ -681,6 +682,21 @@
           "<p>Datos de productividad de las industrias chilenas que provienen de registros administrativos del Servicio de Impuestos Internos (SII). Estos datos proporcionan información respecto del número de trabajadores, el coste de capital y trabajo, y la salida o producción (output) de una industria en una comuna.</p>",
         "use":
           "Se usa en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
+      },
+      "servel": {
+        "title": "Resultados electorales",
+        "year": "2009-2013-2016",
+        "source": "Servicio Electoral (SERVEL)",
+        "text":
+          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones.</p>",
+        "use": "Se usa en los perfiles nacional, regional y comunal."
+      },
+      "ids": {
+        "title": "Ids genéricos",
+        "year": "",
+        "source": "",
+        "text": "<p>Metadatos y ids de referencia de los demás archivos.</p>",
+        "use": "Se usa en los perfiles nacional, regional y comunal."
       }
     },
     "team": {
