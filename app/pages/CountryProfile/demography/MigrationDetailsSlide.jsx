@@ -186,8 +186,10 @@ class MigrationDetailsSlide extends Section {
       slide_migration_age
     } = this.context.data;
 
-    slide_migration_sex.level = country.caption;
-    slide_migration_age.level = country.caption;
+    if (slide_migration_sex) {
+      slide_migration_sex.level = country.caption;
+      slide_migration_age.level = country.caption;
+    }
 
     const txt_slide =
       t("country_profile.migration_details_slide.sex", slide_migration_sex) +
@@ -205,7 +207,7 @@ class MigrationDetailsSlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            {slide_migration_sex.growth && (
+            {slide_migration_sex && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="cambio-numero-visas-sexo"
