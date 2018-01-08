@@ -695,7 +695,22 @@
         "<p>DataChile es un bien público (es de todos los chilenos), pero su administración pasará a manos del Gobierno de Chile en abril del 2018, una vez terminado el financiamiento de Corfo.</p>",
       "title4": "¿Quién es responsable de actualizar DataChile?",
       "text4":
-        "<p>Hasta abril del 2018, las actualizaciones de DataChile son responsabilidad de Datawheel. A partir de abril del 2018, la Dirección General de Relaciones Económicas Internacionales (DIRECON) del Ministerio de Relaciones Exteriores tomará posesión de la administración de DataChile y será responsable por actualizar los datos y la plataforma.</p>"
+        "<p>Hasta abril del 2018, las actualizaciones de DataChile son responsabilidad de Datawheel. A partir de abril del 2018, la Dirección General de Relaciones Económicas Internacionales (DIRECON) del Ministerio de Relaciones Exteriores tomará posesión de la administración de DataChile y será responsable por actualizar los datos y la plataforma.</p>",
+      "members":
+        "<p>El equipo de Datachile se compone por:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>Carlos Navarrete</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>"
+    },
+    "api": {
+      "title": "API",
+      "title1": "API de DataChile",
+      "text1":
+        "<p>DataChile posee una API de datos que entrega la información para construir los gráficos y generar todos los textos del sitio.</p>",
+      "title2": "¿Cuándo estará disponible la API?",
+      "text2":
+        "<p>La API será lanzada con motivo del <a href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
+      "title3":
+        "Mientras tanto, ¿cómo puedo acceder a la información que distribuye DataChile?",
+      "text3":
+        "<p>Junto a cada gráfico existe la opción para descargar la información que lo genera <img class=\"icon\" src=\"/images/icons/icon-download.svg\" />. La misma está disponible en formatos CSV, XLS y JSON.</p><p>Asímismo, en la <a href=\"/about/data\">Sección de Datos</a> se puede acceder a la descarga de los archivos completos en CSV.</p>"
     },
     "terms": {
       "text":

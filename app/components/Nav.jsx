@@ -127,13 +127,6 @@ class Nav extends Component {
                   <img src="/images/icons/icon-close.svg" />
                 </a>
               </div>
-              <div className="lang-selector">
-                <span className="lang current">{locale}</span>
-                {" | "}
-                <a className="lang other" href={url}>
-                  {otherLang}
-                </a>
-              </div>
             </div>
             <div className={`search-nav-wrapper`}>
               <Search className="search-nav search-sidebar" />
