@@ -142,14 +142,14 @@ class PSUNEMSlide extends Section {
     }
 
     let gap = false;
-    if (geo.type === "region") {
+    if (geo.type === "country") {
       gap =
         datum_performance_by_psu.data.find(
           item => item["ID Administration"] === 3
-        ) -
+        )["Average PSU"] -
         datum_performance_by_psu.data.find(
           item => item["ID Administration"] === 1
-        );
+        )["Average PSU"];
     }
 
     const text = merge(perf, rank);

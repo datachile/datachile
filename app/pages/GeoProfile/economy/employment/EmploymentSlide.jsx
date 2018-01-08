@@ -198,8 +198,6 @@ class EmploymentSlide extends Section {
       }
     };
 
-    console.log(text);
-
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">

@@ -969,6 +969,7 @@
     }
   },
   "granted in": "otorgadas en",
+  "GAP between Private/Municipal": "Diferencia PSU Promedio Particular Pagado/Municipal",
   "granted in {{year}}": "otorgadas en {{year}}",
   "granted in {{year_last}}": "otorgadas en {{year_last}}",
   "health cares": "atenciones de salud",
