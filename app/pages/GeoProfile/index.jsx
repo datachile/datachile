@@ -654,12 +654,12 @@ class GeoProfile extends Component {
               </div>
 
               <div>
-                <IncomeOccupationSlide>
+                <IncomeSexAgeSlide>
                   <SectionColumns>
                     <SalariesByOccupation className="lost-2-3" />
                     <SalariesByCategory className="lost-1-3" />
                   </SectionColumns>
-                </IncomeOccupationSlide>
+                </IncomeSexAgeSlide>
               </div>
 
               <div>
@@ -678,7 +678,7 @@ class GeoProfile extends Component {
               sections={[
                 {
                   name: t("Performance"),
-                  slides: [t("PSU vs NEM"), t("PSU by sex")]
+                  slides: [t("PSU vs NEM"), t("PSU By Sex")]
                 },
                 {
                   name: t("Enrollment"),
