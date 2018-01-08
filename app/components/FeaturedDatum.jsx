@@ -1,5 +1,4 @@
 import React from "react";
-import SvgImage from "components/SvgImage";
 import Shiitake from "shiitake";
 
 import "./FeaturedDatum.css";
@@ -10,7 +9,7 @@ function FeaturedDatum(props) {
   return (
     <div className={"featured-datum " + className}>
       <div className="featured-datum-icon">
-        <SvgImage src={`/images/slider-icon/icon-${icon}.svg`} />
+        <img src={`/images/slider-icon/icon-${icon}.svg`} />
       </div>
       <div className="featured-datum-text">
         <Shiitake

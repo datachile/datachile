@@ -74,7 +74,7 @@ class MigrationDetailsSlide extends Section {
             <div className="topic-slide-data">
               <FeaturedDatum
                 className="l-1-2"
-                icon="edad-promedio-femenina"
+                icon="edad-femenino"
                 datum={numeral(
                   datum_migration_origin_avg_age_sex[0],
                   locale
@@ -84,7 +84,7 @@ class MigrationDetailsSlide extends Section {
               />
               <FeaturedDatum
                 className="l-1-2"
-                icon="edad-promedio-masculina"
+                icon="edad-masculino"
                 datum={numeral(
                   datum_migration_origin_avg_age_sex[1],
                   locale

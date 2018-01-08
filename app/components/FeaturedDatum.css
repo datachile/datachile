@@ -3,6 +3,7 @@
   & .featured-datum-icon {
     margin-right: 15px;
     max-width: 56px;
+    width: 100%;
   }
   & .featured-datum-text {
     color: var(--snow);

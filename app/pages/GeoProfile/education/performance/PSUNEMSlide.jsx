@@ -186,7 +186,7 @@ class PSUNEMSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="industria"
+                icon="estudiantes-cantidad"
                 datum={numeral(datum_performance_total.data, locale).format(
                   "0,0"
                 )}
@@ -229,7 +229,7 @@ class PSUNEMSlide extends Section {
               ) : (
                 <FeaturedDatum
                   className="l-1-3"
-                  icon="industria"
+                  icon="estudiantes-cantidad"
                   datum={numeral(gap, locale).format("0.00")}
                   title={t("GAP between Private/Municipal")}
                   subtitle={
