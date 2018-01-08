@@ -135,7 +135,7 @@ class EnrollmentSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="estudiantes-cantidad"
               datum={text.enrollment.total}
               title={t("Total Students")}
               subtitle={
@@ -150,7 +150,7 @@ class EnrollmentSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="estudiantes-educ-especial"
               datum={numeral(datum_enrollment_special_education, locale).format(
                 "(0,0)"
               )}
@@ -167,7 +167,7 @@ class EnrollmentSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="estudiantes-educ-rural"
               datum={numeral(datum_enrollment_rural_education, locale).format(
                 "(0,0)"
               )}

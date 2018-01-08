@@ -65,7 +65,7 @@ class PopulationSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-2"
-              icon="empleo"
+              icon="poblacion-estimada"
               datum={numeral(
                 annualized_growth(datum_population_growth, [2005, 2020]),
                 locale

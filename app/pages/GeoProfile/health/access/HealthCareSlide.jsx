@@ -159,7 +159,7 @@ class HealthCareSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="health-urgency"
+              icon="atencion-servicio-urgencia"
               datum={
                 datum_health_access.length > 0
                   ? numeral(

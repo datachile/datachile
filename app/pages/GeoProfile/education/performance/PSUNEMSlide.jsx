@@ -200,7 +200,7 @@ class PSUNEMSlide extends Section {
               (datum_performance_nem_average.data > 0 && (
                 <FeaturedDatum
                   className="l-1-3"
-                  icon="industria"
+                  icon="promedio-nem"
                   datum={numeral(
                     datum_performance_nem_average.data,
                     locale
@@ -216,7 +216,7 @@ class PSUNEMSlide extends Section {
               (datum_performance_psu_average.data > 0 && !gap ? (
                 <FeaturedDatum
                   className="l-1-3"
-                  icon="industria"
+                  icon="promedio-psu"
                   datum={numeral(
                     datum_performance_psu_average.data,
                     locale

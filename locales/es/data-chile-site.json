@@ -909,7 +909,7 @@
       "origin_by_sex_age":
         "<p>La edad promedio según las visas entregadas en {{last_year}} a inmigrantes residentes en {{area}} es de {{avg_age}} años.</p><p>En {{area}} las visas entregadas se dividen en {{percentage_female}} para mujeres y {{percentage_male}} para hombres.</p>",
       "origin_by_activity":
-        "<p>En {{last_year}} el {{percentage_activity}} del las {{visas}} visas entregadas en {{area}} correspondent a la actividad más común entre los inmigrantes: {{activity}} visas).</p><p>Asímismo el tipo de visa más popular en {{area}} es {{type}} con un {{percentage_type}}.</p>",
+        "<p>En {{last_year}}, el {{percentage_activity}} de las {{visas}} visas entregadas en {{area}} corresponden a la actividad más común entre los inmigrantes: {{activity}}.</p><p>Así mismo, el tipo de visa más popular en {{area}} es {{type}}, con un {{percentage_type}}.</p>",
       "population_by_sex_age":
         "<p>Para el año {{year}} la población de {{area}}, según estimaciones del INE, es {{total}} personas.</p><p>La proyección poblacional para el año {{year_max}} es {{projected}} personas.</p>"
     },

@@ -225,7 +225,7 @@ class QualitySlide extends Section {
               datum_household_total && (
                 <FeaturedDatum
                   className="l-1-3"
-                  icon="empleo"
+                  icon="hogares-rurales"
                   datum={
                     datum_household_zone_rural.available
                       ? numeral(rural_number, locale).format("(0.0 a)")
@@ -245,7 +245,7 @@ class QualitySlide extends Section {
               datum_household_total && (
                 <FeaturedDatum
                   className="l-1-3"
-                  icon="empleo"
+                  icon="tamano-vivienda"
                   datum={
                     datum_less_30mts_sq.available
                       ? numeral(datum_less_30mts_sq.data, locale).format(
@@ -270,7 +270,7 @@ class QualitySlide extends Section {
               datum_household_total && (
                 <FeaturedDatum
                   className="l-1-3"
-                  icon="empleo"
+                  icon="vivienda-credito"
                   datum={
                     datum_credit_banco_estado.available
                       ? numeral(datum_credit_banco_estado.data, locale).format(

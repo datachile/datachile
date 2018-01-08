@@ -231,15 +231,16 @@ class DevicesSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="conectividad-internet"
               datum={numeral(internet_data.total, locale).format("(0,0 a)")}
               title={t("Internet Access")}
-              subtitle={`${t("in")} ${geo.name} - ${sources.internet_access
-                .year}`}
+              subtitle={`${t("in")} ${geo.name} - ${
+                sources.internet_access.year
+              }`}
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="celular"
               datum={numeral(datum_household_devices_small, locale).format(
                 "(0,0 a)"
               )}
@@ -248,7 +249,7 @@ class DevicesSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="industria"
+              icon="tv"
               datum={numeral(datum_household_devices_uncommon, locale).format(
                 "(0,0 a)"
               )}

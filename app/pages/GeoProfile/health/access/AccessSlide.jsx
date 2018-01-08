@@ -173,7 +173,7 @@ class AccessSlide extends Section {
             <div className="topic-slide-data">
               <FeaturedDatum
                 className="l-1-3"
-                icon="health-firstaid"
+                icon="afiliados-fonasa"
                 datum={numeral(top[0][msrName], locale).format("0,0")}
                 title={t("Affiliates in") + " " + top[0]["Health System Group"]}
                 subtitle={
@@ -184,14 +184,14 @@ class AccessSlide extends Section {
               />
               <FeaturedDatum
                 className="l-1-3"
-                icon="health-firstaid"
+                icon="poblacion-prevision-salud"
                 datum={text_access.share}
                 title={t("Population with Health Insurance")}
                 subtitle={t("In") + " " + text_access.year.last}
               />
               <FeaturedDatum
                 className="l-1-3"
-                icon="health-firstaid"
+                icon="crecimiento-afiliados-isapre"
                 datum={text_access.insurance.isapre.rate}
                 title={t("Growth affiliates in ISAPRES")}
                 subtitle={

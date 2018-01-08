@@ -192,3 +192,40 @@ export const featured_profiles = {
     }
   ]
 };
+
+export const icon_migration_activity = {
+  get(id) {
+    return this[id] || "actividad-empleado";
+  },
+  "1": "actividad-duena-casa",
+  "2": "actividad-empleado",
+  "3": "actividad-empleado-domestico",
+  "5": "actividad-estudiante",
+  "6": "actividad-inactivo",
+  // "7": "actividad-jubilado",
+  "8": "actividad-no-informa",
+  "9": "actividad-obrero-jornalero",
+  // "10": "actividad-otras-actividades",
+  "11": "actividad-religioso",
+  // "12": "actividad-rentista",
+  "13": "actividad-sin-actividad",
+  "14": "actividad-cuenta-propia"
+};
+
+export const icon_migration_visatype = {
+  get(id) {
+    switch (id + "") {
+      case "1":
+      case "2":
+      case "3":
+      case "4":
+      case "5":
+        return "tipo-visa-temporaria";
+
+      case "6":
+      case "7":
+      default:
+        return "tipo-visa-permanencia-definitiva";
+    }
+  }
+};

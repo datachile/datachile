@@ -168,14 +168,14 @@ class MigrationSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="visas-inmigrantes"
               datum={numeral(datum_migration_origin[1], locale).format("(0,0)")}
               title={t("Immigrant visas")}
               subtitle={t("granted in") + " " + sources.immigration.year}
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="visas-femeninas"
               datum={numeral(
                 datum_migration_origin_female / datum_migration_origin[1],
                 locale
@@ -185,7 +185,7 @@ class MigrationSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="crecimiento-visas"
               datum={numeral(
                 calculateYearlyGrowth(datum_migration_origin),
                 locale

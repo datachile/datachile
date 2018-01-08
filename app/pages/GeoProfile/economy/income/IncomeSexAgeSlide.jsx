@@ -96,7 +96,7 @@ class IncomeSexAgeSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-2"
-              icon="empleo"
+              icon="ingreso-femenino"
               datum={numeral(datum_income_mean_sex[0], locale).format(
                 "($ 0 a)"
               )}
@@ -105,7 +105,7 @@ class IncomeSexAgeSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-2"
-              icon="empleo"
+              icon="ingreso-masculino"
               datum={numeral(datum_income_mean_sex[1], locale).format(
                 "($ 0 a)"
               )}

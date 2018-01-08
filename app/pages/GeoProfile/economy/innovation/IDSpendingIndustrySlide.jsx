@@ -128,7 +128,7 @@ class IDSpendingCategorySlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="empleo"
+                icon="crecimiento-inversion-r-mas-d"
                 datum={"US " + text.industry.total}
                 title={t("R&D spending")}
                 subtitle={
