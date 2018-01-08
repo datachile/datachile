@@ -4,7 +4,7 @@ import { StackedArea } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { employmentColorScale } from "helpers/colors";
+import { employmentBySexColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 
@@ -126,7 +126,7 @@ class EmploymentBySex extends Section {
               tickFormat: tick => numeral(tick, locale).format("0%")
             },
             shapeConfig: {
-              fill: d => employmentColorScale(d["variable"])
+              fill: d => employmentBySexColorScale("bysex" + d["variable"])
             },
             tooltipConfig: {
               title: d => d["variable"],

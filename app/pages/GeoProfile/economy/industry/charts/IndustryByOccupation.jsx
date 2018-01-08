@@ -7,11 +7,15 @@ import { industryOccupationColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import Select from "components/Select";
 import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
+import NoDataAvailable from "components/NoDataAvailable";
 
 class IndustryByOccupation extends Section {
+  state = {
+    show: true
+  };
+
   static need = [
     simpleGeoChartNeed(
       "path_industry_occupation_income",
@@ -35,59 +39,69 @@ class IndustryByOccupation extends Section {
           <span>{t("Occupations by workers")}</span>
           <ExportLink path={path} />
         </h3>
-
-        <Treemap
-          config={{
-            height: 500,
-            data: path,
-            groupBy: ["ID ISCO"],
-            label: d => d["ISCO"],
-            sum: d => d["Expansion Factor"],
-            total: d => d["Expansion Factor"],
-            totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "(0.[0] a)"
-                ) +
-                " " +
-                t("people")
-            },
-            time: "ID Year",
-            shapeConfig: {
-              fill: d => industryOccupationColorScale("isco" + d["ID ISCO"])
-            },
-            legendConfig: {
-              label: false,
+        {this.state.show ? (
+          <Treemap
+            config={{
+              height: 500,
+              data: path,
+              groupBy: ["ID ISCO"],
+              label: d => d["ISCO"],
+              sum: d => d["Expansion Factor"],
+              total: d => d["Expansion Factor"],
+              totalConfig: {
+                text: d =>
+                  "Total: " +
+                  numeral(getNumberFromTotalString(d.text), locale).format(
+                    "(0.[0] a)"
+                  ) +
+                  " " +
+                  t("people")
+              },
+              time: "ID Year",
               shapeConfig: {
-                width: 20,
-                height: 20,
-                backgroundImage: d => "/images/legend/occupation/occupation.png"
+                fill: d => industryOccupationColorScale("isco" + d["ID ISCO"])
+              },
+              legendConfig: {
+                label: false,
+                shapeConfig: {
+                  width: 20,
+                  height: 20,
+                  backgroundImage: d =>
+                    "/images/legend/occupation/occupation.png"
+                }
+              },
+              tooltipConfig: {
+                title: d => d["ISCO"],
+                body: d => {
+                  var body = "<table class='tooltip-table'>";
+                  body +=
+                    "<tr><td class='title'>" +
+                    t("People") +
+                    "</td><td class='data'>" +
+                    numeral(d["Expansion Factor"], locale).format("(0,0)") +
+                    "</td></tr>";
+                  body +=
+                    "<tr><td class='title'>" +
+                    t("Average Income") +
+                    "</td><td class='data'>" +
+                    numeral(d["Median Income"], locale).format("$ (0,0)") +
+                    "</td></tr>";
+                  body += "</table>";
+                  return body;
+                }
               }
-            },
-            tooltipConfig: {
-              title: d => d["ISCO"],
-              body: d => {
-                var body = "<table class='tooltip-table'>";
-                body +=
-                  "<tr><td class='title'>" +
-                  t("People") +
-                  "</td><td class='data'>" +
-                  numeral(d["Expansion Factor"], locale).format("(0,0)") +
-                  "</td></tr>";
-                body +=
-                  "<tr><td class='title'>" +
-                  t("Average Income") +
-                  "</td><td class='data'>" +
-                  numeral(d["Median Income"], locale).format("$ (0,0)") +
-                  "</td></tr>";
-                body += "</table>";
-                return body;
+            }}
+            dataFormat={data => {
+              if (data.data && data.data.length > 0) {
+                return data.data;
+              } else {
+                this.setState({ show: false });
               }
-            }
-          }}
-          dataFormat={data => data.data}
-        />
+            }}
+          />
+        ) : (
+          <NoDataAvailable />
+        )}
         <SourceNote cube="nesi_income" />
       </div>
     );
