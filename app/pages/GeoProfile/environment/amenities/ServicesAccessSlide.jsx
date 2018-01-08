@@ -134,7 +134,7 @@ class ServicesAccessSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="red-electrica"
               datum={
                 datum_electr_percent
                   ? numeral(datum_electr_percent, locale).format("(0.0%)")
@@ -151,7 +151,7 @@ class ServicesAccessSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="calefaccion"
               datum={
                 datum_heating_percent
                   ? numeral(datum_heating_percent, locale).format("(0.0%)")
@@ -168,7 +168,7 @@ class ServicesAccessSlide extends Section {
             />
             <FeaturedDatum
               className="l-1-3"
-              icon="empleo"
+              icon="agua"
               datum={
                 datum_water_percent
                   ? numeral(datum_water_percent, locale).format("(0.0%)")

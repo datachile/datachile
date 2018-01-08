@@ -114,7 +114,7 @@ class IndustrySlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-2"
-              icon="industria"
+              icon="inversion"
               datum={numeral(datum_industry_output, locale).format(
                 "($ 0.00 a)"
               )}
@@ -124,7 +124,7 @@ class IndustrySlide extends Section {
 
             <FeaturedDatum
               className="l-1-2"
-              icon="empleo"
+              icon="ingresos"
               datum={numeral(datum_industry_income_mean, locale).format(
                 "($ 0,0)"
               )}

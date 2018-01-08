@@ -75,7 +75,7 @@ class DisabilitySlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="health-firstaid"
+                icon="poblacion-con-discapacidad"
                 datum={text.value}
                 title={t("Population with disability")}
                 subtitle={t("In") + " " + text.geo.caption}
@@ -84,7 +84,7 @@ class DisabilitySlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="health-firstaid"
+                icon="porcentaje-poblacion-discapacidad"
                 datum={text.share}
                 title={t("Population with disability")}
                 subtitle={t("In") + " " + text.geo.caption}
@@ -93,7 +93,7 @@ class DisabilitySlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="poblacion-femenina-con-discapacidad"
                 datum={text.gender.female.share}
                 title={t("Female percent with disability")}
                 subtitle={t("In") + " " + text.geo.caption}

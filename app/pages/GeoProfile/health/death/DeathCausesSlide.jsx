@@ -98,7 +98,7 @@ class DeathCausesSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="empleo"
+                icon="muerte"
                 datum={text.data.first.rate}
                 title={
                   t("Yearly growth in deaths by ") + text.data.first.caption
@@ -109,7 +109,7 @@ class DeathCausesSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="empleo"
+                icon="muertes-tumores"
                 datum={numeral(
                   datum_health_death_causes_tumors.data,
                   locale

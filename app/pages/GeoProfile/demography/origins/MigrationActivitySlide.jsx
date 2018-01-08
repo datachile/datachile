@@ -2,7 +2,11 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import { sources } from "helpers/consts";
+import {
+  icon_migration_activity,
+  icon_migration_visatype,
+  sources
+} from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
 import { getGeoObject } from "helpers/dataUtils";
@@ -115,6 +119,9 @@ class MigrationActivitySlide extends Section {
       activity: text_data_geo_demography_activity
         ? text_data_geo_demography_activity["Activity"]
         : "",
+      id_activity: text_data_geo_demography_activity
+        ? text_data_geo_demography_activity["ID Activity"]
+        : "",
       number_type: text_data_geo_demography_type
         ? numeral(
             text_data_geo_demography_type["Number of visas"],
@@ -131,6 +138,9 @@ class MigrationActivitySlide extends Section {
           : "",
       type: text_data_geo_demography_type
         ? text_data_geo_demography_type["Visa Type"]
+        : "",
+      id_type: text_data_geo_demography_type
+        ? text_data_geo_demography_type["ID Visa Type"]
         : ""
     };
 
@@ -150,7 +160,7 @@ class MigrationActivitySlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-2"
-              icon="empleo"
+              icon={icon_migration_activity[data_slide.id_activity]}
               datum={data_slide.activity}
               title={t("Most Common Visa Activity")}
               subtitle={
@@ -162,7 +172,7 @@ class MigrationActivitySlide extends Section {
             />
             <FeaturedDatum
               className="l-1-2"
-              icon="empleo"
+              icon={icon_migration_visatype[data_slide.id_type]}
               datum={data_slide.type}
               title={t("Most Common Visa Type")}
               subtitle={

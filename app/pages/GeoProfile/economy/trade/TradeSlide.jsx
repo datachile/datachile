@@ -155,7 +155,7 @@ class TradeSlide extends Section {
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
-              icon="industria"
+              icon="exportaciones"
               datum={
                 "US" + numeral(datum_trade_exports, locale).format("($ 0.00 a)")
               }

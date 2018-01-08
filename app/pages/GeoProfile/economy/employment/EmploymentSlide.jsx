@@ -97,7 +97,7 @@ class EmploymentSlide extends Section {
             <div className="topic-slide-data">
               <FeaturedDatum
                 className="l-1-3"
-                icon="industria"
+                icon="actividad-inactivo"
                 datum={numeral(
                   datum_employment_unemployment[0]["Expansion factor"],
                   locale
@@ -107,7 +107,7 @@ class EmploymentSlide extends Section {
               />
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="empleo-femenino"
                 datum={numeral(
                   datum_employment_occupied[0]["Expansion factor"],
                   locale
@@ -117,7 +117,7 @@ class EmploymentSlide extends Section {
               />
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="empleo-masculino"
                 datum={numeral(
                   datum_employment_occupied[1]["Expansion factor"],
                   locale
