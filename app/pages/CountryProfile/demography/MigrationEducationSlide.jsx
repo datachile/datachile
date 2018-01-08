@@ -129,7 +129,7 @@ class MigrationEducationSlide extends Section {
             {slide_migration_education.datum_female > 0 && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="inmigrantes-femenino-escolaridad-completa"
                 datum={numeral(
                   slide_migration_education.datum_female,
                   locale
@@ -144,7 +144,7 @@ class MigrationEducationSlide extends Section {
             {slide_migration_education.datum_male > 0 && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="inmigrantes-masculina-escolaridad-completa"
                 datum={numeral(
                   slide_migration_education.datum_male,
                   locale
@@ -158,7 +158,7 @@ class MigrationEducationSlide extends Section {
             )}
             <FeaturedDatum
               className="l-1-3"
-              icon="industria"
+              icon="crecimiento-migrantes-educ-superior"
               datum={slide_migration_education.higher_growth}
               title={t("Growth of immigrants with higher education")}
               subtitle={t(

@@ -120,7 +120,7 @@ class InternationalTradeSlide extends Section {
             {datum_trade_import.name && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="product-import"
+                icon="principal-producto-importado"
                 datum={datum_trade_import.name}
                 title={t("Main imported product")}
                 subtitle={`${datum_trade_import.percent} - ${last_year}`}
@@ -129,7 +129,7 @@ class InternationalTradeSlide extends Section {
             {datum_trade_export.name && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="product-export"
+                icon="principal-producto-exportado"
                 datum={datum_trade_export.name}
                 title={t("Main exported product")}
                 subtitle={`${datum_trade_export.percent} - ${last_year}`}

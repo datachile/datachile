@@ -10,7 +10,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 import { annualized_growth } from "helpers/calculator";
-import { sources } from "helpers/consts";
+import { icon_migration_activity, sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
 const year_last = sources.immigration.year;
@@ -74,6 +74,7 @@ class MigrationActivitySlide extends Section {
             ("Year" in visa_first ? 1 : 0) + ("Year" in visa_second ? 1 : 0)
           ).toString(),
           first: visa_first["Activity"],
+          first_id: visa_first["ID Activity"],
           first_number: numeral(visa_first["Number of visas"], locale).format(
             "(0,0)"
           ),
@@ -133,7 +134,7 @@ class MigrationActivitySlide extends Section {
             {slide_migration_activity.students_number > 0 && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="visas-entregadas-estudiantes"
                 datum={slide_migration_activity.students_number}
                 title={t("Number of visas granted to students")}
                 subtitle={`${
@@ -144,7 +145,9 @@ class MigrationActivitySlide extends Section {
             {slide_migration_activity.first && (
               <FeaturedDatum
                 className="l-2-3"
-                icon="empleo"
+                icon={icon_migration_activity.get(
+                  slide_migration_activity.first_id
+                )}
                 datum={slide_migration_activity.first}
                 title={t("Most common activity")}
                 subtitle={t("{{number}} visas on {{year}}", {

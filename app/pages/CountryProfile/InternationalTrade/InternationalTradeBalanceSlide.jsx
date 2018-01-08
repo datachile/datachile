@@ -129,7 +129,7 @@ class InternationalTradeBalanceSlide extends Section {
             {datum_export_volume > 1 && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="industria"
+                icon="exportaciones-en"
                 datum={numeral(datum_export_volume, locale).format("0.0%")}
                 title={t("Exports volume")}
                 subtitle={t(

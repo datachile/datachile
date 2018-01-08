@@ -208,7 +208,7 @@ class MigrationDetailsSlide extends Section {
             {slide_migration_sex.growth && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="cambio-numero-visas-sexo"
                 datum={slide_migration_sex.growth}
                 title={t(
                   "Change number of visas for {{current_max}} immigrants",
@@ -223,7 +223,7 @@ class MigrationDetailsSlide extends Section {
             {datum_female && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="edad-femenino"
                 datum={datum_female.percent}
                 title={t("Visas for females in range {{range}}", {
                   range: datum_female["Age Range"]
@@ -237,7 +237,7 @@ class MigrationDetailsSlide extends Section {
             {datum_male && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="empleo"
+                icon="edad-masculino"
                 datum={datum_male.percent}
                 title={t("Visas for males in range {{range}}", {
                   range: datum_male["Age Range"]

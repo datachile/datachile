@@ -121,7 +121,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
             {slide_country_trade_destination.first_municipality && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="product-import"
+                icon="principal-comuna-export-import"
                 datum={slide_country_trade_destination.first_municipality}
                 title={t("Main importing comuna")}
                 subtitle={t("{{percent}} of the country - {{last_year}}", {
@@ -133,7 +133,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
             {slide_country_trade_origin.first_municipality && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="product-export"
+                icon="principal-comuna-export-import"
                 datum={slide_country_trade_origin.first_municipality}
                 title={t("Main exporting comuna")}
                 subtitle={t("{{percent}} of the country - {{last_year}}", {
