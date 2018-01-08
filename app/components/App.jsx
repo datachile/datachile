@@ -33,11 +33,7 @@ class App extends Component {
   render() {
     const { children, t } = this.props;
     return (
-      <div
-        className={
-          isMobile() ? "main-container mobile" : "main-container desktop"
-        }
-      >
+      <div className="main-container">
         <Helmet titleTemplate="%s — DataChile" defaultTitle="DataChile">
           <meta
             name="description"

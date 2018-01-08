@@ -1,7 +1,7 @@
 export function isMobile() {
   var isMobile = false; //initiate as false
   // device detection
-  if (typeof window === "undefined") {
+  if (__SERVER__) {
     isMobile = false;
   } else {
     if (
