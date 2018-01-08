@@ -17,37 +17,37 @@ export const sources = {
     year: 2016
   },
   immigration: {
-    title:
-      "Estadísticas de Migración — Departamento de Extranjería y Migración",
+    title: "Estadísticas Migratorias — Departamento de Extranjería y Migración",
     url: "http://www.extranjeria.gob.cl/estadisticas-migratorias/",
     year: 2016
   },
   tax_data: {
-    title: "Servicio de Impuestos Internos",
+    title: "Datos de Costes y Producción",
     url: "http://homer.sii.cl/",
     first_year: 2004,
     last_year: 2014,
     year: 2014
   },
   rd_survey: {
-    title: "Ministerio de Economía, Fomento y Turismo",
+    title: "Encuesta Sobre Gasto y Personal en I+D",
     url:
       "http://www.economia.gob.cl/estudios-y-encuestas/encuestas/encuestas-de-innovacion-e-id/encuestas-de-innovacion",
     first_year: 2009,
     last_year: 2014
   },
   nesi_income: {
-    title: "Encuesta Suplementaria de Ingresos — INE",
+    title: "Nueva Encuesta Suplementaria de Ingresos (NESI)",
     url: "http://www.ine.cl/estadisticas/ingresos-y-gastos/esi",
     year: 2015
   },
   internet_access: {
-    title: "Encuesta de Acceso, Usos y Usuarios de Internet — INE",
-    url: "http://anda.ine.cl/index.php/catalog/9222",
+    title: "Encuesta Nacional de Acceso y Usos de Internet — SUBTEL",
+    url:
+      "http://www.subtel.gob.cl/subtel-dio-a-conocer-los-resultados-de-las-septima-encuesta-nacional-de-uso-y-acceso-a-internet/",
     year: "2016"
   },
   nene: {
-    title: "Encuesta Nacional de Empleo — INE",
+    title: "Nueva Encuesta Nacional de Empleo (NENE)",
     url: "http://www.ine.cl/estadisticas/laborales/ene",
     year: 2016,
     last_quarter: "2016_12_01_02",
@@ -58,13 +58,13 @@ export const sources = {
     available: [2000, 2003, 2006, 2009, 2011, 2013, 2015]
   },
   casen_household: {
-    title: "Encuesta CASEN",
+    title: "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
     url:
       "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
     year: 2015
   },
   casen_health_system: {
-    title: "Encuesta CASEN",
+    title: "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
     url:
       "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
     year: 2015
@@ -91,31 +91,31 @@ export const sources = {
     year: 2016
   },
   population_estimate: {
-    title: "Estimación de crecimiento poblacional - INE",
+    title: "Proyecciones de Población - INE",
     url: "http://www.ine.cl/estadisticas/demograficas-y-vitales",
     year: 2018,
     first_year: 2005,
     last_year: 2020
   },
   death_causes: {
-    title: "Causas de muerte",
+    title: "Causas de Muerte",
     url: "http://www.deis.cl/",
     min_year: 2010,
     year: 2014
   },
   disabilities: {
-    title: "Discapacidad",
+    title: "Encuesta Nacional de Discapacidad (ENDISC)",
     url:
       "http://www.senadis.cl/pag/355/1197/ii_estudio_nacional_de_discapacidad",
     year: 2015
   },
   health_access: {
-    title: "Acceso a la salud",
+    title: "Indicadores de Acceso a la Salud",
     url: "http://www.deis.cl/",
     year: 2014
   },
   psu: {
-    title: "DEMRE",
+    title: "Prueba de Selección Universitaria (PSU)",
     url: "http://demre.cl/",
     year: 2016
   },

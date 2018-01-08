@@ -125,6 +125,7 @@
   "Estimate Population": "Población estimada",
   "Estimate Population Growth": "Crecimiento de Población estimado",
   "Ethnicity": "Ethnicity",
+  "Executed by companies in": "Ejecutado por empresas en",
   "Explore": "Explorar",
   "Explore profiles": "Explorar perfiles",
   "Explore profiles by category": "Explorar perfiles por categoría",
@@ -190,7 +191,7 @@
   "Top output region": "Top región productora",
 
   "International Trade": "Comercio Internacional",
-  "International Trade Balance": "Balance Comercial Internacional",
+  "International Trade Balance": "Balanza Comercial Internacional",
   "Other Products": "Otros Productos",
 
   "Annual Growth Exports": "Cambio Anual de Exportaciones",
@@ -384,9 +385,9 @@
   "Profiles": "Perfiles",
   "Public Transport": "Transporte Público",
   "Quality": "Calidad",
-  "R&D Spending By Industry": "Inversión en I+D por Industria",
-  "R&D Spending By Sector": "Inversión en I+D por Sector",
-  "R&D spending": "Inversión en I+D",
+  "R&D Spending By Industry": "Gasto en I+D por Industria",
+  "R&D Spending By Sector": "Gasto en I+D por Sector",
+  "R&D spending": "Gasto en I+D",
   "Region": "Región",
   "Regional": "Regional",
   "Regional ": "Regional ",
@@ -664,7 +665,7 @@
           "Se usa en los perfiles nacional, regional y comunal en la dimensión de demografía."
       },
       "internet": {
-        "title": "Encuesta de Acceso, Usos y Usuarios de Internet",
+        "title": "Encuesta Nacional de Acceso y Usos de Internet",
         "year": "2016",
         "source": "Subsecretaría de Telecomunicaciones (SUBTEL)",
         "text":
@@ -697,7 +698,7 @@
       "text4":
         "<p>Hasta abril del 2018, las actualizaciones de DataChile son responsabilidad de Datawheel. A partir de abril del 2018, la Dirección General de Relaciones Económicas Internacionales (DIRECON) del Ministerio de Relaciones Exteriores tomará posesión de la administración de DataChile y será responsable por actualizar los datos y la plataforma.</p>",
       "members":
-        "<p>El equipo de Datachile se compone por:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>César Hidalgo</li><li>Carlos Navarrete</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>"
+        "<p>El equipo de Datachile se compone por:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>César Hidalgo</li><li>Carlos Navarrete Lizama</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>"
     },
     "api": {
       "title": "API",
@@ -726,7 +727,7 @@
       "destination":
         "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a {{region}}, principalmente a la comuna de {{comuna}}.</p>",
       "growth":
-        "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una taza anual del {{growth}}.</p>",
+        "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una tasa anual del {{growth}}.</p>",
       "text": "$t(country_profile.migration_slide.destination)",
       "text_no":
         "<p>Durante {{year_last}}, no hay registros de visas otorgadas a inmigrantes desde {{level}}.</p>",
@@ -853,7 +854,7 @@
           "<p>No existen datos de importaciones de empresas establecidas en {{geo.caption}}.</p>"
       },
       "innovation":
-        "<p>En {{year.last}}, las empresas de {{geo.caption}} que lideraron la ejecución del gasto en I+D fueron de propiedad  {{industry.first.caption}}, seguidas por empresas de propiedad {{industry.second.caption}}.</p><p>En {{year_sector.last}}, los sectores económicos de {{geo.caption}} que gastaron más en I+D fueron {{text_joined_industries}}.</p>",
+        "<p>En {{year_sector.last}},los sectores económicos de {{geo.caption}} que gastaron más en I+D fueron {{industry.first.caption}}, seguido por {{industry.second.caption}}.</p><p>En {{year.last}}, las empresas de {{geo.caption}} que lideraron la ejecución del gasto en I+D fueron {{text_joined_industries}}.</p>",
       "trade": "",
       "rca":
         "La ventaja comparativa revelada (RCA) mide el nivel de especialización de una localidad en una industria o producto.  Cuando una localidad tiene RCA mayor que 1 en una actividad económica, esta actividad económica tiene mayor presencia en esa localidad que en la localidad promedio.",

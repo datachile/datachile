@@ -100,7 +100,6 @@ class IDSpendingCategorySlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">
-            {geo.type !== "country" ? t("Regional ") : ""}
             {t("R&D spending")}
             {geo.depth > 1 ? (
               <div className="topic-slide-subtitle">
@@ -132,7 +131,11 @@ class IDSpendingCategorySlide extends Section {
                 icon="empleo"
                 datum={"US " + text.industry.total}
                 title={t("R&D spending")}
-                subtitle={t("In") + " " + sources.rd_survey.last_year}
+                subtitle={
+                  t("Executed by companies in") +
+                  " " +
+                  sources.rd_survey.last_year
+                }
               />
             )}
           </div>
