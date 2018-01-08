@@ -4,7 +4,7 @@ import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { ordinalColorScale } from "helpers/colors";
+import { incomeByAgeColorScale } from "helpers/colors";
 import { numeral, moneyRangeFormat } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
@@ -55,7 +55,7 @@ class IncomeByAge extends Section {
               x: "Income Range",
               y: "Expansion Factor",
               shapeConfig: {
-                fill: d => ordinalColorScale(d["ID Age Range"]),
+                fill: d => incomeByAgeColorScale("by_age" + d["ID Age Range"]),
                 label: false
               },
               xConfig: {
