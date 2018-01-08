@@ -143,7 +143,7 @@ class HealthCareSlide extends Section {
                       ],
                       locale
                     ).format("0,0")
-                  : t("No data")
+                  : t("no_datum")
               }
               title={t("Dental Discharges")}
               subtitle={t("Per 100 inhabitants in") + " " + geo.name}
@@ -166,7 +166,7 @@ class HealthCareSlide extends Section {
                       datum_health_access[0]["Urgency Healthcare AVG"],
                       locale
                     ).format("0,0")
-                  : t("No data")
+                  : t("no_datum")
               }
               title={t("Urgency Healthcare")}
               subtitle={t("in") + " " + geo.name}
