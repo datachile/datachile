@@ -119,17 +119,13 @@ class InternationalTradeBalanceSlide extends Section {
                 sources.imports.year
               }
             />
-            {true && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="industria"
-                datum={
-                  "US" + numeral(trade_balance, locale).format("$ 0,0.00 a")
-                }
-                title={t("Trade Balance")}
-                subtitle={t("In") + " " + sources.imports.year}
-              />
-            )}
+            <FeaturedDatum
+              className="l-1-3"
+              icon="ingresos"
+              datum={"US" + numeral(trade_balance, locale).format("$ 0,0.00 a")}
+              title={t("Trade Balance")}
+              subtitle={t("In") + " " + sources.imports.year}
+            />
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
