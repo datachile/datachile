@@ -366,7 +366,7 @@
 @add-mixin for-md {
   .nav-search-wrapper {
     & .search-component .input input {
-      background: none;
+      background-image: none;
       padding-left: 22px;
       padding-right: 48px;
     }
