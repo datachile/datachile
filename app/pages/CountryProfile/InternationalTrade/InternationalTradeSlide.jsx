@@ -113,6 +113,7 @@ class InternationalTradeSlide extends Section {
     const txt_slide = t("country_profile.intltrade_slide.text", {
       level: country.caption,
       year: last_year,
+      context: balance_volume == 0 ? 'none' : '',
       total_imports: numeral(import_volume, locale).format("($ 0.00 a)"),
       total_exports: numeral(export_volume, locale).format("($ 0.00 a)"),
       total_balance: numeral(Math.abs(balance_volume), locale).format(

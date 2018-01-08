@@ -80,6 +80,8 @@ class InternationalTradeBalanceSlide extends Section {
         first: sources.exports.min_year,
         last: sources.exports.year
       },
+      context:
+        !growth_import || !growth_export || !balance_volume_last ? "none" : "",
       import: {
         behavior:
           import_volume_first < import_volume_last
