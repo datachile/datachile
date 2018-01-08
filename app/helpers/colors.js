@@ -44,6 +44,21 @@ export const industryOccupationColorScale = scaleOrdinal().range(
   COLORS_INDUSTRY_OCCUPATION
 );
 
+export const employmentBySexColorScale = scaleOrdinal().range([
+  "#F9B938",
+  "#00A2AE",
+  "#E8696D",
+  "#7167B2"
+]);
+
+export const incomeByAgeColorScale = scaleOrdinal().range(
+  "#E4B0AE",
+  "#843835",
+  "#E56F6A",
+  "#1D8CA1",
+  "#3FB8C9"
+);
+
 export const COLORS_MIGRATION_BY_EDUCATION = [
   "#12A29B",
   "#73BFB8",
