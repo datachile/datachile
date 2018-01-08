@@ -131,7 +131,11 @@ class IDSpendingCategorySlide extends Section {
                 icon="empleo"
                 datum={"US " + text.industry.total}
                 title={t("R&D spending")}
-                subtitle={t("Executed by companies in") + " " + sources.rd_survey.last_year}
+                subtitle={
+                  t("Executed by companies in") +
+                  " " +
+                  sources.rd_survey.last_year
+                }
               />
             )}
           </div>
