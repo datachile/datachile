@@ -18,10 +18,10 @@
     <path class="st1" d="M321 61v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
     <path class="st2" id="draw-220" d="M276 90.1h80.8v99.1H276z"/>
   </g>
-  <g class="hotspot" id="502">
+  <g class="hotspot" id="563">
     <circle class="st0" cx="417" cy="63" r="11"/>
     <path class="st1" d="M422 62v2h-4v4h-2v-4h-4v-2h4v-4h2v4z"/>
-    <path class="st2" id="draw-502" d="M377.9 90.4h80.8v99.1h-80.8z"/>
+    <path class="st2" id="draw-563" d="M377.9 90.4h80.8v99.1h-80.8z"/>
   </g>
   <g class="hotspot" id="406">
     <circle class="st0" cx="522" cy="64" r="11"/>
