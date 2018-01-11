@@ -61,7 +61,6 @@ class MigrationSlide extends Section {
           year_prev: year - 1,
           year_last: year,
           number_visas: sumBy(visas_year_last, "Number of visas"),
-          behavior: growth > 0,
           region: max_last.Region,
           comuna: max_last.Comuna,
           links: {
@@ -78,6 +77,7 @@ class MigrationSlide extends Section {
                 )
               : ""
           },
+          rawgrowth: growth,
           growth: numeral(growth, locale).format("0.0%")
         };
       }
@@ -88,19 +88,20 @@ class MigrationSlide extends Section {
     const { children, t, i18n } = this.props;
     const locale = i18n.language;
 
-    const {
-      country,
-      datum_migration_origin_female,
-      slide_migration_destination
-    } = this.context.data;
+    const { country, datum_migration_origin_female } = this.context.data;
+    const slide_migration_destination =
+      this.context.data.slide_migration_destination || {};
 
-    const txt_slide = t("country_profile.migration_slide.text", {
-      ...slide_migration_destination,
-      level: country.caption,
-      behavior: slide_migration_destination.behavior
+    slide_migration_destination.level = country.caption;
+    slide_migration_destination.behavior =
+      slide_migration_destination.rawgrowth > 0
         ? t("increased")
-        : t("decreased")
-    });
+        : t("decreased");
+
+    const txt_slide = t(
+      "country_profile.migration_slide.text",
+      slide_migration_destination
+    );
 
     return (
       <div className="topic-slide-block">
