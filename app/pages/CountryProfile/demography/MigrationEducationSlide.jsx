@@ -107,7 +107,9 @@ class MigrationEducationSlide extends Section {
     const { children, t, i18n } = this.props;
     const locale = i18n.language;
 
-    const { country, slide_migration_education } = this.context.data;
+    const country = this.context.data.country;
+    const slide_migration_education =
+      this.context.data.slide_migration_education || {};
 
     slide_migration_education.level = country.caption;
     slide_migration_education.higher_behavior = slide_migration_education.higher_upgrowth
