@@ -7,7 +7,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 import { championsBy } from "helpers/aggregations";
 import { sources } from "helpers/consts";
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, buildPermalink } from "helpers/formatters";
 import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 
 const last_year = sources.imports.year;
@@ -45,42 +45,12 @@ class InternationalTradeOriginDestinationSlide extends Section {
           year: last_year,
           grouping,
           links: {
-            imp_1_comuna: slugifyItem(
-              "geo",
-              first["ID Region"],
-              first["Region"],
-              first["ID Comuna"],
-              first["Comuna"]
-            ),
-            imp_1_region: slugifyItem(
-              "geo",
-              first["ID Region"],
-              first["Region"]
-            ),
-            imp_2_comuna: slugifyItem(
-              "geo",
-              second["ID Region"],
-              second["Region"],
-              second["ID Comuna"],
-              second["Comuna"]
-            ),
-            imp_2_region: slugifyItem(
-              "geo",
-              second["ID Region"],
-              second["Region"]
-            ),
-            imp_3_comuna: slugifyItem(
-              "geo",
-              third["ID Region"],
-              third["Region"],
-              third["ID Comuna"],
-              third["Comuna"]
-            ),
-            imp_3_region: slugifyItem(
-              "geo",
-              third["ID Region"],
-              third["Region"]
-            )
+            imp_1_region: buildPermalink(first, "geo", 1),
+            imp_1_comuna: buildPermalink(first, "geo"),
+            imp_2_region: buildPermalink(second, "geo", 1),
+            imp_2_comuna: buildPermalink(second, "geo"),
+            imp_3_region: buildPermalink(third, "geo", 1),
+            imp_3_comuna: buildPermalink(third, "geo"),
           },
           first_municipality: first.Comuna,
           first_region: first.Region,
@@ -120,42 +90,12 @@ class InternationalTradeOriginDestinationSlide extends Section {
         return {
           grouping,
           links: {
-            exp_1_comuna: slugifyItem(
-              "geo",
-              first["ID Region"],
-              first["Region"],
-              first["ID Comuna"],
-              first["Comuna"]
-            ),
-            exp_1_region: slugifyItem(
-              "geo",
-              first["ID Region"],
-              first["Region"]
-            ),
-            exp_2_comuna: slugifyItem(
-              "geo",
-              second["ID Region"],
-              second["Region"],
-              second["ID Comuna"],
-              second["Comuna"]
-            ),
-            exp_2_region: slugifyItem(
-              "geo",
-              second["ID Region"],
-              second["Region"]
-            ),
-            exp_3_comuna: slugifyItem(
-              "geo",
-              third["ID Region"],
-              third["Region"],
-              third["ID Comuna"],
-              third["Comuna"]
-            ),
-            exp_3_region: slugifyItem(
-              "geo",
-              third["ID Region"],
-              third["Region"]
-            )
+            exp_1_region: buildPermalink(first, "geo", 1),
+            exp_1_comuna: buildPermalink(first, "geo", 2),
+            exp_2_region: buildPermalink(second, "geo", 1),
+            exp_2_comuna: buildPermalink(second, "geo", 2),
+            exp_3_region: buildPermalink(third, "geo", 1),
+            exp_3_comuna: buildPermalink(third, "geo", 2),
           },
           first_municipality: first.Comuna,
           first_region: first.Region,

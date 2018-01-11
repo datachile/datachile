@@ -10,7 +10,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 import { simpleCountryDatumNeed } from "helpers/MondrianClient";
 import { annualized_growth } from "helpers/calculator";
 import { sources } from "helpers/consts";
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, buildPermalink } from "helpers/formatters";
 
 const year_last = sources.immigration.year;
 
@@ -34,48 +34,32 @@ class MigrationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
-        const zero = { "Number of visas": 0, Comuna: "" };
+        const zero = { "Number of visas": 0 };
         const sorted = groupBy(result.data.data, "Year");
         const year = Object.keys(sorted)
           .sort()
           .pop();
 
         const visas_year_last = [].concat(sorted[year]).filter(Boolean);
+        const visas_year_prev = [].concat(sorted[year - 1]).filter(Boolean);
 
         const max_last = maxBy(visas_year_last, "Number of visas") || zero;
-        const max_prev =
-          []
-            .concat(sorted[year - 1])
-            .filter(Boolean)
-            .find(d => d.Comuna == max_last.Comuna) || zero;
 
-        const growth = annualized_growth([
-          max_prev["Number of visas"],
-          max_last["Number of visas"]
-        ]);
+        const sum_last = sumBy(visas_year_last, "Number of visas") || 0;
+        const sum_prev = sumBy(visas_year_prev, "Number of visas") || 0;
+
+        const growth = annualized_growth([sum_last, sum_prev]);
 
         return {
-          context: max_last.Region
-            ? max_prev.Region ? "full" : "unique"
-            : "no",
+          context: max_last.Region ? (sum_prev > 0 ? "full" : "unique") : "no",
           year_prev: year - 1,
           year_last: year,
-          number_visas: sumBy(visas_year_last, "Number of visas"),
+          number_visas: sum_last,
           region: max_last.Region,
           comuna: max_last.Comuna,
           links: {
-            region: max_last.Region
-              ? slugifyItem("geo", max_last["ID Region"], max_last["Region"])
-              : "",
-            comuna: max_last.Region
-              ? slugifyItem(
-                  "geo",
-                  max_last["ID Region"],
-                  max_last["Region"],
-                  max_last["ID Comuna"],
-                  max_last["Comuna"]
-                )
-              : ""
+            region: max_last.Region ? buildPermalink(max_last, "geo", 1) : "",
+            comuna: max_last.Region ? buildPermalink(max_last, "geo", 2) : ""
           },
           rawgrowth: growth,
           growth: numeral(growth, locale).format("0.0%")

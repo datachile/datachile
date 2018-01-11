@@ -9,7 +9,7 @@ import { getLevelObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import {
   numeral,
-  slugifyItem,
+  buildPermalink,
   getNumberFromTotalString
 } from "helpers/formatters";
 
@@ -97,13 +97,7 @@ class ExportsByOrigin extends Section {
               },
               on: {
                 click: d => {
-                  var url = slugifyItem(
-                    "geo",
-                    d["ID Region"],
-                    d["Region"],
-                    d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
-                    d["Comuna"] instanceof Array ? false : d["Comuna"]
-                  );
+                  var url = buildPermalink(d, "geo", Array.isArray(d.Comuna));
                   browserHistory.push(url);
                 }
               },

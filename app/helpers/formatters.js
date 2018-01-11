@@ -3,6 +3,8 @@ import { timeFormat } from "d3-time-format";
 import n from "numeral";
 import { isMobile } from "helpers/responsiveUtils";
 
+import { PermalinkBuildError } from "helpers/errors";
+
 function slugifyStr(str) {
   if (!str) return "";
   str = str.replace(/^\s+|\s+$/g, ""); // trim
@@ -38,6 +40,106 @@ export function slugifyItem(prefix, id1, name1, id2, name2) {
   }
 
   return link;
+}
+
+export function isProfile(string) {
+  return (
+    ["geo", "countries", "products", "institutions", "industries"].indexOf(
+      string
+    ) > -1
+  );
+}
+
+export function guessProfile(item) {
+  if (!item) {
+    // 'property' in undefined throws an error
+    return undefined;
+  } else if ("Region" in item || "Comuna" in item) {
+    return "geo";
+  } else if ("Continent" in item || "Country" in item) {
+    return "countries";
+  } else if ("HS0" in item || "HS2" in item || "HS4" in item) {
+    return "products";
+    // } else if (false) {
+    //   return 'industries';
+    // } else if (false) {
+    //   return 'institutions';
+  }
+}
+
+/**
+ * item: {Property: 'Text Slug', 'ID Property': 1}
+ * property: 'Property'
+ * (item, property) => "/text-slug-1"
+ */
+export function buildPermalinkSection(item, property) {
+  return (
+    "/" +
+    slugifyStr("" + item[property]) +
+    "-" +
+    slugifyStr("" + item["ID " + property])
+  );
+}
+
+/**
+ * buildPermalink('chile') => "/geo/chile"
+ * buildPermalink(item) => takes a wild guess at the profile and builds a full permalink
+ * buildPermalink(item, 'geo') => builds a full-depth permalink
+ * buildPermalink(item, 'geo', false) => builds a full-depth permalink
+ * buildPermalink(item, 'geo', true) => builds a permalink only 1 section deep
+ * buildPermalink(item, 'geo', 2) => gets a permalink 2 sections deep
+ * buildPermalink(item, 'geo', 'Region', 'HS0') => builds a user-defined, non-checked permalink
+ */
+export function buildPermalink(item, profile, ...levels) {
+  if (!item) return "";
+
+  if ("chile" == item) return "/geo/chile";
+
+  if (!profile) profile = guessProfile(item);
+
+  if ("string" != typeof levels[0]) {
+    const depth = levels[0] === true ? 1 : parseInt(levels[0]) || 11037;
+    levels = [];
+
+    switch (profile) {
+      case "geo":
+        levels[0] = "Region";
+        if (depth > 1 && "Comuna" in item) levels[1] = "Comuna";
+        break;
+
+      case "countries":
+        levels[0] = "Continent";
+        if (depth > 1 && "Country" in item) levels[1] = "Country";
+        break;
+
+      case "products":
+        levels[0] = "HS0";
+        if (depth > 1 && "HS2" in item) levels[1] = "HS2";
+        if (depth > 2 && "HS4" in item) levels[2] = "HS4";
+        break;
+
+      case "industries":
+        return "";
+
+      case "institutions":
+        return "";
+
+      default:
+        throw new PermalinkBuildError(
+          `"${profile}" doesn't match supported profiles`,
+          item
+        );
+    }
+  }
+
+  return (
+    "/" +
+    profile +
+    levels
+      .filter(Boolean)
+      .map(property => buildPermalinkSection(item, property))
+      .join("")
+  );
 }
 
 export function getImageFromMember(

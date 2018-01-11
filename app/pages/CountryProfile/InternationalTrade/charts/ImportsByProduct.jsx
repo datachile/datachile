@@ -7,7 +7,7 @@ import { browserHistory } from "react-router";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import {
   numeral,
-  slugifyItem,
+  buildPermalink,
   getNumberFromTotalString
 } from "helpers/formatters";
 import { productsColorScale } from "helpers/colors";
@@ -107,13 +107,7 @@ class ImportsByProduct extends Section {
             },
             on: {
               click: d => {
-                var url = slugifyItem(
-                  "products",
-                  d["ID HS0"],
-                  d["HS0"],
-                  d["ID HS2"] instanceof Array ? false : d["ID HS2"],
-                  d["HS2"] instanceof Array ? false : d["HS2"]
-                );
+                var url = buildPermalink(d, "geo", Array.isArray(d.Comuna));
                 browserHistory.push(url);
               }
             },
