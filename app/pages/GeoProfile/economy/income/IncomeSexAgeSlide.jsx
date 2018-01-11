@@ -26,7 +26,11 @@ class IncomeSexAgeSlide extends Section {
       }
     ),
     (params, store) => {
-      const geo = getGeoObject(params);
+      var geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type == "comuna") {
+        geo = geo.ancestor;
+      }
       const cube = mondrianClient.cube("nesi_income");
       const prm = cube
         .then(cube => {
