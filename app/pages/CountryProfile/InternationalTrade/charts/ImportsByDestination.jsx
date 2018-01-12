@@ -9,7 +9,7 @@ import { getLevelObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import {
   numeral,
-  slugifyItem,
+  buildPermalink,
   getNumberFromTotalString
 } from "helpers/formatters";
 
@@ -77,58 +77,52 @@ class ImportsByDestination extends Section {
 
         {this.state.chart ? (
           <Treemap
-          config={{
-            height: 500,
-            data: path,
-            groupBy: ["ID Region", "ID Comuna"],
-            label: d => d["Comuna"],
-            sum: d => d["CIF US"],
-            total: d => d["CIF US"],
-            totalConfig: {
-              text: d =>
-                "Total: US" +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
-                )
-            },
-            time: "ID Year",
-            shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Region"])
-            },
-            on: {
-              click: d => {
-                var url = slugifyItem(
-                  "geo",
-                  d["ID Region"],
-                  d["Region"],
-                  d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
-                  d["Comuna"] instanceof Array ? false : d["Comuna"]
-                );
-                browserHistory.push(url);
-              }
-            },
-            tooltipConfig: {
-              title: d => {
-                return d["Comuna"] instanceof Array
-                  ? d["Region"]
-                  : d["Comuna"] + " - " + d["Region"];
+            config={{
+              height: 500,
+              data: path,
+              groupBy: ["ID Region", "ID Comuna"],
+              label: d => d["Comuna"],
+              sum: d => d["CIF US"],
+              total: d => d["CIF US"],
+              totalConfig: {
+                text: d =>
+                  "Total: US" +
+                  numeral(getNumberFromTotalString(d.text), locale).format(
+                    "($ 0.[00] a)"
+                  )
               },
-              body: d =>
-                numeral(d["CIF US"], locale).format("(USD 0 a)") +
-                "<br/><a>" +
-                t("tooltip.to_profile") +
-                "</a>"
-            },
-            legendConfig: {
-              label: false,
-              shapeConfig: false
-            }
-          }}
-          dataFormat={this.prepareData}
-        />
-      ) : (
-        <NoDataAvailable />
-      )}
+              time: "ID Year",
+              shapeConfig: {
+                fill: d => ordinalColorScale(d["ID Region"])
+              },
+              on: {
+                click: d => {
+                  var url = buildPermalink(d, "geo", Array.isArray(d.Comuna));
+                  browserHistory.push(url);
+                }
+              },
+              tooltipConfig: {
+                title: d => {
+                  return d["Comuna"] instanceof Array
+                    ? d["Region"]
+                    : d["Comuna"] + " - " + d["Region"];
+                },
+                body: d =>
+                  numeral(d["CIF US"], locale).format("(USD 0 a)") +
+                  "<br/><a>" +
+                  t("tooltip.to_profile") +
+                  "</a>"
+              },
+              legendConfig: {
+                label: false,
+                shapeConfig: false
+              }
+            }}
+            dataFormat={this.prepareData}
+          />
+        ) : (
+          <NoDataAvailable />
+        )}
         <SourceNote cube="imports" />
       </div>
     );

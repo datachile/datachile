@@ -103,11 +103,11 @@ class MigrationActivitySlide extends Section {
   render() {
     const { children, t } = this.props;
 
-    const {
-      country,
-      slide_migration_activity,
-      slide_migration_visa_type
-    } = this.context.data;
+    const country = this.context.data.country;
+    const slide_migration_activity =
+      this.context.data.slide_migration_activity || {};
+    const slide_migration_visa_type =
+      this.context.data.slide_migration_visa_type || {};
 
     slide_migration_visa_type.level = country.caption;
     slide_migration_activity.level = country.caption;

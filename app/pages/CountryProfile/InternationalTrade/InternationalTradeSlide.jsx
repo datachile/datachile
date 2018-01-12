@@ -9,7 +9,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 import { simpleCountryDatumNeed, quickQuery } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, buildPermalink } from "helpers/formatters";
 
 const last_year = sources.exports_and_imports.year;
 
@@ -37,13 +37,7 @@ class InternationalTradeSlide extends Section {
               amount: max["FOB US"],
               total: total,
               percent: numeral(max["CIF US"] / total, lang).format("0.0%"),
-              link: slugifyItem(
-                "products",
-                max["ID HS0"],
-                max["HS0"],
-                max["ID HS2"],
-                max["HS2"]
-              )
+              link: buildPermalink(max, "products")
             }
           : {
               name: null,
@@ -77,13 +71,7 @@ class InternationalTradeSlide extends Section {
               amount: max["FOB US"],
               total: total,
               percent: numeral(max["FOB US"] / total, lang).format("0.0%"),
-              link: slugifyItem(
-                "products",
-                max["ID HS0"],
-                max["HS0"],
-                max["ID HS2"],
-                max["HS2"]
-              )
+              link: buildPermalink(max, "products")
             }
           : {
               name: null,
