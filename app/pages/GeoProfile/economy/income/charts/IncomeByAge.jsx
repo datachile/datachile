@@ -6,6 +6,7 @@ import { translate } from "react-i18next";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { incomeByAgeColorScale } from "helpers/colors";
 import { numeral, moneyRangeFormat } from "helpers/formatters";
+import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -17,19 +18,27 @@ class IncomeByAge extends Section {
   };
 
   static need = [
-    simpleGeoChartNeed(
-      "path_income_by_age",
-      "nesi_income",
-      ["Expansion Factor"],
-      {
-        drillDowns: [
-          ["Date", "Date", "Year"],
-          ["Income Range", "Income Range", "Income Range"],
-          ["Age Range", "Age Range", "Age Range"]
-        ],
-        options: { parents: true }
+    (params, store) => {
+      let geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type === "comuna") {
+        geo = geo.ancestor;
       }
-    )
+      return simpleGeoChartNeed(
+        "path_income_by_age",
+        "nesi_income",
+        ["Expansion Factor"],
+        {
+          drillDowns: [
+            ["Date", "Date", "Year"],
+            ["Income Range", "Income Range", "Income Range"],
+            ["Age Range", "Age Range", "Age Range"]
+          ],
+          options: { parents: true }
+        },
+        geo
+      )(params, store);
+    }
   ];
 
   render() {

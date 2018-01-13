@@ -95,7 +95,10 @@ export function needGetPopulationDatum(params, store) {
 }
 
 export function needGetIncomeDatum(params, store) {
-  const geo = getGeoObject(params);
+  var geo = getGeoObject(params);
+  if (geo.type == "comuna") {
+    geo = geo.ancestor;
+  }
   const prm = mondrianClient
     .cube("nesi_income")
     .then(cube => {

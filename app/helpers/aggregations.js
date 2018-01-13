@@ -103,7 +103,7 @@ function trade_by_time_and_product(
   return p_text_values;
 }
 
-function maxMinGrowthByYear(aggregation, measure, locale = "en") {
+function maxMinGrowthByYear(aggregation, measure, locale = "en", dolar = true) {
   const first_year = minBy(aggregation, "ID Year")["ID Year"];
   const last_year = maxBy(aggregation, "ID Year")["ID Year"];
 
@@ -122,13 +122,15 @@ function maxMinGrowthByYear(aggregation, measure, locale = "en") {
     [first_year, last_year]
   );
 
+  const dolarText = dolar ? "US" : "";
+
   return {
     first_year: first_year,
     first_year_value:
-      "US" + numeral(value_first_year, locale).format("($ 0.0 a)"),
+      dolarText + numeral(value_first_year, locale).format("($ 0.0 a)"),
     last_year: last_year,
     last_year_value:
-      "US" + numeral(value_last_year, locale).format("($ 0.0 a)"),
+      dolarText + numeral(value_last_year, locale).format("($ 0.0 a)"),
     annualized_rate: numeral(annualized_rate, locale).format("0%"),
     increased: annualized_rate > 0 ? true : false,
     number_of_years: last_year - first_year

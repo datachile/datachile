@@ -209,22 +209,23 @@ class AuthoritiesBlock extends Component {
             </div>
           </div>
         )}
-        {senators && (
-          <div>
-            <div className="title">{t("Senators")}</div>
-            <div className="splash-authorities-senators">
-              {senators.map((s, ix) => (
-                <PersonItem
-                  imgpath={"/images/authorities/senators/" + s.id + ".jpeg"}
-                  name={s.name}
-                  subtitle={s.party}
-                  className="senator"
-                  key={ix}
-                />
-              ))}
+        {senators &&
+          senators.length > 0 && (
+            <div>
+              <div className="title">{t("Senators")}</div>
+              <div className="splash-authorities-senators">
+                {senators.map((s, ix) => (
+                  <PersonItem
+                    imgpath={"/images/authorities/senators/" + s.id + ".jpeg"}
+                    name={s.name}
+                    subtitle={s.party}
+                    className="senator"
+                    key={ix}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
         {mayor && (
           <div>
             <div className="title">{t("Mayor")}</div>

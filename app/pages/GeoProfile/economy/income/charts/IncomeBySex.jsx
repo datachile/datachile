@@ -6,6 +6,7 @@ import { Section } from "datawheel-canon";
 import { numeral, moneyRangeFormat } from "helpers/formatters";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { COLORS_GENDER } from "helpers/colors";
+import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -17,19 +18,27 @@ class IncomeBySex extends Section {
   };
 
   static need = [
-    simpleGeoChartNeed(
-      "path_income_by_sex",
-      "nesi_income",
-      ["Expansion Factor"],
-      {
-        drillDowns: [
-          ["Date", "Date", "Year"],
-          ["Income Range", "Income Range", "Income Range"],
-          ["Sex", "Sex", "Sex"]
-        ],
-        options: { parents: true }
+    (params, store) => {
+      let geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type === "comuna") {
+        geo = geo.ancestor;
       }
-    )
+      return simpleGeoChartNeed(
+        "path_income_by_sex",
+        "nesi_income",
+        ["Expansion Factor"],
+        {
+          drillDowns: [
+            ["Date", "Date", "Year"],
+            ["Income Range", "Income Range", "Income Range"],
+            ["Sex", "Sex", "Sex"]
+          ],
+          options: { parents: true }
+        },
+        geo
+      )(params, store);
+    }
   ];
 
   render() {
