@@ -6,21 +6,30 @@ import { BarChart } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
+import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
 class SalariesByCategory extends Section {
   static need = [
-    simpleGeoChartNeed(
-      "path_salaries_by_category",
-      "nesi_income",
-      ["Median Income"],
-      {
-        drillDowns: [["ICSE", "ICSE", "ICSE"], ["Date", "Date", "Year"]],
-        options: { parents: true }
+    (params, store) => {
+      let geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type === "comuna") {
+        geo = geo.ancestor;
       }
-    )
+      return simpleGeoChartNeed(
+        "path_salaries_by_category",
+        "nesi_income",
+        ["Median Income"],
+        {
+          drillDowns: [["ICSE", "ICSE", "ICSE"], ["Date", "Date", "Year"]],
+          options: { parents: true }
+        },
+        geo
+      )(params, store);
+    }
   ];
 
   render() {

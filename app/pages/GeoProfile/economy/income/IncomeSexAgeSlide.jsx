@@ -15,16 +15,25 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 class IncomeSexAgeSlide extends Section {
   static need = [
-    simpleGeoDatumNeed(
-      "datum_income_mean_sex",
-      "nesi_income",
-      ["Median Income"],
-      {
-        drillDowns: [["Date", "Date", "Year"], ["Sex", "Sex", "Sex"]],
-        options: { parents: false },
-        cuts: [`[Date].[Date].[Year].&[${sources.nesi_income.year}]`]
+    (params, store) => {
+      let geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type === "comuna") {
+        geo = geo.ancestor;
       }
-    ),
+      return simpleGeoDatumNeed(
+        "datum_income_mean_sex",
+        "nesi_income",
+        ["Median Income"],
+        {
+          drillDowns: [["Date", "Date", "Year"], ["Sex", "Sex", "Sex"]],
+          options: { parents: false },
+          cuts: [`[Date].[Date].[Year].&[${sources.nesi_income.year}]`]
+        },
+        true,
+        geo
+      )(params, store);
+    },
     (params, store) => {
       var geo = getGeoObject(params);
       //force to region query on comuna profile
@@ -50,7 +59,8 @@ class IncomeSexAgeSlide extends Section {
           const result = maxMinGrowthByYear(
             res.data.data,
             "Median Income",
-            store.i18n.locale
+            store.i18n.locale,
+            false
           );
           return {
             key: "text_income_sex_slide_data",
@@ -77,16 +87,37 @@ class IncomeSexAgeSlide extends Section {
     } = this.context.data;
 
     if (text_income_sex_slide_data) {
-      text_income_sex_slide_data.geo = this.context.data.geo;
+      text_income_sex_slide_data.geo = geo
+        ? geo.depth > 1 ? geo.ancestors[0] : geo
+        : {};
       text_income_sex_slide_data.increased_or_decreased = text_income_sex_slide_data.increased
         ? t("increased")
         : t("decreased");
     }
 
+    const name = geo
+      ? geo.depth > 1 ? geo.ancestors[0].caption : geo.caption
+      : "";
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Income")}</div>
+          <div className="topic-slide-title">
+            {t("Income")}
+            {this.context.data.geo.depth > 1 ? (
+              <div className="topic-slide-subtitle">
+                <p>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("geo_profile.warning", { caption: name })
+                    }}
+                  />
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{
@@ -105,7 +136,7 @@ class IncomeSexAgeSlide extends Section {
                 "($ 0 a)"
               )}
               title={t("Female Median Income")}
-              subtitle={t("in ") + geo.caption}
+              subtitle={t("in ") + name}
             />
             <FeaturedDatum
               className="l-1-2"
@@ -114,7 +145,7 @@ class IncomeSexAgeSlide extends Section {
                 "($ 0 a)"
               )}
               title={t("Male Median Income")}
-              subtitle={t("in ") + geo.caption}
+              subtitle={t("in ") + name}
             />
           </div>
         </div>

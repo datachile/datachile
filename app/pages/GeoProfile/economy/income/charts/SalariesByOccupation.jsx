@@ -6,25 +6,34 @@ import { translate } from "react-i18next";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
+import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
 class SalariesByOccupation extends Section {
   static need = [
-    simpleGeoChartNeed(
-      "path_salaries_by_occupation",
-      "nesi_income",
-      ["Median Income"],
-      {
-        drillDowns: [
-          ["ISCO", "ISCO", "ISCO"],
-          ["Date", "Date", "Year"],
-          ["Sex", "Sex", "Sex"]
-        ],
-        options: { parents: true }
+    (params, store) => {
+      let geo = getGeoObject(params);
+      //force to region query on comuna profile
+      if (geo.type === "comuna") {
+        geo = geo.ancestor;
       }
-    )
+      return simpleGeoChartNeed(
+        "path_salaries_by_occupation",
+        "nesi_income",
+        ["Median Income"],
+        {
+          drillDowns: [
+            ["ISCO", "ISCO", "ISCO"],
+            ["Date", "Date", "Year"],
+            ["Sex", "Sex", "Sex"]
+          ],
+          options: { parents: true }
+        },
+        geo
+      )(params, store);
+    }
   ];
 
   render() {
