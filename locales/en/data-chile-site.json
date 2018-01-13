@@ -870,8 +870,12 @@
   "in ": "in ",
   "increased": "increased",
   "industry_profile": {
-    "economy":
-      "<p>In {{year.last}}, <a href=\"{{territory.link.first}}\">{{territory.name.first}}</a> was the comuna with highest output level in {{industry.name}} industries, with a {{territory.share.first}} of the total, followed by <a href=\"{{territory.link.second}}\">{{territory.name.second}}</a> with a {{territory.share.second}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+    "economy": {
+      "default":
+        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was the comuna with highest output level in {{industry.name}} industries, with a {{location.first.share}} of the total, followed by <a href=\"{{location.second.link}}\">{{location.second.caption}}</a> with a {{location.second.share}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+      "one_item": "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was last comuna with output level in {{industry.name}} industries. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+      "no_data": "<p>In {{year.last}}, there are not data of output level in {{industry.name}} industries.</p><p>This data was extracted from the legal address of the industry.</p>"
+    },
     "employment":
       "<p>From {{year.first}} to {{year.last}}, employment in {{industry.caption}} {{increased_or_decreased}} at a quarterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.</p>",
     "r&d":

@@ -1003,8 +1003,12 @@
   "In last year of high school in ":
     "En último año de enseñanza media durante ",
   "industry_profile": {
-    "economy":
-      "<p>En {{year.last}}, <a href=\"{{territory.link.first}}\">{{territory.name.first}}</a> fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{territory.share.first}} del total, seguida por <a href=\"{{territory.link.second}}\">{{territory.name.second}}</a>, que ejecutó {{territory.share.second}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+    "economy": {
+      "default":
+        "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{location.first.share}} del total, seguida por <a href=\"{{location.second.link}}\">{{location.second.caption}}</a>, que ejecutó {{location.second.share}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+      "no_data": "<p>En {{year.last}}, no hubo datos de nivel de ventas en industrias de {{industry.caption}}.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+      "one_item": "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la única comuna con nivel de ventas en industrias de {{industry.caption}}. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p></p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>"
+    },
     "employment":
       "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} han {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",
     "r&d":
