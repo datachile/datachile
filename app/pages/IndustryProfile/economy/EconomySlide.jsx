@@ -5,11 +5,14 @@ import { Section } from "datawheel-canon";
 import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { getTopCategories } from "helpers/dataUtils";
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral } from "helpers/formatters";
 
 import { annualized_growth } from "helpers/calculator";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import { Economy } from "texts/IndustryProfile";
+
+import isEmpty from "lodash/isEmpty";
 
 class EconomySlide extends Section {
   static need = [
@@ -48,50 +51,22 @@ class EconomySlide extends Section {
       industry
     } = this.context.data;
 
-    const top = getTopCategories(datum_industry_output_by_comuna, "Output", 2);
     const rate = annualized_growth(datum_industry_investment);
-    const total = datum_industry_output_by_comuna.reduce((all, item) => {
-      return all + item["Output"];
-    }, 0);
     const locale = i18n.language;
 
-    const text_economy = {
-      territory: {
-        name: {
-          first: top[0].Comuna,
-          second: top[1].Comuna
+    let text = Economy(datum_industry_output_by_comuna, locale);
+    if (text) {
+      text = {
+        ...text,
+        industry,
+        year: {
+          first: sources.tax_data.first_year,
+          last: sources.tax_data.last_year
         },
-        share: {
-          first: numeral(top[0].Output / total).format("0.0 %"),
-          second: numeral(top[1].Output / total).format("0.0 %")
-        },
-        link: {
-          first: slugifyItem(
-            "geo",
-            top[0]["ID Region"],
-            top[0]["Region"],
-            top[0]["ID Comuna"],
-            top[0]["Comuna"]
-          ),
-          second: slugifyItem(
-            "geo",
-            top[1]["ID Region"],
-            top[1]["Region"],
-            top[1]["ID Comuna"],
-            top[1]["Comuna"]
-          )
-        }
-      },
-      year: {
-        first: sources.tax_data.first_year,
-        last: sources.tax_data.last_year
-      },
-      rate: numeral(rate, locale).format("0.0 %"),
-      increased_or_decreased: rate > 0 ? t("increased") : t("decreased"),
-      industry: {
-        caption: industry.caption
-      }
-    };
+        rate: numeral(rate, locale).format("0.0 %"),
+        increased_or_decreased: rate > 0 ? t("increased") : t("decreased")
+      };
+    }
 
     return (
       <div className="topic-slide-block">
@@ -100,43 +75,53 @@ class EconomySlide extends Section {
           <div className="topic-slide-text">
             <span
               dangerouslySetInnerHTML={{
-                __html: t("industry_profile.economy", text_economy)
+                __html: isEmpty(text.location.first)
+                  ? t("industry_profile.economy.no_data", text)
+                  : isEmpty(text.location.second)
+                    ? t("industry_profile.economy.one_item", text)
+                    : t("industry_profile.economy.default", text)
               }}
             />
           </div>
 
           <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={numeral(rate, locale).format("0.0 %")}
-              title={t("Growth Investment")}
-              subtitle={`${sources.tax_data.first_year} - ${
-                sources.tax_data.last_year
-              }`}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={numeral(
-                datum_industry_labour[datum_industry_labour.length - 1],
-                locale
-              ).format("0,0")}
-              title={t("Number of jobs")}
-              subtitle={t("During") + " " + sources.tax_data.last_year}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum={numeral(
-                annualized_growth(datum_industry_labour),
-                locale
-              ).format("0.0 %")}
-              title={t("Growth Labour")}
-              subtitle={`${sources.tax_data.first_year} - ${
-                sources.tax_data.last_year
-              }`}
-            />
+            {text && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={numeral(rate, locale).format("0.0 %")}
+                title={t("Growth Investment")}
+                subtitle={`${sources.tax_data.first_year} - ${
+                  sources.tax_data.last_year
+                }`}
+              />
+            )}
+            {text && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={numeral(
+                  datum_industry_labour[datum_industry_labour.length - 1],
+                  locale
+                ).format("0,0")}
+                title={t("Number of jobs")}
+                subtitle={t("During") + " " + sources.tax_data.last_year}
+              />
+            )}
+            {text && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="industria"
+                datum={numeral(
+                  annualized_growth(datum_industry_labour),
+                  locale
+                ).format("0.0 %")}
+                title={t("Growth Labour")}
+                subtitle={`${sources.tax_data.first_year} - ${
+                  sources.tax_data.last_year
+                }`}
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
