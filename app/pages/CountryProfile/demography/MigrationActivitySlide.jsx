@@ -74,7 +74,7 @@ class MigrationActivitySlide extends Section {
             ("Year" in visa_first ? 1 : 0) + ("Year" in visa_second ? 1 : 0)
           ).toString(),
           first: visa_first["Activity"],
-          first_id: visa_first["ID Activity"],
+          first_icon: icon_migration_activity.get(visa_first["ID Activity"]),
           first_number: numeral(visa_first["Number of visas"], locale).format(
             "(0,0)"
           ),
@@ -104,23 +104,15 @@ class MigrationActivitySlide extends Section {
     const { children, t } = this.props;
 
     const country = this.context.data.country;
-    const slide_migration_activity =
-      this.context.data.slide_migration_activity || {};
-    const slide_migration_visa_type =
-      this.context.data.slide_migration_visa_type || {};
+    const activity = this.context.data.slide_migration_activity || {};
+    const visa_type = this.context.data.slide_migration_visa_type || {};
 
-    slide_migration_visa_type.level = country.caption;
-    slide_migration_activity.level = country.caption;
+    visa_type.level = country.caption;
+    activity.level = country.caption;
 
     const txt_slide =
-      t(
-        "country_profile.migration_activity_slide.visa_type",
-        slide_migration_visa_type
-      ) +
-      t(
-        "country_profile.migration_activity_slide.activity",
-        slide_migration_activity
-      );
+      t("country_profile.migration_activity_slide.visa_type", visa_type) +
+      t("country_profile.migration_activity_slide.activity", activity);
 
     return (
       <div className="topic-slide-block">
@@ -131,27 +123,23 @@ class MigrationActivitySlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            {slide_migration_activity.students_number > 0 && (
+            {activity.students_number > 0 && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="visas-entregadas-estudiantes"
-                datum={slide_migration_activity.students_number}
+                datum={activity.students_number}
                 title={t("Number of visas granted to students")}
-                subtitle={`${
-                  slide_migration_activity.students_percent
-                } - ${year_last}`}
+                subtitle={`${activity.students_percent} - ${year_last}`}
               />
             )}
-            {slide_migration_activity.first && (
+            {activity.first && (
               <FeaturedDatum
                 className="l-2-3"
-                icon={icon_migration_activity.get(
-                  slide_migration_activity.first_id
-                )}
-                datum={slide_migration_activity.first}
+                icon={activity.first_icon}
+                datum={activity.first}
                 title={t("Most common activity")}
                 subtitle={t("{{number}} visas on {{year}}", {
-                  number: slide_migration_activity.first_number,
+                  number: activity.first_number,
                   year: year_last
                 })}
               />

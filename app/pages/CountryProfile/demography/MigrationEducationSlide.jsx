@@ -108,17 +108,16 @@ class MigrationEducationSlide extends Section {
     const locale = i18n.language;
 
     const country = this.context.data.country;
-    const slide_migration_education =
-      this.context.data.slide_migration_education || {};
+    const education = this.context.data.slide_migration_education || {};
 
-    slide_migration_education.level = country.caption;
-    slide_migration_education.higher_behavior = slide_migration_education.higher_upgrowth
+    education.level = country.caption;
+    education.higher_behavior = education.higher_upgrowth
       ? t("incremented")
       : t("decremented");
 
     const txt_slide = t(
       "country_profile.migration_education_slide.text",
-      slide_migration_education
+      education
     );
 
     return (
@@ -130,45 +129,39 @@ class MigrationEducationSlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            {slide_migration_education.datum_female > 0 && (
+            {education.datum_female > 0 && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="inmigrantes-femenino-escolaridad-completa"
-                datum={numeral(
-                  slide_migration_education.datum_female,
-                  locale
-                ).format("0 a")}
+                datum={numeral(education.datum_female, locale).format("0 a")}
                 title={t("Female immigrants with complete schooling")}
                 subtitle={t(
                   "Number of visas granted in {{year_last}}",
-                  slide_migration_education
+                  education
                 )}
               />
             )}
-            {slide_migration_education.datum_male > 0 && (
+            {education.datum_male > 0 && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="inmigrantes-masculina-escolaridad-completa"
-                datum={numeral(
-                  slide_migration_education.datum_male,
-                  locale
-                ).format("0 a")}
+                datum={numeral(education.datum_male, locale).format("0 a")}
                 title={t("Male immigrants with complete schooling")}
                 subtitle={t(
                   "Number of visas granted in {{year_last}}",
-                  slide_migration_education
+                  education
                 )}
               />
             )}
-            {slide_migration_education.higher_rawgrowth != 0 && (
+            {education.higher_rawgrowth != 0 && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="crecimiento-migrantes-educ-superior"
-                datum={slide_migration_education.higher_growth}
+                datum={education.higher_growth}
                 title={t("Growth of immigrants with higher education")}
                 subtitle={t(
                   "in period {{year_prev}} - {{year_last}}",
-                  slide_migration_education
+                  education
                 )}
               />
             )}

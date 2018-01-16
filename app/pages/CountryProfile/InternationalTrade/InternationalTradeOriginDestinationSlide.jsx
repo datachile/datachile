@@ -50,7 +50,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
             imp_2_region: buildPermalink(second, "geo", 1),
             imp_2_comuna: buildPermalink(second, "geo"),
             imp_3_region: buildPermalink(third, "geo", 1),
-            imp_3_comuna: buildPermalink(third, "geo"),
+            imp_3_comuna: buildPermalink(third, "geo")
           },
           first_municipality: first.Comuna,
           first_region: first.Region,
@@ -95,7 +95,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
             exp_2_region: buildPermalink(second, "geo", 1),
             exp_2_comuna: buildPermalink(second, "geo", 2),
             exp_3_region: buildPermalink(third, "geo", 1),
-            exp_3_comuna: buildPermalink(third, "geo", 2),
+            exp_3_comuna: buildPermalink(third, "geo", 2)
           },
           first_municipality: first.Comuna,
           first_region: first.Region,
@@ -116,26 +116,25 @@ class InternationalTradeOriginDestinationSlide extends Section {
   render() {
     const { children, t } = this.props;
 
-    const {
-      country,
-      slide_country_trade_destination,
-      slide_country_trade_origin
-    } = this.context.data;
+    const country = this.context.data.country;
+    const trade_destination =
+      this.context.data.slide_country_trade_destination || {};
+    const trade_origin = this.context.data.slide_country_trade_origin || {};
 
     const txt_slide =
       t("country_profile.intltrade_origin_dest_slide.import", {
-        context: slide_country_trade_destination.grouping,
+        context: trade_destination.grouping,
         level: country.caption,
         year: last_year,
-        links: slide_country_trade_destination.links,
-        destination: slide_country_trade_destination
+        links: trade_destination.links,
+        destination: trade_destination
       }) +
       t("country_profile.intltrade_origin_dest_slide.export", {
-        context: slide_country_trade_origin.grouping,
+        context: trade_origin.grouping,
         level: country.caption,
         year: last_year,
-        links: slide_country_trade_origin.links,
-        origin: slide_country_trade_origin
+        links: trade_origin.links,
+        origin: trade_origin
       });
 
     return (
@@ -148,26 +147,26 @@ class InternationalTradeOriginDestinationSlide extends Section {
           />
 
           <div className="topic-slide-data">
-            {slide_country_trade_destination.first_municipality && (
+            {trade_destination.first_municipality && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="principal-comuna-export-import"
-                datum={slide_country_trade_destination.first_municipality}
+                datum={trade_destination.first_municipality}
                 title={t("Main importing comuna")}
                 subtitle={t("{{percent}} of the country - {{last_year}}", {
-                  percent: slide_country_trade_destination.first_percentage,
+                  percent: trade_destination.first_percentage,
                   last_year
                 })}
               />
             )}
-            {slide_country_trade_origin.first_municipality && (
+            {trade_origin.first_municipality && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="principal-comuna-export-import"
-                datum={slide_country_trade_origin.first_municipality}
+                datum={trade_origin.first_municipality}
                 title={t("Main exporting comuna")}
                 subtitle={t("{{percent}} of the country - {{last_year}}", {
-                  percent: slide_country_trade_origin.first_percentage,
+                  percent: trade_origin.first_percentage,
                   last_year
                 })}
               />

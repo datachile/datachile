@@ -26,6 +26,7 @@ class InternationalTradeBalanceSlide extends Section {
     }),
 
     (params, store) => {
+      // this need isn't cut by region/country
       return {
         type: "GET_DATA",
         promise: quickQuery({
@@ -47,31 +48,32 @@ class InternationalTradeBalanceSlide extends Section {
     const { t, children, i18n } = this.props;
     const locale = i18n.language;
 
-    const {
-      country,
-      // both datum_trade_ are requested on InternationalTradeSlide
-      datum_trade_export,
-      datum_trade_import,
-      datum_country_yearly_imports,
-      datum_country_yearly_exports,
-      datum_global_exports_last_year
-    } = this.context.data;
+    const country = this.context.data.country;
+    // both datum_trade_ are requested on InternationalTradeSlide
+    const trade_export = this.context.data.datum_trade_export || [];
+    const trade_import = this.context.data.datum_trade_import || [];
+    const country_yearly_imports =
+      this.context.data.datum_country_yearly_imports || [];
+    const country_yearly_exports =
+      this.context.data.datum_country_yearly_exports || [];
+    const global_exports_last_year =
+      this.context.data.datum_global_exports_last_year || [];
 
-    const growth_import = annualized_growth(datum_country_yearly_imports, [
+    const growth_import = annualized_growth(country_yearly_imports, [
       sources.exports.min_year,
       sources.exports.year
     ]);
-    const growth_export = annualized_growth(datum_country_yearly_exports, [
+    const growth_export = annualized_growth(country_yearly_exports, [
       sources.exports.min_year,
       sources.exports.year
     ]);
 
-    const import_volume_first = datum_country_yearly_imports[0];
-    const export_volume_first = datum_country_yearly_exports[0];
+    const import_volume_first = country_yearly_imports[0];
+    const export_volume_first = country_yearly_exports[0];
     const import_volume_last =
-      datum_country_yearly_imports[datum_country_yearly_imports.length - 1];
+      country_yearly_imports[country_yearly_imports.length - 1];
     const export_volume_last =
-      datum_country_yearly_exports[datum_country_yearly_exports.length - 1];
+      country_yearly_exports[country_yearly_exports.length - 1];
     const balance_volume_last = export_volume_last - import_volume_last;
 
     const txt_slide = t("country_profile.intltrade_balance_slide.text", {
@@ -114,7 +116,7 @@ class InternationalTradeBalanceSlide extends Section {
     });
 
     const datum_export_volume =
-      export_volume_last / datum_global_exports_last_year[0];
+      export_volume_last / global_exports_last_year[0];
 
     return (
       <div className="topic-slide-block">
@@ -140,26 +142,30 @@ class InternationalTradeBalanceSlide extends Section {
                 )}
               />
             )}
-            <FeaturedDatum
-              className="l-1-3"
-              icon="product-import"
-              datum={numeral(growth_import, locale).format("0.0%")}
-              title={t("Change imports")}
-              subtitle={t("in period {{year_first}} - {{year_last}}", {
-                year_first: sources.imports.min_year,
-                year_last: sources.imports.year
-              })}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="product-export"
-              datum={numeral(growth_export, locale).format("0.0%")}
-              title={t("Change exports")}
-              subtitle={t("in period {{year_first}} - {{year_last}}", {
-                year_first: sources.exports.min_year,
-                year_last: sources.exports.year
-              })}
-            />
+            {growth_import && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="product-import"
+                datum={numeral(growth_import, locale).format("0.0%")}
+                title={t("Change imports")}
+                subtitle={t("in period {{year_first}} - {{year_last}}", {
+                  year_first: sources.imports.min_year,
+                  year_last: sources.imports.year
+                })}
+              />
+            )}
+            {growth_export && (
+              <FeaturedDatum
+                className="l-1-3"
+                icon="product-export"
+                datum={numeral(growth_export, locale).format("0.0%")}
+                title={t("Change exports")}
+                subtitle={t("in period {{year_first}} - {{year_last}}", {
+                  year_first: sources.exports.min_year,
+                  year_last: sources.exports.year
+                })}
+              />
+            )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

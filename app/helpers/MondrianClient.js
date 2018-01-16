@@ -501,13 +501,12 @@ function quickQuery({
 
     measures.forEach(q.measure, q);
     drillDowns.forEach(dd => q.drilldown(...dd));
-    cuts
-      .map(function(cut) {
-        return "string" == typeof cut
-          ? cut
-          : "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
-      })
-      .forEach(q.cut, q);
+    cuts.forEach(function(cut) {
+      if ("string" != typeof cut) {
+        cut = "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
+      }
+      return q.cut(cut);
+    });
     for (let option in options) q.option(option, options[option]);
 
     setLangCaptions(q, locale);
