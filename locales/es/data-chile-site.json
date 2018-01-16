@@ -763,8 +763,10 @@
         "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}.</p>",
       "age":
         "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}, seguidos de gente en el rango {{second}}. Los primeros representan un {{first_percent}} del total en {{year_last}}, lo cual se traduce en un cambio de {{first_growth}} respecto al año {{year_prev}}.</p>",
+      "age_double":
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}, seguidos de gente en el rango {{second}}. Los primeros representan un {{first_percent}} del total en {{year_last}}.</p>",
       "age_unique":
-        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}.</p>",
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}. Ellos representan un {{first_percent}} del total en {{year_last}}.</p>",
       "age_none": ""
     },
     "migration_education_slide": {

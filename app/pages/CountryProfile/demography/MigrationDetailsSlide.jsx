@@ -27,57 +27,57 @@ class MigrationDetailsSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
-        const zero = { "Number of visas": 0 };
         const data = groupBy(result.data.data, "Year");
+        const available_years = Object.keys(data).sort();
 
-        const max_year = Object.keys(data)
-          .sort()
-          .pop();
+        switch (available_years.length) {
+          case 0:
+            return { year_last, context: "none" };
 
-        if (!max_year) return { year_last, context: "none" };
+          case 1: {
+            const max_year = available_years.pop();
+            const max_last = maxBy(data[max_year], "Number of visas");
+            return {
+              context: "only",
+              year_last: max_last.Year,
+              current_max: max_last.Sex
+            };
+          }
 
-        const max_by_year = Object.keys(data)
-          .sort()
-          .map(year => maxBy(data[year], "Number of visas"));
+          default: {
+            const max_by_year = available_years.map(year =>
+              maxBy(data[year], "Number of visas")
+            );
+            const max_first = max_by_year[0];
+            const max_last = max_by_year.pop();
 
-        const max_first = max_by_year[0] || zero;
-        const max_last = max_by_year.pop() || zero;
+            let max_prev,
+              context = "remained";
+            while (max_by_year.length > 0) {
+              max_prev = max_by_year.pop();
 
-        let compared, changed;
-        while ((changed = max_by_year.pop())) {
-          if (!changed) {
-            changed = compared;
-            break;
-          } else if (changed["Sex"] != max_last["Sex"]) {
-            break;
-          } else {
-            compared = changed;
+              if (max_prev.Sex != max_last.Sex) {
+                context = "changed";
+                break;
+              }
+            }
+
+            const growth = annualized_growth(
+              [max_prev["Number of visas"], max_last["Number of visas"]],
+              [max_prev.Year, max_last.Year]
+            );
+
+            return {
+              raw_growth: growth,
+              context,
+              year_prev: max_prev.Year,
+              year_last: max_last.Year,
+              current_max: max_last.Sex,
+              previous_max: max_prev.Sex,
+              growth: numeral(growth, locale).format("0.0%")
+            };
           }
         }
-
-        if (!compared && !changed)
-          return {
-            context: "only",
-            year_last: max_last.Year,
-            current_max: max_last.Sex
-          };
-        else {
-          changed = compared;
-        }
-
-        const growth = annualized_growth(
-          [changed["Number of visas"], max_last["Number of visas"]],
-          [changed.Year, max_last.Year]
-        );
-
-        return {
-          year_prev: changed.Year,
-          year_last: max_last.Year,
-          context: changed.Sex != max_last.Sex ? "changed" : "remained",
-          current_max: max_last.Sex,
-          previous_max: changed.Sex,
-          growth: numeral(growth, locale).format("0.0%")
-        };
       }
     ),
 
@@ -88,55 +88,58 @@ class MigrationDetailsSlide extends Section {
         cube: "immigration",
         measures: ["Number of visas"],
         drillDowns: [["Date", "Year"], ["Calculated Age Range", "Age Range"]],
-        cuts: [
-          { key: "[Date].[Date].[Year]", values: [year_last - 1, year_last] }
-        ],
         options: { parents: true },
         format: "jsonrecords"
       },
       (result, locale) => {
         const zero = { "Number of visas": 0 };
         const data = groupBy(result.data.data, "Year");
-
-        const year = Object.keys(data)
-          .sort()
-          .pop();
+        const available_years = Object.keys(data).sort();
 
         const output = { context: "none" };
 
-        if (!year) return output;
+        if (available_years.length == 0) return output;
 
-        const latest_total = sumBy(data[year], "Number of visas");
-        const latest_sorted = sortBy(data[year], "Number of visas");
-
-        const latest_first = latest_sorted.pop() || zero;
-        const latest_second = latest_sorted.pop() || zero;
-
-        output.year_prev = year - 1;
-        output.year_last = year;
+        // By this point there's at least 1 year available
         output.context = "unique";
+
+        const year_last = available_years.pop();
+
+        const latest_total = sumBy(data[year_last], "Number of visas");
+        const latest_sorted = sortBy(data[year_last], "Number of visas");
+        const latest_first = latest_sorted.pop();
+
+        output.year_last = year_last;
         output.first = latest_first["Age Range"];
         output.first_percent = numeral(
           latest_first["Number of visas"] / latest_total,
           locale
         ).format("0.0%");
 
-        const previous_first = []
-          .concat(data[year - 1])
-          .filter(Boolean)
-          .find(d => d["Age Range"] == latest_first["Age Range"]);
-
-        if (previous_first) {
-          output.context = "full";
+        const latest_second = latest_sorted.pop();
+        if (latest_second) {
+          output.context = "double";
           output.second = latest_second["Age Range"];
-          output.first_growth = numeral(
-            annualized_growth([
-              previous_first["Number of visas"],
-              latest_first["Number of visas"]
-            ]),
-            locale
-          ).format("0.0%");
         }
+
+        if (available_years.length == 0) return output;
+
+        // There's still at least another previous year available
+        output.context = "full";
+
+        const year_prev = available_years.pop();
+
+        const previous_first =
+          data[year_prev].find(
+            d => d["Age Range"] == latest_first["Age Range"]
+          ) || zero;
+        const growth = annualized_growth(
+          [previous_first["Number of visas"], latest_first["Number of visas"]],
+          [year_prev, year_last]
+        );
+
+        output.year_prev = year_prev;
+        output.first_growth = numeral(growth, locale).format("0.0%");
 
         return output;
       }
@@ -182,23 +185,20 @@ class MigrationDetailsSlide extends Section {
     const { children, t, i18n } = this.props;
     const locale = i18n.language;
 
-    const {
-      country,
-      slide_migration_sex,
-      slide_migration_age
-    } = this.context.data;
+    const country = this.context.data.country;
+    const migration_sex = this.context.data.slide_migration_sex || {};
+    const migration_age = this.context.data.slide_migration_age || {};
+    const migration_agebysex = this.context.data.datum_migration_agebysex || {};
 
-    if (slide_migration_sex) {
-      slide_migration_sex.level = country.caption;
-      slide_migration_age.level = country.caption;
-    }
+    migration_sex.level = country.caption;
+    migration_age.level = country.caption;
 
     const txt_slide =
-      t("country_profile.migration_details_slide.sex", slide_migration_sex) +
-      t("country_profile.migration_details_slide.age", slide_migration_age);
+      t("country_profile.migration_details_slide.sex", migration_sex) +
+      t("country_profile.migration_details_slide.age", migration_age);
 
-    const datum_female = this.context.data.datum_migration_agebysex.female;
-    const datum_male = this.context.data.datum_migration_agebysex.male;
+    const datum_female = migration_agebysex.female;
+    const datum_male = migration_agebysex.male;
 
     return (
       <div className="topic-slide-block">
@@ -209,18 +209,18 @@ class MigrationDetailsSlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            {slide_migration_sex && (
+            {migration_sex && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="cambio-numero-visas-sexo"
-                datum={slide_migration_sex.growth}
+                datum={migration_sex.growth}
                 title={t(
                   "Change number of visas for {{current_max}} immigrants",
-                  slide_migration_sex
+                  migration_sex
                 )}
                 subtitle={t(
                   "in period {{year_prev}} - {{year_last}}",
-                  slide_migration_sex
+                  migration_sex
                 )}
               />
             )}

@@ -88,28 +88,26 @@ class InternationalTradeSlide extends Section {
     const { children, t, i18n } = this.props;
     const locale = i18n.language;
 
-    const {
-      country,
-      datum_trade_import,
-      datum_trade_export
-    } = this.context.data;
+    const country = this.context.data.country;
+    const trade_import = this.context.data.datum_trade_import || {};
+    const trade_export = this.context.data.datum_trade_export || {};
 
-    const import_volume = datum_trade_import.total;
-    const export_volume = datum_trade_export.total;
+    const import_volume = trade_import.total || 0;
+    const export_volume = trade_export.total || 0;
     const balance_volume = export_volume - import_volume;
 
     const txt_slide = t("country_profile.intltrade_slide.text", {
       level: country.caption,
       year: last_year,
-      context: balance_volume == 0 ? 'none' : '',
+      context: balance_volume == 0 ? "none" : "",
       total_imports: numeral(import_volume, locale).format("($ 0.00 a)"),
       total_exports: numeral(export_volume, locale).format("($ 0.00 a)"),
       total_balance: numeral(Math.abs(balance_volume), locale).format(
         "($ 0.00 a)"
       ),
       behavior: balance_volume > 0 ? t("positive") : t("negative"),
-      main_import: datum_trade_import,
-      main_export: datum_trade_export
+      main_import: trade_import,
+      main_export: trade_export
     });
 
     return (
@@ -122,22 +120,22 @@ class InternationalTradeSlide extends Section {
           />
 
           <div className="topic-slide-data">
-            {datum_trade_import.name && (
+            {trade_import.name && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="principal-producto-importado"
-                datum={datum_trade_import.name}
+                datum={trade_import.name}
                 title={t("Main imported product")}
-                subtitle={`${datum_trade_import.percent} - ${last_year}`}
+                subtitle={`${trade_import.percent} - ${last_year}`}
               />
             )}
-            {datum_trade_export.name && (
+            {trade_export.name && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="principal-producto-exportado"
-                datum={datum_trade_export.name}
+                datum={trade_export.name}
                 title={t("Main exported product")}
-                subtitle={`${datum_trade_export.percent} - ${last_year}`}
+                subtitle={`${trade_export.percent} - ${last_year}`}
               />
             )}
           </div>

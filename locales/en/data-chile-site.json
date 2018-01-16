@@ -606,8 +606,10 @@
         "<p>Most of the immigrants coming from {{level}} are {{current_max}}. This has been a tendency since {{year_prev}}.</p>",
       "age":
         "<p>Most of the immigrants coming from {{level}} are people ages {{first}}, followed by ages {{second}}. The former represent a {{first_percent}} of the total in {{year_last}}, which translates into a change of {{first_growth}} since {{year_prev}}.</p>",
+      "age_double":
+        "<p>Most of the immigrants coming from {{level}} are people ages {{first}}, followed by ages {{second}}. The former represent a {{first_percent}} of the total in {{year_last}}.</p>",
       "age_unique":
-        "<p>Most of the immigrants coming from {{level}} are people ages {{first}}.</p>",
+        "<p>Most of the immigrants coming from {{level}} are people ages {{first}}. These represent a {{first_percent}} of the total in {{year_last}}.</p>",
       "age_none": ""
     },
     "migration_education_slide": {
