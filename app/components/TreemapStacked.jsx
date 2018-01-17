@@ -40,7 +40,15 @@ class TreemapStacked extends React.Component {
     );
   }
   render() {
-    const { t, path, msrName, drilldowns, config, depth } = this.props;
+    const {
+      t,
+      path,
+      msrName,
+      drilldowns,
+      config,
+      depth,
+      className
+    } = this.props;
     const chart = this.state.chart;
 
     if (!chart) {
@@ -50,7 +58,7 @@ class TreemapStacked extends React.Component {
     switch (chart) {
       case "treemap": {
         return this.state.show ? (
-          <div>
+          <div className={className}>
             <Treemap
               config={{
                 ...config,

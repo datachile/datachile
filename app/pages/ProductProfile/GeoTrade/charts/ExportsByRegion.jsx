@@ -110,8 +110,6 @@ class ExportsByRegion extends Section {
               shapeConfig: {
                 width: 10,
                 height: 10
-                //backgroundImage: d =>
-                //  "/images/legend/continent/" + d["ID Continent"] + ".png"
               }
             },
             yConfig: {
