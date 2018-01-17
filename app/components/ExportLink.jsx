@@ -19,18 +19,26 @@ class ExportLink extends React.Component {
     }));
   };
 
-  saveImage(e, className, title) {
+  saveImage(e, className, title, format) {
     // TODO: find a better way
     // Very fragile, but right now there's no other way without reestructuring
     // Must be keep updated with the JSX in the Chart.jsx component
-    //const { className } = this.props;
+    // const { className } = this.props;
     e.preventDefault();
     const element = document.querySelector(`.${className} .viz > svg`);
     element &&
-      saveElement(element, {
-        filename: title || "image",
-        type: "png"
-      });
+      saveElement(
+        element,
+        {
+          filename: title || "image",
+          type: format
+        },
+        {
+          background: "#2F2F38",
+          padding: 5,
+          height: 500
+        }
+      );
   }
 
   containerRef = node => {
@@ -66,7 +74,8 @@ class ExportLink extends React.Component {
         path: path.replace("jsonrecords", "json"),
         data: true
       },
-      { caption: "PNG", path: path, data: false }
+      { caption: "PNG", path: path, data: false },
+      { caption: "SVG", path: path, data: false }
     ];
 
     return (
@@ -81,14 +90,25 @@ class ExportLink extends React.Component {
           {options.map(o => (
             <li
               key={o.caption}
-              className={o.caption === "PNG" && !className ? "disabled" : ""}
+              className={
+                (o.caption === "PNG" || o.caption === "SVG") && !className
+                  ? "disabled"
+                  : ""
+              }
             >
               <a
                 target="_blank"
-                //download={""}
                 href={o.data ? o.path : ""}
                 onClick={
-                  !o.data ? e => this.saveImage(e, className, title) : ""
+                  !o.data
+                    ? e =>
+                        this.saveImage(
+                          e,
+                          className,
+                          title,
+                          o.caption.toLowerCase()
+                        )
+                    : ""
                 }
               >
                 {o.caption}

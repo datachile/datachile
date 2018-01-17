@@ -86,7 +86,7 @@ class TreemapStacked extends React.Component {
 
       case "stacked": {
         return this.state.show ? (
-          <div>
+          <div className={className}>
             <StackedArea
               config={{
                 ...config,

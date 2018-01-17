@@ -50,6 +50,6 @@
     }
   }
   &.open ul {
-    max-height: 120px;
+    max-height: 140px;
   }
 }
