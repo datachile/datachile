@@ -1,10 +1,8 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Geomap } from "d3plus-react";
+import CustomMap from "components/CustomMap";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
-
-import { geoNaturalEarth1 } from "d3-geo";
 
 import { continentColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
@@ -14,40 +12,7 @@ import { getLevelObject } from "helpers/dataUtils";
 import ExportLink from "components/ExportLink";
 
 class ExportsGeoMap extends Section {
-  static need = [
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient.cube("exports").then(cube => {
-        var q = levelCut(
-          product,
-          "Export HS",
-          "HS",
-          cube.query
-            .option("parents", true)
-            .drilldown("Destination Country", "Country", "Country")
-            .drilldown("Date", "Date", "Year")
-            .measure("FOB US")
-            .property("Destination Country", "Country", "iso3"),
-          "HS0",
-          "HS2",
-          store.i18n.locale
-        );
-
-        q.cut(`[Date].[Year].&[2015]`);
-
-        return {
-          key: "product_exports_by_destination",
-          data: __API__ + q.path("jsonrecords")
-        };
-      });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
-  ];
-
+  static need = [];
   render() {
     const { t, className, i18n } = this.props;
     const path = this.context.data.product_exports_by_destination;
@@ -60,51 +25,12 @@ class ExportsGeoMap extends Section {
           <span>{t("Exports By Destination")}</span>
           <ExportLink path={path} />
         </h3>
-        <Geomap
+        <CustomMap
+          path={path}
           config={{
-            height: 500,
-            data: path,
-            fitObject: "/geo/countries.json",
-            topojson: "/geo/countries.json",
-            groupBy: "iso3",
-            topojsonId: "id",
-            //padding: -20,
-            //tiles: false,
-            //ocean: "transparent",
-            //padding: "100px 0px 90px 0px",
-            //tileUrl: "https://cartocdn_{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
-            topojsonFilter: d => {
-              return ["ATA"].indexOf(d.id) < 0;
-            },
-            fitFilter: d => {
-              return ["ATA"].indexOf(d.id) < 0;
-            },
-            topojsonKey: "id",
-            fitKey: "id",
-            label: d => d["Country"],
-            //sum: d => d["FOB US"],
             colorScale: "FOB US",
-            colorScalePosition: "bottom",
-            colorScaleConfig: {
-              shapeConfig: {
-                fill: "#000",
-                labelConfig: {
-                  fontColor: "#999999"
-                }
-              },
-              select: "#legend",
-              size: 20,
-              //width: 500,
-              height: 60,
-              align: "start",
-              padding: 12,
-              rectConfig: {
-                stroke: "#BBBBBB"
-              }
-            },
-            //time: "ID Year",
+            time: "ID Year",
             total: d => d["FOB US"],
-
             totalConfig: {
               text: d =>
                 "Total: US" +
@@ -137,24 +63,9 @@ class ExportsGeoMap extends Section {
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
               }
-            },
-            legendConfig: {
-              label: d => d["Continent"],
-              shapeConfig: {
-                width: 40,
-                height: 40,
-                backgroundImage: d =>
-                  "/images/legend/continent/" + d["ID Continent"] + ".png"
-              }
             }
           }}
-          dataFormat={data => {
-            return data.data.map(item => {
-              return { ...item, ["FOB US"]: Math.log(item["FOB US"]) };
-            });
-          }}
         />
-        <svg id="legend"></svg>
       </div>
     );
   }
