@@ -19,6 +19,8 @@ import {
   clearStoreData
 } from "helpers/dataUtils";
 
+import { products } from "helpers/images";
+
 import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
 import SvgImage from "components/SvgImage";
@@ -342,13 +344,7 @@ class ProductProfile extends Component {
       typeof obj === "object"
         ? obj.depth === 1
           ? obj.key
-          : ["0101", "0102", "0103", "0104", "0105", "0207"].includes(
-              obj.key.substr(obj.key.length - 4)
-            )
-            ? obj.key.substr(obj.key.length - 4)
-            : obj.key.substr(obj.key.length - 4).slice(0, 2) === "03"
-              ? "03x"
-              : obj.ancestors[0].key
+          : products.includes(obj.key) ? obj.key : obj.ancestors[0].key
         : "";
 
     const ids = getLevelObject(this.props.routeParams);
@@ -576,9 +572,9 @@ class ProductProfile extends Component {
                           __html:
                             text_product.exports.n_countries > 0
                               ? t(
-                                  `product_profile.about2.exp_${text_product
-                                    .exports.n_countries}_imp_${text_product
-                                    .imports.n_countries}`,
+                                  `product_profile.about2.exp_${
+                                    text_product.exports.n_countries
+                                  }_imp_${text_product.imports.n_countries}`,
                                   text_product
                                 )
                               : ""
