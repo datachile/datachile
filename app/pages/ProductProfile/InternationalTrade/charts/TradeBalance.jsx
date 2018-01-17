@@ -79,6 +79,9 @@ class TradeBalance extends Section {
               title: t("USD"),
               tickFormat: tick => numeral(tick, locale).format("($ 0.[00] a)")
             },
+            legendConfig: {
+              label: d => t(d["variable"])
+            },
             shapeConfig: {
               Line: {
                 stroke: d => tradeBalanceColorScale(d["variable"]),
@@ -86,7 +89,7 @@ class TradeBalance extends Section {
               }
             },
             tooltipConfig: {
-              title: d => t("Trade Balance"),
+              title: d => t(d["variable"]),
               body: d =>
                 "<div>" +
                 d["year"] +
