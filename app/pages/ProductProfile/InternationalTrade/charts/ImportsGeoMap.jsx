@@ -2,14 +2,14 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import CustomMap from "components/CustomMap";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
-import { continentColorScale } from "helpers/colors";
-import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
+import { sources } from "helpers/consts";
+
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ExportsGeoMap extends Section {
   static need = [
@@ -25,7 +25,7 @@ class ExportsGeoMap extends Section {
             .drilldown("Origin Country", "Country", "Country")
             .drilldown("Date", "Date", "Year")
             .measure("CIF US")
-            .cut(`[Date].[Year].&[2016]`)
+            .cut(`[Date].[Year].&[${sources.imports.year}]`)
             .property("Origin Country", "Country", "iso3"),
           "HS0",
           "HS2",
@@ -53,10 +53,17 @@ class ExportsGeoMap extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Imports By Origin")}</span>
+          <span>
+            {t("Imports By Origin") +
+              " " +
+              t("in") +
+              " " +
+              sources.imports.year}
+          </span>
           <ExportLink path={path} />
         </h3>
         <CustomMap path={path} msrName={"CIF US"} className={"imports"} />
+        <SourceNote cube="imports" />
       </div>
     );
   }

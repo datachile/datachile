@@ -6,7 +6,11 @@ import { browserHistory } from "react-router";
 
 import { COLORS_SCALE_EXPORTS, COLORS_SCALE_IMPORTS } from "helpers/colors";
 
-import { numeral, slugifyItem } from "helpers/formatters";
+import {
+  numeral,
+  slugifyItem,
+  getNumberFromTotalString
+} from "helpers/formatters";
 
 import "./CustomMap.css";
 
@@ -19,7 +23,7 @@ class CustomMap extends React.Component {
   }
 
   render() {
-    const { t, path, msrName, className, config, depth } = this.props;
+    const { t, path, msrName, className, locale } = this.props;
 
     return this.state.show ? (
       <div className="geomap">
@@ -27,6 +31,8 @@ class CustomMap extends React.Component {
           config={{
             //...config,
             height: 500,
+            padding: 3,
+
             data: path,
             fitObject: "/geo/countries.json",
             topojson: "/geo/countries.json",
@@ -35,9 +41,18 @@ class CustomMap extends React.Component {
             topojsonKey: "id",
             fitKey: "id",
 
-            ocean: "#D4DADC",
+            ocean: "#e0e5e6",
 
             label: d => d["Country"],
+
+            total: d => d[msrName],
+            totalConfig: {
+              text: d =>
+                "Total: US" +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "($ 0.[00] a)"
+                )
+            },
 
             on: {
               click: d => {
@@ -62,11 +77,10 @@ class CustomMap extends React.Component {
                   d["ID Country"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d[msrName], "es").format("(USD 0 a)") + link;
+                return numeral(d[msrName], locale).format("(USD 0 a)") + link;
               }
             },
 
-            //groupBy: ["ID Country"],
             sum: d => d.variable,
 
             colorScale: "variable",
@@ -85,22 +99,17 @@ class CustomMap extends React.Component {
                   }
                 },
                 tickFormat: tick => {
-                  return numeral(parseFloat(tick), "es").format(
-                    "($ 0.[00] a)"
-                  );
+                  return numeral(parseFloat(tick), "es").format("($ 0.[00] a)");
                 }
               },
               select: `.geo-${className}`,
               align: "start"
             }
-            //label: d => d["Country"]
           }}
           dataFormat={data => {
-            console.log(data);
             if (data.data) {
-              console.log(data.data);
               return data.data.map(item => {
-                return { ...item, variable: (item[msrName]) };
+                return { ...item, variable: item[msrName] };
               });
             } else {
               this.setState({ show: false });

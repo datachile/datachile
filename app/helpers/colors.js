@@ -6,7 +6,7 @@ export const genderColorScale = scaleOrdinal().range(COLORS_GENDER);
 export const COLORS_SURVEY_RESPONSE = ["#ccc", "#1f496d", "#94424f"];
 
 export const COLORS_SCALE_EXPORTS = ["#ccd5f1", "#5076C4"];
-export const COLORS_SCALE_IMPORTS = ["#ffffff", "#E56671"];
+export const COLORS_SCALE_IMPORTS = ["#f8d8db", "#E56671"];
 
 export const COLORS_TRADE_BALANCE = ["#E5656C", "#4E6FD0", "#ccc"];
 export const tradeBalanceColorScale = scaleOrdinal().range(
