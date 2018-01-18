@@ -1,0 +1,17 @@
+.geomap {
+  position: relative;
+  & #legend {
+    position: absolute;
+    bottom: 20px;
+    height: 80px;
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 45px);
+    background-color: var(--snow);
+    border: 2px solid var(--gray-dark);
+
+    & text {
+      fill: #000 !important;
+    }
+  }
+}

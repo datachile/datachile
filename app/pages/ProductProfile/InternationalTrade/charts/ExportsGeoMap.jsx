@@ -1,17 +1,14 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Geomap } from "d3plus-react";
+import CustomMap from "components/CustomMap";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
+import { sources } from "helpers/consts";
 
-import { geoNaturalEarth1 } from "d3-geo";
-
-import { continentColorScale } from "helpers/colors";
-import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
+import SourceNote from "components/SourceNote";
 
 class ExportsGeoMap extends Section {
   static need = [
@@ -27,16 +24,15 @@ class ExportsGeoMap extends Section {
             .drilldown("Destination Country", "Country", "Country")
             .drilldown("Date", "Date", "Year")
             .measure("FOB US")
+            .cut(`[Date].[Year].&[${sources.exports.year}]`)
             .property("Destination Country", "Country", "iso3"),
           "HS0",
           "HS2",
           store.i18n.locale
         );
 
-        q.cut(`[Date].[Year].&[2015]`);
-
         return {
-          key: "product_exports_by_destination",
+          key: "product_exports_by_destination_last_year",
           data: __API__ + q.path("jsonrecords")
         };
       });
@@ -47,114 +43,26 @@ class ExportsGeoMap extends Section {
       };
     }
   ];
-
   render() {
     const { t, className, i18n } = this.props;
-    const path = this.context.data.product_exports_by_destination;
+    const path = this.context.data.product_exports_by_destination_last_year;
 
     const locale = i18n.language;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Exports By Destination")}</span>
+          <span>
+            {t("Exports By Destination") +
+              " " +
+              t("in") +
+              " " +
+              sources.exports.year}
+          </span>
           <ExportLink path={path} />
         </h3>
-        <Geomap
-          config={{
-            height: 500,
-            data: path,
-            fitObject: "/geo/countries.json",
-            topojson: "/geo/countries.json",
-            groupBy: "iso3",
-            topojsonId: "id",
-            //padding: -20,
-            //tiles: false,
-            //ocean: "transparent",
-            //padding: "100px 0px 90px 0px",
-            //tileUrl: "https://cartocdn_{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
-            topojsonFilter: d => {
-              return ["ATA"].indexOf(d.id) < 0;
-            },
-            fitFilter: d => {
-              return ["ATA"].indexOf(d.id) < 0;
-            },
-            topojsonKey: "id",
-            fitKey: "id",
-            label: d => d["Country"],
-            //sum: d => d["FOB US"],
-            colorScale: "FOB US",
-            colorScalePosition: "bottom",
-            colorScaleConfig: {
-              shapeConfig: {
-                fill: "#000",
-                labelConfig: {
-                  fontColor: "#999999"
-                }
-              },
-              select: "#legend",
-              size: 20,
-              //width: 500,
-              height: 60,
-              align: "start",
-              padding: 12,
-              rectConfig: {
-                stroke: "#BBBBBB"
-              }
-            },
-            //time: "ID Year",
-            total: d => d["FOB US"],
-
-            totalConfig: {
-              text: d =>
-                "Total: US" +
-                numeral(d.text.split(": ")[1], locale).format("($ 0.00 a)")
-            },
-            on: {
-              click: d => {
-                if (!(d["ID Country"] instanceof Array)) {
-                  var url = slugifyItem(
-                    "countries",
-                    d["ID Continent"],
-                    d["Continent"],
-                    d["ID Country"] instanceof Array ? false : d["ID Country"],
-                    d["Country"] instanceof Array ? false : d["Country"]
-                  );
-                  browserHistory.push(url);
-                }
-              }
-            },
-            tooltipConfig: {
-              title: d => {
-                return d["Country"] instanceof Array
-                  ? d["Continent"]
-                  : d["Country"];
-              },
-              body: d => {
-                const link =
-                  d["ID Country"] instanceof Array
-                    ? ""
-                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
-              }
-            },
-            legendConfig: {
-              label: d => d["Continent"],
-              shapeConfig: {
-                width: 40,
-                height: 40,
-                backgroundImage: d =>
-                  "/images/legend/continent/" + d["ID Continent"] + ".png"
-              }
-            }
-          }}
-          dataFormat={data => {
-            return data.data.map(item => {
-              return { ...item, ["FOB US"]: Math.log(item["FOB US"]) };
-            });
-          }}
-        />
-        <svg id="legend"></svg>
+        <CustomMap path={path} msrName={"FOB US"} className={"exports"} />
+        <SourceNote cube="imports" />
       </div>
     );
   }
