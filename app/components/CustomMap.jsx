@@ -2,6 +2,9 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Geomap } from "d3plus-react";
 import NoDataAvailable from "components/NoDataAvailable";
+import { browserHistory } from "react-router";
+
+import { COLORS_SCALE_EXPORTS, COLORS_SCALE_IMPORTS } from "helpers/colors";
 
 import { numeral, slugifyItem } from "helpers/formatters";
 
@@ -16,13 +19,13 @@ class CustomMap extends React.Component {
   }
 
   render() {
-    const { t, path, msrName, drilldowns, config, depth } = this.props;
+    const { t, path, msrName, className, config, depth } = this.props;
 
     return this.state.show ? (
       <div className="geomap">
         <Geomap
           config={{
-            ...config,
+            //...config,
             height: 500,
             data: path,
             fitObject: "/geo/countries.json",
@@ -31,9 +34,50 @@ class CustomMap extends React.Component {
             topojsonId: "id",
             topojsonKey: "id",
             fitKey: "id",
+
+            ocean: "#D4DADC",
+
+            label: d => d["Country"],
+
+            on: {
+              click: d => {
+                if (!(d["ID Country"] instanceof Array)) {
+                  var url = slugifyItem(
+                    "countries",
+                    d["ID Continent"],
+                    d["Continent"],
+                    d["ID Country"] instanceof Array ? false : d["ID Country"],
+                    d["Country"] instanceof Array ? false : d["Country"]
+                  );
+                  browserHistory.push(url);
+                }
+              }
+            },
+            tooltipConfig: {
+              title: d => {
+                return d["Country"];
+              },
+              body: d => {
+                const link =
+                  d["ID Country"] instanceof Array
+                    ? ""
+                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                return numeral(d[msrName], "es").format("(USD 0 a)") + link;
+              }
+            },
+
+            //groupBy: ["ID Country"],
+            sum: d => d.variable,
+
+            colorScale: "variable",
             colorScalePosition: "bottom",
-            
             colorScaleConfig: {
+              color:
+                className === "exports"
+                  ? COLORS_SCALE_EXPORTS
+                  : className === "imports"
+                    ? COLORS_SCALE_IMPORTS
+                    : ["#CFE4F1", "#9FCAE3", "#6EAFD5", "#3C94C7"],
               axisConfig: {
                 shapeConfig: {
                   labelConfig: {
@@ -41,43 +85,29 @@ class CustomMap extends React.Component {
                   }
                 },
                 tickFormat: tick => {
-                    return numeral(Math.exp(parseFloat(tick)), "es").format(
-                      "($ 0.[00] a)"
-                    );
-                  }
-                //tickFormat: tick => {
-                //console.log(tick);
-                //return Math.exp(parseFloat(tick));
-                //}
-              },
-              /*shapeConfig: {
-                fontColor: "#999999",
-                labelConfig: {
-                  fontColor: "#000"
+                  return numeral(parseFloat(tick), "es").format(
+                    "($ 0.[00] a)"
+                  );
                 }
-              },*/
-              select: "#legend",
-              //size: 20,
-              //width: 500,
+              },
+              select: `.geo-${className}`,
               align: "start"
-              //padding: 12,
-              /*rectConfig: {
-                stroke: "#BBBBBB"
-              }*/
             }
             //label: d => d["Country"]
           }}
           dataFormat={data => {
-            if (data.data && data.data.length > 0) {
-              return data.data.filter(item => item["ID Year"] === 2016).map(item => {
-                return { ...item, ["FOB US"]: Math.log(item["FOB US"]) };
+            console.log(data);
+            if (data.data) {
+              console.log(data.data);
+              return data.data.map(item => {
+                return { ...item, variable: (item[msrName]) };
               });
             } else {
               this.setState({ show: false });
             }
           }}
         />
-        <svg id="legend" />
+        {<svg id={"legend"} className={`geo-${className}`} />}
       </div>
     ) : (
       <NoDataAvailable />

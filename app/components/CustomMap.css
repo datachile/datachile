@@ -6,7 +6,7 @@
     height: 80px;
     left: 20px;
     right: 20px;
-    width: calc(100% - 40px);
+    width: calc(100% - 45px);
     background-color: var(--gray);
     border: 2px solid var(--darker-gray);
 

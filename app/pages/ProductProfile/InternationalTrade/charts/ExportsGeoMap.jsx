@@ -12,10 +12,41 @@ import { getLevelObject } from "helpers/dataUtils";
 import ExportLink from "components/ExportLink";
 
 class ExportsGeoMap extends Section {
-  static need = [];
+  static need = [
+    (params, store) => {
+      const product = getLevelObject(params);
+      const prm = mondrianClient.cube("exports").then(cube => {
+        var q = levelCut(
+          product,
+          "Export HS",
+          "HS",
+          cube.query
+            .option("parents", true)
+            .drilldown("Destination Country", "Country", "Country")
+            .drilldown("Date", "Date", "Year")
+            .measure("FOB US")
+            .cut(`[Date].[Year].&[2016]`)
+            .property("Destination Country", "Country", "iso3"),
+          "HS0",
+          "HS2",
+          store.i18n.locale
+        );
+
+        return {
+          key: "product_exports_by_destination_last_year",
+          data: __API__ + q.path("jsonrecords")
+        };
+      });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
+  ];
   render() {
     const { t, className, i18n } = this.props;
-    const path = this.context.data.product_exports_by_destination;
+    const path = this.context.data.product_exports_by_destination_last_year;
 
     const locale = i18n.language;
 
@@ -27,10 +58,12 @@ class ExportsGeoMap extends Section {
         </h3>
         <CustomMap
           path={path}
+          msrName={"FOB US"}
+          className={"exports"}
           config={{
-            colorScale: "FOB US",
-            time: "ID Year",
-            total: d => d["FOB US"],
+            //colorScale: "variable",
+            //time: "ID Year",
+            total: d => d.variable,
             totalConfig: {
               text: d =>
                 "Total: US" +
