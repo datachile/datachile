@@ -14,6 +14,15 @@ import { numeral } from "helpers/formatters";
 
 const year_last = sources.immigration.year;
 
+class GroupContainer {
+  get(k) {
+    return this[k] || 0;
+  }
+  add(k, v) {
+    this[k] = this.get(k) + v;
+  }
+}
+
 class MigrationEducationSlide extends Section {
   static need = [
     simpleCountryDatumNeed(
@@ -30,74 +39,79 @@ class MigrationEducationSlide extends Section {
         format: "jsonrecords"
       },
       (result, locale) => {
-        const zero = { "Number of visas": 0 };
+        const groups = groupBy(result.data.data, "Year");
+        const available_years = Object.keys(groups).sort();
 
-        const total = sumBy(result.data.data, "Number of visas");
-        const group_year = groupBy(result.data.data, "Year");
-        const lastyr = parseInt(
-          Object.keys(group_year)
-            .sort()
-            .pop()
+        if (available_years.length == 0) return { context: "none" };
+
+        const education_labels = [
+          "unavailable",
+          "primary",
+          "highschool",
+          "someprimary",
+          "technical",
+          "higher",
+          "none",
+          "none"
+        ];
+        const grouper = function(obj, d) {
+          const id_edu = d["ID Education"];
+          const label_edu = education_labels[id_edu];
+          const label_sex = `total_${d["ID Sex"] == 1 ? "female" : "male"}`;
+
+          obj.add("total", d["Number of visas"]);
+          obj.add(label_edu, d["Number of visas"]);
+          if (id_edu == 2 || id_edu == 4 || id_edu == 5) {
+            obj.add(label_sex, d["Number of visas"]);
+          }
+          return obj;
+        };
+
+        const year_last = parseInt(available_years.pop());
+        const year_prev = parseInt(available_years.pop());
+
+        const data_lastyr = [].concat(groups[year_last]).filter(Boolean);
+        const data_prevyr = [].concat(groups[year_prev]).filter(Boolean);
+
+        const sums_lastyr = data_lastyr.reduce(grouper, new GroupContainer());
+        const sums_prevyr = data_prevyr.reduce(grouper, new GroupContainer());
+
+        const lastyr_sum_college =
+          sums_lastyr.get("higher") + sums_lastyr.get("technical");
+        const prevyr_sum_college =
+          sums_prevyr.get("higher") + sums_prevyr.get("technical");
+
+        const college_growth = annualized_growth(
+          [prevyr_sum_college, lastyr_sum_college],
+          [year_prev, year_last]
         );
 
-        const group_lastyr = [].concat(group_year[lastyr]);
-        const check_edu_level = n => n == 2 || n == 4 || n == 5;
-        const lastyr_sex_female = group_lastyr.reduce(function(sum, d) {
-          if (d && d["ID Sex"] == 1 && check_edu_level(d["ID Education"]))
-            sum += d["Number of visas"] || 0;
-          return sum;
-        }, 0);
-        const lastyr_sex_male = group_lastyr.reduce(function(sum, d) {
-          if (d && d["ID Sex"] == 2 && check_edu_level(d["ID Education"]))
-            sum += d["Number of visas"] || 0;
-          return sum;
-        }, 0);
-
-        const prevyr_group_edu = groupBy(
-          group_year[lastyr - 1],
-          "ID Education"
-        );
-        const lastyr_group_edu = groupBy(group_lastyr, "ID Education");
-
-        const prevyr_edu_techni = sumBy(prevyr_group_edu[4], "Number of visas");
-        const prevyr_edu_higher = sumBy(prevyr_group_edu[5], "Number of visas");
-
-        const lastyr_edu_highsc = sumBy(lastyr_group_edu[2], "Number of visas");
-        const lastyr_edu_techni = sumBy(lastyr_group_edu[4], "Number of visas");
-        const lastyr_edu_higher = sumBy(lastyr_group_edu[5], "Number of visas");
-        const lastyr_edu_none = sumBy(lastyr_group_edu[6], "Number of visas");
-        const lastyr_edu_unknown =
-          sumBy(lastyr_group_edu[7], "Number of visas") +
-          sumBy(lastyr_group_edu[8], "Number of visas");
-
-        const prevyr_sum_college = prevyr_edu_techni + prevyr_edu_higher;
-        const lastyr_sum_college = lastyr_edu_techni + lastyr_edu_higher;
-        const higher_growth = annualized_growth([
-          prevyr_sum_college,
-          lastyr_sum_college
-        ]);
+        const total = sums_lastyr.get("total");
 
         return {
-          context: isNaN(lastyr) ? "none" : "",
-          year_last: lastyr,
-          year_prev: lastyr - 1,
-          datum_male: lastyr_sex_male,
-          datum_female: lastyr_sex_female,
-          highsc_percent: numeral(lastyr_edu_highsc / total, locale).format(
-            "0.0%"
-          ),
-          higher_rawgrowth: higher_growth || 0,
-          higher_upgrowth: higher_growth > 0,
-          higher_growth: numeral(Math.abs(higher_growth), locale).format(
+          raw_data: data_lastyr,
+          year_last,
+          year_prev,
+          datum_male: sums_lastyr.get("total_male"),
+          datum_female: sums_lastyr.get("total_female"),
+          highsc_percent: numeral(
+            sums_lastyr.get("highschool") / total,
+            locale
+          ).format("0.0%"),
+          higher_rawgrowth: college_growth,
+          higher_growth: numeral(Math.abs(college_growth), locale).format(
             "0.0%"
           ),
           higher_percent: numeral(lastyr_sum_college / total, locale).format(
             "0.0%"
           ),
-          none_percent: numeral(lastyr_edu_none / total, locale).format("0.0%"),
-          unknown_percent: numeral(lastyr_edu_unknown / total, locale).format(
+          none_percent: numeral(sums_lastyr.get("none") / total, locale).format(
             "0.0%"
-          )
+          ),
+          unknown_percent: numeral(
+            sums_lastyr.get("unavailable") / total,
+            locale
+          ).format("0.0%")
         };
       }
     )
@@ -111,9 +125,8 @@ class MigrationEducationSlide extends Section {
     const education = this.context.data.slide_migration_education || {};
 
     education.level = country.caption;
-    education.higher_behavior = education.higher_upgrowth
-      ? t("incremented")
-      : t("decremented");
+    education.higher_behavior =
+      education.higher_rawgrowth > 0 ? t("incremented") : t("decremented");
 
     const txt_slide = t(
       "country_profile.migration_education_slide.text",
@@ -153,12 +166,16 @@ class MigrationEducationSlide extends Section {
                 )}
               />
             )}
-            {education.higher_rawgrowth != 0 && (
+            {education.higher_rawgrowth && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="crecimiento-migrantes-educ-superior"
-                datum={education.higher_growth}
-                title={t("Growth of immigrants with higher education")}
+                datum={numeral(education.higher_rawgrowth, locale).format(
+                  "0.0%"
+                )}
+                title={t(
+                  "Change of immigrants with universitary or technical education"
+                )}
                 subtitle={t(
                   "in period {{year_prev}} - {{year_last}}",
                   education

@@ -198,8 +198,8 @@
 
   "Annual Growth Exports": "Cambio Anual de Exportaciones",
   "Annual Growth Imports": "Cambio Anual de Importaciones",
-  "Growth of immigrants with higher education":
-    "Crecimiento de migrantes con educación superior",
+  "Change of immigrants with universitary or technical education":
+    "Cambio en migrantes con educación universitaria o técnica",
   "Health Center": "Centro de salud",
   "Health Insurance": "Previsión de Salud",
   "Healthcare": "Atención de Salud",
@@ -773,7 +773,7 @@
       "text_none":
         "<p>No hay datos sobre inmigrantes desde {{level}} hacia Chile.</p>",
       "text":
-        "<p>El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Superior, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con educación superior ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.</p>"
+        "<p>El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Técnica o Universitaria, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con Educación Técnica o Universitaria ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.</p>"
     },
     "migration_activity_slide": {
       "visa_type":
@@ -1008,8 +1008,10 @@
     "economy": {
       "default":
         "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{location.first.share}} del total, seguida por <a href=\"{{location.second.link}}\">{{location.second.caption}}</a>, que ejecutó {{location.second.share}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
-      "no_data": "<p>En {{year.last}}, no hubo datos de nivel de ventas en industrias de {{industry.caption}}.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
-      "one_item": "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la única comuna con nivel de ventas en industrias de {{industry.caption}}. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p></p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>"
+      "no_data":
+        "<p>En {{year.last}}, no hubo datos de nivel de ventas en industrias de {{industry.caption}}.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+      "one_item":
+        "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la única comuna con nivel de ventas en industrias de {{industry.caption}}. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p></p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>"
     },
     "employment":
       "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} han {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",

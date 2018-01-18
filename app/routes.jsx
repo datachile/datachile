@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, IndexRoute } from "react-router";
+import { IndexRoute, Redirect, Route } from "react-router";
 
 import App from "components/App";
 import Home from "pages/Home";
@@ -28,12 +28,27 @@ export default function RouteCreate() {
       <IndexRoute component={Home} />
       <Route path="explore/map" component={ExploreMap} />
       <Route path="explore(/:entity)(/:entity_id)" component={Explore} />
+
       <Route path="geo/:region(/:comuna)" component={GeoProfile} />
+      <Redirect from="geo(/)" to="/explore/geo" />
+
+      <Redirect from="countries/:slug-999/chile-997" to="/geo/chile" />
+      {/* <Route
+        path="countries/:slug-999(/**)"
+        component={NotFound}
+        status={404}
+      /> */}
       <Route path="countries/:level1(/:level2)" component={CountryProfile} />
+      <Redirect from="countries(/)" to="/explore/countries" />
 
       <Route path="products/:level1(/:level2)" component={ProductProfile} />
+      <Redirect from="products(/)" to="/explore/products" />
+
       <Route path="industries/:level1(/:level2)" component={IndustryProfile} />
+      <Redirect from="industries(/)" to="/explore/industries" />
+
       <Route path="about(/:section)" component={About} />
+
       <Route path="*" component={NotFound} status={404} />
     </Route>
   );
