@@ -343,7 +343,7 @@ function Disability(data, geo, locale) {
           share: (total - disability_female) / total
         }
       },
-      value: numeral(total, locale).format("0,0 a"),
+      value: numeral(total, locale).format("0.0 a"),
       share: numeral(total / (total + no_disability), locale).format("0.0 %"),
       data: {
         prep: total >= 1000000 ? " de" : "",
