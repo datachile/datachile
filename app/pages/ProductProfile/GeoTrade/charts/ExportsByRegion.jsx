@@ -107,7 +107,9 @@ class ExportsByRegion extends Section {
                   d["ID Comuna"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
+                return (
+                  "US" + numeral(d["FOB US"], locale).format("(USD 0 a)") + link
+                );
               }
             },
             legendTooltip: {
@@ -116,7 +118,9 @@ class ExportsByRegion extends Section {
               },
               body: d => {
                 const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
+                return (
+                  "US" + numeral(d["FOB US"], locale).format("(USD 0 a)") + link
+                );
               }
             },
             legendConfig: {

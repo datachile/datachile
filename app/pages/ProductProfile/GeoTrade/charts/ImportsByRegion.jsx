@@ -104,7 +104,9 @@ class ImportsByRegion extends Section {
                   d["ID Comuna"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["CIF US"], locale).format("(USD 0 a)") + link;
+                return (
+                  "US" + numeral(d["CIF US"], locale).format("(USD 0 a)") + link
+                );
               }
             },
             legendTooltip: {
@@ -113,7 +115,9 @@ class ImportsByRegion extends Section {
               },
               body: d => {
                 const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["CIF US"], locale).format("(USD 0 a)") + link;
+                return (
+                  "US" + numeral(d["CIF US"], locale).format("(USD 0 a)") + link
+                );
               }
             },
             legendConfig: {
