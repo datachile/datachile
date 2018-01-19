@@ -19,6 +19,8 @@ import {
   clearStoreData
 } from "helpers/dataUtils";
 
+import { products } from "helpers/images";
+
 import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
 import SvgImage from "components/SvgImage";
@@ -34,7 +36,8 @@ import ExportsByDestination from "./InternationalTrade/charts/ExportsByDestinati
 import ImportsByOrigin from "./InternationalTrade/charts/ImportsByOrigin";
 import TradeBalance from "./InternationalTrade/charts/TradeBalance";
 
-//import ExportsGeoMap from "./InternationalTrade/charts/ExportsGeoMap";
+import ExportsGeoMap from "./InternationalTrade/charts/ExportsGeoMap";
+import ImportsGeoMap from "./InternationalTrade/charts/ImportsGeoMap";
 
 import GeoTradeSlide from "./GeoTrade/GeoTradeSlide";
 import ExportsByRegion from "./GeoTrade/charts/ExportsByRegion";
@@ -315,7 +318,8 @@ class ProductProfile extends Component {
     ExportsByDestination,
     ImportsByOrigin,
 
-    //ExportsGeoMap,
+    ExportsGeoMap,
+    ImportsGeoMap,
 
     GeoTradeSlide,
     ExportsByRegion,
@@ -342,13 +346,7 @@ class ProductProfile extends Component {
       typeof obj === "object"
         ? obj.depth === 1
           ? obj.key
-          : ["0101", "0102", "0103", "0104", "0105", "0207"].includes(
-              obj.key.substr(obj.key.length - 4)
-            )
-            ? obj.key.substr(obj.key.length - 4)
-            : obj.key.substr(obj.key.length - 4).slice(0, 2) === "03"
-              ? "03x"
-              : obj.ancestors[0].key
+          : products.includes(obj.key) ? obj.key : obj.ancestors[0].key
         : "";
 
     const ids = getLevelObject(this.props.routeParams);
@@ -576,9 +574,9 @@ class ProductProfile extends Component {
                           __html:
                             text_product.exports.n_countries > 0
                               ? t(
-                                  `product_profile.about2.exp_${text_product
-                                    .exports.n_countries}_imp_${text_product
-                                    .imports.n_countries}`,
+                                  `product_profile.about2.exp_${
+                                    text_product.exports.n_countries
+                                  }_imp_${text_product.imports.n_countries}`,
                                   text_product
                                 )
                               : ""
@@ -609,8 +607,15 @@ class ProductProfile extends Component {
                 <InternationalTradeSlide>
                   <SectionColumns>
                     <ExportsByDestination className="lost-1-2" />
-                    {/*<ExportsGeoMap className="lost-1-2" />*/}
+                    <ExportsGeoMap className="lost-1-2" />
+                  </SectionColumns>
+                </InternationalTradeSlide>
+              </div>
+              <div>
+                <InternationalTradeSlide>
+                  <SectionColumns>
                     <ImportsByOrigin className="lost-1-2" />
+                    <ImportsGeoMap className="lost-1-2" />
                   </SectionColumns>
                 </InternationalTradeSlide>
               </div>
