@@ -52,19 +52,23 @@ class ExportsByRegion extends Section {
     const { t, className, i18n } = this.props;
     const path = this.context.data.product_exports_by_region;
 
+    const title = t("Exports By Region");
+    const classSvg = "exports-by-region";
+
     const locale = i18n.language;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
           <span>{t("Exports By Region")}</span>
-          <ExportLink path={path} />
+          <ExportLink path={path} className={classSvg} title={title} />
         </h3>
 
         <TreemapStacked
           path={path}
           msrName="FOB US"
           drilldowns={["Region", "Comuna"]}
+          className={classSvg}
           config={{
             label: d =>
               d["Country"] instanceof Array ? d["Region"] : d["Comuna"],

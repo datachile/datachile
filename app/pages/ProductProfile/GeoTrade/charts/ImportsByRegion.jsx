@@ -54,16 +54,20 @@ class ImportsByRegion extends Section {
 
     const locale = i18n.language;
 
+    const title = t("Imports By Region");
+    const classSvg = "imports-by-region";
+
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Imports By Region")}</span>
-          <ExportLink path={path} />
+          <span>{title}</span>
+          <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <TreemapStacked
           path={path}
           msrName="CIF US"
           drilldowns={["Region", "Comuna"]}
+          className={classSvg}
           config={{
             label: d =>
               d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
@@ -109,7 +113,7 @@ class ImportsByRegion extends Section {
               },
               body: d => {
                 const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
+                return numeral(d["CIF US"], locale).format("(USD 0 a)") + link;
               }
             },
             legendConfig: {
