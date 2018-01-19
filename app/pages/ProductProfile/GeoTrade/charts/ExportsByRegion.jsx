@@ -105,6 +105,27 @@ class ExportsByRegion extends Section {
                 return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
               }
             },
+            legendTooltip: {
+              title: d => {
+                return d["Region"];
+              },
+              body: d => {
+                const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
+              },
+              on: {
+                click: d => {
+                  var url = slugifyItem(
+                    "geo",
+                    d["ID Region"],
+                    d["Region"],
+                    false,
+                    false
+                  );
+                  browserHistory.push(url);
+                }
+              }
+            },
             legendConfig: {
               label: false,
               shapeConfig: {
