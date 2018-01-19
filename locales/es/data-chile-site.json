@@ -738,12 +738,12 @@
     "changelog": {
       "title": "Cambios",
       "launch": {
-        "title": "1.0.0 - Lanzamiento - 2018-01-08",
+        "title": "1.0.0 - Lanzamiento beta - 2018-01-08",
         "description":
           "<p>Página principal. Exploración por perfiles. Buscador de entidades. Perfiles: geográfico, países, industrias y productos. Más de 15 datasets sobre los tópicos: Economía, demografía, educación, salud y vivienda.</p>"
       },
       "araucaria": {
-        "title": "1.0.1 - Araucaria - 2018-01-19",
+        "title": "1.0.1 - \"Araucaria\" - 2018-01-19",
         "description":
           "<p>Corrección de errores generales en varios perfiles, más imágenes de fondo, estabilidad de perfil país para países con pocos datos.</p>"
       }
