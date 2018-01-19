@@ -81,16 +81,14 @@ class ImportsByRegion extends Section {
             },
             on: {
               click: d => {
-                if (!(d["ID Comuna"] instanceof Array)) {
-                  var url = slugifyItem(
-                    "geo",
-                    d["ID Region"],
-                    d["Region"],
-                    d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
-                    d["Comuna"] instanceof Array ? false : d["Comuna"]
-                  );
-                  browserHistory.push(url);
-                }
+                var url = slugifyItem(
+                  "geo",
+                  d["ID Region"],
+                  d["Region"],
+                  d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
+                  d["Comuna"] instanceof Array ? false : d["Comuna"]
+                );
+                browserHistory.push(url);
               }
             },
             tooltipConfig: {
@@ -103,6 +101,15 @@ class ImportsByRegion extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return numeral(d["CIF US"], locale).format("(USD 0 a)") + link;
+              }
+            },
+            legendTooltip: {
+              title: d => {
+                return d["Region"];
+              },
+              body: d => {
+                const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                return numeral(d["FOB US"], locale).format("(USD 0 a)") + link;
               }
             },
             legendConfig: {
