@@ -29,14 +29,18 @@ class ExportsByProduct extends Section {
     const locale = i18n.language;
     const path = this.context.data.path_exports_by_product;
 
+    const title = t("geo_profile.economy.exports.by_product", geo);
+    const classSvg = "exports-by-product";
+
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("geo_profile.economy.exports.by_product", geo)}</span>
-          <ExportLink path={path} />
+          <span>{title}</span>
+          <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <TreemapStacked
           path={path}
+          className={classSvg}
           msrName="FOB US"
           drilldowns={["HS0", "HS2"]}
           config={{
