@@ -47,6 +47,10 @@ class About extends Component {
       {
         slug: "terms",
         title: t("about.terms.title")
+      },
+      {
+        slug: "changelog",
+        title: t("about.changelog.title")
       }
     ];
 
@@ -793,6 +797,26 @@ class About extends Component {
                 <div
                   dangerouslySetInnerHTML={{
                     __html: t("about.terms.text")
+                  }}
+                />
+              </section>
+            )}
+
+            {section == "changelog" && (
+              <section className="section" id="terms">
+                <h2>{t("about.changelog.title")}</h2>
+
+                <h3>{t("about.changelog.araucaria.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.araucaria.description")
+                  }}
+                />
+
+                <h3>{t("about.changelog.launch.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.launch.description")
                   }}
                 />
               </section>

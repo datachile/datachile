@@ -734,6 +734,19 @@
       "text":
         "<p>La información en este sitio se proporciona 'tal como está' y 'según esté disponible'. DataChile hace todo lo posible para garantizar, pero no garantiza, la exactitud o integridad de la información en el sitio web de DataChile. Nuestro objetivo es mantener esta información oportuna y precisa. Si los errores son traídos a nuestra atención, trataremos de corregirlos. DataChile puede agregar, cambiar, mejorar o actualizar la información del sitio web sin previo aviso.</p><p>DataChile se reserva el derecho exclusivo a su entera discreción de alterar, limitar o descontinuar parte de este sitio. Bajo ninguna circunstancia DataChile será responsable de ninguna pérdida, daño, responsabilidad o gasto sufrido que se alegue como resultado del uso de este sitio, incluyendo, sin limitación, cualquier falla, error, omisión, interrupción o retraso. El uso de este sitio es bajo el exclusivo riesgo del usuario. Hacemos todo lo posible para minimizar las interrupciones causadas por errores técnicos. Sin embargo, algunos datos o información en el sitio web de DataChile pueden haber sido creados o estructurados en archivos o formatos que no están libres de errores y no podemos garantizar que nuestro servicio no se vea interrumpido o afectado por tales problemas. DataChile no acepta ninguna responsabilidad con respecto a tales problemas (fallas de funcionamiento, virus informáticos, fallas en la línea de comunicación, alteración del contenido, etc.) incurridos como resultado del uso del sitio web de DataChile o cualquier enlace a sitios externos.</p><p>El Usuario reconoce y acepta específicamente que DataChile no es responsable de ninguna conducta de ningún otro Usuario, incluidos, entre otros, los tipos de conducta enumerados anteriormente.</p><p>DataChile se reserva el derecho de denegar a su exclusivo criterio el acceso de cualquier Usuario al sitio web de DataChile o cualquier parte del mismo sin previo aviso.</p><p>Para fines de seguridad del sitio y para asegurar que el sitio web de DataChile permanezca disponible para todos los usuarios, emplea programas de software para monitorear el tráfico de red para identificar intentos no autorizados de cargar o cambiar información o causar daños y detectar otras posibles violaciones de seguridad.</p>",
       "title": "Términos de uso"
+    },
+    "changelog": {
+      "title": "Cambios",
+      "launch": {
+        "title": "1.0.0 - Lanzamiento beta - 2018-01-08",
+        "description":
+          "<p>Página principal. Exploración por perfiles. Buscador de entidades. Perfiles: geográfico, países, industrias y productos. Más de 15 datasets sobre los tópicos: Economía, demografía, educación, salud y vivienda.</p>"
+      },
+      "araucaria": {
+        "title": "1.0.1 - \"Araucaria\" - 2018-01-19",
+        "description":
+          "<p>Corrección de errores generales en varios perfiles, más imágenes de fondo, estabilidad de perfil país para países con pocos datos.</p>"
+      }
     }
   },
   "affiliates": "afiliados",

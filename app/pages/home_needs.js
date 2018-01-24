@@ -123,7 +123,7 @@ export function needHomeProductsExports(params, store) {
                 r["ID HS2"],
                 r["HS2"]
               ),
-              img: "/images/profile-bg/product/" + r["ID HS0"] + ".jpg"
+              img: getImageFromMember("products", r["ID HS0"], r["ID HS2"])
             };
           })
       };
