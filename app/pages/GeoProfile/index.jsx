@@ -129,8 +129,8 @@ import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 
 /** Politics */
 
-//import ElectionSlide from "./politics/election/ElectionSlide";
-//import MayorResults from "./politics/election/charts/MayorResults";
+import ElectionSlide from "./politics/election/ElectionSlide";
+import MayorResults from "./politics/election/charts/MayorResults";
 
 /** end Politics */
 
@@ -240,10 +240,10 @@ class GeoProfile extends Component {
 
     DeathCausesSlide,
     DeathCauses,
-    DeathCausesStacked
+    DeathCausesStacked,
 
-    //ElectionSlide,
-    //MayorResults
+    ElectionSlide,
+    MayorResults
   ];
 
   render() {
@@ -316,11 +316,11 @@ class GeoProfile extends Component {
       {
         slug: "health",
         title: t("Health")
-      } /*,
+      },
       {
         slug: "politics",
         title: t("Politics")
-      }*/
+      }
     ];
 
     function fillShape(d) {
@@ -873,26 +873,25 @@ class GeoProfile extends Component {
                 </DeathCausesSlide>
               </div>
             </Topic>
-            {/*
-                <Topic
-                name={t("Politics")}
-                id="politics"
-                sections={[
+
+            <Topic
+              name={t("Politics")}
+              id="politics"
+              sections={[
                 {
-                name: t("Mayor Election"),
-                slides: [t("Results")]
+                  name: t("Mayor Election"),
+                  slides: [t("Results")]
                 }
-                ]}
-                >
-                <div>
+              ]}
+            >
+              <div>
                 <ElectionSlide>
-                <SectionColumns>
-                <MayorResults className="lost-1" />
-                </SectionColumns>
+                  <SectionColumns>
+                    <MayorResults className="lost-1" />
+                  </SectionColumns>
                 </ElectionSlide>
-                </div>
-                </Topic>
-              */}
+              </div>
+            </Topic>
           </div>
         </div>
       </CanonComponent>
