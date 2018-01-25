@@ -77,6 +77,9 @@
   "Chile Exports": "Exportaciones Chile",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
+  "complaints": "denuncias",
+  "Complaints By Crime": "Denuncias Por Crimen",
+  "Complaints Over Time": "Evolución de Denuncias",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
   "Connected to electricity network": "Conectado a la red eléctrica",
@@ -88,6 +91,7 @@
   "Countries": "Países",
   "Country": "País",
   "Created in collaboration": "Creado en colaboración",
+  "Crimes": "Crímenes",
   "Data source": "Fuente",
   "Download data": "Descargar datos",
   "Download documentation": "Descargar documentación",
@@ -339,6 +343,7 @@
   "NEM Performance By Administration":
     "Desempeño NEM por Tipo de Administración",
   "Number of jobs": "Cantidad de puestos de trabajo",
+  "Number of complaints": "Cantidad de denuncias",
   "Number of visas": "Cantidad de Visas",
   "Number of visas granted in {{year_last}}":
     "Número de visas otorgadas en {{year_last}}",
@@ -426,6 +431,7 @@
   "Search a location, industry, product, career, etc":
     "Busque lugares, industrias, productos…",
   "Sector": "Sector",
+  "Security": "Seguridad",
   "See less": "Ver menos",
   "See more": "Ver más",
   "Senators": "Senadores",
@@ -959,6 +965,10 @@
         "text_2": "$t(geo_profile.housing.quality.material)",
         "text_3":
           "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
+      },
+      "crimes": {
+        "default": "<p>Los delitos con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
+        "no_data": "<p>No se registraron denuncias de delitos en {{geo.caption}} durante {{year.last}}</p>"
       },
       "connectivity": {
         "total":

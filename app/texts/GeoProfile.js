@@ -33,16 +33,10 @@ function SpendingByIndustry(data, msrName, locale, t) {
     return {
       industry: {
         total: numeral(total, locale).format("($ 0.[00] a)"),
-        first: {
-          caption: rank[0]["Level 1"]
-        },
-        second: {
-          caption: rank[1]["Level 1"]
-        }
+        first: { caption: rank[0]["Level 1"] },
+        second: { caption: rank[1]["Level 1"] }
       },
-      year: {
-        last: sources.rd_survey.last_year
-      }
+      year: { last: sources.rd_survey.last_year }
     };
   }
 }
@@ -54,12 +48,8 @@ function SpendingBySector(data, msrName, geo, locale, t) {
       return all + item[msrName];
     }, 0);
     return {
-      year_sector: {
-        last: sources.rd_survey.last_year - 1
-      },
-      sector: {
-        total: numeral(total, locale).format("($ 0.[00] a)")
-      },
+      year_sector: { last: sources.rd_survey.last_year - 1 },
+      sector: { total: numeral(total, locale).format("($ 0.[00] a)") },
       geo,
       text_joined_industries: rank
     };
@@ -69,9 +59,7 @@ function SpendingBySector(data, msrName, geo, locale, t) {
 function IndustryOccupation(data, locale, t) {
   if (data) {
     const rank = getRank(data.data, "Expansion Factor", "ISCO", t);
-    return {
-      text_joined_occupations: rank
-    };
+    return { text_joined_occupations: rank };
   } else {
     return false;
   }
@@ -86,9 +74,7 @@ function IndustryActivity(data, geo, locale, t) {
     }, 0);
 
     return {
-      year: {
-        last: last_year
-      },
+      year: { last: last_year },
       total: numeral(total, locale).format("$ 0,0.0 a"),
       geo,
       text_joined_activities: rank
@@ -145,13 +131,7 @@ function Enrollment(data, geo, locale) {
         return all + item["Number of records"];
       }, 0)
     };
-    return {
-      year: {
-        last: last_year
-      },
-      geo,
-      enrollment
-    };
+    return { year: { last: last_year }, geo, enrollment };
   } else {
     return false;
   }
@@ -287,13 +267,35 @@ function PerformanceByPSU(data, geo, locale, t) {
         output.substring(0, lastComma) + " y" + output.substring(lastComma + 1);
     }
 
+    return { year: { last: last_year }, geo, psu, text_joined: output };
+  } else {
+    return false;
+  }
+}
+
+// ENVIRONMENT SECTION
+
+function Crime(data, geo, locale, t) {
+  if (data) {
+    const data_last_year = data.data.filter(
+      item => item["ID Year"] === sources.crimes.year
+    );
+    const total_last_year = data_last_year.reduce((all, item) => {
+      return all + item["Cases"];
+    }, 0);
+
+    const data_theft = data.data.filter(item => item["ID Crime Group"] === 1);
+    const theft_growth = annualized_growth(
+      data_theft.map(item => item["Cases"])
+    );
+
+    const rank = getRank(data_last_year, "Cases", "Crime", t);
     return {
-      year: {
-        last: last_year
-      },
+      year: { last: sources.crimes.year },
+      text_joined: rank,
       geo,
-      psu,
-      text_joined: output
+      total_last_year,
+      theft_growth
     };
   } else {
     return false;
@@ -332,25 +334,19 @@ function Disability(data, geo, locale) {
       }, 0);
     return {
       geo,
-      year: {
-        last: last_year
-      },
+      year: { last: last_year },
       gender: {
         female: {
           share: numeral(disability_female / total, locale).format("0.0 %")
         },
-        male: {
-          share: (total - disability_female) / total
-        }
+        male: { share: (total - disability_female) / total }
       },
       value: numeral(total, locale).format("0.0 a"),
       share: numeral(total / (total + no_disability), locale).format("0.0 %"),
       data: {
         prep: total >= 1000000 ? " de" : "",
         total: numeral(total, locale).format("0,0"),
-        severe: {
-          share: numeral(severe / total, locale).format("0.0 %")
-        }
+        severe: { share: numeral(severe / total, locale).format("0.0 %") }
       }
     };
   }
@@ -401,6 +397,7 @@ function DeathCauses(data, geo, locale) {
 }
 
 export {
+  Crime,
   SpendingByIndustry,
   SpendingBySector,
   IndustryActivity,

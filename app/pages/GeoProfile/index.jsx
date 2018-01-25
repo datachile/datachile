@@ -92,9 +92,9 @@ import Devices from "./environment/conectivity/charts/Devices";
 import ServicesAccessSlide from "./environment/amenities/ServicesAccessSlide";
 import Services from "./environment/amenities/charts/Services";
 
-import CrimeSlide from "./henviroment/crime/CrimeSlide";
-import CrimeTreemap from "./enviroment/crime/charts/CrimeTreemap";
-import CrimeStacked from "./enviroment/crime/charts/CrimeStacked";
+import CrimeSlide from "./environment/crime/CrimeSlide";
+import CrimeTreemap from "./environment/crime/charts/CrimeTreemap";
+import CrimeStacked from "./environment/crime/charts/CrimeStacked";
 
 /* end Housing and Environment */
 
@@ -784,7 +784,6 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </CrimeSlide>
               </div>
-
             </Topic>
 
             <Topic
