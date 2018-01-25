@@ -92,6 +92,10 @@ import Devices from "./environment/conectivity/charts/Devices";
 import ServicesAccessSlide from "./environment/amenities/ServicesAccessSlide";
 import Services from "./environment/amenities/charts/Services";
 
+import CrimeSlide from "./henviroment/crime/CrimeSlide";
+import CrimeTreemap from "./enviroment/crime/charts/CrimeTreemap";
+import CrimeStacked from "./enviroment/crime/charts/CrimeStacked";
+
 /* end Housing and Environment */
 
 /*Demography*/
@@ -129,8 +133,8 @@ import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 
 /** Politics */
 
-import ElectionSlide from "./politics/election/ElectionSlide";
-import MayorResults from "./politics/election/charts/MayorResults";
+//import ElectionSlide from "./politics/election/ElectionSlide";
+//import MayorResults from "./politics/election/charts/MayorResults";
 
 /** end Politics */
 
@@ -202,6 +206,10 @@ class GeoProfile extends Component {
     ServicesAccessSlide,
     Services,
 
+    CrimeSlide,
+    CrimeStacked,
+    CrimeTreemap,
+
     /** EDUCATION */
     PSUNEMSlide,
     PSUNEMScatter,
@@ -240,10 +248,10 @@ class GeoProfile extends Component {
 
     DeathCausesSlide,
     DeathCauses,
-    DeathCausesStacked,
+    DeathCausesStacked
 
-    ElectionSlide,
-    MayorResults
+    //ElectionSlide,
+    //MayorResults
   ];
 
   render() {
@@ -316,11 +324,11 @@ class GeoProfile extends Component {
       {
         slug: "health",
         title: t("Health")
-      },
-      {
+      }
+      /*{
         slug: "politics",
         title: t("Politics")
-      }
+      }*/
     ];
 
     function fillShape(d) {
@@ -738,6 +746,10 @@ class GeoProfile extends Component {
                 {
                   name: t("Connectivity"),
                   slides: [t("Devices")]
+                },
+                {
+                  name: t("Security"),
+                  slides: [t("Crimes")]
                 }
               ]}
             >
@@ -763,6 +775,16 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </DevicesSlide>
               </div>
+
+              <div>
+                <CrimeSlide>
+                  <SectionColumns>
+                    <CrimeTreemap className="lost-1-2" />
+                    <CrimeStacked className="lost-1-2" />
+                  </SectionColumns>
+                </CrimeSlide>
+              </div>
+
             </Topic>
 
             <Topic
@@ -874,7 +896,7 @@ class GeoProfile extends Component {
               </div>
             </Topic>
 
-            <Topic
+            {/*<Topic
               name={t("Politics")}
               id="politics"
               sections={[
@@ -891,7 +913,7 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </ElectionSlide>
               </div>
-            </Topic>
+            </Topic>*/}
           </div>
         </div>
       </CanonComponent>
