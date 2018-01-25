@@ -531,40 +531,31 @@ const COUNTRY_LEVEL_CUBES_CUT = {
   }
 };
 
-function simpleCountryDatumNeed(
-  key,
-  {
-    cube,
-    measures = [],
-    drillDowns = [],
-    cuts = [],
-    options = {},
-    drillLevel = false,
-    format = undefined
-  },
-  postprocess = (res, lang, params, store) => {
-    const data = res.data || {};
-    return data.values ? flattenDeep(data.values) : data.data;
-  }
-) {
+function simpleCountryDatumNeed(key, query, postprocess) {
+  const cube = query.cube;
   const ddcube = COUNTRY_LEVEL_CUBES_CUT[cube] || {};
+
+  if ("function" != typeof postprocess) {
+    postprocess = function(res, lang, params, store) {
+      const data = res.data || {};
+      return data.values ? flattenDeep(data.values) : data.data;
+    };
+  }
+
   return (params, store) => {
-    const locale = store.i18n.locale;
     const ddlevel = ddcube[params.level2 ? "level2" : "level1"];
+    const countryCut = `[${ddlevel[0]}].[${ddlevel[1]}].${getCountryCut(
+      params
+    )}`;
 
-    cuts.push(`[${ddlevel[0]}].[${ddlevel[1]}].${getCountryCut(params)}`);
-    if (drillLevel) drillDowns.push(ddlevel);
+    query.locale = store.i18n.locale;
+    query.cuts = [].concat(query.cuts, countryCut);
+    if (query.drillLevel) {
+      query.drillDowns = [].concat(query.drillDowns, ddlevel);
+    }
 
-    const promise = quickQuery({
-      cube,
-      measures,
-      drillDowns,
-      cuts,
-      options,
-      format,
-      locale
-    })
-      .then(res => postprocess(res, locale, params, store))
+    const promise = quickQuery(query)
+      .then(res => postprocess(res, query.locale, params, store))
       .then(data => {
         // console.log(key, data);
         return { key, data };
