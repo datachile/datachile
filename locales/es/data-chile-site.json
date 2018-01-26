@@ -746,6 +746,11 @@
         "title": "1.0.1 - \"Araucaria\" - 2018-01-19",
         "description":
           "<p>Corrección de errores generales en varios perfiles, más imágenes de fondo, estabilidad de perfil país para países con pocos datos.</p>"
+      },
+      "belloto": {
+        "title": "1.1.0 - \"Belloto\" - 2018-01-26",
+        "description":
+          "<p>Nuevos datos: Denuncias de delitos de mayor connotación social, presentes en perfil geográfico, tópico Vivienda y Entorno, sección Seguridad (Fuente: Carabineros de Chile). Correcciones en indentificadores de previsión de salud sobre datos de CASEN para 2003 y 2006. Agregada Comuna de Ñiquén en mapa de selección. Correcciones varias en textos y traducciones (nan, N/A, etc). Ajustes de diseño y estilo para desktop y mobile.</p>"
       }
     }
   },
