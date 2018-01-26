@@ -33,8 +33,6 @@ class CrimeSlide extends Section {
     const locale = i18n.language;
     const text = Crime(datum_crimes_by_year, geo, locale, t);
 
-    console.log(text);
-
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
