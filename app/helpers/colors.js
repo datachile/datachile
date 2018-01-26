@@ -5,6 +5,25 @@ export const genderColorScale = scaleOrdinal().range(COLORS_GENDER);
 
 export const COLORS_SURVEY_RESPONSE = ["#ccc", "#1f496d", "#94424f"];
 
+export const COLORS_REGIONS = [
+  //"#ccc",
+  "#d28a39",
+  "#e9884b",
+  "#d25e39",
+  "#f55443",
+  "#8c2a3d",
+  "#455084",
+  "#487782",
+  "#00b486",
+  "#169699",
+  "#7f92cc",
+  "#78bbff",
+  "#62717f",
+  "#752155",
+  "#3eb3ce",
+  "#ffbe46"
+];
+
 export const COLORS_SCALE_EXPORTS = ["#ccd5f1", "#5076C4"];
 export const COLORS_SCALE_IMPORTS = ["#f8d8db", "#E56671"];
 
@@ -21,6 +40,14 @@ export const COLORS_INSTITUTIONS = [
   "#2F67A6"
 ];
 export const institutionsColorScale = scaleOrdinal().range(COLORS_INSTITUTIONS);
+
+export const crimesColorScale = scaleOrdinal().range([
+  "#1D4A37",
+  "#558E6B",
+  "#AEBC7A",
+  "#D9EAB7",
+  "#D8DB7B"
+]);
 
 export const COLORS_HEALTHINSURANCE = [
   "#35468C",
@@ -145,7 +172,7 @@ export const PRODUCTS_COLORS = [
   "#7485AA"
 ];
 export const productsColorScale = scaleOrdinal().range(PRODUCTS_COLORS);
-export const regionsColorScale = scaleOrdinal().range(PRODUCTS_COLORS);
+export const regionsColorScale = scaleOrdinal().range(COLORS_REGIONS);
 
 export const INDUSTRIES_COLORS = [
   "#70BFB8",

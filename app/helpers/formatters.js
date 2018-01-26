@@ -1,7 +1,6 @@
 import { format, formatPrefix } from "d3-format";
 import { timeFormat } from "d3-time-format";
 import n from "numeral";
-import { isMobile } from "helpers/responsiveUtils";
 
 import { PermalinkBuildError } from "helpers/errors";
 
@@ -148,7 +147,6 @@ export function getImageFromMember(
   id2 = false,
   considerMobile = false
 ) {
-  //if (considerMobile && isMobile()) return "";
   const chile = "/images/profile-bg/geo/chile.jpg";
   const link = "/images/profile-bg";
   var file = "";

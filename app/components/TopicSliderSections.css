@@ -28,11 +28,11 @@
       display: inline-block;
       & a {
         font-family: var(--font-family-title);
-        font-size: 18px;
+        font-size: 16px;
         text-transform: uppercase;
         font-weight: 300;
         color: var(--snow);
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         text-decoration: none;
         margin: 0 10px 0px 0;
         opacity: 0.8;
@@ -56,11 +56,11 @@
       display: inline-block;
       & a {
         font-family: var(--font-family-title);
-        font-size: 14px;
+        font-size: 12px;
         text-transform: uppercase;
         font-weight: 300;
         color: var(--snow);
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         text-decoration: none;
         margin: 0 10px 0px 0;
         opacity: 0.8;

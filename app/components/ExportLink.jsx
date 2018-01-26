@@ -1,18 +1,45 @@
 import React from "react";
 import { translate } from "react-i18next";
+import { saveElement } from "d3plus-export";
 
 import "./ExportLink.css";
 
 class ExportLink extends React.Component {
-  state = {
-    open: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+    this.saveImage = this.saveImage.bind(this);
+  }
 
   toggleMenu = () => {
     this.setState(prevState => ({
       open: !prevState.open
     }));
   };
+
+  saveImage(e, className, title, format) {
+    // TODO: find a better way
+    // Very fragile, but right now there's no other way without reestructuring
+    // Must be keep updated with the JSX in the Chart.jsx component
+    // const { className } = this.props;
+    e.preventDefault();
+    const element = document.querySelector(`.${className} .viz > svg`);
+    element &&
+      saveElement(
+        element,
+        {
+          filename: title || "image",
+          type: format
+        },
+        {
+          background: "#2F2F38",
+          padding: 5,
+          height: 500
+        }
+      );
+  }
 
   containerRef = node => {
     if (node) this._container = node;
@@ -33,16 +60,23 @@ class ExportLink extends React.Component {
   }
 
   render() {
-    const { path } = this.props;
+    const { path, title, className } = this.props;
 
     if (!path) return null; //Prevent error when path is not loaded yet
 
     const { open } = this.state;
 
     const options = [
-      { caption: "CSV", path: path.replace("jsonrecords", "csv") },
-      { caption: "XLS", path: path.replace("jsonrecords", "xls") },
-      { caption: "JSON", path: path }
+      { caption: "CSV", path: path.replace("jsonrecords", "csv"), data: true },
+      { caption: "XLS", path: path.replace("jsonrecords", "xls"), data: true },
+      {
+        caption: "JSON",
+        path: path.replace("jsonrecords", "json"),
+        data: true
+      }
+      /*,
+      { caption: "PNG", path: path, data: false },
+      { caption: "SVG", path: path, data: false }*/
     ];
 
     return (
@@ -55,8 +89,29 @@ class ExportLink extends React.Component {
         </a>
         <ul>
           {options.map(o => (
-            <li key={o.caption}>
-              <a target="_blank" download={""} href={o.path}>
+            <li
+              key={o.caption}
+              className={
+                (o.caption === "PNG" || o.caption === "SVG") && !className
+                  ? "disabled"
+                  : ""
+              }
+            >
+              <a
+                target="_blank"
+                href={o.data ? o.path : ""}
+                onClick={
+                  !o.data
+                    ? e =>
+                        this.saveImage(
+                          e,
+                          className,
+                          title,
+                          o.caption.toLowerCase()
+                        )
+                    : ""
+                }
+              >
                 {o.caption}
               </a>
             </li>

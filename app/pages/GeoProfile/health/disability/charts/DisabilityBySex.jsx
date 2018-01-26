@@ -46,7 +46,6 @@ class DisabilityBySex extends Section {
 
     (params, store) => {
       let geo = getGeoObject(params);
-      console.log(geo);
     };
 
     const locale = i18n.language;

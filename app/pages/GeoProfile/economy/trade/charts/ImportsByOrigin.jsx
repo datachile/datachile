@@ -29,16 +29,20 @@ class ImportsByOrigin extends Section {
     const geo = this.context.data.geo;
     const locale = i18n.language;
 
+    const title = t("geo_profile.economy.imports.by_origin", geo);
+    const classSvg = "imports-by-origin";
+
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("geo_profile.economy.imports.by_origin", geo)}</span>
-          <ExportLink path={path} />
+          <span>{title}</span>
+          <ExportLink path={path} title={title} className={classSvg} />
         </h3>
         <TreemapStacked
           path={path}
           msrName="CIF US"
           drilldowns={["Continent", "Country"]}
+          className={classSvg}
           config={{
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])

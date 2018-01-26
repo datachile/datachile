@@ -40,6 +40,13 @@ export const sources = {
     url: "http://www.ine.cl/estadisticas/ingresos-y-gastos/esi",
     year: 2015
   },
+  crimes: {
+    title: "Carabineros de Chile",
+    url:
+      "http://www.seguridadpublica.gov.cl/media/2017/08/frec_casos_dmcs_mensual_2001_2017w.xlsx",
+    first_year: 2005,
+    year: 2016
+  },
   internet_access: {
     title: "Encuesta Nacional de Acceso y Usos de Internet — SUBTEL",
     url:

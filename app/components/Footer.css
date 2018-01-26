@@ -5,7 +5,7 @@ footer {
   font-family: var(--font-family-text);
   font-weight: 300;
   text-transform: uppercase;
-  color: var(--snow);
+  color: rgba(255, 255, 255, 0.75);
   background-color: var(--footer-bg);
 
   & .footer-container {
@@ -16,16 +16,16 @@ footer {
 
   & .footer-title {
     margin-bottom: var(--gutter);
-    font-size: 14px;
-    letter-spacing: 0.05px;
+    font-size: 12px;
+    letter-spacing: 1px;
 
     &::after {
       content: "";
       display: block;
       width: 25px;
       height: 2px;
-      background-color: var(--snow);
-      margin-top: 15px;
+      background-color: rgba(255, 255, 255, 0.75);
+      margin-top: 7px;
     }
   }
 
@@ -40,12 +40,8 @@ footer {
     & .logo {
       display: inline-block;
       vertical-align: middle;
-      max-height: 120px;
+      max-height: 94px;
       margin: 0 var(--gutter-half);
-
-      &.gobcl {
-        max-height: 100px;
-      }
     }
 
     & .column.developed .logos {

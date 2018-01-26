@@ -58,17 +58,21 @@ class ExportsByDestination extends Section {
 
     const locale = i18n.language;
 
+    const title = t("Exports By Destination");
+    const classSvg = "imports-by-origin";
+
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Exports By Destination")}</span>
-          <ExportLink path={path} />
+          <span>{title}</span>
+          <ExportLink path={path} className={classSvg} title={title} />
         </h3>
 
         <TreemapStacked
           path={path}
           msrName="FOB US"
           drilldowns={["Continent", "Country"]}
+          className={classSvg}
           config={{
             groupBy: ["ID Continent", "ID Country"],
             label: d =>
