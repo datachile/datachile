@@ -230,6 +230,7 @@
   "in period {{year_prev}} - {{year_last}}":
     "En el período {{year_prev}} - {{year_last}}",
   "Median Income": "Ingreso medio",
+  "Income": "Ingreso",
   "Income By Age": "Ingreso por Edad",
   "Income By Sex": "Ingreso por Sexo",
   "Income Range CLP": "Rango de ingreso CLP",
