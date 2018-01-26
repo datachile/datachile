@@ -77,6 +77,9 @@
   "Chile Exports": "Exportaciones Chile",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
+  "complaints": "denuncias",
+  "Complaints By Crime": "Denuncias Por Delito",
+  "Complaints Over Time": "Evolución de Denuncias",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
   "Connected to electricity network": "Conectado a la red eléctrica",
@@ -88,6 +91,7 @@
   "Countries": "Países",
   "Country": "País",
   "Created in collaboration": "Creado en colaboración",
+  "Crimes": "Delitos",
   "Data source": "Fuente",
   "Download data": "Descargar datos",
   "Download documentation": "Descargar documentación",
@@ -226,6 +230,7 @@
   "in period {{year_prev}} - {{year_last}}":
     "En el período {{year_prev}} - {{year_last}}",
   "Median Income": "Ingreso medio",
+  "Income": "Ingreso",
   "Income By Age": "Ingreso por Edad",
   "Income By Sex": "Ingreso por Sexo",
   "Income Range CLP": "Rango de ingreso CLP",
@@ -252,6 +257,7 @@
   "Investment By Comuna (Legal address)":
     "Inversión por comuna (dirección legal)",
   "Language": "Idioma",
+  "Language_PSU": "Lenguaje",
   "Laptop computer": "Computador portátil",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
@@ -339,6 +345,10 @@
   "NEM Performance By Administration":
     "Desempeño NEM por Tipo de Administración",
   "Number of jobs": "Cantidad de puestos de trabajo",
+  "Number of larceny complaints": "Cantidad de denuncias por hurto",
+  "Number of complaints": "Cantidad de denuncias",
+  "Number of theft complaints growth":
+    "Cambio en cantidad de denuncias por robo",
   "Number of visas": "Cantidad de Visas",
   "Number of visas granted in {{year_last}}":
     "Número de visas otorgadas en {{year_last}}",
@@ -360,6 +370,7 @@
   "Output": "Producción",
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
+  "PSU exams": "Personas que rindieron PSU",
   "PSU Results": "Resultados PSU",
   "PSU Results By Sex": "Resultados PSU por sexo",
   "PSU vs NEM": "PSU vs NEM",
@@ -426,6 +437,7 @@
   "Search a location, industry, product, career, etc":
     "Busque lugares, industrias, productos…",
   "Sector": "Sector",
+  "Security": "Seguridad",
   "See less": "Ver menos",
   "See more": "Ver más",
   "Senators": "Senadores",
@@ -469,6 +481,7 @@
   "Tablet": "Tablet",
   "The most comprehensive effort to integrate and visualize Chile’s Public Data":
     "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
+  "Theft complaints share": "Porcentaje de denuncias por robo",
   "Top Schools By Performance": "Principales escuelas según desempeño",
   "Top destination country": "Principal país de destino",
   "Top exporter region": "Principal región exportadora",
@@ -972,6 +985,12 @@
         "text_2": "$t(geo_profile.housing.quality.material)",
         "text_3":
           "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
+      },
+      "crimes": {
+        "default":
+          "<p>Los delitos de mayor connotación social con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
+        "no_data":
+          "<p>No se registraron denuncias de delitos de mayor connotación social en {{geo.caption}} durante {{year.last}}</p>"
       },
       "connectivity": {
         "total":

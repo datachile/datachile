@@ -92,6 +92,10 @@ import Devices from "./environment/conectivity/charts/Devices";
 import ServicesAccessSlide from "./environment/amenities/ServicesAccessSlide";
 import Services from "./environment/amenities/charts/Services";
 
+import CrimeSlide from "./environment/crime/CrimeSlide";
+import CrimeTreemap from "./environment/crime/charts/CrimeTreemap";
+import CrimeStacked from "./environment/crime/charts/CrimeStacked";
+
 /* end Housing and Environment */
 
 /*Demography*/
@@ -201,6 +205,10 @@ class GeoProfile extends Component {
 
     ServicesAccessSlide,
     Services,
+
+    CrimeSlide,
+    CrimeStacked,
+    CrimeTreemap,
 
     /** EDUCATION */
     PSUNEMSlide,
@@ -316,8 +324,8 @@ class GeoProfile extends Component {
       {
         slug: "health",
         title: t("Health")
-      } /*,
-      {
+      }
+      /*{
         slug: "politics",
         title: t("Politics")
       }*/
@@ -738,6 +746,10 @@ class GeoProfile extends Component {
                 {
                   name: t("Connectivity"),
                   slides: [t("Devices")]
+                },
+                {
+                  name: t("Security"),
+                  slides: [t("Crimes")]
                 }
               ]}
             >
@@ -762,6 +774,15 @@ class GeoProfile extends Component {
                     <Devices className="lost-1" />
                   </SectionColumns>
                 </DevicesSlide>
+              </div>
+
+              <div>
+                <CrimeSlide>
+                  <SectionColumns>
+                    <CrimeTreemap className="lost-1-2" />
+                    <CrimeStacked className="lost-1-2" />
+                  </SectionColumns>
+                </CrimeSlide>
               </div>
             </Topic>
 
@@ -873,26 +894,25 @@ class GeoProfile extends Component {
                 </DeathCausesSlide>
               </div>
             </Topic>
-            {/*
-                <Topic
-                name={t("Politics")}
-                id="politics"
-                sections={[
+
+            {/*<Topic
+              name={t("Politics")}
+              id="politics"
+              sections={[
                 {
-                name: t("Mayor Election"),
-                slides: [t("Results")]
+                  name: t("Mayor Election"),
+                  slides: [t("Results")]
                 }
-                ]}
-                >
-                <div>
+              ]}
+            >
+              <div>
                 <ElectionSlide>
-                <SectionColumns>
-                <MayorResults className="lost-1" />
-                </SectionColumns>
+                  <SectionColumns>
+                    <MayorResults className="lost-1" />
+                  </SectionColumns>
                 </ElectionSlide>
-                </div>
-                </Topic>
-              */}
+              </div>
+            </Topic>*/}
           </div>
         </div>
       </CanonComponent>

@@ -93,16 +93,16 @@ class OutputByLocation extends Section {
             },
             on: {
               click: d => {
-                if (!(d["ID Comuna"] instanceof Array)) {
-                  var url = slugifyItem(
-                    "geo",
-                    d["ID Region"],
-                    d["Region"],
-                    d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
-                    d["Comuna"] instanceof Array ? false : d["Comuna"]
-                  );
-                  browserHistory.push(url);
-                }
+                //if (!(d["ID Comuna"] instanceof Array)) {
+                var url = slugifyItem(
+                  "geo",
+                  d["ID Region"],
+                  d["Region"],
+                  d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
+                  d["Comuna"] instanceof Array ? false : d["Comuna"]
+                );
+                browserHistory.push(url);
+                //}
               }
             },
             tooltipConfig: {
@@ -117,10 +117,21 @@ class OutputByLocation extends Section {
                 return numeral(d["Output"], locale).format("(USD 0 a)") + link;
               }
             },
+            legendTooltip: {
+              title: d => {
+                return d["Region"];
+              },
+              body: d => {
+                const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                return numeral(d["Output"], locale).format("(USD 0 a)") + link;
+              }
+            },
             legendConfig: {
               shapeConfig: {
-                width: 20,
-                height: 20
+                width: 25,
+                height: 25,
+                backgroundImage: d =>
+                  "/images/legend/region/" + d["ID Region"] + ".png"
               }
             },
             yConfig: {

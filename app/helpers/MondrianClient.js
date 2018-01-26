@@ -511,7 +511,6 @@ function quickQuery({
 
     setLangCaptions(q, locale);
 
-    // console.log(__API__ + q.path("jsonrecords"));
     return client.query(q, format);
   });
 }
@@ -557,7 +556,6 @@ function simpleCountryDatumNeed(key, query, postprocess) {
     const promise = quickQuery(query)
       .then(res => postprocess(res, query.locale, params, store))
       .then(data => {
-        // console.log(key, data);
         return { key, data };
       });
 

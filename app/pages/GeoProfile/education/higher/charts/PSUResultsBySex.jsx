@@ -77,7 +77,7 @@ class PSUResultsBySex extends Section {
             const reduced = data.data.reduce((all, item) => {
               all.push({
                 value: item["Avg language test"],
-                item: t("Language"),
+                item: t("Language_PSU"),
                 sex: item["Sex"],
                 id_sex: item["ID Sex"],
                 year: item["Year"]
