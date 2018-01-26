@@ -78,7 +78,7 @@
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
   "complaints": "denuncias",
-  "Complaints By Crime": "Denuncias Por Crimen",
+  "Complaints By Crime": "Denuncias Por Delito",
   "Complaints Over Time": "Evolución de Denuncias",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
@@ -91,7 +91,7 @@
   "Countries": "Países",
   "Country": "País",
   "Created in collaboration": "Creado en colaboración",
-  "Crimes": "Crímenes",
+  "Crimes": "Delitos",
   "Data source": "Fuente",
   "Download data": "Descargar datos",
   "Download documentation": "Descargar documentación",
@@ -972,9 +972,9 @@
       },
       "crimes": {
         "default":
-          "<p>Los delitos con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
+          "<p>Los delitos de mayor connotación social con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
         "no_data":
-          "<p>No se registraron denuncias de delitos en {{geo.caption}} durante {{year.last}}</p>"
+          "<p>No se registraron denuncias de delitos de mayor connotación social en {{geo.caption}} durante {{year.last}}</p>"
       },
       "connectivity": {
         "total":

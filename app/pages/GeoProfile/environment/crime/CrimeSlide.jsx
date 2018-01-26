@@ -53,7 +53,7 @@ class CrimeSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="poblacion-con-discapacidad"
+                icon="datum-crime-1"
                 datum={numeral(text.theft.growth, locale).format("0.0%")}
                 title={t("Number of theft complaints growth")}
                 subtitle={text.year.last - 1 + "-" + text.year.last}
@@ -62,7 +62,7 @@ class CrimeSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="poblacion-con-discapacidad"
+                icon="datum-crime-2"
                 datum={numeral(text.larceny.total, locale).format("0,0")}
                 title={t("Number of larceny complaints")}
                 subtitle={t("In") + " " + text.year.last}
@@ -71,7 +71,7 @@ class CrimeSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-3"
-                icon="poblacion-con-discapacidad"
+                icon="datum-crime-3"
                 datum={numeral(text.theft.share, locale).format("0.0%")}
                 title={t("Theft complaints share")}
                 subtitle={t("In") + " " + text.year.last}
