@@ -73,9 +73,10 @@ class ExportLink extends React.Component {
         caption: "JSON",
         path: path.replace("jsonrecords", "json"),
         data: true
-      },
+      }
+      /*,
       { caption: "PNG", path: path, data: false },
-      { caption: "SVG", path: path, data: false }
+      { caption: "SVG", path: path, data: false }*/
     ];
 
     return (
