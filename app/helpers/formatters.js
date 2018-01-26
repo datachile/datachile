@@ -164,7 +164,7 @@ export function getImageFromMember(
       break;
     }
     case "products": {
-      file = "/product/" + id1 + ".jpg";
+      file = id2 ? "/product/" + id2 + ".jpg" : "/product/" + id1 + ".jpg";
       break;
     }
     case "industries": {
