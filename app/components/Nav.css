@@ -36,7 +36,7 @@
 
     & .r-col {
       flex: 1;
-      padding: 21px 0 0;
+      padding: 20px 0 0;
       line-height: 66px;
       text-align: right;
     }
@@ -44,7 +44,7 @@
     & .menu-button {
       & a {
         display: block;
-        width: 28px;
+        width: 22px;
         text-transform: uppercase;
         font-family: var(--font-family-title);
         font-weight: 300;
@@ -65,7 +65,7 @@
     & .nav-search-toggle {
       display: block;
       margin-left: auto;
-      width: 27px;
+      width: 25px;
 
       & img {
         margin: 14px 0;
@@ -287,7 +287,7 @@
       }
 
       & .r-col {
-        padding: 24px 0 0;
+        padding: 20px 0 0;
         position: relative;
       }
 
@@ -318,7 +318,7 @@
             margin: 14px 0;
           }
           & .nav-search-wrapper {
-            width: 80px;
+            width: 110px;
             opacity: 0;
           }
         }
@@ -326,7 +326,7 @@
         &.open {
           & .nav-search-toggle {
             & img {
-              margin: 12px 0;
+              margin: 11px 0;
             }
           }
           & .nav-search-wrapper {

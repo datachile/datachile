@@ -11,19 +11,20 @@
     & .featured-datum-data {
       font-family: var(--font-family-title);
       font-weight: 300;
-      font-size: 34px;
+      font-size: 25px;
     }
     & .featured-datum-title {
+      margin-bottom: 0.2em;
       font-family: var(--font-family-text);
       font-weight: 700;
-      font-size: 20px;
+      font-size: 16px;
       color: var(--snow);
       line-height: 1.1em;
     }
     & .featured-datum-subtitle {
       font-family: var(--font-family-text);
       font-weight: 300;
-      font-size: 17px;
+      font-size: 14px;
       color: var(--gray);
     }
   }

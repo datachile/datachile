@@ -1,21 +1,21 @@
 .tile {
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  align-content: stretch;
+  position: relative;
+  min-height: 150px;
   background-position: 50%;
   background-size: auto 200%;
-  color: white;
-  display: flex;
-  flex: 1 1 250px;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 16px;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
-  transition: background-position 0.2s;
-  flex-direction: row;
-  justify-content: space-between;
-  min-height: 150px;
-  position: relative;
-  align-content: stretch;
   border: 1px solid var(--snow);
+  transition: background-position 0.2s;
 
   & .tile-filter {
     position: absolute;
@@ -34,16 +34,15 @@
     align-items: flex-end;
     justify-content: flex-end;
     align-self: stretch;
-
     padding: 5px;
+
     & .type {
       z-index: var(--foreground);
       font-family: var(--font-family-text);
       text-transform: uppercase;
       font-weight: 300;
-      font-size: 9px;
-      color: var(--snow);
-      letter-spacing: -0.38px;
+      font-size: 7px;
+      letter-spacing: 1px;
     }
   }
 
@@ -54,12 +53,13 @@
     align-items: flex-start;
     align-self: stretch;
     padding: 0px 10px 20px 20px;
+
     & .name {
       font-family: var(--font-family-title);
-      font-size: 14px;
+      font-size: 12px;
       color: var(--snow);
       font-weight: 300;
-      letter-spacing: 0.03px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       z-index: var(--foreground);
       text-align: left;
@@ -96,6 +96,7 @@
   }
 
   &:hover {
+    color: rgba(255, 255, 255, 0.8);
     background-position: 50% 25%;
     text-decoration: none;
 

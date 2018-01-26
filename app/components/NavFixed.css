@@ -61,7 +61,7 @@
     color: var(--accent);
     font-family: var(--font-family-title);
     font-weight: 300;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.15em;
     letter-spacing: 0.03px;
     overflow: hidden;
@@ -78,7 +78,7 @@
 
   & .nav-topic {
     font-family: var(--font-family-title);
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 300;
     text-align: center;
     text-transform: uppercase;
@@ -97,7 +97,7 @@
       text-decoration: none;
       color: var(--snow);
       letter-spacing: 0.1px;
-      border-bottom: 2px solid var(--snow);
+      border-bottom: 2px solid transparent;
       opacity: 0.9;
       transition: opacity 0.2s;
       cursor: pointer;
