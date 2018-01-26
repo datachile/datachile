@@ -96,7 +96,7 @@
 
       text-decoration: none;
       color: var(--snow);
-      letter-spacing: 0.1px;
+      letter-spacing: 0.5px;
       border-bottom: 2px solid transparent;
       opacity: 0.9;
       transition: opacity 0.2s;

@@ -9,7 +9,7 @@
   min-height: 150px;
   background-position: 50%;
   background-size: auto 200%;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--snow);
   font-size: 16px;
   font-weight: 600;
   text-align: center;
@@ -96,7 +96,7 @@
   }
 
   &:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--snow);
     background-position: 50% 25%;
     text-decoration: none;
 
