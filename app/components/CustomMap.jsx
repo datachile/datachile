@@ -36,8 +36,8 @@ class CustomMap extends React.Component {
             data: path,
 
             tiles: true,
-            tileUrl:
-              "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
+            //tileUrl:
+            //  "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
 
             fitObject: "/geo/countries.json",
             topojson: "/geo/countries.json",
@@ -49,7 +49,7 @@ class CustomMap extends React.Component {
             ocean: "#212121",
             shapeConfig: {
               Path: {
-                fill: d => "#0F0F0F"
+                //fill: d => "#0F0F0F"
               }
             },
 
