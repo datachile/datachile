@@ -343,7 +343,10 @@
   "NEM Performance By Administration":
     "Desempeño NEM por Tipo de Administración",
   "Number of jobs": "Cantidad de puestos de trabajo",
+  "Number of larceny complaints": "Cantidad de denuncias por hurto",
   "Number of complaints": "Cantidad de denuncias",
+  "Number of theft complaints growth":
+    "Cambio en cantidad de denuncias por robo",
   "Number of visas": "Cantidad de Visas",
   "Number of visas granted in {{year_last}}":
     "Número de visas otorgadas en {{year_last}}",
@@ -475,6 +478,7 @@
   "Tablet": "Tablet",
   "The most comprehensive effort to integrate and visualize Chile’s Public Data":
     "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
+  "Theft complaints share": "Porcentaje de denuncias por robo",
   "Top Schools By Performance": "Principales escuelas según desempeño",
   "Top destination country": "Principal país de destino",
   "Top exporter region": "Principal región exportadora",
@@ -967,8 +971,10 @@
           "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
       },
       "crimes": {
-        "default": "<p>Los delitos con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
-        "no_data": "<p>No se registraron denuncias de delitos en {{geo.caption}} durante {{year.last}}</p>"
+        "default":
+          "<p>Los delitos con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
+        "no_data":
+          "<p>No se registraron denuncias de delitos en {{geo.caption}} durante {{year.last}}</p>"
       },
       "connectivity": {
         "total":

@@ -1,6 +1,7 @@
 import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
+import { numeral } from "helpers/formatters";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
 
@@ -55,27 +56,27 @@ class CrimeSlide extends Section {
               <FeaturedDatum
                 className="l-1-3"
                 icon="poblacion-con-discapacidad"
-                datum={"xx"}
-                title={t("XX")}
-                subtitle={t("In")}
+                datum={numeral(text.theft.growth, locale).format("0.0%")}
+                title={t("Number of theft complaints growth")}
+                subtitle={text.year.last - 1 + "-" + text.year.last}
               />
             )}
             {text && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="poblacion-con-discapacidad"
-                datum={"xx"}
-                title={t("XX")}
-                subtitle={t("In")}
+                datum={numeral(text.larceny.total, locale).format("0,0")}
+                title={t("Number of larceny complaints")}
+                subtitle={t("In") + " " + text.year.last}
               />
             )}
             {text && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="poblacion-con-discapacidad"
-                datum={"xx"}
-                title={t("XX")}
-                subtitle={t("In")}
+                datum={numeral(text.theft.share, locale).format("0.0%")}
+                title={t("Theft complaints share")}
+                subtitle={t("In") + " " + text.year.last}
               />
             )}
           </div>

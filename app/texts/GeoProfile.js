@@ -273,6 +273,12 @@ function PerformanceByPSU(data, geo, locale, t) {
   }
 }
 
+function getTotal(data, msrName) {
+  return data.reduce((all, item) => {
+    return item[msrName] + all;
+  }, 0);
+}
+
 // ENVIRONMENT SECTION
 
 function Crime(data, geo, locale, t) {
@@ -285,17 +291,45 @@ function Crime(data, geo, locale, t) {
     }, 0);
 
     const data_theft = data.data.filter(item => item["ID Crime Group"] === 1);
-    const theft_growth = annualized_growth(
-      data_theft.map(item => item["Cases"])
-    );
+    const theft_growth = annualized_growth([
+      getTotal(
+        data_theft.filter(item => item["ID Year"] === sources.crimes.year - 1),
+        "Cases"
+      ),
+      getTotal(
+        data_theft.filter(item => item["ID Year"] === sources.crimes.year),
+        "Cases"
+      )
+    ]);
+
+    const total_larceny = data_last_year
+      .filter(item => item["ID Crime Group"] === 2)
+      .reduce((all, item) => {
+        return all + item["Cases"];
+      }, 0);
+
+    const total_theft = data_last_year
+      .filter(item => item["ID Crime Group"] === 1)
+      .reduce((all, item) => {
+        return all + item["Cases"];
+      }, 0);
 
     const rank = getRank(data_last_year, "Cases", "Crime", t);
     return {
-      year: { last: sources.crimes.year },
+      year: { first: sources.crimes.first_year, last: sources.crimes.year },
       text_joined: rank,
       geo,
       total_last_year,
-      theft_growth
+      theft_growth,
+      theft: {
+        total: total_theft,
+        growth: theft_growth,
+        share: total_last_year > 0 ? total_theft / total_last_year : 0
+      },
+      larceny: {
+        total: total_larceny,
+        share: total_last_year > 0 ? total_larceny / total_last_year : 0
+      }
     };
   } else {
     return false;
