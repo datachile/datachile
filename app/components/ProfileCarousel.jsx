@@ -13,7 +13,7 @@ class ProfileCarousel extends Component {
     return (
       <div className="profile-carousel">
         <div className="profile-carousel-icon">
-          <img src={`/images/icons/icon-${type}-gris.svg`} />
+          <img src={`/images/icons/icon-home-${type}.svg`} />
         </div>
         <h4>{title}</h4>
         {description && <p>{description}</p>}
