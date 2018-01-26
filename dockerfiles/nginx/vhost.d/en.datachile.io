@@ -9,7 +9,7 @@ location /.well-known/acme-challenge/ {
 ## End of configuration add by letsencrypt container
 proxy_buffering on;
 gzip on;
-gzip_vary on;
+#gzip_vary on;
 gzip_proxied any;
 gzip_comp_level 6;
 gzip_buffers 16 8k;
