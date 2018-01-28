@@ -736,6 +736,10 @@ class GeoProfile extends Component {
               id="environment"
               sections={[
                 {
+                  name: t("Security"),
+                  slides: [t("Crimes")]
+                },
+                {
                   name: t("Amenities"),
                   slides: [t("Access to services")]
                 },
@@ -746,13 +750,17 @@ class GeoProfile extends Component {
                 {
                   name: t("Connectivity"),
                   slides: [t("Devices")]
-                },
-                {
-                  name: t("Security"),
-                  slides: [t("Crimes")]
                 }
               ]}
             >
+              <div>
+                <CrimeSlide>
+                  <SectionColumns>
+                    <CrimeTreemap className="lost-1-2" />
+                    <CrimeStacked className="lost-1-2" />
+                  </SectionColumns>
+                </CrimeSlide>
+              </div>
               <div>
                 <ServicesAccessSlide>
                   <SectionColumns>
@@ -774,15 +782,6 @@ class GeoProfile extends Component {
                     <Devices className="lost-1" />
                   </SectionColumns>
                 </DevicesSlide>
-              </div>
-
-              <div>
-                <CrimeSlide>
-                  <SectionColumns>
-                    <CrimeTreemap className="lost-1-2" />
-                    <CrimeStacked className="lost-1-2" />
-                  </SectionColumns>
-                </CrimeSlide>
               </div>
             </Topic>
 
