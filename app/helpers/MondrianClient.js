@@ -548,7 +548,7 @@ function simpleCountryDatumNeed(key, query, postprocess) {
     )}`;
 
     query.locale = store.i18n.locale;
-    query.cuts = [].concat(query.cuts, countryCut);
+    query.cuts = [].concat(query.cuts, countryCut).filter(Boolean);
     if (query.drillLevel) {
       query.drillDowns = [].concat(query.drillDowns, ddlevel);
     }

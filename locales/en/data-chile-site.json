@@ -673,10 +673,16 @@
         "<p>The main destination of the imports from {{level}} is <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, mainly to the comunas of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, and <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
+      "balance":
+        "<p>In {{year.last}}, Chile had a {{balance.behavior}} trade balance with {{level}}, which favored {{balance.beneficiary}} in US{{balance.volume_last}}.</p>",
       "text_none":
         "<p>There's no data on internation trade between Chile and {{level}} in the recent years.</p>",
+      "text_imponly":
+        "<p>Between {{year.first}} and {{year.last}}, imports from {{level}} registered an {{import.behavior}} of {{import.growth}}. In nominal terms, this means {{import.direction}} of US{{import.volume_first}} in {{year.first}}, to US{{import.volume_last}} in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+      "text_exponly":
+        "<p>Between {{year.first}} and {{year.last}}, exports to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} in {{year.first}}, to US{{export.volume_last}} in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text":
-        "<p>Between {{year.first}} and {{year.last}}, export to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} in {{year.first}}, to US{{export.volume_last}} in {{year.last}}. In the same period, imports from {{level}} registered {{import.behavior}} of {{import.growth}}, from US{{import.volume_first}} in {{year.first}}, to US{{import.volume_last}} in {{year.last}}.</p><p>In {{year.last}}, Chile had a {{balance.behavior}} trade balance with {{level}}, which favored {{balance.beneficiary}} in US{{balance.volume_last}}.</p>"
+        "<p>Between {{year.first}} and {{year.last}}, exports to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} in {{year.first}}, to US{{export.volume_last}} in {{year.last}}. In the same period, imports from {{level}} registered {{import.behavior}} of {{import.growth}}, from US{{import.volume_first}} in {{year.first}}, to US{{import.volume_last}} in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
     }
   },
   "decreased": "decreased",

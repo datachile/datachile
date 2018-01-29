@@ -143,8 +143,11 @@
   "Exports by Destination": "Exportación por destino",
   "Exports by product": "Exportaciones por producto",
   "Exports in ": "Exportaciones en ",
+  "Imports in ": "Importaciones en ",
   "Exports volume": "Volumen de exportaciones",
+  "Imports volume": "Volumen de importaciones",
   "Exports {{last_year}}": "Exportaciones {{last_year}}",
+  "Imports {{last_year}}": "Importaciones {{last_year}}",
   "Extras": "Extras",
   "Female": "Mujeres",
   "Female Average Age": "Edad promedio mujeres",
@@ -861,10 +864,16 @@
         "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, donde destacan las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
+      "balance":
+        "<p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>",
       "text_none":
         "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
+      "text_imponly":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}. En términos nominales, esto fue {{import.direction}} de US{{import.volume_first}} el {{year.first}}, a US{{import.volume_last}} en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+      "text_exponly":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} en {{year.first}}, hasta US{{import.volume_last}} en {{year.last}}.</p><p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>"
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} en {{year.first}}, hasta US{{import.volume_last}} en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
     }
   },
   "an increment": "un aumento",
@@ -1116,6 +1125,8 @@
   },
   "relative to exports to the world in {{year}}":
     "relativo a exportaciones a todo el mundo durante {{year}}",
+  "relative to imports from the world in {{year}}":
+    "relativo a importaciones desde todo el mundo durante {{year}}",
   "students": "students",
   "There are not data available for this chart":
     "No hay datos disponibles para este gráfico",

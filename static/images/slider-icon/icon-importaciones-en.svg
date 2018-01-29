@@ -4,6 +4,6 @@
     <circle cx="25" cy="35" r="20" stroke-linecap="round" stroke-linejoin="round" paint-order="markers fill stroke"/>
     <ellipse cx="25" cy="35" rx="10" ry="20" stroke-linecap="round" stroke-linejoin="round" paint-order="markers fill stroke"/>
     <path d="M25 15v40m20-20H5m37.3 10H7.7m34.6-20H7.7"/>
-    <path d="M45 8H5m35.9-4.9L45 8l-4.1 4.9" stroke-linecap="round"/>
+    <path d="M45 8H5m4.1-4.9L5 8l4.1 4.9" stroke-linecap="round"/>
   </g>
 </svg>
