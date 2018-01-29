@@ -1,0 +1,62 @@
+.documentation {
+  color: var(--light);
+  text-align: justify;
+
+  & table {
+      width: auto!important;
+    & td {
+      padding: 8px!important;
+      
+    }
+    & th {
+        &.description {
+            width: 100%;
+        }
+    }
+  }
+
+  & .def-text {
+    margin: 10px 0px;
+    line-height: 1.5;
+  }
+
+  & .code {
+    font-family: Consolas, Menlo, Courier New, monospace, serif;
+    color: #f1f2f3;
+    background-color: var(--pre-bg);
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.75em;
+    overflow-x: scroll;
+  }
+}
+
+@media print {
+  pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+pre {
+  background-color: var(--pre-bg);
+  color: #f1f2f3;
+  font-size: 14px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow: auto;
+  overflow-y: scroll;
+  margin: 10px 0px;
+  max-height: 500px;
+}
+pre code {
+  font-family: Consolas, Menlo, Courier New, monospace, serif;
+
+  color: #f1f2f3;
+}

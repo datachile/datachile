@@ -4,6 +4,8 @@ import { Link } from "react-router";
 import { CanonComponent } from "datawheel-canon";
 import Helmet from "react-helmet";
 
+import Documentation from "./Documentation";
+
 import Nav from "components/Nav";
 import DatachileLoading from "components/DatachileLoading";
 import "./About.css";
@@ -736,7 +738,8 @@ class About extends Component {
                     __html: t("about.api.text1")
                   }}
                 />
-
+                <Documentation />
+                {/*
                 <h3>{t("about.api.title2")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
@@ -750,6 +753,7 @@ class About extends Component {
                     __html: t("about.api.text3")
                   }}
                 />
+                */}
               </section>
             )}
 
