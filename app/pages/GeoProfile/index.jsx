@@ -732,7 +732,7 @@ class GeoProfile extends Component {
             </Topic>
 
             <Topic
-              name={t("Housing")}
+              name={t("Housing & Environment")}
               id="environment"
               sections={[
                 {
