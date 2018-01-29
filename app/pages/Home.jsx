@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
+import Helmet from "react-helmet";
 
 import { featured_profiles } from "helpers/consts";
 
@@ -89,7 +90,7 @@ class Home extends Component {
   }
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, location } = this.props;
 
     const locale = i18n.language;
 
@@ -117,6 +118,20 @@ class Home extends Component {
         topics={[]}
         loadingComponent={<DatachileLoading />}
       >
+        <Helmet>
+          <meta
+            name="description"
+            content={t(
+              "The most comprehensive effort to integrate and visualize Chile’s Public Data"
+            )}
+          />
+          <meta property="og:title" content={"DataChile"} />
+          <meta property="og:url" content={`https://${locale}.datachile.io`} />
+          <meta
+            property="og:image"
+            content={`https://${locale}.datachile.io/images/logos/opengraph.jpg`}
+          />
+        </Helmet>
         <div className="home">
           <Nav />
 

@@ -9,17 +9,15 @@ import DatachileLoading from "components/DatachileLoading";
 import "./About.css";
 
 class About extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+  state = {};
 
   componentDidMount() {
     //window.addEventListener("scroll", this.handleScroll.bind(this));
   }
 
   render() {
-    const { t, routeParams } = this.props;
+    const { t, routeParams, location } = this.props;
+    const locale = this.props.i18n.language;
 
     const section = routeParams.section ? routeParams.section : "background";
 
@@ -62,6 +60,15 @@ class About extends Component {
       >
         <Helmet>
           <title>{t("About")}</title>
+          <meta property="og:title" content={t("About DataChile")} />
+          <meta
+            property="og:url"
+            content={`https://${locale}.datachile.io${location.pathname}`}
+          />
+          <meta
+            property="og:image"
+            content={`https://${locale}.datachile.io/images/logos/opengraph.jpg`}
+          />
         </Helmet>
         <Nav
           title={t("About DataChile")}

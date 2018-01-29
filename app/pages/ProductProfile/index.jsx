@@ -330,7 +330,7 @@ class ProductProfile extends Component {
   componentDidMount() {}
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, location } = this.props;
     const obj = this.props.data.product;
 
     const locale = i18n.language;
@@ -440,6 +440,15 @@ class ProductProfile extends Component {
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={title} />
+          <meta property="og:title" content={title + " - DataChile"} />
+          <meta
+            property="og:url"
+            content={`https://${locale}.datachile.io${location.pathname}`}
+          />
+          <meta
+            property="og:image"
+            content={`https://${locale}.datachile.io/images/profile-bg/product/${key}.jpg`}
+          />
         </Helmet>
         <div className="profile">
           <div className="intro">

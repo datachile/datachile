@@ -328,7 +328,7 @@ class CountryProfile extends Component {
   ];
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, location } = this.props;
     const locale = i18n.language;
 
     const ids = getLevelObject(this.props.routeParams);
@@ -395,6 +395,17 @@ class CountryProfile extends Component {
         {obj && (
           <Helmet>
             <title>{obj.caption}</title>
+            <meta property="og:title" content={obj.caption + " - DataChile"} />
+            <meta
+              property="og:url"
+              content={`https://${locale}.datachile.io${location.pathname}`}
+            />
+            <meta
+              property="og:image"
+              content={`https://${locale}.datachile.io/images/profile-bg/country/${
+                obj.key
+              }.jpg`}
+            />
           </Helmet>
         )}
         <div className="profile">

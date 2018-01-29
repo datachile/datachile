@@ -255,7 +255,7 @@ class GeoProfile extends Component {
   ];
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, location } = this.props;
 
     const locale = i18n.language;
 
@@ -372,6 +372,15 @@ class GeoProfile extends Component {
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={title} />
+          <meta property="og:title" content={title + " - DataChile"} />
+          <meta
+            property="og:url"
+            content={`https://${locale}.datachile.io${location.pathname}`}
+          />
+          <meta
+            property="og:image"
+            content={`https://${locale}.datachile.io${geoObj.image}`}
+          />
         </Helmet>
         <div className="profile">
           <div className="intro">
