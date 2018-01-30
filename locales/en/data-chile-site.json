@@ -572,12 +572,45 @@
         "<p>DataChile is a public good (owned by all Chileans), but it will be managed by the Chilean government starting April 2018, once Corfo funding finishes.</p>",
       "title4": "Who is responsible for updating DataChile?",
       "text4":
-        "<p>Until April 2018 DataChile updates are the responsibility of Datawheel. Starting April 2018, DIRECON (Dirección General de Relaciones Económicas Internacionales), which is a department from the Ministerio de Relaciones Exteriores, will take possession of DataChile and will be responsible for updating its data and features.</p>"
+        "<p>Until April 2018 DataChile updates are the responsibility of Datawheel. Starting April 2018, DIRECON (Dirección General de Relaciones Económicas Internacionales), which is a department from the Ministerio de Relaciones Exteriores, will take possession of DataChile and will be responsible for updating its data and features.</p>",
+      "members":
+        "<p>Datachile's team is composed by:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>César Hidalgo</li><li>Carlos Navarrete Lizama</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>"
+    },
+    "api": {
+      "title": "API",
+      "title1": "DataChile API",
+      "text1":
+        "<p>DataChile has a data API, which delivers the info to build the charts and generate the texts site-wide.</p>",
+      "title2": "When will this API be available?",
+      "text2":
+        "<p>The API will be released publicly on the occasion of <a rel='noopener noreferrer' href='http://opendataday.org/' target='_blank'>Open Data Day</a>, on March 3rd, 2018. We will also launch that day a map webapp to let users explore all available dimensions and variables.</p>",
+      "title3":
+        "Meanwhile, how can I access the information DataChile distributes?",
+      "text3":
+        "<p>Next to each chart there's an option <img class=\"icon\" src=\"/images/icons/icon-download.svg\" /> to download the information used to generate it. This raw information is available in CSV, XLS and JSON formats.</p><p>Likewise, in the <a href=\"/about/data\">Data Section</a> you can access the files we used to populate our API, in CSV format.</p>"
     },
     "terms": {
       "text":
         "<p>Information on this site is provided on an \"as is\" and \"as available\" basis. DataChile makes every effort to ensure, but does not guarantee, the accuracy or completeness of the information on the DataChile website. Our goal is to keep this information timely and accurate. If errors are brought to our attention, we will try to correct them. DataChile may add, change, improve, or update the information of the website without notice. DataChile reserves its exclusive right in its sole discretion to alter, limit or discontinue part of this site. Under no circumstances shall DataChile be liable for any loss, damage, liability or expense suffered which is claimed to result from use of this site, including without limitation, any fault, error, omission, interruption or delay. Use of this site is at User's sole risk. We make every effort to minimize disruption caused by technical errors. However some data or information on the DataChile website may have been created or structured in files or formats which are not error-free and we cannot guarantee that our service will not be interrupted or otherwise affected by such problems. DataChile accepts no responsibility with regards to such problems (failure of performance, computer virus, communication line failure, alteration of content, etc.) incurred as a result of using the DataChile website or any link to external sites. The User specifically acknowledges and agrees that DataChile is not liable for any conduct of any other User, including, but not limited to, the types of conduct listed above. DataChile reserves the right to deny at its sole discretion any User access to the DataChile website or any portion thereof without notice. For site security purpose and to ensure that the DataChile website remains available to all users, it employs software programs to monitor network traffic to identify unauthorised attempts to upload or change information, or otherwise cause damage and to detect other possible security breaches.</p>",
       "title": "Terms of Use"
+    },
+    "changelog": {
+      "title": "Changelog",
+      "launch": {
+        "title": "1.0.0 - Beta launch - 2018-01-08",
+        "description":
+          "<p>Main page. Profile explorer. Entity search. Profiles: geo, countries, industries, and products. More than 15 datasets about: economy, demography, education, health, and housing.</p>"
+      },
+      "araucaria": {
+        "title": "1.0.1 - \"Araucaria\" - 2018-01-19",
+        "description":
+          "<p>General bug fixes in various profiles, added background images, improved stability for Country Profile on countries with low data availability.</p>"
+      },
+      "belloto": {
+        "title": "1.1.0 - \"Belloto\" - 2018-01-26",
+        "description":
+          "<p>New datasets: Allegations of main crime categories, available for Geo profile, Housing topic, Security section (Source: Carabineros de Chile). Fixes on Health Insurance IDs for the CASEN survey data on 2003 and 2006. Added Comuna of Ñiquén in selection map. Various fixes on texts and translations (nan, N/A, etc). Design and style adjustments for desktop and mobile. Fixes on download links to raw information sources on the About page. Improvement on query performance for homepage.</p>"
+      }
     }
   },
   "affiliates": "affiliates",

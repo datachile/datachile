@@ -738,7 +738,7 @@
         "<p>DataChile posee una API de datos que entrega la información para construir los gráficos y generar todos los textos del sitio.</p>",
       "title2": "¿Cuándo estará disponible la API?",
       "text2":
-        "<p>La API será lanzada con motivo del <a href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
+        "<p>La API será lanzada con motivo del <a rel='noopener noreferrer' href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
       "title3":
         "Mientras tanto, ¿cómo puedo acceder a la información que distribuye DataChile?",
       "text3":
