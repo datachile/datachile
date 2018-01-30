@@ -6,11 +6,16 @@
       width: auto!important;
     & td {
       padding: 8px!important;
+      width: auto!important;
+      &.description {
+        width: 100%!important;
+    }
       
     }
     & th {
+        width: auto!important;
         &.description {
-            width: 100%;
+            width: 100%!important;;
         }
     }
   }
@@ -18,6 +23,9 @@
   & .def-text {
     margin: 10px 0px;
     line-height: 1.5;
+    & .title {
+        color: var(--accent)
+    }
   }
 
   & .code {
@@ -26,7 +34,7 @@
     background-color: var(--pre-bg);
     padding: 4px 8px;
     border-radius: 5px;
-    font-size: 0.75em;
+    font-size: 0.85em;
     overflow-x: scroll;
   }
 }

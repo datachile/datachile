@@ -9,18 +9,44 @@ class Documentation extends React.Component {
       <div className="documentation">
         {t("How to Query for Specific Data")}
         <h3>Primeros Pasos</h3>
-        <div>
+        <p>
           DataChile utiliza para su funcionamiento como capa lógica
           Mondrian-REST, que es un componente del lado del servidor que permite
           la creación de APIs HTTP para acceder a una base de datos
           especificando la estructura lógica de la información.
+        </p>
+        <p>
+          Para usar la API de DataChile, es necesario conocer algunos conceptos,
+          que explicaremos a continuación:
+        </p>
+        <div className="def-text">
+          <h5 className="title">Cubo</h5>
+          La colección de dimensiones, jerarquías y measures es llamada un cubo.
         </div>
         <div className="def-text">
-          Cut: permite al usuario especificar un filtro, que efectivamente
-          restringe al XXXXX. Cortar el cubo en torno al miembro [Region].[8] en
-          la dimensión Geography, sólo considerará celdas de la región de
-          Bío-Bío. Múltiples cortes pueden ser especificados en una simple
-          consulta.
+          <h5 className="title">Drilldown</h5>
+          XXXX
+        </div>
+        <div className="def-text">
+          <h5 className="title">Measure</h5>
+          Permite seleccionar medidas (variables escalares asociadas con un
+          valor particular en los datos del cubo). Múltiples <i>
+            measures
+          </i>{" "}
+          pueden ser seleccionados en una consulta.
+        </div>
+        <div className="def-text">
+          <h5 className="title">Cut</h5>
+          Permite al usuario especificar un filtro, que restringe las tuplas
+          disponibles del cubo. Por ejemplo, en{" "}
+          <span className="code">exports</span>, cortar el cubo en torno al
+          miembro <span className="code">[Region].[8]</span> en la dimensión{" "}
+          <span className="code">Geography</span>, sólo considerará celdas de la
+          región de Bío-Bío. Múltiples cortes pueden ser especificados en una
+          simple consulta.
+        </div>
+        <div className="code">
+          {`https://chilecube.datawheel.us/cubes/{cube_id}}/aggregate.json?drilldown[]={dd}&cut[]={cut}&measures[]={measure}&nonempty=true&distinct={}&parents={}&sparse={}`}
         </div>
         <h3>Ejemplo de llamada de datos</h3>
         <div className="def-text">
@@ -109,28 +135,28 @@ class Documentation extends React.Component {
                 <td>
                   <span className="code">boolean</span>
                 </td>
-                <td>x</td>
+                <td className="description">x</td>
               </tr>
               <tr>
                 <td>distinct</td>
                 <td>
                   <span className="code">boolean</span>
                 </td>
-                <td>x</td>
+                <td className="description">x</td>
               </tr>
               <tr>
                 <td>parents</td>
                 <td>
                   <span className="code">boolean</span>
                 </td>
-                <td>x</td>
+                <td className="description">x</td>
               </tr>
               <tr>
                 <td>sparse</td>
                 <td>
                   <span className="code">boolean</span>
                 </td>
-                <td>x</td>
+                <td className="description">x</td>
               </tr>
             </tbody>
           </table>
