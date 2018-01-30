@@ -40,13 +40,10 @@ import RDByOwnershipType from "./economy/charts/RDByOwnershipType";
 import "../intro.css";
 
 class IndustryProfile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      subnav: false,
-      activeSub: false
-    };
-  }
+  state = {
+    subnav: false,
+    activeSub: false
+  };
 
   static preneed = [clearStoreData];
   static need = [
@@ -234,7 +231,7 @@ class IndustryProfile extends Component {
   componentDidMount() {}
 
   render() {
-    const { t, i18n, data } = this.props;
+    const { t, i18n, data, location } = this.props;
 
     const industry = data ? data.industry : null;
 
@@ -282,6 +279,11 @@ class IndustryProfile extends Component {
       }
     ];
 
+    const title = industry
+      ? industry.caption +
+        (industry.parent ? ` (${industry.parent.caption})` : "")
+      : "";
+
     return (
       <CanonComponent
         data={this.props.data}
@@ -290,11 +292,20 @@ class IndustryProfile extends Component {
         loadingComponent={<DatachileLoading />}
       >
         <Helmet>
-          {industry && (
-            <title>{`${industry.caption}${
-              industry.parent ? " (" + industry.parent.caption + ")" : ""
-            }`}</title>
-          )}
+          {industry
+            ? [
+                <title>{title}</title>,
+                <meta property="og:title" content={title + " - DataChile"} />,
+                <meta
+                  property="og:url"
+                  content={`https://${locale}.datachile.io${location.pathname}`}
+                />,
+                <meta
+                  property="og:image"
+                  content={`https://${locale}.datachile.io/images/profile-bg/industry/${industryImg.toLowerCase()}.jpg`}
+                />
+              ]
+            : null}
         </Helmet>
         <div className="profile">
           <div className="intro">
