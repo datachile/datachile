@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 
 import Footer from "components/Footer";
 import mondrianClient from "helpers/MondrianClient";
+import StagingIndicator from "components/StagingIndicator";
 
 import "./App.css";
 
@@ -35,6 +36,7 @@ class App extends Component {
         <Helmet titleTemplate="%s — DataChile" defaultTitle="DataChile">
           <meta name="description" content={t("home.subtitle")} />
         </Helmet>
+        <StagingIndicator />
         {children}
         <Footer />
       </div>
