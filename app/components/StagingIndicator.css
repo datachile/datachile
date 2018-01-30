@@ -5,11 +5,23 @@
   height: 10px;
   font-size: 8px;
   z-index: 42000;
-  background: repeating-linear-gradient(
-    45deg,
-    yellow,
-    yellow 5px,
-    black 5px,
-    black 10px
-  );
+  background: #ccc;
+  &.staging-indicator-staging {
+    background: repeating-linear-gradient(
+      45deg,
+      yellow,
+      yellow 5px,
+      black 5px,
+      black 10px
+    );
+  }
+  &.staging-indicator-dev {
+    background: repeating-linear-gradient(
+      45deg,
+      green,
+      green 5px,
+      black 5px,
+      black 10px
+    );
+  }
 }
