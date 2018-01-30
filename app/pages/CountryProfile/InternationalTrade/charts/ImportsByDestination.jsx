@@ -89,7 +89,8 @@ class ImportsByDestination extends Section {
                   "Total: US" +
                   numeral(getNumberFromTotalString(d.text), locale).format(
                     "($ 0.[00] a)"
-                  )
+                  ) +
+                  " CIF"
               },
               time: "ID Year",
               shapeConfig: {
@@ -109,7 +110,7 @@ class ImportsByDestination extends Section {
                 },
                 body: d =>
                   numeral(d["CIF US"], locale).format("(USD 0 a)") +
-                  "<br/><a>" +
+                  " CIF<br/><a>" +
                   t("tooltip.to_profile") +
                   "</a>"
               },

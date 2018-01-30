@@ -137,7 +137,7 @@ class InternationalTradeBalanceSlide extends Section {
           className="l-1-3"
           icon="exportaciones-en"
           datum={numeral(datum_export_volume, locale).format("0.0%")}
-          title={t("Exports volume")}
+          title={t("Exports volume") + " (FOB)"}
           subtitle={t(
             "relative to exports to the world in {{year}}",
             sources.exports
@@ -150,7 +150,7 @@ class InternationalTradeBalanceSlide extends Section {
           className="l-1-3"
           icon="importaciones-en"
           datum={numeral(datum_import_volume, locale).format("0.0%")}
-          title={t("Imports volume")}
+          title={t("Imports volume") + " (CIF)"}
           subtitle={t(
             "relative to imports from the world in {{year}}",
             sources.imports

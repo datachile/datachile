@@ -634,7 +634,7 @@
       "text_none":
         "<p>There's no data on internation trade between Chile and {{level}} in the recent years.</p>",
       "text":
-        "<p>During {{year}}, Chile exported a total of US{{total_exports}} to {{level}}, and imported a total of US{{total_imports}}, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
+        "<p>During {{year}}, Chile exported a total of US{{total_exports}} FOB to {{level}}, and imported a total of US{{total_imports}} CIF, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
@@ -678,11 +678,11 @@
       "text_none":
         "<p>There's no data on internation trade between Chile and {{level}} in the recent years.</p>",
       "text_imponly":
-        "<p>Between {{year.first}} and {{year.last}}, imports from {{level}} registered an {{import.behavior}} of {{import.growth}}. In nominal terms, this means {{import.direction}} of US{{import.volume_first}} in {{year.first}}, to US{{import.volume_last}} in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+        "<p>Between {{year.first}} and {{year.last}}, imports from {{level}} registered an {{import.behavior}} of {{import.growth}}. In nominal terms, this means {{import.direction}} of US{{import.volume_first}} CIF in {{year.first}}, to US{{import.volume_last}} CIF in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text_exponly":
-        "<p>Between {{year.first}} and {{year.last}}, exports to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} in {{year.first}}, to US{{export.volume_last}} in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+        "<p>Between {{year.first}} and {{year.last}}, exports to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} FOB in {{year.first}}, to US{{export.volume_last}} FOB in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text":
-        "<p>Between {{year.first}} and {{year.last}}, exports to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} in {{year.first}}, to US{{export.volume_last}} in {{year.last}}. In the same period, imports from {{level}} registered {{import.behavior}} of {{import.growth}}, from US{{import.volume_first}} in {{year.first}}, to US{{import.volume_last}} in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
+        "<p>Between {{year.first}} and {{year.last}}, exports to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} FOB in {{year.first}}, to US{{export.volume_last}} FOB in {{year.last}}. In the same period, imports from {{level}} registered {{import.behavior}} of {{import.growth}}, from US{{import.volume_first}} CIF in {{year.first}}, to US{{import.volume_last}} CIF in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
     }
   },
   "decreased": "decreased",

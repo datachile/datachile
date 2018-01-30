@@ -825,7 +825,7 @@
       "text_none":
         "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
       "text":
-        "<p>El {{year}} Chile exportó un total de US{{total_exports}} a {{level}}, e importó un total de US{{total_imports}}, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
+        "<p>El {{year}} Chile exportó un total de US{{total_exports}} FOB a {{level}}, e importó un total de US{{total_imports}} CIF, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
@@ -869,11 +869,11 @@
       "text_none":
         "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
       "text_imponly":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}. En términos nominales, esto fue {{import.direction}} de US{{import.volume_first}} el {{year.first}}, a US{{import.volume_last}} en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+        "<p>Entre el {{year.first}} y el {{year.last}}, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}. En términos nominales, esto fue {{import.direction}} de US{{import.volume_first}} CIF el {{year.first}}, a US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text_exponly":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} en {{year.first}}, hasta US{{import.volume_last}} en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} CIF en {{year.first}}, hasta US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
     }
   },
   "an increment": "un aumento",

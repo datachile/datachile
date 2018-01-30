@@ -89,7 +89,8 @@ class ExportsByProduct extends Section {
                   "Total: US" +
                   numeral(getNumberFromTotalString(d.text), locale).format(
                     "($ 0.[00] a)"
-                  )
+                  ) +
+                  " FOB"
               },
               time: "ID Year",
               legendConfig: {
@@ -116,7 +117,7 @@ class ExportsByProduct extends Section {
                 title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
                 body: d =>
                   numeral(d["FOB US"], locale).format("(USD 0 a)") +
-                  "<br/><a>" +
+                  " FOB<br/><a>" +
                   t("tooltip.to_profile") +
                   "</a>"
               }
