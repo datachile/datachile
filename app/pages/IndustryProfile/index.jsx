@@ -83,55 +83,6 @@ class IndustryProfile extends Component {
     },
     (params, store) => {
       var ids = getLevelObject(params);
-      const level2 = ids.level2;
-      ids.level2 = false;
-      const prm = mondrianClient
-        .cube("nene_quarter")
-        .then(cube => {
-          var q = levelCut(
-            ids,
-            "ISICrev4",
-            "ISICrev4",
-            cube.query
-              .option("parents", true)
-              .drilldown("Date", "Date", "Moving Quarter")
-              .measure("Expansion Factor Decile")
-              .measure("Expansion Factor Rank")
-              .measure("Expansion Factor Decile Number"),
-            "Level 1",
-            "Level 2",
-            store.i18n.locale
-          );
-          q.cut(
-            `[Date].[Date].[Moving Quarter].&[${sources.nene.last_quarter}]`
-          );
-
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          if (!res.data.data[0]["Expansion Factor Decile"]) {
-            return false;
-          } else {
-            return {
-              key: "employees_by_industry",
-              data: {
-                value: res.data.data[0]["Expansion Factor Decile"],
-                decile: res.data.data[0]["Expansion Factor Decile Number"],
-                rank: res.data.data[0]["Expansion Factor Rank"],
-                total: 1,
-                year: store.nene_month + "/" + store.nene_year
-              }
-            };
-          }
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      var ids = getLevelObject(params);
       const prm = mondrianClient
         .cube("tax_data")
         .then(cube => {
