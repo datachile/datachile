@@ -109,7 +109,9 @@ class IncomeSexAgeSlide extends Section {
                 <p>
                   <span
                     dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", { caption: name })
+                      __html: t("geo_profile.warning", {
+                        caption: "Región " + name
+                      })
                     }}
                   />
                 </p>

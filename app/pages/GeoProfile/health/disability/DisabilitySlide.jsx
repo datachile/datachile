@@ -50,10 +50,10 @@ class DisabilitySlide extends Section {
                 <p>
                   <span
                     dangerouslySetInnerHTML={{
-                      __html: t(
-                        "geo_profile.warning",
-                        this.context.data.geo.ancestors[0]
-                      )
+                      __html: t("geo_profile.warning", {
+                        caption:
+                          "Región " + this.context.data.geo.ancestors[0].caption
+                      })
                     }}
                   />
                 </p>

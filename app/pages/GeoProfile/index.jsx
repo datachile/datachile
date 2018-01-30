@@ -458,7 +458,11 @@ class GeoProfile extends Component {
                       source="nesi_income"
                       className=""
                       level={geo.depth > 1 ? "geo_profile" : false}
-                      name={geo.depth > 1 ? ancestor : geo}
+                      name={
+                        geo.depth > 1
+                          ? { caption: "Región " + ancestor.caption }
+                          : geo
+                      }
                     />
                   )}
                 {stats.psu && (
