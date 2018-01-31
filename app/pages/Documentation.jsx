@@ -1,61 +1,207 @@
 import React from "react";
 import { translate } from "react-i18next";
 import "./Documentation.css";
-
+/*<div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.nesi.text")
+                  }}
+                />
+ */
 class Documentation extends React.Component {
   render() {
     const { t } = this.props;
     return (
       <div className="documentation">
-        {t("How to Query for Specific Data")}
-        <h3>Primeros Pasos</h3>
-        <p>
-          DataChile utiliza para su funcionamiento como capa lógica
-          Mondrian-REST, que es un componente del lado del servidor que permite
-          la creación de APIs HTTP para acceder a una base de datos
-          especificando la estructura lógica de la información.
-        </p>
-        <p>
-          Para usar la API de DataChile, es necesario conocer algunos conceptos,
-          que explicaremos a continuación:
-        </p>
+        <section>
+          <h3>{t("documentation_api.title1")}</h3>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("documentation_api.intro.text1")
+            }}
+          />
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("documentation_api.intro.text2")
+            }}
+          />
+          <div className="def-text">
+            <h5 className="title">Cubo</h5>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.definitions.cube")
+              }}
+            />
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.definitions.cube2")
+              }}
+            />
+          </div>
+          <div className="def-text">
+            <h5 className="title">Drilldown</h5>
+            {t("Some previous definitions")}:
+            <ul>
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("documentation_api.definitions.member")
+                }}
+              />
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("documentation_api.definitions.level")
+                }}
+              />
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("documentation_api.definitions.hierarchy")
+                }}
+              />
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: t("documentation_api.definitions.dimension")
+                }}
+              />
+            </ul>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.definitions.drilldown")
+              }}
+            />
+          </div>
+
+          <div className="def-text">
+            <h5 className="title">Measure</h5>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.definitions.measure")
+              }}
+            />
+          </div>
+          <div className="def-text">
+            <h5 className="title">Cut</h5>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.definitions.cut")
+              }}
+            />
+          </div>
+        </section>
+        <h3>{t("documentation_api.title2")}</h3>
+        <div className="method">
+          <span className="text">GET</span>{" "}
+          <span className="url">
+            {`https://chilecube.datawheel.us/cubes/{{cube_name}}/aggregate`}
+          </span>
+        </div>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: t("documentation_api.syntax.text1")
+          }}
+        />
+        <table>
+          <thead>
+            <tr>
+              <th className="field">{t("Param")}</th>
+              <th>{t("Type")}</th>
+              <th className="description">{t("Description")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>drilldown[]</td>
+              <td>
+                <span className="code">string</span>
+              </td>
+              <td className="description">
+                Para generar un drilldown, se debe tener en cuenta: Dimension,
+                Hierarchy, Level.
+                <span className="code format">
+                  [Dimension].[Hierarchy].[Level]
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>measures[]</td>
+              <td>
+                <span className="code">string</span>
+              </td>
+              <td className="description">
+                <span className="code">Measure</span>
+              </td>
+            </tr>
+            <tr>
+              <td>cut[]</td>
+              <td>
+                <span className="code">string</span>
+              </td>
+              <td className="description">
+                Se debe concatenar el drilldown sobre el cuál se desea hacer el
+                corte, con <span className="code">Level ID</span>.
+                <span className="code format">
+                  [Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>nonempty</td>
+              <td>
+                <span className="code">boolean</span>
+              </td>
+              <td className="description">
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("documentation_api.definitions.nonempty")
+                  }}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>distinct</td>
+              <td>
+                <span className="code">boolean</span>
+              </td>
+              <td className="description">
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("documentation_api.definitions.distinct")
+                  }}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>parents</td>
+              <td>
+                <span className="code">boolean</span>
+              </td>
+              <td className="description">
+                En caso de encontrarse en un nivel de profundidad mayor a 1,
+                obtiene el ID y nombre de los niveles padres. --
+              </td>
+            </tr>
+            <tr>
+              <td>sparse</td>
+              <td>
+                <span className="code">boolean</span>
+              </td>
+              <td className="description">--</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div className="pagenote">
+          1. Si se hace la consulta directamente en URL, se debe reemplazar &
+          por %26 para evitar problemas de parseo del corte.
+        </div>
+        <h3>{t("documentation_api.title3")}</h3>
         <div className="def-text">
-          <h5 className="title">Cubo</h5>
-          La colección de dimensiones, jerarquías y measures es llamada un cubo.
+          The following examples illustrate how queries are constructed, by
+          restricting the search space with the drilldown, cut, and measures
+          parameters. Aquí se muestra el aspecto de la URL y el JSON devuelto
+          cuando se pregunta ¿Qué número de personas está en cada previsión de
+          salud en Concepción?
         </div>
-        <div className="def-text">
-          <h5 className="title">Drilldown</h5>
-          XXXX
-        </div>
-        <div className="def-text">
-          <h5 className="title">Measure</h5>
-          Permite seleccionar medidas (variables escalares asociadas con un
-          valor particular en los datos del cubo). Múltiples <i>
-            measures
-          </i>{" "}
-          pueden ser seleccionados en una consulta.
-        </div>
-        <div className="def-text">
-          <h5 className="title">Cut</h5>
-          Permite al usuario especificar un filtro, que restringe las tuplas
-          disponibles del cubo. Por ejemplo, en{" "}
-          <span className="code">exports</span>, cortar el cubo en torno al
-          miembro <span className="code">[Region].[8]</span> en la dimensión{" "}
-          <span className="code">Geography</span>, sólo considerará celdas de la
-          región de Bío-Bío. Múltiples cortes pueden ser especificados en una
-          simple consulta.
-        </div>
-        <div className="code">
-          {`https://chilecube.datawheel.us/cubes/{cube_id}}/aggregate.json?drilldown[]={dd}&cut[]={cut}&measures[]={measure}&nonempty=true&distinct={}&parents={}&sparse={}`}
-        </div>
-        <h3>Ejemplo de llamada de datos</h3>
-        <div className="def-text">
-          Aquí se muestra el aspecto de la URL y el JSON devuelto cuando se
-          pregunta ¿Qué número de personas está en cada previsión de salud en
-          Bío-Bío?
-        </div>
-        <div className="code">
-          https://chilecube.datawheel.us//cubes/casen_health_system/aggregate.json?drilldown%5B%5D=%5BHealth+System%5D.%5BHealth+System%5D&cut%5B%5D=%5BGeography%5D.%5BComuna%5D.%26%5B64%5D&measures%5B%5D=Expansion+Factor+Comuna&caption%5B%5D=%5BHealth+System%5D.%5BHealth+System%5D.Description+ES&caption%5B%5D=%5BHealth+System%5D.%5BHealth+System+Group%5D.Description+ES&nonempty=true&distinct=false&parents=true&sparse=true
+        <div className="code left">
+          {`https://chilecube.datawheel.us//cubes/casen_health_system/aggregate.json?drilldown[]=[Health System].[Health System]&cut[]=[Geography].[Comuna].%26[64]&measures[]=Expansion Factor Comuna&caption[]=[Health System].[Health System].Description ES&caption[]=[Health System].[Health System Group].Description ES&nonempty=true&distinct=false&parents=true&sparse=true`}
         </div>
         <pre>
           <code>
@@ -119,49 +265,50 @@ class Documentation extends React.Component {
                 `}
           </code>
         </pre>
-        <h3>Campos</h3>
-        <p>
-          <table>
-            <thead>
-              <tr>
-                <th className="field">{t("Field Name")}</th>
-                <th>{t("Type")}</th>
-                <th className="description">{t("Description")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>nonempty</td>
-                <td>
-                  <span className="code">boolean</span>
-                </td>
-                <td className="description">x</td>
-              </tr>
-              <tr>
-                <td>distinct</td>
-                <td>
-                  <span className="code">boolean</span>
-                </td>
-                <td className="description">x</td>
-              </tr>
-              <tr>
-                <td>parents</td>
-                <td>
-                  <span className="code">boolean</span>
-                </td>
-                <td className="description">x</td>
-              </tr>
-              <tr>
-                <td>sparse</td>
-                <td>
-                  <span className="code">boolean</span>
-                </td>
-                <td className="description">x</td>
-              </tr>
-            </tbody>
-          </table>
-        </p>
-        <h3>Cliente API para Python</h3>
+        <div className="def-text">
+          <h3>{t("documentation_api.title4")}</h3>
+          These criteria can be combined to define robust queries. Here are a
+          few examples.
+          <div className="example">
+            <p className="text">
+              Seleccionar los valores de las regiones de Valparaíso (ID 5) y de
+              Coquimbo (ID 4)
+            </p>
+            <div className="code">
+              {`cut[]: {[Geography].[Geography].[Region].&[4], [Geography].[Geography].[Region].&[5]}`}
+            </div>
+            <p className="clarification">
+              Para realizar cortes por más de un ID, cada cut debe estar
+              separado por <span className="code">,</span>
+              dentro de <span className="code">{`{}`}</span>.
+            </p>
+          </div>
+          <div className="example">
+            <p className="text">
+              Obtener las importaciones de todas las comunas de Chile entre los
+              años 2013 y 2015.
+            </p>
+            <div className="code">
+              {`drilldown[]: [Origin Country].[Country].[Country]`}
+              <br />
+              {`drilldown[]: [Geography].[Geography].[Comuna]`}
+              <br />
+              {`drilldown[]: [Date].[Date].[Year]`}
+              <br />
+              {`measures[]: CIF US`}
+              <br />
+              {`cut[]: {[Date].[Date].[Year].&[2013], [Date].[Date].[Year].&[2014], [Date].[Date].[Year].&[2015]}`}
+            </div>
+            <p className="clarification">
+              Para realizar cortes por más de un ID, cada cut debe estar
+              separado por <span className="code">,</span>
+              dentro de <span className="code">{`{}`}</span>.
+            </p>
+          </div>
+        </div>
+        <h3>{t("documentation_api.title5")}</h3>
+        <p>https://github.com/Datawheel/mondrian-rest-client</p>
+        <h3>{t("documentation_api.title6")}</h3>
         <p>
           Para fomentar el uso de la API de DataChile, hemos habilitado en
           Python un módulo que permite interactuar con todos los datos
