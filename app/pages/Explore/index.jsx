@@ -187,7 +187,9 @@ class Explore extends Component {
   render() {
     const { entity, entity_id } = this.props.routeParams;
 
-    const { t } = this.props;
+    const { t, i18n, location } = this.props;
+
+    const locale = i18n.language;
 
     const members = this.props.data.members;
 
