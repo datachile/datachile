@@ -68,6 +68,7 @@ import SpendingByIndustry from "./economy/innovation/charts/SpendingByIndustry";
 
 import PSUNEMSlide from "./education/performance/PSUNEMSlide";
 import PSUNEMScatter from "./education/performance/charts/PSUNEMScatter";
+import PSUDistribution from "./education/performance/charts/PSUDistribution";
 
 import EnrollmentSlide from "./education/enrollment/EnrollmentSlide";
 import CollegeByEnrollment from "./education/enrollment/charts/CollegeByEnrollment";
@@ -213,6 +214,7 @@ class GeoProfile extends Component {
     /** EDUCATION */
     PSUNEMSlide,
     PSUNEMScatter,
+    PSUDistribution,
 
     EnrollmentSlide,
     CollegeByEnrollment,
@@ -470,15 +472,7 @@ class GeoProfile extends Component {
                     title={t("Education")}
                     icon="psu"
                     decile={stats.psu.decile}
-                    rank={
-                      showRanking
-                        ? numeral(stats.psu.rank, locale).format("0o") +
-                          " " +
-                          t("of") +
-                          " " +
-                          stats.psu.total
-                        : false
-                    }
+                    rank={false}
                     datum={
                       numeral(
                         geoObj.type != "country" ? stats.psu.value : 500,
@@ -711,8 +705,8 @@ class GeoProfile extends Component {
               id="education"
               sections={[
                 {
-                  name: t("Performance"),
-                  slides: [t("PSU vs NEM"), t("PSU By Sex")]
+                  name: t("Score"),
+                  slides: [t("PSU & NEM"), t("PSU By Sex")]
                 },
                 {
                   name: t("Enrollment"),
@@ -723,7 +717,7 @@ class GeoProfile extends Component {
               <div>
                 <PSUNEMSlide>
                   <SectionColumns>
-                    <PSUNEMScatter className="lost-1" />
+                    <PSUDistribution className="lost-1" />
                   </SectionColumns>
                 </PSUNEMSlide>
               </div>

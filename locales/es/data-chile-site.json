@@ -436,6 +436,7 @@
   "Salaries By Category": "Salarios por Categoría",
   "Salaries By Occupation": "Salarios por ocupación",
   "Sales in ": "Ventas en ",
+  "Score": "Puntaje",
   "School": "Escuela",
   "School By Enrollment": "Escuela según matrícula",
   "Search a location, industry, product, career, etc":
@@ -446,6 +447,7 @@
   "See more": "Ver más",
   "Senators": "Senadores",
   "Services Access": "Acceso a servicios",
+  "Sex": "Sexo",
   "SignUp": {
     "Confirm Password": "Confirm Password",
     "E-mail": "E-mail",
@@ -969,18 +971,20 @@
         "byPSU": {
           "level1": {
             "2":
-              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>",
             "3":
-              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}} ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>"
           },
           "level2": {
             "plural":
-              "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>",
             "singular":
-              "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>",
             "no_data":
               "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
-          }
+          },
+          "disclaimer":
+            "<p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
         }
       }
     },

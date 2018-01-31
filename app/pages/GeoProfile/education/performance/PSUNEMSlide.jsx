@@ -157,7 +157,7 @@ class PSUNEMSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Performance")}</div>
+          <div className="topic-slide-title">{t("Score")}</div>
           <div className="topic-slide-text">
             <p>
               {text && (
@@ -180,6 +180,13 @@ class PSUNEMSlide extends Section {
                   }}
                 />
               )}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t(
+                    `geo_profile.education.performance.byPSU.disclaimer`
+                  )
+                }}
+              />
             </p>
           </div>
           <div className="topic-slide-data">

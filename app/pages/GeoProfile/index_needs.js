@@ -1,5 +1,6 @@
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
+import { sources } from "helpers/consts";
 
 export function needGetGeo(params) {
   const geoObj = getGeoObject(params);
@@ -156,7 +157,7 @@ export function needGetPSUDatum(params, store) {
         store.i18n.locale
       );
 
-      q.cut(`[Date].[Year].&[${store.psu_year}]`);
+      q.cut(`[Date].[Year].&[${sources.psu.year}]`);
       return mondrianClient.query(q, "jsonrecords");
     })
     .then(res => {
