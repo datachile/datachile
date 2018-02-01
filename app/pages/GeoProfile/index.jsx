@@ -68,6 +68,8 @@ import SpendingByIndustry from "./economy/innovation/charts/SpendingByIndustry";
 
 import PSUNEMSlide from "./education/performance/PSUNEMSlide";
 import PSUNEMScatter from "./education/performance/charts/PSUNEMScatter";
+
+import PSUDistributionSlide from "./education/performance/PSUDistributionSlide";
 import PSUDistribution from "./education/performance/charts/PSUDistribution";
 
 import EnrollmentSlide from "./education/enrollment/EnrollmentSlide";
@@ -214,6 +216,8 @@ class GeoProfile extends Component {
     /** EDUCATION */
     PSUNEMSlide,
     PSUNEMScatter,
+
+    PSUDistributionSlide,
     PSUDistribution,
 
     EnrollmentSlide,
@@ -706,7 +710,11 @@ class GeoProfile extends Component {
               sections={[
                 {
                   name: t("Score"),
-                  slides: [t("PSU & NEM"), t("PSU By Sex")]
+                  slides: [
+                    t("PSU Distribution"),
+                    t("PSU By Sex"),
+                    t("PSU & NEM")
+                  ]
                 },
                 {
                   name: t("Enrollment"),
@@ -715,17 +723,24 @@ class GeoProfile extends Component {
               ]}
             >
               <div>
-                <PSUNEMSlide>
+                <PSUDistributionSlide>
                   <SectionColumns>
                     <PSUDistribution className="lost-1" />
                   </SectionColumns>
-                </PSUNEMSlide>
+                </PSUDistributionSlide>
+              </div>
+              <div>
+                <PSUDistributionSlide>
+                  <SectionColumns>
+                    <PSUBySex className="lost-1-2" />
+                    <PSUResultsBySex className="lost-1-2" />
+                  </SectionColumns>
+                </PSUDistributionSlide>
               </div>
               <div>
                 <PSUNEMSlide>
                   <SectionColumns>
-                    <PSUBySex className="lost-1-2" />
-                    <PSUResultsBySex className="lost-1-2" />
+                    <PSUNEMScatter className="lost-1" />
                   </SectionColumns>
                 </PSUNEMSlide>
               </div>
