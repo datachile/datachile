@@ -102,7 +102,7 @@ class ElectoralParticipation extends Section {
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="election_results" />
+        <SourceNote cube="election_participation" />
       </div>
     );
   }
