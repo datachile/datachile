@@ -22,7 +22,10 @@ class ElectoralParticipation extends Section {
       "election_participation",
       ["Electors", "Votes", "Participation"],
       {
-        drillDowns: [["Election Type", "Election Type", "Election Type"]],
+        drillDowns: [
+          ["Election Type", "Election Type", "Election Type"],
+          ["Date", "Date", "Year"]
+        ],
         options: { parents: true }
       }
     )
@@ -46,7 +49,7 @@ class ElectoralParticipation extends Section {
             height: 500,
             data: path,
             groupBy: ["Election Type"],
-            //label: d => (geo.type === "comuna" ? d["Candidate"] : d["Party"]),
+            label: d => d["Election Type"] + " - " + d["Year"],
             //sum: d => d["Votes"],
             //time: "ID Year",
             x: "Election Type",
@@ -59,8 +62,8 @@ class ElectoralParticipation extends Section {
             },
             xSort: (a, b) =>
               a["ID Year"] > b["ID Year"]
-                ? -1
-                : b["Election Type"] > a["Election Type"] ? -1 : 1,
+                ? 1
+                : b["Election Type"] > a["Election Type"] ? -1 : -1,
             y: "Participation",
             discrete: "x",
             shapeConfig: {
@@ -97,10 +100,7 @@ class ElectoralParticipation extends Section {
               }
             }
           }}
-          dataFormat={data => {
-            console.log(data.data);
-            return data.data;
-          }}
+          dataFormat={data => data.data}
         />
         <SourceNote cube="election_results" />
       </div>

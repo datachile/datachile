@@ -63,7 +63,7 @@ class MayorResults extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Mayor results")}</span>
+          <span>{t("Mayor Election")}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
