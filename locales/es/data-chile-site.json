@@ -375,7 +375,7 @@
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
   "PSU exams": "Personas que rindieron PSU",
-  "PSU distribution": "Distriución de PSU",
+  "PSU distribution": "Distribución de PSU",
   "PSU Results": "Resultados PSU",
   "PSU Results By Sex": "Resultados PSU por sexo",
   "PSU vs NEM": "PSU vs NEM",
@@ -985,7 +985,7 @@
               "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
           },
           "distribution":
-            "<p>En {{year}} se rindieron {{total}} exámenes PSU en {{geo}}. El puntaje promedio de PSU en {{geo}} fue de {{avg}} puntos en {{year}}.</p>",
+            "<p>En {{year}} se rindieron {{total}} PSU en {{geo}}. El puntaje promedio de PSU en {{geo}} fue de {{avg}} puntos en {{year}}.</p>",
           "disclaimer":
             "<p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
         }

@@ -19,24 +19,24 @@ class PSUDistributionSlide extends Section {
   static need = [
     (params, store) =>
       simpleDatumNeed(
-        "datum_performance_psu_average",
+        "datum_distribution_psu_average",
         "psu",
         ["PSU Average"],
         {
           drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: true },
+          options: { parents: false },
           cuts: [`[Date].[Date].[Year].&[${sources.psu.year}]`]
         },
         "geo"
       )(params, store),
     (params, store) =>
       simpleDatumNeed(
-        "datum_performance_total",
+        "datum_distribution_psu_total",
         "psu",
         ["Number of records"],
         {
           drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: true },
+          options: { parents: false },
           cuts: [`[Date].[Date].[Year].&[${sources.psu.year}]`]
         },
         "geo"
@@ -47,20 +47,23 @@ class PSUDistributionSlide extends Section {
     const { children, t, i18n } = this.props;
     let {
       geo,
-      datum_performance_psu_average,
-      datum_performance_total
+      datum_distribution_psu_average,
+      datum_distribution_psu_total
     } = this.context.data;
 
     const locale = i18n.language;
 
+    console.log(datum_distribution_psu_total.data);
+    console.log(datum_distribution_psu_average.data);
+
     const text = {
       year: sources.psu.year,
       geo: geo ? geo.caption : "",
-      total: datum_performance_total
-        ? numeral(datum_performance_total.data, locale).format("0,0")
+      total: datum_distribution_psu_total
+        ? numeral(datum_distribution_psu_total.data, locale).format("0,0")
         : "",
-      avg: datum_performance_psu_average
-        ? numeral(datum_performance_psu_average.data, locale).format("0")
+      avg: datum_distribution_psu_average
+        ? numeral(datum_distribution_psu_average.data, locale).format("0,0")
         : ""
     };
 
@@ -91,13 +94,14 @@ class PSUDistributionSlide extends Section {
           </div>
           <div className="topic-slide-data">
             {text &&
-              datum_performance_total && (
+              datum_distribution_psu_total && (
                 <FeaturedDatum
                   className="l-1-2"
                   icon="estudiantes-cantidad"
-                  datum={numeral(datum_performance_total.data, locale).format(
-                    "0,0"
-                  )}
+                  datum={numeral(
+                    datum_distribution_psu_total.data,
+                    locale
+                  ).format("0,0")}
                   title={t("Students that took the PSU")}
                   subtitle={
                     t("In") +
@@ -109,12 +113,14 @@ class PSUDistributionSlide extends Section {
                   }
                 />
               )}
-            {datum_performance_psu_average && (
+            {datum_distribution_psu_average && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="promedio-nem"
                 datum={numeral(
-                  datum_performance_psu_average.data,
+                  geo.type == "country"
+                    ? 500
+                    : datum_distribution_psu_average.data,
                   locale
                 ).format("0")}
                 title={t("Average PSU")}

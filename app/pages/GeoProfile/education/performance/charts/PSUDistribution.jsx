@@ -95,7 +95,9 @@ class PSUDistribution extends Section {
             groupPadding: 10,
             shapeConfig: {
               fill: d =>
-                d["geo"] == "Chile" ? "#ccc" : administrationColorScale(),
+                d["geo"] == "Chile" && geo.type != "country"
+                  ? "#ccc"
+                  : administrationColorScale(),
               label: d => false
             },
             xConfig: {
@@ -110,23 +112,18 @@ class PSUDistribution extends Section {
               title: d => d["Bucket"] + " " + d["geo"],
               body: d =>
                 numeral(d["percentage"], locale).format("0%") +
-                " in " +
+                t(" in ") +
                 d.geo +
                 "<br/>" +
                 numeral(d["Number of records"], locale).format("(0.[0] a)") +
                 " " +
-                t("PSU exams")
+                t("PSU exams") +
+                t(" in ") +
+                sources.psu.year
             },
             legendConfig: {}
           }}
           dataFormat={data => {
-            const chileTotal = education_psu_distribution_chile.reduce(function(
-              acum,
-              curr
-            ) {
-              return acum + curr["Number of records"];
-            },
-            0);
             const geoTotal = data.data.reduce(function(acum, curr) {
               return acum + curr["Number of records"];
             }, 0);
@@ -135,12 +132,24 @@ class PSUDistribution extends Section {
               d.percentage = d["Number of records"] / geoTotal;
               return d;
             });
-            const chileDist = education_psu_distribution_chile.map(d => {
-              d.geo = "Chile";
-              d.percentage = d["Number of records"] / chileTotal;
-              return d;
-            });
-            return geoDist.concat(chileDist);
+
+            var total = geoDist;
+
+            if (geo.type != "country") {
+              const chileTotal = education_psu_distribution_chile.reduce(
+                function(acum, curr) {
+                  return acum + curr["Number of records"];
+                },
+                0
+              );
+              const chileDist = education_psu_distribution_chile.map(d => {
+                d.geo = "Chile";
+                d.percentage = d["Number of records"] / chileTotal;
+                return d;
+              });
+              total = geoDist.concat(chileDist);
+            }
+            return total;
           }}
         />
 
