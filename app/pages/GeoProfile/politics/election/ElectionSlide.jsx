@@ -3,51 +3,69 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
+import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-//import { Disability } from "texts/GeoProfile";
+import { Election } from "texts/GeoProfile";
 
 class ElectionSlide extends Section {
-  static need = [];
+  static need = [
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_electoral_participation",
+        "election_participation",
+        ["Votes", "Participation"],
+        {
+          drillDowns: [
+            ["Election Type", "Election Type", "Election Type"],
+            ["Date", "Date", "Year"]
+          ],
+          options: { parents: true },
+          cuts: ["[Date].[Date].[Year].&[2017]"]
+        },
+        "geo",
+        false
+      )(params, store)
+  ];
 
   render() {
     const { children, t, i18n } = this.props;
+    const { datum_electoral_participation, geo } = this.context.data;
 
     const locale = i18n.language;
-    const text = {};
+    const text = Election(datum_electoral_participation, geo, locale);
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Election")}</div>
-          <div className="topic-slide-text" />
+          <div className="topic-slide-text">
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.politics.text", text)
+              }}
+            />
+          </div>
           <div className="topic-slide-data">
             {text && (
               <FeaturedDatum
-                className="l-1-3"
+                className="l-1-2"
                 icon="poblacion-con-discapacidad"
-                datum={"xx"}
-                title={t("XX")}
-                subtitle={t("In")}
+                datum={numeral(text.growth, locale).format("0.0%")}
+                title={t("Change in votation")}
+                subtitle={t("Presidential 1st - 2nd round") + " " + "2017"}
               />
             )}
             {text && (
               <FeaturedDatum
-                className="l-1-3"
+                className="l-1-2"
                 icon="poblacion-con-discapacidad"
-                datum={"xx"}
-                title={t("XX")}
-                subtitle={t("In")}
-              />
-            )}
-            {text && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="poblacion-con-discapacidad"
-                datum={"xx"}
-                title={t("XX")}
-                subtitle={t("In")}
+                datum={text.participation.perc}
+                title={t("Participation")}
+                subtitle={
+                  text.participation.caption + " - " + text.participation.year
+                }
               />
             )}
           </div>

@@ -131,6 +131,7 @@ import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 
 import ElectionSlide from "./politics/election/ElectionSlide";
 import MayorResults from "./politics/election/charts/MayorResults";
+import ElectoralParticipation from "./politics/election/charts/ElectoralParticipation";
 
 /** end Politics */
 
@@ -243,7 +244,8 @@ class GeoProfile extends Component {
     DeathCausesStacked,
 
     ElectionSlide,
-    MayorResults
+    MayorResults,
+    ElectoralParticipation
   ];
 
   render() {
@@ -887,7 +889,8 @@ class GeoProfile extends Component {
               <div>
                 <ElectionSlide>
                   <SectionColumns>
-                    <MayorResults className="lost-1" />
+                    <MayorResults className="lost-1-2" />
+                    <ElectoralParticipation className="lost-1-2" />
                   </SectionColumns>
                 </ElectionSlide>
               </div>

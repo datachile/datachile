@@ -812,6 +812,9 @@
         "text_none":
           "The CASEN survey of {{year_last}} has no data about internet access for {{level}}."
       }
+    },
+    "politics": {
+      "text": "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     }
   },
 
