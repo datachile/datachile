@@ -610,6 +610,10 @@
         "title": "1.1.0 - \"Belloto\" - 2018-01-26",
         "description":
           "<p>New datasets: Allegations of main crime categories, available for Geo profile, Housing topic, Security section (Source: Carabineros de Chile). Fixes on Health Insurance IDs for the CASEN survey data on 2003 and 2006. Added Comuna of Ñiquén in selection map. Various fixes on texts and translations (nan, N/A, etc). Design and style adjustments for desktop and mobile. Fixes on download links to raw information sources on the About page. Improvement on query performance for homepage.</p>"
+      },
+      "canelo": {
+        "title": "1.1.1 - \"Canelo\" - 2018-02-02",
+        "description": "<p>Text fixes. Improve meta tags opengraph.</p>"
       }
     }
   },
