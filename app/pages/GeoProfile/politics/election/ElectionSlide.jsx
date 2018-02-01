@@ -51,7 +51,7 @@ class ElectionSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="poblacion-con-discapacidad"
+                icon="cambio-votacion"
                 datum={numeral(text.growth, locale).format("0.0%")}
                 title={t("Change in votation")}
                 subtitle={t("Presidential 1st - 2nd round") + " " + "2017"}
@@ -60,7 +60,7 @@ class ElectionSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="poblacion-con-discapacidad"
+                icon="participation"
                 datum={text.participation.perc}
                 title={t("Participation")}
                 subtitle={
