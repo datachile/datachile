@@ -580,7 +580,10 @@ function simpleDatumNeed(
   return (params, store) => {
     let obj = {};
     if (profile !== "rd_survey") {
-      obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
+      obj =
+        profile === "geo" || profile === "geo_no_cut"
+          ? getGeoObject(params)
+          : getLevelObject(params);
     }
 
     if (
@@ -652,6 +655,7 @@ function simpleDatumNeed(
             );
             break;
           case "no_cut":
+          case "geo_no_cut":
             query = setLangCaptions(q, store.i18n.locale);
             break;
           case "rd_survey":

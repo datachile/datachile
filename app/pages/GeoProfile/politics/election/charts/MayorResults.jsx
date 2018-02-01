@@ -60,6 +60,12 @@ class MayorResults extends Section {
 
     const locale = i18n.language;
 
+    const pactos = [
+      { name: "Chile Vamos", ids: [3, 6, 7] },
+      { name: "Nueva Mayoría", ids: [1, 2, 9, 10, 11, 14] },
+      { name: "Frente Amplio", ids: [4, 12, 13, 15, 25] }
+    ];
+
     return (
       <div className={className}>
         <h3 className="chart-title">

@@ -5,10 +5,11 @@ import { translate } from "react-i18next";
 
 import mondrianClient, {
   geoCut,
-  simpleGeoChartNeed
+  simpleGeoChartNeed,
+  simpleDatumNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { administrationColorScale } from "helpers/colors";
 
 import { numeral } from "helpers/formatters";
 
@@ -28,13 +29,28 @@ class ElectoralParticipation extends Section {
         ],
         options: { parents: true }
       }
-    )
+    ),
+    (params, store) =>
+      simpleDatumNeed(
+        "datum_electoral_participation_chile",
+        "election_participation",
+        ["Electors", "Votes", "Participation"],
+        {
+          drillDowns: [
+            ["Election Type", "Election Type", "Election Type"],
+            ["Date", "Date", "Year"]
+          ],
+          options: { parents: true }
+        },
+        "geo_no_cut",
+        false
+      )(params, store)
   ];
 
   render() {
     const path = this.context.data.path_electoral_participation;
     const { t, className, i18n } = this.props;
-    const geo = this.context.data.geo;
+    const { datum_electoral_participation_chile, geo } = this.context.data;
 
     const locale = i18n.language;
 
@@ -48,8 +64,16 @@ class ElectoralParticipation extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: ["Election Type"],
-            label: d => d["Election Type"] + " - " + d["Year"],
+            groupBy: ["geo"],
+            label: d => d["geo"],
+            shapeConfig: {
+              fill: d =>
+                d["geo"] == "Chile"
+                  ? "#8A2A40"
+                  : administrationColorScale(d["geo"]),
+              label: d => false
+            },
+            //label: d => d["Election Type"] + " - " + d["Year"],
             //sum: d => d["Votes"],
             //time: "ID Year",
             x: "Election Type",
@@ -66,12 +90,7 @@ class ElectoralParticipation extends Section {
                 : b["Election Type"] > a["Election Type"] ? -1 : -1,
             y: "Participation",
             discrete: "x",
-            shapeConfig: {
-              fill: d =>
-                ordinalColorScale(
-                  geo.type === "comuna" ? d["ID Candidate"] : d["ID Party"]
-                )
-            },
+
             tooltipConfig: {
               body: d =>
                 "<div>" +
@@ -93,14 +112,26 @@ class ElectoralParticipation extends Section {
                 "</div>"
             },
             legendConfig: {
-              label: false,
               shapeConfig: {
                 width: 25,
                 height: 25
               }
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={data => {
+            const location = data.data.map(item => {
+              return { ...item, geo: geo.caption };
+            });
+
+            const country =
+              geo.type !== "country"
+                ? datum_electoral_participation_chile.data.map(item => {
+                    return { ...item, geo: "Chile" };
+                  })
+                : [];
+
+            return location.concat(country);
+          }}
         />
         <SourceNote cube="election_participation" />
       </div>
