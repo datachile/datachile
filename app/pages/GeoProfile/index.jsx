@@ -328,8 +328,8 @@ class GeoProfile extends Component {
         title: t("Health")
       },
       {
-        slug: "politics",
-        title: t("Politics")
+        slug: "civics",
+        title: t("Civics")
       }
     ];
 
@@ -910,8 +910,8 @@ class GeoProfile extends Component {
             </Topic>
 
             <Topic
-              name={t("Politics")}
-              id="politics"
+              name={t("Civics")}
+              id="civics"
               sections={[
                 {
                   name: t("Elections"),
