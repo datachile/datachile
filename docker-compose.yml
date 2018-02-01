@@ -26,6 +26,8 @@ services:
       - /home/manuel/datachile-mondrian/schema.xml:/mondrian-rest/schema.xml:ro
     ports:
       - 127.0.0.1:9393:9292
+    logging:
+      driver: gcplogs
 
   datachile-canon:
     build:
@@ -51,6 +53,19 @@ services:
     links:
       - datachile-mondrian
 
+  nginx-static:
+    image: nginx
+    container_name: nginx-static
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=docs.datachile.io
+      - HTTPS_METHOD=nohttps
+#      - LETSENCRYPT_HOST=docs.datachile.io
+#      - LETSENCRYPT_EMAIL=datachile@datawheel.us
+    volumes:
+      - /home/manuel/datachile-docs:/datachile-docs
+      - /home/manuel/datachile/dockerfiles/docs.datachile.io-nginx-static.conf:/etc/nginx/conf.d/default.conf
+
   nginx:
     image: nginx
     labels:
@@ -75,6 +90,8 @@ services:
     command: -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
     container_name: nginx-gen
     restart: unless-stopped
+    logging:
+      driver: gcplogs
     volumes:
       - ./dockerfiles/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
       - ./dockerfiles/nginx/conf.d:/etc/nginx/conf.d

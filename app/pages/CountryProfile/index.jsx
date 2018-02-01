@@ -328,7 +328,7 @@ class CountryProfile extends Component {
   ];
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, location } = this.props;
     const locale = i18n.language;
 
     const ids = getLevelObject(this.props.routeParams);
@@ -395,6 +395,17 @@ class CountryProfile extends Component {
         {obj && (
           <Helmet>
             <title>{obj.caption}</title>
+            <meta property="og:title" content={obj.caption + " - DataChile"} />
+            <meta
+              property="og:url"
+              content={`https://${locale}.datachile.io${location.pathname}`}
+            />
+            <meta
+              property="og:image"
+              content={`https://${locale}.datachile.io/images/profile-bg/country/${
+                obj.key
+              }.jpg`}
+            />
           </Helmet>
         )}
         <div className="profile">
@@ -432,11 +443,11 @@ class CountryProfile extends Component {
                     icon="ingreso"
                     decile={stats.imports.decile}
                     datum={
-                      "US " +
-                      numeral(stats.imports.value, locale).format("($ 0.0 a)")
+                      "US" +
+                      numeral(stats.imports.value, locale).format("($ 0.0 a)") +
+                      " CIF"
                     }
                     source="imports"
-                    className=""
                   />
                 )}
 
@@ -445,11 +456,12 @@ class CountryProfile extends Component {
                     title={t("Total Exports")}
                     icon="ingreso"
                     decile={stats.exports.decile}
-                    datum={numeral(stats.exports.value, locale).format(
-                      "($ 0.0 a)"
-                    )}
+                    datum={
+                      "US" +
+                      numeral(stats.exports.value, locale).format("($ 0.0 a)") +
+                      " FOB"
+                    }
                     source="exports"
-                    className=""
                   />
                 )}
 
@@ -458,11 +470,10 @@ class CountryProfile extends Component {
                     title={t("Main exported product")}
                     icon="check"
                     datum={stats.product.name}
-                    subtitle={`${numeral(stats.product.value, locale).format(
+                    subtitle={`US${numeral(stats.product.value, locale).format(
                       "$ 0.0 a"
-                    )}`}
+                    )} FOB`}
                     source="exports"
-                    className=""
                   />
                 )}
               </div>

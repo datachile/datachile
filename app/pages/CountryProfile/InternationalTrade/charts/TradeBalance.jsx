@@ -106,15 +106,16 @@ class TradeBalance extends Section {
                   return d.variable;
                 },
                 body: d => {
-                  var body = "";
-                  if (!(d["ID Year"] instanceof Array)) {
-                    body =
-                      "US" +
-                      numeral(d.value, locale).format("$ (0.[0] a)") +
-                      " - " +
-                      d["ID Year"];
-                  }
-                  return body;
+                  const kind = /export/i.test(d.variable)
+                    ? " FOB"
+                    : /import/i.test(d.variable) ? " CIF" : "";
+                  return Array.isArray(d["ID Year"])
+                    ? ""
+                    : "US" +
+                        numeral(d.value, locale).format("$ (0.[0] a)") +
+                        kind +
+                        " - " +
+                        d["ID Year"];
                 }
               }
             }}

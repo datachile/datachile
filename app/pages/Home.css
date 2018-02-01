@@ -2,6 +2,7 @@
 
 .home {
   font-family: var(--font-family-text);
+
   & .home-content {
     lost-flex-container: row;
     lost-align: center;
@@ -75,28 +76,24 @@
 
     & .intro {
       lost-flex-container: column;
-      width: 100%;
       justify-content: center;
       lost-align: center;
       lost-center: 1/3;
+
       & .text {
         padding: 0px var(--gutter);
         & .title {
           position: relative;
-          font-size: 50px;
-          letter-spacing: -1.25px;
-          color: var(--snow);
-          font-weight: 300;
           margin: 0px;
-          font-family: var(--font-family-title);
-          text-align: center;
           margin-right: -30px;
           & img {
-            width: 100%;
+            display: block;
+            width: 80%;
+            margin: 0 auto;
           }
           & .easter {
             position: absolute;
-            left: 57%;
+            left: 55%;
             top: 16%;
             width: 10px;
             height: 10px;
@@ -106,7 +103,7 @@
         }
 
         & .lead {
-          font-family: var(--font-family-title);
+          font-family: var(--font-family-text);
           font-size: 18px;
           color: var(--snow);
           letter-spacing: 0.05px;
@@ -302,26 +299,29 @@
         lost-column: 1/2;
       }
     }
+
     & .dataset {
       border-bottom: 1px solid var(--accent);
       padding: calc(var(--gutter)/2) 0px;
       margin: 0 15px;
+
       & span {
         display: block;
         width: 100%;
+
         &.name {
           font-family: var(--font-family-title);
           color: var(--snow);
           text-transform: uppercase;
           font-weight: 300;
-          font-size: 14px;
+          font-size: 12px;
           margin-bottom: 5px;
           letter-spacing: 0.1em;
         }
         &.source {
           color: var(--accent);
           font-family: var(--font-family-title);
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 300;
         }
       }

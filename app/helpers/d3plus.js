@@ -51,7 +51,7 @@ export default {
     brushing: false
   },
   totalConfig: {
-    fontSize: 16,
+    fontSize: 14,
     fontColor: "#FFFFFF",
     resize: false,
     textAnchor: "middle"

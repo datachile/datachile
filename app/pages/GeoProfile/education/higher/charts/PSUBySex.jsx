@@ -45,7 +45,7 @@ class PSUBySex extends Section {
               title: false
             },
             yConfig: {
-              title: "PSU exams"
+              title: t("PSU exams")
             },
             legendConfig: {
               label: false,

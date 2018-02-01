@@ -113,13 +113,6 @@ class EnrollmentSlide extends Section {
 
     const text = Enrollment(datum_enrollment_by_administration, geo, locale);
 
-    /*if (text) {
-      text.enrollment.total = numeral(
-        datum_enrollment_education,
-        locale
-      ).format("(0,0)");
-    }*/
-    //console.log(datum_enrollment_education)
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">

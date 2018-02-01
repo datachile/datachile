@@ -1,0 +1,27 @@
+.staging-indicator {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 10px;
+  font-size: 8px;
+  z-index: 42000;
+  background: #ccc;
+  &.staging-indicator-staging {
+    background: repeating-linear-gradient(
+      45deg,
+      yellow,
+      yellow 5px,
+      black 5px,
+      black 10px
+    );
+  }
+  &.staging-indicator-dev {
+    background: repeating-linear-gradient(
+      45deg,
+      green,
+      green 5px,
+      black 5px,
+      black 10px
+    );
+  }
+}

@@ -41,6 +41,14 @@ export const COLORS_INSTITUTIONS = [
 ];
 export const institutionsColorScale = scaleOrdinal().range(COLORS_INSTITUTIONS);
 
+export const crimesColorScale = scaleOrdinal().range([
+  "#1D4A37",
+  "#558E6B",
+  "#AEBC7A",
+  "#D9EAB7",
+  "#D8DB7B"
+]);
+
 export const COLORS_HEALTHINSURANCE = [
   "#35468C",
   "#7FB1F0",

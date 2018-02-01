@@ -77,6 +77,9 @@
   "Chile Exports": "Exportaciones Chile",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
+  "complaints": "denuncias",
+  "Complaints By Crime": "Denuncias Por Delito",
+  "Complaints Over Time": "Evolución de Denuncias",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
   "Connected to electricity network": "Conectado a la red eléctrica",
@@ -88,6 +91,7 @@
   "Countries": "Países",
   "Country": "País",
   "Created in collaboration": "Creado en colaboración",
+  "Crimes": "Delitos",
   "Data source": "Fuente",
   "Download data": "Descargar datos",
   "Download documentation": "Descargar documentación",
@@ -124,6 +128,7 @@
   "Enrollment": "Matrícula",
   "Enter a location": "Busca un lugar",
   "Housing": "Vivienda",
+  "Housing & Environment": "Vivienda y Entorno",
   "Estimate Population": "Población estimada",
   "Estimate Population Growth": "Crecimiento de Población estimado",
   "Ethnicity": "Ethnicity",
@@ -138,8 +143,11 @@
   "Exports by Destination": "Exportación por destino",
   "Exports by product": "Exportaciones por producto",
   "Exports in ": "Exportaciones en ",
+  "Imports in ": "Importaciones en ",
   "Exports volume": "Volumen de exportaciones",
+  "Imports volume": "Volumen de importaciones",
   "Exports {{last_year}}": "Exportaciones {{last_year}}",
+  "Imports {{last_year}}": "Importaciones {{last_year}}",
   "Extras": "Extras",
   "Female": "Mujeres",
   "Female Average Age": "Edad promedio mujeres",
@@ -226,6 +234,7 @@
   "in period {{year_prev}} - {{year_last}}":
     "En el período {{year_prev}} - {{year_last}}",
   "Median Income": "Ingreso medio",
+  "Income": "Ingreso",
   "Income By Age": "Ingreso por Edad",
   "Income By Sex": "Ingreso por Sexo",
   "Income Range CLP": "Rango de ingreso CLP",
@@ -252,6 +261,7 @@
   "Investment By Comuna (Legal address)":
     "Inversión por comuna (dirección legal)",
   "Language": "Idioma",
+  "Language_PSU": "Lenguaje",
   "Laptop computer": "Computador portátil",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
@@ -339,6 +349,10 @@
   "NEM Performance By Administration":
     "Desempeño NEM por Tipo de Administración",
   "Number of jobs": "Cantidad de puestos de trabajo",
+  "Number of larceny complaints": "Cantidad de denuncias por hurto",
+  "Number of complaints": "Cantidad de denuncias",
+  "Number of theft complaints growth":
+    "Cambio en cantidad de denuncias por robo",
   "Number of visas": "Cantidad de Visas",
   "Number of visas granted in {{year_last}}":
     "Número de visas otorgadas en {{year_last}}",
@@ -360,6 +374,7 @@
   "Output": "Producción",
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
+  "PSU exams": "Personas que rindieron PSU",
   "PSU Results": "Resultados PSU",
   "PSU Results By Sex": "Resultados PSU por sexo",
   "PSU vs NEM": "PSU vs NEM",
@@ -426,6 +441,7 @@
   "Search a location, industry, product, career, etc":
     "Busque lugares, industrias, productos…",
   "Sector": "Sector",
+  "Security": "Seguridad",
   "See less": "Ver menos",
   "See more": "Ver más",
   "Senators": "Senadores",
@@ -469,6 +485,7 @@
   "Tablet": "Tablet",
   "The most comprehensive effort to integrate and visualize Chile’s Public Data":
     "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
+  "Theft complaints share": "Porcentaje de denuncias por robo",
   "Top Schools By Performance": "Principales escuelas según desempeño",
   "Top destination country": "Principal país de destino",
   "Top exporter region": "Principal región exportadora",
@@ -724,7 +741,7 @@
         "<p>DataChile posee una API de datos que entrega la información para construir los gráficos y generar todos los textos del sitio.</p>",
       "title2": "¿Cuándo estará disponible la API?",
       "text2":
-        "<p>La API será lanzada con motivo del <a href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
+        "<p>La API será lanzada con motivo del <a rel='noopener noreferrer' href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
       "title3":
         "Mientras tanto, ¿cómo puedo acceder a la información que distribuye DataChile?",
       "text3":
@@ -734,6 +751,24 @@
       "text":
         "<p>La información en este sitio se proporciona 'tal como está' y 'según esté disponible'. DataChile hace todo lo posible para garantizar, pero no garantiza, la exactitud o integridad de la información en el sitio web de DataChile. Nuestro objetivo es mantener esta información oportuna y precisa. Si los errores son traídos a nuestra atención, trataremos de corregirlos. DataChile puede agregar, cambiar, mejorar o actualizar la información del sitio web sin previo aviso.</p><p>DataChile se reserva el derecho exclusivo a su entera discreción de alterar, limitar o descontinuar parte de este sitio. Bajo ninguna circunstancia DataChile será responsable de ninguna pérdida, daño, responsabilidad o gasto sufrido que se alegue como resultado del uso de este sitio, incluyendo, sin limitación, cualquier falla, error, omisión, interrupción o retraso. El uso de este sitio es bajo el exclusivo riesgo del usuario. Hacemos todo lo posible para minimizar las interrupciones causadas por errores técnicos. Sin embargo, algunos datos o información en el sitio web de DataChile pueden haber sido creados o estructurados en archivos o formatos que no están libres de errores y no podemos garantizar que nuestro servicio no se vea interrumpido o afectado por tales problemas. DataChile no acepta ninguna responsabilidad con respecto a tales problemas (fallas de funcionamiento, virus informáticos, fallas en la línea de comunicación, alteración del contenido, etc.) incurridos como resultado del uso del sitio web de DataChile o cualquier enlace a sitios externos.</p><p>El Usuario reconoce y acepta específicamente que DataChile no es responsable de ninguna conducta de ningún otro Usuario, incluidos, entre otros, los tipos de conducta enumerados anteriormente.</p><p>DataChile se reserva el derecho de denegar a su exclusivo criterio el acceso de cualquier Usuario al sitio web de DataChile o cualquier parte del mismo sin previo aviso.</p><p>Para fines de seguridad del sitio y para asegurar que el sitio web de DataChile permanezca disponible para todos los usuarios, emplea programas de software para monitorear el tráfico de red para identificar intentos no autorizados de cargar o cambiar información o causar daños y detectar otras posibles violaciones de seguridad.</p>",
       "title": "Términos de uso"
+    },
+    "changelog": {
+      "title": "Cambios",
+      "launch": {
+        "title": "1.0.0 - Lanzamiento beta - 2018-01-08",
+        "description":
+          "<p>Página principal. Exploración por perfiles. Buscador de entidades. Perfiles: geográfico, países, industrias y productos. Más de 15 datasets sobre los tópicos: Economía, demografía, educación, salud y vivienda.</p>"
+      },
+      "araucaria": {
+        "title": "1.0.1 - \"Araucaria\" - 2018-01-19",
+        "description":
+          "<p>Corrección de errores generales en varios perfiles, más imágenes de fondo, estabilidad de perfil país para países con pocos datos.</p>"
+      },
+      "belloto": {
+        "title": "1.1.0 - \"Belloto\" - 2018-01-26",
+        "description":
+          "<p>Nuevos datos: Denuncias de delitos de mayor connotación social, presentes en perfil geográfico, tópico Vivienda y Entorno, sección Seguridad (Fuente: Carabineros de Chile). Correcciones en indentificadores de previsión de salud sobre datos de CASEN para 2003 y 2006. Agregada Comuna de Ñiquén en mapa de selección. Correcciones varias en textos y traducciones (nan, N/A, etc). Ajustes de diseño y estilo para desktop y mobile. Correcciones en rutas para descarga de información completa desde el about. Mejora en performance de queries de la home.</p>"
+      }
     }
   },
   "affiliates": "afiliados",
@@ -790,7 +825,7 @@
       "text_none":
         "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
       "text":
-        "<p>El {{year}} Chile exportó un total de US{{total_exports}} a {{level}}, e importó un total de US{{total_imports}}, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
+        "<p>El {{year}} Chile exportó un total de US{{total_exports}} FOB a {{level}}, e importó un total de US{{total_imports}} CIF, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
@@ -829,10 +864,16 @@
         "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, donde destacan las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
+      "balance":
+        "<p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>",
       "text_none":
         "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
+      "text_imponly":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}. En términos nominales, esto fue {{import.direction}} de US{{import.volume_first}} CIF el {{year.first}}, a US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+      "text_exponly":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} en {{year.first}}, hasta US{{import.volume_last}} en {{year.last}}.</p><p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>"
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} CIF en {{year.first}}, hasta US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
     }
   },
   "an increment": "un aumento",
@@ -960,6 +1001,12 @@
         "text_3":
           "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
       },
+      "crimes": {
+        "default":
+          "<p>Los delitos de mayor connotación social con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
+        "no_data":
+          "<p>No se registraron denuncias de delitos de mayor connotación social en {{geo.caption}} durante {{year.last}}</p>"
+      },
       "connectivity": {
         "total":
           "<p>En {{level}}, en {{year_last}}, {{access_total}} personas tuvieron acceso a internet.</p>",
@@ -1081,6 +1128,8 @@
   },
   "relative to exports to the world in {{year}}":
     "relativo a exportaciones a todo el mundo durante {{year}}",
+  "relative to imports from the world in {{year}}":
+    "relativo a importaciones desde todo el mundo durante {{year}}",
   "students": "students",
   "There are not data available for this chart":
     "No hay datos disponibles para este gráfico",

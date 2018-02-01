@@ -9,17 +9,15 @@ import DatachileLoading from "components/DatachileLoading";
 import "./About.css";
 
 class About extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+  state = {};
 
   componentDidMount() {
     //window.addEventListener("scroll", this.handleScroll.bind(this));
   }
 
   render() {
-    const { t, routeParams } = this.props;
+    const { t, routeParams, location } = this.props;
+    const locale = this.props.i18n.language;
 
     const section = routeParams.section ? routeParams.section : "background";
 
@@ -47,6 +45,10 @@ class About extends Component {
       {
         slug: "terms",
         title: t("about.terms.title")
+      },
+      {
+        slug: "changelog",
+        title: t("about.changelog.title")
       }
     ];
 
@@ -58,6 +60,15 @@ class About extends Component {
       >
         <Helmet>
           <title>{t("About")}</title>
+          <meta property="og:title" content={t("About DataChile")} />
+          <meta
+            property="og:url"
+            content={`https://${locale}.datachile.io${location.pathname}`}
+          />
+          <meta
+            property="og:image"
+            content={`https://${locale}.datachile.io/images/logos/opengraph.jpg`}
+          />
         </Helmet>
         <Nav
           title={t("About DataChile")}
@@ -292,26 +303,38 @@ class About extends Component {
                 />
 
                 <p>
-                  <a href="casen_household_clean_data.zip" target="_blank">
+                  <a
+                    href="http://docs.datachile.io/casen_household_clean_data.zip"
+                    target="_blank"
+                  >
                     {t("Download data")} vivienda
                   </a>{" "}
                   |{" "}
-                  <a href="casen_banking_clean_data.zip" target="_blank">
+                  <a
+                    href="http://docs.datachile.io/casen_banking_clean_data.zip"
+                    target="_blank"
+                  >
                     {t("Download data")} bancarización
                   </a>{" "}
                   |{" "}
-                  <a href="casen_health_system_clean_data.zip" target="_blank">
+                  <a
+                    href="http://docs.datachile.io/casen_health_system_clean_data.zip"
+                    target="_blank"
+                  >
                     {t("Download data")} salud
                   </a>{" "}
                   |{" "}
-                  <a href="casen_income_clean_data.zip" target="_blank">
+                  <a
+                    href="http://docs.datachile.io/casen_income_clean_data.zip"
+                    target="_blank"
+                  >
                     {t("Download data")} ingreso
                   </a>
                 </p>
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/casen_documentation.zip"
+                    href="http://docs.datachile.io/casen_documentation.zip"
                     target="_blank"
                   >
                     {t("Download documentation")}
@@ -333,14 +356,14 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/nene_clean_data.zip"
+                    href="http://docs.datachile.io/nene_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
                   </a>{" "}
                   |{" "}
                   <a
-                    href="https://docs.datachile.io/nene_documentation.zip"
+                    href="http://docs.datachile.io/nene_documentation.zip"
                     target="_blank"
                   >
                     {t("Download documentation")}
@@ -362,14 +385,14 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/nesi_clean_data.zip"
+                    href="http://docs.datachile.io/nesi_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
                   </a>{" "}
                   |{" "}
                   <a
-                    href="https://docs.datachile.io/nesi_documentation.zip"
+                    href="http://docs.datachile.io/nesi_documentation.zip"
                     target="_blank"
                   >
                     {t("Download documentation")}
@@ -391,10 +414,18 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/aduanas_clean_data.zip"
+                    href="http://docs.datachile.io/aduanas_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href="http://docs.datachile.io/aduanas_metadata.zip"
+                    target="_blank"
+                  >
+                    {t("Download documentation")}
                   </a>
                 </p>
 
@@ -413,7 +444,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/production_clean_data.zip"
+                    href="http://docs.datachile.io/production_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -434,7 +465,7 @@ class About extends Component {
                 />
                 <p>
                   <a
-                    href="https://docs.datachile.io/research_and_development_survey_clean_data.zip"
+                    href="http://docs.datachile.io/research_and_development_survey_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -458,7 +489,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/education_enrollment_clean_data.zip"
+                    href="http://docs.datachile.io/education_enrollment_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -482,7 +513,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/education_performance_clean_data.zip"
+                    href="http://docs.datachile.io/education_performance_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -517,7 +548,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/basic_health_indicators_clean_data.zip"
+                    href="http://docs.datachile.io/basic_health_indicators_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -539,7 +570,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/basic_health_indicators_clean_data.zip"
+                    href="http://docs.datachile.io/basic_health_indicators_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -561,7 +592,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/basic_health_indicators_clean_data.zip"
+                    href="http://docs.datachile.io/basic_health_indicators_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -585,7 +616,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/disability_clean_data.zip"
+                    href="http://docs.datachile.io/disability_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -609,7 +640,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/population_clean_data.zip"
+                    href="http://docs.datachile.io/population_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -633,7 +664,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/immigration_clean_data.zip"
+                    href="http://docs.datachile.io/immigration_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -655,7 +686,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/internet_use_clean_data.zip"
+                    href="http://docs.datachile.io/internet_use_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -677,7 +708,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/polls_clean_data.zip"
+                    href="http://docs.datachile.io/polls_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -693,7 +724,7 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="https://docs.datachile.io/official_ids.zip"
+                    href="http://docs.datachile.io/official_ids.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -793,6 +824,33 @@ class About extends Component {
                 <div
                   dangerouslySetInnerHTML={{
                     __html: t("about.terms.text")
+                  }}
+                />
+              </section>
+            )}
+
+            {section == "changelog" && (
+              <section className="section" id="terms">
+                <h2>{t("about.changelog.title")}</h2>
+
+                <h3>{t("about.changelog.belloto.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.belloto.description")
+                  }}
+                />
+
+                <h3>{t("about.changelog.araucaria.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.araucaria.description")
+                  }}
+                />
+
+                <h3>{t("about.changelog.launch.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.launch.description")
                   }}
                 />
               </section>

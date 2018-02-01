@@ -92,6 +92,10 @@ import Devices from "./environment/conectivity/charts/Devices";
 import ServicesAccessSlide from "./environment/amenities/ServicesAccessSlide";
 import Services from "./environment/amenities/charts/Services";
 
+import CrimeSlide from "./environment/crime/CrimeSlide";
+import CrimeTreemap from "./environment/crime/charts/CrimeTreemap";
+import CrimeStacked from "./environment/crime/charts/CrimeStacked";
+
 /* end Housing and Environment */
 
 /*Demography*/
@@ -203,6 +207,10 @@ class GeoProfile extends Component {
     ServicesAccessSlide,
     Services,
 
+    CrimeSlide,
+    CrimeStacked,
+    CrimeTreemap,
+
     /** EDUCATION */
     PSUNEMSlide,
     PSUNEMScatter,
@@ -249,7 +257,7 @@ class GeoProfile extends Component {
   ];
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, location } = this.props;
 
     const locale = i18n.language;
 
@@ -318,11 +326,11 @@ class GeoProfile extends Component {
       {
         slug: "health",
         title: t("Health")
-      },
-      {
+      }
+      /*{
         slug: "politics",
         title: t("Politics")
-      }
+      }*/
     ];
 
     function fillShape(d) {
@@ -366,6 +374,15 @@ class GeoProfile extends Component {
         <Helmet>
           <title>{title}</title>
           <meta name="description" content={title} />
+          <meta property="og:title" content={title + " - DataChile"} />
+          <meta
+            property="og:url"
+            content={`https://${locale}.datachile.io${location.pathname}`}
+          />
+          <meta
+            property="og:image"
+            content={`https://${locale}.datachile.io${geoObj.image}`}
+          />
         </Helmet>
         <div className="profile">
           <div className="intro">
@@ -443,7 +460,11 @@ class GeoProfile extends Component {
                       source="nesi_income"
                       className=""
                       level={geo.depth > 1 ? "geo_profile" : false}
-                      name={geo.depth > 1 ? ancestor : geo}
+                      name={
+                        geo.depth > 1
+                          ? { caption: "Región " + ancestor.caption }
+                          : geo
+                      }
                     />
                   )}
                 {stats.psu && (
@@ -726,9 +747,13 @@ class GeoProfile extends Component {
             </Topic>
 
             <Topic
-              name={t("Housing")}
+              name={t("Housing & Environment")}
               id="environment"
               sections={[
+                {
+                  name: t("Security"),
+                  slides: [t("Crimes")]
+                },
                 {
                   name: t("Amenities"),
                   slides: [t("Access to services")]
@@ -743,6 +768,14 @@ class GeoProfile extends Component {
                 }
               ]}
             >
+              <div>
+                <CrimeSlide>
+                  <SectionColumns>
+                    <CrimeTreemap className="lost-1-2" />
+                    <CrimeStacked className="lost-1-2" />
+                  </SectionColumns>
+                </CrimeSlide>
+              </div>
               <div>
                 <ServicesAccessSlide>
                   <SectionColumns>

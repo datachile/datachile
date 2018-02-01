@@ -1,45 +1,45 @@
 .person-item {
-	margin: 10px 0;
-	& .person-item-img {
-		text-align: center;
-		width: 80%;
-		border: 1px solid #ffffff;
-		border-radius: 50%;
-		overflow: hidden;
-		position: relative;
-		margin: 0 auto;
-		& img {
-			width: 100%;
-			position: absolute;
-			left: 0;
-		}
-		&:after {
-			content: "";
-			display: block;
-			padding-bottom: 100%;
-		}
-	}
-	& .person-item-name {
-		letter-spacing: 0.08px;
-		font-family: var(--font-family-title);
-		font-weight: 300;
-		font-size: 10px;
-		color: var(--snow);
-		text-transform: uppercase;
-		text-align: center;
-		margin: 10px auto;
-		&.president {
-			font-size: 12px;
-		}
-	}
-	& .person-item-subtitle {
-		font-family: var(--font-family-title);
-		font-weight: 800;
-		font-size: 9px;
-		letter-spacing: 0.5px;
-		color: var(--snow);
-		text-transform: uppercase;
-		text-align: center;
-		width: 100%;
-	}
+  margin: 10px 0;
+  & .person-item-img {
+    text-align: center;
+    width: 80%;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    & img {
+      width: 100%;
+      position: absolute;
+      left: 0;
+    }
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+  }
+  & .person-item-name {
+    letter-spacing: 0.5px;
+    font-family: var(--font-family-title);
+    font-weight: 300;
+    font-size: 10px;
+    color: var(--snow);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px auto;
+    &.president {
+      font-size: 12px;
+    }
+  }
+  & .person-item-subtitle {
+    font-family: var(--font-family-title);
+    font-weight: 800;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    color: var(--snow);
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+  }
 }
