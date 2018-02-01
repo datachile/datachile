@@ -402,7 +402,7 @@ class CountryProfile extends Component {
             />
             <meta
               property="og:image"
-              content={`https://${locale}.datachile.io/images/profile-bg/country/${
+              content={`https://${locale}.datachile.io/images/opengraph/country/${
                 obj.key
               }.jpg`}
             />
