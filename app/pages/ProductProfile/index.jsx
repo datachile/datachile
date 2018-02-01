@@ -447,7 +447,7 @@ class ProductProfile extends Component {
           />
           <meta
             property="og:image"
-            content={`https://${locale}.datachile.io/images/profile-bg/product/${key}.jpg`}
+            content={`https://${locale}.datachile.io/images/opengraph/product/${key}.jpg`}
           />
         </Helmet>
         <div className="profile">
