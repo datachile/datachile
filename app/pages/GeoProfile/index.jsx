@@ -914,7 +914,7 @@ class GeoProfile extends Component {
               id="politics"
               sections={[
                 {
-                  name: t("Mayor Election"),
+                  name: t("Elections"),
                   slides: [t("Results")]
                 }
               ]}
