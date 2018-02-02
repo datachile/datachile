@@ -67,7 +67,7 @@ class About extends Component {
           />
           <meta
             property="og:image"
-            content={`https://${locale}.datachile.io/images/logos/opengraph.jpg`}
+            content={`https://${locale}.datachile.io/images/logos/opengraph.png`}
           />
         </Helmet>
         <Nav

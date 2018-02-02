@@ -129,7 +129,7 @@ class Home extends Component {
           <meta property="og:url" content={`https://${locale}.datachile.io`} />
           <meta
             property="og:image"
-            content={`https://${locale}.datachile.io/images/logos/opengraph.jpg`}
+            content={`https://${locale}.datachile.io/images/logos/opengraph.png`}
           />
         </Helmet>
         <div className="home">
