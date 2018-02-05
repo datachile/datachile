@@ -34,18 +34,13 @@ class ExploreMap extends Component {
         loadingComponent={<DatachileLoading />}
       >
         <div className="explore-map-page">
-          <Nav
-            title={t("Map Explore")}
-            typeTitle={t("Home")}
-            type={false}
-            exploreLink={"/"}
-          />
+          <Nav title="" typeTitle="" type={false} dark={true} />
 
-          <div className="explore-map-title">
-            <h3>{t("Map Explore")}</h3>
+          <div className="explore-map-container">
+            <div className="explore-map-sidebar" />
+            <div className="explore-map-map" />
+            <div className="explore-map-data" />
           </div>
-
-          <div className="explore-map-container">map!</div>
         </div>
       </CanonComponent>
     );

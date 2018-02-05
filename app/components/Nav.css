@@ -5,6 +5,10 @@
   margin: 0 auto 30px;
   padding: 0 var(--gutter);
 
+  &.nav-dark {
+    background-color: var(--footer-bg);
+  }
+
   & .nav-container {
     display: flex;
     flex-direction: row;
