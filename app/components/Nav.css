@@ -7,6 +7,7 @@
 
   &.nav-dark {
     background-color: var(--footer-bg);
+    margin: 0 auto 0px;
   }
 
   & .nav-container {

@@ -6,6 +6,12 @@ import { translate } from "react-i18next";
 import DatachileLoading from "components/DatachileLoading";
 import Nav from "components/Nav";
 
+import MapSidebar from "./map/MapSidebar";
+import MapContent from "./map/MapContent";
+
+import DataSidebar from "./data/DataSidebar";
+import DataContent from "./data/DataContent";
+
 import "./explore-map.css";
 
 class ExploreMap extends Component {
@@ -24,6 +30,7 @@ class ExploreMap extends Component {
   }
 
   render() {
+    const { section } = this.props.routeParams;
     const { t } = this.props;
 
     return (
@@ -37,9 +44,27 @@ class ExploreMap extends Component {
           <Nav title="" typeTitle="" type={false} dark={true} />
 
           <div className="explore-map-container">
-            <div className="explore-map-sidebar" />
-            <div className="explore-map-map" />
-            <div className="explore-map-data" />
+            {!section && (
+              <div className="explore-map-section">
+                <div className="explore-map-sidebar">
+                  <MapSidebar />
+                </div>
+                <div className="explore-map-content">
+                  <MapContent />
+                </div>
+              </div>
+            )}
+            {section &&
+              section == "data" && (
+                <div className="explore-map-section">
+                  <div className="explore-map-sidebar">
+                    <DataSidebar />
+                  </div>
+                  <div className="explore-map-content">
+                    <DataContent />
+                  </div>
+                </div>
+              )}
           </div>
         </div>
       </CanonComponent>

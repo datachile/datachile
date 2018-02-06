@@ -26,7 +26,7 @@ export default function RouteCreate() {
   return (
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path="explore/map" component={ExploreMap} />
+      <Route path="explore/map(/:section)" component={ExploreMap} />
       <Route path="explore(/:entity)(/:entity_id)" component={Explore} />
 
       <Route path="geo/:region(/:comuna)" component={GeoProfile} />

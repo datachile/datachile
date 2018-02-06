@@ -1,11 +1,27 @@
 @import "../mixins";
 .explore-map-page {
+  position: relative;
   & .explore-map-container {
-    & .explore-map-sidebar {
-    }
-    & .explore-map-map {
-    }
-    & .explore-map-data {
+    position: relative;
+    & .explore-map-section {
+      lost-flex-container: row;
+      & .explore-map-sidebar {
+        padding: var(--gutter);
+        lost-column: 1/4;
+        & h1 {
+          margin: 0px;
+          font-family: var(--font-family-title);
+          font-size: 60px;
+          font-weight: 300;
+          line-height: 1.1em;
+          color: var(--snow);
+          text-transform: uppercase;
+        }
+      }
+      & .explore-map-content {
+        lost-column: 3/4;
+        background: var(--gray-light);
+      }
     }
   }
 }

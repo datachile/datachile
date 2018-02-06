@@ -1,0 +1,22 @@
+.data-content {
+	& table {
+		width: 100%;
+		& thead {
+			& th {
+				background: var(--nice-blue);
+				font-weight: 800;
+				color: var(--snow);
+				text-transform: uppercase;
+				padding: 15px 5px;
+				text-align: left;
+			}
+		}
+		& tbody {
+			& td {
+				background: var(--snow);
+				text-transform: uppercase;
+				padding: 15px 5px;
+			}
+		}
+	}
+}
