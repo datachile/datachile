@@ -364,6 +364,8 @@ class GeoProfile extends Component {
       title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
     }
 
+    let opengraphImage = (geoObj.image || '').replace('/profile-bg/', '/opengraph/')
+
     return (
       <CanonComponent
         data={this.props.data}
@@ -381,7 +383,7 @@ class GeoProfile extends Component {
           />
           <meta
             property="og:image"
-            content={`https://${locale}.datachile.io${geoObj.image}`}
+            content={`https://${locale}.datachile.io${opengraphImage}`}
           />
         </Helmet>
         <div className="profile">

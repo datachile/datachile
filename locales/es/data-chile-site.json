@@ -782,6 +782,11 @@
         "title": "1.1.0 - \"Belloto\" - 2018-01-26",
         "description":
           "<p>Nuevos datos: Denuncias de delitos de mayor connotación social, presentes en perfil geográfico, tópico Vivienda y Entorno, sección Seguridad (Fuente: Carabineros de Chile). Correcciones en indentificadores de previsión de salud sobre datos de CASEN para 2003 y 2006. Agregada Comuna de Ñiquén en mapa de selección. Correcciones varias en textos y traducciones (nan, N/A, etc). Ajustes de diseño y estilo para desktop y mobile. Correcciones en rutas para descarga de información completa desde el about. Mejora en performance de queries de la home.</p>"
+      },
+      "canelo": {
+        "title": "1.1.1 - \"Canelo\" - 2018-02-02",
+        "description":
+          "<p>Corrección de textos. Mejoras en meta tags opengraph.</p>"
       }
     }
   },

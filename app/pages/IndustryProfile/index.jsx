@@ -253,7 +253,7 @@ class IndustryProfile extends Component {
                 />,
                 <meta
                   property="og:image"
-                  content={`https://${locale}.datachile.io/images/profile-bg/industry/${industryImg.toLowerCase()}.jpg`}
+                  content={`https://${locale}.datachile.io/images/opengraph/industry/${industryImg.toLowerCase()}.jpg`}
                 />
               ]
             : null}
