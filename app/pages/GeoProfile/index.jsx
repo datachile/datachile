@@ -254,6 +254,25 @@ class GeoProfile extends Component {
     //MayorResults
   ];
 
+  state = {};
+
+  setSharedState = evt => {
+    /** This is how this works:
+     * The component with the chart needs 3 parameters:
+     * @param {string} sharedKey Can be any string, but must be unique for the same group.
+     * @param {any} sharedValue The value you want to share. Should come from this component's state.
+     * @param {(point) => void} onSharedStateChange This function.
+     * The component internally must link this function to a `{on: {'event': handlerFunction}}`
+     * in the chart's config object. The `handlerFunction` must create an object with the shape
+     * {key: `sharedKey`, value: the true shared value object}
+     * and pass it as a parameter to onSharedStateChange when needed. That shared object is then
+     * passed to all the relevant components, and each one must handle it appropiatedly.
+     * This method makes all the involved components dependent on each other, so remember to update
+     * all of them when needed.
+     */
+    this.setState({ [evt.key]: evt.value });
+  };
+
   render() {
     const { t, i18n, location } = this.props;
 
@@ -362,7 +381,10 @@ class GeoProfile extends Component {
       title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
     }
 
-    let opengraphImage = (geoObj.image || '').replace('/profile-bg/', '/opengraph/')
+    let opengraphImage = (geoObj.image || "").replace(
+      "/profile-bg/",
+      "/opengraph/"
+    );
 
     return (
       <CanonComponent
@@ -829,8 +851,18 @@ class GeoProfile extends Component {
               <div>
                 <MigrationSlide>
                   <SectionColumns>
-                    <MigrationByOrigin className="lost-1-2" />
-                    <MigrationByEducation className="lost-1-2" />
+                    <MigrationByOrigin
+                      className="lost-1-2"
+                      sharedKey="migration_slide"
+                      sharedValue={this.state.migration_slide}
+                      onSharedStateChange={this.setSharedState}
+                    />
+                    <MigrationByEducation
+                      className="lost-1-2"
+                      sharedKey="migration_slide"
+                      sharedValue={this.state.migration_slide}
+                      onSharedStateChange={this.setSharedState}
+                    />
                   </SectionColumns>
                 </MigrationSlide>
               </div>
