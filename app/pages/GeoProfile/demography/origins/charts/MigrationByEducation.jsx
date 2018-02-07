@@ -23,12 +23,32 @@ class MigrationByEducation extends Section {
     )
   ];
 
-  render() {
-    const { t, className, i18n } = this.props;
+  setCurrentSelection = point => {
+    const { onSharedStateChange, sharedKey, sharedValue } = this.props;
+    const points = [].concat(point["ID Country"]);
+    const drilldown = encodeURIComponent(
+      `[Origin Country].[Country].[Country]`
+    );
 
+    if (onSharedStateChange)
+      onSharedStateChange({
+        key: sharedKey,
+        value:
+          "string" == typeof sharedValue && sharedValue.includes(drilldown)
+            ? null
+            : "&cut%5B%5D=" +
+              (points.length == 1
+                ? `${drilldown}.%26%5B${points}%5D`
+                : `%7B${points.map(p => `${drilldown}.%26%5B${p}%5D`)}%7D`)
+      });
+  };
+
+  render() {
+    const { t, className, i18n, sharedValue } = this.props;
     const locale = i18n.language;
 
-    const path = this.context.data.path_country_migration_by_education;
+    let path = this.context.data.path_country_migration_by_education;
+    if (sharedValue) path = path.replace("&cut", sharedValue + "&cut");
 
     return (
       <div className={className}>
@@ -41,6 +61,7 @@ class MigrationByEducation extends Section {
           msrName="Number of visas"
           drilldowns={["Education", "Education"]}
           depth={true}
+          on={{ click: this.setCurrentSelection }}
           config={{
             height: 500,
             data: path,
@@ -54,7 +75,8 @@ class MigrationByEducation extends Section {
                 t("visas")
             },
             shapeConfig: {
-              fill: d => migrationByEducationColorScale("miged" + d["ID Education"])
+              fill: d =>
+                migrationByEducationColorScale("miged" + d["ID Education"])
             },
             tooltipConfig: {
               title: d => d["Education"],
