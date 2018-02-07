@@ -9,7 +9,7 @@ import mondrianClient, {
   simpleDatumNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { administrationColorScale } from "helpers/colors";
+import { regionsColorScale } from "helpers/colors";
 
 import { numeral } from "helpers/formatters";
 
@@ -67,10 +67,15 @@ class ElectoralParticipation extends Section {
             groupBy: ["geo"],
             label: d => d["geo"],
             shapeConfig: {
-              fill: d =>
-                d["geo"] == "Chile"
-                  ? "#8A2A40"
-                  : administrationColorScale(d["geo"]),
+              fill: d => {
+                return geo.type === "country"
+                  ? "#86396B"
+                  : d["geo"] == "Chile"
+                    ? "#ccc"
+                    : geo.type === "region"
+                      ? regionsColorScale(d["geo"])
+                      : "#86396B";
+              },
               label: d => false
             },
             //label: d => d["Election Type"] + " - " + d["Year"],

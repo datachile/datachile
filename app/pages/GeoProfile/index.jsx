@@ -133,9 +133,12 @@ import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 
 /** Politics */
 
-import ElectionSlide from "./politics/election/ElectionSlide";
-import MayorResults from "./politics/election/charts/MayorResults";
-import ElectoralParticipation from "./politics/election/charts/ElectoralParticipation";
+import ElectionSlide from "./civics/election/ElectionSlide";
+import MayorResults from "./civics/election/charts/MayorResults";
+
+import ParticipationSlide from "./civics/participation/ParticipationSlide";
+import ElectoralParticipation from "./civics/participation/charts/ElectoralParticipation";
+import ParticipationScatter from "./civics/participation/charts/ParticipationScatter";
 
 /** end Politics */
 
@@ -252,8 +255,10 @@ class GeoProfile extends Component {
     DeathCausesStacked,
 
     ElectionSlide,
+    ParticipationSlide,
     MayorResults,
-    ElectoralParticipation
+    ElectoralParticipation,
+    ParticipationScatter
   ];
 
   render() {
@@ -364,7 +369,10 @@ class GeoProfile extends Component {
       title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
     }
 
-    let opengraphImage = (geoObj.image || '').replace('/profile-bg/', '/opengraph/')
+    let opengraphImage = (geoObj.image || "").replace(
+      "/profile-bg/",
+      "/opengraph/"
+    );
 
     return (
       <CanonComponent
@@ -916,19 +924,32 @@ class GeoProfile extends Component {
               id="civics"
               sections={[
                 {
+                  name: t("Participation"),
+                  slides: [t("Elections")]
+                }
+                /*{
                   name: t("Elections"),
                   slides: [t("Results")]
-                }
+                }*/
               ]}
             >
               <div>
+                <ParticipationSlide>
+                  <SectionColumns>
+                    <ParticipationScatter className="lost-2-3" />
+                    <ElectoralParticipation className="lost-1-3" />
+                  </SectionColumns>
+                </ParticipationSlide>
+              </div>
+
+              {/*<div>
                 <ElectionSlide>
                   <SectionColumns>
                     <MayorResults className="lost-1-2" />
                     <ElectoralParticipation className="lost-1-2" />
                   </SectionColumns>
                 </ElectionSlide>
-              </div>
+              </div>*/}
             </Topic>
           </div>
         </div>

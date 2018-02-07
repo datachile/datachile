@@ -271,6 +271,8 @@
   "Language": "Idioma",
   "Language_PSU": "Lenguaje",
   "Laptop computer": "Computador portátil",
+
+  "LINEAR": "LINEAL",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
   "Less than 30 square meter households": "Hogares de menos de 30m²",
@@ -392,6 +394,7 @@
   "PSU vs NEM by Comuna & Administration":
     "PSU vs NEM por Comuna & Administración",
   "Participation": "Participación",
+  "Participation in Municipal Election": "Participación en Elección Municipal",
   "People": "Personas",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
