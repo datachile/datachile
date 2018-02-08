@@ -116,6 +116,18 @@ export const sources = {
       "http://www.senadis.cl/pag/355/1197/ii_estudio_nacional_de_discapacidad",
     year: 2015
   },
+  election_results: {
+    title: "Resultados Electorales",
+    url: "http://www.servel.cl/",
+    min_year: 2010,
+    year: 2017
+  },
+  election_participation: {
+    title: "Participación Electoral",
+    url: "http://www.servel.cl/",
+    min_year: 2010,
+    year: 2017
+  },
   health_access: {
     title: "Indicadores de Acceso a la Salud",
     url: "http://www.deis.cl/",

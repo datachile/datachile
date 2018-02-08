@@ -10,7 +10,7 @@ import mondrianClient, {
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -39,11 +39,14 @@ class MayorResults extends Section {
         return simpleGeoChartNeed(
           "path_mayor_results",
           "election_results",
-          ["Votes"],
+          ["Number of records", "Votes"],
           {
             drillDowns: [["Party", "Party", "Party"], ["Date", "Date", "Year"]],
             options: { parents: true },
-            cuts: ["[Election Type].[Election Type].[Election Type].&[5]"]
+            cuts: [
+              "[Election Type].[Election Type].[Election Type].&[5]",
+              "[Elected].[Elected].[Elected].&[1]"
+            ]
           }
         )(params, store);
       }
@@ -57,19 +60,37 @@ class MayorResults extends Section {
 
     const locale = i18n.language;
 
+    const pactos = [
+      { name: "Chile Vamos", ids: [3, 6, 7] },
+      { name: "Nueva Mayoría", ids: [1, 2, 9, 10, 11, 14] },
+      { name: "Frente Amplio", ids: [4, 12, 13, 15, 25] }
+    ];
+
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Mayor results")}</span>
+          <span>{t("Mayor Election")}</span>
           <ExportLink path={path} />
         </h3>
         <Treemap
           config={{
             height: 500,
             data: path,
+            total: d =>
+              geo.type === "comuna" ? d["Votes"] : d["Number of records"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "(0,0)"
+                ) +
+                " " +
+                (geo.type === "comuna" ? t("Votes") : t("Elected Authority"))
+            },
             groupBy: geo.type === "comuna" ? ["Candidate"] : ["Party"],
             label: d => (geo.type === "comuna" ? d["Candidate"] : d["Party"]),
-            sum: d => d["Votes"],
+            sum: d =>
+              geo.type === "comuna" ? d["Votes"] : d["Number of records"],
             time: "ID Year",
             shapeConfig: {
               fill: d =>
@@ -81,12 +102,15 @@ class MayorResults extends Section {
               body: d =>
                 "<div>" +
                 "<div>" +
-                numeral(d["Votes"], locale).format("0,0") +
+                (geo.type === "comuna"
+                  ? numeral(d["Votes"], locale).format("0,0")
+                  : numeral(d["Number of records"], locale).format("0,0")) +
                 " " +
-                t("votes") +
+                (geo.type === "comuna" ? t("Votes") : t("Elected Authority")) +
                 "</div>" +
                 "<div>" +
-                d["Party"] + " " +
+                (geo.type === "comuna" ? d["Party"] : "") +
+                " " +
                 "</div>" +
                 "</div>"
             },

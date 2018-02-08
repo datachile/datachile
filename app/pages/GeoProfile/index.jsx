@@ -133,8 +133,12 @@ import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 
 /** Politics */
 
-//import ElectionSlide from "./politics/election/ElectionSlide";
-//import MayorResults from "./politics/election/charts/MayorResults";
+import ElectionSlide from "./civics/election/ElectionSlide";
+import MayorResults from "./civics/election/charts/MayorResults";
+
+import ParticipationSlide from "./civics/participation/ParticipationSlide";
+import ElectoralParticipation from "./civics/participation/charts/ElectoralParticipation";
+import ParticipationScatter from "./civics/participation/charts/ParticipationScatter";
 
 /** end Politics */
 
@@ -248,10 +252,13 @@ class GeoProfile extends Component {
 
     DeathCausesSlide,
     DeathCauses,
-    DeathCausesStacked
+    DeathCausesStacked,
 
-    //ElectionSlide,
-    //MayorResults
+    ElectionSlide,
+    ParticipationSlide,
+    MayorResults,
+    ElectoralParticipation,
+    ParticipationScatter
   ];
 
   render() {
@@ -324,11 +331,11 @@ class GeoProfile extends Component {
       {
         slug: "health",
         title: t("Health")
+      },
+      {
+        slug: "civics",
+        title: t("Civics")
       }
-      /*{
-        slug: "politics",
-        title: t("Politics")
-      }*/
     ];
 
     function fillShape(d) {
@@ -362,7 +369,10 @@ class GeoProfile extends Component {
       title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
     }
 
-    let opengraphImage = (geoObj.image || '').replace('/profile-bg/', '/opengraph/')
+    let opengraphImage = (geoObj.image || "").replace(
+      "/profile-bg/",
+      "/opengraph/"
+    );
 
     return (
       <CanonComponent
@@ -909,24 +919,38 @@ class GeoProfile extends Component {
               </div>
             </Topic>
 
-            {/*<Topic
-              name={t("Politics")}
-              id="politics"
+            <Topic
+              name={t("Civics")}
+              id="civics"
               sections={[
                 {
-                  name: t("Mayor Election"),
-                  slides: [t("Results")]
+                  name: t("Participation"),
+                  slides: [t("Elections")]
                 }
+                /*{
+                  name: t("Elections"),
+                  slides: [t("Results")]
+                }*/
               ]}
             >
               <div>
+                <ParticipationSlide>
+                  <SectionColumns>
+                    <ParticipationScatter className="lost-2-3" />
+                    <ElectoralParticipation className="lost-1-3" />
+                  </SectionColumns>
+                </ParticipationSlide>
+              </div>
+
+              {/*<div>
                 <ElectionSlide>
                   <SectionColumns>
-                    <MayorResults className="lost-1" />
+                    <MayorResults className="lost-1-2" />
+                    <ElectoralParticipation className="lost-1-2" />
                   </SectionColumns>
                 </ElectionSlide>
-              </div>
-            </Topic>*/}
+              </div>*/}
+            </Topic>
           </div>
         </div>
       </CanonComponent>
