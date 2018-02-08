@@ -88,11 +88,7 @@ class MapContent extends Component {
     const config = Object.assign({}, configBase, configVariations[mapType]);
     console.log(config);
 
-    return (
-      <div className="map-content">
-        <Geomap config={config} />
-      </div>
-    );
+    return <Geomap className="map-content" config={config} />;
   }
 }
 

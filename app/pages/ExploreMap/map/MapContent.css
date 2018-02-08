@@ -1,2 +1,8 @@
-.map-sidebar {
+.map-content {
+  & > svg,
+  & .d3plus-geomap {
+    display: block;
+    min-height: calc(90vh - 80px);
+    max-width: 100%;
+  }
 }
