@@ -3,7 +3,6 @@
   position: relative;
   & .explore-map-container {
     position: relative;
-    @lost gutter 0;
     & .explore-map-section {
       lost-flex-container: row;
       & .explore-map-sidebar {
