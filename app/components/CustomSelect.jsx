@@ -1,9 +1,11 @@
 import React from "react";
+import classnames from "classnames";
 import escapeRegExp from "lodash/escapeRegExp";
 
 import { Icon } from "@blueprintjs/core";
-import { Select } from "@blueprintjs/select";
+import { Select } from "@blueprintjs/labs";
 
+import "@blueprintjs/labs/dist/blueprint-labs.css";
 import "./CustomSelect.css";
 
 CustomSelect.defaultProps = {
