@@ -1,15 +1,12 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { Plot } from "d3plus-react";
-import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleDatumNeed } from "helpers/MondrianClient";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
-import { getGeoObject } from "helpers/dataUtils";
-
 import { mean } from "d3-array";
 
-import { sources } from "helpers/consts";
 import { regionsColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
 
@@ -214,18 +211,18 @@ class PSUNEMScatter extends Section {
         <div className="treemap-stacked-options">
           <a
             className={`toggle ${!this.state.log ? "selected" : ""}`}
-            onClick={evt => this.toggleChart(false)}
+            onClick={() => this.toggleChart(false)}
           >
             {t("LINEAR")}
           </a>
           <a
             className={`toggle ${this.state.log ? "selected" : ""}`}
-            onClick={evt => this.toggleChart(true)}
+            onClick={() => this.toggleChart(true)}
           >
             LOG
           </a>
         </div>
-        <SourceNote cube="education_performance_new" />
+        <SourceNote cube="election_participation" />
       </div>
     );
   }
