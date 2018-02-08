@@ -109,7 +109,7 @@ class PSUNEMScatter extends Section {
               data: data.map(item => {
                 return {
                   ...item,
-                  PopulationLOG: Math.log10(item.Population)
+                  ElectorsLOG: Math.log10(item.Population)
                 };
               }),
               shapeConfig: {
@@ -144,9 +144,9 @@ class PSUNEMScatter extends Section {
                       : "<a>" + t("tooltip.to_profile") + "</a>";
                   return (
                     "<div>" +
-                    t("Population") +
+                    t("Electors") +
                     ": " +
-                    numeral(d["Population"], locale).format("0,0") +
+                    numeral(d["Electors"], locale).format("0,0") +
                     "</div>" +
                     "<div>" +
                     t("Votes") +
@@ -188,9 +188,9 @@ class PSUNEMScatter extends Section {
                 tickFormat: tick =>
                   numeral(parseFloat(tick), locale).format("0%")
               },
-              x: this.state.log ? "PopulationLOG" : "Population",
+              x: this.state.log ? "ElectorsLOG" : "Electors",
               xConfig: {
-                title: t("Population"),
+                title: t("Electors"),
                 tickFormat: tick => {
                   let value = this.state.log
                     ? Math.pow(10, parseInt(tick))
@@ -225,7 +225,7 @@ class PSUNEMScatter extends Section {
             LOG
           </a>
         </div>
-        <SourceNote cube="education_performance_new" />
+        <SourceNote cube="election_participation" />
       </div>
     );
   }
