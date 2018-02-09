@@ -804,7 +804,7 @@
       "diamelo": {
         "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
         "description":
-          "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Descarga de los gráficos en formato PNG y SVG editable. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>"
+          "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>"
       }
     }
   },
