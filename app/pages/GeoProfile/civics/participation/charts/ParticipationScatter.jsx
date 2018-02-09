@@ -106,7 +106,7 @@ class PSUNEMScatter extends Section {
               data: data.map(item => {
                 return {
                   ...item,
-                  ElectorsLOG: Math.log10(item.Population)
+                  ElectorsLOG: Math.log10(item.Electors)
                 };
               }),
               shapeConfig: {
@@ -200,6 +200,11 @@ class PSUNEMScatter extends Section {
                   } else {
                     return " ";
                   }
+                }
+              },
+              x2Config: {
+                barConfig: {
+                  "stroke-width": 0
                 }
               },
               size: "Votes"
