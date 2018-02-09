@@ -643,7 +643,7 @@
       "diamelo": {
         "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
         "description":
-          "<p>New dataset: Civic section. Electoral results and participation from last elections. Download charts as PNG and SVG. Fixed some style issues. Added new download links to raw information sources on the About page.</p>"
+          "<p>New dataset: Civic section. Electoral results and participation from last elections. Fixed some style issues. Added new download links to raw information sources on the About page.</p>"
       }
     }
   },
@@ -888,7 +888,8 @@
       }
     },
     "politics": {
-      "text": "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
+      "text":
+        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     }
   },
 
