@@ -53,7 +53,7 @@ class ParticipationSlide extends Section {
                 className="l-1-2"
                 icon="cambio-votacion"
                 datum={numeral(text.growth, locale).format("0.0%")}
-                title={t("Change in votation")}
+                title={t("Change in participation")}
                 subtitle={t("Presidential 1st - 2nd round") + " " + "2017"}
               />
             )}
