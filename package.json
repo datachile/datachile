@@ -23,7 +23,7 @@
     "d3-format": "^1.0.2",
     "d3-scale": "^1.0.4",
     "d3-time-format": "^2.0.2",
-    "datawheel-canon": "^0.12.6",
+    "datawheel-canon": "^0.13.1",
     "lodash": "^4.17.4",
     "mondrian-rest-client": "github:datawheel/mondrian-rest-client#c21aab12ec4c9d8a42c667aff6c90ed3dd762cee",
     "normalize.css": "^5.0.0",
