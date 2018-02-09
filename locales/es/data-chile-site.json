@@ -702,12 +702,20 @@
           "Se usa en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
       },
       "servel": {
-        "title": "Resultados electorales",
-        "year": "2009-2013-2016",
+        "title": "Resultados electorales y participación",
+        "year": "2009-2013-2016-2017",
         "source": "Servicio Electoral (SERVEL)",
         "text":
-          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones.</p>",
+          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones. También hay detalles de la participación electoral a nivel comunal.</p>",
         "use": "Se usa en los perfiles nacional, regional y comunal."
+      },
+      "felonies": {
+        "title": "Denuncias por delitos de mayor connotación social",
+        "year": "2005-2016",
+        "source": "Carabineros de Chile",
+        "text":
+          "<p>Las estadísticas de los Delitos de Mayor Connotación Social (DMCS): Estos corresponden a los grupos denominados como 'Delitos Violentos' (Robo con Violencia, Robo con Intimidación, Robo por Sorpresa, Lesiones, Homicidio y Violación), y 'Delitos Contra la Propiedad' (Robo de Vehículo Motorizado, Robo de Accesorios de Vehículos, Robo en Lugar Habitado, Robo en Lugar no Habitado, Otros Robos con Fuerza y Hurto).</p>",
+        "use": "Se utiliza en los perfiles nacional, regional y comunal."
       },
       "ids": {
         "title": "Ids genéricos",
@@ -773,6 +781,11 @@
         "title": "1.1.1 - \"Canelo\" - 2018-02-02",
         "description":
           "<p>Corrección de textos. Mejoras en meta tags opengraph.</p>"
+      },
+      "diamelo": {
+        "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
+        "description":
+          "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Descarga de los gráficos en formato PNG y SVG editable. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>"
       }
     }
   },
