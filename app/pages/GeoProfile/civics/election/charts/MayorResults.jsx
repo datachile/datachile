@@ -144,6 +144,7 @@ class MayorResults extends Section {
                 )
             },
             tooltipConfig: {
+              //title: d => (geo.type === 2 ? d["Candidate"] : d["Partido"]),
               body: d =>
                 "<div>" +
                 "<div>" +
@@ -154,10 +155,15 @@ class MayorResults extends Section {
                 (geo.type === "comuna" ? t("Votes") : t("Elected Authority")) +
                 "</div>" +
                 "<div>" +
-                (geo.type === "comuna" ? d["Partido"] : "") +
+                (geo.type === "comuna" && d["Partido"] !== "#null"
+                  ? d["Partido"]
+                  : "") +
                 " " +
                 "</div>" +
                 "</div>"
+            },
+            legendTooltip: {
+              title: d => (geo.depth === 2 ? d["Candidate"] : d["Pacto"])
             },
             legendConfig: {
               label: d => (geo.type === "comuna" ? false : d["Pacto"]),
