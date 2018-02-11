@@ -74,7 +74,7 @@ class MayorResults extends Section {
     super(props);
 
     this.state = {
-      non_electors: false
+      non_electors: true
     };
 
     this.toggleElectors = this.toggleElectors.bind(this);
@@ -199,7 +199,7 @@ class MayorResults extends Section {
             <Switch
               onClick={this.toggleElectors}
               labelElement={<strong>{t("Total Electors")}</strong>}
-              checked={this.state.electors}
+              checked={this.state.non_electors}
             />
           </div>
         )}
