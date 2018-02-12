@@ -557,6 +557,31 @@
           "<p>Productivity data at the level of industry and comuna provided by the Tax Office (SII). This data tallies the number of workers, labour and capital cost, and output of each industry in a comuna.</p>",
         "use":
           "This dataset is used in the national, regional, and comuna profile, in the economy section, and in the industry profile."
+      },
+      "servel": {
+        "title": "Electtion results and participation",
+        "year": "2009-2013-2016-2017",
+        "source": "Electoral service (SERVEL)",
+        "text":
+          "<p>Public data available in Servicio Electoral (SERVEL). It shows the results from last elections: mayors, congress-people and president. The winners and also a detail of every candidate. Finally, we calculate the electoral participation at comuna level.</p>",
+        "use":
+          "This dataset is used in the nation, region, and comuna profiles."
+      },
+      "felonies": {
+        "title": "Felonies of Greater Social Connotation",
+        "year": "2005-2016",
+        "source": "Carabineros de Chile",
+        "text":
+          "<p>The statistics of the Felonies of Greater Social Connotation: These correspond to the groups denominated like 'Violent Crimes' (Robbery with Violence, Robbery with Intimidation, Robbery by Surprise, Injuries, Homicide and Violation), and 'Crimes against the Property' (Theft of Motorized Vehicle, Theft of Vehicle Accessories, Theft in Inhabited Place, Theft in Uninhabited Place, Other Robberies with Force and Theft).</p>",
+        "use":
+          "This dataset is used in the nation, region, and comuna profiles."
+      },
+      "ids": {
+        "title": "General Ids",
+        "year": "",
+        "source": "",
+        "text": "<p>Metadata & ids for reference to other files.</p>",
+        "use": "This dataset is used all over the site."
       }
     },
     "team": {
@@ -614,6 +639,11 @@
       "canelo": {
         "title": "1.1.1 - \"Canelo\" - 2018-02-02",
         "description": "<p>Text fixes. Improve meta tags opengraph.</p>"
+      },
+      "diamelo": {
+        "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
+        "description":
+          "<p>New dataset: Civic section. Electoral results and participation from last elections. Fixed some style issues. Added new download links to raw information sources on the About page.</p>"
       }
     }
   },
@@ -856,6 +886,10 @@
         "text_none":
           "The CASEN survey of {{year_last}} has no data about internet access for {{level}}."
       }
+    },
+    "politics": {
+      "text":
+        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     }
   },
 

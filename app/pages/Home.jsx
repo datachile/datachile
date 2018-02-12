@@ -129,7 +129,7 @@ class Home extends Component {
           <meta property="og:url" content={`https://${locale}.datachile.io`} />
           <meta
             property="og:image"
-            content={`https://${locale}.datachile.io/images/logos/opengraph.jpg`}
+            content={`https://${locale}.datachile.io/images/logos/opengraph.png`}
           />
         </Helmet>
         <div className="home">
@@ -208,6 +208,7 @@ class Home extends Component {
           <div className="home-content">
             <div className="home-text">
               <div className="l-col">
+                <img src="/images/home/what.png" alt={t("home.what.title")} />
                 <h2>{t("home.what.title")}</h2>
                 <p
                   dangerouslySetInnerHTML={{
@@ -226,6 +227,7 @@ class Home extends Component {
                 />
               </div>
               <div className="r-col">
+                <img src="/images/home/diff.png" alt={t("home.diff.title")} />
                 <h2>{t("home.diff.title")}</h2>
                 <p
                   dangerouslySetInnerHTML={{

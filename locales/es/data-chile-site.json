@@ -74,7 +74,9 @@
   "Trade": "Comercio",
 
   "Casualties rate per 100 inhabitants": "Tasa de muertes por 100 habitantes",
+  "Change in participation": "Cambio en participación",
   "Chile Exports": "Exportaciones Chile",
+  "Civics": "Cívica",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
   "complaints": "denuncias",
@@ -112,9 +114,11 @@
   "Disbilities": "Discapacidades",
   "Diversity": "Diversidad",
   "During": "Durante",
+
   "Economy": "Economía",
   "Education": "Educación",
   "Educational Center": "Centro educacional",
+  "Elected Authority": "Autoridades Electas",
   "Employability": "Empleabilidad",
   "Employability 1st Year": "Empleabilidad 1er año",
   "Employability by Program": "Employability por programa",
@@ -186,6 +190,11 @@
   "and": "y",
   "a decrease": "un descenso",
 
+  "Election": "Elección",
+  "Elections": "Elecciones",
+  "Electors": "Electores",
+  "Electoral Participation": "Participación Electoral",
+  "Electors that didn't vote": "Electores que no votaron",
   "Employed Men with Technical Education":
     "Hombres Empleados con Educación Técnica",
   "Employed Women with Technical Education":
@@ -263,6 +272,8 @@
   "Language": "Idioma",
   "Language_PSU": "Lenguaje",
   "Laptop computer": "Computador portátil",
+
+  "LINEAR": "LINEAL",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
   "Less than 30 square meter households": "Hogares de menos de 30m²",
@@ -326,7 +337,7 @@
   "Material of Walls": "Material de las paredes",
   "Math": "Matemática",
   "Mayor": "Alcalde",
-  "Mayor Election": "Elección de alcalde",
+  "Mayor Election": "Elección de Alcalde",
   "Median Income CLP": "Ingreso medio CLP",
   "Migration": "Migración",
   "Migration By Activity": "Migración por actividad",
@@ -374,6 +385,7 @@
   "Output": "Producción",
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
+
   "PSU exams": "Personas que rindieron PSU",
   "PSU Results": "Resultados PSU",
   "PSU Results By Sex": "Resultados PSU por sexo",
@@ -382,6 +394,8 @@
   "PSU vs NEM by school": "PSU vs NEM por escuela",
   "PSU vs NEM by Comuna & Administration":
     "PSU vs NEM por Comuna & Administración",
+  "Participation": "Participación",
+  "Participation in Municipal Election": "Participación en Elección Municipal",
   "People": "Personas",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
@@ -393,6 +407,7 @@
   "Population Pyramid": "Pirámide poblacional",
   "Population with Health Insurance": "Población con Previsión de Salud",
   "President": "Presidente",
+  "Presidential 1st - 2nd round": "1ra - 2da vuelta Presidencial",
   "Primary Healthcare": "Atención de Salud Primaria",
   "Product": "Producto",
   "Product Space": "Espacio de Producto",
@@ -491,6 +506,7 @@
   "Top exporter region": "Principal región exportadora",
   "Topics": "Temas",
   "Total": "Total",
+  "Total Electors": "Electores Totales",
   "Total Enrollment": "Matrícula total",
   "Total Exports": "Total Exportaciones",
   "Total Imports": "Total Importaciones",
@@ -517,6 +533,9 @@
     "Visas para mujeres en el rango {{range}}",
   "Visas for males in range {{range}}":
     "Visas para hombres en el rango {{range}}",
+  "Votes": "Votos",
+  "votes": "votos",
+
   "Wages": "Salarios",
   "Wages by Program": "Salarios por programa",
   "Years of Studies": "Años de estudio",
@@ -702,12 +721,20 @@
           "Se usa en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
       },
       "servel": {
-        "title": "Resultados electorales",
-        "year": "2009-2013-2016",
+        "title": "Resultados electorales y participación",
+        "year": "2009-2013-2016-2017",
         "source": "Servicio Electoral (SERVEL)",
         "text":
-          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones.</p>",
+          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones. También hay detalles de la participación electoral a nivel comunal.</p>",
         "use": "Se usa en los perfiles nacional, regional y comunal."
+      },
+      "felonies": {
+        "title": "Denuncias por delitos de mayor connotación social",
+        "year": "2005-2016",
+        "source": "Carabineros de Chile",
+        "text":
+          "<p>Las estadísticas de los Delitos de Mayor Connotación Social (DMCS): Estos corresponden a los grupos denominados como 'Delitos Violentos' (Robo con Violencia, Robo con Intimidación, Robo por Sorpresa, Lesiones, Homicidio y Violación), y 'Delitos Contra la Propiedad' (Robo de Vehículo Motorizado, Robo de Accesorios de Vehículos, Robo en Lugar Habitado, Robo en Lugar no Habitado, Otros Robos con Fuerza y Hurto).</p>",
+        "use": "Se utiliza en los perfiles nacional, regional y comunal."
       },
       "ids": {
         "title": "Ids genéricos",
@@ -773,6 +800,11 @@
         "title": "1.1.1 - \"Canelo\" - 2018-02-02",
         "description":
           "<p>Corrección de textos. Mejoras en meta tags opengraph.</p>"
+      },
+      "diamelo": {
+        "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
+        "description":
+          "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>"
       }
     }
   },
@@ -1043,6 +1075,10 @@
         "text_none":
           "La encuesta CASEN de {{year_last}} no tiene datos sobre conectividad para {{level}}."
       }
+    },
+    "politics": {
+      "text":
+        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     }
   },
   "granted in": "otorgadas en",
