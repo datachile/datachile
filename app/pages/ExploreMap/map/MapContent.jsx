@@ -2,13 +2,63 @@ import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Geomap } from "d3plus-react";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
+
+import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
+
 import "./MapContent.css";
 
 class MapContent extends Component {
+  static need = [
+    (params, store) => {
+      const prm = mondrianClient.cube("exports").then(cube => {
+        var q = setLangCaptions(
+          cube.query
+            .option("parents", true)
+            .drilldown("Geography", "Geography", "Region")
+            .drilldown("Date", "Date", "Year")
+            .measure("FOB US"),
+          store.i18n.locale
+        );
+        return {
+          key: "path_map_test_region",
+          data: __API__ + q.path("jsonrecords")
+        };
+      });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const prm = mondrianClient.cube("exports").then(cube => {
+        var q = setLangCaptions(
+          cube.query
+            .option("parents", true)
+            .drilldown("Geography", "Geography", "Comuna")
+            .drilldown("Date", "Date", "Year")
+            .measure("FOB US"),
+          store.i18n.locale
+        );
+        return {
+          key: "path_map_test_comuna",
+          data: __API__ + q.path("jsonrecords")
+        };
+      });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    }
+  ];
+
   constructor(props) {
     super(props);
     this.state = {
-      map_level: "regiones"
+      map_level: "regiones",
+      msrName: "FOB US"
     };
   }
 
@@ -17,16 +67,16 @@ class MapContent extends Component {
     return (
       <div className="map-switch-options">
         <a
-          className={`toggle ${selected === "comunas" ? "selected" : ""}`}
-          onClick={evt => this.toggleChart("comunas")}
-        >
-          {t("Comunas")}
-        </a>
-        <a
           className={`toggle ${selected === "regiones" ? "selected" : ""}`}
           onClick={evt => this.toggleChart("regiones")}
         >
           {t("Regiones")}
+        </a>
+        <a
+          className={`toggle ${selected === "comunas" ? "selected" : ""}`}
+          onClick={evt => this.toggleChart("comunas")}
+        >
+          {t("Comunas")}
         </a>
       </div>
     );
@@ -39,90 +89,98 @@ class MapContent extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, i18n } = this.props;
+
+    const locale = i18n.language;
+
+    const { path_map_test_comuna, path_map_test_region } = this.props.data;
+
+    const mapType = this.state.map_level;
+    const msrName = this.state.msrName;
+
     const configBase = {
-      id: "id",
-      downloadButton: false,
       height: 500,
-      label: d => {
-        return d["name"];
-      },
-      legend: false,
-      ocean: "transparent",
-      padding: 10,
+      padding: 3,
+      tiles: false,
+      fitKey: "id",
+      ocean: "#D8D8D8",
       shapeConfig: {
-        hoverOpacity: 1,
         Path: {
-          fill: "green",
-          stroke: "rgba(255, 255, 255, 1)"
+          //fill: d => "#0F0F0F"
+          stroke: "#fff"
         }
       },
-      tiles: false,
+      label: d => d["Region"],
       tooltipConfig: {
-        title: "",
+        title: d => {
+          return d["Region"];
+        },
         body: d => {
-          console.log(d);
-          return "Región " + d.name;
-        },
-        bodyStyle: {
-          "font-family": "'Yantramanav', sans-serif",
-          "font-size": "12px",
-          "text-align": "center",
-          color: "#2F2F38"
-        },
-        footer: "",
-        background: "white",
-        footerStyle: {
-          "margin-top": 0
-        },
-        padding: "10px",
-        borderRadius: "0px",
-        border: "1px solid #2F2F38"
+          return numeral(d[msrName], locale).format("(USD 0 a)");
+        }
       },
 
+      sum: d => d.variable,
+
+      colorScale: "variable",
+      colorScalePosition: "bottom",
+      colorScaleConfig: {
+        color: ['#708bbb','#697db6','#616db1','#5a5fac','#5151a6','#4743a1','#3c349b','#302596','#1f1590','#00008b'],
+        axisConfig: {
+          shapeConfig: {
+            labelConfig: {
+              fontColor: "#000"
+            }
+          },
+          tickFormat: tick => {
+            return numeral(parseFloat(tick), "es").format("($ 0.[00] a)");
+          }
+        },
+        align: "start",
+        downloadButton: false
+      },
+      time: "ID Year",
       zoom: true
     };
 
     const configVariations = {
       comunas: {
+        id: "ID Comuna",
         topojson: "/geo/comunas.json",
         topojsonId: "id",
         topojsonKey: "comunas_datachile_final",
-        data: []
+        data: [],
+        groupBy: "ID Comuna"
       },
       regiones: {
+        id: "ID Region",
         topojson: "/geo/regiones.json",
         topojsonId: "id",
         topojsonKey: "regiones",
-        data: [
-          { id: 1, name: "Tarapacá" },
-          { id: 2, name: "Antofagasta" },
-          { id: 3, name: "Atacama" },
-          { id: 4, name: "Coquimbo" },
-          { id: 5, name: "Valparaíso" },
-          { id: 6, name: "O'Higgins" },
-          { id: 7, name: "Maule" },
-          { id: 8, name: "BíoBío" },
-          { id: 9, name: "Araucanía" },
-          { id: 10, name: "Los Lagos" },
-          { id: 11, name: "Aisén" },
-          { id: 12, name: "Magallanes" },
-          { id: 13, name: "Metropolitana" },
-          { id: 14, name: "Los Ríos" },
-          { id: 15, name: "Arica y Parinacota" }
-        ]
+        data: path_map_test_region,
+        groupBy: "ID Region"
       }
     };
 
-    const mapType = this.state.map_level;
-
     const config = Object.assign({}, configBase, configVariations[mapType]);
-    console.log("mapType", mapType);
 
     return (
       <div className="map-content">
         {this.menuChart(mapType)}
-        <Geomap config={config} />
+        <Geomap
+          config={config}
+          dataFormat={data => {
+            console.log("data!", data);
+            var dataMap = [];
+            if (data.data) {
+              var dataMap = data.data.map(item => {
+                return { ...item, variable: item[msrName] };
+              });
+            }
+
+            return dataMap;
+          }}
+        />
       </div>
     );
   }

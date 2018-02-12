@@ -17,9 +17,10 @@ import "./explore-map.css";
 class ExploreMap extends Component {
   constructor() {
     super();
+    this.state = {};
   }
 
-  static need = [];
+  static need = [MapContent];
 
   componentWillUnmount() {
     this.setState({});
@@ -50,7 +51,7 @@ class ExploreMap extends Component {
                   <MapSidebar />
                 </div>
                 <div className="explore-map-content">
-                  <MapContent />
+                  <MapContent data={this.props.data} />
                 </div>
               </div>
             )}
@@ -76,8 +77,7 @@ export default translate()(
   connect(
     state => ({
       data: state.data,
-      focus: state.focus,
-      stats: state.stats
+      focus: state.focus
     }),
     {}
   )(ExploreMap)
