@@ -7,28 +7,41 @@ import "./MapContent.css";
 class MapContent extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      map_level: "regiones"
+    };
+  }
+
+  menuChart(selected) {
+    const { t } = this.props;
+    return (
+      <div className="map-switch-options">
+        <a
+          className={`toggle ${selected === "comunas" ? "selected" : ""}`}
+          onClick={evt => this.toggleChart("comunas")}
+        >
+          {t("Comunas")}
+        </a>
+        {" | "}
+        <a
+          className={`toggle ${selected === "regiones" ? "selected" : ""}`}
+          onClick={evt => this.toggleChart("regiones")}
+        >
+          {t("Regiones")}
+        </a>
+      </div>
+    );
+  }
+
+  toggleChart(level) {
+    this.setState({
+      map_level: level
+    });
   }
 
   render() {
     const { t } = this.props;
     const configBase = {
-      data: [
-        { id: 1, name: "Tarapacá" },
-        { id: 2, name: "Antofagasta" },
-        { id: 3, name: "Atacama" },
-        { id: 4, name: "Coquimbo" },
-        { id: 5, name: "Valparaíso" },
-        { id: 6, name: "O'Higgins" },
-        { id: 7, name: "Maule" },
-        { id: 8, name: "BíoBío" },
-        { id: 9, name: "Araucanía" },
-        { id: 10, name: "Los Lagos" },
-        { id: 11, name: "Aisén" },
-        { id: 12, name: "Magallanes" },
-        { id: 13, name: "Metropolitana" },
-        { id: 14, name: "Los Ríos" },
-        { id: 15, name: "Arica y Parinacota" }
-      ],
       id: "id",
       downloadButton: false,
       height: 500,
@@ -49,6 +62,7 @@ class MapContent extends Component {
       tooltipConfig: {
         title: "",
         body: d => {
+          console.log(d);
           return "Región " + d.name;
         },
         bodyStyle: {
@@ -74,22 +88,41 @@ class MapContent extends Component {
       comunas: {
         topojson: "/geo/comunas.json",
         topojsonId: "id",
-        topojsonKey: "comunas"
+        topojsonKey: "comunas_datachile_final",
+        data: []
       },
       regiones: {
         topojson: "/geo/regiones.json",
         topojsonId: "id",
-        topojsonKey: "regiones"
+        topojsonKey: "regiones",
+        data: [
+          { id: 1, name: "Tarapacá" },
+          { id: 2, name: "Antofagasta" },
+          { id: 3, name: "Atacama" },
+          { id: 4, name: "Coquimbo" },
+          { id: 5, name: "Valparaíso" },
+          { id: 6, name: "O'Higgins" },
+          { id: 7, name: "Maule" },
+          { id: 8, name: "BíoBío" },
+          { id: 9, name: "Araucanía" },
+          { id: 10, name: "Los Lagos" },
+          { id: 11, name: "Aisén" },
+          { id: 12, name: "Magallanes" },
+          { id: 13, name: "Metropolitana" },
+          { id: 14, name: "Los Ríos" },
+          { id: 15, name: "Arica y Parinacota" }
+        ]
       }
     };
 
-    const mapType = "regiones";
+    const mapType = this.state.map_level;
 
     const config = Object.assign({}, configBase, configVariations[mapType]);
-    console.log(config);
+    console.log("mapType", mapType);
 
     return (
       <div className="map-content">
+        <div>{this.menuChart(mapType)}</div>
         <Geomap config={config} />
       </div>
     );
