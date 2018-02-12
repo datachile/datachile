@@ -924,15 +924,22 @@ class GeoProfile extends Component {
               id="civics"
               sections={[
                 {
+                  name: t("Elections"),
+                  slides: [t("Results")]
+                },
+                {
                   name: t("Participation"),
                   slides: [t("Elections")]
                 }
-                ,{
-                  name: t("Elections"),
-                  slides: [t("Results")]
-                }
               ]}
             >
+              <div>
+                <ElectionSlide>
+                  <SectionColumns>
+                    <MayorResults className="lost-1" />
+                  </SectionColumns>
+                </ElectionSlide>
+              </div>
               <div>
                 <ParticipationSlide>
                   <SectionColumns>
@@ -940,14 +947,6 @@ class GeoProfile extends Component {
                     <ElectoralParticipation className="lost-1-3" />
                   </SectionColumns>
                 </ParticipationSlide>
-              </div>
-
-              <div>
-                <ElectionSlide>
-                  <SectionColumns>
-                    <MayorResults className="lost-1" />
-                  </SectionColumns>
-                </ElectionSlide>
               </div>
             </Topic>
           </div>
