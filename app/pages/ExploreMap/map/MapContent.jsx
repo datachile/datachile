@@ -22,7 +22,6 @@ class MapContent extends Component {
         >
           {t("Comunas")}
         </a>
-        {" | "}
         <a
           className={`toggle ${selected === "regiones" ? "selected" : ""}`}
           onClick={evt => this.toggleChart("regiones")}
@@ -122,7 +121,7 @@ class MapContent extends Component {
 
     return (
       <div className="map-content">
-        <div>{this.menuChart(mapType)}</div>
+        {this.menuChart(mapType)}
         <Geomap config={config} />
       </div>
     );

@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/datawheel/datachile#readme",
   "dependencies": {
+    "@blueprintjs/core": "^1.35.3",
+    "@blueprintjs/labs": "^0.14.4",
     "d3-format": "^1.0.2",
     "d3-scale": "^1.0.4",
     "d3-time-format": "^2.0.2",

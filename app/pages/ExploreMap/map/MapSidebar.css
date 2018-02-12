@@ -1,2 +1,42 @@
 .map-sidebar {
+  & .option-group + .option-group {
+    margin-top: 1.5em;
+  }
+  & .custom-select {
+    & .select-option {
+      padding-left: 2em;
+    }
+    & .current {
+      font-family: var(--font-family-title);
+      font-size: 13px;
+      line-height: 3em;
+      text-transform: uppercase;
+      color: var(--snow);
+      background-color: var(--bg-blue);
+    }
+  }
+}
+
+.option-group {
+  & .option-label {
+    display: block;
+    margin: 0.5em 0;
+    font-family: var(--font-family-text);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5em;
+    color: var(--snow);
+    text-transform: uppercase;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      vertical-align: top;
+      width: 1.5em;
+      height: 1.5em;
+      margin-right: 0.6em;
+      border-radius: 50%;
+      background: var(--bg-blue);
+    }
+  }
 }

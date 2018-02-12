@@ -13,7 +13,7 @@ class DataContent extends Component {
 
     return (
       <div className="data-content">
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th>#</th>

@@ -1,0 +1,54 @@
+.custom-select {
+  & > .pt-popover-target {
+    display: block;
+  }
+
+  & .select-option {
+    display: block;
+    padding: 0 0.5em;
+    line-height: 2em;
+    white-space: nowrap;
+    cursor: default;
+
+    &.current {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      color: inherit;
+      background: inherit;
+
+      & .value {
+        flex: 1 1;
+        width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      & .pt-icon-standard {
+        flex: 0 0;
+        min-width: 1em;
+      }
+    }
+
+    &.active {
+      background: #ccc;
+    }
+
+    &.disabled {
+      pointer-events: none;
+    }
+
+    & > span {
+      margin-left: 0.2em;
+      margin-right: 0.2em;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
