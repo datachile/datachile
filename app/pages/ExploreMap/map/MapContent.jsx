@@ -11,20 +11,25 @@ import "./MapContent.css";
 class MapContent extends Component {
   static need = [
     (params, store) => {
-      const prm = mondrianClient.cube("exports").then(cube => {
-        var q = setLangCaptions(
-          cube.query
-            .option("parents", true)
-            .drilldown("Geography", "Geography", "Region")
-            .drilldown("Date", "Date", "Year")
-            .measure("FOB US"),
-          store.i18n.locale
-        );
-        return {
-          key: "path_map_test_region",
-          data: __API__ + q.path("jsonrecords")
-        };
-      });
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", false)
+              .drilldown("Geography", "Geography", "Region")
+              .drilldown("Date", "Date", "Year")
+              .measure("FOB US"),
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "data_map_test_region",
+            data: res.data.data
+          };
+        });
 
       return {
         type: "GET_DATA",
@@ -32,20 +37,25 @@ class MapContent extends Component {
       };
     },
     (params, store) => {
-      const prm = mondrianClient.cube("exports").then(cube => {
-        var q = setLangCaptions(
-          cube.query
-            .option("parents", true)
-            .drilldown("Geography", "Geography", "Comuna")
-            .drilldown("Date", "Date", "Year")
-            .measure("FOB US"),
-          store.i18n.locale
-        );
-        return {
-          key: "path_map_test_comuna",
-          data: __API__ + q.path("jsonrecords")
-        };
-      });
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", false)
+              .drilldown("Geography", "Geography", "Comuna")
+              .drilldown("Date", "Date", "Year")
+              .measure("FOB US"),
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "data_map_test_comuna",
+            data: res.data.data
+          };
+        });
 
       return {
         type: "GET_DATA",
@@ -88,44 +98,54 @@ class MapContent extends Component {
     });
   }
 
+  processResults(data, msrName) {
+    var dataMap = [];
+    if (data) {
+      var dataMap = data.map(item => {
+        return { ...item, variable: item[msrName] };
+      });
+    }
+    return dataMap;
+  }
+
   render() {
     const { t, i18n } = this.props;
 
     const locale = i18n.language;
 
-    const { path_map_test_comuna, path_map_test_region } = this.props.data;
-
     const mapType = this.state.map_level;
     const msrName = this.state.msrName;
 
+    const { data_map_test_comuna, data_map_test_region } = this.props.data;
+
     const configBase = {
-      height: 500,
+      height: 700,
       padding: 3,
       tiles: false,
       fitKey: "id",
       ocean: "#D8D8D8",
       shapeConfig: {
         Path: {
-          //fill: d => "#0F0F0F"
           stroke: "#fff"
         }
       },
-      label: d => d["Region"],
-      tooltipConfig: {
-        title: d => {
-          return d["Region"];
-        },
-        body: d => {
-          return numeral(d[msrName], locale).format("(USD 0 a)");
-        }
-      },
-
+      label: false,
       sum: d => d.variable,
-
       colorScale: "variable",
-      colorScalePosition: "bottom",
+      colorScalePosition: "left",
       colorScaleConfig: {
-        color: ['#708bbb','#697db6','#616db1','#5a5fac','#5151a6','#4743a1','#3c349b','#302596','#1f1590','#00008b'],
+        color: [
+          "#708bbb",
+          "#697db6",
+          "#616db1",
+          "#5a5fac",
+          "#5151a6",
+          "#4743a1",
+          "#3c349b",
+          "#302596",
+          "#1f1590",
+          "#00008b"
+        ],
         axisConfig: {
           shapeConfig: {
             labelConfig: {
@@ -136,10 +156,12 @@ class MapContent extends Component {
             return numeral(parseFloat(tick), "es").format("($ 0.[00] a)");
           }
         },
-        align: "start",
         downloadButton: false
       },
-      time: "ID Year",
+      tooltipConfig: {
+        title: mapType == "comunas" ? d => d["Comuna"] : d => d["Region"],
+        body: d => numeral(d[msrName], locale).format("(USD 0 a)")
+      },
       zoom: true
     };
 
@@ -149,16 +171,18 @@ class MapContent extends Component {
         topojson: "/geo/comunas.json",
         topojsonId: "id",
         topojsonKey: "comunas_datachile_final",
-        data: [],
-        groupBy: "ID Comuna"
+        groupBy: "ID Comuna",
+        data: this.processResults(data_map_test_comuna, msrName),
+        label: d => d["Comuna"]
       },
       regiones: {
         id: "ID Region",
         topojson: "/geo/regiones.json",
         topojsonId: "id",
         topojsonKey: "regiones",
-        data: path_map_test_region,
-        groupBy: "ID Region"
+        data: this.processResults(data_map_test_region, msrName),
+        groupBy: "ID Region",
+        label: d => d["Region"]
       }
     };
 
@@ -167,20 +191,9 @@ class MapContent extends Component {
     return (
       <div className="map-content">
         {this.menuChart(mapType)}
-        <Geomap
-          config={config}
-          dataFormat={data => {
-            console.log("data!", data);
-            var dataMap = [];
-            if (data.data) {
-              var dataMap = data.data.map(item => {
-                return { ...item, variable: item[msrName] };
-              });
-            }
-
-            return dataMap;
-          }}
-        />
+        <div className="map-color-scale" />
+        {data_map_test_comuna &&
+          data_map_test_region && <Geomap config={config} />}
       </div>
     );
   }
