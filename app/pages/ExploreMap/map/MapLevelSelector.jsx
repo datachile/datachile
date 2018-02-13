@@ -30,8 +30,6 @@ class MapLevelSelector extends Component {
       </div>
     );
   }
-
-  toggleChart(level) {}
 }
 
 const mapDispatchToProps = dispatch => ({

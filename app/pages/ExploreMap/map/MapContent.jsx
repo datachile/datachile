@@ -69,18 +69,22 @@ class MapContent extends Component {
     super(props);
   }
 
-  processResults(data, msrName) {
+  processResults(data, msrName, mapYear) {
     var dataMap = [];
-    if (data) {
-      var dataMap = data.map(item => {
-        return { ...item, variable: item[msrName] };
-      });
+    if (data && msrName && mapYear) {
+      var dataMap = data
+        .filter(item => {
+          return item["Year"] == mapYear;
+        })
+        .map(item => {
+          return { ...item, variable: item[msrName] };
+        });
     }
     return dataMap;
   }
 
   render() {
-    const { t, i18n, topic, msrName, mapLevel } = this.props;
+    const { t, i18n, topic, msrName, mapLevel, mapYear } = this.props;
 
     const locale = i18n.language;
 
@@ -96,8 +100,7 @@ class MapContent extends Component {
         Path: {
           stroke: 0
         },
-        hoverOpacity: 1,
-        hover: "#000"
+        hoverOpacity: 1
       },
       label: false,
       sum: d => d.variable,
@@ -134,7 +137,7 @@ class MapContent extends Component {
         topojsonId: "id",
         topojsonKey: "comunas_datachile_final",
         groupBy: "ID Comuna",
-        data: this.processResults(data_map_test_comuna, msrName),
+        data: this.processResults(data_map_test_comuna, msrName, mapYear),
         label: d => d["Comuna"]
       },
       regiones: {
@@ -142,7 +145,7 @@ class MapContent extends Component {
         topojson: "/geo/regiones.json",
         topojsonId: "id",
         topojsonKey: "regiones",
-        data: this.processResults(data_map_test_region, msrName),
+        data: this.processResults(data_map_test_region, msrName, mapYear),
         groupBy: "ID Region",
         label: d => d["Region"]
       }
@@ -164,7 +167,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     topic: state.map.topic.value,
     msrName: "FOB US",
-    mapLevel: state.map.level.value
+    mapLevel: state.map.level.value,
+    mapYear: state.map.year.value
   };
 };
 
