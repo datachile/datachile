@@ -94,8 +94,9 @@ class MapContent extends Component {
       ocean: "#d8d8d8",
       shapeConfig: {
         Path: {
-          stroke: "#fff"
-        }
+          stroke: 0
+        },
+        hoverOpacity: 1
       },
       label: false,
       sum: d => d.variable,
@@ -119,13 +120,16 @@ class MapContent extends Component {
         title: mapLevel == "comunas" ? d => d["Comuna"] : d => d["Region"],
         body: d => numeral(d[msrName], locale).format("(USD 0 a)")
       },
-      zoom: true
+      duration: 0,
+      zoom: true,
+      zoomFactor: 2,
+      zoomMax: 100
     };
 
     const configVariations = {
       comunas: {
         id: "ID Comuna",
-        topojson: "/geo/comunas.json",
+        topojson: "/geo/comunas-5.json",
         topojsonId: "id",
         topojsonKey: "comunas_datachile_final",
         groupBy: "ID Comuna",
