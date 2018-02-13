@@ -96,7 +96,8 @@ class MapContent extends Component {
         Path: {
           stroke: 0
         },
-        hoverOpacity: 1
+        hoverOpacity: 1,
+        hover: "#000"
       },
       label: false,
       sum: d => d.variable,
