@@ -1,31 +1,8 @@
 .map-content {
-	& > svg,
-	& .d3plus-geomap {
-		display: block;
-		min-height: calc(90vh - 80px);
-		max-width: 100%;
-	}
-
-	& .map-switch-options {
-		display: flex;
-		justify-content: center;
-		& .toggle {
-			width: 80px;
-			background-color: var(--snow);
-			color: var(--dark);
-			text-align: center;
-			padding: 3px 10px;
-			margin: 1px;
-
-			&.selected {
-				background-color: var(--gray-dark);
-			}
-
-			&:active,
-			&:hover {
-				text-decoration: none;
-				background-color: var(--nice-blue);
-			}
-		}
-	}
+  & > svg,
+  & .d3plus-geomap {
+    display: block;
+    min-height: calc(90vh - 80px);
+    max-width: 100%;
+  }
 }

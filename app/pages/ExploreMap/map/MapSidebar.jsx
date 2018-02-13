@@ -19,7 +19,8 @@ class MapSidebarRaw extends React.Component {
       { key: "education", label: t("Education"), icon: "graduation" },
       { key: "housing", label: t("Housing and Environment"), icon: "house" },
       { key: "demography", label: t("Demography"), icon: "family" },
-      { key: "health", label: t("Health"), icon: "health" }
+      { key: "health", label: t("Health"), icon: "health" },
+      { key: "civic", label: t("Civic"), icon: "civic" }
     ];
 
     return (

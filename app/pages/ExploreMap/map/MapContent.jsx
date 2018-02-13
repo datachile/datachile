@@ -3,6 +3,7 @@ import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Geomap } from "d3plus-react";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import { MAP_SCALE_COLORS } from "helpers/colors";
 
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
@@ -66,36 +67,6 @@ class MapContent extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      map_level: "regiones",
-      msrName: "FOB US"
-    };
-  }
-
-  menuChart(selected) {
-    const { t } = this.props;
-    return (
-      <div className="map-switch-options">
-        <a
-          className={`toggle ${selected === "regiones" ? "selected" : ""}`}
-          onClick={evt => this.toggleChart("regiones")}
-        >
-          {t("Regiones")}
-        </a>
-        <a
-          className={`toggle ${selected === "comunas" ? "selected" : ""}`}
-          onClick={evt => this.toggleChart("comunas")}
-        >
-          {t("Comunas")}
-        </a>
-      </div>
-    );
-  }
-
-  toggleChart(level) {
-    this.setState({
-      map_level: level
-    });
   }
 
   processResults(data, msrName) {
@@ -109,12 +80,9 @@ class MapContent extends Component {
   }
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, topic, msrName, mapLevel } = this.props;
 
     const locale = i18n.language;
-
-    const mapType = this.state.map_level;
-    const msrName = this.state.msrName;
 
     const { data_map_test_comuna, data_map_test_region } = this.props.data;
 
@@ -123,7 +91,7 @@ class MapContent extends Component {
       padding: 3,
       tiles: false,
       fitKey: "id",
-      ocean: "#D8D8D8",
+      ocean: "#d8d8d8",
       shapeConfig: {
         Path: {
           stroke: "#fff"
@@ -134,18 +102,7 @@ class MapContent extends Component {
       colorScale: "variable",
       colorScalePosition: "left",
       colorScaleConfig: {
-        color: [
-          "#708bbb",
-          "#697db6",
-          "#616db1",
-          "#5a5fac",
-          "#5151a6",
-          "#4743a1",
-          "#3c349b",
-          "#302596",
-          "#1f1590",
-          "#00008b"
-        ],
+        color: MAP_SCALE_COLORS[topic],
         axisConfig: {
           shapeConfig: {
             labelConfig: {
@@ -159,7 +116,7 @@ class MapContent extends Component {
         downloadButton: false
       },
       tooltipConfig: {
-        title: mapType == "comunas" ? d => d["Comuna"] : d => d["Region"],
+        title: mapLevel == "comunas" ? d => d["Comuna"] : d => d["Region"],
         body: d => numeral(d[msrName], locale).format("(USD 0 a)")
       },
       zoom: true
@@ -186,11 +143,10 @@ class MapContent extends Component {
       }
     };
 
-    const config = Object.assign({}, configBase, configVariations[mapType]);
+    const config = Object.assign({}, configBase, configVariations[mapLevel]);
 
     return (
       <div className="map-content">
-        {this.menuChart(mapType)}
         <div className="map-color-scale" />
         {data_map_test_comuna &&
           data_map_test_region && <Geomap config={config} />}
@@ -199,7 +155,15 @@ class MapContent extends Component {
   }
 }
 
-MapContent = translate()(connect(state => ({}))(MapContent));
+const mapStateToProps = (state, ownProps) => {
+  return {
+    topic: state.map.topic.value,
+    msrName: "FOB US",
+    mapLevel: state.map.level.value
+  };
+};
+
+MapContent = translate()(connect(mapStateToProps)(MapContent));
 
 export default MapContent;
 export { MapContent };

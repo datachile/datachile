@@ -232,3 +232,66 @@ export const administrationColorScale = scaleOrdinal().range([
   "#365ED2",
   "#3F8180"
 ]);
+
+export const MAP_SCALE_COLORS = {
+  economy: [
+    "#cad3ef",
+    "#bac5e9",
+    "#abb8e3",
+    "#9babdc",
+    "#8a9ed6",
+    "#7992d0",
+    "#6885c9",
+    "#5479c3"
+  ],
+  education: [
+    "#8c9cd9",
+    "#8b90d1",
+    "#8985c8",
+    "#8779c0",
+    "#856db8",
+    "#8361af",
+    "#8056a7",
+    "#7d499f"
+  ],
+  housing: [
+    "#c9d5ba",
+    "#b1c4ab",
+    "#9ab59c",
+    "#83a48e",
+    "#6b957f",
+    "#538471",
+    "#3b7564",
+    "#1d6656"
+  ],
+  demography: [
+    "#fce3e8",
+    "#fecdd2",
+    "#feb8bc",
+    "#fda3a7",
+    "#fb8c91",
+    "#f7747d",
+    "#f25b69",
+    "#ec3c56"
+  ],
+  health: [
+    "#ace0ff",
+    "#a2dbff",
+    "#96d7ff",
+    "#8cd2ff",
+    "#7fcdff",
+    "#73c9ff",
+    "#64c4ff",
+    "#53c0ff"
+  ],
+  civic: [
+    "#f8cc6a",
+    "#f9c469",
+    "#fabc68",
+    "#fab667",
+    "#fbad66",
+    "#fba665",
+    "#fc9e64",
+    "#fc9663"
+  ]
+};

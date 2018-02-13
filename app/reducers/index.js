@@ -9,6 +9,24 @@ const searchActive = (state = false, action) => {
   }
 };
 
+const mapLevelReducer = (state = false, action) => {
+  switch (action.type) {
+    case "SETPARAM_MAPLEVEL":
+      return { ...state, value: action.payload };
+    default:
+      return state.value ? state : { ...state, value: "regiones" };
+  }
+};
+
+const mapTopicReducer = (state = false, action) => {
+  switch (action.type) {
+    case "SETPARAM_TOPICS":
+      return { ...state, value: action.payload.key };
+    default:
+      return state.value ? state : { ...state, value: "economy" };
+  }
+};
+
 const id = (state = {}) => state;
 
 export default {
@@ -25,5 +43,6 @@ export default {
   nene_year: id,
   nene_month: id,
   sources: id,
+  map: combineReducers({ level: mapLevelReducer, topic: mapTopicReducer }),
   search: combineReducers({ searchActive })
 };
