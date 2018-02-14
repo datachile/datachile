@@ -122,6 +122,15 @@ export const sources = {
     min_year: 2010,
     year: 2017
   },
+  election_results_update: {
+    title: "Resultados Electorales",
+    url: "http://www.servel.cl/",
+    min_year: 2009,
+    year: 2017,
+    presidential_election_year: 2013,
+    senators_election_year: [2009, 2013],
+    mayor_election_year: 2016
+  },
   election_participation: {
     title: "Participación Electoral",
     url: "http://www.servel.cl/",
