@@ -165,7 +165,7 @@ class MapContent extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    topic: state.map.topic.value,
+    topic: state.map.topic.value.value,
     msrName: "FOB US",
     mapLevel: state.map.level.value,
     mapYear: state.map.year.value

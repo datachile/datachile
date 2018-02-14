@@ -11,17 +11,20 @@ const searchActive = (state = false, action) => {
 
 const mapLevelReducer = (state = { ...state, value: "regiones" }, action) => {
   switch (action.type) {
-    case "SETPARAM_MAPLEVEL":
+    case "MAP_LEVEL_SET":
       return { ...state, value: action.payload };
     default:
       return state;
   }
 };
 
-const mapTopicReducer = (state = { ...state, value: "economy" }, action) => {
+const mapTopicReducer = (
+  state = { ...state, value: { value: "economy" } },
+  action
+) => {
   switch (action.type) {
-    case "SETPARAM_TOPICS":
-      return { ...state, value: action.payload.key };
+    case "MAP_TOPIC_SET":
+      return { ...state, value: action.payload };
     default:
       return state;
   }
@@ -29,7 +32,7 @@ const mapTopicReducer = (state = { ...state, value: "economy" }, action) => {
 
 const mapYearReducer = (state = { ...state, value: false }, action) => {
   switch (action.type) {
-    case "SETPARAM_MAPYEAR":
+    case "MAP_YEAR_SET":
       return { ...state, value: action.payload };
     default:
       return state;

@@ -34,7 +34,7 @@ class MapLevelSelector extends Component {
 
 const mapDispatchToProps = dispatch => ({
   setMapLevel(value) {
-    dispatch({ type: "SETPARAM_MAPLEVEL", payload: value });
+    dispatch({ type: "MAP_LEVEL_SET", payload: value });
   }
 });
 

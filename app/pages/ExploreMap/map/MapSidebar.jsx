@@ -2,54 +2,88 @@ import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router";
+import { Icon } from "@blueprintjs/core";
+
 import CustomSelect from "components/CustomSelect";
+import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
+
 import "./MapSidebar.css";
 
 class MapSidebarRaw extends React.Component {
+  getTopicOptions() {
+    const { t, setTopic } = this.props;
+
+    const options = [
+      { value: "economy", name: t("Economy") },
+      { value: "education", name: t("Education") },
+      { value: "environment", name: t("Housing & Environment") },
+      { value: "demography", name: t("Demography") },
+      { value: "health", name: t("Health") },
+      { value: "civics", name: t("Civic") }
+    ].map(item => {
+      item.icon = `/images/profile-icon/icon-${item.value}.svg`;
+      return item;
+    });
+
+    setTopic(options[0]);
+
+    this.topics = options;
+    return options;
+  }
+
   render() {
     const { t } = this.props;
 
-    const { setTopics, valueTopics } = this.props;
-    const { setIndicator, valueIndicator } = this.props;
-    const { setCountry, valueCountry } = this.props;
-    const { setCategory, valueCategory } = this.props;
+    const optionTopic = this.topics || this.getTopicOptions.call(this);
 
-    const OPTIONS_TOPICOS = [
-      { key: "economy", label: t("Economy"), icon: "portfolio" },
-      { key: "education", label: t("Education"), icon: "graduation" },
-      { key: "housing", label: t("Housing and Environment"), icon: "house" },
-      { key: "demography", label: t("Demography"), icon: "family" },
-      { key: "health", label: t("Health"), icon: "health" },
-      { key: "civic", label: t("Civic"), icon: "civic" }
-    ];
+    const { valueTopic, setTopic } = this.props;
+    const { valueIndicator, setIndicator } = this.props;
+    const { valueCountry, addCountry, removeCountry } = this.props;
+    const { valueCategory, setCategory } = this.props;
 
     return (
       <div className="map-sidebar">
         <h1>{t("Map")}</h1>
-        <OptionGroup
-          label={t("Topics")}
-          items={OPTIONS_TOPICOS}
-          value={valueTopics}
-          onItemSelect={setTopics}
-        />
-        <OptionGroup
-          label={t("Indicator")}
-          items={[]}
-          value={valueIndicator}
-          onItemSelect={setIndicator}
-        />
-        <OptionGroup
-          label={t("Country")}
-          items={[]}
-          value={valueCountry}
-          onItemSelect={setCountry}
-        />
-        <OptionGroup
-          label={t("Category")}
-          items={[]}
-          value={valueCategory}
-          onItemSelect={setCategory}
-        />
+        <OptionGroup label={t("Topics")}>
+          <CustomSelect
+            items={optionTopic}
+            value={valueTopic}
+            onItemSelect={setTopic}
+            filterable={false}
+            defaultOption={{}}
+          >
+            <div className="select-option current" title={valueTopic.name}>
+              <img className="icon" src={valueTopic.icon} />
+              <span className="value">{valueTopic.name}</span>
+              <Icon iconName="double-caret-vertical" />
+            </div>
+          </CustomSelect>
+        </OptionGroup>
+
+        <OptionGroup label={t("Indicator")}>
+          <CustomSelect
+            items={[]}
+            value={valueIndicator}
+            onItemSelect={setIndicator}
+          />
+        </OptionGroup>
+
+        <OptionGroup label={t("Country")}>
+          <CustomSelect
+            items={[]}
+            value={valueCountry}
+            onItemSelect={addCountry}
+          />
+        </OptionGroup>
+
+        <OptionGroup label={t("Category")}>
+          <CustomSelect
+            items={[]}
+            value={valueCategory}
+            onItemSelect={setCategory}
+          />
+        </OptionGroup>
+
         <Link to="/explore/map/data">Go to data</Link>
       </div>
     );
@@ -60,32 +94,39 @@ function OptionGroup(props) {
   return (
     <div className="option-group">
       <label className="option-label">{props.label}</label>
-      <CustomSelect
-        value={props.value}
-        items={props.items}
-        onItemSelect={props.onItemSelect}
-      />
+      {props.children}
     </div>
   );
 }
+
 const mapStateToProps = state => ({
-  valueTopics: state.a,
-  valueIndicator: state.a,
-  valueCountry: state.a,
-  valueCategory: state.a
+  valueTopic: state.map.topic.value,
+
+  optionIndicator: state.map.a,
+  valueIndicator: state.map.a,
+
+  optionCountry: state.map.a,
+  valueCountry: state.map.a,
+
+  optionCategory: state.map.a,
+  valueCategory: state.map.a
 });
+
 const mapDispatchToProps = dispatch => ({
-  setTopics(value) {
-    dispatch({ type: "SETPARAM_TOPICS", payload: value });
+  setTopic(payload) {
+    dispatch({ type: "MAP_TOPIC_SET", payload });
   },
-  setIndicator(value) {
-    dispatch({ type: "SETPARAM_TOPICS", payload: value });
+  setIndicator(payload) {
+    dispatch({ type: "MAP_INDICATOR_SET", payload });
   },
-  setCountry(value) {
-    dispatch({ type: "SETPARAM_TOPICS", payload: value });
+  addCountry(payload) {
+    dispatch({ type: "MAP_COUNTRY_ADD", payload });
   },
-  setCategory(value) {
-    dispatch({ type: "SETPARAM_TOPICS", payload: value });
+  removeCountry(payload) {
+    dispatch({ type: "MAP_COUNTRY_REMOVE", payload });
+  },
+  setCategory(payload) {
+    dispatch({ type: "MAP_CATEGORY_SET", payload });
   }
 });
 

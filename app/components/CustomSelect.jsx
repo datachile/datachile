@@ -19,20 +19,23 @@ CustomSelect.defaultProps = {
     isActive && className.push("active");
     item.disabled && className.push("disabled");
     return (
-      <span className={className.join(" ")} onClick={handleClick}>
-        {item.icon ? <Icon iconName={item.icon} /> : null}
+      <span
+        className={className.join(" ")}
+        onClick={item.disabled ? null : handleClick}
+      >
+        {item.icon ? <img className="icon" src={item.icon} /> : null}
         <span className="select-option-label">{item.name}</span>
       </span>
     );
   },
   popoverProps: {
     popoverClassName: "custom-select pt-minimal"
-  }
+  },
+  defaultOption: { value: null, name: "Select...", disabled: true }
 };
 
 /**
  * @class CustomSelect
- * @augments {React.Component<CustomSelectProps>}
  * @static {object} defaultProps
  * @param {object} props
  * @param {string|Array<any>} [props.className]
@@ -46,8 +49,7 @@ function CustomSelect(props) {
     className: "custom-select " + (props.className || "")
   });
 
-  if (!props.value || !props.value.name)
-    props.value = { value: null, name: "Select...", disabled: true };
+  if (!props.value) props.value = props.defaultOption;
 
   if (!props.children)
     props.children = (

@@ -17,7 +17,7 @@ class MapTitle extends Component {
       <h2 className="map-generated-title">
         {mapLevel && <span>{mapLevel}</span>}
         -
-        {topic && <span>{topic}</span>}
+        {topic && <span>{topic.value}</span>}
         -
         {mapYear && <span>{mapYear}</span>}
       </h2>

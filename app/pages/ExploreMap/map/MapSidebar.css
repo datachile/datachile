@@ -3,9 +3,8 @@
     margin-top: 1.5em;
   }
   & .custom-select {
-    & .select-option {
-      padding-left: 2em;
-    }
+    width: 100%;
+
     & .current {
       font-family: var(--font-family-title);
       font-size: 13px;
@@ -13,6 +12,52 @@
       text-transform: uppercase;
       color: var(--snow);
       background-color: var(--bg-blue);
+    }
+  }
+}
+
+.custom-select {
+  & .select-option {
+    font-family: var(--font-family-title);
+
+    & .icon {
+      width: 2em;
+      margin-right: 0.4em;
+    }
+  }
+}
+
+.pt-popover.custom-select {
+  min-width: 240px;
+
+  & .pt-popover-content {
+    padding: 0;
+    background-color: #ccc;
+  }
+
+  & .select-option {
+    line-height: 2rem;
+    text-transform: uppercase;
+    color: #000;
+    background-color: #ccc;
+
+    &:hover {
+      background-color: #bbb;
+    }
+
+    &.active {
+      color: #fff;
+      background-color: #708bbb;
+    }
+
+    & .icon {
+      padding: 0.2em;
+      width: 2em;
+    }
+
+    & .select-option-label {
+      font-size: 12px;
+      letter-spacing: 0.5px;
     }
   }
 }

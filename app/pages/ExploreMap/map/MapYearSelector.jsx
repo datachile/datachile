@@ -43,7 +43,7 @@ class MapYearSelector extends Component {
 
 const mapDispatchToProps = dispatch => ({
   setMapYearSelected(value) {
-    dispatch({ type: "SETPARAM_MAPYEAR", payload: value.newValue });
+    dispatch({ type: "MAP_YEAR_SET", payload: value.newValue });
   }
 });
 
