@@ -84,6 +84,8 @@
   "Complaints Over Time": "Evolución de Denuncias",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
+  "Congress": "Congreso",
+  "Congressperson Election": "Elecciones de Diputados",
   "Connected to electricity network": "Conectado a la red eléctrica",
   "Use fire-based heating": "Usa calefacción basada en fuego",
   "Connected to public tap water system": "Conectado a la red de agua pública",
@@ -386,6 +388,7 @@
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
 
+  "Presidential": "Presidencial",
   "PSU exams": "Personas que rindieron PSU",
   "PSU Results": "Resultados PSU",
   "PSU Results By Sex": "Resultados PSU por sexo",
@@ -443,6 +446,8 @@
   },
   "Results": "Resultados",
   "Results for": "Resultados para",
+  "Results 1st Round": "Resultados Primera Vuelta",
+  "Results 2nd Round": "Resultados Segunda Vuelta",
   "Retention": "Retención",
   "Retention by Program": "Retención por Programa",
   "Role": "Rol",
@@ -460,6 +465,7 @@
   "See less": "Ver menos",
   "See more": "Ver más",
   "Senators": "Senadores",
+  "Senator Election": "Elección de Senador",
   "Services Access": "Acceso a servicios",
   "SignUp": {
     "Confirm Password": "Confirm Password",
