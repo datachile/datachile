@@ -3,6 +3,8 @@ import PersonItem from "components/PersonItem";
 import { translate } from "react-i18next";
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
+import { sources } from "helpers/consts";
+
 import "./AuthoritiesBlock.css";
 
 class AuthoritiesBlock extends Component {
@@ -20,16 +22,20 @@ class AuthoritiesBlock extends Component {
         });
       } else {
         prm = mondrianClient
-          .cube("election_results")
+          .cube("election_results_update")
           .then(cube => {
             var q = cube.query
               .drilldown("Candidates", "Candidates", "Candidate")
-              .drilldown("Party", "Party", "Party")
+              .drilldown("Party", "Party", "Partido")
               .measure("Votes")
               .cut("[Elected].[Elected].&[1]")
               .cut("[Election Type].[Election Type].&[2]");
 
-            q.cut(`[Date].[Year].&[${store.presidential_election_year}]`);
+            q.cut(
+              `[Date].[Year].&[${
+                sources.election_results_update.presidential_election_year
+              }]`
+            );
 
             return mondrianClient.query(
               setLangCaptions(q, store.i18n.locale),
@@ -62,18 +68,20 @@ class AuthoritiesBlock extends Component {
         });
       } else {
         prm = mondrianClient
-          .cube("election_results")
+          .cube("election_results_update")
           .then(cube => {
             var q = cube.query
               .drilldown("Candidates", "Candidates", "Candidate")
-              .drilldown("Party", "Party", "Party")
+              .drilldown("Party", "Party", "Partido")
               .measure("Votes")
               .cut("[Elected].[Elected].&[1]")
               .cut("[Election Type].[Election Type].&[3]")
               .cut(
-                `{[Date].[Date].[Year].&[${
-                  store.senators_election_year[0]
-                }],[Date].[Date].[Year].&[${store.senators_election_year[1]}]}`
+                `{[Date].[Year].&[${
+                  sources.election_results_update.senators_election_year[0]
+                }],[Date].[Year].&[${
+                  sources.election_results_update.senators_election_year[1]
+                }]}`
               );
 
             var id = 99999;
@@ -86,7 +94,7 @@ class AuthoritiesBlock extends Component {
                 break;
             }
 
-            q.cut(`[GeographyR].[Geography].[Region].&[${id}]`);
+            q.cut(`[Geography].[Geography].[Region].&[${id}]`);
 
             return mondrianClient.query(
               setLangCaptions(q, store.i18n.locale),
@@ -123,16 +131,20 @@ class AuthoritiesBlock extends Component {
       var prm;
       if (geo.type == "comuna") {
         prm = mondrianClient
-          .cube("election_results")
+          .cube("election_results_update")
           .then(cube => {
             var q = cube.query
               .drilldown("Candidates", "Candidates", "Candidate")
-              .drilldown("Party", "Party", "Party")
+              .drilldown("Party", "Party", "Partido")
               .measure("Votes")
-              .cut("[Elected].[Elected].&[1]")
-              .cut("[Election Type].[Election Type].&[5]")
-              .cut(`[Date].[Year].&[${store.mayor_election_year}]`)
-              .cut(`[GeographyC].[Geography].[Comuna].&[${geo.key}]`);
+              .cut("[Elected].[Elected].[Elected].&[1]")
+              .cut("[Election Type].[Election Type].[Election Type].&[5]")
+              .cut(
+                `[Date].[Year].&[${
+                  sources.election_results_update.mayor_election_year
+                }]`
+              )
+              .cut(`[Geography].[Geography].[Comuna].&[${geo.key}]`);
 
             return mondrianClient.query(
               setLangCaptions(q, store.i18n.locale),
@@ -178,7 +190,7 @@ class AuthoritiesBlock extends Component {
       ? {
           id: this.props.data.election_mayor["ID Candidate"],
           name: this.props.data.election_mayor["Candidate"],
-          party: this.props.data.election_mayor["Party"]
+          party: this.props.data.election_mayor["Partido"]
         }
       : false;
 
@@ -187,7 +199,7 @@ class AuthoritiesBlock extends Component {
           return {
             id: d["ID Candidate"],
             name: d["Candidate"],
-            party: d["Party"]
+            party: d["Partido"]
           };
         })
       : false;
