@@ -204,8 +204,6 @@ class AuthoritiesBlock extends Component {
         })
       : false;
 
-    console.log(senators);
-
     return (
       <div className="splash-authorities">
         {president && (
