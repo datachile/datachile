@@ -84,6 +84,7 @@ class CongresspersonResults extends Section {
     const path = this.context.data.path_congressperson_results;
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
+    const participation = this.context.data.need_presidential_participation;
     let non_electors = null;
 
     if (geo.depth === 2) {
@@ -105,9 +106,9 @@ class CongresspersonResults extends Section {
           config={{
             height: 500,
             data: path,
-            /*filter: this.state.non_electors
+            filter: this.state.non_electors
               ? ""
-              : d => d["ID Candidate"] !== 9999,*/
+              : d => d["ID Candidate"] !== 9999,
             total: d =>
               geo.type === "comuna"
                 ? d["Votes"]
@@ -181,19 +182,22 @@ class CongresspersonResults extends Section {
             }
           }}
           dataFormat={data => {
-            const d = data.data.map(item => {
+            let d = data.data.map(item => {
               return { ...item, count: 1 };
             });
-            console.log(d);
-            /*d.push({
-              Votes: non_electors,
-              Candidate: t("Electors that didn't vote"),
-              ["ID Candidate"]: 9999,
-              ["ID Partido"]: 9999,
-              ["ID Year"]: 2016,
-              Partido: "",
-              Year: "2016"
-            });*/
+
+            participation.data.map(item => {
+              d.push({
+                Votes: item["Electors"],
+                Candidate: t("Electors that didn't vote").toUpperCase(),
+                Coalition: t("Electors that didn't vote").toUpperCase(),
+                ["ID Candidate"]: 9999,
+                ["ID Partido"]: 9999,
+                ["ID Year"]: item["ID Year"],
+                Partido: "",
+                Year: item.Year
+              });
+            });
             return d;
           }}
         />

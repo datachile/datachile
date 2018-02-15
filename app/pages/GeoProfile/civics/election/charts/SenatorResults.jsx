@@ -16,6 +16,8 @@ import { Switch } from "@blueprintjs/core";
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
+import maxBy from "lodash/maxBy";
+
 class SenatorResults extends Section {
   static need = [
     (params, store) =>
@@ -83,7 +85,8 @@ class SenatorResults extends Section {
     super(props);
 
     this.state = {
-      non_electors: true
+      non_electors: true,
+      maxYear: 0
     };
 
     this.toggleElectors = this.toggleElectors.bind(this);
@@ -99,6 +102,8 @@ class SenatorResults extends Section {
     const path = this.context.data.path_senator_results;
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
+    const participation = this.context.data.need_presidential_participation;
+
     let non_electors = null;
 
     if (geo.depth === 2) {
@@ -114,6 +119,8 @@ class SenatorResults extends Section {
       { name: "Nueva Mayoría", ids: [1, 2, 9, 10, 11, 14] },
       { name: "Frente Amplio", ids: [4, 12, 13, 15, 25] }
     ];
+
+    console.log(this.state);
 
     return (
       <div className={className}>
@@ -145,25 +152,20 @@ class SenatorResults extends Section {
                 (geo.type === "comuna" ? t("Votes") : t("Elected Authority"))
             },
             groupBy:
-              geo.type === "comuna" || geo.type === "region"
+              geo.type === "comuna"
                 ? ["ID Coalition", "Candidate"]
-                : ["ID Coalition", "Partido"],
+                : ["ID Coalition", "ID Partido"],
             label: d =>
-              geo.type === "comuna" || geo.type === "region"
+              geo.type === "comuna"
                 ? d["Candidate"] + (d["ID Elected"] === 1 ? "*" : "")
                 : d["Partido"],
-            sum: d =>
-              geo.type === "comuna"
-                ? d["Votes"]
-                : geo.type === "region"
-                  ? d["Number of records"] / d["Number of records"]
-                  : d["count"],
-            //time: "ID Year",
+            sum: d => (geo.type === "comuna" ? d["Votes"] : d["count"]),
+            time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale("co" + d["ID Coalition"])
             },
             tooltipConfig: {
-              //title: d => (geo.type === 2 ? d["Candidate"] : d["Partido"]),
+              title: d => (geo.type === 2 ? d["Candidate"] : d["Partido"]),
               body: d =>
                 "<div>" +
                 "<div>" +
@@ -185,7 +187,9 @@ class SenatorResults extends Section {
                 "</div>"
             },
             legendTooltip: {
-              title: d => (geo.depth === 2 ? d["Candidate"] : d["Coalition"])
+              title: d => (geo.depth === 2 ? d["Coalition"] : d["Coalition"]),
+              body: d =>
+                numeral(d["Votes"], locale).format("0,0") + " " + t("Votes")
             },
             legendConfig: {
               label: d =>
@@ -199,9 +203,25 @@ class SenatorResults extends Section {
             }
           }}
           dataFormat={data => {
-            const d = data.data.map(item => {
+            let d = data.data.map(item => {
               return { ...item, count: 1 };
             });
+
+            this.setState({ maxYear: maxBy(d, "ID Year")["ID Year"] });
+
+            if (maxBy(d, "ID Year")["ID Year"] > 2013)
+              participation.data.map(item => {
+                d.push({
+                  Votes: item["Electors"],
+                  Candidate: t("Electors that didn't vote").toUpperCase(),
+                  Coalition: t("Electors that didn't vote").toUpperCase(),
+                  ["ID Candidate"]: 9999,
+                  ["ID Partido"]: 9999,
+                  ["ID Year"]: item["ID Year"],
+                  Partido: "",
+                  Year: item.Year
+                });
+              });
 
             /*d.push({
               Votes: non_electors,
@@ -216,15 +236,16 @@ class SenatorResults extends Section {
           }}
         />
 
-        {geo.depth === 2 && (
-          <div>
-            <Switch
-              onClick={this.toggleElectors}
-              labelElement={<strong>{t("Total Electors")}</strong>}
-              checked={this.state.non_electors}
-            />
-          </div>
-        )}
+        {geo.depth === 2 &&
+          this.state.maxYear > 2013 && (
+            <div>
+              <Switch
+                onClick={this.toggleElectors}
+                labelElement={<strong>{t("Total Electors")}</strong>}
+                checked={this.state.non_electors}
+              />
+            </div>
+          )}
         <SourceNote cube="election_results" />
       </div>
     );
