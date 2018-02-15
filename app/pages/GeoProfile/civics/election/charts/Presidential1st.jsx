@@ -19,7 +19,7 @@ import SourceNote from "components/SourceNote";
 class Presidential1st extends Section {
   static need = [
     (params, store) => {
-      console.log(params);
+
       return simpleGeoChartNeed(
         "path_electoral_presidential_1nd",
         "election_results_update",
@@ -58,8 +58,6 @@ class Presidential1st extends Section {
     const { datum_electoral_presidential_1nd_chile, geo } = this.context.data;
 
     const locale = i18n.language;
-
-    //console.log(this.context.data);
 
     return (
       <div className={className}>

@@ -149,12 +149,12 @@ class Presidential2nd extends Section {
             );
 
             const total_country_year = datum_electoral_presidential_2nd_chile.data.reduce(
-                (all, item) => {
-                  all[item["ID Year"]] += item["Votes"];
-                  return all;
-                },
-                { "2013": 0, "2017": 0 }
-              );
+              (all, item) => {
+                all[item["ID Year"]] += item["Votes"];
+                return all;
+              },
+              { "2013": 0, "2017": 0 }
+            );
 
             const country =
               geo.type !== "country"
@@ -162,13 +162,12 @@ class Presidential2nd extends Section {
                     return {
                       ...item,
                       geo: "Chile",
-                      percentage: item["Votes"] / total_country_year[item["Year"]]
+                      percentage:
+                        item["Votes"] / total_country_year[item["Year"]]
                     };
                   })
                 : [];
 
-                console.log(total_country_year)
-            console.log(location.concat(country));
             return location.concat(country);
           }}
         />
