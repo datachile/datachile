@@ -12,12 +12,14 @@ class MapTitle extends Component {
   }
 
   render() {
-    const { t, mapLevel, topic, mapYear } = this.props;
+    const { t, mapLevel, topic, indicator, mapYear } = this.props;
     return (
       <h2 className="map-generated-title">
         {mapLevel && <span>{mapLevel}</span>}
         -
         {topic && <span>{topic.value}</span>}
+        -
+        {indicator && <span>{indicator.value}</span>}
         -
         {mapYear && <span>{mapYear}</span>}
       </h2>
@@ -30,8 +32,9 @@ class MapTitle extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     mapLevel: state.map.level.value,
-    topic: state.map.topic.value,
-    mapYear: state.map.year.value
+    mapYear: state.map.year.value,
+    topic: state.map.params.topic,
+    indicator: state.map.params.indicator
   };
 };
 

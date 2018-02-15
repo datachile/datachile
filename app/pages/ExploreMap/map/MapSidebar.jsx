@@ -9,7 +9,26 @@ import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
 import "./MapSidebar.css";
 
-class MapSidebarRaw extends React.Component {
+class MapSidebar extends React.Component {
+  static need = [
+    (params, store) => {
+      // mondrian-rest-client doesn't use the annotations from the json
+      const promise = fetch(__API__ + "cubes")
+        .then(response => response.json())
+        .then(data => ({
+          key: "data_map_indicators",
+          data: data.cubes.reduce(function(groups, cube) {
+            const topic = cube.annotations.topic;
+            topic in groups || (groups[topic] = []);
+            groups[topic].push(cube.name);
+            return groups;
+          }, {})
+        }));
+
+      return { type: "GET_DATA", promise };
+    }
+  ];
+
   getTopicOptions() {
     const { t, setTopic } = this.props;
 
@@ -31,15 +50,22 @@ class MapSidebarRaw extends React.Component {
     return options;
   }
 
-  render() {
-    const { t } = this.props;
+  getIndicatorOptions() {
+    const { data, t, valueTopic } = this.props;
+    const cubes = data.data_map_indicators[valueTopic.value] || [];
+    return cubes.map(name => ({ value: name, name }));
+  }
 
-    const optionTopic = this.topics || this.getTopicOptions.call(this);
+  render() {
+    const { data, t } = this.props;
 
     const { valueTopic, setTopic } = this.props;
     const { valueIndicator, setIndicator } = this.props;
     const { valueCountry, addCountry, removeCountry } = this.props;
     const { valueCategory, setCategory } = this.props;
+
+    const optionTopic = this.topics || this.getTopicOptions.call(this);
+    const optionIndicator = this.getIndicatorOptions.call(this);
 
     return (
       <div className="map-sidebar">
@@ -50,7 +76,6 @@ class MapSidebarRaw extends React.Component {
             value={valueTopic}
             onItemSelect={setTopic}
             filterable={false}
-            defaultOption={{}}
           >
             <div className="select-option current" title={valueTopic.name}>
               <img className="icon" src={valueTopic.icon} />
@@ -62,9 +87,10 @@ class MapSidebarRaw extends React.Component {
 
         <OptionGroup label={t("Indicator")}>
           <CustomSelect
-            items={[]}
+            items={optionIndicator}
             value={valueIndicator}
             onItemSelect={setIndicator}
+            filterable={false}
           />
         </OptionGroup>
 
@@ -100,10 +126,8 @@ function OptionGroup(props) {
 }
 
 const mapStateToProps = state => ({
-  valueTopic: state.map.topic.value,
-
-  optionIndicator: state.map.a,
-  valueIndicator: state.map.a,
+  valueTopic: state.map.params.topic,
+  valueIndicator: state.map.params.indicator,
 
   optionCountry: state.map.a,
   valueCountry: state.map.a,
@@ -130,8 +154,8 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-const MapSidebar = translate()(
-  connect(mapStateToProps, mapDispatchToProps)(MapSidebarRaw)
+MapSidebar = translate()(
+  connect(mapStateToProps, mapDispatchToProps)(MapSidebar)
 );
 
 export default MapSidebar;

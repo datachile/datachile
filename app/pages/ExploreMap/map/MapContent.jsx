@@ -65,10 +65,6 @@ class MapContent extends Component {
     }
   ];
 
-  constructor(props) {
-    super(props);
-  }
-
   processResults(data, msrName, mapYear) {
     var dataMap = [];
     if (data && msrName && mapYear) {
@@ -165,7 +161,7 @@ class MapContent extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    topic: state.map.topic.value.value,
+    topic: state.map.params.topic.value,
     msrName: "FOB US",
     mapLevel: state.map.level.value,
     mapYear: state.map.year.value
