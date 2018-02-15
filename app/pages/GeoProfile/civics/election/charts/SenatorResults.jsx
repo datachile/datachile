@@ -161,13 +161,11 @@ class SenatorResults extends Section {
               body: d =>
                 "<div>" +
                 "<div>" +
-                (geo.type === "comuna" || geo.type === "region"
+                (geo.type === "comuna"
                   ? numeral(d["Votes"], locale).format("0,0")
-                  : numeral(d["Number of records"], locale).format("0,0")) +
+                  : numeral(d["count"], locale).format("0,0")) +
                 " " +
-                (geo.type === "comuna" || geo.type === "region"
-                  ? t("Votes")
-                  : t("Elected Authority")) +
+                (geo.type === "comuna" ? t("Votes") : t("Elected Authority")) +
                 "</div>" +
                 "<div>" +
                 (geo.type === "comuna" ||
