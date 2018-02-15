@@ -951,7 +951,6 @@ class GeoProfile extends Component {
                   </SectionColumns>
                 </ElectionSlide>
               </div>
-
               <div>
                 <ElectionSlide>
                   <SectionColumns>
