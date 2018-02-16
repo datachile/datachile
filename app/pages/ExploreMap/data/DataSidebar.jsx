@@ -10,18 +10,48 @@ class DataSidebar extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, datasets = [], datasetsQty = 0, deleteDataset } = this.props;
 
     return (
       <div className="data-sidebar">
         <h1>{t("My Data")}</h1>
         <Link to="/explore/map">Go to mapa</Link>
+        <div className="dataset-list-container">
+          <h2>Datasets {datasetsQty > 0 && <span> ({datasetsQty})</span>}</h2>
+          {datasets.map((d, ix) => (
+            <div className="dataset">
+              <span className="dataset-index">{ix + 1}. </span>
+              <span className="dataset-name">{d.title}</span>
+              <a className="dataset-delete" onClick={evt => deleteDataset(ix)}>
+                X
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
 }
 
-DataSidebar = translate()(connect(state => ({}))(DataSidebar));
+const mapStateToProps = (state, ownProps) => {
+  return {
+    datasets: state.map.datasets.list,
+    datasetsQty: state.map.datasets.list.length
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  deleteDataset(value) {
+    dispatch({
+      type: "MAP_DELETE_DATASET",
+      index: value
+    });
+  }
+});
+
+DataSidebar = translate()(
+  connect(mapStateToProps, mapDispatchToProps)(DataSidebar)
+);
 
 export default DataSidebar;
 export { DataSidebar };

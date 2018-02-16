@@ -1,2 +1,19 @@
 .data-sidebar {
+  & .dataset-list-container {
+    & h2 {
+      color: var(--snow);
+    }
+    & .dataset {
+      & .dataset-index {
+        color: var(--snow);
+      }
+      & .dataset-name {
+        color: var(--snow);
+      }
+      & .dataset-delete {
+        background-color: var(--snow);
+        padding: 5px;
+      }
+    }
+  }
 }

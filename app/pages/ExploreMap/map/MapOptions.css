@@ -1,0 +1,21 @@
+.map-options {
+  display: flex;
+  justify-content: center;
+  & .option {
+    background-color: var(--snow);
+    color: var(--dark);
+    text-align: center;
+    padding: 3px 10px;
+    margin: 1px;
+
+    &.selected {
+      background-color: var(--gray-dark);
+    }
+
+    &:active,
+    &:hover {
+      text-decoration: none;
+      background-color: var(--nice-blue);
+    }
+  }
+}

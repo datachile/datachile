@@ -10,6 +10,7 @@ import MapSidebar from "./map/MapSidebar";
 import MapContent from "./map/MapContent";
 import MapLevelSelector from "./map/MapLevelSelector";
 import MapTitle from "./map/MapTitle";
+import MapOptions from "./map/MapOptions";
 import MapYearSelector from "./map/MapYearSelector";
 
 import DataSidebar from "./data/DataSidebar";
@@ -57,6 +58,7 @@ class ExploreMap extends Component {
                   <MapTitle />
                   <MapLevelSelector />
                   <MapYearSelector />
+                  <MapOptions />
                   <MapContent data={this.props.data} />
                 </div>
               </div>

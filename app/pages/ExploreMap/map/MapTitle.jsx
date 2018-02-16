@@ -23,8 +23,6 @@ class MapTitle extends Component {
       </h2>
     );
   }
-
-  toggleChart(level) {}
 }
 
 const mapStateToProps = (state, ownProps) => {

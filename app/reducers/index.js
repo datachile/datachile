@@ -39,6 +39,23 @@ const mapYearReducer = (state = { ...state, value: false }, action) => {
   }
 };
 
+const mapDatasetReducer = (state = { ...state, list: [] }, action) => {
+  switch (action.type) {
+    case "MAP_SAVE_DATASET":
+      return {
+        ...state,
+        list: [...state.list, action.dataset]
+      };
+    case "MAP_DELETE_DATASET":
+      return {
+        ...state,
+        list: state.list.filter((item, index) => index !== action.index)
+      };
+    default:
+      return state;
+  }
+};
+
 const id = (state = {}) => state;
 
 export default {
@@ -58,7 +75,8 @@ export default {
   map: combineReducers({
     level: mapLevelReducer,
     topic: mapTopicReducer,
-    year: mapYearReducer
+    year: mapYearReducer,
+    datasets: mapDatasetReducer
   }),
   search: combineReducers({ searchActive })
 };
