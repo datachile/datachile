@@ -1,56 +1,10 @@
 import { combineReducers } from "redux";
+import mapReducers from "./map.js";
 
 const searchActive = (state = false, action) => {
   switch (action.type) {
     case "ACTIVATE_SEARCH":
       return !state;
-    default:
-      return state;
-  }
-};
-
-const mapLevelReducer = (state = { ...state, value: "regiones" }, action) => {
-  switch (action.type) {
-    case "MAP_LEVEL_SET":
-      return { ...state, value: action.payload };
-    default:
-      return state;
-  }
-};
-
-const mapTopicReducer = (
-  state = { ...state, value: { value: "economy" } },
-  action
-) => {
-  switch (action.type) {
-    case "MAP_TOPIC_SET":
-      return { ...state, value: action.payload };
-    default:
-      return state;
-  }
-};
-
-const mapYearReducer = (state = { ...state, value: false }, action) => {
-  switch (action.type) {
-    case "MAP_YEAR_SET":
-      return { ...state, value: action.payload };
-    default:
-      return state;
-  }
-};
-
-const mapDatasetReducer = (state = { ...state, list: [] }, action) => {
-  switch (action.type) {
-    case "MAP_SAVE_DATASET":
-      return {
-        ...state,
-        list: [...state.list, action.dataset]
-      };
-    case "MAP_DELETE_DATASET":
-      return {
-        ...state,
-        list: state.list.filter((item, index) => index !== action.index)
-      };
     default:
       return state;
   }
@@ -72,11 +26,6 @@ export default {
   nene_year: id,
   nene_month: id,
   sources: id,
-  map: combineReducers({
-    level: mapLevelReducer,
-    topic: mapTopicReducer,
-    year: mapYearReducer,
-    datasets: mapDatasetReducer
-  }),
+  map: mapReducers,
   search: combineReducers({ searchActive })
 };

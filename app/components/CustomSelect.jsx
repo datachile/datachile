@@ -49,7 +49,12 @@ function CustomSelect(props) {
     className: "custom-select " + (props.className || "")
   });
 
-  if (!props.value) props.value = props.defaultOption;
+  if (!props.value || "object" != typeof props.value)
+    props.value = props.defaultOption;
+  else {
+    const inOptions = props.items.some(item => item.name == props.value.name);
+    if (!inOptions) props.value = props.defaultOption;
+  }
 
   if (!props.children)
     props.children = (
