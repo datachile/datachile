@@ -88,7 +88,7 @@ class CongresspersonResults extends Section {
     let non_electors = null;
 
     if (geo.depth === 2) {
-      const data_election = this.context.data.need_mayor_participation;
+      const data_election = this.context.data.need_presidential_participation;
       non_electors =
         data_election.data[0].Electors - data_election.data[0].Votes;
     }
@@ -109,12 +109,7 @@ class CongresspersonResults extends Section {
             filter: this.state.non_electors
               ? ""
               : d => d["ID Candidate"] !== 9999,
-            total: d =>
-              geo.type === "comuna"
-                ? d["Votes"]
-                : geo.type === "region"
-                  ? d["Number of records"] / d["Number of records"]
-                  : d["count"],
+            total: d => (geo.type === "comuna" ? d["Votes"] : d["count"]),
             totalConfig: {
               text: d =>
                 "Total: " +
@@ -127,17 +122,17 @@ class CongresspersonResults extends Section {
             groupBy:
               geo.type === "comuna"
                 ? ["ID Coalition", "Candidate"]
-                : ["ID Coalition", "Partido"],
+                : geo.type === "region"
+                  ? ["ID Coalition", "Candidate"]
+                  : ["ID Coalition", "Partido"],
             label: d =>
-              geo.type === "comuna"
+              geo.type === "comuna" || geo.type === "region"
                 ? d["Candidate"] + (d["ID Elected"] === 1 ? "*" : "")
                 : d["Partido"],
             sum: d =>
               geo.type === "comuna"
                 ? d["Votes"]
-                : geo.type === "region"
-                  ? d["Number of records"] / d["Number of records"]
-                  : d["count"],
+                : geo.type === "region" ? d["Votes"] : d["count"],
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale("co" + d["ID Coalition"])
@@ -180,7 +175,7 @@ class CongresspersonResults extends Section {
             let d = data.data.map(item => {
               return { ...item, count: 1 };
             });
-
+            if(geo.depth === 2)
             participation.data.map(item => {
               d.push({
                 Votes: item["Electors"],
@@ -197,15 +192,16 @@ class CongresspersonResults extends Section {
           }}
         />
 
-        {geo.depth === 2 && (
-          <div>
-            <Switch
-              onClick={this.toggleElectors}
-              labelElement={<strong>{t("Total Electors")}</strong>}
-              checked={this.state.non_electors}
-            />
-          </div>
-        )}
+        {geo.depth === 2 ||
+          (geo.depth === 2 && (
+            <div>
+              <Switch
+                onClick={this.toggleElectors}
+                labelElement={<strong>{t("Total Electors")}</strong>}
+                checked={this.state.non_electors}
+              />
+            </div>
+          ))}
         <SourceNote cube="election_results" />
       </div>
     );

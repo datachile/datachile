@@ -11,7 +11,8 @@ import mondrianClient, {
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 
-import { numeral } from "helpers/formatters";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import { Switch } from "@blueprintjs/core";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -19,7 +20,6 @@ import SourceNote from "components/SourceNote";
 class Presidential1st extends Section {
   static need = [
     (params, store) => {
-
       return simpleGeoChartNeed(
         "path_electoral_presidential_1nd",
         "election_results_update",
@@ -52,10 +52,30 @@ class Presidential1st extends Section {
       )(params, store)
   ];
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      non_electors: true
+    };
+
+    this.toggleElectors = this.toggleElectors.bind(this);
+  }
+
+  toggleElectors() {
+    this.setState(prevState => ({
+      non_electors: !prevState.non_electors
+    }));
+  }
+
   render() {
     const path = this.context.data.path_electoral_presidential_1nd;
     const { t, className, i18n } = this.props;
-    const { datum_electoral_presidential_1nd_chile, geo } = this.context.data;
+    const {
+      datum_electoral_presidential_1nd_chile,
+      need_presidential_participation,
+      geo
+    } = this.context.data;
 
     const locale = i18n.language;
 
@@ -71,12 +91,27 @@ class Presidential1st extends Section {
             data: path,
             groupBy: ["Candidate"],
             label: d => d["Candidate"],
-
-            //label: d => d["Election Type"] + " - " + d["Year"],
+            filter: this.state.non_electors
+              ? ""
+              : d => d["ID Candidate"] !== 9999,
+            total: d => d["Votes"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "(0,0)"
+                ) +
+                " " +
+                t("Votes")
+            },
             sum: d => d["Votes"],
             time: "ID Year",
             shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Candidate"])
+              fill: d => {
+                return d["ID Partido"] !== 9999
+                  ? ordinalColorScale(d["ID Candidate"])
+                  : "#CCC";
+              }
             },
             tooltipConfig: {
               body: d =>
@@ -99,8 +134,32 @@ class Presidential1st extends Section {
               }
             }
           }}
-          dataFormat={data => data.data}
+          dataFormat={data => {
+            let d = data.data;
+
+            need_presidential_participation.data.map(item => {
+              d.push({
+                Votes: item.Electors - item.Votes,
+                Candidate: t("Electors that didn't vote").toUpperCase(),
+                Coalition: t("Electors that didn't vote").toUpperCase(),
+                ["ID Candidate"]: 9999,
+                ["ID Partido"]: 9999,
+                ["ID Year"]: item["ID Year"],
+                Partido: "",
+                Year: item.Year
+              });
+            });
+
+            return d;
+          }}
         />
+        <div>
+          <Switch
+            onClick={this.toggleElectors}
+            labelElement={<strong>{t("Total Electors")}</strong>}
+            defaultChecked={this.state.non_electors}
+          />
+        </div>
         <SourceNote cube="election_results" />
       </div>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
+import { StackedArea, BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import mondrianClient, {
@@ -9,31 +9,17 @@ import mondrianClient, {
   simpleDatumNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { regionsColorScale } from "helpers/colors";
 
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
-import { Switch } from "@blueprintjs/core";
 
 import groupBy from "lodash/groupBy";
 
-class Presidential2nd extends Section {
+class Presidential2ndBar extends Section {
   static need = [
-    (params, store) =>
-      simpleDatumNeed(
-        "datum_presidential_participation_2nd_round",
-        "election_participation",
-        ["Electors", "Votes"],
-        {
-          drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: true },
-          cuts: ["[Election Type].[Election Type].[Election Type].&[2]"]
-        },
-        "geo",
-        false
-      )(params, store),
     simpleGeoChartNeed(
       "path_electoral_presidential_2nd",
       "election_results_update",
@@ -65,30 +51,10 @@ class Presidential2nd extends Section {
       )(params, store)
   ];
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      non_electors: true
-    };
-
-    this.toggleElectors = this.toggleElectors.bind(this);
-  }
-
-  toggleElectors() {
-    this.setState(prevState => ({
-      non_electors: !prevState.non_electors
-    }));
-  }
-
   render() {
     const path = this.context.data.path_electoral_presidential_2nd;
     const { t, className, i18n } = this.props;
-    const {
-      datum_electoral_presidential_2nd_chile,
-      datum_presidential_participation_2nd_round,
-      geo
-    } = this.context.data;
+    const { datum_electoral_presidential_2nd_chile, geo } = this.context.data;
 
     const locale = i18n.language;
 
@@ -98,16 +64,13 @@ class Presidential2nd extends Section {
           <span>{t("Results 2nd Round")}</span>
           <ExportLink path={path} />
         </h3>
-        <Treemap
+        <BarChart
           config={{
             height: 500,
             data: path,
-            groupBy: ["ID Candidate"],
-            label: d => d["Candidate"],
-            total: d => d["Votes"],
-            filter: this.state.non_electors
-              ? ""
-              : d => d["ID Candidate"] !== 9999,
+            groupBy: ["geo"],
+            label: d => d["geo"],
+            total: d => (d["geo"] !== "Chile" ? d["Votes"] : 0),
             totalConfig: {
               text: d =>
                 "Total: " +
@@ -119,14 +82,33 @@ class Presidential2nd extends Section {
             },
             shapeConfig: {
               fill: d => {
-                return d["ID Partido"] !== 9999
-                  ? ordinalColorScale(d["ID Candidate"])
-                  : "#CCC";
-              }
+                return geo.type === "country"
+                  ? "#86396B"
+                  : d["geo"] == "Chile"
+                    ? "#ccc"
+                    : geo.type === "region"
+                      ? regionsColorScale(d["geo"])
+                      : "#86396B";
+              },
+              label: d => false
             },
             //label: d => d["Election Type"] + " - " + d["Year"],
-            sum: d => d["Votes"],
+            //sum: d => d["Votes"],
             time: "ID Year",
+            x: "Candidate",
+            xConfig: {
+              title: false
+            },
+            yConfig: {
+              title: "% " + t("Votes"),
+              tickFormat: tick => numeral(tick, locale).format("0 %")
+            },
+            xSort: (a, b) =>
+              a["ID Year"] > b["ID Year"]
+                ? 1
+                : b["Election Type"] > a["Election Type"] ? -1 : -1,
+            y: "percentage",
+            discrete: "x",
 
             tooltipConfig: {
               body: d =>
@@ -161,7 +143,7 @@ class Presidential2nd extends Section {
               return all + item["Votes"];
             }, 0);
 
-            let d = data.data.map(item => {
+            const location = data.data.map(item => {
               return {
                 ...item,
                 geo: geo.caption,
@@ -169,20 +151,7 @@ class Presidential2nd extends Section {
               };
             });
 
-            datum_presidential_participation_2nd_round.data.map(item => {
-              d.push({
-                Votes: item.Electors - item.Votes,
-                Candidate: t("Electors that didn't vote").toUpperCase(),
-                Coalition: t("Electors that didn't vote").toUpperCase(),
-                ["ID Candidate"]: 9999,
-                ["ID Partido"]: 9999,
-                ["ID Year"]: item["ID Year"],
-                Partido: "",
-                Year: item.Year
-              });
-            });
-
-            /*const total_country = datum_electoral_presidential_2nd_chile.data.reduce(
+            const total_country = datum_electoral_presidential_2nd_chile.data.reduce(
               (all, item) => {
                 return all + item["Votes"];
               },
@@ -195,7 +164,7 @@ class Presidential2nd extends Section {
                 return all;
               },
               { "2013": 0, "2017": 0 }
-            ); 
+            );
 
             const country =
               geo.type !== "country"
@@ -207,22 +176,15 @@ class Presidential2nd extends Section {
                         item["Votes"] / total_country_year[item["Year"]]
                     };
                   })
-                : [];*/
+                : [];
 
-            return d;
+            return location.concat(country);
           }}
         />
-        <div>
-          <Switch
-            onClick={this.toggleElectors}
-            labelElement={<strong>{t("Total Electors")}</strong>}
-            defaultChecked={this.state.non_electors}
-          />
-        </div>
         <SourceNote cube="election_results" />
       </div>
     );
   }
 }
 
-export default translate()(Presidential2nd);
+export default translate()(Presidential2ndBar);

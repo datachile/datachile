@@ -430,6 +430,29 @@ function DeathCauses(data, geo, locale) {
   }
 }
 
+function Congress(data, geo, locale, t) {
+  if (data) {
+    let output = data.data.map(item => item["Candidate"]);
+    output = output.length > 1 ? output.join(", ") : output;
+
+    if (output.length > 1) {
+      const lastComma = output.lastIndexOf(",");
+      output =
+        output.substring(0, lastComma) +
+        " " +
+        t("and") +
+        output.substring(lastComma + 1);
+    }
+
+    return {
+      geo,
+      congresspersons: output
+    };
+  } else {
+    return false;
+  }
+}
+
 function Election(data, geo, locale) {
   if (data) {
     const first_round = data.data.find(item => item["ID Election Type"] === 1);
@@ -446,7 +469,9 @@ function Election(data, geo, locale) {
       participation: {
         caption: top_participation["Election Type"],
         year: top_participation["Year"],
-        perc: numeral(top_participation["Participation"], locale).format("0.00%")
+        perc: numeral(top_participation["Participation"], locale).format(
+          "0.00%"
+        )
       }
     };
   } else {
@@ -456,6 +481,7 @@ function Election(data, geo, locale) {
 
 export {
   Crime,
+  Congress,
   SpendingByIndustry,
   SpendingBySector,
   IndustryActivity,
