@@ -18,33 +18,8 @@ class Senado extends Section {
     const path = this.context.data.path_exports_last_year;
     const { t, className, i18n } = this.props;
 
-    const data = [
-      { id: "560", size: 30 },
-      { id: "559", size: 30 },
-      { id: "558", size: 30 },
-      { id: "557", size: 30 },
-      { id: "556", size: 30 },
-      { id: "555", size: 30 }
-    ];
-
-    const nodes = [
-      { id: "alpha", x: 1, y: 1 },
-      { id: "beta", x: 2, y: 1 },
-      { id: "gamma", x: 1, y: 2 },
-      { id: "epsilon", x: 3, y: 2 },
-      { id: "zeta", x: 2.5, y: 1.5 },
-      { id: "theta", x: 2, y: 2 }
-    ];
-
-    const links = [
-      { source: 0, target: 1 },
-      { source: 0, target: 2 },
-      { source: 3, target: 4 },
-      { source: 3, target: 5 },
-      { source: 5, target: 0 }
-    ];
-
     const locale = i18n.language;
+
     return (
       <div className={className}>
         <h3 className="chart-title">
