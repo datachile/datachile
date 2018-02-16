@@ -9,7 +9,7 @@ import mondrianClient, {
   simpleDatumNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { civicsColorScale } from "helpers/colors";
 
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
@@ -120,7 +120,7 @@ class Presidential2nd extends Section {
             shapeConfig: {
               fill: d => {
                 return d["ID Partido"] !== 9999
-                  ? ordinalColorScale(d["ID Candidate"])
+                  ? civicsColorScale(d["ID Candidate"])
                   : "#CCC";
               }
             },

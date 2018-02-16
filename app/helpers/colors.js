@@ -44,6 +44,24 @@ export const tradeBalanceColorScale = scaleOrdinal().range(
   COLORS_TRADE_BALANCE
 );
 
+export const civicsColorScale = scaleOrdinal().range([
+  "#FED6D7",
+  "#FAA7A8",
+  "#FD9F6D",
+  "#F3A75C",
+  "#FD835C",
+  "#DD654F",
+  "#F65A5D",
+  "#DA4548",
+  "#C50A3C",
+  "#C90914",
+  "#82070C",
+  "#AE4E5E",
+  "#CA3A6D",
+  "#AA0C5D",
+  "#95174B"
+]);
+
 export const COLORS_INSTITUTIONS = [
   "#2892BD",
   "#4AB6C3",
