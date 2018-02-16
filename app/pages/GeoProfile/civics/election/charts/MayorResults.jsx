@@ -93,8 +93,6 @@ class MayorResults extends Section {
     let non_electors = null;
     let data_election = this.context.data.need_mayor_participation;
 
-    console.log(data_electionx)
-
     if (geo.depth === 2) {
       non_electors =
         data_election.data[0].Electors - data_election.data[0].Votes;
@@ -140,10 +138,13 @@ class MayorResults extends Section {
               geo.type === "comuna" ? d["Votes"] : d["Number of records"],
             time: "ID Year",
             shapeConfig: {
-              fill: d =>
-                ordinalColorScale(
-                  geo.type === "comuna" ? d["ID Candidate"] : d["Pacto"]
-                )
+              fill: d => {
+                return d["ID Candidate"] !== 9999
+                  ? ordinalColorScale(
+                      geo.type === "comuna" ? d["ID Candidate"] : d["Pacto"]
+                    )
+                  : "#CCCCCC";
+              }
             },
             tooltipConfig: {
               //title: d => (geo.type === 2 ? d["Candidate"] : d["Partido"]),
@@ -185,7 +186,7 @@ class MayorResults extends Section {
 
             d.push({
               Votes: non_electors,
-              Candidate: t("Electors that didn't vote"),
+              Candidate: t("Electors that didn't vote").toUpperCase(),
               ["ID Candidate"]: 9999,
               ["ID Partido"]: 9999,
               ["ID Year"]: 2016,

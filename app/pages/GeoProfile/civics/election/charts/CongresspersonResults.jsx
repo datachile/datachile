@@ -8,7 +8,7 @@ import mondrianClient, {
   simpleGeoChartNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { hexToRGB, civicsColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import { Switch } from "@blueprintjs/core";
@@ -135,10 +135,20 @@ class CongresspersonResults extends Section {
                 : geo.type === "region" ? d["Votes"] : d["count"],
             time: "ID Year",
             shapeConfig: {
-              fill: d => ordinalColorScale("co" + d["ID Coalition"])
+              fill: d => {
+                return d["ID Candidate"] !== 9999
+                  ? geo.type === "comuna"
+                    ? hexToRGB(
+                        civicsColorScale("co" + d["ID Coalition"]),
+                        d["ID Elected"] === 1 ? 1 : 0.5
+                      )
+                    : civicsColorScale("co" + d["ID Coalition"])
+                  : "#CCCCCC";
+              }
             },
             tooltipConfig: {
-              title: d => (geo.type === 2 ? d["Candidate"] : d["Partido"]),
+              title: d =>
+                geo.type === "comuna" ? d["Candidate"] : d["Partido"],
               body: d =>
                 "<div>" +
                 "<div>" +
@@ -158,7 +168,7 @@ class CongresspersonResults extends Section {
                 "</div>"
             },
             legendTooltip: {
-              title: d => (geo.depth === 2 ? d["Candidate"] : d["Coalition"])
+              title: d => d["Coalition"]
             },
             legendConfig: {
               label: d =>
@@ -175,19 +185,19 @@ class CongresspersonResults extends Section {
             let d = data.data.map(item => {
               return { ...item, count: 1 };
             });
-            if(geo.depth === 2)
-            participation.data.map(item => {
-              d.push({
-                Votes: item["Electors"],
-                Candidate: t("Electors that didn't vote").toUpperCase(),
-                Coalition: t("Electors that didn't vote").toUpperCase(),
-                ["ID Candidate"]: 9999,
-                ["ID Partido"]: 9999,
-                ["ID Year"]: item["ID Year"],
-                Partido: "",
-                Year: item.Year
+            if (geo.depth === 2)
+              participation.data.map(item => {
+                d.push({
+                  Votes: item.Electors - item.Votes,
+                  Candidate: t("Electors that didn't vote").toUpperCase(),
+                  Coalition: t("Electors that didn't vote").toUpperCase(),
+                  ["ID Candidate"]: 9999,
+                  ["ID Partido"]: 9999,
+                  ["ID Year"]: item["ID Year"],
+                  Partido: "",
+                  Year: item.Year
+                });
               });
-            });
             return d;
           }}
         />

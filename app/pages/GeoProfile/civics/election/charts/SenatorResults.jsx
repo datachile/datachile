@@ -8,7 +8,7 @@ import mondrianClient, {
   simpleGeoChartNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { hexToRGB, ordinalColorScale } from "helpers/colors";
+import { hexToRGB, civicsColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import { Switch } from "@blueprintjs/core";
@@ -34,25 +34,46 @@ class SenatorResults extends Section {
         false
       )(params, store),
     (params, store) => {
-      return simpleGeoChartNeed(
-        "path_senator_results",
-        "election_results_update",
-        ["Votes"],
-        {
-          drillDowns: [
-            ["Candidates", "Candidates", "Candidate"],
-            ["Party", "Party", "Partido"],
-            ["Coalition", "Coalition", "Coalition"],
-            ["Date", "Date", "Year"],
-            ["Elected", "Elected", "Elected"]
-          ],
-          options: { parents: true },
-          cuts: [
-            "[Election Type].[Election Type].[Election Type].&[3]",
-            "{[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2016],[Date].[Date].[Year].&[2017]}"
-          ]
-        }
-      )(params, store);
+      if (params.region === "chile")
+        return simpleGeoChartNeed(
+          "path_senator_results",
+          "election_results_update",
+          ["Votes"],
+          {
+            drillDowns: [
+              ["Candidates", "Candidates", "Candidate"],
+              ["Party", "Party", "Partido"],
+              ["Coalition", "Coalition", "Coalition"],
+              ["Date", "Date", "Year"]
+            ],
+            options: { parents: true },
+            cuts: [
+              "[Election Type].[Election Type].[Election Type].&[3]",
+              "[Elected].[Elected].[Elected].&[1]",
+              "{[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2016],[Date].[Date].[Year].&[2017]}"
+            ]
+          }
+        )(params, store);
+      else
+        return simpleGeoChartNeed(
+          "path_senator_results",
+          "election_results_update",
+          ["Votes"],
+          {
+            drillDowns: [
+              ["Candidates", "Candidates", "Candidate"],
+              ["Party", "Party", "Partido"],
+              ["Coalition", "Coalition", "Coalition"],
+              ["Date", "Date", "Year"],
+              ["Elected", "Elected", "Elected"]
+            ],
+            options: { parents: true },
+            cuts: [
+              "[Election Type].[Election Type].[Election Type].&[3]",
+              "{[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2016],[Date].[Date].[Year].&[2017]}"
+            ]
+          }
+        )(params, store);
     }
   ];
 
@@ -103,7 +124,7 @@ class SenatorResults extends Section {
             filter: this.state.non_electors
               ? ""
               : d => d["ID Candidate"] !== 9999,
-            total: d => (geo.type === "comuna" ? d["Votes"] : d["elected"]),
+            total: d => (geo.type === "comuna" ? d["Votes"] : d["count"]),
             totalConfig: {
               text: d =>
                 "Total: " +
@@ -128,10 +149,14 @@ class SenatorResults extends Section {
             time: "ID Year",
             shapeConfig: {
               fill: d => {
-                return hexToRGB(
-                  ordinalColorScale("co" + d["ID Coalition"]),
-                  d["ID Elected"] === 1 ? 1 : 0.1
-                );
+                return d["ID Candidate"] !== 9999
+                  ? geo.type === "comuna" || geo.type === "region"
+                    ? hexToRGB(
+                        civicsColorScale("co" + d["ID Coalition"]),
+                        d["ID Elected"] === 1 ? 1 : 0.5
+                      )
+                    : civicsColorScale("co" + d["ID Coalition"])
+                  : "#CCCCCC";
               }
             },
             tooltipConfig: {
@@ -180,7 +205,7 @@ class SenatorResults extends Section {
             if (maxBy(d, "ID Year")["ID Year"] > 2013)
               participation.data.map(item => {
                 d.push({
-                  Votes: item["Electors"],
+                  Votes: item.Electors - item.Votes,
                   Candidate: t("Electors that didn't vote").toUpperCase(),
                   Coalition: t("Electors that didn't vote").toUpperCase(),
                   ["ID Candidate"]: 9999,
