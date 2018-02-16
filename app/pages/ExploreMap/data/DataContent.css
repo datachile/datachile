@@ -1,8 +1,7 @@
 .data-content {
-	& table {
-		width: 100%;
-		& thead {
-			& th {
+	& .table {
+		& .rt-thead {
+			& .rt-th {
 				background: var(--nice-blue);
 				font-weight: 800;
 				color: var(--snow);
@@ -11,10 +10,9 @@
 				text-align: left;
 			}
 		}
-		& tbody {
-			& td {
+		& .rt-tbody {
+			& .rt-td {
 				background: var(--snow);
-				text-transform: uppercase;
 				padding: 15px 5px;
 			}
 		}

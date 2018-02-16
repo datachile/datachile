@@ -24,7 +24,7 @@ class ExploreMap extends Component {
     this.state = {};
   }
 
-  static need = [MapContent, MapSidebar];
+  static need = [MapContent, MapSidebar, MapOptions];
 
   componentWillUnmount() {
     this.setState({});
@@ -58,7 +58,7 @@ class ExploreMap extends Component {
                   <MapTitle />
                   <MapLevelSelector />
                   <MapYearSelector />
-                  <MapOptions />
+                  <MapOptions data={this.props.data} />
                   <MapContent data={this.props.data} />
                 </div>
               </div>

@@ -4,7 +4,7 @@ import n from "numeral";
 
 import { PermalinkBuildError } from "helpers/errors";
 
-function slugifyStr(str) {
+export function slugifyStr(str, whitespace = "-") {
   if (!str) return "";
   str = str.replace(/^\s+|\s+$/g, ""); // trim
   str = str.toLowerCase();
@@ -18,7 +18,7 @@ function slugifyStr(str) {
 
   str = str
     .replace(/[^a-z0-9 -]/g, "") // remove invalid chars
-    .replace(/\s+/g, "-") // collapse whitespace and replace by -
+    .replace(/\s+/g, whitespace) // collapse whitespace and replace by -
     .replace(/-+/g, "-"); // collapse dashes
 
   return str;

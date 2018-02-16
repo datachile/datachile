@@ -33,6 +33,7 @@
     "pluralize": "^3.1.0",
     "react-image-fallback": "^7.0.1",
     "react-slick": "^0.14.11",
+    "react-table": "^6.7.6",
     "shiitake": "^2.2.1",
     "slick-carousel": "^1.7.1"
   },
