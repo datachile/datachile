@@ -1,5 +1,17 @@
 import { scaleOrdinal } from "d3-scale";
 
+export function hexToRGB(hex, alpha = 1) {
+  const r = parseInt(hex.slice(1, 3), 16),
+    g = parseInt(hex.slice(3, 5), 16),
+    b = parseInt(hex.slice(5, 7), 16);
+
+  if (alpha) {
+    return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+  } else {
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+  }
+}
+
 export const COLORS_GENDER = ["#ccc", "#9B1E64", "#3F456B"];
 export const genderColorScale = scaleOrdinal().range(COLORS_GENDER);
 

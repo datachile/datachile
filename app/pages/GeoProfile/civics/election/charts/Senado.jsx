@@ -12,21 +12,7 @@ import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
 class Senado extends Section {
-  static need = [
-    (params, store) =>
-      simpleDatumNeed(
-        "need_mayor_participation",
-        "election_participation",
-        ["Electors", "Votes"],
-        {
-          drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: true },
-          cuts: ["[Election Type].[Election Type].[Election Type].&[5]"]
-        },
-        "geo_no_cut",
-        false
-      )(params, store)
-  ];
+  static need = [];
 
   render() {
     const path = this.context.data.path_exports_last_year;

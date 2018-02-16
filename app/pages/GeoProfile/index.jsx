@@ -134,10 +134,17 @@ import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 /** Politics */
 
 import ElectionSlide from "./civics/election/ElectionSlide";
+import CongressSlide from "./civics/election/CongressSlide";
+
 import MayorResults from "./civics/election/charts/MayorResults";
 import SenatorResults from "./civics/election/charts/SenatorResults";
+
 import Presidential2nd from "./civics/election/charts/Presidential2nd";
 import Presidential1st from "./civics/election/charts/Presidential1st";
+
+import Presidential2ndBar from "./civics/election/charts/Presidential2ndBar";
+import Presidential1stBar from "./civics/election/charts/Presidential1stBar";
+
 import Senado from "./civics/election/charts/Senado";
 
 import CongresspersonResults from "./civics/election/charts/CongresspersonResults";
@@ -261,12 +268,16 @@ class GeoProfile extends Component {
     DeathCausesStacked,
 
     ElectionSlide,
+    CongressSlide,
+
     ParticipationSlide,
     MayorResults,
     SenatorResults,
     Senado,
     Presidential2nd,
     Presidential1st,
+    Presidential1stBar,
+    Presidential2ndBar,
     CongresspersonResults,
     ElectoralParticipation,
     ParticipationScatter
@@ -952,12 +963,12 @@ class GeoProfile extends Component {
                 </ElectionSlide>
               </div>
               <div>
-                <ElectionSlide>
+                <CongressSlide>
                   <SectionColumns>
                     <SenatorResults className="lost-1-2" />
                     <CongresspersonResults className="lost-1-2" />
                   </SectionColumns>
-                </ElectionSlide>
+                </CongressSlide>
               </div>
 
               <div>
@@ -965,6 +976,10 @@ class GeoProfile extends Component {
                   <SectionColumns>
                     <Presidential1st className="lost-1-2" />
                     <Presidential2nd className="lost-1-2" />
+                  </SectionColumns>
+                  <SectionColumns>
+                    <Presidential1stBar className="lost-1-2" />
+                    <Presidential2ndBar className="lost-1-2" />
                   </SectionColumns>
                 </ElectionSlide>
               </div>

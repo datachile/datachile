@@ -8,7 +8,7 @@ import mondrianClient, {
   simpleGeoChartNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { hexToRGB, ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import { Switch } from "@blueprintjs/core";
@@ -34,50 +34,25 @@ class SenatorResults extends Section {
         false
       )(params, store),
     (params, store) => {
-      let geo = params;
-      if (geo.comuna) {
-        //geo.comuna = undefined;
-
-        return simpleGeoChartNeed(
-          "path_senator_results",
-          "election_results_update",
-          ["Votes"],
-          {
-            drillDowns: [
-              ["Candidates", "Candidates", "Candidate"],
-              ["Party", "Party", "Partido"],
-              ["Coalition", "Coalition", "Coalition"],
-              ["Date", "Date", "Year"],
-              ["Elected", "Elected", "Elected"]
-            ],
-            options: { parents: true },
-            cuts: [
-              "[Election Type].[Election Type].[Election Type].&[3]",
-              "{[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2016],[Date].[Date].[Year].&[2017]}"
-            ]
-          }
-        )(geo, store);
-      } else {
-        return simpleGeoChartNeed(
-          "path_senator_results",
-          "election_results_update",
-          ["Number of records", "Votes"],
-          {
-            drillDowns: [
-              ["Candidates", "Candidates", "Candidate"],
-              ["Coalition", "Coalition", "Coalition"],
-              ["Party", "Party", "Partido"],
-              ["Date", "Date", "Year"]
-            ],
-            options: { parents: true },
-            cuts: [
-              "[Election Type].[Election Type].[Election Type].&[3]",
-              "{[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2016],[Date].[Date].[Year].&[2017]}",
-              "[Elected].[Elected].[Elected].&[1]"
-            ]
-          }
-        )(params, store);
-      }
+      return simpleGeoChartNeed(
+        "path_senator_results",
+        "election_results_update",
+        ["Votes"],
+        {
+          drillDowns: [
+            ["Candidates", "Candidates", "Candidate"],
+            ["Party", "Party", "Partido"],
+            ["Coalition", "Coalition", "Coalition"],
+            ["Date", "Date", "Year"],
+            ["Elected", "Elected", "Elected"]
+          ],
+          options: { parents: true },
+          cuts: [
+            "[Election Type].[Election Type].[Election Type].&[3]",
+            "{[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2016],[Date].[Date].[Year].&[2017]}"
+          ]
+        }
+      )(params, store);
     }
   ];
 
@@ -107,7 +82,7 @@ class SenatorResults extends Section {
     let non_electors = null;
 
     if (geo.depth === 2) {
-      const data_election = this.context.data.need_mayor_participation;
+      const data_election = this.context.data.need_presidential_participation;
       non_electors =
         data_election.data[0].Electors - data_election.data[0].Votes;
     }
@@ -128,12 +103,7 @@ class SenatorResults extends Section {
             filter: this.state.non_electors
               ? ""
               : d => d["ID Candidate"] !== 9999,
-            total: d =>
-              geo.type === "comuna"
-                ? d["Votes"]
-                : geo.type === "region"
-                  ? d["Number of records"] / d["Number of records"]
-                  : d["count"],
+            total: d => (geo.type === "comuna" ? d["Votes"] : d["elected"]),
             totalConfig: {
               text: d =>
                 "Total: " +
@@ -144,17 +114,25 @@ class SenatorResults extends Section {
                 (geo.type === "comuna" ? t("Votes") : t("Elected Authority"))
             },
             groupBy:
-              geo.type === "comuna"
+              geo.type === "comuna" || geo.type === "region"
                 ? ["ID Coalition", "Candidate"]
                 : ["ID Coalition", "ID Partido"],
             label: d =>
-              geo.type === "comuna"
+              geo.type === "comuna" || geo.type === "region"
                 ? d["Candidate"] + (d["ID Elected"] === 1 ? "*" : "")
                 : d["Partido"],
-            sum: d => (geo.type === "comuna" ? d["Votes"] : d["count"]),
+            sum: d =>
+              geo.type === "comuna" || geo.type === "region"
+                ? d["Votes"]
+                : d["count"],
             time: "ID Year",
             shapeConfig: {
-              fill: d => ordinalColorScale("co" + d["ID Coalition"])
+              fill: d => {
+                return hexToRGB(
+                  ordinalColorScale("co" + d["ID Coalition"]),
+                  d["ID Elected"] === 1 ? 1 : 0.1
+                );
+              }
             },
             tooltipConfig: {
               title: d => (geo.type === 2 ? d["Candidate"] : d["Partido"]),
@@ -194,7 +172,7 @@ class SenatorResults extends Section {
           }}
           dataFormat={data => {
             let d = data.data.map(item => {
-              return { ...item, count: 1 };
+              return { ...item, count: 1, elected: item["ID Elected"] };
             });
 
             this.setState({ maxYear: maxBy(d, "ID Year")["ID Year"] });
@@ -209,7 +187,8 @@ class SenatorResults extends Section {
                   ["ID Partido"]: 9999,
                   ["ID Year"]: item["ID Year"],
                   Partido: "",
-                  Year: item.Year
+                  Year: item.Year,
+                  elected: 0
                 });
               });
 
@@ -226,16 +205,17 @@ class SenatorResults extends Section {
           }}
         />
 
-        {geo.depth === 2 &&
-          this.state.maxYear > 2013 && (
-            <div>
-              <Switch
-                onClick={this.toggleElectors}
-                labelElement={<strong>{t("Total Electors")}</strong>}
-                checked={this.state.non_electors}
-              />
-            </div>
-          )}
+        {geo.depth === 2 ||
+          (geo.depth === 1 &&
+            this.state.maxYear > 2013 && (
+              <div>
+                <Switch
+                  onClick={this.toggleElectors}
+                  labelElement={<strong>{t("Total Electors")}</strong>}
+                  checked={this.state.non_electors}
+                />
+              </div>
+            ))}
         <SourceNote cube="election_results" />
       </div>
     );

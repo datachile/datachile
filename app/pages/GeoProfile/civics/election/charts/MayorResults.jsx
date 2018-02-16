@@ -91,9 +91,11 @@ class MayorResults extends Section {
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
     let non_electors = null;
+    let data_election = this.context.data.need_mayor_participation;
+
+    console.log(data_electionx)
 
     if (geo.depth === 2) {
-      const data_election = this.context.data.need_mayor_participation;
       non_electors =
         data_election.data[0].Electors - data_election.data[0].Votes;
     }
