@@ -21,7 +21,9 @@ class DataSidebar extends Component {
           {datasets.map((d, ix) => (
             <div className="dataset">
               <span className="dataset-index">{ix + 1}. </span>
-              <span className="dataset-name">{d.title}</span>
+              <span className="dataset-name">
+                {d.title} - {d.level}
+              </span>
               <a className="dataset-delete" onClick={evt => deleteDataset(ix)}>
                 X
               </a>

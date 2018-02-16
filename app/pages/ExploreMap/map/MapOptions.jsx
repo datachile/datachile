@@ -33,6 +33,58 @@ class MapOptions extends Component {
         type: "GET_DATA",
         promise: prm
       };
+    },
+    (params, store) => {
+      const prm = mondrianClient
+        .cube("exports")
+        .then(cube => {
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", false)
+              .drilldown("Geography", "Geography", "Comuna")
+              .drilldown("Date", "Date", "Year")
+              .measure("FOB US"),
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "data_map_test_options_comuna",
+            data: res.data.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
+    },
+    (params, store) => {
+      const prm = mondrianClient
+        .cube("imports")
+        .then(cube => {
+          var q = setLangCaptions(
+            cube.query
+              .option("parents", false)
+              .drilldown("Geography", "Geography", "Region")
+              .drilldown("Date", "Date", "Year")
+              .measure("CIF US"),
+            store.i18n.locale
+          );
+          return mondrianClient.query(q, "jsonrecords");
+        })
+        .then(res => {
+          return {
+            key: "data_map_test_options_region_cif",
+            data: res.data.data
+          };
+        });
+
+      return {
+        type: "GET_DATA",
+        promise: prm
+      };
     }
   ];
 
@@ -42,21 +94,56 @@ class MapOptions extends Component {
 
   render() {
     const { t, saveDataset, datasetsQty = 0, mapLevel, indicator } = this.props;
-    const { data_map_test_options_region } = this.props.data;
+    const {
+      data_map_test_options_region,
+      data_map_test_options_region_cif,
+      data_map_test_options_comuna
+    } = this.props.data;
 
     return (
       <div className="map-options">
         <Link className={`option`} to="/explore/map/data">
           {t("See data")}
+          {datasetsQty > 0 && <span> ({datasetsQty})</span>}
         </Link>
         <a
           className={`option`}
           onClick={evt =>
-            saveDataset(data_map_test_options_region, mapLevel, indicator)
+            saveDataset(
+              "Exports",
+              data_map_test_options_region,
+              "regiones",
+              indicator
+            )
           }
         >
-          {t("Save data")}
-          {datasetsQty > 0 && <span> ({datasetsQty})</span>}
+          {t("Save data regional Exports")}
+        </a>
+        <a
+          className={`option`}
+          onClick={evt =>
+            saveDataset(
+              "Exports",
+              data_map_test_options_comuna,
+              "comunas",
+              indicator
+            )
+          }
+        >
+          {t("Save data comunal Exports")}
+        </a>
+        <a
+          className={`option`}
+          onClick={evt =>
+            saveDataset(
+              "Imports",
+              data_map_test_options_region_cif,
+              "regiones",
+              "CIF US"
+            )
+          }
+        >
+          {t("Save data regional Imports")}
         </a>
       </div>
     );
@@ -64,11 +151,11 @@ class MapOptions extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  saveDataset(dataset, level, indicator) {
+  saveDataset(title, dataset, level, indicator) {
     dispatch({
       type: "MAP_SAVE_DATASET",
       dataset: {
-        title: "dataset peola",
+        title: title,
         data: dataset,
         level: level,
         indicator: indicator

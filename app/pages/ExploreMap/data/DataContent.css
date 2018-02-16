@@ -1,20 +1,21 @@
 .data-content {
-	& .table {
-		& .rt-thead {
-			& .rt-th {
-				background: var(--nice-blue);
-				font-weight: 800;
-				color: var(--snow);
-				text-transform: uppercase;
-				padding: 15px 5px;
-				text-align: left;
-			}
-		}
-		& .rt-tbody {
-			& .rt-td {
-				background: var(--snow);
-				padding: 15px 5px;
-			}
-		}
-	}
+  & .table {
+    & .rt-thead {
+      overflow-y: scroll;
+      & .rt-th {
+        background: var(--nice-blue);
+        font-weight: 800;
+        color: var(--snow);
+        text-transform: uppercase;
+        padding: 15px 5px;
+        text-align: left;
+      }
+    }
+    & .rt-tbody {
+      & .rt-td {
+        background: var(--snow);
+        padding: 15px 5px;
+      }
+    }
+  }
 }

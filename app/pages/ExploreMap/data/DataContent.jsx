@@ -14,31 +14,59 @@ class DataContent extends Component {
     super(props);
   }
 
-  combineAndPlainDatasets(datasets) {
-    var plainedDatasets = [];
+  flatDataset(dataset) {
+    console.log(dataset);
+    const indicatorSlug = slugifyStr(dataset.indicator, "_");
+    const region = dataset.level == "regiones";
 
-    datasets.forEach(dataset => {
-      const indicatorSlug = slugifyStr(dataset.indicator, "_");
-      var plain = nest()
+    var localFlattenedFields = {};
+
+    return {
+      data: nest()
         .key(function(d) {
-          return d["ID Region"];
+          return region ? d["ID Region"] : d["ID Comuna"];
         })
         .rollup(function(leaves) {
           return leaves.reduce((record, param) => {
-            record.type = "region";
-            record.entity_id = param["ID Region"];
-            record.entity = param["Region"];
-            record[indicatorSlug + "_" + param["ID Year"]] =
-              param[dataset.indicator];
+            const field = indicatorSlug + "_" + param["ID Year"];
+            localFlattenedFields[field] = true;
+            record.entity = region ? param["Region"] : param["Comuna"];
+            record.entity_id = region ? param["ID Region"] : param["ID Comuna"];
+            record.type = region ? "region" : "comuna";
+            record[field] = param[dataset.indicator];
             return record;
           }, {});
         })
         .entries(dataset.data)
-        .map(d => d.value);
+        .map(d => d.value),
+      fields: localFlattenedFields
+    };
+  }
 
-      plainedDatasets = plainedDatasets.concat(plain);
+  combineAndFlatDatasets(datasets) {
+    var flattenedDatasets = [];
+
+    var flattenedFields = { type: true, entity: true, entity_id: true };
+
+    datasets.forEach(dataset => {
+      const { data, fields } = this.flatDataset(dataset);
+      flattenedFields = Object.assign(flattenedFields, fields);
+      flattenedDatasets = flattenedDatasets.concat(data);
     });
-    return plainedDatasets;
+
+    flattenedDatasets = nest()
+      .key(function(d) {
+        return d["type"] + "_" + d["entity_id"];
+      })
+      .rollup(function(leaves) {
+        return leaves.reduce((obj, param) => {
+          return Object.assign(obj, param);
+        }, {});
+      })
+      .entries(flattenedDatasets)
+      .map(d => d.value);
+
+    return { dataset: flattenedDatasets, fields: Object.keys(flattenedFields) };
   }
 
   render() {
@@ -52,18 +80,26 @@ class DataContent extends Component {
       );
     }
 
-    const plainDataset = this.combineAndPlainDatasets(datasets);
+    const flattenedData = this.combineAndFlatDatasets(datasets);
 
-    const headers = Object.keys(plainDataset[0]);
-
-    const columns = headers.map(h => ({
+    const columns = flattenedData.fields.map(h => ({
       Header: h,
-      accessor: h
+      accessor: h,
+      width: 200
     }));
 
     return (
       <div className="data-content">
-        <ReactTable className="table" data={plainDataset} columns={columns} />
+        <ReactTable
+          className="table"
+          data={flattenedData.dataset}
+          columns={columns}
+          style={
+            {
+              //height: "00px" // This will force the table body to overflow and scroll, since there is not enough room
+            }
+          }
+        />
       </div>
     );
   }
