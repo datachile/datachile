@@ -15,7 +15,6 @@ class DataContent extends Component {
   }
 
   flatDataset(dataset) {
-    console.log(dataset);
     const indicatorSlug = slugifyStr(dataset.indicator, "_");
     const region = dataset.level == "regiones";
 

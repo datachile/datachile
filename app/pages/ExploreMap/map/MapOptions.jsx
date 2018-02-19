@@ -93,7 +93,15 @@ class MapOptions extends Component {
   }
 
   render() {
-    const { t, saveDataset, datasetsQty = 0, mapLevel, indicator } = this.props;
+    const {
+      t,
+      saveDataset,
+      loadDataset,
+      datasetsQty = 0,
+      mapLevel,
+      indicator,
+      results
+    } = this.props;
     const {
       data_map_test_options_region,
       data_map_test_options_region_cif,
@@ -106,44 +114,54 @@ class MapOptions extends Component {
           {t("See data")}
           {datasetsQty > 0 && <span> ({datasetsQty})</span>}
         </Link>
+        {results.queries.regiones && (
+          <a
+            className={`option`}
+            onClick={evt => {
+              saveDataset(
+                "Exports regional",
+                results.queries.regiones.data,
+                results.queries.regiones.query,
+                "regiones",
+                indicator
+              );
+              saveDataset(
+                "Exports comunal",
+                results.queries.comunas.data,
+                results.queries.comunas.query,
+                "comunas",
+                indicator
+              );
+            }}
+          >
+            {t("Save data")}
+          </a>
+        )}
         <a
-          className={`option`}
+          className={`option fake`}
           onClick={evt =>
-            saveDataset(
-              "Exports",
+            loadDataset(
+              "http-query-string-regiones-exports",
               data_map_test_options_region,
-              "regiones",
-              indicator
+              "http-query-string-query-comunas-exports",
+              data_map_test_options_comuna
             )
           }
         >
-          {t("Save data regional Exports")}
+          {t("FAKE load data exports (regiones & comunas)")}
         </a>
         <a
-          className={`option`}
+          className={`option fake`}
           onClick={evt =>
-            saveDataset(
-              "Exports",
-              data_map_test_options_comuna,
-              "comunas",
-              indicator
-            )
-          }
-        >
-          {t("Save data comunal Exports")}
-        </a>
-        <a
-          className={`option`}
-          onClick={evt =>
-            saveDataset(
-              "Imports",
+            loadDataset(
+              "http-query-string-regiones-imports",
               data_map_test_options_region_cif,
-              "regiones",
-              "CIF US"
+              false,
+              false
             )
           }
         >
-          {t("Save data regional Imports")}
+          {t("FAKE load data imports (regiones only)")}
         </a>
       </div>
     );
@@ -151,14 +169,37 @@ class MapOptions extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  saveDataset(title, dataset, level, indicator) {
+  saveDataset(title, dataset, query, level, indicator) {
     dispatch({
       type: "MAP_SAVE_DATASET",
       dataset: {
         title: title,
+        query: query,
         data: dataset,
         level: level,
         indicator: indicator
+      }
+    });
+  },
+  loadDataset(
+    regionesQuery,
+    regionesData,
+    comunasQuery = false,
+    comunasData = false
+  ) {
+    dispatch({
+      type: "MAP_NEW_RESULTS",
+      results: {
+        regiones: {
+          query: regionesQuery,
+          data: regionesData
+        },
+        comunas: comunasQuery
+          ? {
+              query: comunasQuery,
+              data: comunasData
+            }
+          : false
       }
     });
   }
@@ -168,6 +209,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     datasetsQty: state.map.datasets.list.length,
     mapLevel: state.map.level.value,
+    results: state.map.results,
     indicator: "FOB US"
   };
 };

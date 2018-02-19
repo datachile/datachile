@@ -11,8 +11,20 @@ class MapLevelSelector extends Component {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { setMapLevel, results } = nextProps;
+    if (!results.queries.comunas) {
+      setMapLevel("regiones");
+    }
+  }
+
   render() {
-    const { t, mapLevel, setMapLevel } = this.props;
+    const { t, mapLevel, setMapLevel, results } = this.props;
+
+    if (!results || !results.queries || !results.queries.regiones) {
+      return null;
+    }
+
     return (
       <div className="map-switch-options">
         <a
@@ -21,12 +33,14 @@ class MapLevelSelector extends Component {
         >
           {t("Regiones")}
         </a>
-        <a
-          className={`toggle ${mapLevel === "comunas" ? "selected" : ""}`}
-          onClick={evt => setMapLevel("comunas")}
-        >
-          {t("Comunas")}
-        </a>
+        {results.queries.comunas && (
+          <a
+            className={`toggle ${mapLevel === "comunas" ? "selected" : ""}`}
+            onClick={evt => setMapLevel("comunas")}
+          >
+            {t("Comunas")}
+          </a>
+        )}
       </div>
     );
   }
@@ -40,7 +54,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    mapLevel: state.map.level.value
+    mapLevel: state.map.level.value,
+    results: state.map.results
   };
 };
 

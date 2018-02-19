@@ -10,60 +10,7 @@ import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import "./MapContent.css";
 
 class MapContent extends Component {
-  static need = [
-    (params, store) => {
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = setLangCaptions(
-            cube.query
-              .option("parents", false)
-              .drilldown("Geography", "Geography", "Region")
-              .drilldown("Date", "Date", "Year")
-              .measure("FOB US"),
-            store.i18n.locale
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "data_map_test_region",
-            data: res.data.data
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    },
-    (params, store) => {
-      const prm = mondrianClient
-        .cube("exports")
-        .then(cube => {
-          var q = setLangCaptions(
-            cube.query
-              .option("parents", false)
-              .drilldown("Geography", "Geography", "Comuna")
-              .drilldown("Date", "Date", "Year")
-              .measure("FOB US"),
-            store.i18n.locale
-          );
-          return mondrianClient.query(q, "jsonrecords");
-        })
-        .then(res => {
-          return {
-            key: "data_map_test_comuna",
-            data: res.data.data
-          };
-        });
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
-  ];
+  static need = [];
 
   processResults(data, msrName, mapYear) {
     var dataMap = [];
@@ -80,11 +27,18 @@ class MapContent extends Component {
   }
 
   render() {
-    const { t, i18n, topic, msrName, mapLevel, mapYear } = this.props;
+    const { t, i18n, topic, msrName, mapLevel, mapYear, results } = this.props;
 
     const locale = i18n.language;
 
-    const { data_map_test_comuna, data_map_test_region } = this.props.data;
+    console.log(results);
+
+    const comunasData = results.queries.comunas
+      ? results.queries.comunas.data
+      : [];
+    const regionesData = results.queries.regiones
+      ? results.queries.regiones.data
+      : [];
 
     const configBase = {
       height: 700,
@@ -133,7 +87,7 @@ class MapContent extends Component {
         topojsonId: "id",
         topojsonKey: "comunas_datachile_final",
         groupBy: "ID Comuna",
-        data: this.processResults(data_map_test_comuna, msrName, mapYear),
+        data: this.processResults(comunasData, msrName, mapYear),
         label: d => d["Comuna"]
       },
       regiones: {
@@ -141,7 +95,7 @@ class MapContent extends Component {
         topojson: "/geo/regiones.json",
         topojsonId: "id",
         topojsonKey: "regiones",
-        data: this.processResults(data_map_test_region, msrName, mapYear),
+        data: this.processResults(regionesData, msrName, mapYear),
         groupBy: "ID Region",
         label: d => d["Region"]
       }
@@ -152,8 +106,7 @@ class MapContent extends Component {
     return (
       <div className="map-content">
         <div className="map-color-scale" />
-        {data_map_test_comuna &&
-          data_map_test_region && <Geomap config={config} />}
+        <Geomap config={config} />
       </div>
     );
   }
@@ -164,7 +117,8 @@ const mapStateToProps = (state, ownProps) => {
     topic: state.map.params.topic.value,
     msrName: "FOB US",
     mapLevel: state.map.level.value,
-    mapYear: state.map.year.value
+    mapYear: state.map.year.value,
+    results: state.map.results
   };
 };
 

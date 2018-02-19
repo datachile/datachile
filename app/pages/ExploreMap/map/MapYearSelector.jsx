@@ -10,17 +10,38 @@ class MapYearSelector extends Component {
 
   constructor(props) {
     super(props);
+    this.state = { mapYearOptions: [] };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { setMapYearSelected, results } = nextProps;
+    if (this.props.results != results) {
+      if (results.queries.regiones) {
+        this.setState(
+          {
+            mapYearOptions: [
+              ...new Set(
+                results.queries.regiones.data.map(item => item["ID Year"])
+              )
+            ]
+          },
+          () => {
+            setMapYearSelected({
+              newValue: this.state.mapYearOptions[
+                this.state.mapYearOptions.length - 1
+              ]
+            });
+          }
+        );
+      }
+    }
   }
 
   render() {
-    const { t, mapYear, mapYearOptions, setMapYearSelected } = this.props;
-    if (!mapYearOptions) {
-      return null;
-    }
-    if (!mapYear) {
-      setMapYearSelected({
-        newValue: mapYearOptions[mapYearOptions.length - 1]
-      });
+    const { t, mapYear, setMapYearSelected } = this.props;
+    const { mapYearOptions } = this.state;
+
+    if (mapYearOptions.length == 0) {
       return null;
     }
 
@@ -50,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = (state, ownProps) => {
   return {
     mapYear: state.map.year.value,
-    mapYearOptions: [2011, 2012, 2013, 2014, 2015, 2016] //state.map...
+    results: state.map.results
   };
 };
 

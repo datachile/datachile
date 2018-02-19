@@ -37,6 +37,7 @@ const mapYearReducer = (state = { ...state, value: false }, action) => {
 };
 
 const mapDatasetReducer = (state = { ...state, list: [] }, action) => {
+  console.log(state.list);
   switch (action.type) {
     case "MAP_SAVE_DATASET":
       return {
@@ -53,9 +54,25 @@ const mapDatasetReducer = (state = { ...state, list: [] }, action) => {
   }
 };
 
+const mapResultReducer = (
+  state = { ...state, queries: { regiones: false, comunas: false } },
+  action
+) => {
+  switch (action.type) {
+    case "MAP_NEW_RESULTS":
+      return {
+        ...state,
+        queries: action.results
+      };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   params: mapParamsReducer,
   level: mapLevelReducer,
   year: mapYearReducer,
-  datasets: mapDatasetReducer
+  datasets: mapDatasetReducer,
+  results: mapResultReducer
 });
