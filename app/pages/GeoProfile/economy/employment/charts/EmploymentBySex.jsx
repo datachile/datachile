@@ -107,7 +107,7 @@ class EmploymentBySex extends Section {
           <ExportLink path={path} />
         </h3>
         <CustomStackedArea
-        key={this.state.key}
+          key={this.state.key}
           config={{
             height: 500,
             data: path,
@@ -143,73 +143,7 @@ class EmploymentBySex extends Section {
           }}
           Sex={this.state.selectedObj.sex_id}
         />
-        {/*<StackedArea
-          config={{
-            height: 500,
-            data: path,
-            groupBy: ["variable"],
-            label: d => d["variable"],
-            x: "month",
-            y: "percentage",
-            time: "month",
-            timeline: false,
-            scale: "time",
-            xConfig: {
-              title: false
-            },
-            yConfig: {
-              title: t("People"),
-              tickFormat: tick => numeral(tick, locale).format("0%")
-            },
-            shapeConfig: {
-              fill: d => employmentBySexColorScale("bysex" + d["variable"])
-            },
-            tooltipConfig: {
-              title: d => d["variable"],
-              body: d => {
-                return d["month"] instanceof Array
-                  ? ""
-                  : numeral(d["percentage"], locale).format("0.[0]%") +
-                      " " +
-                      t("people") +
-                      "<br/>" +
-                      d["quarter"];
-              }
-            }
-          }}
-          dataFormat={data => {
-            var filtered = data.data.filter(d => {
-              return d["ID Sex"] == selectedObj.sex_id;
-            });
-            var melted = [];
-            var total = {};
-            filtered.forEach(f => {
-              if (total[f["ID Moving Quarter"]]) {
-                total[f["ID Moving Quarter"]] += f["Expansion factor"];
-              } else {
-                total[f["ID Moving Quarter"]] = f["Expansion factor"];
-              }
-              var a = f;
-              var date = f["ID Moving Quarter"].split("_");
-              f["month"] = date[0] + "-" + date[1] + "-01";
-              f["quarter"] =
-                date[0] + " (" + date[1] + "," + date[2] + "," + date[3] + ")";
-              a["variable"] = f["Occupational Situation"];
-              a["value"] = f["Expansion factor"];
-              melted.push(a);
-            });
-            melted = melted
-              .map(m => {
-                m["percentage"] = m["value"] / total[m["ID Moving Quarter"]];
-                return m;
-              })
-              .sort((a, b) => {
-                return a["Month"] > b["Month"] ? 1 : -1;
-              });
 
-            return melted;
-          }}
-        />*/}
         <SourceNote cube="nene" />
       </div>
     );
