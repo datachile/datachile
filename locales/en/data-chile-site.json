@@ -644,6 +644,11 @@
         "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
         "description":
           "<p>New dataset: Civic section. Electoral results and participation from last elections. Fixed some style issues. Added new download links to raw information sources on the About page.</p>"
+      },
+      "encino": {
+        "title": "1.2.1 - \"Encino\" - 2018-02-16",
+        "description":
+          "<p>New data visualizations in Civic section: electoral results: presidential, congress and mayor levels. Fixes in authorities in main splash.</p>"
       }
     }
   },

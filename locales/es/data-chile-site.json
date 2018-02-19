@@ -84,6 +84,8 @@
   "Complaints Over Time": "Evolución de Denuncias",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
+  "Congress": "Congreso",
+  "Congressperson Election": "Elecciones de Diputados",
   "Connected to electricity network": "Conectado a la red eléctrica",
   "Use fire-based heating": "Usa calefacción basada en fuego",
   "Connected to public tap water system": "Conectado a la red de agua pública",
@@ -386,6 +388,7 @@
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
 
+  "Presidential": "Presidencial",
   "PSU exams": "Personas que rindieron PSU",
   "PSU Results": "Resultados PSU",
   "PSU Results By Sex": "Resultados PSU por sexo",
@@ -443,6 +446,8 @@
   },
   "Results": "Resultados",
   "Results for": "Resultados para",
+  "Results 1st Round": "Resultados Primera Vuelta",
+  "Results 2nd Round": "Resultados Segunda Vuelta",
   "Retention": "Retención",
   "Retention by Program": "Retención por Programa",
   "Role": "Rol",
@@ -460,6 +465,7 @@
   "See less": "Ver menos",
   "See more": "Ver más",
   "Senators": "Senadores",
+  "Senator Election": "Elección de Senador",
   "Services Access": "Acceso a servicios",
   "SignUp": {
     "Confirm Password": "Confirm Password",
@@ -805,6 +811,11 @@
         "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
         "description":
           "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>"
+      },
+      "encino": {
+        "title": "1.2.1 - \"Encino\" - 2018-02-16",
+        "description":
+          "<p>Nuevas visualizaciones en Sección Cívica: resultados electorales a nivel presidente, parlamento y alcalde. Correcciones de autoridades en el encabezado del perfil geográfico.</p>"
       }
     }
   },
@@ -921,6 +932,16 @@
   "negative": "negativa",
   "disabilities": "discapacidades",
   "geo_profile": {
+    "civics": {
+      "congress": {
+        "text":
+          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}"
+      },
+      "presidential": {
+        "text":
+          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+      }
+    },
     "warning": "Los datos que se muestran corresponden a {{caption}}",
     "trade_slide": {
       "text":
