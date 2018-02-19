@@ -963,12 +963,12 @@ class GeoProfile extends Component {
                 </ElectionSlide>
               </div>
               <div>
-                <ElectionSlide>
+                <CongressSlide>
                   <SectionColumns>
                     <SenatorResults className="lost-1-2" />
                     <CongresspersonResults className="lost-1-2" />
                   </SectionColumns>
-                </ElectionSlide>
+                </CongressSlide>
               </div>
 
               <div>

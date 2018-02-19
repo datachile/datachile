@@ -7,7 +7,7 @@ import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import { Congress } from "texts/GeoProfile";
+import { Congress, Election } from "texts/GeoProfile";
 
 class CongressSlide extends Section {
   static need = [
@@ -35,22 +35,11 @@ class CongressSlide extends Section {
 
   render() {
     const { children, t, i18n } = this.props;
-    const {
-      datum_congressperson_elected,
-      geo,
-      need_presidential_participation
-    } = this.context.data;
+    const { datum_electoral_participation, geo } = this.context.data;
 
     const locale = i18n.language;
+    const text = Election(datum_electoral_participation, geo, locale);
 
-    console.log(need_presidential_participation.data[0]["Electors"]);
-    let text = Congress(datum_congressperson_elected, geo, locale, t);
-
-    const datum_1 = numeral(
-      need_presidential_participation.data[0]["Votes"] /
-        need_presidential_participation.data[0]["Electors"],
-      locale
-    ).format("0.0%");
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -58,7 +47,7 @@ class CongressSlide extends Section {
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{
-                __html: t("geo_profile.civics.congress.text", text)
+                __html: t("geo_profile.politics.text", text)
               }}
             />
           </div>
@@ -66,24 +55,37 @@ class CongressSlide extends Section {
             {text && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="participation"
-                datum={datum_1}
-                title={t("Participation")}
-                subtitle={t("Congress Election in 2017")}
+                icon="cambio-votacion"
+                datum={numeral(text.growth, locale).format("0.0%")}
+                title={t("Change in participation")}
+                subtitle={t("Presidential 1st - 2nd round") + " " + "2017"}
               />
             )}
             {text && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="participation"
-                datum={""}
+                datum={text.participation.perc}
                 title={t("Participation")}
-                subtitle={""}
+                subtitle={
+                  text.participation.caption + " - " + text.participation.year
+                }
               />
             )}
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
+        {geo.depth > 0 && (
+          <div>
+            <p
+              className="chart-text"
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.civics.congress.note")
+              }}
+            />
+            <br />
+          </div>
+        )}
       </div>
     );
   }
