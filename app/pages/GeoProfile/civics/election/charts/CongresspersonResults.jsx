@@ -168,13 +168,18 @@ class CongresspersonResults extends Section {
                 "</div>"
             },
             legendTooltip: {
-              title: d => d["Coalition"]
+              title: d => d["Coalition"],
+              body: d =>
+                "<div>" +
+                (geo.type === "comuna"
+                  ? numeral(d["Votes"], locale).format("0,0")
+                  : numeral(d["count"], locale).format("0,0")) +
+                " " +
+                (geo.type === "comuna" ? t("Votes") : t("Elected Authority")) +
+                "</div>"
             },
             legendConfig: {
-              label: d =>
-                geo.type === "comuna" || geo.type === "region"
-                  ? d["Coalition"]
-                  : d["Coalition"],
+              label: false,
               shapeConfig: {
                 width: 25,
                 height: 25

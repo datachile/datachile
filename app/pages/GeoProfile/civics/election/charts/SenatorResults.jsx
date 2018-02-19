@@ -180,15 +180,12 @@ class SenatorResults extends Section {
                 "</div>"
             },
             legendTooltip: {
-              title: d => (geo.depth === 2 ? d["Coalition"] : d["Coalition"]),
+              title: d => (geo.type === "comuna" ? d["Coalition"] : d["Coalition"]),
               body: d =>
                 numeral(d["Votes"], locale).format("0,0") + " " + t("Votes")
             },
             legendConfig: {
-              label: d =>
-                geo.type === "comuna" || geo.type === "region"
-                  ? d["Coalition"]
-                  : d["Coalition"],
+              label: false,
               shapeConfig: {
                 width: 25,
                 height: 25
@@ -217,15 +214,6 @@ class SenatorResults extends Section {
                 });
               });
 
-            /*d.push({
-              Votes: non_electors,
-              Candidate: t("Electors that didn't vote"),
-              ["ID Candidate"]: 9999,
-              ["ID Partido"]: 9999,
-              ["ID Year"]: 2016,
-              Partido: "",
-              Year: "2016"
-            });*/
             return d;
           }}
         />

@@ -139,9 +139,10 @@ class Presidential2nd extends Section {
                 "</div>"
             },
             legendTooltip: {
-              body: d => "<div></div>"
+              //body: d => "<div></div>"
             },
             legendConfig: {
+              label: false,
               shapeConfig: {
                 width: 25,
                 height: 25
