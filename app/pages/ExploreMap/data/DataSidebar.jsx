@@ -10,7 +10,9 @@ class DataSidebar extends Component {
   }
 
   render() {
-    const { t, datasets = [], datasetsQty = 0, deleteDataset } = this.props;
+    const { t, datasets = [], deleteDataset } = this.props;
+
+    const datasetsQty = datasets.length;
 
     return (
       <div className="data-sidebar">
@@ -37,8 +39,7 @@ class DataSidebar extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    datasets: state.map.datasets.list,
-    datasetsQty: state.map.datasets.list.length
+    datasets: state.map.datasets.list
   };
 };
 

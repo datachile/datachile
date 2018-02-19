@@ -17,5 +17,9 @@
       text-decoration: none;
       background-color: var(--nice-blue);
     }
+
+    &.disabled {
+      background-color: transparent;
+    }
   }
 }

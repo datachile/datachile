@@ -92,15 +92,33 @@ class MapOptions extends Component {
     super(props);
   }
 
+  getDatasetsQueries() {
+    const { datasets = [] } = this.props;
+    return [...new Set(datasets.map(ds => ds.data.regiones.query))];
+  }
+
+  canSave() {
+    const { results, datasets = [] } = this.props;
+    if (results.queries.regiones) {
+      if (
+        this.getDatasetsQueries().indexOf(results.queries.regiones.query) == -1
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   render() {
     const {
       t,
       saveDataset,
       loadDataset,
-      datasetsQty = 0,
+      datasets = [],
       mapLevel,
       indicator,
-      results
+      results,
+      mapTitle
     } = this.props;
     const {
       data_map_test_options_region,
@@ -108,30 +126,28 @@ class MapOptions extends Component {
       data_map_test_options_comuna
     } = this.props.data;
 
+    const canSave = this.canSave();
+
     return (
       <div className="map-options">
         <Link className={`option`} to="/explore/map/data">
           {t("See data")}
-          {datasetsQty > 0 && <span> ({datasetsQty})</span>}
+          {datasets.length > 0 && <span> ({datasets.length})</span>}
         </Link>
         {results.queries.regiones && (
           <a
-            className={`option`}
+            className={`${canSave ? "option" : "option disabled"}`}
             onClick={evt => {
-              saveDataset(
-                "Exports regional",
-                results.queries.regiones.data,
-                results.queries.regiones.query,
-                "regiones",
-                indicator
-              );
-              saveDataset(
-                "Exports comunal",
-                results.queries.comunas.data,
-                results.queries.comunas.query,
-                "comunas",
-                indicator
-              );
+              if (canSave) {
+                saveDataset(
+                  mapTitle,
+                  results.queries,
+                  mapLevel,
+                  results.queries.regiones.data[0]["FOB US"]
+                    ? "FOB US"
+                    : "CIF US"
+                );
+              }
             }}
           >
             {t("Save data")}
@@ -169,12 +185,11 @@ class MapOptions extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  saveDataset(title, dataset, query, level, indicator) {
+  saveDataset(title, dataset, level, indicator) {
     dispatch({
       type: "MAP_SAVE_DATASET",
       dataset: {
         title: title,
-        query: query,
         data: dataset,
         level: level,
         indicator: indicator
@@ -207,10 +222,11 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    datasetsQty: state.map.datasets.list.length,
+    datasets: state.map.datasets.list,
     mapLevel: state.map.level.value,
     results: state.map.results,
-    indicator: "FOB US"
+    indicator: false,
+    mapTitle: state.map.title.text
   };
 };
 

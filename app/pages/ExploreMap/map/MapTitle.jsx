@@ -5,23 +5,39 @@ import { connect } from "react-redux";
 import "./MapTitle.css";
 
 class MapTitle extends Component {
-  static need = [];
-
   constructor(props) {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { results, setMapTitle } = nextProps;
+    if (this.props.results != results) {
+      setMapTitle(this.getDatasetTitle());
+    }
+  }
+
+  getDatasetTitle() {
+    const { mapLevel, topic, indicator, results } = this.props;
+
+    var parts = [topic ? topic.value : "", indicator ? indicator.value : ""];
+
+    return parts.join("-");
+  }
+
   render() {
-    const { t, mapLevel, topic, indicator, mapYear } = this.props;
+    const { t, mapLevel, mapYear, results } = this.props;
+
+    const title = this.getDatasetTitle();
+
     return (
       <h2 className="map-generated-title">
-        {mapLevel && <span>{mapLevel}</span>}
-        -
-        {topic && <span>{topic.value}</span>}
-        -
-        {indicator && <span>{indicator.value}</span>}
-        -
-        {mapYear && <span>{mapYear}</span>}
+        {results.queries.regiones && (
+          <span>
+            {title}
+            {" by " + mapLevel}
+            {mapYear && " in " + mapYear}
+          </span>
+        )}
       </h2>
     );
   }
@@ -32,11 +48,21 @@ const mapStateToProps = (state, ownProps) => {
     mapLevel: state.map.level.value,
     mapYear: state.map.year.value,
     topic: state.map.params.topic,
-    indicator: state.map.params.indicator
+    indicator: state.map.params.indicator,
+    results: state.map.results
   };
 };
 
-MapTitle = translate()(connect(mapStateToProps)(MapTitle));
+const mapDispatchToProps = dispatch => ({
+  setMapTitle(value) {
+    dispatch({
+      type: "MAP_SET_TITLE",
+      text: value
+    });
+  }
+});
+
+MapTitle = translate()(connect(mapStateToProps, mapDispatchToProps)(MapTitle));
 
 export default MapTitle;
 export { MapTitle };

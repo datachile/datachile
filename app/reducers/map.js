@@ -37,7 +37,6 @@ const mapYearReducer = (state = { ...state, value: false }, action) => {
 };
 
 const mapDatasetReducer = (state = { ...state, list: [] }, action) => {
-  console.log(state.list);
   switch (action.type) {
     case "MAP_SAVE_DATASET":
       return {
@@ -69,10 +68,23 @@ const mapResultReducer = (
   }
 };
 
+const mapTitleReducer = (state = { ...state, text: false }, action) => {
+  switch (action.type) {
+    case "MAP_SET_TITLE":
+      return {
+        ...state,
+        text: action.text
+      };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   params: mapParamsReducer,
   level: mapLevelReducer,
   year: mapYearReducer,
   datasets: mapDatasetReducer,
-  results: mapResultReducer
+  results: mapResultReducer,
+  title: mapTitleReducer
 });

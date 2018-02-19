@@ -14,9 +14,9 @@ class DataContent extends Component {
     super(props);
   }
 
-  flatDataset(dataset) {
+  flatDataset(dataset, type) {
     const indicatorSlug = slugifyStr(dataset.indicator, "_");
-    const region = dataset.level == "regiones";
+    const region = type == "regiones";
 
     var localFlattenedFields = {};
 
@@ -36,7 +36,7 @@ class DataContent extends Component {
             return record;
           }, {});
         })
-        .entries(dataset.data)
+        .entries(dataset.data[type].data)
         .map(d => d.value),
       fields: localFlattenedFields
     };
@@ -47,10 +47,16 @@ class DataContent extends Component {
 
     var flattenedFields = { type: true, entity: true, entity_id: true };
 
+    const typesAvailable = [...new Set(datasets.map(item => item.level))];
+
     datasets.forEach(dataset => {
-      const { data, fields } = this.flatDataset(dataset);
-      flattenedFields = Object.assign(flattenedFields, fields);
-      flattenedDatasets = flattenedDatasets.concat(data);
+      typesAvailable.forEach(type => {
+        if (dataset.data[type]) {
+          const { data, fields } = this.flatDataset(dataset, type);
+          flattenedFields = Object.assign(flattenedFields, fields);
+          flattenedDatasets = flattenedDatasets.concat(data);
+        }
+      });
     });
 
     flattenedDatasets = nest()

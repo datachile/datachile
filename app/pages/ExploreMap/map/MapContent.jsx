@@ -10,8 +10,6 @@ import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import "./MapContent.css";
 
 class MapContent extends Component {
-  static need = [];
-
   processResults(data, msrName, mapYear) {
     var dataMap = [];
     if (data && msrName && mapYear) {
@@ -31,14 +29,16 @@ class MapContent extends Component {
 
     const locale = i18n.language;
 
-    console.log(results);
-
     const comunasData = results.queries.comunas
       ? results.queries.comunas.data
       : [];
     const regionesData = results.queries.regiones
       ? results.queries.regiones.data
       : [];
+
+    const fakeMsrName = results.queries.regiones
+      ? results.queries.regiones.data[0]["FOB US"] ? "FOB US" : "CIF US"
+      : "";
 
     const configBase = {
       height: 700,
@@ -87,7 +87,7 @@ class MapContent extends Component {
         topojsonId: "id",
         topojsonKey: "comunas_datachile_final",
         groupBy: "ID Comuna",
-        data: this.processResults(comunasData, msrName, mapYear),
+        data: this.processResults(comunasData, fakeMsrName, mapYear),
         label: d => d["Comuna"]
       },
       regiones: {
@@ -95,7 +95,7 @@ class MapContent extends Component {
         topojson: "/geo/regiones.json",
         topojsonId: "id",
         topojsonKey: "regiones",
-        data: this.processResults(regionesData, msrName, mapYear),
+        data: this.processResults(regionesData, fakeMsrName, mapYear),
         groupBy: "ID Region",
         label: d => d["Region"]
       }
@@ -115,7 +115,7 @@ class MapContent extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     topic: state.map.params.topic.value,
-    msrName: "FOB US",
+    msrName: "CIF US",
     mapLevel: state.map.level.value,
     mapYear: state.map.year.value,
     results: state.map.results

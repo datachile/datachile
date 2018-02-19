@@ -6,8 +6,6 @@ import Select from "components/Select";
 import "./MapYearSelector.css";
 
 class MapYearSelector extends Component {
-  static need = [];
-
   constructor(props) {
     super(props);
     this.state = { mapYearOptions: [] };

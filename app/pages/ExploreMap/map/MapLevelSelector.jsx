@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import "./MapLevelSelector.css";
 
 class MapLevelSelector extends Component {
-  static need = [];
-
   constructor(props) {
     super(props);
   }
@@ -33,14 +31,18 @@ class MapLevelSelector extends Component {
         >
           {t("Regiones")}
         </a>
-        {results.queries.comunas && (
-          <a
-            className={`toggle ${mapLevel === "comunas" ? "selected" : ""}`}
-            onClick={evt => setMapLevel("comunas")}
-          >
-            {t("Comunas")}
-          </a>
-        )}
+        <a
+          className={`toggle ${mapLevel === "comunas" ? "selected" : ""} ${
+            results.queries.comunas ? "" : "disabled"
+          }`}
+          onClick={evt => {
+            if (results.queries.comunas) {
+              setMapLevel("comunas");
+            }
+          }}
+        >
+          {t("Comunas")}
+        </a>
       </div>
     );
   }
