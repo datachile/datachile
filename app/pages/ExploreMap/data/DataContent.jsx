@@ -43,7 +43,6 @@ class DataContent extends Component {
   }
 
   combineAndFlatDatasets(datasets) {
-    console.log(datasets);
     var flattenedDatasets = [];
 
     var flattenedFields = { type: true, entity: true, entity_id: true };
