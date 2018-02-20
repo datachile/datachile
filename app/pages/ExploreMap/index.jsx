@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { CanonComponent } from "datawheel-canon";
 import { translate } from "react-i18next";
@@ -16,32 +16,38 @@ import MapYearSelector from "./map/MapYearSelector";
 import DataSidebar from "./data/DataSidebar";
 import DataContent from "./data/DataContent";
 
+import requestData from "./actions.js";
+
 import "./explore-map.css";
 
-class ExploreMap extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+class ExploreMap extends React.Component {
+  state = {};
 
   static need = [MapContent, MapSidebar, MapOptions];
 
-  componentWillUnmount() {
-    this.setState({});
-  }
+  componentWillReceiveProps(nextProps) {
+    const { dispatch } = this.props;
+    const { mapYear, mapIndicator, queryRegion, queryComuna } = nextProps;
 
-  componentDidMount() {
-    this.setState({});
+    if (mapIndicator && this.props.mapIndicator != mapIndicator) {
+      dispatch(
+        requestData({
+          cubeName: mapIndicator,
+          cuts: [],
+          locale: nextProps.i18n.language
+        })
+      );
+    }
   }
 
   render() {
     const { section } = this.props.routeParams;
-    const { t } = this.props;
+    const { data, t } = this.props;
 
     return (
       <CanonComponent
         id="explore-map"
-        data={this.props.data}
+        data={data}
         topics={[]}
         loadingComponent={<DatachileLoading />}
       >
@@ -52,14 +58,14 @@ class ExploreMap extends Component {
             {!section && (
               <div className="explore-map-section">
                 <div className="explore-map-sidebar">
-                  <MapSidebar data={this.props.data} />
+                  <MapSidebar data={data} />
                 </div>
                 <div className="explore-map-content">
                   <MapTitle />
                   <MapLevelSelector />
                   <MapYearSelector />
-                  <MapOptions data={this.props.data} />
-                  <MapContent data={this.props.data} />
+                  <MapOptions data={data} />
+                  <MapContent data={data} />
                 </div>
               </div>
             )}
@@ -81,12 +87,19 @@ class ExploreMap extends Component {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      data: state.data,
-      focus: state.focus
-    }),
-    {}
-  )(ExploreMap)
-);
+const mapStateToProps = state => {
+  const params = state.map.params;
+  return {
+    data: state.data,
+    results: state.map.results,
+
+    mapYear: params.year,
+    mapTopic: params.topic && params.topic.value,
+    mapIndicator: params.indicator && params.indicator.value,
+
+    queryRegion: state.map.results.queries.region,
+    queryComuna: state.map.results.queries.comuna
+  };
+};
+
+export default translate()(connect(mapStateToProps)(ExploreMap));

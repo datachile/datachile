@@ -1,90 +1,105 @@
 import { combineReducers } from "redux";
 
 const mapParamsInitialState = {
+  indicator: { value: "" },
+  level: "region",
+  measure: { value: "" },
   topic: { value: "economy" },
-  indicator: null
+  year: 2015
 };
 
 const mapParamsReducer = (state = mapParamsInitialState, action) => {
   switch (action.type) {
-    case "MAP_TOPIC_SET":
-      return { ...state, topic: action.payload, indicator: null };
-
     case "MAP_INDICATOR_SET":
       return { ...state, indicator: action.payload };
 
-    default:
-      return state;
-  }
-};
-
-const mapLevelReducer = (state = { ...state, value: "regiones" }, action) => {
-  switch (action.type) {
     case "MAP_LEVEL_SET":
-      return { ...state, value: action.payload };
-    default:
-      return state;
-  }
-};
+      return { ...state, level: action.payload };
 
-const mapYearReducer = (state = { ...state, value: false }, action) => {
-  switch (action.type) {
+    case "MAP_MEASURE_SET":
+      return { ...state, measure: action.payload };
+
+    case "MAP_TOPIC_SET":
+      return { ...state, topic: action.payload, indicator: null };
+
     case "MAP_YEAR_SET":
-      return { ...state, value: action.payload };
+      return { ...state, year: action.payload };
+
+    case "MAP_YEAR_OPTIONS":
+      // payload is an array of year strings
+      return { ...state, year: [].concat(action.payload).pop() };
+
     default:
       return state;
   }
 };
 
-const mapDatasetReducer = (state = { ...state, list: [] }, action) => {
+const mapOptionsInitialState = {
+  year: [2015]
+};
+
+const mapOptionsReducer = (state = mapOptionsInitialState, action) => {
+  switch (action.type) {
+    case "MAP_YEAR_OPTIONS":
+      return { ...state, year: [].concat(action.payload) };
+
+    default:
+      return state;
+  }
+};
+
+const mapDatasetReducer = (state = [], action) => {
   switch (action.type) {
     case "MAP_SAVE_DATASET":
-      return {
-        ...state,
-        list: [...state.list, action.dataset]
-      };
+      return [].concat(state, action.payload);
+
     case "MAP_DELETE_DATASET":
-      return {
-        ...state,
-        list: state.list.filter((item, index) => index !== action.index)
-      };
+      return state.filter((item, index) => index !== action.index);
+
     default:
       return state;
   }
 };
 
-const mapResultReducer = (
-  state = { ...state, queries: { regiones: false, comunas: false } },
-  action
-) => {
+const mapResultInitialState = {
+  data: { region: undefined, comuna: undefined },
+  queries: { region: false, comuna: false }
+};
+
+const mapResultReducer = (state = mapResultInitialState, action) => {
   switch (action.type) {
     case "MAP_NEW_RESULTS":
+      // this way I make sure the state keeps the shape
       return {
-        ...state,
-        queries: action.results
+        queries: {
+          region: action.payload.queryRegion || false,
+          comuna: action.payload.queryComuna || false
+        },
+        data: {
+          region: action.payload.dataRegion || undefined,
+          comuna: action.payload.dataComuna || undefined
+        }
       };
+
     default:
       return state;
   }
 };
 
-const mapTitleReducer = (state = { ...state, text: false }, action) => {
+const mapTitleReducer = (state = "", action) => {
   switch (action.type) {
     case "MAP_SET_TITLE":
-      return {
-        ...state,
-        text: action.text
-      };
+      return action.payload;
+
     default:
       return state;
   }
 };
 
 export default combineReducers({
-  params: mapParamsReducer,
-  level: mapLevelReducer,
-  year: mapYearReducer,
   datasets: mapDatasetReducer,
+  options: mapOptionsReducer,
+  params: mapParamsReducer,
   results: mapResultReducer,
   title: mapTitleReducer
 });

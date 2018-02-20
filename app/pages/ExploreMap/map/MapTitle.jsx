@@ -5,60 +5,43 @@ import { connect } from "react-redux";
 import "./MapTitle.css";
 
 class MapTitle extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillReceiveProps(nextProps) {
-    const { results, setMapTitle } = nextProps;
-    if (this.props.results != results) {
+    const { query, setMapTitle } = nextProps;
+    if (this.props.query != query) {
       setMapTitle(this.getDatasetTitle());
     }
   }
 
   getDatasetTitle() {
-    const { mapLevel, topic, indicator, results } = this.props;
-
-    var parts = [topic ? topic.value : "", indicator ? indicator.value : ""];
-
-    return parts.join("-");
+    const { topic, indicator } = this.props;
+    return `${topic ? topic.value : ""}-${indicator ? indicator.value : ""}`;
   }
 
   render() {
-    const { t, mapLevel, mapYear, results } = this.props;
+    const { t, mapTitle, mapLevel, mapYear, query } = this.props;
 
-    const title = this.getDatasetTitle();
+    const title = query ? (
+      <span>{`${mapTitle} by ${mapLevel}${mapYear && " in " + mapYear}`}</span>
+    ) : null;
 
-    return (
-      <h2 className="map-generated-title">
-        {results.queries.regiones && (
-          <span>
-            {title}
-            {" by " + mapLevel}
-            {mapYear && " in " + mapYear}
-          </span>
-        )}
-      </h2>
-    );
+    return <h2 className="map-generated-title">{title}</h2>;
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    mapLevel: state.map.level.value,
-    mapYear: state.map.year.value,
+    mapTitle: state.map.title,
+    mapLevel: state.map.params.level,
+    mapYear: state.map.params.year,
     topic: state.map.params.topic,
     indicator: state.map.params.indicator,
-    results: state.map.results
+    query: state.map.results.data.region
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  setMapTitle(value) {
-    dispatch({
-      type: "MAP_SET_TITLE",
-      text: value
-    });
+  setMapTitle(payload) {
+    dispatch({ type: "MAP_SET_TITLE", payload });
   }
 });
 

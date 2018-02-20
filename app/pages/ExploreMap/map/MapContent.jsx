@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Geomap } from "d3plus-react";
@@ -9,36 +9,20 @@ import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
 import "./MapContent.css";
 
-class MapContent extends Component {
-  processResults(data, msrName, mapYear) {
-    var dataMap = [];
-    if (data && msrName && mapYear) {
-      var dataMap = data
-        .filter(item => {
-          return item["Year"] == mapYear;
-        })
-        .map(item => {
-          return { ...item, variable: item[msrName] };
-        });
-    }
-    return dataMap;
-  }
-
+class MapContent extends React.Component {
   render() {
-    const { t, i18n, topic, msrName, mapLevel, mapYear, results } = this.props;
+    const {
+      t,
+      i18n,
+      mapTopic,
+      msrName,
+      mapLevel,
+      mapYear,
+      dataRegion,
+      dataComuna
+    } = this.props;
 
     const locale = i18n.language;
-
-    const comunasData = results.queries.comunas
-      ? results.queries.comunas.data
-      : [];
-    const regionesData = results.queries.regiones
-      ? results.queries.regiones.data
-      : [];
-
-    const fakeMsrName = results.queries.regiones
-      ? results.queries.regiones.data[0]["FOB US"] ? "FOB US" : "CIF US"
-      : "";
 
     const configBase = {
       height: 700,
@@ -57,7 +41,7 @@ class MapContent extends Component {
       colorScale: "variable",
       colorScalePosition: "left",
       colorScaleConfig: {
-        color: MAP_SCALE_COLORS[topic],
+        color: MAP_SCALE_COLORS[mapTopic],
         axisConfig: {
           shapeConfig: {
             labelConfig: {
@@ -71,7 +55,7 @@ class MapContent extends Component {
         downloadButton: false
       },
       tooltipConfig: {
-        title: mapLevel == "comunas" ? d => d["Comuna"] : d => d["Region"],
+        title: mapLevel == "comuna" ? d => d["Comuna"] : d => d["Region"],
         body: d => numeral(d[msrName], locale).format("(USD 0 a)")
       },
       duration: 0,
@@ -81,21 +65,21 @@ class MapContent extends Component {
     };
 
     const configVariations = {
-      comunas: {
+      comuna: {
         id: "ID Comuna",
-        topojson: "/geo/comunas-5.json",
+        topojson: "/geo/comunas.json",
         topojsonId: "id",
         topojsonKey: "comunas_datachile_final",
         groupBy: "ID Comuna",
-        data: this.processResults(comunasData, fakeMsrName, mapYear),
+        data: processResults(dataComuna, msrName, mapYear),
         label: d => d["Comuna"]
       },
-      regiones: {
+      region: {
         id: "ID Region",
         topojson: "/geo/regiones.json",
         topojsonId: "id",
         topojsonKey: "regiones",
-        data: this.processResults(regionesData, fakeMsrName, mapYear),
+        data: processResults(dataRegion, msrName, mapYear),
         groupBy: "ID Region",
         label: d => d["Region"]
       }
@@ -112,13 +96,21 @@ class MapContent extends Component {
   }
 }
 
+const processResults = (data, msrName, mapYear) => {
+  if (mapYear) data = data.filter(item => item["Year"] == mapYear);
+  if (msrName) data = data.map(item => ({ ...item, variable: item[msrName] }));
+  return data;
+};
+
 const mapStateToProps = (state, ownProps) => {
   return {
-    topic: state.map.params.topic.value,
-    msrName: "CIF US",
-    mapLevel: state.map.level.value,
-    mapYear: state.map.year.value,
-    results: state.map.results
+    msrName: state.map.params.measure.value,
+    mapTopic: state.map.params.topic.value,
+    mapLevel: state.map.params.level,
+    mapYear: state.map.params.year,
+
+    dataRegion: state.map.results.data.region || [],
+    dataComuna: state.map.results.data.comuna || []
   };
 };
 

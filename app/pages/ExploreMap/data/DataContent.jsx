@@ -16,7 +16,7 @@ class DataContent extends Component {
 
   flatDataset(dataset, type) {
     const indicatorSlug = slugifyStr(dataset.indicator, "_");
-    const region = type == "regiones";
+    const region = type == "region";
 
     var localFlattenedFields = {};
 

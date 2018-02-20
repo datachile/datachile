@@ -5,9 +5,21 @@ import { Link } from "react-router";
 import { Icon } from "@blueprintjs/core";
 
 import CustomSelect from "components/CustomSelect";
+import CustomMultiSelect from "components/CustomMultiSelect";
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
 import "./MapSidebar.css";
+
+function hasGeoDimensions(dimensions) {
+  return (
+    dimensions.length > 0 &&
+    dimensions.some(
+      dim =>
+        dim.hierarchies.length > 0 &&
+        dim.hierarchies.some(hie => hie.name == "Geography")
+    )
+  );
+}
 
 class MapSidebar extends React.Component {
   static need = [
@@ -15,24 +27,64 @@ class MapSidebar extends React.Component {
       // mondrian-rest-client doesn't use the annotations from the json
       const promise = fetch(__API__ + "cubes")
         .then(response => response.json())
-        .then(data => ({
-          key: "data_map_indicators",
-          data: data.cubes.reduce(function(groups, cube) {
+        .then(data => {
+          const indicators = {};
+          const dimensions = {};
+          const measures = {};
+
+          for (let cube, i = 0; (cube = data.cubes[i]); i++) {
+            if (!hasGeoDimensions(cube.dimensions)) continue;
+
             const topic = cube.annotations.topic;
-            topic in groups || (groups[topic] = []);
-            groups[topic].push(cube.name);
-            return groups;
-          }, {})
-        }));
+
+            if (!indicators.hasOwnProperty(topic)) indicators[topic] = [];
+            indicators[topic].push(cube.name);
+
+            dimensions[cube.name] = cube.dimensions;
+            measures[cube.name] = cube.measures;
+          }
+
+          return {
+            key: "data_map_cubes",
+            data: {
+              indicators,
+              dimensions,
+              measures
+            }
+          };
+        });
 
       return { type: "GET_DATA", promise };
     }
   ];
 
-  getTopicOptions() {
-    const { t, setTopic } = this.props;
+  constructor(props) {
+    super(props);
 
-    const options = [
+    this.topics = this.getTopicOptions.call(this);
+    props.setTopic(this.topics[0]);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { valueTopic, valueIndicator } = nextProps;
+
+    if (valueTopic && this.props.valueTopic != valueTopic) {
+      const indicators = this.getIndicatorOptions(valueTopic);
+      this.indicators = indicators;
+      indicators[0] && nextProps.setIndicator(indicators[0]);
+    }
+
+    if (valueIndicator && this.props.valueIndicator != valueIndicator) {
+      const measures = this.getMeasureOptions(valueIndicator);
+      this.measures = measures;
+      measures[0] && nextProps.setMeasure(measures[0]);
+    }
+  }
+
+  getTopicOptions() {
+    const { t } = this.props;
+
+    return [
       { value: "economy", name: t("Economy") },
       { value: "education", name: t("Education") },
       { value: "environment", name: t("Housing & Environment") },
@@ -43,29 +95,38 @@ class MapSidebar extends React.Component {
       item.icon = `/images/profile-icon/icon-${item.value}.svg`;
       return item;
     });
-
-    setTopic(options[0]);
-
-    this.topics = options;
-    return options;
   }
 
-  getIndicatorOptions() {
-    const { data, t, valueTopic } = this.props;
-    const cubes = data.data_map_indicators[valueTopic.value] || [];
+  getIndicatorOptions = valueTopic => {
+    if (!valueTopic) return [];
+    const { data_map_cubes } = this.props.data;
+    const cubes = data_map_cubes.indicators[valueTopic.value] || [];
     return cubes.map(name => ({ value: name, name }));
-  }
+  };
+
+  getMeasureOptions = valueIndicator => {
+    if (!valueIndicator) return [];
+    const { data_map_cubes } = this.props.data;
+    const measures = data_map_cubes.measures[valueIndicator.value] || [];
+    return measures.map(ms => ({
+      value: ms.name,
+      name: ms.annotations.es_element_caption || ms.name
+    }));
+  };
 
   render() {
     const { data, t } = this.props;
 
     const { valueTopic, setTopic } = this.props;
     const { valueIndicator, setIndicator } = this.props;
-    const { valueCountry, addCountry, removeCountry } = this.props;
-    const { valueCategory, setCategory } = this.props;
+    const { valueMeasure, setMeasure } = this.props;
 
-    const optionTopic = this.topics || this.getTopicOptions.call(this);
-    const optionIndicator = this.getIndicatorOptions.call(this);
+    const optionTopic = this.topics;
+    const optionIndicator =
+      this.indicators || this.getIndicatorOptions(valueTopic);
+    const optionMeasure =
+      this.measures || this.getMeasureOptions(valueIndicator);
+    const optionAnythingElse = [];
 
     return (
       <div className="map-sidebar">
@@ -94,19 +155,12 @@ class MapSidebar extends React.Component {
           />
         </OptionGroup>
 
-        <OptionGroup label={t("Country")}>
+        <OptionGroup label={t("Measure")}>
           <CustomSelect
-            items={[]}
-            value={valueCountry}
-            onItemSelect={addCountry}
-          />
-        </OptionGroup>
-
-        <OptionGroup label={t("Category")}>
-          <CustomSelect
-            items={[]}
-            value={valueCategory}
-            onItemSelect={setCategory}
+            items={optionMeasure}
+            value={valueMeasure}
+            onItemSelect={setMeasure}
+            filterable={false}
           />
         </OptionGroup>
 
@@ -128,12 +182,7 @@ function OptionGroup(props) {
 const mapStateToProps = state => ({
   valueTopic: state.map.params.topic,
   valueIndicator: state.map.params.indicator,
-
-  optionCountry: state.map.a,
-  valueCountry: state.map.a,
-
-  optionCategory: state.map.a,
-  valueCategory: state.map.a
+  valueMeasure: state.map.params.measure
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -143,14 +192,8 @@ const mapDispatchToProps = dispatch => ({
   setIndicator(payload) {
     dispatch({ type: "MAP_INDICATOR_SET", payload });
   },
-  addCountry(payload) {
-    dispatch({ type: "MAP_COUNTRY_ADD", payload });
-  },
-  removeCountry(payload) {
-    dispatch({ type: "MAP_COUNTRY_REMOVE", payload });
-  },
-  setCategory(payload) {
-    dispatch({ type: "MAP_CATEGORY_SET", payload });
+  setMeasure(payload) {
+    dispatch({ type: "MAP_MEASURE_SET", payload });
   }
 });
 

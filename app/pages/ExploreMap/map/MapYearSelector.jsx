@@ -1,43 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import Select from "components/Select";
 
 import "./MapYearSelector.css";
 
-class MapYearSelector extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { mapYearOptions: [] };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { setMapYearSelected, results } = nextProps;
-    if (this.props.results != results) {
-      if (results.queries.regiones) {
-        this.setState(
-          {
-            mapYearOptions: [
-              ...new Set(
-                results.queries.regiones.data.map(item => item["ID Year"])
-              )
-            ]
-          },
-          () => {
-            setMapYearSelected({
-              newValue: this.state.mapYearOptions[
-                this.state.mapYearOptions.length - 1
-              ]
-            });
-          }
-        );
-      }
-    }
-  }
-
+class MapYearSelector extends React.Component {
   render() {
-    const { t, mapYear, setMapYearSelected } = this.props;
-    const { mapYearOptions } = this.state;
+    const { t, mapYear, mapYearOptions, setMapYearSelected } = this.props;
 
     if (mapYearOptions.length == 0) {
       return null;
@@ -47,9 +17,7 @@ class MapYearSelector extends Component {
       <div className="map-year-selector">
         <Select
           id="years"
-          options={mapYearOptions.map(y => {
-            return { year: y };
-          })}
+          options={mapYearOptions.map(year => ({ year }))}
           value={mapYear}
           labelField="year"
           valueField="year"
@@ -68,8 +36,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    mapYear: state.map.year.value,
-    results: state.map.results
+    mapYear: state.map.params.year,
+    mapYearOptions: state.map.options.year
   };
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import classnames from "classnames";
+import { classnames } from "helpers/formatters.js";
 import escapeRegExp from "lodash/escapeRegExp";
 
 import { Icon } from "@blueprintjs/core";
@@ -15,12 +15,13 @@ CustomSelect.defaultProps = {
     return items.filter(item => tester.test(item.name));
   },
   itemRenderer({ handleClick, item, isActive }) {
-    const className = ["select-option"];
-    isActive && className.push("active");
-    item.disabled && className.push("disabled");
+    const className = classnames("select-option", {
+      active: isActive,
+      disabled: item.disabled
+    });
     return (
       <span
-        className={className.join(" ")}
+        className={className}
         onClick={item.disabled ? null : handleClick}
       >
         {item.icon ? <img className="icon" src={item.icon} /> : null}

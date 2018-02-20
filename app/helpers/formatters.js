@@ -141,6 +141,20 @@ export function buildPermalink(item, profile, ...levels) {
   );
 }
 
+export function classnames() {
+  return [].concat
+    .apply([], arguments)
+    .reduce(function(classname, token) {
+      if (!token || token === true) return classname;
+      else if ("string" == typeof token) token = token.trim();
+      else if (Array.isArray(token)) token = classnames.apply(null, token);
+      else if ("object" == typeof token)
+        token = Object.keys(token).filter(slug => Boolean(token[slug]));
+      return classname.concat(token);
+    }, [])
+    .join(" ");
+}
+
 export function getImageFromMember(
   prefix,
   id1,

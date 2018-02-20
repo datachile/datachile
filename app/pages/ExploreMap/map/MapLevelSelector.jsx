@@ -1,43 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 
+import { classnames } from "helpers/formatters";
+
 import "./MapLevelSelector.css";
 
-class MapLevelSelector extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+class MapLevelSelector extends React.Component {
   componentWillReceiveProps(nextProps) {
-    const { setMapLevel, results } = nextProps;
-    if (!results.queries.comunas) {
-      setMapLevel("regiones");
+    const { setMapLevel, queryComuna } = nextProps;
+
+    if (!queryComuna) {
+      setMapLevel("region");
     }
   }
 
   render() {
-    const { t, mapLevel, setMapLevel, results } = this.props;
+    const { t, mapLevel, setMapLevel, queryRegion, queryComuna } = this.props;
 
-    if (!results || !results.queries || !results.queries.regiones) {
+    if (!queryRegion) {
       return null;
     }
 
     return (
       <div className="map-switch-options">
         <a
-          className={`toggle ${mapLevel === "regiones" ? "selected" : ""}`}
-          onClick={evt => setMapLevel("regiones")}
+          className={`toggle ${mapLevel === "region" ? "selected" : ""}`}
+          onClick={evt => setMapLevel("region")}
         >
           {t("Regiones")}
         </a>
         <a
-          className={`toggle ${mapLevel === "comunas" ? "selected" : ""} ${
-            results.queries.comunas ? "" : "disabled"
-          }`}
+          className={classnames("toggle", {
+            selected: mapLevel === "comuna",
+            disabled: queryComuna
+          })}
           onClick={evt => {
-            if (results.queries.comunas) {
-              setMapLevel("comunas");
+            if (queryComuna) {
+              setMapLevel("comuna");
             }
           }}
         >
@@ -49,15 +49,16 @@ class MapLevelSelector extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setMapLevel(value) {
-    dispatch({ type: "MAP_LEVEL_SET", payload: value });
+  setMapLevel(payload) {
+    dispatch({ type: "MAP_LEVEL_SET", payload });
   }
 });
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    mapLevel: state.map.level.value,
-    results: state.map.results
+    mapLevel: state.map.params.level,
+    queryRegion: state.map.results.queries.region,
+    queryComuna: state.map.results.queries.comuna
   };
 };
 
