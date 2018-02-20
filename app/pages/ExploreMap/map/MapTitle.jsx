@@ -6,15 +6,17 @@ import "./MapTitle.css";
 
 class MapTitle extends Component {
   componentWillReceiveProps(nextProps) {
-    const { query, setMapTitle } = nextProps;
-    if (this.props.query != query) {
-      setMapTitle(this.getDatasetTitle());
+    const { measure, setMapTitle } = nextProps;
+    if (this.props.measure.name != measure.name) {
+      setMapTitle(this.getDatasetTitle(nextProps));
     }
   }
 
-  getDatasetTitle() {
-    const { topic, indicator } = this.props;
-    return `${topic ? topic.value : ""}-${indicator ? indicator.value : ""}`;
+  getDatasetTitle(nextProps) {
+    const { topic, indicator, measure } = nextProps;
+    return `${topic ? topic.name : ""}, ${indicator ? indicator.name : ""}, ${
+      measure ? measure.name : ""
+    }`;
   }
 
   render() {
@@ -35,7 +37,8 @@ const mapStateToProps = (state, ownProps) => {
     mapYear: state.map.params.year,
     topic: state.map.params.topic,
     indicator: state.map.params.indicator,
-    query: state.map.results.data.region
+    measure: state.map.params.measure,
+    query: state.map.results.queries.region
   };
 };
 

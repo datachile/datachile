@@ -39,7 +39,7 @@ class DataSidebar extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    datasets: state.map.datasets.list
+    datasets: state.map.datasets
   };
 };
 

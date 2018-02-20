@@ -2,8 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 
-import { classnames } from "helpers/formatters";
-
 import "./MapLevelSelector.css";
 
 class MapLevelSelector extends React.Component {
@@ -31,10 +29,9 @@ class MapLevelSelector extends React.Component {
           {t("Regiones")}
         </a>
         <a
-          className={classnames("toggle", {
-            selected: mapLevel === "comuna",
-            disabled: queryComuna
-          })}
+          className={`toggle ${mapLevel === "comuna" ? "selected" : ""} ${
+            !queryComuna ? "disabled" : ""
+          }`}
           onClick={evt => {
             if (queryComuna) {
               setMapLevel("comuna");

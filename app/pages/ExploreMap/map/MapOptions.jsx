@@ -9,13 +9,13 @@ import "./MapOptions.css";
 class MapOptions extends React.Component {
   getDatasetsQueries() {
     const { datasets = [] } = this.props;
-    return [...new Set(datasets.map(ds => ds.data.regiones.query))];
+    return [...new Set(datasets.map(ds => ds.indicator))];
   }
 
   canSave() {
-    const { mapData, datasets = [] } = this.props;
-    if (mapData) {
-      if (this.getDatasetsQueries().indexOf(mapData.regiones.query) == -1) {
+    const { measure, datasets = [] } = this.props;
+    if (measure) {
+      if (this.getDatasetsQueries().indexOf(measure.value) == -1) {
         return true;
       }
     }
@@ -31,7 +31,7 @@ class MapOptions extends React.Component {
     return (
       <div className="map-options">
         <Link className="option" to="/explore/map/data">
-          {t("See data")}
+          {t("Cart")}
           {datasets.length > 0 && <span> ({datasets.length})</span>}
         </Link>
         {mapData && (
@@ -43,7 +43,7 @@ class MapOptions extends React.Component {
                 : null
             }
           >
-            {t("Save data")}
+            {t("Add to cart")}
           </a>
         )}
       </div>
@@ -60,7 +60,7 @@ const mapDispatchToProps = dispatch => ({
         title: title,
         data: dataset,
         level: level,
-        indicator: indicator
+        indicator: indicator.value
       }
     });
   }
@@ -69,15 +69,15 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = (state, ownProps) => {
   return {
     datasets: state.map.datasets,
-    measure: state.map.params.measure.value,
+    measure: state.map.params.measure,
     mapLevel: state.map.params.level,
     mapTitle: state.map.title,
     mapData: {
-      regiones: {
+      region: {
         query: state.map.results.queries.region,
         data: state.map.results.data.region
       },
-      comunas: state.map.results.queries.comuna
+      comuna: state.map.results.queries.comuna
         ? {
             query: state.map.results.queries.comuna,
             data: state.map.results.data.comuna

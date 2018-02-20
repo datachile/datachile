@@ -43,6 +43,7 @@ class DataContent extends Component {
   }
 
   combineAndFlatDatasets(datasets) {
+    console.log(datasets);
     var flattenedDatasets = [];
 
     var flattenedFields = { type: true, entity: true, entity_id: true };
@@ -112,7 +113,7 @@ class DataContent extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    datasets: state.map.datasets.list
+    datasets: state.map.datasets
   };
 };
 
