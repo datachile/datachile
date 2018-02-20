@@ -62,15 +62,21 @@ const mapDatasetReducer = (state = [], action) => {
 };
 
 const mapResultInitialState = {
+  status: "SUCCESS",
+  lastError: null,
   data: { region: undefined, comuna: undefined },
   queries: { region: false, comuna: false }
 };
 
 const mapResultReducer = (state = mapResultInitialState, action) => {
   switch (action.type) {
-    case "MAP_NEW_RESULTS":
+    case "MAP_DATA_FETCH":
+      return { ...state, status: "LOADING" };
+
+    case "MAP_DATA_SUCCESS":
       // this way I make sure the state keeps the shape
       return {
+        status: "SUCCESS",
         queries: {
           region: action.payload.queryRegion || false,
           comuna: action.payload.queryComuna || false
@@ -79,6 +85,13 @@ const mapResultReducer = (state = mapResultInitialState, action) => {
           region: action.payload.dataRegion || undefined,
           comuna: action.payload.dataComuna || undefined
         }
+      };
+
+    case "MAP_DATA_ERROR":
+      return {
+        ...state,
+        status: "ERROR",
+        lastError: action.payload
       };
 
     default:

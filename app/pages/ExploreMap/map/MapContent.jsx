@@ -37,8 +37,8 @@ class MapContent extends React.Component {
         hoverOpacity: 1
       },
       label: false,
-      sum: d => d.variable,
-      colorScale: "variable",
+      sum: d => d[msrName],
+      colorScale: msrName,
       colorScalePosition: "left",
       colorScaleConfig: {
         color: MAP_SCALE_COLORS[mapTopic],
@@ -98,7 +98,7 @@ class MapContent extends React.Component {
 
 const processResults = (data, msrName, mapYear) => {
   if (mapYear) data = data.filter(item => item["Year"] == mapYear);
-  if (msrName) data = data.map(item => ({ ...item, variable: item[msrName] }));
+  // if (msrName) data = data.map(item => ({ ...item, variable: item[msrName] }));
   return data;
 };
 
