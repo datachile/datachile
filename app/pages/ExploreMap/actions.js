@@ -3,6 +3,8 @@ import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 export default function requestData(params) {
   const { cubeName, cuts, locale } = params;
   return function(dispatch) {
+    dispatch({ type: "MAP_DATA_FETCH" });
+
     return mondrianClient
       .cube(cubeName)
       .then(function(cube) {
@@ -42,7 +44,7 @@ export default function requestData(params) {
         if (data[0] && "Year" in data[0]) dispatch(getAvailableYears(data));
 
         return dispatch({
-          type: "MAP_NEW_RESULTS",
+          type: "MAP_DATA_SUCCESS",
           payload: {
             queryRegion: results[0] && results[0].url,
             queryComuna: results[1] && results[1].url,
@@ -50,6 +52,9 @@ export default function requestData(params) {
             dataComuna: results[1] && results[1].data.data
           }
         });
+      })
+      .then(null, function(err) {
+        return dispatch({ type: "MAP_DATA_ERROR", payload: err });
       });
   };
 }

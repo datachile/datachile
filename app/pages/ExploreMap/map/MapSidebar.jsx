@@ -25,34 +25,40 @@ class MapSidebar extends React.Component {
   static need = [
     (params, store) => {
       // mondrian-rest-client doesn't use the annotations from the json
-      const promise = fetch(__API__ + "cubes")
-        .then(response => response.json())
-        .then(data => {
-          const indicators = {};
-          const dimensions = {};
-          const measures = {};
+      const promise = mondrianClient.cubes().then(cubes => {
+        const indicators = {};
+        const dimensions = {};
+        const measures = {};
 
-          for (let cube, i = 0; (cube = data.cubes[i]); i++) {
-            if (!hasGeoDimensions(cube.dimensions)) continue;
+        for (let cube, i = 0; (cube = cubes[i]); i++) {
+          if (!hasGeoDimensions(cube.dimensions)) continue;
 
-            const topic = cube.annotations.topic;
+          const topic = cube.annotations.topic;
 
-            if (!indicators.hasOwnProperty(topic)) indicators[topic] = [];
-            indicators[topic].push(cube.name);
+          if (!indicators.hasOwnProperty(topic)) indicators[topic] = [];
+          indicators[topic].push({ value: cube.name, name: cube.caption });
 
-            dimensions[cube.name] = cube.dimensions;
-            measures[cube.name] = cube.measures;
+          dimensions[cube.name] = cube.dimensions.map(ms => ({
+            value: ms.name,
+            name: ms.caption
+          }));
+          measures[cube.name] = cube.measures.map(ms => ({
+            value: ms.name,
+            name: ms.annotations.es_element_caption || ms.caption
+          }));
+        }
+
+        delete indicators.undefined;
+
+        return {
+          key: "map_params",
+          data: {
+            indicators,
+            dimensions,
+            measures
           }
-
-          return {
-            key: "data_map_cubes",
-            data: {
-              indicators,
-              dimensions,
-              measures
-            }
-          };
-        });
+        };
+      });
 
       return { type: "GET_DATA", promise };
     }
@@ -98,20 +104,15 @@ class MapSidebar extends React.Component {
   }
 
   getIndicatorOptions = valueTopic => {
-    if (!valueTopic) return [];
-    const { data_map_cubes } = this.props.data;
-    const cubes = data_map_cubes.indicators[valueTopic.value] || [];
-    return cubes.map(name => ({ value: name, name }));
+    return valueTopic
+      ? this.props.data.map_params.indicators[valueTopic.value] || []
+      : [];
   };
 
   getMeasureOptions = valueIndicator => {
-    if (!valueIndicator) return [];
-    const { data_map_cubes } = this.props.data;
-    const measures = data_map_cubes.measures[valueIndicator.value] || [];
-    return measures.map(ms => ({
-      value: ms.name,
-      name: ms.annotations.es_element_caption || ms.name
-    }));
+    return valueIndicator
+      ? this.props.data.map_params.measures[valueIndicator.value] || []
+      : [];
   };
 
   render() {
@@ -120,6 +121,7 @@ class MapSidebar extends React.Component {
     const { valueTopic, setTopic } = this.props;
     const { valueIndicator, setIndicator } = this.props;
     const { valueMeasure, setMeasure } = this.props;
+    // const params = this.props.dimParams;
 
     const optionTopic = this.topics;
     const optionIndicator =
@@ -127,6 +129,23 @@ class MapSidebar extends React.Component {
     const optionMeasure =
       this.measures || this.getMeasureOptions(valueIndicator);
     const optionAnythingElse = [];
+
+    // if (valueIndicator) {
+    //   const dimensions = data.map_params.dimensions[valueIndicator.value] || [];
+    //   for (let dim, i = 0; (dim = dimensions[i]); i++) {
+    //     let dimParams = params;
+    //     optionAnythingElse.push(
+    //       <OptionGroup label={dim.caption}>
+    //         <CustomSelect
+    //           items={this.state[dim.name].options}
+    //           value={valueIndicator}
+    //           onItemSelect={setIndicator}
+    //           filterable={false}
+    //         />
+    //       </OptionGroup>
+    //     );
+    //   }
+    // }
 
     return (
       <div className="map-sidebar">
