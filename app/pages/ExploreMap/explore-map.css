@@ -21,6 +21,36 @@
       & .explore-map-content {
         lost-column: 3/4;
         background: var(--gray-light);
+        position: relative;
+        & .explore-map-loading {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: var(--foreground);
+          padding: 16px;
+          width: 100%;
+          height: 100%;
+
+          color: var(--light);
+          background-color: var(--near-black);
+
+          & .pt-non-ideal-state-visual {
+            max-width: 200px;
+            width: 100%;
+            & .pt-progress-meter {
+              background-color: var(--light);
+            }
+          }
+          & .pt-non-ideal-state-title {
+            color: var(--snow);
+          }
+          max-width: 0;
+          visibility: hidden;
+          &.loading {
+            max-width: none;
+            visibility: visible;
+          }
+        }
       }
     }
   }

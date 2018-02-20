@@ -18,12 +18,15 @@ import DataContent from "./data/DataContent";
 
 import requestData from "./actions.js";
 
+import { NonIdealState } from "@blueprintjs/core";
+import DatachileProgressBar from "components/DatachileProgressBar";
+
 import "./explore-map.css";
 
 class ExploreMap extends React.Component {
   state = {};
 
-  static need = [MapContent, MapSidebar, MapOptions];
+  static need = [MapSidebar];
 
   componentWillReceiveProps(nextProps) {
     const { dispatch } = this.props;
@@ -42,7 +45,7 @@ class ExploreMap extends React.Component {
 
   render() {
     const { section } = this.props.routeParams;
-    const { data, t } = this.props;
+    const { data, t, status } = this.props;
 
     return (
       <CanonComponent
@@ -61,11 +64,19 @@ class ExploreMap extends React.Component {
                   <MapSidebar data={data} />
                 </div>
                 <div className="explore-map-content">
+                  <NonIdealState
+                    className={`explore-map-loading ${
+                      status == "LOADING" ? "loading" : ""
+                    }`}
+                    title={t("loading.map")}
+                    description={t("loading.developed")}
+                    visual={<DatachileProgressBar value={1} />}
+                  />
                   <MapTitle />
                   <MapLevelSelector />
                   <MapYearSelector />
-                  <MapOptions data={data} />
-                  <MapContent data={data} />
+                  <MapOptions />
+                  <MapContent />
                 </div>
               </div>
             )}
@@ -98,7 +109,9 @@ const mapStateToProps = state => {
     mapIndicator: params.indicator && params.indicator.value,
 
     queryRegion: state.map.results.queries.region,
-    queryComuna: state.map.results.queries.comuna
+    queryComuna: state.map.results.queries.comuna,
+
+    status: state.map.results.status
   };
 };
 
