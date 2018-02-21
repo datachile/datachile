@@ -11,15 +11,11 @@ import { getGeoObject } from "helpers/dataUtils";
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
+import CustomStackedArea from "components/CustomStackedArea";
 
 class EmploymentBySex extends Section {
   static need = [
     (params, store) => {
-      var geo = getGeoObject(params);
-      //force to region query on comuna profile
-      if (geo.type == "comuna") {
-        geo = geo.ancestor;
-      }
       return simpleGeoChartNeed(
         "path_employment_by_sex",
         "nene_quarter",
@@ -34,8 +30,7 @@ class EmploymentBySex extends Section {
             ["Sex", "Sex", "Sex"],
             ["Date", "Date", "Moving Quarter"]
           ]
-        },
-        geo
+        }
       )(params, store);
     }
   ];
@@ -45,11 +40,13 @@ class EmploymentBySex extends Section {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       selectedOption: 0,
+      key: Math.random(),
       selectedObj: {
         path: "",
         groupBy: [],
         label: () => "",
-        sum: () => ""
+        sum: () => "",
+        sex_id: 1
       },
       chartVariations: []
     };
@@ -79,6 +76,8 @@ class EmploymentBySex extends Section {
   }
 
   handleChange(ev) {
+    this.setState({ key: Math.random() });
+
     this.setState({
       selectedOption: ev.newValue,
       selectedObj: this.state.chartVariations[ev.newValue]
@@ -107,7 +106,8 @@ class EmploymentBySex extends Section {
           />
           <ExportLink path={path} />
         </h3>
-        <StackedArea
+        <CustomStackedArea
+          key={this.state.key}
           config={{
             height: 500,
             data: path,
@@ -141,38 +141,9 @@ class EmploymentBySex extends Section {
               }
             }
           }}
-          dataFormat={function(data) {
-            var filtered = data.data.filter(function(d) {
-              return d["ID Sex"] == selectedObj.sex_id;
-            });
-            var melted = [];
-            var total = {};
-            filtered.forEach(function(f) {
-              if (total[f["ID Moving Quarter"]]) {
-                total[f["ID Moving Quarter"]] += f["Expansion factor"];
-              } else {
-                total[f["ID Moving Quarter"]] = f["Expansion factor"];
-              }
-              var a = f;
-              var date = f["ID Moving Quarter"].split("_");
-              f["month"] = date[0] + "-" + date[1] + "-01";
-              f["quarter"] =
-                date[0] + " (" + date[1] + "," + date[2] + "," + date[3] + ")";
-              a["variable"] = f["Occupational Situation"];
-              a["value"] = f["Expansion factor"];
-              melted.push(a);
-            });
-            melted = melted
-              .map(m => {
-                m["percentage"] = m["value"] / total[m["ID Moving Quarter"]];
-                return m;
-              })
-              .sort(function(a, b) {
-                return a["Month"] > b["Month"] ? 1 : -1;
-              });
-            return melted;
-          }}
+          Sex={this.state.selectedObj.sex_id}
         />
+
         <SourceNote cube="nene" />
       </div>
     );
