@@ -7,7 +7,6 @@ import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
 import Helmet from "react-helmet";
 
-import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import { getGeoObject, clearStoreData } from "helpers/dataUtils";
 
@@ -20,7 +19,7 @@ import {
 } from "./index_needs";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
 import SvgMap from "components/SvgMap";
 import SvgImage from "components/SvgImage";
@@ -396,11 +395,9 @@ class GeoProfile extends Component {
       "/opengraph/"
     );
 
-    console.log(d3plus)
-
     return (
-      <Canon loading={<DatachileLoading />}>
-        <CanonProfile data={this.props.data} d3plus={d3plus} topics={topics}>
+      <Canon>
+        <CanonProfile data={this.props.data} topics={topics}>
           <Helmet>
             <title>{title}</title>
             <meta name="description" content={title} />

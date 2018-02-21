@@ -5,7 +5,7 @@ import { CanonProfile } from "datawheel-canon";
 import Helmet from "react-helmet";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import "./About.css";
 
 class About extends Component {
@@ -53,11 +53,7 @@ class About extends Component {
     ];
 
     return (
-      <CanonProfile
-        id="about"
-        data={this.props.data}
-        loadingComponent={<DatachileLoading />}
-      >
+      <CanonProfile id="about" data={this.props.data}>
         <Helmet>
           <title>{t("About")}</title>
           <meta property="og:title" content={t("About DataChile")} />

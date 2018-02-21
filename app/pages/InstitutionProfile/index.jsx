@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { SectionColumns, Canon, CanonProfile } from "datawheel-canon";
 import { translate } from "react-i18next";
 
-import d3plus from "helpers/d3plus";
 import { slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMemberQuery,
@@ -16,7 +15,7 @@ import {
 } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import Topic from "components/Topic";
@@ -322,8 +321,8 @@ class InstitutionProfile extends Component {
     ];
 
     return (
-      <Canon loading={<DatachileLoading />}>
-        <CanonProfile data={this.props.data} d3plus={d3plus} topics={topics}>
+      <Canon>
+        <CanonProfile data={this.props.data} topics={topics}>
           <div className="profile">
             <div className="intro">
               {obj && (

@@ -11,7 +11,7 @@ import { getMembersQuery } from "helpers/MondrianClient";
 import { getImageFromMember } from "helpers/formatters";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import Search from "components/Search";
 import FeaturedBox from "components/FeaturedBox";
 import ComingSoon from "components/ComingSoon";
@@ -264,12 +264,7 @@ class Explore extends Component {
     }
 
     return (
-      <CanonProfile
-        id="explore"
-        data={this.props.data}
-        topics={[]}
-        loadingComponent={<DatachileLoading />}
-      >
+      <CanonProfile id="explore" data={this.props.data} topics={[]}>
         <Helmet>
           <title>{t("Explore")}</title>
           <meta name="description" content={t("Explore profiles")} />

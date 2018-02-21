@@ -5,7 +5,6 @@ import orderBy from "lodash/orderBy";
 import { translate } from "react-i18next";
 import Helmet from "react-helmet";
 
-import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
@@ -20,7 +19,6 @@ import {
 import { sources } from "helpers/consts";
 
 import Topic from "components/Topic";
-import DatachileLoading from "components/DatachileLoading";
 
 import Nav from "components/Nav";
 import SvgImage from "components/SvgImage";
@@ -386,8 +384,8 @@ class CountryProfile extends Component {
     ];
 
     return (
-      <Canon loading={<DatachileLoading />}>
-        <CanonProfile data={this.props.data} d3plus={d3plus} topics={topics}>
+      <Canon>
+        <CanonProfile data={this.props.data} topics={topics}>
           {obj && (
             <Helmet>
               <title>{obj.caption}</title>

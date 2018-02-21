@@ -9,7 +9,7 @@ import { featured_profiles } from "helpers/consts";
 
 import FeaturedBox from "components/FeaturedBox";
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import Search from "components/Search";
 import DynamicHomeHeader from "components/DynamicHomeHeader";
 import ProfileCarousel from "components/ProfileCarousel";
@@ -112,7 +112,7 @@ class Home extends Component {
     } = this.props.data;
 
     return (
-      <Canon loading={<DatachileLoading />}>
+      <Canon>
         <CanonProfile id="home" data={this.props.data} topics={[]}>
           <Helmet>
             <meta

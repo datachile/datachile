@@ -5,7 +5,6 @@ import { translate } from "react-i18next";
 import orderBy from "lodash/orderBy";
 import Helmet from "react-helmet";
 
-import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
@@ -22,7 +21,7 @@ import {
 import { products } from "helpers/images";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
@@ -333,8 +332,6 @@ class ProductProfile extends Component {
     const { t, i18n, location } = this.props;
     const obj = this.props.data.product;
 
-    console.log(obj);
-
     const locale = i18n.language;
 
     const {
@@ -433,8 +430,8 @@ class ProductProfile extends Component {
       `${obj.caption}${obj.parent ? " (" + obj.parent.caption + ")" : ""}`;
 
     return (
-      <Canon loading={<DatachileLoading />}>
-        <CanonProfile data={this.props.data} d3plus={d3plus} topics={topics}>
+      <Canon>
+        <CanonProfile data={this.props.data} topics={topics}>
           <Helmet>
             <title>{title}</title>
             <meta name="description" content={title} />

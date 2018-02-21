@@ -5,9 +5,9 @@ import { NonIdealState } from "@blueprintjs/core";
 
 import DatachileProgressBar from "components/DatachileProgressBar";
 
-import "./DatachileLoading.css";
+import "./Loading.css";
 
-class DatachileLoading extends Component {
+class Loading extends Component {
   render() {
     const { progress, t, total } = this.props;
     return (
@@ -21,12 +21,12 @@ class DatachileLoading extends Component {
   }
 }
 
-DatachileLoading = translate()(
+Loading = translate()(
   connect(state => ({
     total: state.loadingProgress.requests,
     progress: state.loadingProgress.fulfilled
-  }))(DatachileLoading)
+  }))(Loading)
 );
 
-export default DatachileLoading;
-export { DatachileLoading };
+export default Loading;
+export { Loading };

@@ -1,6 +1,5 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
@@ -54,7 +53,6 @@ class ExportsByDestination extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    console.log(this.context.data)
     const path = this.context.data.product_exports_by_destination;
 
     const locale = i18n.language;
