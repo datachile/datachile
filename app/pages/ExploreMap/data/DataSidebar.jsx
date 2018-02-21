@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router";
+import { CSVLink } from "react-csv";
+import { slugifyStr } from "helpers/formatters";
+
+import { combineAndFlatDatasets } from "helpers/map";
+
 import "./DataSidebar.css";
 
 class DataSidebar extends Component {
@@ -13,6 +18,8 @@ class DataSidebar extends Component {
     const { t, datasets = [], deleteDataset } = this.props;
 
     const datasetsQty = datasets.length;
+
+    const data = combineAndFlatDatasets(datasets);
 
     return (
       <div className="data-sidebar">
@@ -32,6 +39,22 @@ class DataSidebar extends Component {
             </div>
           ))}
         </div>
+
+        {datasets.length > 0 && (
+          <CSVLink
+            data={data.dataset}
+            filename={
+              datasets.reduce(
+                (title, d) => title + "_" + slugifyStr(d.title),
+                "Datachile"
+              ) + ".csv"
+            }
+            className="btn btn-primary"
+            target="_blank"
+          >
+            Download CSV
+          </CSVLink>
+        )}
       </div>
     );
   }
