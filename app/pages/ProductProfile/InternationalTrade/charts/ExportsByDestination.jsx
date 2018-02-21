@@ -54,6 +54,7 @@ class ExportsByDestination extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
+    console.log(this.context.data)
     const path = this.context.data.product_exports_by_destination;
 
     const locale = i18n.language;

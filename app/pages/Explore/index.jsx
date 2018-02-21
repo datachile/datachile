@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
@@ -264,7 +264,7 @@ class Explore extends Component {
     }
 
     return (
-      <CanonComponent
+      <CanonProfile
         id="explore"
         data={this.props.data}
         topics={[]}
@@ -377,7 +377,7 @@ class Explore extends Component {
             </div>
           </div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 

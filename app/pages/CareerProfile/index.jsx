@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import { translate } from "react-i18next";
 
 import d3plus from "helpers/d3plus";
@@ -209,7 +209,7 @@ class CareerProfile extends Component {
     ];
 
     return (
-      <CanonComponent
+      <CanonProfile
         data={this.props.data}
         d3plus={d3plus}
         topics={topics}
@@ -351,7 +351,7 @@ class CareerProfile extends Component {
             </div>
           </div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { Canon, CanonProfile } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
 import Helmet from "react-helmet";
@@ -112,303 +112,315 @@ class Home extends Component {
     } = this.props.data;
 
     return (
-      <CanonComponent
-        id="home"
-        data={this.props.data}
-        topics={[]}
-        loadingComponent={<DatachileLoading />}
-      >
-        <Helmet>
-          <meta
-            name="description"
-            content={t(
-              "The most comprehensive effort to integrate and visualize Chile’s Public Data"
-            )}
-          />
-          <meta property="og:title" content={"DataChile"} />
-          <meta property="og:url" content={`https://${locale}.datachile.io`} />
-          <meta
-            property="og:image"
-            content={`https://${locale}.datachile.io/images/logos/opengraph.png`}
-          />
-        </Helmet>
-        <div className="home">
-          <Nav />
+      <Canon loading={<DatachileLoading />}>
+        <CanonProfile id="home" data={this.props.data} topics={[]}>
+          <Helmet>
+            <meta
+              name="description"
+              content={t(
+                "The most comprehensive effort to integrate and visualize Chile’s Public Data"
+              )}
+            />
+            <meta property="og:title" content={"DataChile"} />
+            <meta
+              property="og:url"
+              content={`https://${locale}.datachile.io`}
+            />
+            <meta
+              property="og:image"
+              content={`https://${locale}.datachile.io/images/logos/opengraph.png`}
+            />
+          </Helmet>
+          <div className="home">
+            <Nav />
 
-          <div className="splash">
-            {profiles &&
-              profiles.map((p, i) => (
-                <div
-                  className={
-                    p.slug == this.state.header.slug
-                      ? "selected image bg-" + p.slug
-                      : "image bg-" + p.slug
-                  }
-                  id={p.slug}
-                  key={i}
-                />
-              ))}
-            <div className="gradient" />
+            <div className="splash">
+              {profiles &&
+                profiles.map((p, i) => (
+                  <div
+                    className={
+                      p.slug == this.state.header.slug
+                        ? "selected image bg-" + p.slug
+                        : "image bg-" + p.slug
+                    }
+                    id={p.slug}
+                    key={i}
+                  />
+                ))}
+              <div className="gradient" />
 
-            <div className="intro">
-              <div className="text">
-                <h1 className="title">
-                  <img
-                    title="DataChile"
-                    src="/images/logos/logo-dc-beta-small.svg"
-                    alt="DataChile"
-                  />
-                  <Link
-                    className="easter"
-                    title=";)"
-                    to="/geo/valparaiso-5/isla-de-pascua-115"
-                  />
-                </h1>
-                <p className="lead">{t("home.subtitle")}</p>
+              <div className="intro">
+                <div className="text">
+                  <h1 className="title">
+                    <img
+                      title="DataChile"
+                      src="/images/logos/logo-dc-beta-small.svg"
+                      alt="DataChile"
+                    />
+                    <Link
+                      className="easter"
+                      title=";)"
+                      to="/geo/valparaiso-5/isla-de-pascua-115"
+                    />
+                  </h1>
+                  <p className="lead">{t("home.subtitle")}</p>
+                </div>
+                <div className="search-home-wrapper">
+                  <Search className="search-home" limit={5} />
+                </div>
               </div>
-              <div className="search-home-wrapper">
-                <Search className="search-home" limit={5} />
+
+              <div className="home-header">
+                <DynamicHomeHeader data={this.props.data} header={header} />
               </div>
             </div>
-
-            <div className="home-header">
-              <DynamicHomeHeader data={this.props.data} header={header} />
+            <div className="home-slider">
+              {profiles &&
+                profiles.map((p, i) => (
+                  <div
+                    id={`home-slide-${p.slug}`}
+                    key={i}
+                    className={
+                      p.slug == header.slug
+                        ? "home-slide-item selected"
+                        : "home-slide-item"
+                    }
+                  >
+                    <span
+                      className={`home-slide-selected background-${p.slug}`}
+                    />
+                    <div className={`home-slide-content border-${p.slug}`}>
+                      <div
+                        className="home-slide-clickable"
+                        onClick={() => changeProfileHeader(p)}
+                      >
+                        <h3>
+                          <img src={`/images/icons/icon-${p.slug}.svg`} />
+                          <span>{p.name}</span>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                ))}
             </div>
-          </div>
-          <div className="home-slider">
-            {profiles &&
-              profiles.map((p, i) => (
-                <div
-                  id={`home-slide-${p.slug}`}
-                  key={i}
-                  className={
-                    p.slug == header.slug
-                      ? "home-slide-item selected"
-                      : "home-slide-item"
-                  }
-                >
-                  <span
-                    className={`home-slide-selected background-${p.slug}`}
+
+            <div className="home-content">
+              <div className="home-text">
+                <div className="l-col">
+                  <img src="/images/home/what.png" alt={t("home.what.title")} />
+                  <h2>{t("home.what.title")}</h2>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: t("home.what.text1")
+                    }}
                   />
-                  <div className={`home-slide-content border-${p.slug}`}>
-                    <div
-                      className="home-slide-clickable"
-                      onClick={() => changeProfileHeader(p)}
-                    >
-                      <h3>
-                        <img src={`/images/icons/icon-${p.slug}.svg`} />
-                        <span>{p.name}</span>
-                      </h3>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: t("home.what.text2")
+                    }}
+                  />
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: t("home.what.text3")
+                    }}
+                  />
+                </div>
+                <div className="r-col">
+                  <img src="/images/home/diff.png" alt={t("home.diff.title")} />
+                  <h2>{t("home.diff.title")}</h2>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: t("home.diff.text1")
+                    }}
+                  />
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: t("home.diff.text2")
+                    }}
+                  />
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: t("home.diff.text3")
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="home-featured-profiles">
+                <div className="home-section-title">
+                  <div className="home-section-title-img">
+                    <img src="/images/icons/icon-search.svg" alt="explore" />
+                  </div>
+                  <h2>{t("Explore")}</h2>
+                </div>
+                <div className="home-profile-carousels-container">
+                  <ProfileCarousel
+                    title={t("home.carousel.featured_profiles")}
+                    type="star"
+                    items={featured}
+                    limit={5}
+                  />
+                  <ProfileCarousel
+                    title={t("home.carousel.comunas_population")}
+                    type="geo"
+                    items={home_comunas_population}
+                    limit={5}
+                  />
+                  <ProfileCarousel
+                    title={t("home.carousel.comunas_exports")}
+                    type="geo"
+                    items={home_comunas_exports}
+                    limit={5}
+                  />
+                  <ProfileCarousel
+                    title={t("home.carousel.products_exports")}
+                    type="products"
+                    items={home_products_exports}
+                    limit={5}
+                  />
+                  <ProfileCarousel
+                    title={t("home.carousel.countries_exports")}
+                    type="countries"
+                    items={home_countries_exports}
+                    limit={5}
+                  />
+                </div>
+              </div>
+              <div className="home-sources">
+                <div className="home-section-title">
+                  <div className="home-section-title-img">
+                    <img src="/images/icons/icon-source.svg" alt="sources" />
+                  </div>
+                  <h2>{t("home.sources.title")}</h2>
+                </div>
+
+                <div className="dataset-list">
+                  <div className="l-col">
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.casen.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.casen.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">{t("about.data.nene.title")}</span>
+                      <span className="source">
+                        {t("about.data.nene.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">{t("about.data.nesi.title")}</span>
+                      <span className="source">
+                        {t("about.data.nesi.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.enrollment.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.enrollment.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">{t("about.data.psu.title")}</span>
+                      <span className="source">
+                        {t("about.data.psu.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.aduana.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.aduana.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.muerte.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.muerte.source")}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="r-col">
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.salud.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.salud.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">{t("about.data.vida.title")}</span>
+                      <span className="source">
+                        {t("about.data.vida.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.migracion.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.migracion.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.discapacidad.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.discapacidad.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.iplusd.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.iplusd.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.performance.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.performance.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.poblacion.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.poblacion.source")}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span className="name">
+                        {t("about.data.internet.title")}
+                      </span>
+                      <span className="source">
+                        {t("about.data.internet.source")}
+                      </span>
                     </div>
                   </div>
                 </div>
-              ))}
-          </div>
-
-          <div className="home-content">
-            <div className="home-text">
-              <div className="l-col">
-                <img src="/images/home/what.png" alt={t("home.what.title")} />
-                <h2>{t("home.what.title")}</h2>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("home.what.text1")
-                  }}
-                />
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("home.what.text2")
-                  }}
-                />
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("home.what.text3")
-                  }}
-                />
+                <Link className="home-link" to="/about/data">
+                  {t("See more")}
+                </Link>
               </div>
-              <div className="r-col">
-                <img src="/images/home/diff.png" alt={t("home.diff.title")} />
-                <h2>{t("home.diff.title")}</h2>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("home.diff.text1")
-                  }}
-                />
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("home.diff.text2")
-                  }}
-                />
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("home.diff.text3")
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="home-featured-profiles">
-              <div className="home-section-title">
-                <div className="home-section-title-img">
-                  <img src="/images/icons/icon-search.svg" alt="explore" />
-                </div>
-                <h2>{t("Explore")}</h2>
-              </div>
-              <div className="home-profile-carousels-container">
-                <ProfileCarousel
-                  title={t("home.carousel.featured_profiles")}
-                  type="star"
-                  items={featured}
-                  limit={5}
-                />
-                <ProfileCarousel
-                  title={t("home.carousel.comunas_population")}
-                  type="geo"
-                  items={home_comunas_population}
-                  limit={5}
-                />
-                <ProfileCarousel
-                  title={t("home.carousel.comunas_exports")}
-                  type="geo"
-                  items={home_comunas_exports}
-                  limit={5}
-                />
-                <ProfileCarousel
-                  title={t("home.carousel.products_exports")}
-                  type="products"
-                  items={home_products_exports}
-                  limit={5}
-                />
-                <ProfileCarousel
-                  title={t("home.carousel.countries_exports")}
-                  type="countries"
-                  items={home_countries_exports}
-                  limit={5}
-                />
-              </div>
-            </div>
-            <div className="home-sources">
-              <div className="home-section-title">
-                <div className="home-section-title-img">
-                  <img src="/images/icons/icon-source.svg" alt="sources" />
-                </div>
-                <h2>{t("home.sources.title")}</h2>
-              </div>
-
-              <div className="dataset-list">
-                <div className="l-col">
-                  <div className="dataset">
-                    <span className="name">{t("about.data.casen.title")}</span>
-                    <span className="source">
-                      {t("about.data.casen.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">{t("about.data.nene.title")}</span>
-                    <span className="source">
-                      {t("about.data.nene.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">{t("about.data.nesi.title")}</span>
-                    <span className="source">
-                      {t("about.data.nesi.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">
-                      {t("about.data.enrollment.title")}
-                    </span>
-                    <span className="source">
-                      {t("about.data.enrollment.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">{t("about.data.psu.title")}</span>
-                    <span className="source">{t("about.data.psu.source")}</span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">{t("about.data.aduana.title")}</span>
-                    <span className="source">
-                      {t("about.data.aduana.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">{t("about.data.muerte.title")}</span>
-                    <span className="source">
-                      {t("about.data.muerte.source")}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="r-col">
-                  <div className="dataset">
-                    <span className="name">{t("about.data.salud.title")}</span>
-                    <span className="source">
-                      {t("about.data.salud.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">{t("about.data.vida.title")}</span>
-                    <span className="source">
-                      {t("about.data.vida.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">
-                      {t("about.data.migracion.title")}
-                    </span>
-                    <span className="source">
-                      {t("about.data.migracion.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">
-                      {t("about.data.discapacidad.title")}
-                    </span>
-                    <span className="source">
-                      {t("about.data.discapacidad.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">{t("about.data.iplusd.title")}</span>
-                    <span className="source">
-                      {t("about.data.iplusd.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">
-                      {t("about.data.performance.title")}
-                    </span>
-                    <span className="source">
-                      {t("about.data.performance.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">
-                      {t("about.data.poblacion.title")}
-                    </span>
-                    <span className="source">
-                      {t("about.data.poblacion.source")}
-                    </span>
-                  </div>
-                  <div className="dataset">
-                    <span className="name">
-                      {t("about.data.internet.title")}
-                    </span>
-                    <span className="source">
-                      {t("about.data.internet.source")}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <Link className="home-link" to="/about/data">
-                {t("See more")}
-              </Link>
             </div>
           </div>
-        </div>
-      </CanonComponent>
+        </CanonProfile>
+      </Canon>
     );
   }
 }

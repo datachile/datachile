@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CanonComponent, SectionColumns } from "datawheel-canon";
+import { CanonProfile, Canon, SectionColumns } from "datawheel-canon";
 import { translate } from "react-i18next";
 import Helmet from "react-helmet";
 
@@ -236,164 +236,165 @@ class IndustryProfile extends Component {
       : "";
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<DatachileLoading />}
-      >
-        <Helmet>
-          {industry
-            ? [
-                <title>{title}</title>,
-                <meta property="og:title" content={title + " - DataChile"} />,
-                <meta
-                  property="og:url"
-                  content={`https://${locale}.datachile.io${location.pathname}`}
-                />,
-                <meta
-                  property="og:image"
-                  content={`https://${locale}.datachile.io/images/opengraph/industry/${industryImg.toLowerCase()}.jpg`}
-                />
-              ]
-            : null}
-        </Helmet>
-        <div className="profile">
-          <div className="intro">
-            {industry && (
-              <Nav
-                title={industry.caption}
-                typeTitle={industry.parent ? t("Industry") : t("Industry Type")}
-                type={"industries"}
-                exploreLink={"/explore/industries"}
-                ancestor={industry.parent ? industry.parent.caption : ""}
-                ancestorLink={
-                  industry.parent
-                    ? slugifyItem(
-                        "industries",
-                        industry.parent.key,
-                        industry.parent.name
-                      )
-                    : ""
-                }
-                topics={topics}
-              />
-            )}
-            <div className="splash">
-              <div
-                className="image"
-                style={{
-                  backgroundImage: `url('/images/profile-bg/industry/${industryImg.toLowerCase()}.jpg')`
-                }}
-              />
-              <div className="gradient" />
-            </div>
-
-            <div className="header">
-              <div className="datum-full-width">
-                {stats.employees &&
-                  industry && (
-                    <FeaturedDatumSplash
-                      title={t("Employees")}
-                      icon={null}
-                      decile={null}
-                      datum={numeral(stats.employees.data[0], locale).format(
-                        "(0,0)"
-                      )}
-                      source="tax_data"
-                      className=""
-                      level={industry.depth > 1 ? "industry_profile" : false}
-                      name={industry.depth > 1 ? industry.parent : industry}
-                    />
-                  )}
-
-                {stats.employees &&
-                  industry && (
-                    <FeaturedDatumSplash
-                      title={t("Production per worker")}
-                      icon={null}
-                      decile={null}
-                      datum={numeral(stats.employees.data[1], locale).format(
-                        "$ 0,0"
-                      )}
-                      source="tax_data"
-                      className=""
-                      level={industry.depth > 1 ? "industry_profile" : false}
-                      name={industry.depth > 1 ? industry.parent : industry}
-                    />
-                  )}
-
-                {stats.region && (
-                  <FeaturedMapSplash
-                    title={t("Top output region")}
-                    type="region"
-                    code={stats.region.id}
-                    datum={stats.region.name}
-                    subtitle={numeral(stats.region.value, locale).format(
-                      "($ 0,0 a)"
-                    )}
-                    source="tax_data"
-                    className=""
+      <Canon loading={<DatachileLoading />}>
+        <CanonProfile data={this.props.data} d3plus={d3plus} topics={topics}>
+          <Helmet>
+            {industry
+              ? [
+                  <title>{title}</title>,
+                  <meta property="og:title" content={title + " - DataChile"} />,
+                  <meta
+                    property="og:url"
+                    content={`https://${locale}.datachile.io${
+                      location.pathname
+                    }`}
+                  />,
+                  <meta
+                    property="og:image"
+                    content={`https://${locale}.datachile.io/images/opengraph/industry/${industryImg.toLowerCase()}.jpg`}
                   />
-                )}
+                ]
+              : null}
+          </Helmet>
+          <div className="profile">
+            <div className="intro">
+              {industry && (
+                <Nav
+                  title={industry.caption}
+                  typeTitle={
+                    industry.parent ? t("Industry") : t("Industry Type")
+                  }
+                  type={"industries"}
+                  exploreLink={"/explore/industries"}
+                  ancestor={industry.parent ? industry.parent.caption : ""}
+                  ancestorLink={
+                    industry.parent
+                      ? slugifyItem(
+                          "industries",
+                          industry.parent.key,
+                          industry.parent.name
+                        )
+                      : ""
+                  }
+                  topics={topics}
+                />
+              )}
+              <div className="splash">
+                <div
+                  className="image"
+                  style={{
+                    backgroundImage: `url('/images/profile-bg/industry/${industryImg.toLowerCase()}.jpg')`
+                  }}
+                />
+                <div className="gradient" />
+              </div>
+
+              <div className="header">
+                <div className="datum-full-width">
+                  {stats.employees &&
+                    industry && (
+                      <FeaturedDatumSplash
+                        title={t("Employees")}
+                        icon={null}
+                        decile={null}
+                        datum={numeral(stats.employees.data[0], locale).format(
+                          "(0,0)"
+                        )}
+                        source="tax_data"
+                        className=""
+                        level={industry.depth > 1 ? "industry_profile" : false}
+                        name={industry.depth > 1 ? industry.parent : industry}
+                      />
+                    )}
+
+                  {stats.employees &&
+                    industry && (
+                      <FeaturedDatumSplash
+                        title={t("Production per worker")}
+                        icon={null}
+                        decile={null}
+                        datum={numeral(stats.employees.data[1], locale).format(
+                          "$ 0,0"
+                        )}
+                        source="tax_data"
+                        className=""
+                        level={industry.depth > 1 ? "industry_profile" : false}
+                        name={industry.depth > 1 ? industry.parent : industry}
+                      />
+                    )}
+
+                  {stats.region && (
+                    <FeaturedMapSplash
+                      title={t("Top output region")}
+                      type="region"
+                      code={stats.region.id}
+                      datum={stats.region.name}
+                      subtitle={numeral(stats.region.value, locale).format(
+                        "($ 0,0 a)"
+                      )}
+                      source="tax_data"
+                      className=""
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div className="topics-selector-container">
+                <TopicMenu topics={topics} />
+              </div>
+
+              <div className="arrow-container">
+                <a href="#about">
+                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+                </a>
               </div>
             </div>
 
-            <div className="topics-selector-container">
-              <TopicMenu topics={topics} />
-            </div>
-
-            <div className="arrow-container">
-              <a href="#about">
-                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-              </a>
+            <div className="topics-container">
+              <Topic
+                name={t("Economy")}
+                id="economy"
+                slider={false}
+                sections={[
+                  {
+                    name: t("Trade"),
+                    slides: [t("")]
+                  }
+                ]}
+              >
+                <div>
+                  <EconomySlide>
+                    <SectionColumns>
+                      <OutputByLocation className="lost-1-2" />
+                      <InvestmentByLocation className="lost-1-2" />
+                    </SectionColumns>
+                  </EconomySlide>
+                </div>
+              </Topic>
+              <Topic
+                name={t("I+D")}
+                id="opportunities"
+                slider={false}
+                sections={[
+                  {
+                    name: t("Summary"),
+                    slides: [t("")]
+                  }
+                ]}
+              >
+                <div>
+                  <RDSlide>
+                    <SectionColumns>
+                      <RDByBusinessType className="lost-1-2" />
+                      <RDByOwnershipType className="lost-1-2" />
+                    </SectionColumns>
+                  </RDSlide>
+                </div>
+              </Topic>
             </div>
           </div>
-
-          <div className="topics-container">
-            <Topic
-              name={t("Economy")}
-              id="economy"
-              slider={false}
-              sections={[
-                {
-                  name: t("Trade"),
-                  slides: [t("")]
-                }
-              ]}
-            >
-              <div>
-                <EconomySlide>
-                  <SectionColumns>
-                    <OutputByLocation className="lost-1-2" />
-                    <InvestmentByLocation className="lost-1-2" />
-                  </SectionColumns>
-                </EconomySlide>
-              </div>
-            </Topic>
-            <Topic
-              name={t("I+D")}
-              id="opportunities"
-              slider={false}
-              sections={[
-                {
-                  name: t("Summary"),
-                  slides: [t("")]
-                }
-              ]}
-            >
-              <div>
-                <RDSlide>
-                  <SectionColumns>
-                    <RDByBusinessType className="lost-1-2" />
-                    <RDByOwnershipType className="lost-1-2" />
-                  </SectionColumns>
-                </RDSlide>
-              </div>
-            </Topic>
-          </div>
-        </div>
-      </CanonComponent>
+        </CanonProfile>
+      </Canon>
     );
   }
 }

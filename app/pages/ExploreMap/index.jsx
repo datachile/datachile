@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import { translate } from "react-i18next";
 
 import DatachileLoading from "components/DatachileLoading";
@@ -27,7 +27,7 @@ class ExploreMap extends Component {
     const { t } = this.props;
 
     return (
-      <CanonComponent
+      <CanonProfile
         id="explore-map"
         data={this.props.data}
         topics={[]}
@@ -47,7 +47,7 @@ class ExploreMap extends Component {
 
           <div className="explore-map-container">map!</div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 }

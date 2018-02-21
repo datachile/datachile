@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonComponent } from "datawheel-canon";
+import { SectionColumns, CanonProfile, Canon } from "datawheel-canon";
 import orderBy from "lodash/orderBy";
 import { translate } from "react-i18next";
 import Helmet from "react-helmet";
@@ -386,191 +386,200 @@ class CountryProfile extends Component {
     ];
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<DatachileLoading />}
-      >
-        {obj && (
-          <Helmet>
-            <title>{obj.caption}</title>
-            <meta property="og:title" content={obj.caption + " - DataChile"} />
-            <meta
-              property="og:url"
-              content={`https://${locale}.datachile.io${location.pathname}`}
-            />
-            <meta
-              property="og:image"
-              content={`https://${locale}.datachile.io/images/opengraph/country/${
-                obj.key
-              }.jpg`}
-            />
-          </Helmet>
-        )}
-        <div className="profile">
-          <div className="intro">
-            {obj && (
-              <Nav
-                title={obj.caption}
-                typeTitle={obj.parent ? t("Country") : t("Zone")}
-                type={"countries"}
-                exploreLink={"/explore/countries"}
-                ancestor={obj.parent ? obj.parent.caption : ""}
-                ancestorLink={
-                  obj.parent
-                    ? slugifyItem("countries", obj.parent.key, obj.parent.name)
-                    : ""
-                }
-                topics={topics}
+      <Canon loading={<DatachileLoading />}>
+        <CanonProfile data={this.props.data} d3plus={d3plus} topics={topics}>
+          {obj && (
+            <Helmet>
+              <title>{obj.caption}</title>
+              <meta
+                property="og:title"
+                content={obj.caption + " - DataChile"}
               />
-            )}
-            <div className="splash">
-              <div
-                className="image"
-                style={{
-                  backgroundImage: bgImage
-                }}
+              <meta
+                property="og:url"
+                content={`https://${locale}.datachile.io${location.pathname}`}
               />
-              <div className="gradient" />
-            </div>
+              <meta
+                property="og:image"
+                content={`https://${locale}.datachile.io/images/opengraph/country/${
+                  obj.key
+                }.jpg`}
+              />
+            </Helmet>
+          )}
+          <div className="profile">
+            <div className="intro">
+              {obj && (
+                <Nav
+                  title={obj.caption}
+                  typeTitle={obj.parent ? t("Country") : t("Zone")}
+                  type={"countries"}
+                  exploreLink={"/explore/countries"}
+                  ancestor={obj.parent ? obj.parent.caption : ""}
+                  ancestorLink={
+                    obj.parent
+                      ? slugifyItem(
+                          "countries",
+                          obj.parent.key,
+                          obj.parent.name
+                        )
+                      : ""
+                  }
+                  topics={topics}
+                />
+              )}
+              <div className="splash">
+                <div
+                  className="image"
+                  style={{
+                    backgroundImage: bgImage
+                  }}
+                />
+                <div className="gradient" />
+              </div>
 
-            <div className="header">
-              <div className="datum-full-width">
-                {stats.imports && (
-                  <FeaturedDatumSplash
-                    title={t("Total Imports")}
-                    icon="ingreso"
-                    decile={stats.imports.decile}
-                    datum={
-                      "US" +
-                      numeral(stats.imports.value, locale).format("($ 0.0 a)") +
-                      " CIF"
-                    }
-                    source="imports"
-                  />
-                )}
+              <div className="header">
+                <div className="datum-full-width">
+                  {stats.imports && (
+                    <FeaturedDatumSplash
+                      title={t("Total Imports")}
+                      icon="ingreso"
+                      decile={stats.imports.decile}
+                      datum={
+                        "US" +
+                        numeral(stats.imports.value, locale).format(
+                          "($ 0.0 a)"
+                        ) +
+                        " CIF"
+                      }
+                      source="imports"
+                    />
+                  )}
 
-                {stats.exports && (
-                  <FeaturedDatumSplash
-                    title={t("Total Exports")}
-                    icon="ingreso"
-                    decile={stats.exports.decile}
-                    datum={
-                      "US" +
-                      numeral(stats.exports.value, locale).format("($ 0.0 a)") +
-                      " FOB"
-                    }
-                    source="exports"
-                  />
-                )}
+                  {stats.exports && (
+                    <FeaturedDatumSplash
+                      title={t("Total Exports")}
+                      icon="ingreso"
+                      decile={stats.exports.decile}
+                      datum={
+                        "US" +
+                        numeral(stats.exports.value, locale).format(
+                          "($ 0.0 a)"
+                        ) +
+                        " FOB"
+                      }
+                      source="exports"
+                    />
+                  )}
 
-                {stats.product && (
-                  <FeaturedDatumSplash
-                    title={t("Main exported product")}
-                    icon="check"
-                    datum={stats.product.name}
-                    subtitle={`US${numeral(stats.product.value, locale).format(
-                      "$ 0.0 a"
-                    )} FOB`}
-                    source="exports"
-                  />
-                )}
+                  {stats.product && (
+                    <FeaturedDatumSplash
+                      title={t("Main exported product")}
+                      icon="check"
+                      datum={stats.product.name}
+                      subtitle={`US${numeral(
+                        stats.product.value,
+                        locale
+                      ).format("$ 0.0 a")} FOB`}
+                      source="exports"
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div className="topics-selector-container">
+                <TopicMenu topics={topics} />
+              </div>
+
+              <div className="arrow-container">
+                <a href="#about">
+                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+                </a>
               </div>
             </div>
 
-            <div className="topics-selector-container">
-              <TopicMenu topics={topics} />
-            </div>
-
-            <div className="arrow-container">
-              <a href="#about">
-                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-              </a>
+            <div className="topics-container">
+              <Topic
+                name={t("Demography")}
+                id="demography"
+                slider={false}
+                sections={[
+                  {
+                    name: t("Migration"),
+                    slides: [t("")]
+                  }
+                ]}
+              >
+                <div>
+                  <MigrationSlide>
+                    <SectionColumns>
+                      <MigrationByRegion className="lost-1" />
+                    </SectionColumns>
+                  </MigrationSlide>
+                </div>
+                <div>
+                  <MigrationDetailsSlide>
+                    <SectionColumns>
+                      <MigrationBySex className="lost-1-2" />
+                      <MigrationByAge className="lost-1-2" />
+                    </SectionColumns>
+                  </MigrationDetailsSlide>
+                </div>
+                <div>
+                  <MigrationEducationSlide>
+                    <SectionColumns>
+                      <MigrationByEducation className="lost-1" />
+                    </SectionColumns>
+                  </MigrationEducationSlide>
+                </div>
+                <div>
+                  <MigrationActivitySlide>
+                    <SectionColumns>
+                      <MigrationByVisa className="lost-1-2" />
+                      <MigrationByActivity className="lost-1-2" />
+                    </SectionColumns>
+                  </MigrationActivitySlide>
+                </div>
+              </Topic>
+              <Topic
+                name={t("Trade")}
+                id="trade"
+                slider={false}
+                sections={[
+                  {
+                    name: t("Products"),
+                    slides: [t("")]
+                  }
+                ]}
+              >
+                <div>
+                  <InternationalTradeSlide>
+                    <SectionColumns>
+                      <ImportsByProduct className="lost-1-2" />
+                      <ExportsByProduct className="lost-1-2" />
+                    </SectionColumns>
+                  </InternationalTradeSlide>
+                </div>
+                <div>
+                  <InternationalTradeOriginDestinationSlide>
+                    <SectionColumns>
+                      <ImportsByDestination className="lost-1-2" />
+                      <ExportsByOrigin className="lost-1-2" />
+                    </SectionColumns>
+                  </InternationalTradeOriginDestinationSlide>
+                </div>
+                <div>
+                  <InternationalTradeBalanceSlide>
+                    <SectionColumns>
+                      <TradeBalance className="lost-1" />
+                    </SectionColumns>
+                  </InternationalTradeBalanceSlide>
+                </div>
+              </Topic>
             </div>
           </div>
-
-          <div className="topics-container">
-            <Topic
-              name={t("Demography")}
-              id="demography"
-              slider={false}
-              sections={[
-                {
-                  name: t("Migration"),
-                  slides: [t("")]
-                }
-              ]}
-            >
-              <div>
-                <MigrationSlide>
-                  <SectionColumns>
-                    <MigrationByRegion className="lost-1" />
-                  </SectionColumns>
-                </MigrationSlide>
-              </div>
-              <div>
-                <MigrationDetailsSlide>
-                  <SectionColumns>
-                    <MigrationBySex className="lost-1-2" />
-                    <MigrationByAge className="lost-1-2" />
-                  </SectionColumns>
-                </MigrationDetailsSlide>
-              </div>
-              <div>
-                <MigrationEducationSlide>
-                  <SectionColumns>
-                    <MigrationByEducation className="lost-1" />
-                  </SectionColumns>
-                </MigrationEducationSlide>
-              </div>
-              <div>
-                <MigrationActivitySlide>
-                  <SectionColumns>
-                    <MigrationByVisa className="lost-1-2" />
-                    <MigrationByActivity className="lost-1-2" />
-                  </SectionColumns>
-                </MigrationActivitySlide>
-              </div>
-            </Topic>
-            <Topic
-              name={t("Trade")}
-              id="trade"
-              slider={false}
-              sections={[
-                {
-                  name: t("Products"),
-                  slides: [t("")]
-                }
-              ]}
-            >
-              <div>
-                <InternationalTradeSlide>
-                  <SectionColumns>
-                    <ImportsByProduct className="lost-1-2" />
-                    <ExportsByProduct className="lost-1-2" />
-                  </SectionColumns>
-                </InternationalTradeSlide>
-              </div>
-              <div>
-                <InternationalTradeOriginDestinationSlide>
-                  <SectionColumns>
-                    <ImportsByDestination className="lost-1-2" />
-                    <ExportsByOrigin className="lost-1-2" />
-                  </SectionColumns>
-                </InternationalTradeOriginDestinationSlide>
-              </div>
-              <div>
-                <InternationalTradeBalanceSlide>
-                  <SectionColumns>
-                    <TradeBalance className="lost-1" />
-                  </SectionColumns>
-                </InternationalTradeBalanceSlide>
-              </div>
-            </Topic>
-          </div>
-        </div>
-      </CanonComponent>
+        </CanonProfile>
+      </Canon>
     );
   }
 }

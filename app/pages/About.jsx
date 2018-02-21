@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import Helmet from "react-helmet";
 
 import Nav from "components/Nav";
@@ -53,7 +53,7 @@ class About extends Component {
     ];
 
     return (
-      <CanonComponent
+      <CanonProfile
         id="about"
         data={this.props.data}
         loadingComponent={<DatachileLoading />}
@@ -909,7 +909,7 @@ class About extends Component {
             )}
           </div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 }
