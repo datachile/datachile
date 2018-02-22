@@ -1,6 +1,7 @@
-import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
+import { fullNameToArray } from "helpers/formatters";
+import mondrianClient, { queryBuilder } from "helpers/MondrianClient";
 
-export default function requestData(params) {
+export function requestData(params) {
   const { cubeName, cuts, locale } = params;
   return function(dispatch) {
     dispatch({ type: "MAP_DATA_FETCH" });
@@ -19,7 +20,6 @@ export default function requestData(params) {
             drillDowns: [drilldownYear, drilldownsGeo.region].filter(Boolean),
             cuts: cuts,
             options: { parents: false },
-            format: "jsonrecords",
             locale: locale
           });
 
@@ -30,7 +30,6 @@ export default function requestData(params) {
             drillDowns: [drilldownYear, drilldownsGeo.comuna].filter(Boolean),
             cuts: cuts,
             options: { parents: false },
-            format: "jsonrecords",
             locale: locale
           });
 
@@ -59,29 +58,45 @@ export default function requestData(params) {
   };
 }
 
-export function queryBuilder(query, params) {
-  let i, item;
+export function requestMembers(cubeName) {
+  return function(dispatch) {
+    dispatch({ type: "MAP_MEMBER_FETCH" });
 
-  for (i = 0; (item = params.measures[i]); i++) query = query.measure(item);
+    // by this point the cube should be in cache already
+    return mondrianClient
+      .cube(cubeName)
+      .then(cube => {
+        const requestsLevels = cube.dimensions.reduce((requests, dim) => {
+          if (!/Geography$|^Date$/.test(dim.name)) {
+            for (let hier, i = 0; (hier = dim.hierarchies[i]); i++) {
+              for (let level, j = 1; (level = hier.levels[j]); j++) {
+                let promise = mondrianClient.members(level).then(members => ({
+                  name: level.fullName,
+                  members: members.map(member => ({
+                    key: member.key,
+                    value: member.name,
+                    name: member.caption
+                    // fullName: member.fullName
+                  }))
+                }));
+                requests.push(promise);
+              }
+            }
+          }
+          return requests;
+        }, []);
 
-  for (i = 0; (item = params.drillDowns[i]); i++)
-    query = query.drilldown.apply(query, item);
-
-  for (i = 0; (item = params.cuts[i]); i++) {
-    if ("string" != typeof item)
-      item = "{" + item.values.map(v => `${item.key}.&[${v}]`).join(",") + "}";
-    query = query.cut(item);
-  }
-
-  for (item in params.options) query = query.option(item, params.options[item]);
-
-  setLangCaptions(query, params.locale);
-
-  return query;
+        return Promise.all(requestsLevels);
+      })
+      .then(levels =>
+        dispatch({
+          type: "MAP_MEMBER_SUCCESS",
+          payload: { cube: cubeName, levels }
+        })
+      )
+      .then(null, err => dispatch({ type: "MAP_MEMBER_ERROR", payload: err }));
+  };
 }
-
-const fullNameToArray = fullName =>
-  fullName && fullName.slice(1, -1).split("].[");
 
 function getGeoDrilldowns(dimensions) {
   return dimensions.reduce(
@@ -111,18 +126,16 @@ function getYearDrilldown(dimensions) {
 }
 
 function getAvailableYears(data) {
-  return function(dispatch) {
-    // make a map of years
-    const years = data.reduce(function(output, d) {
-      const year = d["Year"];
-      output[year] = true;
-      return output;
-    }, {});
-    // remove the undefined key just in case
-    delete years.undefined;
-    // get an array of keys
-    const payload = Object.keys(years).sort();
-    // save
-    return dispatch({ type: "MAP_YEAR_OPTIONS", payload });
-  };
+  // make a map of years
+  const years = data.reduce(function(output, d) {
+    const year = d["Year"];
+    output[year] = true;
+    return output;
+  }, {});
+  // remove the undefined key just in case
+  delete years.undefined;
+  // get an array of keys
+  const payload = Object.keys(years).sort();
+  // save
+  return { type: "MAP_YEAR_OPTIONS", payload };
 }

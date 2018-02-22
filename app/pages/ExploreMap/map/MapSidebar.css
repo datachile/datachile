@@ -40,6 +40,8 @@
     text-transform: uppercase;
     color: #000;
     background-color: #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover {
       background-color: #bbb;

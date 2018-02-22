@@ -487,31 +487,37 @@ function simpleIndustryDatumNeed(
   };
 }
 
-function quickQuery({
-  cube,
-  measures = [],
-  drillDowns = [],
-  cuts = [],
-  options = {},
-  format = "json",
-  locale = "en"
-}) {
-  return client.cube(cube).then(cube => {
-    const q = cube.query;
+function queryBuilder(query, params) {
+  let i, item;
 
-    measures.forEach(q.measure, q);
-    drillDowns.forEach(dd => q.drilldown(...dd));
-    cuts.forEach(function(cut) {
-      if ("string" != typeof cut) {
-        cut = "{" + cut.values.map(v => `${cut.key}.&[${v}]`).join(",") + "}";
-      }
-      return q.cut(cut);
-    });
-    for (let option in options) q.option(option, options[option]);
+  for (i = 0; (item = params.measures[i]); i++) query = query.measure(item);
 
-    setLangCaptions(q, locale);
+  for (i = 0; (item = params.drillDowns[i]); i++)
+    query = query.drilldown.apply(query, item);
 
-    return client.query(q, format);
+  for (i = 0; (item = params.cuts[i]); i++) {
+    if ("string" != typeof item)
+      item = "{" + item.values.map(v => `${item.key}.&[${v}]`).join(",") + "}";
+    query = query.cut(item);
+  }
+
+  for (item in params.options) query = query.option(item, params.options[item]);
+
+  setLangCaptions(query, params.locale);
+
+  return query;
+}
+
+function quickQuery(params) {
+  params.measures = params.measures || [];
+  params.drillDowns = params.drillDowns || [];
+  params.cuts = params.cuts || [];
+  params.options = params.options || {};
+  params.locale = params.locale || "en";
+
+  return client.cube(params.cube).then(cube => {
+    const query = queryBuilder(cube.query, params);
+    return client.query(query, params.format || "json");
   });
 }
 
@@ -762,6 +768,7 @@ export {
   simpleInstitutionDatumNeed,
   getGeoMembersDimension,
   simpleDatumNeed,
-  quickQuery
+  quickQuery,
+  queryBuilder
 };
 export default client;

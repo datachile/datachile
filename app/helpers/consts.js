@@ -117,13 +117,13 @@ export const sources = {
     year: 2015
   },
   election_results: {
-    title: "Resultados Electorales",
+    title: "Resultados Electorales - SERVEL",
     url: "http://www.servel.cl/",
     min_year: 2010,
     year: 2017
   },
   election_results_update: {
-    title: "Resultados Electorales",
+    title: "Resultados Electorales - SERVEL",
     url: "http://www.servel.cl/",
     min_year: 2009,
     year: 2017,
@@ -143,7 +143,7 @@ export const sources = {
     year: 2014
   },
   psu: {
-    title: "Prueba de Selección Universitaria (PSU)",
+    title: "Prueba de Selección Universitaria (PSU) - DEMRE",
     url: "http://demre.cl/",
     year: 2016
   },

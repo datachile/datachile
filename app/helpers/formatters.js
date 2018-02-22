@@ -155,6 +155,23 @@ export function classnames() {
     .join(" ");
 }
 
+export function fullNameToArray(fullName) {
+  return fullName && fullName.slice(1, -1).split("].[");
+}
+
+export function guessAcceptableName(item) {
+  const fullName = fullNameToArray(item.fullName);
+  const last = fullName.pop();
+
+  while (fullName.length > 0) {
+    if (fullName[fullName.length - 1].includes(last)) fullName.pop();
+    else break;
+  }
+
+  fullName.push(item.annotations.es_element_caption || item.caption);
+  return fullName.join(" › ");
+}
+
 export function getImageFromMember(
   prefix,
   id1,
