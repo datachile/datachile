@@ -123,13 +123,26 @@ class MayorResults extends Section {
             total: d =>
               geo.type === "comuna" ? d["Votes"] : d["Number of records"],
             totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "(0,0)"
-                ) +
-                " " +
-                (geo.type === "comuna" ? t("Votes") : t("Elected Authority"))
+              text:
+                !this.state.non_electors && geo.type === "comuna"
+                  ? d =>
+                      "Total: " +
+                      numeral(getNumberFromTotalString(d.text), locale).format(
+                        "(0,0)"
+                      ) +
+                      " " +
+                      (geo.type === "comuna"
+                        ? t("Votes")
+                        : t("Elected Authority"))
+                  : d =>
+                      "Total: " +
+                      numeral(getNumberFromTotalString(d.text), locale).format(
+                        "(0,0)"
+                      ) +
+                      " " +
+                      (geo.type === "comuna"
+                        ? t("Enabled Voters")
+                        : t("Elected Authority"))
             },
             groupBy:
               geo.type === "comuna" ? ["Candidate"] : ["Pacto", "Partido"],
