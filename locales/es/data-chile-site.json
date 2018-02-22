@@ -74,7 +74,9 @@
   "Trade": "Comercio",
 
   "Casualties rate per 100 inhabitants": "Tasa de muertes por 100 habitantes",
+  "Change in participation": "Cambio en participación",
   "Chile Exports": "Exportaciones Chile",
+  "Civics": "Cívica",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
   "complaints": "denuncias",
@@ -82,6 +84,8 @@
   "Complaints Over Time": "Evolución de Denuncias",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
+  "Congress": "Congreso",
+  "Congressperson Election": "Elecciones de Diputados",
   "Connected to electricity network": "Conectado a la red eléctrica",
   "Use fire-based heating": "Usa calefacción basada en fuego",
   "Connected to public tap water system": "Conectado a la red de agua pública",
@@ -112,9 +116,11 @@
   "Disbilities": "Discapacidades",
   "Diversity": "Diversidad",
   "During": "Durante",
+
   "Economy": "Economía",
   "Education": "Educación",
   "Educational Center": "Centro educacional",
+  "Elected Authority": "Autoridades Electas",
   "Employability": "Empleabilidad",
   "Employability 1st Year": "Empleabilidad 1er año",
   "Employability by Program": "Employability por programa",
@@ -143,8 +149,11 @@
   "Exports by Destination": "Exportación por destino",
   "Exports by product": "Exportaciones por producto",
   "Exports in ": "Exportaciones en ",
+  "Imports in ": "Importaciones en ",
   "Exports volume": "Volumen de exportaciones",
+  "Imports volume": "Volumen de importaciones",
   "Exports {{last_year}}": "Exportaciones {{last_year}}",
+  "Imports {{last_year}}": "Importaciones {{last_year}}",
   "Extras": "Extras",
   "Female": "Mujeres",
   "Female Average Age": "Edad promedio mujeres",
@@ -183,6 +192,11 @@
   "and": "y",
   "a decrease": "un descenso",
 
+  "Election": "Elección",
+  "Elections": "Elecciones",
+  "Electors": "Electores",
+  "Electoral Participation": "Participación Electoral",
+  "Electors that didn't vote": "Electores que no votaron",
   "Employed Men with Technical Education":
     "Hombres Empleados con Educación Técnica",
   "Employed Women with Technical Education":
@@ -260,6 +274,8 @@
   "Language": "Idioma",
   "Language_PSU": "Lenguaje",
   "Laptop computer": "Computador portátil",
+
+  "LINEAR": "LINEAL",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
   "Less than 30 square meter households": "Hogares de menos de 30m²",
@@ -323,7 +339,7 @@
   "Material of Walls": "Material de las paredes",
   "Math": "Matemática",
   "Mayor": "Alcalde",
-  "Mayor Election": "Elección de alcalde",
+  "Mayor Election": "Elección de Alcalde",
   "Median Income CLP": "Ingreso medio CLP",
   "Migration": "Migración",
   "Migration By Activity": "Migración por actividad",
@@ -371,6 +387,8 @@
   "Output": "Producción",
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
+
+  "Presidential": "Presidencial",
   "PSU exams": "Personas que rindieron PSU",
   "PSU Results": "Resultados PSU",
   "PSU Results By Sex": "Resultados PSU por sexo",
@@ -379,6 +397,8 @@
   "PSU vs NEM by school": "PSU vs NEM por escuela",
   "PSU vs NEM by Comuna & Administration":
     "PSU vs NEM por Comuna & Administración",
+  "Participation": "Participación",
+  "Participation in Municipal Election": "Participación en Elección Municipal",
   "People": "Personas",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
@@ -390,6 +410,7 @@
   "Population Pyramid": "Pirámide poblacional",
   "Population with Health Insurance": "Población con Previsión de Salud",
   "President": "Presidente",
+  "Presidential 1st - 2nd round": "1ra - 2da vuelta Presidencial",
   "Primary Healthcare": "Atención de Salud Primaria",
   "Product": "Producto",
   "Product Space": "Espacio de Producto",
@@ -425,6 +446,8 @@
   },
   "Results": "Resultados",
   "Results for": "Resultados para",
+  "Results 1st Round": "Resultados Primera Vuelta",
+  "Results 2nd Round": "Resultados Segunda Vuelta",
   "Retention": "Retención",
   "Retention by Program": "Retención por Programa",
   "Role": "Rol",
@@ -442,6 +465,7 @@
   "See less": "Ver menos",
   "See more": "Ver más",
   "Senators": "Senadores",
+  "Senator Election": "Elección de Senador",
   "Services Access": "Acceso a servicios",
   "SignUp": {
     "Confirm Password": "Confirm Password",
@@ -488,6 +512,7 @@
   "Top exporter region": "Principal región exportadora",
   "Topics": "Temas",
   "Total": "Total",
+  "Total Electors": "Electores Totales",
   "Total Enrollment": "Matrícula total",
   "Total Exports": "Total Exportaciones",
   "Total Imports": "Total Importaciones",
@@ -514,6 +539,9 @@
     "Visas para mujeres en el rango {{range}}",
   "Visas for males in range {{range}}":
     "Visas para hombres en el rango {{range}}",
+  "Votes": "Votos",
+  "votes": "votos",
+
   "Wages": "Salarios",
   "Wages by Program": "Salarios por programa",
   "Years of Studies": "Años de estudio",
@@ -699,12 +727,20 @@
           "Se usa en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
       },
       "servel": {
-        "title": "Resultados electorales",
-        "year": "2009-2013-2016",
+        "title": "Resultados electorales y participación",
+        "year": "2009-2013-2016-2017",
         "source": "Servicio Electoral (SERVEL)",
         "text":
-          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones.</p>",
+          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones. También hay detalles de la participación electoral a nivel comunal.</p>",
         "use": "Se usa en los perfiles nacional, regional y comunal."
+      },
+      "felonies": {
+        "title": "Denuncias por delitos de mayor connotación social",
+        "year": "2005-2016",
+        "source": "Carabineros de Chile",
+        "text":
+          "<p>Las estadísticas de los Delitos de Mayor Connotación Social (DMCS): Estos corresponden a los grupos denominados como 'Delitos Violentos' (Robo con Violencia, Robo con Intimidación, Robo por Sorpresa, Lesiones, Homicidio y Violación), y 'Delitos Contra la Propiedad' (Robo de Vehículo Motorizado, Robo de Accesorios de Vehículos, Robo en Lugar Habitado, Robo en Lugar no Habitado, Otros Robos con Fuerza y Hurto).</p>",
+        "use": "Se utiliza en los perfiles nacional, regional y comunal."
       },
       "ids": {
         "title": "Ids genéricos",
@@ -738,7 +774,7 @@
         "<p>DataChile posee una API de datos que entrega la información para construir los gráficos y generar todos los textos del sitio.</p>",
       "title2": "¿Cuándo estará disponible la API?",
       "text2":
-        "<p>La API será lanzada con motivo del <a href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
+        "<p>La API será lanzada con motivo del <a rel='noopener noreferrer' href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
       "title3":
         "Mientras tanto, ¿cómo puedo acceder a la información que distribuye DataChile?",
       "text3":
@@ -765,6 +801,21 @@
         "title": "1.1.0 - \"Belloto\" - 2018-01-26",
         "description":
           "<p>Nuevos datos: Denuncias de delitos de mayor connotación social, presentes en perfil geográfico, tópico Vivienda y Entorno, sección Seguridad (Fuente: Carabineros de Chile). Correcciones en indentificadores de previsión de salud sobre datos de CASEN para 2003 y 2006. Agregada Comuna de Ñiquén en mapa de selección. Correcciones varias en textos y traducciones (nan, N/A, etc). Ajustes de diseño y estilo para desktop y mobile. Correcciones en rutas para descarga de información completa desde el about. Mejora en performance de queries de la home.</p>"
+      },
+      "canelo": {
+        "title": "1.1.1 - \"Canelo\" - 2018-02-02",
+        "description":
+          "<p>Corrección de textos. Mejoras en meta tags opengraph.</p>"
+      },
+      "diamelo": {
+        "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
+        "description":
+          "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>"
+      },
+      "encino": {
+        "title": "1.2.1 - \"Encino\" - 2018-02-16",
+        "description":
+          "<p>Nuevas visualizaciones en Sección Cívica: resultados electorales a nivel presidente, parlamento y alcalde. Correcciones de autoridades en el encabezado del perfil geográfico.</p>"
       }
     }
   },
@@ -822,7 +873,7 @@
       "text_none":
         "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
       "text":
-        "<p>El {{year}} Chile exportó un total de US{{total_exports}} a {{level}}, e importó un total de US{{total_imports}}, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
+        "<p>El {{year}} Chile exportó un total de US{{total_exports}} FOB a {{level}}, e importó un total de US{{total_imports}} CIF, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
@@ -861,10 +912,16 @@
         "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, donde destacan las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
+      "balance":
+        "<p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>",
       "text_none":
         "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
+      "text_imponly":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}. En términos nominales, esto fue {{import.direction}} de US{{import.volume_first}} CIF el {{year.first}}, a US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+      "text_exponly":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} el {{year.first}}, a US{{export.volume_last}} en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} en {{year.first}}, hasta US{{import.volume_last}} en {{year.last}}.</p><p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>"
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} CIF en {{year.first}}, hasta US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
     }
   },
   "an increment": "un aumento",
@@ -875,6 +932,15 @@
   "negative": "negativa",
   "disabilities": "discapacidades",
   "geo_profile": {
+    "civics": {
+      "congress": {
+        "text": "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}",
+        "note": "*Los elementos isolados de los gráficos representan a candidatos electos en dicha elección."
+      },
+      "presidential": {
+        "text": "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+      }
+    },
     "warning": "Los datos que se muestran corresponden a {{caption}}",
     "trade_slide": {
       "text":
@@ -1029,6 +1095,10 @@
         "text_none":
           "La encuesta CASEN de {{year_last}} no tiene datos sobre conectividad para {{level}}."
       }
+    },
+    "politics": {
+      "text":
+        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     }
   },
   "granted in": "otorgadas en",
@@ -1116,6 +1186,8 @@
   },
   "relative to exports to the world in {{year}}":
     "relativo a exportaciones a todo el mundo durante {{year}}",
+  "relative to imports from the world in {{year}}":
+    "relativo a importaciones desde todo el mundo durante {{year}}",
   "students": "students",
   "There are not data available for this chart":
     "No hay datos disponibles para este gráfico",

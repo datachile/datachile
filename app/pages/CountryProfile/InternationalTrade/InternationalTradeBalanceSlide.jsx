@@ -44,6 +44,13 @@ class InternationalTradeBalanceSlide extends Section {
     }
   ];
 
+  getBalanceContext(imp, exp, balance) {
+    if (balance == 0) return "none";
+    else if (!imp) return "exponly";
+    else if (!exp) return "imponly";
+    else return "";
+  }
+
   render() {
     const { t, children, i18n } = this.props;
     const locale = i18n.language;
@@ -82,8 +89,11 @@ class InternationalTradeBalanceSlide extends Section {
         first: sources.exports.min_year,
         last: sources.exports.year
       },
-      context:
-        !growth_import || !growth_export || !balance_volume_last ? "none" : "",
+      context: this.getBalanceContext(
+        growth_import,
+        growth_export,
+        balance_volume_last
+      ),
       import: {
         behavior:
           import_volume_first < import_volume_last
@@ -115,8 +125,39 @@ class InternationalTradeBalanceSlide extends Section {
       }
     });
 
+    let featureddatum_volume = null;
     const datum_export_volume =
       export_volume_last / global_exports_last_year[0];
+    const datum_import_volume =
+      import_volume_last / global_exports_last_year[0];
+
+    if (datum_export_volume > 0.01) {
+      featureddatum_volume = (
+        <FeaturedDatum
+          className="l-1-3"
+          icon="exportaciones-en"
+          datum={numeral(datum_export_volume, locale).format("0.0%")}
+          title={t("Exports volume") + " (FOB)"}
+          subtitle={t(
+            "relative to exports to the world in {{year}}",
+            sources.exports
+          )}
+        />
+      );
+    } else if (datum_import_volume > 0.01) {
+      featureddatum_volume = (
+        <FeaturedDatum
+          className="l-1-3"
+          icon="importaciones-en"
+          datum={numeral(datum_import_volume, locale).format("0.0%")}
+          title={t("Imports volume") + " (CIF)"}
+          subtitle={t(
+            "relative to imports from the world in {{year}}",
+            sources.imports
+          )}
+        />
+      );
+    }
 
     return (
       <div className="topic-slide-block">
@@ -130,19 +171,8 @@ class InternationalTradeBalanceSlide extends Section {
           />
 
           <div className="topic-slide-data">
-            {datum_export_volume > 1 && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="exportaciones-en"
-                datum={numeral(datum_export_volume, locale).format("0.0%")}
-                title={t("Exports volume")}
-                subtitle={t(
-                  "relative to exports to the world in {{year}}",
-                  sources.exports
-                )}
-              />
-            )}
-            {growth_import && (
+            {featureddatum_volume}
+            {Boolean(growth_import) && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="product-import"
@@ -154,7 +184,7 @@ class InternationalTradeBalanceSlide extends Section {
                 })}
               />
             )}
-            {growth_export && (
+            {Boolean(growth_export) && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="product-export"

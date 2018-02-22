@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
+import Helmet from "react-helmet";
 
 import { ingestChildren } from "helpers/dataUtils";
 import { getMembersQuery } from "helpers/MondrianClient";
 import { getImageFromMember } from "helpers/formatters";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import Search from "components/Search";
 import FeaturedBox from "components/FeaturedBox";
 import ComingSoon from "components/ComingSoon";
@@ -186,7 +187,9 @@ class Explore extends Component {
   render() {
     const { entity, entity_id } = this.props.routeParams;
 
-    const { t } = this.props;
+    const { t, i18n, location } = this.props;
+
+    const locale = i18n.language;
 
     const members = this.props.data.members;
 
@@ -261,12 +264,20 @@ class Explore extends Component {
     }
 
     return (
-      <CanonComponent
-        id="explore"
-        data={this.props.data}
-        topics={[]}
-        loadingComponent={<DatachileLoading />}
-      >
+      <CanonProfile id="explore" data={this.props.data} topics={[]}>
+        <Helmet>
+          <title>{t("Explore")}</title>
+          <meta name="description" content={t("Explore profiles")} />
+          <meta property="og:title" content={t("Explore") + " - DataChile"} />
+          <meta
+            property="og:url"
+            content={`https://${locale}.datachile.io${location.pathname}`}
+          />
+          <meta
+            property="og:image"
+            content={`https://${locale}.datachile.io/images/logos/opengraph.png`}
+          />
+        </Helmet>
         <div className="explore-page">
           <Nav
             title={type != "" ? title : t("Explore")}
@@ -361,7 +372,7 @@ class Explore extends Component {
             </div>
           </div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 

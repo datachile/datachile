@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import { translate } from "react-i18next";
 
-import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMemberQuery,
@@ -16,7 +15,7 @@ import {
 } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
@@ -209,12 +208,7 @@ class CareerProfile extends Component {
     ];
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<DatachileLoading />}
-      >
+      <CanonProfile data={this.props.data} topics={topics}>
         <div className="profile">
           <div className="intro">
             {obj &&
@@ -351,7 +345,7 @@ class CareerProfile extends Component {
             </div>
           </div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 }

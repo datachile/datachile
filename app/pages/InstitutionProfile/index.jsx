@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonComponent } from "datawheel-canon";
+import { SectionColumns, Canon, CanonProfile } from "datawheel-canon";
 import { translate } from "react-i18next";
 
-import d3plus from "helpers/d3plus";
 import { slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMemberQuery,
@@ -16,7 +15,7 @@ import {
 } from "helpers/dataUtils";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import Topic from "components/Topic";
@@ -322,198 +321,197 @@ class InstitutionProfile extends Component {
     ];
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<DatachileLoading />}
-      >
-        <div className="profile">
-          <div className="intro">
-            {obj && (
-              <Nav
-                title={obj.caption}
-                typeTitle={
-                  obj.parent ? t("Institution") : t("Institution Type")
-                }
-                type={"institutions"}
-                exploreLink={"/explore/institutions"}
-                ancestor={obj.parent ? obj.parent.caption : ""}
-                ancestorLink={
-                  obj.parent
-                    ? slugifyItem(
-                        "institutions",
-                        obj.parent.key,
-                        obj.parent.name
-                      )
-                    : ""
-                }
-                topics={topics}
-              />
-            )}
-            <div className="splash">
-              <div
-                className="image"
-                style={{
-                  backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
-                }}
-              />
-              <div className="gradient" />
-            </div>
-
-            <div className="header">
-              <div className="datum-full-width">
-                {stats.accreditation && (
-                  <FeaturedDatumSplash
-                    title={t("Accreditation")}
-                    icon="check"
-                    datum={stats.accreditation}
-                    source="MINEDUC"
-                    className=""
-                  />
-                )}
-
-                {stats.avgincome && (
-                  <FeaturedDatumSplash
-                    title={t("Average Income (4th year)")}
-                    icon="check"
-                    datum={stats.avgincome}
-                    source="MINEDUC"
-                    className=""
-                  />
-                )}
-
-                {stats.avgemployability && (
-                  <FeaturedDatumSplash
-                    title={t("Average Employability (1st year)")}
-                    icon="check"
-                    datum={stats.avgemployability}
-                    source="MINEDUC"
-                    className=""
-                  />
-                )}
+      <Canon>
+        <CanonProfile data={this.props.data} topics={topics}>
+          <div className="profile">
+            <div className="intro">
+              {obj && (
+                <Nav
+                  title={obj.caption}
+                  typeTitle={
+                    obj.parent ? t("Institution") : t("Institution Type")
+                  }
+                  type={"institutions"}
+                  exploreLink={"/explore/institutions"}
+                  ancestor={obj.parent ? obj.parent.caption : ""}
+                  ancestorLink={
+                    obj.parent
+                      ? slugifyItem(
+                          "institutions",
+                          obj.parent.key,
+                          obj.parent.name
+                        )
+                      : ""
+                  }
+                  topics={topics}
+                />
+              )}
+              <div className="splash">
+                <div
+                  className="image"
+                  style={{
+                    backgroundImage: `url('/images/profile-bg/geo/chile.jpg')`
+                  }}
+                />
+                <div className="gradient" />
               </div>
-            </div>
 
-            <div className="topics-selector-container">
-              <TopicMenu topics={topics} />
-            </div>
-
-            <div className="arrow-container">
-              <a href="#about">
-                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-              </a>
-            </div>
-          </div>
-
-          <div className="topic-block" id="about">
-            <div className="topic-header">
-              <div className="topic-title">
-                <h2 className="full-width">
-                  {t("About")}
-                  {obj && (
-                    <span className="small">
-                      <span className="pipe"> | </span>
-                      {obj.caption}
-                    </span>
+              <div className="header">
+                <div className="datum-full-width">
+                  {stats.accreditation && (
+                    <FeaturedDatumSplash
+                      title={t("Accreditation")}
+                      icon="check"
+                      datum={stats.accreditation}
+                      source="MINEDUC"
+                      className=""
+                    />
                   )}
-                </h2>
+
+                  {stats.avgincome && (
+                    <FeaturedDatumSplash
+                      title={t("Average Income (4th year)")}
+                      icon="check"
+                      datum={stats.avgincome}
+                      source="MINEDUC"
+                      className=""
+                    />
+                  )}
+
+                  {stats.avgemployability && (
+                    <FeaturedDatumSplash
+                      title={t("Average Employability (1st year)")}
+                      icon="check"
+                      datum={stats.avgemployability}
+                      source="MINEDUC"
+                      className=""
+                    />
+                  )}
+                </div>
               </div>
-              <div className="topic-go-to-targets">
-                <div className="topic-slider-sections" />
+
+              <div className="topics-selector-container">
+                <TopicMenu topics={topics} />
+              </div>
+
+              <div className="arrow-container">
+                <a href="#about">
+                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+                </a>
               </div>
             </div>
-            <div className="topic-slide-container">
-              <div className="topic-slide-block">
-                <div className="topic-slide-intro">
-                  <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
-                  <div className="topic-slide-text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
-                  <div className="topic-slide-link-list">
-                    <LinksList title={listTitle} list={list} />
+
+            <div className="topic-block" id="about">
+              <div className="topic-header">
+                <div className="topic-title">
+                  <h2 className="full-width">
+                    {t("About")}
+                    {obj && (
+                      <span className="small">
+                        <span className="pipe"> | </span>
+                        {obj.caption}
+                      </span>
+                    )}
+                  </h2>
+                </div>
+                <div className="topic-go-to-targets">
+                  <div className="topic-slider-sections" />
+                </div>
+              </div>
+              <div className="topic-slide-container">
+                <div className="topic-slide-block">
+                  <div className="topic-slide-intro">
+                    <div className="topic-slide-text">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
+                      </p>
+                    </div>
+                    <div className="topic-slide-text">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
+                      </p>
+                    </div>
+                    <div className="topic-slide-link-list">
+                      <LinksList title={listTitle} list={list} />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="topics-container">
-            <Topic
-              name={t("Education")}
-              id="education"
-              slider={false}
-              sections={[
-                {
-                  name: t("Summary"),
-                  slides: [t("")]
-                }
-              ]}
-            >
-              <div>
-                <WagesSlide>
-                  <SectionColumns>
-                    <WagesByProgram className="lost-1" />
-                  </SectionColumns>
-                </WagesSlide>
-              </div>
-              <div>
-                <AccreditationSlide>
-                  <SectionColumns>
-                    <AccreditationByProgram className="lost-1" />
-                  </SectionColumns>
-                </AccreditationSlide>
-              </div>
-              <div>
-                <RetentionSlide>
-                  <SectionColumns>
-                    <RetentionByProgram className="lost-1" />
-                  </SectionColumns>
-                </RetentionSlide>
-              </div>
-            </Topic>
-            <Topic
-              name={t("Employability")}
-              id="employment"
-              slider={false}
-              sections={[
-                {
-                  name: t(""),
-                  slides: [t("")]
-                }
-              ]}
-            >
-              <div>
-                <EmployabilitySlide>
-                  <SectionColumns>
-                    <EmployabilityByProgram className="lost-1" />
-                  </SectionColumns>
-                </EmployabilitySlide>
-              </div>
-            </Topic>
+            <div className="topics-container">
+              <Topic
+                name={t("Education")}
+                id="education"
+                slider={false}
+                sections={[
+                  {
+                    name: t("Summary"),
+                    slides: [t("")]
+                  }
+                ]}
+              >
+                <div>
+                  <WagesSlide>
+                    <SectionColumns>
+                      <WagesByProgram className="lost-1" />
+                    </SectionColumns>
+                  </WagesSlide>
+                </div>
+                <div>
+                  <AccreditationSlide>
+                    <SectionColumns>
+                      <AccreditationByProgram className="lost-1" />
+                    </SectionColumns>
+                  </AccreditationSlide>
+                </div>
+                <div>
+                  <RetentionSlide>
+                    <SectionColumns>
+                      <RetentionByProgram className="lost-1" />
+                    </SectionColumns>
+                  </RetentionSlide>
+                </div>
+              </Topic>
+              <Topic
+                name={t("Employability")}
+                id="employment"
+                slider={false}
+                sections={[
+                  {
+                    name: t(""),
+                    slides: [t("")]
+                  }
+                ]}
+              >
+                <div>
+                  <EmployabilitySlide>
+                    <SectionColumns>
+                      <EmployabilityByProgram className="lost-1" />
+                    </SectionColumns>
+                  </EmployabilitySlide>
+                </div>
+              </Topic>
+            </div>
           </div>
-        </div>
-      </CanonComponent>
+        </CanonProfile>
+      </Canon>
     );
   }
 }

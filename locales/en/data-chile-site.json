@@ -557,6 +557,31 @@
           "<p>Productivity data at the level of industry and comuna provided by the Tax Office (SII). This data tallies the number of workers, labour and capital cost, and output of each industry in a comuna.</p>",
         "use":
           "This dataset is used in the national, regional, and comuna profile, in the economy section, and in the industry profile."
+      },
+      "servel": {
+        "title": "Electtion results and participation",
+        "year": "2009-2013-2016-2017",
+        "source": "Electoral service (SERVEL)",
+        "text":
+          "<p>Public data available in Servicio Electoral (SERVEL). It shows the results from last elections: mayors, congress-people and president. The winners and also a detail of every candidate. Finally, we calculate the electoral participation at comuna level.</p>",
+        "use":
+          "This dataset is used in the nation, region, and comuna profiles."
+      },
+      "felonies": {
+        "title": "Felonies of Greater Social Connotation",
+        "year": "2005-2016",
+        "source": "Carabineros de Chile",
+        "text":
+          "<p>The statistics of the Felonies of Greater Social Connotation: These correspond to the groups denominated like 'Violent Crimes' (Robbery with Violence, Robbery with Intimidation, Robbery by Surprise, Injuries, Homicide and Violation), and 'Crimes against the Property' (Theft of Motorized Vehicle, Theft of Vehicle Accessories, Theft in Inhabited Place, Theft in Uninhabited Place, Other Robberies with Force and Theft).</p>",
+        "use":
+          "This dataset is used in the nation, region, and comuna profiles."
+      },
+      "ids": {
+        "title": "General Ids",
+        "year": "",
+        "source": "",
+        "text": "<p>Metadata & ids for reference to other files.</p>",
+        "use": "This dataset is used all over the site."
       }
     },
     "team": {
@@ -572,12 +597,59 @@
         "<p>DataChile is a public good (owned by all Chileans), but it will be managed by the Chilean government starting April 2018, once Corfo funding finishes.</p>",
       "title4": "Who is responsible for updating DataChile?",
       "text4":
-        "<p>Until April 2018 DataChile updates are the responsibility of Datawheel. Starting April 2018, DIRECON (Dirección General de Relaciones Económicas Internacionales), which is a department from the Ministerio de Relaciones Exteriores, will take possession of DataChile and will be responsible for updating its data and features.</p>"
+        "<p>Until April 2018 DataChile updates are the responsibility of Datawheel. Starting April 2018, DIRECON (Dirección General de Relaciones Económicas Internacionales), which is a department from the Ministerio de Relaciones Exteriores, will take possession of DataChile and will be responsible for updating its data and features.</p>",
+      "members":
+        "<p>Datachile's team is composed by:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>César Hidalgo</li><li>Carlos Navarrete Lizama</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>"
+    },
+    "api": {
+      "title": "API",
+      "title1": "DataChile API",
+      "text1":
+        "<p>DataChile has a data API, which delivers the info to build the charts and generate the texts site-wide.</p>",
+      "title2": "When will this API be available?",
+      "text2":
+        "<p>The API will be released publicly on the occasion of <a rel='noopener noreferrer' href='http://opendataday.org/' target='_blank'>Open Data Day</a>, on March 3rd, 2018. We will also launch that day a map webapp to let users explore all available dimensions and variables.</p>",
+      "title3":
+        "Meanwhile, how can I access the information DataChile distributes?",
+      "text3":
+        "<p>Next to each chart there's an option <img class=\"icon\" src=\"/images/icons/icon-download.svg\" /> to download the information used to generate it. This raw information is available in CSV, XLS and JSON formats.</p><p>Likewise, in the <a href=\"/about/data\">Data Section</a> you can access the files we used to populate our API, in CSV format.</p>"
     },
     "terms": {
       "text":
         "<p>Information on this site is provided on an \"as is\" and \"as available\" basis. DataChile makes every effort to ensure, but does not guarantee, the accuracy or completeness of the information on the DataChile website. Our goal is to keep this information timely and accurate. If errors are brought to our attention, we will try to correct them. DataChile may add, change, improve, or update the information of the website without notice. DataChile reserves its exclusive right in its sole discretion to alter, limit or discontinue part of this site. Under no circumstances shall DataChile be liable for any loss, damage, liability or expense suffered which is claimed to result from use of this site, including without limitation, any fault, error, omission, interruption or delay. Use of this site is at User's sole risk. We make every effort to minimize disruption caused by technical errors. However some data or information on the DataChile website may have been created or structured in files or formats which are not error-free and we cannot guarantee that our service will not be interrupted or otherwise affected by such problems. DataChile accepts no responsibility with regards to such problems (failure of performance, computer virus, communication line failure, alteration of content, etc.) incurred as a result of using the DataChile website or any link to external sites. The User specifically acknowledges and agrees that DataChile is not liable for any conduct of any other User, including, but not limited to, the types of conduct listed above. DataChile reserves the right to deny at its sole discretion any User access to the DataChile website or any portion thereof without notice. For site security purpose and to ensure that the DataChile website remains available to all users, it employs software programs to monitor network traffic to identify unauthorised attempts to upload or change information, or otherwise cause damage and to detect other possible security breaches.</p>",
       "title": "Terms of Use"
+    },
+    "changelog": {
+      "title": "Changelog",
+      "launch": {
+        "title": "1.0.0 - Beta launch - 2018-01-08",
+        "description":
+          "<p>Main page. Profile explorer. Entity search. Profiles: geo, countries, industries, and products. More than 15 datasets about: economy, demography, education, health, and housing.</p>"
+      },
+      "araucaria": {
+        "title": "1.0.1 - \"Araucaria\" - 2018-01-19",
+        "description":
+          "<p>General bug fixes in various profiles, added background images, improved stability for Country Profile on countries with low data availability.</p>"
+      },
+      "belloto": {
+        "title": "1.1.0 - \"Belloto\" - 2018-01-26",
+        "description":
+          "<p>New datasets: Allegations of main crime categories, available for Geo profile, Housing topic, Security section (Source: Carabineros de Chile). Fixes on Health Insurance IDs for the CASEN survey data on 2003 and 2006. Added Comuna of Ñiquén in selection map. Various fixes on texts and translations (nan, N/A, etc). Design and style adjustments for desktop and mobile. Fixes on download links to raw information sources on the About page. Improvement on query performance for homepage.</p>"
+      },
+      "canelo": {
+        "title": "1.1.1 - \"Canelo\" - 2018-02-02",
+        "description": "<p>Text fixes. Improve meta tags opengraph.</p>"
+      },
+      "diamelo": {
+        "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
+        "description":
+          "<p>New dataset: Civic section. Electoral results and participation from last elections. Fixed some style issues. Added new download links to raw information sources on the About page.</p>"
+      },
+      "encino": {
+        "title": "1.2.1 - \"Encino\" - 2018-02-16",
+        "description":
+          "<p>New data visualizations in Civic section: electoral results: presidential, congress and mayor levels. Fixes in authorities in main splash.</p>"
+      }
     }
   },
   "affiliates": "affiliates",
@@ -634,7 +706,7 @@
       "text_none":
         "<p>There's no data on internation trade between Chile and {{level}} in the recent years.</p>",
       "text":
-        "<p>During {{year}}, Chile exported a total of US{{total_exports}} to {{level}}, and imported a total of US{{total_imports}}, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
+        "<p>During {{year}}, Chile exported a total of US{{total_exports}} FOB to {{level}}, and imported a total of US{{total_imports}} CIF, resulting in a {{behavior}} trade balance of US{{total_balance}}.</p><p>The main product Chile imported from {{level}} is <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. On {{year}}, this represented a {{main_import.percent}} of total imports from {{level}}.</p><p>On {{year}}, the main exported product from Chile to {{level}} was <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. This represented a {{main_export.percent}} of the chilean exports to {{level}}.</p>"
     },
     "intltrade_origin_dest_slide": {
       "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
@@ -673,10 +745,16 @@
         "<p>The main destination of the imports from {{level}} is <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, mainly to the comunas of <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, and <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
     },
     "intltrade_balance_slide": {
+      "balance":
+        "<p>In {{year.last}}, Chile had a {{balance.behavior}} trade balance with {{level}}, which favored {{balance.beneficiary}} in US{{balance.volume_last}}.</p>",
       "text_none":
         "<p>There's no data on internation trade between Chile and {{level}} in the recent years.</p>",
+      "text_imponly":
+        "<p>Between {{year.first}} and {{year.last}}, imports from {{level}} registered an {{import.behavior}} of {{import.growth}}. In nominal terms, this means {{import.direction}} of US{{import.volume_first}} CIF in {{year.first}}, to US{{import.volume_last}} CIF in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+      "text_exponly":
+        "<p>Between {{year.first}} and {{year.last}}, exports to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} FOB in {{year.first}}, to US{{export.volume_last}} FOB in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
       "text":
-        "<p>Between {{year.first}} and {{year.last}}, export to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} in {{year.first}}, to US{{export.volume_last}} in {{year.last}}. In the same period, imports from {{level}} registered {{import.behavior}} of {{import.growth}}, from US{{import.volume_first}} in {{year.first}}, to US{{import.volume_last}} in {{year.last}}.</p><p>In {{year.last}}, Chile had a {{balance.behavior}} trade balance with {{level}}, which favored {{balance.beneficiary}} in US{{balance.volume_last}}.</p>"
+        "<p>Between {{year.first}} and {{year.last}}, exports to {{level}} have registered an {{export.behavior}} of {{export.growth}}. In nominal terms, this means {{export.direction}} of US{{export.volume_first}} FOB in {{year.first}}, to US{{export.volume_last}} FOB in {{year.last}}. In the same period, imports from {{level}} registered {{import.behavior}} of {{import.growth}}, from US{{import.volume_first}} CIF in {{year.first}}, to US{{import.volume_last}} CIF in {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
     }
   },
   "decreased": "decreased",
@@ -813,6 +891,10 @@
         "text_none":
           "The CASEN survey of {{year_last}} has no data about internet access for {{level}}."
       }
+    },
+    "politics": {
+      "text":
+        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     }
   },
 

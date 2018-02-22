@@ -77,54 +77,55 @@ class ImportsByProduct extends Section {
         </h3>
         {this.state.chart ? (
           <Treemap
-          config={{
-            height: 500,
-            data: path,
-            groupBy: ["ID HS0", "ID HS2"],
-            label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
-            sum: d => d["CIF US"],
-            total: d => d["CIF US"],
-            totalConfig: {
-              text: d =>
-                "Total: US" +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
-                )
-            },
-            time: "ID Year",
-            legendConfig: {
-              label: false,
+            config={{
+              height: 500,
+              data: path,
+              groupBy: ["ID HS0", "ID HS2"],
+              label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
+              sum: d => d["CIF US"],
+              total: d => d["CIF US"],
+              totalConfig: {
+                text: d =>
+                  "Total: US" +
+                  numeral(getNumberFromTotalString(d.text), locale).format(
+                    "($ 0.[00] a)"
+                  ) +
+                  " CIF"
+              },
+              time: "ID Year",
+              legendConfig: {
+                label: false,
+                shapeConfig: {
+                  width: 25,
+                  height: 25,
+                  fill: d => productsColorScale("hs" + d["ID HS0"]),
+                  backgroundImage: d =>
+                    "/images/legend/hs/hs_" + d["ID HS0"] + ".png"
+                }
+              },
               shapeConfig: {
-                width: 25,
-                height: 25,
-                fill: d => productsColorScale("hs" + d["ID HS0"]),
-                backgroundImage: d =>
-                  "/images/legend/hs/hs_" + d["ID HS0"] + ".png"
+                fill: d => productsColorScale("hs" + d["ID HS0"])
+              },
+              on: {
+                click: d => {
+                  var url = buildPermalink(d, "geo", Array.isArray(d.Comuna));
+                  browserHistory.push(url);
+                }
+              },
+              tooltipConfig: {
+                title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
+                body: d =>
+                  numeral(d["CIF US"], locale).format("(USD 0 a)") +
+                  " CIF<br/><a>" +
+                  t("tooltip.to_profile") +
+                  "</a>"
               }
-            },
-            shapeConfig: {
-              fill: d => productsColorScale("hs" + d["ID HS0"])
-            },
-            on: {
-              click: d => {
-                var url = buildPermalink(d, "geo", Array.isArray(d.Comuna));
-                browserHistory.push(url);
-              }
-            },
-            tooltipConfig: {
-              title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
-              body: d =>
-                numeral(d["CIF US"], locale).format("(USD 0 a)") +
-                "<br/><a>" +
-                t("tooltip.to_profile") +
-                "</a>"
-            }
-          }}
-          dataFormat={this.prepareData}
-        />
-      ) : (
-        <NoDataAvailable />
-      )}
+            }}
+            dataFormat={this.prepareData}
+          />
+        ) : (
+          <NoDataAvailable />
+        )}
         <SourceNote cube="imports" />
       </div>
     );

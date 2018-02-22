@@ -201,20 +201,18 @@
   & .home-text {
     lost-flex-container: column;
     lost-center: 3/4;
-    margin: var(--gutter) auto var(--gutter) auto;
-    & .l-col {
-      lost-column: 1/2;
-      border-width: 2px 0 0 2px;
-      border-color: var(--medium-gray);
-      border-style: solid;
-      padding: var(--gutter);
-    }
+    margin: var(--gutter) auto;
+    & .l-col,
     & .r-col {
       lost-column: 1/2;
-      border-width: 0 2px 2px 0;
-      border-color: var(--medium-gray);
-      border-style: solid;
-      padding: var(--gutter);
+      margin-bottom: var(--gutter);
+      text-align: center;
+      padding: 0 var(--gutter);
+    }
+    & img {
+      display: block;
+      margin: 0 auto;
+      width: 90%;
     }
     & h2 {
       font-family: var(--font-family-title);
@@ -226,14 +224,22 @@
       margin-bottom: var(--gutter);
       letter-spacing: 3px;
     }
+    & .l-col h2 {
+      max-width: 190px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     & p {
       font-family: var(--font-family-text);
-      font-size: 14px;
+      font-size: 16px;
       color: var(--snow);
       font-weight: 300;
+      letter-spacing: 0.5px;
       & span {
         color: var(--accent);
+        font-size: 18px;
         font-weight: 800;
+        letter-spacing: 0.8px;
       }
     }
   }
@@ -364,9 +370,11 @@
       lost-flex-container: row;
       & .l-col {
         lost-column: 1;
+        padding: 0;
       }
       & .r-col {
         lost-column: 1;
+        padding: 0;
       }
     }
     & .home-featured-profiles {

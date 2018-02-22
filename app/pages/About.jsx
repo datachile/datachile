@@ -1,27 +1,25 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import Helmet from "react-helmet";
 
 import Documentation from "./Documentation";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import "./About.css";
 
 class About extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+  state = {};
 
   componentDidMount() {
     //window.addEventListener("scroll", this.handleScroll.bind(this));
   }
 
   render() {
-    const { t, routeParams } = this.props;
+    const { t, routeParams, location } = this.props;
+    const locale = this.props.i18n.language;
 
     const section = routeParams.section ? routeParams.section : "background";
 
@@ -57,13 +55,18 @@ class About extends Component {
     ];
 
     return (
-      <CanonComponent
-        id="about"
-        data={this.props.data}
-        loadingComponent={<DatachileLoading />}
-      >
+      <CanonProfile id="about" data={this.props.data}>
         <Helmet>
           <title>{t("About")}</title>
+          <meta property="og:title" content={t("About DataChile")} />
+          <meta
+            property="og:url"
+            content={`https://${locale}.datachile.io${location.pathname}`}
+          />
+          <meta
+            property="og:image"
+            content={`https://${locale}.datachile.io/images/logos/opengraph.png`}
+          />
         </Helmet>
         <Nav
           title={t("About DataChile")}
@@ -280,6 +283,15 @@ class About extends Component {
                       </td>
                       <td>{t("about.data.servel.year")}</td>
                       <td>{t("about.data.servel.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#dataset_felonies">
+                          {t("about.data.felonies.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.felonies.year")}</td>
+                      <td>{t("about.data.felonies.source")}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -703,7 +715,29 @@ class About extends Component {
 
                 <p>
                   <a
-                    href="http://docs.datachile.io/polls_clean_data.zip"
+                    href="http://docs.datachile.io/participation_votes_clean_data.zip"
+                    target="_blank"
+                  >
+                    {t("Download data")}
+                  </a>
+                </p>
+
+                <h3 id="dataset_felonies">{t("about.data.felonies.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.felonies.text")
+                  }}
+                />
+
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.felonies.use")
+                  }}
+                />
+
+                <p>
+                  <a
+                    href="http://docs.datachile.io/felonies_clean_data.zip"
                     target="_blank"
                   >
                     {t("Download data")}
@@ -830,6 +864,27 @@ class About extends Component {
               <section className="section" id="terms">
                 <h2>{t("about.changelog.title")}</h2>
 
+                <h3>{t("about.changelog.encino.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.encino.description")
+                  }}
+                />
+
+                <h3>{t("about.changelog.diamelo.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.diamelo.description")
+                  }}
+                />
+
+                <h3>{t("about.changelog.canelo.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.canelo.description")
+                  }}
+                />
+
                 <h3>{t("about.changelog.belloto.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
@@ -854,7 +909,7 @@ class About extends Component {
             )}
           </div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 }

@@ -135,7 +135,12 @@ function simpleGeoChartNeed(
     let geo = overrideGeo ? overrideGeo : getGeoObject(params);
 
     if (
-      ["death_causes", "disabilities", "health_access"].includes(cube) &&
+      [
+        "death_causes",
+        "disabilities",
+        "health_access",
+        "nene_quarter"
+      ].includes(cube) &&
       geo.type === "comuna"
     ) {
       geo = { ...geo.ancestor };
@@ -548,7 +553,7 @@ function simpleCountryDatumNeed(key, query, postprocess) {
     )}`;
 
     query.locale = store.i18n.locale;
-    query.cuts = [].concat(query.cuts, countryCut);
+    query.cuts = [].concat(query.cuts, countryCut).filter(Boolean);
     if (query.drillLevel) {
       query.drillDowns = [].concat(query.drillDowns, ddlevel);
     }
@@ -580,7 +585,10 @@ function simpleDatumNeed(
   return (params, store) => {
     let obj = {};
     if (profile !== "rd_survey") {
-      obj = profile === "geo" ? getGeoObject(params) : getLevelObject(params);
+      obj =
+        profile === "geo" || profile === "geo_no_cut"
+          ? getGeoObject(params)
+          : getLevelObject(params);
     }
 
     if (
@@ -652,6 +660,7 @@ function simpleDatumNeed(
             );
             break;
           case "no_cut":
+          case "geo_no_cut":
             query = setLangCaptions(q, store.i18n.locale);
             break;
           case "rd_survey":
