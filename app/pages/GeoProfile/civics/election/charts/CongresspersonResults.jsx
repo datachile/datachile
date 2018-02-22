@@ -68,7 +68,9 @@ class CongresspersonResults extends Section {
     super(props);
 
     this.state = {
-      non_electors: true
+      non_electors: true,
+      year: 2017,
+      key: Math.random()
     };
 
     this.toggleElectors = this.toggleElectors.bind(this);
@@ -76,8 +78,16 @@ class CongresspersonResults extends Section {
 
   toggleElectors() {
     this.setState(prevState => ({
-      non_electors: !prevState.non_electors
+      non_electors: !prevState.non_electors,
+      key: Math.random()
     }));
+  }
+
+  onYearChange(item) {
+    this.setState({
+      year: item[0],
+      key: Math.random()
+    });
   }
 
   render() {
@@ -103,9 +113,11 @@ class CongresspersonResults extends Section {
         </h3>
 
         <Treemap
+          key={this.state.key}
           config={{
             height: 500,
             data: path,
+            timeFilter: d => d["ID Year"] === this.state.year,
             filter: this.state.non_electors
               ? ""
               : d => d["ID Candidate"] !== 9999,
@@ -117,7 +129,11 @@ class CongresspersonResults extends Section {
                   "(0,0)"
                 ) +
                 " " +
-                (geo.type === "comuna" ? t("Votes") : t("Elected Authority"))
+                (geo.type === "comuna"
+                  ? !this.state.non_electors || this.state.year < 2016
+                    ? t("Votes")
+                    : t("Enabled Voters")
+                  : t("Elected Authority"))
             },
             groupBy:
               geo.type === "comuna"
@@ -182,7 +198,8 @@ class CongresspersonResults extends Section {
               label: false,
               shapeConfig: {
                 width: 25,
-                height: 25
+                height: 25,
+                backgroundImage: d => "/images/legend/civics/politics.png"
               }
             }
           }}
@@ -207,16 +224,15 @@ class CongresspersonResults extends Section {
           }}
         />
 
-        {geo.depth === 2 ||
-          (geo.depth === 2 && (
-            <div>
-              <Switch
-                onClick={this.toggleElectors}
-                labelElement={<strong>{t("Total Electors")}</strong>}
-                checked={this.state.non_electors}
-              />
-            </div>
-          ))}
+        {geo.depth === 2 && (
+          <div>
+            <Switch
+              onClick={this.toggleElectors}
+              labelElement={<strong>{t("Total Electors")}</strong>}
+              checked={this.state.non_electors}
+            />
+          </div>
+        )}
         <SourceNote cube="election_results" />
       </div>
     );

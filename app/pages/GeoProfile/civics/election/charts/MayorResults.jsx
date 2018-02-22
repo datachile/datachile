@@ -185,7 +185,8 @@ class MayorResults extends Section {
               label: d => (geo.type === "comuna" ? false : d["Pacto"]),
               shapeConfig: {
                 width: 25,
-                height: 25
+                height: 25,
+                backgroundImage: d => "/images/legend/civics/politics.png"
               }
             }
           }}

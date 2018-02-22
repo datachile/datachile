@@ -124,7 +124,10 @@ class SenatorResults extends Section {
             filter: this.state.non_electors
               ? ""
               : d => d["ID Candidate"] !== 9999,
-            total: d => (geo.type === "comuna" ? d["Votes"] : d["count"]),
+            total: d =>
+              geo.type === "comuna"
+                ? d["Votes"]
+                : geo.type === "region" ? d["elected"] : d["count"],
             totalConfig: {
               text: d =>
                 "Total: " +
@@ -132,7 +135,11 @@ class SenatorResults extends Section {
                   "(0,0)"
                 ) +
                 " " +
-                (geo.type === "comuna" ? t("Votes") : t("Elected Authority"))
+                (geo.type === "comuna"
+                  ? !this.state.non_electors || this.state.maxYear < 2016
+                    ? t("Votes")
+                    : t("Enabled Voters")
+                  : t("Elected Authority"))
             },
             groupBy:
               geo.type === "comuna" || geo.type === "region"
@@ -180,7 +187,8 @@ class SenatorResults extends Section {
                 "</div>"
             },
             legendTooltip: {
-              title: d => (geo.type === "comuna" ? d["Coalition"] : d["Coalition"]),
+              title: d =>
+                geo.type === "comuna" ? d["Coalition"] : d["Coalition"],
               body: d =>
                 numeral(d["Votes"], locale).format("0,0") + " " + t("Votes")
             },
@@ -188,7 +196,8 @@ class SenatorResults extends Section {
               label: false,
               shapeConfig: {
                 width: 25,
-                height: 25
+                height: 25,
+                backgroundImage: d => "/images/legend/civics/politics.png"
               }
             }
           }}
@@ -218,17 +227,16 @@ class SenatorResults extends Section {
           }}
         />
 
-        {geo.depth === 2 ||
-          (geo.depth === 1 &&
-            this.state.maxYear > 2013 && (
-              <div>
-                <Switch
-                  onClick={this.toggleElectors}
-                  labelElement={<strong>{t("Total Electors")}</strong>}
-                  checked={this.state.non_electors}
-                />
-              </div>
-            ))}
+        {(geo.depth === 2 || geo.depth === 1) &&
+          this.state.maxYear > 2013 && (
+            <div>
+              <Switch
+                onClick={this.toggleElectors}
+                labelElement={<strong>{t("Total Electors")}</strong>}
+                checked={this.state.non_electors}
+              />
+            </div>
+          )}
         <SourceNote cube="election_results" />
       </div>
     );
