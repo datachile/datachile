@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import Helmet from "react-helmet";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import "./About.css";
 
 class About extends Component {
@@ -53,11 +53,7 @@ class About extends Component {
     ];
 
     return (
-      <CanonComponent
-        id="about"
-        data={this.props.data}
-        loadingComponent={<DatachileLoading />}
-      >
+      <CanonProfile id="about" data={this.props.data}>
         <Helmet>
           <title>{t("About")}</title>
           <meta property="og:title" content={t("About DataChile")} />
@@ -909,7 +905,7 @@ class About extends Component {
             )}
           </div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 }
