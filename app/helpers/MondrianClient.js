@@ -135,7 +135,12 @@ function simpleGeoChartNeed(
     let geo = overrideGeo ? overrideGeo : getGeoObject(params);
 
     if (
-      ["death_causes", "disabilities", "health_access"].includes(cube) &&
+      [
+        "death_causes",
+        "disabilities",
+        "health_access",
+        "nene_quarter"
+      ].includes(cube) &&
       geo.type === "comuna"
     ) {
       geo = { ...geo.ancestor };

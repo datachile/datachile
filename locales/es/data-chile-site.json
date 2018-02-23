@@ -934,12 +934,11 @@
   "geo_profile": {
     "civics": {
       "congress": {
-        "text":
-          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}"
+        "text": "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}",
+        "note": "*Los elementos isolados de los gráficos representan a candidatos electos en dicha elección."
       },
       "presidential": {
-        "text":
-          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+        "text": "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
       }
     },
     "warning": "Los datos que se muestran corresponden a {{caption}}",

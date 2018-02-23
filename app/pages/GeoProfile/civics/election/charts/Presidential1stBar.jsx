@@ -55,7 +55,7 @@ class Presidential1stBar extends Section {
                 return geo.type === "country"
                   ? "#86396B"
                   : d["geo"] == "Chile"
-                    ? "#ccc"
+                    ? "#7986CB"
                     : geo.type === "region"
                       ? regionsColorScale(d["geo"])
                       : "#86396B";

@@ -42,11 +42,11 @@ export default {
       }
     }
   },
-  messageHTML:
+  /*messageHTML:
     "<div style='font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;'>" +
-    "<strong>"+("Loading Visualization")+"</strong>" +
+    "<strong>Cargando</strong>" +
     "<sub style='display: block; margin-top: 5px;'>Powered by D3plus</sub>" +
-    "</div>",
+    "</div>",*/
   shapeConfig: {
     fontColor: "rgba(0, 0, 0, 0.4)",
     fontFamily: "'Yantramanav', sans-serif",

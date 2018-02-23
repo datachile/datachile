@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile, Canon } from "datawheel-canon";
+
 import { translate } from "react-i18next";
 import isEqual from "lodash/isEqual";
 
-import DatachileLoading from "components/DatachileLoading";
 import Nav from "components/Nav";
 
 import MapSidebar from "./map/MapSidebar";
@@ -60,52 +60,49 @@ class ExploreMap extends React.Component {
     const { data, t, status } = this.props;
 
     return (
-      <CanonComponent
-        id="explore-map"
-        data={data}
-        topics={[]}
-        loadingComponent={<DatachileLoading />}
-      >
-        <div className="explore-map-page">
-          <Nav title="" typeTitle="" type={false} dark={true} />
+      <Canon>
+        <CanonProfile id="explore-map" data={data} topics={[]}>
+          <div className="explore-map-page">
+            <Nav title="" typeTitle="" type={false} dark={true} />
 
-          <div className="explore-map-container">
-            {!section && (
-              <div className="explore-map-section">
-                <div className="explore-map-sidebar">
-                  <MapSidebar data={data} />
-                </div>
-                <div className="explore-map-content">
-                  <NonIdealState
-                    className={`explore-map-loading ${
-                      status == "LOADING" ? "loading" : ""
-                    }`}
-                    title={t("loading.map")}
-                    description={t("loading.developed")}
-                    visual={<DatachileProgressBar value={1} />}
-                  />
-                  <MapTitle />
-                  <MapLevelSelector />
-                  <MapYearSelector />
-                  <MapOptions />
-                  <MapContent />
-                </div>
-              </div>
-            )}
-            {section &&
-              section == "data" && (
+            <div className="explore-map-container">
+              {!section && (
                 <div className="explore-map-section">
                   <div className="explore-map-sidebar">
-                    <DataSidebar />
+                    <MapSidebar data={data} />
                   </div>
                   <div className="explore-map-content">
-                    <DataContent />
+                    <NonIdealState
+                      className={`explore-map-loading ${
+                        status == "LOADING" ? "loading" : ""
+                      }`}
+                      title={t("loading.map")}
+                      description={t("loading.developed")}
+                      visual={<DatachileProgressBar value={1} />}
+                    />
+                    <MapTitle />
+                    <MapLevelSelector />
+                    <MapYearSelector />
+                    <MapOptions />
+                    <MapContent />
                   </div>
                 </div>
               )}
+              {section &&
+                section == "data" && (
+                  <div className="explore-map-section">
+                    <div className="explore-map-sidebar">
+                      <DataSidebar />
+                    </div>
+                    <div className="explore-map-content">
+                      <DataContent />
+                    </div>
+                  </div>
+                )}
+            </div>
           </div>
-        </div>
-      </CanonComponent>
+        </CanonProfile>
+      </Canon>
     );
   }
 }
