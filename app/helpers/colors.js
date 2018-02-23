@@ -265,63 +265,63 @@ export const administrationColorScale = scaleOrdinal().range([
 
 export const MAP_SCALE_COLORS = {
   economy: [
-    "#cad3ef",
-    "#bac5e9",
-    "#abb8e3",
-    "#9babdc",
-    "#8a9ed6",
-    "#7992d0",
-    "#6885c9",
+    "#8ea5d8",
+    "#869fd5",
+    "#7f98d2",
+    "#7691cf",
+    "#6e8bcc",
+    "#6685c9",
+    "#5d7fc6",
     "#5479c3"
   ],
   education: [
-    "#8c9cd9",
-    "#8b90d1",
-    "#8985c8",
-    "#8779c0",
-    "#856db8",
-    "#8361af",
-    "#8056a7",
-    "#7d499f"
+    "#8682dd",
+    "#8677d3",
+    "#866cc8",
+    "#8560be",
+    "#8355b4",
+    "#824aaa",
+    "#803ea0",
+    "#7d3196"
   ],
-  housing: [
-    "#c9d5ba",
-    "#b1c4ab",
-    "#9ab59c",
-    "#83a48e",
-    "#6b957f",
-    "#538471",
-    "#3b7564",
-    "#1d6656"
+  environment: [
+    "#78a37d",
+    "#6b9978",
+    "#5f9174",
+    "#51876f",
+    "#437e6b",
+    "#347466",
+    "#236c61",
+    "#0b635d"
   ],
   demography: [
-    "#fce3e8",
-    "#fecdd2",
-    "#feb8bc",
-    "#fda3a7",
-    "#fb8c91",
-    "#f7747d",
-    "#f25b69",
-    "#ec3c56"
+    "#f37a8b",
+    "#f37080",
+    "#f26675",
+    "#f15c6a",
+    "#ef5160",
+    "#ee4556",
+    "#ec364b",
+    "#ea2441"
   ],
   health: [
-    "#ace0ff",
-    "#a2dbff",
-    "#96d7ff",
-    "#8cd2ff",
-    "#7fcdff",
-    "#73c9ff",
-    "#64c4ff",
-    "#53c0ff"
+    "#92d7fe",
+    "#8ad4fe",
+    "#82d0fe",
+    "#79ccfe",
+    "#71c9ff",
+    "#65c6ff",
+    "#5cc2ff",
+    "#4fbfff"
   ],
-  civic: [
-    "#f8cc6a",
-    "#f9c469",
-    "#fabc68",
-    "#fab667",
-    "#fbad66",
-    "#fba665",
-    "#fc9e64",
-    "#fc9663"
+  civics: [
+    "#f7bf4f",
+    "#f8b64e",
+    "#f9ae4d",
+    "#faa44c",
+    "#fb9c4b",
+    "#fb9249",
+    "#fc8848",
+    "#fc7e47"
   ]
 };

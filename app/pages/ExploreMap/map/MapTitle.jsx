@@ -6,17 +6,34 @@ import "./MapTitle.css";
 
 class MapTitle extends Component {
   componentWillReceiveProps(nextProps) {
-    const { measure, setMapTitle } = nextProps;
-    if (this.props.measure.name != measure.name) {
+    const { measure, setMapTitle, cuts } = nextProps;
+    if (this.props.measure.name != measure.name || this.props.cuts != cuts) {
       setMapTitle(this.getDatasetTitle(nextProps));
     }
   }
 
+  cutsToText(cuts) {
+    const { t } = this.props;
+    var finalCuts = [];
+    for (var property in cuts) {
+      var values = cuts[property];
+      finalCuts.push(
+        property.replace(/[\[\]']+/g, "") +
+          t(" is ") +
+          values.map(v => v.name).join(", ")
+      );
+    }
+    if (finalCuts.length == 0) {
+      return "";
+    }
+    return " " + t("where") + " " + finalCuts.join(", ");
+  }
+
   getDatasetTitle(nextProps) {
-    const { topic, indicator, measure } = nextProps;
+    const { topic, indicator, measure, cuts } = nextProps;
     return `${topic ? topic.name : ""}, ${indicator ? indicator.name : ""}, ${
       measure ? measure.name : ""
-    }`;
+    } ${this.cutsToText(cuts)}`;
   }
 
   render() {
@@ -38,6 +55,7 @@ const mapStateToProps = (state, ownProps) => {
     topic: state.map.params.topic,
     indicator: state.map.params.indicator,
     measure: state.map.params.measure,
+    cuts: state.map.params.cuts,
     query: state.map.results.queries.region
   };
 };

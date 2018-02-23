@@ -20,7 +20,9 @@ class DataContent extends Component {
     if (datasets.length == 0) {
       return (
         <p>
-          no data <Link to="/explore/map">Go to mapa</Link>
+          {t("No datasets selected")}
+          {". "}
+          <Link to="/explore/map">{t("Go to mapa")}</Link>
         </p>
       );
     }

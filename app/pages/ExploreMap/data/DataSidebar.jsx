@@ -26,16 +26,27 @@ class DataSidebar extends Component {
         <h1>{t("My Data")}</h1>
         <Link to="/explore/map">Go to mapa</Link>
         <div className="dataset-list-container">
-          <h2>Datasets {datasetsQty > 0 && <span> ({datasetsQty})</span>}</h2>
+          {datasets.length == 0 && (
+            <span className="dataset-index">
+              {t("No datasets selected")}
+              {". "}
+              <Link to="/explore/map">{t("Go to mapa")}</Link>
+            </span>
+          )}
           {datasets.map((d, ix) => (
             <div className="dataset">
-              <span className="dataset-index">{ix + 1}. </span>
-              <span className="dataset-name">
-                {d.title} - {d.level}
+              <span className="dataset-index">
+                {ix + 1}. {t("Dataset")}
               </span>
-              <a className="dataset-delete" onClick={evt => deleteDataset(ix)}>
-                X
-              </a>
+              <div className="dataset-name-action">
+                <span className="dataset-name">{d.title}</span>
+                <a
+                  className="dataset-delete"
+                  onClick={evt => deleteDataset(ix)}
+                >
+                  x
+                </a>
+              </div>
             </div>
           ))}
         </div>
@@ -49,10 +60,10 @@ class DataSidebar extends Component {
                 "Datachile"
               ) + ".csv"
             }
-            className="btn btn-primary"
+            className="map-csv-btn"
             target="_blank"
           >
-            Download CSV
+            {t("Download CSV file")}
           </CSVLink>
         )}
       </div>

@@ -3,4 +3,7 @@
   color: #000;
   text-align: center;
   margin: 0 auto;
+  & .select-component {
+    background-color: var(--gray-dark);
+  }
 }

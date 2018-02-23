@@ -6,7 +6,7 @@
     & .explore-map-section {
       lost-flex-container: row;
       & .explore-map-sidebar {
-        padding: var(--gutter);
+        padding: var(--gutter) 0 var(--gutter) var(--gutter);
         lost-column: 1/4;
         & h1 {
           margin: 0px;
@@ -20,7 +20,7 @@
       }
       & .explore-map-content {
         lost-column: 3/4;
-        background: var(--gray-light);
+        background: var(--near-white);
         position: relative;
         & .explore-map-loading {
           position: absolute;

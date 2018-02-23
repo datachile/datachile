@@ -1,19 +1,40 @@
 .data-sidebar {
   & .dataset-list-container {
+    background-color: var(--near-white);
+    margin: calc(var(--gutter)/2) 0;
+    width: 100%;
+    padding: calc(var(--gutter)/2);
     & h2 {
       color: var(--snow);
     }
     & .dataset {
+      margin-bottom: calc(var(--gutter)/2);
       & .dataset-index {
-        color: var(--snow);
+        color: var(--gray-dark);
+        display: block;
+        padding-bottom: calc(var(--gutter)/6);
       }
-      & .dataset-name {
-        color: var(--snow);
-      }
-      & .dataset-delete {
-        background-color: var(--snow);
-        padding: 5px;
+      & .dataset-name-action {
+        display: flex;
+        justify-content: space-between;
+        & .dataset-name {
+          color: var(--near-black);
+        }
+        & .dataset-delete {
+          height: 1em;
+          cursor: pointer;
+        }
       }
     }
+  }
+  & .map-csv-btn {
+    display: block;
+    text-align: center;
+    background-color: var(--near-white);
+    margin: calc(var(--gutter)/2) 0;
+    width: 100%;
+    padding: calc(var(--gutter)/2);
+    color: var(--gray-dark);
+    text-transform: uppercase;
   }
 }

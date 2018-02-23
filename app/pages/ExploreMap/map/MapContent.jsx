@@ -24,12 +24,14 @@ class MapContent extends React.Component {
 
     const locale = i18n.language;
 
+    let customTick = "";
+
     const configBase = {
       height: 700,
       padding: 3,
       tiles: false,
       fitKey: "id",
-      ocean: "#d8d8d8",
+      ocean: false,
       shapeConfig: {
         Path: {
           stroke: 0
@@ -38,7 +40,7 @@ class MapContent extends React.Component {
       },
       label: false,
       sum: d => d[msrName],
-      colorScale: msrName,
+      colorScale: msrName + "LOG",
       colorScalePosition: "left",
       colorScaleConfig: {
         color: MAP_SCALE_COLORS[mapTopic],
@@ -48,8 +50,19 @@ class MapContent extends React.Component {
               fontColor: "#000"
             }
           },
-          tickFormat: tick => {
+          /*tickFormat: tick => {
             return numeral(parseFloat(tick), "es").format("($ 0.[00] a)");
+          },*/
+          tickFormat: tick => {
+            let value = Math.pow(10, parseInt(tick));
+
+            let newTick = numeral(value, locale).format("0a");
+            if (newTick !== customTick) {
+              customTick = newTick;
+              return newTick;
+            } else {
+              return " ";
+            }
           }
         },
         downloadButton: false
@@ -61,7 +74,7 @@ class MapContent extends React.Component {
       duration: 0,
       zoom: true,
       zoomFactor: 2,
-      zoomMax: 100
+      zoomScroll: false
     };
 
     const configVariations = {
@@ -72,7 +85,8 @@ class MapContent extends React.Component {
         topojsonKey: "comunas_datachile_final",
         groupBy: "ID Comuna",
         data: processResults(dataComuna, msrName, mapYear),
-        label: d => d["Comuna"]
+        label: d => d["Comuna"],
+        zoomMax: 100
       },
       region: {
         id: "ID Region",
@@ -81,7 +95,8 @@ class MapContent extends React.Component {
         topojsonKey: "regiones",
         data: processResults(dataRegion, msrName, mapYear),
         groupBy: "ID Region",
-        label: d => d["Region"]
+        label: d => d["Region"],
+        zoomMax: 20
       }
     };
 
@@ -99,7 +114,10 @@ class MapContent extends React.Component {
 const processResults = (data, msrName, mapYear) => {
   if (mapYear) data = data.filter(item => item["Year"] == mapYear);
   // if (msrName) data = data.map(item => ({ ...item, variable: item[msrName] }));
-  return data;
+  return data.map(item => {
+    item[msrName + "LOG"] = Math.log10(item[msrName]);
+    return item;
+  });
 };
 
 const mapStateToProps = (state, ownProps) => {
