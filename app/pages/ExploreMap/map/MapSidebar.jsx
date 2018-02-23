@@ -5,7 +5,6 @@ import { Link } from "react-router";
 import { Icon } from "@blueprintjs/core";
 
 import CustomSelect from "components/CustomSelect";
-import CustomMultiSelect from "components/CustomMultiSelect";
 
 import { guessAcceptableName } from "helpers/formatters";
 import mondrianClient from "helpers/MondrianClient";
@@ -119,9 +118,9 @@ class MapSidebar extends React.Component {
   }
 
   render() {
-    const { t, setTopic, setIndicator, setMeasure, setCut } = this.props;
+    const { t, setTopic, setIndicator, setMeasure } = this.props;
     const { valueTopic, valueIndicator, valueMeasure } = this.props;
-    const { cutOptions, cutValues } = this.props;
+    const { cutOptions, cutValues, addCut, removeCut } = this.props;
 
     const optionTopic = this.topics;
     const optionIndicator =
@@ -141,10 +140,12 @@ class MapSidebar extends React.Component {
         selectorsCut.push(
           <OptionGroup label={lvl.name}>
             <CustomSelect
+              multiple={true}
               items={optionCut}
               value={valueCut}
-              onItemSelect={setCut.bind(null, lvl.key)}
-              filterable={optionCut.length > 6}
+              onItemSelect={addCut.bind(null, lvl.key)}
+              onItemRemove={removeCut.bind(null, lvl.key)}
+              placeholder={t("Add a filter...")}
             />
           </OptionGroup>
         );
@@ -160,13 +161,7 @@ class MapSidebar extends React.Component {
             value={valueTopic}
             onItemSelect={setTopic}
             filterable={false}
-          >
-            <div className="select-option current" title={valueTopic.name}>
-              <img className="icon" src={valueTopic.icon} />
-              <span className="value">{valueTopic.name}</span>
-              <Icon iconName="double-caret-vertical" />
-            </div>
-          </CustomSelect>
+          />
         </OptionGroup>
 
         <OptionGroup label={t("Indicator")}>
@@ -222,8 +217,11 @@ const mapDispatchToProps = dispatch => ({
   setMeasure(payload) {
     dispatch({ type: "MAP_MEASURE_SET", payload });
   },
-  setCut(level, value) {
-    dispatch({ type: "MAP_CUT_SET", payload: { level, value } });
+  addCut(level, value) {
+    dispatch({ type: "MAP_CUT_ADD", payload: { level, value } });
+  },
+  removeCut(level, value) {
+    dispatch({ type: "MAP_CUT_REMOVE", payload: { level, value } });
   }
 });
 

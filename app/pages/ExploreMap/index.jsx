@@ -42,9 +42,10 @@ class ExploreMap extends React.Component {
         requestData({
           cubeName: mapIndicator,
           cuts: Object.keys(mapCuts).reduce((output, levelFullName) => {
-            const cut = mapCuts[levelFullName];
-            output.push(`${levelFullName}.&[${cut.key}]`);
-            return output;
+            const cuts = mapCuts[levelFullName].map(
+              cut => `${levelFullName}.&[${cut.key}]`
+            );
+            return output.concat(cuts);
           }, []),
           locale: nextProps.i18n.language
         })

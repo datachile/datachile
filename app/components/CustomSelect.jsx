@@ -3,12 +3,13 @@ import { classnames } from "helpers/formatters.js";
 import escapeRegExp from "lodash/escapeRegExp";
 
 import { Icon } from "@blueprintjs/core";
-import { Select } from "@blueprintjs/labs";
+import { Select, MultiSelect } from "@blueprintjs/labs";
 
 import "@blueprintjs/labs/dist/blueprint-labs.css";
 import "./CustomSelect.css";
 
 CustomSelect.defaultProps = {
+  defaultOption: { value: null, name: "Select...", disabled: true },
   itemListPredicate(query, items) {
     query = query.trim();
     let tester = RegExp(escapeRegExp(query) || ".", "i");
@@ -23,53 +24,59 @@ CustomSelect.defaultProps = {
       <span
         className={className}
         onClick={item.disabled ? null : handleClick}
+        title={item.name}
       >
         {item.icon ? <img className="icon" src={item.icon} /> : null}
         <span className="select-option-label">{item.name}</span>
       </span>
     );
   },
+  multiple: false,
+  noResults: <span className="select-noresults">No results</span>,
   popoverProps: {
     popoverClassName: "custom-select pt-minimal"
   },
-  defaultOption: { value: null, name: "Select...", disabled: true }
+  tagRenderer: item => item.name,
+  tagInputProps: {
+    className: "input-area",
+    inputProps: {
+      className: "input-box"
+    },
+    rightElement: <Icon iconName="chevron-down" />
+  }
 };
 
-/**
- * @class CustomSelect
- * @static {object} defaultProps
- * @param {object} props
- * @param {string|Array<any>} [props.className]
- * @param {JSX.Element|Array<JSX.Element>} [props.children]
- * @param {Array<Selectable>} props.items
- * @param {(item: Selectable, event?: Event) => void} props.onItemSelect
- * @param {Selectable} props.value
- */
 function CustomSelect(props) {
   props = Object.assign({}, props, {
-    className: "custom-select " + (props.className || "")
+    className: classnames("custom-select", "pt-fill", props.className, {
+      multi: props.multiple
+    })
   });
 
-  if (!props.value || "object" != typeof props.value)
-    props.value = props.defaultOption;
-  else {
-    const inOptions = props.items.some(item => item.name == props.value.name);
-    if (!inOptions) props.value = props.defaultOption;
-  }
+  if (props.multiple) {
+    props.selectedItems = [].concat(props.value || []);
+    props.tagInputProps.onRemove = props.onItemRemove;
+    props.tagInputProps.placeholder = props.placeholder;
 
-  if (!props.children)
-    props.children = (
+    return React.createElement(MultiSelect, props, props.children);
+  } else {
+    if (!props.value || "object" != typeof props.value)
+      props.value = props.defaultOption;
+    else {
+      const inOptions = props.items.some(item => item.name == props.value.name);
+      if (!inOptions) props.value = props.defaultOption;
+    }
+
+    props.children = props.children || (
       <div className="select-option current" title={props.value.name}>
+        {props.value.icon && <img className="icon" src={props.value.icon} />}
         <span className="value">{props.value.name}</span>
-        <Icon iconName="double-caret-vertical" />
+        <Icon iconName="chevron-down" />
       </div>
     );
 
-  return (
-    <div className="custom-select">
-      {React.createElement(Select, props, props.children)}
-    </div>
-  );
+    return React.createElement(Select, props, props.children);
+  }
 }
 
 export default CustomSelect;

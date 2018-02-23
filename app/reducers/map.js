@@ -4,18 +4,38 @@ const mapParamsInitialState = {
   indicator: { value: "" },
   level: "region",
   measure: { value: "" },
-  topic: { value: "economy" },
+  topic: { value: "" },
   cuts: {},
   year: 2015
 };
 
+const arrayUniqueAdd = (array, item) => {
+  array = [].concat(array);
+  if (item && !array.includes(item)) array.push(item);
+  return array;
+};
+
 const mapParamsReducer = (state = mapParamsInitialState, action) => {
+  var newState, list, item;
+
   switch (action.type) {
-    case "MAP_CUT_SET":
-      return {
-        ...state,
-        cuts: { ...state.cuts, [action.payload.level]: action.payload.value }
-      };
+    case "MAP_CUT_ADD":
+      list = state.cuts[action.payload.level] || [];
+      newState = { ...state, cuts: { ...state.cuts } };
+      newState.cuts[action.payload.level] = arrayUniqueAdd(
+        list,
+        action.payload.value
+      );
+      return newState;
+
+    case "MAP_CUT_REMOVE":
+      item = action.payload.value;
+      list = state.cuts[action.payload.level] || [];
+      newState = { ...state, cuts: { ...state.cuts } };
+      newState.cuts[action.payload.level] = list.filter(
+        obj => obj.name != item
+      );
+      return newState;
 
     case "MAP_INDICATOR_SET":
       return { ...state, indicator: action.payload, cuts: {} };

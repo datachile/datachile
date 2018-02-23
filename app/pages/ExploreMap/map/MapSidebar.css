@@ -8,10 +8,34 @@
     & .current {
       font-family: var(--font-family-title);
       font-size: 13px;
-      line-height: 3em;
+      line-height: 2.2rem;
       text-transform: uppercase;
       color: var(--snow);
       background-color: var(--bg-blue);
+    }
+
+    & .pt-input {
+      font-family: var(--font-family-title);
+      font-size: 13px;
+      color: var(--snow);
+      background-color: var(--bg-blue);
+      box-shadow: none;
+      border-radius: 0;
+      cursor: pointer;
+    }
+
+    & .pt-tag {
+      background-color: #708bbb;
+    }
+
+    & .input-box {
+      color: var(--snow);
+      font-family: inherit;
+      text-transform: uppercase;
+
+      &::-webkit-input-placeholder {
+        color: #ccc;
+      }
     }
   }
 }
@@ -30,7 +54,8 @@
 .pt-popover.custom-select {
   min-width: 240px;
 
-  & .pt-popover-content {
+  & .pt-popover-content,
+  & .pt-menu {
     padding: 0;
     background-color: #ccc;
   }

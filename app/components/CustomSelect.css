@@ -61,4 +61,27 @@
       }
     }
   }
+
+  & .select-noresults {
+    display: block;
+    padding: 0 0.5em;
+    line-height: 2rem;
+    text-align: center;
+    font-style: italic;
+  }
+
+  &.multi {
+    position: relative;
+
+    & > .pt-icon-standard {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      margin: auto 0.5em;
+      height: 1em;
+      pointer-events: none;
+    }
+  }
 }
