@@ -1,25 +1,46 @@
 .map-options {
-  display: flex;
-  justify-content: center;
-  & .option {
-    background-color: var(--snow);
-    color: var(--dark);
-    text-align: center;
-    padding: 3px 10px;
-    margin: 1px;
+  lost-column: 2/3 2;
+  lost-align: right;
+  lost-flex-container: row;
+  & .map-generated-title {
+    width: 100%;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+    font-size: 13px;
+    font-family: var(--font-family-text);
+  }
+  & .map-options-container {
+    lost-flex-container: row;
 
-    &.selected {
-      background-color: var(--gray-dark);
-    }
+    & .option {
+      font-family: var(--font-family-text);
+      background-color: var(--snow);
+      text-align: center;
+      padding: 5px 15px;
+      margin-left: 5px;
+      text-transform: uppercase;
+      width: auto;
+      font-size: 11px;
+      transition: background-color 0.5s, color 0.5s;
+      border: 1px solid var(--gray-light);
+      color: var(--gray-dark);
 
-    &:active,
-    &:hover {
-      text-decoration: none;
-      background-color: var(--nice-blue);
-    }
+      &.selected {
+        background-color: var(--gray-dark);
+      }
 
-    &.disabled {
-      background-color: transparent;
+      &:active,
+      &:hover {
+        text-decoration: none;
+        background-color: var(--nice-blue);
+        color: var(--snow);
+      }
+
+      &.disabled {
+        background-color: transparent;
+        color: var(--gray-dark);
+        cursor: not-allowed;
+      }
     }
   }
 }

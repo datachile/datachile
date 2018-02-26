@@ -1,8 +1,27 @@
 .map-content {
-  & > svg,
-  & .d3plus-geomap {
-    display: block;
+  lost-flex-container: row;
+  & .map-color-scale {
     min-height: calc(90vh - 80px);
-    max-width: 100%;
+    lost-column: 1/5 2;
+    background-color: var(--snow);
+  }
+  & .map-render {
+    lost-column: 4/5 2;
+    & > svg,
+    & .d3plus-geomap {
+      display: block;
+      min-height: calc(90vh - 80px);
+      max-width: 100%;
+    }
+    & .d3plus-geomap-control {
+      position: relative !important;
+      left: 10px !important;
+      & .zoom-control {
+        display: inline-block !important;
+        color: var(--nice-blue) !important;
+        border-color: var(--darker-gray) !important;
+        background-color: var(--snow) !important;
+      }
+    }
   }
 }

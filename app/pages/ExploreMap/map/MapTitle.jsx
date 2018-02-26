@@ -30,8 +30,8 @@ class MapTitle extends Component {
   }
 
   getDatasetTitle(nextProps) {
-    const { topic, indicator, measure, cuts } = nextProps;
-    return `${topic ? topic.name : ""}, ${indicator ? indicator.name : ""}, ${
+    const { topic, measure, cuts } = nextProps;
+    return `${topic ? topic.name : ""} -> ${
       measure ? measure.name : ""
     } ${this.cutsToText(cuts)}`;
   }
@@ -43,7 +43,7 @@ class MapTitle extends Component {
       <span>{`${mapTitle} by ${mapLevel}${mapYear && " in " + mapYear}`}</span>
     ) : null;
 
-    return <h2 className="map-generated-title">{title}</h2>;
+    return <p className="map-generated-title">{title}</p>;
   }
 }
 
@@ -53,7 +53,6 @@ const mapStateToProps = (state, ownProps) => {
     mapLevel: state.map.params.level,
     mapYear: state.map.params.year,
     topic: state.map.params.topic,
-    indicator: state.map.params.indicator,
     measure: state.map.params.measure,
     cuts: state.map.params.cuts,
     query: state.map.results.queries.region

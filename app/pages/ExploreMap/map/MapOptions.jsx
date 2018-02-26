@@ -2,6 +2,9 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
 import { connect } from "react-redux";
+
+import MapTitle from "./MapTitle";
+
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
 import "./MapOptions.css";
@@ -30,22 +33,25 @@ class MapOptions extends React.Component {
 
     return (
       <div className="map-options">
-        <Link className="option" to="/explore/map/data">
-          {t("Cart")}
-          {datasets.length > 0 && <span> ({datasets.length})</span>}
-        </Link>
-        {mapData && (
-          <a
-            className={`${canSave ? "option" : "option disabled"}`}
-            onClick={
-              canSave
-                ? evt => saveDataset(mapTitle, mapData, mapLevel, measure)
-                : null
-            }
-          >
-            {t("Add to cart")}
-          </a>
-        )}
+        <MapTitle />
+        <div className="map-options-container">
+          <Link className="option" to="/explore/map/data">
+            {t("Cart")}
+            {datasets.length > 0 && <span> ({datasets.length})</span>}
+          </Link>
+          {mapData && (
+            <a
+              className={`${canSave ? "option" : "option disabled"}`}
+              onClick={
+                canSave
+                  ? evt => saveDataset(mapTitle, mapData, mapLevel, measure)
+                  : null
+              }
+            >
+              {t("Add to cart")}
+            </a>
+          )}
+        </div>
       </div>
     );
   }

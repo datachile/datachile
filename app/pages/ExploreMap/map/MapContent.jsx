@@ -7,6 +7,8 @@ import { MAP_SCALE_COLORS } from "helpers/colors";
 
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
+import MapYearSelector from "./MapYearSelector";
+
 import "./MapContent.css";
 
 class MapContent extends React.Component {
@@ -56,7 +58,7 @@ class MapContent extends React.Component {
           tickFormat: tick => {
             let value = Math.pow(10, parseInt(tick));
 
-            let newTick = numeral(value, locale).format("0a");
+            let newTick = numeral(value, locale).format("0 a");
             if (newTick !== customTick) {
               customTick = newTick;
               return newTick;
@@ -65,7 +67,9 @@ class MapContent extends React.Component {
             }
           }
         },
-        downloadButton: false
+        downloadButton: false,
+        select: ".map-color-scale",
+        align: "start"
       },
       tooltipConfig: {
         title: mapLevel == "comuna" ? d => d["Comuna"] : d => d["Region"],
@@ -105,7 +109,11 @@ class MapContent extends React.Component {
     return (
       <div className="map-content">
         <div className="map-color-scale" />
-        <Geomap config={config} />
+        <div className="map-render">
+          <Geomap config={config} />
+        </div>
+        <MapYearSelector />
+        <div className="map-zoom-options" />
       </div>
     );
   }

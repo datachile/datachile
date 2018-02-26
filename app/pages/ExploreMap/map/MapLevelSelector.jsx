@@ -22,24 +22,27 @@ class MapLevelSelector extends React.Component {
 
     return (
       <div className="map-switch-options">
-        <a
-          className={`toggle ${mapLevel === "region" ? "selected" : ""}`}
-          onClick={evt => setMapLevel("region")}
-        >
-          {t("Regiones")}
-        </a>
-        <a
-          className={`toggle ${mapLevel === "comuna" ? "selected" : ""} ${
-            !queryComuna ? "disabled" : ""
-          }`}
-          onClick={evt => {
-            if (queryComuna) {
-              setMapLevel("comuna");
-            }
-          }}
-        >
-          {t("Comunas")}
-        </a>
+        <p className="map-switch-text">{t("Visualize by")}</p>
+        <div className="map-switch-options-container">
+          <a
+            className={`toggle ${mapLevel === "region" ? "selected" : ""}`}
+            onClick={evt => setMapLevel("region")}
+          >
+            {t("Regiones")}
+          </a>
+          <a
+            className={`toggle ${mapLevel === "comuna" ? "selected" : ""} ${
+              !queryComuna ? "disabled" : ""
+            }`}
+            onClick={evt => {
+              if (queryComuna) {
+                setMapLevel("comuna");
+              }
+            }}
+          >
+            {t("Comunas")}
+          </a>
+        </div>
       </div>
     );
   }

@@ -10,9 +10,7 @@ import Nav from "components/Nav";
 import MapSidebar from "./map/MapSidebar";
 import MapContent from "./map/MapContent";
 import MapLevelSelector from "./map/MapLevelSelector";
-import MapTitle from "./map/MapTitle";
 import MapOptions from "./map/MapOptions";
-import MapYearSelector from "./map/MapYearSelector";
 
 import DataSidebar from "./data/DataSidebar";
 import DataContent from "./data/DataContent";
@@ -80,10 +78,10 @@ class ExploreMap extends React.Component {
                       description={t("loading.developed")}
                       visual={<DatachileProgressBar value={1} />}
                     />
-                    <MapTitle />
-                    <MapLevelSelector />
-                    <MapYearSelector />
-                    <MapOptions />
+                    <div className="map-options-row">
+                      <MapLevelSelector />
+                      <MapOptions />
+                    </div>
                     <MapContent />
                   </div>
                 </div>
