@@ -43,7 +43,7 @@ class MapContent extends React.Component {
       label: false,
       sum: d => d[msrName],
       colorScale: msrName + "LOG",
-      colorScalePosition: "left",
+      colorScalePosition: "right",
       colorScaleConfig: {
         color: MAP_SCALE_COLORS[mapTopic],
         axisConfig: {
@@ -108,7 +108,7 @@ class MapContent extends React.Component {
 
     return (
       <div className="map-content">
-        <div className="map-color-scale" />
+        <svg className="map-color-scale" />
         <div className="map-render">
           <Geomap config={config} />
         </div>

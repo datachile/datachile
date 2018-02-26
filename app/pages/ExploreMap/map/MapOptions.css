@@ -14,13 +14,13 @@
 
     & .option {
       font-family: var(--font-family-text);
-      background-color: var(--snow);
       text-align: center;
       padding: 5px 15px;
       margin-left: 5px;
       text-transform: uppercase;
       width: auto;
       font-size: 11px;
+      background-color: var(--snow);
       transition: background-color 0.5s, color 0.5s;
       border: 1px solid var(--gray-light);
       color: var(--gray-dark);

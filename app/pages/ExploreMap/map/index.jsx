@@ -7,20 +7,17 @@ import isEqual from "lodash/isEqual";
 
 import Nav from "components/Nav";
 
-import MapSidebar from "./map/MapSidebar";
-import MapContent from "./map/MapContent";
-import MapLevelSelector from "./map/MapLevelSelector";
-import MapOptions from "./map/MapOptions";
+import MapSidebar from "./MapSidebar";
+import MapContent from "./MapContent";
+import MapLevelSelector from "./MapLevelSelector";
+import MapOptions from "./MapOptions";
 
-import DataSidebar from "./data/DataSidebar";
-import DataContent from "./data/DataContent";
-
-import { requestData, requestMembers } from "./actions.js";
+import { requestData, requestMembers } from "../actions.js";
 
 import { NonIdealState } from "@blueprintjs/core";
 import DatachileProgressBar from "components/DatachileProgressBar";
 
-import "./explore-map.css";
+import "../explore-map.css";
 
 class ExploreMap extends React.Component {
   state = {};
@@ -86,17 +83,6 @@ class ExploreMap extends React.Component {
                   </div>
                 </div>
               )}
-              {section &&
-                section == "data" && (
-                  <div className="explore-map-section">
-                    <div className="explore-map-sidebar">
-                      <DataSidebar />
-                    </div>
-                    <div className="explore-map-content">
-                      <DataContent />
-                    </div>
-                  </div>
-                )}
             </div>
           </div>
         </CanonProfile>
