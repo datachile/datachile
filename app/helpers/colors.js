@@ -329,9 +329,9 @@ export const coalitionColorScale = [
   },
   {
     keys: [3, 11, 15, 21],
-    elected: "#EEEFF4",
-    no_elected: "#EEEFF4",
-    base: "#EEEFF4",
+    elected: "#ccc",
+    no_elected: "#ccc",
+    base: "#ccc",
     slug: "sin-asignar"
   }
 ];
