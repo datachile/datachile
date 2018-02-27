@@ -201,7 +201,13 @@ class SenatorResults extends Section {
             },
             legendTooltip: {
               title: d =>
-                geo.type === "comuna" ? d["Coalition"] : d["Coalition"],
+                "<div>" +
+                "<div>" +
+                d["Coalition"] +
+                "</div><div>" +
+                d["Elected"] +
+                "</div>" +
+                "</div>",
               body: d =>
                 numeral(d["Votes"], locale).format("0,0") + " " + t("Votes")
             },
