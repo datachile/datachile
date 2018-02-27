@@ -45,9 +45,11 @@
             width: 100%;
             & .pt-progress-meter {
               background-color: var(--light);
+              font-family: var(--font-family-text);
             }
           }
           & .pt-non-ideal-state-title {
+            font-family: var(--font-family-text);
             color: var(--snow);
           }
           max-width: 0;

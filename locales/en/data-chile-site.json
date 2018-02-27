@@ -170,6 +170,7 @@
     "Less than 30 square meter households",
   "LoadingComponent": {
     "description": "Loading {{progress}} of {{total}} datasets",
+    "developed": "Designed & built by Datawheel",
     "title": "Please Wait"
   },
   "Login": {
@@ -972,7 +973,8 @@
   "loading": {
     "description": "Loading {{progress}} of {{total}} datasets",
     "developed": "Designed and Engineered by Datawheel",
-    "title": "Please Wait"
+    "title": "Please Wait",
+    "map": "Loading information"
   },
   "no_datum": "No data",
   "no_info":
@@ -1035,5 +1037,14 @@
   "form": {
     "data": "Did not find what you were looking for? Suggest data to add",
     "error": "Did you find an error? Report it"
+  },
+  "table": {
+    "prev": "Previous",
+    "next": "Next",
+    "loading": "Loading...",
+    "no_data": "No rows found",
+    "page": "Page",
+    "of": "of",
+    "rows": "rows"
   }
 }

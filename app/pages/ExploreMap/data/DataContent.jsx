@@ -44,6 +44,13 @@ class DataContent extends Component {
               //height: "00px" // This will force the table body to overflow and scroll, since there is not enough room
             }
           }
+          previousText={t("table.prev")}
+          nextText={t("table.next")}
+          loadingText={t("table.loading")}
+          noDataText={t("table.no_data")}
+          pageText={t("table.page")}
+          ofText={t("table.of")}
+          rowsText={t("table.rows")}
         />
       </div>
     );
