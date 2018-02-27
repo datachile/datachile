@@ -1,15 +1,10 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap, BarChart } from "d3plus-react";
+import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, {
-  geoCut,
-  simpleGeoChartNeed,
-  simpleDatumNeed
-} from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-import { civicsColorScale } from "helpers/colors";
+import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
+import { presidentialColorScale } from "helpers/colors";
 
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { Switch } from "@blueprintjs/core";
@@ -56,7 +51,9 @@ class Presidential1st extends Section {
     super(props);
 
     this.state = {
-      non_electors: true
+      non_electors: true,
+      year: 2017,
+      key: Math.random()
     };
 
     this.toggleElectors = this.toggleElectors.bind(this);
@@ -64,18 +61,22 @@ class Presidential1st extends Section {
 
   toggleElectors() {
     this.setState(prevState => ({
-      non_electors: !prevState.non_electors
+      non_electors: !prevState.non_electors,
+      key: Math.random()
     }));
+  }
+
+  onYearChange(item) {
+    this.setState({
+      year: item[0],
+      key: Math.random()
+    });
   }
 
   render() {
     const path = this.context.data.path_electoral_presidential_1nd;
     const { t, className, i18n } = this.props;
-    const {
-      datum_electoral_presidential_1nd_chile,
-      need_presidential_participation,
-      geo
-    } = this.context.data;
+    const { need_presidential_participation, geo } = this.context.data;
 
     const locale = i18n.language;
 
@@ -86,6 +87,7 @@ class Presidential1st extends Section {
           <ExportLink path={path} />
         </h3>
         <Treemap
+          key={this.state.key}
           config={{
             height: 500,
             data: path,
@@ -95,22 +97,53 @@ class Presidential1st extends Section {
               ? ""
               : d => d["ID Candidate"] !== 9999,
             total: d => d["Votes"],
+            timeFilter: d => d["ID Year"] === this.state.year,
             totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "(0,0)"
-                ) +
-                " " +
-                t("Votes")
+              text:
+                this.state.year < 2016
+                  ? d =>
+                      "Total: " +
+                      numeral(getNumberFromTotalString(d.text), locale).format(
+                        "(0,0)"
+                      ) +
+                      " " +
+                      t("Votes")
+                  : d =>
+                      "Total: " +
+                      numeral(getNumberFromTotalString(d.text), locale).format(
+                        "(0,0)"
+                      ) +
+                      " " +
+                      (this.state.non_electors
+                        ? t("Enabled Voters")
+                        : t("Votes"))
             },
             sum: d => d["Votes"],
             time: "ID Year",
+            timelineConfig: {
+              on: {
+                end: d => {
+                  if (d !== undefined) {
+                    let time = Array.isArray(d)
+                      ? d.map(item => item.getFullYear())
+                      : [].concat(d.getFullYear());
+                    this.onYearChange(time);
+                  }
+                }
+              }
+            },
             shapeConfig: {
               fill: d => {
-                return d["ID Partido"] !== 9999
-                  ? civicsColorScale(d["ID Candidate"])
-                  : "#CCC";
+                const coalition = presidentialColorScale.find(co =>
+                  co.keys.includes(d["ID Candidate"])
+                ) || {
+                  keys: [],
+                  elected: "#B5D9F7",
+                  no_elected: "#B5D9F7",
+                  base: "#B5D9F7",
+                  slug: "sin-asignar"
+                };
+                return d["ID Partido"] !== 9999 ? coalition.base : "#BDBED6";
               }
             },
             tooltipConfig: {
@@ -130,7 +163,8 @@ class Presidential1st extends Section {
               label: false,
               shapeConfig: {
                 width: 25,
-                height: 25
+                height: 25,
+                backgroundImage: d => "/images/legend/civics/civic-icon.png"
               }
             }
           }}
