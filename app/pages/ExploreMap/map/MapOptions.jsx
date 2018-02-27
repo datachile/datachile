@@ -26,7 +26,14 @@ class MapOptions extends React.Component {
   }
 
   render() {
-    const { datasets = [], mapLevel, measure, mapData, mapTitle } = this.props;
+    const {
+      datasets = [],
+      mapLevel,
+      measure,
+      mapData,
+      mapTitle,
+      topic
+    } = this.props;
     const { t, saveDataset } = this.props;
 
     const canSave = this.canSave();
@@ -36,19 +43,24 @@ class MapOptions extends React.Component {
         <MapTitle />
         <div className="map-options-container">
           <Link className="option" to="/explore/map/data">
-            {t("Cart")}
-            {datasets.length > 0 && <span> ({datasets.length})</span>}
+            <img src="/images/icons/icon-see-data.svg" />
+            <span className="text">
+              {t("Cart")}
+              {datasets.length > 0 && <span> ({datasets.length})</span>}
+            </span>
           </Link>
           {mapData && (
             <a
               className={`${canSave ? "option" : "option disabled"}`}
               onClick={
                 canSave
-                  ? evt => saveDataset(mapTitle, mapData, mapLevel, measure)
+                  ? evt =>
+                      saveDataset(mapTitle, mapData, mapLevel, measure, topic)
                   : null
               }
             >
-              {t("Add to cart")}
+              <img src="/images/icons/icon-save-data.svg" />
+              <span className="text">{t("Add to cart")}</span>
             </a>
           )}
         </div>
@@ -59,14 +71,15 @@ class MapOptions extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   // we have to discuss this structure
-  saveDataset(title, dataset, level, indicator) {
+  saveDataset(title, dataset, level, indicator, topic) {
     dispatch({
       type: "MAP_SAVE_DATASET",
       payload: {
         title: title,
         data: dataset,
         level: level,
-        indicator: indicator.value
+        indicator: indicator.value,
+        topic: topic.value
       }
     });
   }
@@ -76,6 +89,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     datasets: state.map.datasets,
     measure: state.map.params.measure,
+    topic: state.map.params.topic,
     mapLevel: state.map.params.level,
     mapTitle: state.map.title,
     mapData: {

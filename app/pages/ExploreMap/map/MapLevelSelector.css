@@ -39,6 +39,8 @@
 
       &.disabled {
         background-color: transparent;
+        color: var(--gray-dark);
+        border: 1px solid var(--gray-light);
       }
     }
   }

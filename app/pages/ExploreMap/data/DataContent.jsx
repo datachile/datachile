@@ -15,19 +15,17 @@ class DataContent extends Component {
   }
 
   render() {
-    const { t, datasets = [] } = this.props;
+    const { t, datasets = [], pivotType } = this.props;
 
     if (datasets.length == 0) {
       return (
-        <p>
-          {t("No datasets selected")}
-          {". "}
-          <Link to="/explore/map">{t("Go to mapa")}</Link>
-        </p>
+        <div className="data-content">
+          <p>{t("No datasets selected")}.</p>
+        </div>
       );
     }
 
-    const flattenedData = combineAndFlatDatasets(datasets);
+    const flattenedData = combineAndFlatDatasets(datasets, pivotType);
 
     const columns = flattenedData.fields.map(h => ({
       Header: h,
@@ -54,7 +52,8 @@ class DataContent extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    datasets: state.map.datasets
+    datasets: state.map.datasets,
+    pivotType: state.map.pivot
   };
 };
 

@@ -9,6 +9,8 @@ import Nav from "components/Nav";
 
 import DataSidebar from "./DataSidebar";
 import DataContent from "./DataContent";
+import PivotSelector from "./PivotSelector";
+import DataOptions from "./DataOptions";
 
 import "../explore-map.css";
 
@@ -32,6 +34,10 @@ class ExploreMap extends React.Component {
                   <DataSidebar />
                 </div>
                 <div className="explore-map-content">
+                  <div className="map-options-row">
+                    <PivotSelector />
+                    <DataOptions />
+                  </div>
                   <DataContent />
                 </div>
               </div>

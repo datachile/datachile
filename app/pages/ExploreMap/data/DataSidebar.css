@@ -4,11 +4,14 @@
     margin: calc(var(--gutter)/2) 0;
     width: 100%;
     padding: calc(var(--gutter)/2);
+    font-family: var(--font-family-text);
     & h2 {
       color: var(--snow);
+      font-family: var(--font-family-text);
     }
     & .dataset {
       margin-bottom: calc(var(--gutter)/2);
+      font-family: var(--font-family-text);
       & .dataset-index {
         color: var(--gray-dark);
         display: block;
@@ -36,5 +39,12 @@
     padding: calc(var(--gutter)/2);
     color: var(--gray-dark);
     text-transform: uppercase;
+    transition: background-color 0.5s, color 0.5s;
+    text-decoration: none;
+    font-family: var(--font-family-text);
+    &:hover {
+      background-color: var(--nice-blue);
+      color: var(--snow);
+    }
   }
 }

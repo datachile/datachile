@@ -1,42 +1,33 @@
-.map-options {
-  lost-column: 2/3 2;
-  lost-align: right;
+.pivot-options {
+  lost-column: 1/3 2;
+  lost-align: left;
   lost-flex-container: row;
-  & .map-generated-title {
+  & .pivot-text {
     width: 100%;
     text-transform: uppercase;
     color: var(--gray-dark);
     font-size: 13px;
     font-family: var(--font-family-text);
   }
-  & .map-options-container {
+  & .pivot-options-container {
     lost-flex-container: row;
-
-    & .option {
+    & .toggle {
       font-family: var(--font-family-text);
+      background-color: var(--snow);
       text-align: center;
-      padding: 2px 15px 2px 5px;
-      margin-left: 5px;
+      padding: 5px 15px;
+      margin-right: 5px;
       text-transform: uppercase;
       width: auto;
       font-size: 11px;
-      background-color: var(--snow);
       transition: background-color 0.5s, color 0.5s;
       border: 1px solid var(--gray-light);
       color: var(--gray-dark);
-      display: flex;
-      align-items: center;
-      & img {
-        height: 20px;
-        margin-right: 5px;
-      }
-
-      & span.text {
-        padding-top: 2px;
-      }
 
       &.selected {
-        background-color: var(--gray-dark);
+        background-color: var(--nice-blue);
+        color: var(--snow);
+        border: 1px solid var(--nice-blue);
       }
 
       &:active,
@@ -47,9 +38,9 @@
       }
 
       &.disabled {
+        border: 1px solid var(--gray-light);
         background-color: transparent;
         color: var(--gray-dark);
-        cursor: not-allowed;
       }
     }
   }

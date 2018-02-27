@@ -1,8 +1,11 @@
 import { nest } from "d3-collection";
 import { slugifyStr } from "helpers/formatters";
 
-function flatDataset(dataset, type) {
-  const indicatorSlug = slugifyStr(dataset.indicator, "_");
+function flatDatasetCols(dataset, type) {
+  const indicatorSlug = slugifyStr(
+    dataset.topic + " " + dataset.indicator,
+    "_"
+  );
   const region = type == "region";
 
   var localFlattenedFields = {};
@@ -16,9 +19,9 @@ function flatDataset(dataset, type) {
         return leaves.reduce((record, param) => {
           const field = indicatorSlug + "_" + param["ID Year"];
           localFlattenedFields[field] = true;
-          record.entity = region ? param["Region"] : param["Comuna"];
-          record.entity_id = region ? param["ID Region"] : param["ID Comuna"];
-          record.entity_type = region ? "region" : "comuna";
+          record.entidad_nombre = region ? param["Region"] : param["Comuna"];
+          record.entidad_id = region ? param["ID Region"] : param["ID Comuna"];
+          record.entidad_tipo = region ? "region" : "comuna";
           record[field] = param[dataset.indicator];
           return record;
         }, {});
@@ -29,34 +32,80 @@ function flatDataset(dataset, type) {
   };
 }
 
-export function combineAndFlatDatasets(datasets) {
+function flatDatasetRows(dataset, type) {
+  const indicatorSlug = slugifyStr(
+    dataset.topic + " " + dataset.indicator,
+    "_"
+  );
+  const region = type == "region";
+
+  var localFlattenedFields = { anio: true };
+
+  localFlattenedFields[indicatorSlug] = true;
+
+  return {
+    data: dataset.data[type].data.map(d => {
+      var record = {};
+      record.entidad_nombre = region ? d["Region"] : d["Comuna"];
+      record.entidad_id = region ? d["ID Region"] : d["ID Comuna"];
+      record.entidad_tipo = region ? "region" : "comuna";
+      record.anio = d["ID Year"];
+      record[indicatorSlug] = d[dataset.indicator];
+      return record;
+    }),
+    fields: localFlattenedFields
+  };
+}
+
+export function combineAndFlatDatasets(datasets, pivot = "cols") {
   var flattenedDatasets = [];
 
-  var flattenedFields = { entity_type: true, entity: true, entity_id: true };
+  var flattenedFields = {
+    entidad_tipo: true,
+    entidad_nombre: true,
+    entidad_id: true
+  };
 
   const typesAvailable = [...new Set(datasets.map(item => item.level))];
 
   datasets.forEach(dataset => {
     typesAvailable.forEach(type => {
       if (dataset.data[type]) {
-        const { data, fields } = flatDataset(dataset, type);
+        const { data, fields } =
+          pivot == "cols"
+            ? flatDatasetCols(dataset, type)
+            : flatDatasetRows(dataset, type);
         flattenedFields = Object.assign(flattenedFields, fields);
         flattenedDatasets = flattenedDatasets.concat(data);
       }
     });
   });
 
-  flattenedDatasets = nest()
-    .key(function(d) {
-      return d["entity_type"] + "_" + d["entity_id"];
-    })
-    .rollup(function(leaves) {
-      return leaves.reduce((obj, param) => {
-        return Object.assign(obj, param);
-      }, {});
-    })
-    .entries(flattenedDatasets)
-    .map(d => d.value);
+  if (pivot == "cols") {
+    flattenedDatasets = nest()
+      .key(function(d) {
+        return d["entidad_tipo"] + "_" + d["entidad_id"];
+      })
+      .rollup(function(leaves) {
+        return leaves.reduce((obj, param) => {
+          return Object.assign(obj, param);
+        }, {});
+      })
+      .entries(flattenedDatasets)
+      .map(d => d.value);
+  } else {
+    flattenedDatasets = nest()
+      .key(function(d) {
+        return d["entidad_tipo"] + "_" + d["entidad_id"] + "_" + d["anio"];
+      })
+      .rollup(function(leaves) {
+        return leaves.reduce((obj, param) => {
+          return Object.assign(obj, param);
+        }, {});
+      })
+      .entries(flattenedDatasets)
+      .map(d => d.value);
+  }
 
   return { dataset: flattenedDatasets, fields: Object.keys(flattenedFields) };
 }

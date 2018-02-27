@@ -1,4 +1,5 @@
 .data-content {
+  font-family: var(--font-family-text);
   & .table {
     & .rt-thead {
       overflow-y: scroll;
@@ -9,10 +10,12 @@
         text-transform: uppercase;
         padding: 15px 5px;
         text-align: left;
+        font-family: var(--font-family-text);
       }
     }
     & .rt-tbody {
       & .rt-td {
+        font-family: var(--font-family-text);
         background: var(--snow);
         padding: 15px 5px;
       }

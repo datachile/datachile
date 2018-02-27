@@ -15,23 +15,18 @@ class DataSidebar extends Component {
   }
 
   render() {
-    const { t, datasets = [], deleteDataset } = this.props;
+    const { t, datasets = [], deleteDataset, pivotType } = this.props;
 
     const datasetsQty = datasets.length;
 
-    const data = combineAndFlatDatasets(datasets);
+    const data = combineAndFlatDatasets(datasets, pivotType);
 
     return (
       <div className="data-sidebar">
         <h1>{t("My Data")}</h1>
-        <Link to="/explore/map">Go to mapa</Link>
         <div className="dataset-list-container">
           {datasets.length == 0 && (
-            <span className="dataset-index">
-              {t("No datasets selected")}
-              {". "}
-              <Link to="/explore/map">{t("Go to mapa")}</Link>
-            </span>
+            <span className="dataset-index">{t("No datasets selected")}.</span>
           )}
           {datasets.map((d, ix) => (
             <div className="dataset">
@@ -73,7 +68,8 @@ class DataSidebar extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    datasets: state.map.datasets
+    datasets: state.map.datasets,
+    pivotType: state.map.pivot
   };
 };
 

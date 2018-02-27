@@ -188,10 +188,21 @@ const mapTitleReducer = (state = "", action) => {
   }
 };
 
+const mapPivotReducer = (state = "cols", action) => {
+  switch (action.type) {
+    case "MAP_PIVOT_SET":
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   datasets: mapDatasetReducer,
   options: mapOptionsReducer,
   params: mapParamsReducer,
   results: mapResultReducer,
-  title: mapTitleReducer
+  title: mapTitleReducer,
+  pivot: mapPivotReducer
 });

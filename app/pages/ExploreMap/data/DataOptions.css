@@ -1,21 +1,21 @@
-.map-options {
+.data-options {
   lost-column: 2/3 2;
   lost-align: right;
   lost-flex-container: row;
-  & .map-generated-title {
+  & .data-title {
     width: 100%;
     text-transform: uppercase;
     color: var(--gray-dark);
     font-size: 13px;
     font-family: var(--font-family-text);
   }
-  & .map-options-container {
+  & .data-options-container {
     lost-flex-container: row;
 
     & .option {
       font-family: var(--font-family-text);
       text-align: center;
-      padding: 2px 15px 2px 5px;
+      padding: 5px 15px;
       margin-left: 5px;
       text-transform: uppercase;
       width: auto;
@@ -24,16 +24,6 @@
       transition: background-color 0.5s, color 0.5s;
       border: 1px solid var(--gray-light);
       color: var(--gray-dark);
-      display: flex;
-      align-items: center;
-      & img {
-        height: 20px;
-        margin-right: 5px;
-      }
-
-      & span.text {
-        padding-top: 2px;
-      }
 
       &.selected {
         background-color: var(--gray-dark);
