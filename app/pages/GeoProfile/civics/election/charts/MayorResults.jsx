@@ -8,7 +8,7 @@ import mondrianClient, {
   simpleGeoChartNeed
 } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { coalitionColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import { Switch } from "@blueprintjs/core";
@@ -101,9 +101,10 @@ class MayorResults extends Section {
     const locale = i18n.language;
 
     const pactos = [
-      { name: "Chile Vamos", ids: [3, 6, 7] },
-      { name: "Nueva Mayoría", ids: [1, 2, 9, 10, 11, 14] },
-      { name: "Frente Amplio", ids: [4, 12, 13, 15, 25] }
+      { key: 4, name: "Chile Vamos", ids: [3, 6, 7, 23] },
+      { key: 13, name: "Nueva Mayoría", ids: [1, 2, 9, 10, 11, 14] },
+      { key: 2, name: "Otras coaliciones", ids: [4, 12, 13, 15, 25, 16, 5] },
+      { key: 2, name: "Independiente", ids: [] }
     ];
 
     return (
@@ -145,22 +146,30 @@ class MayorResults extends Section {
                         : t("Elected Authority"))
             },
             groupBy:
-              geo.type === "comuna" ? ["Candidate"] : ["Pacto", "Partido"],
+              geo.type === "comuna"
+                ? ["ID Candidate"]
+                : ["ID Coalition", "ID Partido"],
             label: d => (geo.type === "comuna" ? d["Candidate"] : d["Partido"]),
             sum: d =>
               geo.type === "comuna" ? d["Votes"] : d["Number of records"],
             time: "ID Year",
             shapeConfig: {
               fill: d => {
-                return d["ID Candidate"] !== 9999
-                  ? ordinalColorScale(
-                      geo.type === "comuna" ? d["ID Candidate"] : d["Pacto"]
-                    )
-                  : "#CCCCCC";
+                const coalition = coalitionColorScale.find(co =>
+                  co.keys.includes(d["ID Coalition"])
+                ) || {
+                  keys: [0, 3, 11, 12, 15, 21],
+                  elected: "#000",
+                  no_elected: "#000",
+                  base: "#000",
+                  slug: "sin-asignar"
+                };
+                return d["ID Candidate"] !== 9999 ? coalition.base : "#BDBED6";
               }
             },
             tooltipConfig: {
               //title: d => (geo.type === 2 ? d["Candidate"] : d["Partido"]),
+              //title: d => d["ID Partido"],
               body: d =>
                 "<div>" +
                 "<div>" +
@@ -179,14 +188,14 @@ class MayorResults extends Section {
                 "</div>"
             },
             legendTooltip: {
-              title: d => (geo.depth === 2 ? d["Candidate"] : d["Pacto"])
+              title: d => (geo.type === "comuna" ? d["Candidate"] : d["Pacto"])
             },
             legendConfig: {
-              label: d => (geo.type === "comuna" ? false : d["Pacto"]),
+              label: false,
               shapeConfig: {
                 width: 25,
                 height: 25,
-                backgroundImage: d => "/images/legend/civics/politics.png"
+                backgroundImage: "/images/legend/civics/civic-icon.png"
               }
             }
           }}
@@ -195,18 +204,22 @@ class MayorResults extends Section {
               let pacto = pactos.find(subitem =>
                 subitem.ids.includes(item["ID Partido"])
               );
-              return { ...item, Pacto: pacto ? pacto.name : t("Others") };
+              return {
+                ...item,
+                Pacto: pacto ? pacto.name : t("Others"),
+                "ID Coalition": pacto ? pacto.key : 0
+              };
             });
-
-            d.push({
-              Votes: non_electors,
-              Candidate: t("Electors that didn't vote").toUpperCase(),
-              ["ID Candidate"]: 9999,
-              ["ID Partido"]: 9999,
-              ["ID Year"]: 2016,
-              Partido: "",
-              Year: "2016"
-            });
+            if (geo.type === "comuna")
+              d.push({
+                Votes: non_electors,
+                Candidate: t("Electors that didn't vote").toUpperCase(),
+                ["ID Candidate"]: 9999,
+                ["ID Partido"]: 9999,
+                ["ID Year"]: 2016,
+                Partido: "",
+                Year: "2016"
+              });
             return d;
           }}
         />

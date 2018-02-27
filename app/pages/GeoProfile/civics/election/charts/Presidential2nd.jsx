@@ -4,7 +4,7 @@ import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
-import { civicsColorScale } from "helpers/colors";
+import { presidentialColorScale } from "helpers/colors";
 
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
@@ -146,9 +146,16 @@ class Presidential2nd extends Section {
             },
             shapeConfig: {
               fill: d => {
-                return d["ID Partido"] !== 9999
-                  ? civicsColorScale(d["ID Candidate"])
-                  : "#CCC";
+                const coalition = presidentialColorScale.find(co =>
+                  co.keys.includes(d["ID Candidate"])
+                ) || {
+                  keys: [],
+                  elected: "#B5D9F7",
+                  no_elected: "#B5D9F7",
+                  base: "#B5D9F7",
+                  slug: "sin-asignar"
+                };
+                return d["ID Partido"] !== 9999 ? coalition.base : "#BDBED6";
               }
             },
             //label: d => d["Election Type"] + " - " + d["Year"],
@@ -172,7 +179,8 @@ class Presidential2nd extends Section {
               label: false,
               shapeConfig: {
                 width: 25,
-                height: 25
+                height: 25,
+                backgroundImage: d => "/images/legend/civics/civic-icon.png"
               }
             }
           }}

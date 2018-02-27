@@ -262,3 +262,212 @@ export const administrationColorScale = scaleOrdinal().range([
   "#365ED2",
   "#3F8180"
 ]);
+
+export const coalitionColorScale = [
+  {
+    keys: [7, 10, 13, 14],
+    elected: "#BC2E35",
+    no_elected: "#F99398",
+    base: "#F65A5D",
+    slug: "nueva-mayoria"
+  },
+  {
+    keys: [1, 4, 5, 17],
+    elected: "#0E518E",
+    no_elected: "#578AC1",
+    base: "#416797",
+    slug: "chile-vamos"
+  },
+  {
+    keys: [9, 16, 12],
+    elected: "#089E93",
+    no_elected: "#6BCEC7",
+    base: "#42B2AC",
+    slug: "frente-amplio"
+  },
+  {
+    keys: [6],
+    elected: "#05B2C9",
+    no_elected: "#6EDAE5",
+    base: "#27C9E5",
+    slug: "regionalista"
+  },
+  {
+    keys: [18, 19],
+    elected: "#853099",
+    no_elected: "#C97DDB",
+    base: "#90539B",
+    slug: "progresista"
+  },
+  {
+    keys: [8],
+    elected: "#EABA42",
+    no_elected: "#F9DB98",
+    base: "#EFCA65",
+    slug: "democracia-cristiana"
+  },
+  {
+    keys: [2],
+    elected: "#828229",
+    no_elected: "#B2B269",
+    base: "#A0A838",
+    slug: "independiente"
+  },
+  {
+    keys: [20],
+    elected: "#AD1E6D",
+    no_elected: "#A54A78",
+    base: "#95174B",
+    slug: "sumemos"
+  },
+  {
+    keys: [0],
+    elected: "#B5D9F7",
+    no_elected: "#B5D9F7",
+    base: "#B5D9F7",
+    slug: "nulo-blanco"
+  },
+  {
+    keys: [3, 11, 15, 21],
+    elected: "#000",
+    no_elected: "#000",
+    base: "#000",
+    slug: "sin-asignar"
+  }
+];
+
+export const presidentialColorScale = [
+  {
+    keys: [1, 567],
+    elected: "#BC2E35",
+    no_elected: "#F99398",
+    base: "#F65A5D",
+    slug: "nueva-mayoria"
+  },
+  {
+    keys: [2, 2649],
+    elected: "#0E518E",
+    no_elected: "#578AC1",
+    base: "#416797",
+    slug: "chile-vamos"
+  },
+  {
+    keys: [2650],
+    elected: "#089E93",
+    no_elected: "#6BCEC7",
+    base: "#42B2AC",
+    slug: "frente-amplio"
+  },
+  {
+    keys: [],
+    elected: "#05B2C9",
+    no_elected: "#6EDAE5",
+    base: "#27C9E5",
+    slug: "regionalista"
+  },
+  {
+    keys: [3],
+    elected: "#853099",
+    no_elected: "#C97DDB",
+    base: "#90539B",
+    slug: "progresista"
+  },
+  {
+    keys: [561],
+    elected: "#EABA42",
+    no_elected: "#F9DB98",
+    base: "#EFCA65",
+    slug: "democracia-cristiana"
+  },
+  {
+    keys: [],
+    elected: "#828229",
+    no_elected: "#B2B269",
+    base: "#A0A838",
+    slug: "independiente"
+  },
+  {
+    keys: [],
+    elected: "#AD1E6D",
+    no_elected: "#A54A78",
+    base: "#95174B",
+    slug: "sumemos"
+  },
+  {
+    keys: [8, 9],
+    elected: "#B5D9F7",
+    no_elected: "#B5D9F7",
+    base: "#B5D9F7",
+    slug: "nulo-blanco"
+  },
+  {
+    keys: [],
+    elected: "#000",
+    no_elected: "#000",
+    base: "#000",
+    slug: "sin-asignar"
+  },
+  {
+    keys: [147],
+    elected: "#297F7D",
+    no_elected: "#297F7D",
+    base: "#297F7D",
+    slug: "jose-antonio-kast"
+  },
+  {
+    keys: [2651],
+    elected: "#567569",
+    no_elected: "#567569",
+    base: "#567569",
+    slug: "eduardo-artes"
+  },
+  {
+    keys: [535],
+    elected: "#679A7C",
+    no_elected: "#679A7C",
+    base: "#679A7C",
+    slug: "alejandro-navarro"
+  },
+  {
+    keys: [7],
+    elected: "#27B87A",
+    no_elected: "#27B87A",
+    base: "#27B87A",
+    slug: "roxana-miranda"
+  },
+  {
+    keys: [10],
+    elected: "#63CB9D",
+    no_elected: "#63CB9D",
+    base: "#63CB9D",
+    slug: "ricardo-israel"
+  },
+  {
+    keys: [4],
+    elected: "#42B2AC",
+    no_elected: "#42B2AC",
+    base: "#42B2AC",
+    slug: "franco-parisi"
+  },
+  {
+    keys: [11],
+    elected: "#6AC0C6",
+    no_elected: "#6AC0C6",
+    base: "#6AC0C6",
+    slug: "tomas-jholt"
+  },
+  {
+    keys: [5],
+    elected: "#C6EFA7",
+    no_elected: "#C6EFA7",
+    base: "#C6EFA7",
+    slug: "marcel-claude"
+  },
+  {
+    keys: [6],
+    elected: "#9AEBC6",
+    no_elected: "#9AEBC6",
+    base: "#9AEBC6",
+    slug: "alfredo-sfeir"
+  }
+];
