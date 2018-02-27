@@ -1254,5 +1254,55 @@
     "data":
       "¿No encontraste lo que estabas buscando? Sugiere datos para agregar",
     "error": "¿Encontraste un error? Repórtalo"
+  },
+
+  "Some previous definitions": "Algunas definiciones previas",
+  "documentation_api": {
+    "title1": "Primeros Pasos",
+    "title2": "Sintaxis",
+    "title3": "Ejemplo de llamada de datos",
+    "title4": "Combinaciones Complejas",
+    "title5": "Cliente Mondrian-REST para npm",
+    "title6": "Cliente API para Python",
+
+    "intro": {
+      "text1": "DataChile utiliza para su funcionamiento como capa lógica Mondrian-REST, que es un componente del lado del servidor que permite la creación de APIs HTTP para acceder a una base de datos especificando la estructura lógica de la información.",
+      "text2": "Para utilizar la API de DataChile, es necesario conocer algunos conceptos que facilitarán su uso, los cuáles explicaremos a continuación."
+    },
+
+    "syntax": {
+      "text1": "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación."
+    },
+
+    "definitions": {
+      "cube": "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
+      "cube2": "En DataChile, cada dataset está agrupado en un cubo. El diseño del lenguaje de consultas a la API está centrado en torno a 3 operaciones: <span class='code'>Drilldown</span>, <span class='code'>Cut</span>, <span class='code'>Measure</span>. Para ejemplificar los conceptos, se utilizará el dataset <span class='code'>exports</span> -que representa las exportaciones de Chile- como referencia.",
+      "drilldown": "Un <span class='code'>drilldown</span> permite pasar de un nivel de detalle al siguiente. La estructura de un drilldown para las consultas en el cubo es <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
+      "member": "Un <span class='code'>member</span> es un valor dentro de una dimensión determinada por un set de valores. La jerarquía género tiene los miembros 'Masculino' y 'Femenino'. 'Concepción', 'Bío-Bío' y 'Chile' son todos miembros de la jerarquía Geográfica.",
+      "hierarchy": "Una <span class='code'>hierarchy</span> es un conjunto de miembros organizados estructuradamente para su análisis. Por ejemplo, la jerarquía Geográfica consiste de nombre de comuna, regiones y país. La jerarquización permite obtener valores intermedios: Total de exportaciones de la región de Valparaíso es la suma de todas las exportaciones de las comunas de dicha región.",
+      "level": "Un <span class='code'>level</span> es un conjunto de miembros que se encuentran a la misma distancia del inicio de la jerarquía. Concepción, Tucapel, Arica, se encuentran en el mismo level.",
+      "dimension": "Una <span class='code'>dimension</span> es un conjunto de jerarquías que discriminan el mismo atributo (Por ejemplo, el día que se produjo una exportación)",
+      "measure": "Variable escalar asociada con un valor particular en los datos del cubo.",
+      "cut": "Permite al usuario especificar un filtro, que restringe las tuplas disponibles del cubo. Por ejemplo, en <span class='code'>exports</span>, cortar el cubo en torno al miembro <span class='code'>[Region].[8]</span> en la dimensión <span class='code'>Geography</span>, sólo considerará celdas de la región de Bío-Bío. Múltiples cortes pueden ser especificados en una simple consulta.",
+      "nonempty": "Devuelve el conjunto de tuplas que no están vacías de un especificado conjunto, basado en el producto cartesiano del conjunto especificado.",
+      "distinct": "Evalúa un conjunto específico, elimina tuplas duplicadas del conjunto y devuelve el conjunto resultante.",
+      "parents": "",
+      "sparse": ""
+    },
+
+    "descriptions": {
+      "drilldown[]": "",
+      "measures[]": "",
+      "cut[]": "",
+      "nonempty": "",
+      "distinct": "",
+      "parents": "",
+      "sparse": ""
+    },
+
+    "url": {
+      "distinct": "https://docs.microsoft.com/en-us/sql/mdx/distinct-mdx",
+      "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
+    }
   }
 }

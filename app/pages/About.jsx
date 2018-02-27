@@ -4,11 +4,16 @@ import { Link } from "react-router";
 import { CanonProfile } from "datawheel-canon";
 import Helmet from "react-helmet";
 
+import Documentation from "./Documentation";
+
 import Nav from "components/Nav";
+import Datasets from "components/Datasets";
+import mondrianClient from "helpers/MondrianClient";
 
 import "./About.css";
 
 class About extends Component {
+  static need = [Datasets];
   state = {};
 
   componentDidMount() {
@@ -16,6 +21,7 @@ class About extends Component {
   }
 
   render() {
+    //console.log(this)
     const { t, routeParams, location } = this.props;
     const locale = this.props.i18n.language;
 
@@ -770,7 +776,8 @@ class About extends Component {
                     __html: t("about.api.text1")
                   }}
                 />
-
+                <Documentation />
+                {/*
                 <h3>{t("about.api.title2")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
@@ -784,6 +791,7 @@ class About extends Component {
                     __html: t("about.api.text3")
                   }}
                 />
+                */}
               </section>
             )}
 
