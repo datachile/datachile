@@ -1,6 +1,8 @@
 import React from "react";
 import { translate } from "react-i18next";
 import "./Documentation.css";
+
+import Datasets from "components/Datasets";
 /*<div
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.nesi.text")
@@ -192,6 +194,10 @@ class Documentation extends React.Component {
           1. Si se hace la consulta directamente en URL, se debe reemplazar &
           por %26 para evitar problemas de parseo del corte.
         </div>
+
+        <h3>{t("documentation_api.title3")}</h3>
+        <Datasets />
+
         <h3>{t("documentation_api.title3")}</h3>
         <div className="def-text">
           The following examples illustrate how queries are constructed, by

@@ -7,10 +7,13 @@ import Helmet from "react-helmet";
 import Documentation from "./Documentation";
 
 import Nav from "components/Nav";
+import Datasets from "components/Datasets";
+import mondrianClient from "helpers/MondrianClient";
 
 import "./About.css";
 
 class About extends Component {
+  static need = [Datasets];
   state = {};
 
   componentDidMount() {
@@ -18,6 +21,7 @@ class About extends Component {
   }
 
   render() {
+    //console.log(this)
     const { t, routeParams, location } = this.props;
     const locale = this.props.i18n.language;
 

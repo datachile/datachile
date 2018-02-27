@@ -40,6 +40,34 @@
   }
 
   & table {
+    & thead {
+      & tr {
+        & th {
+          background-color: #3e5c8a;
+          color: #fff !important;
+        }
+      }
+    }
+    & tbody {
+        & tr:nth-child(even) {
+            background-color: #47525B;
+          }
+          
+          
+          & tr:nth-child(odd) {
+            background-color: #364048;
+          }
+
+          & td {
+              border: 0px solid #fff!important;
+              text-align: left;
+              //font-size: 0.70rem;
+          }
+      
+    }
+  }
+
+  & table {
       width: auto!important;
     & td {
       
@@ -81,7 +109,8 @@
   & .code {
     font-family: Consolas, Menlo, Courier New, monospace, serif;
     color: #f1f2f3;
-    background-color: var(--pre-bg);
+    //background-color: var(--pre-bg);
+    background-color: #47525B;
     padding: 4px 8px;
     border-radius: 5px;
     font-size: 0.85em;
@@ -104,7 +133,8 @@
 }
 
 pre {
-  background-color: var(--pre-bg);
+  background-color: #47525B;
+  //background-color: var(--pre-bg);
   color: #f1f2f3;
   font-size: 14px;
   width: 100%;
