@@ -12,6 +12,18 @@ import MapYearSelector from "./MapYearSelector";
 import "./MapContent.css";
 
 class MapContent extends React.Component {
+  getTooltipTitle(type, name) {
+    return `<div class="tooltip-title"><p class="type">${type}</p><p>${name}</p></div>`;
+  }
+
+  getTooltipBody(str) {
+    const { t, mapTitle, mapYear } = this.props;
+    return `<div class="tooltip-body">
+      <div class='tooltip-data-value'>${str}</div>
+      <div class='tooltip-data-title'>${mapTitle} ${t(" in ")} ${mapYear}</div>
+    </div`;
+  }
+
   render() {
     const {
       t,
@@ -58,7 +70,7 @@ class MapContent extends React.Component {
           tickFormat: tick => {
             let value = Math.pow(10, parseInt(tick));
 
-            let newTick = numeral(value, locale).format("0 a");
+            let newTick = numeral(value, locale).format("0.[0] a");
             if (newTick !== customTick) {
               customTick = newTick;
               return newTick;
@@ -72,8 +84,23 @@ class MapContent extends React.Component {
         align: "start"
       },
       tooltipConfig: {
-        title: mapLevel == "comuna" ? d => d["Comuna"] : d => d["Region"],
-        body: d => numeral(d[msrName], locale).format("(USD 0 a)")
+        id: "map",
+        duration: 0,
+        className: "d3plus-tooltip-map-topic-" + mapTopic,
+        titleStyle: {
+          "background-color": MAP_SCALE_COLORS[mapTopic][0],
+          padding: 0
+        },
+        bodyStyle: {
+          "background-color": "#fff",
+          color: MAP_SCALE_COLORS[mapTopic][0]
+        },
+        title:
+          mapLevel == "comuna"
+            ? d => this.getTooltipTitle(t("Comuna"), d["Comuna"])
+            : d => this.getTooltipTitle(t("Region"), d["Region"]),
+        body: d =>
+          this.getTooltipBody(numeral(d[msrName], locale).format("(0.[00] a)"))
       },
       duration: 0,
       zoom: true,
@@ -134,6 +161,7 @@ const mapStateToProps = (state, ownProps) => {
     mapTopic: state.map.params.topic.value,
     mapLevel: state.map.params.level,
     mapYear: state.map.params.year,
+    mapTitle: state.map.title,
 
     dataRegion: state.map.results.data.region || [],
     dataComuna: state.map.results.data.comuna || []

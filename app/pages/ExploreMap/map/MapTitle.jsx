@@ -17,14 +17,16 @@ class MapTitle extends Component {
     var finalCuts = [];
     for (var property in cuts) {
       var values = cuts[property];
-      finalCuts.push(
-        property.replace(/[\[\]']+/g, "") +
-          t(" is ") +
-          values.map(v => v.name).join(", ")
-      );
+      if (values.length > 0) {
+        finalCuts.push(
+          property.replace(/[\[\]']+/g, "") +
+            t(" is ") +
+            values.map(v => v.name).join(", ")
+        );
+      }
     }
     if (finalCuts.length == 0) {
-      return "";
+      return " total";
     }
     return " " + t("where") + " " + finalCuts.join(", ");
   }
@@ -40,7 +42,8 @@ class MapTitle extends Component {
     const { t, mapTitle, mapLevel, mapYear, query } = this.props;
 
     const title = query ? (
-      <span>{`${mapTitle} by ${mapLevel}${mapYear && " in " + mapYear}`}</span>
+      <span>{`${mapTitle} ${t(" by ")} ${mapLevel}${mapYear &&
+        t(" in ") + mapYear}`}</span>
     ) : null;
 
     return <p className="map-generated-title">{title}</p>;

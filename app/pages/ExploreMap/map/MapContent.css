@@ -46,3 +46,44 @@
     }
   }
 }
+#d3plus-tooltip-map {
+  background-color: var(--snow);
+  max-width: 200px;
+  height: auto;
+  padding: 0px !important;
+  & .tooltip-title {
+    color: var(--snow);
+    padding: calc(var(--gutter)/3) calc(var(--gutter)/2);
+    font-family: var(--font-family-text);
+    text-transform: uppercase;
+    font-weight: 300;
+    background-image: url("/images/icons/icon-geo-white.svg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 30px;
+    & p {
+      font-size: 12px;
+      margin: 0px;
+      &.type {
+        font-size: 10px;
+      }
+    }
+  }
+  & .tooltip-body {
+    padding: calc(var(--gutter)/2);
+    & .tooltip-data-title {
+      font-family: var(--font-family-text);
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--medium-gray);
+      letter-spacing: 0.08px;
+      font-weight: 700;
+    }
+    & .tooltip-data-value {
+      font-family: var(--font-family-text);
+      font-size: 16px;
+      letter-spacing: 0.08px;
+      font-weight: 700;
+    }
+  }
+}
