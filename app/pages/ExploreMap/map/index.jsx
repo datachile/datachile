@@ -26,28 +26,26 @@ class ExploreMap extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { dispatch } = this.props;
-    const { loadedMembers, mapCuts, mapIndicator } = nextProps;
+    const { loadedMembers, mapCube, mapCuts } = nextProps;
+    const locale = nextProps.i18n.language;
 
-    const mapIndicatorChanged =
-      mapIndicator && this.props.mapIndicator != mapIndicator;
+    const mapCubeChanged = mapCube && this.props.mapCube != mapCube;
     const mapCutsChanged = !isEqual(this.props.mapCuts, mapCuts);
 
-    if (mapIndicatorChanged || mapCutsChanged) {
+    if (mapCubeChanged || mapCutsChanged) {
       dispatch(
         requestData({
-          cubeName: mapIndicator,
-          cuts: Object.keys(mapCuts).reduce((output, levelFullName) => {
-            const cuts = mapCuts[levelFullName].map(
-              cut => `${levelFullName}.&[${cut.key}]`
-            );
+          cubeName: mapCube,
+          cuts: Object.keys(mapCuts).reduce((output, key) => {
+            const cuts = mapCuts[key].map(cut => cut.fullName);
             return output.concat(cuts);
           }, []),
-          locale: nextProps.i18n.language
+          locale: locale
         })
       );
     }
-    if (mapIndicatorChanged && !loadedMembers.includes(mapIndicator))
-      dispatch(requestMembers(mapIndicator));
+    if (mapCubeChanged && !loadedMembers.includes(mapCube))
+      dispatch(requestMembers(mapCube, locale));
   }
 
   render() {
@@ -99,8 +97,8 @@ const mapStateToProps = state => {
 
     loadedMembers: state.map.options.cubes,
 
+    mapCube: params.measure && params.measure.cube,
     mapCuts: params.cuts,
-    mapIndicator: params.indicator && params.indicator.value,
     mapTopic: params.topic && params.topic.value,
     mapYear: params.year,
 

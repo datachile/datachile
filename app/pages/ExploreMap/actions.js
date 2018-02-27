@@ -58,9 +58,10 @@ export function requestData(params) {
   };
 }
 
-export function requestMembers(cubeName) {
+export function requestMembers(cubeName, locale = "en") {
   return function(dispatch) {
     dispatch({ type: "MAP_MEMBER_FETCH" });
+    // const lang_caption = locale == "es" ? `${locale}_caption` : null;
 
     // by this point the cube should be in cache already
     return mondrianClient
@@ -71,12 +72,11 @@ export function requestMembers(cubeName) {
             for (let hier, i = 0; (hier = dim.hierarchies[i]); i++) {
               for (let level, j = 1; (level = hier.levels[j]); j++) {
                 let promise = mondrianClient.members(level).then(members => ({
-                  name: level.fullName,
+                  name: `[${cube.name}].${level.fullName}`,
                   members: members.map(member => ({
-                    key: member.key,
+                    fullName: `${level.fullName}.&[${member.key}]`,
                     value: member.name,
                     name: member.caption
-                    // fullName: member.fullName
                   }))
                 }));
                 requests.push(promise);

@@ -31,7 +31,7 @@ class MapTitle extends Component {
 
   getDatasetTitle(nextProps) {
     const { topic, measure, cuts } = nextProps;
-    return `${topic ? topic.name : ""} -> ${
+    return `${topic ? topic.name : ""} \u203a ${
       measure ? measure.name : ""
     } ${this.cutsToText(cuts)}`;
   }

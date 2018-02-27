@@ -6,7 +6,7 @@ import { Icon } from "@blueprintjs/core";
 
 import CustomSelect from "components/CustomSelect";
 
-import { guessAcceptableName } from "helpers/formatters";
+import { classnames, guessAcceptableName } from "helpers/formatters";
 import mondrianClient from "helpers/MondrianClient";
 
 import "./MapSidebar.css";
@@ -24,8 +24,7 @@ class MapSidebar extends React.Component {
 
       // mondrian-rest-client doesn't use the annotations from the json
       const promise = mondrianClient.cubes().then(cubes => {
-        const indicators = {};
-        const levels = {};
+        const hierarchies = {};
         const measures = {};
 
         for (let cube, i = 0; (cube = cubes[i]); i++) {
@@ -33,36 +32,40 @@ class MapSidebar extends React.Component {
 
           const topic = cube.annotations.topic;
 
-          if (!indicators.hasOwnProperty(topic)) indicators[topic] = [];
-          indicators[topic].push({ value: cube.name, name: cube.caption });
+          measures[topic] = [].concat(
+            measures[topic] || [],
+            cube.measures.map(ms => ({
+              cube: cube.name,
+              value: ms.name,
+              name: ms.annotations.es_element_caption || ms.caption
+            }))
+          );
 
-          levels[cube.name] = cube.dimensions.reduce((output, dim) => {
-            if (!/Geography$|^Date$/.test(dim.name)) {
-              for (let hier, i = 0; (hier = dim.hierarchies[i]); i++) {
-                for (let level, j = 1; (level = hier.levels[j]); j++) {
-                  output.push({
-                    key: level.fullName,
-                    name: guessAcceptableName(level)
-                  });
-                }
-              }
+          let selectors = [];
+
+          for (let dim, j = 0; (dim = cube.dimensions[j]); j++) {
+            if (/Geography$|^Date$/.test(dim.name)) continue;
+
+            for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
+              selectors.push({
+                cube: cube.name,
+                name: hier.name,
+                value: `[${dim.name}].[${hier.name}]`,
+                levels: hier.levels.slice(1).map(lvl => ({
+                  value: lvl.fullName,
+                  name: lvl.annotations.es_element_caption || lvl.caption
+                }))
+              });
             }
-            return output;
-          }, []);
+          }
 
-          measures[cube.name] = cube.measures.map(ms => ({
-            value: ms.name,
-            name: ms.annotations.es_element_caption || ms.caption
-          }));
+          hierarchies[cube.name] = selectors;
         }
-
-        delete indicators.undefined;
 
         return {
           key: "map_params",
           data: {
-            indicators,
-            levels,
+            hierarchies,
             measures
           }
         };
@@ -89,62 +92,66 @@ class MapSidebar extends React.Component {
       return item;
     });
     props.setTopic(this.topics[0]);
-
-    this.getIndicatorOptions = this.getOptions.bind(this, "indicators");
-    this.getMeasureOptions = this.getOptions.bind(this, "measures");
-    this.getLevelOptions = this.getOptions.bind(this, "levels");
   }
 
+  getMeasureOptions = key =>
+    key ? this.props.data.map_params.measures[key.value] || [] : [];
+
+  getSelectors = cube => this.props.data.map_params.hierarchies[cube] || [];
+
   componentWillReceiveProps(nextProps) {
-    const { valueTopic, valueIndicator } = nextProps;
+    const { cube, valueTopic } = nextProps;
 
     if (valueTopic && this.props.valueTopic != valueTopic) {
-      const indicators = this.getIndicatorOptions(valueTopic);
-      this.indicators = indicators;
-      indicators[0] && nextProps.setIndicator(indicators[0]);
-    }
-
-    if (valueIndicator && this.props.valueIndicator != valueIndicator) {
-      this.levels = this.getLevelOptions(valueIndicator);
-
-      const measures = this.getMeasureOptions(valueIndicator);
+      const measures = this.getMeasureOptions(valueTopic);
       this.measures = measures;
       measures[0] && nextProps.setMeasure(measures[0]);
     }
-  }
 
-  getOptions(collection, key) {
-    return key ? this.props.data.map_params[collection][key.value] || [] : [];
+    if (cube && this.props.cube != cube) {
+      this.selectors = this.getSelectors(cube);
+    }
   }
 
   render() {
-    const { t, setTopic, setIndicator, setMeasure } = this.props;
-    const { valueTopic, valueIndicator, valueMeasure } = this.props;
-    const { cutOptions, cutValues, addCut, removeCut } = this.props;
+    const { t, setTopic, setMeasure, setSelectorLevel } = this.props;
+    const { cube, valueTopic, valueMeasure, selectorHier } = this.props;
+    const { memberOptions, memberValues, addCut, removeCut } = this.props;
 
     const optionTopic = this.topics;
-    const optionIndicator =
-      this.indicators || this.getIndicatorOptions(valueTopic);
-    const optionMeasure =
-      this.measures || this.getMeasureOptions(valueIndicator);
+    const optionMeasure = this.measures || this.getMeasureOptions(valueTopic);
 
-    const selectorsCut = [];
+    const selectorNodes = [];
 
-    if (valueIndicator) {
-      const levels = this.levels || this.getLevelOptions(valueIndicator);
+    if (cube) {
+      const selectors = this.selectors || this.getSelectors(cube);
 
-      for (let lvl, i = 0; (lvl = levels[i]); i++) {
-        let optionCut = cutOptions[lvl.key] || [];
-        let valueCut = cutValues[lvl.key];
+      for (let sel, i = 0; (sel = selectors[i]); i++) {
+        let currentLevel = selectorHier[sel.value] || sel.levels[0];
+        let optionMembers =
+          memberOptions[`[${sel.cube}].${currentLevel.value}`] || [];
+        let valueMembers = memberValues[sel.value];
 
-        selectorsCut.push(
-          <OptionGroup label={lvl.name}>
+        let optionLevel = sel.levels.map(lvl => (
+          <button
+            className={classnames({ active: lvl == currentLevel })}
+            onClick={setSelectorLevel.bind(null, sel.value, lvl)}
+          >
+            {lvl.name}
+          </button>
+        ));
+
+        selectorNodes.push(
+          <OptionGroup label={sel.name}>
+            {optionLevel.length > 1 && (
+              <div className="option-hierarchy">{optionLevel}</div>
+            )}
             <CustomSelect
               multiple={true}
-              items={optionCut}
-              value={valueCut}
-              onItemSelect={addCut.bind(null, lvl.key)}
-              onItemRemove={removeCut.bind(null, lvl.key)}
+              items={optionMembers}
+              value={valueMembers}
+              onItemSelect={addCut.bind(null, sel.value)}
+              onItemRemove={removeCut.bind(null, sel.value)}
               placeholder={t("Add a filter...")}
             />
           </OptionGroup>
@@ -164,15 +171,6 @@ class MapSidebar extends React.Component {
           />
         </OptionGroup>
 
-        <OptionGroup label={t("Indicator")}>
-          <CustomSelect
-            items={optionIndicator}
-            value={valueIndicator}
-            onItemSelect={setIndicator}
-            filterable={false}
-          />
-        </OptionGroup>
-
         <OptionGroup label={t("Measure")}>
           <CustomSelect
             items={optionMeasure}
@@ -182,7 +180,7 @@ class MapSidebar extends React.Component {
           />
         </OptionGroup>
 
-        {selectorsCut}
+        {selectorNodes}
 
         <Link to="/explore/map/data">Go to data</Link>
       </div>
@@ -200,28 +198,29 @@ function OptionGroup(props) {
 }
 
 const mapStateToProps = state => ({
-  cutOptions: state.map.options,
-  cutValues: state.map.params.cuts,
+  cube: state.map.params.measure && state.map.params.measure.cube,
+  memberOptions: state.map.options,
+  memberValues: state.map.params.cuts,
   valueTopic: state.map.params.topic,
-  valueIndicator: state.map.params.indicator,
-  valueMeasure: state.map.params.measure
+  valueMeasure: state.map.params.measure,
+  selectorHier: state.map.params.selector
 });
 
 const mapDispatchToProps = dispatch => ({
   setTopic(payload) {
     dispatch({ type: "MAP_TOPIC_SET", payload });
   },
-  setIndicator(payload) {
-    dispatch({ type: "MAP_INDICATOR_SET", payload });
-  },
   setMeasure(payload) {
     dispatch({ type: "MAP_MEASURE_SET", payload });
   },
-  addCut(level, value) {
-    dispatch({ type: "MAP_CUT_ADD", payload: { level, value } });
+  setSelectorLevel(key, level) {
+    dispatch({ type: "MAP_SELECTOR_SET", payload: { key, level } });
   },
-  removeCut(level, value) {
-    dispatch({ type: "MAP_CUT_REMOVE", payload: { level, value } });
+  addCut(key, member) {
+    dispatch({ type: "MAP_CUT_ADD", payload: { key, member } });
+  },
+  removeCut(key, name) {
+    dispatch({ type: "MAP_CUT_REMOVE", payload: { key, name } });
   }
 });
 

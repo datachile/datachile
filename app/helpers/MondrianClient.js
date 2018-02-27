@@ -508,9 +508,7 @@ function queryBuilder(query, params) {
 
   for (item in params.options) query = query.option(item, params.options[item]);
 
-  setLangCaptions(query, params.locale);
-
-  return query;
+  return setLangCaptions(query, params.locale);
 }
 
 function quickQuery(params) {

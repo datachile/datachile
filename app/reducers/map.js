@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
 const mapParamsInitialState = {
-  indicator: { value: "" },
+  cuts: {},
   level: "region",
   measure: { value: "" },
+  selector: {},
   topic: { value: "" },
-  cuts: {},
   year: 2015
 };
 
@@ -20,37 +20,57 @@ const mapParamsReducer = (state = mapParamsInitialState, action) => {
 
   switch (action.type) {
     case "MAP_CUT_ADD":
-      list = state.cuts[action.payload.level] || [];
-      newState = { ...state, cuts: { ...state.cuts } };
-      newState.cuts[action.payload.level] = arrayUniqueAdd(
-        list,
-        action.payload.value
-      );
-      return newState;
+      item = action.payload;
+      list = state.cuts[item.key] || [];
+      return {
+        ...state,
+        cuts: {
+          ...state.cuts,
+          [item.key]: arrayUniqueAdd(list, item.member)
+        }
+      };
 
     case "MAP_CUT_REMOVE":
-      item = action.payload.value;
-      list = state.cuts[action.payload.level] || [];
-      newState = { ...state, cuts: { ...state.cuts } };
-      newState.cuts[action.payload.level] = list.filter(
-        obj => obj.name != item
-      );
-      return newState;
-
-    case "MAP_INDICATOR_SET":
-      return { ...state, indicator: action.payload, cuts: {} };
+      item = action.payload;
+      list = state.cuts[item.key] || [];
+      return {
+        ...state,
+        cuts: {
+          ...state.cuts,
+          [item.key]: list.filter(cut => cut.name != item.name)
+        }
+      };
 
     case "MAP_LEVEL_SET":
       return { ...state, level: action.payload };
 
     case "MAP_MEASURE_SET":
-      return { ...state, measure: action.payload };
+      return {
+        ...state,
+        measure: action.payload,
+        selector: {},
+        cuts: {}
+      };
+
+    case "MAP_SELECTOR_SET":
+      item = action.payload;
+      return {
+        ...state,
+        selector: {
+          ...state.selector,
+          [item.key]: item.level
+        },
+        cuts: {
+          ...state.cuts,
+          [item.key]: []
+        }
+      };
 
     case "MAP_TOPIC_SET":
       return {
         ...state,
         topic: action.payload,
-        indicator: { value: "" },
+        selector: {},
         cuts: {}
       };
 

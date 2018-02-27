@@ -1,6 +1,34 @@
 .map-sidebar {
-  & .option-group + .option-group {
-    margin-top: 1.5em;
+  & .option-group {
+    & + .option-group {
+      margin-top: 1.5em;
+    }
+    & .option-hierarchy {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+
+      & > button {
+        flex: 1;
+        line-height: 1.5rem;
+        font-family: var(--font-family-title);
+        color: #fff;
+        background-color: var(--bg-blue);
+        border: 0 solid;
+        opacity: 0.5;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &.active {
+          opacity: 1;
+          background-color: #708bbb;
+        }
+      }
+    }
   }
   & .custom-select {
     width: 100%;
