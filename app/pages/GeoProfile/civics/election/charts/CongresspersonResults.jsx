@@ -220,7 +220,6 @@ class CongresspersonResults extends Section {
                 width: 25,
                 height: 25,
                 backgroundImage: d => {
-                  console.log(d);
                   return "/images/legend/civics/civic-icon.png";
                 },
                 fill: d => {
