@@ -227,9 +227,9 @@ class CongresspersonResults extends Section {
                     co.keys.includes(d["ID Coalition"])
                   ) || {
                     keys: [0, 3, 11, 12, 15, 21],
-                    elected: "#000",
-                    no_elected: "#000",
-                    base: "#000",
+                    elected: "#ccc",
+                    no_elected: "#ccc",
+                    base: "#ccc",
                     slug: "sin-asignar"
                   };
                   return d["ID Candidate"] !== 9999
