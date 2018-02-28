@@ -1263,6 +1263,7 @@
     "title4": "Combinaciones Complejas",
     "title5": "Cliente Mondrian-REST para npm",
     "title6": "Cliente API para Python",
+    "title7": "Listado de Campos",
 
     "intro": {
       "text1": "DataChile utiliza para su funcionamiento como capa lógica Mondrian-REST, que es un componente del lado del servidor que permite la creación de APIs HTTP para acceder a una base de datos especificando la estructura lógica de la información.",
@@ -1270,7 +1271,8 @@
     },
 
     "syntax": {
-      "text1": "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación."
+      "text1": "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación.",
+      "text2": "Para un cubo en particular, obtiene los miembros pertenecientes a un determinado level presente en una dimension."
     },
 
     "definitions": {

@@ -1044,6 +1044,7 @@
     "title4": "Complex Combinations",
     "title5": "Python Client by Javascript/Typescript",
     "title6": "Python Client by Python",
+    "title7": "Field List",
 
     "intro": {
       "text1": "DataChile uses Mondrian-REST, which is a server side software component that allows creation of HTTP APIs for accessing a database by specifying the logical structure of the information.",
@@ -1051,7 +1052,8 @@
     },
 
     "syntax": {
-      "text1": "The single entry point for aggregation operations in Mondrian-REST is <span class='code'>/aggregate</span>, which accepts the described parameters then."
+      "text1": "The single entry point for aggregation operations in Mondrian-REST is <span class='code'>/aggregate</span>, which accepts the described parameters then.",
+      "text2": "For an particular cube, get the members belonging to a certain level in a dimension."
     },
 
     "definitions": {
