@@ -471,3 +471,17 @@ export const presidentialColorScale = [
     slug: "alfredo-sfeir"
   }
 ];
+
+export const INDEPENDENT_COLORS = [
+  "#297F7D",
+  "#567569",
+  "#679A7C",
+  "#27B87A",
+  "#63CB9D",
+  "#42B2AC",
+  "#6AC0C6",
+  "#C6EFA7",
+  "#9AEBC6"
+];
+
+export const independentColorScale = scaleOrdinal().range(INDEPENDENT_COLORS);
