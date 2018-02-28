@@ -1082,6 +1082,17 @@
       "sparse": ""
     },
 
+    "client-python": {
+      "text1": "To encourage the use of the DataChile API, we have enabled in Python a pip module that allows to interact with the cubes.",
+      "text2": "For to install, you can use pip: <span class='code'>pip install datachile</span>"
+    },
+
+    "complex": {
+      "text1": "These criteria can be combined to define robust queries. Here are a few examples.",
+      "text2": "",
+      "text3": ""
+    },
+    
     "url": {
       "distinct": "https://docs.microsoft.com/en-us/sql/mdx/distinct-mdx",
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"

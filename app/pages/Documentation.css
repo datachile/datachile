@@ -2,6 +2,12 @@
   color: var(--light);
   text-align: justify;
 
+  & h4 {
+    color: #fff;
+    font-style: italic;
+    margin-top: 20px;
+  }
+
   & .syntax {
     margin-bottom: 30px;
     & .pagenote {

@@ -215,16 +215,16 @@ class Documentation extends React.Component {
 
         <section className="examples">
           <h3>{t("documentation_api.title3")}</h3>
-          <div className="def-text">
-            The following examples illustrate how queries are constructed, by
-            restricting the search space with the drilldown, cut, and measures
-            parameters. Aquí se muestra el aspecto de la URL y el JSON devuelto
-            cuando se pregunta ¿Qué número de personas está en cada previsión de
-            salud en Concepción?
-          </div>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("documentation_api.examples.text1")
+            }}
+          />
+          <h4>Query</h4>
           <div className="code left">
             {`https://chilecube.datawheel.us//cubes/casen_health_system/aggregate.json?drilldown[]=[Health System].[Health System]&cut[]=[Geography].[Comuna].%26[64]&measures[]=Expansion Factor Comuna&caption[]=[Health System].[Health System].Description ES&caption[]=[Health System].[Health System Group].Description ES&nonempty=true&distinct=false&parents=true&sparse=true`}
           </div>
+          <h4>Output</h4>
           <pre>
             <code>
               {`
@@ -290,29 +290,36 @@ class Documentation extends React.Component {
         </section>
 
         <section className="complex">
+          <h3>{t("documentation_api.title4")}</h3>
           <div className="def-text">
-            <h3>{t("documentation_api.title4")}</h3>
-            These criteria can be combined to define robust queries. Here are a
-            few examples.
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.complex.text1")
+              }}
+            />
+
             <div className="example">
-              <p className="text">
-                Seleccionar los valores de las regiones de Valparaíso (ID 5) y
-                de Coquimbo (ID 4)
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t("documentation_api.complex.text2")
+                }}
+              />
               <div className="code">
                 {`cut[]: {[Geography].[Geography].[Region].&[4], [Geography].[Geography].[Region].&[5]}`}
               </div>
-              <p className="clarification">
-                Para realizar cortes por más de un ID, cada cut debe estar
-                separado por <span className="code">,</span>
-                dentro de <span className="code">{`{}`}</span>.
-              </p>
+              <p
+                className="clarification"
+                dangerouslySetInnerHTML={{
+                  __html: t("documentation_api.complex.text3")
+                }}
+              />
             </div>
             <div className="example">
-              <p className="text">
-                Obtener las importaciones de todas las comunas de Chile entre
-                los años 2013 y 2015.
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t("documentation_api.complex.text4")
+                }}
+              />
               <div className="code">
                 {`drilldown[]: [Origin Country].[Country].[Country]`}
                 <br />
@@ -324,11 +331,12 @@ class Documentation extends React.Component {
                 <br />
                 {`cut[]: {[Date].[Date].[Year].&[2013], [Date].[Date].[Year].&[2014], [Date].[Date].[Year].&[2015]}`}
               </div>
-              <p className="clarification">
-                Para realizar cortes por más de un ID, cada cut debe estar
-                separado por <span className="code">,</span>
-                dentro de <span className="code">{`{}`}</span>.
-              </p>
+              <p
+                className="clarification"
+                dangerouslySetInnerHTML={{
+                  __html: t("documentation_api.complex.text3")
+                }}
+              />
             </div>
           </div>
         </section>
@@ -340,15 +348,16 @@ class Documentation extends React.Component {
 
         <section className="client-python">
           <h3>{t("documentation_api.title6")}</h3>
-          <p>
-            Para fomentar el uso de la API de DataChile, hemos habilitado en
-            Python un módulo que permite interactuar con todos los datos
-            disponibles.
-          </p>
-          <p>
-            Para instalar, debes usar:{" "}
-            <span className="code">pip install datachile</span>
-          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("documentation_api.client-python.text1")
+            }}
+          />
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("documentation_api.client-python.text2")
+            }}
+          />
           <pre>
             <code>
               {`

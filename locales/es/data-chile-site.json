@@ -1301,6 +1301,22 @@
       "sparse": ""
     },
 
+    "examples": {
+      "text1": "Los siguientes ejemplos ilustran cómo son construidas las consultas, restringiendo la búsqueda con drilldowns, cuts y measures. Aquí se muestra el aspecto de la URL y el JSON devuelto cuando se pregunta ¿Qué número de personas está en cada previsión de salud en Concepción?"
+    },
+
+    "complex": {
+      "text1": "Estos criterios se pueden combinar para definir consultas robustas. Aquí están algunos ejemplos.",
+      "text2": "Seleccionar los valores de las regiones de Valparaíso (ID 5) y de Coquimbo (ID 4)",
+      "text3": "Para realizar cortes por más de un ID, cada cut debe estar separado por <span class='code'>,</span> dentro de <span class='code'>{}</span>.",
+      "text4": "Obtener las importaciones de todas las comunas de Chile entre los años 2013 y 2015."
+    },
+
+    "client-python": {
+      "text1": "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
+      "text2": "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>"
+    },
+
     "url": {
       "distinct": "https://docs.microsoft.com/en-us/sql/mdx/distinct-mdx",
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
