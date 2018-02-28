@@ -8,6 +8,7 @@ import { MAP_SCALE_COLORS } from "helpers/colors";
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
 import MapYearSelector from "./MapYearSelector";
+import MapApiCall from "./MapApiCall";
 
 import "./MapContent.css";
 
@@ -140,7 +141,7 @@ class MapContent extends React.Component {
           <Geomap config={config} />
         </div>
         <MapYearSelector />
-        <div className="map-zoom-options" />
+        <MapApiCall />
       </div>
     );
   }
