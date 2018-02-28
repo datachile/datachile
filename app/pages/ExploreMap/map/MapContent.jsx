@@ -89,12 +89,12 @@ class MapContent extends React.Component {
         duration: 0,
         className: "d3plus-tooltip-map-topic-" + mapTopic,
         titleStyle: {
-          "background-color": MAP_SCALE_COLORS[mapTopic][0],
+          "background-color": MAP_SCALE_COLORS[mapTopic][7],
           padding: 0
         },
         bodyStyle: {
           "background-color": "#fff",
-          color: MAP_SCALE_COLORS[mapTopic][0]
+          color: MAP_SCALE_COLORS[mapTopic][7]
         },
         title:
           mapLevel == "comuna"

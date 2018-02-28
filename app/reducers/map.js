@@ -107,7 +107,9 @@ const mapOptionsReducer = (state = mapOptionsInitialState, action) => {
       };
       const levels = action.payload.levels;
       for (let level, i = 0; (level = levels[i]); i++) {
-        newState[level.name] = level.members;
+        newState[level.name] = level.members.sort(
+          (a, b) => (a.name > b.name ? 1 : -1)
+        );
       }
       return newState;
 

@@ -34,11 +34,13 @@ class MapSidebar extends React.Component {
 
           measures[topic] = [].concat(
             measures[topic] || [],
-            cube.measures.map(ms => ({
-              cube: cube.name,
-              value: ms.name,
-              name: ms.annotations.es_element_caption || ms.caption
-            }))
+            cube.measures
+              .filter(m => m.annotations.es_element_caption)
+              .map(ms => ({
+                cube: cube.name,
+                value: ms.name,
+                name: ms.annotations.es_element_caption || ms.caption
+              }))
           );
 
           let selectors = [];
@@ -130,6 +132,7 @@ class MapSidebar extends React.Component {
         let currentLevel = selectorHier[sel.value] || sel.levels[0];
         let optionMembers =
           memberOptions[`[${sel.cube}].${currentLevel.value}`] || [];
+
         let valueMembers = memberValues[sel.value];
 
         let optionLevel = sel.levels.map(lvl => (
@@ -181,8 +184,6 @@ class MapSidebar extends React.Component {
         </OptionGroup>
 
         {selectorNodes}
-
-        <Link to="/explore/map/data">Go to data</Link>
       </div>
     );
   }
