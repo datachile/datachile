@@ -42,11 +42,11 @@ export default {
       }
     }
   },
-  /*messageHTML:
+  messageHTML:
     "<div style='font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;'>" +
-    "<strong>Cargando</strong>" +
-    "<sub style='display: block; margin-top: 5px;'>Powered by D3plus</sub>" +
-    "</div>",*/
+    "<img style='margin: auto; width:80px; height: 80px' src='/images/loading-visualization.gif' />" +
+    "<sub style='display: block; margin-top: 15px;'>Powered by Datawheel</sub>" +
+    "</div>",
   shapeConfig: {
     fontColor: "rgba(0, 0, 0, 0.4)",
     fontFamily: "'Yantramanav', sans-serif",
