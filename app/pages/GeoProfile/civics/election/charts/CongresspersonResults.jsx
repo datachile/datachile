@@ -198,20 +198,26 @@ class CongresspersonResults extends Section {
             },
             legendTooltip: {
               title: d =>
-                "<div>" +
-                "<div>" +
-                d["Coalition"] +
-                "</div><div>" +
-                d["Elected"] +
-                "</div>" +
-                "</div>",
+                d["Coalition"] !== "NAN"
+                  ? "<div>" +
+                    "<div>" +
+                    d["Coalition"] +
+                    "</div><div>" +
+                    d["Elected"] +
+                    "</div>" +
+                    "</div>"
+                  : "<div>" +
+                    t("Blank and Null Votes").toUpperCase() +
+                    "</div>",
               body: d =>
                 "<div>" +
-                (geo.type === "comuna"
+                (geo.type === "comuna" || geo.type === "region"
                   ? numeral(d["Votes"], locale).format("0,0")
                   : numeral(d["count"], locale).format("0,0")) +
                 " " +
-                (geo.type === "comuna" ? t("Votes") : t("Elected Authority")) +
+                (geo.type === "comuna" || geo.type === "region"
+                  ? t("Votes")
+                  : t("Elected Authority")) +
                 "</div>"
             },
             legendConfig: {
@@ -222,19 +228,8 @@ class CongresspersonResults extends Section {
                 backgroundImage: d => {
                   return "/images/legend/civics/civic-icon.png";
                 },
-                fill: d => {
-                  const coalition = coalitionColorScale.find(co =>
-                    co.keys.includes(d["ID Coalition"])
-                  ) || {
-                    keys: [0, 3, 11, 12, 15, 21],
-                    elected: "#ccc",
-                    no_elected: "#ccc",
-                    base: "#ccc",
-                    slug: "sin-asignar"
-                  };
-                  return d["ID Candidate"] !== 9999
-                    ? coalition.base
-                    : "#BDBED6";
+                Rect: {
+                  fill: d => "#BDBED6"
                 }
               }
             }
@@ -249,6 +244,7 @@ class CongresspersonResults extends Section {
                   Votes: item.Electors - item.Votes,
                   Candidate: t("Electors that didn't vote").toUpperCase(),
                   Coalition: t("Electors that didn't vote").toUpperCase(),
+                  Elected: "",
                   ["ID Candidate"]: 9999,
                   ["ID Coalition"]: 9999,
                   ["ID Partido"]: 9999,
