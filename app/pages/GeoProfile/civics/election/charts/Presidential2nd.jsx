@@ -173,7 +173,10 @@ class Presidential2nd extends Section {
                 "</div>"
             },
             legendTooltip: {
-              //body: d => "<div></div>"
+              title: d =>
+                !(d["Candidate"] instanceof Array)
+                  ? "<div>" + "<div>" + d["Candidate"] + "</div>"
+                  : "<div>" + t("Blank and Null Votes").toUpperCase() + "</div>"
             },
             legendConfig: {
               label: false,

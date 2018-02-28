@@ -91,7 +91,7 @@ class Presidential1st extends Section {
           config={{
             height: 500,
             data: path,
-            groupBy: ["Candidate"],
+            groupBy: ["ID Candidate"],
             label: d => d["Candidate"],
             filter: this.state.non_electors
               ? ""
@@ -157,7 +157,10 @@ class Presidential1st extends Section {
                 "</div>"
             },
             legendTooltip: {
-              body: d => "<div></div>"
+              title: d =>
+                !(d["Candidate"] instanceof Array)
+                  ? "<div>" + "<div>" + d["Candidate"] + "</div>"
+                  : "<div>" + t("Blank and Null Votes").toUpperCase() + "</div>"
             },
             legendConfig: {
               label: false,

@@ -104,7 +104,7 @@ class MayorResults extends Section {
     const pactos = [
       { key: 4, name: "Chile Vamos", ids: [3, 6, 7, 23] },
       { key: 13, name: "Nueva Mayoría", ids: [1, 2, 9, 10, 11, 14] },
-      { key: 2, name: "Otras coaliciones", ids: [4, 12, 13, 15, 25, 16, 5] },
+      //{ key: 2, name: "Otras coaliciones", ids: [4, 12, 13, 15, 25, 16, 5] },
       { key: 2, name: "Independiente", ids: [] }
     ];
 
@@ -157,7 +157,8 @@ class MayorResults extends Section {
             shapeConfig: {
               fill: d => {
                 const coalition =
-                  d["ID Partido"] !== 8
+                  [4, 13].includes(d["ID Coalition"]) ||
+                  (d["ID Coalition"] === 0 && d["ID Partido"] === 0)
                     ? coalitionColorScale.find(co =>
                         co.keys.includes(d["ID Coalition"])
                       )
@@ -177,7 +178,6 @@ class MayorResults extends Section {
               }
             },
             tooltipConfig: {
-              //title: d => (geo.type === 2 ? d["Candidate"] : d["Partido"]),
               //title: d => d["ID Partido"],
               body: d =>
                 "<div>" +

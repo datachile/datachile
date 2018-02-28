@@ -201,15 +201,27 @@ class SenatorResults extends Section {
             },
             legendTooltip: {
               title: d =>
-                "<div>" +
-                "<div>" +
-                d["Coalition"] +
-                "</div><div>" +
-                d["Elected"] +
-                "</div>" +
-                "</div>",
+                d["Coalition"] !== "NAN"
+                  ? "<div>" +
+                    "<div>" +
+                    d["Coalition"] +
+                    "</div><div>" +
+                    d["Elected"] +
+                    "</div>" +
+                    "</div>"
+                  : "<div>" +
+                    t("Blank and Null Votes").toUpperCase() +
+                    "</div>",
               body: d =>
-                numeral(d["Votes"], locale).format("0,0") + " " + t("Votes")
+                "<div>" +
+                (geo.type === "comuna" || geo.type === "region"
+                  ? numeral(d["Votes"], locale).format("0,0")
+                  : numeral(d["count"], locale).format("0,0")) +
+                " " +
+                (geo.type === "comuna" || geo.type === "region"
+                  ? t("Votes")
+                  : t("Elected Authority")) +
+                "</div>"
             },
             legendConfig: {
               label: false,
@@ -233,6 +245,7 @@ class SenatorResults extends Section {
                   Votes: item.Electors - item.Votes,
                   Candidate: t("Electors that didn't vote").toUpperCase(),
                   Coalition: t("Electors that didn't vote").toUpperCase(),
+                  Elected: "",
                   ["ID Candidate"]: 9999,
                   ["ID Partido"]: 9999,
                   ["ID Coalition"]: 9999,
