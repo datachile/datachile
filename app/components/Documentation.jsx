@@ -115,11 +115,11 @@ class Documentation extends React.Component {
                   <span className="code">string</span>
                 </td>
                 <td className="description">
-                  Para generar un drilldown, se debe tener en cuenta: Dimension,
-                  Hierarchy, Level.
-                  <span className="code format">
-                    [Dimension].[Hierarchy].[Level]
-                  </span>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("documentation_api.descriptions.drilldown[]")
+                    }}
+                  />
                 </td>
               </tr>
               <tr>
@@ -128,7 +128,11 @@ class Documentation extends React.Component {
                   <span className="code">string</span>
                 </td>
                 <td className="description">
-                  <span className="code">Measure</span>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("documentation_api.descriptions.measures[]")
+                    }}
+                  />
                 </td>
               </tr>
               <tr>
@@ -137,11 +141,11 @@ class Documentation extends React.Component {
                   <span className="code">string</span>
                 </td>
                 <td className="description">
-                  Se debe concatenar el drilldown sobre el cuál se desea hacer
-                  el corte, con <span className="code">Level ID</span>.
-                  <span className="code format">
-                    [Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup>
-                  </span>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("documentation_api.descriptions.cut[]")
+                    }}
+                  />
                 </td>
               </tr>
               <tr>
@@ -176,8 +180,11 @@ class Documentation extends React.Component {
                   <span className="code">boolean</span>
                 </td>
                 <td className="description">
-                  En caso de encontrarse en un nivel de profundidad mayor a 1,
-                  obtiene el ID y nombre de los niveles padres. --
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("documentation_api.descriptions.parents")
+                    }}
+                  />
                 </td>
               </tr>
               <tr>
@@ -185,14 +192,23 @@ class Documentation extends React.Component {
                 <td>
                   <span className="code">boolean</span>
                 </td>
-                <td className="description">--</td>
+                <td className="description">
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("documentation_api.descriptions.sparse")
+                    }}
+                  />
+                </td>
               </tr>
             </tbody>
           </table>
 
           <div className="pagenote">
-            1. Si se hace la consulta directamente en URL, se debe reemplazar &
-            por %26 para evitar problemas de parseo del corte.
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.descriptions.pagenote.text1")
+              }}
+            />
           </div>
         </section>
         <section className="syntax">

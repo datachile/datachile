@@ -4,11 +4,10 @@ import { Link } from "react-router";
 import { CanonProfile } from "datawheel-canon";
 import Helmet from "react-helmet";
 
-import Documentation from "./Documentation";
+import Documentation from "components/Documentation";
 
 import Nav from "components/Nav";
 import Datasets from "components/Datasets";
-import mondrianClient from "helpers/MondrianClient";
 
 import "./About.css";
 

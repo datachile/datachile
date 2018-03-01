@@ -1293,13 +1293,16 @@
     },
 
     "descriptions": {
-      "drilldown[]": "",
+      "drilldown[]": "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
       "measures[]": "",
-      "cut[]": "",
+      "cut[]": "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <span class='code'>Level ID</span>. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
       "nonempty": "",
       "distinct": "",
-      "parents": "",
-      "sparse": ""
+      "parents": "En caso de encontrarse en un nivel de profundidad mayor a 1, obtiene el ID y nombre de los niveles padres.",
+      "sparse": "",
+      "pagenote": {
+        "text1": "1. Si se hace la consulta directamente en URL, se debe reemplazar & por %26 para evitar problemas de parseo del corte."
+      }
     },
 
     "examples": {
