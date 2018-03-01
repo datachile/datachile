@@ -27,24 +27,7 @@ class PSUNEMScatter extends Section {
       mirror.comuna = undefined;
 
       return simpleDatumNeed(
-        "need1",
-        "population_estimate",
-        ["Population"],
-        {
-          drillDowns: [["Geography", "Geography", "Comuna"]],
-          cuts: [`[Date].[Date].[Year].&[2016]`],
-          options: { parents: true }
-        },
-        "geo",
-        false
-      )(mirror, store);
-    },
-    (params, store) => {
-      let mirror = params;
-      mirror.comuna = undefined;
-
-      return simpleDatumNeed(
-        "need2",
+        "election_participation_by_territory",
         "election_participation",
         ["Votes", "Participation", "Electors"],
         {
@@ -66,26 +49,14 @@ class PSUNEMScatter extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    const { geo, need1, need2 } = this.context.data;
+    const { geo, election_participation_by_territory } = this.context.data;
     const path = null;
 
     const locale = i18n.language;
 
-    const data_one = need1.data.reduce((all, item) => {
-      all[item["ID Comuna"]] = item;
-      return all;
-    }, {});
-
-    const data_two = need2.data.reduce((all, item) => {
-      all[item["ID Comuna"]] = item;
-      return all;
-    }, {});
-
-    const merged = mergeWith(data_one, data_two);
-
-    const data = Object.keys(mergeWith(data_one, data_two))
-      .map(item => merged[item])
-      .filter(item => item["ID Comuna"] !== 345);
+    const data = election_participation_by_territory.data.filter(
+      item => item["ID Comuna"] !== 345
+    );
 
     let customTick = "";
 
