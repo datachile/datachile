@@ -20,7 +20,7 @@
     & .method {
       font-size: 18px;
       margin-bottom: 0px;
-      padding: 20px 0px;
+      padding: 10px 0px;
       line-height: 1.8;
       & .text {
         color: var(--accent);
