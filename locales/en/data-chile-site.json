@@ -1073,13 +1073,16 @@
     },
 
     "descriptions": {
-      "drilldown[]": "",
+      "drilldown[]": "For create a drilldown, you must considerate: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
       "measures[]": "",
-      "cut[]": "",
+      "cut[]": "You must concatenate drilldown where you need to make the cut with specific <span class='code'>Level ID</span> member. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
       "nonempty": "",
       "distinct": "",
-      "parents": "",
-      "sparse": ""
+      "parents": "If depth level is higher than 1, get ID and name from parent levels.",
+      "sparse": "",
+      "pagenote": {
+        "text1": "1. If the query is made directly in URL, it must be replaced & by %26 to avoid problems of cutting parsing."
+      }
     },
 
     "client-python": {
