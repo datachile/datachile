@@ -1,5 +1,8 @@
 import { fullNameToArray } from "helpers/formatters";
-import mondrianClient, { queryBuilder } from "helpers/MondrianClient";
+import mondrianClient, {
+  getLocaleCaption,
+  queryBuilder
+} from "helpers/MondrianClient";
 
 export function requestData(params) {
   const { cubeName, cuts, locale } = params;
@@ -61,7 +64,6 @@ export function requestData(params) {
 export function requestMembers(cubeName, locale = "en") {
   return function(dispatch) {
     dispatch({ type: "MAP_MEMBER_FETCH" });
-    // const lang_caption = locale == "es" ? `${locale}_caption` : null;
 
     // by this point the cube should be in cache already
     return mondrianClient
@@ -71,14 +73,17 @@ export function requestMembers(cubeName, locale = "en") {
           if (!/Geography$|^Date$/.test(dim.name)) {
             for (let hier, i = 0; (hier = dim.hierarchies[i]); i++) {
               for (let level, j = 1; (level = hier.levels[j]); j++) {
-                let promise = mondrianClient.members(level).then(members => ({
-                  name: `[${cube.name}].${level.fullName}`,
-                  members: members.map(member => ({
-                    fullName: `${level.fullName}.&[${member.key}]`,
-                    value: member.name,
-                    name: member.caption
-                  }))
-                }));
+                let caption = getLocaleCaption(level, locale);
+                let promise = mondrianClient
+                  .members(level, false, caption)
+                  .then(members => ({
+                    name: `[${cube.name}].${level.fullName}`,
+                    members: members.map(member => ({
+                      fullName: `${level.fullName}.&[${member.key}]`,
+                      value: member.name,
+                      name: member.caption
+                    }))
+                  }));
                 requests.push(promise);
               }
             }
