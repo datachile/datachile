@@ -2,10 +2,7 @@ import { nest } from "d3-collection";
 import { slugifyStr } from "helpers/formatters";
 
 function flatDatasetCols(dataset, type) {
-  const indicatorSlug = slugifyStr(
-    dataset.topic + " " + dataset.indicator,
-    "_"
-  );
+  const indicatorSlug = slugifyStr(dataset.title, "_");
   const region = type == "region";
 
   var localFlattenedFields = {};
@@ -33,10 +30,7 @@ function flatDatasetCols(dataset, type) {
 }
 
 function flatDatasetRows(dataset, type) {
-  const indicatorSlug = slugifyStr(
-    dataset.topic + " " + dataset.indicator,
-    "_"
-  );
+  const indicatorSlug = slugifyStr(dataset.title, "_");
   const region = type == "region";
 
   var localFlattenedFields = { anio: true };

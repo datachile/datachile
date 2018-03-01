@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router";
 import { CSVLink } from "react-csv";
 import { slugifyStr } from "helpers/formatters";
-
 import { combineAndFlatDatasets } from "helpers/map";
+
+import SourceNote from "components/SourceNote";
 
 import "./DataSidebar.css";
 
@@ -42,6 +43,7 @@ class DataSidebar extends Component {
                   x
                 </a>
               </div>
+              <SourceNote cube={d.cube} />
             </div>
           ))}
         </div>

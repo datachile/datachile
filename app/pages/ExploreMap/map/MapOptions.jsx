@@ -12,13 +12,13 @@ import "./MapOptions.css";
 class MapOptions extends React.Component {
   getDatasetsQueries() {
     const { datasets = [] } = this.props;
-    return [...new Set(datasets.map(ds => ds.indicator))];
+    return [...new Set(datasets.map(ds => ds.data.region.query))];
   }
 
   canSave() {
-    const { measure, datasets = [] } = this.props;
-    if (measure) {
-      if (this.getDatasetsQueries().indexOf(measure.value) == -1) {
+    const { mapData, datasets = [] } = this.props;
+    if (mapData) {
+      if (this.getDatasetsQueries().indexOf(mapData.region.query) == -1) {
         return true;
       }
     }
@@ -60,7 +60,9 @@ class MapOptions extends React.Component {
               }
             >
               <img src="/images/icons/icon-save-data.svg" />
-              <span className="text">{t("Add to cart")}</span>
+              <span className="text">
+                {canSave ? t("Add to cart") : t("Added to cart")}
+              </span>
             </a>
           )}
         </div>
@@ -79,7 +81,8 @@ const mapDispatchToProps = dispatch => ({
         data: dataset,
         level: level,
         indicator: indicator.value,
-        topic: topic.value
+        topic: topic.value,
+        cube: indicator.cube
       }
     });
   }

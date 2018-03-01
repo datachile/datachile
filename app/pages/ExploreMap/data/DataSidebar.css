@@ -1,21 +1,21 @@
 .data-sidebar {
   & .dataset-list-container {
     background-color: var(--near-white);
-    margin: calc(var(--gutter)/2) 0;
+    margin: calc(var(--gutter) / 2) 0;
     width: 100%;
-    padding: calc(var(--gutter)/2);
+    padding: calc(var(--gutter) / 2);
     font-family: var(--font-family-text);
     & h2 {
       color: var(--snow);
       font-family: var(--font-family-text);
     }
     & .dataset {
-      margin-bottom: calc(var(--gutter)/2);
+      margin-bottom: calc(var(--gutter) / 2);
       font-family: var(--font-family-text);
       & .dataset-index {
         color: var(--gray-dark);
         display: block;
-        padding-bottom: calc(var(--gutter)/6);
+        padding-bottom: calc(var(--gutter) / 6);
       }
       & .dataset-name-action {
         display: flex;
@@ -28,15 +28,18 @@
           cursor: pointer;
         }
       }
+      & .source-note {
+        padding: calc(var(--gutter) / 4) 0;
+      }
     }
   }
   & .map-csv-btn {
     display: block;
     text-align: center;
     background-color: var(--near-white);
-    margin: calc(var(--gutter)/2) 0;
+    margin: calc(var(--gutter) / 2) 0;
     width: 100%;
-    padding: calc(var(--gutter)/2);
+    padding: calc(var(--gutter) / 2);
     color: var(--gray-dark);
     text-transform: uppercase;
     transition: background-color 0.5s, color 0.5s;
