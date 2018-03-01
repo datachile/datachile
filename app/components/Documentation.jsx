@@ -92,31 +92,32 @@ class Documentation extends React.Component {
           <h3>{t("documentation_api.title2")}</h3>
 
           <div className="method">
-            <span className="text">API BASE</span>{" "}
+            <span className="text">URL BASE</span>{" "}
             <span className="url">{`https://chilecube.datachile.io`}</span>
           </div>
 
-          <div className="method border-top">
+          <div className="method">
             <span className="text">GET</span>{" "}
             <span className="url">
               {`/cubes/{{cube_name}}/dimensions/{{dimension_name}}/levels/{{level_name}}/members`}
             </span>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.syntax.text2")
+              }}
+            />
           </div>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: t("documentation_api.syntax.text2")
-            }}
-          />
 
-          <div className="method border-top">
+          <div className="method">
             <span className="text">GET</span>{" "}
-            <span className="url">{`/cubes/{{cube_name}}/aggregate`}</span>
+            <span className="url">{`/cubes/{{cube_name}}/aggregate`}</span>{" "}
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("documentation_api.syntax.text1")
+              }}
+            />
           </div>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: t("documentation_api.syntax.text1")
-            }}
-          />
+
           <table>
             <thead>
               <tr>
@@ -330,7 +331,7 @@ class Documentation extends React.Component {
                   __html: t("documentation_api.complex.text2")
                 }}
               />
-              <div className="code">
+              <div className="code hidden">
                 {`cut[]: {[Geography].[Geography].[Region].&[4], [Geography].[Geography].[Region].&[5]}`}
               </div>
               <p
@@ -346,7 +347,7 @@ class Documentation extends React.Component {
                   __html: t("documentation_api.complex.text4")
                 }}
               />
-              <div className="code">
+              <div className="code hidden">
                 {`drilldown[]: [Origin Country].[Country].[Country]`}
                 <br />
                 {`drilldown[]: [Geography].[Geography].[Comuna]`}
