@@ -37,7 +37,7 @@ class Datasets extends Component {
 
           let measures = cube.measures.map(ms => ({
             value: ms.name,
-            name: ms.annotations.es_element_caption || ms.caption
+            name: ms.name
           }));
 
           return {

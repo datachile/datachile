@@ -92,6 +92,23 @@ class Documentation extends React.Component {
           <h3>{t("documentation_api.title2")}</h3>
 
           <div className="method">
+            <span className="text">API BASE</span>{" "}
+            <span className="url">{`https://chilecube.datachile.io`}</span>
+          </div>
+
+          <div className="method border-top">
+            <span className="text">GET</span>{" "}
+            <span className="url">
+              {`/cubes/{{cube_name}}/dimensions/{{dimension_name}}/levels/{{level_name}}/members`}
+            </span>
+          </div>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("documentation_api.syntax.text2")
+            }}
+          />
+
+          <div className="method border-top">
             <span className="text">GET</span>{" "}
             <span className="url">{`/cubes/{{cube_name}}/aggregate`}</span>
           </div>
@@ -211,22 +228,15 @@ class Documentation extends React.Component {
             />
           </div>
         </section>
-        <section className="syntax">
-          <div className="method">
-            <span className="text">GET</span>{" "}
-            <span className="url">
-              {`/cubes/{{cube_name}}/dimensions/{{dimension_name}}/levels/{{level_name}}/members`}
-            </span>
-          </div>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: t("documentation_api.syntax.text2")
-            }}
-          />
-        </section>
         <section className="datasets">
           <h3>{t("documentation_api.title7")}</h3>
           <Datasets />
+          <p
+            className="pagenote"
+            dangerouslySetInnerHTML={{
+              __html: t("documentation_api.datasets.text1")
+            }}
+          />
         </section>
 
         <section className="examples">
@@ -237,7 +247,7 @@ class Documentation extends React.Component {
             }}
           />
           <h4>Query</h4>
-          <div className="code left">
+          <div className="code left hidden">
             {`https://chilecube.datawheel.us//cubes/casen_health_system/aggregate.json?drilldown[]=[Health System].[Health System]&cut[]=[Geography].[Comuna].%26[64]&measures[]=Expansion Factor Comuna&caption[]=[Health System].[Health System].Description ES&caption[]=[Health System].[Health System Group].Description ES&nonempty=true&distinct=false&parents=true&sparse=true`}
           </div>
           <h4>Output</h4>
@@ -403,6 +413,11 @@ class Documentation extends React.Component {
             `}
             </code>
           </pre>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("documentation_api.client-python.text3")
+            }}
+          />
         </section>
       </div>
     );

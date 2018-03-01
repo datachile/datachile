@@ -1257,6 +1257,11 @@
   },
 
   "Some previous definitions": "Algunas definiciones previas",
+  
+  "Description": "Descripción",
+  "Param": "Parámetro",
+  "Type": "Tipo",
+  
   "documentation_api": {
     "title1": "Primeros Pasos",
     "title2": "Sintaxis",
@@ -1299,7 +1304,7 @@
       "nonempty": "",
       "distinct": "",
       "parents": "En caso de encontrarse en un nivel de profundidad mayor a 1, obtiene el ID y nombre de los niveles padres.",
-      "sparse": "",
+      "sparse": "Verifica si una determinada tupla NO está en la agregación, no se incluye en la tabla resultante.",
       "pagenote": {
         "text1": "1. Si se hace la consulta directamente en URL, se debe reemplazar & por %26 para evitar problemas de parseo del corte."
       }
@@ -1318,7 +1323,12 @@
 
     "client-python": {
       "text1": "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
-      "text2": "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>"
+      "text2": "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
+      "text3": "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+    },
+
+    "datasets": {
+      "text1": "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
     },
 
     "url": {
