@@ -20,15 +20,16 @@
       & .dataset-name-action {
         display: flex;
         justify-content: space-between;
+        flex-direction: row;
         & .dataset-name {
           color: var(--near-black);
+          width: 90%;
         }
         & .dataset-delete {
-          height: 1.2em;
+          width: 10%;
           cursor: pointer;
-          width: 1.2em;
-          padding: 2px;
-          & image {
+          margin: 2px;
+          & img {
             width: 100%;
           }
         }
