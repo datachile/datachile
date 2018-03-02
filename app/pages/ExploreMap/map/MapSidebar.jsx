@@ -45,21 +45,30 @@ class MapSidebar extends React.Component {
 
           let selectors = [];
 
-          for (let dim, j = 0; (dim = cube.dimensions[j]); j++) {
-            if (/Geography$|^Date$/.test(dim.name)) continue;
+          const availableDims = cube.annotations.available_dimensions
+            ? cube.annotations.available_dimensions.split(",")
+            : [];
 
-            for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
-              selectors.push({
-                cube: cube.name,
-                name:
-                  dim.annotations.es_element_caption || dim.caption || dim.name,
-                value: `[${dim.name}].[${hier.name}]`,
-                isGeo: /country/i.test(dim.name),
-                levels: hier.levels.slice(1).map(lvl => ({
-                  value: lvl.fullName,
-                  name: lvl.annotations.es_element_caption || lvl.caption
-                }))
-              });
+          for (let dim, j = 0; (dim = cube.dimensions[j]); j++) {
+            if (
+              !/Geography$|^Date$/.test(dim.name) &&
+              availableDims.indexOf(dim.name) > -1
+            ) {
+              for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
+                selectors.push({
+                  cube: cube.name,
+                  name:
+                    dim.annotations.es_element_caption ||
+                    dim.caption ||
+                    dim.name,
+                  value: `[${dim.name}].[${hier.name}]`,
+                  isGeo: /country/i.test(dim.name),
+                  levels: hier.levels.slice(1).map(lvl => ({
+                    value: lvl.fullName,
+                    name: lvl.annotations.es_element_caption || lvl.caption
+                  }))
+                });
+              }
             }
           }
 

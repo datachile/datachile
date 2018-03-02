@@ -69,8 +69,15 @@ export function requestMembers(cubeName, locale = "en") {
     return mondrianClient
       .cube(cubeName)
       .then(cube => {
+        const availableDims = cube.annotations.available_dimensions
+          ? cube.annotations.available_dimensions.split(",")
+          : [];
+
         const requestsLevels = cube.dimensions.reduce((requests, dim) => {
-          if (!/Geography$|^Date$/.test(dim.name)) {
+          if (
+            !/Geography$|^Date$/.test(dim.name) &&
+            availableDims.indexOf(dim.name) > -1
+          ) {
             for (let hier, i = 0; (hier = dim.hierarchies[i]); i++) {
               for (let level, j = 1; (level = hier.levels[j]); j++) {
                 let caption = getLocaleCaption(level, locale);
