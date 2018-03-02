@@ -40,7 +40,7 @@ class DataSidebar extends Component {
                   className="dataset-delete"
                   onClick={evt => deleteDataset(ix)}
                 >
-                  x
+                  <img src="/images/icons/icon-close-black.svg" />
                 </a>
               </div>
               <SourceNote cube={d.cube} />

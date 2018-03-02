@@ -24,8 +24,13 @@
           color: var(--near-black);
         }
         & .dataset-delete {
-          height: 1em;
+          height: 1.2em;
           cursor: pointer;
+          width: 1.2em;
+          padding: 2px;
+          & image {
+            width: 100%;
+          }
         }
       }
       & .source-note {
