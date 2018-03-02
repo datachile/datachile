@@ -14,6 +14,8 @@ import MapOptions from "./MapOptions";
 
 import { requestData, requestMembers } from "../actions.js";
 
+import { SyncStateAndLocalStorage } from "helpers/localStorage";
+
 import { NonIdealState } from "@blueprintjs/core";
 import DatachileProgressBar from "components/DatachileProgressBar";
 
