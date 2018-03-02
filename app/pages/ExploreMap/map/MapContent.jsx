@@ -150,7 +150,7 @@ class MapContent extends React.Component {
 const processResults = (data, msrName, mapYear) => {
   if (mapYear) data = data.filter(item => item["Year"] == mapYear);
   // if (msrName) data = data.map(item => ({ ...item, variable: item[msrName] }));
-  return data.map(item => {
+  return data.filter(item => item[msrName]).map(item => {
     item[msrName + "LOG"] = Math.log10(item[msrName]);
     return item;
   });
