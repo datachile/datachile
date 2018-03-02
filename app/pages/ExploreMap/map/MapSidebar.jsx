@@ -51,8 +51,10 @@ class MapSidebar extends React.Component {
             for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
               selectors.push({
                 cube: cube.name,
-                name: hier.name,
+                name:
+                  dim.annotations.es_element_caption || dim.caption || dim.name,
                 value: `[${dim.name}].[${hier.name}]`,
+                isGeo: /country/i.test(dim.name),
                 levels: hier.levels.slice(1).map(lvl => ({
                   value: lvl.fullName,
                   name: lvl.annotations.es_element_caption || lvl.caption
@@ -145,7 +147,7 @@ class MapSidebar extends React.Component {
         ));
 
         selectorNodes.push(
-          <OptionGroup label={sel.name}>
+          <OptionGroup label={sel.name} icon={sel.isGeo ? "geo" : "indicator"}>
             {optionLevel.length > 1 && (
               <div className="option-hierarchy">{optionLevel}</div>
             )}
@@ -165,7 +167,7 @@ class MapSidebar extends React.Component {
     return (
       <div className="map-sidebar">
         <h1>{t("Map")}</h1>
-        <OptionGroup label={t("Topics")}>
+        <OptionGroup label={t("Topics")} icon="topic">
           <CustomSelect
             items={optionTopic}
             value={valueTopic}
@@ -174,7 +176,7 @@ class MapSidebar extends React.Component {
           />
         </OptionGroup>
 
-        <OptionGroup label={t("Measure")}>
+        <OptionGroup label={t("Measure")} icon="measure">
           <CustomSelect
             items={optionMeasure}
             value={valueMeasure}
@@ -192,7 +194,14 @@ class MapSidebar extends React.Component {
 function OptionGroup(props) {
   return (
     <div className="option-group">
-      <label className="option-label">{props.label}</label>
+      <label
+        className="option-label"
+        style={{
+          backgroundImage: `url(/images/icons/icon-map-${props.icon}.svg)`
+        }}
+      >
+        {props.label}
+      </label>
       {props.children}
     </div>
   );

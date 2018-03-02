@@ -124,9 +124,10 @@
     font-family: var(--font-family-text);
     font-size: 14px;
     font-weight: 300;
-    line-height: 1.5em;
+    line-height: 1.6em;
     color: var(--snow);
     text-transform: uppercase;
+    background: left center/1px no-repeat;
 
     &::before {
       content: "";
@@ -136,7 +137,8 @@
       height: 1.5em;
       margin-right: 0.6em;
       border-radius: 50%;
-      background: var(--bg-blue);
+      background: var(--bg-blue) center/15px no-repeat;
+      background-image: inherit;
     }
   }
 }
