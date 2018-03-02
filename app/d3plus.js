@@ -11,14 +11,14 @@ const axisConfig = {
     fill: "#fff",
     labelConfig: {
       fontColor: "#fff",
-      fontFamily: () => "'Yantramanav', sans-serif",
+      fontFamily: () => "Roboto, sans-serif",
       fontSize: () => 12
     },
     stroke: "#fff"
   },
   tickSize: 4,
   titleConfig: {
-    fontFamily: () => "'Yantramanav', sans-serif",
+    fontFamily: () => "Roboto, sans-serif",
     fontColor: "#fff",
     fontSize: 12,
     fontWeight: 600,
@@ -30,7 +30,7 @@ export default {
   legendConfig: {
     shapeConfig: {
       fontColor: "white",
-      fontFamily: "'Yantramanav', sans-serif",
+      fontFamily: "Roboto, sans-serif",
       fontResize: false,
       fontSize: 12,
       fontWeight: 400,
@@ -49,7 +49,7 @@ export default {
     "</div>",
   shapeConfig: {
     fontColor: "rgba(0, 0, 0, 0.4)",
-    fontFamily: "'Yantramanav', sans-serif",
+    fontFamily: "Roboto, sans-serif",
     fontWeight: 600
   },
   timelineConfig: {

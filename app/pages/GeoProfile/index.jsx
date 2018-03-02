@@ -597,7 +597,7 @@ class GeoProfile extends Component {
                             );
                           },
                           bodyStyle: {
-                            "font-family": "'Yantramanav', sans-serif",
+                            "font-family": "Roboto, Arial, sans-serif",
                             "font-size": "12px",
                             "text-align": "center",
                             color: "#2F2F38"
