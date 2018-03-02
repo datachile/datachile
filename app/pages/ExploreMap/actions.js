@@ -85,11 +85,15 @@ export function requestMembers(cubeName, locale = "en") {
                   .members(level, false, caption)
                   .then(members => ({
                     name: `[${cube.name}].${level.fullName}`,
-                    members: members.map(member => ({
-                      fullName: `${level.fullName}.&[${member.key}]`,
-                      value: member.name,
-                      name: member.caption
-                    }))
+                    members: members.reduce((output, member) => {
+                      if (member.caption)
+                        output.push({
+                          fullName: `${level.fullName}.&[${member.key}]`,
+                          value: member.name,
+                          name: member.caption
+                        });
+                      return output;
+                    }, [])
                   }));
                 requests.push(promise);
               }
@@ -108,6 +112,13 @@ export function requestMembers(cubeName, locale = "en") {
       )
       .then(null, err => dispatch({ type: "MAP_MEMBER_ERROR", payload: err }));
   };
+}
+
+function patchNullData(data) {
+  return data.map(item => {
+    for (let key in item) item[key] = item[key] || 0;
+    return item;
+  });
 }
 
 function getGeoDrilldowns(dimensions) {
