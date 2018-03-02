@@ -29,10 +29,10 @@
       z-index: var(--background);
 
       & .image {
-        background-image: url("/images/profile-bg/geo/chile.jpg");
-        background-position: 50%;
+        background-image: url("/images/profile-bg/about.jpg");
+        background-position: 75%;
         background-size: cover;
-        filter: saturate(150%) contrast(130%);
+        filter: saturate(100%) contrast(80%);
         height: 800px;
         left: 0;
         position: absolute;
@@ -41,7 +41,7 @@
       }
 
       & .gradient {
-        background: linear-gradient(0deg, var(--dark), rgba(0, 0, 0, 0.6));
+        background: linear-gradient(0deg, var(--dark), rgba(0, 0, 0, 0.2));
         bottom: 0;
         left: 0;
         position: absolute;

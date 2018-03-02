@@ -1054,6 +1054,7 @@
     "title4": "Complex Combinations",
     "title5": "Python Client by Javascript/Typescript",
     "title6": "Python Client by Python",
+    "title7": "Field List",
 
     "intro": {
       "text1":
@@ -1064,7 +1065,9 @@
 
     "syntax": {
       "text1":
-        "The single entry point for aggregation operations in Mondrian-REST is <span class='code'>/aggregate</span>, which accepts the described parameters then."
+        "The single entry point for aggregation operations in Mondrian-REST is <span class='code'>/aggregate</span>, which accepts the described parameters then.",
+      "text2":
+        "For an particular cube, get the members belonging to a certain level in a dimension."
     },
 
     "definitions": {
@@ -1095,13 +1098,50 @@
     },
 
     "descriptions": {
-      "drilldown[]": "",
+      "drilldown[]":
+        "For create a drilldown, you must considerate: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
       "measures[]": "",
-      "cut[]": "",
+      "cut[]":
+        "You must concatenate drilldown where you need to make the cut with specific <span class='code'>Level ID</span> member. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
       "nonempty": "",
       "distinct": "",
-      "parents": "",
-      "sparse": ""
+      "parents":
+        "If depth level is higher than 1, get ID and name from parent levels.",
+      "sparse":
+        "Check if a certain tuple is NOT in the aggregation, this is not included in the resulting table.",
+      "pagenote": {
+        "text1":
+          "1. If the query is made directly in URL, it must be replaced & by %26 to avoid problems of cutting parsing."
+      }
+    },
+
+    "client-python": {
+      "text1":
+        "To encourage the use of the DataChile API, we have enabled in Python a pip module that allows to interact with the cubes.",
+      "text2":
+        "For to install, you can use pip: <span class='code'>pip install datachile</span>",
+      "text3":
+        "More information in <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+    },
+
+    "complex": {
+      "text1":
+        "These criteria can be combined to define robust queries. Here are a few examples.",
+      "text2":
+        "Select values of Valparaiso (ID 5) and Coquimbo (ID 4) regions.",
+      "text3":
+        "For generate cuts for more than an ID, every cut must be separately by <span class='code'>,</span> within <span class='code'>{}</span>.",
+      "text4": "Get imports from every county in Chile between 2013 and 2015."
+    },
+
+    "examples": {
+      "text1":
+        "The next examples show how are builded the queries, using drilldowns, cuts and measures. Here you can see URL aspect and JSON returned related with the question: What number of people are in every health insurance at Concepcion?"
+    },
+
+    "datasets": {
+      "text1":
+        "These data are gotten since <span class='url code'>https://chilecube.datachile.io/cubes</span>"
     },
 
     "url": {

@@ -1285,6 +1285,11 @@
     "rows": "filas"
   },
   "Some previous definitions": "Algunas definiciones previas",
+
+  "Description": "Descripción",
+  "Param": "Parámetro",
+  "Type": "Tipo",
+
   "documentation_api": {
     "title1": "Primeros Pasos",
     "title2": "Sintaxis",
@@ -1292,6 +1297,7 @@
     "title4": "Combinaciones Complejas",
     "title5": "Cliente Mondrian-REST para npm",
     "title6": "Cliente API para Python",
+    "title7": "Listado de Campos",
 
     "intro": {
       "text1":
@@ -1302,7 +1308,9 @@
 
     "syntax": {
       "text1":
-        "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación."
+        "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación.",
+      "text2":
+        "Para un cubo en particular, obtiene los miembros pertenecientes a un determinado level presente en una dimension."
     },
 
     "definitions": {
@@ -1333,13 +1341,51 @@
     },
 
     "descriptions": {
-      "drilldown[]": "",
+      "drilldown[]":
+        "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
       "measures[]": "",
-      "cut[]": "",
+      "cut[]":
+        "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <span class='code'>Level ID</span>. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
       "nonempty": "",
       "distinct": "",
-      "parents": "",
-      "sparse": ""
+      "parents":
+        "En caso de encontrarse en un nivel de profundidad mayor a 1, obtiene el ID y nombre de los niveles padres.",
+      "sparse":
+        "Verifica si una determinada tupla NO está en la agregación, no se incluye en la tabla resultante.",
+      "pagenote": {
+        "text1":
+          "1. Si se hace la consulta directamente en URL, se debe reemplazar & por %26 para evitar problemas de parseo del corte."
+      }
+    },
+
+    "examples": {
+      "text1":
+        "Los siguientes ejemplos ilustran cómo son construidas las consultas, restringiendo la búsqueda con drilldowns, cuts y measures. Aquí se muestra el aspecto de la URL y el JSON devuelto cuando se pregunta ¿Qué número de personas está en cada previsión de salud en Concepción?"
+    },
+
+    "complex": {
+      "text1":
+        "Estos criterios se pueden combinar para definir consultas robustas. Aquí están algunos ejemplos.",
+      "text2":
+        "Seleccionar los valores de las regiones de Valparaíso (ID 5) y de Coquimbo (ID 4)",
+      "text3":
+        "Para realizar cortes por más de un ID, cada cut debe estar separado por <span class='code'>,</span> dentro de <span class='code'>{}</span>.",
+      "text4":
+        "Obtener las importaciones de todas las comunas de Chile entre los años 2013 y 2015."
+    },
+
+    "client-python": {
+      "text1":
+        "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
+      "text2":
+        "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
+      "text3":
+        "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+    },
+
+    "datasets": {
+      "text1":
+        "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
     },
 
     "url": {
