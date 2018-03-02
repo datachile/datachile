@@ -36,6 +36,7 @@ CustomSelect.defaultProps = {
   popoverProps: {
     popoverClassName: "custom-select pt-minimal"
   },
+  resetOnSelect: true,
   tagRenderer: item => item.name,
   tagInputProps: {
     className: "input-area",
