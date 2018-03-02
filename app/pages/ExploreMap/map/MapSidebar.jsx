@@ -21,6 +21,12 @@ class MapSidebar extends React.Component {
             dim.hierarchies.length > 0 &&
             dim.hierarchies.some(hie => hie.name == "Geography")
         );
+      const localeCaption = (item, locale = "en") => {
+        const key = `${locale}_element_caption`;
+        return key in item.annotations ? item.annotations[key] : item.caption;
+      };
+
+      const locale = store.i18n.locale;
 
       // mondrian-rest-client doesn't use the annotations from the json
       const promise = mondrianClient.cubes().then(cubes => {
@@ -31,15 +37,18 @@ class MapSidebar extends React.Component {
           if (!hasGeoDimensions(cube.dimensions)) continue;
 
           const topic = cube.annotations.topic;
+          const availableMs = cube.annotations.available_measures
+            ? cube.annotations.available_measures.split(",")
+            : [];
 
           measures[topic] = [].concat(
             measures[topic] || [],
             cube.measures
-              .filter(m => m.annotations.es_element_caption)
+              .filter(ms => availableMs.indexOf(ms.name) > -1)
               .map(ms => ({
                 cube: cube.name,
                 value: ms.name,
-                name: ms.annotations.es_element_caption || ms.caption
+                name: localeCaption(ms, locale)
               }))
           );
 
@@ -57,15 +66,12 @@ class MapSidebar extends React.Component {
               for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
                 selectors.push({
                   cube: cube.name,
-                  name:
-                    dim.annotations.es_element_caption ||
-                    dim.caption ||
-                    dim.name,
+                  name: localeCaption(dim, locale) || dim.name,
                   value: `[${dim.name}].[${hier.name}]`,
                   isGeo: /country/i.test(dim.name),
                   levels: hier.levels.slice(1).map(lvl => ({
                     value: lvl.fullName,
-                    name: lvl.annotations.es_element_caption || lvl.caption
+                    name: localeCaption(lvl, locale)
                   }))
                 });
               }
@@ -137,6 +143,7 @@ class MapSidebar extends React.Component {
     const selectorNodes = [];
 
     if (cube) {
+      const placeholder = t("Add a filter...");
       const selectors = this.selectors || this.getSelectors(cube);
 
       for (let sel, i = 0; (sel = selectors[i]); i++) {
@@ -166,7 +173,7 @@ class MapSidebar extends React.Component {
               value={valueMembers}
               onItemSelect={addCut.bind(null, sel.value)}
               onItemRemove={removeCut.bind(null, sel.value)}
-              placeholder={t("Add a filter...")}
+              placeholder={placeholder}
             />
           </OptionGroup>
         );

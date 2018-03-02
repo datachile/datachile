@@ -62,7 +62,7 @@
       text-transform: uppercase;
 
       &::-webkit-input-placeholder {
-        color: #ccc;
+        color: #999;
       }
     }
   }
