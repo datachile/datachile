@@ -21,12 +21,10 @@ class MapSidebar extends React.Component {
             dim.hierarchies.length > 0 &&
             dim.hierarchies.some(hie => hie.name == "Geography")
         );
-      const localeCaption = (item, locale = "en") => {
-        const key = `${locale}_element_caption`;
-        return key in item.annotations ? item.annotations[key] : item.caption;
-      };
 
-      const locale = store.i18n.locale;
+      const localeCaption = function(key, item) {
+        return item.annotations[key] || item.caption || item.name;
+      }.bind(null, `${store.i18n.locale}_element_caption`);
 
       // mondrian-rest-client doesn't use the annotations from the json
       const promise = mondrianClient.cubes().then(cubes => {
@@ -48,7 +46,7 @@ class MapSidebar extends React.Component {
               .map(ms => ({
                 cube: cube.name,
                 value: ms.name,
-                name: localeCaption(ms, locale)
+                name: localeCaption(ms)
               }))
           );
 
@@ -66,12 +64,12 @@ class MapSidebar extends React.Component {
               for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
                 selectors.push({
                   cube: cube.name,
-                  name: localeCaption(dim, locale) || dim.name,
+                  name: localeCaption(dim),
                   value: `[${dim.name}].[${hier.name}]`,
                   isGeo: /country/i.test(dim.name),
                   levels: hier.levels.slice(1).map(lvl => ({
                     value: lvl.fullName,
-                    name: localeCaption(lvl, locale)
+                    name: localeCaption(lvl)
                   }))
                 });
               }
