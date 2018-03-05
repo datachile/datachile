@@ -1053,9 +1053,10 @@
     "title2": "Syntax",
     "title3": "Data call example",
     "title4": "Complex Combinations",
-    "title5": "Python Client by Javascript/Typescript",
-    "title6": "Python Client by Python",
+    "title5": "Client for Javascript/Typescript",
+    "title6": "Client for Python",
     "title7": "Field List",
+    "title8": "Client for R",
 
     "intro": {
       "text1":
