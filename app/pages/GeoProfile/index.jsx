@@ -64,6 +64,11 @@ import SpendingByIndustry from "./economy/innovation/charts/SpendingByIndustry";
 /*end Economy*/
 
 /*Education*/
+import SNEDSlide from "./education/sned/SNEDSlide";
+import SNED from "./education/sned/charts/SNED";
+import SNEDSchoolByClusters from "./education/sned/charts/SNEDSchoolByClusters";
+import SNEDCompareByCluster from "./education/sned/charts/SNEDCompareByCluster";
+
 
 import PSUNEMSlide from "./education/performance/PSUNEMSlide";
 import PSUNEMScatter from "./education/performance/charts/PSUNEMScatter";
@@ -227,6 +232,12 @@ class GeoProfile extends Component {
     CrimeTreemap,
 
     /** EDUCATION */
+
+    SNEDSlide,
+    SNED,
+    SNEDSchoolByClusters,
+    SNEDCompareByCluster,
+
     PSUNEMSlide,
     PSUNEMScatter,
 
@@ -744,6 +755,10 @@ class GeoProfile extends Component {
                 id="education"
                 sections={[
                   {
+                    name: t("SNED"),
+                    slides: [t("SNED"), t("SNED")]
+                  },
+                  {
                     name: t("Performance"),
                     slides: [t("PSU vs NEM"), t("PSU By Sex")]
                   },
@@ -753,6 +768,21 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
+                <div>
+                  <SNEDSlide>
+                    <SectionColumns>
+                      <SNED className="lost-1" />
+                    </SectionColumns>
+                  </SNEDSlide>
+                </div>
+                <div>
+                  <SNEDSlide>
+                    <SectionColumns>
+                      <SNEDSchoolByClusters className="lost-1-2" />
+                      <SNEDCompareByCluster className="lost-1-2" />
+                    </SectionColumns>
+                  </SNEDSlide>
+                </div>
                 <div>
                   <PSUNEMSlide>
                     <SectionColumns>
