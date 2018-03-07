@@ -34,7 +34,7 @@ class SNEDSchoolByClusters extends Section {
     const locale = i18n.language;
     const path = this.context.data.path_sned_indicators;
 
-    const title = t("Number of records by Cluster");
+    const title = t("Number of schools by Cluster");
     const classSvg = "exports-by-product";
 
     return (
