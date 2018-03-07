@@ -7,7 +7,7 @@ import { translate } from "react-i18next";
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
-import InfoLogoItem from "components/InfoLogoItem";
+import InfoLogoItemSNED from "components/InfoLogoItemSNED";
 import SourceNote from "components/SourceNote";
 
 class SNED extends Section {
@@ -47,70 +47,76 @@ class SNED extends Section {
     if (sned_indicators_data) {
       services = [
         {
-          logo: "public-transportation",
+          logo: "efectiveness-icon-01",
           value: sned_indicators_data.available
             ? numeral(
                 sned_indicators_data.data[0]["Avg efectiveness"],
                 locale
               ).format("0.00")
             : t("no_datum"),
-          verb: t("Avg efectiveness"),
-          title: t("Efectiveness")
+          verb: t("Average") + " " + t("Efectiveness"),
+          title: t("Efectiveness"),
+          description: t("geo_profile.education.sned.definitions.efectiveness")
         },
         {
-          logo: "educational-center",
+          logo: "overcoming-icon-01",
           value: sned_indicators_data.available
             ? numeral(
                 sned_indicators_data.data[0]["Avg overcoming"],
                 locale
               ).format("0.00")
             : t("no_datum"),
-          verb: t("Avg overcoming"),
-          title: t("overcoming")
+          verb: t("Average") + " " + t("Overcoming"),
+          title: t("Overcoming"),
+          description: t("geo_profile.education.sned.definitions.overcoming")
         },
         {
-          logo: "health-center",
+          logo: "initiative-icon-01",
           value: sned_indicators_data.available
             ? numeral(
                 sned_indicators_data.data[0]["Avg initiative"],
                 locale
               ).format("0.00")
             : t("no_datum"),
-          verb: t("Avg initiative"),
-          title: t("initiative")
+          verb: t("Average") + " " + t("Initiative"),
+          title: t("Initiative"),
+          description: t("geo_profile.education.sned.definitions.initiative")
         },
         {
-          logo: "market",
+          logo: "integration-icon-01",
           value: sned_indicators_data.available
             ? numeral(
                 sned_indicators_data.data[0]["Avg integration"],
                 locale
               ).format("0.00")
             : t("no_datum"),
-          verb: t("Avg integration"),
-          title: t("integration")
+          verb: t("Average") + " " + t("Integration"),
+          title: t("Integration"),
+          description: t("geo_profile.education.sned.definitions.integration")
         },
         {
-          logo: "atm",
+          logo: "improvement-icon-01",
           value: sned_indicators_data.available
             ? numeral(
                 sned_indicators_data.data[0]["Avg improvement"],
                 locale
               ).format("0.00")
             : t("no_datum"),
-          verb: t("Avg improvement"),
-          title: t("improvement")
+          verb: t("Average") + " " + t("Improvement"),
+          title: t("Improvement"),
+          description: t("geo_profile.education.sned.definitions.improvement")
         },
         {
-          logo: "sports-center",
+          logo: "fairness-icon-01",
           value: sned_indicators_data.available
             ? numeral(
                 sned_indicators_data.data[0]["Avg fairness"],
                 locale
               ).format("0.00")
             : t("no_datum"),
-          verb: t("Avg fairness"),
-          title: t("fairness")
+          verb: t("Average") + " " + t("Fairness"),
+          title: t("Fairness"),
+          description: t("geo_profile.education.sned.definitions.fairness")
         }
       ];
     }
@@ -119,11 +125,11 @@ class SNED extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("Performance evaluation in ")} {geo.name}
+            {t("Performance Evaluation") + " " + t("in") + " "} {geo.name}
           </span>
         </h3>
         <div className="info-logo-container">
-          {services.map((d, i) => <InfoLogoItem item={d} key={i} />)}
+          {services.map((d, i) => <InfoLogoItemSNED item={d} key={i} />)}
         </div>
         <SourceNote cube="sned" />
       </div>

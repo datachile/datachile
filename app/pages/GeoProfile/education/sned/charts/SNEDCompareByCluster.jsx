@@ -41,30 +41,55 @@ class SNEDCompareByCluster extends Section {
     ),
     (params, store) => {
       let geo = params;
-      geo.comuna = undefined;
-
-      return simpleDatumNeed(
-        "datum_sned_compare_with_parent",
-        "education_sned",
-        [
-          "Avg efectiveness",
-          "Avg overcoming",
-          "Avg initiative",
-          "Avg integration",
-          "Avg improvement",
-          "Avg fairness",
-          "Avg sned_score"
-        ],
-        {
-          drillDowns: [
-            ["Date", "Date", "Year"],
-            ["Cluster", "Cluster", "Stage 2"]
+      if (geo.comuna === undefined) {
+        geo.region = "chile";
+        return simpleDatumNeed(
+          "datum_sned_compare_with_parent",
+          "education_sned",
+          [
+            "Avg efectiveness",
+            "Avg overcoming",
+            "Avg initiative",
+            "Avg integration",
+            "Avg improvement",
+            "Avg fairness",
+            "Avg sned_score"
           ],
-          options: { parents: true }
-        },
-        "geo",
-        false
-      )(geo, store);
+          {
+            drillDowns: [
+              ["Date", "Date", "Year"],
+              ["Cluster", "Cluster", "Stage 2"]
+            ],
+            options: { parents: true }
+          },
+          "geo",
+          false
+        )(geo, store);
+      } else {
+        geo.comuna = undefined;
+        return simpleDatumNeed(
+          "datum_sned_compare_with_parent",
+          "education_sned",
+          [
+            "Avg efectiveness",
+            "Avg overcoming",
+            "Avg initiative",
+            "Avg integration",
+            "Avg improvement",
+            "Avg fairness",
+            "Avg sned_score"
+          ],
+          {
+            drillDowns: [
+              ["Date", "Date", "Year"],
+              ["Cluster", "Cluster", "Stage 2"]
+            ],
+            options: { parents: true }
+          },
+          "geo",
+          false
+        )(geo, store);
+      }
     }
   ];
 
@@ -194,7 +219,10 @@ class SNEDCompareByCluster extends Section {
             const country =
               geo.type !== "country"
                 ? datum_sned_compare_with_parent.data.map(item => {
-                    return { ...item, geo: geo.ancestors[0].caption };
+                    return {
+                      ...item,
+                      geo: geo.depth === 2 ? geo.ancestors[0].caption : "Chile"
+                    };
                   })
                 : [];
 

@@ -389,6 +389,7 @@
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
 
+  "Performance Evaluation": "Evaluación de Desempeño",
   "Presidential": "Presidencial",
   "PSU exams": "Personas que rindieron PSU",
   "PSU Results": "Resultados PSU",
@@ -933,6 +934,14 @@
   "positive": "positiva",
   "negative": "negativa",
   "disabilities": "discapacidades",
+
+  "Efectiveness": "Efectividad",
+  "Overcoming": "Superación",
+  "Initiative": "Iniciativa",
+  "Integration": "Integración",
+  "Improvement": "Mejoramiento",
+  "Fairness": "Igualdad de Oportunidades",
+
   "geo_profile": {
     "civics": {
       "congress": {
@@ -1040,6 +1049,16 @@
             "no_data":
               "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
           }
+        }
+      },
+      "sned": {
+        "definitions": {
+          "efectiveness": "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
+          "overcoming": "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
+          "initiative": "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. ",
+          "integration": "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
+          "improvement": "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
+          "fairness": " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
         }
       }
     },
