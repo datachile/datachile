@@ -152,6 +152,11 @@ export const sources = {
     url:
       "https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos",
     year: 2017
+  },
+  sned: {
+    title: "Sistema Nacional de Evaluación del Desempeño",
+    url: "http://www.sned.mineduc.cl/",
+    year: 2016
   }
 };
 export const featured_profiles = {
