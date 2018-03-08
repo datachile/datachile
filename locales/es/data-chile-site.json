@@ -79,6 +79,7 @@
   "Civics": "Cívica",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
+  "Comparison by Cluster": "Comparación por Cluster",
   "complaints": "denuncias",
   "Complaints By Crime": "Denuncias Por Delito",
   "Complaints Over Time": "Evolución de Denuncias",
@@ -362,6 +363,7 @@
   "National Profile": "Perfil Nacional",
   "NEM Performance By Administration":
     "Desempeño NEM por Tipo de Administración",
+  "Number of schools by Cluster": "Cantidad de escuelas por Cluster",
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of larceny complaints": "Cantidad de denuncias por hurto",
   "Number of complaints": "Cantidad de denuncias",
@@ -945,11 +947,14 @@
   "geo_profile": {
     "civics": {
       "congress": {
-        "text": "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}",
-        "note": "*Los elementos isolados de los gráficos representan a candidatos electos en dicha elección."
+        "text":
+          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}",
+        "note":
+          "*Los elementos isolados de los gráficos representan a candidatos electos en dicha elección."
       },
       "presidential": {
-        "text": "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+        "text":
+          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
       }
     },
     "warning": "Los datos que se muestran corresponden a {{caption}}",
@@ -1053,12 +1058,18 @@
       },
       "sned": {
         "definitions": {
-          "efectiveness": "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
-          "overcoming": "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
-          "initiative": "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. ",
-          "integration": "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
-          "improvement": "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
-          "fairness": " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
+          "efectiveness":
+            "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
+          "overcoming":
+            "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
+          "initiative":
+            "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. ",
+          "integration":
+            "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
+          "improvement":
+            "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
+          "fairness":
+            " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
         }
       }
     },
@@ -1277,11 +1288,11 @@
   },
 
   "Some previous definitions": "Algunas definiciones previas",
-  
+
   "Description": "Descripción",
   "Param": "Parámetro",
   "Type": "Tipo",
-  
+
   "documentation_api": {
     "title1": "Primeros Pasos",
     "title2": "Sintaxis",
@@ -1292,63 +1303,92 @@
     "title7": "Listado de Campos",
 
     "intro": {
-      "text1": "DataChile utiliza para su funcionamiento como capa lógica Mondrian-REST, que es un componente del lado del servidor que permite la creación de APIs HTTP para acceder a una base de datos especificando la estructura lógica de la información.",
-      "text2": "Para utilizar la API de DataChile, es necesario conocer algunos conceptos que facilitarán su uso, los cuáles explicaremos a continuación."
+      "text1":
+        "DataChile utiliza para su funcionamiento como capa lógica Mondrian-REST, que es un componente del lado del servidor que permite la creación de APIs HTTP para acceder a una base de datos especificando la estructura lógica de la información.",
+      "text2":
+        "Para utilizar la API de DataChile, es necesario conocer algunos conceptos que facilitarán su uso, los cuáles explicaremos a continuación."
     },
 
     "syntax": {
-      "text1": "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación.",
-      "text2": "Para un cubo en particular, obtiene los miembros pertenecientes a un determinado level presente en una dimension."
+      "text1":
+        "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación.",
+      "text2":
+        "Para un cubo en particular, obtiene los miembros pertenecientes a un determinado level presente en una dimension."
     },
 
     "definitions": {
-      "cube": "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
-      "cube2": "En DataChile, cada dataset está agrupado en un cubo. El diseño del lenguaje de consultas a la API está centrado en torno a 3 operaciones: <span class='code'>Drilldown</span>, <span class='code'>Cut</span>, <span class='code'>Measure</span>. Para ejemplificar los conceptos, se utilizará el dataset <span class='code'>exports</span> -que representa las exportaciones de Chile- como referencia.",
-      "drilldown": "Un <span class='code'>drilldown</span> permite pasar de un nivel de detalle al siguiente. La estructura de un drilldown para las consultas en el cubo es <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
-      "member": "Un <span class='code'>member</span> es un valor dentro de una dimensión determinada por un set de valores. La jerarquía género tiene los miembros 'Masculino' y 'Femenino'. 'Concepción', 'Bío-Bío' y 'Chile' son todos miembros de la jerarquía Geográfica.",
-      "hierarchy": "Una <span class='code'>hierarchy</span> es un conjunto de miembros organizados estructuradamente para su análisis. Por ejemplo, la jerarquía Geográfica consiste de nombre de comuna, regiones y país. La jerarquización permite obtener valores intermedios: Total de exportaciones de la región de Valparaíso es la suma de todas las exportaciones de las comunas de dicha región.",
-      "level": "Un <span class='code'>level</span> es un conjunto de miembros que se encuentran a la misma distancia del inicio de la jerarquía. Concepción, Tucapel, Arica, se encuentran en el mismo level.",
-      "dimension": "Una <span class='code'>dimension</span> es un conjunto de jerarquías que discriminan el mismo atributo (Por ejemplo, el día que se produjo una exportación)",
-      "measure": "Variable escalar asociada con un valor particular en los datos del cubo.",
-      "cut": "Permite al usuario especificar un filtro, que restringe las tuplas disponibles del cubo. Por ejemplo, en <span class='code'>exports</span>, cortar el cubo en torno al miembro <span class='code'>[Region].[8]</span> en la dimensión <span class='code'>Geography</span>, sólo considerará celdas de la región de Bío-Bío. Múltiples cortes pueden ser especificados en una simple consulta.",
-      "nonempty": "Devuelve el conjunto de tuplas que no están vacías de un especificado conjunto, basado en el producto cartesiano del conjunto especificado.",
-      "distinct": "Evalúa un conjunto específico, elimina tuplas duplicadas del conjunto y devuelve el conjunto resultante.",
+      "cube":
+        "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
+      "cube2":
+        "En DataChile, cada dataset está agrupado en un cubo. El diseño del lenguaje de consultas a la API está centrado en torno a 3 operaciones: <span class='code'>Drilldown</span>, <span class='code'>Cut</span>, <span class='code'>Measure</span>. Para ejemplificar los conceptos, se utilizará el dataset <span class='code'>exports</span> -que representa las exportaciones de Chile- como referencia.",
+      "drilldown":
+        "Un <span class='code'>drilldown</span> permite pasar de un nivel de detalle al siguiente. La estructura de un drilldown para las consultas en el cubo es <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
+      "member":
+        "Un <span class='code'>member</span> es un valor dentro de una dimensión determinada por un set de valores. La jerarquía género tiene los miembros 'Masculino' y 'Femenino'. 'Concepción', 'Bío-Bío' y 'Chile' son todos miembros de la jerarquía Geográfica.",
+      "hierarchy":
+        "Una <span class='code'>hierarchy</span> es un conjunto de miembros organizados estructuradamente para su análisis. Por ejemplo, la jerarquía Geográfica consiste de nombre de comuna, regiones y país. La jerarquización permite obtener valores intermedios: Total de exportaciones de la región de Valparaíso es la suma de todas las exportaciones de las comunas de dicha región.",
+      "level":
+        "Un <span class='code'>level</span> es un conjunto de miembros que se encuentran a la misma distancia del inicio de la jerarquía. Concepción, Tucapel, Arica, se encuentran en el mismo level.",
+      "dimension":
+        "Una <span class='code'>dimension</span> es un conjunto de jerarquías que discriminan el mismo atributo (Por ejemplo, el día que se produjo una exportación)",
+      "measure":
+        "Variable escalar asociada con un valor particular en los datos del cubo.",
+      "cut":
+        "Permite al usuario especificar un filtro, que restringe las tuplas disponibles del cubo. Por ejemplo, en <span class='code'>exports</span>, cortar el cubo en torno al miembro <span class='code'>[Region].[8]</span> en la dimensión <span class='code'>Geography</span>, sólo considerará celdas de la región de Bío-Bío. Múltiples cortes pueden ser especificados en una simple consulta.",
+      "nonempty":
+        "Devuelve el conjunto de tuplas que no están vacías de un especificado conjunto, basado en el producto cartesiano del conjunto especificado.",
+      "distinct":
+        "Evalúa un conjunto específico, elimina tuplas duplicadas del conjunto y devuelve el conjunto resultante.",
       "parents": "",
       "sparse": ""
     },
 
     "descriptions": {
-      "drilldown[]": "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
+      "drilldown[]":
+        "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
       "measures[]": "",
-      "cut[]": "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <span class='code'>Level ID</span>. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
+      "cut[]":
+        "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <span class='code'>Level ID</span>. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
       "nonempty": "",
       "distinct": "",
-      "parents": "En caso de encontrarse en un nivel de profundidad mayor a 1, obtiene el ID y nombre de los niveles padres.",
-      "sparse": "Verifica si una determinada tupla NO está en la agregación, no se incluye en la tabla resultante.",
+      "parents":
+        "En caso de encontrarse en un nivel de profundidad mayor a 1, obtiene el ID y nombre de los niveles padres.",
+      "sparse":
+        "Verifica si una determinada tupla NO está en la agregación, no se incluye en la tabla resultante.",
       "pagenote": {
-        "text1": "1. Si se hace la consulta directamente en URL, se debe reemplazar & por %26 para evitar problemas de parseo del corte."
+        "text1":
+          "1. Si se hace la consulta directamente en URL, se debe reemplazar & por %26 para evitar problemas de parseo del corte."
       }
     },
 
     "examples": {
-      "text1": "Los siguientes ejemplos ilustran cómo son construidas las consultas, restringiendo la búsqueda con drilldowns, cuts y measures. Aquí se muestra el aspecto de la URL y el JSON devuelto cuando se pregunta ¿Qué número de personas está en cada previsión de salud en Concepción?"
+      "text1":
+        "Los siguientes ejemplos ilustran cómo son construidas las consultas, restringiendo la búsqueda con drilldowns, cuts y measures. Aquí se muestra el aspecto de la URL y el JSON devuelto cuando se pregunta ¿Qué número de personas está en cada previsión de salud en Concepción?"
     },
 
     "complex": {
-      "text1": "Estos criterios se pueden combinar para definir consultas robustas. Aquí están algunos ejemplos.",
-      "text2": "Seleccionar los valores de las regiones de Valparaíso (ID 5) y de Coquimbo (ID 4)",
-      "text3": "Para realizar cortes por más de un ID, cada cut debe estar separado por <span class='code'>,</span> dentro de <span class='code'>{}</span>.",
-      "text4": "Obtener las importaciones de todas las comunas de Chile entre los años 2013 y 2015."
+      "text1":
+        "Estos criterios se pueden combinar para definir consultas robustas. Aquí están algunos ejemplos.",
+      "text2":
+        "Seleccionar los valores de las regiones de Valparaíso (ID 5) y de Coquimbo (ID 4)",
+      "text3":
+        "Para realizar cortes por más de un ID, cada cut debe estar separado por <span class='code'>,</span> dentro de <span class='code'>{}</span>.",
+      "text4":
+        "Obtener las importaciones de todas las comunas de Chile entre los años 2013 y 2015."
     },
 
     "client-python": {
-      "text1": "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
-      "text2": "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
-      "text3": "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+      "text1":
+        "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
+      "text2":
+        "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
+      "text3":
+        "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
     },
 
     "datasets": {
-      "text1": "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+      "text1":
+        "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
     },
 
     "url": {

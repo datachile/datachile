@@ -69,7 +69,6 @@ import SNED from "./education/sned/charts/SNED";
 import SNEDSchoolByClusters from "./education/sned/charts/SNEDSchoolByClusters";
 import SNEDCompareByCluster from "./education/sned/charts/SNEDCompareByCluster";
 
-
 import PSUNEMSlide from "./education/performance/PSUNEMSlide";
 import PSUNEMScatter from "./education/performance/charts/PSUNEMScatter";
 
@@ -755,12 +754,13 @@ class GeoProfile extends Component {
                 id="education"
                 sections={[
                   {
-                    name: t("SNED"),
-                    slides: [t("SNED"), t("SNED")]
-                  },
-                  {
                     name: t("Performance"),
-                    slides: [t("PSU vs NEM"), t("PSU By Sex")]
+                    slides: [
+                      t("Performance Evaluation"),
+                      t("Clusters"),
+                      t("PSU vs NEM"),
+                      t("PSU By Sex")
+                    ]
                   },
                   {
                     name: t("Enrollment"),

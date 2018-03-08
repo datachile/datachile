@@ -104,7 +104,12 @@ class SNEDCompareByCluster extends Section {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   componentDidMount() {
+    const { t } = this.props;
     const selector = [
       "Avg sned_score",
       "Avg efectiveness",
@@ -116,7 +121,9 @@ class SNEDCompareByCluster extends Section {
     ];
 
     const variations = selector.map((item, key) => {
-      return { id: key, title: item, value: item };
+      let ms =
+        t("Average") + " " + t(this.capitalizeFirstLetter(item.split(" ")[1]));
+      return { id: key, title: ms, value: item };
     });
 
     this.setState({
@@ -142,8 +149,8 @@ class SNEDCompareByCluster extends Section {
     const { datum_sned_compare_with_parent } = this.context.data;
     const path = this.context.data.path_sned_compare;
 
-    const title = t("Compare by Cluster");
-    const classSvg = "compare-by-cluster";
+    const title = t("Comparison by Cluster");
+    const classSvg = "comparation-by-cluster";
 
     return (
       <div className={className}>
@@ -186,7 +193,7 @@ class SNEDCompareByCluster extends Section {
             },
             yConfig: {
               title: this.state.selectedObj.value,
-              tickFormat: tick => numeral(tick, locale).format("0.00")
+              tickFormat: tick => numeral(tick, locale).format("0")
             },
             xSort: (a, b) => (b["Stage 2"] > a["Stage 2"] ? -1 : -1),
             y: this.state.selectedObj.value,
