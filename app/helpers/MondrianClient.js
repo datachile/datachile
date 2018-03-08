@@ -585,16 +585,19 @@ function simpleDatumNeed(
   return (params, store) => {
     let obj = {};
     if (profile !== "rd_survey") {
-      obj =
-        profile === "geo" || profile === "geo_no_cut"
-          ? getGeoObject(params)
-          : getLevelObject(params);
+      obj = profile.includes("geo")
+        ? getGeoObject(params)
+        : getLevelObject(params);
     }
 
     if (
       ["death_causes", "disabilities", "health_access"].includes(cube) &&
       obj.type === "comuna"
     ) {
+      obj = { ...obj.ancestor };
+    }
+
+    if (profile === "geo_by_region") {
       obj = { ...obj.ancestor };
     }
 
@@ -612,6 +615,7 @@ function simpleDatumNeed(
         // Add cuts in query
         switch (profile) {
           case "geo":
+          case "geo_by_region":
             query = geoCut(obj, "Geography", q, store.i18n.locale);
             break;
           case "country":

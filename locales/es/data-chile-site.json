@@ -49,6 +49,7 @@
   "Average PSU": "Promedio PSU",
   "Average Retention": "Retención Promedio",
   "Average Score": "Puntaje promedio",
+  "Average SNED Score": "Puntaje Promedio SNED",
   "Average age": "Edad promedio",
   "Average psu": "Promedio PSU",
   "Avg anual payment 2016": "Avg anual payment 2016",
@@ -456,11 +457,13 @@
   "Retention by Program": "Retención por Programa",
   "Role": "Rol",
   "Rural households": "Hogares rurales",
+  "Rural Schools": "Escuelas Rurales",
   "Salaries": "Salarios",
   "Salaries By Category": "Salarios por Categoría",
   "Salaries By Occupation": "Salarios por ocupación",
   "Sales in ": "Ventas en ",
   "School": "Escuela",
+  "Schools": "Escuelas",
   "School By Enrollment": "Escuela según matrícula",
   "Search a location, industry, product, career, etc":
     "Busque lugares, industrias, productos…",
@@ -497,6 +500,7 @@
   "Smart TV": "Smart TV",
   "Soon": "Próximamente",
   "Source": "Fuente",
+  "Special Education Schools": "Escuelas de Educación Especial",
   "Specialized Healthcare": "Atención con Médicos Especialistas",
   "Specialized Healthcares": "Cuidados médicos especializados",
   "Sponsored by": "Patrocinado por",
@@ -1057,6 +1061,7 @@
         }
       },
       "sned": {
+        "text1": "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}.",
         "definitions": {
           "efectiveness":
             "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",

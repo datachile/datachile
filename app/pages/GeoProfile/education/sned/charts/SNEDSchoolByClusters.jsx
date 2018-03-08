@@ -49,7 +49,6 @@ class SNEDSchoolByClusters extends Section {
           msrName="Number of records"
           drilldowns={["Stage 1a", "Stage 1b", "Stage 2"]}
           config={{
-            //label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
             legendConfig: {
               label: false,
               shapeConfig: {
@@ -58,14 +57,17 @@ class SNEDSchoolByClusters extends Section {
                 fill: d => productsColorScale("hs" + d["ID Stage 1a"])
               }
             },
+            legendTooltip: {
+              title: d => d["Stage 1a"]
+            },
             shapeConfig: {
               fill: d => productsColorScale("hs" + d["ID Stage 1a"])
             },
             tooltipConfig: {
-              title: d => d["Stage 1a"],
               body: d =>
-                "US" +
-                numeral(d["Number of records"], locale).format("$ (USD 0 a)") +
+                numeral(d["Number of records"], locale).format("0") +
+                " " +
+                t("Schools") +
                 "<br/><a>" +
                 t("tooltip.to_profile") +
                 "</a>"
@@ -74,9 +76,9 @@ class SNEDSchoolByClusters extends Section {
             totalConfig: {
               text: d =>
                 "Total: " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "(0.[00])"
-                )
+                numeral(getNumberFromTotalString(d.text), locale).format("0") +
+                " " +
+                t("Schools")
             },
             yConfig: {
               title: t("US$"),
