@@ -40,9 +40,7 @@ class SNEDCompareByCluster extends Section {
       }
     ),
     (params, store) => {
-      let geo = params;
-      if (geo.comuna === undefined) {
-        geo.region = "chile";
+      if (params.comuna === undefined) {
         return simpleDatumNeed(
           "datum_sned_compare_with_parent",
           "education_sned",
@@ -62,11 +60,10 @@ class SNEDCompareByCluster extends Section {
             ],
             options: { parents: true }
           },
-          "geo",
+          "geo_no_cut",
           false
-        )(geo, store);
+        )(params, store);
       } else {
-        geo.comuna = undefined;
         return simpleDatumNeed(
           "datum_sned_compare_with_parent",
           "education_sned",
@@ -86,9 +83,9 @@ class SNEDCompareByCluster extends Section {
             ],
             options: { parents: true }
           },
-          "geo",
+          "geo_by_region",
           false
-        )(geo, store);
+        )(params, store);
       }
     }
   ];
