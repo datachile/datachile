@@ -10,7 +10,7 @@ import {
   getNumberFromTotalString
 } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
-import { productsColorScale } from "helpers/colors";
+import { snedColorScale, snedComparisonColorScale } from "helpers/colors";
 
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
@@ -170,15 +170,12 @@ class SNEDCompareByCluster extends Section {
             groupBy: ["geo"],
             label: d => d["geo"],
             shapeConfig: {
-              fill: d => {
-                return geo.type === "country"
-                  ? "#86396B"
-                  : d["geo"] == geo.ancestors[0].caption
-                    ? "#7986CB"
-                    : geo.type === "region"
-                      ? productsColorScale(d["geo"])
-                      : "#86396B";
-              },
+              fill: d =>
+                geo.type === "country"
+                  ? snedColorScale("sned" + d["ID Stage 1a"])
+                  : geo.name === d["geo"]
+                    ? snedColorScale("sned" + d["ID Stage 1a"])
+                    : snedComparisonColorScale("sned" + d["ID Stage 1a"]),
               label: false
             },
             //label: d => d["Election Type"] + " - " + d["Year"],
@@ -192,7 +189,7 @@ class SNEDCompareByCluster extends Section {
               title: this.state.selectedObj.title,
               tickFormat: tick => numeral(tick, locale).format("0")
             },
-            xSort: (a, b) => (b["Stage 2"] > a["Stage 2"] ? -1 : -1),
+            xSort: (a, b) => (b["ID Stage 1b"] > a["ID Stage 1b"] ? -1 : 1),
             y: this.state.selectedObj.value,
             discrete: "x",
 
@@ -207,12 +204,15 @@ class SNEDCompareByCluster extends Section {
                 "</div>"
             },
             legendTooltip: {
+              title: d => d["Stage 1a"] + "<br />" + d["geo"],
               body: d => "<div></div>"
             },
             legendConfig: {
+              label: d => d["geo"] + " - " + d["Stage 1a"],
               shapeConfig: {
                 width: 25,
-                height: 25
+                height: 25,
+                backgroundImage: "/images/legend/education/type.png"
               }
             }
           }}
