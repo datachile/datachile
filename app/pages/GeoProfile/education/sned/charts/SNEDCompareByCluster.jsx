@@ -189,7 +189,7 @@ class SNEDCompareByCluster extends Section {
               title: false
             },
             yConfig: {
-              title: this.state.selectedObj.value,
+              title: this.state.selectedObj.title,
               tickFormat: tick => numeral(tick, locale).format("0")
             },
             xSort: (a, b) => (b["Stage 2"] > a["Stage 2"] ? -1 : -1),
