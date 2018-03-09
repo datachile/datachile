@@ -54,7 +54,6 @@ class SNEDSchoolByClusters extends Section {
               shapeConfig: {
                 width: 25,
                 height: 25,
-                fill: d => productsColorScale("hs" + d["ID Stage 1a"]),
                 backgroundImage: "/images/legend/education/type.png"
               }
             },
@@ -62,7 +61,7 @@ class SNEDSchoolByClusters extends Section {
               title: d => d["Stage 1a"]
             },
             shapeConfig: {
-              fill: d => snedColorScale("hs" + d["ID Stage 1a"])
+              fill: d => snedColorScale("sned" + d["ID Stage 1a"])
             },
             tooltipConfig: {
               body: d =>
