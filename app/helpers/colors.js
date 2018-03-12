@@ -548,3 +548,15 @@ export const INDEPENDENT_COLORS = [
 ];
 
 export const independentColorScale = scaleOrdinal().range(INDEPENDENT_COLORS);
+
+export const snedColorScale = scaleOrdinal().range([
+  "#0D659D",
+  "#1BAAC0",
+  "#9AEBC6"
+]);
+
+export const snedComparisonColorScale = scaleOrdinal().range([
+  "#3698BA",
+  "#4CCCCC",
+  "#8AC1A5"
+]);

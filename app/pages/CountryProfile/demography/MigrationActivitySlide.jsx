@@ -64,7 +64,7 @@ class MigrationActivitySlide extends Section {
         const total = sumBy(data, "Number of visas");
         const data_sorted = sortBy(data, "Number of visas");
 
-        const visa_students = data.find(d => d["ID Activity"] == 2) || zero;
+        const visa_students = data.find(d => d["ID Activity"] == 5) || zero;
         const visa_first = data_sorted.pop() || zero;
         const visa_second = data_sorted.pop() || zero;
 

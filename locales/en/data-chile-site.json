@@ -337,6 +337,7 @@
     "success": "Successfully Signed Up"
   },
   "Smart TV": "Smart TV",
+  "Sned_score": "SNED Score",
   "Soon": "Soon",
   "Source": "Source",
   "Specialized Healthcare": "Specialized Healthcare",
@@ -843,6 +844,16 @@
               "<p>There is no data for {{geo.caption}} in PSU records {{year.last}}.</p>"
           }
         }
+      },
+      "sned": {
+        "definitions": {
+          "efectiveness": "Educational result obtained by the establishment in relation with the population served.",
+          "overcoming": "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
+          "initiative": "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico.",
+          "integration": "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
+          "improvement": "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
+          "fairness": " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
+        }
       }
     },
     "housing": {
@@ -1052,9 +1063,10 @@
     "title2": "Syntax",
     "title3": "Data call example",
     "title4": "Complex Combinations",
-    "title5": "Python Client by Javascript/Typescript",
-    "title6": "Python Client by Python",
+    "title5": "Client for Javascript/Typescript",
+    "title6": "Client for Python",
     "title7": "Field List",
+    "title8": "Client for R",
 
     "intro": {
       "text1":

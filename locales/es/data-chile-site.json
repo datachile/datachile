@@ -54,6 +54,7 @@
   "Average PSU": "Promedio PSU",
   "Average Retention": "Retención Promedio",
   "Average Score": "Puntaje promedio",
+  "Average SNED Score": "Puntaje Promedio SNED",
   "Average age": "Edad promedio",
   "Average psu": "Promedio PSU",
   "Avg anual payment 2016": "Avg anual payment 2016",
@@ -86,6 +87,7 @@
   "Civics": "Cívica",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
+  "Comparison by Cluster": "Comparación por Cluster",
   "complaints": "denuncias",
   "Complaints By Crime": "Denuncias Por Delito",
   "Complaints Over Time": "Evolución de Denuncias",
@@ -374,6 +376,7 @@
   "No datasets selected": "No hay datasets seleccionados",
   "NEM Performance By Administration":
     "Desempeño NEM por Tipo de Administración",
+  "Number of schools by Cluster": "Cantidad de escuelas por Cluster",
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of larceny complaints": "Cantidad de denuncias por hurto",
   "Number of complaints": "Cantidad de denuncias",
@@ -401,6 +404,7 @@
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
 
+  "Performance Evaluation": "Evaluación de Desempeño",
   "Presidential": "Presidencial",
   "PSU exams": "Personas que rindieron PSU",
   "PSU Results": "Resultados PSU",
@@ -466,11 +470,13 @@
   "Role": "Rol",
   "Rows": "Filas",
   "Rural households": "Hogares rurales",
+  "Rural Schools": "Escuelas Rurales",
   "Salaries": "Salarios",
   "Salaries By Category": "Salarios por Categoría",
   "Salaries By Occupation": "Salarios por ocupación",
   "Sales in ": "Ventas en ",
   "School": "Escuela",
+  "Schools": "Escuelas",
   "School By Enrollment": "Escuela según matrícula",
   "Search a location, industry, product, career, etc":
     "Busque lugares, industrias, productos…",
@@ -505,8 +511,10 @@
     "success": "Successfully Signed Up"
   },
   "Smart TV": "Smart TV",
+  "Sned_score": "Puntuación SNED",
   "Soon": "Próximamente",
   "Source": "Fuente",
+  "Special Education Schools": "Escuelas de Educación Especial",
   "Specialized Healthcare": "Atención con Médicos Especialistas",
   "Specialized Healthcares": "Cuidados médicos especializados",
   "Sponsored by": "Patrocinado por",
@@ -948,6 +956,14 @@
   "positive": "positiva",
   "negative": "negativa",
   "disabilities": "discapacidades",
+
+  "Efectiveness": "Efectividad",
+  "Overcoming": "Superación",
+  "Initiative": "Iniciativa",
+  "Integration": "Integración",
+  "Improvement": "Mejoramiento",
+  "Fairness": "Igualdad de Oportunidades",
+
   "geo_profile": {
     "civics": {
       "congress": {
@@ -1058,6 +1074,23 @@
             "no_data":
               "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
           }
+        }
+      },
+      "sned": {
+        "text1": "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}.",
+        "definitions": {
+          "efectiveness":
+            "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
+          "overcoming":
+            "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
+          "initiative":
+            "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. ",
+          "integration":
+            "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
+          "improvement":
+            "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
+          "fairness":
+            " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
         }
       }
     },

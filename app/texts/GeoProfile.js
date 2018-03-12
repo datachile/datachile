@@ -22,6 +22,42 @@ function getRank(data, msrName, dimName, t) {
   return output;
 }
 
+// EDUCATION SECTION
+
+export function SNED(data, locale) {
+  if (data) {
+    const rural = data.data.find(item => item["ID Stage 1a"] === 2);
+    const urban = data.data.find(item => item["ID Stage 1a"] === 1);
+    const special = data.data.find(item => item["ID Stage 1a"] === 3);
+    const total = data.data.reduce((all, item) => {
+      return all + item["Number of records"];
+    }, 0);
+    return {
+      rural: {
+        n: rural["Number of records"],
+        perc: numeral(rural["Number of records"] / total, locale).format(
+          "0.00%"
+        )
+      },
+      urban: {
+        n: urban["Number of records"],
+        perc: numeral(urban["Number of records"] / total, locale).format(
+          "0.00%"
+        )
+      },
+      special: {
+        n: special["Number of records"],
+        perc: numeral(special["Number of records"] / total, locale).format(
+          "0.00%"
+        )
+      },
+      total
+    };
+  } else {
+    return false;
+  }
+}
+
 // ECONOMY SECTION
 
 function SpendingByIndustry(data, msrName, locale, t) {

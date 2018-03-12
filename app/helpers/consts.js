@@ -127,8 +127,8 @@ export const sources = {
     url: "http://www.servel.cl/",
     min_year: 2009,
     year: 2017,
-    presidential_election_year: 2013,
-    senators_election_year: [2009, 2013],
+    presidential_election_year: 2017,
+    senators_election_year: [2013, 2017],
     mayor_election_year: 2016
   },
   election_participation: {
@@ -152,6 +152,11 @@ export const sources = {
     url:
       "https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos",
     year: 2017
+  },
+  sned: {
+    title: "Sistema Nacional de Evaluación del Desempeño",
+    url: "http://www.sned.mineduc.cl/",
+    year: 2016
   }
 };
 export const featured_profiles = {

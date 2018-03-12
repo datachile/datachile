@@ -64,8 +64,9 @@ class TreemapStacked extends React.Component {
                 ...config,
                 height: 500,
                 data: path,
-                label: d => d[drilldowns[1]],
-                groupBy: ["ID " + drilldowns[0], "ID " + drilldowns[1]],
+                label: d => d[drilldowns[drilldowns.length - 1]],
+                groupBy: drilldowns.map(dd => "ID " + dd),
+                //groupBy: ["ID " + drilldowns[0], "ID " + drilldowns[1]],
                 sum: d => d[msrName],
                 time: "Year"
               }}

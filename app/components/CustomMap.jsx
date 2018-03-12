@@ -46,7 +46,7 @@ class CustomMap extends React.Component {
             topojsonKey: "id",
             fitKey: "id",
 
-            ocean: "#212121",
+            //ocean: "#212121",
             shapeConfig: {
               Path: {
                 //fill: d => "#0F0F0F"
