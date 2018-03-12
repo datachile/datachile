@@ -5,7 +5,7 @@ import TreemapStacked from "components/TreemapStacked";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { regionsColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
@@ -74,14 +74,13 @@ class MigrationByRegion extends Section {
                 t("visas")
             },
             shapeConfig: {
-              fill: d => ordinalColorScale(d["ID Region"])
+              fill: d => regionsColorScale(d["ID Region"])
+            },
+            legendTooltip: {
+              title: d => d["Region"]
             },
             tooltipConfig: {
-              title: d => {
-                return d["Comuna"] instanceof Array
-                  ? d["Region"]
-                  : d["Comuna"] + " - " + d["Region"];
-              },
+              title: d => d["Comuna"],
               body: d =>
                 numeral(d["Number of visas"], locale).format("( 0,0 )") +
                 " " +
@@ -89,7 +88,12 @@ class MigrationByRegion extends Section {
             },
             legendConfig: {
               label: false,
-              shapeConfig: false
+              shapeConfig: {
+                width: 25,
+                height: 25,
+                backgroundImage: d =>
+                  "/images/legend/region/" + d["ID Region"] + ".png"
+              }
             },
             yConfig: {
               title: t("Number of visas"),
