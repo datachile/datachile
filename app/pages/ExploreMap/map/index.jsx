@@ -10,6 +10,7 @@ import Nav from "components/Nav";
 import MapSidebar from "./MapSidebar";
 import MapContent from "./MapContent";
 import MapLevelSelector from "./MapLevelSelector";
+import MapScaleSelector from "./MapScaleSelector";
 import MapOptions from "./MapOptions";
 
 import { requestData, requestMembers } from "../actions.js";
@@ -77,6 +78,7 @@ class ExploreMap extends React.Component {
                     />
                     <div className="map-options-row">
                       <MapLevelSelector />
+                      <MapScaleSelector />
                       <MapOptions />
                     </div>
                     <MapContent />
