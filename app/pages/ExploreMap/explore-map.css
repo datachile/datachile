@@ -28,6 +28,10 @@
           lost-flex-container: row;
           margin-bottom: calc(var(--gutter)/2);
         }
+        & .map-options-footer {
+          display: flex;
+          flex-direction: row;
+        }
         & .explore-map-loading {
           position: absolute;
           top: 0;

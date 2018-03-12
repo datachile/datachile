@@ -21,9 +21,9 @@ class MapScaleSelector extends React.Component {
     }
 
     return (
-      <div className="map-switch-options">
-        <p className="map-switch-text">{t("Visualize by")}</p>
-        <div className="map-switch-options-container">
+      <div className="map-select-options">
+        <p className="map-select-text">{t("Visualize by")}</p>
+        <div className="map-select-options-container">
           <a
             className={`toggle ${mapScale === "linear" ? "selected" : ""}`}
             onClick={evt => setMapScale("linear")}

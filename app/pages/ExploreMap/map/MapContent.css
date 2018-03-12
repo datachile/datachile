@@ -1,5 +1,6 @@
 .map-content {
   lost-flex-container: row;
+  //justify-content: center;
   & .map-color-scale {
     lost-column: 1/5 2;
     background-color: var(--snow);
@@ -23,6 +24,9 @@
   }
   & .map-render {
     lost-column: 4/5 2;
+    &.no-data{
+      lost-column: 1 2;
+    }
     & > svg,
     & .d3plus-geomap {
       display: block;
@@ -32,6 +36,7 @@
     & .d3plus-geomap-control {
       left: auto !important;
       right: 0 !important;
+      
       & .zoom-control {
         color: var(--nice-blue) !important;
         border-color: var(--darker-gray) !important;

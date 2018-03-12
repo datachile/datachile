@@ -1,15 +1,17 @@
-.map-switch-options {
-    lost-column: 1/3 2;
-    lost-align: left;
+.map-select-options {
+    lost-column: 1/4;
+    lost-align: right;
     lost-flex-container: row;
-    & .map-switch-text {
+    & .map-select-text {
       width: 100%;
+      text-align: right;
+      margin-right: 5px;
       text-transform: uppercase;
       color: var(--gray-dark);
       font-size: 13px;
       font-family: var(--font-family-text);
     }
-    & .map-switch-options-container {
+    & .map-select-options-container {
       lost-flex-container: row;
       & .toggle {
         font-family: var(--font-family-text);

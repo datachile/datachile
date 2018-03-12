@@ -1,8 +1,8 @@
 .map-api-call {
-  lost-column: 4/5;
+  lost-column: 5/5;
   lost-flex-container: row;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 25px;
   & .label-container {
     lost-column: 1/5 2;
     text-align: right;
@@ -18,7 +18,7 @@
     lost-column: 4/5 2;
     & input {
       height: 32px;
-      width: 100%;
+      width: 90%;
       font-family: var(--font-family-text);
       background-color: var(--snow);
       text-align: center;

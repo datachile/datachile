@@ -8,9 +8,12 @@ import { MAP_SCALE_COLORS } from "helpers/colors";
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
 import MapYearSelector from "./MapYearSelector";
-import MapApiCall from "./MapApiCall";
 
 import NoDataAvailable from "components/NoDataAvailable";
+
+import MapScaleSelector from "./MapScaleSelector";
+import MapOptions from "./MapOptions";
+import MapApiCall from "./MapApiCall";
 
 import "./MapContent.css";
 
@@ -29,10 +32,10 @@ class MapContent extends React.Component {
       <div class='tooltip-data-value'>${str}</div>
       <div class='tooltip-data-title'>${mapTitle} ${t(" in ")} ${mapYear}</div>
     </div`;
-  }
-  
-  componentWillUpdate() {
-    const {
+	}
+
+	componentWillUpdate() {
+		const {
 			t,
 			i18n,
 			mapTopic,
@@ -43,16 +46,15 @@ class MapContent extends React.Component {
 			dataRegion,
 			dataComuna
 		} = this.props;
-    
-    dataRegion.filter(item => item[msrName]).length === 0
-			? this.setState({ show: false })
-			: this.setState({ show: true });
-  }
+		//console.log(dataRegion)
+	}
 
 	render() {
 		const {
 			t,
 			i18n,
+			lenRegion,
+			lenComuna,
 			mapTopic,
 			msrName,
 			mapLevel,
@@ -169,12 +171,13 @@ class MapContent extends React.Component {
 
 		return (
 			<div className="map-content">
-				{this.state.show ? <svg className="map-color-scale" /> : <div />}
-				<div className="map-render">
-					{this.state.show ? <Geomap config={config} /> : <NoDataAvailable />}
+				{lenRegion > 0 ? <svg className="map-color-scale" /> : <div />}
+				<div className={lenRegion === 0 ? `map-render no-data`: `map-render`}>
+					{lenRegion > 0 ? <Geomap config={config} /> : <NoDataAvailable />}
 				</div>
-				{this.state.show ? <MapYearSelector />: <div />}
-				<MapApiCall />
+				{lenRegion > 0 ? <MapYearSelector /> : <div />}
+				<MapScaleSelector />
+                      <MapApiCall />
 			</div>
 		);
 	}
@@ -199,6 +202,17 @@ const mapStateToProps = (state, ownProps) => {
 		mapScale: state.map.params.scale,
 		mapYear: state.map.params.year,
 		mapTitle: state.map.title,
+
+		lenRegion: state.map.results.data.region
+			? state.map.results.data.region.filter(
+					item => item[state.map.params.measure.value]
+			  ).length
+			: 0,
+		lenComuna: state.map.results.data.comuna
+			? state.map.results.data.comuna.filter(
+					item => item[state.map.params.measure.value]
+			  ).length
+			: 0,
 
 		dataRegion: state.map.results.data.region || [],
 		dataComuna: state.map.results.data.comuna || []
