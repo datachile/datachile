@@ -4,7 +4,7 @@ const mapParamsInitialState = {
 	cuts: {},
 	level: "region",
 	measure: { value: "" },
-	scale: "linear",
+	scale: "log",
 	selector: {},
 	topic: { value: "" },
 	year: 2015
