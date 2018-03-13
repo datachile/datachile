@@ -7,25 +7,34 @@ import { combineAndFlatDatasets } from "helpers/map";
 
 import "../../../../node_modules/react-table/react-table.css";
 
+import NoDataAvailable from "components/NoDataAvailable";
+
 import "./DataContent.css";
 
 class DataContent extends Component {
-  render() {
-    const { t, datasets = [], pivotType } = this.props;
+	render() {
+		const { t, datasets = [], pivotType } = this.props;
 
 		if (datasets.length == 0) {
 			return (
 				<div className="data-content">
-					<p>{t("No datasets selected")}.</p>
+					<p>
+						<NoDataAvailable message={t("No datasets selected")} />
+					</p>
 				</div>
 			);
 		}
 
 		const flattenedData = combineAndFlatDatasets(datasets, pivotType);
 
-		console.log(flattenedData);
-		const columns = flattenedData.fields.map(h => ({
-			Header: h.split("_").length > 1 ? h.split("_").splice(1).join(" ") : h,
+    const columns = flattenedData.fields.map(h => ({
+			Header:
+				h.split("_").length > 1
+					? h
+							.split("_")
+							.splice(1)
+							.join(" ")
+					: h,
 			accessor: h,
 			width: 180
 		}));

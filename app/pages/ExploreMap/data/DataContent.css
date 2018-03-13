@@ -1,5 +1,8 @@
 .data-content {
   font-family: var(--font-family-text);
+  & .no-data-available {
+    color: #ffffff;
+  }
   & .table {
     font-size: 12px;
     & .rt-thead {
