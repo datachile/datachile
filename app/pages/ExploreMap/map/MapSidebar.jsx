@@ -6,8 +6,11 @@ import { Icon } from "@blueprintjs/core";
 
 import CustomSelect from "components/CustomSelect";
 
-import { classnames, guessAcceptableName } from "helpers/formatters";
+import { classnames } from "helpers/formatters";
+import shorthash from "helpers/shorthash";
 import mondrianClient from "helpers/MondrianClient";
+
+import { permalinkToState } from "../actions.js";
 
 import "./MapSidebar.css";
 
@@ -44,6 +47,7 @@ class MapSidebar extends React.Component {
             cube.measures
               .filter(ms => availableMs.indexOf(ms.name) > -1)
               .map(ms => ({
+                hash: shorthash(ms.name),
                 cube: cube.name,
                 value: ms.name,
                 name: localeCaption(ms)
@@ -63,11 +67,13 @@ class MapSidebar extends React.Component {
             ) {
               for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
                 selectors.push({
+                  hash: shorthash(`[${dim.name}].[${hier.name}]`),
                   cube: cube.name,
                   name: localeCaption(dim),
                   value: `[${dim.name}].[${hier.name}]`,
                   isGeo: /country/i.test(dim.name),
                   levels: hier.levels.slice(1).map(lvl => ({
+                    hash: shorthash(lvl.name),
                     value: lvl.fullName,
                     name: localeCaption(lvl)
                   }))
@@ -97,6 +103,8 @@ class MapSidebar extends React.Component {
 
     const t = props.t;
 
+    console.log("MapSidebar is being created");
+
     this.topics = [
       { value: "economy", name: t("Economy") },
       { value: "education", name: t("Education") },
@@ -105,10 +113,38 @@ class MapSidebar extends React.Component {
       { value: "health", name: t("Health") },
       { value: "civics", name: t("Civics") }
     ].map(item => {
+      item.hash = shorthash(item.value);
       item.icon = `/images/profile-icon/icon-${item.value}.svg`;
       return item;
     });
-    props.setTopic(this.topics[0]);
+
+    const permalinkParse = permalinkToState(
+      props.permalink,
+      this.topics,
+      props.data.map_params.measures,
+      props.data.map_params.hierarchies
+    );
+
+    console.log(permalinkParse);
+
+    if (permalinkParse.topic && permalinkParse.measure) {
+      props.setStateFromPermalink(permalinkParse);
+    } else {
+      const defaultTopic = this.topics[0];
+      const measures = this.getMeasureOptions(defaultTopic);
+      props.setStateFromPermalink({
+        topic: defaultTopic,
+        measure: measures[0]
+      });
+    }
+  }
+
+  componentDidMount() {
+    console.log("MapSidebar was mounted");
+  }
+
+  componentWillUnmount() {
+    console.log("MapSidebar will be unmounted");
   }
 
   getMeasureOptions = key =>
@@ -117,16 +153,18 @@ class MapSidebar extends React.Component {
   getSelectors = cube => this.props.data.map_params.hierarchies[cube] || [];
 
   componentWillReceiveProps(nextProps) {
-    const { cube, valueTopic } = nextProps;
+    const oldTopic = this.props.valueTopic;
+    const newTopic = nextProps.valueTopic;
+    const newCube = nextProps.cube;
 
-    if (valueTopic && this.props.valueTopic != valueTopic) {
-      const measures = this.getMeasureOptions(valueTopic);
+    if (oldTopic && newTopic && oldTopic != newTopic) {
+      const measures = this.getMeasureOptions(newTopic);
       this.measures = measures;
       measures[0] && nextProps.setMeasure(measures[0]);
     }
 
-    if (cube && this.props.cube != cube) {
-      this.selectors = this.getSelectors(cube);
+    if (newCube && this.props.cube != newCube) {
+      this.selectors = this.getSelectors(newCube);
     }
   }
 
@@ -231,6 +269,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  setStateFromPermalink(payload) {
+    dispatch({ type: "MAP_PERMALINK_PARSE", payload });
+  },
   setTopic(payload) {
     dispatch({ type: "MAP_TOPIC_SET", payload });
   },

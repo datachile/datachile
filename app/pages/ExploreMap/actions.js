@@ -1,4 +1,5 @@
 import { fullNameToArray } from "helpers/formatters";
+import shorthash from "helpers/shorthash";
 import mondrianClient, {
   getLocaleCaption,
   queryBuilder
@@ -88,6 +89,7 @@ export function requestMembers(cubeName, locale = "en") {
                     members: members.reduce((output, member) => {
                       if (member.caption)
                         output.push({
+                          hash: shorthash(`${member.key}`),
                           fullName: `${level.fullName}.&[${member.key}]`,
                           value: member.name,
                           name: member.caption
@@ -112,13 +114,6 @@ export function requestMembers(cubeName, locale = "en") {
       )
       .then(null, err => dispatch({ type: "MAP_MEMBER_ERROR", payload: err }));
   };
-}
-
-function patchNullData(data) {
-  return data.map(item => {
-    for (let key in item) item[key] = item[key] || 0;
-    return item;
-  });
 }
 
 function getGeoDrilldowns(dimensions) {
@@ -161,4 +156,90 @@ function getAvailableYears(data) {
   const payload = Object.keys(years).sort();
   // save
   return { type: "MAP_YEAR_OPTIONS", payload };
+}
+
+export function serializeCuts(obj) {
+  return Object.keys(obj).reduce((output, key) => {
+    const cuts = obj[key].map(cut => cut.fullName);
+    return output.concat(cuts);
+  }, []);
+}
+
+function serializeObject(obj) {
+  return Object.keys(obj).reduce(function(output, key) {
+    const value = [].concat(obj[key]).reduce((hashes, item) => {
+      if (item && item.hash) hashes.push(item.hash);
+      return hashes;
+    }, []);
+
+    if (value.length > 0) {
+      output.push(`${shorthash(key)}_${value.join(".")}`);
+    }
+
+    return output;
+  }, []);
+}
+
+function unserializeObject(arr) {
+  return arr.filter(Boolean).reduce(function(output, item) {
+    item = item.split("_");
+    const hash = item[0];
+    const value = item[1].split(".").filter(Boolean);
+    return output;
+  }, {});
+}
+
+export function stateToPermalink(params) {
+  const permalink = {};
+
+  if (params.topic && params.measure) {
+    permalink.t = params.topic.hash;
+    permalink.m = params.measure.hash;
+    permalink.c = serializeObject(params.cuts).join("-");
+    permalink.l = params.level == "region" ? "r" : "c";
+    permalink.sc = params.scale == "log" ? "log" : "lin";
+    permalink.s = serializeObject(params.selector).join("-");
+    permalink.y = params.year;
+
+    if (!permalink.c) delete permalink.c;
+    if (!permalink.s) delete permalink.s;
+  }
+
+  return (
+    "?" +
+    Object.keys(permalink)
+      .filter(key => permalink[key])
+      .map(key => `${key}=${permalink[key]}`)
+      .join("&")
+  );
+}
+
+export function permalinkToState(permalink, topics, measures, hierarchies) {
+  const parsed = (permalink || "")
+    .replace("?", "")
+    .split("&")
+    .reduce((obj, item) => {
+      const tokens = item.split("=");
+      // if ('s' == tokens[0] || 'c' == tokens[0])
+      // tokens[1] = unserializeObject(tokens[1].split('-'));
+      obj[tokens[0]] = tokens[1];
+      return obj;
+    }, {});
+
+  // console.log(parsed, hierarchies);
+
+  permalink = {
+    topic: topics.find(topic => topic.hash == parsed.t),
+    measure: Object.keys(measures).reduce((match, key) => {
+      return match || measures[key].find(ms => ms.hash == parsed.m);
+    }, null)
+    // cuts: {},
+    // selector: {},
+  };
+
+  if (parsed.y) permalink.year = parsed.y;
+  if (parsed.sc) permalink.scale = parsed.sc == "lin" ? "linear" : "log";
+  if (parsed.l) permalink.level = parsed.l == "c" ? "comuna" : "region";
+
+  return permalink;
 }
