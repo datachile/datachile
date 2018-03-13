@@ -2,7 +2,7 @@ import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 
-import "./mapScaleSelector.css";
+import "./MapScaleSelector.css";
 
 class MapScaleSelector extends React.Component {
   componentWillReceiveProps(nextProps) {

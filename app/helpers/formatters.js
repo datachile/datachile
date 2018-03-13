@@ -3,6 +3,7 @@ import { timeFormat } from "d3-time-format";
 import n from "numeral";
 
 import { PermalinkBuildError } from "helpers/errors";
+import shorthash from "helpers/shorthash";
 
 export function slugifyStr(str, whitespace = "-") {
   if (!str) return "";

@@ -10,12 +10,8 @@ import "../../../../node_modules/react-table/react-table.css";
 import "./DataContent.css";
 
 class DataContent extends Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		const { t, datasets = [], pivotType } = this.props;
+  render() {
+    const { t, datasets = [], pivotType } = this.props;
 
 		if (datasets.length == 0) {
 			return (

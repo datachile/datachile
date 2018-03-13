@@ -72,7 +72,6 @@ class MapOptions extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  // we have to discuss this structure
   saveDataset(title, dataset, level, indicator, topic) {
     dispatch({
       type: "MAP_SAVE_DATASET",
@@ -110,9 +109,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-MapOptions = translate()(
+export default translate()(
   connect(mapStateToProps, mapDispatchToProps)(MapOptions)
 );
-
-export default MapOptions;
-export { MapOptions };
