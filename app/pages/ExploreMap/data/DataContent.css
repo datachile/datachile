@@ -1,8 +1,10 @@
 .data-content {
   font-family: var(--font-family-text);
   & .table {
+    font-size: 12px;
     & .rt-thead {
-      overflow-y: scroll;
+      overflow-x: hidden;
+      //overflow-y: scroll;
       & .rt-th {
         background: var(--nice-blue);
         font-weight: 800;
@@ -14,10 +16,14 @@
       }
     }
     & .rt-tbody {
+      & .rt-tr-group {
+        border-width: 0px;
+      }
       & .rt-td {
         font-family: var(--font-family-text);
         background: var(--snow);
         padding: 15px 5px;
+        border-right: 1px solid rgba(0, 0, 0, .2);
       }
     }
   }

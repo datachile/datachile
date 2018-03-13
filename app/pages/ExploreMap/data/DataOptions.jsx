@@ -11,7 +11,7 @@ class DataOptions extends React.Component {
 
     return (
       <div className="data-options">
-        <p className="data-title">.</p>
+        <p className="data-title"></p>
         <div className="data-options-container">
           <Link className="option" to="/explore/map">
             {t("Back to Map")}

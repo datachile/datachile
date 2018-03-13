@@ -20,10 +20,18 @@
       }
       & .explore-map-content {
         lost-column: 3/4;
-        background: var(--near-white);
+        background: #434756;
         position: relative;
         lost-flex-container: column;
         padding: calc(var(--gutter)/2) calc(var(--gutter));
+
+        &.cart {
+          padding: 0px;
+          & .map-options-row {
+            padding: 15px 15px 5px 15px;
+          }
+        }
+
         & .map-options-row {
           lost-flex-container: row;
           margin-bottom: calc(var(--gutter)/2);
