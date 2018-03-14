@@ -50,7 +50,6 @@ class SNEDSlide extends Section {
     let { geo, sned_indicators_datum, datum_sned_score } = this.context.data;
 
     const locale = i18n.language;
-
     const text = SNED(sned_indicators_datum, locale);
 
     return (
