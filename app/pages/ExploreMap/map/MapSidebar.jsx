@@ -7,136 +7,13 @@ import { Icon } from "@blueprintjs/core";
 import CustomSelect from "components/CustomSelect";
 
 import { classnames } from "helpers/formatters";
-import shorthash from "helpers/shorthash";
-import mondrianClient from "helpers/MondrianClient";
-
-import { permalinkToState } from "../actions.js";
 
 import "./MapSidebar.css";
 
 class MapSidebar extends React.Component {
-  static need = [
-    (params, store) => {
-      const hasGeoDimensions = dimensions =>
-        dimensions.length > 0 &&
-        dimensions.some(
-          dim =>
-            dim.hierarchies.length > 0 &&
-            dim.hierarchies.some(hie => hie.name == "Geography")
-        );
-
-      const localeCaption = function(key, item) {
-        return item.annotations[key] || item.caption || item.name;
-      }.bind(null, `${store.i18n.locale}_element_caption`);
-
-      // mondrian-rest-client doesn't use the annotations from the json
-      const promise = mondrianClient.cubes().then(cubes => {
-        const hierarchies = {};
-        const measures = {};
-
-        for (let cube, i = 0; (cube = cubes[i]); i++) {
-          if (!hasGeoDimensions(cube.dimensions)) continue;
-
-          const topic = cube.annotations.topic;
-          const availableMs = cube.annotations.available_measures
-            ? cube.annotations.available_measures.split(",")
-            : [];
-
-          measures[topic] = [].concat(
-            measures[topic] || [],
-            cube.measures
-              .filter(ms => availableMs.indexOf(ms.name) > -1)
-              .map(ms => ({
-                hash: shorthash(ms.name),
-                cube: cube.name,
-                value: ms.name,
-                name: localeCaption(ms)
-              }))
-          );
-
-          let selectors = [];
-
-          const availableDims = cube.annotations.available_dimensions
-            ? cube.annotations.available_dimensions.split(",")
-            : [];
-
-          for (let dim, j = 0; (dim = cube.dimensions[j]); j++) {
-            if (
-              !/Geography$|^Date$/.test(dim.name) &&
-              availableDims.indexOf(dim.name) > -1
-            ) {
-              for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
-                selectors.push({
-                  hash: shorthash(`[${dim.name}].[${hier.name}]`),
-                  cube: cube.name,
-                  name: localeCaption(dim),
-                  value: `[${dim.name}].[${hier.name}]`,
-                  isGeo: /country/i.test(dim.name),
-                  levels: hier.levels.slice(1).map(lvl => ({
-                    hash: shorthash(lvl.name),
-                    value: lvl.fullName,
-                    name: localeCaption(lvl)
-                  }))
-                });
-              }
-            }
-          }
-
-          hierarchies[cube.name] = selectors;
-        }
-
-        return {
-          key: "map_params",
-          data: {
-            hierarchies,
-            measures
-          }
-        };
-      });
-
-      return { type: "GET_DATA", promise };
-    }
-  ];
-
   constructor(props) {
     super(props);
-
-    const t = props.t;
-
     console.log("MapSidebar is being created");
-
-    this.topics = [
-      { value: "economy", name: t("Economy") },
-      { value: "education", name: t("Education") },
-      { value: "environment", name: t("Housing & Environment") },
-      { value: "demography", name: t("Demography") },
-      { value: "health", name: t("Health") },
-      { value: "civics", name: t("Civics") }
-    ].map(item => {
-      item.hash = shorthash(item.value);
-      item.icon = `/images/profile-icon/icon-${item.value}.svg`;
-      return item;
-    });
-
-    const permalinkParse = permalinkToState(
-      props.permalink,
-      this.topics,
-      props.data.map_params.measures,
-      props.data.map_params.hierarchies
-    );
-
-    console.log(permalinkParse);
-
-    if (permalinkParse.topic && permalinkParse.measure) {
-      props.setStateFromPermalink(permalinkParse);
-    } else {
-      const defaultTopic = this.topics[0];
-      const measures = this.getMeasureOptions(defaultTopic);
-      props.setStateFromPermalink({
-        topic: defaultTopic,
-        measure: measures[0]
-      });
-    }
   }
 
   componentDidMount() {
@@ -147,82 +24,70 @@ class MapSidebar extends React.Component {
     console.log("MapSidebar will be unmounted");
   }
 
-  getMeasureOptions = key =>
-    key ? this.props.data.map_params.measures[key.value] || [] : [];
-
-  getSelectors = cube => this.props.data.map_params.hierarchies[cube] || [];
-
   componentWillReceiveProps(nextProps) {
     const oldTopic = this.props.valueTopic;
     const newTopic = nextProps.valueTopic;
-    const newCube = nextProps.cube;
 
     if (oldTopic && newTopic && oldTopic != newTopic) {
-      const measures = this.getMeasureOptions(newTopic);
-      this.measures = measures;
-      measures[0] && nextProps.setMeasure(measures[0]);
-    }
-
-    if (newCube && this.props.cube != newCube) {
-      this.selectors = this.getSelectors(newCube);
+      const measures = this.props.measureOptions[this.props.topicKey];
+      nextProps.setMeasure(measures[0]);
     }
   }
 
+  renderSelectorGroup(selector) {
+    // selector.value = `[${dim.name}].[${hier.name}]`
+    const { t, addCut, removeCut, setSelectorLevel } = this.props;
+
+    const value = selector.value;
+    const currentLevel = this.props.selectorHier[value] || selector.levels[0];
+
+    const levelKey = `[${selector.cube}].${currentLevel.value}`;
+    const optionMembers = this.props.memberOptions[levelKey] || [];
+    const valueMembers = this.props.memberValues[value];
+
+    const optionLevel =
+      selector.levels.length > 1 ? (
+        <div className="option-hierarchy">
+          {selector.levels.map(lvl => (
+            <button
+              className={classnames({ active: lvl == currentLevel })}
+              onClick={setSelectorLevel.bind(null, value, lvl)}
+            >
+              {lvl.name}
+            </button>
+          ))}
+        </div>
+      ) : null;
+
+    return (
+      <OptionGroup
+        label={selector.name}
+        icon={selector.isGeo ? "geo" : "indicator"}
+      >
+        {optionLevel}
+        <CustomSelect
+          multiple={true}
+          items={optionMembers}
+          value={valueMembers}
+          onItemSelect={addCut.bind(null, value)}
+          onItemRemove={removeCut.bind(null, value)}
+          placeholder={t("Add a filter...")}
+        />
+      </OptionGroup>
+    );
+  }
+
   render() {
-    const { t, setTopic, setMeasure, setSelectorLevel } = this.props;
-    const { cube, valueTopic, valueMeasure, selectorHier } = this.props;
-    const { memberOptions, memberValues, addCut, removeCut } = this.props;
-
-    const optionTopic = this.topics;
-    const optionMeasure = this.measures || this.getMeasureOptions(valueTopic);
-
-    const selectorNodes = [];
-
-    if (cube) {
-      const placeholder = t("Add a filter...");
-      const selectors = this.selectors || this.getSelectors(cube);
-
-      for (let sel, i = 0; (sel = selectors[i]); i++) {
-        let currentLevel = selectorHier[sel.value] || sel.levels[0];
-        let optionMembers =
-          memberOptions[`[${sel.cube}].${currentLevel.value}`] || [];
-
-        let valueMembers = memberValues[sel.value];
-
-        let optionLevel = sel.levels.map(lvl => (
-          <button
-            className={classnames({ active: lvl == currentLevel })}
-            onClick={setSelectorLevel.bind(null, sel.value, lvl)}
-          >
-            {lvl.name}
-          </button>
-        ));
-
-        selectorNodes.push(
-          <OptionGroup label={sel.name} icon={sel.isGeo ? "geo" : "indicator"}>
-            {optionLevel.length > 1 && (
-              <div className="option-hierarchy">{optionLevel}</div>
-            )}
-            <CustomSelect
-              multiple={true}
-              items={optionMembers}
-              value={valueMembers}
-              onItemSelect={addCut.bind(null, sel.value)}
-              onItemRemove={removeCut.bind(null, sel.value)}
-              placeholder={placeholder}
-            />
-          </OptionGroup>
-        );
-      }
-    }
+    const { t, setTopic, setMeasure } = this.props;
+    const { selectors } = this.props;
 
     return (
       <div className="map-sidebar">
         <h1>{t("Map")}</h1>
         <OptionGroup label={t("Topics")} icon="topic">
           <CustomSelect
-            items={optionTopic}
-            value={valueTopic}
+            items={this.props.topicOptions}
+            value={this.props.topicValue}
             onItemSelect={setTopic}
             filterable={false}
           />
@@ -230,14 +95,14 @@ class MapSidebar extends React.Component {
 
         <OptionGroup label={t("Measure")} icon="measure">
           <CustomSelect
-            items={optionMeasure}
-            value={valueMeasure}
+            items={this.props.measureOptions}
+            value={this.props.measureValue}
             onItemSelect={setMeasure}
             filterable={false}
           />
         </OptionGroup>
 
-        {selectorNodes}
+        {selectors.map(this.renderSelectorGroup, this)}
       </div>
     );
   }
@@ -259,19 +124,28 @@ function OptionGroup(props) {
   );
 }
 
-const mapStateToProps = state => ({
-  cube: state.map.params.measure && state.map.params.measure.cube,
-  memberOptions: state.map.options,
-  memberValues: state.map.params.cuts,
-  valueTopic: state.map.params.topic,
-  valueMeasure: state.map.params.measure,
-  selectorHier: state.map.params.selector
-});
+const mapStateToProps = (state, ownProps) => {
+  const preload = ownProps.data.map_params;
+  const params = state.map.params;
+
+  const topicKey = params.topic && params.topic.value;
+  const cube = params.measure && params.measure.cube;
+
+  return {
+    cube: cube,
+    topicOptions: state.map.options.topic,
+    topicValue: params.topic,
+    topicKey: topicKey,
+    measureOptions: preload.measures[topicKey] || [],
+    measureValue: params.measure,
+    memberOptions: state.map.options,
+    memberValues: state.map.params.cuts,
+    selectors: preload.hierarchies[cube] || [],
+    selectorHier: params.selector
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  setStateFromPermalink(payload) {
-    dispatch({ type: "MAP_PERMALINK_PARSE", payload });
-  },
   setTopic(payload) {
     dispatch({ type: "MAP_TOPIC_SET", payload });
   },

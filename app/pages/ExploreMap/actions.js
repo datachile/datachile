@@ -197,7 +197,7 @@ export function stateToPermalink(params) {
     permalink.m = params.measure.hash;
     permalink.c = serializeObject(params.cuts).join("-");
     permalink.l = params.level == "region" ? "r" : "c";
-    permalink.sc = params.scale == "log" ? "log" : "lin";
+    permalink.sc = params.scale.substr(0, 3);
     permalink.s = serializeObject(params.selector).join("-");
     permalink.y = params.year;
 
@@ -238,7 +238,9 @@ export function permalinkToState(permalink, topics, measures, hierarchies) {
   };
 
   if (parsed.y) permalink.year = parsed.y;
-  if (parsed.sc) permalink.scale = parsed.sc == "lin" ? "linear" : "log";
+  if (parsed.sc)
+    permalink.scale =
+      parsed.sc == "lin" ? "linear" : parsed.sc == "dec" ? "decile" : "log";
   if (parsed.l) permalink.level = parsed.l == "c" ? "comuna" : "region";
 
   return permalink;

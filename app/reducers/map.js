@@ -20,8 +20,15 @@ const mapParamsReducer = (state = mapParamsInitialState, action) => {
   var newState, list, item;
 
   switch (action.type) {
-    case "MAP_PERMALINK_PARSE":
-      return { ...state, ...action.payload };
+    case "MAP_INIT":
+      const pl = action.payload;
+      if (pl.params.topic && pl.params.measure) {
+        return { ...state, ...pl.params };
+      } else {
+        const initTopic = pl.topics[0];
+        const initMeasure = pl.measures[initTopic.value][0];
+        return { ...state, topic: initTopic, measure: initMeasure };
+      }
 
     case "MAP_CUT_ADD":
       item = action.payload;
@@ -97,11 +104,15 @@ const mapOptionsInitialState = {
   status: "SUCCESS",
   lastError: null,
   year: [2015],
+  topic: [],
   cubes: []
 };
 
 const mapOptionsReducer = (state = mapOptionsInitialState, action) => {
   switch (action.type) {
+    case "MAP_INIT":
+      return { ...state, topic: [].concat(action.payload.topics) };
+
     case "MAP_MEMBER_FETCH":
       return { ...state, status: "LOADING", lastError: null };
 
