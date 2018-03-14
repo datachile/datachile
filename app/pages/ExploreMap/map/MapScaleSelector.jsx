@@ -21,9 +21,15 @@ class MapScaleSelector extends React.Component {
 		}
 
 		return (
-			<div className="map-select-options">
-				<p className="map-select-text">{t("Visualize by")}</p>
-				<div className="map-select-options-container">
+			<div className="map-scale-options">
+				<p className="map-scale-text">{t("Visualize by")}</p>
+				<div className="map-scale-options-container">
+					<a
+						className={`toggle ${mapScale === "log" ? "selected" : ""}`}
+						onClick={evt => setMapScale("log")}
+					>
+						{t("Log")}
+					</a>
 					<a
 						className={`toggle ${mapScale === "linear" ? "selected" : ""}`}
 						onClick={evt => setMapScale("linear")}
@@ -31,10 +37,10 @@ class MapScaleSelector extends React.Component {
 						{t("Linear")}
 					</a>
 					<a
-						className={`toggle ${mapScale === "log" ? "selected" : ""}`}
-						onClick={evt => setMapScale("log")}
+						className={`toggle ${mapScale === "decile" ? "selected" : ""}`}
+						onClick={evt => setMapScale("decile")}
 					>
-						{t("Log")}
+						{t("Decile")}
 					</a>
 				</div>
 			</div>

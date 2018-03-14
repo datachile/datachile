@@ -19,7 +19,7 @@ class DataContent extends Component {
 			return (
 				<div className="data-content">
 					<p>
-						<NoDataAvailable message={t("No datasets selected")} />
+						<NoDataAvailable message={t("No datasets selected")} icon="empty-cart"/>
 					</p>
 				</div>
 			);
@@ -27,7 +27,7 @@ class DataContent extends Component {
 
 		const flattenedData = combineAndFlatDatasets(datasets, pivotType);
 
-    const columns = flattenedData.fields.map(h => ({
+		const columns = flattenedData.fields.map(h => ({
 			Header:
 				h.split("_").length > 1
 					? h
@@ -45,6 +45,12 @@ class DataContent extends Component {
 					className="table"
 					data={flattenedData.dataset}
 					columns={columns}
+					pageSizeOptions={[20, 25, 50, 100]}
+					defaultPageSize={
+						flattenedData.dataset.length < 20
+							? flattenedData.dataset.length
+							: 20
+					}
 					style={
 						{
 							//height: "00px" // This will force the table body to overflow and scroll, since there is not enough room

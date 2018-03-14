@@ -5,10 +5,15 @@ import "./NoDataAvailable.css";
 
 class NoDataAvailable extends Component {
 	render() {
-		const { t, message } = this.props;
+		const { t, message, icon } = this.props;
 		return (
 			<div className="no-data-available" style={{ padding: "15px" }}>
-				<img className="no-data-image" src={`/images/no-data/default.svg`} />
+				{!icon ? (
+					<img className="no-data-image" src="/images/no-data/default.svg" />
+				) : (
+					<img className="no-data-image" src={`/images/no-data/${icon}.svg`} />
+				)}
+
 				<p className="no-data-title">Oops!</p>
 				<p className="no-data-message">
 					{message ? message : t("There are not data available for this chart")}

@@ -5,6 +5,8 @@ import { Geomap } from "d3plus-react";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { MAP_SCALE_COLORS } from "helpers/colors";
 
+import { percentRank } from "helpers/calculator";
+
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
 import MapYearSelector from "./MapYearSelector";
@@ -40,6 +42,7 @@ class MapContent extends React.Component {
 			i18n,
 			mapTopic,
 			msrName,
+			msrValues,
 			mapLevel,
 			mapScale,
 			mapYear,
@@ -57,6 +60,8 @@ class MapContent extends React.Component {
 			lenComuna,
 			mapTopic,
 			msrName,
+			msrValuesC,
+			msrValuesR,
 			mapLevel,
 			mapScale,
 			mapYear,
@@ -69,8 +74,8 @@ class MapContent extends React.Component {
 		let customTick = "";
 
 		/*dataRegion.filter(item => item[msrName]).length === 0
-			? this.setState({ show: false })
-			: this.setState({ show: true });*/
+            ? this.setState({ show: false })
+            : this.setState({ show: true });*/
 
 		const configBase = {
 			height: 700,
@@ -85,8 +90,16 @@ class MapContent extends React.Component {
 				hoverOpacity: 1
 			},
 			label: false,
-			sum: d => d[mapScale === "linear" ? msrName : msrName + "LOG"],
-			colorScale: mapScale === "linear" ? msrName : msrName + "LOG",
+			sum: d =>
+				d[
+					mapScale === "linear"
+						? msrName
+						: mapScale === "log" ? msrName + "LOG" : msrName + "PERC"
+				],
+			colorScale:
+				mapScale === "linear"
+					? msrName
+					: mapScale === "log" ? msrName + "LOG" : msrName + "PERC",
 			colorScalePosition: "right",
 			colorScaleConfig: {
 				color: MAP_SCALE_COLORS[mapTopic],
@@ -110,8 +123,14 @@ class MapContent extends React.Component {
 							} else {
 								return " ";
 							}
-						} else {
+						} else if (mapScale === "linear") {
 							return numeral(parseInt(tick), locale).format("0.[0] a");
+						} else {
+							return (
+								numeral(parseInt(tick), locale).format("0.[0] a") +
+								" " +
+								t("decile")
+							);
 						}
 					}
 				},
@@ -156,7 +175,7 @@ class MapContent extends React.Component {
 				topojsonId: "id",
 				topojsonKey: "comunas_datachile_final",
 				groupBy: "ID Comuna",
-				data: processResults(dataComuna, msrName, mapYear),
+				data: processResults(dataComuna, msrName, msrValuesC, mapYear),
 				label: d => d["Comuna"],
 				zoomMax: 100
 			},
@@ -165,7 +184,7 @@ class MapContent extends React.Component {
 				topojson: "/geo/regiones.json",
 				topojsonId: "id",
 				topojsonKey: "regiones",
-				data: processResults(dataRegion, msrName, mapYear),
+				data: processResults(dataRegion, msrName, msrValuesR, mapYear),
 				groupBy: "ID Region",
 				label: d => d["Region"],
 				zoomMax: 20
@@ -188,13 +207,17 @@ class MapContent extends React.Component {
 	}
 }
 
-const processResults = (data, msrName, mapYear) => {
+const processResults = (data, msrName, msrValues, mapYear) => {
 	// Check if there are data available for this chart
 
 	if (mapYear) data = data.filter(item => item["Year"] == mapYear);
 	// if (msrName) data = data.map(item => ({ ...item, variable: item[msrName] }));
+	//const values = data.filter(item => item[msrName]).map(item => item[msrName]);
 	return data.filter(item => item[msrName]).map(item => {
 		item[msrName + "LOG"] = Math.log10(item[msrName]);
+		item[msrName + "PERC"] = Math.ceil(
+			percentRank(msrValues, item[msrName]) * 10
+		);
 		return item;
 	});
 };
@@ -202,6 +225,18 @@ const processResults = (data, msrName, mapYear) => {
 const mapStateToProps = (state, ownProps) => {
 	return {
 		msrName: state.map.params.measure.value,
+		msrValuesR: state.map.results.data.region
+			? state.map.results.data.region
+					.filter(item => item[state.map.params.measure.value])
+					.map(item => item[state.map.params.measure.value])
+					.sort((a, b) => a - b)
+			: [],
+		msrValuesC: state.map.results.data.comuna
+			? state.map.results.data.comuna
+					.filter(item => item[state.map.params.measure.value])
+					.map(item => item[state.map.params.measure.value])
+					.sort((a, b) => a - b)
+			: [],
 		mapTopic: state.map.params.topic.value,
 		mapLevel: state.map.params.level,
 		mapScale: state.map.params.scale,

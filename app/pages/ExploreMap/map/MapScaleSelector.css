@@ -1,8 +1,8 @@
-.map-select-options {
+.map-scale-options {
     lost-column: 1/4;
     lost-align: right;
     lost-flex-container: row;
-    & .map-select-text {
+    & .map-scale-text {
       width: 100%;
       text-align: right;
       margin-right: 5px;
@@ -11,8 +11,9 @@
       font-size: 13px;
       font-family: var(--font-family-text);
     }
-    & .map-select-options-container {
+    & .map-scale-options-container {
       lost-flex-container: row;
+      flex-wrap: nowrap;
       & .toggle {
         font-family: var(--font-family-text);
         background-color: var(--snow);

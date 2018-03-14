@@ -25,9 +25,13 @@
       & .rt-td {
         font-family: var(--font-family-text);
         background: var(--snow);
+        color: #808080;
         padding: 15px 5px;
         border-right: 1px solid rgba(0, 0, 0, .2);
       }
+    }
+    & .pagination-bottom {
+      background-color: var(--snow);
     }
   }
 }
