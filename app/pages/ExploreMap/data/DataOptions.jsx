@@ -14,6 +14,7 @@ class DataOptions extends React.Component {
         <p className="data-title"></p>
         <div className="data-options-container">
           <Link className="option" to="/explore/map">
+          <img src="/images/icons/icon-return.svg" />
             {t("Back to Map")}
           </Link>
         </div>

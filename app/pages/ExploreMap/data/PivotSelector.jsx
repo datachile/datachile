@@ -22,6 +22,7 @@ class PivotSelector extends React.Component {
               }
             }}
           >
+          <img src="/images/icons/icon-col.svg" />
             {t("Columns")}
           </a>
           <a
@@ -34,6 +35,7 @@ class PivotSelector extends React.Component {
               }
             }}
           >
+          <img src="/images/icons/icon-row.svg" />
             {t("Rows")}
           </a>
         </div>
