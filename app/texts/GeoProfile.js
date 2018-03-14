@@ -5,528 +5,534 @@ import { numeral } from "helpers/formatters";
 import groupBy from "lodash/groupBy";
 
 function getRank(data, msrName, dimName, t) {
-  let rank = data.sort((a, b) => b[msrName] - a[msrName]);
-  rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
-  let output = rank.map(item => item[dimName]);
-  output = output.length > 1 ? output.join(", ") : output;
+	let rank = data.sort((a, b) => b[msrName] - a[msrName]);
+	rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
+	let output = rank.map(item => item[dimName]);
+	output = output.length > 1 ? output.join(", ") : output;
 
-  if (output.length > 1) {
-    const lastComma = output.lastIndexOf(",");
-    output =
-      output.substring(0, lastComma) +
-      " " +
-      t("and") +
-      output.substring(lastComma + 1);
-  }
+	if (output.length > 1) {
+		const lastComma = output.lastIndexOf(",");
+		output =
+			output.substring(0, lastComma) +
+			" " +
+			t("and") +
+			output.substring(lastComma + 1);
+	}
 
-  return output;
+	return output;
 }
 
 // EDUCATION SECTION
 
 export function SNED(data, locale) {
-  if (data) {
-    const rural = data.data.find(item => item["ID Stage 1a"] === 2);
-    const urban = data.data.find(item => item["ID Stage 1a"] === 1);
-    const special = data.data.find(item => item["ID Stage 1a"] === 3);
-    const total = data.data.reduce((all, item) => {
-      return all + item["Number of records"];
-    }, 0);
-    return {
-      rural: {
-        n: rural["Number of records"],
-        perc: numeral(rural["Number of records"] / total, locale).format(
-          "0.00%"
-        )
-      },
-      urban: {
-        n: urban["Number of records"],
-        perc: numeral(urban["Number of records"] / total, locale).format(
-          "0.00%"
-        )
-      },
-      special: {
-        n: special["Number of records"],
-        perc: numeral(special["Number of records"] / total, locale).format(
-          "0.00%"
-        )
-      },
-      total
-    };
-  } else {
-    return false;
-  }
+	if (data) {
+		const rural = data.data.find(item => item["ID Stage 1a"] === 2) || {
+			"Number of records": 0
+		};
+		const urban = data.data.find(item => item["ID Stage 1a"] === 1) || {
+			"Number of records": 0
+		};
+		const special = data.data.find(item => item["ID Stage 1a"] === 3) || {
+			"Number of records": 0
+		};
+		const total = data.data.reduce((all, item) => {
+			return all + item["Number of records"];
+		}, 0);
+		return {
+			rural: {
+				n: rural["Number of records"],
+				perc: numeral(rural["Number of records"] / total, locale).format(
+					"0.00%"
+				)
+			},
+			urban: {
+				n: urban["Number of records"],
+				perc: numeral(urban["Number of records"] / total, locale).format(
+					"0.00%"
+				)
+			},
+			special: {
+				n: special["Number of records"],
+				perc: numeral(special["Number of records"] / total, locale).format(
+					"0.00%"
+				)
+			},
+			total
+		};
+	} else {
+		return false;
+	}
 }
 
 // ECONOMY SECTION
 
 function SpendingByIndustry(data, msrName, locale, t) {
-  if (data) {
-    const rank = data.data.sort((a, b) => b[msrName] - a[msrName]);
-    const total = data.data.reduce((all, item) => {
-      return all + item[msrName];
-    }, 0);
-    return {
-      industry: {
-        total: numeral(total, locale).format("($ 0.[00] a)"),
-        first: { caption: rank[0]["Level 1"] },
-        second: { caption: rank[1]["Level 1"] }
-      },
-      year: { last: sources.rd_survey.last_year }
-    };
-  }
+	if (data) {
+		const rank = data.data.sort((a, b) => b[msrName] - a[msrName]);
+		const total = data.data.reduce((all, item) => {
+			return all + item[msrName];
+		}, 0);
+		return {
+			industry: {
+				total: numeral(total, locale).format("($ 0.[00] a)"),
+				first: { caption: rank[0]["Level 1"] },
+				second: { caption: rank[1]["Level 1"] }
+			},
+			year: { last: sources.rd_survey.last_year }
+		};
+	}
 }
 
 function SpendingBySector(data, msrName, geo, locale, t) {
-  if (data) {
-    const rank = getRank(data.data, msrName, "Ownership Type", t);
-    const total = data.data.reduce((all, item) => {
-      return all + item[msrName];
-    }, 0);
-    return {
-      year_sector: { last: sources.rd_survey.last_year - 1 },
-      sector: { total: numeral(total, locale).format("($ 0.[00] a)") },
-      geo,
-      text_joined_industries: rank
-    };
-  }
+	if (data) {
+		const rank = getRank(data.data, msrName, "Ownership Type", t);
+		const total = data.data.reduce((all, item) => {
+			return all + item[msrName];
+		}, 0);
+		return {
+			year_sector: { last: sources.rd_survey.last_year - 1 },
+			sector: { total: numeral(total, locale).format("($ 0.[00] a)") },
+			geo,
+			text_joined_industries: rank
+		};
+	}
 }
 
 function IndustryOccupation(data, locale, t) {
-  if (data) {
-    const rank = getRank(data.data, "Expansion Factor", "ISCO", t);
-    return { text_joined_occupations: rank };
-  } else {
-    return false;
-  }
+	if (data) {
+		const rank = getRank(data.data, "Expansion Factor", "ISCO", t);
+		return { text_joined_occupations: rank };
+	} else {
+		return false;
+	}
 }
 
 function IndustryActivity(data, geo, locale, t) {
-  const last_year = sources.tax_data.year;
-  if (data) {
-    const rank = getRank(data.data, "Output", "Level 1", t);
-    const total = data.data.reduce((all, item) => {
-      return all + item["Output"];
-    }, 0);
+	const last_year = sources.tax_data.year;
+	if (data) {
+		const rank = getRank(data.data, "Output", "Level 1", t);
+		const total = data.data.reduce((all, item) => {
+			return all + item["Output"];
+		}, 0);
 
-    return {
-      year: { last: last_year },
-      total: numeral(total, locale).format("$ 0,0.0 a"),
-      geo,
-      text_joined_activities: rank
-    };
-  } else {
-    return false;
-  }
+		return {
+			year: { last: last_year },
+			total: numeral(total, locale).format("$ 0,0.0 a"),
+			geo,
+			text_joined_activities: rank
+		};
+	} else {
+		return false;
+	}
 }
 
 // EDUCATION SECTION
 function Enrollment(data, geo, locale) {
-  const last_year = sources.education_enrollment.year;
-  if (data) {
-    const enrollment = {
-      municipal: numeral(
-        data.data
-          .filter(item => [1, 2].includes(item["ID Administration"]))
-          .reduce((all, item) => {
-            return all + item["Number of records"];
-          }, 0),
-        locale
-      ).format("0,0"),
-      subvencionado: numeral(
-        data.data
-          .filter(item => [3].includes(item["ID Administration"]))
-          .reduce((all, item) => {
-            return all + item["Number of records"];
-          }, 0),
-        locale
-      ).format("0,0"),
-      particular: numeral(
-        data.data
-          .filter(item => [4].includes(item["ID Administration"]))
-          .reduce((all, item) => {
-            return all + item["Number of records"];
-          }, 0),
-        locale
-      ).format("0,0"),
-      adm_delegada: numeral(
-        data.data
-          .filter(item => [5].includes(item["ID Administration"]))
-          .reduce((all, item) => {
-            return all + item["Number of records"];
-          }, 0),
-        locale
-      ).format("0,0"),
-      total: numeral(
-        data.data.reduce((all, item) => {
-          return all + item["Number of records"];
-        }, 0),
-        locale
-      ).format("0,0"),
-      total_clean: data.data.reduce((all, item) => {
-        return all + item["Number of records"];
-      }, 0)
-    };
-    return { year: { last: last_year }, geo, enrollment };
-  } else {
-    return false;
-  }
+	const last_year = sources.education_enrollment.year;
+	if (data) {
+		const enrollment = {
+			municipal: numeral(
+				data.data
+					.filter(item => [1, 2].includes(item["ID Administration"]))
+					.reduce((all, item) => {
+						return all + item["Number of records"];
+					}, 0),
+				locale
+			).format("0,0"),
+			subvencionado: numeral(
+				data.data
+					.filter(item => [3].includes(item["ID Administration"]))
+					.reduce((all, item) => {
+						return all + item["Number of records"];
+					}, 0),
+				locale
+			).format("0,0"),
+			particular: numeral(
+				data.data
+					.filter(item => [4].includes(item["ID Administration"]))
+					.reduce((all, item) => {
+						return all + item["Number of records"];
+					}, 0),
+				locale
+			).format("0,0"),
+			adm_delegada: numeral(
+				data.data
+					.filter(item => [5].includes(item["ID Administration"]))
+					.reduce((all, item) => {
+						return all + item["Number of records"];
+					}, 0),
+				locale
+			).format("0,0"),
+			total: numeral(
+				data.data.reduce((all, item) => {
+					return all + item["Number of records"];
+				}, 0),
+				locale
+			).format("0,0"),
+			total_clean: data.data.reduce((all, item) => {
+				return all + item["Number of records"];
+			}, 0)
+		};
+		return { year: { last: last_year }, geo, enrollment };
+	} else {
+		return false;
+	}
 }
 
 function PerformanceByHighSchool(data, locale, t) {
-  if (data) {
-    let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
-    rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
+	if (data) {
+		let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
+		rank = rank.length >= 3 ? rank.slice(0, 3) : rank;
 
-    let output = rank.map(item => item["Institution"]);
-    output = output.length > 1 ? output.join(", ") : output;
+		let output = rank.map(item => item["Institution"]);
+		output = output.length > 1 ? output.join(", ") : output;
 
-    if (output.length > 1) {
-      const lastComma = output.lastIndexOf(",");
-      output =
-        output.substring(0, lastComma) +
-        " " +
-        t("and") +
-        output.substring(lastComma + 1);
-    }
+		if (output.length > 1) {
+			const lastComma = output.lastIndexOf(",");
+			output =
+				output.substring(0, lastComma) +
+				" " +
+				t("and") +
+				output.substring(lastComma + 1);
+		}
 
-    return {
-      text_joined_schools:
-        (rank.length > 1 ? t("are") : t("is")) + " " + output,
-      type:
-        rank.length > 1 ? "plural" : rank.length === 1 ? "singular" : "no_data"
-    };
-  } else {
-    return false;
-  }
+		return {
+			text_joined_schools:
+				(rank.length > 1 ? t("are") : t("is")) + " " + output,
+			type:
+				rank.length > 1 ? "plural" : rank.length === 1 ? "singular" : "no_data"
+		};
+	} else {
+		return false;
+	}
 }
 
 function PerformanceByPSUComuna(data, locale) {
-  if (data) {
-    let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
-    return {
-      location: {
-        n_comunas: rank.length > 3 ? 3 : rank.length,
-        first: {
-          caption: rank[0]["Comuna"],
-          prom: numeral(rank[0]["Average PSU"], locale).format("0.0")
-        },
-        second: {
-          caption: rank[1] ? rank[1]["Comuna"] : "",
-          prom: rank[1]
-            ? numeral(rank[1]["Average PSU"], locale).format("0.0")
-            : ""
-        },
-        third: {
-          caption: rank[2] ? rank[2]["Comuna"] : "",
-          prom: rank[2]
-            ? numeral(rank[2]["Average PSU"], locale).format("0.0")
-            : ""
-        }
-      }
-    };
-  } else {
-    return false;
-  }
+	if (data) {
+		let rank = data.data.sort((a, b) => b["Average PSU"] - a["Average PSU"]);
+		return {
+			location: {
+				n_comunas: rank.length > 3 ? 3 : rank.length,
+				first: {
+					caption: rank[0]["Comuna"],
+					prom: numeral(rank[0]["Average PSU"], locale).format("0.0")
+				},
+				second: {
+					caption: rank[1] ? rank[1]["Comuna"] : "",
+					prom: rank[1]
+						? numeral(rank[1]["Average PSU"], locale).format("0.0")
+						: ""
+				},
+				third: {
+					caption: rank[2] ? rank[2]["Comuna"] : "",
+					prom: rank[2]
+						? numeral(rank[2]["Average PSU"], locale).format("0.0")
+						: ""
+				}
+			}
+		};
+	} else {
+		return false;
+	}
 }
 
 function PerformanceByPSU(data, geo, locale, t) {
-  const last_year = sources.education_performance_new.year;
-  const lang = {
-    en: {
-      1: "Municipal",
-      2: "Subsidised",
-      3: "Private",
-      4: "Delegated Administration"
-    },
-    es: {
-      1: "Municipales",
-      2: "Particulares Subvencionadas",
-      3: "Particulares Pagadas",
-      4: "de Administración Delegada"
-    }
-  };
-  if (data) {
-    const psu = {
-      municipal: numeral(
-        data.data
-          .filter(item => item["ID Administration"] === 1)
-          .reduce((all, item) => {
-            return all + item["Average PSU"];
-          }, 0),
-        locale
-      ).format("0,0"),
-      subvencionado: numeral(
-        data.data
-          .filter(item => item["ID Administration"] === 2)
-          .reduce((all, item) => {
-            return all + item["Average PSU"];
-          }, 0),
-        locale
-      ).format("0,0"),
-      particular: numeral(
-        data.data
-          .filter(item => item["ID Administration"] === 3)
-          .reduce((all, item) => {
-            return all + item["Average PSU"];
-          }, 0),
-        locale
-      ).format("0,0"),
-      adm_delegada: numeral(
-        data.data
-          .filter(item => item["ID Administration"] === 4)
-          .reduce((all, item) => {
-            return all + item["Average PSU"];
-          }, 0),
-        locale
-      ).format("0,0")
-    };
+	const last_year = sources.education_performance_new.year;
+	const lang = {
+		en: {
+			1: "Municipal",
+			2: "Subsidised",
+			3: "Private",
+			4: "Delegated Administration"
+		},
+		es: {
+			1: "Municipales",
+			2: "Particulares Subvencionadas",
+			3: "Particulares Pagadas",
+			4: "de Administración Delegada"
+		}
+	};
+	if (data) {
+		const psu = {
+			municipal: numeral(
+				data.data
+					.filter(item => item["ID Administration"] === 1)
+					.reduce((all, item) => {
+						return all + item["Average PSU"];
+					}, 0),
+				locale
+			).format("0,0"),
+			subvencionado: numeral(
+				data.data
+					.filter(item => item["ID Administration"] === 2)
+					.reduce((all, item) => {
+						return all + item["Average PSU"];
+					}, 0),
+				locale
+			).format("0,0"),
+			particular: numeral(
+				data.data
+					.filter(item => item["ID Administration"] === 3)
+					.reduce((all, item) => {
+						return all + item["Average PSU"];
+					}, 0),
+				locale
+			).format("0,0"),
+			adm_delegada: numeral(
+				data.data
+					.filter(item => item["ID Administration"] === 4)
+					.reduce((all, item) => {
+						return all + item["Average PSU"];
+					}, 0),
+				locale
+			).format("0,0")
+		};
 
-    let output = data.data.map(item => {
-      return (
-        "de escuelas" +
-        " " +
-        lang[locale][item["ID Administration"]] +
-        " " +
-        t("fue") +
-        " " +
-        numeral(item["Average PSU"], locale).format("0") +
-        " " +
-        "puntos"
-      );
-    });
-    output = output.length > 1 ? output.join(", ") : output;
+		let output = data.data.map(item => {
+			return (
+				"de escuelas" +
+				" " +
+				lang[locale][item["ID Administration"]] +
+				" " +
+				t("fue") +
+				" " +
+				numeral(item["Average PSU"], locale).format("0") +
+				" " +
+				"puntos"
+			);
+		});
+		output = output.length > 1 ? output.join(", ") : output;
 
-    if (output.length > 1) {
-      const lastComma = output.lastIndexOf(",");
-      output =
-        output.substring(0, lastComma) + " y" + output.substring(lastComma + 1);
-    }
+		if (output.length > 1) {
+			const lastComma = output.lastIndexOf(",");
+			output =
+				output.substring(0, lastComma) + " y" + output.substring(lastComma + 1);
+		}
 
-    return { year: { last: last_year }, geo, psu, text_joined: output };
-  } else {
-    return false;
-  }
+		return { year: { last: last_year }, geo, psu, text_joined: output };
+	} else {
+		return false;
+	}
 }
 
 function getTotal(data, msrName) {
-  return data.reduce((all, item) => {
-    return item[msrName] + all;
-  }, 0);
+	return data.reduce((all, item) => {
+		return item[msrName] + all;
+	}, 0);
 }
 
 // ENVIRONMENT SECTION
 
 function Crime(data, geo, locale, t) {
-  if (data) {
-    const data_last_year = data.data.filter(
-      item => item["ID Year"] === sources.crimes.year
-    );
-    const total_last_year = data_last_year.reduce((all, item) => {
-      return all + item["Cases"];
-    }, 0);
+	if (data) {
+		const data_last_year = data.data.filter(
+			item => item["ID Year"] === sources.crimes.year
+		);
+		const total_last_year = data_last_year.reduce((all, item) => {
+			return all + item["Cases"];
+		}, 0);
 
-    const data_theft = data.data.filter(item => item["ID Crime Group"] === 1);
-    const theft_growth = annualized_growth([
-      getTotal(
-        data_theft.filter(item => item["ID Year"] === sources.crimes.year - 1),
-        "Cases"
-      ),
-      getTotal(
-        data_theft.filter(item => item["ID Year"] === sources.crimes.year),
-        "Cases"
-      )
-    ]);
+		const data_theft = data.data.filter(item => item["ID Crime Group"] === 1);
+		const theft_growth = annualized_growth([
+			getTotal(
+				data_theft.filter(item => item["ID Year"] === sources.crimes.year - 1),
+				"Cases"
+			),
+			getTotal(
+				data_theft.filter(item => item["ID Year"] === sources.crimes.year),
+				"Cases"
+			)
+		]);
 
-    const total_larceny = data_last_year
-      .filter(item => item["ID Crime Group"] === 2)
-      .reduce((all, item) => {
-        return all + item["Cases"];
-      }, 0);
+		const total_larceny = data_last_year
+			.filter(item => item["ID Crime Group"] === 2)
+			.reduce((all, item) => {
+				return all + item["Cases"];
+			}, 0);
 
-    const total_theft = data_last_year
-      .filter(item => item["ID Crime Group"] === 1)
-      .reduce((all, item) => {
-        return all + item["Cases"];
-      }, 0);
+		const total_theft = data_last_year
+			.filter(item => item["ID Crime Group"] === 1)
+			.reduce((all, item) => {
+				return all + item["Cases"];
+			}, 0);
 
-    const rank = getRank(data_last_year, "Cases", "Crime", t);
-    return {
-      year: { first: sources.crimes.first_year, last: sources.crimes.year },
-      text_joined: rank,
-      geo,
-      total_last_year,
-      theft_growth,
-      theft: {
-        total: total_theft,
-        growth: theft_growth,
-        share: total_last_year > 0 ? total_theft / total_last_year : 0
-      },
-      larceny: {
-        total: total_larceny,
-        share: total_last_year > 0 ? total_larceny / total_last_year : 0
-      }
-    };
-  } else {
-    return false;
-  }
+		const rank = getRank(data_last_year, "Cases", "Crime", t);
+		return {
+			year: { first: sources.crimes.first_year, last: sources.crimes.year },
+			text_joined: rank,
+			geo,
+			total_last_year,
+			theft_growth,
+			theft: {
+				total: total_theft,
+				growth: theft_growth,
+				share: total_last_year > 0 ? total_theft / total_last_year : 0
+			},
+			larceny: {
+				total: total_larceny,
+				share: total_last_year > 0 ? total_larceny / total_last_year : 0
+			}
+		};
+	} else {
+		return false;
+	}
 }
 
 // HEALTH SECTION
 
 function Disability(data, geo, locale) {
-  const last_year = sources.disabilities.year;
-  if (data) {
-    const no_disability = data.data
-      .filter(item => item["ID Disability Grade"] === 1)
-      .reduce((all, item) => {
-        return all + item["Expansion Factor Region"];
-      }, 0);
-    const leve = data.data
-      .filter(item => item["ID Disability Grade"] === 2)
-      .reduce((all, item) => {
-        return all + item["Expansion Factor Region"];
-      }, 0);
-    const severe = data.data
-      .filter(item => item["ID Disability Grade"] === 3)
-      .reduce((all, item) => {
-        return all + item["Expansion Factor Region"];
-      }, 0);
+	const last_year = sources.disabilities.year;
+	if (data) {
+		const no_disability = data.data
+			.filter(item => item["ID Disability Grade"] === 1)
+			.reduce((all, item) => {
+				return all + item["Expansion Factor Region"];
+			}, 0);
+		const leve = data.data
+			.filter(item => item["ID Disability Grade"] === 2)
+			.reduce((all, item) => {
+				return all + item["Expansion Factor Region"];
+			}, 0);
+		const severe = data.data
+			.filter(item => item["ID Disability Grade"] === 3)
+			.reduce((all, item) => {
+				return all + item["Expansion Factor Region"];
+			}, 0);
 
-    const total = leve + severe;
-    const disability_female = data.data
-      .filter(
-        item =>
-          [2, 3].includes(item["ID Disability Grade"]) && item["ID Sex"] === 1
-      )
-      .reduce((all, item) => {
-        return all + item["Expansion Factor Region"];
-      }, 0);
-    return {
-      geo,
-      year: { last: last_year },
-      gender: {
-        female: {
-          share: numeral(disability_female / total, locale).format("0.0 %")
-        },
-        male: { share: (total - disability_female) / total }
-      },
-      value: numeral(total, locale).format("0.0 a"),
-      share: numeral(total / (total + no_disability), locale).format("0.0 %"),
-      data: {
-        prep: total >= 1000000 ? " de" : "",
-        total: numeral(total, locale).format("0,0"),
-        severe: { share: numeral(severe / total, locale).format("0.0 %") }
-      }
-    };
-  }
+		const total = leve + severe;
+		const disability_female = data.data
+			.filter(
+				item =>
+					[2, 3].includes(item["ID Disability Grade"]) && item["ID Sex"] === 1
+			)
+			.reduce((all, item) => {
+				return all + item["Expansion Factor Region"];
+			}, 0);
+		return {
+			geo,
+			year: { last: last_year },
+			gender: {
+				female: {
+					share: numeral(disability_female / total, locale).format("0.0 %")
+				},
+				male: { share: (total - disability_female) / total }
+			},
+			value: numeral(total, locale).format("0.0 a"),
+			share: numeral(total / (total + no_disability), locale).format("0.0 %"),
+			data: {
+				prep: total >= 1000000 ? " de" : "",
+				total: numeral(total, locale).format("0,0"),
+				severe: { share: numeral(severe / total, locale).format("0.0 %") }
+			}
+		};
+	}
 }
 
 function DeathCauses(data, geo, locale) {
-  const first_year = sources.death_causes.min_year;
-  const last_year = sources.death_causes.year;
-  if (data) {
-    const aggregation = groupBy(data.data, "CIE 10");
-    const q = Object.keys(aggregation)
-      .map(item => {
-        return {
-          caption: item,
-          rate: annualized_growth(
-            aggregation[item].map(subitem => subitem["Casualities Count SUM"]),
-            [first_year, last_year]
-          )
-        };
-      })
-      .sort((a, b) => b.rate - a.rate);
-    return {
-      geo,
-      year: {
-        number: last_year - first_year,
-        first: first_year,
-        last: last_year
-      },
-      available: true,
-      data: {
-        first: {
-          caption: q[0].caption,
-          rate: numeral(q[0].rate, locale).format("0.0 %"),
-          value_first_y: numeral(q[0].value_first_y, locale).format("0,0"),
-          value_last_y: numeral(q[0].value_last_y, locale).format("0,0")
-        },
-        second: {
-          caption: q[1].caption,
-          rate: numeral(q[1].rate, locale).format("0.0 %"),
-          value_first_y: numeral(q[1].value_first_y, locale).format("0,0"),
-          value_last_y: numeral(q[1].value_last_y, locale).format("0,0")
-        }
-      }
-    };
-  } else {
-    return false;
-  }
+	const first_year = sources.death_causes.min_year;
+	const last_year = sources.death_causes.year;
+	if (data) {
+		const aggregation = groupBy(data.data, "CIE 10");
+		const q = Object.keys(aggregation)
+			.map(item => {
+				return {
+					caption: item,
+					rate: annualized_growth(
+						aggregation[item].map(subitem => subitem["Casualities Count SUM"]),
+						[first_year, last_year]
+					)
+				};
+			})
+			.sort((a, b) => b.rate - a.rate);
+		return {
+			geo,
+			year: {
+				number: last_year - first_year,
+				first: first_year,
+				last: last_year
+			},
+			available: true,
+			data: {
+				first: {
+					caption: q[0].caption,
+					rate: numeral(q[0].rate, locale).format("0.0 %"),
+					value_first_y: numeral(q[0].value_first_y, locale).format("0,0"),
+					value_last_y: numeral(q[0].value_last_y, locale).format("0,0")
+				},
+				second: {
+					caption: q[1].caption,
+					rate: numeral(q[1].rate, locale).format("0.0 %"),
+					value_first_y: numeral(q[1].value_first_y, locale).format("0,0"),
+					value_last_y: numeral(q[1].value_last_y, locale).format("0,0")
+				}
+			}
+		};
+	} else {
+		return false;
+	}
 }
 
 function Congress(data, geo, locale, t) {
-  if (data) {
-    let output = data.data.map(item => item["Candidate"]);
-    output = output.length > 1 ? output.join(", ") : output;
+	if (data) {
+		let output = data.data.map(item => item["Candidate"]);
+		output = output.length > 1 ? output.join(", ") : output;
 
-    if (output.length > 1) {
-      const lastComma = output.lastIndexOf(",");
-      output =
-        output.substring(0, lastComma) +
-        " " +
-        t("and") +
-        output.substring(lastComma + 1);
-    }
+		if (output.length > 1) {
+			const lastComma = output.lastIndexOf(",");
+			output =
+				output.substring(0, lastComma) +
+				" " +
+				t("and") +
+				output.substring(lastComma + 1);
+		}
 
-    return {
-      geo,
-      congresspersons: output
-    };
-  } else {
-    return false;
-  }
+		return {
+			geo,
+			congresspersons: output
+		};
+	} else {
+		return false;
+	}
 }
 
 function Election(data, geo, locale) {
-  if (data) {
-    const first_round = data.data.find(item => item["ID Election Type"] === 1);
-    const second_round = data.data.find(item => item["ID Election Type"] === 2);
+	if (data) {
+		const first_round = data.data.find(item => item["ID Election Type"] === 1);
+		const second_round = data.data.find(item => item["ID Election Type"] === 2);
 
-    const top_participation = data.data.sort(
-      (a, b) => b["Participation"] - a["Participation"]
-    )[0];
+		const top_participation = data.data.sort(
+			(a, b) => b["Participation"] - a["Participation"]
+		)[0];
 
-    const growth = (second_round.Votes - first_round.Votes) / first_round.Votes;
-    return {
-      geo,
-      growth,
-      participation: {
-        caption: top_participation["Election Type"],
-        year: top_participation["Year"],
-        perc: numeral(top_participation["Participation"], locale).format(
-          "0.00%"
-        )
-      }
-    };
-  } else {
-    return false;
-  }
+		const growth = (second_round.Votes - first_round.Votes) / first_round.Votes;
+		return {
+			geo,
+			growth,
+			participation: {
+				caption: top_participation["Election Type"],
+				year: top_participation["Year"],
+				perc: numeral(top_participation["Participation"], locale).format(
+					"0.00%"
+				)
+			}
+		};
+	} else {
+		return false;
+	}
 }
 
 export {
-  Crime,
-  Congress,
-  SpendingByIndustry,
-  SpendingBySector,
-  IndustryActivity,
-  IndustryOccupation,
-  DeathCauses,
-  Disability,
-  Enrollment,
-  PerformanceByPSU,
-  PerformanceByPSUComuna,
-  PerformanceByHighSchool,
-  Election
+	Crime,
+	Congress,
+	SpendingByIndustry,
+	SpendingBySector,
+	IndustryActivity,
+	IndustryOccupation,
+	DeathCauses,
+	Disability,
+	Enrollment,
+	PerformanceByPSU,
+	PerformanceByPSUComuna,
+	PerformanceByHighSchool,
+	Election
 };
