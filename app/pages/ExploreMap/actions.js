@@ -8,7 +8,7 @@ import mondrianClient, {
 export function requestData(params) {
   const { cubeName, cuts, locale } = params;
   return function(dispatch) {
-    dispatch({ type: "MAP_DATA_FETCH" });
+    dispatch({ type: "MAP_DATA_FETCH", payload: params });
 
     return mondrianClient
       .cube(cubeName)
@@ -57,14 +57,14 @@ export function requestData(params) {
         });
       })
       .then(null, function(err) {
-        return dispatch({ type: "MAP_DATA_ERROR", payload: err });
+        return dispatch({ type: "MAP_DATA_ERROR", payload: err.stack });
       });
   };
 }
 
 export function requestMembers(cubeName, locale = "en") {
   return function(dispatch) {
-    dispatch({ type: "MAP_MEMBER_FETCH" });
+    dispatch({ type: "MAP_MEMBER_FETCH", payload: cubeName });
 
     // by this point the cube should be in cache already
     return mondrianClient
@@ -80,29 +80,43 @@ export function requestMembers(cubeName, locale = "en") {
             availableDims.indexOf(dim.name) > -1
           ) {
             for (let hier, i = 0; (hier = dim.hierarchies[i]); i++) {
+              let hashSelector = shorthash(`[${dim.name}].[${hier.name}]`);
+
               for (let level, j = 1; (level = hier.levels[j]); j++) {
+                let hashLevel = shorthash(level.name);
                 let caption = getLocaleCaption(level, locale);
+
                 let promise = mondrianClient
                   .members(level, false, caption)
-                  .then(members => ({
-                    name: `[${cube.name}].${level.fullName}`,
-                    members: members.reduce((output, member) => {
-                      if (member.caption)
-                        output.push({
-                          hash: shorthash(`${member.key}`),
-                          fullName: `${level.fullName}.&[${member.key}]`,
-                          value: member.name,
-                          name: member.caption
-                        });
-                      return output;
-                    }, [])
-                  }));
+                  .then(members => {
+                    dispatch({ type: "MAP_MEMBER_LOADED" });
+                    return {
+                      name: `[${cube.name}].${level.fullName}`,
+                      members: members.reduce((output, member) => {
+                        if (member.caption)
+                          output.push({
+                            hash: shorthash(`${member.key}`),
+                            hsel: hashSelector,
+                            hlvl: hashLevel,
+                            fullName: `${level.fullName}.&[${member.key}]`,
+                            value: member.name,
+                            name: member.caption
+                          });
+                        return output;
+                      }, [])
+                    };
+                  });
                 requests.push(promise);
               }
             }
           }
           return requests;
         }, []);
+
+        dispatch({
+          type: "MAP_MEMBER_LOADING",
+          payload: requestsLevels.length
+        });
 
         return Promise.all(requestsLevels);
       })
@@ -156,92 +170,4 @@ function getAvailableYears(data) {
   const payload = Object.keys(years).sort();
   // save
   return { type: "MAP_YEAR_OPTIONS", payload };
-}
-
-export function serializeCuts(obj) {
-  return Object.keys(obj).reduce((output, key) => {
-    const cuts = obj[key].map(cut => cut.fullName);
-    return output.concat(cuts);
-  }, []);
-}
-
-function serializeObject(obj) {
-  return Object.keys(obj).reduce(function(output, key) {
-    const value = [].concat(obj[key]).reduce((hashes, item) => {
-      if (item && item.hash) hashes.push(item.hash);
-      return hashes;
-    }, []);
-
-    if (value.length > 0) {
-      output.push(`${shorthash(key)}_${value.join(".")}`);
-    }
-
-    return output;
-  }, []);
-}
-
-function unserializeObject(arr) {
-  return arr.filter(Boolean).reduce(function(output, item) {
-    item = item.split("_");
-    const hash = item[0];
-    const value = item[1].split(".").filter(Boolean);
-    return output;
-  }, {});
-}
-
-export function stateToPermalink(params) {
-  const permalink = {};
-
-  if (params.topic && params.measure) {
-    permalink.t = params.topic.hash;
-    permalink.m = params.measure.hash;
-    permalink.c = serializeObject(params.cuts).join("-");
-    permalink.l = params.level == "region" ? "r" : "c";
-    permalink.sc = params.scale.substr(0, 3);
-    permalink.s = serializeObject(params.selector).join("-");
-    permalink.y = params.year;
-
-    if (!permalink.c) delete permalink.c;
-    if (!permalink.s) delete permalink.s;
-  }
-
-  return (
-    "?" +
-    Object.keys(permalink)
-      .filter(key => permalink[key])
-      .map(key => `${key}=${permalink[key]}`)
-      .join("&")
-  );
-}
-
-export function permalinkToState(permalink, topics, measures, hierarchies) {
-  const parsed = (permalink || "")
-    .replace("?", "")
-    .split("&")
-    .reduce((obj, item) => {
-      const tokens = item.split("=");
-      // if ('s' == tokens[0] || 'c' == tokens[0])
-      // tokens[1] = unserializeObject(tokens[1].split('-'));
-      obj[tokens[0]] = tokens[1];
-      return obj;
-    }, {});
-
-  // console.log(parsed, hierarchies);
-
-  permalink = {
-    topic: topics.find(topic => topic.hash == parsed.t),
-    measure: Object.keys(measures).reduce((match, key) => {
-      return match || measures[key].find(ms => ms.hash == parsed.m);
-    }, null)
-    // cuts: {},
-    // selector: {},
-  };
-
-  if (parsed.y) permalink.year = parsed.y;
-  if (parsed.sc)
-    permalink.scale =
-      parsed.sc == "lin" ? "linear" : parsed.sc == "dec" ? "decile" : "log";
-  if (parsed.l) permalink.level = parsed.l == "c" ? "comuna" : "region";
-
-  return permalink;
 }

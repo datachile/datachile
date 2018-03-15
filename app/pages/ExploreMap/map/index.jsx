@@ -13,15 +13,15 @@ import MapContent from "./MapContent";
 import MapLevelSelector from "./MapLevelSelector";
 import MapOptions from "./MapOptions";
 
-import {
-  requestData,
-  requestMembers,
-  serializeCuts,
-  stateToPermalink,
-  permalinkToState
-} from "../actions.js";
+import { requestData, requestMembers } from "../actions.js";
 
 import { SyncStateAndLocalStorage } from "helpers/localStorage";
+import {
+  getCutsFullName,
+  stateToPermalink,
+  permalinkToState,
+  cutStateParser
+} from "helpers/map";
 import mondrianClient from "helpers/MondrianClient";
 import shorthash from "helpers/shorthash";
 
@@ -104,8 +104,8 @@ class ExploreMap extends React.Component {
         return {
           key: "map_params",
           data: {
-            hierarchies,
-            measures
+            selectors: hierarchies,
+            measures: measures
           }
         };
       });
@@ -134,22 +134,21 @@ class ExploreMap extends React.Component {
       return item;
     });
 
-    const { measures, hierarchies } = props.data.map_params;
-
     props.dispatch({
       type: "MAP_INIT",
       payload: {
         topics: topics,
-        measures,
-        hierarchies,
         params: permalinkToState(
-          props.location.search,
+          props.location.query,
           topics,
-          measures,
-          hierarchies
+          props.data.map_params.measures
         )
       }
     });
+
+    this.state = {
+      cutHash: props.location.query.c
+    };
   }
 
   componentDidMount() {
@@ -162,13 +161,28 @@ class ExploreMap extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { dispatch } = this.props;
-    const { loadedMembers, mapCube, mapParams } = nextProps;
+    const { mapMemberCubes, mapCube, mapParams } = nextProps;
     const locale = nextProps.i18n.language;
+
+    if (
+      this.state.cutHash &&
+      Object.keys(nextProps.mapLevelMembers).length > 0
+    ) {
+      this.setState({ cutHash: null });
+      dispatch({
+        type: "MAP_INIT_DEFERRED",
+        payload: cutStateParser(this.state.cutHash, {
+          cube: nextProps.mapCube,
+          selectors: nextProps.data.map_params.selectors,
+          members: nextProps.mapLevelMembers
+        })
+      });
+    }
 
     const mapCubeChanged = mapCube && this.props.mapCube != mapCube;
 
-    const cutsBefore = serializeCuts(this.props.mapCuts);
-    const cutsAfter = serializeCuts(nextProps.mapCuts);
+    const cutsBefore = getCutsFullName(this.props.mapCuts);
+    const cutsAfter = getCutsFullName(nextProps.mapCuts);
 
     if (mapCubeChanged || !isEqual(cutsBefore, cutsAfter)) {
       dispatch(
@@ -180,20 +194,24 @@ class ExploreMap extends React.Component {
       );
     }
 
-    if (mapCubeChanged && !loadedMembers.includes(mapCube))
+    if (mapCubeChanged && !mapMemberCubes.includes(mapCube))
       dispatch(requestMembers(mapCube, locale));
 
     const permalinkBefore = stateToPermalink(this.props.mapParams);
     const permalinkAfter = stateToPermalink(nextProps.mapParams);
 
-    // Enabling this makes the permalink change
     if (!isEqual(permalinkBefore, permalinkAfter))
       browserHistory.push(this.props.location.pathname + permalinkAfter);
   }
 
   render() {
     const { section } = this.props.routeParams;
-    const { data, t, status } = this.props;
+    const { data, t, membersLoading } = this.props;
+
+    let loadingValue = 0;
+    loadingValue += Number(this.props.statusData == "LOADING");
+    loadingValue += this.props.membersLoaded;
+    const loading = loadingValue > 0 || this.state.cutHash ? "loading" : "";
 
     return (
       <Canon>
@@ -208,12 +226,14 @@ class ExploreMap extends React.Component {
                 </div>
                 <div className="explore-map-content">
                   <NonIdealState
-                    className={`explore-map-loading ${
-                      status == "LOADING" ? "loading" : ""
-                    }`}
+                    className={`explore-map-loading ${loading}`}
                     title={t("loading.map")}
                     description={t("loading.developed")}
-                    visual={<DatachileProgressBar value={1} />}
+                    visual={
+                      <DatachileProgressBar
+                        value={loadingValue / (membersLoading + 1)}
+                      />
+                    }
                   />
                   <div className="map-options-row">
                     <MapLevelSelector />
@@ -235,9 +255,12 @@ const mapStateToProps = state => {
   return {
     data: state.data,
 
-    loadedMembers: state.map.options.cubes,
-    status: state.map.results.status,
+    statusData: state.map.results.status,
+    membersLoading: state.map.options.countLoading,
+    membersLoaded: state.map.options.countLoaded,
 
+    mapMemberCubes: state.map.options.cubes,
+    mapLevelMembers: state.map.options.members,
     mapParams: params,
     mapCube: params.measure && params.measure.cube,
     mapCuts: params.cuts

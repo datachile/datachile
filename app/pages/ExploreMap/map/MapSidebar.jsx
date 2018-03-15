@@ -25,13 +25,11 @@ class MapSidebar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const oldTopic = this.props.valueTopic;
-    const newTopic = nextProps.valueTopic;
+    const oldTopic = this.props.topicKey;
+    const newTopic = nextProps.topicKey;
 
-    if (oldTopic && newTopic && oldTopic != newTopic) {
-      const measures = this.props.measureOptions[this.props.topicKey];
-      nextProps.setMeasure(measures[0]);
-    }
+    if (oldTopic && newTopic && oldTopic != newTopic)
+      nextProps.setMeasure(nextProps.measureOptions[0]);
   }
 
   renderSelectorGroup(selector) {
@@ -50,7 +48,7 @@ class MapSidebar extends React.Component {
         <div className="option-hierarchy">
           {selector.levels.map(lvl => (
             <button
-              className={classnames({ active: lvl == currentLevel })}
+              className={classnames({ active: lvl.hash == currentLevel.hash })}
               onClick={setSelectorLevel.bind(null, value, lvl)}
             >
               {lvl.name}
@@ -71,7 +69,7 @@ class MapSidebar extends React.Component {
           value={valueMembers}
           onItemSelect={addCut.bind(null, value)}
           onItemRemove={removeCut.bind(null, value)}
-          placeholder={t("Add a filter...")}
+          placeholder={t("map.sidebar_addfilter")}
         />
       </OptionGroup>
     );
@@ -138,9 +136,9 @@ const mapStateToProps = (state, ownProps) => {
     topicKey: topicKey,
     measureOptions: preload.measures[topicKey] || [],
     measureValue: params.measure,
-    memberOptions: state.map.options,
+    memberOptions: state.map.options.members,
     memberValues: state.map.params.cuts,
-    selectors: preload.hierarchies[cube] || [],
+    selectors: preload.selectors[cube] || [],
     selectorHier: params.selector
   };
 };

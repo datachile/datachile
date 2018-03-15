@@ -7,7 +7,7 @@ const mapParamsInitialState = {
   scale: "log",
   selector: {},
   topic: { value: "" },
-  year: 2015
+  year: 2016
 };
 
 const arrayUniqueAdd = (array, item) => {
@@ -21,14 +21,22 @@ const mapParamsReducer = (state = mapParamsInitialState, action) => {
 
   switch (action.type) {
     case "MAP_INIT":
-      const pl = action.payload;
-      if (pl.params.topic && pl.params.measure) {
-        return { ...state, ...pl.params };
-      } else {
-        const initTopic = pl.topics[0];
-        const initMeasure = pl.measures[initTopic.value][0];
-        return { ...state, topic: initTopic, measure: initMeasure };
-      }
+      item = action.payload.params;
+      return {
+        ...state,
+        topic: item.topic,
+        measure: item.measure,
+        level: item.level || "region",
+        scale: item.scale || "log",
+        year: item.year || 2016
+      };
+
+    case "MAP_INIT_DEFERRED":
+      return {
+        ...state,
+        cuts: action.payload.cuts,
+        selector: action.payload.selector
+      };
 
     case "MAP_CUT_ADD":
       item = action.payload;
@@ -102,30 +110,42 @@ const mapParamsReducer = (state = mapParamsInitialState, action) => {
 
 const mapOptionsInitialState = {
   status: "SUCCESS",
+  countLoading: 0,
+  countLoaded: 0,
   lastError: null,
   year: [2015],
   topic: [],
-  cubes: []
+  cubes: [],
+  members: {}
 };
 
 const mapOptionsReducer = (state = mapOptionsInitialState, action) => {
   switch (action.type) {
     case "MAP_INIT":
-      return { ...state, topic: [].concat(action.payload.topics) };
+      return { ...state, topic: action.payload.topics };
 
     case "MAP_MEMBER_FETCH":
       return { ...state, status: "LOADING", lastError: null };
+
+    case "MAP_MEMBER_LOADING":
+      return { ...state, countLoading: action.payload };
+
+    case "MAP_MEMBER_LOADED":
+      return { ...state, countLoaded: state.countLoaded + 1 };
 
     case "MAP_MEMBER_SUCCESS":
       const newState = {
         ...state,
         status: "SUCCESS",
+        countLoading: 0,
+        countLoaded: 0,
         lastError: null,
-        cubes: [].concat(state.cubes, action.payload.cube)
+        cubes: [].concat(state.cubes, action.payload.cube),
+        members: { ...state.members }
       };
       const levels = action.payload.levels;
       for (let level, i = 0; (level = levels[i]); i++) {
-        newState[level.name] = level.members.sort((a, b) =>
+        newState.members[level.name] = level.members.sort((a, b) =>
           a.name.localeCompare(b.name)
         );
       }
@@ -135,7 +155,9 @@ const mapOptionsReducer = (state = mapOptionsInitialState, action) => {
       return {
         ...state,
         status: "ERROR",
-        lastError: action.payload
+        lastError: action.payload,
+        countLoading: 0,
+        countLoaded: 0
       };
 
     case "MAP_YEAR_OPTIONS":

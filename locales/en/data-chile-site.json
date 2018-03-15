@@ -846,14 +846,21 @@
         }
       },
       "sned": {
-        "text1": "In {{year}}, the average score awarded by National System of Evaluation Performance (SNED in spanish) for {{geo.caption}} schools was {{score}}.",
+        "text1":
+          "In {{year}}, the average score awarded by National System of Evaluation Performance (SNED in spanish) for {{geo.caption}} schools was {{score}}.",
         "definitions": {
-          "efectiveness": "Educational result obtained by the establishment in relation with the population served.",
-          "overcoming": "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
-          "initiative": "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico.",
-          "integration": "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
-          "improvement": "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
-          "fairness": " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
+          "efectiveness":
+            "Educational result obtained by the establishment in relation with the population served.",
+          "overcoming":
+            "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
+          "initiative":
+            "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico.",
+          "integration":
+            "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
+          "improvement":
+            "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
+          "fairness":
+            " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
         }
       }
     },
@@ -987,6 +994,9 @@
     "developed": "Designed and Engineered by Datawheel",
     "title": "Please Wait",
     "map": "Loading information"
+  },
+  "map": {
+    "sidebar_addfilter": "Add a filter..."
   },
   "no_datum": "No data",
   "no_info":

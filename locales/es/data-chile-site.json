@@ -35,7 +35,6 @@
   },
   "Add to cart": "Agregar al carrito",
   "Added to cart": "Agregado al carrito",
-  "Add a filter...": "Agregar un filtro...",
   "Admin": "Admin",
   "Administration": "Administración",
   "Affiliates in": "Afiliados en",
@@ -1080,7 +1079,8 @@
         }
       },
       "sned": {
-        "text1": "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}.",
+        "text1":
+          "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}.",
         "definitions": {
           "efectiveness":
             "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
@@ -1188,6 +1188,9 @@
     "developed": "Diseñado y construido por Datawheel",
     "title": "Por favor espere",
     "map": "Cargando información"
+  },
+  "map": {
+    "sidebar_addfilter": "Agregar un filtro..."
   },
   "no_datum": "No hay datos",
   "no_info":
