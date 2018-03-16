@@ -13,7 +13,7 @@
         font-weight: 800;
         color: var(--snow);
         text-transform: uppercase;
-        padding: 15px 5px;
+        padding: 15px;
         text-align: left;
         font-family: var(--font-family-text);
       }
@@ -26,7 +26,7 @@
         font-family: var(--font-family-text);
         background: var(--snow);
         color: #808080;
-        padding: 15px 5px;
+        padding: 15px;
         border-right: 1px solid rgba(0, 0, 0, .2);
       }
     }
