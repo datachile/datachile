@@ -536,7 +536,6 @@ class GeoProfile extends Component {
                       className=""
                     />
                   )}
-<<<<<<< HEAD
                 {stats.psu && (
                   <FeaturedDatumSplash
                     title={t("Education")}
@@ -562,9 +561,6 @@ class GeoProfile extends Component {
                   data={this.props.data}
                 />
               </div>
-=======
-                </div>
->>>>>>> minor_changes
 
                 <div className="candidates">
                   <AuthoritiesBlock
@@ -773,7 +769,6 @@ class GeoProfile extends Component {
                   </IncomeSexAgeSlide>
                 </div>
 
-<<<<<<< HEAD
               <div>
                 <IDSpendingIndustrySlide>
                   <SectionColumns>
@@ -899,142 +894,6 @@ class GeoProfile extends Component {
                     t("By Activity & Visa Type")
                   ]
                 } /*
-=======
-                <div>
-                  <IDSpendingIndustrySlide>
-                    <SectionColumns>
-                      <SpendingBySector className="lost-1-3" />
-                      <SpendingByIndustry className="lost-2-3" />
-                    </SectionColumns>
-                  </IDSpendingIndustrySlide>
-                </div>
-              </Topic>
-
-              <Topic
-                name={t("Education")}
-                id="education"
-                sections={[
-                  {
-                    name: t("Performance"),
-                    slides: [
-                      t("Performance Evaluation"),
-                      t("Clusters"),
-                      t("PSU vs NEM"),
-                      t("PSU By Sex")
-                    ]
-                  },
-                  {
-                    name: t("Enrollment"),
-                    slides: [t("By School Type")]
-                  }
-                ]}
-              >
-                <div>
-                  <SNEDSlide>
-                    <SectionColumns>
-                      <SNED className="lost-1" />
-                    </SectionColumns>
-                  </SNEDSlide>
-                </div>
-                <div>
-                  <SNEDSlide>
-                    <SectionColumns>
-                      <SNEDSchoolByClusters className="lost-1-2" />
-                      <SNEDCompareByCluster className="lost-1-2" />
-                    </SectionColumns>
-                  </SNEDSlide>
-                </div>
-                <div>
-                  <PSUNEMSlide>
-                    <SectionColumns>
-                      <PSUNEMScatter className="lost-1" />
-                    </SectionColumns>
-                  </PSUNEMSlide>
-                </div>
-                <div>
-                  <PSUNEMSlide>
-                    <SectionColumns>
-                      <PSUBySex className="lost-1-2" />
-                      <PSUResultsBySex className="lost-1-2" />
-                    </SectionColumns>
-                  </PSUNEMSlide>
-                </div>
-                <div>
-                  <EnrollmentSlide>
-                    <SectionColumns>
-                      <CollegeByEnrollment className="lost-1" />
-                    </SectionColumns>
-                  </EnrollmentSlide>
-                </div>
-              </Topic>
-
-              <Topic
-                name={t("Housing & Environment")}
-                id="environment"
-                sections={[
-                  {
-                    name: t("Security"),
-                    slides: [t("Crimes")]
-                  },
-                  {
-                    name: t("Amenities"),
-                    slides: [t("Access to services")]
-                  },
-                  {
-                    name: t("Quality"),
-                    slides: [t("Housing Conditions")]
-                  },
-                  {
-                    name: t("Connectivity"),
-                    slides: [t("Devices")]
-                  }
-                ]}
-              >
-                <div>
-                  <CrimeSlide>
-                    <SectionColumns>
-                      <CrimeTreemap className="lost-1-2" />
-                      <CrimeStacked className="lost-1-2" />
-                    </SectionColumns>
-                  </CrimeSlide>
-                </div>
-                <div>
-                  <ServicesAccessSlide>
-                    <SectionColumns>
-                      <Services className="lost-1" />
-                    </SectionColumns>
-                  </ServicesAccessSlide>
-                </div>
-                <div>
-                  <QualitySlide>
-                    <SectionColumns>
-                      <HousingType className="lost-1-2" />
-                      <HousingByConstructionType className="lost-1-2" />
-                    </SectionColumns>
-                  </QualitySlide>
-                </div>
-                <div>
-                  <DevicesSlide>
-                    <SectionColumns>
-                      <Devices className="lost-1" />
-                    </SectionColumns>
-                  </DevicesSlide>
-                </div>
-              </Topic>
-
-              <Topic
-                name={t("Demography")}
-                id="demography"
-                sections={[
-                  {
-                    name: t("Origins"),
-                    slides: [
-                      t("By Origin Country"),
-                      t("By Sex & Age"),
-                      t("By Activity & Visa Type")
-                    ]
-                  } /*
->>>>>>> minor_changes
                        {
                        name: t("Diversity"),
                        slides: [t("By Sex & Age")]

@@ -845,6 +845,7 @@
         }
       },
       "sned": {
+        "text1": "In {{year}}, the average score awarded by National System of Evaluation Performance (SNED in spanish) for {{geo.caption}} schools was {{score}}.",
         "definitions": {
           "efectiveness": "Educational result obtained by the establishment in relation with the population served.",
           "overcoming": "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
