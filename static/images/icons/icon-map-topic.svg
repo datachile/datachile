@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+    <path fill="#ccc" stroke-width="1.3" d="M13 12.5h33v5H13zm0 10h33v5H13zm0 10h33v5H13z"/>
+    <path fill="#ccc" stroke-width="1.7" d="M7 12a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+</svg>

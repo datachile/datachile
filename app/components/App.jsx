@@ -9,26 +9,6 @@ import StagingIndicator from "components/StagingIndicator";
 import "./App.css";
 
 class App extends Component {
-  static preneed = [
-    (params, store) => {
-      let prm;
-      const r = { key: "__cubes__" };
-      if (typeof window === "undefined") {
-        prm = Promise.resolve({ ...r, data: false });
-      } else if (store.data.__cubes__) {
-        prm = Promise.resolve({ ...r, data: true });
-      } else {
-        // force population of the internal MondrianClient cache.
-        prm = mondrianClient.cubes().then(() => ({ ...r, data: true }));
-      }
-
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
-  ];
-
   render() {
     const { children, t } = this.props;
     const espanol = this.props.i18n.language == "es";

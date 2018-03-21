@@ -18,7 +18,7 @@ const axisConfig = {
   },
   tickSize: 4,
   titleConfig: {
-    fontFamily: () => "'Yantramanav', sans-serif",
+    fontFamily: () => "Roboto, sans-serif",
     fontColor: "#fff",
     fontSize: 12,
     fontWeight: 600,

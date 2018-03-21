@@ -94,7 +94,7 @@ class CustomMap extends React.Component {
             sum: d => d.variable,
 
             colorScale: "variable",
-            colorScalePosition: "bottom",
+            colorScalePosition: "left",
             colorScaleConfig: {
               color:
                 className === "exports"

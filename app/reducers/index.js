@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import mapReducers from "./map.js";
 
 const searchActive = (state = false, action) => {
   switch (action.type) {
@@ -25,5 +26,6 @@ export default {
   nene_year: id,
   nene_month: id,
   sources: id,
+  map: mapReducers,
   search: combineReducers({ searchActive })
 };

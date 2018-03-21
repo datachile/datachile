@@ -3,8 +3,9 @@ import { timeFormat } from "d3-time-format";
 import n from "numeral";
 
 import { PermalinkBuildError } from "helpers/errors";
+import shorthash from "helpers/shorthash";
 
-function slugifyStr(str) {
+export function slugifyStr(str, whitespace = "-") {
   if (!str) return "";
   str = str.replace(/^\s+|\s+$/g, ""); // trim
   str = str.toLowerCase();
@@ -18,7 +19,7 @@ function slugifyStr(str) {
 
   str = str
     .replace(/[^a-z0-9 -]/g, "") // remove invalid chars
-    .replace(/\s+/g, "-") // collapse whitespace and replace by -
+    .replace(/\s+/g, whitespace) // collapse whitespace and replace by -
     .replace(/-+/g, "-"); // collapse dashes
 
   return str;
@@ -139,6 +140,37 @@ export function buildPermalink(item, profile, ...levels) {
       .map(property => buildPermalinkSection(item, property))
       .join("")
   );
+}
+
+export function classnames() {
+  return [].concat
+    .apply([], arguments)
+    .reduce(function(classname, token) {
+      if (!token || token === true) return classname;
+      else if ("string" == typeof token) token = token.trim();
+      else if (Array.isArray(token)) token = classnames.apply(null, token);
+      else if ("object" == typeof token)
+        token = Object.keys(token).filter(slug => Boolean(token[slug]));
+      return classname.concat(token);
+    }, [])
+    .join(" ");
+}
+
+export function fullNameToArray(fullName) {
+  return fullName && fullName.slice(1, -1).split("].[");
+}
+
+export function guessAcceptableName(item) {
+  const fullName = fullNameToArray(item.fullName);
+  const last = fullName.pop();
+
+  while (fullName.length > 0) {
+    if (fullName[fullName.length - 1].includes(last)) fullName.pop();
+    else break;
+  }
+
+  fullName.push(item.annotations.es_element_caption || item.caption);
+  return fullName.join(" › ");
 }
 
 export function getImageFromMember(

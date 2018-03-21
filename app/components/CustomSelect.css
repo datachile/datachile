@@ -1,0 +1,87 @@
+.custom-select {
+  & > .pt-popover-target {
+    display: block;
+  }
+
+  & .select-option {
+    display: block;
+    padding: 0 0.5em;
+    line-height: 2em;
+    white-space: nowrap;
+    cursor: default;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    &.current {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      color: inherit;
+      background: inherit;
+
+      & .value {
+        flex: 1 1;
+        width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      & .pt-icon-standard {
+        flex: 0 0;
+        min-width: 1em;
+      }
+    }
+
+    & .icon {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    &.active {
+      background: #ccc;
+    }
+
+    &.disabled {
+      pointer-events: none;
+    }
+
+    & > span {
+      margin-left: 0.2em;
+      margin-right: 0.2em;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  & .select-noresults {
+    display: block;
+    padding: 0 0.5em;
+    line-height: 2rem;
+    text-align: center;
+    font-style: italic;
+  }
+
+  &.multi {
+    position: relative;
+
+    & > .pt-icon-standard {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      margin: auto 0.5em;
+      height: 1em;
+      pointer-events: none;
+    }
+  }
+}

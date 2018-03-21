@@ -3,6 +3,8 @@ import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { browserHistory } from "react-router";
 
+import { colorContrast } from "d3plus-color";
+
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import {
   numeral,
@@ -58,19 +60,30 @@ class SNEDSchoolByClusters extends Section {
               }
             },
             legendTooltip: {
-              title: d => d["Stage 1a"]
+              title: d => "<div style='display: flex; align-items: center; justify-content: center;'><img height='30px' src='/images/legend/education/type.png'/>" + d["Stage 1a"]+"</div>"
             },
             shapeConfig: {
               fill: d => snedColorScale("sned" + d["ID Stage 1a"])
             },
             tooltipConfig: {
+              padding: 0,
+              titleStyle: {
+                "background-color": d =>
+                  snedColorScale("sned" + d["ID Stage 1a"]),
+                color: d =>
+                  colorContrast(snedColorScale("sned" + d["ID Stage 1a"])),
+                padding: "5px 10px 5px 10px"
+              },
+              bodyStyle: {
+                "background-color": "#fff",
+                color: "#000",
+                padding: "5px 10px"
+              },
+              title: d => "<div style='display: flex; align-items: center; justify-content: center;'><img height='30px' src='/images/legend/education/type.png'/>" + d["Stage 2"]+"</div>",
               body: d =>
                 numeral(d["Number of records"], locale).format("0") +
                 " " +
-                t("Schools") +
-                "<br/><a>" +
-                t("tooltip.to_profile") +
-                "</a>"
+                t("Schools")
             },
             total: d => d["Number of records"],
             totalConfig: {
