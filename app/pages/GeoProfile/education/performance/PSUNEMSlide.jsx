@@ -164,7 +164,7 @@ class PSUNEMSlide extends Section {
                 <span
                   dangerouslySetInnerHTML={{
                     __html:
-                      geo.type === "comuna"
+                      geo.depth === 2
                         ? t(
                             `geo_profile.education.performance.byPSU.level2.${
                               text.type

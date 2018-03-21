@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonComponent } from "datawheel-canon";
+import { SectionColumns, CanonProfile, Canon } from "datawheel-canon";
 import { translate } from "react-i18next";
 import orderBy from "lodash/orderBy";
 import Helmet from "react-helmet";
 
-import d3plus from "helpers/d3plus";
 import { numeral, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
@@ -22,7 +21,7 @@ import {
 import { products } from "helpers/images";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import SvgImage from "components/SvgImage";
 import TopicMenu from "components/TopicMenu";
 import FeaturedDatumSplash from "components/FeaturedDatumSplash";
@@ -431,222 +430,219 @@ class ProductProfile extends Component {
       `${obj.caption}${obj.parent ? " (" + obj.parent.caption + ")" : ""}`;
 
     return (
-      <CanonComponent
-        data={this.props.data}
-        d3plus={d3plus}
-        topics={topics}
-        loadingComponent={<DatachileLoading />}
-      >
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={title} />
-          <meta property="og:title" content={title + " - DataChile"} />
-          <meta
-            property="og:url"
-            content={`https://${locale}.datachile.io${location.pathname}`}
-          />
-          <meta
-            property="og:image"
-            content={`https://${locale}.datachile.io/images/opengraph/product/${key}.jpg`}
-          />
-        </Helmet>
-        <div className="profile">
-          <div className="intro">
-            {obj && (
-              <Nav
-                title={obj.caption}
-                typeTitle={obj.parent ? t("Product") : t("Product Type")}
-                type="products"
-                exploreLink={"/explore/products"}
-                ancestor={obj.parent ? obj.parent.caption : ""}
-                ancestorLink={
-                  obj.parent
-                    ? slugifyItem("products", obj.parent.key, obj.parent.name)
-                    : ""
-                }
-                topics={topics}
-              />
-            )}
-            <div className="splash">
-              <div
-                className="image"
-                style={{
-                  backgroundImage: `url('/images/profile-bg/product/${key}.jpg')`
-                }}
-              />
-              <div className="gradient" />
-            </div>
-
-            <div className="header">
-              <div className="datum-full-width">
-                {stats.country && (
-                  <FeaturedMapSplash
-                    title={t("Top destination country")}
-                    type="country"
-                    code={stats.country.id}
-                    datum={stats.country.name}
-                    subtitle={
-                      "US " +
-                      numeral(stats.country.value, locale).format("($ 0,0 a)")
-                    }
-                    source="exports"
-                    className=""
-                  />
-                )}
-
-                {stats.exports && (
-                  <FeaturedDatumSplash
-                    title={t("Exports")}
-                    icon="ingreso"
-                    decile={stats.exports.decile}
-                    rank={
-                      stats.exports.rank
-                        ? numeral(stats.exports.rank, locale).format("0o") +
-                          " " +
-                          t("of") +
-                          " " +
-                          stats.exports.total
-                        : false
-                    }
-                    datum={
-                      "US " +
-                      numeral(stats.exports.value, locale).format("($ 0,0 a)")
-                    }
-                    source="exports"
-                    className=""
-                  />
-                )}
-
-                {stats.region && (
-                  <FeaturedMapSplash
-                    title={t("Top exporter region")}
-                    type="region"
-                    code={stats.region.id}
-                    datum={stats.region.name}
-                    subtitle={
-                      "US " +
-                      numeral(stats.region.value, locale).format("($ 0,0 a)")
-                    }
-                    source="exports"
-                    className=""
-                  />
-                )}
+      <Canon>
+        <CanonProfile data={this.props.data} topics={topics}>
+          <Helmet>
+            <title>{title}</title>
+            <meta name="description" content={title} />
+            <meta property="og:title" content={title + " - DataChile"} />
+            <meta
+              property="og:url"
+              content={`https://${locale}.datachile.io${location.pathname}`}
+            />
+            <meta
+              property="og:image"
+              content={`https://${locale}.datachile.io/images/opengraph/product/${key}.jpg`}
+            />
+          </Helmet>
+          <div className="profile">
+            <div className="intro">
+              {obj && (
+                <Nav
+                  title={obj.caption}
+                  typeTitle={obj.parent ? t("Product") : t("Product Type")}
+                  type="products"
+                  exploreLink={"/explore/products"}
+                  ancestor={obj.parent ? obj.parent.caption : ""}
+                  ancestorLink={
+                    obj.parent
+                      ? slugifyItem("products", obj.parent.key, obj.parent.name)
+                      : ""
+                  }
+                  topics={topics}
+                />
+              )}
+              <div className="splash">
+                <div
+                  className="image"
+                  style={{
+                    backgroundImage: `url('/images/profile-bg/product/${key}.jpg')`
+                  }}
+                />
+                <div className="gradient" />
               </div>
-            </div>
 
-            <div className="topics-selector-container">
-              <TopicMenu topics={topics} />
-            </div>
-
-            <div className="arrow-container">
-              <a href="#about">
-                <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-              </a>
-            </div>
-          </div>
-
-          <div className="topic-block" id="about">
-            <div className="topic-header">
-              <div className="topic-title">
-                <h2 className="full-width">
-                  {t("About")}
-                  {obj && (
-                    <span className="small">
-                      <span className="pipe"> | </span>
-                      {obj.caption}
-                    </span>
+              <div className="header">
+                <div className="datum-full-width">
+                  {stats.country && (
+                    <FeaturedMapSplash
+                      title={t("Top destination country")}
+                      type="country"
+                      code={stats.country.id}
+                      datum={stats.country.name}
+                      subtitle={
+                        "US " +
+                        numeral(stats.country.value, locale).format("($ 0,0 a)")
+                      }
+                      source="exports"
+                      className=""
+                    />
                   )}
-                </h2>
+
+                  {stats.exports && (
+                    <FeaturedDatumSplash
+                      title={t("Exports")}
+                      icon="ingreso"
+                      decile={stats.exports.decile}
+                      rank={
+                        stats.exports.rank
+                          ? numeral(stats.exports.rank, locale).format("0o") +
+                            " " +
+                            t("of") +
+                            " " +
+                            stats.exports.total
+                          : false
+                      }
+                      datum={
+                        "US " +
+                        numeral(stats.exports.value, locale).format("($ 0,0 a)")
+                      }
+                      source="exports"
+                      className=""
+                    />
+                  )}
+
+                  {stats.region && (
+                    <FeaturedMapSplash
+                      title={t("Top exporter region")}
+                      type="region"
+                      code={stats.region.id}
+                      datum={stats.region.name}
+                      subtitle={
+                        "US " +
+                        numeral(stats.region.value, locale).format("($ 0,0 a)")
+                      }
+                      source="exports"
+                      className=""
+                    />
+                  )}
+                </div>
               </div>
-              <div className="topic-go-to-targets">
-                <div className="topic-slider-sections" />
+
+              <div className="topics-selector-container">
+                <TopicMenu topics={topics} />
+              </div>
+
+              <div className="arrow-container">
+                <a href="#about">
+                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
+                </a>
               </div>
             </div>
-            <div className="topic-slide-container">
-              <div className="topic-slide-block">
-                <div className="topic-slide-intro">
-                  <div className="topic-slide-text">
-                    <p>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: total_exports_per_product
-                            ? t("product_profile.about1.default", text_about)
-                            : t("product_profile.about1.no_data", text_about)
-                        }}
-                      />
-                    </p>
-                  </div>
-                  <div className="topic-slide-text">
-                    {text_product.available && (
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html:
-                            text_product.exports.n_countries > 0
-                              ? t(
-                                  `product_profile.about2.exp_${
-                                    text_product.exports.n_countries
-                                  }_imp_${text_product.imports.n_countries}`,
-                                  text_product
-                                )
-                              : ""
-                        }}
-                      />
+
+            <div className="topic-block" id="about">
+              <div className="topic-header">
+                <div className="topic-title">
+                  <h2 className="full-width">
+                    {t("About")}
+                    {obj && (
+                      <span className="small">
+                        <span className="pipe"> | </span>
+                        {obj.caption}
+                      </span>
                     )}
-                  </div>
-                  <div className="topic-slide-link-list">
-                    <LinksList title={listTitle} list={list} />
+                  </h2>
+                </div>
+                <div className="topic-go-to-targets">
+                  <div className="topic-slider-sections" />
+                </div>
+              </div>
+              <div className="topic-slide-container">
+                <div className="topic-slide-block">
+                  <div className="topic-slide-intro">
+                    <div className="topic-slide-text">
+                      <p>
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: total_exports_per_product
+                              ? t("product_profile.about1.default", text_about)
+                              : t("product_profile.about1.no_data", text_about)
+                          }}
+                        />
+                      </p>
+                    </div>
+                    <div className="topic-slide-text">
+                      {text_product.available && (
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              text_product.exports.n_countries > 0
+                                ? t(
+                                    `product_profile.about2.exp_${
+                                      text_product.exports.n_countries
+                                    }_imp_${text_product.imports.n_countries}`,
+                                    text_product
+                                  )
+                                : ""
+                          }}
+                        />
+                      )}
+                    </div>
+                    <div className="topic-slide-link-list">
+                      <LinksList title={listTitle} list={list} />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div className="topics-container">
+              <Topic
+                name={t("Trade")}
+                id="trade"
+                slider={false}
+                sections={[
+                  {
+                    name: t("Products"),
+                    slides: [t("Trade")]
+                  }
+                ]}
+              >
+                <div>
+                  <InternationalTradeSlide>
+                    <SectionColumns>
+                      <ExportsByDestination className="lost-1-2" />
+                      <ExportsGeoMap className="lost-1-2" />
+                    </SectionColumns>
+                  </InternationalTradeSlide>
+                </div>
+                <div>
+                  <InternationalTradeSlide>
+                    <SectionColumns>
+                      <ImportsByOrigin className="lost-1-2" />
+                      <ImportsGeoMap className="lost-1-2" />
+                    </SectionColumns>
+                  </InternationalTradeSlide>
+                </div>
+                <div>
+                  <GeoTradeSlide>
+                    <SectionColumns>
+                      <ExportsByRegion className="lost-1-2" />
+                      <ImportsByRegion className="lost-1-2" />
+                    </SectionColumns>
+                  </GeoTradeSlide>
+                </div>
+                <div>
+                  <InternationalTradeBalanceSlide>
+                    <SectionColumns>
+                      <TradeBalance className="lost-1" />
+                    </SectionColumns>
+                  </InternationalTradeBalanceSlide>
+                </div>
+              </Topic>
+            </div>
           </div>
-          <div className="topics-container">
-            <Topic
-              name={t("Trade")}
-              id="trade"
-              slider={false}
-              sections={[
-                {
-                  name: t("Products"),
-                  slides: [t("Trade")]
-                }
-              ]}
-            >
-              <div>
-                <InternationalTradeSlide>
-                  <SectionColumns>
-                    <ExportsByDestination className="lost-1-2" />
-                    <ExportsGeoMap className="lost-1-2" />
-                  </SectionColumns>
-                </InternationalTradeSlide>
-              </div>
-              <div>
-                <InternationalTradeSlide>
-                  <SectionColumns>
-                    <ImportsByOrigin className="lost-1-2" />
-                    <ImportsGeoMap className="lost-1-2" />
-                  </SectionColumns>
-                </InternationalTradeSlide>
-              </div>
-              <div>
-                <GeoTradeSlide>
-                  <SectionColumns>
-                    <ExportsByRegion className="lost-1-2" />
-                    <ImportsByRegion className="lost-1-2" />
-                  </SectionColumns>
-                </GeoTradeSlide>
-              </div>
-              <div>
-                <InternationalTradeBalanceSlide>
-                  <SectionColumns>
-                    <TradeBalance className="lost-1" />
-                  </SectionColumns>
-                </InternationalTradeBalanceSlide>
-              </div>
-            </Topic>
-          </div>
-        </div>
-      </CanonComponent>
+        </CanonProfile>
+      </Canon>
     );
   }
 }

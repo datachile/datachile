@@ -49,6 +49,7 @@
   "Average PSU": "Promedio PSU",
   "Average Retention": "Retención Promedio",
   "Average Score": "Puntaje promedio",
+  "Average SNED Score": "Puntaje Promedio SNED",
   "Average age": "Edad promedio",
   "Average psu": "Promedio PSU",
   "Avg anual payment 2016": "Avg anual payment 2016",
@@ -74,14 +75,19 @@
   "Trade": "Comercio",
 
   "Casualties rate per 100 inhabitants": "Tasa de muertes por 100 habitantes",
+  "Change in participation": "Cambio en participación",
   "Chile Exports": "Exportaciones Chile",
+  "Civics": "Cívica",
   "Click to Highlight": "Clic para resaltar",
   "Community Equipment": "Equipamiento comunitario",
+  "Comparison by Cluster": "Comparación por Cluster",
   "complaints": "denuncias",
   "Complaints By Crime": "Denuncias Por Delito",
   "Complaints Over Time": "Evolución de Denuncias",
   "Comuna": "Comuna",
   "Comunas": "Comunas",
+  "Congress": "Congreso",
+  "Congressperson Election": "Elecciones de Diputados",
   "Connected to electricity network": "Conectado a la red eléctrica",
   "Use fire-based heating": "Usa calefacción basada en fuego",
   "Connected to public tap water system": "Conectado a la red de agua pública",
@@ -112,9 +118,11 @@
   "Disbilities": "Discapacidades",
   "Diversity": "Diversidad",
   "During": "Durante",
+
   "Economy": "Economía",
   "Education": "Educación",
   "Educational Center": "Centro educacional",
+  "Elected Authority": "Autoridades Electas",
   "Employability": "Empleabilidad",
   "Employability 1st Year": "Empleabilidad 1er año",
   "Employability by Program": "Employability por programa",
@@ -125,6 +133,7 @@
   "Employment by Education": "Empleo por nivel educativo",
   "Employment by category": "Empleo por categoría",
   "Employment growth": "Crecimiento de empleo",
+  "Enabled Voters": "Votantes Habilitados",
   "Enrollment": "Matrícula",
   "Enter a location": "Busca un lugar",
   "Housing": "Vivienda",
@@ -186,6 +195,11 @@
   "and": "y",
   "a decrease": "un descenso",
 
+  "Election": "Elección",
+  "Elections": "Elecciones",
+  "Electors": "Electores",
+  "Electoral Participation": "Participación Electoral",
+  "Electors that didn't vote": "Electores que no votaron",
   "Employed Men with Technical Education":
     "Hombres Empleados con Educación Técnica",
   "Employed Women with Technical Education":
@@ -263,6 +277,8 @@
   "Language": "Idioma",
   "Language_PSU": "Lenguaje",
   "Laptop computer": "Computador portátil",
+
+  "LINEAR": "LINEAL",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
   "Less than 30 square meter households": "Hogares de menos de 30m²",
@@ -326,7 +342,7 @@
   "Material of Walls": "Material de las paredes",
   "Math": "Matemática",
   "Mayor": "Alcalde",
-  "Mayor Election": "Elección de alcalde",
+  "Mayor Election": "Elección de Alcalde",
   "Median Income CLP": "Ingreso medio CLP",
   "Migration": "Migración",
   "Migration By Activity": "Migración por actividad",
@@ -348,6 +364,7 @@
   "National Profile": "Perfil Nacional",
   "NEM Performance By Administration":
     "Desempeño NEM por Tipo de Administración",
+  "Number of schools by Cluster": "Cantidad de escuelas por Cluster",
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of larceny complaints": "Cantidad de denuncias por hurto",
   "Number of complaints": "Cantidad de denuncias",
@@ -374,6 +391,9 @@
   "Output": "Producción",
   "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
   "Output by Industry": "Producción por Industria",
+
+  "Performance Evaluation": "Evaluación de Desempeño",
+  "Presidential": "Presidencial",
   "PSU exams": "Personas que rindieron PSU",
   "PSU distribution": "Distribución de PSU",
   "PSU Results": "Resultados PSU",
@@ -383,6 +403,8 @@
   "PSU vs NEM by school": "PSU vs NEM por escuela",
   "PSU vs NEM by Comuna & Administration":
     "PSU vs NEM por Comuna & Administración",
+  "Participation": "Participación",
+  "Participation in Municipal Election": "Participación en Elección Municipal",
   "People": "Personas",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
@@ -394,6 +416,7 @@
   "Population Pyramid": "Pirámide poblacional",
   "Population with Health Insurance": "Población con Previsión de Salud",
   "President": "Presidente",
+  "Presidential 1st - 2nd round": "1ra - 2da vuelta Presidencial",
   "Primary Healthcare": "Atención de Salud Primaria",
   "Product": "Producto",
   "Product Space": "Espacio de Producto",
@@ -429,16 +452,20 @@
   },
   "Results": "Resultados",
   "Results for": "Resultados para",
+  "Results 1st Round": "Resultados Primera Vuelta",
+  "Results 2nd Round": "Resultados Segunda Vuelta",
   "Retention": "Retención",
   "Retention by Program": "Retención por Programa",
   "Role": "Rol",
   "Rural households": "Hogares rurales",
+  "Rural Schools": "Escuelas Rurales",
   "Salaries": "Salarios",
   "Salaries By Category": "Salarios por Categoría",
   "Salaries By Occupation": "Salarios por ocupación",
   "Sales in ": "Ventas en ",
   "Score": "Puntaje",
   "School": "Escuela",
+  "Schools": "Escuelas",
   "School By Enrollment": "Escuela según matrícula",
   "Search a location, industry, product, career, etc":
     "Busque lugares, industrias, productos…",
@@ -447,6 +474,7 @@
   "See less": "Ver menos",
   "See more": "Ver más",
   "Senators": "Senadores",
+  "Senator Election": "Elección de Senador",
   "Services Access": "Acceso a servicios",
   "Sex": "Sexo",
   "SignUp": {
@@ -473,8 +501,10 @@
     "success": "Successfully Signed Up"
   },
   "Smart TV": "Smart TV",
+  "Sned_score": "Puntuación SNED",
   "Soon": "Próximamente",
   "Source": "Fuente",
+  "Special Education Schools": "Escuelas de Educación Especial",
   "Specialized Healthcare": "Atención con Médicos Especialistas",
   "Specialized Healthcares": "Cuidados médicos especializados",
   "Sponsored by": "Patrocinado por",
@@ -494,6 +524,7 @@
   "Top exporter region": "Principal región exportadora",
   "Topics": "Temas",
   "Total": "Total",
+  "Total Electors": "Electores Totales",
   "Total Enrollment": "Matrícula total",
   "Total Exports": "Total Exportaciones",
   "Total Imports": "Total Importaciones",
@@ -520,6 +551,10 @@
     "Visas para mujeres en el rango {{range}}",
   "Visas for males in range {{range}}":
     "Visas para hombres en el rango {{range}}",
+  "Votes": "Votos",
+  "votes": "votos",
+  "Blank and Null Votes": "Votos Blancos y Nulos",
+
   "Wages": "Salarios",
   "Wages by Program": "Salarios por programa",
   "Years of Studies": "Años de estudio",
@@ -705,12 +740,20 @@
           "Se usa en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
       },
       "servel": {
-        "title": "Resultados electorales",
-        "year": "2009-2013-2016",
+        "title": "Resultados electorales y participación",
+        "year": "2009-2013-2016-2017",
         "source": "Servicio Electoral (SERVEL)",
         "text":
-          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones.</p>",
+          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones. También hay detalles de la participación electoral a nivel comunal.</p>",
         "use": "Se usa en los perfiles nacional, regional y comunal."
+      },
+      "felonies": {
+        "title": "Denuncias por delitos de mayor connotación social",
+        "year": "2005-2016",
+        "source": "Carabineros de Chile",
+        "text":
+          "<p>Las estadísticas de los Delitos de Mayor Connotación Social (DMCS): Estos corresponden a los grupos denominados como 'Delitos Violentos' (Robo con Violencia, Robo con Intimidación, Robo por Sorpresa, Lesiones, Homicidio y Violación), y 'Delitos Contra la Propiedad' (Robo de Vehículo Motorizado, Robo de Accesorios de Vehículos, Robo en Lugar Habitado, Robo en Lugar no Habitado, Otros Robos con Fuerza y Hurto).</p>",
+        "use": "Se utiliza en los perfiles nacional, regional y comunal."
       },
       "ids": {
         "title": "Ids genéricos",
@@ -771,6 +814,21 @@
         "title": "1.1.0 - \"Belloto\" - 2018-01-26",
         "description":
           "<p>Nuevos datos: Denuncias de delitos de mayor connotación social, presentes en perfil geográfico, tópico Vivienda y Entorno, sección Seguridad (Fuente: Carabineros de Chile). Correcciones en indentificadores de previsión de salud sobre datos de CASEN para 2003 y 2006. Agregada Comuna de Ñiquén en mapa de selección. Correcciones varias en textos y traducciones (nan, N/A, etc). Ajustes de diseño y estilo para desktop y mobile. Correcciones en rutas para descarga de información completa desde el about. Mejora en performance de queries de la home.</p>"
+      },
+      "canelo": {
+        "title": "1.1.1 - \"Canelo\" - 2018-02-02",
+        "description":
+          "<p>Corrección de textos. Mejoras en meta tags opengraph.</p>"
+      },
+      "diamelo": {
+        "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
+        "description":
+          "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>"
+      },
+      "encino": {
+        "title": "1.2.1 - \"Encino\" - 2018-02-16",
+        "description":
+          "<p>Nuevas visualizaciones en Sección Cívica: resultados electorales a nivel presidente, parlamento y alcalde. Correcciones de autoridades en el encabezado del perfil geográfico.</p>"
       }
     }
   },
@@ -886,7 +944,27 @@
   "positive": "positiva",
   "negative": "negativa",
   "disabilities": "discapacidades",
+
+  "Efectiveness": "Efectividad",
+  "Overcoming": "Superación",
+  "Initiative": "Iniciativa",
+  "Integration": "Integración",
+  "Improvement": "Mejoramiento",
+  "Fairness": "Igualdad de Oportunidades",
+
   "geo_profile": {
+    "civics": {
+      "congress": {
+        "text":
+          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}",
+        "note":
+          "*Los elementos isolados de los gráficos representan a candidatos electos en dicha elección."
+      },
+      "presidential": {
+        "text":
+          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+      }
+    },
     "warning": "Los datos que se muestran corresponden a {{caption}}",
     "trade_slide": {
       "text":
@@ -989,6 +1067,23 @@
           "disclaimer":
             "<p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
         }
+      },
+      "sned": {
+        "text1": "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}.",
+        "definitions": {
+          "efectiveness":
+            "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
+          "overcoming":
+            "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
+          "initiative":
+            "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. ",
+          "integration":
+            "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
+          "improvement":
+            "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
+          "fairness":
+            " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
+        }
       }
     },
     "housing": {
@@ -1045,6 +1140,10 @@
         "text_none":
           "La encuesta CASEN de {{year_last}} no tiene datos sobre conectividad para {{level}}."
       }
+    },
+    "politics": {
+      "text":
+        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     }
   },
   "granted in": "otorgadas en",
@@ -1199,5 +1298,115 @@
     "data":
       "¿No encontraste lo que estabas buscando? Sugiere datos para agregar",
     "error": "¿Encontraste un error? Repórtalo"
+  },
+
+  "Some previous definitions": "Algunas definiciones previas",
+
+  "Description": "Descripción",
+  "Param": "Parámetro",
+  "Type": "Tipo",
+
+  "documentation_api": {
+    "title1": "Primeros Pasos",
+    "title2": "Sintaxis",
+    "title3": "Ejemplo de llamada de datos",
+    "title4": "Combinaciones Complejas",
+    "title5": "Cliente Mondrian-REST para npm",
+    "title6": "Cliente API para Python",
+    "title7": "Listado de Campos",
+
+    "intro": {
+      "text1":
+        "DataChile utiliza para su funcionamiento como capa lógica Mondrian-REST, que es un componente del lado del servidor que permite la creación de APIs HTTP para acceder a una base de datos especificando la estructura lógica de la información.",
+      "text2":
+        "Para utilizar la API de DataChile, es necesario conocer algunos conceptos que facilitarán su uso, los cuáles explicaremos a continuación."
+    },
+
+    "syntax": {
+      "text1":
+        "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación.",
+      "text2":
+        "Para un cubo en particular, obtiene los miembros pertenecientes a un determinado level presente en una dimension."
+    },
+
+    "definitions": {
+      "cube":
+        "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
+      "cube2":
+        "En DataChile, cada dataset está agrupado en un cubo. El diseño del lenguaje de consultas a la API está centrado en torno a 3 operaciones: <span class='code'>Drilldown</span>, <span class='code'>Cut</span>, <span class='code'>Measure</span>. Para ejemplificar los conceptos, se utilizará el dataset <span class='code'>exports</span> -que representa las exportaciones de Chile- como referencia.",
+      "drilldown":
+        "Un <span class='code'>drilldown</span> permite pasar de un nivel de detalle al siguiente. La estructura de un drilldown para las consultas en el cubo es <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
+      "member":
+        "Un <span class='code'>member</span> es un valor dentro de una dimensión determinada por un set de valores. La jerarquía género tiene los miembros 'Masculino' y 'Femenino'. 'Concepción', 'Bío-Bío' y 'Chile' son todos miembros de la jerarquía Geográfica.",
+      "hierarchy":
+        "Una <span class='code'>hierarchy</span> es un conjunto de miembros organizados estructuradamente para su análisis. Por ejemplo, la jerarquía Geográfica consiste de nombre de comuna, regiones y país. La jerarquización permite obtener valores intermedios: Total de exportaciones de la región de Valparaíso es la suma de todas las exportaciones de las comunas de dicha región.",
+      "level":
+        "Un <span class='code'>level</span> es un conjunto de miembros que se encuentran a la misma distancia del inicio de la jerarquía. Concepción, Tucapel, Arica, se encuentran en el mismo level.",
+      "dimension":
+        "Una <span class='code'>dimension</span> es un conjunto de jerarquías que discriminan el mismo atributo (Por ejemplo, el día que se produjo una exportación)",
+      "measure":
+        "Variable escalar asociada con un valor particular en los datos del cubo.",
+      "cut":
+        "Permite al usuario especificar un filtro, que restringe las tuplas disponibles del cubo. Por ejemplo, en <span class='code'>exports</span>, cortar el cubo en torno al miembro <span class='code'>[Region].[8]</span> en la dimensión <span class='code'>Geography</span>, sólo considerará celdas de la región de Bío-Bío. Múltiples cortes pueden ser especificados en una simple consulta.",
+      "nonempty":
+        "Devuelve el conjunto de tuplas que no están vacías de un especificado conjunto, basado en el producto cartesiano del conjunto especificado.",
+      "distinct":
+        "Evalúa un conjunto específico, elimina tuplas duplicadas del conjunto y devuelve el conjunto resultante.",
+      "parents": "",
+      "sparse": ""
+    },
+
+    "descriptions": {
+      "drilldown[]":
+        "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
+      "measures[]": "",
+      "cut[]":
+        "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <span class='code'>Level ID</span>. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
+      "nonempty": "",
+      "distinct": "",
+      "parents":
+        "En caso de encontrarse en un nivel de profundidad mayor a 1, obtiene el ID y nombre de los niveles padres.",
+      "sparse":
+        "Verifica si una determinada tupla NO está en la agregación, no se incluye en la tabla resultante.",
+      "pagenote": {
+        "text1":
+          "1. Si se hace la consulta directamente en URL, se debe reemplazar & por %26 para evitar problemas de parseo del corte."
+      }
+    },
+
+    "examples": {
+      "text1":
+        "Los siguientes ejemplos ilustran cómo son construidas las consultas, restringiendo la búsqueda con drilldowns, cuts y measures. Aquí se muestra el aspecto de la URL y el JSON devuelto cuando se pregunta ¿Qué número de personas está en cada previsión de salud en Concepción?"
+    },
+
+    "complex": {
+      "text1":
+        "Estos criterios se pueden combinar para definir consultas robustas. Aquí están algunos ejemplos.",
+      "text2":
+        "Seleccionar los valores de las regiones de Valparaíso (ID 5) y de Coquimbo (ID 4)",
+      "text3":
+        "Para realizar cortes por más de un ID, cada cut debe estar separado por <span class='code'>,</span> dentro de <span class='code'>{}</span>.",
+      "text4":
+        "Obtener las importaciones de todas las comunas de Chile entre los años 2013 y 2015."
+    },
+
+    "client-python": {
+      "text1":
+        "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
+      "text2":
+        "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
+      "text3":
+        "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+    },
+
+    "datasets": {
+      "text1":
+        "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+    },
+
+    "url": {
+      "distinct": "https://docs.microsoft.com/en-us/sql/mdx/distinct-mdx",
+      "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
+    }
   }
 }

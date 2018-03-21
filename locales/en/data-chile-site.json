@@ -336,6 +336,7 @@
     "success": "Successfully Signed Up"
   },
   "Smart TV": "Smart TV",
+  "Sned_score": "SNED Score",
   "Soon": "Soon",
   "Source": "Source",
   "Specialized Healthcare": "Specialized Healthcare",
@@ -557,6 +558,31 @@
           "<p>Productivity data at the level of industry and comuna provided by the Tax Office (SII). This data tallies the number of workers, labour and capital cost, and output of each industry in a comuna.</p>",
         "use":
           "This dataset is used in the national, regional, and comuna profile, in the economy section, and in the industry profile."
+      },
+      "servel": {
+        "title": "Electtion results and participation",
+        "year": "2009-2013-2016-2017",
+        "source": "Electoral service (SERVEL)",
+        "text":
+          "<p>Public data available in Servicio Electoral (SERVEL). It shows the results from last elections: mayors, congress-people and president. The winners and also a detail of every candidate. Finally, we calculate the electoral participation at comuna level.</p>",
+        "use":
+          "This dataset is used in the nation, region, and comuna profiles."
+      },
+      "felonies": {
+        "title": "Felonies of Greater Social Connotation",
+        "year": "2005-2016",
+        "source": "Carabineros de Chile",
+        "text":
+          "<p>The statistics of the Felonies of Greater Social Connotation: These correspond to the groups denominated like 'Violent Crimes' (Robbery with Violence, Robbery with Intimidation, Robbery by Surprise, Injuries, Homicide and Violation), and 'Crimes against the Property' (Theft of Motorized Vehicle, Theft of Vehicle Accessories, Theft in Inhabited Place, Theft in Uninhabited Place, Other Robberies with Force and Theft).</p>",
+        "use":
+          "This dataset is used in the nation, region, and comuna profiles."
+      },
+      "ids": {
+        "title": "General Ids",
+        "year": "",
+        "source": "",
+        "text": "<p>Metadata & ids for reference to other files.</p>",
+        "use": "This dataset is used all over the site."
       }
     },
     "team": {
@@ -610,6 +636,20 @@
         "title": "1.1.0 - \"Belloto\" - 2018-01-26",
         "description":
           "<p>New datasets: Allegations of main crime categories, available for Geo profile, Housing topic, Security section (Source: Carabineros de Chile). Fixes on Health Insurance IDs for the CASEN survey data on 2003 and 2006. Added Comuna of Ñiquén in selection map. Various fixes on texts and translations (nan, N/A, etc). Design and style adjustments for desktop and mobile. Fixes on download links to raw information sources on the About page. Improvement on query performance for homepage.</p>"
+      },
+      "canelo": {
+        "title": "1.1.1 - \"Canelo\" - 2018-02-02",
+        "description": "<p>Text fixes. Improve meta tags opengraph.</p>"
+      },
+      "diamelo": {
+        "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
+        "description":
+          "<p>New dataset: Civic section. Electoral results and participation from last elections. Fixed some style issues. Added new download links to raw information sources on the About page.</p>"
+      },
+      "encino": {
+        "title": "1.2.1 - \"Encino\" - 2018-02-16",
+        "description":
+          "<p>New data visualizations in Civic section: electoral results: presidential, congress and mayor levels. Fixes in authorities in main splash.</p>"
       }
     }
   },
@@ -803,6 +843,16 @@
               "<p>There is no data for {{geo.caption}} in PSU records {{year.last}}.</p>"
           }
         }
+      },
+      "sned": {
+        "definitions": {
+          "efectiveness": "Educational result obtained by the establishment in relation with the population served.",
+          "overcoming": "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
+          "initiative": "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico.",
+          "integration": "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
+          "improvement": "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
+          "fairness": " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
+        }
       }
     },
     "housing": {
@@ -852,6 +902,10 @@
         "text_none":
           "The CASEN survey of {{year_last}} has no data about internet access for {{level}}."
       }
+    },
+    "politics": {
+      "text":
+        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     }
   },
 
@@ -992,5 +1046,109 @@
   "form": {
     "data": "Did not find what you were looking for? Suggest data to add",
     "error": "Did you find an error? Report it"
+  },
+
+  "documentation_api": {
+    "title1": "First Steps",
+    "title2": "Syntax",
+    "title3": "Data call example",
+    "title4": "Complex Combinations",
+    "title5": "Client for Javascript/Typescript",
+    "title6": "Client for Python",
+    "title7": "Field List",
+    "title8": "Client for R",
+
+    "intro": {
+      "text1":
+        "DataChile uses Mondrian-REST, which is a server side software component that allows creation of HTTP APIs for accessing a database by specifying the logical structure of the information.",
+      "text2":
+        "To use the DataChile API, it is necessary to know some concepts that will facilitate its use, which we will be explain then."
+    },
+
+    "syntax": {
+      "text1":
+        "The single entry point for aggregation operations in Mondrian-REST is <span class='code'>/aggregate</span>, which accepts the described parameters then.",
+      "text2":
+        "For an particular cube, get the members belonging to a certain level in a dimension."
+    },
+
+    "definitions": {
+      "cube":
+        "A cube is a collection of <span class='code'>dimensions</span> and <span class='code'>measures</span>.",
+      "cube2":
+        "In DataChile, each dataset is grouped in a cube. The design of the API query language is centered around 3 operations: <span class='code'>Drilldown</span>, <span class='code'>Cut</span> and <span class='code'>Measure</span>. To exemplify the concepts, <span class='code'>exports</span> dataset - which represents Chile's exports - will be used as a reference.",
+      "drilldown":
+        "A <span class='code'>drilldown</span> allows to move from one level of detail to the next. The drilldown structure for queries in the cube is <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
+      "member":
+        "A <span class='code'>member</span> is a point within a dimension determined by a particular set of attribute values. The gender hierarchy has the two members 'Male' and 'Female'. 'Concepcion', 'Bio-Bio' and 'Chile' are all members of the geography hierarchy.",
+      "hierarchy":
+        "A <span class='code'>hierarchy</span> is a set of members organized into a structure for convenient analysis. For example, the geography hierarchy consists of the city, region, and country. The hierarchy allows you to form intermediate sub-totals: the sub-total for a region is the sum of the sub-totals of all of the cities in that region.",
+      "level":
+        "A <span class='code'>level</span> is a collection of members which have the same distance from the root of the hierarchy.",
+      "dimension":
+        " A <span class='code'>dimension</span> is a collection of hierarchies which discriminate on the same fact table attribute (say, the day that a sale occurred).",
+      "measure":
+        "Scalar variable associated with a particular fact in the cube data.",
+      "cut":
+        "Allows the user to specify a filter, which effectively restricts the cube in which the aggregations are performed. Cutting the <span class='code'>exports</span> cube along the [Region] .[8] member in the <span class='code'>Geography</span> dimension, will only consider cells by Bio-Bio. Multiple cuts can be specified in a single query.",
+      "nonempty":
+        "Returns the set of tuples that are not empty from a specified set, based on the cross product of the specified set with a second set.",
+      "distinct":
+        "Evaluates a specified set, removes duplicate tuples from the set, and returns the resulting set.",
+      "parents": "",
+      "sparse": ""
+    },
+
+    "descriptions": {
+      "drilldown[]":
+        "For create a drilldown, you must considerate: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
+      "measures[]": "",
+      "cut[]":
+        "You must concatenate drilldown where you need to make the cut with specific <span class='code'>Level ID</span> member. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
+      "nonempty": "",
+      "distinct": "",
+      "parents":
+        "If depth level is higher than 1, get ID and name from parent levels.",
+      "sparse":
+        "Check if a certain tuple is NOT in the aggregation, this is not included in the resulting table.",
+      "pagenote": {
+        "text1":
+          "1. If the query is made directly in URL, it must be replaced & by %26 to avoid problems of cutting parsing."
+      }
+    },
+
+    "client-python": {
+      "text1":
+        "To encourage the use of the DataChile API, we have enabled in Python a pip module that allows to interact with the cubes.",
+      "text2":
+        "For to install, you can use pip: <span class='code'>pip install datachile</span>",
+      "text3":
+        "More information in <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+    },
+
+    "complex": {
+      "text1":
+        "These criteria can be combined to define robust queries. Here are a few examples.",
+      "text2":
+        "Select values of Valparaiso (ID 5) and Coquimbo (ID 4) regions.",
+      "text3":
+        "For generate cuts for more than an ID, every cut must be separately by <span class='code'>,</span> within <span class='code'>{}</span>.",
+      "text4": "Get imports from every county in Chile between 2013 and 2015."
+    },
+
+    "examples": {
+      "text1":
+        "The next examples show how are builded the queries, using drilldowns, cuts and measures. Here you can see URL aspect and JSON returned related with the question: What number of people are in every health insurance at Concepcion?"
+    },
+
+    "datasets": {
+      "text1":
+        "These data are gotten since <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+    },
+
+    "url": {
+      "distinct": "https://docs.microsoft.com/en-us/sql/mdx/distinct-mdx",
+      "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
+    }
   }
 }

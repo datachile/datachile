@@ -19,6 +19,8 @@ bg-blue: "#263b58"
 gray-light: "#D8D8D8"
 gray-dark: "#B3B3B3"
 
+pre-bg: "#494952"
+
 color-geo: "#4B71B5"
 color-countries: "#1ECBD8"
 color-institutions: "#7777ED"

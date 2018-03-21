@@ -116,6 +116,27 @@ export const sources = {
       "http://www.senadis.cl/pag/355/1197/ii_estudio_nacional_de_discapacidad",
     year: 2015
   },
+  election_results: {
+    title: "Resultados Electorales",
+    url: "http://www.servel.cl/",
+    min_year: 2010,
+    year: 2017
+  },
+  election_results_update: {
+    title: "Resultados Electorales",
+    url: "http://www.servel.cl/",
+    min_year: 2009,
+    year: 2017,
+    presidential_election_year: 2017,
+    senators_election_year: [2013, 2017],
+    mayor_election_year: 2016
+  },
+  election_participation: {
+    title: "Participación Electoral",
+    url: "http://www.servel.cl/",
+    min_year: 2010,
+    year: 2017
+  },
   health_access: {
     title: "Indicadores de Acceso a la Salud",
     url: "http://www.deis.cl/",
@@ -131,6 +152,11 @@ export const sources = {
     url:
       "https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos",
     year: 2017
+  },
+  sned: {
+    title: "Sistema Nacional de Evaluación del Desempeño",
+    url: "http://www.sned.mineduc.cl/",
+    year: 2016
   }
 };
 export const featured_profiles = {

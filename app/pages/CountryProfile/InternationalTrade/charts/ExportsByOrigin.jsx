@@ -6,7 +6,7 @@ import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
-import { ordinalColorScale } from "helpers/colors";
+import { regionsColorScale } from "helpers/colors";
 import {
   numeral,
   buildPermalink,
@@ -94,7 +94,7 @@ class ExportsByOrigin extends Section {
               },
               time: "ID Year",
               shapeConfig: {
-                fill: d => ordinalColorScale(d["ID Region"])
+                fill: d => regionsColorScale(d["ID Region"])
               },
               on: {
                 click: d => {
@@ -102,12 +102,11 @@ class ExportsByOrigin extends Section {
                   browserHistory.push(url);
                 }
               },
+              legendTooltip: {
+                title: d => d["Region"]
+              },
               tooltipConfig: {
-                title: d => {
-                  return d["Comuna"] instanceof Array
-                    ? d["Region"]
-                    : d["Comuna"] + " - " + d["Region"];
-                },
+                title: d => d["Comuna"],
                 body: d =>
                   numeral(d["FOB US"], locale).format("(USD 0 a)") +
                   " FOB<br/><a>" +
@@ -116,7 +115,12 @@ class ExportsByOrigin extends Section {
               },
               legendConfig: {
                 label: false,
-                shapeConfig: false
+                shapeConfig: {
+                  width: 25,
+                  height: 25,
+                  backgroundImage: d =>
+                    "/images/legend/region/" + d["ID Region"] + ".png"
+                }
               }
             }}
             dataFormat={this.prepareData}

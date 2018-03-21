@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CanonComponent } from "datawheel-canon";
+import { CanonProfile } from "datawheel-canon";
 import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
@@ -11,7 +11,7 @@ import { getMembersQuery } from "helpers/MondrianClient";
 import { getImageFromMember } from "helpers/formatters";
 
 import Nav from "components/Nav";
-import DatachileLoading from "components/DatachileLoading";
+
 import Search from "components/Search";
 import FeaturedBox from "components/FeaturedBox";
 import ComingSoon from "components/ComingSoon";
@@ -264,12 +264,7 @@ class Explore extends Component {
     }
 
     return (
-      <CanonComponent
-        id="explore"
-        data={this.props.data}
-        topics={[]}
-        loadingComponent={<DatachileLoading />}
-      >
+      <CanonProfile id="explore" data={this.props.data} topics={[]}>
         <Helmet>
           <title>{t("Explore")}</title>
           <meta name="description" content={t("Explore profiles")} />
@@ -280,7 +275,7 @@ class Explore extends Component {
           />
           <meta
             property="og:image"
-            content={`https://${locale}.datachile.io/images/logos/opengraph.jpg`}
+            content={`https://${locale}.datachile.io/images/logos/opengraph.png`}
           />
         </Helmet>
         <div className="explore-page">
@@ -377,7 +372,7 @@ class Explore extends Component {
             </div>
           </div>
         </div>
-      </CanonComponent>
+      </CanonProfile>
     );
   }
 
