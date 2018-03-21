@@ -778,8 +778,8 @@ class GeoProfile extends Component {
                   {
 										name: t("Performance"),
 										slides: [
-											t("SNED"),
-											t("SNED")
+											t("Performance Evaluation"),
+											t("Comparison by Cluster")
 										]
 									},
 									{
