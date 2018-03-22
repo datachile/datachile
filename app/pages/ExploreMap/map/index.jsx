@@ -215,7 +215,7 @@ class ExploreMap extends React.Component {
     return (
       <Canon>
         <CanonProfile id="explore-map" data={data} topics={[]}>
-          {this.state.gettingStarted && <IntroSlider />}
+          <IntroSlider />
           <div className="explore-map-page">
             <Nav title="" typeTitle="" type={false} dark={true} />
 
