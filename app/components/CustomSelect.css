@@ -3,6 +3,10 @@
     display: block;
   }
 
+  &.disabled {
+    pointer-events: none;
+  }
+
   & .select-option {
     display: block;
     padding: 0 0.5em;

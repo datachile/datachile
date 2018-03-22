@@ -6,17 +6,23 @@ import "./MapLevelSelector.css";
 
 class MapLevelSelector extends React.Component {
   componentWillReceiveProps(nextProps) {
-    const { setMapLevel, queryComuna } = nextProps;
-
-    if (!queryComuna) {
-      setMapLevel("region");
+    if (!nextProps.queryComuna) {
+      nextProps.setMapLevel("region");
     }
   }
 
-  render() {
-    const { t, mapLevel, setMapLevel, queryRegion, queryComuna } = this.props;
+  setLevelRegion = () => {
+    this.props.setMapLevel("region");
+  };
 
-    if (!queryRegion) {
+  setLevelComuna = () => {
+    this.props.queryComuna && this.props.setMapLevel("comuna");
+  };
+
+  render() {
+    const { t, mapLevel } = this.props;
+
+    if (!this.props.queryRegion) {
       return null;
     }
 
@@ -26,19 +32,15 @@ class MapLevelSelector extends React.Component {
         <div className="map-switch-options-container">
           <a
             className={`toggle ${mapLevel === "region" ? "selected" : ""}`}
-            onClick={evt => setMapLevel("region")}
+            onClick={this.setLevelRegion}
           >
             {t("Regiones")}
           </a>
           <a
             className={`toggle ${mapLevel === "comuna" ? "selected" : ""} ${
-              !queryComuna ? "disabled" : ""
+              !this.props.queryComuna ? "disabled" : ""
             }`}
-            onClick={evt => {
-              if (queryComuna) {
-                setMapLevel("comuna");
-              }
-            }}
+            onClick={this.setLevelComuna}
           >
             {t("Comunas")}
           </a>
@@ -62,9 +64,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-MapLevelSelector = translate()(
+export default translate()(
   connect(mapStateToProps, mapDispatchToProps)(MapLevelSelector)
 );
-
-export default MapLevelSelector;
-export { MapLevelSelector };

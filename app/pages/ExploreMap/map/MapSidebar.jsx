@@ -11,18 +11,18 @@ import { classnames } from "helpers/formatters";
 import "./MapSidebar.css";
 
 class MapSidebar extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("MapSidebar is being created");
-  }
+  // constructor(props) {
+  //   super(props);
+  //   console.log("MapSidebar is being created");
+  // }
 
-  componentDidMount() {
-    console.log("MapSidebar was mounted");
-  }
+  // componentDidMount() {
+  //   console.log("MapSidebar was mounted");
+  // }
 
-  componentWillUnmount() {
-    console.log("MapSidebar will be unmounted");
-  }
+  // componentWillUnmount() {
+  //   console.log("MapSidebar will be unmounted");
+  // }
 
   componentWillReceiveProps(nextProps) {
     const oldTopic = this.props.topicKey;
@@ -64,6 +64,7 @@ class MapSidebar extends React.Component {
       >
         {optionLevel}
         <CustomSelect
+          disabled={this.props.disabled}
           multiple={true}
           items={optionMembers}
           value={valueMembers}
@@ -84,6 +85,7 @@ class MapSidebar extends React.Component {
         <h1>{t("Map")}</h1>
         <OptionGroup label={t("Topics")} icon="topic">
           <CustomSelect
+            disabled={this.props.disabled}
             items={this.props.topicOptions}
             value={this.props.topicValue}
             onItemSelect={setTopic}
@@ -93,6 +95,7 @@ class MapSidebar extends React.Component {
 
         <OptionGroup label={t("Measure")} icon="measure">
           <CustomSelect
+            disabled={this.props.disabled}
             items={this.props.measureOptions}
             value={this.props.measureValue}
             onItemSelect={setMeasure}
@@ -139,7 +142,8 @@ const mapStateToProps = (state, ownProps) => {
     memberOptions: state.map.options.members,
     memberValues: state.map.params.cuts,
     selectors: preload.selectors[cube] || [],
-    selectorHier: params.selector
+    selectorHier: params.selector,
+    disabled: state.map.results.status == "LOADING" || state.map.options.countLoading > 0,
   };
 };
 
