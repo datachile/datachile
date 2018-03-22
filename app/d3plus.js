@@ -51,7 +51,7 @@ export default {
     fontColor: "rgba(0, 0, 0, 0.4)",
     fontFamily: "'Saira Condensed', sans-serif",
     labelConfig: {
-      fontFamily: () =>  "'Saira Condensed'",
+      fontFamily: () =>  "'Saira Condensed', sans-serif",
       fontWeight: 300
       //fontSize: () => 12
     },
