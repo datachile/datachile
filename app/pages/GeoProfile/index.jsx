@@ -517,30 +517,6 @@ class GeoProfile extends Component {
 											title={t("Education")}
 											icon="psu"
 											decile={stats.psu.decile}
-											rank={
-												showRanking
-													? numeral(stats.psu.rank, locale).format("0o") +
-													  " " +
-													  t("of") +
-													  " " +
-													  stats.psu.total
-													: false
-											}
-											datum={
-												numeral(
-													geoObj.type != "country" ? stats.psu.value : 500,
-													locale
-												).format("(0,0)") + " psu"
-											}
-											source="psu"
-											className=""
-										/>
-									)}
-									{stats.psu && (
-										<FeaturedDatumSplash
-											title={t("Education")}
-											icon="psu"
-											decile={stats.psu.decile}
 											rank={false}
 											datum={
 												numeral(
