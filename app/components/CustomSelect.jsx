@@ -50,6 +50,7 @@ CustomSelect.defaultProps = {
 function CustomSelect(props) {
   props = Object.assign({}, props, {
     className: classnames("custom-select", "pt-fill", props.className, {
+      disabled: props.disabled,
       multi: props.multiple
     })
   });

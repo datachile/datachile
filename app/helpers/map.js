@@ -133,7 +133,7 @@ export function stateToPermalink(params) {
   const permalink = {};
 
   if (params.topic && params.measure) {
-    permalink.t = params.topic.hash;
+    permalink.t = params.topic.value.slice(0,3);
     permalink.m = params.measure.hash;
     permalink.c = serializeCuts(params.cuts);
     permalink.s = params.scale.substr(0, 3);
@@ -154,10 +154,13 @@ export function stateToPermalink(params) {
 }
 
 export function permalinkToState(query, topics, measures) {
+  const top = (query.t || "").slice(0, 3);
+  const mea = query.m || "";
+
   const permalink = {
-    topic: topics.find(topic => topic.hash == query.t),
+    topic: topics.find(topic => topic.value == top),
     measure: Object.keys(measures).reduce(function(match, key) {
-      return match || measures[key].find(ms => ms.hash == query.m);
+      return match || measures[key].find(ms => ms.hash == mea);
     }, null)
   };
 
