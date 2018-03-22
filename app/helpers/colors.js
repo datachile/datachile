@@ -263,6 +263,69 @@ export const administrationColorScale = scaleOrdinal().range([
   "#3F8180"
 ]);
 
+export const MAP_SCALE_COLORS = {
+  economy: [
+    "#E3E7EF",
+    "#B1C0D7",
+    "#96AACA",
+    "#7D95BD",
+    "#637FAF",
+    "#486AA2",
+    "#39578A",
+    "#1E407A"
+  ],
+  education: [
+    "#E8E1EF",
+    "#D2C4DD",
+    "#BBA6CD",
+    "#A388BC",
+    "#8C6AAB",
+    "#764C9A",
+    "#5F308A",
+    "#481679"
+  ],
+  environment: [
+    "#E1F4F2",
+    "#C3E8E5",
+    "#A5DDD8",
+    "#87D1CC",
+    "#69C6BF",
+    "#4DBBB2",
+    "#33AFA4",
+    "#1DA397"
+  ],
+  demography: [
+    "#F7E2E7",
+    "#EEC6CF",
+    "#E6A9B7",
+    "#DE8C9F",
+    "#D57086",
+    "#CD536F",
+    "#C53857",
+    "#BD1D41"
+  ],
+  health: [
+    "#E2F5F8",
+    "#C4EAF1",
+    "#A7E0E9",
+    "#8AD5E3",
+    "#6DCBDC",
+    "#51C1D5",
+    "#37B6CE",
+    "#22ACC6"
+  ],
+  civics: [
+    "#FEEAE6",
+    "#FED5CD",
+    "#FEC0B5",
+    "#FDAB9B",
+    "#FD9683",
+    "#FD816A",
+    "#FD6C53",
+    "#FC583C"
+  ]
+};
+
 export const coalitionColorScale = [
   {
     keys: [7, 10, 13, 14],

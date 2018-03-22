@@ -5,7 +5,9 @@
     "2%": "",
     "3g": ""
   },
+  " by ": " por ",
   " in ": " en ",
+  " is ": " es ",
   " of ": " de ",
   " people": " personas ",
   "%B %d, %Y": "",
@@ -31,6 +33,8 @@
     },
     "button": "Send Verification"
   },
+  "Add to cart": "Agregar al carrito",
+  "Added to cart": "Agregado al carrito",
   "Admin": "Admin",
   "Administration": "Administración",
   "Affiliates in": "Afiliados en",
@@ -53,6 +57,7 @@
   "Average age": "Edad promedio",
   "Average psu": "Promedio PSU",
   "Avg anual payment 2016": "Avg anual payment 2016",
+  "Back to Map": "Volver al mapa",
   "By Activity & Visa Type": "Por Actividad y Tipo de Visa",
   "By Industry": "Por Industria",
   "By Occupation": "Por Ocupación",
@@ -75,6 +80,7 @@
   "Trade": "Comercio",
 
   "Casualties rate per 100 inhabitants": "Tasa de muertes por 100 habitantes",
+  "Cart": "Carrito",
   "Change in participation": "Cambio en participación",
   "Chile Exports": "Exportaciones Chile",
   "Civics": "Cívica",
@@ -96,9 +102,11 @@
   "Contributor": "Contributor",
   "Countries": "Países",
   "Country": "País",
+  "Columns": "Columnas",
   "Created in collaboration": "Creado en colaboración",
   "Crimes": "Delitos",
   "Data source": "Fuente",
+  "Download CSV file": "Descargar archivo CSV",
   "Download data": "Descargar datos",
   "Download documentation": "Descargar documentación",
   "Death Causes": "Causas de muerte",
@@ -191,6 +199,8 @@
   "is": "es",
   "increased": "crecido",
   "decreased": "decrecido",
+  "decile": "decil",
+  "Decile": "Decil",
   "an increase": "un incremento",
   "and": "y",
   "a decrease": "un descenso",
@@ -279,6 +289,7 @@
   "Laptop computer": "Computador portátil",
 
   "LINEAR": "LINEAL",
+  "Linear": "Lineal",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
   "Less than 30 square meter households": "Hogares de menos de 30m²",
@@ -343,6 +354,7 @@
   "Math": "Matemática",
   "Mayor": "Alcalde",
   "Mayor Election": "Elección de Alcalde",
+  "Measure": "Medición",
   "Median Income CLP": "Ingreso medio CLP",
   "Migration": "Migración",
   "Migration By Activity": "Migración por actividad",
@@ -360,8 +372,10 @@
   "Municipalities": "Municipalidades",
   "Most Common Visa Activity": "Principal Actividad de Visa",
   "Most Common Visa Type": "Principal Tipo de Visa",
+  "My Data": "Mis datos",
   "National": "Nacional",
   "National Profile": "Perfil Nacional",
+  "No datasets selected": "No hay datasets seleccionados",
   "NEM Performance By Administration":
     "Desempeño NEM por Tipo de Administración",
   "Number of schools by Cluster": "Cantidad de escuelas por Cluster",
@@ -395,6 +409,7 @@
   "Performance Evaluation": "Evaluación de Desempeño",
   "Presidential": "Presidencial",
   "PSU exams": "Personas que rindieron PSU",
+  "PSU distribution": "Distribución de PSU",
   "PSU Results": "Resultados PSU",
   "PSU Results By Sex": "Resultados PSU por sexo",
   "PSU vs NEM": "PSU vs NEM",
@@ -456,12 +471,14 @@
   "Retention": "Retención",
   "Retention by Program": "Retención por Programa",
   "Role": "Rol",
+  "Rows": "Filas",
   "Rural households": "Hogares rurales",
   "Rural Schools": "Escuelas Rurales",
   "Salaries": "Salarios",
   "Salaries By Category": "Salarios por Categoría",
   "Salaries By Occupation": "Salarios por ocupación",
   "Sales in ": "Ventas en ",
+  "Score": "Puntaje",
   "School": "Escuela",
   "Schools": "Escuelas",
   "School By Enrollment": "Escuela según matrícula",
@@ -474,6 +491,7 @@
   "Senators": "Senadores",
   "Senator Election": "Elección de Senador",
   "Services Access": "Acceso a servicios",
+  "Sex": "Sexo",
   "SignUp": {
     "Confirm Password": "Confirm Password",
     "E-mail": "E-mail",
@@ -548,12 +566,14 @@
     "Visas para mujeres en el rango {{range}}",
   "Visas for males in range {{range}}":
     "Visas para hombres en el rango {{range}}",
+  "Visualize by": "Visualizar por",
   "Votes": "Votos",
   "votes": "votos",
   "Blank and Null Votes": "Votos Blancos y Nulos",
 
   "Wages": "Salarios",
   "Wages by Program": "Salarios por programa",
+  "where": "donde",
   "Years of Studies": "Años de estudio",
   "Zone": "Zona",
   "a decrease": "un descenso",
@@ -1047,22 +1067,27 @@
         "byPSU": {
           "level1": {
             "2":
-              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>",
             "3":
-              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}} ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>"
           },
           "level2": {
             "plural":
-              "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>",
             "singular":
-              "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>",
             "no_data":
               "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
-          }
+          },
+          "distribution":
+            "<p>En {{year}} se rindieron {{total}} PSU en {{geo}}. El puntaje promedio de PSU en {{geo}} fue de {{avg}} puntos en {{year}}.</p>",
+          "disclaimer":
+            "<p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
         }
       },
       "sned": {
-        "text1": "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}.",
+        "text1":
+          "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}.",
         "definitions": {
           "efectiveness":
             "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
@@ -1168,7 +1193,11 @@
   "loading": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
     "developed": "Diseñado y construido por Datawheel",
-    "title": "Por favor espere"
+    "title": "Por favor espere",
+    "map": "Cargando información"
+  },
+  "map": {
+    "sidebar_addfilter": "Agregar un filtro..."
   },
   "no_datum": "No hay datos",
   "no_info":
@@ -1292,7 +1321,15 @@
       "¿No encontraste lo que estabas buscando? Sugiere datos para agregar",
     "error": "¿Encontraste un error? Repórtalo"
   },
-
+  "table": {
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "loading": "Cargando...",
+    "no_data": "Sin información",
+    "page": "Página",
+    "of": "de",
+    "rows": "filas"
+  },
   "Some previous definitions": "Algunas definiciones previas",
 
   "Description": "Descripción",

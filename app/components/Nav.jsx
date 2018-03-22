@@ -58,7 +58,8 @@ class Nav extends Component {
       ancestor,
       exploreLink,
       ancestorLink,
-      topics
+      topics,
+      dark
     } = this.props;
 
     const locale = i18n.language;
@@ -112,9 +113,11 @@ class Nav extends Component {
       }
     }
 
+    const darkClass = dark ? "nav-dark" : "";
+
     return (
       <div id="navs-container">
-        <nav className="nav">
+        <nav className={`nav ${darkClass}`}>
           <SubNav
             type="scroll"
             anchor="left"
@@ -157,11 +160,8 @@ class Nav extends Component {
                   <ComingSoon />
                 </Link>
               </li>
-              <li className="title link-soon">
-                <Link to="">
-                  {t("Map")}
-                  <ComingSoon />
-                </Link>
+              <li className="title">
+                <Link to="/explore/map">{t("Map")}</Link>
               </li>
               <li className="title">
                 <Link to="/about">{t("About DataChile")}</Link>
@@ -211,38 +211,40 @@ class Nav extends Component {
             </div>
           </div>
 
-          <div className="title-container">
-            <div className="nav-title">
-              <h1>{title}</h1>
-              <div className="meta-title">
-                <div className="type">
-                  {typeTitle &&
-                    exploreLink && (
-                      <Link className="link" to={exploreLink}>
-                        {type && (
-                          <span className="icon-container">
-                            <img
-                              className="icon"
-                              src={`/images/icons/icon-${type}.svg`}
-                            />
-                          </span>
-                        )}
-                        <span>{typeTitle}</span>
-                      </Link>
-                    )}
-                  {type && !exploreLink && <span>{typeTitle}</span>}
-                </div>
-                {ancestor && (
-                  <div className="parent">
-                    <span className="separator">|</span>
-                    <Link className="link" to={ancestorLink}>
-                      {ancestor}
-                    </Link>
+          {(title || typeTitle || type || ancestor) && (
+            <div className="title-container">
+              <div className="nav-title">
+                <h1>{title}</h1>
+                <div className="meta-title">
+                  <div className="type">
+                    {typeTitle &&
+                      exploreLink && (
+                        <Link className="link" to={exploreLink}>
+                          {type && (
+                            <span className="icon-container">
+                              <img
+                                className="icon"
+                                src={`/images/icons/icon-${type}.svg`}
+                              />
+                            </span>
+                          )}
+                          <span>{typeTitle}</span>
+                        </Link>
+                      )}
+                    {type && !exploreLink && <span>{typeTitle}</span>}
                   </div>
-                )}
+                  {ancestor && (
+                    <div className="parent">
+                      <span className="separator">|</span>
+                      <Link className="link" to={ancestorLink}>
+                        {ancestor}
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </nav>
         <NavFixed
           topics={topics}

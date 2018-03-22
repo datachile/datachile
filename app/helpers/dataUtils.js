@@ -3,7 +3,8 @@ import flatten from "lodash/flatten";
 import { getImageFromMember } from "helpers/formatters";
 
 export function clearStoreData(params, store) {
-  store.data = { __cubes__: store.data.cubes };
+  store.data = {};
+
   return {
     type: "GET_DATA",
     prm: Promise.resolve({})
