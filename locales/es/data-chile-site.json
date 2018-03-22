@@ -1190,7 +1190,35 @@
     "map": "Cargando información"
   },
   "map": {
-    "sidebar_addfilter": "Agregar un filtro..."
+    "sidebar_addfilter": "Agregar un filtro...",
+    "slides": [
+      { "img": "inicio", "title": "¿QUÉ ES EL MAPA?" },
+      {
+        "img": "que-es-el-mapa",
+        "text": "El mapa es una herramienta interactiva"
+      },
+      {
+        "img": "topicos-indicadores",
+        "text":
+          "que agrupa información derivada del sitio datachile.io a través de Tópicos e Indicadores"
+      },
+      {
+        "img": "tooltip",
+        "text":
+          "pudiendo hacer cruces de datos y pintando esta información sobre el mapa"
+      },
+      {
+        "img": "anadir-data",
+        "text":
+          "Además el mapa integra la opción “CARRITO”: recurso que permite añadir conjuntos de datos seleccionados a un carro virtual y descargarlos para su uso."
+      },
+      {
+        "img": "descargar",
+        "text":
+          "Los datos se presentan en una tabla organizada, con la opción de distribuir años en filas o columnas. Con solo un clic es posible descargar un archivo en formato CSV, ordenado y fácil de usar."
+      },
+      { "img": "empezar-a-explorar", "title": "COMIENZA A EXPLORAR" }
+    ]
   },
   "no_datum": "No hay datos",
   "no_info":
@@ -1278,6 +1306,12 @@
     "{{percent}} del país - {{last_year}}",
   "{{number}} visas, granted in {{year}}":
     "{{number}} visas, otorgadas en {{year}}",
+  "button": {
+    "skip": "Saltar",
+    "next": "Siguiente",
+    "prev": "Anterior",
+    "finish": "Finalizar"
+  },
   "home": {
     "subtitle":
       "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
