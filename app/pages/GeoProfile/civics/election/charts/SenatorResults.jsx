@@ -266,7 +266,7 @@ class SenatorResults extends Section {
               <Switch
                 onClick={this.toggleElectors}
                 labelElement={<strong>{t("Total Electors")}</strong>}
-                checked={this.state.non_electors}
+                defaultChecked={this.state.non_electors}
               />
             </div>
           )}
