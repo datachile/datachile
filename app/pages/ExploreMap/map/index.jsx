@@ -152,13 +152,13 @@ class ExploreMap extends React.Component {
     };
   }
 
-//   componentDidMount() {
-//     console.log("ExploreMap was mounted");
-//   }
+  //   componentDidMount() {
+  //     console.log("ExploreMap was mounted");
+  //   }
 
-//   componentWillUnmount() {
-//     console.log("ExploreMap will be unmounted");
-//   }
+  //   componentWillUnmount() {
+  //     console.log("ExploreMap will be unmounted");
+  //   }
 
   componentWillReceiveProps(nextProps) {
     const { dispatch } = this.props;
