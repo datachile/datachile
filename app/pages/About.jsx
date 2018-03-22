@@ -20,7 +20,6 @@ class About extends Component {
   }
 
   render() {
-    //console.log(this)
     const { t, routeParams, location } = this.props;
     const locale = this.props.i18n.language;
 

@@ -53,9 +53,6 @@ class PSUDistributionSlide extends Section {
 
     const locale = i18n.language;
 
-    console.log(datum_distribution_psu_total.data);
-    console.log(datum_distribution_psu_average.data);
-
     const text = {
       year: sources.psu.year,
       geo: geo ? geo.caption : "",

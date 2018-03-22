@@ -52,8 +52,6 @@ class SNEDSlide extends Section {
     const locale = i18n.language;
     const text = SNED(sned_indicators_datum, locale);
 
-    console.log(sned_indicators_datum)
-
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
