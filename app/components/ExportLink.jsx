@@ -110,8 +110,8 @@ class ExportLink extends React.Component {
 				path: path.replace("jsonrecords", "json"),
 				data: true
 			},
-			{ caption: "PNG", path: path, data: false },
-			{ caption: "SVG", path: path, data: false }
+			{ caption: "PNG", path: path, data: false }
+			//{ caption: "SVG", path: path, data: false }
 		];
 
 		return (
@@ -141,7 +141,7 @@ class ExportLink extends React.Component {
 												this.saveImage(
 													e,
 													className,
-													title,
+													title ? title : className,
 													o.caption.toLowerCase()
 												)
 										: ""
