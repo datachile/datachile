@@ -1,6 +1,88 @@
 import { nest } from "d3-collection";
 import { slugifyStr } from "helpers/formatters";
 import shorthash from "helpers/shorthash";
+import mondrianClient from "helpers/MondrianClient";
+
+export function mapCommonNeed(params, store) {
+  const hasGeoDimensions = dimensions =>
+    dimensions.length > 0 &&
+    dimensions.some(
+      dim =>
+        dim.hierarchies.length > 0 &&
+        dim.hierarchies.some(hie => hie.name == "Geography")
+    );
+
+  const localeCaption = function(key, item) {
+    return item.annotations[key] || item.caption || item.name;
+  }.bind(null, `${store.i18n.locale}_element_caption`);
+
+  // mondrian-rest-client doesn't use the annotations from the json
+  const promise = mondrianClient.cubes().then(cubes => {
+    const hierarchies = {};
+    const measures = {};
+
+    for (let cube, i = 0; (cube = cubes[i]); i++) {
+      if (!hasGeoDimensions(cube.dimensions)) continue;
+
+      const topic = cube.annotations.topic;
+      const availableMs = cube.annotations.available_measures
+        ? cube.annotations.available_measures.split(",")
+        : [];
+
+      measures[topic] = [].concat(
+        measures[topic] || [],
+        cube.measures
+          .filter(ms => availableMs.indexOf(ms.name) > -1)
+          .map(ms => ({
+            hash: shorthash(ms.name),
+            cube: cube.name,
+            value: ms.name,
+            name: localeCaption(ms)
+          }))
+      );
+
+      let selectors = [];
+
+      const availableDims = cube.annotations.available_dimensions
+        ? cube.annotations.available_dimensions.split(",")
+        : [];
+
+      for (let dim, j = 0; (dim = cube.dimensions[j]); j++) {
+        if (
+          !/Geography$|^Date$/.test(dim.name) &&
+          availableDims.indexOf(dim.name) > -1
+        ) {
+          for (let hier, k = 0; (hier = dim.hierarchies[k]); k++) {
+            selectors.push({
+              hash: shorthash(`[${dim.name}].[${hier.name}]`),
+              cube: cube.name,
+              name: localeCaption(dim),
+              value: `[${dim.name}].[${hier.name}]`,
+              isGeo: /country/i.test(dim.name),
+              levels: hier.levels.slice(1).map(lvl => ({
+                hash: shorthash(lvl.name),
+                value: lvl.fullName,
+                name: localeCaption(lvl)
+              }))
+            });
+          }
+        }
+      }
+
+      hierarchies[cube.name] = selectors;
+    }
+
+    return {
+      key: "map_params",
+      data: {
+        selectors: hierarchies,
+        measures: measures
+      }
+    };
+  });
+
+  return { type: "GET_DATA", promise };
+}
 
 function flatDatasetCols(dataset, type) {
   const indicatorSlug = slugifyStr(dataset.title, "_");
@@ -133,7 +215,7 @@ export function stateToPermalink(params) {
   const permalink = {};
 
   if (params.topic && params.measure) {
-    permalink.t = params.topic.value.slice(0,3);
+    permalink.t = params.topic.value.slice(0, 3);
     permalink.m = params.measure.hash;
     permalink.c = serializeCuts(params.cuts);
     permalink.s = params.scale.substr(0, 3);
@@ -154,6 +236,9 @@ export function stateToPermalink(params) {
 }
 
 export function permalinkToState(query, topics, measures) {
+  topics = topics || [];
+  measures = measures || {};
+
   const top = (query.t || "").slice(0, 3);
   const mea = query.m || "";
 
