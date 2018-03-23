@@ -75,15 +75,17 @@ class PSUDistribution extends Section {
     const path = path_education_psu_distribution;
 
     const locale = i18n.language;
+    const classSvg = "psu-distribution";
 
     return (
       <div className={className}>
         <h3 className="chart-title">
           <span>{t("PSU distribution")}</span>
-          <ExportLink path={path} />
+          <ExportLink path={path} className={classSvg} />
         </h3>
 
         <BarChart
+          className={classSvg}
           config={{
             height: 500,
             data: path,

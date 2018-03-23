@@ -37,7 +37,7 @@ class SNEDSchoolByClusters extends Section {
     const path = this.context.data.path_sned_indicators;
 
     const title = t("Number of schools by Cluster");
-    const classSvg = "exports-by-product";
+    const classSvg = "sned-school-by-clusters";
 
     return (
       <div className={className}>
