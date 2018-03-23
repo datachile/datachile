@@ -13,126 +13,128 @@ import SourceNote from "components/SourceNote";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class EmployedByCategory extends Section {
-  state = {
-    lineplot: true
-  };
+	state = {
+		lineplot: true
+	};
 
-  static need = [
-    simpleIndustryChartNeed(
-      "path_industry_employed_by_category",
-      "nene_quarter",
-      ["Expansion factor"],
-      {
-        drillDowns: [
-          ["ICSE", "ICSE", "ICSE"],
-          ["Date", "Date", "Moving Quarter"]
-        ]
-      }
-    )
-  ];
+	static need = [
+		simpleIndustryChartNeed(
+			"path_industry_employed_by_category",
+			"nene_quarter",
+			["Expansion factor"],
+			{
+				drillDowns: [
+					["ICSE", "ICSE", "ICSE"],
+					["Date", "Date", "Moving Quarter"]
+				]
+			}
+		)
+	];
 
-  render() {
-    const { t, className, i18n } = this.props;
-    const path = this.context.data.path_industry_employed_by_category;
+	render() {
+		const { t, className, i18n } = this.props;
+		const path = this.context.data.path_industry_employed_by_category;
 
-    const locale = i18n.language;
+		const locale = i18n.language;
+		const classSvg = "employed-by-category";
 
-    return (
-      <div className={className}>
-        <h3 className="chart-title">
-          <span>{t("Employment by Category")}</span>
-          <ExportLink path={path} />
-        </h3>
-        {this.state.lineplot ? (
-          <StackedArea
-            config={{
-              height: 500,
-              data: path,
-              groupBy: "variable",
-              label: d => d["variable"],
-              x: "month",
-              y: "percentage",
-              time: "month",
-              timeline: false,
-              scale: "time",
-              xConfig: {
-                tickSize: 0,
-                title: false
-              },
-              yConfig: {
-                title: t("Employment by category"),
-                tickFormat: tick => numeral(tick, locale).format("0%")
-              },
-              shapeConfig: {
-                fill: d => employmentColorScale(d["variable"])
-              },
-              tooltipConfig: {
-                title: d => d["variable"],
-                body: d => {
-                  return d["month"] instanceof Array
-                    ? ""
-                    : numeral(d["percentage"], locale).format("0.[0]%") +
-                        " " +
-                        t("people") +
-                        "<br/>" +
-                        d["quarter"];
-                }
-              },
-              legendConfig: {
-                shapeConfig: {
-                  width: 20,
-                  height: 20
-                }
-              }
-            }}
-            dataFormat={data => {
-              if (data.data && data.data.length > 0) {
-                var melted = [];
-                var total = {};
-                data.data.forEach(function(f) {
-                  if (total[f["ID Moving Quarter"]]) {
-                    total[f["ID Moving Quarter"]] += f["Expansion factor"];
-                  } else {
-                    total[f["ID Moving Quarter"]] = f["Expansion factor"];
-                  }
-                  var a = f;
-                  var date = f["ID Moving Quarter"].split("_");
-                  f["month"] = date[0] + "-" + date[1] + "-01";
-                  f["quarter"] =
-                    date[0] +
-                    " (" +
-                    date[1] +
-                    "," +
-                    date[2] +
-                    "," +
-                    date[3] +
-                    ")";
-                  a["variable"] = f["ICSE"];
-                  a["value"] = f["Expansion factor"];
-                  melted.push(a);
-                });
-                melted = melted
-                  .map(m => {
-                    m["percentage"] =
-                      m["value"] / total[m["ID Moving Quarter"]];
-                    return m;
-                  })
-                  .sort(function(a, b) {
-                    return a["Month"] > b["Month"] ? 1 : -1;
-                  });
-                return melted;
-              } else {
-                this.setState({ lineplot: false });
-              }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
-        <SourceNote cube="nene" />
-      </div>
-    );
-  }
+		return (
+			<div className={className}>
+				<h3 className="chart-title">
+					<span>{t("Employment by Category")}</span>
+					<ExportLink path={path} className={classSvg} />
+				</h3>
+				{this.state.lineplot ? (
+					<StackedArea
+						className={classSvg}
+						config={{
+							height: 500,
+							data: path,
+							groupBy: "variable",
+							label: d => d["variable"],
+							x: "month",
+							y: "percentage",
+							time: "month",
+							timeline: false,
+							scale: "time",
+							xConfig: {
+								tickSize: 0,
+								title: false
+							},
+							yConfig: {
+								title: t("Employment by category"),
+								tickFormat: tick => numeral(tick, locale).format("0%")
+							},
+							shapeConfig: {
+								fill: d => employmentColorScale(d["variable"])
+							},
+							tooltipConfig: {
+								title: d => d["variable"],
+								body: d => {
+									return d["month"] instanceof Array
+										? ""
+										: numeral(d["percentage"], locale).format("0.[0]%") +
+												" " +
+												t("people") +
+												"<br/>" +
+												d["quarter"];
+								}
+							},
+							legendConfig: {
+								shapeConfig: {
+									width: 20,
+									height: 20
+								}
+							}
+						}}
+						dataFormat={data => {
+							if (data.data && data.data.length > 0) {
+								var melted = [];
+								var total = {};
+								data.data.forEach(function(f) {
+									if (total[f["ID Moving Quarter"]]) {
+										total[f["ID Moving Quarter"]] += f["Expansion factor"];
+									} else {
+										total[f["ID Moving Quarter"]] = f["Expansion factor"];
+									}
+									var a = f;
+									var date = f["ID Moving Quarter"].split("_");
+									f["month"] = date[0] + "-" + date[1] + "-01";
+									f["quarter"] =
+										date[0] +
+										" (" +
+										date[1] +
+										"," +
+										date[2] +
+										"," +
+										date[3] +
+										")";
+									a["variable"] = f["ICSE"];
+									a["value"] = f["Expansion factor"];
+									melted.push(a);
+								});
+								melted = melted
+									.map(m => {
+										m["percentage"] =
+											m["value"] / total[m["ID Moving Quarter"]];
+										return m;
+									})
+									.sort(function(a, b) {
+										return a["Month"] > b["Month"] ? 1 : -1;
+									});
+								return melted;
+							} else {
+								this.setState({ lineplot: false });
+							}
+						}}
+					/>
+				) : (
+					<NoDataAvailable />
+				)}
+				<SourceNote cube="nene" />
+			</div>
+		);
+	}
 }
 
 export default translate()(EmployedByCategory);

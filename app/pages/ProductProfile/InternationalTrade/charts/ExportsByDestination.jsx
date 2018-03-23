@@ -58,7 +58,7 @@ class ExportsByDestination extends Section {
     const locale = i18n.language;
 
     const title = t("Exports By Destination");
-    const classSvg = "imports-by-origin";
+    const classSvg = "exports-by-destination";
 
     return (
       <div className={className}>

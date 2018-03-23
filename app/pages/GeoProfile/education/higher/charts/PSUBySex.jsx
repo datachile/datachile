@@ -18,6 +18,7 @@ class PSUBySex extends Section {
     const { t, className, i18n } = this.props;
 
     const locale = i18n.language;
+    const classSvg = "psu-by-sex";
 
     const path = this.context.data.path_higher_psu_by_sex;
 
@@ -25,10 +26,11 @@ class PSUBySex extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>{t("PSU By Sex")}</span>
-          <ExportLink path={path} />
+          <ExportLink path={path} className={classSvg} />
         </h3>
 
         <BarChart
+          className={classSvg}
           config={{
             height: 500,
             data: path,

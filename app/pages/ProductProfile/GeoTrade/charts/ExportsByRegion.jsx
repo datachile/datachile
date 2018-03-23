@@ -53,9 +53,9 @@ class ExportsByRegion extends Section {
     const path = this.context.data.product_exports_by_region;
 
     const title = t("Exports By Region");
-    const classSvg = "exports-by-region";
 
     const locale = i18n.language;
+    const classSvg = "exports-by-region";
 
     return (
       <div className={className}>

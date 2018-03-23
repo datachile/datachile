@@ -11,53 +11,55 @@ import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
 class DeathCausesStacked extends Section {
-  static need = [];
+	static need = [];
 
-  render() {
-    const { t, className, i18n } = this.props;
+	render() {
+		const { t, className, i18n } = this.props;
 
-    const path = this.context.data.path_health_death_causes;
-    const locale = i18n.language;
+		const path = this.context.data.path_health_death_causes;
+		const locale = i18n.language;
+		const classSvg = "death-causes-stacked";
 
-    return (
-      <div className={className}>
-        <h3 className="chart-title">
-          <span>{t("Death Causes Over Time")}</span>
-          <ExportLink path={path} />
-        </h3>
+		return (
+			<div className={className}>
+				<h3 className="chart-title">
+					<span>{t("Death Causes Over Time")}</span>
+					<ExportLink path={path} className={classSvg} />
+				</h3>
 
-        <StackedArea
-          config={{
-            height: 500,
-            data: path,
-            groupBy: ["CIE 10"],
-            label: d => d["CIE 10"],
-            y: d => d["Casualities Count SUM"],
-            x: d => d["Year"],
-            shapeConfig: {
-              fill: d => employmentColorScale("CIE" + d["ID CIE 10"])
-            },
-            tooltipConfig: {
-              title: d => d["CIE 10"],
-              body: d =>
-                numeral(d["Casualities Count SUM"], locale).format("0,0") +
-                " " +
-                t("people")
-            },
-            xConfig: {
-              title: t("Year")
-            },
-            yConfig: {
-              title: t("Number of deaths")
-            },
-            legend: false
-          }}
-          dataFormat={data => data.data}
-        />
-        <SourceNote cube="death_causes" />
-      </div>
-    );
-  }
+				<StackedArea
+					className={classSvg}
+					config={{
+						height: 500,
+						data: path,
+						groupBy: ["CIE 10"],
+						label: d => d["CIE 10"],
+						y: d => d["Casualities Count SUM"],
+						x: d => d["Year"],
+						shapeConfig: {
+							fill: d => employmentColorScale("CIE" + d["ID CIE 10"])
+						},
+						tooltipConfig: {
+							title: d => d["CIE 10"],
+							body: d =>
+								numeral(d["Casualities Count SUM"], locale).format("0,0") +
+								" " +
+								t("people")
+						},
+						xConfig: {
+							title: t("Year")
+						},
+						yConfig: {
+							title: t("Number of deaths")
+						},
+						legend: false
+					}}
+					dataFormat={data => data.data}
+				/>
+				<SourceNote cube="death_causes" />
+			</div>
+		);
+	}
 }
 
 export default translate()(DeathCausesStacked);

@@ -49,6 +49,7 @@ class ExportsGeoMap extends Section {
     const path = this.context.data.product_imports_by_origin_last_year;
 
     const locale = i18n.language;
+    const classSvg = "imports";
 
     return (
       <div className={className}>
@@ -60,7 +61,7 @@ class ExportsGeoMap extends Section {
               " " +
               sources.imports.year}
           </span>
-          <ExportLink path={path} />
+          <ExportLink path={path} className={classSvg} />
         </h3>
         <CustomMap path={path} msrName={"CIF US"} className={"imports"} />
         <SourceNote cube="imports" />

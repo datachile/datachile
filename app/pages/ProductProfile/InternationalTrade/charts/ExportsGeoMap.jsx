@@ -11,61 +11,62 @@ import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
 class ExportsGeoMap extends Section {
-  static need = [
-    (params, store) => {
-      const product = getLevelObject(params);
-      const prm = mondrianClient.cube("exports").then(cube => {
-        var q = levelCut(
-          product,
-          "Export HS",
-          "HS",
-          cube.query
-            .option("parents", true)
-            .drilldown("Destination Country", "Country", "Country")
-            .drilldown("Date", "Date", "Year")
-            .measure("FOB US")
-            .cut(`[Date].[Year].&[${sources.exports.year}]`)
-            .property("Destination Country", "Country", "iso3"),
-          "HS0",
-          "HS2",
-          store.i18n.locale
-        );
+	static need = [
+		(params, store) => {
+			const product = getLevelObject(params);
+			const prm = mondrianClient.cube("exports").then(cube => {
+				var q = levelCut(
+					product,
+					"Export HS",
+					"HS",
+					cube.query
+						.option("parents", true)
+						.drilldown("Destination Country", "Country", "Country")
+						.drilldown("Date", "Date", "Year")
+						.measure("FOB US")
+						.cut(`[Date].[Year].&[${sources.exports.year}]`)
+						.property("Destination Country", "Country", "iso3"),
+					"HS0",
+					"HS2",
+					store.i18n.locale
+				);
 
-        return {
-          key: "product_exports_by_destination_last_year",
-          data: __API__ + q.path("jsonrecords")
-        };
-      });
+				return {
+					key: "product_exports_by_destination_last_year",
+					data: __API__ + q.path("jsonrecords")
+				};
+			});
 
-      return {
-        type: "GET_DATA",
-        promise: prm
-      };
-    }
-  ];
-  render() {
-    const { t, className, i18n } = this.props;
-    const path = this.context.data.product_exports_by_destination_last_year;
+			return {
+				type: "GET_DATA",
+				promise: prm
+			};
+		}
+	];
+	render() {
+		const { t, className, i18n } = this.props;
+		const path = this.context.data.product_exports_by_destination_last_year;
 
-    const locale = i18n.language;
+		const locale = i18n.language;
+		const classSvg = "exports";
 
-    return (
-      <div className={className}>
-        <h3 className="chart-title">
-          <span>
-            {t("Exports By Destination") +
-              " " +
-              t("in") +
-              " " +
-              sources.exports.year}
-          </span>
-          <ExportLink path={path} />
-        </h3>
-        <CustomMap path={path} msrName={"FOB US"} className={"exports"} />
-        <SourceNote cube="imports" />
-      </div>
-    );
-  }
+		return (
+			<div className={className}>
+				<h3 className="chart-title">
+					<span>
+						{t("Exports By Destination") +
+							" " +
+							t("in") +
+							" " +
+							sources.exports.year}
+					</span>
+					<ExportLink path={path} className={classSvg} />
+				</h3>
+				<CustomMap path={path} msrName={"FOB US"} className={"exports"} />
+				<SourceNote cube="imports" />
+			</div>
+		);
+	}
 }
 
 export default translate()(ExportsGeoMap);
