@@ -52,8 +52,7 @@ export default translate()(
 
 		prepareData = data => {
 			if (data.data && data.data.length) {
-				console.log(data.data);
-				return data.data.filter(item => item["ID Sex"] !== 0);
+				return data.data;
 			} else {
 				this.setState({ chart: false });
 			}
