@@ -52,7 +52,8 @@ export default translate()(
 
 		prepareData = data => {
 			if (data.data && data.data.length) {
-				return data.data;
+				console.log(data.data);
+				return data.data.filter(item => item["ID Sex"] !== 0);
 			} else {
 				this.setState({ chart: false });
 			}
@@ -80,21 +81,22 @@ export default translate()(
 								groupBy: "ID Sex",
 								label: d => d["Sex"],
 								time: "ID Year",
-								x: false,
+								x: "Sex",
 								y: "Number of visas",
 								shapeConfig: {
 									fill: d => COLORS_GENDER[d["ID Sex"]]
 								},
 								xConfig: {
 									tickSize: 0,
-									title: false
+                  title: false,
+                  tickFormat: tick => ""
 								},
 								yConfig: {
 									title: t("Visas"),
 									tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
-								},
-								barPadding: 20,
-								groupPadding: 40,
+                },
+                barPadding: 20,
+                groupPadding: 40,
 								tooltipConfig: {
 									title: d => d["Sex"],
 									body: d =>
