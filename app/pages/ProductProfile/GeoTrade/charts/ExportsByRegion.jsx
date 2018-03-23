@@ -56,6 +56,7 @@ class ExportsByRegion extends Section {
     const classSvg = "exports-by-region";
 
     const locale = i18n.language;
+    const classSvg = "exports-by-region";
 
     return (
       <div className={className}>
