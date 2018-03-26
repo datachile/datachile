@@ -2,7 +2,9 @@ import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Geomap } from "d3plus-react";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import { browserHistory } from "react-router";
+
+import { numeral, slugifyItem, getNumberFromTotalString } from "helpers/formatters";
 import { MAP_SCALE_COLORS } from "helpers/colors";
 
 import { percentRank } from "helpers/calculator";
@@ -132,6 +134,22 @@ class MapContent extends React.Component {
         downloadButton: false,
         select: ".map-color-scale",
         align: "start"
+      },
+      on: {
+        click: d => {
+          console.log(d)
+          //if (!(d["ID Comuna"] instanceof Array)) {
+          var url = slugifyItem(
+            "geo",
+            d["ID Region"],
+            d["Region"],
+            d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
+            d["Comuna"] instanceof Array ? false : d["Comuna"]
+          );
+
+          browserHistory.push(url);
+          //}
+        }
       },
       tooltipConfig: {
         id: "map",

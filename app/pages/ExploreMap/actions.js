@@ -33,7 +33,7 @@ export function requestData(params) {
             measures: measures,
             drillDowns: [drilldownYear, drilldownsGeo.comuna].filter(Boolean),
             cuts: cuts,
-            options: { parents: false },
+            options: { parents: true },
             locale: locale
           });
 
