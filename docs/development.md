@@ -1,4 +1,4 @@
-[Volver al índice](../README.md)
+[Volver al índice](general.md)
 
 # Instrucciones para el ambiente de desarrollo
 
@@ -8,7 +8,7 @@
 git clone git@github.com:Datawheel/datachile.git
 ```
 
-*   Ingresar al
+*   Ingresar al proyecto
 
 ```Bash
 cd datachile

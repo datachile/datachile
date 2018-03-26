@@ -8,8 +8,9 @@ Sitio web de DataChile
 *   [API Mondrian para DataChile](https://github.com/Datawheel/datachile-mondrian)
 *   [Sitio web para DataChile](https://github.com/Datawheel/datachile)
 
-## Contenidos relacionados
+## Documentación
 
+*   [Documentación general](docs/general.md)
 *   [Ambiente de desarrollo](docs/development.md)
 *   [Introducción a Canon](docs/canon.md)
 *   [Introducción a D3Plus-React en Canon](docs/d3plus.md)

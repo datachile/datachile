@@ -1,3 +1,3 @@
-[Volver al índice](../README.md)
+[Volver al índice](general.md)
 
 # Detalles sobre D3Plus - React
