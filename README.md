@@ -1,44 +1,18 @@
 # Datachile
 
-Front-end for Data Chile
+Sitio web de DataChile
 
-## Development instructions
+## Repositorios relacionados de DataChile
 
-* Clone the project
-```Bash
-git clone git@github.com:Datawheel/datachile.git
-```
+*   [ETL para DataChile](https://github.com/Datawheel/datachile-etl)
+*   [API Mondrian para DataChile](https://github.com/Datawheel/datachile-mondrian)
+*   [Sitio web para DataChile](https://github.com/Datawheel/datachile)
 
-* Go to project's folder
-```Bash
-cd datachile
-```
+## Contenidos relacionados
 
-* Install dependencies
-```Bash
-npm install
-```
-
-* Copy and configure enviroment file
-```Bash
-cp .env.js.example .env.js
-vi .env.js
-```
-
-* Run development server
-```Bash
-npm run dev
-```
-
-* Add this line to your /etc/hosts file
-```Bash
-127.0.0.1       en.datachile.local es.datachile.local
-```
-
-* Open browser
-```Bash
-http://en.datachile.local:3300/
-```
-
-* Do your job. :D
-
+*   [Ambiente de desarrollo](docs/development.md)
+*   [Introducción a Canon](docs/canon.md)
+*   [Introducción a D3Plus-React en Canon](docs/d3plus.md)
+*   [Creación y mantención de Perfiles en DataChile](docs/profiles.md)
+*   [Creación y mantención de Gráficos en DataChile](docs/charts.md)
+*   [Deploy](docs/deploy.md)
