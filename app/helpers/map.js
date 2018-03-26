@@ -37,7 +37,8 @@ export function mapCommonNeed(params, store) {
             hash: shorthash(ms.name),
             cube: cube.name,
             value: ms.name,
-            name: localeCaption(ms)
+            name: localeCaption(ms),
+            format: ms.annotations.es_format || "0.[00] a"
           }))
       );
 
