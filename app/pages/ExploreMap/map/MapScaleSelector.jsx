@@ -42,6 +42,12 @@ class MapScaleSelector extends React.Component {
 					>
 						{t("Decile")}
 					</a>
+					<a
+						className={`toggle ${mapScale === "jenks" ? "selected" : ""}`}
+						onClick={evt => setMapScale("jenks")}
+					>
+						{t("Jenks")}
+					</a>
 				</div>
 			</div>
 		);
