@@ -98,7 +98,8 @@ export function requestMembers(cubeName, locale = "en") {
                             hash: shorthash(`${member.key}`),
                             hsel: hashSelector,
                             hlvl: hashLevel,
-                            fullName: `${level.fullName}.&[${member.key}]`,
+                            key: member.key,
+                            // fullName: `${level.fullName}.&[${member.key}]`,
                             value: member.name,
                             name: member.caption
                           });
