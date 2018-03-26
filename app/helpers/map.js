@@ -243,7 +243,7 @@ export function permalinkToState(query, topics, measures) {
   const mea = query.m || "";
 
   const permalink = {
-    topic: topics.find(topic => topic.value == top),
+    topic: topics.find(topic => topic.value.slice(0, 3) == top),
     measure: Object.keys(measures).reduce(function(match, key) {
       return match || measures[key].find(ms => ms.hash == mea);
     }, null)
