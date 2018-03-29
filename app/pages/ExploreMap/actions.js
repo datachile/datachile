@@ -99,7 +99,7 @@ export function requestMembers(cubeName, locale = "en") {
                             hsel: hashSelector,
                             hlvl: hashLevel,
                             key: member.key,
-                            // fullName: `${level.fullName}.&[${member.key}]`,
+                            fullLevel: level.fullName,
                             value: member.name,
                             name: member.caption
                           });

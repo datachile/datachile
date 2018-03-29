@@ -190,7 +190,14 @@ export function combineAndFlatDatasets(datasets, pivot = "cols") {
 
 export function getCutsFullName(obj) {
   return Object.keys(obj).reduce(function(output, key) {
-    return output.concat({ key: key, values: obj[key].map(cut => cut.key) });
+    const cuts = obj[key];
+    if (cuts.length > 0) {
+      output.push({ 
+        key: cuts[0].fullLevel, 
+        values: cuts.map(cut => cut.key) 
+      })
+    }
+    return output;
   }, []);
 }
 

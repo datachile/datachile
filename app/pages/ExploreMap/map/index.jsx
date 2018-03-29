@@ -108,7 +108,7 @@ class ExploreMap extends React.Component {
     const permalinkAfter = stateToPermalink(nextProps.mapParams);
 
     if (!isEqual(permalinkBefore, permalinkAfter))
-      browserHistory.push(this.props.location.pathname + permalinkAfter);
+      browserHistory.push("/" + this.props.location.pathname + permalinkAfter);
   }
 
   render() {
