@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 const mapParamsInitialState = {
 	cuts: {},
 	isolate: { id: 0 },
-	level: "region",
+	level: "comuna",
 	measure: { value: "" },
 	scale: "log",
 	selector: {},
