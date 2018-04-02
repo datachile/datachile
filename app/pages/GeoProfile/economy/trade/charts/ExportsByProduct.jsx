@@ -1,7 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import {
@@ -24,7 +23,7 @@ class ExportsByProduct extends Section {
   ];
 
   render() {
-    const { t, className, i18n } = this.props;
+    const { t, className, i18n, router } = this.props;
     const geo = this.context.data.geo;
     const locale = i18n.language;
     const path = this.context.data.path_exports_by_product;
@@ -76,7 +75,7 @@ class ExportsByProduct extends Section {
                   d["ID HS2"] instanceof Array ? false : d["ID HS2"],
                   d["HS2"] instanceof Array ? false : d["HS2"]
                 );
-                browserHistory.push(url);
+                router.push(url);
               }
             },
             total: d => d["FOB US"],

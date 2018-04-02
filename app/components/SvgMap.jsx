@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { text as loadSvgAsString } from "d3-request";
 import { select, selectAll, event, mouse } from "d3-selection";
-import { browserHistory } from "react-router";
 import { GEOMAP } from "helpers/GeoData";
 import { slugifyItem } from "helpers/formatters";
 import SVGCache from "helpers/svg";
@@ -67,7 +66,7 @@ class SvgMap extends Component {
   launchEvents() {
     this.prepareSelected(this.props.active.key);
 
-    const { t } = this.props;
+    const { t, router } = this.props;
 
     var slug = this.props.slug;
 
@@ -111,7 +110,7 @@ class SvgMap extends Component {
       })
       .on("click", function() {
         var d = select(this);
-        browserHistory.push(
+        router.push(
           slugifyItem(
             "geo",
             region.key,
@@ -157,7 +156,7 @@ class SvgMap extends Component {
       })
       .on("click", function() {
         var d = select(this);
-        browserHistory.push(slugifyItem("geo", d.attr("id"), d.attr("name")));
+        router.push(slugifyItem("geo", d.attr("id"), d.attr("name")));
       });
   }
 

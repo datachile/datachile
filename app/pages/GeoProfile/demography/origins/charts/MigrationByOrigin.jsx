@@ -2,7 +2,6 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import TreemapStacked from "components/TreemapStacked";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import { continentColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
@@ -46,7 +45,7 @@ export default translate()(
 		];
 
 		render() {
-			const { t, className, i18n } = this.props;
+			const { t, className, i18n, router } = this.props;
 			const path = this.context.data.path_migration_by_origin;
 
 			const locale = i18n.language;
@@ -67,7 +66,9 @@ export default translate()(
 						config={{
 							label: d => {
 								d["Country"] =
-									d["Country"] == "Chile" ? ["Chile"] : d["Country"];
+									d["Country"] == "Chile"
+										? ["Chile"]
+										: d["Country"];
 								return d["Country"] instanceof Array
 									? d["Continent"]
 									: d["Country"];
@@ -76,14 +77,16 @@ export default translate()(
 							totalConfig: {
 								text: d =>
 									"Total: " +
-									numeral(getNumberFromTotalString(d.text), locale).format(
-										"0,0"
-									) +
+									numeral(
+										getNumberFromTotalString(d.text),
+										locale
+									).format("0,0") +
 									" " +
 									t("visas")
 							},
 							shapeConfig: {
-								fill: d => continentColorScale(d["ID Continent"])
+								fill: d =>
+									continentColorScale(d["ID Continent"])
 							},
 							on: {
 								click: d => {
@@ -95,16 +98,20 @@ export default translate()(
 											d["ID Country"] instanceof Array
 												? false
 												: d["ID Country"],
-											d["Country"] instanceof Array ? false : d["Country"]
+											d["Country"] instanceof Array
+												? false
+												: d["Country"]
 										);
-										browserHistory.push(url);
+										router.push(url);
 									}
 								}
 							},
 							tooltipConfig: {
 								title: d => {
 									d["Country"] =
-										d["Country"] == "Chile" ? ["Chile"] : d["Country"];
+										d["Country"] == "Chile"
+											? ["Chile"]
+											: d["Country"];
 									return d["Country"] instanceof Array
 										? d["Continent"]
 										: d["Country"];
@@ -113,9 +120,14 @@ export default translate()(
 									const link =
 										d["ID Country"] instanceof Array
 											? ""
-											: "<br/><a>" + t("tooltip.to_profile") + "</a>";
+											: "<br/><a>" +
+											  t("tooltip.to_profile") +
+											  "</a>";
 									return (
-										numeral(d["Number of visas"], locale).format("(0 a)") +
+										numeral(
+											d["Number of visas"],
+											locale
+										).format("(0 a)") +
 										" " +
 										t("people") +
 										link
@@ -128,12 +140,15 @@ export default translate()(
 									width: 40,
 									height: 40,
 									backgroundImage: d =>
-										"/images/legend/continent/" + d["ID Continent"] + ".png"
+										"/images/legend/continent/" +
+										d["ID Continent"] +
+										".png"
 								}
 							},
 							yConfig: {
 								title: t("Number of visas"),
-								tickFormat: tick => numeral(tick, locale).format("0,0")
+								tickFormat: tick =>
+									numeral(tick, locale).format("0,0")
 							}
 						}}
 					/>

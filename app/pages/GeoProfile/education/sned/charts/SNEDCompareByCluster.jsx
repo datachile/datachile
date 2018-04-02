@@ -1,7 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
 import {
@@ -119,7 +118,9 @@ class SNEDCompareByCluster extends Section {
 
 		const variations = selector.map((item, key) => {
 			let ms =
-				t("Average") + " " + t(this.capitalizeFirstLetter(item.split(" ")[1]));
+				t("Average") +
+				" " +
+				t(this.capitalizeFirstLetter(item.split(" ")[1]));
 			return { id: key, title: ms, value: item };
 		});
 
@@ -161,7 +162,11 @@ class SNEDCompareByCluster extends Section {
 						valueField="id"
 						onChange={this.handleChange}
 					/>
-					<ExportLink path={path} className={classSvg} title={title} />
+					<ExportLink
+						path={path}
+						className={classSvg}
+						title={title}
+					/>
 				</h3>
 				<BarChart
 					className={classSvg}
@@ -175,8 +180,12 @@ class SNEDCompareByCluster extends Section {
 								geo.type === "country"
 									? snedColorScale("sned" + d["ID Stage 1a"])
 									: geo.name === d["geo"]
-										? snedColorScale("sned" + d["ID Stage 1a"])
-										: snedComparisonColorScale("sned" + d["ID Stage 1a"]),
+										? snedColorScale(
+												"sned" + d["ID Stage 1a"]
+										  )
+										: snedComparisonColorScale(
+												"sned" + d["ID Stage 1a"]
+										  ),
 							label: false
 						},
 						//label: d => d["Election Type"] + " - " + d["Year"],
@@ -188,9 +197,11 @@ class SNEDCompareByCluster extends Section {
 						},
 						yConfig: {
 							title: this.state.selectedObj.title,
-							tickFormat: tick => numeral(tick, locale).format("0")
+							tickFormat: tick =>
+								numeral(tick, locale).format("0")
 						},
-						xSort: (a, b) => (b["ID Stage 1b"] > a["ID Stage 1b"] ? -1 : 1),
+						xSort: (a, b) =>
+							b["ID Stage 1b"] > a["ID Stage 1b"] ? -1 : 1,
 						y: this.state.selectedObj.value,
 						discrete: "x",
 
@@ -200,7 +211,9 @@ class SNEDCompareByCluster extends Section {
 								"<div>" +
 								t("SNED Score") +
 								": " +
-								numeral(d["Avg sned_score"], locale).format("0.00") +
+								numeral(d["Avg sned_score"], locale).format(
+									"0.00"
+								) +
 								" " +
 								"</div>"
 						},
@@ -213,7 +226,8 @@ class SNEDCompareByCluster extends Section {
 							shapeConfig: {
 								width: 25,
 								height: 25,
-								backgroundImage: "/images/legend/education/type.png"
+								backgroundImage:
+									"/images/legend/education/type.png"
 							}
 						}
 					}}
@@ -223,12 +237,18 @@ class SNEDCompareByCluster extends Section {
 						});
 						const country =
 							geo.type !== "country"
-								? datum_sned_compare_with_parent.data.map(item => {
-										return {
-											...item,
-											geo: geo.depth === 2 ? geo.ancestors[0].caption : "Chile"
-										};
-								  })
+								? datum_sned_compare_with_parent.data.map(
+										item => {
+											return {
+												...item,
+												geo:
+													geo.depth === 2
+														? geo.ancestors[0]
+																.caption
+														: "Chile"
+											};
+										}
+								  )
 								: [];
 
 						return location.concat(country);

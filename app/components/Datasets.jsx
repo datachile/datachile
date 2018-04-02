@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import keyBy from "lodash/keyBy";
-import { Link, browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import { request as d3Request } from "d3-request";
 import { select, selectAll } from "d3-selection";

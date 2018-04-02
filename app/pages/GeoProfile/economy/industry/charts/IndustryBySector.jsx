@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Treemap } from "d3plus-react";
-import { browserHistory } from "react-router";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import {
 	numeral,
@@ -30,7 +29,7 @@ class IndustryBySector extends Section {
 
 	render() {
 		const path = this.context.data.path_industry_output;
-		const { t, className, i18n } = this.props;
+		const { t, className, i18n, router } = this.props;
 		const locale = i18n.language;
 		const classSvg = "industry-by-sector";
 		return (
@@ -46,15 +45,18 @@ class IndustryBySector extends Section {
 						data: path,
 						groupBy: ["ID Level 1", "ID Level 4"],
 						label: d =>
-							d["Level 4"] instanceof Array ? d["Level 1"] : d["Level 4"],
+							d["Level 4"] instanceof Array
+								? d["Level 1"]
+								: d["Level 4"],
 						sum: d => d["Output"],
 						total: d => d["Output"],
 						totalConfig: {
 							text: d =>
 								"Total: " +
-								numeral(getNumberFromTotalString(d.text), locale).format(
-									"($ 0.[0] a)"
-								)
+								numeral(
+									getNumberFromTotalString(d.text),
+									locale
+								).format("($ 0.[0] a)")
 						},
 						time: "ID Year",
 						shapeConfig: {
@@ -74,32 +76,45 @@ class IndustryBySector extends Section {
 									"industries",
 									d["ID Level 1"],
 									d["Level 1"],
-									d["ID Level 4"] instanceof Array ? false : d["ID Level 2"],
-									d["Level 4"] instanceof Array ? false : d["Level 2"]
+									d["ID Level 4"] instanceof Array
+										? false
+										: d["ID Level 2"],
+									d["Level 4"] instanceof Array
+										? false
+										: d["Level 2"]
 								);
-								browserHistory.push(url);
+								router.push(url);
 							}
 						},
 						tooltipConfig: {
 							title: d =>
-								d["Level 4"] instanceof Array ? d["Level 1"] : d["Level 4"],
+								d["Level 4"] instanceof Array
+									? d["Level 1"]
+									: d["Level 4"],
 							body: d => {
 								var body = "<table class='tooltip-table'>";
 								body +=
 									"<tr><td class='title'>" +
 									t("Output") +
 									"</td><td class='data'>" +
-									numeral(d["Output"], locale).format("($ 0,0.[0] a)") +
+									numeral(d["Output"], locale).format(
+										"($ 0,0.[0] a)"
+									) +
 									"</td></tr>";
 								body +=
 									"<tr><td class='title'>" +
 									t("Investment") +
 									"</td><td class='data'>" +
-									numeral(d["Investment"], locale).format("($ 0,0.[0] a)") +
+									numeral(d["Investment"], locale).format(
+										"($ 0,0.[0] a)"
+									) +
 									"</td></tr>";
 								body += "</table>";
 								if (!(d["Level 4"] instanceof Array))
-									body += "<a>" + t("tooltip.to_profile") + "</a>";
+									body +=
+										"<a>" +
+										t("tooltip.to_profile") +
+										"</a>";
 								return body;
 							}
 						}
