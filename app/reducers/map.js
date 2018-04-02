@@ -65,7 +65,7 @@ const mapParamsReducer = (state = mapParamsInitialState, action) => {
 			return { ...state, isolate: action.payload };
 
 		case "MAP_LEVEL_SET":
-			return { ...state, level: action.payload };
+			return { ...state, level: action.payload, isolate: { id: 0 }};
 
 		case "MAP_MEASURE_SET":
 			return {
