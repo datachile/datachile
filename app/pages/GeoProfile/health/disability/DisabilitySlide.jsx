@@ -96,7 +96,14 @@ class DisabilitySlide extends Section {
                 icon="poblacion-femenina-con-discapacidad"
                 datum={text.gender.female.share}
                 title={t("Female percent with disability")}
-                subtitle={t("In") + " " + text.geo.caption}
+                subtitle={
+                  t(" of ") +
+                  text.value +
+                  " " +
+                  t(" in ") +
+                  " " +
+                  text.geo.caption
+                }
               />
             )}
           </div>
