@@ -82,8 +82,8 @@ class MapContent extends React.Component {
 			mapIsolate.id === 0
 				? territory.map(item => item.comuna_id)
 				: territory
-            .filter(item => item.region_id === mapIsolate.id)
-            .map(item => item.comuna_id);
+						.filter(item => item.region_id === mapIsolate.id)
+						.map(item => item.comuna_id);
 
 		const configBase = {
 			height: 700,
@@ -250,7 +250,8 @@ const processResults = (data, msrName, mapYear, mapIsolate) => {
 	// Check if there are data available for this chart
 	if (mapYear) data = data.filter(item => item["Year"] == mapYear);
 
-  if (mapIsolate.id !== 0) data = data.filter(item => item["ID Region"] == mapIsolate.id);
+	if (mapIsolate.id !== 0)
+		data = data.filter(item => item["ID Region"] == mapIsolate.id);
 
 	const msrValues = data.map(item => item[msrName]).sort();
 
