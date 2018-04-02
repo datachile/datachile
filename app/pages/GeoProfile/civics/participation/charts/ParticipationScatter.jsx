@@ -3,7 +3,6 @@ import { Section } from "datawheel-canon";
 import { Plot } from "d3plus-react";
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import { mean } from "d3-array";
 
@@ -48,7 +47,7 @@ class ParticipationScatter extends Section {
   }
 
   render() {
-    const { t, className, i18n } = this.props;
+    const { t, className, i18n, router } = this.props;
     const { geo, election_participation_by_territory } = this.context.data;
     const path = null;
 
@@ -101,7 +100,7 @@ class ParticipationScatter extends Section {
                       d["ID Comuna"] > 350 ? false : d["ID Comuna"],
                       d["Comuna"] > 350 ? false : d["Comuna"]
                     );
-                    browserHistory.push(url);
+                    router.push(url);
                   }
                 }
               },

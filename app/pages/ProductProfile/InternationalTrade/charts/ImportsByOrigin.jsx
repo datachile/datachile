@@ -1,7 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import { continentColorScale } from "helpers/colors";
 import {
@@ -52,7 +51,7 @@ class ImportsByDestination extends Section {
   ];
 
   render() {
-    const { t, className, i18n } = this.props;
+    const { t, className, i18n, router } = this.props;
     const path = this.context.data.product_imports_by_destination;
 
     const locale = i18n.language;
@@ -97,7 +96,7 @@ class ImportsByDestination extends Section {
                     d["ID Country"] instanceof Array ? false : d["ID Country"],
                     d["Country"] instanceof Array ? false : d["Country"]
                   );
-                  browserHistory.push(url);
+                  router.push(url);
                 }
               }
             },

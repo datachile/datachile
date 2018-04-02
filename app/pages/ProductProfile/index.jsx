@@ -329,7 +329,7 @@ class ProductProfile extends Component {
   componentDidMount() {}
 
   render() {
-    const { t, i18n, location } = this.props;
+    const { t, i18n, location, router } = this.props;
     const obj = this.props.data.product;
 
     const locale = i18n.language;
@@ -611,23 +611,23 @@ class ProductProfile extends Component {
                   <InternationalTradeSlide>
                     <SectionColumns>
                       <ExportsByDestination className="lost-1-2" />
-                      <ExportsGeoMap className="lost-1-2" />
+                      <ExportsGeoMap className="lost-1-2" router={router} />
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
                 <div>
                   <InternationalTradeSlide>
                     <SectionColumns>
-                      <ImportsByOrigin className="lost-1-2" />
-                      <ImportsGeoMap className="lost-1-2" />
+                      <ImportsByOrigin className="lost-1-2" router={router} />
+                      <ImportsGeoMap className="lost-1-2" router={router} />
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
                 <div>
                   <GeoTradeSlide>
                     <SectionColumns>
-                      <ExportsByRegion className="lost-1-2" />
-                      <ImportsByRegion className="lost-1-2" />
+                      <ExportsByRegion className="lost-1-2" router={router} />
+                      <ImportsByRegion className="lost-1-2" router={router} />
                     </SectionColumns>
                   </GeoTradeSlide>
                 </div>

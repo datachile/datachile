@@ -2,7 +2,6 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
 import { Treemap } from "d3plus-react";
-import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
@@ -63,7 +62,7 @@ class ExportsByOrigin extends Section {
 	};
 
 	render() {
-		const { t, className, i18n } = this.props;
+		const { t, className, i18n, router } = this.props;
 
 		const path = this.context.data.path_country_exports_by_origin;
 		const locale = i18n.language;
@@ -89,9 +88,10 @@ class ExportsByOrigin extends Section {
 							totalConfig: {
 								text: d =>
 									"Total: US" +
-									numeral(getNumberFromTotalString(d.text), locale).format(
-										"($ 0.[00] a)"
-									) +
+									numeral(
+										getNumberFromTotalString(d.text),
+										locale
+									).format("($ 0.[00] a)") +
 									" FOB"
 							},
 							time: "ID Year",
@@ -100,8 +100,12 @@ class ExportsByOrigin extends Section {
 							},
 							on: {
 								click: d => {
-									var url = buildPermalink(d, "geo", Array.isArray(d.Comuna));
-									browserHistory.push(url);
+									var url = buildPermalink(
+										d,
+										"geo",
+										Array.isArray(d.Comuna)
+									);
+									router.push(url);
 								}
 							},
 							legendTooltip: {
@@ -110,7 +114,9 @@ class ExportsByOrigin extends Section {
 							tooltipConfig: {
 								title: d => d["Comuna"],
 								body: d =>
-									numeral(d["FOB US"], locale).format("(USD 0 a)") +
+									numeral(d["FOB US"], locale).format(
+										"(USD 0 a)"
+									) +
 									" FOB<br/><a>" +
 									t("tooltip.to_profile") +
 									"</a>"
@@ -121,7 +127,9 @@ class ExportsByOrigin extends Section {
 									width: 25,
 									height: 25,
 									backgroundImage: d =>
-										"/images/legend/region/" + d["ID Region"] + ".png"
+										"/images/legend/region/" +
+										d["ID Region"] +
+										".png"
 								}
 							}
 						}}

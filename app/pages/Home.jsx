@@ -171,7 +171,11 @@ class Home extends Component {
               </div>
 
               <div className="home-header">
-                <DynamicHomeHeader data={this.props.data} header={header} />
+                <DynamicHomeHeader
+                  data={this.props.data}
+                  router={this.props.router}
+                  header={header}
+                />
               </div>
             </div>
             <div className="home-slider">

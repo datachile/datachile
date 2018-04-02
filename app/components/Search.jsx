@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { toggleSearch } from "actions/index";
 import { translate } from "react-i18next";
-import { Link, browserHistory } from "react-router";
+import { Link } from "react-router";
 import debounce from "lodash/debounce";
 
 import { request } from "d3-request";
@@ -53,7 +53,7 @@ class Search extends Component {
 
     document.addEventListener(
       "keydown",
-      (event) => {
+      event => {
         const { local, searchActive, toggleSearch } = this.props;
         const { active } = this.state;
         const key = event.keyCode;
@@ -86,8 +86,7 @@ class Search extends Component {
             //this.ref_input.value = highlighted.querySelector("a").innerHTML;
             toggle();
             setTimeout(() => {
-              browserHistory.push(highlighted.querySelector("a").href);
-              //window.location = highlighted.querySelector("a").href;
+              //do nothing
             }, 500);
           } else if (key === DOWN || key === UP) {
             if (!highlighted) {
@@ -227,7 +226,10 @@ class Search extends Component {
                       src={`/images/icons/icon-${result.index_as}.svg`}
                     />
                   </span>
-                  <span className="content">{result.content}{result.ancestor_key ? ` — ${result.ancestor_name}` : ''}</span>
+                  <span className="content">
+                    {result.content}
+                    {result.ancestor_key ? ` — ${result.ancestor_name}` : ""}
+                  </span>
                   <span className="separator">|</span>
                   <span className="type">{this.getProfileType(result)}</span>
                 </Link>

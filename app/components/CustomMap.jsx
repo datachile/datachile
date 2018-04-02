@@ -2,7 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Geomap } from "d3plus-react";
 import NoDataAvailable from "components/NoDataAvailable";
-import { browserHistory } from "react-router";
 
 import { COLORS_SCALE_EXPORTS, COLORS_SCALE_IMPORTS } from "helpers/colors";
 
@@ -23,7 +22,7 @@ class CustomMap extends React.Component {
   }
 
   render() {
-    const { t, path, msrName, className, locale } = this.props;
+    const { t, path, msrName, className, locale, router } = this.props;
 
     return this.state.show ? (
       <div className="geomap">
@@ -74,7 +73,7 @@ class CustomMap extends React.Component {
                     d["ID Country"] instanceof Array ? false : d["ID Country"],
                     d["Country"] instanceof Array ? false : d["Country"]
                   );
-                  browserHistory.push(url);
+                  router.push(url);
                 }
               }
             },

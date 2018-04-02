@@ -2,7 +2,6 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import {
@@ -64,7 +63,7 @@ class ImportsByProduct extends Section {
 	};
 
 	render() {
-		const { t, className, i18n } = this.props;
+		const { t, className, i18n, router } = this.props;
 
 		const locale = i18n.language;
 		const path = this.context.data.path_imports_by_product_country;
@@ -83,15 +82,17 @@ class ImportsByProduct extends Section {
 							height: 500,
 							data: path,
 							groupBy: ["ID HS0", "ID HS2"],
-							label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
+							label: d =>
+								d["HS2"] instanceof Array ? d["HS0"] : d["HS2"],
 							sum: d => d["CIF US"],
 							total: d => d["CIF US"],
 							totalConfig: {
 								text: d =>
 									"Total: US" +
-									numeral(getNumberFromTotalString(d.text), locale).format(
-										"($ 0.[00] a)"
-									) +
+									numeral(
+										getNumberFromTotalString(d.text),
+										locale
+									).format("($ 0.[00] a)") +
 									" CIF"
 							},
 							time: "ID Year",
@@ -100,24 +101,37 @@ class ImportsByProduct extends Section {
 								shapeConfig: {
 									width: 25,
 									height: 25,
-									fill: d => productsColorScale("hs" + d["ID HS0"]),
+									fill: d =>
+										productsColorScale("hs" + d["ID HS0"]),
 									backgroundImage: d =>
-										"/images/legend/hs/hs_" + d["ID HS0"] + ".png"
+										"/images/legend/hs/hs_" +
+										d["ID HS0"] +
+										".png"
 								}
 							},
 							shapeConfig: {
-								fill: d => productsColorScale("hs" + d["ID HS0"])
+								fill: d =>
+									productsColorScale("hs" + d["ID HS0"])
 							},
 							on: {
 								click: d => {
-									var url = buildPermalink(d, "geo", Array.isArray(d.Comuna));
-									browserHistory.push(url);
+									var url = buildPermalink(
+										d,
+										"geo",
+										Array.isArray(d.Comuna)
+									);
+									router.push(url);
 								}
 							},
 							tooltipConfig: {
-								title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
+								title: d =>
+									d["HS2"] instanceof Array
+										? d["HS0"]
+										: d["HS2"],
 								body: d =>
-									numeral(d["CIF US"], locale).format("(USD 0 a)") +
+									numeral(d["CIF US"], locale).format(
+										"(USD 0 a)"
+									) +
 									" CIF<br/><a>" +
 									t("tooltip.to_profile") +
 									"</a>"

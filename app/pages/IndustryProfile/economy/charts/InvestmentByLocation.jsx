@@ -1,7 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import { regionsColorScale } from "helpers/colors";
 import {
@@ -49,7 +48,7 @@ class InvestmentByLocation extends Section {
 	];
 
 	render() {
-		const { t, className, i18n } = this.props;
+		const { t, className, i18n, router } = this.props;
 		const path = this.context.data.industry_investment_by_region;
 		const industry = this.context.data.industry;
 
@@ -65,7 +64,9 @@ class InvestmentByLocation extends Section {
 							industry.parent && (
 								<span>
 									:{" "}
-									{industry.parent ? industry.parent.caption : industry.caption}
+									{industry.parent
+										? industry.parent.caption
+										: industry.caption}
 								</span>
 							)}
 					</span>
@@ -78,14 +79,17 @@ class InvestmentByLocation extends Section {
 					drilldowns={["Region", "Comuna"]}
 					config={{
 						label: d =>
-							d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
+							d["Comuna"] instanceof Array
+								? d["Region"]
+								: d["Comuna"],
 						total: d => d["Investment"],
 						totalConfig: {
 							text: d =>
 								"Total: CLP" +
-								numeral(getNumberFromTotalString(d.text), locale).format(
-									"($ 0.[00] a)"
-								)
+								numeral(
+									getNumberFromTotalString(d.text),
+									locale
+								).format("($ 0.[00] a)")
 						},
 						shapeConfig: {
 							fill: d => regionsColorScale("r" + d["ID Region"])
@@ -97,24 +101,34 @@ class InvestmentByLocation extends Section {
 									"geo",
 									d["ID Region"],
 									d["Region"],
-									d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
-									d["Comuna"] instanceof Array ? false : d["Comuna"]
+									d["ID Comuna"] instanceof Array
+										? false
+										: d["ID Comuna"],
+									d["Comuna"] instanceof Array
+										? false
+										: d["Comuna"]
 								);
-								browserHistory.push(url);
+								router.push(url);
 								//}
 							}
 						},
 						tooltipConfig: {
 							title: d => {
-								return d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"];
+								return d["Comuna"] instanceof Array
+									? d["Region"]
+									: d["Comuna"];
 							},
 							body: d => {
 								const link =
 									d["ID Comuna"] instanceof Array
 										? ""
-										: "<br/><a>" + t("tooltip.to_profile") + "</a>";
+										: "<br/><a>" +
+										  t("tooltip.to_profile") +
+										  "</a>";
 								return (
-									numeral(d["Investment"], locale).format("(USD 0 a)") + link
+									numeral(d["Investment"], locale).format(
+										"(USD 0 a)"
+									) + link
 								);
 							}
 						},
@@ -123,9 +137,14 @@ class InvestmentByLocation extends Section {
 								return d["Region"];
 							},
 							body: d => {
-								const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
+								const link =
+									"<br/><a>" +
+									t("tooltip.to_profile") +
+									"</a>";
 								return (
-									numeral(d["Investment"], locale).format("(USD 0 a)") + link
+									numeral(d["Investment"], locale).format(
+										"(USD 0 a)"
+									) + link
 								);
 							}
 						},
@@ -134,12 +153,15 @@ class InvestmentByLocation extends Section {
 								width: 25,
 								height: 25,
 								backgroundImage: d =>
-									"/images/legend/region/" + d["ID Region"] + ".png"
+									"/images/legend/region/" +
+									d["ID Region"] +
+									".png"
 							}
 						},
 						yConfig: {
 							title: t("CLP$"),
-							tickFormat: tick => numeral(tick, locale).format("(0 a)")
+							tickFormat: tick =>
+								numeral(tick, locale).format("(0 a)")
 						}
 					}}
 				/>
