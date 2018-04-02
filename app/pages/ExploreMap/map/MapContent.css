@@ -3,9 +3,10 @@
 	//justify-content: center;
 	& .map-color-scale {
 		lost-column: 1/5 2;
-		background-color: var(--snow);
+		//background-color: var(--snow);
+		background-color: transparent;
 		padding: calc(var(--gutter) / 3);
-		border: 1px solid var(--gray-light);
+		//border: 1px solid var(--gray-light);
 		min-height: calc(90vh - 150px);
 		& .d3plus-Rect-shape {
 			& rect.d3plus-Shape {
@@ -14,10 +15,10 @@
 		}
 		& .ticks {
 			& .d3plus-Line-shape path {
-				stroke: var(--gray-dark);
+				stroke: var(--snow);
 			}
 			& .d3plus-Line-text text {
-				fill: var(--gray-dark);
+				fill: var(--snow);
 				opacity: 1;
 			}
 		}
