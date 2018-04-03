@@ -34,8 +34,20 @@ import "../explore-map.css";
 class ExploreMap extends React.Component {
   static need = [mapCommonNeed];
 
+  state = {
+    cutHash: null
+  };
+
   constructor(props) {
     super(props);
+
+    // this prevents the state reset when coming back from the cart
+    if (props.mapCube) {
+      browserHistory.push(
+        "/" + props.location.pathname + stateToPermalink(props.mapParams)
+      );
+      return;
+    }
 
     const t = props.t;
 
@@ -61,9 +73,7 @@ class ExploreMap extends React.Component {
       }
     });
 
-    this.state = {
-      cutHash: props.location.query.c
-    };
+    this.state.cutHash = props.location.query.c;
   }
 
   componentWillReceiveProps(nextProps) {
