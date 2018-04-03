@@ -3,6 +3,7 @@ import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { Icon } from "@blueprintjs/core";
+import union from "lodash/union";
 
 import CustomSelect from "components/CustomSelect";
 
@@ -11,6 +12,19 @@ import { classnames } from "helpers/formatters";
 import "./MapSidebar.css";
 
 class MapSidebar extends React.Component {
+  state = {
+    expanded: false
+  };
+
+  expandSelectors = () => {
+    this.setState({ expanded: true });
+  };
+
+  filterUnusedSelectors(selector) {
+    const values = this.props.memberValues[selector.value];
+    return values && values.length > 0;
+  }
+
   componentWillReceiveProps(nextProps) {
     const oldTopic = this.props.topicKey;
     const newTopic = nextProps.topicKey;
@@ -65,7 +79,14 @@ class MapSidebar extends React.Component {
 
   render() {
     const { t, setTopic, setMeasure, setIsolate } = this.props;
-    const { selectors } = this.props;
+    const expanded = this.state.expanded;
+
+    let selectors = this.props.selectors;
+    if (!expanded) {
+      const selWithValue = selectors.filter(this.filterUnusedSelectors, this);
+      const selFirstSix = selectors.slice(0, 6);
+      selectors = union(selWithValue, selFirstSix).slice(0, 6);
+    }
 
     return (
       <div className="map-sidebar">
@@ -106,6 +127,15 @@ class MapSidebar extends React.Component {
         )}
 
         {selectors.map(this.renderSelectorGroup, this)}
+
+        {!expanded && (
+          <button
+            className="show-more-selectors"
+            onClick={this.expandSelectors}
+          >
+            {t("map.sidebar_moreselectors")}
+          </button>
+        )}
       </div>
     );
   }

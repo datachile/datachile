@@ -1204,6 +1204,7 @@
   "map": {
     "sidebar_addfilter": "Agregar un filtro...",
     "sidebar_isolateregion": "Región...",
+    "sidebar_moreselectors": "Mostrar más filtros",
     "slides": [
       { "img": "inicio", "title": "¿QUÉ ES EL MAPA?" },
       {
