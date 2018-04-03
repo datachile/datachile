@@ -79,10 +79,10 @@ class MapContent extends React.Component {
     let customTick = "";
 
     const isolate =
-      mapIsolate.id === 0
+      mapIsolate.value === 0
         ? territory.map(item => item.comuna_id)
         : territory
-            .filter(item => item.region_id === mapIsolate.id)
+            .filter(item => item.region_id === mapIsolate.value)
             .map(item => item.comuna_id);
 
     const configBase = {
@@ -250,8 +250,8 @@ const processResults = (data, msrName, mapYear, mapIsolate) => {
   // Check if there are data available for this chart
   if (mapYear) data = data.filter(item => item["Year"] == mapYear);
 
-  if (mapIsolate.id !== 0)
-    data = data.filter(item => item["ID Region"] == mapIsolate.id);
+  if (mapIsolate.value !== 0)
+    data = data.filter(item => item["ID Region"] == mapIsolate.value);
 
   const msrValues = data.map(item => item[msrName]).sort();
 

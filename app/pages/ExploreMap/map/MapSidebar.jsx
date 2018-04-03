@@ -67,25 +67,6 @@ class MapSidebar extends React.Component {
     const { t, setTopic, setMeasure, setIsolate } = this.props;
     const { selectors } = this.props;
 
-    const regiones = [
-      { id: 0, name: t("All Regions") },
-      { id: 1, name: "Tarapacá" },
-      { id: 2, name: "Antofagasta" },
-      { id: 3, name: "Atacama" },
-      { id: 4, name: "Coquimbo" },
-      { id: 5, name: "Valparaíso" },
-      { id: 6, name: "O'Higgins" },
-      { id: 7, name: "Maule" },
-      { id: 8, name: "Biobío" },
-      { id: 9, name: "Araucanía" },
-      { id: 10, name: "Los Lagos" },
-      { id: 11, name: "Aisén" },
-      { id: 12, name: "Magallanes" },
-      { id: 13, name: "Metropolitana" },
-      { id: 14, name: "Los Ríos" },
-      { id: 15, name: "Arica y Parinacota" }
-    ];
-
     return (
       <div className="map-sidebar">
         <h1>{t("Map")}</h1>
@@ -108,14 +89,18 @@ class MapSidebar extends React.Component {
             filterable={false}
           />
         </OptionGroup>
+
         {this.props.levelValue === "comuna" && (
-          <OptionGroup label={t("Isolate Region")} icon="measure">
+          <OptionGroup label={t("Isolate Region")} icon="geo">
             <CustomSelect
               disabled={this.props.disabled}
-              items={regiones}
-              value={this.props.isolateValue}
+              items={[{ value: 0, name: t("All Regions") }].concat(
+                this.props.isoregionOptions
+              )}
+              value={this.props.isoregionValue}
               onItemSelect={setIsolate}
               filterable={false}
+              placeholder={t("map.sidebar_isolateregion")}
             />
           </OptionGroup>
         )}
@@ -155,13 +140,14 @@ const mapStateToProps = (state, ownProps) => {
     topicValue: params.topic,
     levelValue: params.level,
     topicKey: topicKey,
-    isolateValue: params.isolate,
     measureOptions: preload.measures[topicKey] || [],
     measureValue: params.measure,
     memberOptions: state.map.options.members,
     memberValues: state.map.params.cuts,
     selectors: preload.selectors[cube] || [],
     selectorHier: params.selector,
+    isoregionOptions: state.map.options.regions,
+    isoregionValue: params.isolate,
     disabled:
       state.map.results.status == "LOADING" ||
       state.map.options.countLoading > 0

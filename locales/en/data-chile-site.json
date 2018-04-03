@@ -997,6 +997,7 @@
   },
   "map": {
     "sidebar_addfilter": "Add a filter...",
+    "sidebar_isolateregion": "Region...",
     "slides": [
       { "img": "inicio", "title": "A MAP TOOL?" },
       {

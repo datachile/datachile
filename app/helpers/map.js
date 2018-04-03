@@ -191,10 +191,10 @@ export function getCutsFullName(obj) {
   return Object.keys(obj).reduce(function(output, key) {
     const cuts = obj[key];
     if (cuts.length > 0) {
-      output.push({ 
-        key: cuts[0].fullLevel, 
-        values: cuts.map(cut => cut.key) 
-      })
+      output.push({
+        key: cuts[0].fullLevel,
+        values: cuts.map(cut => cut.key)
+      });
     }
     return output;
   }, []);
@@ -227,9 +227,11 @@ export function stateToPermalink(params) {
     permalink.s = params.scale.substr(0, 3);
     permalink.l = params.level == "region" ? "r" : "c";
     permalink.y = params.year;
+    permalink.i = params.isolate.value;
 
     if (!permalink.c) delete permalink.c;
     if (!permalink.s) delete permalink.s;
+    if (!permalink.i) delete permalink.i;
   }
 
   return (
@@ -263,6 +265,8 @@ export function permalinkToState(query, topics, measures) {
     }
     if (query.l) permalink.level = query.l == "c" ? "comuna" : "region";
     if (query.y) permalink.year = query.y;
+    if (query.l == "c" && query.i)
+      permalink.isolate = { value: parseInt(query.i) };
   } else {
     const initTopic = topics[0];
     permalink.topic = initTopic;
