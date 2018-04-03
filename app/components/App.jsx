@@ -25,7 +25,7 @@ class App extends Component {
 				</Helmet>
 				<StagingIndicator />
 				{children}
-				{this.props.location.pathname === "/explore/map" ? <div /> : <Footer />}
+				{this.props.location.pathname === "explore/map" ? <div /> : <Footer />}
 			</div>
 		);
 	}
