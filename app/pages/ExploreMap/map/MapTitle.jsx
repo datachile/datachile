@@ -74,7 +74,6 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-MapTitle = translate()(connect(mapStateToProps, mapDispatchToProps)(MapTitle));
-
-export default MapTitle;
-export { MapTitle };
+export default translate()(
+  connect(mapStateToProps, mapDispatchToProps)(MapTitle)
+);

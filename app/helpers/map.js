@@ -16,7 +16,6 @@ export function mapCommonNeed(params, store) {
     return item.annotations[key] || item.caption || item.name;
   }.bind(null, `${store.i18n.locale}_element_caption`);
 
-  // mondrian-rest-client doesn't use the annotations from the json
   const promise = mondrianClient.cubes().then(cubes => {
     const hierarchies = {};
     const measures = {};
