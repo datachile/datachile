@@ -8,6 +8,8 @@ class MapLevelSelector extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.queryComuna) {
       nextProps.setMapLevel("region");
+    } else {
+      nextProps.setMapLevel("comuna");
     }
   }
 
