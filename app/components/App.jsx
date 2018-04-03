@@ -13,6 +13,8 @@ class App extends Component {
 		const { children, t } = this.props;
 		const espanol = this.props.i18n.language == "es";
 
+		console.log(this.props.location.pathname)
+
 		return (
 			<div className="main-container">
 				<Helmet titleTemplate="%s — DataChile" defaultTitle="DataChile">
@@ -25,7 +27,7 @@ class App extends Component {
 				</Helmet>
 				<StagingIndicator />
 				{children}
-				{this.props.location.pathname === "/explore/map" ? <div /> : <Footer />}
+				{this.props.location.pathname === "explore/map" ? <div /> : <Footer />}
 			</div>
 		);
 	}
