@@ -161,7 +161,7 @@ class Nav extends Component {
                 </Link>
               </li>
               <li className="title">
-                <Link to="/explore/map">{t("Map")}</Link>
+                <a href="/explore/map">{t("Map")}</a>
               </li>
               <li className="title">
                 <Link to="/about">{t("About DataChile")}</Link>
