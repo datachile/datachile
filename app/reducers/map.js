@@ -97,6 +97,7 @@ const mapParamsReducer = (state = mapParamsInitialState, action) => {
 			return {
 				...state,
 				topic: action.payload,
+				level: "comuna",
 				selector: {},
 				cuts: {}
 			};
