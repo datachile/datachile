@@ -2,7 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Geomap } from "d3plus-react";
-import { browserHistory } from "react-router";
 
 import {
   numeral,
@@ -62,7 +61,8 @@ class MapContent extends React.Component {
       mapIsolate,
       mapYear,
       dataRegion,
-      dataComuna
+      dataComuna,
+      router
     } = this.props;
 
     if (dataRegion.length == 0) {
@@ -156,7 +156,6 @@ class MapContent extends React.Component {
       },
       on: {
         click: d => {
-          //if (!(d["ID Comuna"] instanceof Array)) {
           var url = slugifyItem(
             "geo",
             d["ID Region"],
@@ -164,9 +163,7 @@ class MapContent extends React.Component {
             d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
             d["Comuna"] instanceof Array ? false : d["Comuna"]
           );
-
-          browserHistory.push(url);
-          //}
+          router.push(url);
         }
       },
       tooltipConfig: {
