@@ -8,9 +8,12 @@
 		padding: calc(var(--gutter) / 3);
 		//border: 1px solid var(--gray-light);
 		min-height: calc(90vh - 150px);
+		& .d3plus-Line-shape path {
+			stroke: var(--snow);
+		}
 		& .d3plus-Rect-shape {
 			& rect.d3plus-Shape {
-				stroke: var(--snow);
+				stroke: var(--snow)!important;
 			}
 		}
 		& .ticks {

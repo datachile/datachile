@@ -110,20 +110,21 @@ class MapContent extends React.Component {
           : mapScale === "log" ? msrName + "LOG" : msrName + "PERC",
       colorScalePosition: "left",
       colorScaleConfig: {
+        rectConfig: {
+          stroke: "#FFF"
+        },
         scale:
           mapScale === "decile"
             ? "buckets"
             : mapScale === "jenks" ? "jenks" : "linear",
         color: MAP_SCALE_COLORS.getItem(mapTopic),
+        orient: "right",
         axisConfig: {
           shapeConfig: {
             labelConfig: {
               fontColor: "#000"
             }
           },
-          //   tickFormat: tick => {
-          //     return numeral(parseFloat(tick), "es").format("($ 0.[00] a)");
-          //   },
           tickFormat: tick => {
             if (mapScale === "log") {
               let value = Math.pow(10, tick * 1);
@@ -152,7 +153,7 @@ class MapContent extends React.Component {
         },
         downloadButton: false,
         //select: ".map-color-scale",
-        //align: "start"
+        //align: "end"
       },
       on: {
         click: d => {
