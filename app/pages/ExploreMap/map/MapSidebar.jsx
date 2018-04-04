@@ -91,7 +91,6 @@ class MapSidebar extends React.Component {
 			const selFirstSix = selectors.slice(0, 6);
 			selectors = union(selWithValue, selFirstSix).slice(0, 6);
 		}
-		console.log(selectors);
 
 		return (
 			<div className="map-sidebar">
@@ -132,7 +131,6 @@ class MapSidebar extends React.Component {
 				)}
 
 				{selectors.map(this.renderSelectorGroup, this)}
-				{console.log(len)}
 				{len > 6 &&
 					!expanded && (
 						<button
