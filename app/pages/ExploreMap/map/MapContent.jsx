@@ -108,7 +108,7 @@ class MapContent extends React.Component {
         mapScale === "linear" || mapScale === "jenks"
           ? msrName
           : mapScale === "log" ? msrName + "LOG" : msrName + "PERC",
-      colorScalePosition: "right",
+      colorScalePosition: "left",
       colorScaleConfig: {
         scale:
           mapScale === "decile"
@@ -151,8 +151,8 @@ class MapContent extends React.Component {
           }
         },
         downloadButton: false,
-        select: ".map-color-scale",
-        align: "start"
+        //select: ".map-color-scale",
+        //align: "start"
       },
       on: {
         click: d => {
@@ -231,7 +231,7 @@ class MapContent extends React.Component {
 
     return (
       <div className="map-content">
-        <svg key={Math.random()} className="map-color-scale" />
+        {/*<svg key={Math.random()} className="map-color-scale" />*/}
         <div className="map-render">
           <Geomap key={Math.random()} config={config} />
         </div>
