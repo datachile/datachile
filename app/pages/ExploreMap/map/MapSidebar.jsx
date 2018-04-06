@@ -9,6 +9,8 @@ import CustomSelect from "components/CustomSelect";
 
 import { classnames } from "helpers/formatters";
 
+import MapYearSelector from "./MapYearSelector";
+
 import "./MapSidebar.css";
 
 class MapSidebar extends React.Component {
@@ -80,11 +82,13 @@ class MapSidebar extends React.Component {
 	}
 
 	render() {
-		const { t, setTopic, setMeasure, setIsolate } = this.props;
+		const { t, setTopic, setMeasure, setIsolate, setYear } = this.props;
 		const expanded = this.state.expanded;
 
 		let selectors = this.props.selectors;
 		let len = selectors.length;
+
+		console.log(this.props.measureValue);
 
 		if (len > 6 && !expanded) {
 			const selWithValue = selectors.filter(this.filterUnusedSelectors, this);
@@ -111,6 +115,18 @@ class MapSidebar extends React.Component {
 						items={this.props.measureOptions}
 						value={this.props.measureValue}
 						onItemSelect={setMeasure}
+						filterable={false}
+					/>
+				</OptionGroup>
+
+				<OptionGroup label={t("Year")} icon="measure">
+					<CustomSelect
+						disabled={this.props.disabled}
+						items={this.props.mapYearOptions.map(item => {
+							return { value: item, name: item };
+						})}
+						value={{ value: this.props.mapYear, name: this.props.mapYear }}
+						onItemSelect={setYear}
 						filterable={false}
 					/>
 				</OptionGroup>
@@ -183,14 +199,22 @@ const mapStateToProps = (state, ownProps) => {
 		topicValue: params.topic,
 		levelValue: params.level,
 		topicKey: topicKey,
+
+		mapYear: state.map.params.year,
+		mapYearOptions: state.map.options.year,
+
 		measureOptions: preload.measures[topicKey] || [],
 		measureValue: params.measure,
+
 		memberOptions: state.map.options.members,
 		memberValues: state.map.params.cuts,
+
 		selectors: preload.selectors[cube] || [],
 		selectorHier: params.selector,
+
 		isoregionOptions: state.map.options.regions,
 		isoregionValue: params.isolate,
+
 		disabled:
 			state.map.results.status == "LOADING" ||
 			state.map.options.countLoading > 0
@@ -206,6 +230,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 	setMeasure(payload) {
 		dispatch({ type: "MAP_MEASURE_SET", payload });
+	},
+	setYear(payload) {
+		dispatch({ type: "MAP_YEAR_SET", payload: payload.value });
 	},
 	setSelectorLevel(key, level) {
 		dispatch({ type: "MAP_SELECTOR_SET", payload: { key, level } });

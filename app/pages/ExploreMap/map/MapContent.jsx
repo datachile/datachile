@@ -237,7 +237,7 @@ class MapContent extends React.Component {
 					<Geomap key={Math.random()} config={config} />
 				</div>
 				<div className="map-options-footer">
-					<MapYearSelector />
+					{/*<MapYearSelector />*/}
 					<MapScaleSelector />
 				</div>
 				<MapApiCall />
