@@ -88,8 +88,6 @@ class MapSidebar extends React.Component {
 		let selectors = this.props.selectors;
 		let len = selectors.length;
 
-		console.log(this.props.measureValue);
-
 		if (len > 6 && !expanded) {
 			const selWithValue = selectors.filter(this.filterUnusedSelectors, this);
 			const selFirstSix = selectors.slice(0, 6);
