@@ -10,7 +10,7 @@ import {
 } from "helpers/formatters";
 import { MAP_SCALE_COLORS } from "helpers/colors";
 
-import { percentRank } from "helpers/calculator";
+import { quantile } from "helpers/calculator";
 
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
@@ -141,7 +141,7 @@ class MapContent extends React.Component {
 						} else {
 							let value = parseInt(tick);
 
-							let newTick = numeral(value, locale).format("0o");
+							let newTick = numeral(value, locale).format("0");
 							if (newTick !== customTick) {
 								customTick = newTick;
 								return newTick + " " + t("decile");
@@ -253,10 +253,13 @@ const processResults = (data, msrName, mapYear, mapIsolate) => {
 	if (mapIsolate.value !== 0)
 		data = data.filter(item => item["ID Region"] == mapIsolate.value);
 
-	const msrValues = data.map(item => item[msrName]).sort();
+	const msrValues = data.map(item => item[msrName]);
 
-	// if (msrName) data = data.map(item => ({ ...item, variable: item[msrName] }));
-	//const values = data.filter(item => item[msrName]).map(item => item[msrName]);
+	data.map(item => {
+		item[msrName + "LOG"] = Math.log10(item[msrName]);
+		item[msrName + "PERC"] = quantile(msrValues, item[msrName]);
+		return item;
+	});
 	return data.map(item => {
 		item[msrName + "LOG"] = Math.log10(item[msrName]);
 		item[msrName + "PERC"] = Math.ceil(
