@@ -192,7 +192,7 @@ class MapContent extends React.Component {
 				"</div>",
 			duration: 0,
 			zoom: true,
-			zoomFactor: 1,
+			zoomFactor: 2,
 			zoomScroll: false
 		};
 
