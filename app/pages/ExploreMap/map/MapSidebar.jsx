@@ -88,10 +88,12 @@ class MapSidebar extends React.Component {
 		let selectors = this.props.selectors;
 		let len = selectors.length;
 
-		if (len > 6 && !expanded) {
+		let maxFilters = 5;
+
+		if (len > maxFilters && !expanded) {
 			const selWithValue = selectors.filter(this.filterUnusedSelectors, this);
-			const selFirstSix = selectors.slice(0, 6);
-			selectors = union(selWithValue, selFirstSix).slice(0, 6);
+			const selFirstSix = selectors.slice(0, maxFilters);
+			selectors = union(selWithValue, selFirstSix).slice(0, maxFilters);
 		}
 
 		return (
@@ -145,7 +147,7 @@ class MapSidebar extends React.Component {
 				)}
 
 				{selectors.map(this.renderSelectorGroup, this)}
-				{len > 6 &&
+				{len > maxFilters &&
 					!expanded && (
 						<button
 							className="show-more-selectors"
@@ -154,7 +156,7 @@ class MapSidebar extends React.Component {
 							{t("map.sidebar_moreselectors")}
 						</button>
 					)}
-				{len > 6 &&
+				{len > maxFilters &&
 					expanded && (
 						<button
 							className="show-more-selectors"
