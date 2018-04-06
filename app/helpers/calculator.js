@@ -17,6 +17,7 @@ function accumulatedGrowth(aggregation) {
 
 function percentRank(arr, v) {
 	if (typeof v !== "number") throw new TypeError("v must be a number");
+	arr.sort((a, b) => a - b);
 	for (var i = 0, l = arr.length; i < l; i++) {
 		if (v <= arr[i]) {
 			while (i < l && v === arr[i]) i++;

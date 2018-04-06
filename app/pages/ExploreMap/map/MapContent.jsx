@@ -10,7 +10,7 @@ import {
 } from "helpers/formatters";
 import { MAP_SCALE_COLORS } from "helpers/colors";
 
-import { quantile } from "helpers/calculator";
+import { quantile, percentRank } from "helpers/calculator";
 
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
@@ -260,6 +260,7 @@ const processResults = (data, msrName, mapYear, mapIsolate) => {
 		item[msrName + "PERC"] = quantile(msrValues, item[msrName]);
 		return item;
 	});
+	
 	return data.map(item => {
 		item[msrName + "LOG"] = Math.log10(item[msrName]);
 		item[msrName + "PERC"] = Math.ceil(
