@@ -149,7 +149,7 @@
       & .d3plus-plot-y-axis {
         & g:last-child {
           & line.bar {
-            stroke: none;
+            //stroke: none;
           }
         }
       }

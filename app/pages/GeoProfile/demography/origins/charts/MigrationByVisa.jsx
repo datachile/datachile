@@ -1,7 +1,7 @@
 import React from "react";
 import { translate } from "react-i18next";
 
-import { BarChart } from "d3plus-react";
+import { Treemap } from "d3plus-react";
 import { Section } from "datawheel-canon";
 import groupBy from "lodash/groupBy";
 import orderBy from "lodash/orderBy";
@@ -108,23 +108,23 @@ class MigrationByVisa extends Section {
 					<ExportLink path={chart_path} className={classSvg} />
 				</h3>
 				{/* <MiniFilter onClick={this.toggleFilter} filters={filters} /> */}
-				<BarChart
+				<Treemap
 					className={classSvg}
 					config={{
 						height: 500,
 						data: chart_path,
-						groupBy: ["ID Continent"],
-						label: d => d["Continent"],
+						groupBy: ["ID Continent", "ID Visa Type"],
+						label: d => d["Visa Type"],
 						time: "ID Year",
-						stacked: true,
-						y: "Number of visas",
-						x: "Visa Type",
+						//stacked: true,
+						sum: d => d["Number of visas"],
+						//x: "Visa Type",
 						shapeConfig: {
 							fill: d => continentColorScale("c" + d["ID Continent"]),
-							label: false,
-							height: 20
+							//label: false,
+							//height: 20
 						},
-						xConfig: {
+						/*xConfig: {
 							tickSize: 0,
 							title: false
 						},
@@ -132,8 +132,8 @@ class MigrationByVisa extends Section {
 							barConfig: { "stroke-width": 0 },
 							tickSize: 0,
 							title: t("Number of visas")
-						},
-						ySort: (a, b) => a["Number of visas"] - b["Number of visas"],
+						},*/
+						//ySort: (a, b) => a["Number of visas"] - b["Number of visas"],
 						total: d => d["Number of visas"],
 						totalConfig: {
 							text: d =>
@@ -147,7 +147,7 @@ class MigrationByVisa extends Section {
 						barPadding: 0,
 						groupPadding: 5,
 						tooltipConfig: {
-							title: d => d["Continent"],
+							title: d => d["Visa Type"] + " - " + d["Continent"],
 							body: d =>
 								t("{{number}} visas", {
 									number: numeral(d["Number of visas"], locale).format(
@@ -156,6 +156,7 @@ class MigrationByVisa extends Section {
 								})
 						},
 						legendConfig: {
+							title: false,
 							shapeConfig: {
 								width: 40,
 								height: 40,
