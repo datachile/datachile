@@ -980,7 +980,6 @@ class GeoProfile extends Component {
 											t("By Activity & Visa Type")
 										]
 									} /*
-
                        {
                        name: t("Diversity"),
                        slides: [t("By Sex & Age")]
