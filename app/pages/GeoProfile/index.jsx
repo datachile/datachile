@@ -751,10 +751,10 @@ class GeoProfile extends Component {
 								name={t("Education")}
 								id="education"
 								sections={[
-                  {
+									{
 										name: t("Performance"),
 										slides: [
-											t("Performance Evaluation"),
+											//t("Performance Evaluation"),
 											t("Comparison by Cluster")
 										]
 									},
@@ -772,13 +772,13 @@ class GeoProfile extends Component {
 									}
 								]}
 							>
-								<div>
+								{/*<div>
 									<SNEDSlide>
 										<SectionColumns>
 											<SNED className="lost-1" />
 										</SectionColumns>
 									</SNEDSlide>
-								</div>
+								</div>*/}
 								<div>
 									<SNEDSlide>
 										<SectionColumns>
