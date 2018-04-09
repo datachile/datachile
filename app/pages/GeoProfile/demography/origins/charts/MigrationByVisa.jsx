@@ -156,7 +156,7 @@ class MigrationByVisa extends Section {
 								})
 						},
 						legendConfig: {
-							title: false,
+							label: false,
 							shapeConfig: {
 								width: 40,
 								height: 40,
