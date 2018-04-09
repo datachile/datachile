@@ -32,6 +32,7 @@ class MigrationSlide extends Section {
       "datum_migration_origin",
       "immigration",
       ["Number of visas"],
+
       {
         drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false },

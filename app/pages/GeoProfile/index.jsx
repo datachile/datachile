@@ -298,7 +298,7 @@ class GeoProfile extends Component {
 	];
 
 	render() {
-		const { t, i18n, location } = this.props;
+		const { t, i18n, location, router } = this.props;
 
 		const locale = i18n.language;
 
@@ -576,6 +576,7 @@ class GeoProfile extends Component {
 								<div className="map-comuna">
 									{geoObj.type != "country" && (
 										<SvgMap
+											router={router}
 											region={
 												geoObj.type == "region"
 													? geo
@@ -652,7 +653,7 @@ class GeoProfile extends Component {
 															"transform",
 															"scale(0)"
 														);
-														browserHistory.push(
+														router.push(
 															slugifyItem(
 																"geo",
 																d.id,
@@ -762,12 +763,24 @@ class GeoProfile extends Component {
 								<div>
 									<TradeSlide TradeBalance={TradeBalance}>
 										<SectionColumns>
-											<ExportsByDestination className="lost-1-2" />
-											<ExportsByProduct className="lost-1-2" />
+											<ExportsByDestination
+												className="lost-1-2"
+												router={router}
+											/>
+											<ExportsByProduct
+												className="lost-1-2"
+												router={router}
+											/>
 										</SectionColumns>
 										<SectionColumns>
-											<ImportsByOrigin className="lost-1-2" />
-											<ImportsByProduct className="lost-1-2" />
+											<ImportsByOrigin
+												className="lost-1-2"
+												router={router}
+											/>
+											<ImportsByProduct
+												className="lost-1-2"
+												router={router}
+											/>
 										</SectionColumns>
 									</TradeSlide>
 								</div>
@@ -775,7 +788,10 @@ class GeoProfile extends Component {
 								<div>
 									<IndustrySlide>
 										<SectionColumns>
-											<IndustryBySector className="lost-1-2" />
+											<IndustryBySector
+												className="lost-1-2"
+												router={router}
+											/>
 											<IndustryByOccupation className="lost-1-2" />
 										</SectionColumns>
 									</IndustrySlide>
@@ -859,13 +875,6 @@ class GeoProfile extends Component {
 									}
 								]}
 							>
-								{/*<div>
-									<SNEDSlide>
-										<SectionColumns>
-											<SNED className="lost-1" />
-										</SectionColumns>
-									</SNEDSlide>
-								</div>*/}
 								<div>
 									<SNEDSlide>
 										<SectionColumns>
