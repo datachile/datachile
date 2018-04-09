@@ -846,6 +846,11 @@
         "title": "1.2.1 - \"Encino\" - 2018-02-16",
         "description":
           "<p>Nuevas visualizaciones en Sección Cívica: resultados electorales a nivel presidente, parlamento y alcalde. Correcciones de autoridades en el encabezado del perfil geográfico.</p>"
+      },
+      "fitzroya": {
+        "title": "1.3 - \"Fitzroya\" - 2018-04-09",
+        "description":
+          "<p>Nuevo dataset y gráficos en sección de educación: Indicadores SNED</p>"
       }
     }
   },
