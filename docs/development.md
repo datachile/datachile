@@ -5,7 +5,7 @@
 *   Clonar el proyecto
 
 ```Bash
-git clone git@github.com:Datawheel/datachile.git
+git clone git@github.com:datachile/datachile.git
 ```
 
 *   Ingresar al proyecto
