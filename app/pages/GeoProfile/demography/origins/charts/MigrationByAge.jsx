@@ -62,10 +62,11 @@ export default translate()(
 						config={{
 							height: 500,
 							data: path,
-							groupBy: "ID Age Range",
+							//groupBy: "ID Age Range",
 							label: d => d["Age Range"],
 							time: "ID Year",
-							x: false,
+							x: "ID Age Range",
+							discrete: "x",
 							y: "Number of visas",
 							shapeConfig: {
 								fill: d => ordinalColorScale(1)
@@ -78,8 +79,8 @@ export default translate()(
 								title: t("Visas"),
 								tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
 							},
-							barPadding: 20,
-							groupPadding: 40,
+							//barPadding: 10,
+							//groupPadding: 20,
 							tooltipConfig: {
 								title: d => d["Age Range"],
 								body: d =>

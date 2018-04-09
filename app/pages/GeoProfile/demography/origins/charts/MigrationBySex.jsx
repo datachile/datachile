@@ -58,16 +58,19 @@ export default translate()(
 						config={{
 							height: 500,
 							data: path,
-							groupBy: "ID Sex",
+							//groupBy: "ID Sex",
 							label: d => d["Sex"],
 							time: "ID Year",
-							x: false,
+							x: "ID Sex",
+							discrete: "x",
 							y: "Number of visas",
 							shapeConfig: {
 								fill: d => COLORS_GENDER[d["ID Sex"]]
 							},
 							xConfig: {
 								tickSize: 0,
+								tickFormat: d => " ",
+								labelOffset: false,
 								title: false
 							},
 							yConfig: {
