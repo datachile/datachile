@@ -326,7 +326,7 @@ class CountryProfile extends Component {
   ];
 
   render() {
-    const { t, i18n, location } = this.props;
+    const { t, i18n, location, router } = this.props;
     const locale = i18n.language;
 
     const ids = getLevelObject(this.props.routeParams);
@@ -553,16 +553,19 @@ class CountryProfile extends Component {
                 <div>
                   <InternationalTradeSlide>
                     <SectionColumns>
-                      <ImportsByProduct className="lost-1-2" />
-                      <ExportsByProduct className="lost-1-2" />
+                      <ImportsByProduct className="lost-1-2" router={router} />
+                      <ExportsByProduct className="lost-1-2" router={router} />
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
                 <div>
                   <InternationalTradeOriginDestinationSlide>
                     <SectionColumns>
-                      <ImportsByDestination className="lost-1-2" />
-                      <ExportsByOrigin className="lost-1-2" />
+                      <ImportsByDestination
+                        className="lost-1-2"
+                        router={router}
+                      />
+                      <ExportsByOrigin className="lost-1-2" router={router} />
                     </SectionColumns>
                   </InternationalTradeOriginDestinationSlide>
                 </div>

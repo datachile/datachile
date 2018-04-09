@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonProfile, Canon } from "datawheel-canon";
 import { Geomap } from "d3plus-react";
-import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
 import Helmet from "react-helmet";
@@ -901,7 +900,7 @@ class GeoProfile extends Component {
 								<div>
 									<MigrationSlide>
 										<SectionColumns>
-											<MigrationByOrigin className="lost-1-2" />
+											<MigrationByOrigin className="lost-1-2" router={router} />
 											<MigrationByEducation className="lost-1-2" />
 										</SectionColumns>
 									</MigrationSlide>
@@ -1027,7 +1026,10 @@ class GeoProfile extends Component {
 								<div>
 									<ParticipationSlide>
 										<SectionColumns>
-											<ParticipationScatter className="lost-2-3" />
+											<ParticipationScatter
+												className="lost-2-3"
+												router={router}
+											/>
 											<ElectoralParticipation className="lost-1-3" />
 										</SectionColumns>
 									</ParticipationSlide>

@@ -1,0 +1,7 @@
+:driver: postgresql
+:host: db
+:port: 5555
+:database: database
+:username: username
+:password: password
+:catalog: /mondrian-rest/schema.xml

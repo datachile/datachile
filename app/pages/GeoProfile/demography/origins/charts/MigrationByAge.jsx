@@ -12,44 +12,44 @@ import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
 
 export default translate()(
-	class MigrationByAge extends Section {
-		static need = [
-			(params, store) => {
-				const geo = getGeoObject(params);
-				const prm = mondrianClient.cube("immigration").then(cube => {
-					var q = geoCut(
-						geo,
-						"Geography",
-						cube.query
-							.option("parents", true)
-							.drilldown("Date", "Date", "Year")
-							.drilldown(
-								"Calculated Age Range",
-								"Calculated Age Range",
-								"Age Range"
-							)
-							.measure("Number of visas"),
-						store.i18n.locale
-					);
-					return {
-						key: "path_migration_by_age",
-						data: __API__ + q.path("jsonrecords")
-					};
-				});
+  class MigrationByAge extends Section {
+    static need = [
+      (params, store) => {
+        const geo = getGeoObject(params);
+        const prm = mondrianClient.cube("immigration").then(cube => {
+          var q = geoCut(
+            geo,
+            "Geography",
+            cube.query
+              .option("parents", true)
+              .drilldown("Date", "Date", "Year")
+              .drilldown(
+                "Calculated Age Range",
+                "Calculated Age Range",
+                "Age Range"
+              )
+              .measure("Number of visas"),
+            store.i18n.locale
+          );
+          return {
+            key: "path_migration_by_age",
+            data: __API__ + q.path("jsonrecords")
+          };
+        });
 
-				return {
-					type: "GET_DATA",
-					promise: prm
-				};
-			}
-		];
+        return {
+          type: "GET_DATA",
+          promise: prm
+        };
+      }
+    ];
 
-		render() {
-			const { t, className, i18n } = this.props;
-			const path = this.context.data.path_migration_by_age;
+    render() {
+      const { t, className, i18n } = this.props;
+      const path = this.context.data.path_migration_by_age;
 
-			const locale = i18n.language;
-			const classSvg = "migration-by-age";
+      const locale = i18n.language;
+      const classSvg = "migration-by-age";
 
 			return (
 				<div className={className}>

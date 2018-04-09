@@ -1,7 +1,0 @@
-:driver: postgresql
-:host: db
-:port: 5432
-:database: datachile
-:username: datachile
-:password: yapoweon
-:catalog: /mondrian-rest/schema.xml

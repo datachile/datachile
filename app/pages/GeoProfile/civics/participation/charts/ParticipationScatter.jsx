@@ -3,7 +3,6 @@ import { Section } from "datawheel-canon";
 import { Plot } from "d3plus-react";
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import { mean } from "d3-array";
 
@@ -48,7 +47,7 @@ class PSUNEMScatter extends Section {
 	}
 
 	render() {
-		const { t, className, i18n } = this.props;
+		const { t, className, i18n, router } = this.props;
 		const { geo, election_participation_by_territory } = this.context.data;
 		const path = null;
 
@@ -64,7 +63,9 @@ class PSUNEMScatter extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Participation in Municipal Election") + " - 2016"}</span>
+					<span>
+						{t("Participation in Municipal Election") + " - 2016"}
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.plot ? (
@@ -85,9 +86,13 @@ class PSUNEMScatter extends Section {
 							shapeConfig: {
 								fill: d => {
 									if (geo.depth === 2) {
-										return geo.key === d["ID Comuna"] ? "#86396B" : "#CCC";
+										return geo.key === d["ID Comuna"]
+											? "#86396B"
+											: "#CCC";
 									} else {
-										return regionsColorScale("c" + d["ID Region"]);
+										return regionsColorScale(
+											"c" + d["ID Region"]
+										);
 									}
 								}
 							},
@@ -98,10 +103,14 @@ class PSUNEMScatter extends Section {
 											"geo",
 											d["ID Region"],
 											d["Region"],
-											d["ID Comuna"] > 350 ? false : d["ID Comuna"],
-											d["Comuna"] > 350 ? false : d["Comuna"]
+											d["ID Comuna"] > 350
+												? false
+												: d["ID Comuna"],
+											d["Comuna"] > 350
+												? false
+												: d["Comuna"]
 										);
-										browserHistory.push(url);
+										router.push(url);
 									}
 								}
 							},
@@ -111,22 +120,31 @@ class PSUNEMScatter extends Section {
 									const link =
 										d["ID Country"] instanceof Array
 											? ""
-											: "<a>" + t("tooltip.to_profile") + "</a>";
+											: "<a>" +
+											  t("tooltip.to_profile") +
+											  "</a>";
 									return (
 										"<div>" +
 										t("Electors") +
 										": " +
-										numeral(d["Electors"], locale).format("0,0") +
+										numeral(d["Electors"], locale).format(
+											"0,0"
+										) +
 										"</div>" +
 										"<div>" +
 										t("Votes") +
 										": " +
-										numeral(d["Votes"], locale).format("0,0") +
+										numeral(d["Votes"], locale).format(
+											"0,0"
+										) +
 										"</div>" +
 										"<div>" +
 										t("Participation") +
 										": " +
-										numeral(d["Participation"], locale).format("0.0%") +
+										numeral(
+											d["Participation"],
+											locale
+										).format("0.0%") +
 										"</div>" +
 										link
 									);
@@ -149,14 +167,18 @@ class PSUNEMScatter extends Section {
 									width: 25,
 									height: 25,
 									backgroundImage: d =>
-										"/images/legend/region/" + d["ID Region"] + ".png"
+										"/images/legend/region/" +
+										d["ID Region"] +
+										".png"
 								}
 							},
 							y: "Participation",
 							yConfig: {
 								title: t("Participation"),
 								tickFormat: tick =>
-									numeral(parseFloat(tick), locale).format("0%")
+									numeral(parseFloat(tick), locale).format(
+										"0%"
+									)
 							},
 							x: this.state.log ? "ElectorsLOG" : "Electors",
 							xConfig: {
@@ -166,7 +188,9 @@ class PSUNEMScatter extends Section {
 										? Math.pow(10, parseInt(tick))
 										: parseInt(tick);
 
-									let newTick = numeral(value, locale).format("0a");
+									let newTick = numeral(value, locale).format(
+										"0a"
+									);
 									if (newTick !== customTick) {
 										customTick = newTick;
 										return newTick;
@@ -188,7 +212,9 @@ class PSUNEMScatter extends Section {
 				)}
 				<div className="treemap-stacked-options">
 					<a
-						className={`toggle ${!this.state.log ? "selected" : ""}`}
+						className={`toggle ${
+							!this.state.log ? "selected" : ""
+						}`}
 						onClick={() => this.toggleChart(false)}
 					>
 						{t("LINEAR")}
