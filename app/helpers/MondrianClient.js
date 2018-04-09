@@ -501,8 +501,10 @@ function queryBuilder(query, params) {
     query = query.drilldown.apply(query, item);
 
   for (i = 0; (item = params.cuts[i]); i++) {
-    if ("string" != typeof item)
-      item = "{" + item.values.map(v => `${item.key}.&[${v}]`).join(",") + "}";
+    if ("string" != typeof item) {
+      item = item.values.map(v => `${item.key}.&[${v}]`).join(",");
+      if (item.indexOf("],[") > -1) item = "{" + item + "}";
+    }
     query = query.cut(item);
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import keyBy from "lodash/keyBy";
-import { Link, browserHistory } from "react-router";
+import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { request as d3Request } from "d3-request";
 import { select, selectAll } from "d3-selection";
@@ -219,7 +219,7 @@ class DynamicHomeHeader extends Component {
   }
 
   callbackSvg = (error, response, src) => {
-    const { header, data } = this.props;
+    const { header, data, router } = this.props;
     var xml = response.responseText ? response.responseText : response;
     var that = this;
 
@@ -298,7 +298,7 @@ class DynamicHomeHeader extends Component {
             } else {
               var url = that.getTooltipUrl(id);
               if (url) {
-                browserHistory.push(url);
+                router.push(url);
               }
             }
           });

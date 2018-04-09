@@ -1,55 +1,60 @@
 .map-content {
 	lost-flex-container: row;
 	//justify-content: center;
-	& .map-color-scale {
-		lost-column: 1/5 2;
-		background-color: var(--snow);
+	& .d3plus-ColorScale-axis {
+		//lost-column: 1/5 2;
+		//background-color: var(--snow);
+		background-color: transparent;
 		padding: calc(var(--gutter) / 3);
-		border: 1px solid var(--gray-light);
+		//border: 1px solid var(--gray-light);
 		min-height: calc(90vh - 150px);
+		& .d3plus-Line-shape path {
+			stroke: var(--snow);
+		}
 		& .d3plus-Rect-shape {
 			& rect.d3plus-Shape {
-				stroke: var(--snow);
+				stroke: var(--snow)!important;
 			}
 		}
 		& .ticks {
 			& .d3plus-Line-shape path {
-				stroke: var(--gray-dark);
+				stroke: var(--snow);
 			}
 			& .d3plus-Line-text text {
-				fill: var(--gray-dark);
+				fill: var(--snow);
 				opacity: 1;
 			}
 		}
 	}
 	& .map-render {
-		lost-column: 4/5 2;
+		lost-column: 1 2;
+		//lost-column: 4/5 2;
 		&.no-data {
 			lost-column: 1 2;
 		}
 		& .no-data-available {
 			color: #ffffff;
 		}
-		& > svg,
-		& .d3plus-geomap {
-			display: block;
-			min-height: calc(90vh - 150px);
-			max-width: 100%;
-		}
-		& .d3plus-geomap-control {
-			left: auto !important;
-			right: 0 !important;
+	}
+	& > svg,
+	& .d3plus-geomap {
+		display: block;
+		min-height: calc(90vh - 150px);
+		max-width: 100%;
+	}
+	& .d3plus-geomap-control {
+		left: auto !important;
+		right: 0 !important;
 
-			& .zoom-control {
-				color: var(--nice-blue) !important;
-				border-color: var(--darker-gray) !important;
-				background-color: var(--snow) !important;
-				opacity: 1 !important;
-				transition: background-color 0.5s, color 0.5s;
-				&:hover {
-					background-color: var(--nice-blue) !important;
-					color: var(--snow) !important;
-				}
+		& .zoom-control {
+			color: var(--nice-blue) !important;
+			border-color: var(--darker-gray) !important;
+			background-color: var(--snow) !important;
+			opacity: 1 !important;
+			transition: background-color 0.5s, color 0.5s;
+			&:hover {
+				background-color: var(--nice-blue) !important;
+				color: var(--snow) !important;
 			}
 		}
 	}
@@ -93,5 +98,16 @@
 			letter-spacing: 0.08px;
 			font-weight: 700;
 		}
+	}
+}
+
+.map-options-footer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	& .map-scale-options {
+		flex: 1;
+		max-width: 100%;
 	}
 }

@@ -181,7 +181,7 @@ class IndustryProfile extends Component {
   componentDidMount() {}
 
   render() {
-    const { t, i18n, data, location } = this.props;
+    const { t, i18n, data, location, router } = this.props;
 
     const industry = data ? data.industry : null;
 
@@ -364,8 +364,11 @@ class IndustryProfile extends Component {
                 <div>
                   <EconomySlide>
                     <SectionColumns>
-                      <OutputByLocation className="lost-1-2" />
-                      <InvestmentByLocation className="lost-1-2" />
+                      <OutputByLocation className="lost-1-2" router={router} />
+                      <InvestmentByLocation
+                        className="lost-1-2"
+                        router={router}
+                      />
                     </SectionColumns>
                   </EconomySlide>
                 </div>

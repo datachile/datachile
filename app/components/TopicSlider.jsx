@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link, browserHistory } from "react-router";
 import Slider from "react-slick";
 import { translate } from "react-i18next";
 import "./TopicSlider.css";

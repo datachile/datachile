@@ -2,7 +2,6 @@ import React from "react";
 import { Section } from "datawheel-canon";
 import TreemapStacked from "components/TreemapStacked";
 import { translate } from "react-i18next";
-import { browserHistory } from "react-router";
 
 import {
   numeral,
@@ -24,7 +23,7 @@ class ImportsByOrigin extends Section {
   ];
 
   render() {
-    const { t, className, i18n } = this.props;
+    const { t, className, i18n, router } = this.props;
     const path = this.context.data.path_imports_by_origin;
     const geo = this.context.data.geo;
     const locale = i18n.language;
@@ -65,7 +64,7 @@ class ImportsByOrigin extends Section {
                     d["ID Country"] instanceof Array ? false : d["ID Country"],
                     d["Country"] instanceof Array ? false : d["Country"]
                   );
-                  browserHistory.push(url);
+                  router.push(url);
                 }
               }
             },

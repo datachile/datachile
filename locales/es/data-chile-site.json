@@ -40,6 +40,7 @@
   "Affiliates in": "Afiliados en",
   "Age": "Edad",
   "Age Range": "Rango de Edad",
+  "All Regions": "Todas las Regiones",
   "Amenities": "Servicios",
   "Area": "Área",
   "are": "son",
@@ -173,6 +174,7 @@
   "Female percent in ": "Porcentaje mujeres en ",
   "Female percent in industry": "Porcentaje femenino en la industria",
   "Female percent of visas": "Porcentaje femenino de visas",
+  "Female percent with disability": "Población femenina con discapacidad",
   "Field of Science": "Área de Conocimiento",
   "Gender": "Género",
   "Geo": "Geo",
@@ -197,6 +199,7 @@
   "Politics": "Política",
 
   "is": "es",
+  "Isolate Region": "Filtrar por Región",
   "increased": "crecido",
   "decreased": "decrecido",
   "decile": "decil",
@@ -420,6 +423,7 @@
   "Participation": "Participación",
   "Participation in Municipal Election": "Participación en Elección Municipal",
   "People": "Personas",
+  "People with disabilities": "Personas con discapacidad",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
   "Pharmacy": "Farmacia",
@@ -429,6 +433,7 @@
   "Population Projection": "Proyección poblacional",
   "Population Pyramid": "Pirámide poblacional",
   "Population with Health Insurance": "Población con Previsión de Salud",
+  "Population with disability": "Población con discapacidad",
   "President": "Presidente",
   "Presidential 1st - 2nd round": "1ra - 2da vuelta Presidencial",
   "Primary Healthcare": "Atención de Salud Primaria",
@@ -980,7 +985,7 @@
         "text":
           "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}",
         "note":
-          "*Los elementos isolados de los gráficos representan a candidatos electos en dicha elección."
+          "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección."
       },
       "presidential": {
         "text":
@@ -1202,7 +1207,38 @@
     "map": "Cargando información"
   },
   "map": {
-    "sidebar_addfilter": "Agregar un filtro..."
+    "sidebar_addfilter": "Agregar un filtro...",
+    "sidebar_isolateregion": "Región...",
+    "sidebar_moreselectors": "Mostrar más filtros",
+    "sidebar_lessselectors": "Mostrar menos filtros",
+    "slides": [
+      { "img": "inicio", "title": "¿QUÉ ES EL MAPA?" },
+      {
+        "img": "que-es-el-mapa",
+        "text": "El mapa es una herramienta interactiva"
+      },
+      {
+        "img": "topicos-indicadores",
+        "text":
+          "que agrupa información derivada del sitio datachile.io a través de Tópicos e Indicadores"
+      },
+      {
+        "img": "tooltip",
+        "text":
+          "pudiendo hacer cruces de datos y pintando esta información sobre el mapa"
+      },
+      {
+        "img": "anadir-data",
+        "text":
+          "Además el mapa integra la opción “CARRITO”: recurso que permite añadir conjuntos de datos seleccionados a un carro virtual y descargarlos para su uso."
+      },
+      {
+        "img": "descargar",
+        "text":
+          "Los datos se presentan en una tabla organizada, con la opción de distribuir años en filas o columnas. Con solo un clic es posible descargar un archivo en formato CSV, ordenado y fácil de usar."
+      },
+      { "img": "empezar-a-explorar", "title": "COMIENZA A EXPLORAR" }
+    ]
   },
   "no_datum": "No hay datos",
   "no_info":
@@ -1290,6 +1326,12 @@
     "{{percent}} del país - {{last_year}}",
   "{{number}} visas, granted in {{year}}":
     "{{number}} visas, otorgadas en {{year}}",
+  "button": {
+    "skip": "Saltar",
+    "next": "Siguiente",
+    "prev": "Anterior",
+    "finish": "Finalizar"
+  },
   "home": {
     "subtitle":
       "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",

@@ -21,7 +21,7 @@
         & .small {
           text-transform: none;
           font-family: var(--font-family-text);
-          font-size: 48px;
+          font-size: 44px;
           font-weight: 300;
           & .pipe {
             margin: 0 10px;
@@ -52,7 +52,7 @@
         font-weight: 300;
         letter-spacing: 0.5px;
         text-transform: uppercase;
-        margin-bottom: calc(var(--gutter)/2);
+        margin-bottom: calc(var(--gutter) / 2);
 
         & .topic-slide-subtitle {
           color: #ffe0b2;
@@ -77,7 +77,7 @@
       & .topic-slide-text-full {
         lost-column: 1 1 flex;
         font-family: var(--font-family-text);
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 300;
         letter-spacing: 0;
         line-height: 22px;
@@ -241,8 +241,8 @@
   .topic-block {
     & .topic-header {
       & .topic-title {
-        margin: calc(var(--gutter)/2) calc(var(--gutter)/2) 0
-          calc(var(--gutter)/2);
+        margin: calc(var(--gutter) / 2) calc(var(--gutter) / 2) 0
+          calc(var(--gutter) / 2);
         & h2 {
           font-size: 30px;
           & .small {
@@ -267,10 +267,10 @@
         padding: 0;
       }
       & .viz {
-        margin: calc(var(--gutter)/2) 0;
+        margin: calc(var(--gutter) / 2) 0;
       }
       & .topic-slide-intro {
-        margin: 0 calc(var(--gutter)/2);
+        margin: 0 calc(var(--gutter) / 2);
         & .topic-slide-title {
         }
         & .topic-slide-text {

@@ -35,6 +35,7 @@ export default function RouteCreate() {
       <Redirect from="geo(/)" to="/explore/geo" />
 
       <Redirect from="countries/:slug-999/chile-997" to="/geo/chile" />
+      <Redirect from="countries/:slug-999/*" to="/404" />
       {/* <Route
         path="countries/:slug-999(/**)"
         component={NotFound}

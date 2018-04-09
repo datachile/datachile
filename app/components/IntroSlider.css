@@ -16,7 +16,7 @@
   width: 600px;
   margin-left: -300px;
   background: #fff;
-  color: #B3B3B3;
+  color: #656565;
   z-index: 999;
   text-align: center;
   border-radius: 10px;
@@ -30,7 +30,7 @@
 
   & .intro-slider-title {
     font-family: var(--font-family-title);
-    color:#7997CA;
+    color: #7997ca;
     font-size: 24px;
     margin-bottom: 10px;
   }
@@ -49,12 +49,12 @@
     & span {
       cursor: pointer;
       user-select: none;
-      background-color:#7997CA;
+      background-color: #7997ca;
       color: var(--snow);
       border-radius: 30px;
       padding: 6px 12px;
       &.back {
-        background-color:#CCCCCC;
+        background-color: #cccccc;
       }
     }
   }
@@ -72,7 +72,7 @@
     flex: 1 1;
     flex-direction: row;
     padding: 10px;
-    
+
     & div:first-child {
       flex: 1 1;
       text-align: left;
@@ -81,8 +81,5 @@
     & div {
       padding: 15px;
     }
-
-    
-    
   }
 }

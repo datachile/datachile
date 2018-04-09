@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonProfile } from "datawheel-canon";
 import { Link } from "react-router";
-import { browserHistory } from "react-router";
 import { translate } from "react-i18next";
 import Helmet from "react-helmet";
 
@@ -187,7 +186,7 @@ class Explore extends Component {
   render() {
     const { entity, entity_id } = this.props.routeParams;
 
-    const { t, i18n, location } = this.props;
+    const { t, i18n, location, router } = this.props;
 
     const locale = i18n.language;
 
@@ -231,8 +230,8 @@ class Explore extends Component {
         break;
       }
       default: {
-        if (browserHistory) {
-          browserHistory.push("/404");
+        if (router) {
+          router.push("/404");
         }
         break;
       }
