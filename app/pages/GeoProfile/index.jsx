@@ -402,11 +402,7 @@ class GeoProfile extends Component {
 		if (geo && geo.type === "region") {
 			title = t("Region") + t(" of ") + geo.caption;
 		} else if (geo && geoObj.type === "comuna") {
-			title =
-				t("Comuna") +
-				t(" of ") +
-				geo.caption +
-				` (${ancestor.caption})`;
+			title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
 		}
 
 		let opengraphImage = (geoObj.image || "").replace(
@@ -420,15 +416,10 @@ class GeoProfile extends Component {
 					<Helmet>
 						<title>{title}</title>
 						<meta name="description" content={title} />
-						<meta
-							property="og:title"
-							content={title + " - DataChile"}
-						/>
+						<meta property="og:title" content={title + " - DataChile"} />
 						<meta
 							property="og:url"
-							content={`https://${locale}.datachile.io${
-								location.pathname
-							}`}
+							content={`https://${locale}.datachile.io${location.pathname}`}
 						/>
 						<meta
 							property="og:image"
@@ -441,12 +432,12 @@ class GeoProfile extends Component {
 								geoObj && (
 									<Nav
 										title={geo.caption}
-										typeTitle={geoObj.type}
+										typeTitle={
+											geoObj.type !== "country" ? geoObj.type : t("Country")
+										}
 										type={"geo"}
 										exploreLink={"/explore/geo"}
-										ancestor={
-											ancestor ? ancestor.caption : ""
-										}
+										ancestor={ancestor ? ancestor.caption : ""}
 										ancestorLink={slugifyItem(
 											"geo",
 											ancestor ? ancestor.key : "",
@@ -459,9 +450,7 @@ class GeoProfile extends Component {
 								<div
 									className="image"
 									style={{
-										backgroundImage: `url('${
-											geoObj.image
-										}')`
+										backgroundImage: `url('${geoObj.image}')`
 									}}
 								/>
 								<div className="gradient" />
@@ -476,21 +465,18 @@ class GeoProfile extends Component {
 											decile={stats.population.decile}
 											rank={
 												showRanking
-													? numeral(
-															stats.population
-																.rank,
-															locale
-													  ).format("0o") +
+													? numeral(stats.population.rank, locale).format(
+															"0o"
+													  ) +
 													  " " +
 													  t("of") +
 													  " " +
 													  stats.population.total
 													: false
 											}
-											datum={numeral(
-												stats.population.value,
-												locale
-											).format("(0,0)")}
+											datum={numeral(stats.population.value, locale).format(
+												"(0,0)"
+											)}
 											source="population_estimate"
 											className="population"
 										/>
@@ -500,18 +486,10 @@ class GeoProfile extends Component {
 											<FeaturedDatumSplash
 												title={t("Median Income")}
 												icon="ingreso"
-												decile={
-													stats.income.value
-														? stats.income.decile
-														: 0
-												}
+												decile={stats.income.value ? stats.income.decile : 0}
 												rank={
 													showRanking
-														? numeral(
-																stats.income
-																	.rank,
-																locale
-														  ).format("0o") +
+														? numeral(stats.income.rank, locale).format("0o") +
 														  " " +
 														  t("of") +
 														  " " +
@@ -520,26 +498,18 @@ class GeoProfile extends Component {
 												}
 												datum={
 													stats.income.value
-														? numeral(
-																stats.income
-																	.value,
-																locale
-														  ).format("($ 0,0)")
+														? numeral(stats.income.value, locale).format(
+																"($ 0,0)"
+														  )
 														: false
 												}
 												source="nesi_income"
 												className=""
-												level={
-													geo.depth > 1
-														? "geo_profile"
-														: false
-												}
+												level={geo.depth > 1 ? "geo_profile" : false}
 												name={
 													geo.depth > 1
 														? {
-																caption:
-																	"Región " +
-																	ancestor.caption
+																caption: "Región " + ancestor.caption
 														  }
 														: geo
 												}
@@ -553,9 +523,7 @@ class GeoProfile extends Component {
 											rank={false}
 											datum={
 												numeral(
-													geoObj.type != "country"
-														? stats.psu.value
-														: 500,
+													geoObj.type != "country" ? stats.psu.value : 500,
 													locale
 												).format("(0,0)") + " psu"
 											}
@@ -577,16 +545,8 @@ class GeoProfile extends Component {
 									{geoObj.type != "country" && (
 										<SvgMap
 											router={router}
-											region={
-												geoObj.type == "region"
-													? geo
-													: ancestor
-											}
-											active={
-												geoObj.type == "comuna"
-													? geo
-													: false
-											}
+											region={geoObj.type == "region" ? geo : ancestor}
+											active={geoObj.type == "comuna" ? geo : false}
 										/>
 									)}
 									<div className="map-region">
@@ -633,8 +593,7 @@ class GeoProfile extends Component {
 													},
 													{
 														id: 15,
-														name:
-															"Arica y Parinacota"
+														name: "Arica y Parinacota"
 													}
 												],
 												id: "id",
@@ -647,19 +606,11 @@ class GeoProfile extends Component {
 												ocean: "transparent",
 												on: {
 													"click.shape": function(d) {
-														selectAll(
-															".d3plus-tooltip"
-														).style(
+														selectAll(".d3plus-tooltip").style(
 															"transform",
 															"scale(0)"
 														);
-														router.push(
-															slugifyItem(
-																"geo",
-																d.id,
-																d.name
-															)
-														);
+														router.push(slugifyItem("geo", d.id, d.name));
 													}
 												},
 												padding: 10,
@@ -667,8 +618,7 @@ class GeoProfile extends Component {
 													hoverOpacity: 1,
 													Path: {
 														fill: fillShape,
-														stroke:
-															"rgba(255, 255, 255, 1)"
+														stroke: "rgba(255, 255, 255, 1)"
 													}
 												},
 												tiles: false,
@@ -679,15 +629,12 @@ class GeoProfile extends Component {
 															"Región " +
 															d.name +
 															"<br/><a>" +
-															t(
-																"tooltip.to_profile"
-															) +
+															t("tooltip.to_profile") +
 															"</a>"
 														);
 													},
 													bodyStyle: {
-														"font-family":
-															"Roboto, Arial, sans-serif",
+														"font-family": "Roboto, Arial, sans-serif",
 														"font-size": "12px",
 														"text-align": "center",
 														color: "#2F2F38"
@@ -738,10 +685,7 @@ class GeoProfile extends Component {
 									},
 									{
 										name: t("Opportunity"),
-										slides: [
-											t("Industry Space"),
-											t("Product Space")
-										]
+										slides: [t("Industry Space"), t("Product Space")]
 									},
 									{
 										name: t("Employment"),
@@ -749,10 +693,7 @@ class GeoProfile extends Component {
 									},
 									{
 										name: t("Income"),
-										slides: [
-											t("By Sex & Age"),
-											t("By Occupation")
-										]
+										slides: [t("By Sex & Age"), t("By Occupation")]
 									},
 									{
 										name: t("Innovation"),
@@ -767,20 +708,11 @@ class GeoProfile extends Component {
 												className="lost-1-2"
 												router={router}
 											/>
-											<ExportsByProduct
-												className="lost-1-2"
-												router={router}
-											/>
+											<ExportsByProduct className="lost-1-2" router={router} />
 										</SectionColumns>
 										<SectionColumns>
-											<ImportsByOrigin
-												className="lost-1-2"
-												router={router}
-											/>
-											<ImportsByProduct
-												className="lost-1-2"
-												router={router}
-											/>
+											<ImportsByOrigin className="lost-1-2" router={router} />
+											<ImportsByProduct className="lost-1-2" router={router} />
 										</SectionColumns>
 									</TradeSlide>
 								</div>
@@ -788,10 +720,7 @@ class GeoProfile extends Component {
 								<div>
 									<IndustrySlide>
 										<SectionColumns>
-											<IndustryBySector
-												className="lost-1-2"
-												router={router}
-											/>
+											<IndustryBySector className="lost-1-2" router={router} />
 											<IndustryByOccupation className="lost-1-2" />
 										</SectionColumns>
 									</IndustrySlide>
@@ -997,10 +926,7 @@ class GeoProfile extends Component {
 								<div>
 									<MigrationSlide>
 										<SectionColumns>
-											<MigrationByOrigin
-												className="lost-1-2"
-												router={router}
-											/>
+											<MigrationByOrigin className="lost-1-2" router={router} />
 											<MigrationByEducation className="lost-1-2" />
 										</SectionColumns>
 									</MigrationSlide>
@@ -1037,10 +963,7 @@ class GeoProfile extends Component {
 								sections={[
 									{
 										name: t("Healthcare"),
-										slides: [
-											t("Health Insurance"),
-											t("Healthcare")
-										]
+										slides: [t("Health Insurance"), t("Healthcare")]
 									},
 									{
 										name: t("Disability"),
@@ -1089,11 +1012,7 @@ class GeoProfile extends Component {
 								sections={[
 									{
 										name: t("Elections"),
-										slides: [
-											t("Mayor"),
-											t("Congress"),
-											t("Presidential")
-										]
+										slides: [t("Mayor"), t("Congress"), t("Presidential")]
 									},
 									{
 										name: t("Participation"),

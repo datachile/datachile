@@ -190,13 +190,10 @@ class CongresspersonResults extends Section {
 									: t("Elected Authority")) +
 								"</div>" +
 								"<div>" +
-								(geo.type === "comuna" ||
-								(geo.type === "region" && d["Partido"] !== "#null")
+								((geo.type === "comuna" || geo.type === "region") &&
+									d["Partido"] !== "#null")
 									? d["Partido"]
-									: "") +
-								" " +
-								"</div>" +
-								"</div>"
+									: "" + " " + "</div>" + "</div>"
 						},
 						legendTooltip: {
 							title: d =>

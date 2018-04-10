@@ -114,6 +114,7 @@
   "Death Causes By Diseases": "Causas de muerte por Enfermedades",
   "Death Causes Over Time": "Evolución de Muertes por Causas",
   "deaths per 100 inhabitants": "muertes por 100 habitantes",
+  "deaths": "muertes",
   "Demographics": "Demografía",
   "Demography": "Demografía",
   "Dental Discharges": "Altas dentales",
@@ -185,7 +186,7 @@
   "Change imports": "Cambio Importaciones",
   "Growth Exports": "Cambio Exportaciones",
   "Growth Imports": "Cambio Importaciones",
-  "Growth Investment": "Cambio inversión",
+  "Growth Investment": "Cambio Inversión",
   "Growth Labour": "Cambio de empleos",
   "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
   "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
@@ -229,6 +230,7 @@
 
   "International Trade": "Comercio Internacional",
   "International Trade Balance": "Balanza Comercial Internacional",
+  "Investment": "Inversión",
   "Other Products": "Otros Productos",
 
   "Annual Growth Exports": "Cambio Anual de Exportaciones",
@@ -522,6 +524,7 @@
   },
   "Smart TV": "Smart TV",
   "Sned_score": "Puntuación SNED",
+  "SNED Score": "Puntuación SNED",
   "Soon": "Próximamente",
   "Source": "Fuente",
   "Special Education Schools": "Escuelas de Educación Especial",
