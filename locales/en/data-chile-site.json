@@ -1,10 +1,12 @@
 {
+  " by ": " by ",
   " in ": " in ",
+  " is ": " is ",
   " of ": " of ",
   " people": " people",
   "1st year": "1st year",
   "a decrease": "a decrease",
-  "About": "About",
+  "a decrement": "a decrement",
   "about": {
     "ack": {
       "credits": {
@@ -277,6 +279,7 @@
       "title": "Terms of Use"
     }
   },
+  "About": "About",
   "About DataChile": "About DataChile",
   "Access": "Access",
   "Access to Health Insurance": "Access to Health Insurance",
@@ -292,18 +295,28 @@
     },
     "button": "Send Verification"
   },
+  "Add to cart": "Add to cart",
+  "Added to cart": "Added to cart",
   "Admin": "Admin",
   "Administration": "Administration",
   "affiliates": "affiliates",
   "Affiliates in": "Affiliates in",
   "Age": "Age",
   "Age Range": "Age Range",
+  "All Regions": "All Regions",
   "Amenities": "Amenities",
   "an increase": "an increase",
+  "an increment": "an increment",
+  "and": "and",
+  "Annual Growth Exports": "Annual Growth Exports",
+  "Annual Growth Imports": "Annual Growth Imports",
+  "are": "are",
   "Area": "Area",
   "ATM": "ATM",
   "Average": "Average",
+  "Average age": "Average age",
   "Average Employability (1st year)": "Average Employability (1st year)",
+  "Average Household": "Average Household",
   "Average Income": "Average Income",
   "Average Income (4th year)": "Average Income (4th year)",
   "Average Income 1st year": "Average Income 1st year",
@@ -312,7 +325,10 @@
   "Average PSU": "Average PSU",
   "Average Retention": "Average Retention",
   "Average Score": "Average Score",
+  "Average SNED Score": "Average SNED Score",
   "Avg anual payment 2016": "Avg anual payment 2016",
+  "Back to Map": "Back to Map",
+  "Blank and Null Votes": "Blank and Null Votes",
   "button": {
     "finish": "Finish",
     "next": "Next",
@@ -329,11 +345,34 @@
   "Career": "Career",
   "Careers": "Careers",
   "careers": "careers",
+  "Cart": "Cart",
+  "Casualties rate per 100 inhabitants": "Casualties rate per 100 inhabitants",
+  "Change exports": "Change exports",
+  "Change imports": "Change imports",
+  "Change in participation": "Change in participation",
+  "Change number of visas": "Change number of visas",
+  "Change number of visas for {{current_max}} immigrants":
+    "Change number of visas for {{current_max}} immigrants",
+  "Change of immigrants with universitary or technical education":
+    "Change of immigrants with universitary or technical education",
   "Chile Exports": "Chile Exported",
+  "Civics": "Civics",
+  "Click to Highlight": "Click to Highlight",
+  "Columns": "Columns",
   "Community Equipment": "Community Equipment",
+  "Comparison by Cluster": "Comparison by Cluster",
+  "complaints": "complaints",
+  "Complaints By Crime": "Complaints By Crime",
+  "Complaints Over Time": "Complaints Over Time",
   "Comuna": "Comuna",
+  "Comunas": "Comunas",
+  "Congress": "Congress",
+  "Congressperson Election": "Congressperson Election",
   "Connected to electricity network": "Connected to electricity network",
+  "Connected to public tap water system":
+    "Connected to public tap water system",
   "Connectivity": "Connectivity",
+  "Contact": "Contact",
   "Contributor": "Contributor",
   "Countries": "Countries",
   "Country": "Country",
@@ -422,12 +461,12 @@
         "<p>Most of the immigrants coming from {{level}} are {{current_max}}. This has been a tendency since {{year_prev}}.</p>"
     },
     "migration_education_slide": {
-      "intro":
-        "{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School.",
-      "growth":
-        "The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.",
       "closure":
         "By contrast, {{none_percent}} declare not having any formal education, and {{unknown_percent}} don't disclose their education level.",
+      "growth":
+        "The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.",
+      "intro":
+        "{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School.",
       "text": "$t(country_profile.migration_education_slide.text_limited)",
       "text_full":
         "<p>$t(country_profile.migration_education_slide.intro) $t(country_profile.migration_education_slide.growth)</p><p>$t(country_profile.migration_education_slide.closure)</p>",
@@ -438,7 +477,7 @@
     },
     "migration_slide": {
       "destination":
-        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants de estos arrived to <a href=\"{{links.region}}\">{{region}}</a>, mainly to the comuna of <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
+        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants arrived to <a href=\"{{links.region}}\">{{region}}</a>, mainly to the comuna of <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
       "growth":
         "<p>Between {{year_prev}} and {{year_last}}, the number of visas granted to immigrants coming from {{level}} has {{behavior}} at a annual rate of {{growth}}.</p>",
       "text": "$t(country_profile.migration_slide.destination)",
@@ -448,12 +487,21 @@
         "<p>During {{year_last}}, there are no records of visas granted to immigrants coming from {{level}}.</p>"
     }
   },
+  "Created in collaboration": "Created in collaboration",
+  "Crimes": "Crimes",
+  "Data source": "Data source",
   "Death Causes": "Death Causes",
   "Death Causes By Diseases": "Death Causes By Diseases",
+  "Death Causes Over Time": "Death Causes Over Time",
   "deaths per 100 inhabitants": "deaths per 100 inhabitants",
+  "Decile": "Decile",
+  "decile": "decile",
   "decreased": "decreased",
+  "decremented": "decremented",
+  "Demographics": "Demographics",
   "Demography": "Demography",
   "Dental Discharges": "Dental Discharges",
+  "Description": "Description",
   "Desktop computer": "Desktop computer",
   "Developed by": "Developed by",
   "Devices": "Devices",
@@ -558,13 +606,28 @@
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
     }
   },
+  "Download CSV file": "Download CSV file",
+  "Download data": "Download data",
+  "Download documentation": "Download documentation",
   "During": "During",
   "Economy": "Economy",
   "Education": "Education",
   "Educational Center": "Educational Center",
+  "Efectiveness": "Efectiveness",
+  "Elected Authority": "Elected Authority",
+  "Election": "Election",
+  "Elections": "Elections",
+  "Electoral Participation": "Electoral Participation",
+  "Electors": "Electors",
+  "Electors that didn't vote": "Electors that didn't vote",
   "Employability": "Employability",
   "Employability 1st Year": "Employability 1st Year",
   "Employability by Program": "Employability by Program",
+  "Employed Men with Technical Education":
+    "Employed Men with Technical Education",
+  "Employed People By Education Level": "Employed People By Education Level",
+  "Employed Women with Technical Education":
+    "Employed Women with Technical Education",
   "Employees": "Employees",
   "Employees in ": "Employees in ",
   "Employment": "Employment",
@@ -572,40 +635,73 @@
   "Employment by category": "Employment by category",
   "Employment by Education": "Employment by Education",
   "Employment growth": "Employment growth",
+  "Enabled Voters": "Enabled Voters",
   "Enrollment": "Enrollment",
+  "Enter a location": "Enter a location",
   "Estimate Population": "Estimate Population",
+  "Estimate Population Growth": "Estimate Population Growth",
   "Ethnicity": "Ethnicity",
+  "Executed by companies in": "Executed by companies in",
   "Explore": "Explore",
   "Explore profiles": "Explore profiles",
   "Explore profiles by category": "Explore profiles by category",
   "Exports": "Exports",
   "Exports By Destination": "Exports By Destination",
+  "Exports by Destination": "Exports by Destination",
   "Exports By Origin": "Legal Address of Exporting Companies",
   "Exports by product": "Exports by product",
   "Exports By Region": "Legal Address of Importing Companies",
   "Exports in ": "Exports in ",
+  "Exports volume": "Exports volume",
   "Exports {{last_year}}": "Exports {{last_year}}",
   "Extras": "Extras",
+  "Fairness": "Fairness",
   "Female": "Female",
+  "Female Average Age": "Female Average Age",
+  "Female immigrants with complete schooling":
+    "Female immigrants with complete schooling",
   "Female Mean Income": "Female Mean Income",
+  "Female Median Income": "Female Median Income",
   "Female percent in ": "Female percent in ",
+  "Female percent in industry": "Female percent in industry",
   "Female percent of visas": "Female percent of visas",
+  "Female percent with disability": "Female percent with disability",
   "Field of Science": "Field of Science",
   "form": {
     "data": "Did not find what you were looking for? Suggest data to add",
     "error": "Did you find an error? Report it"
   },
+  "GAP between Private/Municipal": "GAP between Private/Municipal",
   "Gender": "Gender",
   "Geo": "Geo",
   "geo_profile": {
+    "civics": {
+      "congress": {
+        "note":
+          "Names marked with a * represent elected officials in said election.",
+        "text":
+          "The congresspeople who represent {{geo.caption}} during the 2018-2022 term are: {{congresspersons}}"
+      },
+      "presidential": {
+        "text":
+          "For the {{year.last}} presidential election, {{candidate.first.share}} of the voters"
+      }
+    },
     "demography": {
-      "origin_by_activity": "",
+      "origin_by_activity":
+        "<p>In {{last_year}}, {{percentage_activity}} of the {{visas}} visas granted in {{area}} correlate to the most common activity between immigrants: {{activity}}.</p><p>Likewise, the most common visa type in {{area}} is {{type}}, with a {{percentage_type}}.</p>",
       "origin_by_country":
         "<p>During {{last_year}}, {{visas}} visas were granted to immigrants that declare residence in {{area}}. The main origin countries are: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> and <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. Most of them has {{education_level}} as an education level.</p>",
-      "origin_by_sex_age": "",
-      "population_by_sex_age": ""
+      "origin_by_sex_age":
+        "<p>The average age, according to the visas granted on {{last_year}} to immigrants living in {{area}} is {{avg_age}} years old.</p><p>In {{area}}, visas granted are split in {{percentage_female}} of women, and {{percentage_male}} of men.</p>",
+      "population_by_sex_age":
+        "<p>For the year {{year}}, the population on {{area}}, according to INE estimations, is {{total}} people.</p><p>The poblational projection for the year {{year_max}} is {{projected}} people.</p>"
     },
     "economy": {
+      "employment": {
+        "text":
+          "<p>In {{year.last}}, the workforce in {{geo.caption}} was composed by {{total.total}} people, of which {{total.male}} were men and {{total.female}} were women.</p><p>In {{year.last}}, the number of people working in {{geo.caption}} was {{total.empleados}} employees, while the number of unemployed people was {{total.desempleados}}, and the number of non-active people was {{total.inactivos}}.</p><p>Most of the occupied people of {{geo.caption}} has an educational level (according to their last completed grade) {{level.first.caption}}, followed by {{level.second.caption}}.</p>"
+      },
       "exports": {
         "by_destination":
           "Exports Destination of Companies Based in {{geo.caption}}",
@@ -631,21 +727,23 @@
         "<p>In {{year.last}}, {{geo.caption}} created a total output of {{total}}. Labour productivity based on industry output in {{geo.caption}} was {{labour_productivity}} CLP per worker.</p><p>{{geo.caption}} principal industries are {{text_joined_activities}}. </p><p>{{geo.caption}} most common occupations, according to number of workers, are {{text_joined_occupations}}.</p>",
       "industry_space":
         "<p>Comunas, regions and countries have a greater probability of starting related economic activities with respect to those activities they already perform. The industry space connects industries that tend to exist by the same countries.</p><p>Higher presence industries in {{geo.caption}} are highlighted in colours. By clicking on networks you can see the most related products and industries (and with higher development probability) related to those already present in {{geo.caption}}.</p>",
+      "innovation":
+        "<p>In {{year_sector.last}}, the economic sectors of {{geo.caption}} that spent more on R&D were {{industry.first.caption}}, and {{industry.second.caption}}.</p><p>In {{year.last}}, the companies of {{geo.caption}} that led the execution of R&D spending were {{text_joined_industries}}.</p>",
       "product_space":
         "<p>Comunas, regions and countries have a greater probability of starting related economic activities with respect to those activities they already perform. The product space connects products that tend to be exported by the same countries.</p><p>Higher presence products in {{geo.caption}} are highlighted in colours. By clicking on networks you can see the most related products and industries (and with higher development probability) related to those already present in {{geo.caption}}.</p>",
       "rca":
         "Revealed Comparative Advantage (RCA) measures specialization level for a location in an industry or product. In case a locality has RCA greater than one at an economic activity, the referred activity has greater presence on that location with respect to an average location.",
-      "trade": "",
-      "employment": {
-        "text":
-          "<p>In {{year.last}}, the workforce in {{geo.caption}} was composed by {{total.total}} people, of which {{total.male}} were men and {{total.female}} were women.</p><p>In {{year.last}}, the number of people working in {{geo.caption}} was {{total.empleados}} employees, while the number of unemployed people was {{total.desempleados}}, and the number of non-active people was {{total.inactivos}}.</p><p>Most of the occupied people of {{geo.caption}} has an educational level (according to their last completed grade) {{level.first.caption}}, followed by {{level.second.caption}}.</p>"
-      }
+      "trade": ""
     },
     "education": {
       "enrollment":
         "In {{year.last}} there were {{enrollment.total}} enrolled students in {{geo.caption}} schools. From these, {{enrollment.municipal}} were enrolled in municipal managed schools, {{enrollment.subvencionado}} in subsidised schools, {{enrollment.particular}} in private schools, and {{enrollment.adm_delegada}} in delegated administration schools.",
       "performance": {
         "byPSU": {
+          "disclaimer":
+            "<p>*The PSU average is the arithmetic mean between the score obtained in the Language and Communication test, and Maths test.</p>",
+          "distribution":
+            "<p>In {{year}}, {{total}} PSU Exams were taken in {{geo}}. The PSU average score in {{geo}} was {{avg}} points in {{year}}.</p>",
           "level1": {
             "2":
               "<p>In {{year.last}}, PSU* average in {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
@@ -731,6 +829,12 @@
         "total":
           "<p>In {{level}}, by {{year_last}}, {{access_total}} people have internet access.</p>"
       },
+      "crimes": {
+        "default":
+          "<p>The crimes of greatest social connotation with the highest number of reports in {{geo.caption}} during {{year.last}} were {{text_joined}}.</p>",
+        "no_data":
+          "There were no reports of crimes of greater social connotation in {{geo.caption}} during {{year.last}}.</p>"
+      },
       "quality": {
         "material":
           "<p>Most households in {{level}} are <em>{{housing_common_type}}</em>. The most common construction material in {{level}} is {{housing_common_material}}.</p>",
@@ -742,15 +846,11 @@
         "text_2": "$t(geo_profile.housing.quality.material)",
         "text_3":
           "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
-      },
-      "crimes": {
-        "no_data":
-          "There were no reports of crimes of greater social connotation in {{geo.caption}} during {{year.last}}.</p>",
-        "default":
-          "<p>The crimes of greatest social connotation with the highest number of reports in {{geo.caption}} during {{year.last}} were {{text_joined}}.</p>"
       }
     },
-    "income_sex_age_slide": { "text": "Income by sex and age slide." },
+    "income_sex_age_slide": {
+      "text": "Income by sex and age slide."
+    },
     "politics": {
       "text":
         "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
@@ -759,19 +859,7 @@
       "text":
         "In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
     },
-    "warning": "Showing data of {{caption}}",
-    "civics": {
-      "congress": {
-        "note":
-          "Names marked with a * represent elected officials in said election.",
-        "text":
-          "The congresspeople who represent {{geo.caption}} during the 2018-2022 term are: {{congresspersons}}"
-      },
-      "presidential": {
-        "text":
-          "For the {{year.last}} presidential election, {{candidate.first.share}} of the voters"
-      }
-    }
+    "warning": "Showing data of {{caption}}"
   },
   "Geographical": "Geographical",
   "Glossary": "Glossary",
@@ -784,6 +872,9 @@
   "Growth Imports": "Growth Imports",
   "Growth Investment": "Growth Investment",
   "Growth Labour": "Growth Labour",
+  "Growth number of visas": "Growth number of visas",
+  "Growth number of visas for {{current_max}} immigrants":
+    "Growth number of visas for {{current_max}} immigrants",
   "Growth R&D Spending in ": "Growth R&D Spending in ",
   "Health": "Health",
   "health cares": "health cares",
@@ -792,7 +883,6 @@
   "Healthcare": "Healthcare",
   "Healthcare by Type": "Healthcare by Type",
   "Higher Education": "Higher Education",
-  "Home": "Home",
   "home": {
     "carousel": {
       "comunas_exports": "Top exporter Comunas",
@@ -808,7 +898,9 @@
       "text3": "Thinks the <span>data as stories</span> and not as files.",
       "title": "Why is DataChile different from other open data projects?"
     },
-    "sources": { "title": "DataChile integrates data from all these sources" },
+    "sources": {
+      "title": "DataChile integrates data from all these sources"
+    },
     "subtitle":
       "The most comprehensive effort to integrate and visualize Chile’s Public Data",
     "what": {
@@ -821,34 +913,47 @@
       "title": "What is DataChile?"
     }
   },
+  "Home": "Home",
   "Households with credit in state bank":
     "Households with credit in state bank",
   "houses": "houses",
   "Housing": "Housing",
+  "Housing & Environment": "Housing & Environment",
   "Housing and Environment": "Housing and Environment",
   "Housing Conditions": "Housing Conditions",
   "Housing Type": "Housing Type",
   "Immigrant visas": "Immigrant visas",
+  "Imports": "Imports",
   "Imports & Exports": "Imports & Exports",
   "Imports By Destination": "Imports By Destination",
   "Imports By Origin": "Imports By Origin",
+  "Imports by Origin Country": "Imports by Origin Country",
   "Imports by product": "Imports by product",
   "Imports By Region": "Imports By Region",
   "Imports from Chile": "Imports from Chile",
-  "in": "in",
+  "Imports in ": "Imports in ",
+  "Imports volume": "Imports volume",
+  "Imports {{last_year}}": "Imports {{last_year}}",
+  "Improvement": "Improvement",
   "In": "In",
+  "in": "in",
   "in ": "in ",
+  "In last year of high school in ": "In last year of high school in ",
   "In period": "In period",
   "in period {{year_first}} - {{year_last}}":
     "in period {{year_first}} - {{year_last}}",
+  "in period {{year_prev}} - {{year_last}}":
+    "in period {{year_prev}} - {{year_last}}",
   "Income": "Income",
   "Income By Age": "Income By Age",
   "Income By Sex": "Income By Sex",
   "Income Range CLP": "Income Range CLP",
   "increased": "increased",
+  "incremented": "incremented",
   "Industries": "Industries",
   "Industry": "Industry",
   "Industry & Occupations": "Industry & Occupations",
+  "Industry By Output (CLP)": "Industry By Output (CLP)",
   "Industry output": "Industry output",
   "Industry Space": "Industry Space",
   "Industry Type": "Industry Type",
@@ -867,12 +972,14 @@
       "<p>In {{year}}, {{industry.name}} exports was {{industry.exports}}, with {{industry.share}} of total. Moreover, spending level of {{industry.caption}} in Research & Development was {{industry.spending}}.</p>",
     "warning": "Showing data about {{caption}}"
   },
+  "Initiative": "Initiative",
   "Innovation": "Innovation",
   "Institution": "Institution",
   "Institution Type": "Institution Type",
   "Institutions": "Institutions",
-  "International trade": "International trade",
+  "Integration": "Integration",
   "International Trade": "International Trade",
+  "International trade": "International trade",
   "International Trade Balance": "International Trade Balance",
   "Internet Access": "Internet Access",
   "Internet access": "Internet access",
@@ -880,6 +987,8 @@
   "Internet use": "Internet use",
   "Investment By Comuna (Legal address)":
     "Investment By Comuna (Legal address)",
+  "is": "is",
+  "Isolate Region": "Isolate Region",
   "Language": "Language",
   "Language_PSU": "Language",
   "Laptop computer": "Laptop computer",
@@ -887,6 +996,8 @@
   "Less than 30 square meter households":
     "Less than 30 square meter households",
   "Less Than 8 Blocks from": "Less Than 8 Blocks from",
+  "LINEAR": "LINEAR",
+  "Linear": "Linear",
   "loading": {
     "description": "Loading {{progress}} of {{total}} datasets",
     "developed": "Designed and Engineered by Datawheel",
@@ -932,10 +1043,18 @@
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
   },
   "Main exported product": "Main exported product",
+  "Main exporting comuna": "Main exporting comuna",
+  "Main exporting region": "Main exporting region",
   "Main imported product": "Main imported product",
+  "Main importing comuna": "Main importing comuna",
+  "Main importing region": "Main importing region",
   "Main services in ": "Main services in ",
   "Male": "Male",
+  "Male Average Age": "Male Average Age",
+  "Male immigrants with complete schooling":
+    "Male immigrants with complete schooling",
   "Male Mean Income": "Male Mean Income",
+  "Male Median Income": "Male Median Income",
   "Map": "Map",
   "map": {
     "sidebar_addfilter": "Add a filter...",
@@ -943,8 +1062,14 @@
     "sidebar_lessselectors": "Show less filters",
     "sidebar_moreselectors": "Show more filters",
     "slides": [
-      { "img": "inicio", "title": "A MAP TOOL?" },
-      { "img": "que-es-el-mapa", "text": "The Map is an interactive tool..." },
+      {
+        "img": "inicio",
+        "title": "A MAP TOOL?"
+      },
+      {
+        "img": "que-es-el-mapa",
+        "text": "The Map is an interactive tool..."
+      },
       {
         "img": "topicos-indicadores",
         "text":
@@ -965,7 +1090,10 @@
         "text":
           "The data is organized so you can choose to group years in rows or columns. With just a click, you can download your collection to a CSV file, ready to use."
       },
-      { "img": "empezar-a-explorar", "title": "START EXPLORING" }
+      {
+        "img": "empezar-a-explorar",
+        "title": "START EXPLORING"
+      }
     ]
   },
   "Map explore": "Map explore",
@@ -974,6 +1102,9 @@
   "Math": "Math",
   "Mayor": "Mayor",
   "Mayor Election": "Mayor Election",
+  "Mean Income": "Mean Income",
+  "Measure": "Measure",
+  "Median Income": "Median Income",
   "Median Income CLP": "Median Income CLP",
   "Migration": "Migration",
   "Migration By Activity": "Migration By Activity",
@@ -987,9 +1118,16 @@
   "Migration By Visa Type": "Migration By Visa Type",
   "Mobile phone": "Mobile phone",
   "Monthly Median Income CLP": "Monthly Median Income CLP",
+  "Most common activity": "Most common activity",
+  "Most Common Visa Activity": "Most Common Visa Activity",
+  "Most Common Visa Type": "Most Common Visa Type",
   "Municipalities": "Municipalities",
+  "My Data": "My Data",
+  "National": "National",
   "National Profile": "National Profile",
+  "negative": "negative",
   "NEM Performance By Administration": "NEM Performance By Administration",
+  "No datasets selected": "No datasets selected",
   "no_datum": "No data",
   "no_info":
     "{{no}} has not data for this topic. You can see information at regional level in <a href='{{link}}'>{{yes}}</a>'s profile.",
@@ -998,33 +1136,57 @@
     "text": "Try search another profile from the box below.",
     "title": "Page not found"
   },
+  "Number of complaints": "Number of complaints",
+  "Number of deaths": "Number of deaths",
   "Number of jobs": "Number of jobs",
+  "Number of larceny complaints": "Number of larceny complaints",
+  "Number of schools by Cluster": "Number of schools by Cluster",
+  "Number of theft complaints growth": "Number of theft complaints growth",
   "Number of visas": "Number of visas",
+  "Number of visas granted in {{year_last}}":
+    "Number of visas granted in {{year_last}}",
+  "Number of visas granted to students": "Number of visas granted to students",
   "Occupation": "Occupation",
   "Occupational Category": "Occupational Category",
   "Occupations by workers": "Occupations by workers",
   "of": "of",
   "of total": "of total",
+  "on Smart TV or Gaming Console": "on Smart TV or Gaming Console",
   "Opportunities": "Opportunities",
   "Opportunity": "Opportunity",
+  "Opportunity in Industries": "Opportunity in Industries",
+  "Opportunity in Products": "Opportunity in Products",
   "Origin & Destination": "Origin & Destination",
   "Origins": "Origins",
   "Other products": "Other products",
+  "Other Products": "Other Products",
   "Other regions": "Other regions",
   "Others": "Others",
   "Output": "Output",
   "Output By Comuna (Legal address)": "Output By Comuna (Legal address)",
-  "People": "People",
+  "Output by Industry": "Output by Industry",
+  "Overcoming": "Overcoming",
+  "Param": "Parameter",
+  "Participation": "Participation",
+  "Participation in Municipal Election": "Participation in Municipal Election",
   "people": "people",
+  "People": "People",
+  "People with disabilities": "People with disabilities",
   "Per 100 inhabitants in": "Per 100 inhabitants in",
   "Performance": "Performance",
+  "Performance Evaluation": "Performance Evaluation",
   "Pharmacy": "Pharmacy",
+  "Pic by": "Pic by",
   "Politics": "Politics",
   "Population": "Population",
   "Population Projection": "Population Projection",
   "Population Pyramid": "Population Pyramid",
+  "Population with disability": "Population with disability",
   "Population with Health Insurance": "Population with Health Insurance",
+  "positive": "positive",
   "President": "President",
+  "Presidential": "Presidential",
+  "Presidential 1st - 2nd round": "Presidential 1st - 2nd round",
   "Primary Healthcare": "Primary Healthcare",
   "Product": "Product",
   "Product Space": "Product Space",
@@ -1075,8 +1237,12 @@
         "There are not data of exports/imports for {{product.caption}} in period {{year.first}}-{{year.last}}"
     }
   },
+  "Production per worker": "Production per worker",
   "Products": "Products",
   "Profiles": "Profiles",
+  "PSU By Sex": "PSU By Sex",
+  "PSU distribution": "PSU distribution",
+  "PSU exams": "PSU exams",
   "PSU Results": "PSU Results",
   "PSU Results By Sex": "PSU Results By Sex",
   "PSU vs NEM": "PSU vs NEM",
@@ -1093,7 +1259,12 @@
   "Regional ": "Regional ",
   "Regional Employment By Education": "Regional Employment By Education",
   "Regional Employment By Sex": "Regional Employment By Sex",
+  "Regions": "Regions",
   "Regions & Comunas": "Regions & Comunas",
+  "relative to exports to the world in {{year}}":
+    "relative to exports to the world in {{year}}",
+  "relative to imports from the world in {{year}}":
+    "relative to imports from the world in {{year}}",
   "Research & Development": "Research & Development",
   "Reset": {
     "actions": {
@@ -1108,24 +1279,33 @@
     "Password": "New Password"
   },
   "Results": "Results",
+  "Results 1st Round": "Results 1st Round",
+  "Results 2nd Round": "Results 2nd Round",
   "Results for": "Results for",
   "Retention": "Retention",
   "Retention by Program": "Retention by Program",
   "Role": "Role",
+  "Rows": "Rows",
   "Rural households": "Rural households",
+  "Rural Schools": "Rural Schools",
   "Salaries": "Salaries",
   "Salaries By Category": "Salaries By Category",
   "Salaries By Occupation": "Salaries By Occupation",
   "Sales in ": "Sales in ",
   "School": "School",
   "School By Enrollment": "School By Enrollment",
+  "Schools": "Schools",
+  "Score": "Score",
   "Search a location, industry, product, career, etc":
     "Search a location, industry, product, career, etc",
   "Sector": "Sector",
+  "Security": "Security",
   "See less": "See less",
   "See more": "See more",
+  "Senator Election": "Senator Election",
   "Senators": "Senators",
   "Services Access": "Services Access",
+  "Sex": "Sex",
   "SignUp": {
     "Confirm Password": "Confirm Password",
     "E-mail": "E-mail",
@@ -1151,8 +1331,10 @@
   },
   "Smart TV": "Smart TV",
   "Sned_score": "SNED Score",
+  "Some previous definitions": "Some previous definitions",
   "Soon": "Soon",
   "Source": "Source",
+  "Special Education Schools": "Special Education Schools",
   "Specialized Healthcare": "Specialized Healthcare",
   "Specialized Healthcares": "Specialized Healthcares",
   "Sponsored by": "Sponsored by",
@@ -1161,6 +1343,7 @@
   "Students": "Students",
   "Students in Rural Education": "Students in Rural Education",
   "Students in Special Education": "Students in Special Education",
+  "Students that took the PSU": "Students that took the PSU",
   "Summary": "Summary",
   "Supported by": "Supported by",
   "table": {
@@ -1173,15 +1356,26 @@
     "rows": "rows"
   },
   "Tablet": "Tablet",
-  "tooltip": { "to_profile": "Click to see the full profile" },
+  "The most comprehensive effort to integrate and visualize Chile’s Public Data":
+    "The most comprehensive effort to integrate and visualize Chile’s Public Data",
+  "Theft complaints share": "Theft complaints share",
+  "There are not data available for this chart":
+    "There are not data available for this chart",
+  "to access the internet": "to access the internet",
+  "tooltip": {
+    "to_profile": "Click to see the full profile"
+  },
   "Top destination country": "Top destination country",
   "Top exporter region": "Top exporter region",
+  "Top output region": "Top output region",
   "Top Schools By Performance": "Top Schools By Performance",
   "Topics": "Topics",
   "Total": "Total",
+  "Total Electors": "Total Electors",
   "Total Enrollment": "Total Enrollment",
   "Total Exports": "Total Exports",
   "Total Imports": "Total Imports",
+  "Total Investment": "Total Investment",
   "Total R&D spending by Business Type": "Total R&D spending by Business Type",
   "Total R&D spending by Ownership Type":
     "Total R&D spending by Ownership Type",
@@ -1194,213 +1388,43 @@
     "fob": "Exports",
     "trade_balance": "Trade Balance"
   },
+  "Tumors (Neoplasms) deaths": "Tumors (Neoplasms) deaths",
+  "Type": "Type",
+  "Unemployed people": "Unemployed people",
   "Urgency Healthcare": "Urgency Healthcare",
   "Urgency Healthcare Average": "Urgency Healthcare Average",
   "USD": "USD",
   "use device": "use device",
+  "Use fire-based heating": "Use fire-based heating",
+  "Use small screens": "Use small screens",
+  "Use unconventional internet browser": "Use unconventional internet browser",
   "User": "User",
   "Username": "Username",
   "val": "val",
   "Value": "Value",
   "Videogame console": "Videogame console",
-  "Visas": "Visas",
   "visas": "visas",
+  "Visas": "Visas",
   "Visas for Female immigrants": "Visas for Female immigrants",
   "Visas for females in range {{range}}":
     "Visas for females in range {{range}}",
   "Visas for males in range {{range}}": "Visas for males in range {{range}}",
+  "Visualize by": "Visualize by",
+  "Votes": "Votes",
+  "votes": "votes",
   "Wages": "Wages",
   "Wages by Program": "Wages by Program",
+  "where": "where",
+  "Year": "Year",
+  "Yearly growth in deaths by ": "Yearly growth in deaths by ",
   "Years of Studies": "Years of Studies",
   "Zone": "Zone",
+  "{{number}} on {{year}}": "{{number}} on {{year}}",
+  "{{number}} people on {{year}}": "{{number}} people on {{year}}",
   "{{number}} visas": "{{number}} visas",
+  "{{number}} visas on {{year}}": "{{number}} visas on {{year}}",
   "{{number}} visas, granted in {{year}}":
     "{{number}} visas, granted in {{year}}",
   "{{percent}} of the country - {{last_year}}":
-    "{{percent}} of the country - {{last_year}}",
-  "{{number}} visas on {{year}}": "{{number}} visas on {{year}}",
-  "{{number}} people on {{year}}": "{{number}} people on {{year}}",
-  "{{number}} on {{year}}": "{{number}} on {{year}}",
-  "Yearly growth in deaths by ": "Yearly growth in deaths by ",
-  "Year": "Year",
-  "where": "where",
-  " by ": " by ",
-  " is ": " is ",
-  "a decrement": "a decrement",
-  "Add to cart": "Add to cart",
-  "Added to cart": "Added to cart",
-  "All Regions": "All Regions",
-  "an increment": "an increment",
-  "and": "and",
-  "Annual Growth Exports": "Annual Growth Exports",
-  "Annual Growth Imports": "Annual Growth Imports",
-  "are": "are",
-  "Average age": "Average age",
-  "Average Household": "Average Household",
-  "Average SNED Score": "Average SNED Score",
-  "Back to Map": "Back to Map",
-  "Blank and Null Votes": "Blank and Null Votes",
-  "Cart": "Cart",
-  "Casualties rate per 100 inhabitants": "Casualties rate per 100 inhabitants",
-  "Change exports": "Change exports",
-  "Change imports": "Change imports",
-  "Change in participation": "Change in participation",
-  "Change number of visas": "Change number of visas",
-  "Change number of visas for {{current_max}} immigrants":
-    "Change number of visas for {{current_max}} immigrants",
-  "Change of immigrants with universitary or technical education":
-    "Change of immigrants with universitary or technical education",
-  "Civics": "Civics",
-  "Click to Highlight": "Click to Highlight",
-  "Columns": "Columns",
-  "Comparison by Cluster": "Comparison by Cluster",
-  "complaints": "complaints",
-  "Complaints By Crime": "Complaints By Crime",
-  "Complaints Over Time": "Complaints Over Time",
-  "Comunas": "Comunas",
-  "Congress": "Congress",
-  "Congressperson Election": "Congressperson Election",
-  "Connected to public tap water system":
-    "Connected to public tap water system",
-  "Contact": "Contact",
-  "Created in collaboration": "Created in collaboration",
-  "Crimes": "Crimes",
-  "Data source": "Data source",
-  "Death Causes Over Time": "Death Causes Over Time",
-  "Decile": "Decile",
-  "decile": "decile",
-  "decremented": "decremented",
-  "Demographics": "Demographics",
-  "Description": "Description",
-  "Download CSV file": "Download CSV file",
-  "Download data": "Download data",
-  "Download documentation": "Download documentation",
-  "Efectiveness": "Efectiveness",
-  "Elected Authority": "Elected Authority",
-  "Election": "Election",
-  "Elections": "Elections",
-  "Electoral Participation": "Electoral Participation",
-  "Electors": "Electors",
-  "Electors that didn't vote": "Electors that didn't vote",
-  "Employed Men with Technical Education":
-    "Employed Men with Technical Education",
-  "Employed People By Education Level": "Employed People By Education Level",
-  "Employed Women with Technical Education":
-    "Employed Women with Technical Education",
-  "Enabled Voters": "Enabled Voters",
-  "Enter a location": "Enter a location",
-  "Estimate Population Growth": "Estimate Population Growth",
-  "Executed by companies in": "Executed by companies in",
-  "Exports by Destination": "Exports by Destination",
-  "Exports volume": "Exports volume",
-  "Fairness": "Fairness",
-  "Female Average Age": "Female Average Age",
-  "Female immigrants with complete schooling":
-    "Female immigrants with complete schooling",
-  "Female Median Income": "Female Median Income",
-  "Female percent in industry": "Female percent in industry",
-  "Female percent with disability": "Female percent with disability",
-  "GAP between Private/Municipal": "GAP between Private/Municipal",
-  "Growth number of visas": "Growth number of visas",
-  "Growth number of visas for {{current_max}} immigrants":
-    "Growth number of visas for {{current_max}} immigrants",
-  "Housing & Environment": "Housing & Environment",
-  "Imports": "Imports",
-  "Imports by Origin Country": "Imports by Origin Country",
-  "Imports in ": "Imports in ",
-  "Imports volume": "Imports volume",
-  "Imports {{last_year}}": "Imports {{last_year}}",
-  "Improvement": "Improvement",
-  "In last year of high school in ": "In last year of high school in ",
-  "in period {{year_prev}} - {{year_last}}":
-    "in period {{year_prev}} - {{year_last}}",
-  "incremented": "incremented",
-  "Industry By Output (CLP)": "Industry By Output (CLP)",
-  "Initiative": "Initiative",
-  "Integration": "Integration",
-  "is": "is",
-  "Isolate Region": "Isolate Region",
-  "LINEAR": "LINEAR",
-  "Linear": "Linear",
-  "Main exporting comuna": "Main exporting comuna",
-  "Main exporting region": "Main exporting region",
-  "Main importing comuna": "Main importing comuna",
-  "Main importing region": "Main importing region",
-  "Male Average Age": "Male Average Age",
-  "Male immigrants with complete schooling":
-    "Male immigrants with complete schooling",
-  "Male Median Income": "Male Median Income",
-  "Mean Income": "Mean Income",
-  "Measure": "Measure",
-  "Median Income": "Median Income",
-  "Most common activity": "Most common activity",
-  "Most Common Visa Activity": "Most Common Visa Activity",
-  "Most Common Visa Type": "Most Common Visa Type",
-  "My Data": "My Data",
-  "National": "National",
-  "negative": "negative",
-  "No datasets selected": "No datasets selected",
-  "Number of complaints": "Number of complaints",
-  "Number of deaths": "Number of deaths",
-  "Number of larceny complaints": "Number of larceny complaints",
-  "Number of schools by Cluster": "Number of schools by Cluster",
-  "Number of theft complaints growth": "Number of theft complaints growth",
-  "Number of visas granted in {{year_last}}":
-    "Number of visas granted in {{year_last}}",
-  "Number of visas granted to students": "Number of visas granted to students",
-  "on Smart TV or Gaming Console": "on Smart TV or Gaming Console",
-  "Opportunity in Industries": "Opportunity in Industries",
-  "Opportunity in Products": "Opportunity in Products",
-  "Other Products": "Other Products",
-  "Output by Industry": "Output by Industry",
-  "Overcoming": "Overcoming",
-  "Participation": "Participation",
-  "Participation in Municipal Election": "Participation in Municipal Election",
-  "People with disabilities": "People with disabilities",
-  "Performance Evaluation": "Performance Evaluation",
-  "Pic by": "Pic by",
-  "Population with disability": "Population with disability",
-  "positive": "positive",
-  "Presidential": "Presidential",
-  "Presidential 1st - 2nd round": "Presidential 1st - 2nd round",
-  "Production per worker": "Production per worker",
-  "PSU By Sex": "PSU By Sex",
-  "PSU distribution": "PSU distribution",
-  "PSU exams": "PSU exams",
-  "Regions": "Regions",
-  "relative to exports to the world in {{year}}":
-    "relative to exports to the world in {{year}}",
-  "relative to imports from the world in {{year}}":
-    "relative to imports from the world in {{year}}",
-  "Results 1st Round": "Results 1st Round",
-  "Results 2nd Round": "Results 2nd Round",
-  "Rows": "Rows",
-  "Rural Schools": "Rural Schools",
-  "Schools": "Schools",
-  "Score": "Score",
-  "Security": "Security",
-  "Senator Election": "Senator Election",
-  "Sex": "Sex",
-  "Some previous definitions": "Some previous definitions",
-  "Special Education Schools": "Special Education Schools",
-  "Students that took the PSU": "Students that took the PSU",
-  "The most comprehensive effort to integrate and visualize Chile’s Public Data":
-    "The most comprehensive effort to integrate and visualize Chile’s Public Data",
-  "Theft complaints share": "Theft complaints share",
-  "There are not data available for this chart":
-    "There are not data available for this chart",
-  "to access the internet": "to access the internet",
-  "Top output region": "Top output region",
-  "Total Electors": "Total Electors",
-  "Total Investment": "Total Investment",
-  "Tumors (Neoplasms) deaths": "Tumors (Neoplasms) deaths",
-  "Type": "Type",
-  "Unemployed people": "Unemployed people",
-  "Use fire-based heating": "Use fire-based heating",
-  "Use small screens": "Use small screens",
-  "Use unconventional internet browser": "Use unconventional internet browser",
-  "Visualize by": "Visualize by",
-  "votes": "votes",
-  "Votes": "Votes",
-  "Param": "Parameter"
+    "{{percent}} of the country - {{last_year}}"
 }

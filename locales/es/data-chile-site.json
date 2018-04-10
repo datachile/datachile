@@ -460,12 +460,12 @@
         "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}.</p>"
     },
     "migration_education_slide": {
-      "intro":
-        "El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Técnica o Universitaria, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena.",
-      "growth":
-        "El número de visas otorgadas a inmigrantes de {{level}} con Educación Técnica o Universitaria ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.",
       "closure":
         "En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.",
+      "growth":
+        "El número de visas otorgadas a inmigrantes de {{level}} con Educación Técnica o Universitaria ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.",
+      "intro":
+        "El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Técnica o Universitaria, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena.",
       "text": "$t(country_profile.migration_education_slide.text_limited)",
       "text_full":
         "<p>$t(country_profile.migration_education_slide.intro) $t(country_profile.migration_education_slide.growth)</p><p>$t(country_profile.migration_education_slide.closure)</p>",
@@ -600,11 +600,11 @@
     "title5": "Cliente Mondrian-REST para npm",
     "title6": "Cliente API para Python",
     "title7": "Listado de Campos",
+    "title8": "Cliente API para R",
     "url": {
       "distinct": "https://docs.microsoft.com/en-us/sql/mdx/distinct-mdx",
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
-    },
-    "title8": "Cliente API para R"
+    }
   },
   "Download CSV file": "Descargar archivo CSV",
   "Download data": "Descargar datos",
@@ -632,8 +632,8 @@
   "Employees": "Empleados",
   "Employees in ": "Empleados en ",
   "Employment": "Empleo",
-  "Employment by category": "Empleo por categoría",
   "Employment by Category": "Empleo por categoría",
+  "Employment by category": "Empleo por categoría",
   "Employment by Education": "Empleo por nivel educativo",
   "Employment growth": "Crecimiento de empleo",
   "Enabled Voters": "Votantes Habilitados",
@@ -894,6 +894,7 @@
   "Healthcare": "Atención de Salud",
   "Healthcare by Type": "Atención de Salud por Tipo",
   "Higher Education": "Higher Education",
+  "Home": "Inicio",
   "home": {
     "carousel": {
       "comunas_exports": "Comunas más exportadoras",
@@ -910,7 +911,9 @@
         "Piensa los <span>datos como historias</span> y no como archivos.",
       "title": "¿En qué se diferencia de otros proyectos de datos abiertos?"
     },
-    "sources": { "title": "DataChile integra datos de todas estas fuentes" },
+    "sources": {
+      "title": "DataChile integra datos de todas estas fuentes"
+    },
     "subtitle":
       "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
     "what": {
@@ -923,7 +926,6 @@
       "title": "¿Qué es DataChile?"
     }
   },
-  "Home": "Inicio",
   "Households with credit in state bank":
     "Hogares con crédito en banco estatal",
   "houses": "viviendas",
@@ -1006,8 +1008,8 @@
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
   "Less than 30 square meter households": "Hogares de menos de 30m²",
   "Less Than 8 Blocks from": "Menos de 8 cuadras de",
-  "Linear": "Lineal",
   "LINEAR": "LINEAL",
+  "Linear": "Lineal",
   "loading": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
     "developed": "Diseñado y construido por Datawheel",
@@ -1016,8 +1018,8 @@
   },
   "LoadingComponent": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
-    "title": "Por favor espere",
-    "developed": "Diseñado y desarrollado por Datawheel"
+    "developed": "Diseñado y desarrollado por Datawheel",
+    "title": "Por favor espere"
   },
   "Login": {
     "E-mail": "E-mail",
@@ -1071,7 +1073,10 @@
     "sidebar_lessselectors": "Mostrar menos filtros",
     "sidebar_moreselectors": "Mostrar más filtros",
     "slides": [
-      { "img": "inicio", "title": "¿QUÉ ES EL MAPA?" },
+      {
+        "img": "inicio",
+        "title": "¿QUÉ ES EL MAPA?"
+      },
       {
         "img": "que-es-el-mapa",
         "text": "El mapa es una herramienta interactiva"
@@ -1096,7 +1101,10 @@
         "text":
           "Los datos se presentan en una tabla organizada, con la opción de distribuir años en filas o columnas. Con solo un clic es posible descargar un archivo en formato CSV, ordenado y fácil de usar."
       },
-      { "img": "empezar-a-explorar", "title": "COMIENZA A EXPLORAR" }
+      {
+        "img": "empezar-a-explorar",
+        "title": "COMIENZA A EXPLORAR"
+      }
     ]
   },
   "Map": "Mapa",
@@ -1264,6 +1272,7 @@
   "Region": "Región",
   "Regional": "Regional",
   "Regional ": "Regional ",
+  "Regional Employment By Education": "Empleo Regional según Educación",
   "Regional Employment By Sex": "Empleo regional según sexo",
   "Regions": "Regiones",
   "Regions & Comunas": "Regiones y Comunas",
@@ -1368,7 +1377,9 @@
   "There are not data available for this chart":
     "No hay datos disponibles para este gráfico",
   "to access the internet": "para acceder a Internet",
-  "tooltip": { "to_profile": "Clic para ver el perfil completo" },
+  "tooltip": {
+    "to_profile": "Clic para ver el perfil completo"
+  },
   "Top destination country": "Principal país de destino",
   "Top exporter region": "Principal región exportadora",
   "Top output region": "Top región productora",
@@ -1417,8 +1428,8 @@
   "Visas for males in range {{range}}":
     "Visas para hombres en el rango {{range}}",
   "Visualize by": "Visualizar por",
-  "Votes": "Votos",
   "votes": "votos",
+  "Votes": "Votos",
   "Wages": "Salarios",
   "Wages by Program": "Salarios por programa",
   "where": "donde",
@@ -1433,6 +1444,5 @@
   "{{number}} visas, granted in {{year}}":
     "{{number}} visas, otorgadas en {{year}}",
   "{{percent}} of the country - {{last_year}}":
-    "{{percent}} del país - {{last_year}}",
-  "Regional Employment By Education": "Empleo Regional según Educación"
+    "{{percent}} del país - {{last_year}}"
 }
