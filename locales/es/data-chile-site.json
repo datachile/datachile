@@ -1,22 +1,284 @@
 {
-  "": {
-    "2": "",
-    "0%": "",
-    "2%": "",
-    "3g": ""
-  },
   " by ": " por ",
   " in ": " en ",
   " is ": " es ",
   " of ": " de ",
   " people": " personas ",
-  "%B %d, %Y": "",
-  ",": {
-    "0f": ""
-  },
-  ",f": "",
   "1st year": "1er año",
-  "ATM": "Cajero Automático",
+  "a decrease": "un descenso",
+  "a decrement": "una disminución",
+  "about": {
+    "ack": {
+      "credits": {
+        "subtitle": "Para citar DataChile por favor utilice:",
+        "text":
+          "<p>Datawheel, 2017. https://datachile.io. Fecha de acceso [fecha de hoy].</p>",
+        "title": "Citación"
+      },
+      "partners": {
+        "text":
+          "<p>Este trabajo fue desarrollado por <a href='http://datawheel.us' target='_blank'>Datawheel</a> con el financiamiento de <a href='http://www.aminerals.cl/' target='_blank'>Antofagasta Minerals</a>, <a href='https://www.corfo.cl/' target='_blank'>Corporación de Fomento de la Producción</a>, <a href='http://www.economia.gob.cl/minecon' target='_blank'>Ministerio de Economía, Fomento y Turismo</a> y <a href='http://www.entel.cl/' target='_blank'>ENTEL</a>. Apoyaron además: <a href='https://www.direcon.gob.cl/' target='_blank'>Dirección General de Relaciones Económicas Internacionales</a> y <a href='https://www.asech.cl/' target='_blank'>Asociación de empremdedores de Chile</a>.</p>",
+        "title": "Participantes"
+      },
+      "title": "Reconocimiento y créditos"
+    },
+    "api": {
+      "text1":
+        "<p>DataChile posee una API de datos que entrega la información para construir los gráficos y generar todos los textos del sitio.</p>",
+      "text2":
+        "<p>La API será lanzada con motivo del <a rel='noopener noreferrer' href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
+      "text3":
+        "<p>Junto a cada gráfico existe la opción para descargar la información que lo genera <img class=\"icon\" src=\"/images/icons/icon-download.svg\" />. La misma está disponible en formatos CSV, XLS y JSON.</p><p>Asímismo, en la <a href=\"/about/data\">Sección de Datos</a> se puede acceder a la descarga de los archivos completos en CSV.</p>",
+      "title": "API",
+      "title1": "API de DataChile",
+      "title2": "¿Cuándo estará disponible la API?",
+      "title3":
+        "Mientras tanto, ¿cómo puedo acceder a la información que distribuye DataChile?"
+    },
+    "background": {
+      "subtitle1": "¿Qué es DataChile?",
+      "subtitle2": "¿Qué datos incluye DataChile?",
+      "subtitle3": "¿Cómo incluyo mis datos en DataChile?",
+      "text1":
+        "<p>DataChile es una plataforma que integra, visualiza y distribuye datos públicos chilenos. El objetivo de DataChile es mejorar la eficiencia y la eficacia de las decisiones públicas, a través de data integrada que ayude a revelar brechas en servicios públicos, identificar oportunidades de diversificación industrial y promover un debate público mejor informado.</p>",
+      "text2":
+        "<p>Al 8 de enero de 2018, DataChile incluye datos de 8 organismos oficiales. Éstos son:</p><ul><li>Ministerio de Desarrollo Social (MDS)</li><li>Instituto Nacional de Estadísticas (INE)</li><li>Aduanas Chile</li><li>Ministerio de Economía (MINECON)</li><li>Ministerio de Educación (MINEDUC)</li><li>Departamento de Medición y Registro Educacional (DEMRE)</li><li>Departamento de Extranjería y Migración, Ministerio del Interior</li><li>Subsecretaría de Telecomunicaciones (SUBTEL)</li></ul>",
+      "text3":
+        "<p>DataChile no es un proyecto enfocado en la cantidad de datos, sino en su integración y utilidad. Estamos interesados en bases de datos que sean completas a nivel nacional (con información para la mayoría de las municipalidades), relevantes y actualizadas de manera regular.</p><p>Si quiere que consideremos sus datos para incluirlos en DataChile, complete el <a href='https://docs.google.com/forms/d/e/1FAIpQLSdBmEkvqK1BQT8c6FrPyLkAjloimsjfH2EHxG_bRFVFF_iGkQ/viewform' target='_blank'>siguiente formulario</a></p>",
+      "title": "Datachile"
+    },
+    "changelog": {
+      "araucaria": {
+        "description":
+          "<p>Corrección de errores generales en varios perfiles, más imágenes de fondo, estabilidad de perfil país para países con pocos datos.</p>",
+        "title": "1.0.1 - \"Araucaria\" - 2018-01-19"
+      },
+      "belloto": {
+        "description":
+          "<p>Nuevos datos: Denuncias de delitos de mayor connotación social, presentes en perfil geográfico, tópico Vivienda y Entorno, sección Seguridad (Fuente: Carabineros de Chile). Correcciones en indentificadores de previsión de salud sobre datos de CASEN para 2003 y 2006. Agregada Comuna de Ñiquén en mapa de selección. Correcciones varias en textos y traducciones (nan, N/A, etc). Ajustes de diseño y estilo para desktop y mobile. Correcciones en rutas para descarga de información completa desde el about. Mejora en performance de queries de la home.</p>",
+        "title": "1.1.0 - \"Belloto\" - 2018-01-26"
+      },
+      "canelo": {
+        "description":
+          "<p>Corrección de textos. Mejoras en meta tags opengraph.</p>",
+        "title": "1.1.1 - \"Canelo\" - 2018-02-02"
+      },
+      "diamelo": {
+        "description":
+          "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>",
+        "title": "1.2.0 - \"Diamelo\" - 2018-02-09"
+      },
+      "encino": {
+        "description":
+          "<p>Nuevas visualizaciones en Sección Cívica: resultados electorales a nivel presidente, parlamento y alcalde. Correcciones de autoridades en el encabezado del perfil geográfico.</p>",
+        "title": "1.2.1 - \"Encino\" - 2018-02-16"
+      },
+      "launch": {
+        "description":
+          "<p>Página principal. Exploración por perfiles. Buscador de entidades. Perfiles: geográfico, países, industrias y productos. Más de 15 datasets sobre los tópicos: Economía, demografía, educación, salud y vivienda.</p>",
+        "title": "1.0.0 - Lanzamiento beta - 2018-01-08"
+      },
+      "title": "Cambios"
+    },
+    "data": {
+      "aduana": {
+        "source": "Servicio Nacional de Aduanas",
+        "text":
+          "<p>Usamos registros administrativos de exportación e importación provenientes del Servicio Nacional de Aduanas. Estos registros mensuales cuentan las exportaciones a nivel de comunas, productos, y destinos. También cuentan las exportaciones a nivel de origen, producto, y comuna de destino. La data de Aduanas no representa información sobre las actividades económicas de una comuna, sino sobre las empresas con residencia fiscal en dicha comuna.  Es por eso que comunas como Las Condes exportan una gran cantidad de mineral de Cobre.</p>",
+        "title": "Registros de Exportación e Importación",
+        "use":
+          "Estos datos se encuentran en el perfil nacional, regional y comunal en la dimensión de economía, y en los perfiles de país (destino) y producto.",
+        "year": "2011 - 2016"
+      },
+      "casen": {
+        "source": "Ministerio de Desarrollo Social (MDS)",
+        "text":
+          "<p>La encuesta CASEN es levantada por el Ministerio de Desarrollo Social (MDS). La encuesta CASEN tiene por objetivo entregar una “radiografía” de la situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para medir la pobreza y desigualdad.</p>",
+        "title": "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
+        "use":
+          "Los datos de la encuesta CASEN se encuentran en los perfiles nacional, regional y comunal, y en las dimensiones de economía, vivienda y entorno, y salud.",
+        "year": "1990 - 2015"
+      },
+      "costes": {
+        "source": "Servicio de Impuestos Internos (SII)",
+        "text":
+          "<p>Datos de productividad de las industrias chilenas que provienen de registros administrativos del Servicio de Impuestos Internos (SII). Estos datos proporcionan información respecto del número de trabajadores, el coste de capital y trabajo, y la salida o producción (output) de una industria en una comuna.</p>",
+        "title": "Datos de Costes y Producción",
+        "use":
+          "Se usa en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias.",
+        "year": "2010-2014"
+      },
+      "dataset": "Fuente de datos",
+      "discapacidad": {
+        "source": "Servicio Nacional de Discapacidad (SENADIS)",
+        "text":
+          "<p>Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.</p>",
+        "title": "Encuesta Nacional de Discapacidad (ENDISC)",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud.",
+        "year": "2016"
+      },
+      "enrollment": {
+        "source": "Ministerio de Educación (MINEDUC)",
+        "text":
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso, y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
+        "title": "Matrícula escolar",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación.",
+        "year": "2004 - 2015"
+      },
+      "felonies": {
+        "source": "Carabineros de Chile",
+        "text":
+          "<p>Las estadísticas de los Delitos de Mayor Connotación Social (DMCS): Estos corresponden a los grupos denominados como 'Delitos Violentos' (Robo con Violencia, Robo con Intimidación, Robo por Sorpresa, Lesiones, Homicidio y Violación), y 'Delitos Contra la Propiedad' (Robo de Vehículo Motorizado, Robo de Accesorios de Vehículos, Robo en Lugar Habitado, Robo en Lugar no Habitado, Otros Robos con Fuerza y Hurto).</p>",
+        "title": "Denuncias por delitos de mayor connotación social",
+        "use": "Se utiliza en los perfiles nacional, regional y comunal.",
+        "year": "2005-2016"
+      },
+      "ids": {
+        "source": "",
+        "text": "<p>Metadatos y ids de referencia de los demás archivos.</p>",
+        "title": "Ids genéricos",
+        "use": "Se usa en los perfiles nacional, regional y comunal.",
+        "year": ""
+      },
+      "internet": {
+        "source": "Subsecretaría de Telecomunicaciones (SUBTEL)",
+        "text":
+          "<p>Encuesta de la Subsecretaría de Telecomunicaciones (SUBTEL) que muestra a nivel regional el acceso a internet, los motivos por los cuales los hogares se conectan y cuáles son los dispositivos que emplean.</p>",
+        "title": "Encuesta Nacional de Acceso y Usos de Internet",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en la dimensión de vivienda y entorno.",
+        "year": "2016"
+      },
+      "iplusd": {
+        "source": "Ministerio de Economía (MINECON)",
+        "text":
+          "<p>Datos levantados por el Instituto Nacional de Estadísticas por encargo del Ministerio de Economía (MINECON). Esta encuesta busca recoger información de los recursos ejecutados, las fuentes de financiamiento y el personal destinado a actividades de investigación y desarrollo, durante los años de medición.</p>",
+        "title": "Encuesta Sobre Gasto y Personal en I+D",
+        "use":
+          "Los datos de la Encuesta sobre Gasto y Personal en I+D en el sector empresas se encuentra en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias.",
+        "year": "2009 - 2014"
+      },
+      "migracion": {
+        "source": "Departamento de Extranjería y Migración",
+        "text":
+          "<p>Datos generados por el Departamento de Extranjería y Migración, que es la entidad encargada de otorgar permisos de residencia a población extranjera en el país. Este registro corresponde a la población migrante en situación regular.</p><p>Una visa no es equivalente a una persona. Por ejemplo, a lo largo de tres años a una misma persona se le podría haber otorgado tres visas o dos visas y una permanencia definitiva. En este caso, el registro indicará las tres visas o las dos visas y la permanencia definitiva, sin considerar que se trata solo de una persona.</p>",
+        "title": "Estadísticas Migratorias",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en la dimensión de demografía.",
+        "year": "2005 - 2016"
+      },
+      "muerte": {
+        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de mortalidad en las regiones de Chile tomando en cuenta la clasificación de enfermedades y accidentes definidas por la Organización Mundial de la Salud (OMS).</p>",
+        "title": "Causas de Muerte",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud.",
+        "year": "2014"
+      },
+      "nene": {
+        "source": "Instituto Nacional de Estadísticas (INE)",
+        "text":
+          "<p>La encuesta NENE es levantada por el Instituto Nacional de Estadísticas (INE). La encuesta NENE se realiza mensualmente y clasifica a la población en edad de trabajar (PET) (todas las personas de 15 años y más), según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT). La NENE se basa en el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
+        "title": "Nueva Encuesta Nacional de Empleo (NENE)",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en la dimensión de economía, y en el perfil de industria en la dimensión de empleo.",
+        "year": "2010 - 2016"
+      },
+      "nesi": {
+        "source": "Instituto Nacional de Estadísticas (INE)",
+        "text":
+          "<p>La encuesta NESI es levantada por el Instituto Nacional de Estadísticas como un módulo complementario de la Nueva Encuesta Nacional de Empleo (NENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la NENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.</p>",
+        "title": "Nueva Encuesta Suplementaria de Ingresos (NESI)",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en las dimensión de economía, y en el perfil de industria en la dimensión de ingresos.",
+        "year": "2010 - 2016"
+      },
+      "performance": {
+        "source": "Ministerio de Educación (MINEDUC)",
+        "text":
+          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información acerca del rendimiento de los establecimientos medido en notas, teniendo en en cuenta el área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
+        "title": "Desempeño escolar",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación.",
+        "year": "2004 - 2015"
+      },
+      "poblacion": {
+        "source": "Instituto Nacional de Estadísticas (INE)",
+        "text":
+          "<p>Estimaciones generadas por el Instituto Nacional de Estadísticas (INE) con base en el Censo del año 2002 que dan cuenta de la evolución de la población a nivel nacional, regional, comunal y de servicios de salud que agrupan a distintas comunas del país.</p>",
+        "title": "Proyecciones de Población",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en la dimensión de demografía.",
+        "year": "2002 - 2020"
+      },
+      "psu": {
+        "source":
+          "Departamento de Evaluación, Medición y Registro Educacional (DEMRE)",
+        "text":
+          "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
+        "title": "Prueba de Selección Universitaria (PSU)",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación.",
+        "year": "2004 - 2016"
+      },
+      "salud": {
+        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
+        "title": "Indicadores de Acceso a la Salud",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud.",
+        "year": "2014"
+      },
+      "servel": {
+        "source": "Servicio Electoral (SERVEL)",
+        "text":
+          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones. También hay detalles de la participación electoral a nivel comunal.</p>",
+        "title": "Resultados electorales y participación",
+        "use": "Se usa en los perfiles nacional, regional y comunal.",
+        "year": "2009-2013-2016-2017"
+      },
+      "source": "Organismo responsable",
+      "text":
+        "Las fuentes de datos integradas en Datachile son las siguientes:",
+      "title": "Datos",
+      "vida": {
+        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
+        "text":
+          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
+        "title": "Esperanza de Vida",
+        "use":
+          "Se usa en los perfiles nacional, regional y comunal en las dimensión de salud.",
+        "year": "2010 - 2014"
+      },
+      "year": "Años disponibles"
+    },
+    "team": {
+      "members":
+        "<p>El equipo de Datachile se compone por:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>César Hidalgo</li><li>Carlos Navarrete Lizama</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>",
+      "text1":
+        "<p>DataChile fue creada por Datawheel, una empresa que es líder global en servicios de integración, visualización y distribución de datos. DataWheel fue fundada en el 2013 en Estados Unidos por César Hidalgo, Dave Landry y Alex Simoes. Datawheel ha creado DataUSA (ganador de un Information is Beautiful Award en 2016 y un Webby Award en 2017), DataAfrica, DataViva, y otros proyectos privados para gobiernos y empresas.</p>",
+      "text2":
+        "<p>DataChile fue financiado por aportes públicos y privados. El primer aporte a la construcción de DataChile fue otorgado por Antofagasta Minerals a principios del 2016. A finales del 2016, se sumó Corfo y el Ministerio de Economía. A fines de 2017, DataChile recibió también el apoyo del Explora Lab de Entel.</p>",
+      "text3":
+        "<p>DataChile es un bien público (es de todos los chilenos), pero su administración pasará a manos del Gobierno de Chile en abril del 2018, una vez terminado el financiamiento de Corfo.</p>",
+      "text4":
+        "<p>Hasta abril del 2018, las actualizaciones de DataChile son responsabilidad de Datawheel. A partir de abril del 2018, la Dirección General de Relaciones Económicas Internacionales (DIRECON) del Ministerio de Relaciones Exteriores tomará posesión de la administración de DataChile y será responsable por actualizar los datos y la plataforma.</p>",
+      "title": "Equipo",
+      "title1": "¿Quién creó DataChile?",
+      "title2": "¿Quién financió DataChile?",
+      "title3": "¿Quién es dueño de DataChile?",
+      "title4": "¿Quién es responsable de actualizar DataChile?"
+    },
+    "terms": {
+      "text":
+        "<p>La información en este sitio se proporciona 'tal como está' y 'según esté disponible'. DataChile hace todo lo posible para garantizar, pero no garantiza, la exactitud o integridad de la información en el sitio web de DataChile. Nuestro objetivo es mantener esta información oportuna y precisa. Si los errores son traídos a nuestra atención, trataremos de corregirlos. DataChile puede agregar, cambiar, mejorar o actualizar la información del sitio web sin previo aviso.</p><p>DataChile se reserva el derecho exclusivo a su entera discreción de alterar, limitar o descontinuar parte de este sitio. Bajo ninguna circunstancia DataChile será responsable de ninguna pérdida, daño, responsabilidad o gasto sufrido que se alegue como resultado del uso de este sitio, incluyendo, sin limitación, cualquier falla, error, omisión, interrupción o retraso. El uso de este sitio es bajo el exclusivo riesgo del usuario. Hacemos todo lo posible para minimizar las interrupciones causadas por errores técnicos. Sin embargo, algunos datos o información en el sitio web de DataChile pueden haber sido creados o estructurados en archivos o formatos que no están libres de errores y no podemos garantizar que nuestro servicio no se vea interrumpido o afectado por tales problemas. DataChile no acepta ninguna responsabilidad con respecto a tales problemas (fallas de funcionamiento, virus informáticos, fallas en la línea de comunicación, alteración del contenido, etc.) incurridos como resultado del uso del sitio web de DataChile o cualquier enlace a sitios externos.</p><p>El Usuario reconoce y acepta específicamente que DataChile no es responsable de ninguna conducta de ningún otro Usuario, incluidos, entre otros, los tipos de conducta enumerados anteriormente.</p><p>DataChile se reserva el derecho de denegar a su exclusivo criterio el acceso de cualquier Usuario al sitio web de DataChile o cualquier parte del mismo sin previo aviso.</p><p>Para fines de seguridad del sitio y para asegurar que el sitio web de DataChile permanezca disponible para todos los usuarios, emplea programas de software para monitorear el tráfico de red para identificar intentos no autorizados de cargar o cambiar información o causar daños y detectar otras posibles violaciones de seguridad.</p>",
+      "title": "Términos de uso"
+    }
+  },
   "About": "Introducción",
   "About DataChile": "Acerca de DataChile",
   "Access": "Acceso",
@@ -37,14 +299,22 @@
   "Added to cart": "Agregado al carrito",
   "Admin": "Admin",
   "Administration": "Administración",
+  "affiliates": "afiliados",
   "Affiliates in": "Afiliados en",
   "Age": "Edad",
   "Age Range": "Rango de Edad",
   "All Regions": "Todas las Regiones",
   "Amenities": "Servicios",
-  "Area": "Área",
+  "an increase": "un incremento",
+  "an increment": "un aumento",
+  "and": "y",
+  "Annual Growth Exports": "Cambio Anual de Exportaciones",
+  "Annual Growth Imports": "Cambio Anual de Importaciones",
   "are": "son",
+  "Area": "Área",
+  "ATM": "Cajero Automático",
   "Average": "Promedio",
+  "Average age": "Edad promedio",
   "Average Employability (1st year)": "Empleabilidad promedio (1er año)",
   "Average Household": "Ingreso en hogar promedio",
   "Average Income": "Ingreso Promedio",
@@ -52,13 +322,19 @@
   "Average Income 1st year": "Ingreso Promedio 1er año",
   "Average NEM": "Promedio NEM",
   "Average PSU": "Promedio PSU",
+  "Average psu": "Promedio PSU",
   "Average Retention": "Retención Promedio",
   "Average Score": "Puntaje promedio",
   "Average SNED Score": "Puntaje Promedio SNED",
-  "Average age": "Edad promedio",
-  "Average psu": "Promedio PSU",
   "Avg anual payment 2016": "Avg anual payment 2016",
   "Back to Map": "Volver al mapa",
+  "Blank and Null Votes": "Votos Blancos y Nulos",
+  "button": {
+    "finish": "Finalizar",
+    "next": "Siguiente",
+    "prev": "Anterior",
+    "skip": "Saltar"
+  },
   "By Activity & Visa Type": "Por Actividad y Tipo de Visa",
   "By Industry": "Por Industria",
   "By Occupation": "Por Ocupación",
@@ -68,24 +344,21 @@
   "By Sex & Education Level": "Por sexo y nivel educativo",
   "Career": "Carrera",
   "Careers": "Carreras",
-  "Field of Science": "Área de Conocimiento",
-
-  "Product": "Product",
-  "Products": "Productos",
-  "Product Type": "Tipo de Producto",
-
-  "Industry": "Industria",
-  "Sector": "Sector",
-  "Industries": "Industrias",
-  "Industry Type": "Tipo de Industria",
-  "Trade": "Comercio",
-
-  "Casualties rate per 100 inhabitants": "Tasa de muertes por 100 habitantes",
+  "careers": "carreras",
   "Cart": "Carrito",
+  "Casualties rate per 100 inhabitants": "Tasa de muertes por 100 habitantes",
+  "Change exports": "Cambio exportaciones",
+  "Change imports": "Cambio Importaciones",
   "Change in participation": "Cambio en participación",
+  "Change number of visas": "Cambio número de visas",
+  "Change number of visas for {{current_max}} immigrants":
+    "Cambio número de visas para inmigrantes de sexo {{current_max}}",
+  "Change of immigrants with universitary or technical education":
+    "Cambio en migrantes con educación universitaria o técnica",
   "Chile Exports": "Exportaciones Chile",
   "Civics": "Cívica",
   "Click to Highlight": "Clic para resaltar",
+  "Columns": "Columnas",
   "Community Equipment": "Equipamiento comunitario",
   "Comparison by Cluster": "Comparación por Cluster",
   "complaints": "denuncias",
@@ -96,57 +369,267 @@
   "Congress": "Congreso",
   "Congressperson Election": "Elecciones de Diputados",
   "Connected to electricity network": "Conectado a la red eléctrica",
-  "Use fire-based heating": "Usa calefacción basada en fuego",
   "Connected to public tap water system": "Conectado a la red de agua pública",
   "Connectivity": "Conectividad",
   "Contact": "Contacto",
   "Contributor": "Contributor",
   "Countries": "Países",
   "Country": "País",
-  "Columns": "Columnas",
+  "country_profile": {
+    "intltrade_balance_slide": {
+      "balance":
+        "<p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>",
+      "text":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} CIF en {{year.first}}, hasta US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+      "text_exponly":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+      "text_imponly":
+        "<p>Entre el {{year.first}} y el {{year.last}}, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}. En términos nominales, esto fue {{import.direction}} de US{{import.volume_first}} CIF el {{year.first}}, a US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
+      "text_none":
+        "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>"
+    },
+    "intltrade_origin_dest_slide": {
+      "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
+      "export_0":
+        "<p>Durante {{year}} no se registraron exportaciones hacia {{level}}.</p>",
+      "export_1":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
+      "export_11":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>.</p>",
+      "export_111":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>, y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_3_region}}\">{{origin.third_region}}</a>.</p>",
+      "export_12":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a> y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>.</p>",
+      "export_2":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a> y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
+      "export_21":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a> y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, y desde la comuna de <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_3_region}}\">{{origin.third_region}}</a>.</p>",
+      "export_3":
+        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a> y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
+      "import": "t(country_profile.intltrade_origin_dest_slide.import_1)",
+      "import_0":
+        "<p>No se registraron importaciones desde {{level}} durante {{year}}.</p>",
+      "import_1":
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>.</p>",
+      "import_11":
+        "<p>El principal destino de las importaciones desde {{level}} son las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>.</p>",
+      "import_111":
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>, y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_3_region}}\">{{destination.third_region}}</a>.</p>",
+      "import_12":
+        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>.</p>",
+      "import_2":
+        "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, específicamente hacia las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a> y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>.</p>",
+      "import_21":
+        "<p>El principal destino de las importaciones desde {{level}} son las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a> y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, y a la comuna de <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_3_region}}\">{{destination.third_region}}</a>.</p>",
+      "import_3":
+        "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, donde destacan las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
+    },
+    "intltrade_slide": {
+      "text":
+        "<p>El {{year}} Chile exportó un total de US{{total_exports}} FOB a {{level}}, e importó un total de US{{total_imports}} CIF, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>",
+      "text_none":
+        "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>"
+    },
+    "migration_activity_slide": {
+      "activity_0": "",
+      "activity_1":
+        "<p>Las visas más comunes entregadas en {{year_last}} a inmigrantes de {{level}} son para {{first}} ({{first_percent}}).</p>",
+      "activity_2":
+        "<p>Las visas más comunes entregadas en {{year_last}} a inmigrantes de {{level}} son para {{first}} ({{first_percent}}) y {{second}} ({{second_percent}}).</p>",
+      "visa_type":
+        "<p>La mayoría de las visas entregadas en {{year_last}} a inmigrantes provenientes desde {{level}} son para {{first}}, y representan el {{first_percent}} de todas las visas entregadas a inmigrantes de {{level}}.</p>",
+      "visa_type_0":
+        "<p>Según los registros, para el año {{year_last}} no hay registros de inmigrantes desde {{level}}.</p>"
+    },
+    "migration_details_slide": {
+      "age":
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}, seguidos de gente en el rango {{second}}. Los primeros representan un {{first_percent}} del total en {{year_last}}, lo cual se traduce en un cambio de {{first_growth}} respecto al año {{year_prev}}.</p>",
+      "age_double":
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}, seguidos de gente en el rango {{second}}. Los primeros representan un {{first_percent}} del total en {{year_last}}.</p>",
+      "age_none": "",
+      "age_unique":
+        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}. Ellos representan un {{first_percent}} del total en {{year_last}}.</p>",
+      "sex": "$t(country_profile.migration_details_slide.sex_remained)",
+      "sex_changed":
+        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}, donde la mayoría era de sexo {{previous_max}}.</p>",
+      "sex_none":
+        "<p>No hay registros de inmigrantes desde {{level}} durante {{year_last}}.</p>",
+      "sex_only":
+        "<p>{{year_last}} es el único año en el que hay registro de inmigraciones desde {{level}}. La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}.</p>",
+      "sex_remained":
+        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}.</p>"
+    },
+    "migration_education_slide": {
+      "text":
+        "<p>El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Técnica o Universitaria, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con Educación Técnica o Universitaria ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.</p>",
+      "text_none":
+        "<p>No hay datos sobre inmigrantes desde {{level}} hacia Chile.</p>"
+    },
+    "migration_slide": {
+      "destination":
+        "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a <a href=\"{{links.region}}\">{{region}}</a>, principalmente a la comuna de <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
+      "growth":
+        "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una tasa anual del {{growth}}.</p>",
+      "text": "$t(country_profile.migration_slide.destination)",
+      "text_full":
+        "$t(country_profile.migration_slide.destination)$t(country_profile.migration_slide.growth)",
+      "text_no":
+        "<p>Durante {{year_last}}, no hay registros de visas otorgadas a inmigrantes desde {{level}}.</p>"
+    }
+  },
   "Created in collaboration": "Creado en colaboración",
   "Crimes": "Delitos",
   "Data source": "Fuente",
-  "Download CSV file": "Descargar archivo CSV",
-  "Download data": "Descargar datos",
-  "Download documentation": "Descargar documentación",
   "Death Causes": "Causas de muerte",
   "Death Causes By Diseases": "Causas de muerte por Enfermedades",
   "Death Causes Over Time": "Evolución de Muertes por Causas",
   "deaths per 100 inhabitants": "muertes por 100 habitantes",
+  "decile": "decil",
+  "Decile": "Decil",
+  "decreased": "decrecido",
+  "decremented": "disminuído",
   "Demographics": "Demografía",
   "Demography": "Demografía",
   "Dental Discharges": "Altas dentales",
+  "Description": "Descripción",
   "Desktop computer": "Computador de escritorio",
   "Developed by": "Desarrollado por",
   "Devices": "Dispositivos",
   "Devices' use in ": "Uso de dispositivos en ",
+  "disabilities": "discapacidades",
   "Disabilities by Grade": "Disabilities by Grade",
   "Disabilities by Sex": "Discapacidades por sexo",
   "Disability": "Discapacidad",
   "Disbilities": "Discapacidades",
   "Diversity": "Diversidad",
+  "documentation_api": {
+    "client-python": {
+      "text1":
+        "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
+      "text2":
+        "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
+      "text3":
+        "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+    },
+    "complex": {
+      "text1":
+        "Estos criterios se pueden combinar para definir consultas robustas. Aquí están algunos ejemplos.",
+      "text2":
+        "Seleccionar los valores de las regiones de Valparaíso (ID 5) y de Coquimbo (ID 4)",
+      "text3":
+        "Para realizar cortes por más de un ID, cada cut debe estar separado por <span class='code'>,</span> dentro de <span class='code'>{}</span>.",
+      "text4":
+        "Obtener las importaciones de todas las comunas de Chile entre los años 2013 y 2015."
+    },
+    "datasets": {
+      "text1":
+        "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+    },
+    "definitions": {
+      "cube":
+        "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
+      "cube2":
+        "En DataChile, cada dataset está agrupado en un cubo. El diseño del lenguaje de consultas a la API está centrado en torno a 3 operaciones: <span class='code'>Drilldown</span>, <span class='code'>Cut</span>, <span class='code'>Measure</span>. Para ejemplificar los conceptos, se utilizará el dataset <span class='code'>exports</span> -que representa las exportaciones de Chile- como referencia.",
+      "cut":
+        "Permite al usuario especificar un filtro, que restringe las tuplas disponibles del cubo. Por ejemplo, en <span class='code'>exports</span>, cortar el cubo en torno al miembro <span class='code'>[Region].[8]</span> en la dimensión <span class='code'>Geography</span>, sólo considerará celdas de la región de Bío-Bío. Múltiples cortes pueden ser especificados en una simple consulta.",
+      "dimension":
+        "Una <span class='code'>dimension</span> es un conjunto de jerarquías que discriminan el mismo atributo (Por ejemplo, el día que se produjo una exportación)",
+      "distinct":
+        "Evalúa un conjunto específico, elimina tuplas duplicadas del conjunto y devuelve el conjunto resultante.",
+      "drilldown":
+        "Un <span class='code'>drilldown</span> permite pasar de un nivel de detalle al siguiente. La estructura de un drilldown para las consultas en el cubo es <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
+      "hierarchy":
+        "Una <span class='code'>hierarchy</span> es un conjunto de miembros organizados estructuradamente para su análisis. Por ejemplo, la jerarquía Geográfica consiste de nombre de comuna, regiones y país. La jerarquización permite obtener valores intermedios: Total de exportaciones de la región de Valparaíso es la suma de todas las exportaciones de las comunas de dicha región.",
+      "level":
+        "Un <span class='code'>level</span> es un conjunto de miembros que se encuentran a la misma distancia del inicio de la jerarquía. Concepción, Tucapel, Arica, se encuentran en el mismo level.",
+      "measure":
+        "Variable escalar asociada con un valor particular en los datos del cubo.",
+      "member":
+        "Un <span class='code'>member</span> es un valor dentro de una dimensión determinada por un set de valores. La jerarquía género tiene los miembros 'Masculino' y 'Femenino'. 'Concepción', 'Bío-Bío' y 'Chile' son todos miembros de la jerarquía Geográfica.",
+      "nonempty":
+        "Devuelve el conjunto de tuplas que no están vacías de un especificado conjunto, basado en el producto cartesiano del conjunto especificado.",
+      "parents": "",
+      "sparse": ""
+    },
+    "descriptions": {
+      "cut[]":
+        "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <span class='code'>Level ID</span>. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
+      "distinct": "",
+      "drilldown[]":
+        "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
+      "measures[]": "",
+      "nonempty": "",
+      "pagenote": {
+        "text1":
+          "1. Si se hace la consulta directamente en URL, se debe reemplazar & por %26 para evitar problemas de parseo del corte."
+      },
+      "parents":
+        "En caso de encontrarse en un nivel de profundidad mayor a 1, obtiene el ID y nombre de los niveles padres.",
+      "sparse":
+        "Verifica si una determinada tupla NO está en la agregación, no se incluye en la tabla resultante."
+    },
+    "examples": {
+      "text1":
+        "Los siguientes ejemplos ilustran cómo son construidas las consultas, restringiendo la búsqueda con drilldowns, cuts y measures. Aquí se muestra el aspecto de la URL y el JSON devuelto cuando se pregunta ¿Qué número de personas está en cada previsión de salud en Concepción?"
+    },
+    "intro": {
+      "text1":
+        "DataChile utiliza para su funcionamiento como capa lógica Mondrian-REST, que es un componente del lado del servidor que permite la creación de APIs HTTP para acceder a una base de datos especificando la estructura lógica de la información.",
+      "text2":
+        "Para utilizar la API de DataChile, es necesario conocer algunos conceptos que facilitarán su uso, los cuáles explicaremos a continuación."
+    },
+    "syntax": {
+      "text1":
+        "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación.",
+      "text2":
+        "Para un cubo en particular, obtiene los miembros pertenecientes a un determinado level presente en una dimension."
+    },
+    "title1": "Primeros Pasos",
+    "title2": "Sintaxis",
+    "title3": "Ejemplo de llamada de datos",
+    "title4": "Combinaciones Complejas",
+    "title5": "Cliente Mondrian-REST para npm",
+    "title6": "Cliente API para Python",
+    "title7": "Listado de Campos",
+    "url": {
+      "distinct": "https://docs.microsoft.com/en-us/sql/mdx/distinct-mdx",
+      "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
+    },
+    "title8": "Cliente API para R"
+  },
+  "Download CSV file": "Descargar archivo CSV",
+  "Download data": "Descargar datos",
+  "Download documentation": "Descargar documentación",
   "During": "Durante",
-
   "Economy": "Economía",
   "Education": "Educación",
   "Educational Center": "Centro educacional",
+  "Efectiveness": "Efectividad",
   "Elected Authority": "Autoridades Electas",
+  "Election": "Elección",
+  "Elections": "Elecciones",
+  "Electoral Participation": "Participación Electoral",
+  "Electors": "Electores",
+  "Electors that didn't vote": "Electores que no votaron",
   "Employability": "Empleabilidad",
   "Employability 1st Year": "Empleabilidad 1er año",
   "Employability by Program": "Employability por programa",
+  "Employed Men with Technical Education":
+    "Hombres Empleados con Educación Técnica",
+  "Employed People By Education Level":
+    "Personas empleadas según nivel educativo",
+  "Employed Women with Technical Education":
+    "Mujeres Empleadas con Educación Técnica",
   "Employees": "Empleados",
   "Employees in ": "Empleados en ",
   "Employment": "Empleo",
+  "Employment by category": "Empleo por categoría",
   "Employment by Category": "Empleo por categoría",
   "Employment by Education": "Empleo por nivel educativo",
-  "Employment by category": "Empleo por categoría",
   "Employment growth": "Crecimiento de empleo",
   "Enabled Voters": "Votantes Habilitados",
   "Enrollment": "Matrícula",
   "Enter a location": "Busca un lugar",
-  "Housing": "Vivienda",
-  "Housing & Environment": "Vivienda y Entorno",
   "Estimate Population": "Población estimada",
   "Estimate Population Growth": "Crecimiento de Población estimado",
   "Ethnicity": "Ethnicity",
@@ -155,160 +638,387 @@
   "Explore profiles": "Explorar perfiles",
   "Explore profiles by category": "Explorar perfiles por categoría",
   "Exports": "Exportaciones",
-  "Exports By Destination": "Exportaciones según destino",
-  "Exports By Origin": "Exportaciones según origen",
-  "Exports By Region": "Exports según región",
   "Exports by Destination": "Exportación por destino",
+  "Exports By Destination": "Exportaciones por Destino",
+  "Exports By Origin": "Exportaciones según origen",
   "Exports by product": "Exportaciones por producto",
+  "Exports By Region": "Residencia Fiscal de Empresas Exportadoras",
   "Exports in ": "Exportaciones en ",
-  "Imports in ": "Importaciones en ",
   "Exports volume": "Volumen de exportaciones",
-  "Imports volume": "Volumen de importaciones",
   "Exports {{last_year}}": "Exportaciones {{last_year}}",
-  "Imports {{last_year}}": "Importaciones {{last_year}}",
   "Extras": "Extras",
+  "Fairness": "Igualdad de Oportunidades",
   "Female": "Mujeres",
   "Female Average Age": "Edad promedio mujeres",
-  "Female Median Income": "Ingreso mediano mujeres",
+  "Female immigrants with complete schooling":
+    "Migrantes de sexo femenino con escolaridad completa",
   "Female Mean Income": "Ingreso promedio mujeres",
+  "Female Median Income": "Ingreso mediano mujeres",
   "Female percent in ": "Porcentaje mujeres en ",
   "Female percent in industry": "Porcentaje femenino en la industria",
   "Female percent of visas": "Porcentaje femenino de visas",
   "Female percent with disability": "Población femenina con discapacidad",
   "Field of Science": "Área de Conocimiento",
+  "form": {
+    "data":
+      "¿No encontraste lo que estabas buscando? Sugiere datos para agregar",
+    "error": "¿Encontraste un error? Repórtalo"
+  },
+  "GAP between Private/Municipal":
+    "Diferencia PSU Promedio Particular Pagado/Municipal",
   "Gender": "Género",
   "Geo": "Geo",
+  "geo_profile": {
+    "civics": {
+      "congress": {
+        "note":
+          "Nombres marcados con un * representan candidatos electos en dicha elección.",
+        "text":
+          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}"
+      },
+      "presidential": {
+        "text":
+          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+      }
+    },
+    "demography": {
+      "origin_by_activity":
+        "<p>En {{last_year}}, el {{percentage_activity}} de las {{visas}} visas entregadas en {{area}} corresponden a la actividad más común entre los inmigrantes: {{activity}}.</p><p>Así mismo, el tipo de visa más popular en {{area}} es {{type}}, con un {{percentage_type}}.</p>",
+      "origin_by_country":
+        "<p>Durante {{last_year}} se entregaron {{visas}} visas a inmigrantes que declararon domicilio en {{area}}.</p><p>Los principales países de origen son: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> y <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. La mayoría de ellos cuenta con un nivel educativo de {{education_level}}.</p>",
+      "origin_by_sex_age":
+        "<p>La edad promedio según las visas entregadas en {{last_year}} a inmigrantes residentes en {{area}} es de {{avg_age}} años.</p><p>En {{area}} las visas entregadas se dividen en {{percentage_female}} para mujeres y {{percentage_male}} para hombres.</p>",
+      "population_by_sex_age":
+        "<p>Para el año {{year}} la población de {{area}}, según estimaciones del INE, es {{total}} personas.</p><p>La proyección poblacional para el año {{year_max}} es {{projected}} personas.</p>"
+    },
+    "economy": {
+      "employment": {
+        "text":
+          "<p>En {{year.last}}, la fuerza de trabajo en {{geo.caption}} era de {{total.total}} personas, de las cuales {{total.male}} son hombres y {{total.female}} son mujeres. </p><p>En {{year.last}}, el número de personas empleadas en {{geo.caption}} fue de {{total.empleados}}, mientras que el número de desempleados fue de {{total.desempleados}}, y el de inactivos fue de {{total.inactivos}}.</p><p>La mayor parte de los ocupados de {{geo.caption}}  tiene un nivel de educación (según el último nivel completado) {{level.first.caption}}, seguido por {{level.second.caption}}.</p>"
+      },
+      "exports": {
+        "by_destination":
+          "Destinos comerciales de empresas domiciliadas en {{caption}}",
+        "by_product":
+          "Productos exportados por empresas domiciliadas en {{caption}}",
+        "default":
+          "<p>En {{exports.latest_year}} las firmas establecidas en {{geo.caption}} exportaron <i>{{exports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, las exportaciones de {{geo.caption}} han <i>{{exports.increased_or_decreased}}</i> a una tasa promedio anual del {{exports.annualized_rate}}, desde <i>{{exports.trade_first_year}}</i> en {{exports.first_year}} hasta <i>{{exports.trade_last_year}}</i> en {{exports.last_year}}. Las principales exportaciones de {{geo.caption}} son <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>, que representa {{exports.trade_first_share}} del total de las exportaciones de {{geo.caption}}, seguida por <a href=\"{{exports.trade_second_product_link}}\">{{exports.trade_second_product}}</a> que representa el {{exports.trade_second_share}}.</p>",
+        "no_data":
+          "<p>No existen datos de exportaciones por parte de las firmas establecidas en {{geo.caption}}.</p>",
+        "one":
+          "<p>En {{exports.latest_year}} las firmas establecidas en {{geo.caption}} exportaron <i>{{exports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, las exportaciones de {{geo.caption}} han <i>{{exports.increased_or_decreased}}</i> a una tasa promedio anual del {{exports.annualized_rate}}, desde <i>{{exports.trade_first_year}}</i> en {{exports.first_year}} hasta <i>{{exports.trade_last_year}}</i> en {{exports.last_year}}. La única exportación de {{geo.caption}} es <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>.</p>"
+      },
+      "imports": {
+        "by_origin":
+          "Origen de importaciones de empresas domiciliadas en {{caption}}",
+        "by_product":
+          "Productos importados por empresas domiciliadas en {{caption}}",
+        "default":
+          "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{imports.first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. Las principales importaciones de {{geo.caption}} son <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, que representa {{imports.trade_first_share}} del total de las importaciones de {{geo.caption}}, seguida por, <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a>, que representa el {{imports.trade_second_share}} de éstas</p>",
+        "no_data":
+          "<p>No existen datos de importaciones de empresas establecidas en {{geo.caption}}.</p>",
+        "one":
+          "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{imports.first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. La única importación de {{geo.caption}} es <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>.</p>"
+      },
+      "industry":
+        "<p>En {{year.last}}, {{geo.caption}} generó una producción total de {{total}}. La productividad laboral basada en producción industrial en {{geo.caption}} fue de {{labour_productivity}} pesos anuales por empleado.</p><p>Las principales industrias de {{geo.caption}} son {{text_joined_activities}}. </p><p>Las ocupaciones más comunes en {{geo.caption}}, según el número de trabajadores, son {{text_joined_occupations}}.</p>",
+      "industry_space":
+        "<p>Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de industrias conecta industrias que tienden a estar presentes en las mismas comunas.</p><p>Las industrias con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.</p>",
+      "innovation":
+        "<p>En {{year_sector.last}}, los sectores económicos de {{geo.caption}} que gastaron más en I+D fueron {{industry.first.caption}}, seguido por {{industry.second.caption}}.</p><p>En {{year.last}}, las empresas de {{geo.caption}} que lideraron la ejecución del gasto en I+D fueron {{text_joined_industries}}.</p>",
+      "product_space":
+        "<p>Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de productos conecta productos que tienden a ser exportados por los mismos países.</p><p>Las productos con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.</p>",
+      "rca":
+        "La ventaja comparativa revelada (RCA) mide el nivel de especialización de una localidad en una industria o producto.  Cuando una localidad tiene RCA mayor que 1 en una actividad económica, esta actividad económica tiene mayor presencia en esa localidad que en la localidad promedio.",
+      "trade": ""
+    },
+    "education": {
+      "enrollment":
+        "En {{year.last}} hubo {{enrollment.total}} estudiantes matriculados en establecimientos educacionales de {{geo.caption}}. De éstos, {{enrollment.municipal}} estaban matriculados en colegios municipales, {{enrollment.subvencionado}} en colegios particulares subvencionadas, {{enrollment.particular}} en colegios privados y {{enrollment.adm_delegada}} en colegios de administración delegada.",
+      "performance": {
+        "byPSU": {
+          "disclaimer":
+            "<p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+          "distribution":
+            "<p>En {{year}} se rindieron {{total}} PSU en {{geo}}. El puntaje promedio de PSU en {{geo}} fue de {{avg}} puntos en {{year}}.</p>",
+          "level1": {
+            "2":
+              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>",
+            "3":
+              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>"
+          },
+          "level2": {
+            "no_data":
+              "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>",
+            "plural":
+              "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>",
+            "singular":
+              "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>"
+          }
+        }
+      },
+      "sned": {
+        "definitions": {
+          "efectiveness":
+            "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
+          "fairness":
+            " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. ",
+          "improvement":
+            "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
+          "initiative":
+            "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. ",
+          "integration":
+            "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
+          "overcoming":
+            "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional."
+        },
+        "text1":
+          "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}."
+      }
+    },
+    "health": {
+      "access":
+        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+      "death_causes":
+        "En el período {{year.first}} - {{year.last}}, la causa de muerte con la tasa de crecimiento anual más alta en {{geo.caption}} fueron {{data.first.caption}} con un {{data.first.rate}}, seguido de {{data.second.caption}} con {{data.second.rate}}.",
+      "disability":
+        "En {{year.last}}, {{data.total}}{{data.prep}} personas en {{geo.caption}} presentaron algún tipo de discapacidad, donde el {{data.severe.share}} correspondió a una discapacidad severa.",
+      "fonasa": {
+        "copago":
+          "Sin embargo, la utilidad concreta de esta distribución de la población beneficiaria pasa por el copago que éstos hacen en retribución a las atenciones médicas otorgadas con nuestra cobertura. Copago es el concepto para referirse a un pago por servicios compartido entre el beneficiario y el seguro, donde FONASA financia o bonifica una parte (porcentaje) del costo de una atención de salud cualquiera, y el beneficiario aporta de su bolsillo la parte que no financiamos/bonificamos.",
+        "text":
+          "* Cuando un nuevo beneficiario se incorpora al Seguro Público de Salud, la primera tarea de FONASA es colocarlo en uno de sus 4 tramos de ingreso. Esta clasificación, de tipo escala, permite levantar caracterizaciones socioeconómicas de la población beneficiaria, y están definidos de la siguiente manera:",
+        "tramos":
+          "<ul><li><strong>Grupo A</strong>: Beneficiarios carentes de recursos para cotizar en salud, o en condición de indigencia (no cotizantes).</li><li><strong>Grupo B</strong>: Beneficiarios con ingresos menores a $270.000 al mes (cotizantes). Trabajadores del sector público de salud.</li><li><strong>Grupo C</strong>: Beneficiarios con ingresos de entre $270.000 y $394.200 al mes (cotizantes)</li><li><strong>Grupo D</strong>: Beneficiarios con ingresos de $394.200 y más al mes (cotizantes)</li></ul>"
+      },
+      "healthcare":
+        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
+    },
+    "housing": {
+      "amenities": {
+        "text":
+          "<p>La encuesta CASEN levanta información sobre el acceso a servicios y equipamiento de las viviendas de las distintas localidades del país.</p>"
+      },
+      "connectivity": {
+        "desktop": "{{access_desktop}} a través de un computador de escritorio",
+        "desktop_4":
+          "{{access_desktop}} accedió a internet a través de un computador de escritorio",
+        "laptop": "{{access_laptop}} mediante un computador portátil",
+        "laptop_2":
+          "{{access_laptop}} accedió a internet mediante un computador portátil",
+        "laptop_6": "$t(geo_profile.housing.connectivity.laptop_2)",
+        "mobile":
+          "{{access_mobile}} accedió a internet por medio de un teléfono móvil",
+        "text": "$t(geo_profile.housing.connectivity.total)",
+        "text_0": "$t(geo_profile.housing.connectivity.total)",
+        "text_1":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile).</p>",
+        "text_2":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.laptop).</p>",
+        "text_3":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), y $t(geo_profile.housing.connectivity.laptop).</p>",
+        "text_4":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_5":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), y $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_6":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.laptop), y $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_7":
+          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), $t(geo_profile.housing.connectivity.laptop), y $t(geo_profile.housing.connectivity.desktop).</p>",
+        "text_none":
+          "La encuesta CASEN de {{year_last}} no tiene datos sobre conectividad para {{level}}.",
+        "total":
+          "<p>En {{level}}, en {{year_last}}, {{access_total}} personas tuvieron acceso a internet.</p>"
+      },
+      "crimes": {
+        "default":
+          "<p>Los delitos de mayor connotación social con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
+        "no_data":
+          "<p>No se registraron denuncias de delitos de mayor connotación social en {{geo.caption}} durante {{year.last}}</p>"
+      },
+      "quality": {
+        "material":
+          "<p>La mayoría de las viviendas en {{level}} son {{housing_common_type}}. El material de construcción más común en {{level}} es {{housing_common_material}}.</p>",
+        "rural":
+          "<p>En {{level}} hay {{housing_rural_number}} viviendas rurales ({{housing_rural_percent}} del total de viviendas).</p>",
+        "text":
+          "La última encuesta CASEN no tiene representatividad a nivel comunal para {{level}}.",
+        "text_1": "$t(geo_profile.housing.quality.rural)",
+        "text_2": "$t(geo_profile.housing.quality.material)",
+        "text_3":
+          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
+      }
+    },
+    "income_sex_age_slide": {
+      "text":
+        "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
+    },
+    "politics": {
+      "text":
+        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
+    },
+    "trade_slide": {
+      "text":
+        "En {{latest_year}} las firmas con domicilio fiscal en {{geo.caption}} exportaron <i>{{trade_volume}}</i>, llevando a {{geo.caption}} al {{rank}} puesto de los mayores exportadores de Chile. Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}. Los principales productos de exportación de {{geo.caption}} son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} del total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} del total)"
+    },
+    "warning": "Los datos que se muestran corresponden a {{caption}}"
+  },
   "Geographical": "Geográfico",
   "Glossary": "Glosario",
+  "granted in": "otorgadas en",
+  "granted in {{year_last}}": "otorgadas en {{year_last}}",
+  "granted in {{year}}": "otorgadas en {{year}}",
   "Green Areas": "Áreas verdes",
-  "Change exports": "Cambio exportaciones",
-  "Change imports": "Cambio Importaciones",
+  "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
   "Growth Exports": "Cambio Exportaciones",
   "Growth Imports": "Cambio Importaciones",
   "Growth Investment": "Cambio inversión",
   "Growth Labour": "Cambio de empleos",
-  "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
-  "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
-  "Change number of visas": "Cambio número de visas",
   "Growth number of visas": "Crecimiento número de visas",
   "Growth number of visas for {{current_max}} immigrants":
     "Crecimiento número de visas para inmigrantes de sexo {{current_max}}",
-  "Change number of visas for {{current_max}} immigrants":
-    "Cambio número de visas para inmigrantes de sexo {{current_max}}",
+  "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
   "Health": "Salud",
-  "Politics": "Política",
-
-  "is": "es",
-  "Isolate Region": "Filtrar por Región",
-  "increased": "crecido",
-  "decreased": "decrecido",
-  "decile": "decil",
-  "Decile": "Decil",
-  "an increase": "un incremento",
-  "and": "y",
-  "a decrease": "un descenso",
-
-  "Election": "Elección",
-  "Elections": "Elecciones",
-  "Electors": "Electores",
-  "Electoral Participation": "Participación Electoral",
-  "Electors that didn't vote": "Electores que no votaron",
-  "Employed Men with Technical Education":
-    "Hombres Empleados con Educación Técnica",
-  "Employed Women with Technical Education":
-    "Mujeres Empleadas con Educación Técnica",
-  "Exports By Region": "Residencia Fiscal de Empresas Exportadoras",
-  "Imports By Region": "Residencia Fiscal de Empresas Importadoras",
-  "Imports": "Importaciones",
-
-  "Exports By Destination": "Exportaciones por Destino",
-  "Imports By Origin": "Importaciones por Origen",
-
-  "Top exporter region": "Top región exportadora",
-  "Top output region": "Top región productora",
-
-  "International Trade": "Comercio Internacional",
-  "International Trade Balance": "Balanza Comercial Internacional",
-  "Other Products": "Otros Productos",
-
-  "Annual Growth Exports": "Cambio Anual de Exportaciones",
-  "Annual Growth Imports": "Cambio Anual de Importaciones",
-  "Change of immigrants with universitary or technical education":
-    "Cambio en migrantes con educación universitaria o técnica",
+  "health cares": "atenciones de salud",
   "Health Center": "Centro de salud",
   "Health Insurance": "Previsión de Salud",
   "Healthcare": "Atención de Salud",
   "Healthcare by Type": "Atención de Salud por Tipo",
   "Higher Education": "Higher Education",
+  "home": {
+    "carousel": {
+      "comunas_exports": "Comunas más exportadoras",
+      "comunas_population": "Comunas más pobladas",
+      "countries_exports": "Principales destinos comerciales",
+      "featured_profiles": "Perfiles destacados",
+      "products_exports": "Productos más exportados"
+    },
+    "diff": {
+      "text1":
+        "Integra información de <span>más de 15 fuentes distintas</span> pertenecientes a más de 10 organismos de Gobierno.",
+      "text2": "Crea y combina <span>visualizaciones interactivas</span>.",
+      "text3":
+        "Piensa los <span>datos como historias</span> y no como archivos.",
+      "title": "¿En qué se diferencia de otros proyectos de datos abiertos?"
+    },
+    "sources": { "title": "DataChile integra datos de todas estas fuentes" },
+    "subtitle":
+      "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
+    "what": {
+      "text1":
+        "Ofrece una radiografía de las <span>temáticas más importantes</span> para el desarrollo del país.",
+      "text2":
+        "Ayuda a conocer <span>tendencias y necesidades</span> para el diseño e implementación de políticas públicas, programas de la sociedad civil, oportunidades de negocios y estrategias de marketing del sector privado.",
+      "text3":
+        "Colabora en la toma de <span>decisiones</span> tanto del sector público como privado.",
+      "title": "¿Qué es DataChile?"
+    }
+  },
   "Home": "Inicio",
   "Households with credit in state bank":
     "Hogares con crédito en banco estatal",
+  "houses": "viviendas",
+  "Housing": "Vivienda",
+  "Housing & Environment": "Vivienda y Entorno",
+  "Housing and Environment": "Housing and Environment",
   "Housing Conditions": "Condiciones habitacionales",
   "Housing Type": "Housing Type",
-  "Housing and Environment": "Housing and Environment",
   "Immigrant visas": "Visas de inmigrante",
+  "Imports": "Importaciones",
   "Imports & Exports": "Importaciones y Exportaciones",
   "Imports By Destination": "Importaciones por Destino",
   "Imports By Origin": "Importaciones por origen",
-  "Imports By Region": "Importaciones por Región",
   "Imports by Origin Country": "Importación por país de origen",
   "Imports by product": "Importaciones por producto",
+  "Imports By Region": "Importaciones por Región",
   "Imports from Chile": "Importaciones desde Chile",
+  "Imports in ": "Importaciones en ",
+  "Imports volume": "Volumen de importaciones",
+  "Imports {{last_year}}": "Importaciones {{last_year}}",
+  "Improvement": "Mejoramiento",
+  "in": "en",
   "In": "En",
+  "in ": "en ",
+  "In last year of high school in ":
+    "En último año de enseñanza media durante ",
   "In period": "En el período",
   "in period {{year_first}} - {{year_last}}":
     "En el período {{year_first}} - {{year_last}}",
   "in period {{year_prev}} - {{year_last}}":
     "En el período {{year_prev}} - {{year_last}}",
-  "Median Income": "Ingreso medio",
   "Income": "Ingreso",
   "Income By Age": "Ingreso por Edad",
   "Income By Sex": "Ingreso por Sexo",
   "Income Range CLP": "Rango de ingreso CLP",
+  "increased": "crecido",
+  "incremented": "aumentado",
   "Industries": "Industrias",
   "Industry": "Industria",
   "Industry & Occupations": "Industria y ocupaciones",
   "Industry By Output (CLP)": "Industrias por Producción (CLP)",
-  "Industry Space": "Espacio de Industrias",
   "Industry output": "Producción de la industria",
+  "Industry Space": "Espacio de Industrias",
+  "Industry Type": "Tipo de Industria",
+  "industry_profile": {
+    "economy": {
+      "default":
+        "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{location.first.share}} del total, seguida por <a href=\"{{location.second.link}}\">{{location.second.caption}}</a>, que ejecutó {{location.second.share}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+      "no_data":
+        "<p>En {{year.last}}, no hubo datos de nivel de ventas en industrias de {{industry.caption}}.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
+      "one_item":
+        "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la única comuna con nivel de ventas en industrias de {{industry.caption}}. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p></p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>"
+    },
+    "employment":
+      "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} han {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",
+    "r&d":
+      "<p>En {{year}}, las exportaciones de {{industry.caption}} fueron de {{industry.exports}}, representando al {{industry.share}} del total. Por otra parte, el nivel gasto de {{industry.caption}} en Investigación y Desarrollo fue de {{industry.spending}}.</p>",
+    "warning": "Los datos que se muestran corresponde a {{caption}}"
+  },
+  "Initiative": "Iniciativa",
   "Innovation": "Innovación",
   "Institution": "Institución",
   "Institution Type": "Tipo de Institución",
   "Institutions": "Instituciones",
+  "Integration": "Integración",
   "International trade": "Comercio internacional",
+  "International Trade": "Comercio Internacional",
+  "International Trade Balance": "Balanza Comercial Internacional",
   "Internet Access": "Acceso a Internet",
-  "Use small screens": "Usa pantallas pequeñas",
-  "to access the internet": "para acceder a Internet",
-  "Use unconventional internet browser":
-    "Usa navegadores de internet no convencionales",
-  "on Smart TV or Gaming Console": "en Smart TVs o Consolas de juego",
-  "Internet Access By Zone in ": "Acceso a internet por zona en ",
   "Internet access": "Acceso a Internet",
+  "Internet Access By Zone in ": "Acceso a internet por zona en ",
   "Internet use": "Uso de Internet",
   "Investment By Comuna (Legal address)":
     "Inversión por comuna (dirección legal)",
+  "is": "es",
+  "Isolate Region": "Filtrar por Región",
   "Language": "Idioma",
   "Language_PSU": "Lenguaje",
   "Laptop computer": "Computador portátil",
-
-  "LINEAR": "LINEAL",
-  "Linear": "Lineal",
   "Less Than 20 Blocks from": "Menos de 20 cuadras de",
-  "Less Than 8 Blocks from": "Menos de 8 cuadras de",
   "Less than 30 square meter households": "Hogares de menos de 30m²",
+  "Less Than 8 Blocks from": "Menos de 8 cuadras de",
+  "Linear": "Lineal",
+  "LINEAR": "LINEAL",
+  "loading": {
+    "description": "Cargando {{progress}} de {{total}} series de datos",
+    "developed": "Diseñado y construido por Datawheel",
+    "map": "Cargando información",
+    "title": "Por favor espere"
+  },
   "LoadingComponent": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
-    "title": "Por favor espere"
+    "title": "Por favor espere",
+    "developed": "Diseñado y desarrollado por Datawheel"
   },
   "Login": {
     "E-mail": "E-mail",
+    "error": "Wrong Username or Password",
     "Facebook": "Facebook",
     "Instagram": "Instagram",
     "Login": "Login",
     "Password": "Password",
-    "Twitter": "Twitter",
-    "error": "Wrong Username or Password",
-    "success": "Successfully Logged In"
+    "success": "Successfully Logged In",
+    "Twitter": "Twitter"
   },
   "Lorem datum": "Lorem datum",
   "Lorem ipsum dolor sit amet, consectetur ": {
@@ -333,879 +1043,24 @@
     "":
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempon."
   },
-
-  "Mean Income": "Ingreso Medio",
   "Main exported product": "Principal producto exportado",
-  "Main exporting region": "Principal región exportadora",
   "Main exporting comuna": "Principal comuna exportadora",
+  "Main exporting region": "Principal región exportadora",
   "Main imported product": "Principal producto importado",
-  "Main importing region": "Principal región importadora",
   "Main importing comuna": "Principal comuna importadora",
+  "Main importing region": "Principal región importadora",
   "Main services in ": "Principales servicios en ",
   "Male": "Hombre",
   "Male Average Age": "Edad promedio hombres",
-  "Male Median Income": "Ingreso mediano hombres",
-  "Male Mean Income": "Ingreso promedio hombres",
   "Male immigrants with complete schooling":
     "Migrantes de sexo masculino con escolaridad completa",
-  "Female immigrants with complete schooling":
-    "Migrantes de sexo femenino con escolaridad completa",
-  "Map": "Mapa",
-  "Map explore": "Exploración con Mapa",
-  "Market": "Mercado",
-  "Material of Walls": "Material de las paredes",
-  "Math": "Matemática",
-  "Mayor": "Alcalde",
-  "Mayor Election": "Elección de Alcalde",
-  "Measure": "Medición",
-  "Median Income CLP": "Ingreso medio CLP",
-  "Migration": "Migración",
-  "Migration By Activity": "Migración por actividad",
-  "Migration By Age": "Migración por edad",
-  "Migration By Calculated Age Range": "Migración por rango etario calculado",
-  "Migration By Educational Level": "Migración por nivel educativo",
-  "Migration By Origin": "Migración por origen",
-  "Migration By Region": "Migración por región",
-  "Migration By Sex": "Migración por sexo",
-  "Migration By Visa": "Migración por visa",
-  "Migration By Visa Type": "Migración por tipo de visa",
-  "Mobile phone": "Teléfono móvil",
-  "Monthly Median Income CLP": "Ingreso medio mensual CLP",
-  "Most common activity": "Actividad más común",
-  "Municipalities": "Municipalidades",
-  "Most Common Visa Activity": "Principal Actividad de Visa",
-  "Most Common Visa Type": "Principal Tipo de Visa",
-  "My Data": "Mis datos",
-  "National": "Nacional",
-  "National Profile": "Perfil Nacional",
-  "No datasets selected": "No hay datasets seleccionados",
-  "NEM Performance By Administration":
-    "Desempeño NEM por Tipo de Administración",
-  "Number of schools by Cluster": "Cantidad de escuelas por Cluster",
-  "Number of jobs": "Cantidad de puestos de trabajo",
-  "Number of larceny complaints": "Cantidad de denuncias por hurto",
-  "Number of complaints": "Cantidad de denuncias",
-  "Number of theft complaints growth":
-    "Cambio en cantidad de denuncias por robo",
-  "Number of visas": "Cantidad de Visas",
-  "Number of visas granted in {{year_last}}":
-    "Número de visas otorgadas en {{year_last}}",
-  "Number of visas granted to students":
-    "Número de visas otorgadas a estudiantes",
-  "Number of deaths": "Cantidad de muertes",
-  "Occupation": "Ocupación",
-  "Occupational Category": "Categoría ocupacional",
-  "Occupations by workers": "Ocupaciones por cantidad de trabajadores",
-  "Opportunities": "Oportunidades",
-  "Opportunity": "Oportunidad",
-  "Opportunity in Products": "Oportunidades en productos",
-  "Opportunity in Industries": "Oportunidades en industrias",
-  "Origin & Destination": "Origen y Destino",
-  "Origins": "Migración",
-  "Other products": "Otros productos",
-  "Other regions": "Otras regiones",
-  "Others": "Otros",
-  "Output": "Producción",
-  "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
-  "Output by Industry": "Producción por Industria",
-
-  "Performance Evaluation": "Evaluación de Desempeño",
-  "Presidential": "Presidencial",
-  "PSU exams": "Personas que rindieron PSU",
-  "PSU distribution": "Distribución de PSU",
-  "PSU Results": "Resultados PSU",
-  "PSU Results By Sex": "Resultados PSU por sexo",
-  "PSU vs NEM": "PSU vs NEM",
-  "PSU By Sex": "PSU Por Sexo",
-  "PSU vs NEM by school": "PSU vs NEM por escuela",
-  "PSU vs NEM by Comuna & Administration":
-    "PSU vs NEM por Comuna & Administración",
-  "Participation": "Participación",
-  "Participation in Municipal Election": "Participación en Elección Municipal",
-  "People": "Personas",
-  "People with disabilities": "Personas con discapacidad",
-  "Per 100 inhabitants in": "Cada 100 habitantes en",
-  "Performance": "Desempeño",
-  "Pharmacy": "Farmacia",
-  "Pic by": "Foto de",
-  "Politics": "Política",
-  "Population": "Población",
-  "Population Projection": "Proyección poblacional",
-  "Population Pyramid": "Pirámide poblacional",
-  "Population with Health Insurance": "Población con Previsión de Salud",
-  "Population with disability": "Población con discapacidad",
-  "President": "Presidente",
-  "Presidential 1st - 2nd round": "1ra - 2da vuelta Presidencial",
-  "Primary Healthcare": "Atención de Salud Primaria",
-  "Product": "Producto",
-  "Product Space": "Espacio de Producto",
-  "Product Type": "Tipo de Producto",
-  "Products": "Productos",
-  "Production per worker": "Producción por Trabajador",
-  "Profiles": "Perfiles",
-  "Public Transport": "Transporte Público",
-  "Quality": "Calidad",
-  "R&D Spending By Industry": "Gasto en I+D por Industria",
-  "R&D Spending By Sector": "Gasto en I+D por Sector",
-  "R&D spending": "Gasto en I+D",
-  "Region": "Región",
-  "Regional": "Regional",
-  "Regional ": "Regional ",
-  "Employed People By Education Level":
-    "Personas empleadas según nivel educativo",
-  "Regional Employment By Sex": "Empleo regional según sexo",
-  "Regions": "Regiones",
-  "Regions & Comunas": "Regiones y Comunas",
-  "Research & Development": "Investigación y Desarrollo",
-  "Reset": {
-    "Confirm Password": "Confirm New Password",
-    "E-mail": "E-mail",
-    "Password": "New Password",
-    "actions": {
-      "RESET_SEND_FAILURE": "No account associated with {{email}}.",
-      "RESET_SEND_SUCCESS":
-        "{{email}} has been sent a password reset. Please check your inbox.",
-      "RESET_TOKEN_FAILURE": "Password reset token is invalid or has expired."
-    },
-    "button": "Reset Password"
-  },
-  "Results": "Resultados",
-  "Results for": "Resultados para",
-  "Results 1st Round": "Resultados Primera Vuelta",
-  "Results 2nd Round": "Resultados Segunda Vuelta",
-  "Retention": "Retención",
-  "Retention by Program": "Retención por Programa",
-  "Role": "Rol",
-  "Rows": "Filas",
-  "Rural households": "Hogares rurales",
-  "Rural Schools": "Escuelas Rurales",
-  "Salaries": "Salarios",
-  "Salaries By Category": "Salarios por Categoría",
-  "Salaries By Occupation": "Salarios por ocupación",
-  "Sales in ": "Ventas en ",
-  "Score": "Puntaje",
-  "School": "Escuela",
-  "Schools": "Escuelas",
-  "School By Enrollment": "Escuela según matrícula",
-  "Search a location, industry, product, career, etc":
-    "Busque lugares, industrias, productos…",
-  "Sector": "Sector",
-  "Security": "Seguridad",
-  "See less": "Ver menos",
-  "See more": "Ver más",
-  "Senators": "Senadores",
-  "Senator Election": "Elección de Senador",
-  "Services Access": "Acceso a servicios",
-  "Sex": "Sexo",
-  "SignUp": {
-    "Confirm Password": "Confirm Password",
-    "E-mail": "E-mail",
-    "Facebook": "Facebook",
-    "Instagram": "Instagram",
-    "Password": "Password",
-    "PrivacyTermsText":
-      "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a> and <a href='{{privacy}}'>Privacy Policy</a>",
-    "PrivacyText":
-      "By checking this box, you agree to our <a href='{{privacy}}'>Privacy Policy</a>",
-    "Sign Up": "Sign Up",
-    "TermsText":
-      "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a>",
-    "Twitter": "Twitter",
-    "Username": "Username",
-    "error": {
-      "Exists": "E-mail or Username already in use",
-      "IncompleteFields": "Please set all fields",
-      "PasswordMatch": "Passwords don't match",
-      "TermsAgree": "Must agree to terms to continue"
-    },
-    "success": "Successfully Signed Up"
-  },
-  "Smart TV": "Smart TV",
-  "Sned_score": "Puntuación SNED",
-  "Soon": "Próximamente",
-  "Source": "Fuente",
-  "Special Education Schools": "Escuelas de Educación Especial",
-  "Specialized Healthcare": "Atención con Médicos Especialistas",
-  "Specialized Healthcares": "Cuidados médicos especializados",
-  "Sponsored by": "Patrocinado por",
-  "Sport Center": "Centro Deportivo",
-  "Students that took the PSU": "Estudiantes que rindieron la PSU",
-  "Students": "Estudiantes",
-  "Students in Rural Education": "Estudiantes en educación rural",
-  "Students in Special Education": "Estudiantes en educación especial",
-  "Summary": "Resumen",
-  "Supported by": "Apoyado por",
-  "Tablet": "Tablet",
-  "The most comprehensive effort to integrate and visualize Chile’s Public Data":
-    "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
-  "Theft complaints share": "Porcentaje de denuncias por robo",
-  "Top Schools By Performance": "Principales escuelas según desempeño",
-  "Top destination country": "Principal país de destino",
-  "Top exporter region": "Principal región exportadora",
-  "Topics": "Temas",
-  "Total": "Total",
-  "Total Electors": "Electores Totales",
-  "Total Enrollment": "Matrícula total",
-  "Total Exports": "Total Exportaciones",
-  "Total Imports": "Total Importaciones",
-  "Total Investment": "Inversión Total",
-  "Total R&D spending by Business Type":
-    "Inversión total en I+D según tipo de empresa",
-  "Total R&D spending by Ownership Type":
-    "Total gasto I+D por Tipo de Propiedad",
-  "Total Students": "Cantidad de estudiantes",
-  "Trade": "Comercio",
-  "Trade Balance": "Balanza comercial",
-  "Trade volume": "Volumen de comercio",
-  "Unemployed people": "Personas desempleadas",
-  "USD": "USD",
-  "Urgency Healthcare": "Atención en Servicio de Urgencias",
-  "Urgency Healthcare Average": "Promedio Atención de urgencia",
-  "User": "Usuario",
-  "Username": "Nombre de usuario",
-  "Value": "Valor",
-  "Videogame console": "Consola de videojuegos",
-  "Visas": "Visas",
-  "Visas for Female immigrants": "Visas para inmigrantes de sexo Femenino",
-  "Visas for females in range {{range}}":
-    "Visas para mujeres en el rango {{range}}",
-  "Visas for males in range {{range}}":
-    "Visas para hombres en el rango {{range}}",
-  "Visualize by": "Visualizar por",
-  "Votes": "Votos",
-  "votes": "votos",
-  "Blank and Null Votes": "Votos Blancos y Nulos",
-
-  "Wages": "Salarios",
-  "Wages by Program": "Salarios por programa",
-  "where": "donde",
-  "Years of Studies": "Años de estudio",
-  "Zone": "Zona",
-  "a decrease": "un descenso",
-  "about": {
-    "ack": {
-      "credits": {
-        "subtitle": "Para citar DataChile por favor utilice:",
-        "text":
-          "<p>Datawheel, 2017. https://datachile.io. Fecha de acceso [fecha de hoy].</p>",
-        "title": "Citación"
-      },
-      "partners": {
-        "text":
-          "<p>Este trabajo fue desarrollado por <a href='http://datawheel.us' target='_blank'>Datawheel</a> con el financiamiento de <a href='http://www.aminerals.cl/' target='_blank'>Antofagasta Minerals</a>, <a href='https://www.corfo.cl/' target='_blank'>Corporación de Fomento de la Producción</a>, <a href='http://www.economia.gob.cl/minecon' target='_blank'>Ministerio de Economía, Fomento y Turismo</a> y <a href='http://www.entel.cl/' target='_blank'>ENTEL</a>. Apoyaron además: <a href='https://www.direcon.gob.cl/' target='_blank'>Dirección General de Relaciones Económicas Internacionales</a> y <a href='https://www.asech.cl/' target='_blank'>Asociación de empremdedores de Chile</a>.</p>",
-        "title": "Participantes"
-      },
-      "title": "Reconocimiento y créditos"
-    },
-    "background": {
-      "subtitle1": "¿Qué es DataChile?",
-      "subtitle2": "¿Qué datos incluye DataChile?",
-      "subtitle3": "¿Cómo incluyo mis datos en DataChile?",
-      "text1":
-        "<p>DataChile es una plataforma que integra, visualiza y distribuye datos públicos chilenos. El objetivo de DataChile es mejorar la eficiencia y la eficacia de las decisiones públicas, a través de data integrada que ayude a revelar brechas en servicios públicos, identificar oportunidades de diversificación industrial y promover un debate público mejor informado.</p>",
-      "text2":
-        "<p>Al 8 de enero de 2018, DataChile incluye datos de 8 organismos oficiales. Éstos son:</p><ul><li>Ministerio de Desarrollo Social (MDS)</li><li>Instituto Nacional de Estadísticas (INE)</li><li>Aduanas Chile</li><li>Ministerio de Economía (MINECON)</li><li>Ministerio de Educación (MINEDUC)</li><li>Departamento de Medición y Registro Educacional (DEMRE)</li><li>Departamento de Extranjería y Migración, Ministerio del Interior</li><li>Subsecretaría de Telecomunicaciones (SUBTEL)</li></ul>",
-      "text3":
-        "<p>DataChile no es un proyecto enfocado en la cantidad de datos, sino en su integración y utilidad. Estamos interesados en bases de datos que sean completas a nivel nacional (con información para la mayoría de las municipalidades), relevantes y actualizadas de manera regular.</p><p>Si quiere que consideremos sus datos para incluirlos en DataChile, complete el <a href='https://docs.google.com/forms/d/e/1FAIpQLSdBmEkvqK1BQT8c6FrPyLkAjloimsjfH2EHxG_bRFVFF_iGkQ/viewform' target='_blank'>siguiente formulario</a></p>",
-      "title": "Datachile"
-    },
-    "data": {
-      "title": "Datos",
-      "dataset": "Fuente de datos",
-      "source": "Organismo responsable",
-      "year": "Años disponibles",
-      "text":
-        "Las fuentes de datos integradas en Datachile son las siguientes:",
-      "casen": {
-        "title": "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
-        "year": "1990 - 2015",
-        "source": "Ministerio de Desarrollo Social (MDS)",
-        "text":
-          "<p>La encuesta CASEN es levantada por el Ministerio de Desarrollo Social (MDS). La encuesta CASEN tiene por objetivo entregar una “radiografía” de la situación socioeconómica de los hogares de Chile, siendo la principal fuente de datos utilizada para medir la pobreza y desigualdad.</p>",
-        "use":
-          "Los datos de la encuesta CASEN se encuentran en los perfiles nacional, regional y comunal, y en las dimensiones de economía, vivienda y entorno, y salud."
-      },
-      "nene": {
-        "title": "Nueva Encuesta Nacional de Empleo (NENE)",
-        "year": "2010 - 2016",
-        "source": "Instituto Nacional de Estadísticas (INE)",
-        "text":
-          "<p>La encuesta NENE es levantada por el Instituto Nacional de Estadísticas (INE). La encuesta NENE se realiza mensualmente y clasifica a la población en edad de trabajar (PET) (todas las personas de 15 años y más), según su situación laboral, aplicando un conjunto de reglas aceptadas a nivel mundial y definidas por la Organización Internacional del Trabajo (OIT). La NENE se basa en el enfoque de medición del empleo y el desempleo a partir de encuestas a hogares.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en la dimensión de economía, y en el perfil de industria en la dimensión de empleo."
-      },
-      "nesi": {
-        "title": "Nueva Encuesta Suplementaria de Ingresos (NESI)",
-        "year": "2010 - 2016",
-        "source": "Instituto Nacional de Estadísticas (INE)",
-        "text":
-          "<p>La encuesta NESI es levantada por el Instituto Nacional de Estadísticas como un módulo complementario de la Nueva Encuesta Nacional de Empleo (NENE). Se realiza cada año entre octubre y diciembre con el objetivo de caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la NENE y los ingresos de otras fuentes de los hogares, tanto a nivel nacional como regional.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en las dimensión de economía, y en el perfil de industria en la dimensión de ingresos."
-      },
-      "aduana": {
-        "title": "Registros de Exportación e Importación",
-        "year": "2011 - 2016",
-        "source": "Servicio Nacional de Aduanas",
-        "text":
-          "<p>Usamos registros administrativos de exportación e importación provenientes del Servicio Nacional de Aduanas. Estos registros mensuales cuentan las exportaciones a nivel de comunas, productos, y destinos. También cuentan las exportaciones a nivel de origen, producto, y comuna de destino. La data de Aduanas no representa información sobre las actividades económicas de una comuna, sino sobre las empresas con residencia fiscal en dicha comuna.  Es por eso que comunas como Las Condes exportan una gran cantidad de mineral de Cobre.</p>",
-        "use":
-          "Estos datos se encuentran en el perfil nacional, regional y comunal en la dimensión de economía, y en los perfiles de país (destino) y producto."
-      },
-      "iplusd": {
-        "title": "Encuesta Sobre Gasto y Personal en I+D",
-        "year": "2009 - 2014",
-        "source": "Ministerio de Economía (MINECON)",
-        "text":
-          "<p>Datos levantados por el Instituto Nacional de Estadísticas por encargo del Ministerio de Economía (MINECON). Esta encuesta busca recoger información de los recursos ejecutados, las fuentes de financiamiento y el personal destinado a actividades de investigación y desarrollo, durante los años de medición.</p>",
-        "use":
-          "Los datos de la Encuesta sobre Gasto y Personal en I+D en el sector empresas se encuentra en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
-      },
-      "enrollment": {
-        "title": "Matrícula escolar",
-        "year": "2004 - 2015",
-        "source": "Ministerio de Educación (MINEDUC)",
-        "text":
-          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información estadística de matrícula de estudiantes del sistema escolar por nivel de enseñanza, curso, y sexo, además del área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación."
-      },
-      "performance": {
-        "title": "Desempeño escolar",
-        "year": "2004 - 2015",
-        "source": "Ministerio de Educación (MINEDUC)",
-        "text":
-          "<p>Datos generados por el Ministerio de Educación (MINEDUC). Proporcionan información acerca del rendimiento de los establecimientos medido en notas, teniendo en en cuenta el área geográfica, dependencia administrativa y región de los establecimientos educacionales.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación."
-      },
-      "psu": {
-        "title": "Prueba de Selección Universitaria (PSU)",
-        "year": "2004 - 2016",
-        "source":
-          "Departamento de Evaluación, Medición y Registro Educacional (DEMRE)",
-        "text":
-          "<p>Datos entregados por el Ministerio de Educación (MINEDUC) y generados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) que contienen información que permite obtener los puntajes PSU a nivel de establecimiento educacional, establecimientos según sistema de administración (público o privado), comunas y regiones.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación."
-      },
-      "salud": {
-        "title": "Indicadores de Acceso a la Salud",
-        "year": "2014",
-        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
-        "text":
-          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud."
-      },
-      "muerte": {
-        "title": "Causas de Muerte",
-        "year": "2014",
-        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
-        "text":
-          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de mortalidad en las regiones de Chile tomando en cuenta la clasificación de enfermedades y accidentes definidas por la Organización Mundial de la Salud (OMS).</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud."
-      },
-      "discapacidad": {
-        "title": "Encuesta Nacional de Discapacidad (ENDISC)",
-        "year": "2016",
-        "source": "Servicio Nacional de Discapacidad (SENADIS)",
-        "text":
-          "<p>Datos levantados por el Servicio Nacional de Discapacidad (SENADIS). Este estudio permite conocer la situación de las personas con discapacidad en Chile y cuál es su situación con respecto a la población en general, en términos de su desenvolvimiento en las actividades diarias, relación con el entorno, participación social y otros.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud."
-      },
-      "vida": {
-        "title": "Esperanza de Vida",
-        "year": "2010 - 2014",
-        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
-        "text":
-          "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS). Toma como referencia la esperanza de vida al nacer, la cual es una estimación del promedio de años que viviría un grupo de personas nacidas el mismo año, si las condiciones de mortalidad de la región/país evaluado se mantuvieran constantes. Este indicador permite comparar el nivel general de la mortalidad entre países y a lo largo del tiempo.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en las dimensión de salud."
-      },
-      "poblacion": {
-        "title": "Proyecciones de Población",
-        "year": "2002 - 2020",
-        "source": "Instituto Nacional de Estadísticas (INE)",
-        "text":
-          "<p>Estimaciones generadas por el Instituto Nacional de Estadísticas (INE) con base en el Censo del año 2002 que dan cuenta de la evolución de la población a nivel nacional, regional, comunal y de servicios de salud que agrupan a distintas comunas del país.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en la dimensión de demografía."
-      },
-      "migracion": {
-        "title": "Estadísticas Migratorias",
-        "year": "2005 - 2016",
-        "source": "Departamento de Extranjería y Migración",
-        "text":
-          "<p>Datos generados por el Departamento de Extranjería y Migración, que es la entidad encargada de otorgar permisos de residencia a población extranjera en el país. Este registro corresponde a la población migrante en situación regular.</p><p>Una visa no es equivalente a una persona. Por ejemplo, a lo largo de tres años a una misma persona se le podría haber otorgado tres visas o dos visas y una permanencia definitiva. En este caso, el registro indicará las tres visas o las dos visas y la permanencia definitiva, sin considerar que se trata solo de una persona.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en la dimensión de demografía."
-      },
-      "internet": {
-        "title": "Encuesta Nacional de Acceso y Usos de Internet",
-        "year": "2016",
-        "source": "Subsecretaría de Telecomunicaciones (SUBTEL)",
-        "text":
-          "<p>Encuesta de la Subsecretaría de Telecomunicaciones (SUBTEL) que muestra a nivel regional el acceso a internet, los motivos por los cuales los hogares se conectan y cuáles son los dispositivos que emplean.</p>",
-        "use":
-          "Se usa en los perfiles nacional, regional y comunal en la dimensión de vivienda y entorno."
-      },
-      "costes": {
-        "title": "Datos de Costes y Producción",
-        "year": "2010-2014",
-        "source": "Servicio de Impuestos Internos (SII)",
-        "text":
-          "<p>Datos de productividad de las industrias chilenas que provienen de registros administrativos del Servicio de Impuestos Internos (SII). Estos datos proporcionan información respecto del número de trabajadores, el coste de capital y trabajo, y la salida o producción (output) de una industria en una comuna.</p>",
-        "use":
-          "Se usa en el perfil nacional, regional y comunal en la dimensión de economía, y en el perfil industrias."
-      },
-      "servel": {
-        "title": "Resultados electorales y participación",
-        "year": "2009-2013-2016-2017",
-        "source": "Servicio Electoral (SERVEL)",
-        "text":
-          "<p>Los datos presentados corresponden a datos públicos disponibles en la web del Servicio Electoral (SERVEL) y refleja los resultados de los últimos procesos eleccionarios de alcaldes, parlamentarios y presidente. Además de los candidatos ganadores se incluye el detalle completo de la votación de los candidatos que se presentan a elecciones. También hay detalles de la participación electoral a nivel comunal.</p>",
-        "use": "Se usa en los perfiles nacional, regional y comunal."
-      },
-      "felonies": {
-        "title": "Denuncias por delitos de mayor connotación social",
-        "year": "2005-2016",
-        "source": "Carabineros de Chile",
-        "text":
-          "<p>Las estadísticas de los Delitos de Mayor Connotación Social (DMCS): Estos corresponden a los grupos denominados como 'Delitos Violentos' (Robo con Violencia, Robo con Intimidación, Robo por Sorpresa, Lesiones, Homicidio y Violación), y 'Delitos Contra la Propiedad' (Robo de Vehículo Motorizado, Robo de Accesorios de Vehículos, Robo en Lugar Habitado, Robo en Lugar no Habitado, Otros Robos con Fuerza y Hurto).</p>",
-        "use": "Se utiliza en los perfiles nacional, regional y comunal."
-      },
-      "ids": {
-        "title": "Ids genéricos",
-        "year": "",
-        "source": "",
-        "text": "<p>Metadatos y ids de referencia de los demás archivos.</p>",
-        "use": "Se usa en los perfiles nacional, regional y comunal."
-      }
-    },
-    "team": {
-      "title": "Equipo",
-      "title1": "¿Quién creó DataChile?",
-      "text1":
-        "<p>DataChile fue creada por Datawheel, una empresa que es líder global en servicios de integración, visualización y distribución de datos. DataWheel fue fundada en el 2013 en Estados Unidos por César Hidalgo, Dave Landry y Alex Simoes. Datawheel ha creado DataUSA (ganador de un Information is Beautiful Award en 2016 y un Webby Award en 2017), DataAfrica, DataViva, y otros proyectos privados para gobiernos y empresas.</p>",
-      "title2": "¿Quién financió DataChile?",
-      "text2":
-        "<p>DataChile fue financiado por aportes públicos y privados. El primer aporte a la construcción de DataChile fue otorgado por Antofagasta Minerals a principios del 2016. A finales del 2016, se sumó Corfo y el Ministerio de Economía. A fines de 2017, DataChile recibió también el apoyo del Explora Lab de Entel.</p>",
-      "title3": "¿Quién es dueño de DataChile?",
-      "text3":
-        "<p>DataChile es un bien público (es de todos los chilenos), pero su administración pasará a manos del Gobierno de Chile en abril del 2018, una vez terminado el financiamiento de Corfo.</p>",
-      "title4": "¿Quién es responsable de actualizar DataChile?",
-      "text4":
-        "<p>Hasta abril del 2018, las actualizaciones de DataChile son responsabilidad de Datawheel. A partir de abril del 2018, la Dirección General de Relaciones Económicas Internacionales (DIRECON) del Ministerio de Relaciones Exteriores tomará posesión de la administración de DataChile y será responsable por actualizar los datos y la plataforma.</p>",
-      "members":
-        "<p>El equipo de Datachile se compone por:</p><ul><li>Francisco Abarzúa</li><li>Manuel Aristarán</li><li>María Victoria Ferrieri</li><li>Catalina Gobantes Marín</li><li>César Hidalgo</li><li>Carlos Navarrete Lizama</li><li>Sebastián Melín</li><li>Pablo H. Paladino</li><li>Gabriela Pérez Ponce</li><li>Mauricio 'Pachá' Vargas</li></ul>"
-    },
-    "api": {
-      "title": "API",
-      "title1": "API de DataChile",
-      "text1":
-        "<p>DataChile posee una API de datos que entrega la información para construir los gráficos y generar todos los textos del sitio.</p>",
-      "title2": "¿Cuándo estará disponible la API?",
-      "text2":
-        "<p>La API será lanzada con motivo del <a rel='noopener noreferrer' href='http://opendataday.org/' target='_blank'>Open Data Day</a>, el 3 de Marzo de 2018. Además, para entonces contaremos con un mapa que permita explorar todas las dimensiones y variables disponibles.</p>",
-      "title3":
-        "Mientras tanto, ¿cómo puedo acceder a la información que distribuye DataChile?",
-      "text3":
-        "<p>Junto a cada gráfico existe la opción para descargar la información que lo genera <img class=\"icon\" src=\"/images/icons/icon-download.svg\" />. La misma está disponible en formatos CSV, XLS y JSON.</p><p>Asímismo, en la <a href=\"/about/data\">Sección de Datos</a> se puede acceder a la descarga de los archivos completos en CSV.</p>"
-    },
-    "terms": {
-      "text":
-        "<p>La información en este sitio se proporciona 'tal como está' y 'según esté disponible'. DataChile hace todo lo posible para garantizar, pero no garantiza, la exactitud o integridad de la información en el sitio web de DataChile. Nuestro objetivo es mantener esta información oportuna y precisa. Si los errores son traídos a nuestra atención, trataremos de corregirlos. DataChile puede agregar, cambiar, mejorar o actualizar la información del sitio web sin previo aviso.</p><p>DataChile se reserva el derecho exclusivo a su entera discreción de alterar, limitar o descontinuar parte de este sitio. Bajo ninguna circunstancia DataChile será responsable de ninguna pérdida, daño, responsabilidad o gasto sufrido que se alegue como resultado del uso de este sitio, incluyendo, sin limitación, cualquier falla, error, omisión, interrupción o retraso. El uso de este sitio es bajo el exclusivo riesgo del usuario. Hacemos todo lo posible para minimizar las interrupciones causadas por errores técnicos. Sin embargo, algunos datos o información en el sitio web de DataChile pueden haber sido creados o estructurados en archivos o formatos que no están libres de errores y no podemos garantizar que nuestro servicio no se vea interrumpido o afectado por tales problemas. DataChile no acepta ninguna responsabilidad con respecto a tales problemas (fallas de funcionamiento, virus informáticos, fallas en la línea de comunicación, alteración del contenido, etc.) incurridos como resultado del uso del sitio web de DataChile o cualquier enlace a sitios externos.</p><p>El Usuario reconoce y acepta específicamente que DataChile no es responsable de ninguna conducta de ningún otro Usuario, incluidos, entre otros, los tipos de conducta enumerados anteriormente.</p><p>DataChile se reserva el derecho de denegar a su exclusivo criterio el acceso de cualquier Usuario al sitio web de DataChile o cualquier parte del mismo sin previo aviso.</p><p>Para fines de seguridad del sitio y para asegurar que el sitio web de DataChile permanezca disponible para todos los usuarios, emplea programas de software para monitorear el tráfico de red para identificar intentos no autorizados de cargar o cambiar información o causar daños y detectar otras posibles violaciones de seguridad.</p>",
-      "title": "Términos de uso"
-    },
-    "changelog": {
-      "title": "Cambios",
-      "launch": {
-        "title": "1.0.0 - Lanzamiento beta - 2018-01-08",
-        "description":
-          "<p>Página principal. Exploración por perfiles. Buscador de entidades. Perfiles: geográfico, países, industrias y productos. Más de 15 datasets sobre los tópicos: Economía, demografía, educación, salud y vivienda.</p>"
-      },
-      "araucaria": {
-        "title": "1.0.1 - \"Araucaria\" - 2018-01-19",
-        "description":
-          "<p>Corrección de errores generales en varios perfiles, más imágenes de fondo, estabilidad de perfil país para países con pocos datos.</p>"
-      },
-      "belloto": {
-        "title": "1.1.0 - \"Belloto\" - 2018-01-26",
-        "description":
-          "<p>Nuevos datos: Denuncias de delitos de mayor connotación social, presentes en perfil geográfico, tópico Vivienda y Entorno, sección Seguridad (Fuente: Carabineros de Chile). Correcciones en indentificadores de previsión de salud sobre datos de CASEN para 2003 y 2006. Agregada Comuna de Ñiquén en mapa de selección. Correcciones varias en textos y traducciones (nan, N/A, etc). Ajustes de diseño y estilo para desktop y mobile. Correcciones en rutas para descarga de información completa desde el about. Mejora en performance de queries de la home.</p>"
-      },
-      "canelo": {
-        "title": "1.1.1 - \"Canelo\" - 2018-02-02",
-        "description":
-          "<p>Corrección de textos. Mejoras en meta tags opengraph.</p>"
-      },
-      "diamelo": {
-        "title": "1.2.0 - \"Diamelo\" - 2018-02-09",
-        "description":
-          "<p>Nuevos datos: Sección Cívica. Información sobre resultados electorales y participación de la ciudadanía en las últimas elecciones. Corrección de detalles de estilo. Se agregaron links de descarga de datos unificados en la sección data del about.</p>"
-      },
-      "encino": {
-        "title": "1.2.1 - \"Encino\" - 2018-02-16",
-        "description":
-          "<p>Nuevas visualizaciones en Sección Cívica: resultados electorales a nivel presidente, parlamento y alcalde. Correcciones de autoridades en el encabezado del perfil geográfico.</p>"
-      }
-    }
-  },
-  "affiliates": "afiliados",
-  "an increase": "un incremento",
-  "careers": "carreras",
-  "country_profile": {
-    "migration_slide": {
-      "destination":
-        "<p>El {{year_last}}, Chile entregó {{number_visas}} visas de trabajo, estudio o residencia a inmigrantes provenientes de {{level}}. La mayoría de estos inmigrantes llegaron a <a href=\"{{links.region}}\">{{region}}</a>, principalmente a la comuna de <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
-      "growth":
-        "<p>Entre {{year_prev}} y {{year_last}}, el número de visas entregadas a inmigrantes provenientes de {{level}} ha {{behavior}} a una tasa anual del {{growth}}.</p>",
-      "text": "$t(country_profile.migration_slide.destination)",
-      "text_no":
-        "<p>Durante {{year_last}}, no hay registros de visas otorgadas a inmigrantes desde {{level}}.</p>",
-      "text_full":
-        "$t(country_profile.migration_slide.destination)$t(country_profile.migration_slide.growth)"
-    },
-    "migration_details_slide": {
-      "sex": "$t(country_profile.migration_details_slide.sex_remained)",
-      "sex_none":
-        "<p>No hay registros de inmigrantes desde {{level}} durante {{year_last}}.</p>",
-      "sex_only":
-        "<p>{{year_last}} es el único año en el que hay registro de inmigraciones desde {{level}}. La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}.</p>",
-      "sex_changed":
-        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}, donde la mayoría era de sexo {{previous_max}}.</p>",
-      "sex_remained":
-        "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}.</p>",
-      "age":
-        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}, seguidos de gente en el rango {{second}}. Los primeros representan un {{first_percent}} del total en {{year_last}}, lo cual se traduce en un cambio de {{first_growth}} respecto al año {{year_prev}}.</p>",
-      "age_double":
-        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}, seguidos de gente en el rango {{second}}. Los primeros representan un {{first_percent}} del total en {{year_last}}.</p>",
-      "age_unique":
-        "<p>La mayoría de los inmigrantes provenientes desde {{level}} son personas en el rango de edad {{first}}. Ellos representan un {{first_percent}} del total en {{year_last}}.</p>",
-      "age_none": ""
-    },
-    "migration_education_slide": {
-      "text_none":
-        "<p>No hay datos sobre inmigrantes desde {{level}} hacia Chile.</p>",
-      "text":
-        "<p>El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Técnica o Universitaria, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con Educación Técnica o Universitaria ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.</p>"
-    },
-    "migration_activity_slide": {
-      "visa_type":
-        "<p>La mayoría de las visas entregadas en {{year_last}} a inmigrantes provenientes desde {{level}} son para {{first}}, y representan el {{first_percent}} de todas las visas entregadas a inmigrantes de {{level}}.</p>",
-      "visa_type_0":
-        "<p>Según los registros, para el año {{year_last}} no hay registros de inmigrantes desde {{level}}.</p>",
-      "activity_2":
-        "<p>Las visas más comunes entregadas en {{year_last}} a inmigrantes de {{level}} son para {{first}} ({{first_percent}}) y {{second}} ({{second_percent}}).</p>",
-      "activity_1":
-        "<p>Las visas más comunes entregadas en {{year_last}} a inmigrantes de {{level}} son para {{first}} ({{first_percent}}).</p>",
-      "activity_0": ""
-    },
-    "intltrade_slide": {
-      "text_none":
-        "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
-      "text":
-        "<p>El {{year}} Chile exportó un total de US{{total_exports}} FOB a {{level}}, e importó un total de US{{total_imports}} CIF, resultando en una balanza comercial {{behavior}} de US{{total_balance}}.</p><p>El principal producto que Chile importa desde {{level}} es <a href=\"{{main_import.link}}\">{{main_import.name}}</a>. El año {{year}}, este representó un {{main_import.percent}} del total de importaciones desde {{level}}.</p><p>El {{year}}, el principal producto de exportación de Chile hacia {{level}} fue <a href=\"{{main_export.link}}\">{{main_export.name}}</a>. Este representó un {{main_export.percent}} de las exportaciones chilenas a {{level}}.</p>"
-    },
-    "intltrade_origin_dest_slide": {
-      "export": "t(country_profile.intltrade_origin_dest_slide.export_1)",
-      "export_0":
-        "<p>Durante {{year}} no se registraron exportaciones hacia {{level}}.</p>",
-      "export_1":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
-      "export_11":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>.</p>",
-      "export_2":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a> y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
-      "export_111":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>, y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_3_region}}\">{{origin.third_region}}</a>.</p>",
-      "export_12":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a> y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_2_region}}\">{{origin.second_region}}</a>.</p>",
-      "export_21":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a> y <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>, y desde la comuna de <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_3_region}}\">{{origin.third_region}}</a>.</p>",
-      "export_3":
-        "<p>Las exportaciones desde Chile hacia {{level}} provienen principalmente de empresas con residencia fiscal en las comunas de <a href=\"{{links.exp_1_comuna}}\">{{origin.first_municipality}}</a>, <a href=\"{{links.exp_2_comuna}}\">{{origin.second_municipality}}</a> y <a href=\"{{links.exp_3_comuna}}\">{{origin.third_municipality}}</a>, en <a href=\"{{links.exp_1_region}}\">{{origin.first_region}}</a>.</p>",
-      "import": "t(country_profile.intltrade_origin_dest_slide.import_1)",
-      "import_0":
-        "<p>No se registraron importaciones desde {{level}} durante {{year}}.</p>",
-      "import_1":
-        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>.</p>",
-      "import_11":
-        "<p>El principal destino de las importaciones desde {{level}} son las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>.</p>",
-      "import_2":
-        "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, específicamente hacia las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a> y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>.</p>",
-      "import_111":
-        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>, y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_3_region}}\">{{destination.third_region}}</a>.</p>",
-      "import_12":
-        "<p>El principal destino de las importaciones desde {{level}} es la comuna de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>. Lo siguen las comunas de <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_2_region}}\">{{destination.second_region}}</a>.</p>",
-      "import_21":
-        "<p>El principal destino de las importaciones desde {{level}} son las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a> y <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a>, en <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, y a la comuna de <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>, en <a href=\"{{links.imp_3_region}}\">{{destination.third_region}}</a>.</p>",
-      "import_3":
-        "<p>El principal destino de las importaciones desde {{level}} es <a href=\"{{links.imp_1_region}}\">{{destination.first_region}}</a>, donde destacan las comunas de <a href=\"{{links.imp_1_comuna}}\">{{destination.first_municipality}}</a>, <a href=\"{{links.imp_2_comuna}}\">{{destination.second_municipality}}</a> y <a href=\"{{links.imp_3_comuna}}\">{{destination.third_municipality}}</a>.</p>"
-    },
-    "intltrade_balance_slide": {
-      "balance":
-        "<p>En {{year.last}}, Chile tuvo una balanza comercial {{balance.behavior}} con {{level}}, la que favoreció a {{balance.beneficiary}} en US{{balance.volume_last}}.</p>",
-      "text_none":
-        "<p>No se registran operaciones comerciales con {{level}} en los últimos años.</p>",
-      "text_imponly":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}. En términos nominales, esto fue {{import.direction}} de US{{import.volume_first}} CIF el {{year.first}}, a US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
-      "text_exponly":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)",
-      "text":
-        "<p>Entre el {{year.first}} y el {{year.last}}, las exportaciones a {{level}} han registrado {{export.behavior}} de {{export.growth}}. En términos nominales, esto fue {{export.direction}} de US{{export.volume_first}} FOB el {{year.first}}, a US{{export.volume_last}} FOB en {{year.last}}. En el mismo período, las importaciones desde {{level}} registraron {{import.behavior}} de {{import.growth}}, desde los US{{import.volume_first}} CIF en {{year.first}}, hasta US{{import.volume_last}} CIF en {{year.last}}.</p>$t(country_profile.intltrade_balance_slide.balance)"
-    }
-  },
-  "an increment": "un aumento",
-  "a decrement": "una disminución",
-  "incremented": "aumentado",
-  "decremented": "disminuído",
-  "positive": "positiva",
-  "negative": "negativa",
-  "disabilities": "discapacidades",
-
-  "Efectiveness": "Efectividad",
-  "Overcoming": "Superación",
-  "Initiative": "Iniciativa",
-  "Integration": "Integración",
-  "Improvement": "Mejoramiento",
-  "Fairness": "Igualdad de Oportunidades",
-
-  "geo_profile": {
-    "civics": {
-      "congress": {
-        "text":
-          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}",
-        "note":
-          "*Los elementos isolados de los gráficos representan a candidatos electos en dicha elección."
-      },
-      "presidential": {
-        "text":
-          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
-      }
-    },
-    "warning": "Los datos que se muestran corresponden a {{caption}}",
-    "trade_slide": {
-      "text":
-        "En {{latest_year}} las firmas con domicilio fiscal en {{geo.caption}} exportaron <i>{{trade_volume}}</i>, llevando a {{geo.caption}} al {{rank}} puesto de los mayores exportadores de Chile. Durante los últimos {{number_of_years}} años las exportaciones de {{geo.caption}} han <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{trade_first_year}}</i> en {{first_year}} hasta <i>{{trade_last_year}}</i> en {{last_year}}. Los principales productos de exportación de {{geo.caption}} son <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} del total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} del total)"
-    },
-    "economy": {
-      "employment": {
-        "text":
-          "<p>En {{year.last}}, la fuerza de trabajo en {{geo.caption}} era de {{total.total}} personas, de las cuales {{total.male}} son hombres y {{total.female}} son mujeres. </p><p>En {{year.last}}, el número de personas empleadas en {{geo.caption}} fue de {{total.empleados}}, mientras que el número de desempleados fue de {{total.desempleados}}, y el de inactivos fue de {{total.inactivos}}.</p><p>La mayor parte de los ocupados de {{geo.caption}}  tiene un nivel de educación (según el último nivel completado) {{level.first.caption}}, seguido por {{level.second.caption}}.</p>"
-      },
-      "exports": {
-        "by_destination":
-          "Destinos comerciales de empresas domiciliadas en {{caption}}",
-        "by_product":
-          "Productos exportados por empresas domiciliadas en {{caption}}",
-        "default":
-          "<p>En {{exports.latest_year}} las firmas establecidas en {{geo.caption}} exportaron <i>{{exports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, las exportaciones de {{geo.caption}} han <i>{{exports.increased_or_decreased}}</i> a una tasa promedio anual del {{exports.annualized_rate}}, desde <i>{{exports.trade_first_year}}</i> en {{exports.first_year}} hasta <i>{{exports.trade_last_year}}</i> en {{exports.last_year}}. Las principales exportaciones de {{geo.caption}} son <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>, que representa {{exports.trade_first_share}} del total de las exportaciones de {{geo.caption}}, seguida por <a href=\"{{exports.trade_second_product_link}}\">{{exports.trade_second_product}}</a> que representa el {{exports.trade_second_share}}.</p>",
-        "one":
-          "<p>En {{exports.latest_year}} las firmas establecidas en {{geo.caption}} exportaron <i>{{exports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, las exportaciones de {{geo.caption}} han <i>{{exports.increased_or_decreased}}</i> a una tasa promedio anual del {{exports.annualized_rate}}, desde <i>{{exports.trade_first_year}}</i> en {{exports.first_year}} hasta <i>{{exports.trade_last_year}}</i> en {{exports.last_year}}. La única exportación de {{geo.caption}} es <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>.</p>",
-        "no_data":
-          "<p>No existen datos de exportaciones por parte de las firmas establecidas en {{geo.caption}}.</p>"
-      },
-      "imports": {
-        "by_origin":
-          "Origen de importaciones de empresas domiciliadas en {{caption}}",
-        "by_product":
-          "Productos importados por empresas domiciliadas en {{caption}}",
-        "default":
-          "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{imports.first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. Las principales importaciones de {{geo.caption}} son <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, que representa {{imports.trade_first_share}} del total de las importaciones de {{geo.caption}}, seguida por, <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a>, que representa el {{imports.trade_second_share}} de éstas</p>",
-        "one":
-          "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{imports.first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. La única importación de {{geo.caption}} es <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>.</p>",
-        "no_data":
-          "<p>No existen datos de importaciones de empresas establecidas en {{geo.caption}}.</p>"
-      },
-      "innovation":
-        "<p>En {{year_sector.last}},los sectores económicos de {{geo.caption}} que gastaron más en I+D fueron {{industry.first.caption}}, seguido por {{industry.second.caption}}.</p><p>En {{year.last}}, las empresas de {{geo.caption}} que lideraron la ejecución del gasto en I+D fueron {{text_joined_industries}}.</p>",
-      "trade": "",
-      "rca":
-        "La ventaja comparativa revelada (RCA) mide el nivel de especialización de una localidad en una industria o producto.  Cuando una localidad tiene RCA mayor que 1 en una actividad económica, esta actividad económica tiene mayor presencia en esa localidad que en la localidad promedio.",
-      "product_space":
-        "<p>Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de productos conecta productos que tienden a ser exportados por los mismos países.</p><p>Las productos con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.</p>",
-      "industry_space":
-        "<p>Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de industrias conecta industrias que tienden a estar presentes en las mismas comunas.</p><p>Las industrias con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.</p>",
-      "industry":
-        "<p>En {{year.last}}, {{geo.caption}} generó una producción total de {{total}}. La productividad laboral basada en producción industrial en {{geo.caption}} fue de {{labour_productivity}} pesos anuales por empleado.</p><p>Las principales industrias de {{geo.caption}} son {{text_joined_activities}}. </p><p>Las ocupaciones más comunes en {{geo.caption}}, según el número de trabajadores, son {{text_joined_occupations}}.</p>"
-    },
-    "health": {
-      "access":
-        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
-      "death_causes":
-        "En el período {{year.first}} - {{year.last}}, la causa de muerte con la tasa de crecimiento anual más alta en {{geo.caption}} fueron {{data.first.caption}} con un {{data.first.rate}}, seguido de {{data.second.caption}} con {{data.second.rate}}.",
-      "disability":
-        "En {{year.last}}, {{data.total}}{{data.prep}} personas en {{geo.caption}} presentaron algún tipo de discapacidad, donde el {{data.severe.share}} correspondió a una discapacidad severa.",
-      "fonasa": {
-        "copago":
-          "Sin embargo, la utilidad concreta de esta distribución de la población beneficiaria pasa por el copago que éstos hacen en retribución a las atenciones médicas otorgadas con nuestra cobertura. Copago es el concepto para referirse a un pago por servicios compartido entre el beneficiario y el seguro, donde FONASA financia o bonifica una parte (porcentaje) del costo de una atención de salud cualquiera, y el beneficiario aporta de su bolsillo la parte que no financiamos/bonificamos.",
-        "text":
-          "* Cuando un nuevo beneficiario se incorpora al Seguro Público de Salud, la primera tarea de FONASA es colocarlo en uno de sus 4 tramos de ingreso. Esta clasificación, de tipo escala, permite levantar caracterizaciones socioeconómicas de la población beneficiaria, y están definidos de la siguiente manera:",
-        "tramos":
-          "<ul><li><strong>Grupo A</strong>: Beneficiarios carentes de recursos para cotizar en salud, o en condición de indigencia (no cotizantes).</li><li><strong>Grupo B</strong>: Beneficiarios con ingresos menores a $270.000 al mes (cotizantes). Trabajadores del sector público de salud.</li><li><strong>Grupo C</strong>: Beneficiarios con ingresos de entre $270.000 y $394.200 al mes (cotizantes)</li><li><strong>Grupo D</strong>: Beneficiarios con ingresos de $394.200 y más al mes (cotizantes)</li></ul>"
-      },
-      "healthcare":
-        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
-    },
-    "income_sex_age_slide": {
-      "text":
-        "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
-    },
-    "demography": {
-      "origin_by_country":
-        "<p>Durante {{last_year}} se entregaron {{visas}} visas a inmigrantes que declararon domicilio en {{area}}.</p><p>Los principales países de origen son: <a href=\"{{visa_first_country_link}}\">{{visa_first_country_name}}</a> y <a href=\"{{visa_second_country_link}}\">{{visa_second_country_name}}</a>. La mayoría de ellos cuenta con un nivel educativo de {{education_level}}.</p>",
-      "origin_by_sex_age":
-        "<p>La edad promedio según las visas entregadas en {{last_year}} a inmigrantes residentes en {{area}} es de {{avg_age}} años.</p><p>En {{area}} las visas entregadas se dividen en {{percentage_female}} para mujeres y {{percentage_male}} para hombres.</p>",
-      "origin_by_activity":
-        "<p>En {{last_year}}, el {{percentage_activity}} de las {{visas}} visas entregadas en {{area}} corresponden a la actividad más común entre los inmigrantes: {{activity}}.</p><p>Así mismo, el tipo de visa más popular en {{area}} es {{type}}, con un {{percentage_type}}.</p>",
-      "population_by_sex_age":
-        "<p>Para el año {{year}} la población de {{area}}, según estimaciones del INE, es {{total}} personas.</p><p>La proyección poblacional para el año {{year_max}} es {{projected}} personas.</p>"
-    },
-    "education": {
-      "enrollment":
-        "En {{year.last}} hubo {{enrollment.total}} estudiantes matriculados en establecimientos educacionales de {{geo.caption}}. De éstos, {{enrollment.municipal}} estaban matriculados en colegios municipales, {{enrollment.subvencionado}} en colegios particulares subvencionadas, {{enrollment.particular}} en colegios privados y {{enrollment.adm_delegada}} en colegios de administración delegada.",
-      "performance": {
-        "byPSU": {
-          "level1": {
-            "2":
-              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>",
-            "3":
-              "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>"
-          },
-          "level2": {
-            "plural":
-              "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>",
-            "singular":
-              "<p>La única escuela de {{geo.caption}} con desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>",
-            "no_data":
-              "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>"
-          },
-          "distribution":
-            "<p>En {{year}} se rindieron {{total}} PSU en {{geo}}. El puntaje promedio de PSU en {{geo}} fue de {{avg}} puntos en {{year}}.</p>",
-          "disclaimer":
-            "<p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
-        }
-      },
-      "sned": {
-        "text1":
-          "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}.",
-        "definitions": {
-          "efectiveness":
-            "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
-          "overcoming":
-            "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional.",
-          "initiative":
-            "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. ",
-          "integration":
-            "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
-          "improvement":
-            "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
-          "fairness":
-            " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. "
-        }
-      }
-    },
-    "housing": {
-      "amenities": {
-        "text":
-          "<p>La encuesta CASEN levanta información sobre el acceso a servicios y equipamiento de las viviendas de las distintas localidades del país.</p>"
-      },
-      "quality": {
-        "rural":
-          "<p>En {{level}} hay {{housing_rural_number}} viviendas rurales ({{housing_rural_percent}} del total de viviendas).</p>",
-        "material":
-          "<p>La mayoría de las viviendas en {{level}} son {{housing_common_type}}. El material de construcción más común en {{level}} es {{housing_common_material}}.</p>",
-        "text":
-          "La última encuesta CASEN no tiene representatividad a nivel comunal para {{level}}.",
-        "text_1": "$t(geo_profile.housing.quality.rural)",
-        "text_2": "$t(geo_profile.housing.quality.material)",
-        "text_3":
-          "$t(geo_profile.housing.quality.rural)$t(geo_profile.housing.quality.material)"
-      },
-      "crimes": {
-        "default":
-          "<p>Los delitos de mayor connotación social con mayor número de denuncias en {{geo.caption}} durante {{year.last}} fueron {{text_joined}}.</p>",
-        "no_data":
-          "<p>No se registraron denuncias de delitos de mayor connotación social en {{geo.caption}} durante {{year.last}}</p>"
-      },
-      "connectivity": {
-        "total":
-          "<p>En {{level}}, en {{year_last}}, {{access_total}} personas tuvieron acceso a internet.</p>",
-        "mobile":
-          "{{access_mobile}} accedió a internet por medio de un teléfono móvil",
-        "laptop": "{{access_laptop}} mediante un computador portátil",
-        "laptop_2":
-          "{{access_laptop}} accedió a internet mediante un computador portátil",
-        "laptop_6": "$t(geo_profile.housing.connectivity.laptop_2)",
-        "desktop": "{{access_desktop}} a través de un computador de escritorio",
-        "desktop_4":
-          "{{access_desktop}} accedió a internet a través de un computador de escritorio",
-        "text": "$t(geo_profile.housing.connectivity.total)",
-        "text_0": "$t(geo_profile.housing.connectivity.total)",
-        "text_1":
-          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile).</p>",
-        "text_2":
-          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.laptop).</p>",
-        "text_3":
-          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), y $t(geo_profile.housing.connectivity.laptop).</p>",
-        "text_4":
-          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.desktop).</p>",
-        "text_5":
-          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), y $t(geo_profile.housing.connectivity.desktop).</p>",
-        "text_6":
-          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.laptop), y $t(geo_profile.housing.connectivity.desktop).</p>",
-        "text_7":
-          "$t(geo_profile.housing.connectivity.total)<p>De éstas, $t(geo_profile.housing.connectivity.mobile), $t(geo_profile.housing.connectivity.laptop), y $t(geo_profile.housing.connectivity.desktop).</p>",
-        "text_none":
-          "La encuesta CASEN de {{year_last}} no tiene datos sobre conectividad para {{level}}."
-      }
-    },
-    "politics": {
-      "text":
-        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
-    }
-  },
-  "granted in": "otorgadas en",
-  "GAP between Private/Municipal":
-    "Diferencia PSU Promedio Particular Pagado/Municipal",
-  "granted in {{year}}": "otorgadas en {{year}}",
-  "granted in {{year_last}}": "otorgadas en {{year_last}}",
-  "health cares": "atenciones de salud",
-  "houses": "viviendas",
-  "in": "en",
-  "in ": "en ",
-  "In last year of high school in ":
-    "En último año de enseñanza media durante ",
-  "industry_profile": {
-    "economy": {
-      "default":
-        "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la comuna con mayor nivel de ventas en industrias de {{industry.caption}}, quien representó el {{location.first.share}} del total, seguida por <a href=\"{{location.second.link}}\">{{location.second.caption}}</a>, que ejecutó {{location.second.share}} de ese total. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
-      "no_data":
-        "<p>En {{year.last}}, no hubo datos de nivel de ventas en industrias de {{industry.caption}}.</p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>",
-      "one_item":
-        "<p>En {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> fue la única comuna con nivel de ventas en industrias de {{industry.caption}}. Por otra parte, la inversión en {{year.first}}-{{year.last}} ha {{increased_or_decreased}} a una tasa promedio de {{rate}} anual.</p></p><p>Cabe señalar que estos datos son extraídos a partir de la dirección legal de la industria.</p>"
-    },
-    "employment":
-      "<p> De {{year.first}} a {{year.last}}, los empleos en {{industry.caption}} han {{increased_or_decreased}} a una tasa trimestral de {{rate}}, pasando de {{values.first}} a {{values.last}} trabajadores empleados. </ p>",
-    "r&d":
-      "<p>En {{year}}, las exportaciones de {{industry.caption}} fueron de {{industry.exports}}, representando al {{industry.share}} del total. Por otra parte, el nivel gasto de {{industry.caption}} en Investigación y Desarrollo fue de {{industry.spending}}.</p>",
-    "warning": "Los datos que se muestran corresponde a {{caption}}"
-  },
-  "loading": {
-    "description": "Cargando {{progress}} de {{total}} series de datos",
-    "developed": "Diseñado y construido por Datawheel",
-    "title": "Por favor espere",
-    "map": "Cargando información"
-  },
+  "Male Mean Income": "Ingreso promedio hombres",
+  "Male Median Income": "Ingreso mediano hombres",
   "map": {
     "sidebar_addfilter": "Agregar un filtro...",
     "sidebar_isolateregion": "Región...",
-    "sidebar_moreselectors": "Mostrar más filtros",
     "sidebar_lessselectors": "Mostrar menos filtros",
+    "sidebar_moreselectors": "Mostrar más filtros",
     "slides": [
       { "img": "inicio", "title": "¿QUÉ ES EL MAPA?" },
       {
@@ -1235,12 +1090,105 @@
       { "img": "empezar-a-explorar", "title": "COMIENZA A EXPLORAR" }
     ]
   },
+  "Map": "Mapa",
+  "Map explore": "Exploración con Mapa",
+  "Market": "Mercado",
+  "Material of Walls": "Material de las paredes",
+  "Math": "Matemática",
+  "Mayor": "Alcalde",
+  "Mayor Election": "Elección de Alcalde",
+  "Mean Income": "Ingreso Medio",
+  "Measure": "Medición",
+  "Median Income": "Ingreso medio",
+  "Median Income CLP": "Ingreso medio CLP",
+  "Migration": "Migración",
+  "Migration By Activity": "Migración por actividad",
+  "Migration By Age": "Migración por edad",
+  "Migration By Calculated Age Range": "Migración por rango etario calculado",
+  "Migration By Educational Level": "Migración por nivel educativo",
+  "Migration By Origin": "Migración por origen",
+  "Migration By Region": "Migración por región",
+  "Migration By Sex": "Migración por sexo",
+  "Migration By Visa": "Migración por visa",
+  "Migration By Visa Type": "Migración por tipo de visa",
+  "Mobile phone": "Teléfono móvil",
+  "Monthly Median Income CLP": "Ingreso medio mensual CLP",
+  "Most common activity": "Actividad más común",
+  "Most Common Visa Activity": "Principal Actividad de Visa",
+  "Most Common Visa Type": "Principal Tipo de Visa",
+  "Municipalities": "Municipalidades",
+  "My Data": "Mis datos",
+  "National": "Nacional",
+  "National Profile": "Perfil Nacional",
+  "negative": "negativa",
+  "NEM Performance By Administration":
+    "Desempeño NEM por Tipo de Administración",
+  "No datasets selected": "No hay datasets seleccionados",
   "no_datum": "No hay datos",
   "no_info":
     "{{no}} no tiene información disponible para este tópico. Puede acceder a los datos a nivel regional en el perfil de <a href='{{link}}'>{{yes}}</a>.",
+  "not_found": {
+    "oops": "Oops! No encontramos la página que estás buscando.",
+    "text": "Intenta navegar hacia otro perfil desde el buscador:",
+    "title": "Página no encontrada"
+  },
+  "Number of complaints": "Cantidad de denuncias",
+  "Number of deaths": "Cantidad de muertes",
+  "Number of jobs": "Cantidad de puestos de trabajo",
+  "Number of larceny complaints": "Cantidad de denuncias por hurto",
+  "Number of schools by Cluster": "Cantidad de escuelas por Cluster",
+  "Number of theft complaints growth":
+    "Cambio en cantidad de denuncias por robo",
+  "Number of visas": "Cantidad de Visas",
+  "Number of visas granted in {{year_last}}":
+    "Número de visas otorgadas en {{year_last}}",
+  "Number of visas granted to students":
+    "Número de visas otorgadas a estudiantes",
+  "Occupation": "Ocupación",
+  "Occupational Category": "Categoría ocupacional",
+  "Occupations by workers": "Ocupaciones por cantidad de trabajadores",
   "of": "de",
   "of total": "del total",
+  "on Smart TV or Gaming Console": "en Smart TVs o Consolas de juego",
+  "Opportunities": "Oportunidades",
+  "Opportunity": "Oportunidad",
+  "Opportunity in Industries": "Oportunidades en industrias",
+  "Opportunity in Products": "Oportunidades en productos",
+  "Origin & Destination": "Origen y Destino",
+  "Origins": "Migración",
+  "Other Products": "Otros Productos",
+  "Other products": "Otros productos",
+  "Other regions": "Otras regiones",
+  "Others": "Otros",
+  "Output": "Producción",
+  "Output By Comuna (Legal address)": "Producción por Comuna (Dirección Legal)",
+  "Output by Industry": "Producción por Industria",
+  "Overcoming": "Superación",
+  "Param": "Parámetro",
+  "Participation": "Participación",
+  "Participation in Municipal Election": "Participación en Elección Municipal",
+  "People": "Personas",
   "people": "personas",
+  "People with disabilities": "Personas con discapacidad",
+  "Per 100 inhabitants in": "Cada 100 habitantes en",
+  "Performance": "Desempeño",
+  "Performance Evaluation": "Evaluación de Desempeño",
+  "Pharmacy": "Farmacia",
+  "Pic by": "Foto de",
+  "Politics": "Política",
+  "Population": "Población",
+  "Population Projection": "Proyección poblacional",
+  "Population Pyramid": "Pirámide poblacional",
+  "Population with disability": "Población con discapacidad",
+  "Population with Health Insurance": "Población con Previsión de Salud",
+  "positive": "positiva",
+  "President": "Presidente",
+  "Presidential": "Presidencial",
+  "Presidential 1st - 2nd round": "1ra - 2da vuelta Presidencial",
+  "Primary Healthcare": "Atención de Salud Primaria",
+  "Product": "Producto",
+  "Product Space": "Espacio de Producto",
+  "Product Type": "Tipo de Producto",
   "product_profile": {
     "about1": {
       "default":
@@ -1248,7 +1196,6 @@
       "no_data":
         "No se registran datos de exportaciones de {{product.caption}} en {{year.last}}"
     },
-
     "about2": {
       "exp_1_imp_0":
         "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo <a href=\"{{exports.link.first}}\">{{exports.location.first}}</a> el único destino de las exportaciones. Por otra parte, no se registraron datos de importaciones de {{product.caption}} en {{year.last}}.",
@@ -1273,9 +1220,10 @@
       "exp_3_imp_2":
         "<p>Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo <a href=\"{{exports.link.first}}\">{{exports.location.first}}</a> el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de <a href=\"{{exports.link.second}}\">{{exports.location.second}}</a> y <a href=\"{{exports.link.third}}\">{{exports.location.third}}</a>, con un {{exports.share.second}} y {{exports.share.third}} respectivamente.</p><p>Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo <a href=\"{{imports.link.first}}\">{{imports.location.first}}</a> la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de <a href=\"{{imports.link.second}}\">{{imports.location.second}}</a> con un {{imports.share.second}}.</p>",
       "exp_3_imp_3":
-        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo <a href=\"{{exports.link.first}}\">{{exports.location.first}}</a> el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de <a href=\"{{exports.link.second}}\">{{exports.location.second}}</a> y <a href=\"{{exports.link.third}}\">{{exports.location.third}}</a>, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo <a href=\"{{imports.link.first}}\">{{imports.location.first}}</a> la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de <a href=\"{{imports.link.second}}\">{{imports.location.second}}</a> y <a href=\"{{imports.link.third}}\">{{imports.location.third}}</a>, con un {{imports.share.second}} y {{imports.share.third}} respectivamente."
+        "Las exportaciones de {{product.caption}} fueron de {{exports.total}}, siendo <a href=\"{{exports.link.first}}\">{{exports.location.first}}</a> el principal destino de las exportaciones, alcanzando un {{exports.share.first}}, seguido de <a href=\"{{exports.link.second}}\">{{exports.location.second}}</a> y <a href=\"{{exports.link.third}}\">{{exports.location.third}}</a>, con un {{exports.share.second}} y {{exports.share.third}} respectivamente. Por otra parte, las importaciones de {{product.caption}} fueron de {{imports.total}}, siendo <a href=\"{{imports.link.first}}\">{{imports.location.first}}</a> la principal fuente de las importaciones, alcanzando un {{imports.share.first}}, seguido de <a href=\"{{imports.link.second}}\">{{imports.location.second}}</a> y <a href=\"{{imports.link.third}}\">{{imports.location.third}}</a>, con un {{imports.share.second}} y {{imports.share.third}} respectivamente.",
+      "no_data":
+        "No existen datos de exportaciones para {{product.caption}} en {{year.last}}"
     },
-
     "balance": {
       "default":
         "Durante los últimos {{year.number}} años, las exportaciones de {{product.caption}} han {{exports.increased_or_decreased}} a una tasa anualizada de {{exports.growth_rate}}, de {{exports.value.first}} en {{year.first}} a {{exports.value.last}} en {{year.last}}. En el mismo periodo, las importaciones de {{product.caption}} han {{imports.increased_or_decreased}} a una tasa anualizada de {{imports.growth_rate}}, de {{imports.value.first}} en {{year.first}} a {{imports.value.last}} en {{year.last}}.",
@@ -1287,198 +1235,195 @@
         "No se registraron exportaciones e importaciones para {{product.caption}} en el periodo {{year.first}}-{{year.last}}"
     }
   },
+  "Production per worker": "Producción por Trabajador",
+  "Products": "Productos",
+  "Profiles": "Perfiles",
+  "PSU By Sex": "PSU Por Sexo",
+  "PSU distribution": "Distribución de PSU",
+  "PSU exams": "Personas que rindieron PSU",
+  "PSU Results": "Resultados PSU",
+  "PSU Results By Sex": "Resultados PSU por sexo",
+  "PSU vs NEM": "PSU vs NEM",
+  "PSU vs NEM by Comuna & Administration":
+    "PSU vs NEM por Comuna & Administración",
+  "PSU vs NEM by school": "PSU vs NEM por escuela",
+  "Public Transport": "Transporte Público",
+  "Quality": "Calidad",
+  "R&D spending": "Gasto en I+D",
+  "R&D Spending By Industry": "Gasto en I+D por Industria",
+  "R&D Spending By Sector": "Gasto en I+D por Sector",
+  "Region": "Región",
+  "Regional": "Regional",
+  "Regional ": "Regional ",
+  "Regional Employment By Sex": "Empleo regional según sexo",
+  "Regions": "Regiones",
+  "Regions & Comunas": "Regiones y Comunas",
   "relative to exports to the world in {{year}}":
     "relativo a exportaciones a todo el mundo durante {{year}}",
   "relative to imports from the world in {{year}}":
     "relativo a importaciones desde todo el mundo durante {{year}}",
+  "Research & Development": "Investigación y Desarrollo",
+  "Reset": {
+    "actions": {
+      "RESET_SEND_FAILURE": "No account associated with {{email}}.",
+      "RESET_SEND_SUCCESS":
+        "{{email}} has been sent a password reset. Please check your inbox.",
+      "RESET_TOKEN_FAILURE": "Password reset token is invalid or has expired."
+    },
+    "button": "Reset Password",
+    "Confirm Password": "Confirm New Password",
+    "E-mail": "E-mail",
+    "Password": "New Password"
+  },
+  "Results": "Resultados",
+  "Results 1st Round": "Resultados Primera Vuelta",
+  "Results 2nd Round": "Resultados Segunda Vuelta",
+  "Results for": "Resultados para",
+  "Retention": "Retención",
+  "Retention by Program": "Retención por Programa",
+  "Role": "Rol",
+  "Rows": "Filas",
+  "Rural households": "Hogares rurales",
+  "Rural Schools": "Escuelas Rurales",
+  "Salaries": "Salarios",
+  "Salaries By Category": "Salarios por Categoría",
+  "Salaries By Occupation": "Salarios por ocupación",
+  "Sales in ": "Ventas en ",
+  "School": "Escuela",
+  "School By Enrollment": "Escuela según matrícula",
+  "Schools": "Escuelas",
+  "Score": "Puntaje",
+  "Search a location, industry, product, career, etc":
+    "Busque lugares, industrias, productos…",
+  "Sector": "Sector",
+  "Security": "Seguridad",
+  "See less": "Ver menos",
+  "See more": "Ver más",
+  "Senator Election": "Elección de Senador",
+  "Senators": "Senadores",
+  "Services Access": "Acceso a servicios",
+  "Sex": "Sexo",
+  "SignUp": {
+    "Confirm Password": "Confirm Password",
+    "E-mail": "E-mail",
+    "error": {
+      "Exists": "E-mail or Username already in use",
+      "IncompleteFields": "Please set all fields",
+      "PasswordMatch": "Passwords don't match",
+      "TermsAgree": "Must agree to terms to continue"
+    },
+    "Facebook": "Facebook",
+    "Instagram": "Instagram",
+    "Password": "Password",
+    "PrivacyTermsText":
+      "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a> and <a href='{{privacy}}'>Privacy Policy</a>",
+    "PrivacyText":
+      "By checking this box, you agree to our <a href='{{privacy}}'>Privacy Policy</a>",
+    "Sign Up": "Sign Up",
+    "success": "Successfully Signed Up",
+    "TermsText":
+      "By checking this box, you agree to our <a href='{{terms}}'>Terms of Service</a>",
+    "Twitter": "Twitter",
+    "Username": "Username"
+  },
+  "Smart TV": "Smart TV",
+  "Sned_score": "Puntuación SNED",
+  "Some previous definitions": "Algunas definiciones previas",
+  "Soon": "Próximamente",
+  "Source": "Fuente",
+  "Special Education Schools": "Escuelas de Educación Especial",
+  "Specialized Healthcare": "Atención con Médicos Especialistas",
+  "Specialized Healthcares": "Cuidados médicos especializados",
+  "Sponsored by": "Patrocinado por",
+  "Sport Center": "Centro Deportivo",
+  "Students": "Estudiantes",
   "students": "students",
+  "Students in Rural Education": "Estudiantes en educación rural",
+  "Students in Special Education": "Estudiantes en educación especial",
+  "Students that took the PSU": "Estudiantes que rindieron la PSU",
+  "Summary": "Resumen",
+  "Supported by": "Apoyado por",
+  "table": {
+    "loading": "Cargando...",
+    "next": "Siguiente",
+    "no_data": "Sin información",
+    "of": "de",
+    "page": "Página",
+    "prev": "Anterior",
+    "rows": "filas"
+  },
+  "Tablet": "Tablet",
+  "The most comprehensive effort to integrate and visualize Chile’s Public Data":
+    "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
+  "Theft complaints share": "Porcentaje de denuncias por robo",
   "There are not data available for this chart":
     "No hay datos disponibles para este gráfico",
-  "tooltip": {
-    "to_profile": "Clic para ver el perfil completo"
-  },
+  "to access the internet": "para acceder a Internet",
+  "tooltip": { "to_profile": "Clic para ver el perfil completo" },
+  "Top destination country": "Principal país de destino",
+  "Top exporter region": "Principal región exportadora",
+  "Top output region": "Top región productora",
+  "Top Schools By Performance": "Principales escuelas según desempeño",
+  "Topics": "Temas",
+  "Total": "Total",
+  "Total Electors": "Electores Totales",
+  "Total Enrollment": "Matrícula total",
+  "Total Exports": "Total Exportaciones",
+  "Total Imports": "Total Importaciones",
+  "Total Investment": "Inversión Total",
+  "Total R&D spending by Business Type":
+    "Inversión total en I+D según tipo de empresa",
+  "Total R&D spending by Ownership Type":
+    "Total gasto I+D por Tipo de Propiedad",
+  "Total Students": "Cantidad de estudiantes",
+  "Trade": "Comercio",
+  "Trade Balance": "Balanza comercial",
+  "Trade volume": "Volumen de comercio",
   "trade_balance": {
     "cif": "Importaciones",
     "fob": "Exportaciones",
     "trade_balance": "Balanza comercial"
   },
   "Tumors (Neoplasms) deaths": "Muertes por Tumores (Neoplasias)",
-  "not_found": {
-    "title": "Página no encontrada",
-    "oops": "Oops! No encontramos la página que estás buscando.",
-    "text": "Intenta navegar hacia otro perfil desde el buscador:"
-  },
+  "Type": "Tipo",
+  "Unemployed people": "Personas desempleadas",
+  "Urgency Healthcare": "Atención en Servicio de Urgencias",
+  "Urgency Healthcare Average": "Promedio Atención de urgencia",
+  "USD": "USD",
   "use device": "accedió usando",
+  "Use fire-based heating": "Usa calefacción basada en fuego",
+  "Use small screens": "Usa pantallas pequeñas",
+  "Use unconventional internet browser":
+    "Usa navegadores de internet no convencionales",
+  "User": "Usuario",
+  "Username": "Nombre de usuario",
   "val": "val",
+  "Value": "Valor",
+  "Videogame console": "Consola de videojuegos",
   "visas": "visas",
+  "Visas": "Visas",
+  "Visas for Female immigrants": "Visas para inmigrantes de sexo Femenino",
+  "Visas for females in range {{range}}":
+    "Visas para mujeres en el rango {{range}}",
+  "Visas for males in range {{range}}":
+    "Visas para hombres en el rango {{range}}",
+  "Visualize by": "Visualizar por",
+  "Votes": "Votos",
+  "votes": "votos",
+  "Wages": "Salarios",
+  "Wages by Program": "Salarios por programa",
+  "where": "donde",
   "Year": "Año",
   "Yearly growth in deaths by ": "Tasa crecimiento anual de muertes por ",
+  "Years of Studies": "Años de estudio",
+  "Zone": "Zona",
+  "{{number}} on {{year}}": "{{number}} en {{year}}",
+  "{{number}} people on {{year}}": "{{number}} personas en {{year}}",
   "{{number}} visas": "{{number}} visas",
   "{{number}} visas on {{year}}": "{{number}} visas en {{year}}",
-  "{{number}} people on {{year}}": "{{number}} personas en {{year}}",
-  "{{number}} on {{year}}": "{{number}} en {{year}}",
-  "{{percent}} of the country - {{last_year}}":
-    "{{percent}} del país - {{last_year}}",
   "{{number}} visas, granted in {{year}}":
     "{{number}} visas, otorgadas en {{year}}",
-  "button": {
-    "skip": "Saltar",
-    "next": "Siguiente",
-    "prev": "Anterior",
-    "finish": "Finalizar"
-  },
-  "home": {
-    "subtitle":
-      "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",
-    "what": {
-      "title": "¿Qué es DataChile?",
-      "text1":
-        "Ofrece una radiografía de las <span>temáticas más importantes</span> para el desarrollo del país.",
-      "text2":
-        "Ayuda a conocer <span>tendencias y necesidades</span> para el diseño e implementación de políticas públicas, programas de la sociedad civil, oportunidades de negocios y estrategias de marketing del sector privado.",
-      "text3":
-        "Colabora en la toma de <span>decisiones</span> tanto del sector público como privado."
-    },
-    "diff": {
-      "title": "¿En qué se diferencia de otros proyectos de datos abiertos?",
-      "text1":
-        "Integra información de <span>más de 15 fuentes distintas</span> pertenecientes a más de 10 organismos de Gobierno.",
-      "text2": "Crea y combina <span>visualizaciones interactivas</span>.",
-      "text3":
-        "Piensa los <span>datos como historias</span> y no como archivos."
-    },
-    "sources": {
-      "title": "DataChile integra datos de todas estas fuentes"
-    },
-    "carousel": {
-      "featured_profiles": "Perfiles destacados",
-      "comunas_population": "Comunas más pobladas",
-      "comunas_exports": "Comunas más exportadoras",
-      "products_exports": "Productos más exportados",
-      "countries_exports": "Principales destinos comerciales"
-    }
-  },
-  "form": {
-    "data":
-      "¿No encontraste lo que estabas buscando? Sugiere datos para agregar",
-    "error": "¿Encontraste un error? Repórtalo"
-  },
-  "table": {
-    "prev": "Anterior",
-    "next": "Siguiente",
-    "loading": "Cargando...",
-    "no_data": "Sin información",
-    "page": "Página",
-    "of": "de",
-    "rows": "filas"
-  },
-  "Some previous definitions": "Algunas definiciones previas",
-
-  "Description": "Descripción",
-  "Param": "Parámetro",
-  "Type": "Tipo",
-
-  "documentation_api": {
-    "title1": "Primeros Pasos",
-    "title2": "Sintaxis",
-    "title3": "Ejemplo de llamada de datos",
-    "title4": "Combinaciones Complejas",
-    "title5": "Cliente Mondrian-REST para npm",
-    "title6": "Cliente API para Python",
-    "title7": "Listado de Campos",
-
-    "intro": {
-      "text1":
-        "DataChile utiliza para su funcionamiento como capa lógica Mondrian-REST, que es un componente del lado del servidor que permite la creación de APIs HTTP para acceder a una base de datos especificando la estructura lógica de la información.",
-      "text2":
-        "Para utilizar la API de DataChile, es necesario conocer algunos conceptos que facilitarán su uso, los cuáles explicaremos a continuación."
-    },
-
-    "syntax": {
-      "text1":
-        "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación.",
-      "text2":
-        "Para un cubo en particular, obtiene los miembros pertenecientes a un determinado level presente en una dimension."
-    },
-
-    "definitions": {
-      "cube":
-        "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
-      "cube2":
-        "En DataChile, cada dataset está agrupado en un cubo. El diseño del lenguaje de consultas a la API está centrado en torno a 3 operaciones: <span class='code'>Drilldown</span>, <span class='code'>Cut</span>, <span class='code'>Measure</span>. Para ejemplificar los conceptos, se utilizará el dataset <span class='code'>exports</span> -que representa las exportaciones de Chile- como referencia.",
-      "drilldown":
-        "Un <span class='code'>drilldown</span> permite pasar de un nivel de detalle al siguiente. La estructura de un drilldown para las consultas en el cubo es <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
-      "member":
-        "Un <span class='code'>member</span> es un valor dentro de una dimensión determinada por un set de valores. La jerarquía género tiene los miembros 'Masculino' y 'Femenino'. 'Concepción', 'Bío-Bío' y 'Chile' son todos miembros de la jerarquía Geográfica.",
-      "hierarchy":
-        "Una <span class='code'>hierarchy</span> es un conjunto de miembros organizados estructuradamente para su análisis. Por ejemplo, la jerarquía Geográfica consiste de nombre de comuna, regiones y país. La jerarquización permite obtener valores intermedios: Total de exportaciones de la región de Valparaíso es la suma de todas las exportaciones de las comunas de dicha región.",
-      "level":
-        "Un <span class='code'>level</span> es un conjunto de miembros que se encuentran a la misma distancia del inicio de la jerarquía. Concepción, Tucapel, Arica, se encuentran en el mismo level.",
-      "dimension":
-        "Una <span class='code'>dimension</span> es un conjunto de jerarquías que discriminan el mismo atributo (Por ejemplo, el día que se produjo una exportación)",
-      "measure":
-        "Variable escalar asociada con un valor particular en los datos del cubo.",
-      "cut":
-        "Permite al usuario especificar un filtro, que restringe las tuplas disponibles del cubo. Por ejemplo, en <span class='code'>exports</span>, cortar el cubo en torno al miembro <span class='code'>[Region].[8]</span> en la dimensión <span class='code'>Geography</span>, sólo considerará celdas de la región de Bío-Bío. Múltiples cortes pueden ser especificados en una simple consulta.",
-      "nonempty":
-        "Devuelve el conjunto de tuplas que no están vacías de un especificado conjunto, basado en el producto cartesiano del conjunto especificado.",
-      "distinct":
-        "Evalúa un conjunto específico, elimina tuplas duplicadas del conjunto y devuelve el conjunto resultante.",
-      "parents": "",
-      "sparse": ""
-    },
-
-    "descriptions": {
-      "drilldown[]":
-        "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
-      "measures[]": "",
-      "cut[]":
-        "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <span class='code'>Level ID</span>. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
-      "nonempty": "",
-      "distinct": "",
-      "parents":
-        "En caso de encontrarse en un nivel de profundidad mayor a 1, obtiene el ID y nombre de los niveles padres.",
-      "sparse":
-        "Verifica si una determinada tupla NO está en la agregación, no se incluye en la tabla resultante.",
-      "pagenote": {
-        "text1":
-          "1. Si se hace la consulta directamente en URL, se debe reemplazar & por %26 para evitar problemas de parseo del corte."
-      }
-    },
-
-    "examples": {
-      "text1":
-        "Los siguientes ejemplos ilustran cómo son construidas las consultas, restringiendo la búsqueda con drilldowns, cuts y measures. Aquí se muestra el aspecto de la URL y el JSON devuelto cuando se pregunta ¿Qué número de personas está en cada previsión de salud en Concepción?"
-    },
-
-    "complex": {
-      "text1":
-        "Estos criterios se pueden combinar para definir consultas robustas. Aquí están algunos ejemplos.",
-      "text2":
-        "Seleccionar los valores de las regiones de Valparaíso (ID 5) y de Coquimbo (ID 4)",
-      "text3":
-        "Para realizar cortes por más de un ID, cada cut debe estar separado por <span class='code'>,</span> dentro de <span class='code'>{}</span>.",
-      "text4":
-        "Obtener las importaciones de todas las comunas de Chile entre los años 2013 y 2015."
-    },
-
-    "client-python": {
-      "text1":
-        "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
-      "text2":
-        "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
-      "text3":
-        "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
-    },
-
-    "datasets": {
-      "text1":
-        "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
-    },
-
-    "url": {
-      "distinct": "https://docs.microsoft.com/en-us/sql/mdx/distinct-mdx",
-      "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
-    }
-  }
+  "{{percent}} of the country - {{last_year}}":
+    "{{percent}} del país - {{last_year}}",
+  "Regional Employment By Education": "Empleo Regional según Educación"
 }
