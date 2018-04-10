@@ -200,8 +200,8 @@ const mapStateToProps = (state, ownProps) => {
 		levelValue: params.level,
 		topicKey: topicKey,
 
-		mapYear: state.map.params.year,
-		mapYearOptions: state.map.options.year,
+    mapYear: state.map.params.year[params.level],
+    mapYearOptions: state.map.options.year[params.level],
 
 		measureOptions: preload.measures[topicKey] || [],
 		measureValue: params.measure,
