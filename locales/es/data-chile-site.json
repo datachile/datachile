@@ -460,8 +460,17 @@
         "<p>La mayoría de los inmigrantes que llegan desde {{level}} son de sexo {{current_max}}. Esto ha sido la tendencia desde el año {{year_prev}}.</p>"
     },
     "migration_education_slide": {
-      "text":
-        "<p>El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Técnica o Universitaria, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena. El número de visas otorgadas a inmigrantes de {{level}} con Educación Técnica o Universitaria ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.</p><p>En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.</p>",
+      "intro":
+        "El {{higher_percent}} de las visas entregadas a inmigrantes de {{level}} fue otorgado a personas con estudios de Educación Técnica o Universitaria, mientras que el {{highsc_percent}} tiene una formación equivalente a la Educación Media chilena.",
+      "growth":
+        "El número de visas otorgadas a inmigrantes de {{level}} con Educación Técnica o Universitaria ha {{higher_behavior}} un {{higher_growth}} entre {{year_prev}} y {{year_last}}.",
+      "closure":
+        "En contraste, el {{none_percent}} se declara sin educación formal, y el {{unknown_percent}} no indica su nivel educacional.",
+      "text": "$t(country_profile.migration_education_slide.text_limited)",
+      "text_full":
+        "<p>$t(country_profile.migration_education_slide.intro) $t(country_profile.migration_education_slide.growth)</p><p>$t(country_profile.migration_education_slide.closure)</p>",
+      "text_limited":
+        "<p>$t(country_profile.migration_education_slide.intro)</p><p>$t(country_profile.migration_education_slide.closure)</p>",
       "text_none":
         "<p>No hay datos sobre inmigrantes desde {{level}} hacia Chile.</p>"
     },

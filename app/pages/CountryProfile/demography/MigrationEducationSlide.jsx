@@ -19,7 +19,7 @@ class GroupContainer {
     return this[k] || 0;
   }
   add(k, v) {
-    this[k] = this.get(k) + v;
+    this[k] = this.get(k) + (v || 0);
   }
 }
 
@@ -35,7 +35,7 @@ class MigrationEducationSlide extends Section {
           ["Sex", "Sex"],
           ["Education", "Education"]
         ],
-        options: { parents: true },
+        options: { parents: true, sparse: false },
         format: "jsonrecords"
       },
       (result, locale) => {
@@ -85,10 +85,15 @@ class MigrationEducationSlide extends Section {
           [prevyr_sum_college, lastyr_sum_college],
           [year_prev, year_last]
         );
+        const useable_growth =
+          isFinite(college_growth) && !isNaN(college_growth)
+            ? college_growth
+            : null;
 
         const total = sums_lastyr.get("total");
 
         return {
+          context: useable_growth ? "limited" : "",
           raw_data: data_lastyr,
           year_last,
           year_prev,
@@ -98,8 +103,8 @@ class MigrationEducationSlide extends Section {
             sums_lastyr.get("highschool") / total,
             locale
           ).format("0.0%"),
-          higher_rawgrowth: college_growth,
-          higher_growth: numeral(Math.abs(college_growth), locale).format(
+          higher_rawgrowth: useable_growth,
+          higher_growth: numeral(Math.abs(useable_growth), locale).format(
             "0.0%"
           ),
           higher_percent: numeral(lastyr_sum_college / total, locale).format(
@@ -142,46 +147,38 @@ class MigrationEducationSlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            {education.datum_female > 0 && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="inmigrantes-femenino-escolaridad-completa"
-                datum={numeral(education.datum_female, locale).format("0 a")}
-                title={t("Female immigrants with complete schooling")}
-                subtitle={t(
-                  "Number of visas granted in {{year_last}}",
-                  education
-                )}
-              />
-            )}
-            {education.datum_male > 0 && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="inmigrantes-masculina-escolaridad-completa"
-                datum={numeral(education.datum_male, locale).format("0 a")}
-                title={t("Male immigrants with complete schooling")}
-                subtitle={t(
-                  "Number of visas granted in {{year_last}}",
-                  education
-                )}
-              />
-            )}
-            {education.higher_rawgrowth && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="crecimiento-migrantes-educ-superior"
-                datum={numeral(education.higher_rawgrowth, locale).format(
-                  "0.0%"
-                )}
-                title={t(
-                  "Change of immigrants with universitary or technical education"
-                )}
-                subtitle={t(
-                  "in period {{year_prev}} - {{year_last}}",
-                  education
-                )}
-              />
-            )}
+            <FeaturedDatum
+              showIf={education.datum_female > 0}
+              className="l-1-3"
+              icon="inmigrantes-femenino-escolaridad-completa"
+              datum={numeral(education.datum_female, locale).format("0 a")}
+              title={t("Female immigrants with complete schooling")}
+              subtitle={t(
+                "Number of visas granted in {{year_last}}",
+                education
+              )}
+            />
+            <FeaturedDatum
+              showIf={education.datum_male > 0}
+              className="l-1-3"
+              icon="inmigrantes-masculina-escolaridad-completa"
+              datum={numeral(education.datum_male, locale).format("0 a")}
+              title={t("Male immigrants with complete schooling")}
+              subtitle={t(
+                "Number of visas granted in {{year_last}}",
+                education
+              )}
+            />
+            <FeaturedDatum
+              showIf={education.higher_rawgrowth > 0}
+              className="l-1-3"
+              icon="crecimiento-migrantes-educ-superior"
+              datum={numeral(education.higher_rawgrowth, locale).format("0.0%")}
+              title={t(
+                "Change of immigrants with universitary or technical education"
+              )}
+              subtitle={t("in period {{year_prev}} - {{year_last}}", education)}
+            />
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

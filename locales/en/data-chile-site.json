@@ -422,8 +422,17 @@
         "<p>Most of the immigrants coming from {{level}} are {{current_max}}. This has been a tendency since {{year_prev}}.</p>"
     },
     "migration_education_slide": {
-      "text":
-        "<p>{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School. The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.</p><p>By contrast, {{none_percent}} declare not having any formal education, and {{unknown_percent}} don't disclose their education level.</p>",
+      "intro":
+        "{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School.",
+      "growth":
+        "The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.",
+      "closure":
+        "By contrast, {{none_percent}} declare not having any formal education, and {{unknown_percent}} don't disclose their education level.",
+      "text": "$t(country_profile.migration_education_slide.text_limited)",
+      "text_full":
+        "<p>$t(country_profile.migration_education_slide.intro) $t(country_profile.migration_education_slide.growth)</p><p>$t(country_profile.migration_education_slide.closure)</p>",
+      "text_limited":
+        "<p>$t(country_profile.migration_education_slide.intro)</p><p>$t(country_profile.migration_education_slide.closure)</p>",
       "text_none":
         "<p>There's no data for immigrants from {{level}} to Chile.</p>"
     },
