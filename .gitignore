@@ -9,7 +9,6 @@ npm-debug.log
 dockerfiles/nginx/certs/*
 dockerfiles/nginx/conf.d/default.conf
 dockerfiles/datachile-mondrian.yaml
-package-lock.json
 yarn.lock
 .vscode/*
 jsconfig.json
