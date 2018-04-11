@@ -6,6 +6,8 @@ import "./FeaturedDatum.css";
 function FeaturedDatum(props) {
   const { icon, datum, title, subtitle, className } = props;
 
+  if (props.showIf !== true) return null;
+
   return (
     <div className={"featured-datum " + className}>
       <div className="featured-datum-icon">
@@ -26,5 +28,9 @@ function FeaturedDatum(props) {
     </div>
   );
 }
+
+FeaturedDatum.defaultProps = {
+  showIf: true
+};
 
 export default FeaturedDatum;
