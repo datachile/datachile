@@ -33,7 +33,7 @@ export function requestData(params) {
             measures: measures,
             drillDowns: [drilldownYear, drilldownsGeo.comuna].filter(Boolean),
             cuts: cuts,
-            options: { parents: false },
+            options: { parents: true },
             locale: locale
           });
 
@@ -98,7 +98,8 @@ export function requestMembers(cubeName, locale = "en") {
                             hash: shorthash(`${member.key}`),
                             hsel: hashSelector,
                             hlvl: hashLevel,
-                            fullName: `${level.fullName}.&[${member.key}]`,
+                            key: member.key,
+                            fullLevel: level.fullName,
                             value: member.name,
                             name: member.caption
                           });

@@ -5,6 +5,12 @@ import { connect } from "react-redux";
 import "./MapTitle.css";
 
 class MapTitle extends Component {
+  constructor(props) {
+    super(props);
+
+    props.setMapTitle(this.getDatasetTitle(props));
+  }
+
   componentWillReceiveProps(nextProps) {
     const { measure, setMapTitle, cuts } = nextProps;
     if (this.props.measure.name != measure.name || this.props.cuts != cuts) {
@@ -68,7 +74,6 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-MapTitle = translate()(connect(mapStateToProps, mapDispatchToProps)(MapTitle));
-
-export default MapTitle;
-export { MapTitle };
+export default translate()(
+  connect(mapStateToProps, mapDispatchToProps)(MapTitle)
+);

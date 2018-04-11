@@ -27,14 +27,15 @@ export default function RouteCreate() {
   return (
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path="explore/map/data" component={ExploreMapData} />
-      <Route path="explore/map" component={ExploreMap} />
+      {/*<Route path="explore/map/data" component={ExploreMapData} />*/}
+      {/*<Route path="explore/map" component={ExploreMap} />*/}
       <Route path="explore(/:entity)(/:entity_id)" component={Explore} />
 
       <Route path="geo/:region(/:comuna)" component={GeoProfile} />
       <Redirect from="geo(/)" to="/explore/geo" />
 
       <Redirect from="countries/:slug-999/chile-997" to="/geo/chile" />
+      <Redirect from="countries/:slug-999/*" to="/404" />
       {/* <Route
         path="countries/:slug-999(/**)"
         component={NotFound}

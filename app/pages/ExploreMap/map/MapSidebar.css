@@ -66,6 +66,18 @@
       }
     }
   }
+
+  & .show-more-selectors {
+    display: block;
+    width: 100%;
+    margin-top: 40px;
+    font-family: var(--font-family-title);
+    line-height: 2em;
+    color: #fff;
+    background-color: #708bbb;
+    border: 0 none;
+    cursor: pointer;
+  }
 }
 
 .custom-select {

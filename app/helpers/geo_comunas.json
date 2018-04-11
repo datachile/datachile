@@ -1,0 +1,1378 @@
+[
+ {
+   "comuna_id": 5,
+   "region_id": 1
+ },
+ {
+   "comuna_id": 26,
+   "region_id": 1
+ },
+ {
+   "comuna_id": 58,
+   "region_id": 1
+ },
+ {
+   "comuna_id": 108,
+   "region_id": 1
+ },
+ {
+   "comuna_id": 113,
+   "region_id": 1
+ },
+ {
+   "comuna_id": 217,
+   "region_id": 1
+ },
+ {
+   "comuna_id": 226,
+   "region_id": 1
+ },
+ {
+   "comuna_id": 9,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 19,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 165,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 170,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 189,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 297,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 309,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 313,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 321,
+   "region_id": 2
+ },
+ {
+   "comuna_id": 4,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 21,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 39,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 68,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 81,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 93,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 109,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 317,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 330,
+   "region_id": 3
+ },
+ {
+   "comuna_id": 7,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 27,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 62,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 69,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 111,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 122,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 126,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 156,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 174,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 192,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 195,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 237,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 271,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 278,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 334,
+   "region_id": 4
+ },
+ {
+   "comuna_id": 1,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 16,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 22,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 24,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 30,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 31,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 33,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 63,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 86,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 87,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 103,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 118,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 123,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 138,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 142,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 151,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 183,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 190,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 201,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 202,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 215,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 229,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 242,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 252,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 253,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 257,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 268,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 279,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 283,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 285,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 306,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 308,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 331,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 337,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 339,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 344,
+   "region_id": 5
+ },
+ {
+   "comuna_id": 40,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 45,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 52,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 56,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 61,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 82,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 101,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 119,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 133,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 140,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 146,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 159,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 163,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 164,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 175,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 178,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 180,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 188,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 199,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 203,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 213,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 216,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 218,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 219,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 223,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 236,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 255,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 259,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 265,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 266,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 286,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 302,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 304,
+   "region_id": 6
+ },
+ {
+   "comuna_id": 34,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 38,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 57,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 66,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 78,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 79,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 88,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 105,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 137,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 139,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 148,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 168,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 173,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 204,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 206,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 207,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 209,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 261,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 267,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 270,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 275,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 277,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 282,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 289,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 299,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 311,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 315,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 332,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 336,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 341,
+   "region_id": 7
+ },
+ {
+   "comuna_id": 3,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 10,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 11,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 15,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 18,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 28,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 41,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 43,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 44,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 49,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 53,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 55,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 64,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 67,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 70,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 76,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 84,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 91,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 106,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 107,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 131,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 136,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 150,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 152,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 157,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 176,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 177,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 181,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 182,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 185,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 208,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 210,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 220,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 224,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 248,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 250,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 251,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 258,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 260,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 281,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 284,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 288,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 294,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 298,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 301,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 303,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 305,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 312,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 320,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 323,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 327,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 328,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 342,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 343,
+   "region_id": 8
+ },
+ {
+   "comuna_id": 8,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 29,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 46,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 60,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 72,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 73,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 77,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 89,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 92,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 98,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 100,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 135,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 147,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 149,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 155,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 158,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 171,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 184,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 194,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 214,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 222,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 230,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 240,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 263,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 276,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 314,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 316,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 322,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 326,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 333,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 335,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 338,
+   "region_id": 9
+ },
+ {
+   "comuna_id": 6,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 20,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 32,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 37,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 47,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 50,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 75,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 80,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 94,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 95,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 96,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 104,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 141,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 154,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 169,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 191,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 198,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 233,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 234,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 235,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 239,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 241,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 244,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 245,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 246,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 247,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 254,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 273,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 292,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 295,
+   "region_id": 10
+ },
+ {
+   "comuna_id": 13,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 42,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 48,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 51,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 54,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 102,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 129,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 187,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 272,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 325,
+   "region_id": 11
+ },
+ {
+   "comuna_id": 17,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 130,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 179,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 225,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 227,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 238,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 274,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 287,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 319,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 324,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 345,
+   "region_id": 12
+ },
+ {
+   "comuna_id": 2,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 14,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 23,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 35,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 36,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 59,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 65,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 74,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 83,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 85,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 90,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 110,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 112,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 114,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 117,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 120,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 121,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 124,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 125,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 134,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 143,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 144,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 145,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 160,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 162,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 166,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 172,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 186,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 193,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 197,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 205,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 211,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 212,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 221,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 228,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 231,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 232,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 249,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 256,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 262,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 264,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 280,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 290,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 291,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 293,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 296,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 300,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 307,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 310,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 318,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 340,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 346,
+   "region_id": 13
+ },
+ {
+   "comuna_id": 71,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 97,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 127,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 128,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 132,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 153,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 161,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 167,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 196,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 200,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 269,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 329,
+   "region_id": 14
+ },
+ {
+   "comuna_id": 12,
+   "region_id": 15
+ },
+ {
+   "comuna_id": 25,
+   "region_id": 15
+ },
+ {
+   "comuna_id": 99,
+   "region_id": 15
+ },
+ {
+   "comuna_id": 243,
+   "region_id": 15
+ }
+]

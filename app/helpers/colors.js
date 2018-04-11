@@ -264,6 +264,9 @@ export const administrationColorScale = scaleOrdinal().range([
 ]);
 
 export const MAP_SCALE_COLORS = {
+  getItem(key) {
+    return this[key] || [];
+  },
   economy: [
     "#E3E7EF",
     "#B1C0D7",

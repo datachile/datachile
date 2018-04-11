@@ -58,6 +58,11 @@ class SalariesByCategory extends Section {
 						shapeConfig: {
 							fill: d => ordinalColorScale(d["ID ICSE"])
 						},
+						tooltipConfig: {
+							title: d => d["ICSE"],
+							body: d =>
+								numeral(d["Median Income"], locale).format("(0.[0] a)") + " CLP"
+						},
 						discrete: "y",
 						xConfig: {
 							tickSize: 0,

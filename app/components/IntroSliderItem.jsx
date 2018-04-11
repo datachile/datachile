@@ -4,75 +4,56 @@ import { translate } from "react-i18next";
 import "./IntroSlider.css";
 
 class IntroSliderItem extends Component {
-	render() {
-		const {
-			t,
-			item,
-			step,
-			text,
-			title,
-			total,
-			img,
-			currentStep,
-			onClick
-		} = this.props;
+  handleButtonNext = () => {
+    console.log(this.props.step);
+    if (this.props.step + 1 == this.props.total) this.props.onSkip();
+    else this.props.onNext();
+  };
 
-		if (currentStep === step) {
-			return (
-				<div className="intro-slider">
-					<img src={`/images/getting-started/${img}.gif`} alt="" />
-					<div className="intro-slider-content">
-						{title && <h2 className="intro-slider-title">{title}</h2>}
-						<div className="intro-slider-button">
-							<span onClick={evt => onClick("skip")} className="back">
-								{t("Skip")}
-							</span>
-						</div>
-						{text && <div>{text}</div>}
-					</div>
-					<div className="intro-slider-dots">
-						{[...Array(total)].map((item, key) => {
-							if (key + 1 === currentStep) {
-								return (
-									<img
-										className="dot"
-										src="/images/getting-started/nav-slide-azul.svg"
-									/>
-								);
-							}
-							return (
-								<img
-									className="dot"
-									src="/images/getting-started/nav-slide-gris.svg"
-								/>
-							);
-						})}
-					</div>
-					<div className="intro-slider-footer">
-						<div className="intro-slider-button">
-							{currentStep > 1 && (
-								<span className="back" onClick={evt => onClick("prev")}>
-									{t("Previous")}
-								</span>
-							)}
-						</div>
+  render() {
+    const { t, step, total } = this.props;
+    const { img, title, text } = this.props;
 
-						<div className="intro-slider-button">
-							<span
-								onClick={evt =>
-									currentStep === total ? onClick("finish") : onClick("next")
-								}
-							>
-								{currentStep === total ? t("Finish") : t("Next")}
-							</span>
-						</div>
-					</div>
-				</div>
-			);
-		} else {
-			return <div />;
-		}
-	}
+    return (
+      <div className="intro-slider">
+        <img src={`/images/getting-started/${img}.gif`} alt="" />
+        <div className="intro-slider-content">
+          {title && <h2 className="intro-slider-title">{title}</h2>}
+          <div className="intro-slider-button">
+            <span onClick={this.props.onSkip} className="back">
+              {t("button.skip")}
+            </span>
+          </div>
+          {text && <p>{text}</p>}
+        </div>
+        <div className="intro-slider-dots">
+          {[...Array(total)].map((item, key) => (
+            <img
+              className="dot"
+              src={`/images/getting-started/nav-slide-${
+                key === step ? "azul" : "gris"
+              }.svg`}
+            />
+          ))}
+        </div>
+        <div className="intro-slider-footer">
+          <div className="intro-slider-button">
+            {step > 0 && (
+              <span className="back" onClick={this.props.onPrev}>
+                {t("button.prev")}
+              </span>
+            )}
+          </div>
+
+          <div className="intro-slider-button">
+            <span onClick={this.handleButtonNext}>
+              {total - step == 1 ? t("button.finish") : t("button.next")}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default translate()(IntroSliderItem);

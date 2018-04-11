@@ -50,6 +50,7 @@ CustomSelect.defaultProps = {
 function CustomSelect(props) {
   props = Object.assign({}, props, {
     className: classnames("custom-select", "pt-fill", props.className, {
+      disabled: props.disabled,
       multi: props.multiple
     })
   });
@@ -61,11 +62,12 @@ function CustomSelect(props) {
 
     return React.createElement(MultiSelect, props, props.children);
   } else {
-    if (!props.value || "object" != typeof props.value)
+    if ("object" != typeof props.value) {
       props.value = props.defaultOption;
-    else {
-      const inOptions = props.items.some(item => item.name == props.value.name);
-      if (!inOptions) props.value = props.defaultOption;
+    } else {
+      props.value =
+        props.items.find(item => item.value == props.value.value) ||
+        props.defaultOption;
     }
 
     props.children = props.children || (

@@ -40,6 +40,7 @@
   "Affiliates in": "Afiliados en",
   "Age": "Edad",
   "Age Range": "Rango de Edad",
+  "All Regions": "Todas las Regiones",
   "Amenities": "Servicios",
   "Area": "Área",
   "are": "son",
@@ -113,6 +114,7 @@
   "Death Causes By Diseases": "Causas de muerte por Enfermedades",
   "Death Causes Over Time": "Evolución de Muertes por Causas",
   "deaths per 100 inhabitants": "muertes por 100 habitantes",
+  "deaths": "muertes",
   "Demographics": "Demografía",
   "Demography": "Demografía",
   "Dental Discharges": "Altas dentales",
@@ -184,7 +186,7 @@
   "Change imports": "Cambio Importaciones",
   "Growth Exports": "Cambio Exportaciones",
   "Growth Imports": "Cambio Importaciones",
-  "Growth Investment": "Cambio inversión",
+  "Growth Investment": "Cambio Inversión",
   "Growth Labour": "Cambio de empleos",
   "Growth R&D Spending in ": "Crecimiento inversión en I+D en ",
   "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
@@ -198,6 +200,7 @@
   "Politics": "Política",
 
   "is": "es",
+  "Isolate Region": "Filtrar por Región",
   "increased": "crecido",
   "decreased": "decrecido",
   "decile": "decil",
@@ -227,6 +230,7 @@
 
   "International Trade": "Comercio Internacional",
   "International Trade Balance": "Balanza Comercial Internacional",
+  "Investment": "Inversión",
   "Other Products": "Otros Productos",
 
   "Annual Growth Exports": "Cambio Anual de Exportaciones",
@@ -368,6 +372,7 @@
   "Migration By Visa": "Migración por visa",
   "Migration By Visa Type": "Migración por tipo de visa",
   "Mobile phone": "Teléfono móvil",
+  "Mobile Quarter": "Trimestre Móvil",
   "Monthly Median Income CLP": "Ingreso medio mensual CLP",
   "Most common activity": "Actividad más común",
   "Municipalities": "Municipalidades",
@@ -520,6 +525,7 @@
   },
   "Smart TV": "Smart TV",
   "Sned_score": "Puntuación SNED",
+  "SNED Score": "Puntuación SNED",
   "Soon": "Próximamente",
   "Source": "Fuente",
   "Special Education Schools": "Escuelas de Educación Especial",
@@ -849,6 +855,11 @@
         "title": "1.2.1 - \"Encino\" - 2018-02-16",
         "description":
           "<p>Nuevas visualizaciones en Sección Cívica: resultados electorales a nivel presidente, parlamento y alcalde. Correcciones de autoridades en el encabezado del perfil geográfico.</p>"
+      },
+      "fitzroya": {
+        "title": "1.3 - \"Fitzroya\" - 2018-04-09",
+        "description":
+          "<p>Nuevo dataset y gráficos en sección de educación: Indicadores SNED</p>"
       }
     }
   },
@@ -978,7 +989,7 @@
         "text":
           "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}",
         "note":
-          "*Los elementos isolados de los gráficos representan a candidatos electos en dicha elección."
+          "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección."
       },
       "presidential": {
         "text":
@@ -1200,7 +1211,38 @@
     "map": "Cargando información"
   },
   "map": {
-    "sidebar_addfilter": "Agregar un filtro..."
+    "sidebar_addfilter": "Agregar un filtro...",
+    "sidebar_isolateregion": "Región...",
+    "sidebar_moreselectors": "Mostrar más filtros",
+    "sidebar_lessselectors": "Mostrar menos filtros",
+    "slides": [
+      { "img": "inicio", "title": "¿QUÉ ES EL MAPA?" },
+      {
+        "img": "que-es-el-mapa",
+        "text": "El mapa es una herramienta interactiva"
+      },
+      {
+        "img": "topicos-indicadores",
+        "text":
+          "que agrupa información derivada del sitio datachile.io a través de Tópicos e Indicadores"
+      },
+      {
+        "img": "tooltip",
+        "text":
+          "pudiendo hacer cruces de datos y pintando esta información sobre el mapa"
+      },
+      {
+        "img": "anadir-data",
+        "text":
+          "Además el mapa integra la opción “CARRITO”: recurso que permite añadir conjuntos de datos seleccionados a un carro virtual y descargarlos para su uso."
+      },
+      {
+        "img": "descargar",
+        "text":
+          "Los datos se presentan en una tabla organizada, con la opción de distribuir años en filas o columnas. Con solo un clic es posible descargar un archivo en formato CSV, ordenado y fácil de usar."
+      },
+      { "img": "empezar-a-explorar", "title": "COMIENZA A EXPLORAR" }
+    ]
   },
   "no_datum": "No hay datos",
   "no_info":
@@ -1288,6 +1330,12 @@
     "{{percent}} del país - {{last_year}}",
   "{{number}} visas, granted in {{year}}":
     "{{number}} visas, otorgadas en {{year}}",
+  "button": {
+    "skip": "Saltar",
+    "next": "Siguiente",
+    "prev": "Anterior",
+    "finish": "Finalizar"
+  },
   "home": {
     "subtitle":
       "El esfuerzo más completo para integrar y visualizar los datos públicos de Chile",

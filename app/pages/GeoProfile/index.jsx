@@ -11,10 +11,10 @@ import { getGeoObject, clearStoreData } from "helpers/dataUtils";
 
 // needs (data fetchers)
 import {
-  needGetGeo,
-  needGetPopulationDatum,
-  needGetIncomeDatum,
-  needGetPSUDatum
+	needGetGeo,
+	needGetPopulationDatum,
+	needGetIncomeDatum,
+	needGetPSUDatum
 } from "./index_needs";
 
 import Nav from "components/Nav";
@@ -164,159 +164,159 @@ import "../intro.css";
 import "../topics.css";
 
 const chileObj = {
-  key: "chile",
-  name: "Chile",
-  caption: "Chile"
+	key: "chile",
+	name: "Chile",
+	caption: "Chile"
 };
 
 class GeoProfile extends Component {
-  static preneed = [clearStoreData];
+	static preneed = [clearStoreData];
 
-  static need = [
-    needGetGeo,
-    needGetPopulationDatum,
-    needGetIncomeDatum,
-    needGetPSUDatum,
+	static need = [
+		needGetGeo,
+		needGetPopulationDatum,
+		needGetIncomeDatum,
+		needGetPSUDatum,
 
-    AuthoritiesBlock,
+		AuthoritiesBlock,
 
-    /*Economy,*/
+		/*Economy,*/
 
-    IndustrySlide,
-    IndustryBySector,
-    IndustryByOccupation,
+		IndustrySlide,
+		IndustryBySector,
+		IndustryByOccupation,
 
-    TradeSlide,
-    ExportsByProduct,
-    ExportsByDestination,
-    ImportsByOrigin,
-    ImportsByProduct,
-    TradeBalance,
+		TradeSlide,
+		ExportsByProduct,
+		ExportsByDestination,
+		ImportsByOrigin,
+		ImportsByProduct,
+		TradeBalance,
 
-    ProductSpaceSlide,
-    ProductSpace,
+		ProductSpaceSlide,
+		ProductSpace,
 
-    IndustrySpaceSlide,
-    IndustrySpace,
+		IndustrySpaceSlide,
+		IndustrySpace,
 
-    EmploymentSlide,
-    EmploymentByLevel,
-    EmploymentBySex,
+		EmploymentSlide,
+		EmploymentByLevel,
+		EmploymentBySex,
 
-    IncomeSexAgeSlide,
-    IncomeByAge,
-    IncomeBySex,
+		IncomeSexAgeSlide,
+		IncomeByAge,
+		IncomeBySex,
 
-    IncomeOccupationSlide,
-    SalariesByCategory,
-    SalariesByOccupation,
+		IncomeOccupationSlide,
+		SalariesByCategory,
+		SalariesByOccupation,
 
-    IDSpendingIndustrySlide,
-    SpendingByIndustry,
-    SpendingBySector,
+		IDSpendingIndustrySlide,
+		SpendingByIndustry,
+		SpendingBySector,
 
-    QualitySlide,
-    HousingType,
-    HousingByConstructionType,
+		QualitySlide,
+		HousingType,
+		HousingByConstructionType,
 
-    InternetAccessSlide,
-    InternetAccessByZone,
+		InternetAccessSlide,
+		InternetAccessByZone,
 
-    DevicesSlide,
-    Devices,
+		DevicesSlide,
+		Devices,
 
-    ServicesAccessSlide,
-    Services,
+		ServicesAccessSlide,
+		Services,
 
-    CrimeSlide,
-    CrimeStacked,
-    CrimeTreemap,
+		CrimeSlide,
+		CrimeStacked,
+		CrimeTreemap,
 
-    /** EDUCATION */
+		/** EDUCATION */
 
-    SNEDSlide,
-    SNED,
-    SNEDSchoolByClusters,
-    SNEDCompareByCluster,
+		SNEDSlide,
+		SNED,
+		SNEDSchoolByClusters,
+		SNEDCompareByCluster,
 
-    PSUNEMSlide,
-    PSUNEMScatter,
+		PSUNEMSlide,
+		PSUNEMScatter,
 
-    PSUDistributionSlide,
-    PSUDistribution,
+		PSUDistributionSlide,
+		PSUDistribution,
 
-    EnrollmentSlide,
-    CollegeByEnrollment,
+		EnrollmentSlide,
+		CollegeByEnrollment,
 
-    HigherEducationSlide,
-    PSUResultsBySex,
+		HigherEducationSlide,
+		PSUResultsBySex,
 
-    /** DEMOGRAPHY */
+		/** DEMOGRAPHY */
 
-    MigrationSlide,
-    MigrationByOrigin,
-    MigrationByEducation,
+		MigrationSlide,
+		MigrationByOrigin,
+		MigrationByEducation,
 
-    MigrationDetailsSlide,
-    MigrationBySex,
-    MigrationByAge,
+		MigrationDetailsSlide,
+		MigrationBySex,
+		MigrationByAge,
 
-    MigrationActivitySlide,
-    MigrationByActivity,
+		MigrationActivitySlide,
+		MigrationByActivity,
 
-    MigrationByVisa,
+		MigrationByVisa,
 
-    PopulationSlide,
-    PopulationProjection,
-    PopulationPyramid,
+		PopulationSlide,
+		PopulationProjection,
+		PopulationPyramid,
 
-    AccessSlide,
-    HealthCareSlide,
-    HealthInsurance,
-    HealthCare,
-    DisabilityBySex,
-    DisabilitySlide,
+		AccessSlide,
+		HealthCareSlide,
+		HealthInsurance,
+		HealthCare,
+		DisabilityBySex,
+		DisabilitySlide,
 
-    DeathCausesSlide,
-    DeathCauses,
-    DeathCausesStacked,
+		DeathCausesSlide,
+		DeathCauses,
+		DeathCausesStacked,
 
-    ElectionSlide,
-    CongressSlide,
+		ElectionSlide,
+		CongressSlide,
 
-    ParticipationSlide,
-    MayorResults,
-    SenatorResults,
-    Senado,
-    Presidential2nd,
-    Presidential1st,
-    Presidential1stBar,
-    Presidential2ndBar,
-    CongresspersonResults,
-    ElectoralParticipation,
-    ParticipationScatter
-  ];
+		ParticipationSlide,
+		MayorResults,
+		SenatorResults,
+		Senado,
+		Presidential2nd,
+		Presidential1st,
+		Presidential1stBar,
+		Presidential2ndBar,
+		CongresspersonResults,
+		ElectoralParticipation,
+		ParticipationScatter
+	];
 
-  render() {
-    const { t, i18n, location } = this.props;
+	render() {
+		const { t, i18n, location, router } = this.props;
 
-    const locale = i18n.language;
+		const locale = i18n.language;
 
-    const geoObj = getGeoObject(this.props.routeParams);
-    const showRanking = geoObj.type == "country" ? false : true;
-    const geo = this.props.data.geo;
+		const geoObj = getGeoObject(this.props.routeParams);
+		const showRanking = geoObj.type == "country" ? false : true;
+		const geo = this.props.data.geo;
 
-    if (geo) {
-      this.props.data.geo.type = geoObj.type;
-      this.props.data.geo.ancestor = ancestor;
-    }
+		if (geo) {
+			this.props.data.geo.type = geoObj.type;
+			this.props.data.geo.ancestor = ancestor;
+		}
 
-    const ancestor =
-      geo && geo.ancestors && geo.ancestors.length > 1
-        ? geo.ancestors[0]
-        : geoObj.type == "region" ? chileObj : false;
+		const ancestor =
+			geo && geo.ancestors && geo.ancestors.length > 1
+				? geo.ancestors[0]
+				: geoObj.type == "region" ? chileObj : false;
 
-    /*
+		/*
     stats format
       {
         value: 200100,
@@ -328,759 +328,752 @@ class GeoProfile extends Component {
       }
     */
 
-    var stats = {
-      population: this.props.data.population,
-      income: this.props.data.income,
-      psu: this.props.data.psu
-    };
+		var stats = {
+			population: this.props.data.population,
+			income: this.props.data.income,
+			psu: this.props.data.psu
+		};
 
-    //national
-    if (
-      geo &&
-      geo.type == "country" &&
-      stats.population &&
-      stats.income &&
-      stats.psu
-    ) {
-      stats.population.decile = 10;
-      stats.income.decile = 5;
-      stats.psu.decile = 5;
-    }
+		//national
+		if (
+			geo &&
+			geo.type == "country" &&
+			stats.population &&
+			stats.income &&
+			stats.psu
+		) {
+			stats.population.decile = 10;
+			stats.income.decile = 5;
+			stats.psu.decile = 5;
+		}
 
-    const topics = [
-      {
-        slug: "economy",
-        title: t("Economy")
-      },
-      {
-        slug: "education",
-        title: t("Education")
-      },
-      {
-        slug: "environment",
-        title: t("Housing")
-      },
-      {
-        slug: "demography",
-        title: t("Demography")
-      },
-      {
-        slug: "health",
-        title: t("Health")
-      },
-      {
-        slug: "civics",
-        title: t("Civics")
-      }
-    ];
+		const topics = [
+			{
+				slug: "economy",
+				title: t("Economy")
+			},
+			{
+				slug: "education",
+				title: t("Education")
+			},
+			{
+				slug: "environment",
+				title: t("Housing")
+			},
+			{
+				slug: "demography",
+				title: t("Demography")
+			},
+			{
+				slug: "health",
+				title: t("Health")
+			},
+			{
+				slug: "civics",
+				title: t("Civics")
+			}
+		];
 
-    function fillShape(d) {
-      var c = "rgba(255, 255, 255, 0.7)";
-      switch (geoObj.type) {
-        case "country": {
-          c = "rgba(255, 255, 255, 1)";
-          break;
-        }
-        case "region": {
-          if (parseInt(d.id) == parseInt(geoObj.key)) {
-            c = "rgba(75, 113, 181,1)";
-          }
-          break;
-        }
-        case "comuna": {
-          if (parseInt(d.id) == parseInt(ancestor.key)) {
-            c = "rgba(75, 113, 181,1)";
-          }
-          break;
-        }
-      }
+		function fillShape(d) {
+			var c = "rgba(255, 255, 255, 0.7)";
+			switch (geoObj.type) {
+				case "country": {
+					c = "rgba(255, 255, 255, 1)";
+					break;
+				}
+				case "region": {
+					if (parseInt(d.id) == parseInt(geoObj.key)) {
+						c = "rgba(75, 113, 181,1)";
+					}
+					break;
+				}
+				case "comuna": {
+					if (parseInt(d.id) == parseInt(ancestor.key)) {
+						c = "rgba(75, 113, 181,1)";
+					}
+					break;
+				}
+			}
 
-      return c;
-    }
+			return c;
+		}
 
-    let title = "Chile";
-    if (geo && geo.type === "region") {
-      title = t("Region") + t(" of ") + geo.caption;
-    } else if (geo && geoObj.type === "comuna") {
-      title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
-    }
+		let title = "Chile";
+		if (geo && geo.type === "region") {
+			title = t("Region") + t(" of ") + geo.caption;
+		} else if (geo && geoObj.type === "comuna") {
+			title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
+		}
 
-    let opengraphImage = (geoObj.image || "").replace(
-      "/profile-bg/",
-      "/opengraph/"
-    );
+		let opengraphImage = (geoObj.image || "").replace(
+			"/profile-bg/",
+			"/opengraph/"
+		);
 
-    let router = this.props.router;
+		return (
+			<Canon>
+				<CanonProfile data={this.props.data} topics={topics}>
+					<Helmet>
+						<title>{title}</title>
+						<meta name="description" content={title} />
+						<meta property="og:title" content={title + " - DataChile"} />
+						<meta
+							property="og:url"
+							content={`https://${locale}.datachile.io${location.pathname}`}
+						/>
+						<meta
+							property="og:image"
+							content={`https://${locale}.datachile.io${opengraphImage}`}
+						/>
+					</Helmet>
+					<div className="profile">
+						<div className="intro">
+							{geo &&
+								geoObj && (
+									<Nav
+										title={geo.caption}
+										typeTitle={
+											geoObj.type !== "country" ? geoObj.type : t("Country")
+										}
+										type={"geo"}
+										exploreLink={"/explore/geo"}
+										ancestor={ancestor ? ancestor.caption : ""}
+										ancestorLink={slugifyItem(
+											"geo",
+											ancestor ? ancestor.key : "",
+											ancestor ? ancestor.name : ""
+										)}
+										topics={topics}
+									/>
+								)}
+							<div className="splash">
+								<div
+									className="image"
+									style={{
+										backgroundImage: `url('${geoObj.image}')`
+									}}
+								/>
+								<div className="gradient" />
+							</div>
 
-    return (
-      <Canon>
-        <CanonProfile data={this.props.data} topics={topics}>
-          <Helmet>
-            <title>{title}</title>
-            <meta name="description" content={title} />
-            <meta property="og:title" content={title + " - DataChile"} />
-            <meta
-              property="og:url"
-              content={`https://${locale}.datachile.io${location.pathname}`}
-            />
-            <meta
-              property="og:image"
-              content={`https://${locale}.datachile.io${opengraphImage}`}
-            />
-          </Helmet>
-          <div className="profile">
-            <div className="intro">
-              {geo &&
-                geoObj && (
-                  <Nav
-                    title={geo.caption}
-                    typeTitle={geoObj.type}
-                    type={"geo"}
-                    exploreLink={"/explore/geo"}
-                    ancestor={ancestor ? ancestor.caption : ""}
-                    ancestorLink={slugifyItem(
-                      "geo",
-                      ancestor ? ancestor.key : "",
-                      ancestor ? ancestor.name : ""
-                    )}
-                    topics={topics}
-                  />
-                )}
-              <div className="splash">
-                <div
-                  className="image"
-                  style={{
-                    backgroundImage: `url('${geoObj.image}')`
-                  }}
-                />
-                <div className="gradient" />
-              </div>
+							<div className="header">
+								<div className="meta">
+									{stats.population && (
+										<FeaturedDatumSplash
+											title={t("Population")}
+											icon="poblacion"
+											decile={stats.population.decile}
+											rank={
+												showRanking
+													? numeral(stats.population.rank, locale).format(
+															"0o"
+													  ) +
+													  " " +
+													  t("of") +
+													  " " +
+													  stats.population.total
+													: false
+											}
+											datum={numeral(stats.population.value, locale).format(
+												"(0,0)"
+											)}
+											source="population_estimate"
+											className="population"
+										/>
+									)}
+									{geo &&
+										stats.income && (
+											<FeaturedDatumSplash
+												title={t("Median Income")}
+												icon="ingreso"
+												decile={stats.income.value ? stats.income.decile : 0}
+												rank={
+													showRanking
+														? numeral(stats.income.rank, locale).format("0o") +
+														  " " +
+														  t("of") +
+														  " " +
+														  stats.income.total
+														: false
+												}
+												datum={
+													stats.income.value
+														? numeral(stats.income.value, locale).format(
+																"($ 0,0)"
+														  )
+														: false
+												}
+												source="nesi_income"
+												className=""
+												level={geo.depth > 1 ? "geo_profile" : false}
+												name={
+													geo.depth > 1
+														? {
+																caption: "Región " + ancestor.caption
+														  }
+														: geo
+												}
+											/>
+										)}
+									{stats.psu && (
+										<FeaturedDatumSplash
+											title={t("Education")}
+											icon="psu"
+											decile={stats.psu.decile}
+											rank={false}
+											datum={
+												numeral(
+													geoObj.type != "country" ? stats.psu.value : 500,
+													locale
+												).format("(0,0)") + " psu"
+											}
+											source="psu"
+											className=""
+										/>
+									)}
+								</div>
 
-              <div className="header">
-                <div className="meta">
-                  {stats.population && (
-                    <FeaturedDatumSplash
-                      title={t("Population")}
-                      icon="poblacion"
-                      decile={stats.population.decile}
-                      rank={
-                        showRanking
-                          ? numeral(stats.population.rank, locale).format(
-                              "0o"
-                            ) +
-                            " " +
-                            t("of") +
-                            " " +
-                            stats.population.total
-                          : false
-                      }
-                      datum={numeral(stats.population.value, locale).format(
-                        "(0,0)"
-                      )}
-                      source="population_estimate"
-                      className="population"
-                    />
-                  )}
-                  {geo &&
-                    stats.income && (
-                      <FeaturedDatumSplash
-                        title={t("Median Income")}
-                        icon="ingreso"
-                        decile={stats.income.value ? stats.income.decile : 0}
-                        rank={
-                          showRanking
-                            ? numeral(stats.income.rank, locale).format("0o") +
-                              " " +
-                              t("of") +
-                              " " +
-                              stats.income.total
-                            : false
-                        }
-                        datum={
-                          stats.income.value
-                            ? numeral(stats.income.value, locale).format(
-                                "($ 0,0)"
-                              )
-                            : false
-                        }
-                        source="nesi_income"
-                        className=""
-                        level={geo.depth > 1 ? "geo_profile" : false}
-                        name={
-                          geo.depth > 1
-                            ? {
-                                caption: "Región " + ancestor.caption
-                              }
-                            : geo
-                        }
-                      />
-                    )}
-                  {stats.psu && (
-                    <FeaturedDatumSplash
-                      title={t("Education")}
-                      icon="psu"
-                      decile={stats.psu.decile}
-                      rank={false}
-                      datum={
-                        numeral(
-                          geoObj.type != "country" ? stats.psu.value : 500,
-                          locale
-                        ).format("(0,0)") + " psu"
-                      }
-                      source="psu"
-                      className=""
-                    />
-                  )}
-                </div>
+								<div className="candidates">
+									<AuthoritiesBlock
+										geo={geoObj}
+										ancestor={ancestor}
+										data={this.props.data}
+									/>
+								</div>
 
-                <div className="candidates">
-                  <AuthoritiesBlock
-                    geo={geoObj}
-                    ancestor={ancestor}
-                    data={this.props.data}
-                  />
-                </div>
+								<div className="map-comuna">
+									{geoObj.type != "country" && (
+										<SvgMap
+											router={router}
+											region={geoObj.type == "region" ? geo : ancestor}
+											active={geoObj.type == "comuna" ? geo : false}
+										/>
+									)}
+									<div className="map-region">
+										<Geomap
+											config={{
+												data: [
+													{ id: 1, name: "Tarapacá" },
+													{
+														id: 2,
+														name: "Antofagasta"
+													},
+													{ id: 3, name: "Atacama" },
+													{ id: 4, name: "Coquimbo" },
+													{
+														id: 5,
+														name: "Valparaíso"
+													},
+													{
+														id: 6,
+														name: "O'Higgins"
+													},
+													{ id: 7, name: "Maule" },
+													{ id: 8, name: "BíoBío" },
+													{
+														id: 9,
+														name: "Araucanía"
+													},
+													{
+														id: 10,
+														name: "Los Lagos"
+													},
+													{ id: 11, name: "Aisén" },
+													{
+														id: 12,
+														name: "Magallanes"
+													},
+													{
+														id: 13,
+														name: "Metropolitana"
+													},
+													{
+														id: 14,
+														name: "Los Ríos"
+													},
+													{
+														id: 15,
+														name: "Arica y Parinacota"
+													}
+												],
+												id: "id",
+												downloadButton: false,
+												height: 500,
+												label: d => {
+													return "label";
+												},
+												legend: false,
+												ocean: "transparent",
+												on: {
+													"click.shape": function(d) {
+														selectAll(".d3plus-tooltip").style(
+															"transform",
+															"scale(0)"
+														);
+														router.push(slugifyItem("geo", d.id, d.name));
+													}
+												},
+												padding: 10,
+												shapeConfig: {
+													hoverOpacity: 1,
+													Path: {
+														fill: fillShape,
+														stroke: "rgba(255, 255, 255, 1)"
+													}
+												},
+												tiles: false,
+												tooltipConfig: {
+													title: "",
+													body: d => {
+														return (
+															"Región " +
+															d.name +
+															"<br/><a>" +
+															t("tooltip.to_profile") +
+															"</a>"
+														);
+													},
+													bodyStyle: {
+														"font-family": "Roboto, Arial, sans-serif",
+														"font-size": "12px",
+														"text-align": "center",
+														color: "#2F2F38"
+													},
+													footer: "",
+													background: "white",
+													footerStyle: {
+														"margin-top": 0
+													},
+													padding: "10px",
+													borderRadius: "0px",
+													border: "1px solid #2F2F38"
+												},
+												topojson: "/geo/regiones.json",
+												topojsonId: "id",
+												topojsonKey: "regiones",
+												width: 200,
+												zoom: false
+											}}
+										/>
+									</div>
+								</div>
+							</div>
 
-                <div className="map-comuna">
-                  {geoObj.type != "country" && (
-                    <SvgMap
-                      router={router}
-                      region={geoObj.type == "region" ? geo : ancestor}
-                      active={geoObj.type == "comuna" ? geo : false}
-                    />
-                  )}
-                  <div className="map-region">
-                    <Geomap
-                      config={{
-                        data: [
-                          { id: 1, name: "Tarapacá" },
-                          {
-                            id: 2,
-                            name: "Antofagasta"
-                          },
-                          { id: 3, name: "Atacama" },
-                          { id: 4, name: "Coquimbo" },
-                          {
-                            id: 5,
-                            name: "Valparaíso"
-                          },
-                          {
-                            id: 6,
-                            name: "O'Higgins"
-                          },
-                          { id: 7, name: "Maule" },
-                          { id: 8, name: "BíoBío" },
-                          {
-                            id: 9,
-                            name: "Araucanía"
-                          },
-                          {
-                            id: 10,
-                            name: "Los Lagos"
-                          },
-                          { id: 11, name: "Aisén" },
-                          {
-                            id: 12,
-                            name: "Magallanes"
-                          },
-                          {
-                            id: 13,
-                            name: "Metropolitana"
-                          },
-                          {
-                            id: 14,
-                            name: "Los Ríos"
-                          },
-                          {
-                            id: 15,
-                            name: "Arica y Parinacota"
-                          }
-                        ],
-                        id: "id",
-                        downloadButton: false,
-                        height: 500,
-                        label: d => {
-                          return "label";
-                        },
-                        legend: false,
-                        ocean: "transparent",
-                        on: {
-                          "click.shape": function(d) {
-                            selectAll(".d3plus-tooltip").style(
-                              "transform",
-                              "scale(0)"
-                            );
-                            router.push(slugifyItem("geo", d.id, d.name));
-                          }
-                        },
-                        padding: 10,
-                        shapeConfig: {
-                          hoverOpacity: 1,
-                          Path: {
-                            fill: fillShape,
-                            stroke: "rgba(255, 255, 255, 1)"
-                          }
-                        },
-                        tiles: false,
-                        tooltipConfig: {
-                          title: "",
-                          body: d => {
-                            return (
-                              "Región " +
-                              d.name +
-                              "<br/><a>" +
-                              t("tooltip.to_profile") +
-                              "</a>"
-                            );
-                          },
-                          bodyStyle: {
-                            "font-family": "Roboto, Arial, sans-serif",
-                            "font-size": "12px",
-                            "text-align": "center",
-                            color: "#2F2F38"
-                          },
-                          footer: "",
-                          background: "white",
-                          footerStyle: {
-                            "margin-top": 0
-                          },
-                          padding: "10px",
-                          borderRadius: "0px",
-                          border: "1px solid #2F2F38"
-                        },
-                        topojson: "/geo/regiones.json",
-                        topojsonId: "id",
-                        topojsonKey: "regiones",
-                        width: 200,
-                        zoom: false
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
+							<div className="topics-selector-container">
+								<TopicMenu topics={topics} />
+							</div>
 
-              <div className="topics-selector-container">
-                <TopicMenu topics={topics} />
-              </div>
+							<div className="arrow-container">
+								<a href="#economy">
+									<SvgImage src="/images/profile-icon/icon-arrow.svg" />
+								</a>
+							</div>
+						</div>
 
-              <div className="arrow-container">
-                <a href="#economy">
-                  <SvgImage src="/images/profile-icon/icon-arrow.svg" />
-                </a>
-              </div>
-            </div>
+						<div className="topics-container">
+							<Topic
+								name={t("Economy")}
+								id="economy"
+								sections={[
+									{
+										name: t("Trade"),
+										slides: [t("International trade")]
+									},
+									{
+										name: t("Industry"),
+										slides: [t("Industry & Occupations")]
+									},
+									{
+										name: t("Opportunity"),
+										slides: [t("Industry Space"), t("Product Space")]
+									},
+									{
+										name: t("Employment"),
+										slides: [t("By Sex & Education Level")]
+									},
+									{
+										name: t("Income"),
+										slides: [t("By Sex & Age"), t("By Occupation")]
+									},
+									{
+										name: t("Innovation"),
+										slides: [t("By Industry")]
+									}
+								]}
+							>
+								<div>
+									<TradeSlide TradeBalance={TradeBalance}>
+										<SectionColumns>
+											<ExportsByDestination
+												className="lost-1-2"
+												router={router}
+											/>
+											<ExportsByProduct className="lost-1-2" router={router} />
+										</SectionColumns>
+										<SectionColumns>
+											<ImportsByOrigin className="lost-1-2" router={router} />
+											<ImportsByProduct className="lost-1-2" router={router} />
+										</SectionColumns>
+									</TradeSlide>
+								</div>
 
-            <div className="topics-container">
-              <Topic
-                name={t("Economy")}
-                id="economy"
-                sections={[
-                  {
-                    name: t("Trade"),
-                    slides: [t("International trade")]
-                  },
-                  {
-                    name: t("Industry"),
-                    slides: [t("Industry & Occupations")]
-                  },
-                  {
-                    name: t("Opportunity"),
-                    slides: [t("Industry Space"), t("Product Space")]
-                  },
-                  {
-                    name: t("Employment"),
-                    slides: [t("By Sex & Education Level")]
-                  },
-                  {
-                    name: t("Income"),
-                    slides: [t("By Sex & Age"), t("By Occupation")]
-                  },
-                  {
-                    name: t("Innovation"),
-                    slides: [t("By Industry")]
-                  }
-                ]}
-              >
-                <div>
-                  <TradeSlide TradeBalance={TradeBalance}>
-                    <SectionColumns>
-                      <ExportsByDestination
-                        className="lost-1-2"
-                        router={router}
-                      />
-                      <ExportsByProduct className="lost-1-2" router={router} />
-                    </SectionColumns>
-                    <SectionColumns>
-                      <ImportsByOrigin className="lost-1-2" router={router} />
-                      <ImportsByProduct className="lost-1-2" router={router} />
-                    </SectionColumns>
-                  </TradeSlide>
-                </div>
+								<div>
+									<IndustrySlide>
+										<SectionColumns>
+											<IndustryBySector className="lost-1-2" router={router} />
+											<IndustryByOccupation className="lost-1-2" />
+										</SectionColumns>
+									</IndustrySlide>
+								</div>
 
-                <div>
-                  <IndustrySlide>
-                    <SectionColumns>
-                      <IndustryBySector className="lost-1-2" router={router} />
-                      <IndustryByOccupation className="lost-1-2" />
-                    </SectionColumns>
-                  </IndustrySlide>
-                </div>
+								<div>
+									<IndustrySpaceSlide>
+										<SectionColumns>
+											<IndustrySpace className="lost-1" />
+										</SectionColumns>
+									</IndustrySpaceSlide>
+								</div>
 
-                <div>
-                  <IndustrySpaceSlide>
-                    <SectionColumns>
-                      <IndustrySpace className="lost-1" />
-                    </SectionColumns>
-                  </IndustrySpaceSlide>
-                </div>
+								<div>
+									<ProductSpaceSlide>
+										<SectionColumns>
+											<ProductSpace className="lost-1" />
+										</SectionColumns>
+									</ProductSpaceSlide>
+								</div>
 
-                <div>
-                  <ProductSpaceSlide>
-                    <SectionColumns>
-                      <ProductSpace className="lost-1" />
-                    </SectionColumns>
-                  </ProductSpaceSlide>
-                </div>
+								<div>
+									<EmploymentSlide>
+										<SectionColumns>
+											<EmploymentBySex className="lost-2-3" />
+											<EmploymentByLevel className="lost-1-3" />
+										</SectionColumns>
+									</EmploymentSlide>
+								</div>
 
-                <div>
-                  <EmploymentSlide>
-                    <SectionColumns>
-                      <EmploymentBySex className="lost-2-3" />
-                      <EmploymentByLevel className="lost-1-3" />
-                    </SectionColumns>
-                  </EmploymentSlide>
-                </div>
+								<div>
+									<IncomeSexAgeSlide>
+										<SectionColumns>
+											<IncomeBySex className="lost-1-2" />
+											<IncomeByAge className="lost-1-2" />
+										</SectionColumns>
+									</IncomeSexAgeSlide>
+								</div>
 
-                <div>
-                  <IncomeSexAgeSlide>
-                    <SectionColumns>
-                      <IncomeBySex className="lost-1-2" />
-                      <IncomeByAge className="lost-1-2" />
-                    </SectionColumns>
-                  </IncomeSexAgeSlide>
-                </div>
+								<div>
+									<IncomeSexAgeSlide>
+										<SectionColumns>
+											<SalariesByOccupation className="lost-2-3" />
+											<SalariesByCategory className="lost-1-3" />
+										</SectionColumns>
+									</IncomeSexAgeSlide>
+								</div>
 
-                <div>
-                  <IncomeSexAgeSlide>
-                    <SectionColumns>
-                      <SalariesByOccupation className="lost-2-3" />
-                      <SalariesByCategory className="lost-1-3" />
-                    </SectionColumns>
-                  </IncomeSexAgeSlide>
-                </div>
+								<div>
+									<IDSpendingIndustrySlide>
+										<SectionColumns>
+											<SpendingBySector className="lost-1-3" />
+											<SpendingByIndustry className="lost-2-3" />
+										</SectionColumns>
+									</IDSpendingIndustrySlide>
+								</div>
+							</Topic>
 
-                <div>
-                  <IDSpendingIndustrySlide>
-                    <SectionColumns>
-                      <SpendingBySector className="lost-1-3" />
-                      <SpendingByIndustry className="lost-2-3" />
-                    </SectionColumns>
-                  </IDSpendingIndustrySlide>
-                </div>
-              </Topic>
+							<Topic
+								name={t("Education")}
+								id="education"
+								sections={[
+									{
+										name: t("Performance"),
+										slides: [
+											//t("Performance Evaluation"),
+											t("Comparison by Cluster")
+										]
+									},
+									{
+										name: t("Score"),
+										slides: [
+											t("PSU Distribution"),
+											t("PSU By Sex"),
+											t("PSU & NEM")
+										]
+									},
+									{
+										name: t("Enrollment"),
+										slides: [t("By School Type")]
+									}
+								]}
+							>
+								<div>
+									<SNEDSlide>
+										<SectionColumns>
+											<SNEDSchoolByClusters className="lost-1-2" />
+											<SNEDCompareByCluster className="lost-1-2" />
+										</SectionColumns>
+									</SNEDSlide>
+								</div>
+								<div>
+									<PSUDistributionSlide>
+										<SectionColumns>
+											<PSUDistribution className="lost-1" />
+										</SectionColumns>
+									</PSUDistributionSlide>
+								</div>
+								<div>
+									<PSUDistributionSlide>
+										<SectionColumns>
+											<PSUBySex className="lost-1-2" />
+											<PSUResultsBySex className="lost-1-2" />
+										</SectionColumns>
+									</PSUDistributionSlide>
+								</div>
+								<div>
+									<PSUNEMSlide>
+										<SectionColumns>
+											<PSUNEMScatter className="lost-1" />
+										</SectionColumns>
+									</PSUNEMSlide>
+								</div>
+								<div>
+									<EnrollmentSlide>
+										<SectionColumns>
+											<CollegeByEnrollment className="lost-1" />
+										</SectionColumns>
+									</EnrollmentSlide>
+								</div>
+							</Topic>
 
-              <Topic
-                name={t("Education")}
-                id="education"
-                sections={[
-                  {
-                    name: t("Performance"),
-                    slides: [
-                      t("Performance Evaluation"),
-                      t("Comparison by Cluster")
-                    ]
-                  },
-                  {
-                    name: t("Score"),
-                    slides: [
-                      t("PSU Distribution"),
-                      t("PSU By Sex"),
-                      t("PSU & NEM")
-                    ]
-                  },
-                  {
-                    name: t("Enrollment"),
-                    slides: [t("By School Type")]
-                  }
-                ]}
-              >
-                <div>
-                  <SNEDSlide>
-                    <SectionColumns>
-                      <SNED className="lost-1" />
-                    </SectionColumns>
-                  </SNEDSlide>
-                </div>
-                <div>
-                  <SNEDSlide>
-                    <SectionColumns>
-                      <SNEDSchoolByClusters className="lost-1-2" />
-                      <SNEDCompareByCluster className="lost-1-2" />
-                    </SectionColumns>
-                  </SNEDSlide>
-                </div>
-                <div>
-                  <PSUDistributionSlide>
-                    <SectionColumns>
-                      <PSUDistribution className="lost-1" />
-                    </SectionColumns>
-                  </PSUDistributionSlide>
-                </div>
-                <div>
-                  <PSUDistributionSlide>
-                    <SectionColumns>
-                      <PSUBySex className="lost-1-2" />
-                      <PSUResultsBySex className="lost-1-2" />
-                    </SectionColumns>
-                  </PSUDistributionSlide>
-                </div>
-                <div>
-                  <PSUNEMSlide>
-                    <SectionColumns>
-                      <PSUNEMScatter className="lost-1" />
-                    </SectionColumns>
-                  </PSUNEMSlide>
-                </div>
-                <div>
-                  <EnrollmentSlide>
-                    <SectionColumns>
-                      <CollegeByEnrollment className="lost-1" />
-                    </SectionColumns>
-                  </EnrollmentSlide>
-                </div>
-              </Topic>
+							<Topic
+								name={t("Housing & Environment")}
+								id="environment"
+								sections={[
+									{
+										name: t("Security"),
+										slides: [t("Crimes")]
+									},
+									{
+										name: t("Amenities"),
+										slides: [t("Access to services")]
+									},
+									{
+										name: t("Quality"),
+										slides: [t("Housing Conditions")]
+									},
+									{
+										name: t("Connectivity"),
+										slides: [t("Devices")]
+									}
+								]}
+							>
+								<div>
+									<CrimeSlide>
+										<SectionColumns>
+											<CrimeTreemap className="lost-1-2" />
+											<CrimeStacked className="lost-1-2" />
+										</SectionColumns>
+									</CrimeSlide>
+								</div>
+								<div>
+									<ServicesAccessSlide>
+										<SectionColumns>
+											<Services className="lost-1" />
+										</SectionColumns>
+									</ServicesAccessSlide>
+								</div>
+								<div>
+									<QualitySlide>
+										<SectionColumns>
+											<HousingType className="lost-1-2" />
+											<HousingByConstructionType className="lost-1-2" />
+										</SectionColumns>
+									</QualitySlide>
+								</div>
+								<div>
+									<DevicesSlide>
+										<SectionColumns>
+											<Devices className="lost-1" />
+										</SectionColumns>
+									</DevicesSlide>
+								</div>
+							</Topic>
 
-              <Topic
-                name={t("Housing & Environment")}
-                id="environment"
-                sections={[
-                  {
-                    name: t("Security"),
-                    slides: [t("Crimes")]
-                  },
-                  {
-                    name: t("Amenities"),
-                    slides: [t("Access to services")]
-                  },
-                  {
-                    name: t("Quality"),
-                    slides: [t("Housing Conditions")]
-                  },
-                  {
-                    name: t("Connectivity"),
-                    slides: [t("Devices")]
-                  }
-                ]}
-              >
-                <div>
-                  <CrimeSlide>
-                    <SectionColumns>
-                      <CrimeTreemap className="lost-1-2" />
-                      <CrimeStacked className="lost-1-2" />
-                    </SectionColumns>
-                  </CrimeSlide>
-                </div>
-                <div>
-                  <ServicesAccessSlide>
-                    <SectionColumns>
-                      <Services className="lost-1" />
-                    </SectionColumns>
-                  </ServicesAccessSlide>
-                </div>
-                <div>
-                  <QualitySlide>
-                    <SectionColumns>
-                      <HousingType className="lost-1-2" />
-                      <HousingByConstructionType className="lost-1-2" />
-                    </SectionColumns>
-                  </QualitySlide>
-                </div>
-                <div>
-                  <DevicesSlide>
-                    <SectionColumns>
-                      <Devices className="lost-1" />
-                    </SectionColumns>
-                  </DevicesSlide>
-                </div>
-              </Topic>
-
-              <Topic
-                name={t("Demography")}
-                id="demography"
-                sections={[
-                  {
-                    name: t("Origins"),
-                    slides: [
-                      t("By Origin Country"),
-                      t("By Sex & Age"),
-                      t("By Activity & Visa Type")
-                    ]
-                  } /*
+							<Topic
+								name={t("Demography")}
+								id="demography"
+								sections={[
+									{
+										name: t("Origins"),
+										slides: [
+											t("By Origin Country"),
+											t("By Sex & Age"),
+											t("By Activity & Visa Type")
+										]
+									} /*
                        {
                        name: t("Diversity"),
                        slides: [t("By Sex & Age")]
                        },*/,
-                  {
-                    name: t("Population"),
-                    slides: [t("By Sex & Age")]
-                  } /*,
+									{
+										name: t("Population"),
+										slides: [t("By Sex & Age")]
+									} /*,
                        {
                        name: t("Ethnicity"),
                        slides: [t("By Sex & Age")]
                        }*/
-                ]}
-              >
-                <div>
-                  <MigrationSlide>
-                    <SectionColumns>
-                      <MigrationByOrigin className="lost-1-2" router={router} />
-                      <MigrationByEducation className="lost-1-2" />
-                    </SectionColumns>
-                  </MigrationSlide>
-                </div>
-                <div>
-                  <MigrationDetailsSlide>
-                    <SectionColumns>
-                      <MigrationBySex className="lost-1-2" />
-                      <MigrationByAge className="lost-1-2" />
-                    </SectionColumns>
-                  </MigrationDetailsSlide>
-                </div>
-                <div>
-                  <MigrationActivitySlide>
-                    <SectionColumns>
-                      <MigrationByActivity className="lost-1-2" />
-                      <MigrationByVisa className="lost-1-2" />
-                    </SectionColumns>
-                  </MigrationActivitySlide>
-                </div>
-                <div>
-                  <PopulationSlide>
-                    <SectionColumns>
-                      <PopulationPyramid className="lost-1-2" />
-                      <PopulationProjection className="lost-1-2" />
-                    </SectionColumns>
-                  </PopulationSlide>
-                </div>
-              </Topic>
+								]}
+							>
+								<div>
+									<MigrationSlide>
+										<SectionColumns>
+											<MigrationByOrigin className="lost-1-2" router={router} />
+											<MigrationByEducation className="lost-1-2" />
+										</SectionColumns>
+									</MigrationSlide>
+								</div>
+								<div>
+									<MigrationDetailsSlide>
+										<SectionColumns>
+											<MigrationBySex className="lost-1-2" />
+											<MigrationByAge className="lost-1-2" />
+										</SectionColumns>
+									</MigrationDetailsSlide>
+								</div>
+								<div>
+									<MigrationActivitySlide>
+										<SectionColumns>
+											<MigrationByActivity className="lost-1-2" />
+											<MigrationByVisa className="lost-1-2" />
+										</SectionColumns>
+									</MigrationActivitySlide>
+								</div>
+								<div>
+									<PopulationSlide>
+										<SectionColumns>
+											<PopulationPyramid className="lost-1-2" />
+											<PopulationProjection className="lost-1-2" />
+										</SectionColumns>
+									</PopulationSlide>
+								</div>
+							</Topic>
 
-              <Topic
-                name={t("Health")}
-                id="health"
-                sections={[
-                  {
-                    name: t("Healthcare"),
-                    slides: [t("Health Insurance"), t("Healthcare")]
-                  },
-                  {
-                    name: t("Disability"),
-                    slides: [t("Disability")]
-                  },
-                  {
-                    name: t("Death Causes"),
-                    slides: [t("Death Causes")]
-                  }
-                ]}
-              >
-                <div>
-                  <AccessSlide>
-                    <SectionColumns>
-                      <HealthInsurance className="lost-1" />
-                    </SectionColumns>
-                  </AccessSlide>
-                </div>
-                <div>
-                  <HealthCareSlide>
-                    <SectionColumns>
-                      <HealthCare className="lost-1" />
-                    </SectionColumns>
-                  </HealthCareSlide>
-                </div>
-                <div>
-                  <DisabilitySlide>
-                    <SectionColumns>
-                      <DisabilityBySex className="lost-1" />
-                    </SectionColumns>
-                  </DisabilitySlide>
-                </div>
-                <div>
-                  <DeathCausesSlide>
-                    <SectionColumns>
-                      <DeathCauses className="lost-1-2" />
-                      <DeathCausesStacked className="lost-1-2" />
-                    </SectionColumns>
-                  </DeathCausesSlide>
-                </div>
-              </Topic>
+							<Topic
+								name={t("Health")}
+								id="health"
+								sections={[
+									{
+										name: t("Healthcare"),
+										slides: [t("Health Insurance"), t("Healthcare")]
+									},
+									{
+										name: t("Disability"),
+										slides: [t("Disability")]
+									},
+									{
+										name: t("Death Causes"),
+										slides: [t("Death Causes")]
+									}
+								]}
+							>
+								<div>
+									<AccessSlide>
+										<SectionColumns>
+											<HealthInsurance className="lost-1" />
+										</SectionColumns>
+									</AccessSlide>
+								</div>
+								<div>
+									<HealthCareSlide>
+										<SectionColumns>
+											<HealthCare className="lost-1" />
+										</SectionColumns>
+									</HealthCareSlide>
+								</div>
+								<div>
+									<DisabilitySlide>
+										<SectionColumns>
+											<DisabilityBySex className="lost-1" />
+										</SectionColumns>
+									</DisabilitySlide>
+								</div>
+								<div>
+									<DeathCausesSlide>
+										<SectionColumns>
+											<DeathCauses className="lost-1-2" />
+											<DeathCausesStacked className="lost-1-2" />
+										</SectionColumns>
+									</DeathCausesSlide>
+								</div>
+							</Topic>
 
-              <Topic
-                name={t("Civics")}
-                id="civics"
-                sections={[
-                  {
-                    name: t("Elections"),
-                    slides: [t("Mayor"), t("Congress"), t("Presidential")]
-                  },
-                  {
-                    name: t("Participation"),
-                    slides: [t("Elections")]
-                  }
-                ]}
-              >
-                <div>
-                  <ElectionSlide>
-                    <SectionColumns>
-                      <MayorResults className="lost-1" />
-                    </SectionColumns>
-                  </ElectionSlide>
-                </div>
-                <div>
-                  <CongressSlide>
-                    <SectionColumns>
-                      <SenatorResults className="lost-1-2" />
-                      <CongresspersonResults className="lost-1-2" />
-                    </SectionColumns>
-                  </CongressSlide>
-                </div>
+							<Topic
+								name={t("Civics")}
+								id="civics"
+								sections={[
+									{
+										name: t("Elections"),
+										slides: [t("Mayor"), t("Congress"), t("Presidential")]
+									},
+									{
+										name: t("Participation"),
+										slides: [t("Elections")]
+									}
+								]}
+							>
+								<div>
+									<ElectionSlide>
+										<SectionColumns>
+											<MayorResults className="lost-1" />
+										</SectionColumns>
+									</ElectionSlide>
+								</div>
+								<div>
+									<CongressSlide>
+										<SectionColumns>
+											<SenatorResults className="lost-1-2" />
+											<CongresspersonResults className="lost-1-2" />
+										</SectionColumns>
+									</CongressSlide>
+								</div>
 
-                <div>
-                  <ElectionSlide>
-                    <SectionColumns>
-                      <Presidential1st className="lost-1-2" />
-                      <Presidential2nd className="lost-1-2" />
-                    </SectionColumns>
-                    <SectionColumns>
-                      <Presidential1stBar className="lost-1-2" />
-                      <Presidential2ndBar className="lost-1-2" />
-                    </SectionColumns>
-                  </ElectionSlide>
-                </div>
+								<div>
+									<ElectionSlide>
+										<SectionColumns>
+											<Presidential1st className="lost-1-2" />
+											<Presidential2nd className="lost-1-2" />
+										</SectionColumns>
+										<SectionColumns>
+											<Presidential1stBar className="lost-1-2" />
+											<Presidential2ndBar className="lost-1-2" />
+										</SectionColumns>
+									</ElectionSlide>
+								</div>
 
-                <div>
-                  <ParticipationSlide>
-                    <SectionColumns>
-                      <ParticipationScatter
-                        className="lost-2-3"
-                        router={router}
-                      />
-                      <ElectoralParticipation className="lost-1-3" />
-                    </SectionColumns>
-                  </ParticipationSlide>
-                </div>
-              </Topic>
-            </div>
-          </div>
-        </CanonProfile>
-      </Canon>
-    );
-  }
+								<div>
+									<ParticipationSlide>
+										<SectionColumns>
+											<ParticipationScatter
+												className="lost-2-3"
+												router={router}
+											/>
+											<ElectoralParticipation className="lost-1-3" />
+										</SectionColumns>
+									</ParticipationSlide>
+								</div>
+							</Topic>
+						</div>
+					</div>
+				</CanonProfile>
+			</Canon>
+		);
+	}
 }
 
 export default translate()(
-  connect(
-    state => ({
-      data: state.data
-    }),
-    {}
-  )(GeoProfile)
+	connect(
+		state => ({
+			data: state.data
+		}),
+		{}
+	)(GeoProfile)
 );

@@ -2,10 +2,15 @@ import React from "react";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { Geomap } from "d3plus-react";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
+
+import {
+	numeral,
+	slugifyItem,
+	getNumberFromTotalString
+} from "helpers/formatters";
 import { MAP_SCALE_COLORS } from "helpers/colors";
 
-import { percentRank } from "helpers/calculator";
+import { quantile, percentRank } from "helpers/calculator";
 
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
@@ -17,65 +22,68 @@ import MapScaleSelector from "./MapScaleSelector";
 import MapOptions from "./MapOptions";
 import MapApiCall from "./MapApiCall";
 
+import territory from "helpers/geo_comunas.json";
+
 import "./MapContent.css";
 
 class MapContent extends React.Component {
-	state = {
-		show: true
-	};
+	state = { ssr: true };
+
+	componentDidMount() {
+		this.setState({ ssr: false });
+	}
 
 	getTooltipTitle(type, name) {
-		return `<div class="tooltip-title"><p class="type">${type}</p><p>${name}</p></div>`;
+		return `<div class="tooltip-title"><p>${name}</p><p class="type">${type}</p></div>`;
 	}
 
-	getTooltipBody(str) {
-		const { t, mapTitle, mapYear } = this.props;
+	getTooltipBody = d => {
+		const { t, i18n, mapTitle, mapYear, msrName, msrFormat } = this.props;
+
 		return `<div class="tooltip-body">
-      <div class='tooltip-data-value'>${str}</div>
+      <div class='tooltip-data-value'>${numeral(
+				d[msrName],
+				i18n.language
+			).format(msrFormat)}</div>
       <div class='tooltip-data-title'>${mapTitle} ${t(" in ")} ${mapYear}</div>
     </div`;
-	}
-
-	componentWillUpdate() {
-		const {
-			t,
-			i18n,
-			mapTopic,
-			msrName,
-			msrValues,
-			mapLevel,
-			mapScale,
-			mapYear,
-			dataRegion,
-			dataComuna
-		} = this.props;
-		//console.log(dataRegion)
-	}
+	};
 
 	render() {
 		const {
 			t,
 			i18n,
-			lenRegion,
-			lenComuna,
 			mapTopic,
 			msrName,
-			msrValuesC,
-			msrValuesR,
+			msrFormat,
 			mapLevel,
 			mapScale,
+			mapIsolate,
 			mapYear,
 			dataRegion,
-			dataComuna
+			dataComuna,
+			router
 		} = this.props;
+
+		if (dataRegion.length == 0) {
+			if (!msrName || this.state.ssr) return null;
+			return (
+				<div className="map-render no-data">
+					<NoDataAvailable />
+				</div>
+			);
+		}
 
 		const locale = i18n.language;
 
 		let customTick = "";
 
-		/*dataRegion.filter(item => item[msrName]).length === 0
-            ? this.setState({ show: false })
-            : this.setState({ show: true });*/
+		const isolate =
+			mapIsolate.value === 0
+				? territory.map(item => item.comuna_id)
+				: territory
+						.filter(item => item.region_id === mapIsolate.value)
+						.map(item => item.comuna_id);
 
 		const configBase = {
 			height: 700,
@@ -92,70 +100,90 @@ class MapContent extends React.Component {
 			label: false,
 			sum: d =>
 				d[
-					mapScale === "linear"
+					mapScale === "linear" || mapScale === "jenks"
 						? msrName
 						: mapScale === "log" ? msrName + "LOG" : msrName + "PERC"
 				],
 			colorScale:
-				mapScale === "linear"
+				mapScale === "linear" || mapScale === "jenks"
 					? msrName
 					: mapScale === "log" ? msrName + "LOG" : msrName + "PERC",
-			colorScalePosition: "right",
+			colorScalePosition: "left",
 			colorScaleConfig: {
-				color: MAP_SCALE_COLORS[mapTopic],
+				rectConfig: {
+					stroke: "#FFF"
+				},
+				scale:
+					mapScale === "decile"
+						? "buckets"
+						: mapScale === "jenks" ? "jenks" : "linear",
+				color: MAP_SCALE_COLORS.getItem(mapTopic),
+				orient: "right",
 				axisConfig: {
 					shapeConfig: {
 						labelConfig: {
 							fontColor: "#000"
 						}
 					},
-					//   tickFormat: tick => {
-					//     return numeral(parseFloat(tick), "es").format("($ 0.[00] a)");
-					//   },
 					tickFormat: tick => {
 						if (mapScale === "log") {
-							let value = Math.pow(10, parseInt(tick));
+							let value = Math.pow(10, tick * 1);
 
-							let newTick = numeral(value, locale).format("0.[0] a");
+							let newTick = numeral(value, locale).format(msrFormat);
 							if (newTick !== customTick) {
 								customTick = newTick;
 								return newTick;
 							} else {
 								return " ";
 							}
-						} else if (mapScale === "linear") {
-							return numeral(parseInt(tick), locale).format("0.[0] a");
+						} else if (mapScale === "linear" || mapScale === "jenks") {
+							return numeral(tick * 1, locale).format(msrFormat);
 						} else {
-							return (
-								numeral(parseInt(tick), locale).format("0.[0] a") +
-								" " +
-								t("decile")
-							);
+							let value = parseInt(tick);
+
+							let newTick = numeral(value, locale).format("0");
+							if (newTick !== customTick) {
+								customTick = newTick;
+								return newTick + " " + t("decile");
+							} else {
+								return " ";
+							}
 						}
 					}
 				},
-				downloadButton: false,
-				select: ".map-color-scale",
-				align: "start"
+				downloadButton: false
+				//select: ".map-color-scale",
+				//align: "end"
+			},
+			on: {
+				click: d => {
+					var url = slugifyItem(
+						"geo",
+						d["ID Region"],
+						d["Region"],
+						d["ID Comuna"] instanceof Array ? false : d["ID Comuna"],
+						d["Comuna"] instanceof Array ? false : d["Comuna"]
+					);
+					router.push(url);
+				}
 			},
 			tooltipConfig: {
 				id: "map",
 				duration: 0,
 				className: "d3plus-tooltip-map-topic-" + mapTopic,
 				titleStyle: {
-					"background-color": MAP_SCALE_COLORS[mapTopic][7],
+					"background-color": MAP_SCALE_COLORS.getItem(mapTopic)[7],
 					padding: 0
 				},
 				bodyStyle: {
 					"background-color": "#fff",
-					color: MAP_SCALE_COLORS[mapTopic][7]
+					color: MAP_SCALE_COLORS.getItem(mapTopic)[7]
 				},
 				title:
 					mapLevel == "comuna"
 						? d => this.getTooltipTitle(t("Comuna"), d["Comuna"])
 						: d => this.getTooltipTitle(t("Region"), d["Region"]),
-				body: d =>
-					this.getTooltipBody(numeral(d[msrName], locale).format("(0.[00] a)"))
+				body: this.getTooltipBody
 			},
 			messageHTML:
 				"<div style='font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;'>" +
@@ -168,52 +196,72 @@ class MapContent extends React.Component {
 			zoomScroll: false
 		};
 
-		const configVariations = {
-			comuna: {
+		let configVariations = {};
+
+		if (mapLevel == "comuna") {
+			configVariations = {
 				id: "ID Comuna",
 				topojson: "/geo/comunas.json",
 				topojsonId: "id",
 				topojsonKey: "comunas_datachile_final",
+				fitFilter: d => isolate.indexOf(d["id"]) >= 0,
+				//topojsonFilter: d => isolate.indexOf(d["id"]) >= 0,
+				//fitFilter: d => [115, 116].indexOf(d["id"]) < 0,
+				//topojsonFilter: d => [115, 116].indexOf(d["id"]) < 0,
 				groupBy: "ID Comuna",
-				data: processResults(dataComuna, msrName, msrValuesC, mapYear),
+				data: processResults(dataComuna, msrName, mapYear, mapIsolate),
 				label: d => d["Comuna"],
 				zoomMax: 100
-			},
-			region: {
+			};
+		} else {
+			configVariations = {
 				id: "ID Region",
 				topojson: "/geo/regiones.json",
 				topojsonId: "id",
 				topojsonKey: "regiones",
-				data: processResults(dataRegion, msrName, msrValuesR, mapYear),
+				fitFilter: d => [115, 116].indexOf(d["id"]) < 0,
+				topojsonFilter: d => [115, 116].indexOf(d["id"]) < 0,
+				data: processResults(dataRegion, msrName, mapYear, mapIsolate),
 				groupBy: "ID Region",
 				label: d => d["Region"],
 				zoomMax: 20
-			}
-		};
+			};
+		}
 
-		const config = Object.assign({}, configBase, configVariations[mapLevel]);
+		const config = Object.assign({}, configBase, configVariations);
 
 		return (
 			<div className="map-content">
-				{lenRegion > 0 ? <svg className="map-color-scale" /> : <div />}
-				<div className={lenRegion === 0 ? `map-render no-data` : `map-render`}>
-					{lenRegion > 0 ? <Geomap config={config} /> : <NoDataAvailable />}
+				{/*<svg key={Math.random()} className="map-color-scale" />*/}
+				<div className="map-render">
+					<Geomap key={Math.random()} config={config} />
 				</div>
-				{lenRegion > 0 ? <MapYearSelector /> : <div />}
-				<MapScaleSelector />
+				<div className="map-options-footer">
+					{/*<MapYearSelector />*/}
+					<MapScaleSelector />
+				</div>
 				<MapApiCall />
 			</div>
 		);
 	}
 }
 
-const processResults = (data, msrName, msrValues, mapYear) => {
+const processResults = (data, msrName, mapYear, mapIsolate) => {
 	// Check if there are data available for this chart
-
 	if (mapYear) data = data.filter(item => item["Year"] == mapYear);
-	// if (msrName) data = data.map(item => ({ ...item, variable: item[msrName] }));
-	//const values = data.filter(item => item[msrName]).map(item => item[msrName]);
-	return data.filter(item => item[msrName]).map(item => {
+
+	if (mapIsolate.value !== 0)
+		data = data.filter(item => item["ID Region"] == mapIsolate.value);
+
+	const msrValues = data.map(item => item[msrName]);
+
+	data.map(item => {
+		item[msrName + "LOG"] = Math.log10(item[msrName]);
+		item[msrName + "PERC"] = quantile(msrValues, item[msrName]);
+		return item;
+	});
+	
+	return data.map(item => {
 		item[msrName + "LOG"] = Math.log10(item[msrName]);
 		item[msrName + "PERC"] = Math.ceil(
 			percentRank(msrValues, item[msrName]) * 10
@@ -223,39 +271,23 @@ const processResults = (data, msrName, msrValues, mapYear) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+	const measure = state.map.params.measure;
 	return {
-		msrName: state.map.params.measure.value,
-		msrValuesR: state.map.results.data.region
-			? state.map.results.data.region
-					.filter(item => item[state.map.params.measure.value])
-					.map(item => item[state.map.params.measure.value])
-					.sort((a, b) => a - b)
-			: [],
-		msrValuesC: state.map.results.data.comuna
-			? state.map.results.data.comuna
-					.filter(item => item[state.map.params.measure.value])
-					.map(item => item[state.map.params.measure.value])
-					.sort((a, b) => a - b)
-			: [],
+		msrName: measure.value,
+		msrFormat: measure.format,
+		params: state.map.params,
 		mapTopic: state.map.params.topic.value,
 		mapLevel: state.map.params.level,
 		mapScale: state.map.params.scale,
+		mapIsolate: state.map.params.isolate,
 		mapYear: state.map.params.year,
 		mapTitle: state.map.title,
-
-		lenRegion: state.map.results.data.region
-			? state.map.results.data.region.filter(
-					item => item[state.map.params.measure.value]
-			  ).length
-			: 0,
-		lenComuna: state.map.results.data.comuna
-			? state.map.results.data.comuna.filter(
-					item => item[state.map.params.measure.value]
-			  ).length
-			: 0,
-
-		dataRegion: state.map.results.data.region || [],
-		dataComuna: state.map.results.data.comuna || []
+		dataRegion: (state.map.results.data.region || []).filter(
+			item => item[measure.value]
+		),
+		dataComuna: (state.map.results.data.comuna || []).filter(
+			item => item[measure.value]
+		)
 	};
 };
 

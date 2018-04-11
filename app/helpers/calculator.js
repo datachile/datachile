@@ -17,6 +17,7 @@ function accumulatedGrowth(aggregation) {
 
 function percentRank(arr, v) {
 	if (typeof v !== "number") throw new TypeError("v must be a number");
+	arr.sort((a, b) => a - b);
 	for (var i = 0, l = arr.length; i < l; i++) {
 		if (v <= arr[i]) {
 			while (i < l && v === arr[i]) i++;
@@ -30,4 +31,18 @@ function percentRank(arr, v) {
 	return 1;
 }
 
-export { accumulatedGrowth, annualized_growth, percentRank };
+function quantile(array, percentile) {
+	array.sort((a, b) => a - b);
+	let result;
+	let index = percentile/100. * (array.length-1);
+	if (Math.floor(index) == index) {
+		let result = array[index];
+	} else {
+			let i = Math.floor(index)
+			let fraction = index - i;
+			let result = array[i] + (array[i+1] - array[i]) * fraction;
+	}
+	return result;
+}
+
+export { accumulatedGrowth, annualized_growth, percentRank, quantile };

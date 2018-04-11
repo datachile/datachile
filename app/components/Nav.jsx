@@ -160,8 +160,11 @@ class Nav extends Component {
                   <ComingSoon />
                 </Link>
               </li>
-              <li className="title">
-                <Link to="/explore/map">{t("Map")}</Link>
+              <li className="link link-soon">
+                <Link to="">
+                  {t("Map")}
+                  <ComingSoon />
+                </Link>
               </li>
               <li className="title">
                 <Link to="/about">{t("About DataChile")}</Link>
