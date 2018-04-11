@@ -12,7 +12,7 @@ const axisConfig = {
     labelConfig: {
       fontColor: "#fff",
       fontFamily: () => "'Saira Condensed', sans-serif",
-      fontSize: () => 12
+      //fontSize: () => 12
     },
     stroke: "#fff"
   },
@@ -42,7 +42,7 @@ export default {
       }
     }
   },
-  messageHTML:
+  loadingHTML:
     "<div style='font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;'>" +
     "<img style='margin: auto; width:80px; height: 80px' src='/images/loading-visualization.gif' />" +
     "<sub style='display: block; margin-top: 15px;'>Powered by Datawheel</sub>" +
@@ -52,8 +52,9 @@ export default {
     fontFamily: "'Saira Condensed', sans-serif",
     labelConfig: {
       fontFamily: () => "'Saira Condensed', sans-serif",
-      fontWeight: 300
-      //fontSize: () => 12
+      fontWeight: 300,
+      padding: 8,
+      fontMax: 40
     },
     fontWeight: 600
   },

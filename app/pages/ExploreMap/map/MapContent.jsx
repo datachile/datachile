@@ -185,7 +185,7 @@ class MapContent extends React.Component {
 						: d => this.getTooltipTitle(t("Region"), d["Region"]),
 				body: this.getTooltipBody
 			},
-			messageHTML:
+			loadingHTML:
 				"<div style='font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;'>" +
 				"<img style='margin: auto; width:80px; height: 80px' src='/images/loading-visualization.gif' />" +
 				"<sub style='display: block; margin-top: 15px; color: #fff'>Powered by Datawheel</sub>" +
