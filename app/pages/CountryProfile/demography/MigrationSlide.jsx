@@ -48,6 +48,8 @@ class MigrationSlide extends Section {
         const max_last = maxBy(visas_year_last, "Number of visas");
 
         const growth = annualized_growth([sum_prev, sum_last]);
+        const useable_growth =
+          isFinite(growth) && !isNaN(growth) ? growth : null;
 
         return {
           raw_growth: growth,
@@ -61,7 +63,7 @@ class MigrationSlide extends Section {
             region: buildPermalink(max_last, "geo", 1),
             comuna: buildPermalink(max_last, "geo", 2)
           },
-          growth: numeral(growth, locale).format("0.0%")
+          growth: numeral(useable_growth, locale).format("0.0%")
         };
       }
     )
@@ -90,42 +92,36 @@ class MigrationSlide extends Section {
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
-            {destination.number_visas > 0 && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="visas-inmigrantes"
-                datum={numeral(destination.number_visas, locale).format(
-                  "(0,0)"
-                )}
-                title={t("Immigrant visas")}
-                subtitle={t("granted in {{year_last}}", destination)}
-              />
-            )}
-            {origin_female > 0 &&
-              destination.number_visas > 0 && (
-                <FeaturedDatum
-                  className="l-1-3"
-                  icon="visas-femeninas"
-                  datum={numeral(
-                    origin_female / destination.number_visas,
-                    locale
-                  ).format("(0.0 %)")}
-                  title={t("Visas for Female immigrants")}
-                  subtitle={t("granted in {{year}}", sources.immigration)}
-                />
+            <FeaturedDatum
+              showIf={destination.number_visas > 0}
+              className="l-1-3"
+              icon="visas-inmigrantes"
+              datum={numeral(destination.number_visas, locale).format("(0,0)")}
+              title={t("Immigrant visas")}
+              subtitle={t("granted in {{year_last}}", destination)}
+            />
+            <FeaturedDatum
+              showIf={origin_female > 0 && destination.number_visas > 0}
+              className="l-1-3"
+              icon="visas-femeninas"
+              datum={numeral(
+                origin_female / destination.number_visas,
+                locale
+              ).format("(0.0 %)")}
+              title={t("Visas for Female immigrants")}
+              subtitle={t("granted in {{year}}", sources.immigration)}
+            />
+            <FeaturedDatum
+              showIf={destination.context == "full"}
+              className="l-1-3"
+              icon="cambio-numero-visas"
+              datum={destination.growth}
+              title={t("Change number of visas")}
+              subtitle={t(
+                "in period {{year_prev}} - {{year_last}}",
+                destination
               )}
-            {destination.context == "full" && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="cambio-numero-visas"
-                datum={destination.growth}
-                title={t("Change number of visas")}
-                subtitle={t(
-                  "in period {{year_prev}} - {{year_last}}",
-                  destination
-                )}
-              />
-            )}
+            />
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

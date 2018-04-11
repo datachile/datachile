@@ -43,9 +43,6 @@ export function requestData(params) {
         ]);
       })
       .then(results => {
-        const data = results[0] ? results[0].data.data : [];
-        if (data[0] && "Year" in data[0]) dispatch(getAvailableYears(data));
-
         return dispatch({
           type: "MAP_DATA_SUCCESS",
           payload: {
@@ -152,23 +149,10 @@ function getGeoDrilldowns(dimensions) {
 
 function getYearDrilldown(dimensions) {
   return dimensions.reduce(function(output, dim) {
+    if (output) return output;
     const hierarchy = dim.hierarchies.find(hie => hie.name == "Date");
-    if (hierarchy) output = fullNameToArray(hierarchy.levels[1].fullName);
-    return output;
+    return hierarchy
+      ? fullNameToArray(hierarchy.levels[1].fullName)
+      : undefined;
   }, undefined);
-}
-
-function getAvailableYears(data) {
-  // make a map of years
-  const years = data.reduce(function(output, d) {
-    const year = d["Year"];
-    output[year] = true;
-    return output;
-  }, {});
-  // remove the undefined key just in case
-  delete years.undefined;
-  // get an array of keys
-  const payload = Object.keys(years).sort();
-  // save
-  return { type: "MAP_YEAR_OPTIONS", payload };
 }

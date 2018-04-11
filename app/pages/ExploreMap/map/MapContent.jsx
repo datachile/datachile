@@ -14,8 +14,6 @@ import { quantile, percentRank } from "helpers/calculator";
 
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 
-import MapYearSelector from "./MapYearSelector";
-
 import NoDataAvailable from "components/NoDataAvailable";
 
 import MapScaleSelector from "./MapScaleSelector";
@@ -260,7 +258,7 @@ const processResults = (data, msrName, mapYear, mapIsolate) => {
 		item[msrName + "PERC"] = quantile(msrValues, item[msrName]);
 		return item;
 	});
-	
+
 	return data.map(item => {
 		item[msrName + "LOG"] = Math.log10(item[msrName]);
 		item[msrName + "PERC"] = Math.ceil(
@@ -271,16 +269,17 @@ const processResults = (data, msrName, mapYear, mapIsolate) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-	const measure = state.map.params.measure;
+	const params = state.map.params;
+	const measure = params.measure;
 	return {
 		msrName: measure.value,
 		msrFormat: measure.format,
-		params: state.map.params,
-		mapTopic: state.map.params.topic.value,
-		mapLevel: state.map.params.level,
-		mapScale: state.map.params.scale,
-		mapIsolate: state.map.params.isolate,
-		mapYear: state.map.params.year,
+		params: params,
+		mapTopic: params.topic.value,
+		mapLevel: params.level,
+		mapScale: params.scale,
+		mapIsolate: params.isolate,
+		mapYear: params.year[params.level],
 		mapTitle: state.map.title,
 		dataRegion: (state.map.results.data.region || []).filter(
 			item => item[measure.value]

@@ -57,13 +57,14 @@ class MapTitle extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const params = state.map.params;
   return {
     mapTitle: state.map.title,
-    mapLevel: state.map.params.level,
-    mapYear: state.map.params.year,
-    topic: state.map.params.topic,
-    measure: state.map.params.measure,
-    cuts: state.map.params.cuts,
+    mapLevel: params.level,
+    mapYear: params.year[params.level],
+    topic: params.topic,
+    measure: params.measure,
+    cuts: params.cuts,
     query: state.map.results.queries.region
   };
 };

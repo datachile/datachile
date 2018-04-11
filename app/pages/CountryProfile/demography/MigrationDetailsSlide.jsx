@@ -88,7 +88,7 @@ class MigrationDetailsSlide extends Section {
         cube: "immigration",
         measures: ["Number of visas"],
         drillDowns: [["Date", "Year"], ["Calculated Age Range", "Age Range"]],
-        options: { parents: true },
+        options: { parents: true, sparse: false },
         format: "jsonrecords"
       },
       (result, locale) => {
@@ -137,6 +137,11 @@ class MigrationDetailsSlide extends Section {
           [previous_first["Number of visas"], latest_first["Number of visas"]],
           [year_prev, year_last]
         );
+
+        if (!isFinite(growth)) {
+          output.context = "double";
+          return output;
+        }
 
         output.year_prev = year_prev;
         output.first_growth = numeral(growth, locale).format("0.0%");
