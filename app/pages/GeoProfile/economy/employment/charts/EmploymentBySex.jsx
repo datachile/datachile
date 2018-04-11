@@ -139,7 +139,7 @@ class EmploymentBySex extends Section {
 											" " +
 											t("people") +
 											"<br/>" +
-											d["quarter"];
+											t("Mobile Quarter") + " " + d["quarter"];
 							}
 						}
 					}}

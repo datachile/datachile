@@ -62,7 +62,7 @@ class DeathCauses extends Section {
 									locale
 								).format("0.0") +
 								" " +
-								"deaths per 100 inhabitants" +
+								t("deaths per 100 inhabitants") +
 								"</div>"
 						},
 						total: d => d["Casualities Count SUM"],

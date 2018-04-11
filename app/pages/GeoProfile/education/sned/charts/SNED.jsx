@@ -128,7 +128,7 @@ class SNED extends Section {
             {t("Performance Evaluation") + " " + t("in") + " "} {geo.name}
           </span>
         </h3>
-        <div className="info-logo-container">
+        <div className="info-logo-container info-logo-container-sned">
           {services.map((d, i) => <InfoLogoItemSNED item={d} key={i} />)}
         </div>
         <SourceNote cube="sned" />

@@ -866,6 +866,13 @@ class About extends Component {
               <section className="section" id="terms">
                 <h2>{t("about.changelog.title")}</h2>
 
+                <h3>{t("about.changelog.fitzroya.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.changelog.fitzroya.description")
+                  }}
+                />
+
                 <h3>{t("about.changelog.encino.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{

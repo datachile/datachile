@@ -73,6 +73,11 @@
           "<p>Nuevas visualizaciones en Sección Cívica: resultados electorales a nivel presidente, parlamento y alcalde. Correcciones de autoridades en el encabezado del perfil geográfico.</p>",
         "title": "1.2.1 - \"Encino\" - 2018-02-16"
       },
+      "fitzroya": {
+        "description":
+          "<p>Nuevo dataset y gráficos en sección de educación: Indicadores SNED</p>",
+        "title": "1.3 - \"Fitzroya\" - 2018-04-09"
+      },
       "launch": {
         "description":
           "<p>Página principal. Exploración por perfiles. Buscador de entidades. Perfiles: geográfico, países, industrias y productos. Más de 15 datasets sobre los tópicos: Economía, demografía, educación, salud y vivienda.</p>",
@@ -492,6 +497,7 @@
   "Death Causes": "Causas de muerte",
   "Death Causes By Diseases": "Causas de muerte por Enfermedades",
   "Death Causes Over Time": "Evolución de Muertes por Causas",
+  "deaths": "muertes",
   "deaths per 100 inhabitants": "muertes por 100 habitantes",
   "decile": "decil",
   "Decile": "Decil",
@@ -681,7 +687,7 @@
     "civics": {
       "congress": {
         "note":
-          "Nombres marcados con un * representan candidatos electos en dicha elección.",
+          "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección.",
         "text":
           "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}"
       },
@@ -734,7 +740,7 @@
       "industry_space":
         "<p>Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de industrias conecta industrias que tienden a estar presentes en las mismas comunas.</p><p>Las industrias con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.</p>",
       "innovation":
-        "<p>En {{year_sector.last}}, los sectores económicos de {{geo.caption}} que gastaron más en I+D fueron {{industry.first.caption}}, seguido por {{industry.second.caption}}.</p><p>En {{year.last}}, las empresas de {{geo.caption}} que lideraron la ejecución del gasto en I+D fueron {{text_joined_industries}}.</p>",
+        "<p>En {{year_sector.last}},los sectores económicos de {{geo.caption}} que gastaron más en I+D fueron {{industry.first.caption}}, seguido por {{industry.second.caption}}.</p><p>En {{year.last}}, las empresas de {{geo.caption}} que lideraron la ejecución del gasto en I+D fueron {{text_joined_industries}}.</p>",
       "product_space":
         "<p>Las comunas, regiones, y países tienen mayor probabilidad de iniciar actividades económicas relacionadas a las que ya están presentes en ellas. El espacio de productos conecta productos que tienden a ser exportados por los mismos países.</p><p>Las productos con mayor presencia en {{geo.caption}} están destacadas en colores. Cliqueando en las redes puedes ver los productos e industrias más relacionadas (y con mayor probabilidad de desarrollo) a las ya presentes en {{geo.caption}}.</p>",
       "rca":
@@ -881,7 +887,7 @@
   "Growth affiliates in ISAPRES": "Crecimiento afiliados a ISAPRES",
   "Growth Exports": "Cambio Exportaciones",
   "Growth Imports": "Cambio Importaciones",
-  "Growth Investment": "Cambio inversión",
+  "Growth Investment": "Cambio Inversión",
   "Growth Labour": "Cambio de empleos",
   "Growth number of visas": "Crecimiento número de visas",
   "Growth number of visas for {{current_max}} immigrants":
@@ -998,6 +1004,7 @@
   "Internet access": "Acceso a Internet",
   "Internet Access By Zone in ": "Acceso a internet por zona en ",
   "Internet use": "Uso de Internet",
+  "Investment": "Inversión",
   "Investment By Comuna (Legal address)":
     "Inversión por comuna (dirección legal)",
   "is": "es",
@@ -1129,6 +1136,7 @@
   "Migration By Visa": "Migración por visa",
   "Migration By Visa Type": "Migración por tipo de visa",
   "Mobile phone": "Teléfono móvil",
+  "Mobile Quarter": "Trimestre Móvil",
   "Monthly Median Income CLP": "Ingreso medio mensual CLP",
   "Most common activity": "Actividad más común",
   "Most Common Visa Activity": "Principal Actividad de Visa",
@@ -1345,6 +1353,7 @@
     "Username": "Username"
   },
   "Smart TV": "Smart TV",
+  "SNED Score": "Puntuación SNED",
   "Sned_score": "Puntuación SNED",
   "Some previous definitions": "Algunas definiciones previas",
   "Soon": "Próximamente",

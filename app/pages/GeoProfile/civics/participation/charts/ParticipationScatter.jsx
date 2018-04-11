@@ -69,6 +69,7 @@ class ParticipationScatter extends Section {
         {this.state.plot ? (
           <Plot
             className={classSvg}
+            key={Math.random()}
             config={{
               aggs: {
                 "ID Region": mean

@@ -461,23 +461,14 @@
         "<p>Most of the immigrants coming from {{level}} are {{current_max}}. This has been a tendency since {{year_prev}}.</p>"
     },
     "migration_education_slide": {
-      "closure":
-        "By contrast, {{none_percent}} declare not having any formal education, and {{unknown_percent}} don't disclose their education level.",
-      "growth":
-        "The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.",
-      "intro":
-        "{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School.",
-      "text": "$t(country_profile.migration_education_slide.text_limited)",
-      "text_full":
-        "<p>$t(country_profile.migration_education_slide.intro) $t(country_profile.migration_education_slide.growth)</p><p>$t(country_profile.migration_education_slide.closure)</p>",
-      "text_limited":
-        "<p>$t(country_profile.migration_education_slide.intro)</p><p>$t(country_profile.migration_education_slide.closure)</p>",
+      "text":
+        "<p>{{higher_percent}} of the visas granted to immigrants from {{level}} was given to people with a Technical or University degree, while {{highsc_percent}} have an academic degree equivalent to chilean High School. The number of visas granted to immigrants coming from {{level}} with higher education has {{higher_behavior}} {{higher_growth}} between {{year_prev}} and {{year_last}}.</p><p>By contrast, {{none_percent}} declare not having any formal education, and {{unknown_percent}} don't disclose their education level.</p>",
       "text_none":
         "<p>There's no data for immigrants from {{level}} to Chile.</p>"
     },
     "migration_slide": {
       "destination":
-        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants arrived to <a href=\"{{links.region}}\">{{region}}</a>, mainly to the comuna of <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
+        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants de estos arrived to <a href=\"{{links.region}}\">{{region}}</a>, mainly to the comuna of <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
       "growth":
         "<p>Between {{year_prev}} and {{year_last}}, the number of visas granted to immigrants coming from {{level}} has {{behavior}} at a annual rate of {{growth}}.</p>",
       "text": "$t(country_profile.migration_slide.destination)",
@@ -953,7 +944,7 @@
   "Industries": "Industries",
   "Industry": "Industry",
   "Industry & Occupations": "Industry & Occupations",
-  "Industry By Output (CLP)": "Industry By Output (CLP)",
+  "Industry By Output": "Industry By Output",
   "Industry output": "Industry output",
   "Industry Space": "Industry Space",
   "Industry Type": "Industry Type",
