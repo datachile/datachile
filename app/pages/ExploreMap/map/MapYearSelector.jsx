@@ -35,15 +35,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = (state, ownProps) => {
+  const level = state.map.params.level;
   return {
-    mapYear: state.map.params.year,
-    mapYearOptions: state.map.options.year
+    mapYear: state.map.params.year[level],
+    mapYearOptions: state.map.options.year[level]
   };
 };
 
-MapYearSelector = translate()(
+export default translate()(
   connect(mapStateToProps, mapDispatchToProps)(MapYearSelector)
 );
-
-export default MapYearSelector;
-export { MapYearSelector };

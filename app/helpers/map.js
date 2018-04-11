@@ -187,6 +187,19 @@ export function combineAndFlatDatasets(datasets, pivot = "cols") {
   return { dataset: flattenedDatasets, fields: Object.keys(flattenedFields) };
 }
 
+export function getAvailableYears(data) {
+  // make a map of years
+  const years = data.reduce(function(output, d) {
+    const year = d["Year"];
+    output[year] = true;
+    return output;
+  }, {});
+  // remove the undefined key just in case
+  delete years.undefined;
+  // get an array of keys
+  return Object.keys(years).sort();
+}
+
 export function getCutsFullName(obj) {
   return Object.keys(obj).reduce(function(output, key) {
     const cuts = obj[key];
@@ -226,7 +239,7 @@ export function stateToPermalink(params) {
     permalink.c = serializeCuts(params.cuts);
     permalink.s = params.scale.substr(0, 3);
     permalink.l = params.level == "region" ? "r" : "c";
-    permalink.y = params.year;
+    permalink.y = params.year[params.level];
     permalink.i = params.isolate.value;
 
     if (!permalink.c) delete permalink.c;
