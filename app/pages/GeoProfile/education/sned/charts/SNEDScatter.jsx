@@ -147,7 +147,7 @@ class SNEDScatter extends Section {
                       body = "<table class='tooltip-table'>";
                       body +=
                         "<tr><td class='title'>" +
-                        t("Average NEM") +
+                        t("Efectiveness") +
                         "</td><td class='data'>" +
                         numeral(d["Avg efectiveness"], locale).format(
                           "(0.[0])"
@@ -155,15 +155,15 @@ class SNEDScatter extends Section {
                         "</td></tr>";
                       body +=
                         "<tr><td class='title'>" +
-                        t("Average PSU") +
+                        t("Overcoming") +
                         "</td><td class='data'>" +
-                        numeral(d["Avg overcoming"], locale).format("(0)") +
+                        numeral(d["Avg overcoming"], locale).format("(0.0)") +
                         "</td></tr>";
                       body +=
                         "<tr><td class='title'>" +
-                        t("Students") +
+                        t("SNED Score") +
                         "</td><td class='data'>" +
-                        numeral(d["Avg sned_score"], locale).format("(0,0)") +
+                        numeral(d["Avg sned_score"], locale).format("(0.0)") +
                         "</td></tr>";
                       body += "</table>";
                     }
