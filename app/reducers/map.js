@@ -269,6 +269,19 @@ const mapTitleReducer = (state = "", action) => {
   }
 };
 
+const mapFilterMembersReducer = (state = {}, action) => {
+  let newState;
+  switch (action.type) {
+    case "MAP_MEMBER_FILTER":
+      newState = { ...state };
+      newState[action.payload.key] = action.payload.values;
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
 const mapPivotReducer = (state = "cols", action) => {
   switch (action.type) {
     case "MAP_PIVOT_SET":
@@ -291,5 +304,6 @@ export default combineReducers({
   params: mapParamsReducer,
   results: mapResultReducer,
   title: mapTitleReducer,
+  memberfilter: mapFilterMembersReducer,
   pivot: mapPivotReducer
 });

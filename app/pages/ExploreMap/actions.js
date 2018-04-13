@@ -128,6 +128,55 @@ export function requestMembers(cubeName, locale = "en") {
   };
 }
 
+/**
+ * @param {string} levelKey
+ * @param {string|number} year
+ */
+export function requestMemberFilter(levelKey, year) {
+  const tokens = fullNameToArray(levelKey);
+  const cubeName = tokens[0];
+  const levelCombo = tokens.slice(1);
+
+  return function(dispatch) {
+    dispatch({
+      type: "MAP_MEMBER_FILTER",
+      payload: {
+        key: levelKey,
+        values: undefined
+      }
+    });
+
+    return mondrianClient
+      .cube(cubeName)
+      .then(cube => {
+        const drilldownYear = getYearDrilldown(cube.dimensions);
+        const query = queryBuilder(cube.query, {
+          measures: cube.measures.map(ms => ms.name),
+          drillDowns: [levelCombo],
+          cuts: [`${drilldownYear.toString()}.&[${year}]`]
+        });
+        return mondrianClient.query(query, "jsonrecords");
+      })
+      .then(results => {
+        const data = results.data || [];
+        const levelName = levelCombo.slice().pop();
+        return {
+          type: "MAP_MEMBER_FILTER",
+          payload: {
+            key: levelKey,
+            values: data.reduce(function(map, item) {
+              const id = item[`ID ${levelName}`];
+              delete item[`ID ${levelName}`];
+              delete item[levelName];
+              map[id] = item;
+              return map;
+            }, {})
+          }
+        };
+      });
+  };
+}
+
 function getGeoDrilldowns(dimensions) {
   return dimensions.reduce(
     function(output, dim) {
