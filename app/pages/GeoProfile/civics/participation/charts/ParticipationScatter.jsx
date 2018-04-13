@@ -9,17 +9,12 @@ import { mean } from "d3-array";
 import { regionsColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
 
+import Select from "components/Select";
 import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
 
-import mergeWith from "lodash/mergeWith";
-
 class ParticipationScatter extends Section {
-  state = {
-    plot: true,
-    log: false
-  };
   static need = [
     (params, store) => {
       let mirror = { ...params };
@@ -30,8 +25,10 @@ class ParticipationScatter extends Section {
         "election_participation",
         ["Votes", "Participation", "Electors"],
         {
-          drillDowns: [["Geography", "Geography", "Comuna"]],
-          cuts: [`[Date].[Date].[Year].&[2016]`],
+          drillDowns: [
+            ["Geography", "Geography", "Comuna"],
+            ["Election Type", "Election Type", "Election Type"]
+          ],
           options: { parents: true }
         },
         "geo",
@@ -40,9 +37,63 @@ class ParticipationScatter extends Section {
     }
   ];
 
+  constructor(props) {
+    super(props);
+    this.toggleChart = this.toggleChart.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      plot: true,
+      log: false,
+      selectedOption: 5,
+      key: Math.random(),
+      selectedObj: {
+        path: "",
+        groupBy: [],
+        label: () => "",
+        sum: () => ""
+      },
+      chartVariations: []
+    };
+  }
+
+  componentDidMount() {
+    const { t } = this.props;
+
+    var variations = [
+      {
+        id: 5,
+        title: t("Municipal") + " - 2016"
+      },
+      {
+        id: 1,
+        title: t("Presidential 1st round") + " - 2017"
+      },
+      {
+        id: 2,
+        title: t("Presidential 2nd round") + " - 2017"
+      }
+    ];
+
+    this.setState({
+      selectedOption: 5,
+      selectedObj: variations[0],
+      chartVariations: variations
+    });
+  }
+
   toggleChart(bool) {
     this.setState({
       log: bool
+    });
+  }
+
+  handleChange(ev) {
+    this.setState({ key: Math.random() });
+
+    this.setState({
+      selectedOption: ev.newValue,
+      selectedObj: this.state.chartVariations[ev.newValue]
     });
   }
 
@@ -63,7 +114,15 @@ class ParticipationScatter extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Participation in Municipal Election") + " - 2016"}</span>
+          <span>{t("Electoral Participation")}</span>
+          <Select
+            id="variations"
+            options={this.state.chartVariations}
+            value={this.state.selectedOption}
+            labelField="title"
+            valueField="id"
+            onChange={this.handleChange}
+          />
           <ExportLink path={path} className={classSvg} />
         </h3>
         {this.state.plot ? (
@@ -76,12 +135,17 @@ class ParticipationScatter extends Section {
               },
               height: 500,
               groupBy: ["Comuna"],
-              data: data.map(item => {
-                return {
-                  ...item,
-                  ElectorsLOG: Math.log10(item.Electors)
-                };
-              }),
+              data: data.reduce((all, item) => {
+                if (
+                  item["ID Election Type"] ==
+                  parseInt(this.state.selectedOption)
+                )
+                  all.push({
+                    ...item,
+                    ElectorsLOG: Math.log10(item.Electors)
+                  });
+                return all;
+              }, []),
               shapeConfig: {
                 fill: d => {
                   if (geo.depth === 2) {
