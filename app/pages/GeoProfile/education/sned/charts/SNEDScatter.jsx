@@ -107,7 +107,7 @@ class SNEDScatter extends Section {
                 shapeConfig: {
                   fill: d => {
                     if (d["Institution"] !== "hack") {
-                      return snedColorScale("education" + d["Stage 1a"]);
+                      return snedColorScale("education" + d["ID Stage 1a"]);
                     } else {
                       return "transparent";
                     }
