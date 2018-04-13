@@ -9,7 +9,7 @@ import FeaturedDatum from "components/FeaturedDatum";
 
 import { Election } from "texts/GeoProfile";
 
-class ElectionSlide extends Section {
+class PresidentSlide extends Section {
   static need = [
     (params, store) =>
       simpleDatumNeed(
@@ -76,4 +76,4 @@ class ElectionSlide extends Section {
   }
 }
 
-export default translate()(ElectionSlide);
+export default translate()(PresidentSlide);

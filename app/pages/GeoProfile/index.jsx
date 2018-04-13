@@ -138,8 +138,9 @@ import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 
 /** Politics */
 
-import ElectionSlide from "./civics/election/ElectionSlide";
+import MayorSlide from "./civics/election/MayorSlide";
 import CongressSlide from "./civics/election/CongressSlide";
+import PresidentSlide from "./civics/election/PresidentSlide";
 
 import MayorResults from "./civics/election/charts/MayorResults";
 import SenatorResults from "./civics/election/charts/SenatorResults";
@@ -282,8 +283,9 @@ class GeoProfile extends Component {
     DeathCauses,
     DeathCausesStacked,
 
-    ElectionSlide,
+    MayorSlide,
     CongressSlide,
+    PresidentSlide,
 
     ParticipationSlide,
     MayorResults,
@@ -1031,11 +1033,11 @@ class GeoProfile extends Component {
                 ]}
               >
                 <div>
-                  <ElectionSlide>
+                  <MayorSlide>
                     <SectionColumns>
                       <MayorResults className="lost-1" />
                     </SectionColumns>
-                  </ElectionSlide>
+                  </MayorSlide>
                 </div>
                 <div>
                   <CongressSlide>
@@ -1047,7 +1049,7 @@ class GeoProfile extends Component {
                 </div>
 
                 <div>
-                  <ElectionSlide>
+                  <PresidentSlide>
                     <SectionColumns>
                       <Presidential1st className="lost-1-2" />
                       <Presidential2nd className="lost-1-2" />
@@ -1056,7 +1058,7 @@ class GeoProfile extends Component {
                       <Presidential1stBar className="lost-1-2" />
                       <Presidential2ndBar className="lost-1-2" />
                     </SectionColumns>
-                  </ElectionSlide>
+                  </PresidentSlide>
                 </div>
 
                 <div>
