@@ -620,6 +620,10 @@
   "Education": "Educación",
   "Educational Center": "Centro educacional",
   "Efectiveness": "Efectividad",
+
+  "Efectiveness vs Overcoming by Comuna & Type": "Efectividad vs Superación por Comuna & Tipo",
+  "Efectiveness vs Overcoming by School": "Efectividad vs Superación por Escuela",
+
   "Elected Authority": "Autoridades Electas",
   "Election": "Elección",
   "Elections": "Elecciones",
@@ -1231,6 +1235,8 @@
   "President": "Presidente",
   "Presidential": "Presidencial",
   "Presidential 1st - 2nd round": "1ra - 2da vuelta Presidencial",
+  "Presidential 1st round": "1ra vuelta Presidencial",
+  "Presidential 2nd round": "2da vuelta Presidencial",
   "Primary Healthcare": "Atención de Salud Primaria",
   "Product": "Producto",
   "Product Space": "Espacio de Producto",
