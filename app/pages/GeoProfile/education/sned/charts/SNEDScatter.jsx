@@ -26,7 +26,7 @@ class SNEDScatter extends Section {
           ["Institutions", "Institution", "Institution"],
           ["Cluster", "Cluster", "Stage 1a"]
         ],
-        cuts: [[`[Date].[Date].[Year].&[${sources.sned.year}]`]],
+        cuts: [`[Date].[Date].[Year].&[${sources.sned.year}]`],
         options: { parents: true }
       }
     ),
@@ -39,7 +39,7 @@ class SNEDScatter extends Section {
           ["Geography", "Geography", "Comuna"],
           ["Cluster", "Cluster", "Stage 1a"]
         ],
-        cuts: [[`[Date].[Date].[Year].&[${sources.sned.year}]`]],
+        cuts: [`[Date].[Date].[Year].&[${sources.sned.year}]`],
         options: { parents: true }
       }
     )
