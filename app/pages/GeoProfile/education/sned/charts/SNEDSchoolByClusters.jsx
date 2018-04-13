@@ -35,7 +35,7 @@ class SNEDSchoolByClusters extends Section {
     const locale = i18n.language;
     const path = this.context.data.path_sned_indicators;
 
-    const title = t("Number of schools by Cluster");
+    const title = t("School By Type");
     const classSvg = "sned-school-by-clusters";
 
     return (
@@ -48,7 +48,7 @@ class SNEDSchoolByClusters extends Section {
           path={path}
           className={classSvg}
           msrName="Number of records"
-          drilldowns={["Stage 1a", "Stage 1b", "Stage 2"]}
+          drilldowns={["Stage 1a"]}
           config={{
             legendConfig: {
               label: false,
