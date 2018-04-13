@@ -83,7 +83,7 @@ class SNEDSchoolByClusters extends Section {
               },
               title: d =>
                 "<div style='display: flex; align-items: center; justify-content: center;'><img height='30px' src='/images/legend/education/type.png'/>" +
-                d["Stage 2"] +
+                d["Stage 1a"] +
                 "</div>",
               body: d =>
                 numeral(d["Number of records"], locale).format("0") +
