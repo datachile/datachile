@@ -790,7 +790,7 @@
           "* In the case of Special Education, these establishments do not present indicators applicable for the factors effectiveness and overcoming",
         "source": "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
         "text1":
-          "In {{year}}, the average score awarded by National System of Evaluation Performance (SNED in spanish) for {{geo.caption}} schools was {{score}}."
+          "In {{year}}, the average score awarded by SNED for {{geo.caption}} schools was {{score}}."
       }
     },
     "health": {

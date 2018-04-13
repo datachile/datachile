@@ -816,7 +816,7 @@
         "disclaimer":
           "* En el caso de Educación Especial, estos establecimientos no presentan indicadores aplicables para los factores efectividad y superación",
         "text1":
-          "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}."
+          "Durante {{year}}, el promedio de puntuación otorgado por SNED para las escuelas de {{geo.caption}} fue de {{score}}."
       }
     },
     "health": {
