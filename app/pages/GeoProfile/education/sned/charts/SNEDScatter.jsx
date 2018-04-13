@@ -20,7 +20,15 @@ class SNEDScatter extends Section {
     simpleGeoChartNeed(
       "path_sned_efectiveness_vs_overcoming_by_school",
       "education_sned",
-      ["Avg efectiveness", "Avg overcoming", "Avg sned_score"],
+      [
+        "Avg efectiveness",
+        "Avg overcoming",
+        "Avg sned_score",
+        "Avg initiative",
+        "Avg integration",
+        "Avg improvement",
+        "Avg fairness"
+      ],
       {
         drillDowns: [
           ["Institutions", "Institution", "Institution"],
@@ -33,7 +41,15 @@ class SNEDScatter extends Section {
     simpleGeoChartNeed(
       "path_sned_efectiveness_vs_overcoming_by_school_chile",
       "education_sned",
-      ["Avg efectiveness", "Avg overcoming", "Avg sned_score"],
+      [
+        "Avg efectiveness",
+        "Avg overcoming",
+        "Avg sned_score",
+        "Avg initiative",
+        "Avg integration",
+        "Avg improvement",
+        "Avg fairness"
+      ],
       {
         drillDowns: [
           ["Geography", "Geography", "Comuna"],
@@ -91,7 +107,7 @@ class SNEDScatter extends Section {
                 shapeConfig: {
                   fill: d => {
                     if (d["Institution"] !== "hack") {
-                      return snedColorScale("education" + d["Stage 1a"]);
+                      return snedColorScale("education" + d["ID Stage 1a"]);
                     } else {
                       return "transparent";
                     }
@@ -162,6 +178,28 @@ class SNEDScatter extends Section {
                           "</td></tr>";
                         body +=
                           "<tr><td class='title'>" +
+                          t("Initiative") +
+                          "</td><td class='data'>" +
+                          numeral(d["Avg initiative"], locale).format("(0.0)") +
+                          "</td></tr>";
+                        body +=
+                          "<tr><td class='title'>" +
+                          t("Integration") +
+                          "</td><td class='data'>" +
+                          numeral(d["Avg integration"], locale).format(
+                            "(0.0)"
+                          ) +
+                          "</td></tr>";
+                        body +=
+                          "<tr><td class='title'>" +
+                          t("Improvement") +
+                          "</td><td class='data'>" +
+                          numeral(d["Avg improvement"], locale).format(
+                            "(0.0)"
+                          ) +
+                          "</td></tr>";
+                        body +=
+                          "<tr><td class='title'>" +
                           t("SNED Score") +
                           "</td><td class='data'>" +
                           numeral(d["Avg sned_score"], locale).format("(0.0)") +
@@ -172,24 +210,17 @@ class SNEDScatter extends Section {
                     }
                   }
                 },
+                legendTooltip: {
+                  title: d => d["Stage 1a"],
+                  body: d => ""
+                },
                 legendConfig: {
-                  label: d => {
-                    if (d["Avg sned_score"] > 0) {
-                      return d["Institution"];
-                    } else {
-                      return false;
-                    }
-                  },
+                  label: false,
                   shapeConfig: {
                     width: 40,
                     height: 40,
-                    backgroundImage: d => {
-                      if (d["Avg sned_score"] > 0) {
-                        return "/images/legend/college/administration.png";
-                      } else {
-                        return false;
-                      }
-                    }
+                    backgroundImage: d =>
+                      "/images/legend/college/administration.png"
                   }
                 }
               }}
@@ -229,7 +260,6 @@ class SNEDScatter extends Section {
           )}
           <SourceNote cube="sned" />
         </div>
-        <div />
       </div>
     );
   }
