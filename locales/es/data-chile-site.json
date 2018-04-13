@@ -621,8 +621,10 @@
   "Educational Center": "Centro educacional",
   "Efectiveness": "Efectividad",
 
-  "Efectiveness vs Overcoming by Comuna & Type": "Efectividad vs Superación por Comuna & Tipo",
-  "Efectiveness vs Overcoming by School": "Efectividad vs Superación por Escuela",
+  "Efectiveness vs Overcoming by Comuna & Type":
+    "Efectividad vs Superación por Comuna & Tipo",
+  "Efectiveness vs Overcoming by School":
+    "Efectividad vs Superación por Escuela",
 
   "Elected Authority": "Autoridades Electas",
   "Election": "Elección",
@@ -810,8 +812,9 @@
           }
         },
         "description":
-          "Sistema Nacional de Evaluación del Desempeño (SNED). Calcula un índice de desempeño a partir de la medición de 6 factores: efectividad, superación, iniciativa, mejoramiento de condiciones de trabajo, igualdad de oportunidades e integración de profesores.",
-        "source": "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
+          "Sistema Nacional de Evaluación del Desempeño (SNED). Calcula un índice de desempeño a partir de la medición de 6 factores: efectividad, superación, iniciativa, mejoramiento de condiciones de trabajo, igualdad de oportunidades e integración de profesores. *",
+        "disclaimer":
+          "* En el caso de Educación Especial, estos establecimientos no presentan indicadores aplicables para los factores efectividad y superación",
         "text1":
           "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}."
       }

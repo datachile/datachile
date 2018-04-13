@@ -310,7 +310,9 @@ class GeoProfile extends Component {
     const ancestor =
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
-        : geoObj.type == "region" ? chileObj : false;
+        : geoObj.type == "region"
+          ? chileObj
+          : false;
 
     if (geo) {
       this.props.data.geo.type = geoObj.type;
@@ -794,10 +796,10 @@ class GeoProfile extends Component {
                   {
                     name: t("Score"),
                     slides: [
+                      t("Performance Evaluation"),
                       t("PSU Distribution"),
                       t("PSU By Sex"),
-                      t("PSU & NEM"),
-                      t("SNED")
+                      t("PSU & NEM")
                     ]
                   },
                   {
@@ -814,6 +816,13 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </SNEDSlide>
                 </div>*/}
+                <div>
+                  <SNEDSlide>
+                    <SectionColumns>
+                      <SNEDScatter className="lost-1" />
+                    </SectionColumns>
+                  </SNEDSlide>
+                </div>
                 <div>
                   <PSUDistributionSlide>
                     <SectionColumns>
@@ -835,13 +844,6 @@ class GeoProfile extends Component {
                       <PSUNEMScatter className="lost-1" />
                     </SectionColumns>
                   </PSUNEMSlide>
-                </div>
-                <div>
-                  <SNEDSlide>
-                    <SectionColumns>
-                      <SNEDScatter className="lost-1" />
-                    </SectionColumns>
-                  </SNEDSlide>
                 </div>
                 <div>
                   <EnrollmentSlide>
