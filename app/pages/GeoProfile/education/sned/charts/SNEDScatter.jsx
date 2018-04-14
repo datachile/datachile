@@ -102,7 +102,8 @@ class SNEDScatter extends Section {
                 label: d => d["Institution"],
                 x: "Avg efectiveness",
                 y: "Avg overcoming",
-                size: "Avg sned_score",
+                size: geo.type == "comuna" ? d => 10 : d => 5,
+                sizeMax: geo.type == "comuna" ? 10 : 5,
                 colorScalePosition: false,
                 shapeConfig: {
                   fill: d => {
