@@ -621,8 +621,10 @@
   "Educational Center": "Centro educacional",
   "Efectiveness": "Efectividad",
 
-  "Efectiveness vs Overcoming by Comuna & Type": "Efectividad vs Superación por Comuna & Tipo",
-  "Efectiveness vs Overcoming by School": "Efectividad vs Superación por Escuela",
+  "Efectiveness vs Overcoming by Comuna & Type":
+    "Efectividad vs Superación por Comuna & Tipo",
+  "Efectiveness vs Overcoming by School":
+    "Efectividad vs Superación por Escuela",
 
   "Elected Authority": "Autoridades Electas",
   "Election": "Elección",
@@ -687,17 +689,53 @@
     "Diferencia PSU Promedio Particular Pagado/Municipal",
   "Gender": "Género",
   "Geo": "Geo",
+  "mayor": "alcalde",
+  "mayor_plural": "alcaldes",
+  "congressperson": "diputado",
+  "congressperson_plural": "diputados",
+  "senator": "senador",
+  "senator_plural": "senadores",
+  "president": "presidente",
+  "president_plural": "presidentes",
+  "representative": "{{count}} representante",
+  "representative_plural": "{{count}} representantes",
   "geo_profile": {
     "civics": {
+      "common": {
+        "total":
+          "Para la elección de {{position}} de {{year.election}}, en {{geo.caption}} votó un total de {{votes.total}} personas, que representan un {{votes.participation}} del total de votantes habilitados.",
+        "candidate":
+          "La población de {{geo.caption}} eligió a {{candidates.0.Candidate}} ({{candidates.0.Partido}}) como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}} ({{candidates.1.Partido}}), quier recibió {{candidates.1.Votes}} votos.",
+        "parties_1":
+          "El partido político que logró más puestos de {{position}} en {{geo.caption}} en la eleccion de {{year.election}} fue {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }).",
+        "parties_2":
+          "Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }), y {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }).",
+        "parties":
+          "Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }). Le sigue {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }), y {{parties.2.name}}, con $t(representative, {'count': {{parties.2.total}} }).",
+        "invalid":
+          "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
+      },
+      "mayor": {
+        "participation":
+          "<p>$t(geo_profile.civics.common.total) $t(geo_profile.civics.common.invalid)</p>",
+        "text_party": "<p>$t(geo_profile.civics.common.parties)</p>",
+        "text_person": "<p>$t(geo_profile.civics.common.candidate)</p>"
+      },
       "congress": {
         "note":
           "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección.",
-        "text":
-          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}"
+        "text_party":
+          "<p>$t(geo_profile.civics.common.parties, {{senators}})</p><p>$t(geo_profile.civics.common.parties, {{congresspeople}})</p>",
+        "text_person": "<p>$t(geo_profile.civics.congress.representation)</p>",
+        "representation":
+          "<p>Los diputados que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{congresspeople}}.</p><p>Por otro lado, los senadores que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{senators}}.</p>"
       },
-      "presidential": {
+      "president": {
         "text":
           "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+      },
+      "participation": {
+        "text": ""
       }
     },
     "demography": {
