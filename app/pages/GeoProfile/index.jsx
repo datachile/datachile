@@ -67,6 +67,7 @@ import SNED from "./education/sned/charts/SNED";
 import SNEDSchoolByClusters from "./education/sned/charts/SNEDSchoolByClusters";
 import SNEDCompareByCluster from "./education/sned/charts/SNEDCompareByCluster";
 import SNEDScatter from "./education/sned/charts/SNEDScatter";
+import SNEDCompareBySchool from "./education/sned/charts/SNEDCompareBySchool";
 
 import PSUNEMSlide from "./education/performance/PSUNEMSlide";
 import PSUNEMScatter from "./education/performance/charts/PSUNEMScatter";
@@ -240,6 +241,7 @@ class GeoProfile extends Component {
     SNEDSchoolByClusters,
     SNEDCompareByCluster,
     SNEDScatter,
+    SNEDCompareBySchool,
 
     PSUNEMSlide,
     PSUNEMScatter,
@@ -821,7 +823,8 @@ class GeoProfile extends Component {
                 <div>
                   <SNEDSlide>
                     <SectionColumns>
-                      <SNEDScatter className="lost-1" />
+                      {/*<SNEDScatter className="lost-1" />*/}
+                      <SNEDCompareBySchool className="lost-1" />
                     </SectionColumns>
                   </SNEDSlide>
                 </div>
