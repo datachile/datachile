@@ -678,7 +678,7 @@
       "mayor": {
         "title": "Mayor Elections",
         "text_person":
-          "<p>The population of {{geo.caption}} chose {{candidates.0.Candidate}} ({{candidates.0.Partido}}) for mayor on the {{year.first}}-{{year.last}} term, who received {{candidates.0.Votes}} valid votes. In second place was {{candidates.1.Candidate}} ({{candidates.1.Partido}}), who received {{candidates.1.Votes}} votes.</p>",
+          "<p>The population of {{geo.caption}} chose {{candidates.0.Candidate}}, of {{candidates.0.Partido}}, for mayor on the {{year.first}}-{{year.last}} term, who received {{candidates.0.Votes}} valid votes. In second place was {{candidates.1.Candidate}}, from {{candidates.1.Partido}}, who received {{candidates.1.Votes}} votes.</p>",
         "text_party_1":
           "<p>The political party that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election was {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }).</p>",
         "text_party_2":
@@ -692,8 +692,15 @@
           "Names marked with a * represent elected officials in said election.",
         "text_party":
           "<p>Within the Senate, the political parties that achieved the most seats in the election of {{year.election}} were {{senparties.0.name}}, with $t(representative, {'count': {{senparties.0.total}} }). Follows {{senparties.1.name}}, with $t(representative, {'count': {{senparties.1.total}} }), and {{senparties.2.name}}, with $t(representative, {'count': {{senparties.2.total}} }).</p><p>Meanwhile, the political parties that achieved the most seats in the Chamber of Deputies in the same year were {{dipparties.0.name}}, with $t(representative, {'count': {{dipparties.0.total}} }), followed by {{dipparties.1.name}}, with $t(representative, {'count': {{dipparties.1.total}} }), and {{dipparties.2.name}}, with $t(representative, {'count': {{dipparties.2.total}} }).</p>",
-        "text_person":
-          "<p>The Deputies representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.</p><p>On the other hand, the Senators who represent {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{senators}}.</p>"
+        "senate":
+          "Senators who represent {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{senators}}.",
+        "deputy":
+          "Deputies representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.",
+        "text_person": "",
+        "text_person1": "<p>The $t(geo_profile.civics.congress.senate)</p>",
+        "text_person2": "<p>The $t(geo_profile.civics.congress.deputy)</p>",
+        "text_person3":
+          "<p>The $t(geo_profile.civics.congress.senate)</p><p>On the other hand, the $t(geo_profile.civics.congress.deputy)</p>"
       },
       "president": {
         "title": "Presidential Elections",

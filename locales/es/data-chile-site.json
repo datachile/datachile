@@ -714,7 +714,7 @@
       "mayor": {
         "title": "Elecciones Edilicias",
         "text_person":
-          "<p>La población de {{geo.caption}} eligió a {{candidates.0.Candidate}} ({{candidates.0.Partido}}) como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}} ({{candidates.1.Partido}}), quien recibió {{candidates.1.Votes}} votos.</p>",
+          "<p>La población de {{geo.caption}} eligió a {{candidates.0.Candidate}}, de {{candidates.0.Partido}}, como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}}, de {{candidates.1.Partido}}, quien recibió {{candidates.1.Votes}} votos.</p>",
         "text_party_1":
           "<p>El partido político que logró más puestos de {{position}} en {{geo.caption}} en la eleccion de {{year.election}} fue {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }).</p>",
         "text_party_2":
@@ -728,8 +728,15 @@
           "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección.",
         "text_party":
           "<p>Dentro del Senado, los partidos políticos que lograron más escaños en la elección de {{year.election}} fueron {{senparties.0.name}}, con $t(representative, {'count': {{senparties.0.total}} }). Le sigue {{senparties.1.name}}, con $t(representative, {'count': {{senparties.1.total}} }), y {{senparties.2.name}}, con $t(representative, {'count': {{senparties.2.total}} }).</p><p>Mientras tanto, los partidos políticos que lograron más escaños en la Cámara de Diputados en el mismo año fueron {{dipparties.0.name}}, con $t(representative, {'count': {{dipparties.0.total}} }). Le sigue {{dipparties.1.name}}, con $t(representative, {'count': {{dipparties.1.total}} }), y {{dipparties.2.name}}, con $t(representative, {'count': {{dipparties.2.total}} }).</p>",
-        "text_person":
-          "<p>Los diputados que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{congresspeople}}.</p><p>Por otro lado, los senadores que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{senators}}.</p>"
+        "senate":
+          "senadores que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{senators}}.",
+        "deputy":
+          "diputados que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{congresspeople}}.",
+        "text_person": "",
+        "text_person1": "<p>Los $t(geo_profile.civics.congress.senate)</p>",
+        "text_person2": "<p>Los $t(geo_profile.civics.congress.deputy)</p>",
+        "text_person3":
+          "<p>Los $t(geo_profile.civics.congress.senate)</p><p>Por otro lado, los $t(geo_profile.civics.congress.deputy)</p>"
       },
       "president": {
         "title": "Elecciones Presidenciales",

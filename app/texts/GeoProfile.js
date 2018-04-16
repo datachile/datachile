@@ -585,11 +585,12 @@ function textCivicsCongress(geo, source, year, locale) {
   const elections = groupBy(data, "ID Election Type");
   const senador = (elections[3] || []).sort(sortByVotes);
   const diputado = (elections[4] || []).sort(sortByVotes);
+  const flag = (senador.length > 0 ? 1 : 0) + (diputado.length > 0 ? 2 : 0);
 
   if (geo.depth > 0) {
     return {
       geo,
-      context: "person",
+      context: "person" + (flag || ''),
       year: years,
       congresspeople: joinWithAnd(
         diputado.map(option => option.Candidate),
