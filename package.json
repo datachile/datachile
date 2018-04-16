@@ -39,6 +39,7 @@
     "slick-carousel": "^1.7.1"
   },
   "devDependencies": {
+    "@types/react-i18next": "^7.3.2",
     "babel-eslint": "^8.0.2",
     "eslint": "^4.12.0",
     "eslint-config-prettier": "^2.9.0",
