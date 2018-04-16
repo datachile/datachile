@@ -715,11 +715,11 @@
         "text_person":
           "<p>La población de {{geo.caption}} eligió a {{candidates.0.Candidate}} ({{candidates.0.Partido}}) como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}} ({{candidates.1.Partido}}), quien recibió {{candidates.1.Votes}} votos.</p>",
         "text_party_1":
-          "El partido político que logró más puestos de {{position}} en {{geo.caption}} en la eleccion de {{year.election}} fue {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }).",
+          "<p>El partido político que logró más puestos de {{position}} en {{geo.caption}} en la eleccion de {{year.election}} fue {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }).</p>",
         "text_party_2":
-          "Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }), y {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }).",
+          "<p>Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }), y {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }).</p>",
         "text_party":
-          "Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }). Le sigue {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }), y {{parties.2.name}}, con $t(representative, {'count': {{parties.2.total}} })."
+          "<p>Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }). Le sigue {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }), y {{parties.2.name}}, con $t(representative, {'count': {{parties.2.total}} }).</p>"
       },
       "congress": {
         "note":
