@@ -676,6 +676,7 @@
           "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
       },
       "mayor": {
+        "title": "Mayor Elections",
         "text_person":
           "<p>The population of {{geo.caption}} chose {{candidates.0.Candidate}} ({{candidates.0.Partido}}) for mayor on the {{year.first}}-{{year.last}} term, who received {{candidates.0.Votes}} valid votes. In second place was {{candidates.1.Candidate}} ({{candidates.1.Partido}}), who received {{candidates.1.Votes}} votes.</p>",
         "text_party_1":
@@ -686,6 +687,7 @@
           "<p>The political parties that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election were {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }). Follows {{parties.1.name}}, with $t(representative, {'count': {{parties.1.total}} }), and {{parties.2.name}}, with $t(representative, {'count': {{parties.2.total}} }).</p>"
       },
       "congress": {
+        "title": "Legislative Elections",
         "note":
           "Names marked with a * represent elected officials in said election.",
         "text_party":
@@ -694,6 +696,7 @@
           "<p>The Deputies representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.</p><p>On the other hand, the Senators who represent {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{senators}}.</p>"
       },
       "president": {
+        "title": "Presidential Elections",
         "text_country":
           "<p>For the first round of the presidential election of {{year.election}}, the majority of votes were obtained by the candidate {{firstround.0.Candidate}} with a {{firstround.0.share}} of the votes, followed by {{firstround.1.Candidate}}, who took second place with the {{firstround.1.share}} of the preferences, while {{firstround.2.Candidate}} got {{firstround.2.share}} of the votes, staying out of the ballotage.</p><p>For the presidential runoff, the candidate chosen to be President was {{ballotage.0.Candidate}}, who beat {{ballotage.1.Candidate}} with a {{ballotage.0.share}} against a {{ballotage.1.share}} of the votes.</p>",
         "text":
