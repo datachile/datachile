@@ -699,6 +699,8 @@
   "president_plural": "presidentes",
   "representative": "{{count}} representante",
   "representative_plural": "{{count}} representantes",
+  "vote": "voto",
+  "vote_plural": "votos",
   "geo_profile": {
     "civics": {
       "common": {
@@ -725,9 +727,8 @@
         "note":
           "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección.",
         "text_party":
-          "<p>$t(geo_profile.civics.common.parties, {{senators}})</p><p>$t(geo_profile.civics.common.parties, {{congresspeople}})</p>",
-        "text_person": "<p>$t(geo_profile.civics.congress.representation)</p>",
-        "representation":
+          "<p>Dentro del Senado, los partidos políticos que lograron más escaños en la elección de {{year.election}} fueron {{senparties.0.name}}, con $t(representative, {'count': {{senparties.0.total}} }). Le sigue {{senparties.1.name}}, con $t(representative, {'count': {{senparties.1.total}} }), y {{senparties.2.name}}, con $t(representative, {'count': {{senparties.2.total}} }).</p><p>Mientras tanto, los partidos políticos que lograron más escaños en la Cámara de Diputados en el mismo año fueron {{dipparties.0.name}}, con $t(representative, {'count': {{dipparties.0.total}} }). Le sigue {{dipparties.1.name}}, con $t(representative, {'count': {{dipparties.1.total}} }), y {{dipparties.2.name}}, con $t(representative, {'count': {{dipparties.2.total}} }).</p>",
+        "text_person":
           "<p>Los diputados que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{congresspeople}}.</p><p>Por otro lado, los senadores que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{senators}}.</p>"
       },
       "president": {

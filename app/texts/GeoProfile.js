@@ -570,7 +570,7 @@ function textCivicsMayor(geo, source, year, locale) {
   return output;
 }
 
-function textCivicsCongress(t, geo, source, year, locale) {
+function textCivicsCongress(geo, source, year, locale) {
   console.log(geo, source);
   if (!source || !source.available) return false;
 
@@ -583,8 +583,8 @@ function textCivicsCongress(t, geo, source, year, locale) {
   };
 
   const elections = groupBy(data, "ID Election Type");
-  const senador = elections[3].sort(sortByVotes);
-  const diputado = elections[4].sort(sortByVotes);
+  const senador = (elections[3] || []).sort(sortByVotes);
+  const diputado = (elections[4] || []).sort(sortByVotes);
 
   if (geo.depth > 0) {
 
@@ -593,11 +593,11 @@ function textCivicsCongress(t, geo, source, year, locale) {
       context: "person",
       year: years,
       congresspeople: joinWithAnd(
-        senador.filter(checkElected).map(option => option.Candidate),
+        senador.map(option => option.Candidate),
         locale
       ),
       senators: joinWithAnd(
-        diputado.filter(checkElected).map(option => option.Candidate),
+        diputado.map(option => option.Candidate),
         locale
       )
     };
@@ -605,26 +605,20 @@ function textCivicsCongress(t, geo, source, year, locale) {
     const sen_partiesDict = groupBy(senador, "Partido");
     const sen_parties = Object.keys(sen_partiesDict).map(partyName => ({
       name: partyName,
-      total: sen_partiesDict[partyName].filter(checkElected).length
+      total: sen_partiesDict[partyName].length
     }));
     const dip_partiesDict = groupBy(diputado, "Partido");
     const dip_parties = Object.keys(dip_partiesDict).map(partyName => ({
       name: partyName,
-      total: dip_partiesDict[partyName].filter(checkElected).length
+      total: dip_partiesDict[partyName].length
     }));
 
     return {
       geo,
       context: "party",
       year: years,
-      congresspeople: {
-        count: dip_parties.length,
-        parties: dip_parties.sort((a, b) => b.total - a.total)
-      },
-      senators: {
-        count: sen_parties.length,
-        parties: sen_parties.sort((a, b) => b.total - a.total)
-      },
+      dipparties: dip_parties.sort((a, b) => b.total - a.total),
+      senparties: sen_parties.sort((a, b) => b.total - a.total)
     };
   }
 }
