@@ -704,24 +704,22 @@
   "geo_profile": {
     "civics": {
       "common": {
+        "participation":
+          "<p>$t(geo_profile.civics.common.total) $t(geo_profile.civics.common.invalid)</p>",
         "total":
           "Para la elección de {{position}} de {{year.election}}, en {{geo.caption}} votó un total de {{votes.total}} personas, que representan un {{votes.participation}} del total de votantes habilitados.",
-        "candidate":
-          "La población de {{geo.caption}} eligió a {{candidates.0.Candidate}} ({{candidates.0.Partido}}) como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}} ({{candidates.1.Partido}}), quier recibió {{candidates.1.Votes}} votos.",
-        "parties_1":
-          "El partido político que logró más puestos de {{position}} en {{geo.caption}} en la eleccion de {{year.election}} fue {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }).",
-        "parties_2":
-          "Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }), y {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }).",
-        "parties":
-          "Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }). Le sigue {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }), y {{parties.2.name}}, con $t(representative, {'count': {{parties.2.total}} }).",
         "invalid":
           "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
       },
       "mayor": {
-        "participation":
-          "<p>$t(geo_profile.civics.common.total) $t(geo_profile.civics.common.invalid)</p>",
-        "text_party": "<p>$t(geo_profile.civics.common.parties)</p>",
-        "text_person": "<p>$t(geo_profile.civics.common.candidate)</p>"
+        "text_person":
+          "<p>La población de {{geo.caption}} eligió a {{candidates.0.Candidate}} ({{candidates.0.Partido}}) como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}} ({{candidates.1.Partido}}), quien recibió {{candidates.1.Votes}} votos.</p>",
+        "text_party_1":
+          "El partido político que logró más puestos de {{position}} en {{geo.caption}} en la eleccion de {{year.election}} fue {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }).",
+        "text_party_2":
+          "Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }), y {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }).",
+        "text_party":
+          "Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }). Le sigue {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }), y {{parties.2.name}}, con $t(representative, {'count': {{parties.2.total}} })."
       },
       "congress": {
         "note":
@@ -735,7 +733,7 @@
         "text_country":
           "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, la mayoría de votos la obtuvo el candidato {{firstround.0.Candidate}} con un {{firstround.0.share}} de los votos, seguido de {{firstround.1.Candidate}}, quien obtuvo el segundo lugar con el {{firstround.1.share}} de las preferencias, mientras que {{firstround.2.Candidate}} obtuvo un {{firstround.2.share}} de los votos, quedando fuera de la segunda vuelta.</p><p>Para la segunda vuelta presidencial, el candidato elegido para ser Presidente fue {{ballotage.0.Candidate}}, quien superó a {{ballotage.1.Candidate}} con un {{ballotage.0.share}} contra un {{ballotage.1.share}} de los votos.</p>",
         "text":
-          "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, los electores de {{geo.caption}} presentaron una preferencia por {{firstround.0.Candidate}} con un {{firstround.0.share}} de los votos, mientras que {{firstround.1.Candidate}} obtuvo el segundo lugar con el {{firstround.1.share}}, y {{firstround.2.Candidate}} obtuvo el tercer lugar con un {{firstround.1.share}} de las preferencias.</p><p>Para la segunda vuelta presidencial, la mayoría de los votantes de {{geo.caption}} se inclinó por {{ballotage.0.Candidate}}, superando a {{ballotage.1.Candidate}} con un {{ballotage.0.share}} contra un {{ballotage.1.share}} de los votos.</p>"
+          "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, los electores de {{geo.caption}} presentaron una preferencia por {{firstround.0.Candidate}} con un {{firstround.0.share}} de los votos, mientras que {{firstround.1.Candidate}} obtuvo el segundo lugar con el {{firstround.1.share}}, y {{firstround.2.Candidate}} obtuvo el tercer lugar con un {{firstround.2.share}} de las preferencias.</p><p>Para la segunda vuelta presidencial, la mayoría de los votantes de {{geo.caption}} se inclinó por {{ballotage.0.Candidate}}, superando a {{ballotage.1.Candidate}} con un {{ballotage.0.share}} contra un {{ballotage.1.share}} de los votos.</p>"
       }
     },
     "demography": {

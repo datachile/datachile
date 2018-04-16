@@ -592,10 +592,10 @@ function textCivicsCongress(geo, source, year, locale) {
       context: "person",
       year: years,
       congresspeople: joinWithAnd(
-        senador.map(option => option.Candidate),
+        diputado.map(option => option.Candidate),
         locale
       ),
-      senators: joinWithAnd(diputado.map(option => option.Candidate), locale)
+      senators: joinWithAnd(senador.map(option => option.Candidate), locale)
     };
   } else {
     const sen_partiesDict = groupBy(senador, "Partido");
@@ -620,7 +620,6 @@ function textCivicsCongress(geo, source, year, locale) {
 }
 
 function textCivicsPresident(geo, source, year, locale) {
-  console.log(geo, source);
   if (!source || !source.available) return false;
 
   const data = source.data;
@@ -637,7 +636,7 @@ function textCivicsPresident(geo, source, year, locale) {
 
   return {
     geo,
-    context: geo.depth > 1 ? "" : "country",
+    context: geo.depth > 0 ? "" : "country",
     year: {
       election: electionYear,
       first: electionYear + 1,
