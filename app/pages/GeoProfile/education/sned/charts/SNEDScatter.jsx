@@ -102,7 +102,8 @@ class SNEDScatter extends Section {
                 label: d => d["Institution"],
                 x: "Avg efectiveness",
                 y: "Avg overcoming",
-                size: "Avg sned_score",
+                size: geo.type == "comuna" ? d => 10 : d => 5,
+                sizeMax: geo.type == "comuna" ? 10 : 5,
                 colorScalePosition: false,
                 shapeConfig: {
                   fill: d => {
@@ -259,6 +260,67 @@ class SNEDScatter extends Section {
             <NoDataAvailable />
           )}
           <SourceNote cube="sned" />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html: t("geo_profile.education.sned.disclaimer")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.efectiveness.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.efectiveness.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.overcoming.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.overcoming.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.fairness.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.fairness.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.improvement.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.improvement.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.initiative.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.initiative.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.integration.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.integration.desc")
+            }}
+          />
+          <SourceNote cube="sned_website" />
         </div>
       </div>
     );

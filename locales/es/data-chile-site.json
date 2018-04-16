@@ -621,8 +621,10 @@
   "Educational Center": "Centro educacional",
   "Efectiveness": "Efectividad",
 
-  "Efectiveness vs Overcoming by Comuna & Type": "Efectividad vs Superación por Comuna & Tipo",
-  "Efectiveness vs Overcoming by School": "Efectividad vs Superación por Escuela",
+  "Efectiveness vs Overcoming by Comuna & Type":
+    "Efectividad vs Superación por Comuna & Tipo",
+  "Efectiveness vs Overcoming by School":
+    "Efectividad vs Superación por Escuela",
 
   "Elected Authority": "Autoridades Electas",
   "Election": "Elección",
@@ -687,17 +689,51 @@
     "Diferencia PSU Promedio Particular Pagado/Municipal",
   "Gender": "Género",
   "Geo": "Geo",
+  "mayor": "alcalde",
+  "mayor_plural": "alcaldes",
+  "congressperson": "diputado",
+  "congressperson_plural": "diputados",
+  "senator": "senador",
+  "senator_plural": "senadores",
+  "president": "presidente",
+  "president_plural": "presidentes",
+  "representative": "{{count}} representante",
+  "representative_plural": "{{count}} representantes",
+  "vote": "voto",
+  "vote_plural": "votos",
   "geo_profile": {
     "civics": {
+      "common": {
+        "participation":
+          "<p>$t(geo_profile.civics.common.total) $t(geo_profile.civics.common.invalid)</p>",
+        "total":
+          "Para la elección de {{position}} de {{year.election}}, en {{geo.caption}} votó un total de {{votes.total}} personas, que representan un {{votes.participation}} del total de votantes habilitados.",
+        "invalid":
+          "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
+      },
+      "mayor": {
+        "text_person":
+          "<p>La población de {{geo.caption}} eligió a {{candidates.0.Candidate}} ({{candidates.0.Partido}}) como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}} ({{candidates.1.Partido}}), quien recibió {{candidates.1.Votes}} votos.</p>",
+        "text_party_1":
+          "<p>El partido político que logró más puestos de {{position}} en {{geo.caption}} en la eleccion de {{year.election}} fue {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }).</p>",
+        "text_party_2":
+          "<p>Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }), y {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }).</p>",
+        "text_party":
+          "<p>Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }). Le sigue {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }), y {{parties.2.name}}, con $t(representative, {'count': {{parties.2.total}} }).</p>"
+      },
       "congress": {
         "note":
           "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección.",
-        "text":
-          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}"
+        "text_party":
+          "<p>Dentro del Senado, los partidos políticos que lograron más escaños en la elección de {{year.election}} fueron {{senparties.0.name}}, con $t(representative, {'count': {{senparties.0.total}} }). Le sigue {{senparties.1.name}}, con $t(representative, {'count': {{senparties.1.total}} }), y {{senparties.2.name}}, con $t(representative, {'count': {{senparties.2.total}} }).</p><p>Mientras tanto, los partidos políticos que lograron más escaños en la Cámara de Diputados en el mismo año fueron {{dipparties.0.name}}, con $t(representative, {'count': {{dipparties.0.total}} }). Le sigue {{dipparties.1.name}}, con $t(representative, {'count': {{dipparties.1.total}} }), y {{dipparties.2.name}}, con $t(representative, {'count': {{dipparties.2.total}} }).</p>",
+        "text_person":
+          "<p>Los diputados que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{congresspeople}}.</p><p>Por otro lado, los senadores que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{senators}}.</p>"
       },
-      "presidential": {
+      "president": {
+        "text_country":
+          "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, la mayoría de votos la obtuvo el candidato {{firstround.0.Candidate}} con un {{firstround.0.share}} de los votos, seguido de {{firstround.1.Candidate}}, quien obtuvo el segundo lugar con el {{firstround.1.share}} de las preferencias, mientras que {{firstround.2.Candidate}} obtuvo un {{firstround.2.share}} de los votos, quedando fuera de la segunda vuelta.</p><p>Para la segunda vuelta presidencial, el candidato elegido para ser Presidente fue {{ballotage.0.Candidate}}, quien superó a {{ballotage.1.Candidate}} con un {{ballotage.0.share}} contra un {{ballotage.1.share}} de los votos.</p>",
         "text":
-          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+          "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, los electores de {{geo.caption}} presentaron una preferencia por {{firstround.0.Candidate}} con un {{firstround.0.share}} de los votos, mientras que {{firstround.1.Candidate}} obtuvo el segundo lugar con el {{firstround.1.share}}, y {{firstround.2.Candidate}} obtuvo el tercer lugar con un {{firstround.2.share}} de las preferencias.</p><p>Para la segunda vuelta presidencial, la mayoría de los votantes de {{geo.caption}} se inclinó por {{ballotage.0.Candidate}}, superando a {{ballotage.1.Candidate}} con un {{ballotage.0.share}} contra un {{ballotage.1.share}} de los votos.</p>"
       }
     },
     "demography": {
@@ -810,10 +846,11 @@
           }
         },
         "description":
-          "Sistema Nacional de Evaluación del Desempeño (SNED). Calcula un índice de desempeño a partir de la medición de 6 factores: efectividad, superación, iniciativa, mejoramiento de condiciones de trabajo, igualdad de oportunidades e integración de profesores.",
-        "source": "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
+          "Sistema Nacional de Evaluación del Desempeño (SNED). Calcula un índice de desempeño a partir de la medición de 6 factores: efectividad, superación, iniciativa, mejoramiento de condiciones de trabajo, igualdad de oportunidades e integración de profesores. *",
+        "disclaimer":
+          "* En el caso de Educación Especial, estos establecimientos no presentan indicadores aplicables para los factores efectividad y superación",
         "text1":
-          "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}."
+          "Durante {{year}}, el promedio de puntuación otorgado por SNED para las escuelas de {{geo.caption}} fue de {{score}} sobre 100."
       }
     },
     "health": {

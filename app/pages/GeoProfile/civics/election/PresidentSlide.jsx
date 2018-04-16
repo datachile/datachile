@@ -4,49 +4,62 @@ import { Section } from "datawheel-canon";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
+import { sources } from "helpers/consts";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import { Election } from "texts/GeoProfile";
+import { textCivicsPresident } from "texts/GeoProfile";
 
-class ElectionSlide extends Section {
+const election_year = []
+  .concat(sources.election_results_update.presidential_election_year)
+  .pop();
+
+class PresidentSlide extends Section {
   static need = [
-    (params, store) =>
-      simpleDatumNeed(
-        "datum_electoral_participation",
-        "election_participation",
-        ["Votes", "Participation"],
-        {
-          drillDowns: [
-            ["Election Type", "Election Type", "Election Type"],
-            ["Date", "Date", "Year"]
-          ],
-          options: { parents: true },
-          cuts: ["[Date].[Date].[Year].&[2017]"]
-        },
-        "geo",
-        false
-      )(params, store)
+    simpleDatumNeed(
+      "datum_election_president",
+      "election_results_update",
+      ["Votes"],
+      {
+        drillDowns: [
+          ["Party", "Party", "Partido"],
+          ["Candidates", "Candidates", "Candidate"],
+          ["Election Type", "Election Type", "Election Type"]
+        ],
+        options: { sparse: true },
+        cuts: [
+          "{[Election Type].[Election Type].[Election Type].&[1],[Election Type].[Election Type].[Election Type].&[2]}",
+          `[Date].[Date].[Year].&[${election_year}]`
+        ]
+      },
+      "geo",
+      false
+    )
   ];
 
   render() {
     const { children, t, i18n } = this.props;
-    const { datum_electoral_participation, geo } = this.context.data;
+    const { datum_election_president, geo } = this.context.data;
 
     const locale = i18n.language;
-    const text = Election(datum_electoral_participation, geo, locale);
+    const text = undefined;
+    const text2 = textCivicsPresident(
+      geo,
+      datum_election_president,
+      election_year,
+      locale
+    );
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Election")}</div>
-          <div className="topic-slide-text">
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t("geo_profile.politics.text", text)
-              }}
-            />
-          </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{
+              __html: t("geo_profile.civics.president.text", text2)
+            }}
+          />
           <div className="topic-slide-data">
             {text && (
               <FeaturedDatum
@@ -76,4 +89,4 @@ class ElectionSlide extends Section {
   }
 }
 
-export default translate()(ElectionSlide);
+export default translate()(PresidentSlide);

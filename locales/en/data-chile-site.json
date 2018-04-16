@@ -667,15 +667,37 @@
   "Geo": "Geo",
   "geo_profile": {
     "civics": {
+      "common": {
+        "participation":
+          "<p>$t(geo_profile.civics.common.total) $t(geo_profile.civics.common.invalid)</p>",
+        "total":
+          "Para la elección de {{position}} de {{year.election}}, en {{geo.caption}} votó un total de {{votes.total}} personas, que representan un {{votes.participation}} del total de votantes habilitados.",
+        "invalid":
+          "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
+      },
+      "mayor": {
+        "text_person":
+          "<p>The population of {{geo.caption}} chose {{candidates.0.Candidate}} ({{candidates.0.Partido}}) for mayor on the {{year.first}}-{{year.last}} term, who received {{candidates.0.Votes}} valid votes. In second place was {{candidates.1.Candidate}} ({{candidates.1.Partido}}), who received {{candidates.1.Votes}} votes.</p>",
+        "text_party_1":
+          "<p>The political party that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election was {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }).</p>",
+        "text_party_2":
+          "<p>The political parties that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election were {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }), and {{parties.1.name}}, with $t(representative, {'count': {{parties.1.total}} }).</p>",
+        "text_party":
+          "<p>The political parties that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election were {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }). Follows {{parties.1.name}}, with $t(representative, {'count': {{parties.1.total}} }), and {{parties.2.name}}, with $t(representative, {'count': {{parties.2.total}} }).</p>"
+      },
       "congress": {
         "note":
           "Names marked with a * represent elected officials in said election.",
-        "text":
-          "The congresspeople who represent {{geo.caption}} during the 2018-2022 term are: {{congresspersons}}"
+        "text_party":
+          "<p>Within the Senate, the political parties that achieved the most seats in the election of {{year.election}} were {{senparties.0.name}}, with $t(representative, {'count': {{senparties.0.total}} }). Follows {{senparties.1.name}}, with $t(representative, {'count': {{senparties.1.total}} }), and {{senparties.2.name}}, with $t(representative, {'count': {{senparties.2.total}} }).</p><p>Meanwhile, the political parties that achieved the most seats in the Chamber of Deputies in the same year were {{dipparties.0.name}}, with $t(representative, {'count': {{dipparties.0.total}} }), followed by {{dipparties.1.name}}, with $t(representative, {'count': {{dipparties.1.total}} }), and {{dipparties.2.name}}, with $t(representative, {'count': {{dipparties.2.total}} }).</p>",
+        "text_person":
+          "<p>The Deputies representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.</p><p>On the other hand, the Senators who represent {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{senators}}.</p>"
       },
-      "presidential": {
+      "president": {
+        "text_country":
+          "<p>For the first round of the presidential election of {{year.election}}, the majority of votes were obtained by the candidate {{firstround.0.Candidate}} with a {{firstround.0.share}} of the votes, followed by {{firstround.1.Candidate}}, who took second place with the {{firstround.1.share}} of the preferences, while {{firstround.2.Candidate}} got {{firstround.2.share}} of the votes, staying out of the ballotage.</p><p>For the presidential runoff, the candidate chosen to be President was {{ballotage.0.Candidate}}, who beat {{ballotage.1.Candidate}} with a {{ballotage.0.share}} against a {{ballotage.1.share}} of the votes.</p>",
         "text":
-          "For the {{year.last}} presidential election, {{candidate.first.share}} of the voters"
+          "<p>For the first round of the {{year.election}} presidential election, the {{geo.caption}} voters had a preference for {{firstround.0.Candidate}} with a {{firstround.0.share}} of the votes, while {{firstround.1.Candidate}} got the second place with the {{firstround.1.share}}, and {{firstround.2.Candidate}} got the third place with a {{firstround.2.share}} of the preferences.</p><p>For the presidential runoff, most of {{geo.caption}} voters opted for {{ballotage.0.Candidate}}, beating {{ballotage.1.Candidate}} with a {{ballotage.0.share}} against a {{ballotage.1.share}} of the votes.</p>"
       }
     },
     "demography": {
@@ -785,10 +807,12 @@
           }
         },
         "description":
-          "National System of Performance Evaluation (SNED). Calculate a performance index based on the measurement of 6 factors: effectiveness, improvement, initiative, improvement of working conditions, equal opportunities and teacher integration.",
+          "National System of Performance Evaluation (SNED). Calculate a performance index based on the measurement of 6 factors: effectiveness, improvement, initiative, improvement of working conditions, equal opportunities and teacher integration. *",
+        "disclaimer":
+          "* In the case of Special Education, these establishments do not present indicators applicable for the factors effectiveness and overcoming",
         "source": "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
         "text1":
-          "In {{year}}, the average score awarded by National System of Evaluation Performance (SNED in spanish) for {{geo.caption}} schools was {{score}}."
+          "In {{year}}, the average score awarded by SNED for {{geo.caption}} schools was {{score}} over 100."
       }
     },
     "health": {
@@ -1394,6 +1418,7 @@
   "Total R&D spending by Business Type": "Total R&D spending by Business Type",
   "Total R&D spending by Ownership Type":
     "Total R&D spending by Ownership Type",
+  "Total schools by type": "Escuelas totales por tipo",
   "Total Students": "Total Students",
   "Trade": "Trade",
   "Trade Balance": "Trade Balance",

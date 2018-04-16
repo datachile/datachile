@@ -8,28 +8,27 @@ import { sources } from "helpers/consts";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import { textCivicsCongress } from "texts/GeoProfile";
+import { textCivicsMayor } from "texts/GeoProfile";
 
 const election_year = []
-  .concat(sources.election_results_update.senators_election_year)
+  .concat(sources.election_results_update.mayor_election_year)
   .pop();
 
-class CongressSlide extends Section {
+class MayorSlide extends Section {
   static need = [
     simpleDatumNeed(
-      "datum_election_congressperson",
+      "datum_election_mayor",
       "election_results_update",
       ["Number of records", "Votes"],
       {
         drillDowns: [
-          ["Election Type", "Election Type", "Election Type"],
           ["Party", "Party", "Partido"],
-          ["Candidates", "Candidates", "Candidate"]
+          ["Candidates", "Candidates", "Candidate"],
+          ["Elected", "Elected", "Elected"]
         ],
         options: { sparse: true },
         cuts: [
-          "{[Election Type].[Election Type].[Election Type].&[3],[Election Type].[Election Type].[Election Type].&[4]}",
-          "[Elected].[Elected].[Elected].&[1]",
+          "[Election Type].[Election Type].[Election Type].&[5]",
           `[Date].[Date].[Year].&[${election_year}]`
         ]
       },
@@ -40,16 +39,26 @@ class CongressSlide extends Section {
 
   render() {
     const { children, t, i18n } = this.props;
-    const { datum_election_congressperson, geo } = this.context.data;
+    const { datum_election_mayor, geo } = this.context.data;
 
     const locale = i18n.language;
-    const text = undefined; //Election(datum_electoral_participation, geo, locale);
-    const text2 = textCivicsCongress(
+    const text = undefined;
+    const text2 = textCivicsMayor(
       geo,
-      datum_election_congressperson,
+      datum_election_mayor,
       election_year,
       locale
     );
+
+    if (text2) text2.position = t("mayor");
+
+    if (text2 && geo.depth === 2) {
+      const participation = this.context.data.need_mayor_participation.data[0];
+      text2.votes.participation = numeral(
+        participation.Votes / participation.Electors,
+        locale
+      ).format("0.0 %");
+    }
 
     return (
       <div className="topic-slide-block">
@@ -58,7 +67,7 @@ class CongressSlide extends Section {
           <div
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
-              __html: t("geo_profile.civics.congress.text", text2)
+              __html: t("geo_profile.civics.mayor.text", text2)
             }}
           />
           <div className="topic-slide-data">
@@ -85,20 +94,9 @@ class CongressSlide extends Section {
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>
-        {geo.depth > 0 && (
-          <div>
-            <p
-              className="chart-text"
-              dangerouslySetInnerHTML={{
-                __html: t("geo_profile.civics.congress.note")
-              }}
-            />
-            <br />
-          </div>
-        )}
       </div>
     );
   }
 }
 
-export default translate()(CongressSlide);
+export default translate()(MayorSlide);

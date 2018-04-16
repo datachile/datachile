@@ -138,8 +138,9 @@ import DeathCausesStacked from "./health/death/charts/DeathCausesStacked";
 
 /** Politics */
 
-import ElectionSlide from "./civics/election/ElectionSlide";
+import MayorSlide from "./civics/election/MayorSlide";
 import CongressSlide from "./civics/election/CongressSlide";
+import PresidentSlide from "./civics/election/PresidentSlide";
 
 import MayorResults from "./civics/election/charts/MayorResults";
 import SenatorResults from "./civics/election/charts/SenatorResults";
@@ -282,8 +283,9 @@ class GeoProfile extends Component {
     DeathCauses,
     DeathCausesStacked,
 
-    ElectionSlide,
+    MayorSlide,
     CongressSlide,
+    PresidentSlide,
 
     ParticipationSlide,
     MayorResults,
@@ -310,7 +312,9 @@ class GeoProfile extends Component {
     const ancestor =
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
-        : geoObj.type == "region" ? chileObj : false;
+        : geoObj.type == "region"
+          ? chileObj
+          : false;
 
     if (geo) {
       this.props.data.geo.type = geoObj.type;
@@ -794,10 +798,10 @@ class GeoProfile extends Component {
                   {
                     name: t("Score"),
                     slides: [
+                      t("Performance Evaluation"),
                       t("PSU Distribution"),
                       t("PSU By Sex"),
-                      t("PSU & NEM"),
-                      t("SNED")
+                      t("PSU & NEM")
                     ]
                   },
                   {
@@ -814,6 +818,13 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </SNEDSlide>
                 </div>*/}
+                <div>
+                  <SNEDSlide>
+                    <SectionColumns>
+                      <SNEDScatter className="lost-1" />
+                    </SectionColumns>
+                  </SNEDSlide>
+                </div>
                 <div>
                   <PSUDistributionSlide>
                     <SectionColumns>
@@ -835,13 +846,6 @@ class GeoProfile extends Component {
                       <PSUNEMScatter className="lost-1" />
                     </SectionColumns>
                   </PSUNEMSlide>
-                </div>
-                <div>
-                  <SNEDSlide>
-                    <SectionColumns>
-                      <SNEDScatter className="lost-1" />
-                    </SectionColumns>
-                  </SNEDSlide>
                 </div>
                 <div>
                   <EnrollmentSlide>
@@ -1031,11 +1035,11 @@ class GeoProfile extends Component {
                 ]}
               >
                 <div>
-                  <ElectionSlide>
+                  <MayorSlide>
                     <SectionColumns>
                       <MayorResults className="lost-1" />
                     </SectionColumns>
-                  </ElectionSlide>
+                  </MayorSlide>
                 </div>
                 <div>
                   <CongressSlide>
@@ -1047,7 +1051,7 @@ class GeoProfile extends Component {
                 </div>
 
                 <div>
-                  <ElectionSlide>
+                  <PresidentSlide>
                     <SectionColumns>
                       <Presidential1st className="lost-1-2" />
                       <Presidential2nd className="lost-1-2" />
@@ -1056,7 +1060,7 @@ class GeoProfile extends Component {
                       <Presidential1stBar className="lost-1-2" />
                       <Presidential2ndBar className="lost-1-2" />
                     </SectionColumns>
-                  </ElectionSlide>
+                  </PresidentSlide>
                 </div>
 
                 <div>

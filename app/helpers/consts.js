@@ -157,6 +157,11 @@ export const sources = {
     title: "Sistema Nacional de Evaluación del Desempeño",
     url: "http://portales.mineduc.cl/usuarios/sned/File/Sned.pdf",
     year: 2016
+  },
+  sned_website: {
+    title: "www.ayudamineduc.cl",
+    url: "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
+    year: 2016
   }
 };
 export const featured_profiles = {
