@@ -799,7 +799,7 @@ class GeoProfile extends Component {
                     name: t("Score"),
                     slides: [
                       t("Performance Evaluation"),
-                      t("PSU Distribution"),
+                      t("PSU distribution"),
                       t("PSU By Sex"),
                       t("PSU & NEM")
                     ]

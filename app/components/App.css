@@ -4,19 +4,19 @@
 @import url("https://fonts.googleapis.com/css?family=Saira:300,400,500,700");
 
 @font-face {
-	font-family: Gilroy;
-	src: url("/fonts/gilroy/Gilroy-Light.otf");
-	font-weight: 300;
+  font-family: Gilroy;
+  src: url("/fonts/gilroy/Gilroy-Light.otf");
+  font-weight: 300;
 }
 @font-face {
-	font-family: Gilroy;
-	src: url("/fonts/gilroy/Gilroy-ExtraBold.otf");
-	font-weight: 800;
+  font-family: Gilroy;
+  src: url("/fonts/gilroy/Gilroy-ExtraBold.otf");
+  font-weight: 800;
 }
 
 .d3plus-textBox {
   & text {
-    font-family: "Saira Condensed"!important;
+    font-family: "Saira Condensed" !important;
   }
 }
 
@@ -24,7 +24,7 @@ html {
 }
 
 body {
-	background-color: var(--near-black);
+  background-color: var(--near-black);
 }
 
 /*
@@ -46,123 +46,123 @@ extrabold 800
 @lost gutter 32px;
 
 .main-container {
-	lost-flex-container: column;
+  lost-flex-container: column;
 }
 
 .lost-1 {
-	lost-column: 1;
+  lost-column: 1;
 }
 
 .lost-1-2 {
-	lost-column: 1/2 flex;
+  lost-column: 1/2 flex;
 }
 
 .lost-2-3 {
-	lost-column: 2/3 flex;
+  lost-column: 2/3 flex;
 }
 
 .lost-1-3 {
-	lost-column: 1/3 flex;
+  lost-column: 1/3 flex;
 }
 
 .lost-1-4 {
-	lost-column: 1/4 flex;
+  lost-column: 1/4 flex;
 }
 
 .lost-row {
-	lost-utility: clearfix;
+  lost-utility: clearfix;
 }
 
 /* Helpers profiles */
 .color-geo {
-	color: var(--color-geo);
+  color: var(--color-geo);
 }
 .border-geo {
-	border-color: var(--color-geo);
+  border-color: var(--color-geo);
 }
 .fill-geo {
-	fill: var(--color-geo) !important;
+  fill: var(--color-geo) !important;
 }
 .background-geo {
-	background-color: var(--color-geo) !important;
+  background-color: var(--color-geo) !important;
 }
 
 .color-countries {
-	color: var(--color-countries);
+  color: var(--color-countries);
 }
 .border-countries {
-	border-color: var(--color-countries);
+  border-color: var(--color-countries);
 }
 .fill-countries {
-	fill: var(--color-countries) !important;
+  fill: var(--color-countries) !important;
 }
 .background-countries {
-	background-color: var(--color-countries) !important;
+  background-color: var(--color-countries) !important;
 }
 
 .color-institutions {
-	color: var(--color-institutions);
+  color: var(--color-institutions);
 }
 .border-institutions {
-	border-color: var(--color-institutions);
+  border-color: var(--color-institutions);
 }
 .fill-institutions {
-	fill: var(--color-institutions) !important;
+  fill: var(--color-institutions) !important;
 }
 .background-institutions {
-	background-color: var(--color-institutions) !important;
+  background-color: var(--color-institutions) !important;
 }
 
 .color-careers {
-	color: var(--color-careers);
+  color: var(--color-careers);
 }
 .border-careers {
-	border-color: var(--color-careers);
+  border-color: var(--color-careers);
 }
 .fill-careers {
-	fill: var(--color-careers) !important;
+  fill: var(--color-careers) !important;
 }
 .background-careers {
-	background-color: var(--color-careers) !important;
+  background-color: var(--color-careers) !important;
 }
 
 .color-products {
-	color: var(--color-products);
+  color: var(--color-products);
 }
 .border-products {
-	border-color: var(--color-products);
+  border-color: var(--color-products);
 }
 .fill-products {
-	fill: var(--color-products) !important;
+  fill: var(--color-products) !important;
 }
 .background-products {
-	background-color: var(--color-products) !important;
+  background-color: var(--color-products) !important;
 }
 
 .color-industries {
-	color: var(--color-industries);
+  color: var(--color-industries);
 }
 .border-industries {
-	border-color: var(--color-industries);
+  border-color: var(--color-industries);
 }
 .fill-industries {
-	fill: var(--color-industries) !important;
+  fill: var(--color-industries) !important;
 }
 .background-industries {
-	background-color: var(--color-industries) !important;
+  background-color: var(--color-industries) !important;
 }
 
 .color-gray {
-	color: var(--darker-gray);
+  color: var(--darker-gray);
 }
 .border-gray {
-	border-color: var(--darker-gray);
+  border-color: var(--darker-gray);
 }
 .fill-gray {
-	fill: var(--darker-gray) !important;
+  fill: var(--darker-gray) !important;
 }
 .background-gray {
-	background-color: var(--darker-gray) !important;
+  background-color: var(--darker-gray) !important;
 }
 
 /*color-geo: "#4B71B5"
@@ -173,23 +173,23 @@ color-products: "#FF7474"
 color-industries: "#2A8090"*/
 
 .datachile-tooltip {
-	text-align: center;
-	padding: 10px;
-	font-size: 12px;
-	background: var(--snow);
-	border: 1px solid var(--near-black);
-	font-family: var(--font-family-text);
-	color: var(--near-black);
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  background: var(--snow);
+  border: 1px solid var(--near-black);
+  font-family: var(--font-family-text);
+  color: var(--near-black);
 }
 
 table.tooltip-table {
-	width: 100%;
-	& tr {
-		& td {
-			width: 50%;
-			&.data {
-				text-align: right;
-			}
-		}
-	}
+  width: 100%;
+  & tr {
+    & td {
+      width: 50%;
+      &.data {
+        text-align: right;
+      }
+    }
+  }
 }
