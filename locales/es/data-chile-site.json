@@ -732,11 +732,10 @@
           "<p>Los diputados que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{congresspeople}}.</p><p>Por otro lado, los senadores que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{senators}}.</p>"
       },
       "president": {
+        "text_country":
+          "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, la mayoría de votos la obtuvo el candidato {{firstround.0.Candidate}} con un {{firstround.0.share}} de los votos, seguido de {{firstround.1.Candidate}}, quien obtuvo el segundo lugar con el {{firstround.1.share}} de las preferencias, mientras que {{firstround.2.Candidate}} obtuvo un {{firstround.2.share}} de los votos, quedando fuera de la segunda vuelta.</p><p>Para la segunda vuelta presidencial, el candidato elegido para ser Presidente fue {{ballotage.0.Candidate}}, quien superó a {{ballotage.1.Candidate}} con un {{ballotage.0.share}} contra un {{ballotage.1.share}} de los votos.</p>",
         "text":
-          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
-      },
-      "participation": {
-        "text": ""
+          "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, los electores de {{geo.caption}} presentaron una preferencia por {{firstround.0.Candidate}} con un {{firstround.0.share}} de los votos, mientras que {{firstround.1.Candidate}} obtuvo el segundo lugar con el {{firstround.1.share}}, y {{firstround.2.Candidate}} obtuvo el tercer lugar con un {{firstround.1.share}} de las preferencias.</p><p>Para la segunda vuelta presidencial, la mayoría de los votantes de {{geo.caption}} se inclinó por {{ballotage.0.Candidate}}, superando a {{ballotage.1.Candidate}} con un {{ballotage.0.share}} contra un {{ballotage.1.share}} de los votos.</p>"
       }
     },
     "demography": {

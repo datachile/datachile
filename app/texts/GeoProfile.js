@@ -3,6 +3,7 @@ import { sources } from "helpers/consts";
 import { numeral, joinWithAnd } from "helpers/formatters";
 
 import groupBy from "lodash/groupBy";
+import sumBy from "lodash/sumBy";
 
 function getRank(data, msrName, dimName, t) {
   let rank = data.sort((a, b) => b[msrName] - a[msrName]);
@@ -571,7 +572,6 @@ function textCivicsMayor(geo, source, year, locale) {
 }
 
 function textCivicsCongress(geo, source, year, locale) {
-  console.log(geo, source);
   if (!source || !source.available) return false;
 
   const data = source.data;
@@ -587,7 +587,6 @@ function textCivicsCongress(geo, source, year, locale) {
   const diputado = (elections[4] || []).sort(sortByVotes);
 
   if (geo.depth > 0) {
-
     return {
       geo,
       context: "person",
@@ -596,10 +595,7 @@ function textCivicsCongress(geo, source, year, locale) {
         senador.map(option => option.Candidate),
         locale
       ),
-      senators: joinWithAnd(
-        diputado.map(option => option.Candidate),
-        locale
-      )
+      senators: joinWithAnd(diputado.map(option => option.Candidate), locale)
     };
   } else {
     const sen_partiesDict = groupBy(senador, "Partido");
@@ -621,6 +617,46 @@ function textCivicsCongress(geo, source, year, locale) {
       senparties: sen_parties.sort((a, b) => b.total - a.total)
     };
   }
+}
+
+function textCivicsPresident(geo, source, year, locale) {
+  console.log(geo, source);
+  if (!source || !source.available) return false;
+
+  const data = source.data;
+  const electionYear = parseInt(year);
+
+  const valids = data.filter(
+    item => item["ID Candidate"] != 8 && item["ID Candidate"] != 9
+  );
+  const first = valids.filter(item => item["ID Election Type"] === 1);
+  const second = valids.filter(item => item["ID Election Type"] === 2);
+
+  const first_total = sumBy(first, "Votes");
+  const ballotage_total = sumBy(second, "Votes");
+
+  return {
+    geo,
+    context: geo.depth > 1 ? "" : "country",
+    year: {
+      election: electionYear,
+      first: electionYear + 1,
+      last: electionYear + 5
+    },
+    firstround: first.sort(sortByVotes).map(candidate => {
+      candidate.share = numeral(candidate.Votes / first_total, locale).format(
+        "0.0 %"
+      );
+      return candidate;
+    }),
+    ballotage: second.sort(sortByVotes).map(candidate => {
+      candidate.share = numeral(
+        candidate.Votes / ballotage_total,
+        locale
+      ).format("0.0 %");
+      return candidate;
+    })
+  };
 }
 
 function textCivicsParticipation(t, geo, source, year, locale) {
@@ -668,6 +704,6 @@ export {
   PerformanceByHighSchool,
   textCivicsMayor,
   textCivicsCongress,
-  // textCivicsPresident,
+  textCivicsPresident,
   Election
 };
