@@ -3,7 +3,6 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
 import { sources } from "helpers/consts";
 
 import FeaturedDatum from "components/FeaturedDatum";
@@ -43,8 +42,7 @@ class CongressSlide extends Section {
     const { datum_election_congressperson, geo } = this.context.data;
 
     const locale = i18n.language;
-    const text = undefined; //Election(datum_electoral_participation, geo, locale);
-    const text2 = textCivicsCongress(
+    const text = textCivicsCongress(
       geo,
       datum_election_congressperson,
       election_year,
@@ -60,7 +58,7 @@ class CongressSlide extends Section {
           <div
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
-              __html: t("geo_profile.civics.congress.text", text2)
+              __html: t("geo_profile.civics.congress.text", text)
             }}
           />
           <div className="topic-slide-data">
@@ -68,19 +66,25 @@ class CongressSlide extends Section {
               <FeaturedDatum
                 className="l-1-2"
                 icon="cambio-votacion"
-                datum={numeral(text.growth, locale).format("0.0%")}
-                title={t("Change in participation")}
-                subtitle={t("Presidential 1st - 2nd round") + " " + "2017"}
+                datum={text.datum.senTotal}
+                title={t("Total amount of votes")}
+                subtitle={
+                  t("geo_profile.civics.congress.title_senators") +
+                  " - " +
+                  election_year
+                }
               />
             )}
             {text && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="participation"
-                datum={text.participation.perc}
-                title={t("Participation")}
+                datum={text.datum.dipTotal}
+                title={t("Total amount of votes")}
                 subtitle={
-                  text.participation.caption + " - " + text.participation.year
+                  t("geo_profile.civics.congress.title_congresspeople") +
+                  " - " +
+                  election_year
                 }
               />
             )}
@@ -88,15 +92,12 @@ class CongressSlide extends Section {
         </div>
         <div className="topic-slide-charts">{children}</div>
         {geo.depth > 0 && (
-          <div>
-            <p
-              className="chart-text"
-              dangerouslySetInnerHTML={{
-                __html: t("geo_profile.civics.congress.note")
-              }}
-            />
-            <br />
-          </div>
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html: t("geo_profile.civics.congress.note")
+            }}
+          />
         )}
       </div>
     );

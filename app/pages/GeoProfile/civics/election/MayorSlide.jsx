@@ -39,25 +39,30 @@ class MayorSlide extends Section {
 
   render() {
     const { children, t, i18n } = this.props;
-    const { datum_election_mayor, geo } = this.context.data;
+    const {
+      datum_election_mayor,
+      need_mayor_participation,
+      geo
+    } = this.context.data;
 
     const locale = i18n.language;
-    const text = undefined;
-    const text2 = textCivicsMayor(
+    const text = textCivicsMayor(
       geo,
       datum_election_mayor,
       election_year,
       locale
     );
 
-    if (text2) text2.position = t("mayor");
+    if (text) {
+      const participation = need_mayor_participation.data[0];
+      text.position = t("mayor");
 
-    if (text2 && geo.depth === 2) {
-      const participation = this.context.data.need_mayor_participation.data[0];
-      text2.votes.participation = numeral(
-        participation.Votes / participation.Electors,
-        locale
-      ).format("0.0 %");
+      if (geo.depth === 2) {
+        text.votes.participation = numeral(
+          participation.Votes / participation.Electors,
+          locale
+        ).format("0.0 %");
+      }
     }
 
     return (
@@ -69,27 +74,29 @@ class MayorSlide extends Section {
           <div
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
-              __html: t("geo_profile.civics.mayor.text", text2)
+              __html: t("geo_profile.civics.mayor.text", text)
             }}
           />
           <div className="topic-slide-data">
             {text && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="cambio-votacion"
-                datum={numeral(text.growth, locale).format("0.0%")}
-                title={t("Change in participation")}
-                subtitle={t("Presidential 1st - 2nd round") + " " + "2017"}
+                icon="participation"
+                datum={text.datum.total}
+                title={t("Total amount of votes")}
+                subtitle={
+                  t("geo_profile.civics.mayor.title") + " - " + election_year
+                }
               />
             )}
             {text && (
               <FeaturedDatum
                 className="l-1-2"
-                icon="participation"
-                datum={text.participation.perc}
-                title={t("Participation")}
+                icon="cambio-votacion"
+                datum={text.datum.valid}
+                title={t("Percentage of valid votes")}
                 subtitle={
-                  text.participation.caption + " - " + text.participation.year
+                  t("geo_profile.civics.mayor.title") + " - " + election_year
                 }
               />
             )}
