@@ -33,5 +33,4 @@ El stack tecnológico de DataChile se resume en el siguiente esquema:
 *   [Introducción a Canon](canon.md)
 *   [Introducción a D3Plus-React en Canon](d3plus.md)
 *   [Creación y mantención de Perfiles en DataChile](profiles.md)
-*   [Creación y mantención de Gráficos en DataChile](charts.md)
 *   [Deploy](deploy.md)
