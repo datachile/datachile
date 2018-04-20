@@ -665,6 +665,25 @@
   "GAP between Private/Municipal": "GAP between Private/Municipal",
   "Gender": "Gender",
   "Geo": "Geo",
+  "mayor": "mayor",
+  "mayor_plural": "mayors",
+  "congressperson": "congressperson",
+  "congressperson_plural": "congresspeople",
+  "senator": "senator",
+  "senator_plural": "senators",
+  "president": "president",
+  "president_plural": "presidents",
+  "representative": "{{count}} representatives",
+  "representative_plural": "{{count}} representatives",
+  "vote": "vote",
+  "vote_plural": "votes",
+  "Total amount of votes": "Total amount of votes",
+  "Total votes for {{Candidate}}": "Total votes for {{Candidate}}",
+  "Percentage of valid votes": "Percentage of valid votes",
+  "Higher amount of votes in {{caption}} - Presidential 1st round":
+    "Higher amount of votes in {{caption}} - Presidential 1st round",
+  "Higher amount of votes in {{caption}} - Presidential 2nd round":
+    "Higher amount of votes in {{caption}} - Presidential 2nd round",
   "geo_profile": {
     "civics": {
       "common": {
@@ -676,8 +695,9 @@
           "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
       },
       "mayor": {
+        "title": "Mayor Elections",
         "text_person":
-          "<p>The population of {{geo.caption}} chose {{candidates.0.Candidate}} ({{candidates.0.Partido}}) for mayor on the {{year.first}}-{{year.last}} term, who received {{candidates.0.Votes}} valid votes. In second place was {{candidates.1.Candidate}} ({{candidates.1.Partido}}), who received {{candidates.1.Votes}} votes.</p>",
+          "<p>The population of {{geo.caption}} chose {{candidates.0.Candidate}}, of {{candidates.0.Partido}}, for mayor on the {{year.first}}-{{year.last}} term, who received {{candidates.0.Votes}} valid votes. In second place was {{candidates.1.Candidate}}, from {{candidates.1.Partido}}, who received {{candidates.1.Votes}} votes.</p>",
         "text_party_1":
           "<p>The political party that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election was {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }).</p>",
         "text_party_2":
@@ -686,18 +706,29 @@
           "<p>The political parties that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election were {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }). Follows {{parties.1.name}}, with $t(representative, {'count': {{parties.1.total}} }), and {{parties.2.name}}, with $t(representative, {'count': {{parties.2.total}} }).</p>"
       },
       "congress": {
+        "title": "Legislative Elections",
+        "title_senators": "Senator Elections",
+        "title_congresspeople": "Congressperson Elections",
         "note":
           "Names marked with a * represent elected officials in said election.",
         "text_party":
           "<p>Within the Senate, the political parties that achieved the most seats in the election of {{year.election}} were {{senparties.0.name}}, with $t(representative, {'count': {{senparties.0.total}} }). Follows {{senparties.1.name}}, with $t(representative, {'count': {{senparties.1.total}} }), and {{senparties.2.name}}, with $t(representative, {'count': {{senparties.2.total}} }).</p><p>Meanwhile, the political parties that achieved the most seats in the Chamber of Deputies in the same year were {{dipparties.0.name}}, with $t(representative, {'count': {{dipparties.0.total}} }), followed by {{dipparties.1.name}}, with $t(representative, {'count': {{dipparties.1.total}} }), and {{dipparties.2.name}}, with $t(representative, {'count': {{dipparties.2.total}} }).</p>",
-        "text_person":
-          "<p>The Deputies representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.</p><p>On the other hand, the Senators who represent {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{senators}}.</p>"
+        "senate":
+          "Senators who represent {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{senators}}.",
+        "deputy":
+          "Deputies representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.",
+        "text_person": "",
+        "text_person1": "<p>The $t(geo_profile.civics.congress.senate)</p>",
+        "text_person2": "<p>The $t(geo_profile.civics.congress.deputy)</p>",
+        "text_person3":
+          "<p>The $t(geo_profile.civics.congress.senate)</p><p>On the other hand, the $t(geo_profile.civics.congress.deputy)</p>"
       },
       "president": {
+        "title": "Presidential Elections",
         "text_country":
-          "<p>For the first round of the presidential election of {{year.election}}, the majority of votes were obtained by the candidate {{firstround.0.Candidate}} with a {{firstround.0.share}} of the votes, followed by {{firstround.1.Candidate}}, who took second place with the {{firstround.1.share}} of the preferences, while {{firstround.2.Candidate}} got {{firstround.2.share}} of the votes, staying out of the ballotage.</p><p>For the presidential runoff, the candidate chosen to be President was {{ballotage.0.Candidate}}, who beat {{ballotage.1.Candidate}} with a {{ballotage.0.share}} against a {{ballotage.1.share}} of the votes.</p>",
+          "<p>For the first round of the presidential election of {{year.election}}, the majority of votes were obtained by the candidate {{round1.0.Candidate}} with a {{round1.0.share}} of the votes, followed by {{round1.1.Candidate}}, who took second place with the {{round1.1.share}} of the preferences, while {{round1.2.Candidate}} got {{round1.2.share}} of the votes, staying out of the round2.</p><p>For the presidential runoff, the candidate chosen to be President was {{round2.0.Candidate}}, who beat {{round2.1.Candidate}} with a {{round2.0.share}} against a {{round2.1.share}} of the votes.</p>",
         "text":
-          "<p>For the first round of the {{year.election}} presidential election, the {{geo.caption}} voters had a preference for {{firstround.0.Candidate}} with a {{firstround.0.share}} of the votes, while {{firstround.1.Candidate}} got the second place with the {{firstround.1.share}}, and {{firstround.2.Candidate}} got the third place with a {{firstround.2.share}} of the preferences.</p><p>For the presidential runoff, most of {{geo.caption}} voters opted for {{ballotage.0.Candidate}}, beating {{ballotage.1.Candidate}} with a {{ballotage.0.share}} against a {{ballotage.1.share}} of the votes.</p>"
+          "<p>For the first round of the {{year.election}} presidential election, the {{geo.caption}} voters had a preference for {{round1.0.Candidate}} with a {{round1.0.share}} of the votes, while {{round1.1.Candidate}} got the second place with the {{round1.1.share}}, and {{round1.2.Candidate}} got the third place with a {{round1.2.share}} of the preferences.</p><p>For the presidential runoff, most of {{geo.caption}} voters opted for {{round2.0.Candidate}}, beating {{round2.1.Candidate}} with a {{round2.0.share}} against a {{round2.1.share}} of the votes.</p>"
       }
     },
     "demography": {
