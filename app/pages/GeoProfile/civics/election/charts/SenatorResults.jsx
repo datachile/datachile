@@ -95,7 +95,7 @@ class SenatorResults extends Section {
     const non_electors =
       geo.depth === 2 && participation.data.length > 0
         ? participation.data[0].Electors - participation.data[0].Votes
-        : null;
+        : false;
 
     const locale = i18n.language;
     const classSvg = "senator-election";

@@ -850,10 +850,12 @@
           }
         },
         "description":
-          "National System of Performance Evaluation (SNED). Calculate a performance index based on the measurement of 6 factors: effectiveness, improvement, initiative, improvement of working conditions, equal opportunities and teacher integration.",
+          "National System of Performance Evaluation (SNED). Calculate a performance index based on the measurement of 6 factors: effectiveness, improvement, initiative, improvement of working conditions, equal opportunities and teacher integration. *",
+        "disclaimer":
+          "* In the case of Special Education, these establishments do not present indicators applicable for the factors effectiveness and overcoming",
         "source": "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
         "text1":
-          "In {{year}}, the average score awarded by National System of Evaluation Performance (SNED in spanish) for {{geo.caption}} schools was {{score}}."
+          "In {{year}}, the average score awarded by SNED for {{geo.caption}} schools was {{score}} over 100."
       }
     },
     "health": {
@@ -1455,6 +1457,7 @@
   "Total R&D spending by Business Type": "Total R&D spending by Business Type",
   "Total R&D spending by Ownership Type":
     "Total R&D spending by Ownership Type",
+  "Total schools by type": "Escuelas totales por tipo",
   "Total Students": "Total Students",
   "Trade": "Trade",
   "Trade Balance": "Trade Balance",

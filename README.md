@@ -15,5 +15,4 @@ Sitio web de DataChile
 *   [Introducción a Canon](docs/canon.md)
 *   [Introducción a D3Plus-React en Canon](docs/d3plus.md)
 *   [Creación y mantención de Perfiles en DataChile](docs/profiles.md)
-*   [Creación y mantención de Gráficos en DataChile](docs/charts.md)
 *   [Deploy](docs/deploy.md)

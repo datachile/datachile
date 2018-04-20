@@ -679,15 +679,20 @@ function textCivicsParticipation(geo, source, locale) {
     (a, b) => b["Participation"] - a["Participation"]
   )[0];
 
-  const growth = (second_round.Votes - first_round.Votes) / first_round.Votes;
+  const growth = first_round
+    ? (second_round.Votes - first_round.Votes) / first_round.Votes
+    : false;
+  
   return {
     geo,
     growth,
-    participation: {
-      caption: top_participation["Election Type"],
-      year: top_participation["Year"],
-      perc: numeral(top_participation["Participation"], locale).format("0.00%")
-    }
+    participation: top_participation
+      ? {
+          caption: top_participation["Election Type"],
+          year: top_participation["Year"],
+          perc: numeral(top_participation["Participation"], locale).format("0.00%")
+        }
+      : {}
   };
 }
 
