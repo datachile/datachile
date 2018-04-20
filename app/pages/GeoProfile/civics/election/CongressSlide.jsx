@@ -42,6 +42,7 @@ class CongressSlide extends Section {
     const { datum_election_congressperson, geo } = this.context.data;
 
     const locale = i18n.language;
+
     const text = textCivicsCongress(
       geo,
       datum_election_congressperson,
@@ -58,7 +59,10 @@ class CongressSlide extends Section {
           <div
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
-              __html: t("geo_profile.civics.congress.text", text)
+              __html: t(
+                "geo_profile.civics.congress.text",
+                text || { context: "nodata", geo, year: election_year }
+              )
             }}
           />
           <div className="topic-slide-data">
