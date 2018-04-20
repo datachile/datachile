@@ -2,7 +2,7 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import { simpleDatumNeed } from "helpers/MondrianClient";
+import { simpleGeoDatumNeed2 } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 import { sources } from "helpers/consts";
 
@@ -16,48 +16,47 @@ const election_year = []
 
 class PresidentSlide extends Section {
   static need = [
-    simpleDatumNeed(
+    simpleGeoDatumNeed2(
       "datum_election_president",
-      "election_results_update",
-      ["Votes"],
       {
+        cube: "election_results_update",
+        measures: ["Votes"],
         drillDowns: [
-          ["Party", "Party", "Partido"],
-          ["Candidates", "Candidates", "Candidate"],
-          ["Election Type", "Election Type", "Election Type"]
+          // ["Party", "Partido"],
+          ["Candidates", "Candidate"],
+          ["Election Type", "Election Type"]
+        ],
+        cuts: [
+          { key: "[Election Type].[Election Type]", values: [1, 2] },
+          `[Date].[Year].&[${election_year}]`
         ],
         options: { sparse: true },
-        cuts: [
-          "{[Election Type].[Election Type].[Election Type].&[1],[Election Type].[Election Type].[Election Type].&[2]}",
-          `[Date].[Date].[Year].&[${election_year}]`
-        ]
+        format: "jsonrecords"
       },
-      "geo",
-      false
+      textCivicsPresident
     )
   ];
 
   render() {
-    const { children, t, i18n } = this.props;
-    const { datum_election_president, geo } = this.context.data;
+    const { children, t } = this.props;
+    const { geo } = this.context.data;
 
-    const locale = i18n.language;
-    const text = undefined;
-    const text2 = textCivicsPresident(
-      geo,
-      datum_election_president,
-      election_year,
-      locale
-    );
+    const text = this.context.data.datum_election_president;
+    if (text) {
+      text.geo = geo;
+      text.context = geo.depth > 0 ? "" : "country";
+    }
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Election")}</div>
+          <div className="topic-slide-title">
+            {t("geo_profile.civics.president.title")}
+          </div>
           <div
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
-              __html: t("geo_profile.civics.president.text", text2)
+              __html: t("geo_profile.civics.president.text", text)
             }}
           />
           <div className="topic-slide-data">
@@ -65,20 +64,24 @@ class PresidentSlide extends Section {
               <FeaturedDatum
                 className="l-1-2"
                 icon="cambio-votacion"
-                datum={numeral(text.growth, locale).format("0.0%")}
-                title={t("Change in participation")}
-                subtitle={t("Presidential 1st - 2nd round") + " " + "2017"}
+                datum={text.round1[0].votes}
+                title={t("Total votes for {{Candidate}}", text.round1[0])}
+                subtitle={t(
+                  "Higher amount of votes in {{caption}} - Presidential 1st round",
+                  geo
+                )}
               />
             )}
             {text && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="participation"
-                datum={text.participation.perc}
-                title={t("Participation")}
-                subtitle={
-                  text.participation.caption + " - " + text.participation.year
-                }
+                datum={text.round2[0].votes}
+                title={t("Total votes for {{Candidate}}", text.round2[0])}
+                subtitle={t(
+                  "Higher amount of votes in {{caption}} - Presidential 2nd round",
+                  geo
+                )}
               />
             )}
           </div>

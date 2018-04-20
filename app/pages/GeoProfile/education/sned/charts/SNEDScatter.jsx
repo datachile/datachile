@@ -8,6 +8,8 @@ import { sources } from "helpers/consts";
 import { snedColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
+import { mean } from "d3-array";
+
 import SourceNote from "components/SourceNote";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
@@ -96,6 +98,9 @@ class SNEDScatter extends Section {
               config={{
                 height: 500,
                 data: path,
+                aggs: {
+                  "ID Stage 1a": mean
+                },
                 groupBy: national
                   ? ["ID Comuna", "ID Stage 1a"]
                   : ["ID Institution", "ID Stage 1a"],
@@ -104,15 +109,9 @@ class SNEDScatter extends Section {
                 y: "Avg overcoming",
                 size: geo.type == "comuna" ? d => 10 : d => 5,
                 sizeMax: geo.type == "comuna" ? 10 : 5,
-                colorScalePosition: false,
+                //colorScalePosition: false,
                 shapeConfig: {
-                  fill: d => {
-                    if (d["Institution"] !== "hack") {
-                      return snedColorScale("education" + d["ID Stage 1a"]);
-                    } else {
-                      return "transparent";
-                    }
-                  }
+                  fill: d => snedColorScale("sned" + d["ID Stage 1a"])
                 },
                 xConfig: {
                   title: t("Efectiveness")
