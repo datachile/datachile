@@ -104,8 +104,9 @@ class SenatorResults extends Section {
 
     if (geo.depth === 2) {
       const data_election = this.context.data.need_presidential_participation;
-      non_electors =
-        data_election.data[0].Electors - data_election.data[0].Votes;
+      non_electors = data_election.data[0]
+        ? data_election.data[0].Electors - data_election.data[0].Votes
+        : false;
     }
 
     const locale = i18n.language;
