@@ -620,7 +620,7 @@
   "Education": "Educación",
   "Educational Center": "Centro educacional",
   "Efectiveness": "Efectividad",
-
+  "Efectiveness & Overcoming": "Efectividad & Superación",
   "Efectiveness vs Overcoming by Comuna & Type":
     "Efectividad vs Superación por Comuna & Tipo",
   "Efectiveness vs Overcoming by School":
@@ -680,6 +680,7 @@
   "Female percent of visas": "Porcentaje femenino de visas",
   "Female percent with disability": "Población femenina con discapacidad",
   "Field of Science": "Área de Conocimiento",
+  "For more details, click here": "Para mayor información, clic aquí",
   "form": {
     "data":
       "¿No encontraste lo que estabas buscando? Sugiere datos para agregar",
@@ -1224,6 +1225,7 @@
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of larceny complaints": "Cantidad de denuncias por hurto",
   "Number of schools by Cluster": "Cantidad de escuelas por Cluster",
+  "Number of schools": "Cantidad de escuelas",
   "Number of theft complaints growth":
     "Cambio en cantidad de denuncias por robo",
   "Number of visas": "Cantidad de Visas",
@@ -1259,6 +1261,7 @@
   "People with disabilities": "Personas con discapacidad",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
+  "Performance By School Type": "Desempeño por Tipo de Escuela",
   "Performance Evaluation": "Evaluación de Desempeño",
   "Pharmacy": "Farmacia",
   "Pic by": "Foto de",
@@ -1384,6 +1387,7 @@
   "School By Enrollment": "Escuela según matrícula",
   "Schools": "Escuelas",
   "Score": "Puntaje",
+  "Score Range": "Rango de Puntaje",
   "Search a location, industry, product, career, etc":
     "Busque lugares, industrias, productos…",
   "Sector": "Sector",

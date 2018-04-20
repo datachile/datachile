@@ -314,9 +314,7 @@ class GeoProfile extends Component {
     const ancestor =
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
-        : geoObj.type == "region"
-          ? chileObj
-          : false;
+        : geoObj.type == "region" ? chileObj : false;
 
     if (geo) {
       this.props.data.geo.type = geoObj.type;
@@ -790,17 +788,16 @@ class GeoProfile extends Component {
                 name={t("Education")}
                 id="education"
                 sections={[
-                  /*{
+                  {
                     name: t("Performance"),
                     slides: [
-                      //t("Performance Evaluation"),
-                      t("Comparison by Cluster")
+                      t("Performance Evaluation"),
+                      t("Efectiveness & Overcoming")
                     ]
-                  },*/
+                  },
                   {
                     name: t("Score"),
                     slides: [
-                      t("Performance Evaluation"),
                       t("PSU Distribution"),
                       t("PSU By Sex"),
                       t("PSU & NEM")
@@ -812,19 +809,17 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
-                {/*<div>
-                  <SNEDSlide>
-                    <SectionColumns>
-                      <SNEDSchoolByClusters className="lost-1-2" />
-                      <SNEDCompareByCluster className="lost-1-2" />
-                    </SectionColumns>
-                  </SNEDSlide>
-                </div>*/}
                 <div>
                   <SNEDSlide>
                     <SectionColumns>
-                      {/*<SNEDScatter className="lost-1" />*/}
                       <SNEDCompareBySchool className="lost-1" />
+                    </SectionColumns>
+                  </SNEDSlide>
+                </div>
+                <div>
+                  <SNEDSlide>
+                    <SectionColumns>
+                      <SNEDScatter className="lost-1" />
                     </SectionColumns>
                   </SNEDSlide>
                 </div>
