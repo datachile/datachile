@@ -229,7 +229,7 @@ class Presidential2nd extends Section {
                     });
                   });
 
-                  this.setState({ year: d[0].Year });
+                  this.setState({ year: d[0]["ID Year"] });
 
                   return d;
                 } else {

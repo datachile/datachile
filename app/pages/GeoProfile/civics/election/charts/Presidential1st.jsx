@@ -191,7 +191,7 @@ class Presidential1st extends Section {
                   });
                 });
 
-                this.setState({ year: d[0].Year });
+                this.setState({ year: d[0]["ID Year"] });
 
                 return d;
               }}
