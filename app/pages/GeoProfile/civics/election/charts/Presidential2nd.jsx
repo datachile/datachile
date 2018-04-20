@@ -93,7 +93,7 @@ class Presidential2nd extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Results 2nd Round")}</span>
+          <span>{t("Results 2nd Round") + " " + this.state.year}</span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
