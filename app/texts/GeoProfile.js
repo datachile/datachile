@@ -3,7 +3,6 @@ import { sources } from "helpers/consts";
 import { numeral, joinWithAnd } from "helpers/formatters";
 
 import groupBy from "lodash/groupBy";
-import sumBy from "lodash/sumBy";
 
 function getRank(data, msrName, dimName, t) {
   let rank = data.sort((a, b) => b[msrName] - a[msrName]);
@@ -523,6 +522,11 @@ function Election(data, geo, locale) {
 }
 
 const sumVotesTotal = (sum, option) => sum + option.Votes;
+const sumVotesInvalid = (sum, option) =>
+  sum +
+  (option["ID Candidate"] == 8 || option["ID Candidate"] == 9
+    ? option.Votes
+    : 0);
 const sortByVotes = (a, b) => b.Votes - a.Votes;
 const checkElected = candidate => candidate["ID Elected"] == 1;
 
@@ -531,6 +535,8 @@ function textCivicsMayor(geo, source, year, locale) {
 
   const data = source.data;
   const electionYear = parseInt(year);
+  const totalVotes = data.reduce(sumVotesTotal, 0);
+  const totalNullVotes = data.reduce(sumVotesInvalid, 0);
 
   const output = {
     geo,
@@ -538,6 +544,14 @@ function textCivicsMayor(geo, source, year, locale) {
       election: electionYear,
       first: electionYear,
       last: electionYear + 4
+    },
+    datum: {
+      raw_total: totalVotes,
+      raw_valid: totalVotes - totalNullVotes,
+      total: numeral(totalVotes, locale).format("0,0"),
+      valid: numeral((totalVotes - totalNullVotes) / totalVotes, locale).format(
+        "0.0 %"
+      )
     }
   };
 
@@ -550,9 +564,11 @@ function textCivicsMayor(geo, source, year, locale) {
 
     output.candidates = candidates;
     output.votes = {
-      total: numeral(candidates.reduce(sumVotesTotal, 0), locale).format("0,0"),
-      blank: numeral(cand_blank ? cand_blank.Votes : 0, locale).format("0,0"),
-      null: numeral(cand_null ? cand_null.Votes : 0, locale).format("0,0"),
+      total: numeral(candidates.reduce(sumVotesTotal, 0), locale).format(
+        "(0,0)"
+      ),
+      blank: numeral(cand_blank ? cand_blank.Votes : 0, locale).format("(0,0)"),
+      null: numeral(cand_null ? cand_null.Votes : 0, locale).format("(0,0)"),
       participation: "NaN%"
     };
   } else {
@@ -585,11 +601,21 @@ function textCivicsCongress(geo, source, year, locale) {
   const elections = groupBy(data, "ID Election Type");
   const senador = (elections[3] || []).sort(sortByVotes);
   const diputado = (elections[4] || []).sort(sortByVotes);
+  const flag = (senador.length > 0 ? 1 : 0) + (diputado.length > 0 ? 2 : 0);
+
+  const senTotalVotes = senador.reduce(sumVotesTotal, 0);
+  const dipTotalVotes = diputado.reduce(sumVotesTotal, 0);
+
+  const datum = {
+    senTotal: numeral(senTotalVotes, locale).format("0,0"),
+    dipTotal: numeral(dipTotalVotes, locale).format("0,0")
+  };
 
   if (geo.depth > 0) {
     return {
       geo,
-      context: "person",
+      datum,
+      context: "person" + (flag || ""),
       year: years,
       congresspeople: joinWithAnd(
         diputado.map(option => option.Candidate),
@@ -611,6 +637,7 @@ function textCivicsCongress(geo, source, year, locale) {
 
     return {
       geo,
+      datum,
       context: "party",
       year: years,
       dipparties: dip_parties.sort((a, b) => b.total - a.total),
@@ -619,40 +646,50 @@ function textCivicsCongress(geo, source, year, locale) {
   }
 }
 
-function textCivicsPresident(geo, source, year, locale) {
-  if (!source || !source.available) return false;
+function textCivicsPresident(res, lang) {
+  const data = res.data.data || [];
+  if (data.length == 0) return false;
 
-  const data = source.data;
-  const electionYear = parseInt(year);
+  const electionYear =
+    sources.election_results_update.presidential_election_year;
 
   const valids = data.filter(
     item => item["ID Candidate"] != 8 && item["ID Candidate"] != 9
   );
-  const first = valids.filter(item => item["ID Election Type"] === 1);
-  const second = valids.filter(item => item["ID Election Type"] === 2);
+  const round1 = valids
+    .filter(item => item["ID Election Type"] === 1)
+    .sort(sortByVotes);
+  const round2 = valids
+    .filter(item => item["ID Election Type"] === 2)
+    .sort(sortByVotes);
 
-  const first_total = sumBy(first, "Votes");
-  const ballotage_total = sumBy(second, "Votes");
+  const round1Total = round1.reduce(sumVotesTotal, 0);
+  const round2Total = round2.reduce(sumVotesTotal, 0);
 
   return {
-    geo,
-    context: geo.depth > 0 ? "" : "country",
     year: {
       election: electionYear,
       first: electionYear + 1,
       last: electionYear + 5
     },
-    firstround: first.sort(sortByVotes).map(candidate => {
-      candidate.share = numeral(candidate.Votes / first_total, locale).format(
+    round1: round1.map(candidate => {
+      delete candidate["ID Candidate"];
+      delete candidate["Election Type"];
+      delete candidate["ID Election Type"];
+      candidate.share = numeral(candidate.Votes / round1Total, lang).format(
         "0.0 %"
       );
+      candidate.votes = numeral(candidate.Votes, lang).format("0,0");
       return candidate;
     }),
-    ballotage: second.sort(sortByVotes).map(candidate => {
-      candidate.share = numeral(
-        candidate.Votes / ballotage_total,
-        locale
-      ).format("0.0 %");
+    round2: round2.map(candidate => {
+      delete candidate["ID Candidate"];
+      delete candidate["Election Type"];
+      delete candidate["ID Election Type"];
+      candidate.share = numeral(candidate.Votes / round2Total, lang).format(
+        "0.0 %"
+      );
+      candidate.votes = numeral(candidate.Votes, lang).format("0,0");
       return candidate;
     })
   };
