@@ -5,13 +5,8 @@ import { translate } from "react-i18next";
 import { colorContrast } from "d3plus-color";
 
 import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
-import {
-  numeral,
-  slugifyItem,
-  getNumberFromTotalString
-} from "helpers/formatters";
-import { getGeoObject } from "helpers/dataUtils";
-import { snedColorScale, snedComparisonColorScale } from "helpers/colors";
+import { numeral } from "helpers/formatters";
+import { snedColorScale } from "helpers/colors";
 import { sources } from "helpers/consts";
 
 import { mean } from "d3-array";
@@ -22,8 +17,6 @@ import SourceNote from "components/SourceNote";
 import { BarChart } from "d3plus-react";
 
 import CustomDialog from "components/CustomDialog";
-
-import { Button, Dialog, Intent } from "@blueprintjs/core";
 
 class SNEDCompareBySchool extends Section {
   static need = [
@@ -126,7 +119,6 @@ class SNEDCompareBySchool extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    const geo = this.context.data.geo;
     const locale = i18n.language;
     const { path_sned_compare_by_school } = this.context.data;
     const path = path_sned_compare_by_school;
@@ -142,7 +134,6 @@ class SNEDCompareBySchool extends Section {
           dialogBody={this.state.dialogBody}
           isOpen={this.state.isOpen}
           className={this.state.className}
-          //onClick={this.toggleDialog}
         />
         <h3 className="chart-title">
           <span>{title}</span>
@@ -171,8 +162,6 @@ class SNEDCompareBySchool extends Section {
               label: false
             },
             stacked: true,
-            //label: d => d["Election Type"] + " - " + d["Year"],
-            //sum: d => d["Votes"],
             y: "count",
             x: "interval",
             discrete: "x",
@@ -211,7 +200,6 @@ class SNEDCompareBySchool extends Section {
                 d["interval"],
               padding: 0,
               titleStyle: {
-                //width: "400px",
                 "background-color": d =>
                   snedColorScale("sned" + d["ID Stage 1a"]),
                 color: d =>
