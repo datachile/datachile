@@ -234,6 +234,67 @@ class SNEDCompareByCluster extends Section {
           }}
         />
         <SourceNote cube="sned" />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html: t("geo_profile.education.sned.disclaimer")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html:
+              t("geo_profile.education.sned.definitions.efectiveness.title") +
+              ": " +
+              t("geo_profile.education.sned.definitions.efectiveness.desc")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html:
+              t("geo_profile.education.sned.definitions.overcoming.title") +
+              ": " +
+              t("geo_profile.education.sned.definitions.overcoming.desc")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html:
+              t("geo_profile.education.sned.definitions.fairness.title") +
+              ": " +
+              t("geo_profile.education.sned.definitions.fairness.desc")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html:
+              t("geo_profile.education.sned.definitions.improvement.title") +
+              ": " +
+              t("geo_profile.education.sned.definitions.improvement.desc")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html:
+              t("geo_profile.education.sned.definitions.initiative.title") +
+              ": " +
+              t("geo_profile.education.sned.definitions.initiative.desc")
+          }}
+        />
+        <p
+          className="chart-text"
+          dangerouslySetInnerHTML={{
+            __html:
+              t("geo_profile.education.sned.definitions.integration.title") +
+              ": " +
+              t("geo_profile.education.sned.definitions.integration.desc")
+          }}
+        />
+        <SourceNote cube="sned_website" />
       </div>
     );
   }
