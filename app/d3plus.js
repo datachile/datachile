@@ -11,7 +11,7 @@ const axisConfig = {
     fill: "#fff",
     labelConfig: {
       fontColor: "#fff",
-      fontFamily: () => "'Saira Condensed', sans-serif",
+      fontFamily: () => "'Saira Condensed', sans-serif"
       //fontSize: () => 12
     },
     stroke: "#fff"
