@@ -540,6 +540,12 @@
       "text1":
         "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
     },
+    "terms": {
+      "cube": "Cubo",
+      "drilldown": "Drilldown",
+      "measure": "Medición",
+      "cut": "Corte"
+    },
     "definitions": {
       "cube":
         "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
@@ -612,9 +618,15 @@
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
     }
   },
-  "Download CSV file": "Descargar archivo CSV",
-  "Download data": "Descargar datos",
-  "Download documentation": "Descargar documentación",
+  "download": {
+    "csv": "Descargar archivo CSV",
+    "data": "Descargar datos",
+    "docs": "Descargar documentación",
+    "household": "Descargar datos de vivienda",
+    "banking": "Descargar datos de bancarización",
+    "health": "Descargar datos de salud",
+    "income": "Descargar datos de ingresos"
+  },
   "During": "Durante",
   "Economy": "Economía",
   "Education": "Educación",
@@ -768,7 +780,7 @@
           "No hay datos de participación electoral para {{geo.caption}} en la elección presidencial de {{year}}."
       }
     },
-    "demography": {
+    "demographics": {
       "origin_by_activity":
         "<p>En {{last_year}}, el {{percentage_activity}} de las {{visas}} visas entregadas en {{area}} corresponden a la actividad más común entre los inmigrantes: {{activity}}.</p><p>Así mismo, el tipo de visa más popular en {{area}} es {{type}}, con un {{percentage_type}}.</p>",
       "origin_by_country":

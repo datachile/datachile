@@ -72,6 +72,10 @@
           "<p>New data visualizations in Civic section: electoral results: presidential, congress and mayor levels. Fixes in authorities in main splash.</p>",
         "title": "1.2.1 - \"Encino\" - 2018-02-16"
       },
+      "fitzroya": {
+        "title": "1.3.0 - \"Fitzroya\" - 2018-04-20",
+        "description": "<p>TODO</p>"
+      },
       "launch": {
         "description":
           "<p>Main page. Profile explorer. Entity search. Profiles: geo, countries, industries, and products. More than 15 datasets about: economy, demography, education, health, and housing.</p>",
@@ -92,7 +96,7 @@
       "casen": {
         "source": "Ministry of Social Development (MDS)",
         "text":
-          "<p>Data created by the Ministry of Social Development (MDS). CASEN survey aims to deliver an \"xrays examination\" of socio-economic situation in Chilean households, being the principal data source to measure poverty and inequality, and it has been broadly used by international organizations and NGOs.</p>",
+          "<p>Data created by the Ministry of Social Development (MDS). CASEN survey aims to deliver an \"in-depth examination\" of socio-economic situation in Chilean households, being the principal data source to measure poverty and inequality, and it has been broadly used by international organizations and NGOs.</p>",
         "title": "Socio-Economic Characterization Survey (CASEN)",
         "use":
           "This dataset is used in the nation,  region and comuna profiles in economy, household and health sections. ",
@@ -208,7 +212,7 @@
         "source": "National Institute for Statistics (INE)",
         "text":
           "<p>Data created by the National Institute for Statistics (INE) based on 2002 Census that gives account for the general population at nation, region and comuna level and also health services that aggregate different comunas.</p>",
-        "title": "Population Projects",
+        "title": "Population projections",
         "use":
           "This dataset is used on the nation, region and comuna profiles. ",
         "year": "2002 - 2020"
@@ -244,7 +248,7 @@
       "source": "Source",
       "text":
         "DataChile integrates 16 datasets from these sources: All of these can be exported as CSV files.",
-      "title": "Datos",
+      "title": "Datasets",
       "vida": {
         "source": "Health Statististics and Information Department (DEIS)",
         "text":
@@ -523,7 +527,13 @@
     },
     "datasets": {
       "text1":
-        "These data are gotten since <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+        "This data is provided by <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+    },
+    "terms": {
+      "cube": "Cube",
+      "drilldown": "Drilldown",
+      "measure": "Measure",
+      "cut": "Cut"
     },
     "definitions": {
       "cube":
@@ -582,7 +592,7 @@
       "text1":
         "The single entry point for aggregation operations in Mondrian-REST is <span class='code'>/aggregate</span>, which accepts the described parameters then.",
       "text2":
-        "For an particular cube, get the members belonging to a certain level in a dimension."
+        "For a particular cube, get the members belonging to a certain level in a dimension."
     },
     "title1": "First Steps",
     "title2": "Syntax",
@@ -597,9 +607,15 @@
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
     }
   },
-  "Download CSV file": "Download CSV file",
-  "Download data": "Download data",
-  "Download documentation": "Download documentation",
+  "download": {
+    "csv": "Download CSV file",
+    "data": "Download data",
+    "docs": "Download documentation",
+    "household": "Download household data",
+    "banking": "Download banking data",
+    "health": "Download health data",
+    "income": "Download income data"
+  },
   "During": "During",
   "Economy": "Economy",
   "Education": "Education",
@@ -690,9 +706,9 @@
         "participation":
           "<p>$t(geo_profile.civics.common.total) $t(geo_profile.civics.common.invalid)</p>",
         "total":
-          "Para la elección de {{position}} de {{year.election}}, en {{geo.caption}} votó un total de {{votes.total}} personas, que representan un {{votes.participation}} del total de votantes habilitados.",
+          "For the {{position}} election of {{year.election}}, in {{geo.caption}} voted {{votes.total}} people in total, that represent a {{votes.participation}} of the total of enabled voters.",
         "invalid":
-          "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
+          "Additionally, there were {{votes.blank}} blank votes, and {{votes.null}} null votes."
       },
       "mayor": {
         "title": "Mayor Elections",
@@ -983,7 +999,7 @@
       "The most comprehensive effort to integrate and visualize Chile’s Public Data",
     "what": {
       "text1":
-        "It offers an x-ray of the <span>most important  topics</span> for the development of the country.",
+        "It offers an in-depth examination of the <span>most important topics</span> for the development of the country.",
       "text2":
         "It helps to know <span>trends and needs</span> for the design and implementation of public policies, civil society programs, business opportunities and marketing strategies of the private sector.",
       "text3":
@@ -1038,11 +1054,11 @@
   "industry_profile": {
     "economy": {
       "default":
-        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was the comuna with highest output level in {{industry.name}} industries, with a {{location.first.share}} of the total, followed by <a href=\"{{location.second.link}}\">{{location.second.caption}}</a> with a {{location.second.share}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was the comuna with highest output level in {{industry.name}} industries, with a {{location.first.share}} of the total, followed by <a href=\"{{location.second.link}}\">{{location.second.caption}}</a> with a {{location.second.share}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to a yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
       "no_data":
         "<p>In {{year.last}}, there are not data of output level in {{industry.name}} industries.</p><p>This data was extracted from the legal address of the industry.</p>",
       "one_item":
-        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was last comuna with output level in {{industry.name}} industries. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>"
+        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was last comuna with output level in {{industry.name}} industries. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to a yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>"
     },
     "employment":
       "<p>From {{year.first}} to {{year.last}}, employment in {{industry.caption}} {{increased_or_decreased}} at a quarterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.</p>",

@@ -366,8 +366,8 @@ class GeoProfile extends Component {
         title: t("Housing")
       },
       {
-        slug: "demography",
-        title: t("Demography")
+        slug: "demographics",
+        title: t("Demographics")
       },
       {
         slug: "health",
@@ -911,8 +911,8 @@ class GeoProfile extends Component {
               </Topic>
 
               <Topic
-                name={t("Demography")}
-                id="demography"
+                name={t("Demographics")}
+                id="demographics"
                 sections={[
                   {
                     name: t("Origins"),
