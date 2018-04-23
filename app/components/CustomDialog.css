@@ -8,6 +8,10 @@
     }
     & .rt-tbody {
       overflow: visible;
+
+      & .rt-tr-group {
+        max-height: 30px;
+      }
     }
   }
 }
