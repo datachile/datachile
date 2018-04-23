@@ -77,7 +77,7 @@ class SNEDCompareBySchool extends Section {
 
     const variations = selector.map((item, key) => {
       let subtitle: string = t(this.capitalizeFirstLetter(item.split(" ")[1]));
-      let ms: string = t("Average") + " " + subtitle;
+      let ms: string = subtitle;
       return { id: item, title: ms, value: item, subtitle };
     });
 
@@ -123,7 +123,7 @@ class SNEDCompareBySchool extends Section {
     const { path_sned_compare_by_school } = this.context.data;
     const path = path_sned_compare_by_school;
 
-    const title = t("Performance By School Type");
+    const title = t("Average") + " " + t("Performance By School Type");
     const classSvg = "sned-performance-by-school-type";
 
     let customTick = "";
@@ -139,14 +139,16 @@ class SNEDCompareBySchool extends Section {
         />
         <h3 className="chart-title">
           <span>{title}</span>
-          <Select
-            id="variations"
-            options={this.state.chartVariations}
-            value={this.state.selectedOption}
-            labelField="title"
-            valueField="id"
-            onChange={this.handleChange}
-          />
+          <div>
+            <Select
+              id="variations"
+              options={this.state.chartVariations}
+              value={this.state.selectedOption}
+              labelField="title"
+              valueField="id"
+              onChange={this.handleChange}
+            />
+          </div>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <BarChart
