@@ -495,36 +495,6 @@ function Congress(data, geo, locale, t) {
   }
 }
 
-function Election(data, geo, locale) {
-  if (data) {
-    const first_round = data.data.find(item => item["ID Election Type"] === 1);
-    const second_round = data.data.find(item => item["ID Election Type"] === 2);
-
-    const top_participation = data.data.sort(
-      (a, b) => b["Participation"] - a["Participation"]
-    )[0];
-
-    const growth = first_round
-      ? (second_round.Votes - first_round.Votes) / first_round.Votes
-      : false;
-    return {
-      geo,
-      growth,
-      participation: top_participation
-        ? {
-            caption: top_participation["Election Type"],
-            year: top_participation["Year"],
-            perc: numeral(top_participation["Participation"], locale).format(
-              "0.00%"
-            )
-          }
-        : {}
-    };
-  } else {
-    return false;
-  }
-}
-
 const sumVotesTotal = (sum, option) => sum + option.Votes;
 const sumVotesInvalid = (sum, option) =>
   sum +
@@ -592,7 +562,7 @@ function textCivicsMayor(geo, source, year, locale) {
 }
 
 function textCivicsCongress(geo, source, year, locale) {
-  if (!source || !source.available) return false;
+  if (!source || !source.available || source.data.length == 0) return false;
 
   const data = source.data;
   const electionYear = parseInt(year);
@@ -699,33 +669,30 @@ function textCivicsPresident(res, lang) {
   };
 }
 
-function textCivicsParticipation(t, geo, source, year, locale) {
-  if (!source || !source.available) return false;
+function textCivicsParticipation(geo, source, locale) {
+  if (!source || !source.available || source.data.length == 0) return false;
 
-  const data = source.data;
-  const electionYear = parseInt(year);
-  const output = {
+  const first_round = source.data.find(item => item["ID Election Type"] === 1);
+  const second_round = source.data.find(item => item["ID Election Type"] === 2);
+
+  const top_participation = source.data.sort(
+    (a, b) => b["Participation"] - a["Participation"]
+  )[0];
+
+  const growth = first_round
+    ? (second_round.Votes - first_round.Votes) / first_round.Votes
+    : false;
+  
+  return {
     geo,
-    position: t("mayor"),
-    year: {
-      election: electionYear,
-      first: electionYear,
-      last: electionYear + 4
-    }
-  };
-  const sum_nulls = data.reduce(
-    (sum, option) => sum + (option["ID Candidate"] == 8 ? option.Votes : 0),
-    0
-  );
-  const sum_blanks = data.reduce(
-    (sum, option) => sum + (option["ID Candidate"] == 9 ? option.Votes : 0),
-    0
-  );
-  output.votes = {
-    total: numeral(data.reduce(sumVotesTotal, 0), locale).format("0,0"),
-    blank: numeral(sum_blanks, locale).format("0,0"),
-    null: numeral(sum_nulls, locale).format("0,0"),
-    participation: "NaN%"
+    growth,
+    participation: top_participation
+      ? {
+          caption: top_participation["Election Type"],
+          year: top_participation["Year"],
+          perc: numeral(top_participation["Participation"], locale).format("0.00%")
+        }
+      : {}
   };
 }
 
@@ -745,5 +712,5 @@ export {
   textCivicsMayor,
   textCivicsCongress,
   textCivicsPresident,
-  Election
+  textCivicsParticipation
 };

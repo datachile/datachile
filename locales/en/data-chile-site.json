@@ -696,6 +696,8 @@
       },
       "mayor": {
         "title": "Mayor Elections",
+        "text_nodata":
+          "There's no data of electoral participation for {{geo.caption}} on {{year}} mayor election.",
         "text_person":
           "<p>The population of {{geo.caption}} chose {{candidates.0.Candidate}}, of {{candidates.0.Partido}}, for mayor on the {{year.first}}-{{year.last}} term, who received {{candidates.0.Votes}} valid votes. In second place was {{candidates.1.Candidate}}, from {{candidates.1.Partido}}, who received {{candidates.1.Votes}} votes.</p>",
         "text_party_1":
@@ -711,6 +713,8 @@
         "title_congresspeople": "Congressperson Elections",
         "note":
           "Names marked with a * represent elected officials in said election.",
+        "text_nodata":
+          "There's no data of electoral participation for {{geo.caption}} on {{year}} legislative election.",
         "text_party":
           "<p>Within the Senate, the political parties that achieved the most seats in the election of {{year.election}} were {{senparties.0.name}}, with $t(representative, {'count': {{senparties.0.total}} }). Follows {{senparties.1.name}}, with $t(representative, {'count': {{senparties.1.total}} }), and {{senparties.2.name}}, with $t(representative, {'count': {{senparties.2.total}} }).</p><p>Meanwhile, the political parties that achieved the most seats in the Chamber of Deputies in the same year were {{dipparties.0.name}}, with $t(representative, {'count': {{dipparties.0.total}} }), followed by {{dipparties.1.name}}, with $t(representative, {'count': {{dipparties.1.total}} }), and {{dipparties.2.name}}, with $t(representative, {'count': {{dipparties.2.total}} }).</p>",
         "senate":
@@ -725,10 +729,18 @@
       },
       "president": {
         "title": "Presidential Elections",
+        "text_nodata":
+          "There's no data of electoral participation for {{geo.caption}} on {{year}} presidential election.",
         "text_country":
           "<p>For the first round of the presidential election of {{year.election}}, the majority of votes were obtained by the candidate {{round1.0.Candidate}} with a {{round1.0.share}} of the votes, followed by {{round1.1.Candidate}}, who took second place with the {{round1.1.share}} of the preferences, while {{round1.2.Candidate}} got {{round1.2.share}} of the votes, staying out of the round2.</p><p>For the presidential runoff, the candidate chosen to be President was {{round2.0.Candidate}}, who beat {{round2.1.Candidate}} with a {{round2.0.share}} against a {{round2.1.share}} of the votes.</p>",
         "text":
           "<p>For the first round of the {{year.election}} presidential election, the {{geo.caption}} voters had a preference for {{round1.0.Candidate}} with a {{round1.0.share}} of the votes, while {{round1.1.Candidate}} got the second place with the {{round1.1.share}}, and {{round1.2.Candidate}} got the third place with a {{round1.2.share}} of the preferences.</p><p>For the presidential runoff, most of {{geo.caption}} voters opted for {{round2.0.Candidate}}, beating {{round2.1.Candidate}} with a {{round2.0.share}} against a {{round2.1.share}} of the votes.</p>"
+      },
+      "participation": {
+        "text":
+          "The highest participation in an election in {{geo.caption}} was in {{participation.year}}, to elect {{participation.caption}}, with a {{participation.perc}} of voter participation.",
+        "text_nodata":
+          "There's no data of electoral participation for {{geo.caption}} on {{year}} presidential election."
       }
     },
     "demography": {
@@ -920,10 +932,6 @@
     },
     "income_sex_age_slide": {
       "text": "Income by sex and age slide."
-    },
-    "politics": {
-      "text":
-        "The highest participation in an election in {{geo.name}} was in {{participation.year}}, to elect {{participation.caption}}, with a {{participation.perc}} of voter participation."
     },
     "trade_slide": {
       "text":

@@ -1,28 +1,19 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { StackedArea, BarChart } from "d3plus-react";
+import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
-import mondrianClient, {
-	geoCut,
-	simpleGeoChartNeed,
-	simpleDatumNeed
-} from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
 import { regionsColorScale } from "helpers/colors";
-
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
 
-import groupBy from "lodash/groupBy";
-
 class Presidential1stBar extends Section {
 	static need = [];
 
 	render() {
-		const path = this.context.data.path_electoral_presidential_1nd;
+    const path = this.context.data.path_electoral_presidential_1st;
 		const { t, className, i18n } = this.props;
 		const { datum_electoral_presidential_1nd_chile, geo } = this.context.data;
 

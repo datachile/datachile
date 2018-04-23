@@ -56,7 +56,10 @@ class PresidentSlide extends Section {
           <div
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
-              __html: t("geo_profile.civics.president.text", text)
+              __html: t(
+                "geo_profile.civics.president.text",
+                text || { context: "nodata", geo, year: election_year }
+              )
             }}
           />
           <div className="topic-slide-data">
