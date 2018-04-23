@@ -11,8 +11,8 @@ const axisConfig = {
     fill: "#fff",
     labelConfig: {
       fontColor: "#fff",
-      fontFamily: () => "'Saira Condensed', sans-serif"
-      //fontSize: () => 12
+      fontFamily: () => "'Saira Condensed', sans-serif",
+      fontSize: () => 11
     },
     stroke: "#fff"
   },
@@ -20,8 +20,8 @@ const axisConfig = {
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
     fontColor: "#fff",
-    fontSize: 12,
-    fontWeight: 600,
+    fontSize: 14,
+    //fontWeight: 600,
     textTransform: "uppercase"
   }
 };
