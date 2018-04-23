@@ -126,6 +126,8 @@ class SNEDCompareBySchool extends Section {
     const title = t("Performance By School Type");
     const classSvg = "sned-performance-by-school-type";
 
+    let customTick = "";
+
     return (
       <div className={className}>
         <CustomDialog
@@ -153,19 +155,30 @@ class SNEDCompareBySchool extends Section {
           config={{
             height: 500,
             data: path,
-            aggs: {
-              [this.state.selectedOption]: mean
-            },
             groupBy: ["ID Stage 1a"],
             shapeConfig: {
               fill: d => snedColorScale("sned" + d["ID Stage 1a"]),
               label: false
             },
+            aggs: {
+              [this.state.selectedOption]: mean
+            },
             stacked: true,
             y: "count",
             x: "interval",
             discrete: "x",
+            yDomain: [0],
             xConfig: {
+              labelOffset: false,
+              shapeConfig: {
+                labelConfig: {
+                  ellipsis: tick => {
+                    let number = parseInt(tick.match(/\d/g).join(""));
+                    let newTick = "[" + number + ", " + (number + 2) + "[";
+                    return tick, newTick;
+                  }
+                }
+              },
               title:
                 t("Score Range") +
                 " " +
@@ -174,7 +187,15 @@ class SNEDCompareBySchool extends Section {
             },
             yConfig: {
               title: t("Number of schools"),
-              tickFormat: tick => numeral(tick, locale).format("0")
+              tickFormat: tick => {
+                let newTick = numeral(Math.ceil(tick), locale).format("0");
+                if (newTick !== customTick) {
+                  customTick = newTick;
+                  return newTick;
+                } else {
+                  return " ";
+                }
+              }
             },
             xSort: (a, b) =>
               b[this.state.selectedOption] > a[this.state.selectedOption]
@@ -192,6 +213,10 @@ class SNEDCompareBySchool extends Section {
               }
             },
             tooltipConfig: {
+              arrow: " ",
+              arrowStyle: {
+                "background-color": "#F2F2F2"
+              },
               width: "300px",
               background: d => snedColorScale("sned" + d["ID Stage 1a"]),
               title: d =>
@@ -232,7 +257,7 @@ class SNEDCompareBySchool extends Section {
               bodyStyle: {
                 "max-height": "235px",
                 overflow: "hidden",
-                "text-overflow": "ellipsis",
+                //"text-overflow": "ellipsis",
                 "background-color": "#fff",
                 color: "#333"
               },
