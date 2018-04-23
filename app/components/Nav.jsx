@@ -83,10 +83,7 @@ class Nav extends Component {
       }, 100);
     }
 
-    var url = location.href;
-    if (canUseDOM) {
-      url = window.location.href;
-    }
+    var url = location.origin + location.pathname;
     url = url.replace(locale, otherLang);
 
     var hideLogo = location.pathname === "/";

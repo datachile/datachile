@@ -4,7 +4,7 @@ import { translate } from "react-i18next";
 
 import { colorContrast } from "d3plus-color";
 
-import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 import { snedColorScale } from "helpers/colors";
 import { sources } from "helpers/consts";
@@ -89,7 +89,7 @@ class SNEDCompareBySchool extends Section {
     });
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps() {
     this.setState({
       isOpen: false
     });
@@ -220,9 +220,14 @@ class SNEDCompareBySchool extends Section {
               width: "300px",
               background: d => snedColorScale("sned" + d["ID Stage 1a"]),
               title: d =>
+                "<div>" +
+                "<div>" +
                 t(this.state.selectedObj.subtitle) +
-                " (SIMCE) " +
-                d["interval"],
+                " (SIMCE) </div>" +
+                "<div>" +
+                d["interval"] +
+                "</div>" +
+                "</div>",
               padding: 0,
               titleStyle: {
                 "background-color": d =>

@@ -74,7 +74,10 @@ class MayorSlide extends Section {
           <div
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
-              __html: t("geo_profile.civics.mayor.text", text)
+              __html: t(
+                "geo_profile.civics.mayor.text",
+                text || { context: "nodata", geo, year: election_year }
+              )
             }}
           />
           <div className="topic-slide-data">

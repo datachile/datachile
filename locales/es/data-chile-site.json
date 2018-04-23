@@ -720,7 +720,9 @@
           "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
       },
       "mayor": {
-        "title": "Elecciones Edilicias",
+        "title": "Elecciones Municipales",
+        "text_nodata":
+          "No hay datos de participación electoral para {{geo.caption}} en la elección municipal de {{year}}.",
         "text_person":
           "<p>La población de {{geo.caption}} eligió a {{candidates.0.Candidate}}, de {{candidates.0.Partido}}, como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}}, de {{candidates.1.Partido}}, quien recibió {{candidates.1.Votes}} votos.</p>",
         "text_party_1":
@@ -736,6 +738,8 @@
         "title_congresspeople": "Elecciones para Diputado",
         "note":
           "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección.",
+        "text_nodata":
+          "No hay datos de participación electoral para {{geo.caption}} en la elección legislativa de {{year}}.",
         "text_party":
           "<p>Dentro del Senado, los partidos políticos que lograron más escaños en la elección de {{year.election}} fueron {{senparties.0.name}}, con $t(representative, {'count': {{senparties.0.total}} }). Le sigue {{senparties.1.name}}, con $t(representative, {'count': {{senparties.1.total}} }), y {{senparties.2.name}}, con $t(representative, {'count': {{senparties.2.total}} }).</p><p>Mientras tanto, los partidos políticos que lograron más escaños en la Cámara de Diputados en el mismo año fueron {{dipparties.0.name}}, con $t(representative, {'count': {{dipparties.0.total}} }). Le sigue {{dipparties.1.name}}, con $t(representative, {'count': {{dipparties.1.total}} }), y {{dipparties.2.name}}, con $t(representative, {'count': {{dipparties.2.total}} }).</p>",
         "senate":
@@ -750,10 +754,18 @@
       },
       "president": {
         "title": "Elecciones Presidenciales",
+        "text_nodata":
+          "No hay datos de participación electoral para {{geo.caption}} en la elección presidencial de {{year}}.",
         "text_country":
           "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, la mayoría de votos la obtuvo el candidato {{round1.0.Candidate}} con un {{round1.0.share}} de los votos, seguido de {{round1.1.Candidate}}, quien obtuvo el segundo lugar con el {{round1.1.share}} de las preferencias, mientras que {{round1.2.Candidate}} obtuvo un {{round1.2.share}} de los votos, quedando fuera de la segunda vuelta.</p><p>Para la segunda vuelta presidencial, el candidato elegido para ser Presidente fue {{round2.0.Candidate}}, quien superó a {{round2.1.Candidate}} con un {{round2.0.share}} contra un {{round2.1.share}} de los votos.</p>",
         "text":
           "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, los electores de {{geo.caption}} presentaron una preferencia por {{round1.0.Candidate}} con un {{round1.0.share}} de los votos, mientras que {{round1.1.Candidate}} obtuvo el segundo lugar con el {{round1.1.share}}, y {{round1.2.Candidate}} obtuvo el tercer lugar con un {{round1.2.share}} de las preferencias.</p><p>Para la segunda vuelta presidencial, la mayoría de los votantes de {{geo.caption}} se inclinó por {{round2.0.Candidate}}, superando a {{round2.1.Candidate}} con un {{round2.0.share}} contra un {{round2.1.share}} de los votos.</p>"
+      },
+      "participation": {
+        "text":
+          "El mayor porcentaje de participación en {{geo.caption}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores.",
+        "text_nodata":
+          "No hay datos de participación electoral para {{geo.caption}} en la elección presidencial de {{year}}."
       }
     },
     "demography": {
@@ -949,10 +961,6 @@
     "income_sex_age_slide": {
       "text":
         "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
-    },
-    "politics": {
-      "text":
-        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     },
     "trade_slide": {
       "text":
