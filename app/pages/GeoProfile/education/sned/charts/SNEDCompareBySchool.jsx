@@ -139,16 +139,16 @@ class SNEDCompareBySchool extends Section {
         />
         <h3 className="chart-title">
           <span>{title}</span>
-          <div>
-            <Select
-              id="variations"
-              options={this.state.chartVariations}
-              value={this.state.selectedOption}
-              labelField="title"
-              valueField="id"
-              onChange={this.handleChange}
-            />
-          </div>
+
+          <Select
+            id="variations"
+            options={this.state.chartVariations}
+            value={this.state.selectedOption}
+            labelField="title"
+            valueField="id"
+            onChange={this.handleChange}
+          />
+
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <BarChart
