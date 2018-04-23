@@ -1,7 +1,9 @@
 .ReactTable {
   border-width: 0px;
+  color: #888888;
+  font-size: 11px;
   & .rt-table {
-    overflow: scroll;
+    overflow-y: scroll;
     height: 60vh;
     & .text-center {
       text-align: center;
@@ -14,16 +16,42 @@
       }
     }
   }
+
+  & .-pageJump {
+    border-radius: 10px;
+    & input {
+      background-color: #44464a;
+      color: #888888;
+    }
+  }
 }
 
 .pt-dialog {
-  background: #ffffff;
+  background: #2f2f37;
+  width: 950px;
   &.sned-1 {
     & .pt-dialog-header {
       background-color: #0d659d !important;
       & .pt-dialog-header-title,
       & .pt-icon-small-cross::before {
         color: #ffffff;
+      }
+    }
+
+    & .-next,
+    & .-previous {
+      border-radius: 4px;
+      background-color: #0d659d !important;
+      color: #ffffff !important;
+
+      & button {
+        color: #ffffff;
+      }
+
+      & button:disabled {
+        background-color: #2f2f37 !important;
+        opacity: 0.95;
+        color: #222222;
       }
     }
 
@@ -45,6 +73,30 @@
       background-color: #00e3f9 !important;
       color: #444444;
     }
+
+    & .-next,
+    & .-previous {
+      border-radius: 4px;
+      background-color: #00acbc !important;
+      color: #444444 !important;
+
+      &:hover {
+        color: #444444 !important;
+      }
+
+      & button {
+        color: #444444;
+        &:hover {
+          color: #444444 !important;
+        }
+      }
+
+      & button:disabled {
+        background-color: #2f2f37 !important;
+        opacity: 0.95;
+        color: #222222;
+      }
+    }
   }
   &.sned-3 {
     & .pt-dialog-header {
@@ -58,6 +110,29 @@
     & .rt-thead {
       background-color: #98ecd1 !important;
       color: #444444;
+    }
+
+    & .-next,
+    & .-previous {
+      border-radius: 4px;
+      background-color: #8debcc !important;
+      color: #444444 !important;
+
+      &:hover {
+        color: #444444 !important;
+      }
+
+      & button {
+        color: #444444;
+        &:hover {
+          color: #444444 !important;
+        }
+        &:disabled {
+          background-color: #2f2f37 !important;
+          opacity: 0.95;
+          color: #222222;
+        }
+      }
     }
   }
 }

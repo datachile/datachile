@@ -41,48 +41,48 @@ class CustomDialog extends React.Component {
       {
         Header: t("School"),
         accessor: "school",
-        minWidth: 400
+        minWidth: 270
       },
       {
         Header: t("Efectiveness"),
         accessor: "efectiveness",
-        maxWidth: 100,
+        maxWidth: 80,
         className: "text-center"
       },
       {
         Header: t("Fairness"),
         accessor: "fairness",
-        maxWidth: 100,
+        maxWidth: 80,
         className: "text-center"
       },
       {
         Header: t("Improvement"),
         accessor: "improvement",
-        maxWidth: 100,
+        maxWidth: 80,
         className: "text-center"
       },
       {
         Header: t("Initiative"),
         accessor: "initiative",
-        maxWidth: 100,
+        maxWidth: 80,
         className: "text-center"
       },
       {
         Header: t("Integration"),
         accessor: "integration",
-        maxWidth: 100,
+        maxWidth: 80,
         className: "text-center"
       },
       {
         Header: t("Overcoming"),
         accessor: "overcoming",
-        maxWidth: 100,
+        maxWidth: 80,
         className: "text-center"
       },
       {
         Header: t("Sned_score"),
         accessor: "sned_score",
-        maxWidth: 100,
+        maxWidth: 80,
         className: "text-center"
       }
     ];
