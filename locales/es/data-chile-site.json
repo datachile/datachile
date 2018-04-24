@@ -878,11 +878,11 @@
           }
         },
         "description":
-          "Sistema Nacional de Evaluación del Desempeño (SNED). Calcula un índice de desempeño a partir de la medición de 6 factores: efectividad, superación, iniciativa, mejoramiento de condiciones de trabajo, igualdad de oportunidades e integración de profesores. *",
+          "El Sistema Nacional de Evaluación del Desempeño (SNED), es un índice de desempeño de las escuelas que se construye usando data de 6 factores: efectividad, superación, iniciativa, mejoramiento de condiciones de trabajo, igualdad de oportunidades e integración de profesores. * La data de Efectividad y Superación provienen de la prueba estandarizada SIMCE.",
         "disclaimer":
           "* En el caso de Educación Especial, estos establecimientos no presentan indicadores aplicables para los factores efectividad y superación",
         "text1":
-          "Durante {{year}}, el promedio de puntuación otorgado por SNED para las escuelas de {{geo.caption}} fue de {{score}} sobre 100."
+          "En el {{year}} el SNED promedio de las escuelas de {{geo.caption}} fue de {{score}} sobre 100. El promedio nacional de SNED fue de 67.48 sobre 100."
       }
     },
     "health": {
@@ -1288,7 +1288,7 @@
   "People with disabilities": "Personas con discapacidad",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
-  "Performance By School Type": "Desempeño por Tipo de Escuela",
+  "Average Performance By School Type": "Desempeño Promedio por Tipo de Escuela",
   "Performance Evaluation": "Evaluación de Desempeño",
   "Pharmacy": "Farmacia",
   "Pic by": "Foto de",

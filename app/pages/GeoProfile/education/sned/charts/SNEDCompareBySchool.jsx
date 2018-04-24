@@ -123,7 +123,7 @@ class SNEDCompareBySchool extends Section {
     const { path_sned_compare_by_school } = this.context.data;
     const path = path_sned_compare_by_school;
 
-    const title = t("Average") + " " + t("Performance By School Type");
+    const title = t("Average Performance By School Type");
     const classSvg = "sned-performance-by-school-type";
 
     let customTick = "";
