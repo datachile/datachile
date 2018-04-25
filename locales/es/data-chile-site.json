@@ -848,33 +848,33 @@
         "definitions": {
           "efectiveness": {
             "desc":
-              "Resultado educativo obtenido por el establecimiento en relación con la población atendida. Ponderación del 37% en el índice SNED.",
-            "title": "Efectividad"
+              "Consiste en el resultado educativo obtenido por el establecimiento en relación con la población atendida. Se mide a través del promedio SIMCE en todos los subsectores de aprendizaje. Ponderación del 37% en el índice SNED.",
+            "title": "<strong>Efectividad</strong>"
           },
           "fairness": {
             "desc":
-              "Grado de accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. Ponderación del 22% en el índice SNED.",
-            "title": "Igualdad de oportunidades"
+              "Indicadores que miden el grado de accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. Ponderación del 22% en el índice SNED.",
+            "title": "<strong>Igualdad de oportunidades</strong>"
           },
           "improvement": {
             "desc":
-              "Mejora de las condiciones de trabajo y adecuado funcionamiento del establecimiento. Ponderación del 2% en el índice SNED.",
-            "title": "Mejoramiento"
+              "Se considera en su medición la clasificación del establecimiento en el Sistema de Inspección de Subvenciones y el cumplimiento con los procesos estadísticos demandados por el Ministerio de Educación tales como Matrícula, Idoneidad Docente, Actas de Rendimiento. Ponderación del 2% en el índice SNED.",
+            "title": "<strong>Mejoramiento</strong>"
           },
           "initiative": {
             "desc":
-              "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. Ponderación del 6% en el índice SNED.",
-            "title": "Iniciativa"
+              "Indicadores que obedecen a la capacidad para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. Ponderación del 6% en el índice SNED.",
+            "title": "<strong>Iniciativa</strong>"
           },
           "integration": {
             "desc":
               "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento. Ponderación del 5% en el índice SNED.",
-            "title": "Integración"
+            "title": "<strong>Integración</strong>"
           },
           "overcoming": {
             "desc":
-              "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional. Ponderación del 28% en el índice SNED.",
-            "title": "Superación"
+              "Corresponde a las diferencias de logro obtenidos en el tiempo por el establecimiento educacional. Se mide a través de la diferencia promedio SIMCE en todos los subsectores de aprendizaje. Ponderación del 28% en el índice SNED.",
+            "title": "<strong>Superación</strong>"
           }
         },
         "description":

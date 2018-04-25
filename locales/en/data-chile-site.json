@@ -820,7 +820,7 @@
         "definitions": {
           "efectiveness": {
             "desc":
-              "Educational result obtained by the establishment in relation with the population served. Weighting of 37% in the SNED index.",
+              "Educational result obtained by the establishment in relation with the population served. It is measured through the SIMCE average in all learning sub-sectors. Weighting of 37% in the SNED index.",
             "title": "Efectiveness"
           },
           "fairness": {
@@ -830,7 +830,7 @@
           },
           "improvement": {
             "desc":
-              "Improvement of working conditions and proper operation of the establishment. Weighting of 2% in the SNED index.",
+              "It was considered in its measurement the classification of the establishment in the Subsidies Inspection System and compliance with the statistical processes demanded by the Ministry of Education such as Enrollment, Teaching Suitability, Performance Acts, Improvement of working conditions and proper operation of the establishment. Weighting of 2% in the SNED index.",
             "title": "Mejoramiento"
           },
           "initiative": {
@@ -840,7 +840,7 @@
           },
           "integration": {
             "desc":
-              "Integration and participation of professors, parents and parents in the development of the educational project of the establishment. Weighting of 5% in the SNED index.",
+              "Integration and participation of professors, parents and guardians in the development of the educational project of the establishment. Weighting of 5% in the SNED index.",
             "title": "Integración"
           },
           "overcoming": {
