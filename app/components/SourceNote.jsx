@@ -25,7 +25,9 @@ function SourceNote(props) {
     <div className="source-note">
       <span className="source-note-txt">{t("Source")}:</span>
       <a target="_blank" className="source-note-link" href={source.url}>
-        {`${source.title} - ${source.source} - ${source.year}`}
+        {source.title +
+          (source.source ? ` - ${source.source}` : "") +
+          (source.year ? ` - ${source.year}` : "")}
       </a>
     </div>
   );
