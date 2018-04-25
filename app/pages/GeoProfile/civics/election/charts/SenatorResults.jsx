@@ -6,6 +6,7 @@ import { translate } from "react-i18next";
 import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
 import { coalitionColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import { getAvailableYears } from "helpers/map";
 
 import { Switch } from "@blueprintjs/core";
 
@@ -216,8 +217,7 @@ class SenatorResults extends Section {
                   let d = data.data.map(item => {
                     return { ...item, count: 1, elected: item["ID Elected"] };
                   });
-
-                  this.setState({ maxYear: maxBy(d, "ID Year")["ID Year"] });
+                  this.setState({ year: getAvailableYears(d).pop() });
 
                   if (maxBy(d, "ID Year")["ID Year"] > 2013)
                     participation.data.map(item => {
@@ -256,7 +256,7 @@ class SenatorResults extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="election_results" />
+        <SourceNote cube="election_results" year={this.state.year} />
       </div>
     );
   }

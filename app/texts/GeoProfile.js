@@ -581,6 +581,8 @@ function textCivicsCongress(geo, source, year, locale) {
   const dipTotalVotes = diputado.reduce(sumVotesTotal, 0);
 
   const datum = {
+    rawSenTotal: senTotalVotes,
+    rawDipTotal: dipTotalVotes,
     senTotal: numeral(senTotalVotes, locale).format("0,0"),
     dipTotal: numeral(dipTotalVotes, locale).format("0,0")
   };

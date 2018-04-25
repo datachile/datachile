@@ -70,6 +70,7 @@ class CongressSlide extends Section {
               <FeaturedDatum
                 className="l-1-2"
                 icon="cambio-votacion"
+                showIf={text.datum.rawSenTotal > 0}
                 datum={text.datum.senTotal}
                 title={t("Total amount of votes")}
                 subtitle={
@@ -83,6 +84,7 @@ class CongressSlide extends Section {
               <FeaturedDatum
                 className="l-1-2"
                 icon="participation"
+                showIf={text.datum.rawDipTotal > 0}
                 datum={text.datum.dipTotal}
                 title={t("Total amount of votes")}
                 subtitle={

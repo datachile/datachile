@@ -5,6 +5,7 @@ import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
 import { presidentialColorScale } from "helpers/colors";
+import { getAvailableYears } from "helpers/map";
 
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { Switch } from "@blueprintjs/core";
@@ -54,15 +55,15 @@ class Presidential1st extends Section {
 
   toggleElectors = () => {
     this.setState(prevState => ({
-      non_electors: !prevState.non_electors,
-      key: Math.random()
+      non_electors: !prevState.non_electors
+      // key: Math.random()
     }));
   };
 
   onYearChange(item) {
     this.setState({
-      year: item[0],
-      key: Math.random()
+      year: item[0] * 1
+      // key: Math.random()
     });
   }
 
@@ -178,6 +179,8 @@ class Presidential1st extends Section {
               dataFormat={data => {
                 let d = data.data;
 
+                this.setState({ year: getAvailableYears(d).pop() });
+
                 need_presidential_participation.data.map(item => {
                   d.push({
                     Votes: item.Electors - item.Votes,
@@ -190,8 +193,6 @@ class Presidential1st extends Section {
                     Year: item.Year
                   });
                 });
-
-                this.setState({ year: d[0]["ID Year"] });
 
                 return d;
               }}

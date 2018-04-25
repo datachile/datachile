@@ -531,18 +531,19 @@ const CUBES_CUT_BASE = {
     return [].concat(this.hierarchies[cube], this.levels[level]);
   },
   getLevelCut(cube, params) {
-    if (cube in this.hierarchies) {
+    const cut = this.getCut(params);
+    if (cut && cube in this.hierarchies) {
       const hierarchy = this.hierarchies[cube];
-      return `[${hierarchy[0]}].[${hierarchy[1]}].${this.getCut(params)}`;
+      return `[${hierarchy[0]}].[${hierarchy[1]}].${cut}`;
     }
   }
 };
 
 const getGeoCut = params => {
-  const lvlRegion = (params.region || "").split("-").pop();
   const lvlComuna = (params.comuna || "").split("-").pop();
-  if (lvlComuna || lvlRegion)
-    return lvlComuna ? `[Comuna].&[${lvlComuna}]` : `[Region].&[${lvlComuna}]`;
+  if (lvlComuna) return `[Comuna].&[${lvlComuna}]`;
+  const lvlRegion = (params.region || "").split("-").pop();
+  if (lvlRegion) return `[Region].&[${lvlRegion}]`;
 };
 
 const CUBES_CUT_GEO = {
@@ -587,7 +588,7 @@ function simpleGeoDatumNeed2(key, query, postprocess) {
   }
 
   return (params, store) => {
-  const cube = query.cube;
+    const cube = query.cube;
     const levelCut = CUBES_CUT_GEO.getLevelCut(cube, params);
 
     query.locale = store.i18n.locale;

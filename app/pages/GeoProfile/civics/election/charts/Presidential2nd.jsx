@@ -5,6 +5,7 @@ import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
 import { presidentialColorScale } from "helpers/colors";
+import { getAvailableYears } from "helpers/map";
 
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
@@ -67,15 +68,15 @@ class Presidential2nd extends Section {
 
   toggleElectors = () => {
     this.setState(prevState => ({
-      non_electors: !prevState.non_electors,
-      key: Math.random()
+      non_electors: !prevState.non_electors
+      // key: Math.random()
     }));
   };
 
   onYearChange(item) {
     this.setState({
-      year: item[0],
-      key: Math.random()
+      year: item[0] * 1
+      // key: Math.random()
     });
   }
 
@@ -203,10 +204,6 @@ class Presidential2nd extends Section {
                     { "2013": 0, "2017": 0 }
                   );
 
-                  const total_location = data.data.reduce((all, item) => {
-                    return all + item["Votes"];
-                  }, 0);
-
                   let d = data.data.map(item => {
                     return {
                       ...item,
@@ -215,6 +212,8 @@ class Presidential2nd extends Section {
                         item["Votes"] / total_location_year[item["Year"]]
                     };
                   });
+
+                  this.setState({ year: getAvailableYears(d).pop() });
 
                   datum_presidential_participation_2nd_round.data.map(item => {
                     d.push({
@@ -228,8 +227,6 @@ class Presidential2nd extends Section {
                       Year: item.Year
                     });
                   });
-
-                  this.setState({ year: d[0]["ID Year"] });
 
                   return d;
                 } else {
