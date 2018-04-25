@@ -1,5 +1,4 @@
 .custom-dialog-psu {
-  
   & .ReactTable {
     border-width: 0px;
     color: #888888;
@@ -76,5 +75,21 @@
 
   & hr {
     margin: 5px 0px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  & .custom-dialog-psu {
+    &.pt-dialog {
+      width: 400px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  & .custom-dialog-psu {
+    &.pt-dialog {
+      width: 300px;
+    }
   }
 }

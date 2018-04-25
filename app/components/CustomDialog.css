@@ -1,5 +1,5 @@
 .custom-dialog-sned {
- & .ReactTable {
+  & .ReactTable {
     border-width: 0px;
     color: #888888;
     font-size: 11px;
@@ -153,5 +153,37 @@
 
   & hr {
     margin: 5px 0px !important;
+  }
+}
+
+@media (max-width: 950px) {
+  .custom-dialog-sned {
+    &.pt-dialog {
+      width: 700px;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .custom-dialog-sned {
+    &.pt-dialog {
+      width: 500px;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .custom-dialog-sned {
+    &.pt-dialog {
+      width: 400px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .custom-dialog-sned {
+    &.pt-dialog {
+      width: 300px;
+    }
   }
 }
