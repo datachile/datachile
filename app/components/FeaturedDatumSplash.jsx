@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 
-import { sources } from "helpers/consts";
+import { sources, getI18nSourceObject } from "helpers/consts";
 
 import "./FeaturedDatumSplash.css";
 
@@ -29,7 +29,9 @@ class FeaturedDatumSplash extends Component {
       none = 5 - half - full;
     }
 
-    const sourceData = sources[source];
+    // const sourceData = sources[source];
+    const src = t("about.data", { returnObjects: true });
+    const sourceData = getI18nSourceObject(src, source);
 
     return (
       <div className={"featured-datum-splash " + className}>
