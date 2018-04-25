@@ -129,7 +129,7 @@ class MigrationSlide extends Section {
 
     const locale = i18n.language;
 
-    const txt_slide = t("geo_profile.demography.origin_by_country", {
+    const txt_slide = t("geo_profile.demographics.origin_by_country", {
       last_year: sources.immigration.year,
       visas: numeral(datum_migration_origin[1], locale).format("(0,0)"),
       area: geo.caption,

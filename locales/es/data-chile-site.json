@@ -246,6 +246,11 @@
         "use": "Se usa en los perfiles nacional, regional y comunal.",
         "year": "2009-2013-2016-2017"
       },
+      "sned": {
+        "source": "Ministerio de Educación (MINEDUC)",
+        "title": "Sistema Nacional de Evaluación del Desempeño (SNED)",
+        "year": "2016"
+      },
       "source": "Organismo responsable",
       "text":
         "Las fuentes de datos integradas en Datachile son las siguientes:",
@@ -540,6 +545,12 @@
       "text1":
         "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
     },
+    "terms": {
+      "cube": "Cubo",
+      "drilldown": "Drilldown",
+      "measure": "Medición",
+      "cut": "Corte"
+    },
     "definitions": {
       "cube":
         "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
@@ -612,9 +623,15 @@
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
     }
   },
-  "Download CSV file": "Descargar archivo CSV",
-  "Download data": "Descargar datos",
-  "Download documentation": "Descargar documentación",
+  "download": {
+    "csv": "Descargar archivo CSV",
+    "data": "Descargar datos",
+    "docs": "Descargar documentación",
+    "household": "Descargar datos de vivienda",
+    "banking": "Descargar datos de bancarización",
+    "health": "Descargar datos de salud",
+    "income": "Descargar datos de ingresos"
+  },
   "During": "Durante",
   "Economy": "Economía",
   "Education": "Educación",
@@ -768,7 +785,7 @@
           "No hay datos de participación electoral para {{geo.caption}} en la elección presidencial de {{year}}."
       }
     },
-    "demography": {
+    "demographics": {
       "origin_by_activity":
         "<p>En {{last_year}}, el {{percentage_activity}} de las {{visas}} visas entregadas en {{area}} corresponden a la actividad más común entre los inmigrantes: {{activity}}.</p><p>Así mismo, el tipo de visa más popular en {{area}} es {{type}}, con un {{percentage_type}}.</p>",
       "origin_by_country":
@@ -801,7 +818,7 @@
         "by_product":
           "Productos importados por empresas domiciliadas en {{caption}}",
         "default":
-          "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{imports.first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. Las principales importaciones de {{geo.caption}} son <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, que representa {{imports.trade_first_share}} del total de las importaciones de {{geo.caption}}, seguida por, <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a>, que representa el {{imports.trade_second_share}} de éstas</p>",
+          "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{imports.first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. Las principales importaciones de {{geo.caption}} son <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, que representa {{imports.trade_first_share}} del total de las importaciones de {{geo.caption}}, seguida por <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a>, que representa el {{imports.trade_second_share}} de éstas</p>",
         "no_data":
           "<p>No existen datos de importaciones de empresas establecidas en {{geo.caption}}.</p>",
         "one":

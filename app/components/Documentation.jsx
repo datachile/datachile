@@ -27,7 +27,7 @@ class Documentation extends React.Component {
             }}
           />
           <div className="def-text">
-            <h5 className="title">Cubo</h5>
+            <h5 className="title">{t("documentation_api.terms.cube")}</h5>
             <p
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.definitions.cube")
@@ -40,7 +40,7 @@ class Documentation extends React.Component {
             />
           </div>
           <div className="def-text">
-            <h5 className="title">Drilldown</h5>
+            <h5 className="title">{t("documentation_api.terms.drilldown")}</h5>
             {t("Some previous definitions")}:
             <ul>
               <li
@@ -72,7 +72,7 @@ class Documentation extends React.Component {
           </div>
 
           <div className="def-text">
-            <h5 className="title">Measure</h5>
+            <h5 className="title">{t("documentation_api.terms.measure")}</h5>
             <p
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.definitions.measure")
@@ -80,7 +80,7 @@ class Documentation extends React.Component {
             />
           </div>
           <div className="def-text">
-            <h5 className="title">Cut</h5>
+            <h5 className="title">{t("documentation_api.terms.cut")}</h5>
             <p
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.definitions.cut")

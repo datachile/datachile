@@ -316,28 +316,28 @@ class About extends Component {
                     href="http://docs.datachile.io/casen_household_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")} vivienda
-                  </a>{" "}
-                  |{" "}
+                    {t("download.household")}
+                  </a>
+                  {" | "}
                   <a
                     href="http://docs.datachile.io/casen_banking_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")} bancarización
-                  </a>{" "}
-                  |{" "}
+                    {t("download.banking")}
+                  </a>
+                  {" | "}
                   <a
                     href="http://docs.datachile.io/casen_health_system_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")} salud
-                  </a>{" "}
-                  |{" "}
+                    {t("download.health")}
+                  </a>
+                  {" | "}
                   <a
                     href="http://docs.datachile.io/casen_income_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")} ingreso
+                    {t("download.income")}
                   </a>
                 </p>
 
@@ -346,7 +346,7 @@ class About extends Component {
                     href="http://docs.datachile.io/casen_documentation.zip"
                     target="_blank"
                   >
-                    {t("Download documentation")}
+                    {t("download.docs")}
                   </a>
                 </p>
 
@@ -368,14 +368,14 @@ class About extends Component {
                     href="http://docs.datachile.io/nene_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
-                  </a>{" "}
-                  |{" "}
+                    {t("download.data")}
+                  </a>
+                  {" | "}
                   <a
                     href="http://docs.datachile.io/nene_documentation.zip"
                     target="_blank"
                   >
-                    {t("Download documentation")}
+                    {t("download.docs")}
                   </a>
                 </p>
 
@@ -397,14 +397,14 @@ class About extends Component {
                     href="http://docs.datachile.io/nesi_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
-                  </a>{" "}
-                  |{" "}
+                    {t("download.data")}
+                  </a>
+                  {" | "}
                   <a
                     href="http://docs.datachile.io/nesi_documentation.zip"
                     target="_blank"
                   >
-                    {t("Download documentation")}
+                    {t("download.docs")}
                   </a>
                 </p>
 
@@ -426,7 +426,7 @@ class About extends Component {
                     href="http://docs.datachile.io/aduanas_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
                 <p>
@@ -434,7 +434,7 @@ class About extends Component {
                     href="http://docs.datachile.io/aduanas_metadata.zip"
                     target="_blank"
                   >
-                    {t("Download documentation")}
+                    {t("download.docs")}
                   </a>
                 </p>
 
@@ -444,7 +444,6 @@ class About extends Component {
                     __html: t("about.data.costes.text")
                   }}
                 />
-
                 <p
                   dangerouslySetInnerHTML={{
                     __html: t("about.data.costes.use")
@@ -456,7 +455,7 @@ class About extends Component {
                     href="http://docs.datachile.io/production_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -477,7 +476,7 @@ class About extends Component {
                     href="http://docs.datachile.io/research_and_development_survey_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -501,7 +500,7 @@ class About extends Component {
                     href="http://docs.datachile.io/education_enrollment_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -525,7 +524,7 @@ class About extends Component {
                     href="http://docs.datachile.io/education_performance_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -560,7 +559,7 @@ class About extends Component {
                     href="http://docs.datachile.io/basic_health_indicators_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -582,7 +581,7 @@ class About extends Component {
                     href="http://docs.datachile.io/basic_health_indicators_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -604,7 +603,7 @@ class About extends Component {
                     href="http://docs.datachile.io/basic_health_indicators_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -628,7 +627,7 @@ class About extends Component {
                     href="http://docs.datachile.io/disability_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -652,7 +651,7 @@ class About extends Component {
                     href="http://docs.datachile.io/population_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -676,7 +675,7 @@ class About extends Component {
                     href="http://docs.datachile.io/immigration_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -698,7 +697,7 @@ class About extends Component {
                     href="http://docs.datachile.io/internet_use_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -720,7 +719,7 @@ class About extends Component {
                     href="http://docs.datachile.io/participation_votes_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -742,7 +741,7 @@ class About extends Component {
                     href="http://docs.datachile.io/felonies_clean_data.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
 
@@ -758,7 +757,7 @@ class About extends Component {
                     href="http://docs.datachile.io/official_ids.zip"
                     target="_blank"
                   >
-                    {t("Download data")}
+                    {t("download.data")}
                   </a>
                 </p>
               </section>
@@ -775,21 +774,6 @@ class About extends Component {
                   }}
                 />
                 <Documentation />
-                {/*
-                <h3>{t("about.api.title2")}</h3>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: t("about.api.text2")
-                  }}
-                />
-
-                <h3>{t("about.api.title3")}</h3>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: t("about.api.text3")
-                  }}
-                />
-                */}
               </section>
             )}
 
