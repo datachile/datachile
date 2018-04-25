@@ -6,9 +6,9 @@ import { Button, Dialog, Intent } from "@blueprintjs/core";
 import ReactTable from "react-table";
 
 import "../../node_modules/react-table/react-table.css";
-import "./CustomDialog.css";
+import "./CustomDialogPSU.css";
 
-class CustomDialog extends React.Component {
+class CustomDialogPSU extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,61 +40,31 @@ class CustomDialog extends React.Component {
     const columns = [
       {
         Header: t("School"),
-        accessor: "school",
-        minWidth: 270
+        accessor: "Institution",
+        minWidth: 200
       },
       {
-        Header: t("Efectiveness"),
-        accessor: "efectiveness",
-        maxWidth: 80,
+        Header: t("Average PSU"),
+        accessor: "Average PSU",
+        maxWidth: 100,
         className: "text-center"
       },
       {
-        Header: t("Fairness"),
-        accessor: "fairness",
-        maxWidth: 80,
-        className: "text-center"
-      },
-      {
-        Header: t("Improvement"),
-        accessor: "improvement",
-        maxWidth: 80,
-        className: "text-center"
-      },
-      {
-        Header: t("Initiative"),
-        accessor: "initiative",
-        maxWidth: 80,
-        className: "text-center"
-      },
-      {
-        Header: t("Integration"),
-        accessor: "integration",
-        maxWidth: 80,
-        className: "text-center"
-      },
-      {
-        Header: t("Overcoming"),
-        accessor: "overcoming",
-        maxWidth: 80,
-        className: "text-center"
-      },
-      {
-        Header: t("Sned_score"),
-        accessor: "sned_score",
-        maxWidth: 80,
+        Header: t("Average NEM"),
+        accessor: "Average NEM",
+        maxWidth: 100,
         className: "text-center"
       }
     ];
 
     return (
-      <div className="custom-dialog-sned">
+      <div className="custom-dialog-psu">
         <Dialog
           icon="inbox"
           isOpen={this.state.isOpen}
           onClose={this.toggleDialog}
           title={dialogHeader}
-          className={`${className} custom-dialog-sned`}
+          className={`${className} custom-dialog-psu`}
         >
           <div className="pt-dialog-body">
             <ReactTable
@@ -123,4 +93,4 @@ class CustomDialog extends React.Component {
   }
 }
 
-export default translate()(CustomDialog);
+export default translate()(CustomDialogPSU);

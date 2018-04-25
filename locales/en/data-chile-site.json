@@ -820,7 +820,7 @@
         "definitions": {
           "efectiveness": {
             "desc":
-              "Educational result obtained by the establishment in relation with the population served. Weighting of 37% in the SNED index.",
+              "Educational result obtained by the establishment in relation with the population served. It is measured through the SIMCE average in all learning sub-sectors. Weighting of 37% in the SNED index.",
             "title": "Efectiveness"
           },
           "fairness": {
@@ -830,7 +830,7 @@
           },
           "improvement": {
             "desc":
-              "Improvement of working conditions and proper operation of the establishment. Weighting of 2% in the SNED index.",
+              "It was considered in its measurement the classification of the establishment in the Subsidies Inspection System and compliance with the statistical processes demanded by the Ministry of Education such as Enrollment, Teaching Suitability, Performance Acts, Improvement of working conditions and proper operation of the establishment. Weighting of 2% in the SNED index.",
             "title": "Mejoramiento"
           },
           "initiative": {
@@ -840,7 +840,7 @@
           },
           "integration": {
             "desc":
-              "Integration and participation of professors, parents and parents in the development of the educational project of the establishment. Weighting of 5% in the SNED index.",
+              "Integration and participation of professors, parents and guardians in the development of the educational project of the establishment. Weighting of 5% in the SNED index.",
             "title": "Integración"
           },
           "overcoming": {
@@ -850,12 +850,12 @@
           }
         },
         "description":
-          "National System of Performance Evaluation (SNED). Calculate a performance index based on the measurement of 6 factors: effectiveness, improvement, initiative, improvement of working conditions, equal opportunities and teacher integration. *",
+          "National System of Performance Evaluation (SNED) is a performance index of schools based on the measurement of 6 factors: effectiveness, improvement, initiative, improvement of working conditions, equal opportunities and teacher integration. * Effectiveness and Overcoming come from standarized test SIMCE.",
         "disclaimer":
           "* In the case of Special Education, these establishments do not present indicators applicable for the factors effectiveness and overcoming",
         "source": "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
         "text1":
-          "In {{year}}, the average score awarded by SNED for {{geo.caption}} schools was {{score}} over 100."
+          "In {{year}}, the average score awarded by SNED for {{geo.caption}} schools was {{score}} over 100. National average score of SNED was 67.48 over 100."
       }
     },
     "health": {
@@ -1374,6 +1374,7 @@
   "School By Enrollment": "School By Enrollment",
   "Schools": "Schools",
   "Score": "Score",
+  "PSU Score": "PSU Score",
   "Search a location, industry, product, career, etc":
     "Search a location, industry, product, career, etc",
   "Sector": "Sector",

@@ -4,7 +4,7 @@ import { translate } from "react-i18next";
 
 import { colorContrast } from "d3plus-color";
 
-import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
+import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 import { snedColorScale } from "helpers/colors";
 import { sources } from "helpers/consts";
@@ -77,7 +77,7 @@ class SNEDCompareBySchool extends Section {
 
     const variations = selector.map((item, key) => {
       let subtitle: string = t(this.capitalizeFirstLetter(item.split(" ")[1]));
-      let ms: string = t("Average") + " " + subtitle;
+      let ms: string = subtitle;
       return { id: item, title: ms, value: item, subtitle };
     });
 
@@ -89,7 +89,7 @@ class SNEDCompareBySchool extends Section {
     });
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps() {
     this.setState({
       isOpen: false
     });
@@ -123,7 +123,7 @@ class SNEDCompareBySchool extends Section {
     const { path_sned_compare_by_school } = this.context.data;
     const path = path_sned_compare_by_school;
 
-    const title = t("Performance By School Type");
+    const title = t("Average Performance By School Type");
     const classSvg = "sned-performance-by-school-type";
 
     let customTick = "";
@@ -139,6 +139,7 @@ class SNEDCompareBySchool extends Section {
         />
         <h3 className="chart-title">
           <span>{title}</span>
+
           <Select
             id="variations"
             options={this.state.chartVariations}
@@ -147,6 +148,7 @@ class SNEDCompareBySchool extends Section {
             valueField="id"
             onChange={this.handleChange}
           />
+
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <BarChart
@@ -220,9 +222,14 @@ class SNEDCompareBySchool extends Section {
               width: "300px",
               background: d => snedColorScale("sned" + d["ID Stage 1a"]),
               title: d =>
+                "<div>" +
+                "<div>" +
                 t(this.state.selectedObj.subtitle) +
-                " (SIMCE) " +
-                d["interval"],
+                " (SIMCE) </div>" +
+                "<div>" +
+                d["interval"] +
+                "</div>" +
+                "</div>",
               padding: 0,
               titleStyle: {
                 "background-color": d =>
@@ -349,66 +356,69 @@ class SNEDCompareBySchool extends Section {
           }}
         />
         <SourceNote cube="sned" />
-        <p
-          className="chart-text"
-          dangerouslySetInnerHTML={{
-            __html: t("geo_profile.education.sned.disclaimer")
-          }}
-        />
-        <p
-          className="chart-text"
-          dangerouslySetInnerHTML={{
-            __html:
-              t("geo_profile.education.sned.definitions.efectiveness.title") +
-              ": " +
-              t("geo_profile.education.sned.definitions.efectiveness.desc")
-          }}
-        />
-        <p
-          className="chart-text"
-          dangerouslySetInnerHTML={{
-            __html:
-              t("geo_profile.education.sned.definitions.overcoming.title") +
-              ": " +
-              t("geo_profile.education.sned.definitions.overcoming.desc")
-          }}
-        />
-        <p
-          className="chart-text"
-          dangerouslySetInnerHTML={{
-            __html:
-              t("geo_profile.education.sned.definitions.fairness.title") +
-              ": " +
-              t("geo_profile.education.sned.definitions.fairness.desc")
-          }}
-        />
-        <p
-          className="chart-text"
-          dangerouslySetInnerHTML={{
-            __html:
-              t("geo_profile.education.sned.definitions.improvement.title") +
-              ": " +
-              t("geo_profile.education.sned.definitions.improvement.desc")
-          }}
-        />
-        <p
-          className="chart-text"
-          dangerouslySetInnerHTML={{
-            __html:
-              t("geo_profile.education.sned.definitions.initiative.title") +
-              ": " +
-              t("geo_profile.education.sned.definitions.initiative.desc")
-          }}
-        />
-        <p
-          className="chart-text"
-          dangerouslySetInnerHTML={{
-            __html:
-              t("geo_profile.education.sned.definitions.integration.title") +
-              ": " +
-              t("geo_profile.education.sned.definitions.integration.desc")
-          }}
-        />
+        <div className="footnote">
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html: t("geo_profile.education.sned.disclaimer")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.efectiveness.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.efectiveness.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.overcoming.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.overcoming.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.fairness.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.fairness.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.improvement.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.improvement.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.initiative.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.initiative.desc")
+            }}
+          />
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html:
+                t("geo_profile.education.sned.definitions.integration.title") +
+                ": " +
+                t("geo_profile.education.sned.definitions.integration.desc")
+            }}
+          />
+        </div>
+
         <SourceNote cube="sned_website" />
       </div>
     );

@@ -1,5 +1,11 @@
 @import "../pages/mixins";
 
+.footnote {
+  & .chart-text {
+    font-size: 12px!important;
+  }
+}
+
 .topic-block {
   background-color: var(--dark);
   color: var(--snow);
