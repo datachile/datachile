@@ -246,6 +246,11 @@
         "use": "Se usa en los perfiles nacional, regional y comunal.",
         "year": "2009-2013-2016-2017"
       },
+      "sned": {
+        "source": "Ministerio de Educación (MINEDUC)",
+        "title": "Sistema Nacional de Evaluación del Desempeño (SNED)",
+        "year": "2016"
+      },
       "source": "Organismo responsable",
       "text":
         "Las fuentes de datos integradas en Datachile son las siguientes:",

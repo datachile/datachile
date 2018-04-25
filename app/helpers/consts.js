@@ -164,6 +164,7 @@ export const sources = {
     year: 2016
   }
 };
+
 export const featured_profiles = {
   es: [
     {
@@ -267,3 +268,77 @@ export const icon_migration_visatype = {
     }
   }
 };
+
+export function getI18nSourceObject(src, cube) {
+  switch (cube) {
+    case "exports":
+    case "imports":
+    case "exports_and_imports":
+      return { ...sources.exports_and_imports, ...src.aduana };
+
+    case "immigration":
+      return { ...sources.immigration, ...src.migracion };
+
+    case "tax_data":
+      return { ...sources.tax_data, ...src.costes };
+
+    case "rd_survey":
+      return { ...sources.rd_survey, ...src.iplusd };
+
+    case "nesi_income":
+      return { ...sources.nesi_income, ...src.nesi };
+
+    case "crimes":
+      return { ...sources.crimes, ...src.felonies };
+
+    case "internet_access":
+      return { ...sources.internet_access, ...src.internet };
+
+    case "nene":
+      return { ...sources.nene, ...src.nene };
+
+    case "casen_household":
+    case "casen_health_system":
+    case "casen_banking":
+      return { ...sources.casen_banking, ...src.casen };
+
+    case "education_enrollment":
+      return { ...sources.education_enrollment, ...src.enrollment };
+
+    case "education_performance_new":
+    case "education_performance":
+      return { ...sources.education_performance, ...src.psu };
+
+    case "population_estimate":
+      return { ...sources.population_estimate, ...src.poblacion };
+
+    case "death_causes":
+      return { ...sources.death_causes, ...src.muerte };
+
+    case "disabilities":
+      return { ...sources.disabilities, ...src.discapacidad };
+
+    case "election_results":
+    case "election_results_update":
+    case "election_participation":
+      return { ...sources.election_participation, ...src.servel };
+
+    case "health_access":
+      return { ...sources.health_access, ...src.salud };
+
+    case "psu":
+      return { ...sources.psu, ...src.psu };
+
+    case "sned":
+      return { ...sources.sned, ...src.sned };
+
+    case "fonasa_website":
+      return sources.fonasa_website;
+
+    case "sned_website":
+      return sources.sned_website;
+
+    default:
+      return undefined;
+  }
+}

@@ -245,6 +245,12 @@
           "This dataset is used in the nation, region, and comuna profiles.",
         "year": "2009-2013-2016-2017"
       },
+      "sned": {
+        "source": "Ministry of Education (MINEDUC)",
+        "title":
+          "National Performance Evaluation System (Sistema Nacional de Evaluación de Desempeño, SNED)",
+        "year": "2016"
+      },
       "source": "Source",
       "text":
         "DataChile integrates 16 datasets from these sources: All of these can be exported as CSV files.",
