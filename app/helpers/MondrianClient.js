@@ -540,10 +540,10 @@ const CUBES_CUT_BASE = {
 };
 
 const getGeoCut = params => {
-  const lvlRegion = (params.region || "").split("-").pop();
   const lvlComuna = (params.comuna || "").split("-").pop();
-  if (lvlComuna || lvlRegion)
-    return lvlComuna ? `[Comuna].&[${lvlComuna}]` : `[Region].&[${lvlComuna}]`;
+  if (lvlComuna) return `[Comuna].&[${lvlComuna}]`;
+  const lvlRegion = (params.region || "").split("-").pop();
+  if (lvlRegion) return `[Region].&[${lvlRegion}]`;
 };
 
 const CUBES_CUT_GEO = {

@@ -6,6 +6,7 @@ import { translate } from "react-i18next";
 import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
 import { coalitionColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import { getAvailableYears } from "helpers/map";
 
 import { Switch } from "@blueprintjs/core";
 
@@ -61,24 +62,19 @@ class CongresspersonResults extends Section {
     }
   ];
 
-  constructor(props) {
-    super(props);
+  state = {
+    show: true,
+    non_electors: true,
+    year: 2017,
+    key: Math.random()
+  };
 
-    this.state = {
-      non_electors: true,
-      year: 2017,
-      key: Math.random()
-    };
-
-    this.toggleElectors = this.toggleElectors.bind(this);
-  }
-
-  toggleElectors() {
+  toggleElectors = () => {
     this.setState(prevState => ({
       non_electors: !prevState.non_electors,
       key: Math.random()
     }));
-  }
+  };
 
   onYearChange(item) {
     this.setState({
@@ -112,7 +108,6 @@ class CongresspersonResults extends Section {
           [
             <Treemap
               className={classSvg}
-              key={this.state.key}
               config={{
                 height: 500,
                 data: path,
@@ -227,6 +222,9 @@ class CongresspersonResults extends Section {
                   let d = data.data.map(item => {
                     return { ...item, count: 1 };
                   });
+
+                  this.setState({ year: getAvailableYears(d).pop() });
+
                   if (geo.type !== "country")
                     participation.data.map(item => {
                       d.push({
@@ -259,7 +257,7 @@ class CongresspersonResults extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="election_results" />
+        <SourceNote cube="election_results" year={this.state.year} />
       </div>
     );
   }
