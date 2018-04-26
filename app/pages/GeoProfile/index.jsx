@@ -314,7 +314,9 @@ class GeoProfile extends Component {
     const ancestor =
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
-        : geoObj.type == "region" ? chileObj : false;
+        : geoObj.type == "region"
+          ? chileObj
+          : false;
 
     if (geo) {
       this.props.data.geo.type = geoObj.type;
@@ -1025,7 +1027,7 @@ class GeoProfile extends Component {
                 sections={[
                   {
                     name: t("Elections"),
-                    slides: [t("Mayor"), t("Congress"), t("Presidential")]
+                    slides: [t("Presidential"), t("Congress"), t("Mayor")]
                   },
                   {
                     name: t("Participation"),
@@ -1033,22 +1035,6 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
-                <div>
-                  <MayorSlide>
-                    <SectionColumns>
-                      <MayorResults className="lost-1" />
-                    </SectionColumns>
-                  </MayorSlide>
-                </div>
-                <div>
-                  <CongressSlide>
-                    <SectionColumns>
-                      <SenatorResults className="lost-1-2" />
-                      <CongresspersonResults className="lost-1-2" />
-                    </SectionColumns>
-                  </CongressSlide>
-                </div>
-
                 <div>
                   <PresidentSlide>
                     <SectionColumns>
@@ -1060,6 +1046,21 @@ class GeoProfile extends Component {
                       <Presidential2ndBar className="lost-1-2" />
                     </SectionColumns>
                   </PresidentSlide>
+                </div>
+                <div>
+                  <CongressSlide>
+                    <SectionColumns>
+                      <SenatorResults className="lost-1-2" />
+                      <CongresspersonResults className="lost-1-2" />
+                    </SectionColumns>
+                  </CongressSlide>
+                </div>
+                <div>
+                  <MayorSlide>
+                    <SectionColumns>
+                      <MayorResults className="lost-1" />
+                    </SectionColumns>
+                  </MayorSlide>
                 </div>
 
                 <div>
