@@ -738,11 +738,11 @@
         "text_nodata":
           "There's no data of electoral participation for {{geo.caption}} on {{year}} legislative election.",
         "text_party":
-          "<p>Within the Senate, the political parties that achieved the most seats in the election of {{year.election}} were {{senparties.0.name}}, with $t(representative, {'count': {{senparties.0.total}} }). Follows {{senparties.1.name}}, with $t(representative, {'count': {{senparties.1.total}} }), and {{senparties.2.name}}, with $t(representative, {'count': {{senparties.2.total}} }).</p><p>Meanwhile, the political parties that achieved the most seats in the Chamber of Deputies in the same year were {{dipparties.0.name}}, with $t(representative, {'count': {{dipparties.0.total}} }), followed by {{dipparties.1.name}}, with $t(representative, {'count': {{dipparties.1.total}} }), and {{dipparties.2.name}}, with $t(representative, {'count': {{dipparties.2.total}} }).</p>",
+          "<p>Within the Senate, the political parties that achieved the most seats in the election of {{year.election}} were {{senparties.0.name}}, with $t(representative, {'count': {{senparties.0.total}} }). Follows {{senparties.1.name}}, with $t(representative, {'count': {{senparties.1.total}} }), and {{senparties.2.name}}, with $t(representative, {'count': {{senparties.2.total}} }).</p><p>Meanwhile, the political parties that achieved the most seats in the Chamber of Congresspersons in the same year were {{dipparties.0.name}}, with $t(representative, {'count': {{dipparties.0.total}} }), followed by {{dipparties.1.name}}, with $t(representative, {'count': {{dipparties.1.total}} }), and {{dipparties.2.name}}, with $t(representative, {'count': {{dipparties.2.total}} }).</p>",
         "senate":
           "Senators who represent {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{senators}}.",
         "deputy":
-          "Deputies representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.",
+          "Congresspersons representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.",
         "text_person": "",
         "text_person1": "<p>The $t(geo_profile.civics.congress.senate)</p>",
         "text_person2": "<p>The $t(geo_profile.civics.congress.deputy)</p>",
@@ -853,7 +853,7 @@
           "improvement": {
             "desc":
               "It was considered in its measurement the classification of the establishment in the Subsidies Inspection System and compliance with the statistical processes demanded by the Ministry of Education such as Enrollment, Teaching Suitability, Performance Acts, Improvement of working conditions and proper operation of the establishment. Weighting of 2% in the SNED index.",
-            "title": "Mejoramiento"
+            "title": "Improvement"
           },
           "initiative": {
             "desc":
@@ -863,7 +863,7 @@
           "integration": {
             "desc":
               "Integration and participation of professors, parents and guardians in the development of the educational project of the establishment. Weighting of 5% in the SNED index.",
-            "title": "Integración"
+            "title": "Integration"
           },
           "overcoming": {
             "desc":
