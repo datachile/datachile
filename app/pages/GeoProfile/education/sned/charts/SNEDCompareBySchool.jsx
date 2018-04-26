@@ -208,7 +208,7 @@ class SNEDCompareBySchool extends Section {
                 let body = d.tooltip,
                   header =
                     t(this.state.selectedObj.subtitle) +
-                    " (SIMCE)" +
+                    " (SIMCE) " +
                     (!(d["interval"] instanceof Array) ? d["interval"] : ""),
                   customclassName = "sned-" + d["ID Stage 1a"];
                 this.toggleDialog(header, body, customclassName);
