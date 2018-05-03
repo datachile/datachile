@@ -106,7 +106,8 @@
           font-family: var(--font-family-title);
           font-weight: 300;
           line-height: 1em;
-          margin: calc(var(--gutter)*3) 0 calc(var(--gutter)*2) 0;
+          margin: calc(var(--gutter) * 2) 0;
+          padding-top: var(--gutter);
         }
 
         & h4 {

@@ -9,6 +9,7 @@
 .topic-block {
   background-color: var(--dark);
   color: var(--snow);
+  padding-top: calc(var(--gutter) * 2);
   lost-utility: clearfix;
   & .topic-header {
     & .topic-title {
