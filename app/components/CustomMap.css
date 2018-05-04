@@ -3,12 +3,13 @@
   & #legend {
     position: absolute;
     bottom: 20px;
-    height: 80px;
-    left: 20px;
-    right: 20px;
-    width: calc(100% - 45px);
-    background-color: var(--snow);
-    border: 2px solid var(--gray-dark);
+    height: 100px;
+    left: 16px;
+    right: 0px;
+    width: calc(100% - 35px);
+    //background-color: var(--snow);
+    background-color: #d6dadc;
+    border: 0px solid var(--gray-dark);
 
     & text {
       fill: #000 !important;

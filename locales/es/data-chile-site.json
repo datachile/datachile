@@ -529,7 +529,7 @@
       "text2":
         "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
       "text3":
-        "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+        "Mayor información en <a target='_blank' href='https://github.com/datachile/datachile-python-client/'>https://github.com/datachile/datachile-python-client/</a>"
     },
     "complex": {
       "text1":
