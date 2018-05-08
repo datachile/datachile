@@ -88,6 +88,7 @@ class Presidential1st extends Section {
               className={classSvg}
               key={this.state.key}
               config={{
+                width: document.querySelector("." + classSvg).clientWidth,
                 height: 500,
                 data: path,
                 groupBy: ["ID Candidate"],
