@@ -53,6 +53,13 @@ function levelCut(
   }
 }
 
+/**
+ * Set caption for level and language
+ * @param {string} query
+ * @param {string} level Level name
+ * @param {string} lang Language
+ * @returns {string}
+ */
 function setCaptionForLevelAndLang(query, level, lang) {
   const ann = level.annotations[`${lang}_caption`];
   if (ann) {
@@ -61,6 +68,12 @@ function setCaptionForLevelAndLang(query, level, lang) {
   return query;
 }
 
+/**
+ * Set captions by language
+ * @param {string} query
+ * @param {string} lang Language
+ * @returns {string}
+ */
 function setLangCaptions(query, lang) {
   // bail early if lang <> es
   if (lang.substring(0, 2) !== "es") return query;
@@ -82,6 +95,12 @@ function setLangCaptions(query, lang) {
   return query;
 }
 
+/**
+ * Get locale caption
+ * @param {string} level
+ * @param {string} locale Language
+ * @returns {string}
+ */
 function getLocaleCaption(level, locale = "en") {
   const caption = level.annotations[locale.substring(0, 2) + "_caption"];
   if (caption) {
@@ -94,6 +113,15 @@ function getMeasureByGeo(type, countryM, regionM, comunaM) {
   return type == "country" ? countryM : type == "region" ? regionM : comunaM;
 }
 
+/**
+ * Return the members of a level from a cube
+ * @param {string} cube Cube name
+ * @param {string} dimension Dimension name
+ * @param {string} level Level name
+ * @param {string} locale Language
+ * @param {boolean} children
+ * @returns {MondrianClient}
+ */
 function getMembersQuery(
   cube,
   dimension,
@@ -172,6 +200,13 @@ function simpleGeoChartNeed(
   };
 }
 
+/**
+ * Return URL to use in charts of IndustryProfile
+ * @param {string} key Unique key
+ * @param {string} cube Cube name
+ * @param {Array} measures Measure names
+ * @param {Object} params
+ */
 function simpleIndustryChartNeed(
   key,
   cube,
