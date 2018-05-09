@@ -60,7 +60,10 @@ class PopulationProjection extends Section {
         <LinePlot
           className={classSvg}
           config={{
-            width: document.querySelector("." + classSvg).clientWidth,
+            width:
+              typeof window !== "undefined"
+                ? document.querySelector("." + classSvg).clientWidth
+                : undefined,
             height: 500,
             data: path,
             x: "Year",
