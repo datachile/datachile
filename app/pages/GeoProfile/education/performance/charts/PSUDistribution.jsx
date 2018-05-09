@@ -176,6 +176,9 @@ class PSUDistribution extends Section {
               title: t("PSU exams"),
               tickFormat: tick => numeral(tick, locale).format("0%")
             },
+            legendTooltip: {
+              title: d => d["geo"]
+            },
             tooltipConfig: {
               arrow: " ",
               arrowStyle: {
@@ -188,9 +191,6 @@ class PSUDistribution extends Section {
               },
               title: d => "<div>" + d["Bucket"] + " " + d["geo"] + "</div>",
               padding: 0,
-              legendTooltip: {
-                title: d => d["geo"]
-              },
               titleStyle: {
                 "background-color": d => {
                   if ("tooltip" in d) return administrationColorScale();
