@@ -40,6 +40,7 @@ class PSUBySex extends Section {
             y: "value",
             time: "year",
             shapeConfig: {
+              width: 40,
               fill: d => COLORS_GENDER[d["id_sex"]],
               label: d => d["sex"]
             },
