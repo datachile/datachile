@@ -61,7 +61,8 @@ class PopulationProjection extends Section {
           className={classSvg}
           config={{
             width:
-              typeof window !== "undefined"
+              typeof window !== "undefined" &&
+              document.querySelector("." + classSvg)
                 ? document.querySelector("." + classSvg).clientWidth
                 : undefined,
             height: 500,

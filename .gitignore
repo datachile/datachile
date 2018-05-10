@@ -15,3 +15,4 @@ jsconfig.json
 index.js
 static/reports
 static/assets
+package-lock.json
