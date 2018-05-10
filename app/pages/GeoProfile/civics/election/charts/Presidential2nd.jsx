@@ -105,7 +105,8 @@ class Presidential2nd extends Section {
               key={this.state.key}
               config={{
                 width:
-                  typeof window !== "undefined"
+                  typeof window !== "undefined" &&
+                  document.querySelector("." + classSvg)
                     ? document.querySelector("." + classSvg).clientWidth
                     : undefined,
                 height: 500,
