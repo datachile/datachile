@@ -104,6 +104,10 @@ class Presidential2nd extends Section {
               className={classSvg}
               key={this.state.key}
               config={{
+                width:
+                  typeof window !== "undefined"
+                    ? document.querySelector("." + classSvg).clientWidth
+                    : undefined,
                 height: 500,
                 data: path,
                 groupBy: ["ID Candidate"],
