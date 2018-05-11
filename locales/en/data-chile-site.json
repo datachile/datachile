@@ -74,7 +74,13 @@
       },
       "fitzroya": {
         "title": "1.3.0 - \"Fitzroya\" - 2018-04-20",
-        "description": "<p>TODO</p>"
+        "description":
+          "<p>New dataset & charts in education section: SNED Indicators</p>"
+      },
+      "guayacan": {
+        "title": "1.3.1 - \"Guayacán\" - 2018-05-11",
+        "description":
+          "<p>Minor visual fixes. API docs updated. Width fixed on demography and civic sections.</p>"
       },
       "launch": {
         "description":

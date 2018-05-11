@@ -78,6 +78,11 @@
           "<p>Nuevo dataset y gráficos en sección de educación: Indicadores SNED</p>",
         "title": "1.3 - \"Fitzroya\" - 2018-04-09"
       },
+      "guayacan": {
+        "title": "1.3.1 - \"Guayacán\" - 2018-05-11",
+        "description":
+          "<p>Correcciones visuales menores. Actualización de documentación de API. Ancho corregido para gráficos en la sección de demografía y cívica.</p>"
+      },
       "launch": {
         "description":
           "<p>Página principal. Exploración por perfiles. Buscador de entidades. Perfiles: geográfico, países, industrias y productos. Más de 15 datasets sobre los tópicos: Economía, demografía, educación, salud y vivienda.</p>",
@@ -1305,7 +1310,8 @@
   "People with disabilities": "Personas con discapacidad",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
-  "Average Performance By School Type": "Desempeño Promedio por Tipo de Escuela",
+  "Average Performance By School Type":
+    "Desempeño Promedio por Tipo de Escuela",
   "Performance Evaluation": "Evaluación de Desempeño",
   "Pharmacy": "Farmacia",
   "Pic by": "Foto de",
