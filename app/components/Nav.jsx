@@ -51,7 +51,6 @@ class Nav extends Component {
     const {
       t,
       i18n,
-      location,
       title,
       type,
       typeTitle,
@@ -83,13 +82,10 @@ class Nav extends Component {
       }, 100);
     }
 
-    var url = location.origin + location.pathname;
-    url = url.replace(locale, otherLang);
+    var location = canUseDOM ? window.location : this.props.location;
 
+    var url = location.origin.replace(locale, otherLang) + location.pathname;
     var hideLogo = location.pathname === "/";
-    if (canUseDOM) {
-      hideLogo = window.location.pathname === "/";
-    }
 
     if (canUseDOM) {
       const nodeSide = select(".search-sidebar input").node();
@@ -263,11 +259,10 @@ class Nav extends Component {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      location: state.location
-    }),
-    {}
-  )(Nav)
-);
+const mapStateToProps = state => {
+  return {
+    location: state.location
+  };
+};
+
+export default translate()(connect(mapStateToProps)(Nav));
