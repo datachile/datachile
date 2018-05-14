@@ -270,7 +270,7 @@ class Explore extends Component {
           <meta property="og:title" content={t("Explore") + " - DataChile"} />
           <meta
             property="og:url"
-            content={`https://${locale}.datachile.io${location.pathname}`}
+            content={`https://${locale}.datachile.io/${location.pathname}`}
           />
           <meta
             property="og:image"
