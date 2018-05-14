@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25">
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
     <g fill="none" fill-rule="evenodd">
         <path fill="#CAD3E4" d="M24.9 12.8a12.1 12.1 0 1 1-24.2 0 12.1 12.1 0 0 1 24.2 0"/>
         <path fill="#89194E" d="M12.8 13.2a.8.8 0 0 1-.8-.8c0-.5.3-.8.8-.8.4 0 .8.3.8.8 0 .4-.4.8-.8.8m0-2.7a2 2 0 0 0-1.9 1.9c0 1 .9 1.8 1.9 1.8 1 0 1.8-.8 1.8-1.8s-.8-1.9-1.8-1.9"/>
