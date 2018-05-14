@@ -31,9 +31,7 @@ class CustomMap extends React.Component {
             height: 500,
             padding: 3,
             data: path,
-            tiles: true,
-            //tileUrl:
-            //  "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
+            tiles: false,
 
             fitObject: "/geo/countries.json",
             topojson: "/geo/countries.json",
@@ -45,7 +43,7 @@ class CustomMap extends React.Component {
             fitKey: "id",
             groupBy: "iso3",
             label: d => d["Country"],
-            ocean: "#d6dadc",
+            ocean: "#2f2f38",
             topojsonId: "id",
             topojsonKey: "id",
             total: d => d[msrName],
@@ -97,7 +95,7 @@ class CustomMap extends React.Component {
               axisConfig: {
                 shapeConfig: {
                   labelConfig: {
-                    fontColor: "#000"
+                    fontColor: "#FFF"
                   }
                 },
                 tickFormat: tick => {
