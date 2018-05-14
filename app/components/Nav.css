@@ -189,12 +189,12 @@
       padding: 0 10px;
       text-decoration: none;
       color: inherit;
+      cursor: pointer;
 
       &.current,
       &:hover {
         text-decoration: underline;
         opacity: 1;
-        cursor: default;
       }
 
       &.other {
@@ -206,6 +206,11 @@
     &:hover .lang {
       opacity: 0.8;
       text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        opacity: 1;
+      }
     }
   }
 
