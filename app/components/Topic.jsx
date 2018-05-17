@@ -41,7 +41,8 @@ class Topic extends Component {
     });
 
     return (
-      <div className="topic-block" id={id}>
+      <div className="topic-block">
+        <span id={id} className="topic-anchor-link" />
         <div className="topic-header">
           <div className="topic-title">
             <h2>
