@@ -28,32 +28,24 @@ class CustomMap extends React.Component {
       <div className="geomap">
         <Geomap
           config={{
-            //...config,
             height: 500,
             padding: 3,
-
             data: path,
-
-            tiles: true,
-            //tileUrl:
-            //  "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
+            tiles: false,
 
             fitObject: "/geo/countries.json",
             topojson: "/geo/countries.json",
+
+            fitFilter: d => {
+              return "ATA".indexOf(d.id) < 0;
+            },
+            //fitFilter: d => "ATA",
+            fitKey: "id",
             groupBy: "iso3",
+            label: d => d["Country"],
+            ocean: "#2f2f38",
             topojsonId: "id",
             topojsonKey: "id",
-            fitKey: "id",
-
-            //ocean: "#212121",
-            shapeConfig: {
-              Path: {
-                //fill: d => "#0F0F0F"
-              }
-            },
-
-            label: d => d["Country"],
-
             total: d => d[msrName],
             totalConfig: {
               text: d =>
@@ -62,7 +54,6 @@ class CustomMap extends React.Component {
                   "($ 0.[00] a)"
                 )
             },
-
             on: {
               click: d => {
                 if (!(d["ID Country"] instanceof Array)) {
@@ -104,7 +95,7 @@ class CustomMap extends React.Component {
               axisConfig: {
                 shapeConfig: {
                   labelConfig: {
-                    fontColor: "#000"
+                    fontColor: "#FFF"
                   }
                 },
                 tickFormat: tick => {

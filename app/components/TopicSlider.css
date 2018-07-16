@@ -7,6 +7,9 @@
   /* Slider */
   & .slick-list {
     lost-utility: clearfix;
+    & .slick-slide {
+      height: auto;
+    }
   }
 
   /* Arrows */

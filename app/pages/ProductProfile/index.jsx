@@ -345,7 +345,9 @@ class ProductProfile extends Component {
       typeof obj === "object"
         ? obj.depth === 1
           ? obj.key
-          : products.includes(obj.key) ? obj.key : obj.ancestors[0].key
+          : products.includes(obj.key)
+            ? obj.key
+            : obj.ancestors[0].key
         : "";
 
     const ids = getLevelObject(this.props.routeParams);
@@ -370,7 +372,9 @@ class ProductProfile extends Component {
       : [];
 
     const listTitle = ids
-      ? ids.level2 ? t("Other products") : t("Products")
+      ? ids.level2
+        ? t("Other products")
+        : t("Products")
       : "";
 
     const stats = {
@@ -438,7 +442,7 @@ class ProductProfile extends Component {
             <meta property="og:title" content={title + " - DataChile"} />
             <meta
               property="og:url"
-              content={`https://${locale}.datachile.io${location.pathname}`}
+              content={`https://${locale}.datachile.io/${location.pathname}`}
             />
             <meta
               property="og:image"

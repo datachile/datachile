@@ -1,7 +1,7 @@
 @import "../pages/mixins";
 
 .topic-slider-sections {
-  margin: 0 var(--gutter) var(--gutter) var(--gutter);
+  margin: 0 var(--gutter) calc(var(--gutter) / 2) var(--gutter);
   & ul {
     padding: 0px;
     margin: 0px;
@@ -87,7 +87,8 @@
 
 @add-mixin for-sm {
   .topic-slider-sections {
-    margin: 0 calc(var(--gutter)/2) calc(var(--gutter)/2) calc(var(--gutter)/2);
+    margin: 0 calc(var(--gutter) / 2) calc(var(--gutter) / 2)
+      calc(var(--gutter) / 2);
     & ul {
       margin-bottom: 15px;
     }

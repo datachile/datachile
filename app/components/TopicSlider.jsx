@@ -25,14 +25,16 @@ class TopicSlider extends Component {
     };
   }
 
-  afterChange = (d, id) => {
+  afterChange = (d, id, currentSlide) => {
     sendEvent(id, d);
 
     if (this.state.chartsRendered) return;
+
     //disgusting code, just to trigger the new slide's charts render (d3plus).
     if (!__SERVER__) {
       setTimeout(() => {
         window.dispatchEvent(new Event("scroll"));
+        //window.dispatchEvent(new Event("resize"));
         this.state.chartsRendered = true;
       }, 100);
     }
@@ -49,8 +51,8 @@ class TopicSlider extends Component {
           {...finalSettings}
           ref="topicSlider"
           slickGoTo={selected}
-          afterChange={a => {
-            this.afterChange(a, id);
+          afterChange={(a, currentSlide) => {
+            this.afterChange(a, id, currentSlide);
           }}
         >
           {children}

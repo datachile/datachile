@@ -72,6 +72,16 @@
           "<p>New data visualizations in Civic section: electoral results: presidential, congress and mayor levels. Fixes in authorities in main splash.</p>",
         "title": "1.2.1 - \"Encino\" - 2018-02-16"
       },
+      "fitzroya": {
+        "title": "1.3.0 - \"Fitzroya\" - 2018-04-20",
+        "description":
+          "<p>New dataset & charts in education section: SNED Indicators</p>"
+      },
+      "guayacan": {
+        "title": "1.3.1 - \"Guayacán\" - 2018-05-11",
+        "description":
+          "<p>Minor visual fixes. API docs updated. Width fixed on demography and civic sections.</p>"
+      },
       "launch": {
         "description":
           "<p>Main page. Profile explorer. Entity search. Profiles: geo, countries, industries, and products. More than 15 datasets about: economy, demography, education, health, and housing.</p>",
@@ -92,7 +102,7 @@
       "casen": {
         "source": "Ministry of Social Development (MDS)",
         "text":
-          "<p>Data created by the Ministry of Social Development (MDS). CASEN survey aims to deliver an \"xrays examination\" of socio-economic situation in Chilean households, being the principal data source to measure poverty and inequality, and it has been broadly used by international organizations and NGOs.</p>",
+          "<p>Data created by the Ministry of Social Development (MDS). CASEN survey aims to deliver an \"in-depth examination\" of socio-economic situation in Chilean households, being the principal data source to measure poverty and inequality, and it has been broadly used by international organizations and NGOs.</p>",
         "title": "Socio-Economic Characterization Survey (CASEN)",
         "use":
           "This dataset is used in the nation,  region and comuna profiles in economy, household and health sections. ",
@@ -208,7 +218,7 @@
         "source": "National Institute for Statistics (INE)",
         "text":
           "<p>Data created by the National Institute for Statistics (INE) based on 2002 Census that gives account for the general population at nation, region and comuna level and also health services that aggregate different comunas.</p>",
-        "title": "Population Projects",
+        "title": "Population projections",
         "use":
           "This dataset is used on the nation, region and comuna profiles. ",
         "year": "2002 - 2020"
@@ -236,15 +246,21 @@
         "source": "Electoral service (SERVEL)",
         "text":
           "<p>Public data available in Servicio Electoral (SERVEL). It shows the results from last elections: mayors, congress-people and president. The winners and also a detail of every candidate. Finally, we calculate the electoral participation at comuna level.</p>",
-        "title": "Electtion results and participation",
+        "title": "Election results and participation",
         "use":
           "This dataset is used in the nation, region, and comuna profiles.",
         "year": "2009-2013-2016-2017"
       },
+      "sned": {
+        "source": "Ministry of Education (MINEDUC)",
+        "title":
+          "National Performance Evaluation System (Sistema Nacional de Evaluación de Desempeño, SNED)",
+        "year": "2016"
+      },
       "source": "Source",
       "text":
         "DataChile integrates 16 datasets from these sources: All of these can be exported as CSV files.",
-      "title": "Datos",
+      "title": "Datasets",
       "vida": {
         "source": "Health Statististics and Information Department (DEIS)",
         "text":
@@ -468,7 +484,7 @@
     },
     "migration_slide": {
       "destination":
-        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants de estos arrived to <a href=\"{{links.region}}\">{{region}}</a>, mainly to the comuna of <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
+        "<p>On {{year_last}}, Chile granted {{number_visas}} work, study or residence visas to immigrants coming from {{level}}. Most of these immigrants estos arrived to <a href=\"{{links.region}}\">{{region}}</a>, mainly to the comuna of <a href=\"{{links.comuna}}\">{{comuna}}</a>.</p>",
       "growth":
         "<p>Between {{year_prev}} and {{year_last}}, the number of visas granted to immigrants coming from {{level}} has {{behavior}} at a annual rate of {{growth}}.</p>",
       "text": "$t(country_profile.migration_slide.destination)",
@@ -510,7 +526,7 @@
       "text2":
         "For to install, you can use pip: <span class='code'>pip install datachile</span>",
       "text3":
-        "More information in <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+        "More information in <a target='_blank' href='https://github.com/datachile/datachile-python-client/'>https://github.com/datachile/datachile-python-client/</a>"
     },
     "complex": {
       "text1":
@@ -523,7 +539,13 @@
     },
     "datasets": {
       "text1":
-        "These data are gotten since <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+        "This data is provided by <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+    },
+    "terms": {
+      "cube": "Cube",
+      "drilldown": "Drilldown",
+      "measure": "Measure",
+      "cut": "Cut"
     },
     "definitions": {
       "cube":
@@ -582,7 +604,7 @@
       "text1":
         "The single entry point for aggregation operations in Mondrian-REST is <span class='code'>/aggregate</span>, which accepts the described parameters then.",
       "text2":
-        "For an particular cube, get the members belonging to a certain level in a dimension."
+        "For a particular cube, get the members belonging to a certain level in a dimension."
     },
     "title1": "First Steps",
     "title2": "Syntax",
@@ -597,9 +619,15 @@
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
     }
   },
-  "Download CSV file": "Download CSV file",
-  "Download data": "Download data",
-  "Download documentation": "Download documentation",
+  "download": {
+    "csv": "Download CSV file",
+    "data": "Download data",
+    "docs": "Download documentation",
+    "household": "Download household data",
+    "banking": "Download banking data",
+    "health": "Download health data",
+    "income": "Download income data"
+  },
   "During": "During",
   "Economy": "Economy",
   "Education": "Education",
@@ -665,20 +693,85 @@
   "GAP between Private/Municipal": "GAP between Private/Municipal",
   "Gender": "Gender",
   "Geo": "Geo",
+  "mayor": "mayor",
+  "mayor_plural": "mayors",
+  "congressperson": "congressperson",
+  "congressperson_plural": "congresspeople",
+  "senator": "senator",
+  "senator_plural": "senators",
+  "president": "president",
+  "president_plural": "presidents",
+  "representative": "{{count}} representatives",
+  "representative_plural": "{{count}} representatives",
+  "vote": "vote",
+  "vote_plural": "votes",
+  "Total amount of votes": "Total amount of votes",
+  "Total votes for {{Candidate}}": "Total votes for {{Candidate}}",
+  "Percentage of valid votes": "Percentage of valid votes",
+  "Higher amount of votes in {{caption}} - Presidential 1st round":
+    "Higher amount of votes in {{caption}} - Presidential 1st round",
+  "Higher amount of votes in {{caption}} - Presidential 2nd round":
+    "Higher amount of votes in {{caption}} - Presidential 2nd round",
   "geo_profile": {
     "civics": {
+      "common": {
+        "participation":
+          "<p>$t(geo_profile.civics.common.total) $t(geo_profile.civics.common.invalid)</p>",
+        "total":
+          "For the {{position}} election of {{year.election}}, in {{geo.caption}} voted {{votes.total}} people in total, that represent a {{votes.participation}} of the total of enabled voters.",
+        "invalid":
+          "Additionally, there were {{votes.blank}} blank votes, and {{votes.null}} null votes."
+      },
+      "mayor": {
+        "title": "Mayor Elections",
+        "text_nodata":
+          "There's no data of electoral participation for {{geo.caption}} on {{year}} mayor election.",
+        "text_person":
+          "<p>The population of {{geo.caption}} chose {{candidates.0.Candidate}}, of {{candidates.0.Partido}}, for mayor on the {{year.first}}-{{year.last}} term, who received {{candidates.0.Votes}} valid votes. In second place was {{candidates.1.Candidate}}, from {{candidates.1.Partido}}, who received {{candidates.1.Votes}} votes.</p>",
+        "text_party_1":
+          "<p>The political party that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election was {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }).</p>",
+        "text_party_2":
+          "<p>The political parties that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election were {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }), and {{parties.1.name}}, with $t(representative, {'count': {{parties.1.total}} }).</p>",
+        "text_party":
+          "<p>The political parties that achieved the most mayor positions in {{geo.caption}} for the {{year.election}} election were {{parties.0.name}}, with $t(representative, {'count': {{parties.0.total}} }). Follows {{parties.1.name}}, with $t(representative, {'count': {{parties.1.total}} }), and {{parties.2.name}}, with $t(representative, {'count': {{parties.2.total}} }).</p>"
+      },
       "congress": {
+        "title": "Legislative Elections",
+        "title_senators": "Senator Elections",
+        "title_congresspeople": "Congressperson Elections",
         "note":
           "Names marked with a * represent elected officials in said election.",
-        "text":
-          "The congresspeople who represent {{geo.caption}} during the 2018-2022 term are: {{congresspersons}}"
+        "text_nodata":
+          "There's no data of electoral participation for {{geo.caption}} on {{year}} legislative election.",
+        "text_party":
+          "<p>Within the Senate, the political parties that achieved the most seats in the election of {{year.election}} were {{senparties.0.name}}, with $t(representative, {'count': {{senparties.0.total}} }). Follows {{senparties.1.name}}, with $t(representative, {'count': {{senparties.1.total}} }), and {{senparties.2.name}}, with $t(representative, {'count': {{senparties.2.total}} }).</p><p>Meanwhile, the political parties that achieved the most seats in the Chamber of Congresspersons in the same year were {{dipparties.0.name}}, with $t(representative, {'count': {{dipparties.0.total}} }), followed by {{dipparties.1.name}}, with $t(representative, {'count': {{dipparties.1.total}} }), and {{dipparties.2.name}}, with $t(representative, {'count': {{dipparties.2.total}} }).</p>",
+        "senate":
+          "Senators who represent {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{senators}}.",
+        "deputy":
+          "Congresspersons representing {{geo.caption}} for the {{year.first}}-{{year.last}} term are {{congresspeople}}.",
+        "text_person": "",
+        "text_person1": "<p>The $t(geo_profile.civics.congress.senate)</p>",
+        "text_person2": "<p>The $t(geo_profile.civics.congress.deputy)</p>",
+        "text_person3":
+          "<p>The $t(geo_profile.civics.congress.senate)</p><p>On the other hand, the $t(geo_profile.civics.congress.deputy)</p>"
       },
-      "presidential": {
+      "president": {
+        "title": "Presidential Elections",
+        "text_nodata":
+          "There's no data of electoral participation for {{geo.caption}} on {{year}} presidential election.",
+        "text_country":
+          "<p>For the first round of the presidential election of {{year.election}}, the majority of votes were obtained by the candidate {{round1.0.Candidate}} with a {{round1.0.share}} of the votes, followed by {{round1.1.Candidate}}, who took second place with the {{round1.1.share}} of the preferences, while {{round1.2.Candidate}} got {{round1.2.share}} of the votes, staying out of the round2.</p><p>For the presidential runoff, the candidate chosen to be President was {{round2.0.Candidate}}, who beat {{round2.1.Candidate}} with a {{round2.0.share}} against a {{round2.1.share}} of the votes.</p>",
         "text":
-          "For the {{year.last}} presidential election, {{candidate.first.share}} of the voters"
+          "<p>For the first round of the {{year.election}} presidential election, the {{geo.caption}} voters had a preference for {{round1.0.Candidate}} with a {{round1.0.share}} of the votes, while {{round1.1.Candidate}} got the second place with the {{round1.1.share}}, and {{round1.2.Candidate}} got the third place with a {{round1.2.share}} of the preferences.</p><p>For the presidential runoff, most of {{geo.caption}} voters opted for {{round2.0.Candidate}}, beating {{round2.1.Candidate}} with a {{round2.0.share}} against a {{round2.1.share}} of the votes.</p>"
+      },
+      "participation": {
+        "text":
+          "The highest participation in an election in {{geo.caption}} was in {{participation.year}}, to elect {{participation.caption}}, with a {{participation.perc}} of voter participation.",
+        "text_nodata":
+          "There's no data of electoral participation for {{geo.caption}} on {{year}} presidential election."
       }
     },
-    "demography": {
+    "demographics": {
       "origin_by_activity":
         "<p>In {{last_year}}, {{percentage_activity}} of the {{visas}} visas granted in {{area}} correlate to the most common activity between immigrants: {{activity}}.</p><p>Likewise, the most common visa type in {{area}} is {{type}}, with a {{percentage_type}}.</p>",
       "origin_by_country":
@@ -732,58 +825,84 @@
       "performance": {
         "byPSU": {
           "disclaimer":
-            "<p>*The PSU average is the arithmetic mean between the score obtained in the Language and Communication test, and Maths test.</p>",
+            "<p>*The PSU average is the arithmetic mean between the score obtained in the Spanish Language test and the Mathematics test.</p>",
           "distribution":
             "<p>In {{year}}, {{total}} PSU Exams were taken in {{geo}}. The PSU average score in {{geo}} was {{avg}} points in {{year}}.</p>",
           "level1": {
             "2":
-              "<p>In {{year.last}}, PSU* average in {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos) y {{location.second.caption}} ({{location.second.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>In {{year.last}}, PSU average* in {{geo.caption}} {{text_joined}}.</p><p>The comunas of {{geo.caption}} with best PSU performance are {{location.first.caption}} (with {{location.first.prom}} points), and {{location.second.caption}} (with {{location.second.prom}} points).</p>$t(geo_profile.education.performance.byPSU.disclaimer)",
             "3":
-              "<p>In {{year.last}}, PSU* average in {{geo.caption}} {{text_joined}}.</p><p>Las comunas de mejor desempeño en PSU de {{geo.caption}} son {{location.first.caption}} ({{location.first.prom}} puntos), {{location.second.caption}} ({{location.second.prom}} puntos), y {{location.third.caption}} ({{location.third.prom}} puntos).</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+              "<p>In {{year.last}}, PSU average* in {{geo.caption}} {{text_joined}}.</p><p>The comunas of {{geo.caption}} with best PSU performance are {{location.first.caption}} ({{location.first.prom}} points), {{location.second.caption}} ({{location.second.prom}} points), and {{location.third.caption}} ({{location.third.prom}} points).</p>$t(geo_profile.education.performance.byPSU.disclaimer)"
           },
           "level2": {
             "no_data":
               "<p>There is no data for {{geo.caption}} in PSU records {{year.last}}.</p>",
             "plural":
-              "<p>Best PSU performing schools in {{geo.caption}} in {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+              "<p>Best PSU performing schools in {{geo.caption}} in {{year.last}} {{text_joined_schools}}.</p><p>The PSU average* score {{text_joined}}.</p>$t(geo_profile.education.performance.byPSU.disclaimer)",
             "singular":
-              "<p>The only school in {{geo.caption}} with PSU results in {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p><p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>"
+              "<p>The only school in {{geo.caption}} with PSU results in {{year.last}} {{text_joined_schools}}.</p><p>The PSU average* score {{text_joined}}.</p>$t(geo_profile.education.performance.byPSU.disclaimer)"
           }
         }
       },
       "sned": {
         "definitions": {
-          "efectiveness":
-            "Educational result obtained by the establishment in relation with the population served.",
-          "fairness":
-            " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. ",
-          "improvement":
-            "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
-          "initiative":
-            "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico.",
-          "integration":
-            "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
-          "overcoming":
-            "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional."
+          "efectiveness": {
+            "desc":
+              "Educational result obtained by the establishment in relation with the population served. It is measured through the SIMCE average in all learning sub-sectors. Weighting of 37% in the SNED index.",
+            "title": "Efectiveness"
+          },
+          "fairness": {
+            "desc":
+              "Degree of accessibility and permanence of the school population in the educational establishment and the integration of groups with learning difficulties. Weighting of 22% in the SNED index.",
+            "title": "Fairness"
+          },
+          "improvement": {
+            "desc":
+              "It was considered in its measurement the classification of the establishment in the Subsidies Inspection System and compliance with the statistical processes demanded by the Ministry of Education such as Enrollment, Teaching Suitability, Performance Acts, Improvement of working conditions and proper operation of the establishment. Weighting of 2% in the SNED index.",
+            "title": "Improvement"
+          },
+          "initiative": {
+            "desc":
+              "Capacity of the establishment to incorporate educational innovations and engage the support of external agents in their pedagogical work. Weighting of 6% in the SNED index.",
+            "title": "Initiative"
+          },
+          "integration": {
+            "desc":
+              "Integration and participation of professors, parents and guardians in the development of the educational project of the establishment. Weighting of 5% in the SNED index.",
+            "title": "Integration"
+          },
+          "overcoming": {
+            "desc":
+              "Differentials of educational attainment obtained over time by the educational establishment. Weighting of 28% in the SNED index.",
+            "title": "Overcoming"
+          }
         },
+        "description":
+          "National System of Performance Evaluation (SNED) is a performance index of schools based on the measurement of 6 factors: effectiveness, improvement, initiative, improvement of working conditions, equal opportunities and teacher integration. * Effectiveness and Overcoming come from standarized test SIMCE.",
+        "disclaimer":
+          "* In the case of Special Education, these establishments do not present indicators applicable for the factors effectiveness and overcoming",
+        "source": "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
         "text1":
-          "In {{year}}, the average score awarded by National System of Evaluation Performance (SNED in spanish) for {{geo.caption}} schools was {{score}}."
+          "In {{year}}, the average score awarded by SNED for {{geo.caption}} schools was {{score}} over 100. National average score of SNED was 67.48 over 100."
       }
     },
     "health": {
       "access":
-        "<p>En {{year.last}}, {{insurance.total}} personas estaban afiliadas a un sistema de previsión de salud, representando al {{share}} de la población de {{geo.name}}. </p><p>Por otra parte, los afiliados a ISAPRES han {{insurance.isapre.increased_or_decreased}} en {{insurance.isapre.rate}} en el periodo {{year.first}}-{{year.last}}</p>",
+        "<p>En {{year.last}}, {{insurance.total}} people were affiliated to a health insurance system, representing {{share}} of the population in {{geo.name}}.</p><p>On the other hand, affiliations to a health insurance company had {{insurance.isapre.increased_or_decreased}} at a rate of {{insurance.isapre.rate}} in the period {{year.first}}-{{year.last}}</p>",
       "death_causes":
         "In the period {{year.first}} - {{year.last}}, death cause with the highest annual growth rate in {{geo.caption}} were {{data.first.caption}} with a {{data.first.rate}}, followed by {{data.second.caption}} with a {{data.second.rate}}.",
       "disability":
         "In {{year.last}}, {{data.total}} people at {{geo.caption}} suffered some disabilities type, where {{data.severe.share}} corresponded to a severe disability.",
       "fonasa": {
-        "copago": "geo_profile.health.fonasa.copago",
-        "text": "geo_profile.health.fonasa.text",
-        "tramos": "geo_profile.health.fonasa.tramos"
+        "copago":
+          "However, the specific usefulness of this distribution of the beneficiary population is to specify the co-payment that they make in return for medical care granted with the coverage. Copayment is the concept to refer to a payment for services shared between the beneficiary and the insurance, where FONASA finances or subsidizes a part (percentage) of the cost of any health care, and the beneficiary contributes out of pocket the part that we do not finance / we reward.”",
+        "text":
+          "* “When a new beneficiary joins the Public Health Insurance, the first task of FONASA is to place them in one of its 4 income segments. This classification, of scale type, allows to gather socioeconomic characterizations of the beneficiary population, and they are defined in the following way:",
+        "tramos":
+          "<ul><li><strong>A Group</strong>: Beneficiaries lacking the resources to pay contributions in health, or in conditions of indigence (non-contributors).</li><li><strong>B Group</strong>: Beneficiaries with incomes under CLP$270,000 per month (contributors). Workers in the public health sector.</li><li><strong>C Group</strong>: Beneficiaries with incomes between CLP$270,000 and CLP$394,200 per month (contributors).</li><li><strong>D Group</strong>: Beneficiaries with income equal or higher than CLP$394,200 per month (contributors).</li></ul>"
       },
       "healthcare":
-        "<p>En {{year.last}}, se registraron {{healthcare.urgency.total}} atenciones en servicios de urgencias de {{geo.name}}.</p><p>Además, el {{healthcare.specialized.share}} de las atenciones médicas que se realizaron fue con especialista, donde el número de atenciones de esto último incrementó a una tasa anual de {{healthcare.specialized.rate}} en el periodo {{year.first}}-{{year.last}}</p>"
+        "<p>In {{year.last}}, there were reports for {{healthcare.urgency.total}} emergency medical treatments in {{geo.name}}.</p><p>Also, {{healthcare.specialized.share}} of these medical treatments were for specialized care, reporting an annual growth of {{healthcare.specialized.rate}} in the period {{year.first}}-{{year.last}}</p>"
     },
     "housing": {
       "amenities": {
@@ -842,10 +961,6 @@
     "income_sex_age_slide": {
       "text": "Income by sex and age slide."
     },
-    "politics": {
-      "text":
-        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
-    },
     "trade_slide": {
       "text":
         "In {{latest_year}}, firms with tax residence in {{geo.caption}} exported <i>{{trade_volume}}</i>, making {{geo.caption}} the {{rank}} largest exporter in Chile. During the last {{number_of_years}} years the exports of {{geo.caption}} have <i>{{increased_or_decreased}}</i> at an annualized rate of {{annualized_rate}}, from <i>{{trade_first_year}}</i> in {{first_year}} to <i>{{trade_last_year}}</i> in {{last_year}}. {{geo.caption}}'s top exports are <a href=\"{{trade_first_product_link}}\">{{trade_first_product}}</a> ({{trade_first_share}} of the total), <a href=\"{{trade_second_product_link}}\">{{trade_second_product}}</a> ({{trade_second_share}} of the total)"
@@ -896,7 +1011,7 @@
       "The most comprehensive effort to integrate and visualize Chile’s Public Data",
     "what": {
       "text1":
-        "It offers an x-ray of the <span>most important  topics</span> for the development of the country.",
+        "It offers an in-depth examination of the <span>most important topics</span> for the development of the country.",
       "text2":
         "It helps to know <span>trends and needs</span> for the design and implementation of public policies, civil society programs, business opportunities and marketing strategies of the private sector.",
       "text3":
@@ -951,11 +1066,11 @@
   "industry_profile": {
     "economy": {
       "default":
-        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was the comuna with highest output level in {{industry.name}} industries, with a {{location.first.share}} of the total, followed by <a href=\"{{location.second.link}}\">{{location.second.caption}}</a> with a {{location.second.share}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
+        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was the comuna with highest output level in {{industry.name}} industries, with a {{location.first.share}} of the total, followed by <a href=\"{{location.second.link}}\">{{location.second.caption}}</a> with a {{location.second.share}} of the total. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to a yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>",
       "no_data":
         "<p>In {{year.last}}, there are not data of output level in {{industry.name}} industries.</p><p>This data was extracted from the legal address of the industry.</p>",
       "one_item":
-        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was last comuna with output level in {{industry.name}} industries. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to an yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>"
+        "<p>In {{year.last}}, <a href=\"{{location.first.link}}\">{{location.first.caption}}</a> was last comuna with output level in {{industry.name}} industries. Moreover, investment in {{year.first}}-{{year.last}} {{increased_or_decreased}} to a yearly rate {{rate}} </p><p>This data was extracted from the legal address of the industry.</p>"
     },
     "employment":
       "<p>From {{year.first}} to {{year.last}}, employment in {{industry.caption}} {{increased_or_decreased}} at a quarterly rate of {{rate}}, from {{values.first}} employees to {{values.last}} employees.</p>",
@@ -1287,6 +1402,7 @@
   "School By Enrollment": "School By Enrollment",
   "Schools": "Schools",
   "Score": "Score",
+  "PSU Score": "PSU Score",
   "Search a location, industry, product, career, etc":
     "Search a location, industry, product, career, etc",
   "Sector": "Sector",
@@ -1370,6 +1486,7 @@
   "Total R&D spending by Business Type": "Total R&D spending by Business Type",
   "Total R&D spending by Ownership Type":
     "Total R&D spending by Ownership Type",
+  "Total schools by type": "Total schools by type",
   "Total Students": "Total Students",
   "Trade": "Trade",
   "Trade Balance": "Trade Balance",

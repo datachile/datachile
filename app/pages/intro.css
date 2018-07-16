@@ -5,7 +5,7 @@
 
   & .intro {
     color: var(--snow);
-    margin: 0 auto;
+    margin: 0 auto calc(var(--gutter) * 2) auto;
     position: relative;
     width: 100%;
     overflow: hidden;

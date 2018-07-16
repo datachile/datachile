@@ -46,7 +46,7 @@ class MigrationDetailsSlide extends Section {
       datum_migration_origin_avg_age_sex
     } = this.context.data;
 
-    const txt_slide = t("geo_profile.demography.origin_by_sex_age", {
+    const txt_slide = t("geo_profile.demographics.origin_by_sex_age", {
       last_year: sources.immigration.year,
       area: geo.caption,
       avg_age: numeral(datum_migration_origin_avg_age[0], locale).format(

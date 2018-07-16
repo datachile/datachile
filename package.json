@@ -11,21 +11,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datawheel/datachile.git"
+    "url": "git+https://github.com/datachile/datachile.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/datawheel/datachile/issues"
+    "url": "https://github.com/datachile/datachile/issues"
   },
-  "homepage": "https://github.com/datawheel/datachile#readme",
+  "homepage": "https://github.com/datachile/datachile#readme",
   "dependencies": {
     "@blueprintjs/core": "^1.35.3",
     "@blueprintjs/labs": "^0.14.4",
     "d3-format": "^1.0.2",
     "d3-scale": "^1.0.4",
     "d3-time-format": "^2.0.2",
-    "datawheel-canon": "^0.15.6",
+    "datawheel-canon": "^0.15.21",
     "lodash": "^4.17.4",
     "mondrian-rest-client": "^0.1.2",
     "normalize.css": "^5.0.0",
@@ -39,6 +39,7 @@
     "slick-carousel": "^1.7.1"
   },
   "devDependencies": {
+    "@types/react-i18next": "^7.3.2",
     "babel-eslint": "^8.0.2",
     "eslint": "^4.12.0",
     "eslint-config-prettier": "^2.9.0",

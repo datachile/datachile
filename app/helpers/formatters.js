@@ -274,6 +274,23 @@ export function numeral(number, lang) {
   return n(number);
 }
 
+export function joinWithAnd(list, locale) {
+  let last;
+  const and = locale.slice(0, 2) == "es" ? " y " : ", and ";
+  switch (list.length) {
+    case 0:
+      return "";
+    case 1:
+      return list[0];
+    case 2:
+      return list.join(and);
+    default:
+      list = list.slice();
+      last = list.pop();
+      return list.join(", ") + and + last;
+  }
+}
+
 export function getNumberFromTotalString(str) {
   return parseFloat(str.split(": ")[1]);
 }

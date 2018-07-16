@@ -145,7 +145,7 @@ class MigrationActivitySlide extends Section {
     };
 
     const txt_slide = t(
-      "geo_profile.demography.origin_by_activity",
+      "geo_profile.demographics.origin_by_activity",
       data_slide
     );
 

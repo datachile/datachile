@@ -65,7 +65,7 @@ class DataSidebar extends Component {
 						className="map-csv-btn"
 						target="_blank"
 					>
-						{t("Download CSV file")}
+						{t("download.csv")}
 					</CSVLink>
 				)}
 			</div>

@@ -25,6 +25,7 @@ npm install
 ```Bash
 cp .env.js.example .env.js
 vi .env.js
+source .env.js #set vars to your environment
 ```
 
 *   Run development server
@@ -43,6 +44,7 @@ npm run dev
 
 ```Bash
 http://en.datachile.local:3300/
+http://es.datachile.local:3300/
 ```
 
 *   Do your job. :D

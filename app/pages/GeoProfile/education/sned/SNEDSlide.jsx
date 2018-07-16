@@ -57,6 +57,7 @@ class SNEDSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Performance Evaluation")}</div>
           <div className="topic-slide-text">
+            <p>{t("geo_profile.education.sned.description")}</p>
             <p>
               {text &&
                 datum_sned_score && (

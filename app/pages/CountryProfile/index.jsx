@@ -363,7 +363,9 @@ class CountryProfile extends Component {
       : [];
 
     const listTitle = ids
-      ? ids.level2 ? t("Other regions") : t("Countries")
+      ? ids.level2
+        ? t("Other regions")
+        : t("Countries")
       : "";
 
     const stats = {
@@ -374,8 +376,8 @@ class CountryProfile extends Component {
 
     const topics = [
       {
-        slug: "demography",
-        title: t("Demography")
+        slug: "demographics",
+        title: t("Demographics")
       },
       {
         slug: "trade",
@@ -395,7 +397,7 @@ class CountryProfile extends Component {
               />
               <meta
                 property="og:url"
-                content={`https://${locale}.datachile.io${location.pathname}`}
+                content={`https://${locale}.datachile.io/${location.pathname}`}
               />
               <meta
                 property="og:image"
@@ -498,8 +500,8 @@ class CountryProfile extends Component {
 
             <div className="topics-container">
               <Topic
-                name={t("Demography")}
-                id="demography"
+                name={t("Demographics")}
+                id="demographics"
                 slider={false}
                 sections={[
                   {

@@ -164,7 +164,9 @@ class CareerProfile extends Component {
       : [];
 
     const listTitle = ids
-      ? ids.level2 ? t("Institutions") : t("Careers")
+      ? ids.level2
+        ? t("Institutions")
+        : t("Careers")
       : "";
 
     const stats = {
@@ -194,8 +196,8 @@ class CareerProfile extends Component {
         title: t("About")
       },
       {
-        slug: "demography",
-        title: t("Demography")
+        slug: "demographics",
+        title: t("Demographics")
       },
       {
         slug: "education",

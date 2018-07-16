@@ -297,7 +297,7 @@ export const MAP_SCALE_COLORS = {
     "#33AFA4",
     "#1DA397"
   ],
-  demography: [
+  demographics: [
     "#F7E2E7",
     "#EEC6CF",
     "#E6A9B7",

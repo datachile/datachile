@@ -13,12 +13,18 @@ export default () => {
     (typeof __DEV__ == "boolean" && __DEV__ !== false)
       ? true
       : false;
+  const prod =
+    typeof __PROD__ !== "undefined" ||
+    (typeof __PROD__ == "boolean" && __PROD__ !== false)
+      ? true
+      : false;
   const className = staging
     ? "staging-indicator-staging"
     : "staging-indicator-dev";
-  if (staging || dev) {
-    return <div className={`staging-indicator ${className}`} />;
-  } else {
+
+  if (prod) {
     return null;
+  } else {
+    return <div className={`staging-indicator ${className}`} />;
   }
 };

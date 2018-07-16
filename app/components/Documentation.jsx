@@ -3,12 +3,7 @@ import { translate } from "react-i18next";
 import "./Documentation.css";
 
 import Datasets from "components/Datasets";
-/*<div
-                  dangerouslySetInnerHTML={{
-                    __html: t("about.data.nesi.text")
-                  }}
-                />
- */
+
 class Documentation extends React.Component {
   render() {
     const { t } = this.props;
@@ -27,7 +22,7 @@ class Documentation extends React.Component {
             }}
           />
           <div className="def-text">
-            <h5 className="title">Cubo</h5>
+            <h5 className="title">{t("documentation_api.terms.cube")}</h5>
             <p
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.definitions.cube")
@@ -40,7 +35,7 @@ class Documentation extends React.Component {
             />
           </div>
           <div className="def-text">
-            <h5 className="title">Drilldown</h5>
+            <h5 className="title">{t("documentation_api.terms.drilldown")}</h5>
             {t("Some previous definitions")}:
             <ul>
               <li
@@ -72,7 +67,7 @@ class Documentation extends React.Component {
           </div>
 
           <div className="def-text">
-            <h5 className="title">Measure</h5>
+            <h5 className="title">{t("documentation_api.terms.measure")}</h5>
             <p
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.definitions.measure")
@@ -80,7 +75,7 @@ class Documentation extends React.Component {
             />
           </div>
           <div className="def-text">
-            <h5 className="title">Cut</h5>
+            <h5 className="title">{t("documentation_api.terms.cut")}</h5>
             <p
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.definitions.cut")
@@ -249,7 +244,7 @@ class Documentation extends React.Component {
           />
           <h4>Query</h4>
           <div className="code left hidden">
-            {`https://chilecube.datawheel.us//cubes/casen_health_system/aggregate.json?drilldown[]=[Health System].[Health System]&cut[]=[Geography].[Comuna].%26[64]&measures[]=Expansion Factor Comuna&caption[]=[Health System].[Health System].Description ES&caption[]=[Health System].[Health System Group].Description ES&nonempty=true&distinct=false&parents=true&sparse=true`}
+            {`https://chilecube.datachile.io//cubes/casen_health_system/aggregate.json?drilldown[]=[Health System].[Health System]&drilldown[]=[Date].[Date].[Year]&cut[]=[Geography].[Comuna].%26[64]&measures[]=Expansion Factor Comuna&caption[]=[Health System].[Health System].Description ES&caption[]=[Health System].[Health System Group].Description ES&nonempty=true&distinct=false&parents=true&sparse=true`}
           </div>
           <h4>Output</h4>
           <pre>

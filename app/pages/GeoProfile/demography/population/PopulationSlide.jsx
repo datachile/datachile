@@ -50,7 +50,7 @@ class PopulationSlide extends Section {
     };
 
     const txt_slide = t(
-      "geo_profile.demography.population_by_sex_age",
+      "geo_profile.demographics.population_by_sex_age",
       data_slide
     );
 

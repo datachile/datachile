@@ -7,26 +7,25 @@ import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import { Election } from "texts/GeoProfile";
+import { textCivicsParticipation } from "texts/GeoProfile";
 
 class ParticipationSlide extends Section {
   static need = [
-    (params, store) =>
-      simpleDatumNeed(
-        "datum_electoral_participation",
-        "election_participation",
-        ["Votes", "Participation"],
-        {
-          drillDowns: [
-            ["Election Type", "Election Type", "Election Type"],
-            ["Date", "Date", "Year"]
-          ],
-          options: { parents: true },
-          cuts: ["[Date].[Date].[Year].&[2017]"]
-        },
-        "geo",
-        false
-      )(params, store)
+    simpleDatumNeed(
+      "datum_electoral_participation",
+      "election_participation",
+      ["Votes", "Participation"],
+      {
+        drillDowns: [
+          ["Election Type", "Election Type", "Election Type"],
+          ["Date", "Date", "Year"]
+        ],
+        options: { parents: true },
+        cuts: ["[Date].[Date].[Year].&[2017]"]
+      },
+      "geo",
+      false
+    )
   ];
 
   render() {
@@ -34,19 +33,25 @@ class ParticipationSlide extends Section {
     const { datum_electoral_participation, geo } = this.context.data;
 
     const locale = i18n.language;
-    const text = Election(datum_electoral_participation, geo, locale);
+    const text = textCivicsParticipation(
+      geo,
+      datum_electoral_participation,
+      locale
+    );
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Election")}</div>
-          <div className="topic-slide-text">
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t("geo_profile.politics.text", text)
-              }}
-            />
-          </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{
+              __html: t(
+                "geo_profile.civics.participation.text",
+                text || { context: "nodata", geo, year: 2017 }
+              )
+            }}
+          />
           <div className="topic-slide-data">
             {text && (
               <FeaturedDatum
