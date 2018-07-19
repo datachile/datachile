@@ -74,82 +74,32 @@ extrabold 800
 }
 
 /* Helpers profiles */
-.color-geo {
-  color: var(--color-geo);
-}
-.border-geo {
-  border-color: var(--color-geo);
-}
-.fill-geo {
-  fill: var(--color-geo) !important;
-}
-.background-geo {
-  background-color: var(--color-geo) !important;
-}
+@each $theme in
+  geo,
+  countries,
+  institutions,
+  careers,
+  products,
+  industries {
+  .color-$(theme) {
+    color: var(--color-$(theme));
+  }
+  .border-$(theme) {
+    border-color: var(--color-$(theme));
+  }
+  .fill-$(theme) {
+    fill: var(--color-$(theme));
+  }
+  .background-$(theme) {
+    background-color: var(--color-$(theme));
 
-.color-countries {
-  color: var(--color-countries);
-}
-.border-countries {
-  border-color: var(--color-countries);
-}
-.fill-countries {
-  fill: var(--color-countries) !important;
-}
-.background-countries {
-  background-color: var(--color-countries) !important;
-}
-
-.color-institutions {
-  color: var(--color-institutions);
-}
-.border-institutions {
-  border-color: var(--color-institutions);
-}
-.fill-institutions {
-  fill: var(--color-institutions) !important;
-}
-.background-institutions {
-  background-color: var(--color-institutions) !important;
-}
-
-.color-careers {
-  color: var(--color-careers);
-}
-.border-careers {
-  border-color: var(--color-careers);
-}
-.fill-careers {
-  fill: var(--color-careers) !important;
-}
-.background-careers {
-  background-color: var(--color-careers) !important;
-}
-
-.color-products {
-  color: var(--color-products);
-}
-.border-products {
-  border-color: var(--color-products);
-}
-.fill-products {
-  fill: var(--color-products) !important;
-}
-.background-products {
-  background-color: var(--color-products) !important;
-}
-
-.color-industries {
-  color: var(--color-industries);
-}
-.border-industries {
-  border-color: var(--color-industries);
-}
-.fill-industries {
-  fill: var(--color-industries) !important;
-}
-.background-industries {
-  background-color: var(--color-industries) !important;
+    /* interactions */
+    &[class*=btn] {
+      &:hover, &:focus {
+        background-color: var(--color-$(theme)-light);
+      }
+    }
+  }
 }
 
 .color-gray {
@@ -159,10 +109,10 @@ extrabold 800
   border-color: var(--darker-gray);
 }
 .fill-gray {
-  fill: var(--darker-gray) !important;
+  fill: var(--darker-gray);
 }
 .background-gray {
-  background-color: var(--darker-gray) !important;
+  background-color: var(--darker-gray);
 }
 
 /*color-geo: "#4B71B5"

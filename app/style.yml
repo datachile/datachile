@@ -23,11 +23,17 @@ near-white: "#EFEFEF"
 pre-bg: "#494952"
 
 color-geo: "#4B71B5"
+color-geo-light: "#5D7FBC"
 color-countries: "#1ECBD8"
+color-countries-light: "#34D0DB"
 color-institutions: "#7777ED"
+color-institutions-light: "#8484EE"
 color-careers: "#CCA566"
+color-careers-light: "#D1AE75"
 color-products: "#FF7474"
+color-products-light: "#FF8181"
 color-industries: "#2A8090"
+color-industries-light: "#3F8C9B"
 
 border-radius: "6px"
 
@@ -56,4 +62,3 @@ break-md: "992px"
 break-sm: "768px"
 break-xs: "480px"
 break-xxs: "320px"
-

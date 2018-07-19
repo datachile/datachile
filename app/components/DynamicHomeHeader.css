@@ -9,7 +9,6 @@
     min-height: 48px;
 
     & .explore-btn {
-      background-color: #ccc;
       transition: all 1s ease;
       transition-property: background-color, box-shadow;
       padding: calc(var(--gutter)/2) calc(var(--gutter)/2) calc(var(--gutter)/2)
