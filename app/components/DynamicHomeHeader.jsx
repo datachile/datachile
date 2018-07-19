@@ -501,7 +501,7 @@ class DynamicHomeHeader extends Component {
           >
             <span>{header.available ? t("Explore profiles") : t("Soon")}</span>
             {header.available && (
-              <span className="pt-icon-standard pt-icon-chevron-right" />
+              <span className="explore-btn-icon pt-icon-standard pt-icon-chevron-right" />
             )}
           </Link>
         </div>

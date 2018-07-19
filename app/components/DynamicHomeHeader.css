@@ -11,7 +11,7 @@
     & .explore-btn {
       background-color: #ccc;
       transition: all 1s ease;
-      transition-property: background-color, padding-right;
+      transition-property: background-color, box-shadow;
       padding: calc(var(--gutter)/2) calc(var(--gutter)/2) calc(var(--gutter)/2)
         var(--gutter);
       border-radius: 30px;
@@ -21,12 +21,23 @@
       font-size: 14px;
       min-width: 15%;
 
-      lost-flex-container: row;
-      align-items: center;
-      justify-content: space-between;
-      &:hover {
+      /* position icon and set up for transition */
+      & .explore-btn-icon {
+        position: relative;
+        left: 0.125em;
+        transition: transform 0.3s ease;
+      }
+
+      /* interactions */
+      &:hover,
+      &:focus {
+        box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
         text-decoration: none;
-        padding-right: calc(var(--gutter)/3);
+        /* padding-right: calc(var(--gutter)/3); */
+
+        & .explore-btn-icon {
+          transform: translateX(0.25em);
+        }
       }
     }
   }
