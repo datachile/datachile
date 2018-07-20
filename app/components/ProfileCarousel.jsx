@@ -12,10 +12,13 @@ class ProfileCarousel extends Component {
 
     return (
       <div className="profile-carousel">
-        <div className="profile-carousel-icon">
-          <img src={`/images/icons/icon-home-${type}.svg`} />
-        </div>
-        <h4>{title}</h4>
+        <h3 className={`profile-carousel-title color-${type}`}>
+          <img
+            className="profile-carousel-title-icon"
+            src={`/images/icons/icon-home-${type}.svg`}
+          />
+          <span className="profile-carousel-title-text">{title}</span>
+        </h3>
         {description && <p>{description}</p>}
         <div className="profile-carousel-container">
           {items &&

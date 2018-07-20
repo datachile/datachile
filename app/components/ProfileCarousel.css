@@ -5,16 +5,9 @@
   lost-column: 1 1;
   lost-utility: clearfix;
   margin: calc(var(--gutter)/2) auto var(--gutter) auto;
-  & .profile-carousel-icon {
+
+  & .profile-carousel-title {
     lost-column: 1 1;
-    text-align: center;
-    & img {
-      width: 40px;
-    }
-  }
-  & h4 {
-    lost-column: 1 1;
-    color: var(--snow);
     font-family: var(--font-family-text);
     text-transform: uppercase;
     font-weight: 300;
@@ -22,7 +15,22 @@
     text-align: center;
     letter-spacing: 0.1em;
     line-height: 1em;
-    margin: 0 auto var(--gutter) auto;
+    margin: 0 auto var(--gutter-half) auto;
+
+    /* featured color */
+    &.color-star {
+      color: var(--color-careers);
+    }
+
+    & .profile-carousel-title-icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 2em;
+    }
+
+    & .profile-carousel-title-text {
+      vertical-align: middle;
+    }
   }
   & .profile-carousel-container {
     lost-flex-container: row;
