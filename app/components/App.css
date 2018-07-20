@@ -212,3 +212,8 @@ table.tooltip-table {
 .u-text-center {
   text-align: center !important;
 }
+
+.u-btn-reset {
+  background: none;
+  border: none;
+}

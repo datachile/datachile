@@ -198,15 +198,18 @@ class Home extends Component {
                       className={`home-slide-selected background-${p.slug}`}
                     />
                     <div className={`home-slide-content border-${p.slug}`}>
-                      <div
-                        className="home-slide-clickable"
+                      <button
+                        className={`home-slide-btn u-btn-reset ${
+                          p.slug == header.slug ? "selected" : ""
+                        }`}
                         onClick={() => changeProfileHeader(p)}
                       >
-                        <h3>
-                          <img src={`/images/icons/icon-${p.slug}.svg`} />
-                          <span>{p.name}</span>
-                        </h3>
-                      </div>
+                        <img
+                          className="home-slide-icon"
+                          src={`/images/icons/icon-${p.slug}.svg`}
+                        />
+                        <span className="home-slide-label">{p.name}</span>
+                      </button>
                     </div>
                   </div>
                 ))}

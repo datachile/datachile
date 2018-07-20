@@ -150,37 +150,48 @@
         justify-content: space-between;
         &:hover {
         }
-        & .home-slide-clickable {
-          cursor: pointer;
-          padding: 10px;
+        & .home-slide-btn {
           height: auto;
-          & h3 {
-            display: flex;
-            flex-wrap: nowrap;
-            flex-direction: row;
-            align-items: center;
-            margin-bottom: 20px;
-            & span {
-              font-family: var(--font-family-title);
-              font-weight: 300;
-              font-size: 12px;
-              color: var(--snow);
-              letter-spacing: 0.24px;
-              text-transform: uppercase;
-              line-height: 1em;
-            }
-            & img {
-              display: inline;
-              margin-right: 5px;
-              width: 20px;
-              height: 20px;
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          padding: 1em 1em 1em 0.25em; /* optical alignment */
+          margin-bottom: 20px;
+
+          /* label */
+          & .home-slide-label {
+            font-family: var(--font-family-title);
+            font-weight: 300;
+            font-size: 12px;
+            color: var(--snow);
+            letter-spacing: 0.24px;
+            text-transform: uppercase;
+            line-height: 1em;
+            opacity: 0.75;
+          }
+
+          /* icon positioning */
+          & .home-slide-icon {
+            display: inline;
+            margin-right: 5px;
+            width: 20px;
+            height: 20px;
+          }
+
+          /* interactions */
+          &:hover,
+          &:focus,
+          &.selected {
+            & .home-slide-label {
+              opacity: 1;
             }
           }
-          & p {
-            color: var(--snow);
-            font-family: var(--font-family-text);
-            font-weight: 300;
-            font-size: 11px;
+          /* hide outline unless using keyboard */
+          &.selected,
+          &:hover {
+            outline: none;
           }
         }
         & .link {
