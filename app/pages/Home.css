@@ -89,6 +89,7 @@
           & img {
             display: block;
             width: 80%;
+            max-width: 300px; /* keep logo size reasonable */
             margin: 0 auto;
           }
           & .easter {
@@ -115,6 +116,10 @@
       & .search-home-wrapper {
         padding: var(--gutter);
         lost-column: 1;
+
+        & .search-input {
+          padding-right: 1em;
+        }
       }
     }
   }

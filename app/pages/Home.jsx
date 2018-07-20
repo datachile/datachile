@@ -161,7 +161,11 @@ class Home extends Component {
                       className="easter"
                       title=";)"
                       to="/geo/valparaiso-5/isla-de-pascua-115"
+                      aria-hidden="true"
                     />
+                    <span className="u-visually-hidden">
+                      DataChile ({t("home")})
+                    </span>
                   </h1>
                   <p className="lead">{t("home.subtitle")}</p>
                 </div>
