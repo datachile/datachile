@@ -194,18 +194,27 @@ class Nav extends Component {
                 search_visible ? "open" : "closed"
               }`}
             >
+              {/* mobile search - triggers nav */}
               <a
                 className="nav-search-toggle toggle-nav"
                 onClick={this.toggleSubNav}
               >
-                <img src={`/images/icons/${search_icon}.svg`} />
+                <img
+                  className="nav-search-icon"
+                  src={`/images/icons/${search_icon}.svg`}
+                />
               </a>
+              {/* desktop search with label */}
               <div className="nav-search-container">
                 <a
                   className="nav-search-toggle toggle-input"
                   onClick={this.toggleSearch}
                 >
-                  <img src={`/images/icons/${search_icon}.svg`} />
+                  <span className="nav-search-label">{t("SearchLabel")}</span>
+                  <img
+                    className="nav-search-icon"
+                    src={`/images/icons/${search_icon}.svg`}
+                  />
                 </a>
                 <div className="nav-search-wrapper">
                   <Search className="search-nav search-nav-main" />

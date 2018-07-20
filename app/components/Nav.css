@@ -42,7 +42,6 @@
     & .r-col {
       flex: 1;
       padding: 20px 0 0;
-      line-height: 66px;
       text-align: right;
     }
 
@@ -70,11 +69,45 @@
     & .nav-search-toggle {
       display: block;
       margin-left: auto;
-      width: 25px;
 
-      & img {
-        margin: 14px 0;
+      /* icon placement */
+      & .nav-search-icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 24px;
+        /* fudge into place */
+        position: relative;
+        top: -1px;
       }
+
+      /* label theming */
+      & .nav-search-label {
+        /* positioning */
+        line-height: 4; /* vertically align with menu toggle */
+        margin: 0.75em;
+        /* typography */
+        color: var(--snow);
+        font-family: var(--font-family-title);
+        font-size: 0.875em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        /* transitions */
+        opacity: 0.75;
+        transition: opacity 0.3s ease;
+      }
+
+      /* interactions */
+      &:hover, &:focus {
+        text-decoration: none;
+
+        & .nav-search-label {
+          opacity: 1;
+        }
+      }
+    }
+
+    & .nav-search-toggle.toggle-nav {
+      margin-top: calc(var(--gutter)/2);
     }
 
     & .nav-search-toggle.toggle-input,
@@ -318,26 +351,21 @@
 
         & .nav-search-wrapper {
           margin-left: auto;
+          width: 6em;
           transition: all 0.5s ease;
         }
       }
 
       & .nav-search {
         &.closed {
-          & .nav-search-toggle img {
-            margin: 14px 0;
-          }
           & .nav-search-wrapper {
-            width: 110px;
             opacity: 0;
           }
         }
 
         &.open {
-          & .nav-search-toggle {
-            & img {
-              margin: 11px 0;
-            }
+          & .nav-search-label {
+            opacity: 0;
           }
           & .nav-search-wrapper {
             margin-right: -15px;
