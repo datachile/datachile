@@ -65,21 +65,21 @@ class Home extends Component {
         colors: ["#0b5151", "#143e48", "#205258"],
         slug: "industries",
         available: true
-      },
-      {
-        name: t("Careers"),
-        explore: "/explore/careers",
-        colors: ["#676258", "#9b8365", "#776551"],
-        slug: "careers",
-        available: false
-      },
-      {
-        name: t("Institutions"),
-        explore: "/explore/institutions",
-        colors: ["#595a8f", "#393a6a", "#393954"],
-        slug: "institutions",
-        available: false
       }
+      // {
+      //   name: t("Careers"),
+      //   explore: "/explore/careers",
+      //   colors: ["#676258", "#9b8365", "#776551"],
+      //   slug: "careers",
+      //   available: false
+      // },
+      // {
+      //   name: t("Institutions"),
+      //   explore: "/explore/institutions",
+      //   colors: ["#595a8f", "#393a6a", "#393954"],
+      //   slug: "institutions",
+      //   available: false
+      // }
     ];
     this.state = {
       profiles: profiles,

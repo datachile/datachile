@@ -133,7 +133,8 @@
     margin: 0 auto;
     & .home-slide-item {
       padding: 0 15px;
-      lost-column: 1/6 6 0px;
+      /* lost-column: 1/6 6 0px; */
+      lost-column: 1/4 4 0px;
       & .home-slide-selected {
         display: block;
         height: 4px;
@@ -382,7 +383,7 @@
     & .home-slider {
       top: 0;
       & .home-slide-item {
-        lost-column: 1/3 3 0px;
+        /* lost-column: 1/3 3 0px; */
         & .home-slide-content {
           padding-bottom: 0px;
         }
@@ -425,7 +426,8 @@
     & .home-slider {
       top: 0;
       & .home-slide-item {
-        lost-column: 1/3 3 0px;
+        lost-column: 1/2 3 0px;
+        /* lost-column: 1/3 3 0px; */
         & .home-slide-content {
           margin-bottom: 0px;
         }
