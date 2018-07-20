@@ -130,7 +130,7 @@
     position: relative;
     top: -7px;
     z-index: 8;
-    margin: 0 auto var(--gutter) auto;
+    margin: 0 auto;
     & .home-slide-item {
       padding: 0 15px;
       lost-column: 1/6 6 0px;
@@ -293,6 +293,17 @@
     }
   }
 
+  /* position button */
+  & .home-btn-container {
+    width: 100%; /* needed because of flex on parent 😓 */
+
+    & .btn {
+      margin: 1em 0;
+      min-width: 16em;
+      max-width: 100%;
+    }
+  }
+
   & .home-sources {
     lost-flex-container: column;
     lost-center: 3/4;
@@ -313,9 +324,13 @@
     }
 
     & .dataset {
-      border-bottom: 1px solid var(--accent);
       padding: calc(var(--gutter)/2) 0px;
       margin: 0 15px;
+
+      /* add border, but not to the last one */
+      &:not(:last-of-type) {
+        border-bottom: 1px solid var(--accent);
+      }
 
       & span {
         display: block;
@@ -348,6 +363,7 @@
   .home {
     & .home-featured-profiles {
       lost-column: 1 1;
+      margin-top: 0; /* override lost */
       padding: 0 var(--gutter);
     }
     & .home-sources {

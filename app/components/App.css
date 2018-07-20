@@ -163,6 +163,16 @@ table.tooltip-table {
   transition: all 1s ease;
   transition-property: background-color, box-shadow;
 
+  /* default theme */
+  &:not([class*=background-]) {
+    background-color: var(--accent);
+
+    /* interactions */
+    &:hover, &:focus {
+      background-color: var(--color-geo-light);
+    }
+  }
+
   /* icon */
   & .btn-icon {
     position: relative;
@@ -197,4 +207,8 @@ table.tooltip-table {
   height: 1px;
   width: 1px;
   overflow: hidden;
+}
+
+.u-text-center {
+  text-align: center !important;
 }

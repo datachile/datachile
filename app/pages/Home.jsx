@@ -256,10 +256,12 @@ class Home extends Component {
                 </div>
 
                 {/* explore link */}
-                <Link className="btn background-geo" to="/explore/geo">
-                  {t("Explore profiles")}
-                  <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
-                </Link>
+                <div className="home-btn-container u-text-center">
+                  <Link className="btn" to="/explore/geo">
+                    {t("Explore profiles")}
+                    <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
+                  </Link>
+                </div>
               </div>
 
               {/* about section */}
@@ -431,10 +433,15 @@ class Home extends Component {
                       </span>
                     </div>
                   </div>
+
+                  {/* more link */}
+                  <div className="home-btn-container u-text-center">
+                    <Link className="btn" to="/about/data">
+                      {t("See more")}
+                      <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
+                    </Link>
+                  </div>
                 </div>
-                <Link className="home-link" to="/about/data">
-                  {t("See more")}
-                </Link>
               </div>
             </div>
           </div>
