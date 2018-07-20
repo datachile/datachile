@@ -168,9 +168,9 @@ class Home extends Component {
                     </span>
                   </h1>
                   <p className="lead">{t("home.subtitle")}</p>
-                </div>
-                <div className="search-home-wrapper">
-                  <Search className="search-home" limit={5} />
+                  <div className="search-home-wrapper">
+                    <Search className="search-home" limit={5} />
+                  </div>
                 </div>
               </div>
 

@@ -26,7 +26,7 @@
     position: relative;
     top: 0;
     width: 100%;
-    padding-top: 150px;
+    padding-top: 8rem;
 
     & .image {
       background-color: var(--near-black);
@@ -75,10 +75,9 @@
     }
 
     & .intro {
-      lost-flex-container: column;
-      justify-content: center;
-      lost-align: center;
-      lost-center: 1/3;
+      max-width: 100%;
+      width: 32rem;
+      margin: 0 auto;
 
       & .text {
         padding: 0px var(--gutter);
@@ -89,7 +88,7 @@
           & img {
             display: block;
             width: 80%;
-            max-width: 300px; /* keep logo size reasonable */
+            max-width: 12rem; /* keep logo size reasonable */
             margin: 0 auto;
           }
           & .easter {
@@ -105,21 +104,19 @@
 
         & .lead {
           font-family: var(--font-family-text);
-          font-size: 18px;
+          font-size: 1.25rem;
           color: var(--snow);
           letter-spacing: 0.05px;
+          margin: 0.5em 0;
           font-weight: 300;
           text-align: center;
         }
       }
 
       & .search-home-wrapper {
-        padding: var(--gutter);
-        lost-column: 1;
-
-        & .search-input {
-          padding-right: 1em;
-        }
+        width: 23rem;
+        max-width: 100%;
+        margin: 2.5em auto;
       }
     }
   }
@@ -386,11 +383,6 @@
 
 @add-mixin for-md {
   .home {
-    & .splash {
-      & .intro {
-        lost-center: 1/2;
-      }
-    }
     & .home-slider {
       top: 0;
       & .home-slide-item {
@@ -422,18 +414,6 @@
 
 @add-mixin for-sm {
   .home {
-    & .splash {
-      & .intro {
-        lost-column: 1;
-        & .text {
-          & .title {
-            & img {
-              width: 75%;
-            }
-          }
-        }
-      }
-    }
     & .home-slider {
       top: 0;
       & .home-slide-item {
