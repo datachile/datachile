@@ -145,6 +145,49 @@ table.tooltip-table {
 }
 
 
+/* Buttons */
+.btn {
+  /* sizing */
+  padding: 1.125em 2.25em;
+  /* positioning */
+  display: inline-block;
+  /* typography */
+  font-size: 14px;
+  font-family: var(--font-family-title);
+  text-transform: uppercase;
+  text-align: center;
+  /* theming */
+  border-radius: 30px;
+  color: var(--snow);
+  /* transitions */
+  transition: all 1s ease;
+  transition-property: background-color, box-shadow;
+
+  /* icon */
+  & .btn-icon {
+    position: relative;
+    /* icon offset */
+    left: 0.125em;
+    margin-right: -0.25em;
+    /* transitions */
+    transition: transform 0.3s ease;
+  }
+
+  /* interactions */
+  &:hover,
+  &:focus {
+    box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
+    color: var(--snow);
+    text-decoration: none;
+    /* padding-right: calc(var(--gutter)/3); */
+
+    & .btn-icon {
+      transform: translateX(0.25em);
+    }
+  }
+}
+
+
 /* Utilities */
 
 /* accessibly hidden text and elements */

@@ -7,39 +7,6 @@
     align-items: center;
     justify-content: center;
     min-height: 48px;
-
-    & .explore-btn {
-      transition: all 1s ease;
-      transition-property: background-color, box-shadow;
-      padding: calc(var(--gutter)/2) calc(var(--gutter)*0.75) calc(var(--gutter)/2)
-        var(--gutter);
-      border-radius: 30px;
-      text-transform: uppercase;
-      text-align: center;
-      font-family: var(--font-family-title);
-      color: var(--snow);
-      font-size: 14px;
-      min-width: 15%;
-
-      /* position icon and set up for transition */
-      & .explore-btn-icon {
-        position: relative;
-        left: 0.125em;
-        transition: transform 0.3s ease;
-      }
-
-      /* interactions */
-      &:hover,
-      &:focus {
-        box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
-        text-decoration: none;
-        /* padding-right: calc(var(--gutter)/3); */
-
-        & .explore-btn-icon {
-          transform: translateX(0.25em);
-        }
-      }
-    }
   }
   & .dynamic-home-illustration {
     position: relative;

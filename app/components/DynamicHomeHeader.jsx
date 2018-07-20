@@ -494,17 +494,17 @@ class DynamicHomeHeader extends Component {
 
     return (
       <div className="dynamic-home-header">
-        <div className="dynamic-home-explore-btn">
+        {/*<div className="dynamic-home-explore-btn">
           <Link
-            className={`explore-btn background-${header.slug}`}
+            className={`btn explore-btn background-${header.slug}`}
             to={`${header.available ? "/explore/" + header.slug : ""}`}
           >
             <span>{header.available ? t("Explore profiles") : t("Soon")}</span>
             {header.available && (
-              <span className="explore-btn-icon pt-icon-standard pt-icon-chevron-right" />
+              <span className="btn-icon explore-btn-icon pt-icon-standard pt-icon-chevron-right" />
             )}
           </Link>
-        </div>
+        </div>*/}
         <div className="dynamic-home-illustration">
           <div id="tooltip-home">
             <div className={`tooltip-title background-${header.slug}`} />

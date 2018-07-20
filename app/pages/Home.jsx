@@ -213,6 +213,56 @@ class Home extends Component {
             </div>
 
             <div className="home-content">
+              {/* profiles */}
+              <div className="home-featured-profiles">
+                {/*<div className="home-section-title">
+                  <div className="home-section-title-img">
+                    <img src="/images/icons/icon-search.svg" alt="explore" />
+                  </div>
+                  <h2>{t("Explore")}</h2>
+                </div>*/}
+                <h2 className="u-visually-hidden">{t("Explore")}</h2>
+                <div className="home-profile-carousels-container">
+                  <ProfileCarousel
+                    title={t("home.carousel.featured_profiles")}
+                    type="star"
+                    items={featured}
+                    limit={5}
+                  />
+                  <ProfileCarousel
+                    title={t("home.carousel.comunas_population")}
+                    type="geo"
+                    items={home_comunas_population}
+                    limit={5}
+                  />
+                  <ProfileCarousel
+                    title={t("home.carousel.comunas_exports")}
+                    type="geo"
+                    items={home_comunas_exports}
+                    limit={5}
+                  />
+                  <ProfileCarousel
+                    title={t("home.carousel.products_exports")}
+                    type="products"
+                    items={home_products_exports}
+                    limit={5}
+                  />
+                  <ProfileCarousel
+                    title={t("home.carousel.countries_exports")}
+                    type="countries"
+                    items={home_countries_exports}
+                    limit={5}
+                  />
+                </div>
+
+                {/* explore link */}
+                <Link className="btn background-geo" to="/explore/geo">
+                  {t("Explore profiles")}
+                  <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
+                </Link>
+              </div>
+
+              {/* about section */}
               <div className="home-text">
                 <div className="l-col">
                   <img src="/images/home/what.png" alt={t("home.what.title")} />
@@ -254,46 +304,7 @@ class Home extends Component {
                 </div>
               </div>
 
-              <div className="home-featured-profiles">
-                <div className="home-section-title">
-                  <div className="home-section-title-img">
-                    <img src="/images/icons/icon-search.svg" alt="explore" />
-                  </div>
-                  <h2>{t("Explore")}</h2>
-                </div>
-                <div className="home-profile-carousels-container">
-                  <ProfileCarousel
-                    title={t("home.carousel.featured_profiles")}
-                    type="star"
-                    items={featured}
-                    limit={5}
-                  />
-                  <ProfileCarousel
-                    title={t("home.carousel.comunas_population")}
-                    type="geo"
-                    items={home_comunas_population}
-                    limit={5}
-                  />
-                  <ProfileCarousel
-                    title={t("home.carousel.comunas_exports")}
-                    type="geo"
-                    items={home_comunas_exports}
-                    limit={5}
-                  />
-                  <ProfileCarousel
-                    title={t("home.carousel.products_exports")}
-                    type="products"
-                    items={home_products_exports}
-                    limit={5}
-                  />
-                  <ProfileCarousel
-                    title={t("home.carousel.countries_exports")}
-                    type="countries"
-                    items={home_countries_exports}
-                    limit={5}
-                  />
-                </div>
-              </div>
+              {/* sources section */}
               <div className="home-sources">
                 <div className="home-section-title">
                   <div className="home-section-title-img">

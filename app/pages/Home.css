@@ -240,6 +240,7 @@
       color: var(--snow);
       font-weight: 300;
       letter-spacing: 0.5px;
+      text-align: left;
       & span {
         color: var(--accent);
         font-size: 18px;
