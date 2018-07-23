@@ -47,6 +47,8 @@ extrabold 800
 
 .main-container {
   lost-flex-container: column;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .lost-1 {

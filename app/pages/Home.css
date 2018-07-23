@@ -21,24 +21,28 @@
   }
 
   & .splash {
-    height: auto;
-    left: 0;
-    position: relative;
-    top: 0;
-    width: 100%;
-    padding-top: 8rem;
+    /* positioning */
+    position: relative; /* necessary for image placement */
+    z-index: 2; /* necessary for tooltip z-index managment */
+    /* sizing */
+    padding: 20vh 0 30vh 0; /* padding relative to viewport on small screens */
+
+    /* fixed padding on taller screens */
+    @media (min-height: 700px) {
+      padding: 8.5rem 0 12.5rem 0;
+    }
 
     & .image {
+      /* positioning */
+      @add-mixin absolute-expand;
+      z-index: -10;
+      /* theming */
       background-color: var(--near-black);
       background-position: 50%;
       background-size: cover;
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
+      /* transitions */
       opacity: 0;
-      z-index: var(--background);
+
       &.selected {
         transition: opacity 0.5s ease-in-out 0.5s;
         opacity: 1;
@@ -64,14 +68,20 @@
     }
 
     & .gradient {
-      background-color: rgba(25, 25, 40, 0.4);
-      bottom: 0;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
+      /* positioning */
+      @add-mixin absolute-expand;
       z-index: -9;
+      /* theming */
+      background-color: rgba(25, 25, 40, 0.4);
+      background:
+        linear-gradient(
+          color(var(--footer-bg) a(0.5)) -5%,
+          rgba(25, 25, 40, 0.4) 33.333%,
+          var(--near-black) 90%),
+        radial-gradient(
+          transparent 33.333%,
+          color(var(--near-black) a(0.5))
+        );
     }
 
     & .intro {
@@ -125,8 +135,7 @@
     lost-flex-container: column;
     lost-center: 3/4;
     position: relative;
-    top: -7px;
-    z-index: 8;
+    z-index: 1;
     margin: 0 auto;
     & .home-slide-item {
       padding: 0 15px;
@@ -156,6 +165,7 @@
           justify-content: center;
           padding: 1em 1em 1em 0.25em; /* optical alignment */
           margin-bottom: 20px;
+          z-index: 1;
 
           /* label */
           & .home-slide-label {
@@ -166,7 +176,9 @@
             letter-spacing: 0.24px;
             text-transform: uppercase;
             line-height: 1em;
+            /* transitions */
             opacity: 0.75;
+            transition: opacity 0.2s;
           }
 
           /* icon positioning */
