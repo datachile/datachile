@@ -266,7 +266,7 @@ class DynamicHomeHeader extends Component {
               .style("z-index", 10);
 
             const name = that.getTooltipName(region_id);
-            div.select(".tooltip-title").html(name).slice(10);
+            div.select(".tooltip-title").html(name);
 
             const data_collection = that.getTooltipData(region_id);
             div
