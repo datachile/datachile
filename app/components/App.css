@@ -84,6 +84,11 @@ extrabold 800
   .border-$(theme) {
     border-color: var(--color-$(theme));
   }
+  .border-$(theme)-hover {
+    &:hover, &:focus {
+      border-color: var(--color-$(theme));
+    }
+  }
   .fill-$(theme) {
     fill: var(--color-$(theme));
   }

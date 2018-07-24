@@ -19,7 +19,7 @@
 
     /* featured color */
     &.color-star {
-      color: var(--color-careers);
+      color: var(--snow);
     }
 
     & .profile-carousel-title-icon {

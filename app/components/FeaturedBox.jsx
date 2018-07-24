@@ -9,7 +9,7 @@ class FeaturedBox extends Component {
   render() {
     const { t, item, className } = this.props;
 
-    const icon =
+    const theme =
       ["national", "region", "comuna"].indexOf(item.type) > -1
         ? "geo"
         : item.type;
@@ -28,17 +28,14 @@ class FeaturedBox extends Component {
     return (
       <Link
         key={item.name + "anchor"}
-        className={"tile " + className}
+        className={`tile ${className} border-${theme}-hover`}
         to={item.url}
         title={item.name}
-        style={{
-          backgroundImage: `url('${item.img}')`
-        }}
       >
         <span className="tile-filter" />
         <span className="col-l">
           <span className="icon-container">
-            <img className="icon" src={`/images/icons/icon-${icon}.svg`} />
+            <img className="icon" src={`/images/icons/icon-${theme}.svg`} alt="" />
           </span>
           <Shiitake
             tagName="span"
@@ -50,8 +47,13 @@ class FeaturedBox extends Component {
           </Shiitake>
         </span>
         <span className="col-r">
-          <span className="type">{type}</span>
+          <span className="type">
+            <span className="u-visually-hidden">, </span>
+            {type}
+            <span className="u-visually-hidden">.</span>
+          </span>
         </span>
+        <img className="tile-img" src={item.img} alt="" />
       </Link>
     );
   }
