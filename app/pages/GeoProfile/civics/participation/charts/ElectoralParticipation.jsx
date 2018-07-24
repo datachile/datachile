@@ -120,12 +120,6 @@ class ElectoralParticipation extends Section {
             },
             legendTooltip: {
               body: d => "<div></div>"
-            },
-            legendConfig: {
-              shapeConfig: {
-                width: 25,
-                height: 25
-              }
             }
           }}
           dataFormat={data => {

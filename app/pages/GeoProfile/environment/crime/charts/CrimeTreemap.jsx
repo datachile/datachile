@@ -72,8 +72,6 @@ class CrimeTreemap extends Section {
               legendConfig: {
                 label: false,
                 shapeConfig: {
-                  width: 25,
-                  height: 25,
                   backgroundImage: d =>
                     "/images/legend/crime/" + d["ID Crime Group"] + ".png"
                 }

@@ -183,8 +183,6 @@ class PSUNEMScatter extends Section {
                   }
                 },
                 shapeConfig: {
-                  width: 40,
-                  height: 40,
                   backgroundImage: d => {
                     if (d["Number of records"] > 0) {
                       return "/images/legend/college/administration.png";

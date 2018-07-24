@@ -1,7 +1,8 @@
+@import "../pages/mixins.css";
+
 /* FONTS */
-@import url("https://fonts.googleapis.com/css?family=Yantramanav:300,400,500,700");
-@import url("https://fonts.googleapis.com/css?family=Saira+Condensed:300,400,500,700");
-@import url("https://fonts.googleapis.com/css?family=Saira:300,400,500,700");
+/* importing via helmet.js isn't working ¯\_(ツ)_/¯ */
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300");
 
 @font-face {
   font-family: Gilroy;
@@ -12,12 +13,6 @@
   font-family: Gilroy;
   src: url("/fonts/gilroy/Gilroy-ExtraBold.otf");
   font-weight: 800;
-}
-
-.d3plus-textBox {
-  & text {
-    font-family: "Saira Condensed" !important;
-  }
 }
 
 html {
@@ -198,6 +193,27 @@ table.tooltip-table {
     }
   }
 }
+
+
+/* D3+ overrides */
+
+/* the inline style isn't working ¯\_(ツ)_/¯ */
+.d3plus-textBox {
+  & text {
+    font-family: "Roboto Condensed" !important;
+    font-weight: 300;
+  }
+}
+
+/* position total */
+.d3plus-viz-total {
+  transform: translate(-3px, -5px);
+}
+
+/* override rotated labels for area charts */
+/* .d3plus-Area-text .d3plus-textBox text {
+  font-size: 18px !important;
+} */
 
 
 /* Utilities */

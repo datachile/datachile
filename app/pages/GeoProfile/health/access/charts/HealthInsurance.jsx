@@ -96,8 +96,6 @@ class HealthInsurance extends Section {
             legendConfig: {
               label: d => d["Health System Group"],
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: d =>
                   "/images/legend/college/administration.png"
               }

@@ -203,19 +203,7 @@ class CongresspersonResults extends Section {
                     (geo.depth > 0 ? t("Votes") : t("Elected Authority")) +
                     "</div>"
                 },
-                legendConfig: {
-                  label: false,
-                  shapeConfig: {
-                    width: 25,
-                    height: 25,
-                    backgroundImage: d => {
-                      return "/images/legend/civics/civic-icon.png";
-                    },
-                    Rect: {
-                      fill: d => "#BDBED6"
-                    }
-                  }
-                }
+                legend: false
               }}
               dataFormat={data => {
                 if (data.data.length > 0) {

@@ -201,14 +201,7 @@ class MayorResults extends Section {
 						legendTooltip: {
 							title: d => (geo.type === "comuna" ? d["Candidate"] : d["Pacto"])
 						},
-						legendConfig: {
-							label: false,
-							shapeConfig: {
-								width: 25,
-								height: 25,
-								backgroundImage: "/images/legend/civics/civic-icon.png"
-							}
-						}
+						legend: false
 					}}
 					dataFormat={data => {
 						const d = data.data.map(item => {

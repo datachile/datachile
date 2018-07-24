@@ -291,8 +291,6 @@ class SNEDCompareBySchool extends Section {
             legendConfig: {
               label: d => d["Stage 1a"],
               shapeConfig: {
-                width: 25,
-                height: 25,
                 backgroundImage: "/images/legend/education/type.png"
               }
             }

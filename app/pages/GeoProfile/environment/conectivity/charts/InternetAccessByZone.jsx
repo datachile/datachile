@@ -104,8 +104,6 @@ class InternetAccessByZone extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 40,
-								height: 40
 								/*backgroundImage: d =>
                   "/images/legend/survey_response/" +
                   d["ID Binary Survey Response"] +

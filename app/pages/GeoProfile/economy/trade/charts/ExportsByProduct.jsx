@@ -49,8 +49,6 @@ class ExportsByProduct extends Section {
               shapeConfig: {
                 backgroundImage: d =>
                   "/images/legend/hs/hs_" + d["ID HS0"] + ".png",
-                width: 25,
-                height: 25,
                 fill: d => productsColorScale("hs" + d["ID HS0"])
               }
             },

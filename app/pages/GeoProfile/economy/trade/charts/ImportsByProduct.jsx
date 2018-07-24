@@ -56,8 +56,6 @@ class ImportsByProduct extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
                 fill: d => productsColorScale("hs" + d["ID HS0"]),
                 backgroundImage: d =>
                   "/images/legend/hs/hs_" + d["ID HS0"] + ".png"

@@ -202,15 +202,7 @@ class SenatorResults extends Section {
                     (geo.depth > 0 ? t("Votes") : t("Elected Authority")) +
                     "</div>"
                 },
-                legendConfig: {
-                  label: false,
-                  shapeConfig: {
-                    width: 25,
-                    height: 25,
-                    backgroundImage: () =>
-                      "/images/legend/civics/civic-icon.png"
-                  }
-                }
+                legend: false
               }}
               dataFormat={data => {
                 if (data.data.length > 0) {

@@ -53,8 +53,6 @@ class SNEDSchoolByClusters extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
                 backgroundImage: "/images/legend/education/type.png"
               }
             },

@@ -97,8 +97,6 @@ class EmploymentByLevel extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 40,
-								height: 40,
 								backgroundImage: () => "/images/legend/college/hat.png"
 							}
 						}

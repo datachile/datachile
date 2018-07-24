@@ -210,8 +210,6 @@ class SNEDCompareByCluster extends Section {
             legendConfig: {
               label: d => d["geo"] + " - " + d["Stage 1a"],
               shapeConfig: {
-                width: 25,
-                height: 25,
                 backgroundImage: "/images/legend/education/type.png"
               }
             }

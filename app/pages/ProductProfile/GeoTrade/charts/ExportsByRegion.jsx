@@ -125,8 +125,6 @@ class ExportsByRegion extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
                 backgroundImage: d =>
                   "/images/legend/region/" + d["ID Region"] + ".png"
               }

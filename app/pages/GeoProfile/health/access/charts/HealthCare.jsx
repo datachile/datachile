@@ -95,11 +95,7 @@ class HealthCare extends Section {
 							fill: d => ordinalColorScale(d["label"])
 						},
 						legendConfig: {
-							label: d => d["label"],
-							shapeConfig: {
-								width: 40,
-								height: 40
-							}
+							label: d => d["label"]
 						}
 					}}
 					dataFormat={data => {

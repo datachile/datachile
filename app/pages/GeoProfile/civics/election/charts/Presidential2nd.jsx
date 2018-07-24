@@ -190,14 +190,7 @@ class Presidential2nd extends Section {
                         t("Blank and Null Votes").toUpperCase() +
                         "</div>"
                 },
-                legendConfig: {
-                  label: false,
-                  shapeConfig: {
-                    width: 25,
-                    height: 25,
-                    backgroundImage: d => "/images/legend/civics/civic-icon.png"
-                  }
-                }
+                legend: false
               }}
               dataFormat={data => {
                 if (data.data.length > 0) {

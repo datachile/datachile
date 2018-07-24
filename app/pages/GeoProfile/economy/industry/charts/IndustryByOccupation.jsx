@@ -66,8 +66,6 @@ class IndustryByOccupation extends Section {
 							legendConfig: {
 								label: false,
 								shapeConfig: {
-									width: 20,
-									height: 20,
 									backgroundImage: d =>
 										"/images/legend/occupation/occupation.png"
 								}

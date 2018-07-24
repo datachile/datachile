@@ -63,7 +63,7 @@ class SpendingByIndustry extends Section {
 			"gasto_region_" + geo.key,
 			"gasto_region_" + regionID
     );
-    
+
     const classSvg = "spending-by-industry";
 
 		return (
@@ -99,8 +99,6 @@ class SpendingByIndustry extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 25,
-								height: 25,
 								fill: d => ordinalColorScale(d["ID Level 1"]),
 								backgroundImage: d =>
 									"https://datausa.io/static/img/attrs/thing_apple.png"

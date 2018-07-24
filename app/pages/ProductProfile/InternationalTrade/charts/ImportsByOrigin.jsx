@@ -119,8 +119,6 @@ class ImportsByDestination extends Section {
             legendConfig: {
               label: d => d["Continent"],
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: d =>
                   "/images/legend/continent/" + d["ID Continent"] + ".png"
               }

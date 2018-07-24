@@ -92,12 +92,6 @@ class RDByOwnershipType extends Section {
               body: d =>
                 numeral(d["Total Spending"], locale).format("(USD 0 a)")
             },
-            legendConfig: {
-              shapeConfig: {
-                width: 20,
-                height: 20
-              }
-            },
             yConfig: {
               title: t("US$"),
               tickFormat: tick => numeral(tick, locale).format("(0 a)")

@@ -114,8 +114,6 @@ class PopulationPyramid extends Section {
             legendConfig: {
               label: d => d["Sex"],
               shapeConfig: {
-                width: 20,
-                height: 20,
                 backgroundImage: d =>
                   "/images/legend/sex/" + d["ID Sex"] + ".png"
               }

@@ -67,12 +67,6 @@ class Disability extends Section {
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Disability Grade"])
-            },
-            legendConfig: {
-              shapeConfig: {
-                width: 40,
-                height: 40
-              }
             }
           }}
           dataFormat={data => data.data}

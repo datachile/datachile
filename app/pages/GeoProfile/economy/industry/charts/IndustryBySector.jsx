@@ -65,8 +65,6 @@ class IndustryBySector extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 20,
-								height: 20,
 								fill: d => industriesColorScale(d["ID Level 1"])
 							}
 						},

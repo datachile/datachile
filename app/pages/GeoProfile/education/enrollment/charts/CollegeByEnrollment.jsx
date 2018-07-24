@@ -92,8 +92,6 @@ class CollegeByEnrollment extends Section {
             },
             legendConfig: {
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: () =>
                   "/images/legend/college/administration.png"
               }

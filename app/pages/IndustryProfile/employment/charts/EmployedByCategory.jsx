@@ -79,12 +79,6 @@ class EmployedByCategory extends Section {
 												"<br/>" +
 												d["quarter"];
 								}
-							},
-							legendConfig: {
-								shapeConfig: {
-									width: 20,
-									height: 20
-								}
 							}
 						}}
 						dataFormat={data => {

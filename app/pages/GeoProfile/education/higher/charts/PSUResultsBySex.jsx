@@ -62,8 +62,6 @@ class PSUResultsBySex extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: d => "/images/legend/sex/" + d.id_sex + ".png"
               }
             },

@@ -70,12 +70,6 @@ class EmployedByEducation extends Section {
 									return d["ISCED"];
 								},
 								body: d => d["quarter"]
-							},
-							legendConfig: {
-								shapeConfig: {
-									width: 20,
-									height: 20
-								}
 							}
 						}}
 						dataFormat={data => {

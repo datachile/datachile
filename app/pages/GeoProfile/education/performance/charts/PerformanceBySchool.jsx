@@ -79,8 +79,6 @@ class PerformanceBySchool extends Section {
             legendConfig: {
               label: d => d["Administration"],
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: d =>
                   "/images/legend/college/administration.png"
               }

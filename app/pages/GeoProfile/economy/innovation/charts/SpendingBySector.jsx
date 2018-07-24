@@ -64,7 +64,7 @@ class SpendingBySector extends Section {
 			"gasto_region_" + geo.key,
 			"gasto_region_" + regionID
     );
-    
+
     const classSvg = "spending-by-sector";
 
 		return (
@@ -100,8 +100,6 @@ class SpendingBySector extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 25,
-								height: 25,
 								fill: d => ordinalColorScale(d["ID Ownership Type"]),
 								backgroundImage: d =>
 									"https://datausa.io/static/img/attrs/thing_apple.png"
