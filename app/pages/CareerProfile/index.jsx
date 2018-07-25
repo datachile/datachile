@@ -209,6 +209,13 @@ class CareerProfile extends Component {
       }
     ];
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (obj.caption.length > 40) {
+      titleTruncated = obj.caption.slice(0, 40);
+      titleTruncated += "…";
+    }
+
     return (
       <CanonProfile data={this.props.data} topics={topics}>
         <div className="profile">
@@ -216,7 +223,8 @@ class CareerProfile extends Component {
             {obj &&
               obj.caption && (
                 <Nav
-                  title={obj.caption}
+                  title={titleTruncated ? titleTruncated : obj.caption}
+                  fullTitle={obj.caption}
                   typeTitle={obj.parent ? t("Career") : t("Field of Science")}
                   type={"careers"}
                   exploreLink={"/explore/careers"}

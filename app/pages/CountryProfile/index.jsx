@@ -385,6 +385,13 @@ class CountryProfile extends Component {
       }
     ];
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (obj.caption.length > 40) {
+      titleTruncated = obj.caption.slice(0, 40);
+      titleTruncated += "…";
+    }
+
     return (
       <Canon>
         <CanonProfile data={this.props.data} topics={topics}>
@@ -411,7 +418,8 @@ class CountryProfile extends Component {
             <div className="intro">
               {obj && (
                 <Nav
-                  title={obj.caption}
+                  title={titleTruncated ? titleTruncated : obj.caption}
+                  fullTitle={obj.caption}
                   typeTitle={obj.parent ? t("Country") : t("Zone")}
                   type={"countries"}
                   exploreLink={"/explore/countries"}

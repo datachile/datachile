@@ -433,6 +433,13 @@ class ProductProfile extends Component {
       obj &&
       `${obj.caption}${obj.parent ? " (" + obj.parent.caption + ")" : ""}`;
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (obj.caption.length > 40) {
+      titleTruncated = obj.caption.slice(0, 40);
+      titleTruncated += "…";
+    }
+
     return (
       <Canon>
         <CanonProfile data={this.props.data} topics={topics}>
@@ -453,7 +460,8 @@ class ProductProfile extends Component {
             <div className="intro">
               {obj && (
                 <Nav
-                  title={obj.caption}
+                  title={titleTruncated ? titleTruncated : obj.caption}
+                  fullTitle={obj.caption}
                   typeTitle={obj.parent ? t("Product") : t("Product Type")}
                   type="products"
                   exploreLink={"/explore/products"}
@@ -549,12 +557,14 @@ class ProductProfile extends Component {
                 <div className="topic-title">
                   <h2 className="full-width">
                     {t("About")}
-                    {obj && (
-                      <span className="small">
-                        <span className="pipe"> | </span>
-                        {obj.caption}
-                      </span>
-                    )}
+                    <span className="u-visually-hidden">
+                      {obj && (
+                        <span className="small">
+                          {/*<span className="pipe"> | </span>*/}
+                          {obj.caption}
+                        </span>
+                      )}
+                    </span>
                   </h2>
                 </div>
                 <div className="topic-go-to-targets">

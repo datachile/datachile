@@ -52,6 +52,7 @@ class Nav extends Component {
       t,
       i18n,
       title,
+      fullTitle,
       type,
       typeTitle,
       ancestor,
@@ -226,7 +227,12 @@ class Nav extends Component {
           {(title || typeTitle || type || ancestor) && (
             <div className="title-container">
               <div className="nav-title">
-                <h1>{title}</h1>
+                <h1>
+                  {/* truncated title, hidden from screen readers */}
+                  <span aria-hidden>{title}</span>
+                  {/* full title for screen readers, hidden from screen */}
+                  <span className="u-visually-hidden">{fullTitle}</span>
+                </h1>
                 <div className="meta-title">
                   <div className="type">
                     {typeTitle &&

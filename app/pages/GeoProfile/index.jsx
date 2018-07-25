@@ -412,6 +412,13 @@ class GeoProfile extends Component {
       title = t("Comuna") + t(" of ") + geo.caption + ` (${ancestor.caption})`;
     }
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (geo.caption.length > 40) {
+      titleTruncated = geo.caption.slice(0, 40);
+      titleTruncated += "…";
+    }
+
     let opengraphImage = (geoObj.image || "").replace(
       "/profile-bg/",
       "/opengraph/"
@@ -438,7 +445,8 @@ class GeoProfile extends Component {
               {geo &&
                 geoObj && (
                   <Nav
-                    title={geo.caption}
+                    title={titleTruncated ? titleTruncated : geo.caption}
+                    fullTitle={geo.caption}
                     typeTitle={
                       geoObj.type !== "country" ? geoObj.type : t("Country")
                     }

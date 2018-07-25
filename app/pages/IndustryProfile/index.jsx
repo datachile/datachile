@@ -234,6 +234,13 @@ class IndustryProfile extends Component {
         (industry.parent ? ` (${industry.parent.caption})` : "")
       : "";
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (industry.caption.length > 40) {
+      titleTruncated = industry.caption.slice(0, 40);
+      titleTruncated += "…";
+    }
+
     return (
       <Canon>
         <CanonProfile data={this.props.data} topics={topics}>
@@ -259,7 +266,8 @@ class IndustryProfile extends Component {
             <div className="intro">
               {industry && (
                 <Nav
-                  title={industry.caption}
+                  title={titleTruncated ? titleTruncated : industry.caption}
+                  fullTitle={industry.caption}
                   typeTitle={
                     industry.parent ? t("Industry") : t("Industry Type")
                   }
