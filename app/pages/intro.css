@@ -5,9 +5,10 @@
 
   & .intro {
     color: var(--snow);
-    margin: 0 auto calc(var(--gutter) * 2) auto;
+    margin: 0 auto;
     position: relative;
     width: 100%;
+    min-height: 80vh;
     overflow: hidden;
 
     & .splash {

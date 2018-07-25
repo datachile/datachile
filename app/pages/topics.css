@@ -3,8 +3,13 @@
 .topic-block {
   background-color: var(--dark);
   color: var(--snow);
-  padding-top: 0;
+  padding: var(--gutter-half) 0 var(--gutter) 0;
   lost-utility: clearfix;
+
+  & + .topic-block {
+    border-top: 1px solid var(--footer-bg);
+  }
+
   & .topic-anchor-link {
     bottom: 40px;
     position: relative;
