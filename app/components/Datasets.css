@@ -1,7 +1,9 @@
+@import "../pages/mixins";
+
 .datasets {
-  //border: 1px solid #fff;
-  font-size: 0.8rem;
+  @add-mixin font-xs;
   position: relative;
+  /* border: 1px solid #fff; */
   & table {
     & thead,
     & tbody tr {
@@ -10,8 +12,8 @@
       table-layout: fixed;
     }
     & thead {
-      //position: fixed;
-      //top: 0px;
+      /* position: fixed;
+      top: 0px; */
       & tr {
         & th {
           background-color: #4B71B5;
@@ -35,7 +37,7 @@
       & td {
         border: 0px solid #fff !important;
         text-align: left;
-        //font-size: 0.70rem;
+        /* font-size: 0.70rem; */
       }
     }
   }

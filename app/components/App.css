@@ -1,44 +1,71 @@
-@import "../pages/mixins.css";
+@import "../pages/mixins";
 
 /* FONTS */
 /* importing via helmet.js isn't working ¯\_(ツ)_/¯ */
-@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300");
-
-@font-face {
-  font-family: Gilroy;
-  src: url("/fonts/gilroy/Gilroy-Light.otf");
-  font-weight: 300;
-}
-@font-face {
-  font-family: Gilroy;
-  src: url("/fonts/gilroy/Gilroy-ExtraBold.otf");
-  font-weight: 800;
-}
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300|Roboto:300,300i,500|Source+Sans+Pro:400");
 
 html {
+  /* theming */
+  background-color: var(--near-black);
+  /* font scaling */
+  font-size: 87.5%; /* 14px; override blueprint */
+
+  /* scale up type on big screens */
+  @add-mixin from-md {
+    font-size: 100%; /* 16px */
+  }
+  @add-mixin from-lg {
+    font-size: 106.25%; /* 1rem = 17px  */
+  }
+  @add-mixin from-xl {
+    font-size: 112.5%; /* 1rem = 18px */
+  }
 }
 
 body {
-  background-color: var(--near-black);
+  /* typography */
+  @add-mixin body-font; /* override blueprint */
+  /* theming */
+  color: var(--darker-gray);
+
+  & * {
+    color: inherit;
+  }
 }
 
-/*
-Yantramanav -> var(--font-family-text)
-font-family: 'Yantramanav', sans-serif;
-light 300
-regular 400
-medium 500
-bold 700
+/* headings */
+h1, h2, h3, h4, h5, h6,
+.heading {
+  @add-mixin heading-font;
+}
 
-Gilroy -> var(--font-family-title)
-font-family: 'Gilroy', sans-serif;
-light 300
-extrabold 800
-*/
+/* default font sizing and line-height */
+.font-xxl        { @add-mixin font-xxl; }
+h1, .font-xl     { @add-mixin font-xl;  }
+h2, .font-lg     { @add-mixin font-lg;  }
+h3, .font-md     { @add-mixin font-md;  }
+h4, .font-sm     { @add-mixin font-sm;  }
+h5, h6, .font-xs { @add-mixin font-xs;  }
+small, .font-xxs { @add-mixin font-xxs; }
 
-/* global classes */
+/* labels */
+.label {
+  @add-mixin body-font;
+  @add-mixin font-smoothing;
+  @add-mixin font-uppercase;
+}
+
+/* subheads */
+.subhead {
+  @add-mixin heading-font;
+  @add-mixin font-smoothing;
+  @add-mixin font-uppercase;
+}
+
+/* lost config */
 @lost flexbox flex;
-@lost gutter 32px;
+@lost gutter var(--gutter);
+@lost rounder 99.9999999;
 
 .main-container {
   lost-flex-container: column;
@@ -125,12 +152,11 @@ color-products: "#FF7474"
 color-industries: "#2A8090"*/
 
 .datachile-tooltip {
+  @add-mixin font-xs;
   text-align: center;
   padding: 10px;
-  font-size: 12px;
   background: var(--snow);
   border: 1px solid var(--near-black);
-  font-family: var(--font-family-text);
   color: var(--near-black);
 }
 
@@ -147,17 +173,27 @@ table.tooltip-table {
 }
 
 
-/* Buttons */
+/* COMPONENTS */
+
+/* tags */
+.tag {
+  display: inline-block;
+  background-color: var(--color-geo);
+  padding: 0 0.5em;
+  border-radius: 2px;
+}
+
+/* buttons */
 .btn {
+  /* typography */
+  @add-mixin font-xs;
+  font-family: var(--font-family-title);
+  text-transform: uppercase;
+  text-align: center;
   /* sizing */
   padding: 1.125em 2.25em;
   /* positioning */
   display: inline-block;
-  /* typography */
-  font-size: 14px;
-  font-family: var(--font-family-title);
-  text-transform: uppercase;
-  text-align: center;
   /* theming */
   border-radius: 30px;
   color: var(--snow);
@@ -205,8 +241,16 @@ table.tooltip-table {
 /* the inline style isn't working ¯\_(ツ)_/¯ */
 .d3plus-textBox {
   & text {
-    font-family: "Roboto Condensed" !important;
-    font-weight: 300;
+    @add-mixin visualization-font;
+  }
+}
+
+/* override default theming for tooltips */
+.d3plus-tooltip {
+  color: var(--pre-bg);
+
+  & a {
+    color: var(--accent);
   }
 }
 

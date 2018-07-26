@@ -49,13 +49,7 @@
       & a {
         display: block;
         width: 22px;
-        text-transform: uppercase;
-        font-family: var(--font-family-title);
-        font-weight: 300;
-        font-size: 30px;
-        line-height: 1;
         transition: opacity 0.2s;
-        color: var(--snow);
         opacity: 0.8;
         text-decoration: none;
 
@@ -87,7 +81,7 @@
         margin: 0.75em;
         /* typography */
         color: var(--snow);
-        font-family: var(--font-family-title);
+        @add-mixin heading-font;
         font-size: 0.875em;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -122,24 +116,17 @@
     & .nav-title {
       width: 100%;
       text-align: center;
-      text-transform: uppercase;
 
+      /* main page title */
       & h1 {
-        margin: 0px;
-        font-family: var(--font-family-title);
-        font-size: 30px;
-        font-weight: 300;
-        line-height: 1.1em;
+        @add-mixin font-xxl;
         color: var(--snow);
       }
 
       & .meta-title {
-        font-family: var(--font-family-text);
-        font-size: 12px;
-        font-weight: 400;
+        @add-mixin font-xs;
+        @add-mixin body-font;
         line-height: 30px;
-        letter-spacing: 0.08px;
-        text-transform: uppercase;
         white-space: nowrap;
 
         & .parent,
@@ -210,9 +197,8 @@
   }
 
   & .lang-selector {
-    font-family: var(--font-family-text);
-    font-weight: 400;
-    font-size: 14px;
+    @add-mixin font-xs;
+    @add-mixin body-font;
     line-height: 42px;
     text-transform: uppercase;
 
@@ -248,14 +234,12 @@
   }
 
   & > ul {
+    @add-mixin font-xs;
     list-style: none;
     padding: 0;
     margin: 0 10px;
-    font-family: var(--font-family-text);
-    font-size: 14px;
-    font-weight: 400;
+    @add-mixin body-font;
     line-height: 18px;
-    letter-spacing: 0.08px;
     text-transform: uppercase;
     color: var(--snow);
 
@@ -378,9 +362,6 @@
 
     & .title-container {
       & .nav-title {
-        & h1 {
-          font-size: 30px;
-        }
 
         & .meta-title {
           text-align: center;
@@ -416,13 +397,6 @@
     & .nav-container {
       & .nav-search-container {
         padding-left: 40px;
-      }
-    }
-    & .title-container {
-      & .nav-title {
-        & h1 {
-          font-size: 60px;
-        }
       }
     }
 

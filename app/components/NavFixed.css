@@ -56,14 +56,11 @@
   }
 
   & .title {
+    @add-mixin font-sm;
     flex: 1;
     display: block;
     color: var(--accent);
-    font-family: var(--font-family-title);
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 1.15em;
-    letter-spacing: 0.03px;
+    @add-mixin heading-font;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -77,9 +74,8 @@
   }
 
   & .nav-topic {
-    font-family: var(--font-family-title);
-    font-size: 9px;
-    font-weight: 300;
+    @add-mixin font-xxs;
+    @add-mixin heading-font;
     text-align: center;
     text-transform: uppercase;
 
@@ -93,10 +89,8 @@
     & .topic-link {
       display: block;
       padding: 5px 0;
-
       text-decoration: none;
       color: var(--snow);
-      letter-spacing: 0.5px;
       border-bottom: 2px solid transparent;
       opacity: 0.9;
       transition: opacity 0.2s;
@@ -158,7 +152,7 @@
     }
 
     & .title {
-      font-size: 20px;
+      @add-mixin font-sm;
     }
 
     & .nav-topic {

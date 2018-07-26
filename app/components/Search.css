@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .search-component {
   position: relative;
   z-index: var(--cover);
@@ -14,17 +16,15 @@
     }
 
     & input {
+      @add-mixin font-sm;
       box-sizing: border-box;
       display: block;
       padding: 10px 50px;
       width: 100%;
-
-      font-family: var(--font-family-text);
-      font-weight: 300;
-      font-size: 16px;
+      /* typography */
+      @add-mixin body-font;
       line-height: 24px;
-      letter-spacing: 0.08px;
-
+      /* theming */
       color: var(--snow);
       background: transparent 14px center no-repeat;
       background-image: url("/images/icons/icon-search.svg");
@@ -34,11 +34,9 @@
       transition: background-color 0.5s ease;
 
       &::placeholder {
+        @add-mixin font-xs;
         color: var(--snow);
-        font-family: var(--font-family-text);
-        font-weight: 300;
-        font-size: 14px;
-        letter-spacing: 0.08px;
+        @add-mixin body-font;
         opacity: 0.7;
         line-height: 24px;
       }
@@ -77,13 +75,12 @@
       display: flex;
       align-items: center;
       & a {
+        @add-mixin font-xs;
         width: 100%;
         color: var(--darker-gray);
         display: block;
         text-decoration: none;
-        font-family: var(--font-family-text);
-        font-weight: 400;
-        font-size: 11.62px;
+        @add-mixin body-font;
         color: #929293;
         width: 100%;
         height: 100%;

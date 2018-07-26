@@ -39,7 +39,7 @@ class FeaturedBox extends Component {
           </span>
           <Shiitake
             tagName="span"
-            className="name"
+            className="name subhead font-xs"
             lines={4}
             renderFullOnServer={true}
           >
@@ -47,7 +47,7 @@ class FeaturedBox extends Component {
           </Shiitake>
         </span>
         <span className="col-r">
-          <span className="type">
+          <span className="type label font-xxs">
             <span className="u-visually-hidden">, </span>
             {type}
             <span className="u-visually-hidden">.</span>

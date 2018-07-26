@@ -7,18 +7,12 @@
     }
 
     & .term {
-      font-weight: bold;
       margin: 0px;
       padding: 0px;
     }
   }
 
   & .intro {
-    font-family: var(--font-family-text);
-    margin: 0 auto;
-    max-width: var(--width);
-    padding: 0 var(--gutter);
-    width: 100%;
 
     & .splash {
       height: 800px;
@@ -55,24 +49,19 @@
       text-align: center;
       lost-flex-container: row;
       lost-align: center;
-      font-family: var(--font-family-title);
       color: var(--snow);
 
       & .sublink {
         padding: calc(var(--gutter)/4);
-        font-weight: 300;
         display: inline-block;
-        line-height: 2em;
-        font-size: 12px;
         color: inherit;
         text-decoration: none;
         text-transform: uppercase;
         transition: opacity 0.2s;
-        letter-spacing: 0.1em;
 
         &.selected {
+          @add-mixin body-font-bold;
           text-decoration: underline;
-          font-weight: 800;
           margin: 0;
         }
         &:hover {
@@ -93,30 +82,21 @@
   }
 
   & .section {
-    padding: var(--gutter) calc(var(--gutter)/3);
+    padding: calc(var(--gutter) * 2) var(--gutter);
     margin-bottom: var(--gutter);
     lost-center: 2/3;
-    text-align: center;
+    max-width: var(--break-md);
+    display: block;
 
     & h2 {
       color: var(--snow);
-      font-family: var(--font-family-title);
-      text-transform: uppercase;
-      font-weight: 300;
       margin-bottom: var(--gutter);
       lost-column: 1;
-      line-height: 1em;
     }
 
     & h3 {
       color: var(--snow);
-      font-family: var(--font-family-title);
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: 0.1em;
       margin: var(--gutter) 0 calc(var(--gutter)/2) 0;
-      lost-column: 1;
       line-height: 1.2em;
     }
 
@@ -125,13 +105,8 @@
     }
 
     & p {
-      font-family: var(--font-family-text);
-      color: var(--snow);
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.5;
-      text-align: justify;
-      lost-column: 1;
+      @add-mixin font-sm;
+      color: var(--darker-gray);
       & img.icon {
         width: 15px;
         position: relative;
@@ -139,26 +114,22 @@
       }
       & a {
         color: var(--accent);
-        font-weight: 800;
       }
     }
     & ul {
       & li {
-        font-family: var(--font-family-text);
+        @add-mixin font-sm;
+        @add-mixin body-font;
         color: var(--snow);
-        font-size: 16px;
-        font-weight: 300;
         line-height: 1.5;
         text-align: justify;
       }
     }
     & .use {
-      font-family: var(--font-family-text);
+      @add-mixin font-sm;
+      @add-mixin body-font;
       color: var(--accent);
       background-color: var(--snow);
-      font-size: 17px;
-      text-transform: uppercase;
-      font-weight: 300;
       line-height: 1.5;
       lost-column: 1;
       padding: calc(var(--gutter)/2);
@@ -211,9 +182,6 @@
     & .section {
       lost-column: 1;
       margin-bottom: 0px;
-      & h2 {
-        font-size: 30px;
-      }
     }
   }
 }

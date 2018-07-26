@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .featured-datum {
   lost-flex-container: row;
   & .featured-datum-icon {
@@ -9,22 +11,19 @@
     color: var(--snow);
     flex: 1;
     & .featured-datum-data {
-      font-family: var(--font-family-title);
-      font-weight: 300;
-      font-size: 25px;
+      @add-mixin font-lg;
+      @add-mixin heading-font;
     }
     & .featured-datum-title {
+      @add-mixin font-sm;
       margin-bottom: 0.2em;
-      font-family: var(--font-family-text);
-      font-weight: 700;
-      font-size: 16px;
+      @add-mixin body-font;
       color: var(--snow);
       line-height: 1.1em;
     }
     & .featured-datum-subtitle {
-      font-family: var(--font-family-text);
-      font-weight: 300;
-      font-size: 14px;
+      @add-mixin font-xs;
+      @add-mixin body-font;
       color: var(--gray);
     }
   }

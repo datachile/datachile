@@ -1,3 +1,5 @@
+@import '../pages/mixins';
+
 .topic-slider {
   lost-utility: clearfix;
   & * {
@@ -16,9 +18,7 @@
   & .slick-prev,
   & .slick-next {
     display: none !important;
-    font-size: 0;
-    line-height: 0;
-
+    /*
     position: absolute;
     top: 50%;
 
@@ -36,37 +36,32 @@
     outline: none;
     background: black;
     z-index: 10;
-  }
-  & .slick-prev:hover,
-  & .slick-prev:focus,
-  & .slick-next:hover,
-  & .slick-next:focus {
-    color: transparent;
-    outline: none;
-    background: gray;
-  }
-  & .slick-prev:hover:before,
-  & .slick-prev:focus:before,
-  & .slick-next:hover:before,
-  & .slick-next:focus:before {
-    opacity: 1;
-  }
-  & .slick-prev.slick-disabled:before,
-  & .slick-next.slick-disabled:before {
-    opacity: 0.25;
-  }
 
-  & .slick-prev:before,
-  & .slick-next:before {
-    font-family: "slick";
-    font-size: 20px;
-    line-height: 1;
+    &:hover,
+    &:focus {
+      color: transparent;
+      outline: none;
+      background: gray;
+    }
+    &:hover:before,
+    &:focus:before {
+      opacity: 1;
+    }
+    &.slick-disabled:before {
+      opacity: 0.25;
+    }
 
-    opacity: 0.75;
-    color: white;
+    &:before {
+      @add-mixin font-sm;
+      font-family: "slick";
+      line-height: 1;
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+      opacity: 0.75;
+      color: white;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    } */
   }
 
   & .slick-prev {
@@ -161,9 +156,8 @@
     opacity: 1;
   }
   & .slick-dots li button:before {
+    @add-mixin font-xxs;
     font-family: "slick";
-    font-size: 6px;
-    line-height: 20px;
 
     position: absolute;
     top: 0;

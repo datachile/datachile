@@ -2,9 +2,7 @@
 
 footer {
   width: 100%;
-  font-family: var(--font-family-text);
-  font-weight: 300;
-  text-transform: uppercase;
+  @add-mixin body-font;
   color: rgba(255, 255, 255, 0.75);
   background-color: var(--footer-bg);
 
@@ -15,9 +13,8 @@ footer {
   }
 
   & .footer-title {
+    @add-mixin font-xs;
     margin-bottom: var(--gutter);
-    font-size: 12px;
-    letter-spacing: 1px;
 
     &::after {
       content: "";
@@ -50,11 +47,11 @@ footer {
   }
 
   & .nav-links  {
+    @add-mixin font-xs;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 30px 0;
-    font-size: 12px;
     line-height: 2em;
 
     & .link {
@@ -69,7 +66,6 @@ footer {
     }
 
     & .link-dot {
-      font-weight: 400;
     }
   }
 }

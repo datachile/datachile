@@ -11,7 +11,7 @@
   position: fixed;
   top: 80px;
   left: 50%;
-  font-family: var(--font-family);
+  @add-mixin body-font;
   margin: auto;
   width: 600px;
   margin-left: -300px;
@@ -29,9 +29,9 @@
   }
 
   & .intro-slider-title {
-    font-family: var(--font-family-title);
+    @add-mixin font-lg;
+    @add-mixin heading-font;
     color: #7997ca;
-    font-size: 24px;
     margin-bottom: 10px;
   }
 

@@ -1,45 +1,47 @@
+@import "../../mixins";
+
 .map-scale-options {
     lost-column: 1/4;
     lost-align: right;
     lost-flex-container: row;
     & .map-scale-text {
+      @add-mixin font-xs;
       width: 100%;
       text-align: right;
       margin-right: 5px;
       text-transform: uppercase;
       color: var(--gray-dark);
-      font-size: 13px;
-      font-family: var(--font-family-text);
+      @add-mixin body-font;
     }
     & .map-scale-options-container {
       lost-flex-container: row;
       flex-wrap: nowrap;
       & .toggle {
-        font-family: var(--font-family-text);
+        @add-mixin font-xxs;
+        @add-mixin body-font;
         background-color: var(--snow);
         text-align: center;
         padding: 5px 15px;
         margin-right: 5px;
         text-transform: uppercase;
         width: auto;
-        font-size: 11px;
         transition: background-color 0.5s, color 0.5s;
         border: 1px solid var(--gray-light);
         color: var(--gray-dark);
-  
+
         &.selected {
-          background-color: var(--nice-blue);
+          background-color: var(--accent);
           color: var(--snow);
-          border: 1px solid var(--nice-blue);
+          border: 1px solid var(--accent);
         }
-  
+
         &:active,
         &:hover {
           text-decoration: none;
-          background-color: var(--nice-blue);
+          background-color: var(--accent);
           color: var(--snow);
         }
-  
+
         &.disabled {
           background-color: transparent;
           color: var(--gray-dark);
@@ -48,4 +50,3 @@
       }
     }
   }
-  

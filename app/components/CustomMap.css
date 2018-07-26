@@ -7,7 +7,7 @@
     left: 16px;
     right: 0px;
     width: calc(100% - 35px);
-    //background-color: var(--snow);
+    /* background-color: var(--snow); */
     background-color: #2f2f38;
     border: 0px solid var(--snow);
 

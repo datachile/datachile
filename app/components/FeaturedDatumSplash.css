@@ -1,48 +1,38 @@
+@import "../pages/mixins";
+
 .featured-datum-splash {
   lost-flex-container: column;
   color: var(--snow);
   padding-bottom: var(--gutter);
   & .featured-datum-splash-title {
-    font-family: var(--font-family-title);
-    text-transform: uppercase;
-    font-size: 18px;
-    letter-spacing: 0.5px;
+    @add-mixin font-xs;
+    @add-mixin heading-font;
     color: var(--snow);
-    font-weight: 300;
     display: flex;
     align-items: center;
     & small {
+      @add-mixin font-xs;
       background-color: var(--accent);
       padding: 5px 10px;
-      font-size: 12px;
       border-radius: 200px;
       margin-left: 10px;
       text-transform: lowercase;
     }
   }
   & .featured-datum-splash-source {
-    font-family: var(--font-family-title);
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 0.5px;
+    @add-mixin font-xxs;
+    @add-mixin heading-font;
     color: var(--snow);
-    font-weight: 300;
     margin-bottom: 0px;
   }
   & .featured-datum-splash-subtitle {
-    font-family: var(--font-family-title);
-    text-transform: uppercase;
-    font-size: 20px;
-    letter-spacing: -0.01px;
+    @add-mixin font-md;
+    @add-mixin heading-font;
     color: var(--snow);
-    font-weight: 300;
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   & .featured-datum-splash-level {
-    font-size: 12px;
-    color: #ffe0b2;
-    font-weight: 300;
-    margin-bottom: 0px;
+    margin: 0;
   }
   & .featured-datum-splash-icons {
     lost-flex-container: row;
@@ -64,11 +54,9 @@
     }
   }
   & .featured-datum-splash-data {
-    font-family: var(--font-family-title);
-    font-size: 35px;
-    letter-spacing: 0.08px;
+    @add-mixin font-xl;
+    @add-mixin heading-font;
     color: var(--snow);
-    font-weight: 300;
     margin-bottom: 0px;
   }
   &.population {

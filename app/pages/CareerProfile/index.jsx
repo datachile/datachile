@@ -307,8 +307,8 @@ class CareerProfile extends Component {
 
           <div className="topic-block" id="about">
             <div className="topic-header">
-              <div className="topic-title">
-                <h2 className="full-width">
+              <div className="topic-heading">
+                <h2 className="full-width font-xxl">
                   {t("About")}
                   {obj && (
                     <span className="small">

@@ -1,5 +1,8 @@
+@import "../pages/mixins";
+
 .select-component {
 	& select {
+		@add-mixin font-xs;
 		height: 20px;
 		overflow: hidden;
 		background-color: transparent;
@@ -9,8 +12,7 @@
 		border: none;
 		border-radius: 0px;
 		padding: 0px 20px 0px 10px;
-		font-size: 14px;
-		font-family: var(--font-family-title);
+		@add-mixin heading-font;
 		color: var(--snow);
 		text-transform: uppercase;
 		-moz-appearance: none;
@@ -29,8 +31,8 @@
 			border: none;
 		}
 		& option {
-			font-size: 14px;
-			font-family: var(--font-family-title);
+			@add-mixin font-xs;
+			@add-mixin heading-font;
 			color: var(--dark);
 		}
 	}

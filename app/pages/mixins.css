@@ -1,71 +1,121 @@
-/*BASICS mixins */
+/* BASICS mixins */
 
-/*BREAKPOINTS mixins */
-@define-mixin for-xl {
-  @media (max-width: 1799px) {
-    @mixin-content;
-  }
-}
-@define-mixin for-lg {
-  @media (max-width: 1199px) {
-    @mixin-content;
-  }
-}
-@define-mixin for-md {
-  @media (max-width: 991px) {
-    @mixin-content;
-  }
-}
-@define-mixin for-sm {
-  @media (max-width: 767px) {
-    @mixin-content;
-  }
-}
-@define-mixin for-xs {
-  @media (max-width: 479px) {
-    @mixin-content;
-  }
-}
-@define-mixin for-xx {
-  @media (max-width: 319px) {
-    @mixin-content;
-  }
-}
+/* BREAKPOINTS desktop first */
+@define-mixin for-xl { @media (max-width: 1799px) { @mixin-content; } }
+@define-mixin for-lg { @media (max-width: 1199px) { @mixin-content; } }
+@define-mixin for-md { @media (max-width: 991px)  { @mixin-content; } }
+@define-mixin for-sm { @media (max-width: 767px)  { @mixin-content; } }
+@define-mixin for-xs { @media (max-width: 479px)  { @mixin-content; } }
+@define-mixin for-xx { @media (max-width: 319px)  { @mixin-content; } }
 
-@define-mixin from-xl {
-  @media (min-width: 1800px) {
-    @mixin-content;
-  }
-}
+/* BREAKPOINTS mobile first */
+@define-mixin from-xl { @media (min-width: 1800px) { @mixin-content; } }
+@define-mixin from-lg { @media (min-width: 1200px) { @mixin-content; } }
+@define-mixin from-md { @media (min-width: 992px)  { @mixin-content; } }
+@define-mixin from-sm { @media (min-width: 768px)  { @mixin-content; } }
+@define-mixin from-xs { @media (min-width: 480px)  { @mixin-content; } }
+@define-mixin from-xx { @media (min-width: 320px)  { @mixin-content; } }
 
-@define-mixin from-lg {
-  @media (min-width: 1200px) {
-    @mixin-content;
-  }
+
+/* TYPOGRPAHY mixins */
+
+/* typefaces */
+@define-mixin body-font {
+  font-family: var(--body-font);
+  font-weight: 300;
+}
+@define-mixin body-font-italic {
+  font-family: var(--body-font);
+  font-weight: 300;
+  font-style: italic;
+}
+@define-mixin body-font-bold {
+  font-family: var(--body-font);
+  font-weight: 500;
+}
+@define-mixin heading-font {
+  font-family: var(--heading-font);
+  font-weight: 400;
+}
+@define-mixin visualization-font {
+  font-family: var(--visualization-font) !important;
+  font-weight: 300;
 }
 
-@define-mixin from-md {
-  @media (min-width: 992px) {
-    @mixin-content;
+/* type scaling */
+/* NOTE:
+  rounded major third scale on bigger screens;
+  rounded minor third scale on small screens (starting at 16px)
+*/
+@define-mixin font-xxl {
+  font-size: 2.0625rem; /* 33px */
+  line-height: 1;
+  /* scale up on bigger screens */
+  @add-mixin from-md {
+    font-size: 2.4375rem; /* 39px */
+  }
+  @add-mixin from-lg {
+    font-size: 2.875rem;
   }
 }
-
-@define-mixin from-sm {
-  @media (min-width: 768px) {
-    @mixin-content;
+@define-mixin font-xl {
+  font-size: 1.75rem; /* 28px */
+  line-height: 1;
+  /* scale up on bigger screens */
+  @add-mixin from-md {
+    font-size: 1.9375rem; /* 31px */
+    line-height: 1.2580645161; /* ~39px */
   }
 }
-
-@define-mixin from-xs {
-  @media (min-width: 480px) {
-    @mixin-content;
+@define-mixin font-lg {
+  font-size: 1.4375rem; /* 23px */
+  line-height: 1.24; /* 31px */
+  /* scale up on bigger screens */
+  @add-mixin from-md {
+    font-size: 1.5625rem; /* 25px */
   }
 }
-
-@define-mixin from-xx {
-  @media (min-width: 320px) {
-    @mixin-content;
+@define-mixin font-md {
+  font-size: 1.1875rem; /* 19px */
+  line-height: 1.5; /* 30px */
+  /* scale up on bigger screens */
+  @add-mixin from-md {
+    font-size: 1.25rem; /* 20px */
   }
+}
+@define-mixin font-sm {
+  font-size: 1rem; /* 16px */
+  line-height: 1.5625; /* 25px */
+}
+@define-mixin font-xs {
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.5384615385; /* ~20px */
+}
+@define-mixin font-xxs {
+  font-size: 0.625rem; /* 10px */
+  line-height: 1.6; /* 16px */
+}
+
+
+/* font smoothing */
+@define-mixin font-smoothing {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* uppercase */
+@define-mixin font-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.0625em;
+  line-height: 1.125;
+}
+
+/* ellipsis */
+/* NOTE: works best with defined width & height, 1 line of text */
+@define-mixin overflow-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -95,12 +145,4 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-}
-
-/* ellipsis */
-/* NOTE: works best with defined width & height, 1 line of text */
-@define-mixin overflow-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

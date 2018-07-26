@@ -1,8 +1,9 @@
 @import "./mixins";
 
 .profile {
-  font-family: var(--font-family-text);
+  @add-mixin body-font;
 
+  /* contains splash image, header, and stats */
   & .intro {
     color: var(--snow);
     margin: 0 auto;
@@ -11,6 +12,7 @@
     min-height: 80vh;
     overflow: hidden;
 
+    /* hero image */
     & .splash {
       height: 100%;
       left: 0;
@@ -19,23 +21,17 @@
       width: 100%;
       z-index: var(--background);
 
+      /* the image itself */
       & .image {
+        @add-mixin absolute-expand;
         background-position: 50%;
         background-size: cover;
         filter: saturate(80%) contrast(130%);
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
       }
 
+      /* gradient overlay */
       & .gradient {
-        bottom: 0;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
+        @add-mixin absolute-expand;
         background-image: linear-gradient(
           -180deg,
           rgba(3, 16, 54, 0.16) 0%,
@@ -45,82 +41,33 @@
       }
     }
 
+    /* main stats container */
     & .header {
       display: flex;
       margin: 0 auto;
       justify-content: center;
     }
 
+    /* main stats row; nested within header */
     & .datum-full-width {
       lost-column: 1 flex;
       padding: 0px var(--gutter);
       lost-flex-container: row;
       margin: 100px 0px;
+
+      /* main stat */
       & .featured-datum-splash {
         lost-column: 1/3 flex;
       }
     }
 
+    /* Geo profile only; splash stats with icons on the left */
     & .meta {
       box-sizing: border-box;
       display: inline-block;
       lost-column: 1/3 flex;
       vertical-align: top;
       padding: 0px var(--gutter);
-      & .title {
-        font-family: var(--font-family-text);
-        font-weight: 300;
-        font-size: 45px;
-        color: var(--snow);
-        margin: 10px 0px;
-      }
-
-      & .subtitle {
-        text-transform: uppercase;
-        font-family: var(--font-family-text);
-        font-weight: 300;
-        font-size: 14px;
-        color: var(--snow);
-        margin-bottom: 40px;
-        & a {
-          color: var(--snow);
-        }
-      }
-
-      & .parent {
-        text-transform: uppercase;
-        font-family: var(--font-family-text);
-        font-weight: 300;
-        font-size: 14px;
-        color: var(--snow);
-        & a {
-          color: var(--snow);
-        }
-      }
-
-      & .stat-group {
-        margin-bottom: 30px;
-        & .stat {
-          & .label {
-            font-family: var(--font-family-text);
-            font-weight: 300;
-            font-size: 13px;
-            color: #ffffff;
-            letter-spacing: -0.05px;
-          }
-
-          & .value {
-            font-family: var(--font-family-title);
-            font-weight: 400;
-            font-size: 21px;
-            color: var(--snow);
-            letter-spacing: 0.05px;
-          }
-        }
-        & .source {
-          font-size: 10px;
-        }
-      }
     }
 
     & .candidates {
@@ -176,18 +123,15 @@
       text-align: right;
 
       & .sublink {
+        @add-mixin font-xxs;
         color: white;
         display: inline-block;
-        font-size: 10px;
-        letter-spacing: 0.05px;
         margin: 0px 25px;
         text-align: center;
         text-decoration: none;
-        text-transform: uppercase;
         opacity: 0.9;
         transition: opacity 0.2s;
-        font-family: var(--font-family-text);
-        font-weight: 400;
+        @add-mixin body-font;
         cursor: pointer;
 
         &:hover {

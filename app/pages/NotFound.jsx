@@ -27,8 +27,10 @@ class NotFound extends Component {
               </div>
               <div className="header">
                 <div className="text-container">
-                  <h2>{t("not_found.oops")}</h2>
-                  <p>{t("not_found.text")}</p>
+                  <h2 className="font-xl" aria-hidden="true">
+                    {t("not_found.oops")}
+                  </h2>
+                  <p className="font-sm">{t("not_found.text")}</p>
                 </div>
                 <div className="search-container">
                   <Search />

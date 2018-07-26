@@ -1,3 +1,5 @@
+@import "../../mixins";
+
 .map-api-call {
   lost-column: 5/5;
   lost-flex-container: row;
@@ -7,23 +9,23 @@
     lost-column: 1/5 2;
     text-align: right;
     & label {
+      @add-mixin font-xs;
       text-transform: uppercase;
       color: var(--gray-dark);
-      font-size: 13px;
-      font-family: var(--font-family-text);
+      @add-mixin body-font;
       line-height: 1em;
     }
   }
   & .input-container {
     lost-column: 4/5 2;
     & input {
+      @add-mixin font-xxs;
       height: 32px;
       width: 90%;
-      font-family: var(--font-family-text);
+      @add-mixin body-font;
       background-color: var(--snow);
       text-align: center;
       padding: 5px;
-      font-size: 11px;
       border: 1px solid var(--gray-light);
       color: var(--gray-dark);
     }

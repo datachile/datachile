@@ -1,4 +1,5 @@
 @import "../mixins";
+
 .explore-page {
   & .search-explore-wrapper {
     lost-flex-container: row;
@@ -12,9 +13,7 @@
       var(--gutter);
     & h3 {
       color: var(--snow);
-      text-transform: uppercase;
-      font-family: var(--font-family-title);
-      font-weight: 300;
+      @add-mixin heading-font;
       line-height: 1em;
     }
   }
@@ -37,14 +36,13 @@
               height: 25px;
             }
             & span {
+              @add-mixin font-xs;
               margin-left: 15px;
               color: var(--snow);
               text-transform: uppercase;
-              font-family: var(--font-family-title);
+              @add-mixin heading-font;
               padding: 10px 0px 5px 0px;
               border-bottom: 1px solid var(--dark);
-              font-size: 14px;
-              font-weight: 300;
             }
             &:hover {
               text-decoration: none;
@@ -102,9 +100,7 @@
         & h3,
         & h4 {
           color: var(--snow);
-          text-transform: uppercase;
-          font-family: var(--font-family-title);
-          font-weight: 300;
+          @add-mixin heading-font;
           line-height: 1em;
           margin: calc(var(--gutter) * 2) 0;
           padding-top: var(--gutter);
@@ -129,7 +125,7 @@
           & a {
             color: var(--snow);
             text-transform: uppercase;
-            font-family: var(--font-family-title);
+            @add-mixin heading-font;
           }
         }
       }

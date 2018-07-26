@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .info-logo-container-sned {
 	height: 100%;
 }
@@ -20,27 +22,22 @@
 		text-align: center;
 	}
 	& .value {
-		//text-align: center;
+		@add-mixin font-xxl;
+		/* text-align: center; */
 		display: inline !important;
 		margin-right: 8px;
-		font-family: var(--font-family-title);
-		font-size: 40px;
-		font-weight: 300;
+		@add-mixin heading-font;
 	}
 	& .verb {
 		display: inline;
 		text-align: center;
-		font-family: var(--font-family-text);
-		font-weight: 300;
-		text-transform: uppercase;
+		@add-mixin body-font;
 		margin-bottom: 0;
 	}
 	& .title {
+		@add-mixin font-sm;
 		text-align: center;
-		font-family: var(--font-family-text);
-		font-weight: 700;
-		text-transform: uppercase;
-		font-size: 16px;
+		@add-mixin body-font;
 		margin-bottom: 0;
 	}
 }

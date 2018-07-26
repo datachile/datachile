@@ -167,7 +167,7 @@ class Home extends Component {
                       DataChile ({t("home")})
                     </span>
                   </h1>
-                  <p className="lead">{t("home.subtitle")}</p>
+                  <p className="lead font-md heading">{t("home.subtitle")}</p>
                   <div className="search-home-wrapper">
                     <Search className="search-home" limit={5} />
                   </div>
@@ -207,7 +207,7 @@ class Home extends Component {
                           className="home-slide-icon"
                           src={`/images/icons/icon-${p.slug}.svg`}
                         />
-                        <span className="home-slide-label">{p.name}</span>
+                      <span className="home-slide-label subhead">{p.name}</span>
                       </button>
                     </div>
                   </div>
@@ -320,7 +320,7 @@ class Home extends Component {
                 <div className="dataset-list">
                   <div className="l-col">
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.casen.title")}
                       </span>
                       <span className="source">
@@ -328,19 +328,19 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">{t("about.data.nene.title")}</span>
+                      <span className="name heading font-sm">{t("about.data.nene.title")}</span>
                       <span className="source">
                         {t("about.data.nene.source")}
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">{t("about.data.nesi.title")}</span>
+                      <span className="name heading font-sm">{t("about.data.nesi.title")}</span>
                       <span className="source">
                         {t("about.data.nesi.source")}
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.enrollment.title")}
                       </span>
                       <span className="source">
@@ -348,13 +348,13 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">{t("about.data.psu.title")}</span>
+                      <span className="name heading font-sm">{t("about.data.psu.title")}</span>
                       <span className="source">
                         {t("about.data.psu.source")}
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.aduana.title")}
                       </span>
                       <span className="source">
@@ -362,7 +362,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.muerte.title")}
                       </span>
                       <span className="source">
@@ -373,7 +373,7 @@ class Home extends Component {
 
                   <div className="r-col">
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.salud.title")}
                       </span>
                       <span className="source">
@@ -381,13 +381,13 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">{t("about.data.vida.title")}</span>
+                      <span className="name heading font-sm">{t("about.data.vida.title")}</span>
                       <span className="source">
                         {t("about.data.vida.source")}
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.migracion.title")}
                       </span>
                       <span className="source">
@@ -395,7 +395,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.discapacidad.title")}
                       </span>
                       <span className="source">
@@ -403,7 +403,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.iplusd.title")}
                       </span>
                       <span className="source">
@@ -411,7 +411,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.performance.title")}
                       </span>
                       <span className="source">
@@ -419,7 +419,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.poblacion.title")}
                       </span>
                       <span className="source">
@@ -427,7 +427,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.internet.title")}
                       </span>
                       <span className="source">

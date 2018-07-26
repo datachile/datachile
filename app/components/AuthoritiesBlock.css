@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .splash-authorities {
   lost-flex-container: column;
   & .splash-authorities-president {
@@ -22,12 +24,9 @@
     }
   }
   & .title {
+    @add-mixin font-md;
     width: 100%;
-    font-family: var(--font-family-title);
+    @add-mixin heading-font;
     text-align: center;
-    text-transform: uppercase;
-    font-size: 18px;
-    letter-spacing: -0.01px;
-    font-weight: 300;
   }
 }

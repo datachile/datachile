@@ -1,18 +1,15 @@
 @import "../pages/mixins";
 
 .source-note {
+  @add-mixin font-xxs;
   padding: calc(var(--gutter)/2) calc(var(--gutter)/2);
-  font-family: var(--font-family-text);
-  font-size: 10px;
+  @add-mixin body-font;
   & .source-note-txt {
     margin-right: 5px;
-    font-weight: 300;
-    text-transform: uppercase;
   }
   & .source-note-link {
     margin-top: 2px;
-    font-weight: 700;
-    color: var(--nice-blue);
+    color: var(--accent);
     $:hover {
       text-decoration: underline;
     }

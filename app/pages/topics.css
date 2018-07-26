@@ -6,7 +6,8 @@
   padding: var(--gutter-half) 0 var(--gutter) 0;
   lost-utility: clearfix;
 
-  & + .topic-block {
+  & + .topic-block,
+  & + .topics-container {
     border-top: 1px solid var(--footer-bg);
   }
 
@@ -15,28 +16,18 @@
     position: relative;
   }
   & .topic-header {
-    & .topic-title {
+    & .topic-heading {
       lost-flex-container: row;
       margin: var(--gutter) var(--gutter) 0 var(--gutter);
       lost-utility: clearfix;
       & h2 {
-        font-family: var(--font-family-title);
-        font-size: 55px;
-        text-transform: uppercase;
-        font-weight: 300;
-        color: var(--snow);
         margin-bottom: 0px;
         lost-column: 1/2 flex;
-        line-height: 1em;
-        & .small {
-          text-transform: none;
-          font-family: var(--font-family-text);
-          font-size: 44px;
-          font-weight: 300;
-          & .pipe {
-            margin: 0 10px;
-          }
+
+        & .pipe {
+          margin: 0 0.5em;
         }
+
         &.full-width {
           lost-column: 1 flex;
         }
@@ -55,30 +46,27 @@
     & .topic-slide-intro {
       margin: 0 var(--gutter);
       lost-flex-container: row;
+
       & .topic-slide-title {
+        /* styling as a header for now */
+        /* TODO: replace 48 divs with this class 😒 */
+        @add-mixin font-lg;
+        @add-mixin heading-font;
         lost-column: 1 flex;
-        font-family: var(--font-family-text);
-        font-size: 24px;
-        font-weight: 300;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        margin-bottom: calc(var(--gutter) / 2);
+        margin-top: 1.5em;
 
         & .topic-slide-subtitle {
+          @add-mixin font-xs;
           color: #ffe0b2;
           lost-column: 1 flex;
-          font-size: 14px;
-          font-weight: 300;
+
           text-transform: none;
         }
       }
       & .topic-slide-text {
+        @add-mixin font-xs;
         lost-column: 1/3 flex;
-        font-family: var(--font-family-text);
-        font-size: 13px;
-        font-weight: 300;
-        letter-spacing: 0;
-        line-height: 18px;
+        @add-mixin body-font;
         & p {
           margin: 5px 0;
         }
@@ -87,20 +75,14 @@
         }
       }
       & .topic-slide-text-full {
+        @add-mixin font-xs;
         lost-column: 1 1 flex;
-        font-family: var(--font-family-text);
-        font-size: 13px;
-        font-weight: 300;
-        letter-spacing: 0;
-        line-height: 22px;
+        @add-mixin body-font;
       }
       & .topic-slide-link-list {
+        @add-mixin font-xs;
         lost-column: 1/3 flex;
-        font-family: var(--font-family-text);
-        font-size: 14px;
-        font-weight: 300;
-        letter-spacing: 0;
-        line-height: 22px;
+        @add-mixin body-font;
       }
       & .topic-slide-data {
         lost-column: 2/3 flex;
@@ -119,13 +101,9 @@
       }
     }
     & .chart-title {
-      font-family: var(--font-family-text);
-      font-size: 16px;
-      text-transform: uppercase;
+      @add-mixin font-sm;
       color: var(--snow);
-      font-weight: 300;
       padding: 0 15px;
-      line-height: 1.2em;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -139,17 +117,17 @@
       }
     }
     & .chart-text {
-      font-family: var(--font-family-text);
+      @add-mixin font-xs;
+      @add-mixin body-font;
       padding: 0 15px;
       color: var(--snow);
-      font-size: 13px;
-      font-weight: 300;
+
       margin-bottom: 5px;
     }
     & .footnote {
-      font-size: 13px;
+      @add-mixin font-xs;
       & li {
-        font-size: 13px;
+        @add-mixin font-xs;
       }
     }
     & .topic-slide-charts {
@@ -165,13 +143,13 @@
           stroke: none;
         }
       }
-      & .d3plus-plot-y-axis {
+      /* & .d3plus-plot-y-axis {
         & g:last-child {
           & line.bar {
-            //stroke: none;
+            stroke: none;
           }
         }
-      }
+      } */
       & .d3plus-viz-timeline {
         & .bar {
           stroke: var(--snow);
@@ -210,12 +188,11 @@
 @add-mixin for-md {
   .topic-block {
     & .topic-header {
-      & .topic-title {
+      & .topic-heading {
         & h2 {
           lost-column: 1 flex;
-          font-size: 50px;
           & .small {
-            font-size: 25px;
+            @add-mixin font-lg;
             display: inline-block;
             & .pipe {
             }
@@ -259,17 +236,9 @@
 @add-mixin for-sm {
   .topic-block {
     & .topic-header {
-      & .topic-title {
-        margin: calc(var(--gutter) / 2) calc(var(--gutter) / 2) 0
-          calc(var(--gutter) / 2);
-        & h2 {
-          font-size: 30px;
-          & .small {
-            font-size: 20px;
-            & .pipe {
-            }
-          }
-        }
+      & .topic-heading {
+        margin: var(--gutter-half) var(--gutter-half) 0 var(--gutter-half);
+
         & .topic-slider-bullets {
           lost-column: 1 flex;
           text-align: center;

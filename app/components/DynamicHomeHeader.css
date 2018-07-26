@@ -94,27 +94,21 @@
       z-index: -1;
 
       & .tooltip-title {
+        @add-mixin heading-font;
+        @add-mixin font-uppercase;
         color: var(--snow);
-        padding: calc(var(--gutter)/2);
-        font-family: var(--font-family-text);
-        text-transform: uppercase;
-        font-weight: 300;
+        padding: var(--gutter-half);
       }
       & .tooltip-body {
         padding: calc(var(--gutter)/2);
         & .tooltip-data-title {
-          font-family: var(--font-family-text);
-          font-size: 10px;
-          text-transform: uppercase;
+          @add-mixin font-xxs;
+          @add-mixin heading-font;
           color: var(--medium-gray);
-          letter-spacing: 0.08px;
-          font-weight: 700;
         }
         & .tooltip-data-value {
-          font-family: var(--font-family-text);
-          font-size: 16px;
-          letter-spacing: 0.08px;
-          font-weight: 700;
+          @add-mixin font-sm;
+          @add-mixin body-font;
         }
       }
     }

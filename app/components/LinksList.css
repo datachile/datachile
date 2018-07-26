@@ -1,10 +1,9 @@
+@import "../pages/mixins";
+
+/* accordion links; found at the top of products profiles */
 .links-list-container {
   & h5 {
-    color: var(--snow) !important;
-    font-size: 28px;
-    font-family: var(--font-family-title);
-    font-weight: 300;
-    text-transform: uppercase;
+    @add-mixin font-md;
   }
   & .links-list {
     max-height: 200px;
@@ -29,34 +28,15 @@
         width: 100%;
         padding: 30px 10px 0px 10px;
         text-align: center;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2f2f38+0,2f2f38+17,2f2f38+64&0+0,0.5+17,1+64 */
-        background: -moz-linear-gradient(
-          top,
-          rgba(47, 47, 56, 0) 0%,
-          rgba(47, 47, 56, 0.5) 17%,
-          rgba(47, 47, 56, 1) 64%
-        ); /* FF3.6-15 */
-        background: -webkit-linear-gradient(
-          top,
-          rgba(47, 47, 56, 0) 0%,
-          rgba(47, 47, 56, 0.5) 17%,
-          rgba(47, 47, 56, 1) 64%
-        ); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(
           to bottom,
           rgba(47, 47, 56, 0) 0%,
           rgba(47, 47, 56, 0.5) 17%,
           rgba(47, 47, 56, 1) 64%
-        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient(
-            startColorstr="#002f2f38",
-            endColorstr="#2f2f38",
-            GradientType=0
-          ); /* IE6-9 */
+        );
       }
       & a {
         color: var(--snow) !important;
-        text-transform: uppercase;
       }
       & a:hover {
         text-decoration: none;

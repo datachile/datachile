@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .result-item {
   background-color: var(--accent);
   color: snow;
@@ -39,23 +41,18 @@
     display: flex;
     flex-direction: column;
     & .name {
-      font-family: var(--font-family-title);
-      font-size: 12px;
+      @add-mixin font-xs;
+      @add-mixin heading-font;
       color: var(--snow);
-      font-weight: 300;
-      letter-spacing: 0.03px;
       text-transform: uppercase;
       z-index: var(--foreground);
       text-align: left;
       line-height: 1em;
     }
     & .type {
-      font-family: var(--font-family-text);
-      text-transform: uppercase;
-      font-weight: 300;
-      font-size: 9px;
+      @add-mixin font-xxs;
+      @add-mixin body-font;
       color: var(--snow);
-      letter-spacing: -0.38px;
     }
   }
 }

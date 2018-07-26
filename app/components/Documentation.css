@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .documentation {
   color: var(--light);
   text-align: justify;
@@ -18,7 +20,7 @@
     margin-bottom: 30px;
 
     & .method {
-      font-size: 18px;
+      @add-mixin font-sm;
       margin-bottom: 0px;
       padding: 10px 0px;
       line-height: 1.8;
@@ -44,8 +46,8 @@
     margin: 16px 0px;
 
     & .clarification {
+      @add-mixin font-xs;
       margin-top: 8px;
-      font-size: 0.9rem;
       font-style: italic;
       color: var(--darker-gray);
     }
@@ -76,12 +78,12 @@
       & td {
         border: 0px solid #fff !important;
         text-align: left;
+        /* font-size: 0.70rem; */
 
         & .code {
           color: #424F76;
           background-color: #fff;
         }
-        //font-size: 0.70rem;
       }
     }
   }
@@ -124,13 +126,13 @@
   }
 
   & .code {
+    @add-mixin font-xs;
     font-family: Consolas, Menlo, Courier New, monospace, serif;
     color: #f1f2f3;
-    //background-color: var(--pre-bg);
+    /* background-color: var(--pre-bg); */
     background-color: #424F76;
     padding: 4px 8px;
     border-radius: 5px;
-    font-size: 0.85em;
     overflow-x: scroll;
     &.left {
       text-align: left;
@@ -150,10 +152,10 @@
 }
 
 pre {
+  @add-mixin font-xs;
   background-color: #424F76;
-  //background-color: var(--pre-bg);
+  /* background-color: var(--pre-bg); */
   color: #f1f2f3;
-  font-size: 14px;
   width: 100%;
   padding: 0;
   margin: 0;

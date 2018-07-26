@@ -1,7 +1,6 @@
 @import "../pages/mixins";
 
 .home {
-  font-family: var(--font-family-text);
 
   & .home-content {
     lost-flex-container: row;
@@ -113,13 +112,10 @@
         }
 
         & .lead {
-          font-family: var(--font-family-text);
-          font-size: 1.25rem;
-          color: var(--snow);
-          letter-spacing: 0.05px;
           margin: 0.5em 0;
-          font-weight: 300;
           text-align: center;
+          color: var(--snow); /* override heading deafult */
+          text-shadow: 0 1px 1.5em rgba(0, 0, 0, 0.3);
         }
       }
 
@@ -133,14 +129,13 @@
 
   & .home-slider {
     lost-flex-container: column;
-    lost-center: 3/4;
+    lost-center: var(--width);
     position: relative;
     z-index: 1;
     margin: 0 auto;
     & .home-slide-item {
-      padding: 0 15px;
       /* lost-column: 1/6 6 0px; */
-      lost-column: 1/4 4 0px;
+      lost-column: 1/4 4 var(--gutter-half);
       & .home-slide-selected {
         display: block;
         height: 4px;
@@ -169,12 +164,8 @@
 
           /* label */
           & .home-slide-label {
-            font-family: var(--font-family-title);
-            font-weight: 300;
-            font-size: 12px;
+            @add-mixin font-xs;
             color: var(--snow);
-            letter-spacing: 0.24px;
-            text-transform: uppercase;
             line-height: 1em;
             /* transitions */
             opacity: 0.75;
@@ -204,11 +195,9 @@
           }
         }
         & .link {
+          @add-mixin font-xxs;
           height: auto;
-          font-family: var(--font-family-text);
-          font-size: 10px;
-          letter-spacing: 0.09px;
-          text-transform: uppercase;
+          @add-mixin body-font;
           padding: 0 15px var(--gutter) 15px;
           &:hover {
             color: var(--snow);
@@ -224,49 +213,42 @@
     }
   }
 
+  /* about block */
   & .home-text {
     lost-flex-container: column;
-    lost-center: 3/4;
+    lost-center: var(--width);
     margin: var(--gutter) auto;
     & .l-col,
     & .r-col {
-      lost-column: 1/2;
+      lost-column: 1/2 2 3.5em;
       margin-bottom: var(--gutter);
       text-align: center;
-      padding: 0 var(--gutter);
     }
     & img {
       display: block;
       margin: 0 auto;
       width: 90%;
+      max-width: 19rem;
     }
     & h2 {
-      font-family: var(--font-family-title);
-      font-size: 20px;
-      text-transform: uppercase;
       color: var(--accent);
-      font-weight: 300;
-      line-height: 1.2em;
       margin-bottom: var(--gutter);
-      letter-spacing: 3px;
     }
     & .l-col h2 {
       max-width: 190px;
       margin-left: auto;
       margin-right: auto;
     }
+    /* about text */
     & p {
-      font-family: var(--font-family-text);
-      font-size: 16px;
-      color: var(--snow);
-      font-weight: 300;
-      letter-spacing: 0.5px;
+      @add-mixin font-md;
+      @add-mixin font-smoothing;
+      color: var(--darker-gray);
       text-align: left;
+      /* highlights */
       & span {
-        color: var(--accent);
-        font-size: 18px;
-        font-weight: 800;
-        letter-spacing: 0.8px;
+        @add-mixin body-font-bold;
+        font-size: inherit;
       }
     }
   }
@@ -285,28 +267,22 @@
     & h2 {
       text-align: center;
       lost-column: 1;
-      font-family: var(--font-family-title);
-      font-size: 20px;
-      text-transform: uppercase;
       color: var(--accent);
-      font-weight: 300;
-      line-height: 1.2em;
       margin-bottom: var(--gutter);
-      letter-spacing: 3px;
     }
     & .home-section-title-img {
       lost-column: 1;
       text-align: center;
       margin: calc(var(--gutter)/2) auto;
       & img {
-        height: 20px;
+        height: 1.5rem;
       }
     }
   }
 
   & .home-featured-profiles {
     lost-flex-container: column;
-    lost-center: 3/4;
+    lost-center: var(--width);
     margin: var(--gutter) auto var(--gutter) auto;
     & .home-profile-carousels-container {
       lost-flex-container: row;
@@ -327,26 +303,35 @@
 
   & .home-sources {
     lost-flex-container: column;
-    lost-center: 3/4;
+    lost-center: var(--width);
     margin: var(--gutter) auto var(--gutter) auto;
     & .dataset-list {
       lost-flex-container: row;
       lost-column: 1;
       margin-bottom: var(--gutter);
+      margin-top: calc(0 - var(--gutter));
+
+      & .l-col,
+      & .r-col {
+        lost-column: 1/2 2 3.5em;
+      }
+
       & .l-col {
-        lost-column: 1/2;
         & span {
           text-align: right;
         }
-      }
-      & .r-col {
-        lost-column: 1/2;
+
+        /* add in border on small screens */
+        @add-mixin for-sm {
+          & .dataset:last-of-type {
+            border-bottom: 1px solid var(--accent);
+          }
+        }
       }
     }
 
     & .dataset {
-      padding: calc(var(--gutter)/2) 0px;
-      margin: 0 15px;
+      padding: var(--gutter-half) 0;
 
       /* add border, but not to the last one */
       &:not(:last-of-type) {
@@ -357,20 +342,14 @@
         display: block;
         width: 100%;
 
+        /* source title */
         &.name {
-          font-family: var(--font-family-title);
           color: var(--snow);
-          text-transform: uppercase;
-          font-weight: 300;
-          font-size: 12px;
           margin-bottom: 5px;
-          letter-spacing: 0.1em;
         }
         &.source {
-          color: var(--accent);
-          font-family: var(--font-family-title);
-          font-size: 14px;
-          font-weight: 300;
+          @add-mixin font-xxs;
+          color: var(--gray-light);
         }
       }
     }
@@ -382,7 +361,10 @@
 
 @add-mixin for-lg {
   .home {
-    & .home-featured-profiles {
+    & .home-featured-profiles,
+    & .home-slider,
+    & .home-text,
+    & .home-sources {
       lost-column: 1 1;
       margin-top: 0; /* override lost */
       padding: 0 var(--gutter);

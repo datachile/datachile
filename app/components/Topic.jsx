@@ -44,10 +44,10 @@ class Topic extends Component {
       <div className="topic-block">
         <span id={id} className="topic-anchor-link" />
         <div className="topic-header">
-          <div className="topic-title">
-            <h2>
+          <div className="topic-heading">
+            <h2 className="font-xxl">
               {name}
-              <span className="small">
+              <span className="font-lg subhead">
                 <span className="pipe">|</span>
                 {selectedSection.name}
               </span>

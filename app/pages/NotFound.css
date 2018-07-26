@@ -1,5 +1,11 @@
+@import "./mixins";
+
 .not-found.profile {
   & .intro  {
+    /* hide redundant heading */
+    & h1 [aria-hidden=true] {
+      display: none;
+    }
     & .splash {
       & .image {
         background-image: url("/images/profile-bg/not_found.jpg");
@@ -13,24 +19,11 @@
         margin: var(--gutter) 0 calc(var(--gutter)*10) 0;
       }
       & .text-container {
-        margin: calc(var(--gutter)*2) 0 var(--gutter) 0;
+        margin-top: var(--gutter);
+        margin-top: var(--gutter-half);
         lost-column: 1/2;
         lost-offset: 1/4;
-        & h2 {
-          font-family: var(--font-family-text);
-          font-size: 20px;
-          color: var(--snow);
-          font-weight: 700;
-          text-align: center;
-        }
-        & p {
-          font-family: var(--font-family-text);
-          font-size: 18px;
-          color: var(--snow);
-          letter-spacing: 0.05px;
-          font-weight: 300;
-          text-align: center;
-        }
+        text-align: center;
       }
     }
   }

@@ -75,7 +75,7 @@ class FeaturedDatumSplash extends Component {
             </div>
           )}
           {level && (
-            <div className="featured-datum-splash-level">
+            <div className="featured-datum-splash-level tag font-xxs">
               {t(`${level}.warning`, name)}
             </div>
           )}

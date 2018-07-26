@@ -48,17 +48,16 @@
     }
   }
   & #svg-map-tooltip {
+    @add-mixin font-xs;
     transform: scale(0);
     position: absolute;
     z-index: 100;
     pointer-events: none;
-
     text-align: center;
     padding: 10px;
-    font-size: 12px;
     background: var(--snow);
     border: 1px solid var(--dark);
-    font-family: var(--font-family-text);
+    @add-mixin body-font;
     color: var(--dark);
   }
 }

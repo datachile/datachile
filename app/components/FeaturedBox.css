@@ -10,8 +10,6 @@
   position: relative;
   min-height: 150px;
   color: var(--snow);
-  font-size: 16px;
-  font-weight: 600;
   text-align: center;
   text-decoration: none;
   overflow: hidden;
@@ -40,11 +38,6 @@
 
     & .type {
       z-index: var(--foreground);
-      font-family: var(--font-family-text);
-      text-transform: uppercase;
-      font-weight: 300;
-      font-size: 7px;
-      letter-spacing: 1px;
     }
   }
 
@@ -57,15 +50,8 @@
     padding: var(--gutter-half);
 
     & .name {
-      font-family: var(--font-family-title);
-      font-size: 12px;
-      color: var(--snow);
-      font-weight: 300;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      z-index: var(--foreground);
       text-align: left;
-      line-height: 1em;
+      z-index: var(--foreground);
     }
     & .icon-container {
       background-color: var(--snow);

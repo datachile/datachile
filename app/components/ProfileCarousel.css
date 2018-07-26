@@ -8,19 +8,7 @@
 
   & .profile-carousel-title {
     lost-column: 1 1;
-    font-family: var(--font-family-text);
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 16px;
     text-align: center;
-    letter-spacing: 0.1em;
-    line-height: 1em;
-    margin: 0 auto var(--gutter-half) auto;
-
-    /* featured color */
-    &.color-star {
-      color: var(--snow);
-    }
 
     & .profile-carousel-title-icon {
       display: inline-block;

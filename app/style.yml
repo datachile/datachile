@@ -42,10 +42,9 @@ section-article-small: "300px"
 
 nav-height: "60px"
 
-font-family: "Gilroy"
-section-title-family: "Gilroy, sans-serif"
-font-family-title: "Gilroy, sans-serif"
-font-family-text: "Roboto, Helvetica Neue, Helvetica, Arial, sans-serif"
+heading-font: "'Source Sans Pro', Source Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+body-font: "'Roboto', Helvetica Neue, Helvetica, Arial, sans-serif"
+visualization-font: "'Roboto Condensed', Source Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
 
 background: "-10"
 foreground: "10"
