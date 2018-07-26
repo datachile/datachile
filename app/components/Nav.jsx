@@ -87,7 +87,7 @@ class Nav extends Component {
     var location = canUseDOM ? window.location : this.props.location;
 
     var url = location.origin.replace(locale, otherLang) + location.pathname;
-    var hideLogo = location.pathname === "/";
+    var isHomePage = location.pathname === "/";
 
     if (canUseDOM) {
       const nodeSide = select(".search-sidebar input").node();
@@ -123,14 +123,31 @@ class Nav extends Component {
             ref={this.refSubNav}
           >
             <div className="button-set-container">
-              <div className="close-btn-container">
-                <a onClick={this.toggleSubNav}>
-                  <img src="/images/icons/icon-close.svg" />
-                </a>
+              <a
+                className="menu-close-btn"
+                onClick={this.toggleSubNav}
+              >
+                <img src="/images/icons/icon-close.svg" />
+              </a>
+              { isHomePage ?
+                <div className="home-link is-active">
+                  <img
+                    className="home-link-img"
+                    src="/images/logos/logo-dc-beta-small.svg"
+                    alt=""
+                  />
               </div>
+                : <Link className="home-link" to="/">
+                  <img
+                    className="home-link-img"
+                    src="/images/logos/logo-dc-beta-small.svg"
+                    alt="home"
+                  />
+                </Link>
+              }
               <div className="lang-selector">
                 <span className="lang current">{locale}</span>
-                {" | "}
+                |
                 <a className="lang other" href={url}>
                   {otherLang}
                 </a>
@@ -139,57 +156,96 @@ class Nav extends Component {
             <div className={`search-nav-wrapper`}>
               <Search className="search-nav search-sidebar" />
             </div>
-            <ul>
-              <li className="title">{t("Profiles")}</li>
-              <li className="link">
-                <Link to="/explore/geo">{t("Regions & Comunas")}</Link>
+
+            <h2 className="u-visually-hidden">Navigation</h2>
+
+            {/* profile nav */}
+            <h3 className="subnav-subtitle font-sm">{t("Profiles")}</h3>
+            <ul className="subnav-list">
+              <li className="subnav-item">
+                <Link
+                  className="subnav-link subhead border-geo color-geo-hover"
+                  to="/explore/geo"
+                >
+                  {t("Regions & Comunas")}
+                </Link>
               </li>
-              <li className="link">
-                <Link to="/explore/countries">{t("Countries")}</Link>
+              <li className="subnav-item">
+                <Link
+                  className="subnav-link subhead border-countries color-countries-hover"
+                  to="/explore/countries"
+                >
+                  {t("Countries")}
+                </Link>
               </li>
-              <li className="link">
-                <Link to="/explore/products">{t("Products")}</Link>
+              <li className="subnav-item">
+                <Link
+                  className="subnav-link subhead border-products color-products-hover"
+                  to="/explore/products"
+                >
+                  {t("Products")}
+                </Link>
               </li>
-              <li className="link">
-                <Link to="/explore/industries">{t("Industries")}</Link>
+              <li className="subnav-item">
+                <Link
+                  className="subnav-link subhead border-industries color-industries-hover"
+                  to="/explore/industries"
+                >
+                  {t("Industries")}
+                </Link>
               </li>
-              <li className="link link-soon">
-                <Link to="">
+              <li className="subnav-item link-soon">
+                <div className="subnav-link subhead" to="">
                   {t("Careers")}
                   <ComingSoon />
-                </Link>
+                </div>
               </li>
-              <li className="link link-soon">
-                <Link to="">
+              <li className="subnav-item link-soon">
+                <div className="subnav-link subhead" to="">
                   {t("Institutions")}
                   <ComingSoon />
-                </Link>
+                </div>
               </li>
-              <li className="link link-soon">
-                <Link to="">
+              <li className="subnav-item link-soon">
+                <div className="subnav-link subhead" to="">
                   {t("Map")}
                   <ComingSoon />
+                </div>
+              </li>
+            </ul>
+
+
+            {/* sitewide nav */}
+            <h3 className="subnav-subtitle font-sm">{t("About")}</h3>
+            <ul className="subnav-list">
+              <li className="subnav-item">
+                <Link className="subnav-link subhead" to="/about">
+                  {t("About DataChile")}
                 </Link>
               </li>
-              <li className="title">
-                <Link to="/about">{t("About DataChile")}</Link>
-              </li>
-              {topics &&
-                topics.length > 0 && <li className="title">{t("Topics")}</li>}
             </ul>
+
+
+            {/* subnav */}
+            {topics && <h3 className="subnav-subtitle font-sm">{t("Topics")}</h3>}
+
           </SubNav>
 
           <div className="nav-container">
             <div className="l-col menu-button">
-              <a onClick={this.toggleSubNav}>
+              <a
+                className="menu-open-btn"
+                onClick={this.toggleSubNav}
+              >
+                <span className="u-visually-hidden">main menu and search</span>
                 <img src="/images/icons/icon-menu.svg" />
               </a>
             </div>
 
             <div className="c-col">
-              {!hideLogo && (
+              {!isHomePage && (
                 <Link className="logo" to="/">
-                  <img src="/images/logos/logo-dc-beta-small.svg" />
+                  <img src="/images/logos/logo-dc-beta-small.svg" alt="home" />
                 </Link>
               )}
             </div>
@@ -215,7 +271,7 @@ class Nav extends Component {
                   className="nav-search-toggle toggle-input"
                   onClick={this.toggleSearch}
                 >
-                  <span className="nav-search-label">{t("SearchLabel")}</span>
+                  <span className="nav-search-label label font-xs">{t("SearchLabel")}</span>
                   <img
                     className="nav-search-icon"
                     src={`/images/icons/${search_icon}.svg`}

@@ -46,12 +46,11 @@
     }
 
     & .menu-button {
-      & a {
+      & .menu-open-btn {
         display: block;
         width: 22px;
         transition: opacity 0.2s;
         opacity: 0.8;
-        text-decoration: none;
 
         &:hover {
           text-decoration: none;
@@ -79,12 +78,6 @@
         /* positioning */
         line-height: 4; /* vertically align with menu toggle */
         margin: 0.75em;
-        /* typography */
-        color: var(--snow);
-        @add-mixin heading-font;
-        font-size: 0.875em;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
         /* transitions */
         opacity: 0.75;
         transition: opacity 0.3s ease;
@@ -96,6 +89,7 @@
 
         & .nav-search-label {
           opacity: 1;
+          color: var(--snow); /* blueprint override */
         }
       }
     }
@@ -136,18 +130,6 @@
           & .separator {
             display: none;
           }
-
-          & a {
-            cursor: pointer;
-            margin: 0px;
-            opacity: 0.8;
-            text-decoration: none;
-            transition: opacity 0.2s;
-            color: var(--snow);
-            &:hover {
-              opacity: 1;
-            }
-          }
         }
 
         & .icon-container {
@@ -172,27 +154,58 @@
 
 .nav .subnav {
   z-index: 100;
-  padding: 10px 16px;
+  padding: calc(var(--gutter) * 0.75) var(--gutter);
   width: 100%;
   color: var(--snow);
   background-color: var(--footer-bg);
-  max-width: 370px;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.25);
+  /* transitions */
+  will-change: opacity, transform;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.3s ease-out;
+
+  &.hidden {
+    left: 0; /* override canon */
+    opacity: 0;
+    transform:
+      translateX(-100%)
+      rotateY(140deg);
+  }
+
+  /* sidebar layout on bigger screens */
+  @media (min-width: 600px) {
+    max-width: 28rem;
+  }
 
   & .button-set-container {
     display: flex;
     flex-direction: row;
-    padding: 10px;
+    align-items: center;
+    margin-bottom: 1.5rem;
   }
 
-  & .close-btn-container {
-    flex: 1 auto;
+  & .menu-close-btn {
+    display: inline-block;
+    padding: 0;
+    margin-right: 1em;
+    width: 22px;
+  }
 
-    & a,
-    & img {
-      display: block;
+  & .home-link {
+    flex: 1 0 auto;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+
+    &:hover,
+    &:focus,
+    &.is-active {
+      opacity: 1;
     }
-    & a {
-      padding: 10px;
+
+    & .home-link-img {
+      width: 6rem;
+      max-width: 100%;
     }
   }
 
@@ -200,15 +213,13 @@
     @add-mixin font-xs;
     @add-mixin body-font;
     line-height: 42px;
-    text-transform: uppercase;
+    margin-left: auto;
 
     & .lang {
       display: inline-block;
-      margin: 0 2px;
-      padding: 0 10px;
+      padding: 0 0.5em;
       text-decoration: none;
       color: inherit;
-      cursor: pointer;
 
       &.current,
       &:hover {
@@ -233,50 +244,68 @@
     }
   }
 
-  & > ul {
+  & .subnav-subtitle {
+    @add-mixin font-uppercase;
+    margin-top: 2em;
+  }
+
+  & .subnav-list,
+  & ul {
     @add-mixin font-xs;
     list-style: none;
     padding: 0;
-    margin: 0 10px;
+    margin: 0;
     @add-mixin body-font;
     line-height: 18px;
     text-transform: uppercase;
     color: var(--snow);
 
-    & li {
-      margin: 2px 0;
-
-      & a {
-        color: inherit;
-      }
-    }
-
-    & li.title {
-      padding-top: 15px;
-      color: var(--gray);
-    }
-
-    & li.link a,
-    & li.topic a {
-      display: block;
-      padding: 3px 0;
-      padding-left: 16px;
+    & a,
+    & .subnav-link {
+      /* typography */
+      @add-mixin heading-font;
+      @add-mixin font-smoothing;
+      @add-mixin font-uppercase;
       text-decoration: none;
-      opacity: 0.8;
-      transition: opacity 0.2s;
-      cursor: pointer;
+      /* sizing */
+      display: block;
+      line-height: 2;
+      /* border */
+      border-left-width: 4px;
+      border-left-style: solid;
+      padding-left: 0.75em;
+      /* fudge into place */
+      margin-left: 1px;
+      /* transitions */
+      opacity: 0.75;
+      transition:
+        opacity 0.15s ease-out,
+        border 0.15s ease-out,
+        color 0.15s ease-out;
 
-      &:hover {
-        opacity: 1;
+      /* white border & text color if no theme applied */
+      &:not([class*=border]) {
+        border-color: var(--pre-bg);
+        color: var(--snow);
+
+        &:hover, &:focus {
+          border-color: var(--gray-dark);
+        }
+      }
+
+      /* hover effect */
+      &:not(.link-soon) {
+        &:hover, &:focus {
+          opacity: 1;
+        }
       }
     }
 
-    & li.link.link-soon,
-    & li.title.link-soon {
-      & a {
-        opacity: 0.3;
-        cursor: not-allowed;
-      }
+    /* coming soon...? */
+    & .link-soon {
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -1;
     }
   }
 }
@@ -396,19 +425,13 @@
   .nav {
     & .nav-container {
       & .nav-search-container {
-        padding-left: 40px;
       }
     }
 
     & .subnav {
-      padding: 16px;
 
       & .nav-search-wrapper {
         padding: 0 var(--gutter-half);
-      }
-
-      & > ul {
-        margin: 0 16px;
       }
     }
   }

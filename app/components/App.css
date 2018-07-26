@@ -108,6 +108,11 @@ small, .font-xxs { @add-mixin font-xxs; }
   .color-$(theme) {
     color: var(--color-$(theme));
   }
+  .color-$(theme)-hover {
+    &:hover, &:focus {
+      color: var(--color-$(theme));
+    }
+  }
   .border-$(theme) {
     border-color: var(--color-$(theme));
   }
@@ -283,4 +288,5 @@ table.tooltip-table {
 .u-btn-reset {
   background: none;
   border: none;
+  padding: 0;
 }
