@@ -414,9 +414,11 @@ class GeoProfile extends Component {
 
     // truncate & add ellipses if necessary
     let titleTruncated = null;
-    if (geo.caption.length > 40) {
-      titleTruncated = geo.caption.slice(0, 40);
-      titleTruncated += "…";
+    if (geo) {
+      if (geo.caption.length > 40) {
+        titleTruncated = geo.caption.slice(0, 40);
+        titleTruncated += "…";
+      }
     }
 
     let opengraphImage = (geoObj.image || "").replace(
@@ -649,8 +651,6 @@ class GeoProfile extends Component {
                             );
                           },
                           bodyStyle: {
-                            "font-family": "Roboto, Arial, sans-serif",
-                            "font-size": "12px",
                             "text-align": "center",
                             color: "#2F2F38"
                           },

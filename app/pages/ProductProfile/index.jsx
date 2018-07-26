@@ -435,9 +435,11 @@ class ProductProfile extends Component {
 
     // truncate & add ellipses if necessary
     let titleTruncated = null;
-    if (obj.caption.length > 40) {
-      titleTruncated = obj.caption.slice(0, 40);
-      titleTruncated += "…";
+    if (obj) {
+      if (obj.caption.length > 40) {
+        titleTruncated = obj.caption.slice(0, 40);
+        titleTruncated += "…";
+      }
     }
 
     return (

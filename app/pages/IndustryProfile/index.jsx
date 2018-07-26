@@ -236,9 +236,11 @@ class IndustryProfile extends Component {
 
     // truncate & add ellipses if necessary
     let titleTruncated = null;
-    if (industry.caption.length > 40) {
-      titleTruncated = industry.caption.slice(0, 40);
-      titleTruncated += "…";
+    if (industry) {
+      if (industry.caption.length > 40) {
+        titleTruncated = industry.caption.slice(0, 40);
+        titleTruncated += "…";
+      }
     }
 
     return (

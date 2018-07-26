@@ -52,7 +52,6 @@ class Nav extends Component {
       t,
       i18n,
       title,
-      fullTitle,
       type,
       typeTitle,
       ancestor,
@@ -61,6 +60,8 @@ class Nav extends Component {
       topics,
       dark
     } = this.props;
+
+    let { fullTitle } = this.props;
 
     const locale = i18n.language;
 
@@ -108,6 +109,9 @@ class Nav extends Component {
     }
 
     const darkClass = dark ? "nav-dark" : "";
+
+    // catch for missing fullTitle (i.e., NotFound.jsx)
+    !fullTitle ? (fullTitle = title) : null;
 
     return (
       <div id="navs-container">
