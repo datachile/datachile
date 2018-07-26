@@ -186,9 +186,8 @@ table.tooltip-table {
 /* buttons */
 .btn {
   /* typography */
-  @add-mixin font-xs;
-  font-family: var(--font-family-title);
-  text-transform: uppercase;
+  @add-mixin heading-font;
+  @add-mixin font-uppercase;
   text-align: center;
   /* sizing */
   padding: 1.125em 2.25em;
@@ -213,6 +212,7 @@ table.tooltip-table {
 
   /* icon */
   & .btn-icon {
+    font-size: inherit;
     position: relative;
     /* icon offset */
     left: 0.125em;

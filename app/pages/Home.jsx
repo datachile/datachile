@@ -259,7 +259,7 @@ class Home extends Component {
 
                 {/* explore link */}
                 <div className="home-btn-container u-text-center">
-                  <Link className="btn" to="/explore/geo">
+                  <Link className="btn font-sm" to="/explore/geo">
                     {t("Explore profiles")}
                     <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
                   </Link>
@@ -438,7 +438,7 @@ class Home extends Component {
 
                   {/* more link */}
                   <div className="home-btn-container u-text-center">
-                    <Link className="btn" to="/about/data">
+                    <Link className="btn font-xxs" to="/about/data">
                       {t("See more")}
                       <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
                     </Link>
