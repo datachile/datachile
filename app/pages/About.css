@@ -109,7 +109,7 @@
       color: var(--darker-gray);
       & img.icon {
         width: 15px;
-        position: relative;
+      
         margin-bottom: -4px;
       }
       & a {

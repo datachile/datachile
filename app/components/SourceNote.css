@@ -2,8 +2,8 @@
 
 .source-note {
   @add-mixin font-xxs;
-  padding: calc(var(--gutter)/2) calc(var(--gutter)/2);
   @add-mixin body-font;
+
   & .source-note-txt {
     margin-right: 5px;
   }
@@ -13,11 +13,5 @@
     $:hover {
       text-decoration: underline;
     }
-  }
-}
-
-@add-mixin for-sm {
-  .source-note {
-    padding: calc(var(--gutter)/2) 0;
   }
 }

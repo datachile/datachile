@@ -2,7 +2,7 @@
 
 .datasets {
   @add-mixin font-xs;
-  position: relative;
+
   /* border: 1px solid #fff; */
   & table {
     & thead,

@@ -154,7 +154,7 @@ class Home extends Component {
                   <h1 className="title">
                     <img
                       title="DataChile"
-                      src="/images/logos/logo-dc-beta-small.svg"
+                      src="/images/logos/datachile-beta-navbar.svg"
                       alt="DataChile"
                     />
                     <Link

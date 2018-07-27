@@ -1,7 +1,7 @@
 @import "../pages/mixins";
 
 .search-component {
-  position: relative;
+
   z-index: var(--cover);
   width: 100%;
 
@@ -17,7 +17,6 @@
 
     & input {
       @add-mixin font-sm;
-      box-sizing: border-box;
       display: block;
       padding: 10px 50px;
       width: 100%;

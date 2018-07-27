@@ -1,5 +1,9 @@
 @import "../pages/mixins";
 
+.home-header {
+  @add-mixin absolute-expand;
+}
+
 .dynamic-home-header {
   /* sizing */
   width: 100%;
@@ -8,6 +12,7 @@
   position: absolute;
   bottom: 0;
   left: 0; /* IE fix */
+  z-index: 1;
 
   /* main image container */
   & .dynamic-home-image {
@@ -17,6 +22,8 @@
       /* sizing */
       width: 100%;
       max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
 
       & .dynamic-home-hotspots,
       & .dynamic-home-illustration {

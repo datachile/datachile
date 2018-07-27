@@ -133,14 +133,14 @@ class Nav extends Component {
                 <div className="home-link is-active">
                   <img
                     className="home-link-img"
-                    src="/images/logos/logo-dc-beta-small.svg"
+                    src="/images/logos/datachile-beta-navbar.svg"
                     alt=""
                   />
               </div>
                 : <Link className="home-link" to="/">
                   <img
                     className="home-link-img"
-                    src="/images/logos/logo-dc-beta-small.svg"
+                    src="/images/logos/datachile-beta-navbar.svg"
                     alt="home"
                   />
                 </Link>
@@ -153,6 +153,7 @@ class Nav extends Component {
                 </a>
               </div>
             </div>
+
             <div className={`search-nav-wrapper`}>
               <Search className="search-nav search-sidebar" />
             </div>
@@ -227,25 +228,24 @@ class Nav extends Component {
 
 
             {/* subnav */}
-            {topics && <h3 className="subnav-subtitle font-sm">{t("Topics")}</h3>}
-
+            {topics &&
+              <h3 className="subnav-subtitle font-sm">{t("Topics")}</h3>
+            }
           </SubNav>
 
           <div className="nav-container">
-            <div className="l-col menu-button">
-              <a
-                className="menu-open-btn"
-                onClick={this.toggleSubNav}
-              >
-                <span className="u-visually-hidden">main menu and search</span>
-                <img src="/images/icons/icon-menu.svg" />
-              </a>
-            </div>
-
-            <div className="c-col">
+            <div className="l-col">
+              {/* menu toggle */}
+              <div className="menu-button">
+                <a className="menu-open-btn" onClick={this.toggleSubNav}>
+                  <span className="u-visually-hidden">main menu and search</span>
+                  <img src="/images/icons/icon-menu.svg" />
+                </a>
+              </div>
+              {/* logo */}
               {!isHomePage && (
                 <Link className="logo" to="/">
-                  <img src="/images/logos/logo-dc-beta-small.svg" alt="home" />
+                  <img src="/images/logos/datachile-beta-navbar.svg" alt="home" />
                 </Link>
               )}
             </div>

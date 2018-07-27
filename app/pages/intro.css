@@ -7,10 +7,9 @@
   & .intro {
     color: var(--snow);
     margin: 0 auto;
-    position: relative;
+
     width: 100%;
-    min-height: 80vh;
-    overflow: hidden;
+    min-height: calc(100vh - 9rem);
 
     /* hero image */
     & .splash {
@@ -65,7 +64,6 @@
 
     /* Geo profile only; splash stats with icons on the left */
     & .meta {
-      box-sizing: border-box;
       display: inline-block;
       lost-column: 1/3 flex;
       vertical-align: top;
@@ -97,7 +95,7 @@
     & .map-comuna {
       lost-column: 1/3 flex;
       pointer-events: all;
-      position: relative;
+
       padding-right: 5%;
     }
 

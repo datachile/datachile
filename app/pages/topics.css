@@ -3,7 +3,11 @@
 .topic-block {
   background-color: var(--near-black);
   color: var(--snow);
-  padding: var(--gutter-half) 0 var(--gutter) 0;
+  padding:
+    var(--gutter-half)
+    var(--gutter)
+    var(--gutter)
+    var(--gutter);
   lost-utility: clearfix;
 
   & + .topic-block,
@@ -13,12 +17,12 @@
 
   & .topic-anchor-link {
     bottom: 40px;
-    position: relative;
+
   }
   & .topic-header {
     & .topic-heading {
       lost-flex-container: row;
-      margin: var(--gutter) var(--gutter) 0 var(--gutter);
+      margin-top: var(--gutter);
       lost-utility: clearfix;
       & h2 {
         margin-bottom: 0px;
@@ -39,12 +43,12 @@
   }
   & .topic-slide-block {
     & section.section {
+      padding: 0; /* canon override */
       & .columns {
         flex-direction: row;
       }
     }
     & .topic-slide-intro {
-      margin: 0 var(--gutter);
       lost-flex-container: row;
 
       & .topic-slide-title {
@@ -103,12 +107,12 @@
     & .chart-title {
       @add-mixin font-sm;
       color: var(--snow);
-      padding: 0 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     & .viz {
+      margin: 0; /* canon override */
       min-height: 500px;
     }
     & .trade-balance {
@@ -119,9 +123,7 @@
     & .chart-text {
       @add-mixin font-xs;
       @add-mixin body-font;
-      padding: 0 15px;
       color: var(--snow);
-
       margin-bottom: 5px;
     }
     & .footnote {
@@ -237,7 +239,6 @@
   .topic-block {
     & .topic-header {
       & .topic-heading {
-        margin: var(--gutter-half) var(--gutter-half) 0 var(--gutter-half);
 
         & .topic-slider-bullets {
           lost-column: 1 flex;
@@ -258,7 +259,6 @@
         margin: calc(var(--gutter) / 2) 0;
       }
       & .topic-slide-intro {
-        margin: 0 calc(var(--gutter) / 2);
         & .topic-slide-title {
         }
         & .topic-slide-text {

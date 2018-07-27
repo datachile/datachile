@@ -3,7 +3,7 @@
 .export-link {
   @add-mixin font-xs;
   @add-mixin body-font;
-  position: relative;
+
   line-height: 1.5;
   text-align: center;
   text-transform: uppercase;

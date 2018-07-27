@@ -1,9 +1,9 @@
 @import "../mixins";
 
 .explore-map-page {
-  position: relative;
+
   & .explore-map-container {
-    position: relative;
+  
     & .explore-map-section {
       lost-flex-container: row;
       & .explore-map-sidebar {
@@ -21,7 +21,7 @@
       & .explore-map-content {
         lost-column: 3/4;
         background: #434756;
-        position: relative;
+      
         lost-flex-container: column;
         padding: calc(var(--gutter)/2) calc(var(--gutter));
 

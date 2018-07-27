@@ -27,7 +27,6 @@ footer {
   }
 
   & .collaboration {
-    box-sizing: border-box;
     padding: var(--gutter) 0px;
 
     & .logos {

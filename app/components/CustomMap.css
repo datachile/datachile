@@ -1,5 +1,5 @@
 .geomap {
-  position: relative;
+
 
   /* fudge total into place */
   & .d3plus-viz-total {

@@ -146,3 +146,23 @@
   left: 50%;
   transform: translate(-50%, 0);
 }
+
+
+/* COMPONENTS mixins */
+
+/* logo; apply to link container img */
+@define-mixin nav-logo {
+  /* sizing */
+  display: block; /* needed for inner img to honor width */
+  width: 96px;
+  /* override blueprint */
+  text-decoration: none;
+  /* transitions */
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+
+  /* interactions */
+  &:hover, &:focus {
+    opacity: 1;
+  }
+}

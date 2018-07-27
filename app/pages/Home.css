@@ -13,7 +13,7 @@
 
   & .splash {
     /* positioning */
-    position: relative; /* necessary for image placement */
+   /* necessary for image placement */
     z-index: 2; /* necessary for tooltip z-index managment */
     /* sizing */
     padding: 20vh 0 30vh 0; /* padding relative to viewport on small screens */
@@ -83,7 +83,7 @@
       & .text {
         padding: 0px var(--gutter);
         & .title {
-          position: relative;
+
           margin: 0px;
           margin-right: -30px;
           & img {
@@ -122,7 +122,7 @@
   & .home-slider {
     lost-flex-container: column;
     lost-center: var(--width);
-    position: relative;
+
     z-index: 1;
     margin: 0 auto;
     & .home-slide-item {
@@ -242,13 +242,6 @@
         @add-mixin body-font-bold;
         font-size: inherit;
       }
-    }
-  }
-
-  & .home-header {
-    & h1 {
-      text-align: center;
-      color: var(--snow);
     }
   }
 

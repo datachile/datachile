@@ -9,13 +9,13 @@
     max-height: 200px;
     overflow: hidden;
     padding-left: 0px;
-    position: relative;
+
     transition: max-height 0.5s ease;
     &.open-list {
       max-height: 10000px;
       & li {
         &.see-more {
-          position: relative;
+
           padding: 10px;
         }
       }

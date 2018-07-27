@@ -26,17 +26,13 @@
       padding: var(--gutter) 0 0;
     }
 
-    & .c-col {
-      flex: 0 0 auto;
-      padding: 21px 0 0;
-      text-align: center;
-
-      & .logo {
-        display: block;
-        width: 112px;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
+    /* logo link */
+    & .logo {
+      @add-mixin nav-logo;
+      /* positioning */
+      position: absolute;
+      top: 23px;
+      left: 36px;
     }
 
     & .r-col {
@@ -69,7 +65,6 @@
         vertical-align: middle;
         width: 24px;
         /* fudge into place */
-        position: relative;
         top: -1px;
       }
 
@@ -183,6 +178,7 @@
     flex-direction: row;
     align-items: center;
     margin-bottom: 1.5rem;
+    top: -1px; /* fudge into place */
   }
 
   & .menu-close-btn {
@@ -193,19 +189,19 @@
   }
 
   & .home-link {
+    @add-mixin nav-logo;
+    /* positioning */
     flex: 1 0 auto;
-    opacity: 0.75;
-    transition: opacity 0.2s ease;
 
-    &:hover,
-    &:focus,
+    /* if home page */
     &.is-active {
       opacity: 1;
     }
 
+    /* sizing is fussy because of flex */
     & .home-link-img {
-      width: 6rem;
-      max-width: 100%;
+      width: 96px;
+      min-width: 96px;
     }
   }
 
@@ -250,7 +246,7 @@
   }
 
   & .subnav-list,
-  & ul {
+  & > ul {
     @add-mixin font-xs;
     list-style: none;
     padding: 0;
@@ -260,7 +256,7 @@
     text-transform: uppercase;
     color: var(--snow);
 
-    & a,
+    & > a,
     & .subnav-link {
       /* typography */
       @add-mixin heading-font;
@@ -315,16 +311,6 @@
 
 @add-mixin from-xs {
   .nav {
-    & .nav-container {
-      & .c-col {
-        padding: 11px 0 0;
-
-        & .logo {
-          width: 150px;
-        }
-      }
-    }
-
     & .subnav {
       width: 370px;
     }
@@ -334,17 +320,8 @@
 @add-mixin from-sm {
   .nav {
     & .nav-container {
-      & .c-col {
-        padding: 11px 0 0;
-
-        & .logo {
-          width: 170px;
-        }
-      }
-
       & .r-col {
         padding: 20px 0 0;
-        position: relative;
       }
 
       & .nav-search-toggle.toggle-nav {

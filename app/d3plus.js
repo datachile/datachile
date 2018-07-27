@@ -1,6 +1,8 @@
+import styles from "style.yml";
+
 const axisConfig = {
   barConfig: {
-    stroke: "#fff",
+    stroke: styles.snow,
     "stroke-width": 1
   },
   gridConfig: {
@@ -8,20 +10,20 @@ const axisConfig = {
     "stroke-width": 0.5
   },
   shapeConfig: {
-    fill: "#fff",
+    fill: styles.snow,
     labelConfig: {
-      fontColor: "#fff",
+      fontColor: styles.snow,
       fontFamily: () => "Roboto Condensed",
       fontMax: 18,
       fontSize: () => 12,
       fontWeight: 300
     },
-    stroke: "#fff"
+    stroke: styles.snow
   },
   tickSize: 4,
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
-    fontColor: "#fff",
+    fontColor: styles.snow,
     fontSize: 12
     //fontWeight: 600,
     // textTransform: "uppercase"
@@ -29,9 +31,14 @@ const axisConfig = {
 };
 
 export default {
+  // color defaults
+  colorDefaults: {
+    dark: styles["near-black"],
+    light: styles.snow
+  },
   // shape defaults
   shapeConfig: {
-    fontColor: "rgba(0, 0, 0, 0.4)",
+    fontColor: styles["near-black"],
     fontFamily: "Roboto Condensed",
     fontSize: 12,
     fontWeight: 300,
@@ -46,7 +53,7 @@ export default {
     // stacked area
     Area: {
       labelConfig: {
-        fontColor: "#fff",
+        fontColor: styles.snow,
         fontFamily: () => "Roboto Condensed",
         fontMax: 18,
         fontWeight: 300
@@ -57,7 +64,7 @@ export default {
   legendConfig: {
     // labels are directly in the shape
     shapeConfig: {
-      fontColor: "white",
+      fontColor: styles.snow,
       fontFamily: "Roboto Condensed",
       fontResize: false,
       fontSize: 12,
@@ -66,7 +73,7 @@ export default {
       width: () => 20,
       // legend icons
       labelConfig: {
-        fontColor: "white"
+        fontColor: styles.snow
       }
     }
   },
@@ -83,7 +90,7 @@ export default {
   // total defaults
   totalConfig: {
     fontSize: 12,
-    fontColor: "#FFFFFF",
+    fontColor: styles.snow,
     resize: false,
     textAnchor: "left"
   },
