@@ -291,6 +291,11 @@ D3plus overrides
 .d3plus-textBox {
   & text {
     @add-mixin visualization-font;
+
+    /* replace default dark color returned by colorContrast.js */
+    &[fill="#444444"] {
+      fill: var(--near-black);
+    }
   }
 }
 

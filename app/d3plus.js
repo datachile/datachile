@@ -31,11 +31,6 @@ const axisConfig = {
 };
 
 export default {
-  // color defaults
-  colorDefaults: {
-    dark: styles["near-black"],
-    light: styles.snow
-  },
   // shape defaults
   shapeConfig: {
     fontColor: styles["near-black"],
