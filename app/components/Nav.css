@@ -47,6 +47,8 @@
         width: 22px;
         transition: opacity 0.2s;
         opacity: 0.8;
+        /* fudge into place */
+        top: 1px;
 
         &:hover {
           text-decoration: none;
