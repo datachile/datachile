@@ -8,6 +8,7 @@ import Helmet from "react-helmet";
 
 import { numeral, slugifyItem } from "helpers/formatters";
 import { getGeoObject, clearStoreData } from "helpers/dataUtils";
+import styles from "style.yml";
 
 // needs (data fetchers)
 import {
@@ -652,7 +653,7 @@ class GeoProfile extends Component {
                           },
                           bodyStyle: {
                             "text-align": "center",
-                            color: "#2F2F38"
+                            color: styles["near-black"]
                           },
                           footer: "",
                           background: "white",
@@ -661,7 +662,7 @@ class GeoProfile extends Component {
                           },
                           padding: "10px",
                           borderRadius: "0px",
-                          border: "1px solid #2F2F38"
+                          border: "none"
                         },
                         topojson: "/geo/regiones.json",
                         topojsonId: "id",

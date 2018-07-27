@@ -47,18 +47,6 @@
 	& .d3plus-geomap-control {
 		left: auto !important;
 		right: 0 !important;
-
-		& .zoom-control {
-			color: var(--accent) !important;
-			border-color: var(--darker-gray) !important;
-			background-color: var(--snow) !important;
-			opacity: 1 !important;
-			transition: background-color 0.5s, color 0.5s;
-			&:hover {
-				background-color: var(--accent) !important;
-				color: var(--snow) !important;
-			}
-		}
 	}
 }
 #d3plus-tooltip-map {
@@ -104,5 +92,37 @@
 	& .map-scale-options {
 		flex: 1;
 		max-width: 100%;
+	}
+}
+
+/* style map zoom controls */
+.d3plus-zoom-control {
+	/* override default inline styles */
+	& .zoom-control {
+		/* theming */
+		color: var(--accent) !important;
+		border: none !important;
+		border-radius: 2px;
+		background-color: var(--snow) !important;
+		opacity: 1 !important;
+		/* sizing */
+		width: 1rem !important;
+		height: 1rem !important;
+		font-size: 0.75rem !important;
+		line-height: 1rem !important;
+		/* positioning */
+		display: inline-block !important;
+		margin: 0.5em 0.5em 0 0 !important;
+		/* it's a button, not a link */
+		cursor: default !important;
+		/* transitions */
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+
+		&:hover {
+			background-color: var(--accent) !important;
+			color: var(--snow) !important;
+		}
 	}
 }

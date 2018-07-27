@@ -4,6 +4,7 @@ import { Geomap } from "d3plus-react";
 import NoDataAvailable from "components/NoDataAvailable";
 
 import { COLORS_SCALE_EXPORTS, COLORS_SCALE_IMPORTS } from "helpers/colors";
+import styles from "style.yml";
 
 import {
   numeral,
@@ -43,7 +44,7 @@ class CustomMap extends React.Component {
             fitKey: "id",
             groupBy: "iso3",
             label: d => d["Country"],
-            ocean: "#2f2f38",
+            ocean: styles["near-black"],
             topojsonId: "id",
             topojsonKey: "id",
             total: d => d[msrName],

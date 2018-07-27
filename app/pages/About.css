@@ -78,7 +78,7 @@
   & .section-container {
     lost-utility: clearfix;
     lost-flex-container: column;
-    background-color: var(--dark);
+    background-color: var(--near-black);
   }
 
   & .section {

@@ -19,7 +19,7 @@
 				border-radius: 50%;
 				border: 1px solid var(--snow);
 				display: inline-block;
-				background-color: var(--dark);
+				background-color: var(--near-black);
 				margin: 5px;
 			}
 		}
