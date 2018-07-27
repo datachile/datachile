@@ -102,6 +102,10 @@
         align-content: stretch;
         justify-content: space-around;
         height: 100%;
+
+        & .topic-link + .topic-link {
+          margin-left: 1em;
+        }
       }
     }
 

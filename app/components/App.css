@@ -233,10 +233,12 @@ table.tooltip-table {
   text-align: center;
   /* sizing */
   padding: 1.125em 2.25em;
+  line-height: 1;
   /* positioning */
   display: inline-block;
   /* theming */
   border-radius: 30px;
+  border: none;
   color: var(--snow);
   /* transitions */
   transition: all 1s ease;
@@ -254,9 +256,12 @@ table.tooltip-table {
 
   /* icon */
   & .btn-icon {
+    display: inline-block;
+    vertical-align: middle;
     font-size: inherit;
-
+    width: 1em;
     /* icon offset */
+    top: -0.0625em; /* fudge into place */
     left: 0.125em;
     margin-right: -0.25em;
     /* transitions */
@@ -271,7 +276,7 @@ table.tooltip-table {
     text-decoration: none;
     /* padding-right: calc(var(--gutter)/3); */
 
-    & .btn-icon {
+    &[href] .btn-icon {
       transform: translateX(0.25em);
     }
   }
@@ -330,4 +335,8 @@ utilities
   background: none;
   border: none;
   padding: 0;
+}
+
+.u-list-reset {
+  @add-mixin list-reset;
 }

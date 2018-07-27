@@ -109,7 +109,7 @@
       color: var(--snow);
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: baseline;
     }
     & .viz {
       margin: 0; /* canon override */

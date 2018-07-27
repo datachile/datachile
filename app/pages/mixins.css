@@ -118,6 +118,14 @@
   text-overflow: ellipsis;
 }
 
+/* list reset */
+@define-mixin list-reset {
+  list-style-type: none; /* remove bullets */
+  padding-left: 0; /* thanks blueprint */
+  margin-top: 0; /* thanks blueprint */
+  margin-bottom: 0; /* thanks blueprint */
+}
+
 
 /* UTILITIES mixins */
 

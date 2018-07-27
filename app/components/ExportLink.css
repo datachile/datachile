@@ -1,57 +1,50 @@
 @import "../pages/mixins";
 
 .export-link {
-  @add-mixin font-xs;
-  @add-mixin body-font;
 
-  line-height: 1.5;
-  text-align: center;
-  text-transform: uppercase;
-
-  & .toggle {
-    display: block;
-    color: var(--snow);
-    margin: -5px 0;
-    padding: 5px;
-    background-color: transparent;
-    transition: background-color 0.5s ease;
-    & img {
-      width: 20px;
-    }
-  }
-  &.open .toggle {
-    background-color: var(--accent);
-  }
-
-  & ul {
+  & .export-list {
+    /* positioning */
     position: absolute;
+    top: auto;
     z-index: 14;
-    left: -15px;
-    top: 30px;
-    overflow: hidden;
-    display: block;
-    margin: 0;
-    padding: 0;
-    height: auto;
-    width: 60px;
-    max-height: 0;
+    /* sizing */
+    min-width: 100%;
+    margin-top: -20px;
+    /* theming */
     background-color: var(--accent);
-    transition: max-height 0.5s ease;
+    border-radius: 2px;
+    box-shadow: 0 1px 2em color(var(--footer-bg) a(0.333));
+    /* transitions */
+    will-change: opacity, transform, margin-top;
+    opacity: 0;
+    transform: scale(0.01);
 
-    & li.disabled {
-      display: none;
-    }
-
-    & a {
+    & .export-link {
       display: block;
-      padding: 5px;
-      color: var(--snow);
-      &:hover {
-        background: var(--accent);
+      padding: 0.75em 1em;
+      min-width: 6em;
+      width: 100%;
+
+      &:hover,
+      &:focus {
+        background-color: var(--snow);
+        color: var(--accent);
+      }
+
+      &.disabled {
+        display: none;
       }
     }
   }
-  &.open ul {
-    max-height: 140px;
+
+  /* open state */
+  &.is-open .export-list {
+    margin-top: 2px;
+    opacity: 1;
+    transform: none;
+    /* transitions */
+    transition:
+      opacity 0.2s ease-out,
+      margin-top 0.2s ease-out;
   }
 }

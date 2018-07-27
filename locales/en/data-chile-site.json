@@ -951,6 +951,7 @@
     "household": "Download household data",
     "income": "Download income data"
   },
+  "exportar": "export",
   "form": {
     "data": "Did not find what you were looking for? Suggest data to add",
     "error": "Did you find an error? Report it"

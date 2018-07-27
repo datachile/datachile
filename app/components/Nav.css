@@ -104,6 +104,12 @@
   & .title-container {
     margin: var(--gutter) auto;
 
+    /* bring closer to nav */
+    @add-mixin from-lg {
+      width: calc(100% - 20rem);
+      margin-top: 0.5em;
+    }
+
     & .nav-title {
       width: 100%;
       text-align: center;
@@ -369,6 +375,7 @@
     }
 
     & .title-container {
+
       & .nav-title {
 
         & .meta-title {
