@@ -1,6 +1,12 @@
 @import "../pages/mixins";
 
 .about {
+
+  /* fix a bug caused by changing defaults to position: relative */
+  &, & .intro {
+    position: static;
+  }
+
   & .glossary {
     & .definition {
       margin-top: 0px;
@@ -109,11 +115,8 @@
       color: var(--darker-gray);
       & img.icon {
         width: 15px;
-      
+
         margin-bottom: -4px;
-      }
-      & a {
-        color: var(--accent);
       }
     }
     & ul {
@@ -134,31 +137,30 @@
       lost-column: 1;
       padding: calc(var(--gutter)/2);
     }
+
+    /* dataset table */
     & table {
       border-collapse: collapse;
-      width: 100%;
-      & thead {
-        & th {
-          color: var(--accent);
-          text-transform: uppercase;
-          width: 32%;
-          padding: calc(var(--gutter)/2);
-          vertical-align: middle;
-          text-align: left;
+      text-align: left;
+
+      /* cell padding & alignment */
+      & th,
+      & td {
+        vertical-align: middle;
+        padding:
+          var(--gutter-third)
+          var(--gutter)
+          var(--gutter-third)
+          0;
+
+        &:last-of-type {
+          padding-right: 0;
         }
       }
-      & tbody {
-        & td {
-          width: 32%;
-          border: 1px solid var(--snow);
-          color: var(--snow);
-          padding: calc(var(--gutter)/2);
-          vertical-align: middle;
-          & a {
-            color: var(--snow);
-            text-decoration: underline;
-          }
-        }
+
+      /* border between adjacent rows */
+      & tr + tr {
+        border-top: 1px solid var(--pre-bg);
       }
     }
   }

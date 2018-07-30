@@ -132,18 +132,18 @@ class About extends Component {
 
                 <p>{t("about.data.text")}</p>
 
-                <table>
+                <table className="font-xs">
                   <thead>
                     <tr>
-                      <th>{t("about.data.dataset")}</th>
-                      <th>{t("about.data.year")}</th>
-                      <th>{t("about.data.source")}</th>
+                      <th className="subhead">{t("about.data.dataset")}</th>
+                      <th className="subhead">{t("about.data.year")}</th>
+                      <th className="subhead">{t("about.data.source")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>
-                        <a href="#dataset_casen">
+                        <a className="link" href="#dataset_casen">
                           {t("about.data.casen.title")}
                         </a>
                       </td>
@@ -152,21 +152,21 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_nene">{t("about.data.nene.title")}</a>
+                        <a className="link" href="#dataset_nene">{t("about.data.nene.title")}</a>
                       </td>
                       <td>{t("about.data.nene.year")}</td>
                       <td>{t("about.data.nene.source")}</td>
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_nesi">{t("about.data.nesi.title")}</a>
+                        <a className="link" href="#dataset_nesi">{t("about.data.nesi.title")}</a>
                       </td>
                       <td>{t("about.data.nesi.year")}</td>
                       <td>{t("about.data.nesi.source")}</td>
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_aduana">
+                        <a className="link" href="#dataset_aduana">
                           {t("about.data.aduana.title")}
                         </a>
                       </td>
@@ -175,7 +175,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_costes">
+                        <a className="link" href="#dataset_costes">
                           {t("about.data.costes.title")}
                         </a>
                       </td>
@@ -184,7 +184,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_iplusd">
+                        <a className="link" href="#dataset_iplusd">
                           {t("about.data.iplusd.title")}
                         </a>
                       </td>
@@ -193,7 +193,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_enrollment">
+                        <a className="link" href="#dataset_enrollment">
                           {t("about.data.enrollment.title")}
                         </a>
                       </td>
@@ -202,7 +202,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_performance">
+                        <a className="link" href="#dataset_performance">
                           {t("about.data.performance.title")}
                         </a>
                       </td>
@@ -211,14 +211,14 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_psu">{t("about.data.psu.title")}</a>
+                        <a className="link" href="#dataset_psu">{t("about.data.psu.title")}</a>
                       </td>
                       <td>{t("about.data.psu.year")}</td>
                       <td>{t("about.data.psu.source")}</td>
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_salud">
+                        <a className="link" href="#dataset_salud">
                           {t("about.data.salud.title")}
                         </a>
                       </td>
@@ -227,7 +227,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_muerte">
+                        <a className="link" href="#dataset_muerte">
                           {t("about.data.muerte.title")}
                         </a>
                       </td>
@@ -236,7 +236,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_discapacidad">
+                        <a className="link" href="#dataset_discapacidad">
                           {t("about.data.discapacidad.title")}
                         </a>
                       </td>
@@ -245,14 +245,14 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_vida">{t("about.data.vida.title")}</a>
+                        <a className="link" href="#dataset_vida">{t("about.data.vida.title")}</a>
                       </td>
                       <td>{t("about.data.vida.year")}</td>
                       <td>{t("about.data.vida.source")}</td>
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_poblacion">
+                        <a className="link" href="#dataset_poblacion">
                           {t("about.data.poblacion.title")}
                         </a>
                       </td>
@@ -261,7 +261,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_migracion">
+                        <a className="link" href="#dataset_migracion">
                           {t("about.data.migracion.title")}
                         </a>
                       </td>
@@ -270,7 +270,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_internet">
+                        <a className="link" href="#dataset_internet">
                           {t("about.data.internet.title")}
                         </a>
                       </td>
@@ -279,7 +279,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_servel">
+                        <a className="link" href="#dataset_servel">
                           {t("about.data.servel.title")}
                         </a>
                       </td>
@@ -288,7 +288,7 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <a href="#dataset_felonies">
+                        <a className="link" href="#dataset_felonies">
                           {t("about.data.felonies.title")}
                         </a>
                       </td>
