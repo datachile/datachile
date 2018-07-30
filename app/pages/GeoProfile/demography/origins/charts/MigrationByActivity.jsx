@@ -110,7 +110,7 @@ class MigrationByActivity extends Section {
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: chart_path,
 						groupBy: ["ID Activity"],
 						label: d => d["Activity"],

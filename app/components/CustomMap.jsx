@@ -29,11 +29,10 @@ class CustomMap extends React.Component {
       <div className="geomap">
         <Geomap
           config={{
-            height: 500,
+            height: 400,
             padding: 3,
             data: path,
             tiles: false,
-
             fitObject: "/geo/countries.json",
             topojson: "/geo/countries.json",
 

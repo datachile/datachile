@@ -111,7 +111,7 @@ class MigrationByVisa extends Section {
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: chart_path,
 						groupBy: ["ID Continent", "ID Visa Type"],
 						label: d => d["Visa Type"],

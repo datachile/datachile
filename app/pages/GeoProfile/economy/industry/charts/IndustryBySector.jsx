@@ -41,7 +41,7 @@ class IndustryBySector extends Section {
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: ["ID Level 1", "ID Level 4"],
 						label: d =>

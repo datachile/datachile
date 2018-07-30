@@ -109,7 +109,7 @@ class CongresspersonResults extends Section {
             <Treemap
               className={classSvg}
               config={{
-                height: 500,
+                height: 400,
                 data: path,
                 timeFilter: d => d["ID Year"] === this.state.year,
                 filter: this.state.non_electors

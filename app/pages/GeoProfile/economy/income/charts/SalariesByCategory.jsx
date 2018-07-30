@@ -48,7 +48,7 @@ class SalariesByCategory extends Section {
 				<BarChart
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: "ID ICSE",
 						label: d => d["ICSE"],

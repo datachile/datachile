@@ -113,7 +113,7 @@
     }
     & .viz {
       margin: 0; /* canon override */
-      min-height: 500px;
+      min-height: 400px;
     }
     & .trade-balance {
       & .viz {

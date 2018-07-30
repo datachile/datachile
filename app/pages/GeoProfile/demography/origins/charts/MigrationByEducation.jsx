@@ -44,7 +44,7 @@ class MigrationByEducation extends Section {
 					drilldowns={["Education", "Education"]}
 					depth={true}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						label: d => d["Education"],
 						total: d => d["Number of visas"],

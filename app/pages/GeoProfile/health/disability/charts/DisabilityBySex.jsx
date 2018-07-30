@@ -60,7 +60,7 @@ class DisabilityBySex extends Section {
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             aggs: {
               ["ID Sex"]: mean

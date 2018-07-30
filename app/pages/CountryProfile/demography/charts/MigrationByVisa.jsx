@@ -80,7 +80,7 @@ class MigrationByVisa extends Section {
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: "ID Visa Type",
 							label: d => d["Visa Type"],

@@ -78,7 +78,7 @@ class PSUNEMScatter extends Section {
           <Plot
             className={classSvg}
             config={{
-              height: 500,
+              height: 400,
               data: path,
               groupBy: national
                 ? ["ID Comuna", "ID Administration"]

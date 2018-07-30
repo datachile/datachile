@@ -87,7 +87,7 @@ class HousingByConstructionType extends Section {
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path_housing_construction_type,
 							groupBy: ["ID Walls Material"],
 							label: d => d["Walls Material"],

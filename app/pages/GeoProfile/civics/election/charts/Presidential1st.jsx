@@ -93,7 +93,7 @@ class Presidential1st extends Section {
                   document.querySelector("." + classSvg)
                     ? document.querySelector("." + classSvg).clientWidth
                     : undefined,
-                height: 500,
+                height: 400,
                 data: path,
                 groupBy: ["ID Candidate"],
                 label: d => d["Candidate"],

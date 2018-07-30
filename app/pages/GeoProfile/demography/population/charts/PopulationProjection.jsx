@@ -65,7 +65,7 @@ class PopulationProjection extends Section {
               document.querySelector("." + classSvg)
                 ? document.querySelector("." + classSvg).clientWidth
                 : undefined,
-            height: 500,
+            height: 400,
             data: path,
             x: "Year",
             y: "Population",

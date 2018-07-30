@@ -133,7 +133,7 @@ class ParticipationScatter extends Section {
               aggs: {
                 "ID Region": mean
               },
-              height: 500,
+              height: 400,
               groupBy: ["Comuna"],
               data: data.reduce((all, item) => {
                 if (

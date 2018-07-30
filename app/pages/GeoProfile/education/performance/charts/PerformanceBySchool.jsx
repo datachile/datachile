@@ -41,7 +41,7 @@ class PerformanceBySchool extends Section {
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["Institution"],
             //label: d =>

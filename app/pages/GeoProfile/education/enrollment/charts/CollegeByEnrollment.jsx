@@ -57,7 +57,7 @@ class CollegeByEnrollment extends Section {
         <Treemap
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy:
               geo.type != "comuna"

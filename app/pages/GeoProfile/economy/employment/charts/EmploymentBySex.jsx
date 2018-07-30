@@ -109,7 +109,7 @@ class EmploymentBySex extends Section {
           className={classSvg}
           key={this.state.key}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["variable"],
             label: d => d["variable"],

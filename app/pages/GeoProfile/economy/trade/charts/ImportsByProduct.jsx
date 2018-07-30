@@ -43,7 +43,7 @@ class ImportsByProduct extends Section {
           drilldowns={["HS0", "HS2"]}
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             total: d => d["CIF US"],
             totalConfig: {

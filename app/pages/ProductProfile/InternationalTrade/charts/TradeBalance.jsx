@@ -69,7 +69,7 @@ class TradeBalance extends Section {
 				<LinePlot
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: data,
 						groupBy: "variable",
 						x: "year",

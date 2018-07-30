@@ -62,7 +62,7 @@ class TreemapStacked extends React.Component {
             <Treemap
               config={{
                 ...config,
-                height: 500,
+                height: 400,
                 data: path,
                 label: d => d[drilldowns[drilldowns.length - 1]],
                 groupBy: drilldowns.map(dd => "ID " + dd),
@@ -96,7 +96,7 @@ class TreemapStacked extends React.Component {
                 totalConfig: {
                   text: ""
                 },
-                height: 500,
+                height: 400,
                 data: path,
                 groupBy: !depth
                   ? "ID " + drilldowns[0]

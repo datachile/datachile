@@ -79,7 +79,7 @@ class SpendingBySector extends Section {
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: "ID Ownership Type",
 						label: d => d["Ownership Type"],

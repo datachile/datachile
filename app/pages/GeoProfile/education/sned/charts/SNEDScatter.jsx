@@ -96,7 +96,7 @@ class SNEDScatter extends Section {
             <Plot
               className={classSvg}
               config={{
-                height: 500,
+                height: 400,
                 data: path,
                 aggs: {
                   "ID Stage 1a": mean

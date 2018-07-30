@@ -72,7 +72,7 @@ class ExportLink extends React.Component {
         {
           background: "transparent",
           padding: 5,
-          height: 500
+          height: 400
         }
       );
   }

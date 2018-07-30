@@ -40,7 +40,7 @@ class DeathCauses extends Section {
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: ["CIE 10"],
 						label: d => d["CIE 10"],

@@ -63,7 +63,7 @@ export default translate()(
           </h3>
           <BarChart
             config={{
-              height: 500,
+              height: 400,
               data: path,
               groupBy: "ID Career",
               label: d => d["Avg employability 1st year"],

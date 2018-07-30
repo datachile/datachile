@@ -48,7 +48,7 @@ class EmployedByEducation extends Section {
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: ["ISCED"],
 							label: d => d["ISCED"],

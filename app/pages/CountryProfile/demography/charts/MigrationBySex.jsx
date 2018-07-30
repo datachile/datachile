@@ -79,7 +79,7 @@ export default translate()(
             <BarChart
               className={classSvg}
               config={{
-                height: 500,
+                height: 400,
                 data: path,
                 groupBy: "ID Sex",
                 label: d => d["Sex"],

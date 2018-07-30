@@ -59,7 +59,7 @@ class Disability extends Section {
         <Treemap
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["ID Disability Grade"],
             label: d => d["Disability Grade"],

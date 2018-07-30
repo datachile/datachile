@@ -64,7 +64,7 @@ class HealthCare extends Section {
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						label: d => t(d["label"]),
 						time: "ID Year",

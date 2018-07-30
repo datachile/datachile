@@ -29,7 +29,7 @@ class Presidential1stBar extends Section {
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["geo"],
             label: d => d["geo"],

@@ -42,7 +42,7 @@ class PSUResultsBySex extends Section {
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: "id_sex",
             label: d => t(d["sex"]),

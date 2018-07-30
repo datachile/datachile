@@ -69,7 +69,7 @@ class InternetAccessByZone extends Section {
 				<BarChart
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						aggs: {
 							["Expansion factor"]: mean

@@ -155,7 +155,7 @@ class SNEDCompareBySchool extends Section {
           className={classSvg}
           key={"sned" + this.state.selectedOption}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["ID Stage 1a"],
             shapeConfig: {

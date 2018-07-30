@@ -68,7 +68,7 @@ class PopulationPyramid extends Section {
               document.querySelector("." + classSvg)
                 ? document.querySelector("." + classSvg).clientWidth
                 : undefined,
-            height: 500,
+            height: 400,
             data: path,
             groupBy: "ID Sex",
             label: d => d["Sex"],

@@ -41,7 +41,7 @@ class ProductSpace extends Section {
 				<Network
 					className={classSvg}
 					config={{
-						height: 600,
+						height: 400,
 						links: "/json/pspace_hs2012_links_d3p2.json",
 						nodes: "/json/pspace_hs2012_nodes_d3p2.json",
 						data: path,

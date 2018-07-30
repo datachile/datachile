@@ -79,7 +79,7 @@ class ImportsByProduct extends Section {
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: ["ID HS0", "ID HS2"],
 							label: d =>

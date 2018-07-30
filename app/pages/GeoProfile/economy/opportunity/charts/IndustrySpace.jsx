@@ -41,7 +41,7 @@ class IndustrySpace extends Section {
 				<Network
 					className={classSvg}
 					config={{
-						height: 600,
+						height: 400,
 						links: "/json/isic_4_02_links_d3p2.json",
 						nodes: "/json/isic_4_02_nodes_d3p2.json",
 						data: path,

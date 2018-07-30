@@ -41,7 +41,7 @@ class CrimeTreemap extends Section {
           <Treemap
             className={classSvg}
             config={{
-              height: 500,
+              height: 400,
               data: path,
               groupBy: ["ID Crime Group", "ID Crime"],
               label: d => d["Crime"],

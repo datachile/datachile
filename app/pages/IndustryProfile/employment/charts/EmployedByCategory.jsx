@@ -48,7 +48,7 @@ class EmployedByCategory extends Section {
 					<StackedArea
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: "variable",
 							label: d => d["variable"],

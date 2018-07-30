@@ -1,7 +1,6 @@
 @import "../pages/mixins";
 
 .home {
-
   & .home-content {
     lost-flex-container: row;
     lost-align: center;
@@ -17,6 +16,7 @@
     z-index: 2; /* necessary for tooltip z-index managment */
     /* sizing */
     padding: 14vh 0 25vh 0; /* padding relative to viewport on small screens */
+    min-height: 30rem; /* keep text and search visible on tiny screens */
 
     /* fixed padding on taller screens */
     @media (min-height: 700px) {

@@ -58,7 +58,7 @@ class IncomeByAge extends Section {
 					<BarChart
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: "ID Age Range",
 							label: d => d["Age Range"],

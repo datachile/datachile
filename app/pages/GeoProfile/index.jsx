@@ -616,7 +616,7 @@ class GeoProfile extends Component {
                         ],
                         id: "id",
                         downloadButton: false,
-                        height: 500,
+                        height: 400,
                         label: d => {
                           return "label";
                         },

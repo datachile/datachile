@@ -77,7 +77,7 @@ class OutputByLocation extends Section {
           msrName="Output"
           drilldowns={["Region", "Comuna"]}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             label: d =>
               d["Comuna"] instanceof Array ? d["Region"] : d["Comuna"],
