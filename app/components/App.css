@@ -89,7 +89,6 @@ small, .font-xxs { @add-mixin font-xxs; }
 /* labels */
 .label {
   @add-mixin body-font;
-  @add-mixin font-smoothing;
   @add-mixin font-uppercase;
 }
 
