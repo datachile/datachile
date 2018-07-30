@@ -121,9 +121,6 @@
       }
 
       & .meta-title {
-        @add-mixin font-xs;
-        @add-mixin body-font;
-        line-height: 30px;
         white-space: nowrap;
 
         & .parent,
@@ -274,6 +271,8 @@
       /* sizing */
       display: block;
       line-height: 2;
+      /* theming */
+      color: var(--snow); /* override default link style */
       /* border */
       border-left-width: 4px;
       border-left-style: solid;

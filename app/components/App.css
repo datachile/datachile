@@ -99,6 +99,31 @@ small, .font-xxs { @add-mixin font-xxs; }
   @add-mixin font-uppercase;
 }
 
+/* default link style */
+p > a,
+li > a,
+.link {
+  @add-mixin body-font-bold;
+  color: #6099ea;
+  opacity: 0.875;
+  /* override blueprint */
+  text-decoration: underline;
+
+  /* TODO: consolodate blue accent color */
+  &:hover, &:focus {
+    opacity: 1;
+    color: #6099ea;
+  }
+}
+
+/* white links; link class also required */
+.inverted-link {
+  color: var(--snow);
+
+  &:hover, &:focus {
+    color: var(--snow);
+  }
+}
 
 /* -----------------------------------
 grids
@@ -136,32 +161,38 @@ profile theming
   products,
   industries {
   .color-$(theme) {
-    color: var(--color-$(theme));
+    color: var(--color-$(theme)) !important;
   }
   .color-$(theme)-hover {
     &:hover, &:focus {
-      color: var(--color-$(theme));
+      color: var(--color-$(theme)) !important;
     }
   }
   .border-$(theme) {
-    border-color: var(--color-$(theme));
+    border-color: var(--color-$(theme)) !important;
   }
   .border-$(theme)-hover {
     &:hover, &:focus {
-      border-color: var(--color-$(theme));
+      border-color: var(--color-$(theme)) !important;
     }
   }
   .fill-$(theme) {
     fill: var(--color-$(theme));
   }
   .background-$(theme) {
-    background-color: var(--color-$(theme));
+    background-color: var(--color-$(theme)) !important;
 
     /* interactions */
-    &[class*=btn] {
+    &[class*=btn],
+    &[class*=category] {
       &:hover, &:focus {
-        background-color: var(--color-$(theme)-light);
+        background-color: var(--color-$(theme)-light) !important;
       }
+    }
+  }
+  .background-$(theme)-hover {
+    &:hover, &:focus {
+      background-color: var(--color-$(theme)-light) !important;
     }
   }
 }
@@ -221,6 +252,47 @@ table.tooltip-table {
   background-color: var(--color-geo);
   padding: 0 0.5em;
   border-radius: 2px;
+}
+
+
+/* category link */
+.category {
+  /* typography */
+  @add-mixin heading-font;
+  text-transform: lowercase;
+  text-decoration: none;
+  /* theming */
+  background-color: var(--snow);
+  border-radius: 1em;
+  opacity: 0.875;
+  /* sizing */
+  padding: 0.125em 1em 0.25em 1em;
+  /* transitions */
+  transition: all 0.2s ease;
+  transition-property: box-shadow, opacity;
+
+  /* default color */
+  &:not([class*=color-]) {
+    color: var(--accent);
+  }
+
+  /* image right */
+  & img,
+  & svg {
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.25em;
+    margin-left: -0.25em;
+  }
+
+  /* interactions */
+  &:hover,
+  &:focus {
+    box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
+    opacity: 1;
+    text-decoration: none;
+  }
 }
 
 

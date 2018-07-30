@@ -113,6 +113,11 @@ class Nav extends Component {
     // catch for missing fullTitle (i.e., NotFound.jsx)
     !fullTitle ? (fullTitle = title) : null;
 
+    let showMeta = true;
+    if (url.includes("/explore/") || url.includes("/about")) {
+      showMeta = false;
+    }
+
     return (
       <div id="navs-container">
         <nav className={`nav ${darkClass}`}>
@@ -293,33 +298,36 @@ class Nav extends Component {
                   {/* full title for screen readers, hidden from screen */}
                   <span className="u-visually-hidden">{fullTitle}</span>
                 </h1>
-                <div className="meta-title">
-                  <div className="type">
-                    {typeTitle &&
-                      exploreLink && (
-                        <Link className="link" to={exploreLink}>
-                          {type && (
-                            <span className="icon-container">
+                { showMeta &&
+                  <p className="meta-title">
+                    <span className="type">
+                      {typeTitle &&
+                        exploreLink && (
+                          <Link
+                            className={`category color-${type}`}
+                            to={exploreLink}
+                          >
+                            {type && (
                               <img
-                                className="icon"
+                                className="category-icon"
                                 src={`/images/icons/icon-${type}.svg`}
                               />
-                            </span>
-                          )}
-                          <span>{typeTitle}</span>
+                            )}
+                            {typeTitle}
+                          </Link>
+                        )}
+                      {type && !exploreLink && <span>{typeTitle}</span>}
+                    </span>
+                    {ancestor && (
+                      <span className="parent">
+                        <span className="separator">{t("in")}</span>
+                        <Link className="link inverted-link" to={ancestorLink}>
+                          {ancestor}
                         </Link>
-                      )}
-                    {type && !exploreLink && <span>{typeTitle}</span>}
-                  </div>
-                  {ancestor && (
-                    <div className="parent">
-                      <span className="separator">|</span>
-                      <Link className="link" to={ancestorLink}>
-                        {ancestor}
-                      </Link>
-                    </div>
-                  )}
-                </div>
+                      </span>
+                    )}
+                  </p>
+                }
               </div>
             </div>
           )}

@@ -1,17 +1,11 @@
 @import "../pages/mixins";
 
 .source-note {
-  @add-mixin font-xxs;
-  @add-mixin body-font;
 
   & .source-note-txt {
     margin-right: 5px;
   }
   & .source-note-link {
     margin-top: 2px;
-    color: var(--accent);
-    $:hover {
-      text-decoration: underline;
-    }
   }
 }

@@ -47,55 +47,55 @@ function Footer(props) {
 				</div>
 
 				<div className="nav-links">
-					<Link className="link" to="/">
+					<Link className="nav-link" to="/">
 						{t("Home")}
 					</Link>
-					<span className="link link-dot">&#183;</span>
-					<Link className="link" to="/explore/geo">
+					<span className="nav-link link-dot">&#183;</span>
+					<Link className="nav-link" to="/explore/geo">
 						{t("Regions & Comunas")}
 					</Link>
-					<span className="link link-dot">&#183;</span>
-					<Link className="link" to="/explore/countries">
+					<span className="nav-link link-dot">&#183;</span>
+					<Link className="nav-link" to="/explore/countries">
 						{t("Countries")}
 					</Link>
-					<span className="link link-dot">&#183;</span>
-					<Link className="link" to="/explore/products">
+					<span className="nav-link link-dot">&#183;</span>
+					<Link className="nav-link" to="/explore/products">
 						{t("Products")}
 					</Link>
-					<span className="link link-dot">&#183;</span>
-					<Link className="link" to="/explore/industries">
+					<span className="nav-link link-dot">&#183;</span>
+					<Link className="nav-link" to="/explore/industries">
 						{t("Industries")}
 					</Link>
-					<span className="link link-dot">&#183;</span>
-					<Link className="link link-soon">
+					<span className="nav-link link-dot">&#183;</span>
+					<Link className="nav-link link-soon">
 						{t("Careers")}
 						<ComingSoon />
 					</Link>
-					<span className="link link-dot">&#183;</span>
-					<Link className="link link-soon">
+					<span className="nav-link link-dot">&#183;</span>
+					<Link className="nav-link link-soon">
 						{t("Institutions")}
 						<ComingSoon />
 					</Link>
-					{/*<span className="link link-dot">&#183;</span>
-          <Link className="link" to="/explore/map">
+					{/*<span className="nav-link link-dot">&#183;</span>
+          <Link className="nav-link" to="/explore/map">
             {t("Map")}
   </Link>*/}
-					<span className="link link-dot">&#183;</span>
-					<Link className="link" to="/about">
+					<span className="nav-link link-dot">&#183;</span>
+					<Link className="nav-link" to="/about">
 						{t("About DataChile")}
 					</Link>
 				</div>
 				<div className="nav-links">
 					<a
-						className="link"
+						className="nav-link"
 						href="https://docs.google.com/forms/d/e/1FAIpQLSeSUbgmwnwb3yxr3PnttK6shv_JSNHnQGCDL9rPTl25ZZbW2A/viewform"
 						target="_blank"
 					>
 						{t("form.error")}
 					</a>
-					<span className="link link-dot">&#183;</span>
+					<span className="nav-link link-dot">&#183;</span>
 					<a
-						className="link"
+						className="nav-link"
 						href="https://docs.google.com/forms/d/e/1FAIpQLSdBmEkvqK1BQT8c6FrPyLkAjloimsjfH2EHxG_bRFVFF_iGkQ/viewform"
 						target="_blank"
 					>

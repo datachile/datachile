@@ -186,16 +186,6 @@
             outline: none;
           }
         }
-        & .link {
-          @add-mixin font-xxs;
-          height: auto;
-          @add-mixin body-font;
-          padding: 0 15px var(--gutter) 15px;
-          &:hover {
-            color: var(--snow);
-            text-decoration: none;
-          }
-        }
       }
       &.selected {
         & .home-slide-selected {

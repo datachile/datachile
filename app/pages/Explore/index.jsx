@@ -298,31 +298,31 @@ class Explore extends Component {
               <div className="explore-column">
                 <ul>
                   <li className={type == "geo" ? "selected" : ""}>
-                    <Link className="link" to="/explore/geo">
+                    <Link className="explore-link" to="/explore/geo">
                       <img src="/images/icons/icon-geo.svg" />
                       <span>{t("Geo")}</span>
                     </Link>
                   </li>
                   <li className={type == "countries" ? "selected" : ""}>
-                    <Link className="link" to="/explore/countries">
+                    <Link className="explore-link" to="/explore/countries">
                       <img src="/images/icons/icon-countries.svg" />
                       <span>{t("Countries")}</span>
                     </Link>
                   </li>
                   <li className={type == "products" ? "selected" : ""}>
-                    <Link className="link" to="/explore/products">
+                    <Link className="explore-link" to="/explore/products">
                       <img src="/images/icons/icon-products.svg" />
                       <span>{t("Products")}</span>
                     </Link>
                   </li>
                   <li className={type == "industries" ? "selected" : ""}>
-                    <Link className="link" to="/explore/industries">
+                    <Link className="explore-link" to="/explore/industries">
                       <img src="/images/icons/icon-industries.svg" />
                       <span>{t("Industries")}</span>
                     </Link>
                   </li>
                   <li className={type == "careers" ? "selected" : ""}>
-                    <Link className="link link-soon" to="">
+                    <Link className="explore-link link-soon" to="">
                       <img src="/images/icons/icon-careers.svg" />
                       <span>
                         {t("Careers")}
@@ -331,7 +331,7 @@ class Explore extends Component {
                     </Link>
                   </li>
                   <li className={type == "institutions" ? "selected" : ""}>
-                    <Link className="link link-soon" to="">
+                    <Link className="explore-link link-soon" to="">
                       <img src="/images/icons/icon-institutions.svg" />
                       <span>
                         {t("Institutions")}

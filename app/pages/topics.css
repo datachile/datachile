@@ -74,9 +74,6 @@
         & p {
           margin: 5px 0;
         }
-        & a {
-          color: #6099ea;
-        }
       }
       & .topic-slide-text-full {
         @add-mixin font-xs;
