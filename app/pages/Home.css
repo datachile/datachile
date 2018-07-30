@@ -16,11 +16,11 @@
    /* necessary for image placement */
     z-index: 2; /* necessary for tooltip z-index managment */
     /* sizing */
-    padding: 20vh 0 30vh 0; /* padding relative to viewport on small screens */
+    padding: 14vh 0 25vh 0; /* padding relative to viewport on small screens */
 
     /* fixed padding on taller screens */
     @media (min-height: 700px) {
-      padding: 8.5rem 0 12.5rem 0;
+      padding: 6rem 0 11rem 0;
     }
 
     & .image {
@@ -151,7 +151,6 @@
           align-items: center;
           justify-content: center;
           padding: 1em 1em 1em 0.25em; /* optical alignment */
-          margin-bottom: 20px;
           z-index: 1;
 
           /* label */
@@ -209,7 +208,7 @@
   & .home-text {
     lost-flex-container: column;
     lost-center: var(--width);
-    margin: var(--gutter) auto;
+    margin: var(--gutter) auto 0 auto;
     & .l-col,
     & .r-col {
       lost-column: 1/2 2 3.5em;
@@ -268,7 +267,7 @@
   & .home-featured-profiles {
     lost-flex-container: column;
     lost-center: var(--width);
-    margin: var(--gutter) auto var(--gutter) auto;
+    margin: var(--gutter-half) auto var(--gutter) auto;
     & .home-profile-carousels-container {
       lost-flex-container: row;
       lost-column: 1;
@@ -289,7 +288,7 @@
   & .home-sources {
     lost-flex-container: column;
     lost-center: var(--width);
-    margin: var(--gutter) auto var(--gutter) auto;
+    margin: var(--gutter-half) auto var(--gutter) auto;
     & .dataset-list {
       lost-flex-container: row;
       lost-column: 1;
