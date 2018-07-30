@@ -3,7 +3,7 @@ import { translate } from "react-i18next";
 import find from "lodash/find";
 
 import TopicSlider from "components/TopicSlider";
-import TopicSliderBullets from "components/TopicSliderBullets";
+// import TopicSliderBullets from "components/TopicSliderBullets";
 import TopicSliderSections from "components/TopicSliderSections";
 
 class Topic extends Component {
@@ -45,21 +45,7 @@ class Topic extends Component {
         <span id={id} className="topic-anchor-link" />
         <div className="topic-header">
           <div className="topic-heading">
-            <h2 className="font-xxl">
-              {name}
-              <span className="font-lg subhead">
-                <span className="pipe">|</span>
-                {selectedSection.name}
-              </span>
-            </h2>
-            {slider && (
-              <TopicSliderBullets
-                name={id}
-                slides={children}
-                selected={selected}
-                goTo={this.goTo}
-              />
-            )}
+            <h2 className="font-xxl">{name}</h2>
           </div>
           {slider && (
             <div className="topic-go-to-targets">
