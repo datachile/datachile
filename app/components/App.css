@@ -49,8 +49,11 @@ html {
   font-size: 87.5%; /* 14px; override blueprint */
 
   /* scale up type on big screens */
+  @add-mixin from-sm {
+    font-size: 93.75%; /* 1rem = 15px */
+  }
   @add-mixin from-md {
-    font-size: 100%; /* 16px */
+    font-size: 100%; /* 1rem = 16px */
   }
   @add-mixin from-lg {
     font-size: 106.25%; /* 1rem = 17px  */
@@ -249,9 +252,14 @@ table.tooltip-table {
 /* tags */
 .tag {
   display: inline-block;
-  background-color: var(--color-geo);
+  background-color: var(--pre-bg);
   padding: 0 0.5em;
   border-radius: 2px;
+  text-shadow: none !important;
+
+  &:not(:last-of-type) {
+    margin-right: 0.5em;
+  }
 }
 
 

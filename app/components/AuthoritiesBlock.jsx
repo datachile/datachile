@@ -204,57 +204,64 @@ class AuthoritiesBlock extends Component {
         })
       : false;
 
+    // get the total number of elected officials
+    // used by Authorities.css to accommodate longer lists
+    let officialsCount = 0;
+    mayor ? (officialsCount += 1) : null;
+    president ? (officialsCount += 1) : null;
+    senators ? (officialsCount += senators.length) : null;
+
     return (
-      <div className="splash-authorities">
+      <div className={`authorities-block officials-count-${officialsCount}`}>
+
+        {/* hidden heading for accessibility */}
+        <h2 className="u-visually-hidden">
+          {t("Elected Authority")} {t(" in ")} {geo.name}
+        </h2>
+
         {president && (
-          <div>
-            <div className="title">{t("President")}</div>
-            <div className="splash-authorities-president">
-              <PersonItem
-                imgpath={
-                  "/images/authorities/president/" + president.id + ".png"
-                }
-                name={president.name}
-                subtitle={president.party}
-                className="president"
-              />
-            </div>
+          <div className="authorities-section">
+            <h3 className="authorities-section-title">{t("President")}</h3>
+            <PersonItem
+              imgpath={
+                "/images/authorities/president/" + president.id + ".png"
+              }
+              name={president.name}
+              subtitle={president.party}
+              className="president"
+            />
           </div>
         )}
         {senators &&
           senators.length > 0 && (
-            <div>
-              <div className="title">{t("Senators")}</div>
-              <div className="splash-authorities-senators">
-                {senators.map((s, ix) => (
-                  <PersonItem
-                    imgpath={"/images/authorities/senators/" + s.id + ".jpeg"}
-                    name={s.name}
-                    subtitle={s.party}
-                    className="senator"
-                    key={ix}
-                  />
-                ))}
-              </div>
+            <div className="authorities-section">
+              <h3 className="authorities-section-title">{t("Senators")}</h3>
+              {senators.map((s, ix) => (
+                <PersonItem
+                  imgpath={"/images/authorities/senators/" + s.id + ".jpeg"}
+                  name={s.name}
+                  subtitle={s.party}
+                  className="senator"
+                  key={ix}
+                />
+              ))}
             </div>
           )}
         {mayor && (
-          <div>
-            <div className="title">{t("Mayor")}</div>
-            <div className="splash-authorities-mayor">
-              <PersonItem
-                imgpath={
-                  "/images/authorities/mayors/region-" +
-                  geo.ancestors[0].key +
-                  "/" +
-                  mayor.id +
-                  ".jpg"
-                }
-                name={mayor.name}
-                subtitle={mayor.party}
-                className="mayor"
-              />
-            </div>
+          <div className="authorities-section">
+            <h3 className="authorities-section-title">{t("Mayor")}</h3>
+            <PersonItem
+              imgpath={
+                "/images/authorities/mayors/region-" +
+                geo.ancestors[0].key +
+                "/" +
+                mayor.id +
+                ".jpg"
+              }
+              name={mayor.name}
+              subtitle={mayor.party}
+              className="mayor"
+            />
           </div>
         )}
       </div>

@@ -76,7 +76,19 @@ class FeaturedMapSplash extends Component {
 
     return (
       <div className={"featured-datum-splash featured-map-splash " + className}>
-        <h4 className="featured-datum-splash-title">{title}</h4>
+
+        {/* value */}
+        <h3 className="featured-datum-value font-xl">
+          <span className="u-visually-hidden">{title} </span>
+          {datum ? datum : t("no_datum")}
+        </h3>
+
+        {/* title */}
+        <p className="featured-datum-label label font-xs" aria-hidden="true">
+          {title}
+        </p>
+
+        {/* map */}
         <div className="featured-datum-splash-icons">
           {type &&
             type == "region" && (
@@ -122,16 +134,20 @@ class FeaturedMapSplash extends Component {
               </div>
             )}
         </div>
-        <div className="featured-datum-splash-data">
-          <p className="featured-datum-data">{datum}</p>
-        </div>
+
+        {/* subtitle */}
         {subtitle && (
-          <div className="featured-datum-splash-subtitle">{subtitle}</div>
+          <p className="featured-datum-subtitle font-lg heading">{subtitle}</p>
         )}
+
+        {/* source */}
         {sourceData && (
-          <div className="featured-datum-splash-source">
-            {sourceData.title} - {sourceData.year}
-          </div>
+          <p className="featured-datum-source font-xxs">
+            <span className="featured-datum-source-label">{t("source")}: </span>
+            <span className="featured-datum-source-title">
+              {sourceData.title}, {sourceData.year}
+            </span>
+          </p>
         )}
       </div>
     );

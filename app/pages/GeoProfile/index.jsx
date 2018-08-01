@@ -474,8 +474,18 @@ class GeoProfile extends Component {
                 <div className="gradient" />
               </div>
 
-              <div className="header">
-                <div className="meta">
+              {/* main splash content */}
+              <div className="header geo-header">
+
+                {/* elected officials */}
+                <AuthoritiesBlock
+                  geo={geoObj}
+                  ancestor={ancestor}
+                  data={this.props.data}
+                />
+
+                {/* splash stats */}
+                <div className="featured-datum-splash-container">
                   {stats.population && (
                     <FeaturedDatumSplash
                       title={t("Population")}
@@ -551,14 +561,7 @@ class GeoProfile extends Component {
                   )}
                 </div>
 
-                <div className="candidates">
-                  <AuthoritiesBlock
-                    geo={geoObj}
-                    ancestor={ancestor}
-                    data={this.props.data}
-                  />
-                </div>
-
+                {/* map */}
                 <div className="map-comuna">
                   {geoObj.type != "country" && (
                     <SvgMap
@@ -675,15 +678,16 @@ class GeoProfile extends Component {
                 </div>
               </div>
 
+              {/* anchor links */}
               <div className="topics-selector-container">
                 <TopicMenu topics={topics} />
               </div>
 
-              <div className="arrow-container">
+              {/*<div className="arrow-container">
                 <a href="#economy">
                   <SvgImage src="/images/profile-icon/icon-arrow.svg" />
                 </a>
-              </div>
+              </div>*/}
             </div>
 
             <div className="topics-container">

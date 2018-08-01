@@ -107,7 +107,7 @@
     /* bring closer to nav */
     @add-mixin from-lg {
       width: calc(100% - 20rem);
-      margin-top: 0.5em;
+      margin-top: -0.5rem;
     }
 
     & .nav-title {
@@ -122,15 +122,6 @@
 
       & .meta-title {
         white-space: nowrap;
-
-        & .parent,
-        & .type {
-          display: block;
-
-          & .separator {
-            display: none;
-          }
-        }
 
         & .icon-container {
           display: inline-block;
@@ -372,27 +363,16 @@
         }
       }
     }
+  }
+}
 
-    & .title-container {
+/* tags and parent links */
+.title-container .meta-title {
+  text-align: center;
 
-      & .nav-title {
-
-        & .meta-title {
-          text-align: center;
-
-          & .parent,
-          & .type {
-            display: inline-block;
-            vertical-align: center;
-
-            & .separator {
-              display: inline;
-              padding: 0 5px;
-            }
-          }
-        }
-      }
-    }
+  & .separator {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
   }
 }
 

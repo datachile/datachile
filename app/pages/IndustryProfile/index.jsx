@@ -352,11 +352,11 @@ class IndustryProfile extends Component {
                 <TopicMenu topics={topics} />
               </div>
 
-              <div className="arrow-container">
+              {/*<div className="arrow-container">
                 <a href="#about">
                   <SvgImage src="/images/profile-icon/icon-arrow.svg" />
                 </a>
-              </div>
+              </div>*/}
             </div>
 
             <div className="topics-container">

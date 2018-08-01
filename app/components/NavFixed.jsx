@@ -89,7 +89,7 @@ class NavFixed extends React.Component {
                   {topics.map(topic => (
                     <a
                       key={topic.slug}
-                      className={`topic-link subhead ${
+                      className={`topic-link subhead font-xxs ${
                         active == topic.slug ? " active" : ""
                       }`}
                       href={`#${topic.slug}`}

@@ -7,19 +7,21 @@ class PersonItem extends Component {
     const { imgpath, name, subtitle, className } = this.props;
 
     return (
-      <div className={"person-item " + className}>
-        <div className="person-item-img">
+      <figure className={"person-item " + className}>
+        <div className="person-figure">
           <ReactImageFallback
             src={imgpath}
             fallbackImage="/images/authorities/dummy.jpg"
             initialImage="/images/loader.gif"
-            alt={name}
-            className="person-item-img-react"
+            alt=""
+            className="person-img"
           />
         </div>
-        <div className="person-item-name">{name}</div>
-        <div className="person-item-subtitle">{subtitle}</div>
-      </div>
+        <figcaption className="person-caption">
+          <h4 className="person-title font-xs">{name}</h4>
+          <p className="person-subtitle font-xxs">{subtitle}</p>
+        </figcaption>
+      </figure>
     );
   }
 }

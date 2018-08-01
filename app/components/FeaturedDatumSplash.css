@@ -1,6 +1,77 @@
 @import "../pages/mixins";
 
 .featured-datum-splash {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  /* adjust main value margin */
+  & .featured-datum-value {
+    margin-bottom: 0.25em;
+    line-height: 1;
+  }
+
+  /* de-emphasize source */
+  & .featured-datum-source-title {
+    opacity: 0.75;
+  }
+
+  & .featured-datum-subtitle + .featured-datum-source {
+    margin-top: -1em;
+  }
+
+
+  & .featured-datum-icons {
+
+    /* hide icons on small screens */
+    @add-mixin for-md {
+      display: none;
+    }
+
+    /* line up icons horizontally on big screens */
+    @add-mixin from-md {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      max-width: 12rem;
+
+      /* max img size */
+      & .featured-datum-img {
+        height: 1.625rem;
+        width: 1.625rem;
+        max-width: 15%;
+      }
+    }
+  }
+
+  /* space out tags */
+  & .tag {
+    margin-bottom: 0.5em;
+  }
+
+  /* space out source */
+  & .featured-datum-source {
+    @add-mixin body-font-italic;
+    margin-top: 0.25em;
+    line-height: 1.25;
+
+    & .featured-datum-source-label {
+      text-transform: capitalize;
+    }
+  }
+
+  /* center on big screens */
+  @add-mixin from-sm {
+    text-align: center;
+
+    & .featured-datum-icons {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* .featured-datum-splash {
   lost-flex-container: column;
   color: var(--snow);
   padding-bottom: var(--gutter);
@@ -71,4 +142,4 @@
       }
     }
   }
-}
+} */

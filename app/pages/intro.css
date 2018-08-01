@@ -8,7 +8,6 @@
     color: var(--snow);
     margin: 0 auto;
     width: 100%;
-    min-height: calc(100vh - 9rem);
 
     /* hero image */
     & .splash {
@@ -20,7 +19,7 @@
         @add-mixin absolute-expand;
         background-position: 50%;
         background-size: cover;
-        filter: saturate(80%) contrast(130%);
+        /* filter: saturate(80%) contrast(130%); */
       }
 
       /* gradient overlay */
@@ -31,54 +30,118 @@
         background-color: rgba(25, 25, 40, 0.4);
         background:
           linear-gradient(
-            color(var(--footer-bg) a(0.5)) -5%,
-            rgba(25, 25, 40, 0.4) 33.333%,
-            var(--near-black) 90%),
+            color(var(--footer-bg) a(0.666)) -5%,
+            color(var(--near-black) a(0.333) 33.333%),
+            var(--near-black) 100%),
           radial-gradient(
-            transparent 33.333%,
-            color(var(--near-black) a(0.5))
+            color(var(--near-black) a(0.5)) 33.333%,
+            color(var(--near-black) a(0.875))
           );
       }
     }
 
     /* main stats container */
     & .header {
-      display: flex;
-      margin: 0 auto;
-      justify-content: center;
+      padding: 2.5vh var(--gutter);
+      min-height: 20.5rem;
+
+      /* horizontal layout on big screens */
+      @add-mixin from-sm {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* add shadow to text for legibility */
+      & * {
+        text-shadow: 0 1px 0.5em var(--footer-bg);
+      }
+    }
+
+    /* geo profile header layout */
+    & .geo-header {
+      margin-top: 3rem;
+
+      /* big screen layout */
+      @add-mixin from-sm {
+
+        /* limit width on officals & map */
+        & > *:first-child,
+        & > *:last-child {
+          flex: 1 0 16rem;
+        }
+        /* squishy width on centered stats */
+        & > *:nth-child(2) {
+          flex: 3 2 auto;
+        }
+
+        /* offset map */
+        & .map-comuna {
+          top: -7vh;
+
+          & .map-region {
+            top: 3vh;
+            left: 11vw;
+          }
+        }
+      }
+
+      /* horizontal stats layout */
+      @add-mixin from-md {
+        & .featured-datum-splash-container {
+          margin-left: 1rem;
+          margin-right: 1rem;
+
+          & > .featured-datum-splash {
+            display: inline-block;
+            vertical-align: top; /* override blueprint */
+            width: calc(33.33% - 1rem);
+
+            &:not(:last-child) {
+              margin-right: 1rem;
+            }
+          }
+        }
+      }
     }
 
     /* main stats row; nested within header */
     & .datum-full-width {
-      lost-column: 1 flex;
-      padding: 0px var(--gutter);
-      lost-flex-container: row;
-      margin: 100px 0px;
+      width: 100%;
+      text-align: center;
 
-      /* main stat */
-      & .featured-datum-splash {
-        lost-column: 1/3 flex;
+      @add-mixin for-xs {
+        & .featured-datum-splash:not(:last-of-type) {
+          margin-bottom: 3rem;
+        }
+      }
+
+      @add-mixin from-xs {
+        display: flex;
+        width: 100%;
+        max-width: 50rem;
+        margin: 1rem auto;
+        justify-content: space-around;
+
+        /* even width columns */
+        & .featured-datum-splash {
+          flex: 1 1 33.333%;
+
+          /* space out stats */
+          &:not(:last-of-type) {
+            margin-right: 1.5rem;
+          }
+        }
       }
     }
 
-    /* Geo profile only; splash stats with icons on the left */
-    & .meta {
-      display: inline-block;
-      lost-column: 1/3 flex;
-      vertical-align: top;
-      padding: 0px var(--gutter);
-    }
-
-    & .candidates {
-      lost-column: 1/3 flex;
-    }
-
+    /* map */
     & .map-region {
       position: absolute;
       z-index: 0;
       right: 0;
       top: 0;
       pointer-events: none;
+
       & .d3plus-geomap-paths {
         & .d3plus-Shape {
           pointer-events: all;
@@ -90,143 +153,5 @@
         }
       }
     }
-
-    & .map-comuna {
-      lost-column: 1/3 flex;
-      pointer-events: all;
-
-      padding-right: 5%;
-    }
-
-    & .topics-selector-container {
-    }
-
-    & .arrow-container {
-      lost-flex-container: row;
-      justify-content: center;
-      & a {
-        padding: var(--gutter) 0;
-        & path  {
-          fill: var(--snow);
-        }
-        &:hover {
-          & path  {
-            fill: var(--accent);
-          }
-        }
-      }
-    }
-
-    /*& .subnav {
-      margin: 0 var(--gutter);
-      text-align: right;
-
-      & .sublink {
-        @add-mixin font-xxs;
-        color: white;
-        display: inline-block;
-        margin: 0px 25px;
-        text-align: center;
-        text-decoration: none;
-        opacity: 0.9;
-        transition: opacity 0.2s;
-        @add-mixin body-font;
-        cursor: pointer;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        & .svg-image {
-          display: block;
-          margin: 10px auto;
-          & .fill-color {
-            fill: var(--snow);
-          }
-          & .stroke-color {
-            stroke: var(--snow);
-          }
-        }
-      }
-    }*/
-
-    & .sources {
-      padding: var(--gutter);
-    }
   }
-}
-
-@add-mixin for-xl {
-}
-
-@add-mixin for-lg {
-}
-
-@add-mixin for-md {
-  .profile {
-    & .intro {
-      & .datum-full-width {
-        margin: 50px 0px;
-        justify-content: space-around;
-        & .featured-datum-splash {
-          lost-column: 4/9 2;
-        }
-      }
-      & .meta {
-        lost-column: 1/2 flex;
-      }
-      & .candidates {
-        display: none;
-      }
-      & .map-comuna {
-        lost-column: 1/2 flex;
-      }
-    }
-  }
-}
-
-@add-mixin for-sm {
-  .profile {
-    & .intro {
-      & .datum-full-width {
-        margin: 25px 0px;
-        & .featured-datum-splash {
-          lost-column: 1/2 2;
-        }
-      }
-      & .meta {
-        lost-column: 1 flex;
-        & .featured-datum-splash {
-          lost-column: 1;
-        }
-      }
-      & .candidates {
-        display: none;
-      }
-      & .map-comuna {
-        display: none;
-      }
-    }
-  }
-}
-
-@add-mixin for-xs {
-  .profile {
-    & .intro {
-      & .datum-full-width {
-        & .featured-datum-splash {
-          lost-column: 1 1;
-        }
-      }
-      & .meta {
-        lost-column: 1 flex;
-        & .featured-datum-splash {
-          lost-column: 1;
-        }
-      }
-    }
-  }
-}
-
-@add-mixin for-xx {
 }

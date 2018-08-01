@@ -70,10 +70,7 @@
   }
 
   & .nav-topic {
-    @add-mixin font-xxs;
-    @add-mixin heading-font;
     text-align: center;
-    text-transform: uppercase;
 
     & .topics {
       /* no icon on small screens */
