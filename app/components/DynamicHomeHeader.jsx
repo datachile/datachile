@@ -237,7 +237,7 @@ class DynamicHomeHeader extends Component {
           .duration(500)
           .style("opacity", 1);
 
-        var div = select("#tooltip-home");
+        var tooltip = select(".tooltip-home");
         const container = document.querySelector(".dynamic-home-illustration");
 
         function getCoords(x, y) {
@@ -256,20 +256,17 @@ class DynamicHomeHeader extends Component {
             var elem = hotspot.select("circle.st0");
             var coords = getCoords(elem.attr("cx"), elem.attr("cy"));
 
-            div
-              .transition()
-              .duration(200)
-              .style("opacity", 1);
-            div
+            tooltip.style("opacity", 1);
+            tooltip
               .style("left", coords[0] - 75 + "px")
               .style("top", coords[1] + 10 + "px")
               .style("z-index", 10);
 
             const name = that.getTooltipName(region_id);
-            div.select(".tooltip-title").html(name);
+            tooltip.select(".tooltip-title").html(name);
 
             const data_collection = that.getTooltipData(region_id);
-            div
+            tooltip
               .select(".tooltip-body")
               .html(
                 data_collection
@@ -287,7 +284,7 @@ class DynamicHomeHeader extends Component {
               );
           })
           .on("mouseout", function(d) {
-            div
+            tooltip
               .style("opacity", 0)
               .style("z-index", -1);
           })
@@ -515,7 +512,7 @@ class DynamicHomeHeader extends Component {
                       }}
                     />
                     {/* tooltips; NOTE: keep here for positioning relative to parent */}
-                    <div id="tooltip-home">
+                    <div className="tooltip-home">
                       <div
                         className={`tooltip-title background-${header.slug}`}
                       />

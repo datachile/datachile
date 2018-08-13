@@ -47,12 +47,6 @@
       & .dynamic-home-hotspots {
         z-index: 1;
 
-        /* keep home-slider buttons clickable */
-        & > div {
-          height: 200px;
-          overflow: hidden;
-        }
-
         /* individual hotspot theming */
         & .hotspot {
           /* hotspots = links */
@@ -90,7 +84,7 @@
     }
 
     /* tooltip styling */
-    & #tooltip-home {
+    & .tooltip-home {
       background-color: var(--snow);
       width: 150px;
       height: auto;
@@ -99,6 +93,8 @@
       /* prevent from obscuring slider buttons */
       pointer-events: none;
       z-index: -1;
+      /* transitions */
+      transition: opacity 0.2s ease-out;
 
       & .tooltip-title {
         @add-mixin heading-font;
