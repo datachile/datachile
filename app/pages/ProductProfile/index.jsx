@@ -593,7 +593,11 @@ class ProductProfile extends Component {
                       )}
                     </div>
                     <div className="topic-slide-link-list">
-                      <LinksList title={listTitle} list={list} />
+                      <LinksList
+                        title={listTitle}
+                        list={list}
+                        category="products"
+                      />
                     </div>
                   </div>
                 </div>

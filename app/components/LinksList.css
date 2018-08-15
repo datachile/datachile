@@ -1,47 +1,10 @@
 @import "../pages/mixins";
 
-/* accordion links; found at the top of products profiles */
-.links-list-container {
-  & h5 {
-    @add-mixin font-md;
-  }
-  & .links-list {
-    max-height: 200px;
-    overflow: hidden;
-    padding-left: 0px;
-
-    transition: max-height 0.5s ease;
-    &.open-list {
-      max-height: 10000px;
-      & li {
-        &.see-more {
-
-          padding: 10px;
-        }
-      }
-    }
-    & li {
-      &.see-more {
-        display: block;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 30px 10px 0px 10px;
-        text-align: center;
-        background: linear-gradient(
-          to bottom,
-          color(var(--near-black) a(0)) 0%,
-          color(var(--near-black) a(0.5)) 17%,
-          var(--near-black) 64%
-        );
-      }
-      & a {
-        color: var(--snow) !important;
-      }
-      & a:hover {
-        text-decoration: none;
-        color: var(--accent) !important;
-      }
-    }
+/* list of tags found at the top of products profiles */
+.links-list {
+  & .links-list-item {
+    display: inline-block;
+    margin-right: 0.25em;
+    margin-bottom: 0.25em;
   }
 }
