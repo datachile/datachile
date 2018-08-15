@@ -90,7 +90,7 @@ class InternetAccessByZone extends Section {
 							barConfig: { "stroke-width": 0 },
 							tickSize: 0,
 							title: false,
-							tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+							tickFormat: tick => numeral(tick, locale).format("(0.0a)")
 						},
 						barPadding: 0,
 						groupPadding: 10,

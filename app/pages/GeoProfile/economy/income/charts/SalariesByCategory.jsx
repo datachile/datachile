@@ -61,13 +61,13 @@ class SalariesByCategory extends Section {
 						tooltipConfig: {
 							title: d => d["ICSE"],
 							body: d =>
-								numeral(d["Median Income"], locale).format("(0.[0] a)") + " CLP"
+								numeral(d["Median Income"], locale).format("(0.[0]a)") + " CLP"
 						},
 						discrete: "y",
 						xConfig: {
 							tickSize: 0,
 							title: t("Monthly Median Income CLP"),
-							tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
+							tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
 						},
 						ySort: (a, b) => {
 							return a["Median Income"] > b["Median Income"] ? 1 : -1;

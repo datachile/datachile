@@ -83,7 +83,7 @@ class InvestmentByLocation extends Section {
               text: d =>
                 "Total: CLP" +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -113,7 +113,7 @@ class InvestmentByLocation extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  numeral(d["Investment"], locale).format("(USD 0 a)") + link
+                  numeral(d["Investment"], locale).format("(USD 0a)") + link
                 );
               }
             },
@@ -124,7 +124,7 @@ class InvestmentByLocation extends Section {
               body: d => {
                 const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  numeral(d["Investment"], locale).format("(USD 0 a)") + link
+                  numeral(d["Investment"], locale).format("(USD 0a)") + link
                 );
               }
             },
@@ -137,7 +137,7 @@ class InvestmentByLocation extends Section {
             },
             yConfig: {
               title: t("CLP$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />

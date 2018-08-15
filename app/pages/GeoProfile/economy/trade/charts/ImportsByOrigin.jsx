@@ -51,7 +51,7 @@ class ImportsByOrigin extends Section {
               text: d =>
                 "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             on: {
@@ -77,7 +77,7 @@ class ImportsByOrigin extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US " + numeral(d["CIF US"], locale).format("$ (0 a)") + link
+                  "US " + numeral(d["CIF US"], locale).format("$ (0a)") + link
                 );
               }
             },
@@ -90,7 +90,7 @@ class ImportsByOrigin extends Section {
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
           dataFormat={data => data.data}

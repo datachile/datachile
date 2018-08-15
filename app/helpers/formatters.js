@@ -223,10 +223,10 @@ n.register("locale", "es-cl", {
     decimal: ","
   },
   abbreviations: {
-    thousand: "mil",
-    million: "millones",
-    billion: "miles de millones",
-    trillion: "billones"
+    thousand: " mil",
+    million: " millones",
+    billion: " miles de millones",
+    trillion: " billones"
   },
   ordinal: function(number) {
     var b = number % 10;

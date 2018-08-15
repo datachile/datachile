@@ -339,7 +339,7 @@ class IndustryProfile extends Component {
                       code={stats.region.id}
                       datum={stats.region.name}
                       subtitle={numeral(stats.region.value, locale).format(
-                        "($0,0 a)"
+                        "($0,0a)"
                       )}
                       source="tax_data"
                       className=""

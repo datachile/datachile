@@ -86,7 +86,7 @@ class OutputByLocation extends Section {
               text: d =>
                 "Total: CLP" +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -115,7 +115,7 @@ class OutputByLocation extends Section {
                   d["ID Comuna"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["Output"], locale).format("(USD 0 a)") + link;
+                return numeral(d["Output"], locale).format("(USD 0a)") + link;
               }
             },
             legendTooltip: {
@@ -124,7 +124,7 @@ class OutputByLocation extends Section {
               },
               body: d => {
                 const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d["Output"], locale).format("(USD 0 a)") + link;
+                return numeral(d["Output"], locale).format("(USD 0a)") + link;
               }
             },
             legendConfig: {
@@ -136,7 +136,7 @@ class OutputByLocation extends Section {
             },
             yConfig: {
               title: t("CLP$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />

@@ -76,7 +76,7 @@ class ImportsByRegion extends Section {
               text: d =>
                 "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -104,7 +104,7 @@ class ImportsByRegion extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US " + numeral(d["CIF US"], locale).format("(USD 0 a)") + link
+                  "US " + numeral(d["CIF US"], locale).format("(USD 0a)") + link
                 );
               }
             },
@@ -115,7 +115,7 @@ class ImportsByRegion extends Section {
               body: d => {
                 const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US " + numeral(d["CIF US"], locale).format("(USD 0 a)") + link
+                  "US " + numeral(d["CIF US"], locale).format("(USD 0a)") + link
                 );
               }
             },
@@ -128,7 +128,7 @@ class ImportsByRegion extends Section {
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />

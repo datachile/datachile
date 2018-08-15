@@ -233,7 +233,7 @@ class PSUDistribution extends Section {
                     d.geo +
                     "<br/>" +
                     numeral(d["Number of records"], locale).format(
-                      "(0.[0] a)"
+                      "(0.[0]a)"
                     ) +
                     " " +
                     t("PSU exams") +

@@ -458,7 +458,7 @@ class CountryProfile extends Component {
                       datum={
                         "US " +
                         numeral(stats.imports.value, locale).format(
-                          "($0,.0 a)"
+                          "($0,.0a)"
                         ) +
                         " CIF"
                       }
@@ -474,7 +474,7 @@ class CountryProfile extends Component {
                       datum={
                         "US " +
                         numeral(stats.exports.value, locale).format(
-                          "($0,.0 a)"
+                          "($0,.0a)"
                         ) +
                         " FOB"
                       }

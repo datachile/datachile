@@ -496,7 +496,7 @@ class ProductProfile extends Component {
                       datum={stats.country.name}
                       subtitle={
                         "US " +
-                        numeral(stats.country.value, locale).format("($0,0 a)")
+                        numeral(stats.country.value, locale).format("($0,0a)")
                       }
                       source="exports"
                       className=""
@@ -519,7 +519,7 @@ class ProductProfile extends Component {
                       }
                       datum={
                         "US " +
-                        numeral(stats.exports.value, locale).format("($0,0 a)")
+                        numeral(stats.exports.value, locale).format("($0,0a)")
                       }
                       source="exports"
                       className=""
@@ -534,7 +534,7 @@ class ProductProfile extends Component {
                       datum={stats.region.name}
                       subtitle={
                         "US " +
-                        numeral(stats.region.value, locale).format("($0,0 a)")
+                        numeral(stats.region.value, locale).format("($0,0a)")
                       }
                       source="exports"
                       className=""

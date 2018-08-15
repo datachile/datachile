@@ -51,7 +51,7 @@ class CustomMap extends React.Component {
               text: d =>
                 "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             on: {
@@ -77,7 +77,7 @@ class CustomMap extends React.Component {
                   d["ID Country"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d[msrName], locale).format("(USD 0 a)") + link;
+                return numeral(d[msrName], locale).format("(USD 0a)") + link;
               }
             },
 
@@ -99,7 +99,7 @@ class CustomMap extends React.Component {
                   }
                 },
                 tickFormat: tick => {
-                  return numeral(parseFloat(tick), "es").format("($0.[00] a)");
+                  return numeral(parseFloat(tick), "es").format("($0.[00]a)");
                 }
               },
               select: `.geo-${className}`,

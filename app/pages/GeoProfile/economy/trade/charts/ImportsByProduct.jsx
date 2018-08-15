@@ -50,7 +50,7 @@ class ImportsByProduct extends Section {
               text: d =>
                 "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             legendConfig: {
@@ -80,14 +80,14 @@ class ImportsByProduct extends Section {
               title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               body: d =>
                 "US " +
-                numeral(d["CIF US"], locale).format("$ (0 a)") +
+                numeral(d["CIF US"], locale).format("$ (0a)") +
                 "<br/><a>" +
                 t("tooltip.to_profile") +
                 "</a>"
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
           dataFormat={data => data.data}

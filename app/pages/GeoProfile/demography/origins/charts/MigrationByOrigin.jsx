@@ -127,7 +127,7 @@ export default translate()(
 										numeral(
 											d["Number of visas"],
 											locale
-										).format("(0 a)") +
+										).format("(0a)") +
 										" " +
 										t("people") +
 										link

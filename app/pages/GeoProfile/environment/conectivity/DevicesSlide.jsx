@@ -232,7 +232,7 @@ class DevicesSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="conectividad-internet"
-              datum={numeral(internet_data.total, locale).format("(0,0 a)")}
+              datum={numeral(internet_data.total, locale).format("(0,0a)")}
               title={t("Internet Access")}
               subtitle={`${t("in")} ${geo.name} - ${
                 sources.internet_access.year
@@ -242,7 +242,7 @@ class DevicesSlide extends Section {
               className="l-1-3"
               icon="celular"
               datum={numeral(datum_household_devices_small, locale).format(
-                "(0,0 a)"
+                "(0,0a)"
               )}
               title={t("Use small screens")}
               subtitle={t("to access the internet")}
@@ -251,7 +251,7 @@ class DevicesSlide extends Section {
               className="l-1-3"
               icon="tv"
               datum={numeral(datum_household_devices_uncommon, locale).format(
-                "(0,0 a)"
+                "(0,0a)"
               )}
               title={t("Use unconventional internet browser")}
               subtitle={t("on Smart TV or Gaming Console")}

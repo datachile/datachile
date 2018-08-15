@@ -59,7 +59,7 @@ class EmployedByEducation extends Section {
 								text: d =>
 									"Total: " +
 									numeral(getNumberFromTotalString(d.text), locale).format(
-										"(0 a)"
+										"(0a)"
 									)
 							},
 							shapeConfig: {

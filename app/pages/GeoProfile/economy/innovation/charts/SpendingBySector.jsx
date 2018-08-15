@@ -90,7 +90,7 @@ class SpendingBySector extends Section {
 							text: d =>
 								"Total: US " +
 								numeral(getNumberFromTotalString(d.text), locale).format(
-									"($0,.[00] a)"
+									"($0,.[00]a)"
 								)
 						},
 						shapeConfig: {

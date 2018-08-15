@@ -89,7 +89,7 @@ class SpendingByIndustry extends Section {
 							text: d =>
 								"Total: US " +
 								numeral(parseInt(d.text.split(": ")[1]), locale).format(
-									"($0,.[00] a)"
+									"($0,.[00]a)"
 								)
 						},
 						shapeConfig: {

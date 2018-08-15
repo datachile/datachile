@@ -77,7 +77,7 @@ export default translate()(
               },
               yConfig: {
                 title: t("Accreditation"),
-                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+                tickFormat: tick => numeral(tick, locale).format("(0.0a)")
               },
               xSort: (a, b) => {
                 return a["Number of records"] > b["Number of records"] ? -1 : 1;

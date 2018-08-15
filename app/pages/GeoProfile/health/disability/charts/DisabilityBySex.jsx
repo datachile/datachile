@@ -83,7 +83,7 @@ class DisabilityBySex extends Section {
             },
             yConfig: {
               title: t("People with disabilities"),
-              tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
             },
             tooltipConfig: {
               title: d => t(d["Sex"]),

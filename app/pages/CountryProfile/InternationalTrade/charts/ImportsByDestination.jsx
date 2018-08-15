@@ -91,7 +91,7 @@ class ImportsByDestination extends Section {
 									numeral(
 										getNumberFromTotalString(d.text),
 										locale
-									).format("($0.[00] a)") +
+									).format("($0.[00]a)") +
 									" CIF"
 							},
 							time: "ID Year",
@@ -115,7 +115,7 @@ class ImportsByDestination extends Section {
 								title: d => d["Comuna"],
 								body: d =>
 									numeral(d["CIF US"], locale).format(
-										"(USD 0 a)"
+										"(USD 0a)"
 									) +
 									" CIF<br/><a>" +
 									t("tooltip.to_profile") +

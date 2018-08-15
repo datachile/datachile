@@ -116,7 +116,7 @@ class IndustrySlide extends Section {
               className="l-1-2"
               icon="inversion"
               datum={numeral(datum_industry_output, locale).format(
-                "($0,.00 a)"
+                "($0,.00a)"
               )}
               title={t("Total Investment")}
               subtitle={sources.tax_data.year}

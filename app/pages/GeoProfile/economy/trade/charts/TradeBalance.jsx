@@ -49,7 +49,7 @@ class TradeBalance extends Section {
 						},
 						yConfig: {
 							title: t("US$"),
-							tickFormat: tick => numeral(tick, locale).format("(0 a)")
+							tickFormat: tick => numeral(tick, locale).format("(0a)")
 						},
 						shapeConfig: {
 							Line: {
@@ -66,7 +66,7 @@ class TradeBalance extends Section {
 								if (!(d["ID Year"] instanceof Array)) {
 									body =
 										"US " +
-										numeral(d.value, locale).format("$ (0.[0] a)") +
+										numeral(d.value, locale).format("$ (0.[0]a)") +
 										" - " +
 										d["ID Year"];
 								}

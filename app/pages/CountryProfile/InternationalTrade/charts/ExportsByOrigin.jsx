@@ -91,7 +91,7 @@ class ExportsByOrigin extends Section {
 									numeral(
 										getNumberFromTotalString(d.text),
 										locale
-									).format("($0.[00] a)") +
+									).format("($0.[00]a)") +
 									" FOB"
 							},
 							time: "ID Year",
@@ -115,7 +115,7 @@ class ExportsByOrigin extends Section {
 								title: d => d["Comuna"],
 								body: d =>
 									numeral(d["FOB US"], locale).format(
-										"(USD 0 a)"
+										"(USD 0a)"
 									) +
 									" FOB<br/><a>" +
 									t("tooltip.to_profile") +

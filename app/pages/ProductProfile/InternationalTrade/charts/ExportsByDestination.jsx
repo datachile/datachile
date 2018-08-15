@@ -81,7 +81,7 @@ class ExportsByDestination extends Section {
               text: d =>
                 "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -113,7 +113,7 @@ class ExportsByDestination extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US " + numeral(d["FOB US"], locale).format("$ (0 a)") + link
+                  "US " + numeral(d["FOB US"], locale).format("$ (0a)") + link
                 );
               }
             },
@@ -126,7 +126,7 @@ class ExportsByDestination extends Section {
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />

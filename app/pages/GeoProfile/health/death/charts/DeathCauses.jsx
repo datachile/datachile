@@ -70,7 +70,7 @@ class DeathCauses extends Section {
 							text: d =>
 								"Total: " +
 								numeral(getNumberFromTotalString(d.text), locale).format(
-									"( 0.[00] a)"
+									"( 0.[00]a)"
 								) +
 								" " +
 								t("people")

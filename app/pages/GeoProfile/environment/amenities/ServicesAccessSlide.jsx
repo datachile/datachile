@@ -143,7 +143,7 @@ class ServicesAccessSlide extends Section {
               title={t("Connected to electricity network")}
               subtitle={
                 datum_electr_number
-                  ? numeral(datum_electr_number, locale).format("(0.0 a)") +
+                  ? numeral(datum_electr_number, locale).format("(0.0a)") +
                     t(" in ") +
                     area.caption
                   : ""
@@ -160,7 +160,7 @@ class ServicesAccessSlide extends Section {
               title={t("Use fire-based heating")}
               subtitle={
                 datum_heating_number
-                  ? numeral(datum_heating_number, locale).format("(0.0 a)") +
+                  ? numeral(datum_heating_number, locale).format("(0.0a)") +
                     t(" in ") +
                     area.caption
                   : ""
@@ -177,7 +177,7 @@ class ServicesAccessSlide extends Section {
               title={t("Connected to public tap water system")}
               subtitle={
                 datum_water_number
-                  ? numeral(datum_water_number, locale).format("(0.0 a)") +
+                  ? numeral(datum_water_number, locale).format("(0.0a)") +
                     t(" in ") +
                     area.caption
                   : ""

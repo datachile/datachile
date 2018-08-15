@@ -54,7 +54,7 @@ class IndustryByOccupation extends Section {
 								text: d =>
 									"Total: " +
 									numeral(getNumberFromTotalString(d.text), locale).format(
-										"(0.[0] a)"
+										"(0.[0]a)"
 									) +
 									" " +
 									t("people")

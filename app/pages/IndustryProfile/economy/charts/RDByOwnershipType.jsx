@@ -81,7 +81,7 @@ class RDByOwnershipType extends Section {
               text: d =>
                 "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -90,11 +90,11 @@ class RDByOwnershipType extends Section {
             tooltipConfig: {
               title: d => d["Ownership Type"],
               body: d =>
-                numeral(d["Total Spending"], locale).format("(USD 0 a)")
+                numeral(d["Total Spending"], locale).format("(USD 0a)")
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />

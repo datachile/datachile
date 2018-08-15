@@ -358,7 +358,7 @@ class DynamicHomeHeader extends Component {
         var obj = data.home_countries_export[header.slug + "_" + id];
         datas.push({
           title: t("Imports from Chile") + " " + obj["Year"],
-          value: numeral(obj["FOB US"], locale).format("($0.00 a)")
+          value: numeral(obj["FOB US"], locale).format("($0.00a)")
         });
         break;
       case "institutions":
@@ -383,14 +383,14 @@ class DynamicHomeHeader extends Component {
         var obj = data.home_product_exports[header.slug + "_" + id];
         datas.push({
           title: t("Chile Exports") + " " + obj["Year"],
-          value: numeral(obj["FOB US"], locale).format("($0.00 a)")
+          value: numeral(obj["FOB US"], locale).format("($0.00a)")
         });
         break;
       case "industries":
         var obj = data.home_industries_tax_data[header.slug + "_" + id];
         datas.push({
           title: t("Industry output") + " " + obj["Year"],
-          value: numeral(obj["Output"], locale).format("($0.00 a)")
+          value: numeral(obj["Output"], locale).format("($0.00a)")
         });
         break;
     }

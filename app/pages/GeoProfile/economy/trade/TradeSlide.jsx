@@ -157,7 +157,7 @@ class TradeSlide extends Section {
               className="l-1-3"
               icon="exportaciones"
               datum={
-                "US " + numeral(datum_trade_exports, locale).format("($0.00 a)")
+                "US " + numeral(datum_trade_exports, locale).format("($0.00a)")
               }
               title={t("Exports {{last_year}}", {
                 last_year: sources.exports.year
@@ -167,7 +167,7 @@ class TradeSlide extends Section {
                 ": " +
                 t("US{{imports}}", {
                   imports: numeral(datum_trade_imports, locale).format(
-                    "($0,.00 a)"
+                    "($0,.00a)"
                   )
                 })
               }

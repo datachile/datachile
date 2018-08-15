@@ -80,7 +80,7 @@ class TradeBalance extends Section {
 						},
 						yConfig: {
 							title: t("USD"),
-							tickFormat: tick => numeral(tick, locale).format("($0.[00] a)")
+							tickFormat: tick => numeral(tick, locale).format("($0.[00]a)")
 						},
 						legendConfig: {
 							label: d => t(d["variable"])
@@ -97,7 +97,7 @@ class TradeBalance extends Section {
 								"<div>" +
 								d["year"] +
 								": USD " +
-								numeral(d["value"], locale).format("($0.00 a)") +
+								numeral(d["value"], locale).format("($0.00a)") +
 								"</div>"
 						}
 					}}
