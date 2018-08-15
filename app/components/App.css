@@ -107,15 +107,16 @@ p > a,
 li > a,
 .link {
   @add-mixin body-font-bold;
-  color: #6099ea;
-  opacity: 0.875;
+  color: var(--accent-light);
   /* override blueprint */
   text-decoration: underline;
+  /* transitions */
+  transition:
+    color 0.25s ease-out,
+    opacity 0.25s ease-out;
 
-  /* TODO: consolodate blue accent color */
   &:hover, &:focus {
-    opacity: 1;
-    color: #6099ea;
+    color: var(--snow);
   }
 }
 
@@ -329,7 +330,7 @@ table.tooltip-table {
 
     /* interactions */
     &:hover, &:focus {
-      background-color: var(--color-geo-light);
+      background-color: var(--accent-light);
     }
   }
 
