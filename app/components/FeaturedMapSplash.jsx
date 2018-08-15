@@ -117,7 +117,7 @@ class FeaturedMapSplash extends Component {
                       hoverOpacity: 1,
                       Path: {
                         fill: function(d) {
-                          return d.id == code ? "#4B71B5" : "none";
+                          return d.id == code ? "#3277dc" : "none";
                         },
                         stroke: "rgba(255, 255, 255, 1)"
                       }

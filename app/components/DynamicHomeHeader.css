@@ -47,6 +47,11 @@
       & .dynamic-home-hotspots {
         z-index: 1;
 
+        /* prevent random div from obscuring tabs */
+        & > div {
+          max-height: 200px;
+        }
+
         /* individual hotspot theming */
         & .hotspot {
           /* hotspots = links */

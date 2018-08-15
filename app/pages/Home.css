@@ -1,10 +1,6 @@
 @import "../pages/mixins";
 
 .home {
-  & .home-content {
-    lost-flex-container: row;
-    lost-align: center;
-  }
   & .nav {
     position: absolute;
     z-index: 100;
@@ -123,9 +119,14 @@
   & .home-slider {
     lost-flex-container: column;
     lost-center: var(--width);
-
     z-index: 1;
     margin: 0 auto;
+
+    /* prevent tooltips from obscuring tabs */
+    &:hover {
+      z-index: 2;
+    }
+
     & .home-slide-item {
       /* lost-column: 1/6 6 0px; */
       lost-column: 1/4 4 var(--gutter-half);
@@ -196,48 +197,45 @@
   }
 
   /* about block */
+  & .home-about-img {
+    margin: 1rem auto 0 auto;
+    width: 53.25rem; /* account for image white space */
+    display: block;
+  }
   & .home-text {
-    lost-flex-container: column;
-    lost-center: var(--width);
-    margin: var(--gutter) auto 0 auto;
-    & .l-col,
-    & .r-col {
-      lost-column: 1/2 2 3.5em;
-      margin-bottom: var(--gutter);
-      text-align: center;
+    width: 45rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* default margin on typographic elements */
+    & > * {
+      margin-bottom: 0.75em;
     }
-    & img {
-      display: block;
-      margin: 0 auto;
-      width: 90%;
-      max-width: 19rem;
+
+    /* space out paragraph and heading */
+    & p + h2 {
+      margin-top: 2em;
     }
+
+    /* about headings */
     & h2 {
       color: var(--accent);
       margin-bottom: var(--gutter);
     }
-    & .l-col h2 {
-      max-width: 190px;
-      margin-left: auto;
-      margin-right: auto;
-    }
     /* about text */
     & p {
-      @add-mixin font-md;
-      @add-mixin font-smoothing;
       color: var(--darker-gray);
-      text-align: left;
       /* highlights */
       & span {
         @add-mixin body-font-bold;
-        font-size: inherit;
+        color: var(--snow);
       }
     }
   }
 
   & .home-section-title {
     lost-flex-container: row;
-    lost-center: 1/3;
     margin: var(--gutter) auto var(--gutter) auto;
     & h2 {
       text-align: center;
@@ -279,7 +277,8 @@
   & .home-sources {
     lost-flex-container: column;
     lost-center: var(--width);
-    margin: var(--gutter-half) auto var(--gutter) auto;
+    max-width: 45rem;
+    margin: var(--gutter) auto;
     & .dataset-list {
       lost-flex-container: row;
       lost-column: 1;
@@ -292,7 +291,7 @@
       }
 
       & .l-col {
-        & span {
+        @add-mixin from-sm {
           text-align: right;
         }
 
@@ -310,7 +309,7 @@
 
       /* add border, but not to the last one */
       &:not(:last-of-type) {
-        border-bottom: 1px solid var(--accent);
+        border-bottom: 1px solid var(--accent-dark);
       }
 
       & span {
@@ -331,21 +330,24 @@
   }
 }
 
-@add-mixin for-xl {
-}
 
 @add-mixin for-lg {
   .home {
     & .home-featured-profiles,
     & .home-slider,
-    & .home-text,
     & .home-sources {
       lost-column: 1 1;
-      margin-top: 0; /* override lost */
-      padding: 0 var(--gutter);
     }
     & .home-sources {
-      lost-column: 1 1;
+      max-width: 100%;
+    }
+
+    & .home-featured-profiles,
+    & .home-slider,
+    & .home-text,
+    & .home-sources {
+      margin-top: 0; /* override lost */
+      padding: 0 var(--gutter);
     }
   }
 }
@@ -361,25 +363,13 @@
         }
       }
     }
-    & .home-text {
-      lost-flex-container: row;
-      & .l-col {
-        lost-column: 1;
-        padding: 0;
-      }
-      & .r-col {
-        lost-column: 1;
-        padding: 0;
-      }
-    }
-    & .home-featured-profiles {
-    }
     & .home-section-title {
       lost-column: 1;
       lost-center: 1;
     }
   }
 }
+
 
 @add-mixin for-sm {
   .home {
@@ -395,12 +385,7 @@
     }
     & .home-sources {
       & .dataset-list {
-        & .l-col {
-          lost-column: 1;
-          & span {
-            text-align: left;
-          }
-        }
+        & .l-col,
         & .r-col {
           lost-column: 1;
         }

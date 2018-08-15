@@ -266,46 +266,47 @@ class Home extends Component {
                 </div>
               </div>
 
-              {/* about section */}
-              <div className="home-text">
-                <div className="l-col">
-                  <img src="/images/home/what.png" alt={t("home.what.title")} />
-                  <h2>{t("home.what.title")}</h2>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.what.text1")
-                    }}
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.what.text2")
-                    }}
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.what.text3")
-                    }}
-                  />
-                </div>
-                <div className="r-col">
-                  <img src="/images/home/diff.png" alt={t("home.diff.title")} />
-                  <h2>{t("home.diff.title")}</h2>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.diff.text1")
-                    }}
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.diff.text2")
-                    }}
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.diff.text3")
-                    }}
-                  />
-                </div>
+              {/* about section image */}
+              <img
+                className="home-about-img"
+                src="/images/home/about.svg"
+                alt=""
+              />
+
+              {/* about section text */}
+              <div className="home-text font-md">
+                <h2>{t("home.what.title")}</h2>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text1")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text2")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text3")
+                  }}
+                />
+                <h2>{t("home.diff.title")}</h2>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text1")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text2")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text3")
+                  }}
+                />
               </div>
 
               {/* sources section */}
