@@ -3,7 +3,6 @@
 .profile-carousel {
   lost-flex-container: row;
   lost-column: 1 1;
-  lost-utility: clearfix;
   margin: calc(var(--gutter)/2) auto var(--gutter) auto;
 
   & .profile-carousel-title {
