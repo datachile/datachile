@@ -118,13 +118,11 @@ class EnrollmentSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Enrollment")}</div>
           <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("geo_profile.education.enrollment", text)
-                }}
-              />
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.education.enrollment", text)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             {text && (

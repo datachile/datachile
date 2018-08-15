@@ -29,7 +29,7 @@ class RetentionSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Retention")}</div>
-          <div className="topic-slide-text">Lorem ipsum</div>
+          <p className="topic-slide-text">Lorem ipsum</p>
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"

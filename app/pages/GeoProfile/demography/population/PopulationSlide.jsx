@@ -58,7 +58,7 @@ class PopulationSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Population")}</div>
-          <div
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />

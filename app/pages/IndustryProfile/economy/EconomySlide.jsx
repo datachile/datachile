@@ -73,7 +73,7 @@ class EconomySlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Economy")}</div>
           <div className="topic-slide-text">
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: isEmpty(text.location.first)
                   ? t("industry_profile.economy.no_data", text)

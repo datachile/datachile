@@ -103,13 +103,10 @@ class IDSpendingCategorySlide extends Section {
             {t("R&D spending")}
             {geo.depth > 1 ? (
               <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", geo.ancestors[0])
-                    }}
-                  />
-                </p>
+                <p dangerouslySetInnerHTML={{
+                    __html: t("geo_profile.warning", geo.ancestors[0])
+                  }}
+                />
               </div>
             ) : (
               ""

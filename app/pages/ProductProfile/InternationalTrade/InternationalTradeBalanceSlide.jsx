@@ -80,16 +80,14 @@ class InternationalTradeBalanceSlide extends Section {
             {t("International Trade Balance")}
           </div>
           <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t(
-                    `product_profile.balance.${text_product.format}`,
-                    text_product
-                  )
-                }}
-              />
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t(
+                  `product_profile.balance.${text_product.format}`,
+                  text_product
+                )
+              }}
+            />
           </div>
 
           <div className="topic-slide-data">

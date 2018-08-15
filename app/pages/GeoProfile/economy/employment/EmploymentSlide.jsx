@@ -219,13 +219,10 @@ class EmploymentSlide extends Section {
 						)}
 					</div>
 					<div className="topic-slide-text">
-						<p>
-							<span
-								dangerouslySetInnerHTML={{
-									__html: t("geo_profile.economy.employment.text", text)
-								}}
-							/>
-						</p>
+						<p dangerouslySetInnerHTML={{
+								__html: t("geo_profile.economy.employment.text", text)
+							}}
+						/>
 					</div>
 					{datum_employment_unemployment && (
 						<div className="topic-slide-data">

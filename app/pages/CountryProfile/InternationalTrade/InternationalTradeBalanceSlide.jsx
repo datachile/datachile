@@ -165,7 +165,7 @@ class InternationalTradeBalanceSlide extends Section {
           <div className="topic-slide-title">
             {t("International Trade Balance")}
           </div>
-          <div
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />

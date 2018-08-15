@@ -224,7 +224,7 @@ class DevicesSlide extends Section {
               ""
             )}
           </div>
-          <div
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />

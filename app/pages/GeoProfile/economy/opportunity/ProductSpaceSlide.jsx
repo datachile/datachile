@@ -19,7 +19,7 @@ class ProductSpaceSlide extends Section {
           <div className="topic-slide-title">
             {t("Opportunity in Products")}
           </div>
-          <div
+          <p
             className="topic-slide-text-full"
             dangerouslySetInnerHTML={{
               __html: t("geo_profile.economy.product_space", text)

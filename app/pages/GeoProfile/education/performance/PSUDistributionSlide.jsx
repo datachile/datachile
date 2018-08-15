@@ -69,25 +69,20 @@ class PSUDistributionSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Score")}</div>
           <div className="topic-slide-text">
-            <p>
-              {text && (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: t(
-                      `geo_profile.education.performance.byPSU.distribution`,
-                      text
-                    )
-                  }}
-                />
-              )}
-              <span
+            {text && (
+              <p
                 dangerouslySetInnerHTML={{
                   __html: t(
-                    `geo_profile.education.performance.byPSU.disclaimer`
+                    `geo_profile.education.performance.byPSU.distribution`,
+                    text
                   )
                 }}
               />
-            </p>
+            )}
+            <p dangerouslySetInnerHTML={{
+                __html: t(`geo_profile.education.performance.byPSU.disclaimer`)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             {text &&

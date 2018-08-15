@@ -39,7 +39,7 @@ class CrimeSlide extends Section {
           <div className="topic-slide-title">{t("Crimes")}</div>
           <div className="topic-slide-text">
             {text && (
-              <span
+              <p
                 dangerouslySetInnerHTML={{
                   __html:
                     text.total_last_year > 0

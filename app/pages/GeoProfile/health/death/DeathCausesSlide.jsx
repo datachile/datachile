@@ -86,13 +86,11 @@ class DeathCausesSlide extends Section {
             )}
           </div>
           <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("geo_profile.health.death_causes", text)
-                }}
-              />
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.health.death_causes", text)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             {text && (

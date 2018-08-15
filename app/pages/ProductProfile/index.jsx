@@ -567,19 +567,17 @@ class ProductProfile extends Component {
                 <div className="topic-slide-block">
                   <div className="topic-slide-intro">
                     <div className="topic-slide-text">
-                      <p>
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: total_exports_per_product
-                              ? t("product_profile.about1.default", text_about)
-                              : t("product_profile.about1.no_data", text_about)
-                          }}
-                        />
-                      </p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: total_exports_per_product
+                            ? t("product_profile.about1.default", text_about)
+                            : t("product_profile.about1.no_data", text_about)
+                        }}
+                      />
                     </div>
                     <div className="topic-slide-text">
                       {text_product.available && (
-                        <span
+                        <p
                           dangerouslySetInnerHTML={{
                             __html:
                               text_product.exports.n_countries > 0

@@ -71,7 +71,7 @@ class MayorSlide extends Section {
           <div className="topic-slide-title">
             {t("geo_profile.civics.mayor.title")}
           </div>
-          <div
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
               __html: t(

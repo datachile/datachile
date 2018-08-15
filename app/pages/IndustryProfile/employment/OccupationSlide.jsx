@@ -100,29 +100,25 @@ class OccupationSlide extends Section {
               {t("Occupation")}
               {industry.depth > 1 ? (
                 <div className="topic-slide-subtitle">
-                  <p>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: t(
-                          "industry_profile.warning",
-                          industry.depth > 1 ? industry.parent : industry
-                        )
-                      }}
-                    />
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: t(
+                        "industry_profile.warning",
+                        industry.depth > 1 ? industry.parent : industry
+                      )
+                    }}
+                  />
                 </div>
               ) : (
                 ""
               )}
             </div>
             <div className="topic-slide-text">
-              <p>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: t("industry_profile.employment", text_slide)
-                  }}
-                />
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t("industry_profile.employment", text_slide)
+                }}
+              />
             </div>
 
             <div className="topic-slide-data">

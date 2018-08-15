@@ -164,7 +164,7 @@ class AccessSlide extends Section {
           <div className="topic-slide-intro">
             <div className="topic-slide-title">{t("Access")}</div>
             <div className="topic-slide-text">
-              <span
+              <p
                 dangerouslySetInnerHTML={{
                   __html: t("geo_profile.health.access", text_access)
                 }}

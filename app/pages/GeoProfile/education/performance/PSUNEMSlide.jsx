@@ -159,28 +159,26 @@ class PSUNEMSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Performance")}</div>
           <div className="topic-slide-text">
-            <p>
-              {text && (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      geo.depth === 2
-                        ? t(
-                            `geo_profile.education.performance.byPSU.level2.${
-                              text.type
-                            }`,
-                            text
-                          )
-                        : t(
-                            `geo_profile.education.performance.byPSU.level1.${
-                              text.location.n_comunas
-                            }`,
-                            text
-                          )
-                  }}
-                />
-              )}
-            </p>
+            {text && (
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    geo.depth === 2
+                      ? t(
+                          `geo_profile.education.performance.byPSU.level2.${
+                            text.type
+                          }`,
+                          text
+                        )
+                      : t(
+                          `geo_profile.education.performance.byPSU.level1.${
+                            text.location.n_comunas
+                          }`,
+                          text
+                        )
+                }}
+              />
+            )}
           </div>
           <div className="topic-slide-data">
             {text && (

@@ -14,7 +14,7 @@ class IncomeOccupationSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Income")}</div>
-          <div className="topic-slide-text">
+          <p className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
             orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,
             lobortis eget, lacus. Sed diam. Praesent fermentum tempor tellus.
@@ -23,7 +23,7 @@ class IncomeOccupationSlide extends Section {
             enim. Phasellus neque orci, porta a, aliquet quis, semper a, massa.
             Phasellus purus. Pellentesque tristique imperdiet tortor. Nam
             euismod tellus id erat.
-          </div>
+          </p>
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"

@@ -143,7 +143,7 @@ class HealthCareSlide extends Section {
             )}
           </div>
           <div className="topic-slide-text">
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: t("geo_profile.health.healthcare", text_healthcare)
               }}

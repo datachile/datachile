@@ -58,22 +58,20 @@ class SNEDSlide extends Section {
           <div className="topic-slide-title">{t("Performance Evaluation")}</div>
           <div className="topic-slide-text">
             <p>{t("geo_profile.education.sned.description")}</p>
-            <p>
-              {text &&
-                datum_sned_score && (
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t(`geo_profile.education.sned.text1`, {
-                        score: numeral(datum_sned_score.data, locale).format(
-                          "0.00"
-                        ),
-                        year: 2016,
-                        geo
-                      })
-                    }}
-                  />
-                )}
-            </p>
+            {text &&
+              datum_sned_score && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t(`geo_profile.education.sned.text1`, {
+                      score: numeral(datum_sned_score.data, locale).format(
+                        "0.00"
+                      ),
+                      year: 2016,
+                      geo
+                    })
+                  }}
+                />
+              )}
           </div>
           <div className="topic-slide-data">
             {text && (

@@ -106,15 +106,13 @@ class IncomeSexAgeSlide extends Section {
             {t("Income")}
             {this.context.data.geo.depth > 1 ? (
               <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", {
-                        caption: "Región " + name
-                      })
-                    }}
-                  />
-                </p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("geo_profile.warning", {
+                      caption: "Región " + name
+                    })
+                  }}
+                />
               </div>
             ) : (
               ""

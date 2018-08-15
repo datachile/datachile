@@ -133,7 +133,7 @@ class TradeSlide extends Section {
         <div className="topic-slide-intro">
           <div className="topic-slide-title">{t("Trade")}</div>
           <div className="topic-slide-text">
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: !("trade_volume" in text_data.exports)
                   ? t("geo_profile.economy.exports.no_data", text_data)
@@ -142,7 +142,7 @@ class TradeSlide extends Section {
                     : t("geo_profile.economy.exports.default", text_data)
               }}
             />
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: !("trade_volume" in text_data.imports)
                   ? t("geo_profile.economy.imports.no_data", text_data)
