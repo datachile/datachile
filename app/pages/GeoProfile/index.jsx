@@ -527,7 +527,7 @@ class GeoProfile extends Component {
                         datum={
                           stats.income.value
                             ? numeral(stats.income.value, locale).format(
-                                "($ 0,0)"
+                                "($0,0)"
                               )
                             : false
                         }

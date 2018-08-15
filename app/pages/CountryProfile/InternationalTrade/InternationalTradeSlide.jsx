@@ -100,10 +100,10 @@ class InternationalTradeSlide extends Section {
       level: country.caption,
       year: last_year,
       context: balance_volume == 0 ? "none" : "",
-      total_imports: numeral(import_volume, locale).format("($ 0.00 a)"),
-      total_exports: numeral(export_volume, locale).format("($ 0.00 a)"),
+      total_imports: numeral(import_volume, locale).format("($0.00 a)"),
+      total_exports: numeral(export_volume, locale).format("($0.00 a)"),
       total_balance: numeral(Math.abs(balance_volume), locale).format(
-        "($ 0.00 a)"
+        "($0,.00 a)"
       ),
       behavior: balance_volume > 0 ? t("positive") : t("negative"),
       main_import: trade_import,

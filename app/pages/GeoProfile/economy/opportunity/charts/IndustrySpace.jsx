@@ -68,7 +68,7 @@ class IndustrySpace extends Section {
                            <td class='data'>${numeral(
 															d["Output"],
 															locale
-														).format("$ 0 a")}</td></tr>
+														).format("$0, a")}</td></tr>
                            <tr><td class='title'>${t("ISIC")}</td>
                            <td class='data'>${d["ID Level 4"]}</td></tr>
                            <tr><td class='title'>${t(

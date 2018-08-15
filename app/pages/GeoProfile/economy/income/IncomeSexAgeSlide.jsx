@@ -135,7 +135,7 @@ class IncomeSexAgeSlide extends Section {
               className="l-1-2"
               icon="ingreso-femenino"
               datum={numeral(datum_income_mean_sex[0], locale).format(
-                "($ 0 a)"
+                "($0, a)"
               )}
               title={t("Female Median Income")}
               subtitle={t("in ") + name}
@@ -144,7 +144,7 @@ class IncomeSexAgeSlide extends Section {
               className="l-1-2"
               icon="ingreso-masculino"
               datum={numeral(datum_income_mean_sex[1], locale).format(
-                "($ 0 a)"
+                "($0, a)"
               )}
               title={t("Male Median Income")}
               subtitle={t("in ") + name}

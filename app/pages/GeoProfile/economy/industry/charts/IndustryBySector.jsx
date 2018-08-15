@@ -56,7 +56,7 @@ class IndustryBySector extends Section {
 								numeral(
 									getNumberFromTotalString(d.text),
 									locale
-								).format("($ 0.[0] a)")
+								).format("($0.[0] a)")
 						},
 						time: "ID Year",
 						shapeConfig: {
@@ -96,7 +96,7 @@ class IndustryBySector extends Section {
 									t("Output") +
 									"</td><td class='data'>" +
 									numeral(d["Output"], locale).format(
-										"($ 0,0.[0] a)"
+										"($0,0.[0] a)"
 									) +
 									"</td></tr>";
 								body +=
@@ -104,7 +104,7 @@ class IndustryBySector extends Section {
 									t("Investment") +
 									"</td><td class='data'>" +
 									numeral(d["Investment"], locale).format(
-										"($ 0,0.[0] a)"
+										"($0,0.[0] a)"
 									) +
 									"</td></tr>";
 								body += "</table>";

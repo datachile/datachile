@@ -87,11 +87,11 @@ class ExportsByOrigin extends Section {
 							total: d => d["FOB US"],
 							totalConfig: {
 								text: d =>
-									"Total: US" +
+									"Total: US " +
 									numeral(
 										getNumberFromTotalString(d.text),
 										locale
-									).format("($ 0.[00] a)") +
+									).format("($0.[00] a)") +
 									" FOB"
 							},
 							time: "ID Year",

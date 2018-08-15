@@ -113,7 +113,7 @@ class TradeBalance extends Section {
 										: /import/i.test(d.variable) ? " CIF" : "";
 									return Array.isArray(d["ID Year"])
 										? ""
-										: "US" +
+										: "US " +
 												numeral(d.value, locale).format("$ (0.[0] a)") +
 												kind +
 												" - " +

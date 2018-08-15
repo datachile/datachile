@@ -88,9 +88,9 @@ class SpendingBySector extends Section {
 						time: "ID Year",
 						totalConfig: {
 							text: d =>
-								"Total: US" +
+								"Total: US " +
 								numeral(getNumberFromTotalString(d.text), locale).format(
-									"($ 0.[00] a)"
+									"($0,.[00] a)"
 								)
 						},
 						shapeConfig: {

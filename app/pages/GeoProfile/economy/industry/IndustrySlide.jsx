@@ -97,7 +97,7 @@ class IndustrySlide extends Section {
       text.labour_productivity = numeral(
         datum_industry_by_labour_productivity.data,
         locale
-      ).format("$ 0,0.[0] a");
+      ).format("$0,,0.[0] a");
     }
 
     return (
@@ -116,7 +116,7 @@ class IndustrySlide extends Section {
               className="l-1-2"
               icon="inversion"
               datum={numeral(datum_industry_output, locale).format(
-                "($ 0.00 a)"
+                "($0,.00 a)"
               )}
               title={t("Total Investment")}
               subtitle={sources.tax_data.year}
@@ -126,7 +126,7 @@ class IndustrySlide extends Section {
               className="l-1-2"
               icon="ingresos"
               datum={numeral(datum_industry_income_mean, locale).format(
-                "($ 0,0)"
+                "($0,0)"
               )}
               title={t("Mean Income")}
               subtitle={sources.nesi_income.year}

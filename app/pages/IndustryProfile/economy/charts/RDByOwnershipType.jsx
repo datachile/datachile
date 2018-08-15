@@ -79,9 +79,9 @@ class RDByOwnershipType extends Section {
             total: d => d["Total Spending"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00] a)"
                 )
             },
             shapeConfig: {

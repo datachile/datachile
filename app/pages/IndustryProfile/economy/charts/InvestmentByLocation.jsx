@@ -83,7 +83,7 @@ class InvestmentByLocation extends Section {
               text: d =>
                 "Total: CLP" +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00] a)"
                 )
             },
             shapeConfig: {

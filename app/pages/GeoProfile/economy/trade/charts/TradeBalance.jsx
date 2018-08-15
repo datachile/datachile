@@ -65,7 +65,7 @@ class TradeBalance extends Section {
 								var body = "";
 								if (!(d["ID Year"] instanceof Array)) {
 									body =
-										"US" +
+										"US " +
 										numeral(d.value, locale).format("$ (0.[0] a)") +
 										" - " +
 										d["ID Year"];

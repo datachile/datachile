@@ -67,7 +67,7 @@ class ProductSpace extends Section {
                            <td class='data'>US${numeral(
 															d["FOB US"],
 															locale
-														).format("$ 0 a")}</td></tr>
+														).format("$0, a")}</td></tr>
                            <tr><td class='title'>${t("HS")}</td>
                            <td class='data'>${d["ID HS2"].slice(2)}</td></tr>
                            <tr><td class='title'>${t(

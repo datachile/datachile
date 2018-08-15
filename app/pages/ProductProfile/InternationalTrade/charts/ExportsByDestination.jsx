@@ -79,9 +79,9 @@ class ExportsByDestination extends Section {
             total: d => d["FOB US"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00] a)"
                 )
             },
             shapeConfig: {
@@ -113,7 +113,7 @@ class ExportsByDestination extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US" + numeral(d["FOB US"], locale).format("$ (0 a)") + link
+                  "US " + numeral(d["FOB US"], locale).format("$ (0 a)") + link
                 );
               }
             },

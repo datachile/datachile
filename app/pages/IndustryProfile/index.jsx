@@ -323,7 +323,7 @@ class IndustryProfile extends Component {
                         icon={null}
                         decile={null}
                         datum={numeral(stats.employees.data[1], locale).format(
-                          "$ 0,0"
+                          "$0,,0"
                         )}
                         source="tax_data"
                         className=""
@@ -339,7 +339,7 @@ class IndustryProfile extends Component {
                       code={stats.region.id}
                       datum={stats.region.name}
                       subtitle={numeral(stats.region.value, locale).format(
-                        "($ 0,0 a)"
+                        "($0,0 a)"
                       )}
                       source="tax_data"
                       className=""

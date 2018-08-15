@@ -58,7 +58,7 @@ class ExportsByProduct extends Section {
             tooltipConfig: {
               title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               body: d =>
-                "US" +
+                "US " +
                 numeral(d["FOB US"], locale).format("$ (USD 0 a)") +
                 "<br/><a>" +
                 t("tooltip.to_profile") +
@@ -79,9 +79,9 @@ class ExportsByProduct extends Section {
             total: d => d["FOB US"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00] a)"
                 )
             },
             yConfig: {

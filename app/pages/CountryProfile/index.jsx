@@ -456,9 +456,9 @@ class CountryProfile extends Component {
                       icon="ingreso"
                       decile={stats.imports.decile}
                       datum={
-                        "US" +
+                        "US " +
                         numeral(stats.imports.value, locale).format(
-                          "($ 0.0 a)"
+                          "($0,.0 a)"
                         ) +
                         " CIF"
                       }
@@ -472,9 +472,9 @@ class CountryProfile extends Component {
                       icon="ingreso"
                       decile={stats.exports.decile}
                       datum={
-                        "US" +
+                        "US " +
                         numeral(stats.exports.value, locale).format(
-                          "($ 0.0 a)"
+                          "($0,.0 a)"
                         ) +
                         " FOB"
                       }
@@ -490,7 +490,7 @@ class CountryProfile extends Component {
                       subtitle={`US${numeral(
                         stats.product.value,
                         locale
-                      ).format("$ 0.0 a")} FOB`}
+                      ).format("$0,.0 a")} FOB`}
                       source="exports"
                     />
                   )}

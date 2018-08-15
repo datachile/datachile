@@ -49,9 +49,9 @@ class CustomMap extends React.Component {
             total: d => d[msrName],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00] a)"
                 )
             },
             on: {
@@ -99,7 +99,7 @@ class CustomMap extends React.Component {
                   }
                 },
                 tickFormat: tick => {
-                  return numeral(parseFloat(tick), "es").format("($ 0.[00] a)");
+                  return numeral(parseFloat(tick), "es").format("($0.[00] a)");
                 }
               },
               select: `.geo-${className}`,
