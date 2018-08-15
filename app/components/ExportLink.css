@@ -24,6 +24,13 @@
       padding: 0.75em 1em;
       min-width: 6em;
       width: 100%;
+      /* override default link styles */
+      color: var(--snow);
+      text-decoration: none;
+      /* transitions */
+      transition:
+        color 0.1s,
+        background 0.1s;
 
       &:hover,
       &:focus {
