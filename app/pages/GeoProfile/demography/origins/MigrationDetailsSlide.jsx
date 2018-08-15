@@ -55,11 +55,11 @@ class MigrationDetailsSlide extends Section {
       percentage_female: numeral(
         datum_migration_origin_female / datum_migration_origin[1],
         locale
-      ).format("(0.0 %)"),
+      ).format("(0.0%)"),
       percentage_male: numeral(
         1 - datum_migration_origin_female / datum_migration_origin[1],
         locale
-      ).format("(0.0 %)")
+      ).format("(0.0%)")
     });
 
     return (

@@ -69,7 +69,7 @@ class Presidential1stBar extends Section {
             },
             xConfig: {
               title: "% " + t("Votes"),
-              tickFormat: tick => numeral(tick, locale).format("0 %")
+              tickFormat: tick => numeral(tick, locale).format("0%")
             },
             ySort: (a, b) =>
               a["ID Year"] > b["ID Year"]

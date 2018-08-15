@@ -107,12 +107,12 @@ class HealthCareSlide extends Section {
                           datum_health_access_specialized_per_year
                         ),
                         locale
-                      ).format("0.0 %")
+                      ).format("0.0%")
                     : t("No data"),
                 share:
                   datum_health_access.length > 0
                     ? numeral(share_specialized_healthcare, locale).format(
-                        "0.0 %"
+                        "0.0%"
                       )
                     : t("No data")
               }
@@ -170,7 +170,7 @@ class HealthCareSlide extends Section {
               className="l-1-3"
               icon="health-firstaid"
               datum={numeral(share_specialized_healthcare, locale).format(
-                "0.0 %"
+                "0.0%"
               )}
               title={t("Specialized Healthcares")}
               subtitle={t("During") + " " + sources.health_access.year}

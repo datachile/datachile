@@ -140,18 +140,18 @@ class AccessSlide extends Section {
             ? numeral(
                 total / datum_population_for_health_access.data,
                 locale
-              ).format("0.0 %")
+              ).format("0.0%")
             : "",
         insurance: {
           total: numeral(total, locale).format("0,0"),
           isapre: {
             increased_or_decreased:
               growth_isapre_affiliates > 0 ? t("increased") : t("decreased"),
-            rate: numeral(growth_isapre_affiliates, locale).format("0.0 %")
+            rate: numeral(growth_isapre_affiliates, locale).format("0.0%")
           },
           share:
             top.length > 0
-              ? numeral(top[0][msrName] / total, locale).format("0.0 %")
+              ? numeral(top[0][msrName] / total, locale).format("0.0%")
               : ""
         }
       };
@@ -177,7 +177,7 @@ class AccessSlide extends Section {
                 datum={numeral(top[0][msrName], locale).format("0,0")}
                 title={t("Affiliates in") + " " + top[0]["Health System Group"]}
                 subtitle={
-                  numeral(top[0][msrName] / total, locale).format("0.0 %") +
+                  numeral(top[0][msrName] / total, locale).format("0.0%") +
                   " " +
                   t("of total")
                 }

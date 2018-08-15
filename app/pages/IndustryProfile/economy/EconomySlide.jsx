@@ -63,7 +63,7 @@ class EconomySlide extends Section {
           first: sources.tax_data.first_year,
           last: sources.tax_data.last_year
         },
-        rate: numeral(rate, locale).format("0.0 %"),
+        rate: numeral(rate, locale).format("0.0%"),
         increased_or_decreased: rate > 0 ? t("increased") : t("decreased")
       };
     }
@@ -89,7 +89,7 @@ class EconomySlide extends Section {
               <FeaturedDatum
                 className="l-1-3"
                 icon="industria"
-                datum={numeral(rate, locale).format("0.0 %")}
+                datum={numeral(rate, locale).format("0.0%")}
                 title={t("Growth Investment")}
                 subtitle={`${sources.tax_data.first_year} - ${
                   sources.tax_data.last_year
@@ -115,7 +115,7 @@ class EconomySlide extends Section {
                 datum={numeral(
                   annualized_growth(datum_industry_labour),
                   locale
-                ).format("0.0 %")}
+                ).format("0.0%")}
                 title={t("Growth Labour")}
                 subtitle={`${sources.tax_data.first_year} - ${
                   sources.tax_data.last_year

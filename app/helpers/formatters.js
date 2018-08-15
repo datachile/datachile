@@ -299,7 +299,7 @@ export function moneyRangeFormat(tick, locale = "es") {
   if (!tick) return "";
   var ticks = tick
     .split("-")
-    .map(ti => numeral(ti, locale).format("($0.[0] a)"));
+    .map(ti => numeral(ti, locale).format("($0.[0]a)"));
   if (ticks.length == 1) {
     ticks[0] = "+" + ticks[0];
   }

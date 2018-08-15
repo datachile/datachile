@@ -89,7 +89,7 @@ class ElectoralParticipation extends Section {
             },
             yConfig: {
               title: t("Participation"),
-              tickFormat: tick => numeral(tick, locale).format("0 %")
+              tickFormat: tick => numeral(tick, locale).format("0%")
             },
             xSort: (a, b) =>
               a["ID Year"] > b["ID Year"]

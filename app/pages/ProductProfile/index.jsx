@@ -411,11 +411,11 @@ class ProductProfile extends Component {
       text_about.product.share = numeral(
         total_exports_per_product.value / total_exports_chile.data[0],
         locale
-      ).format("0.0 %");
+      ).format("0.0%");
       text_about.region.share = numeral(
         text_about.region.value / total_exports_per_product.value,
         locale
-      ).format("0.0 %");
+      ).format("0.0%");
     }
 
     const topics = [

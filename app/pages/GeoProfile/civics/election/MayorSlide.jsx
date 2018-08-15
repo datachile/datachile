@@ -61,7 +61,7 @@ class MayorSlide extends Section {
         text.votes.participation = numeral(
           participation.Votes / participation.Electors,
           locale
-        ).format("0.0 %");
+        ).format("0.0%");
       }
     }
 

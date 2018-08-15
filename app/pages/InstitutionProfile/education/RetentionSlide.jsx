@@ -35,7 +35,7 @@ class RetentionSlide extends Section {
               className="l-1-3"
               icon="industria"
               datum={numeral(datum_accreditation_avg_retention, locale).format(
-                "0.0 %"
+                "0.0%"
               )}
               title={t("Average Retention")}
               subtitle={t("1st year")}

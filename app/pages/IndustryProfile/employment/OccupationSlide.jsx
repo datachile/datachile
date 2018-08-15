@@ -66,7 +66,7 @@ class OccupationSlide extends Section {
       ? numeral(
           annualized_growth(datum_industry_occupation_growth),
           locale
-        ).format("0.0 %")
+        ).format("0.0%")
       : "";
 
     const text_slide = {
@@ -138,7 +138,7 @@ class OccupationSlide extends Section {
                   datum_industry_occupation_female_total /
                     datum_industry_occupation_total,
                   locale
-                ).format("0.0 %")}
+                ).format("0.0%")}
                 title={t("Female percent in ") + industryName}
                 subtitle={t("During") + " " + sources.nene.last_year}
               />

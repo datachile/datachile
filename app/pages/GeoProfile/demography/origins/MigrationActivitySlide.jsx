@@ -114,7 +114,7 @@ class MigrationActivitySlide extends Section {
               text_data_geo_demography_activity["Number of visas"] /
                 datum_migration_origin[1],
               locale
-            ).format("(0.0 %)")
+            ).format("(0.0%)")
           : "",
       activity: text_data_geo_demography_activity
         ? text_data_geo_demography_activity["Activity"]
@@ -134,7 +134,7 @@ class MigrationActivitySlide extends Section {
               text_data_geo_demography_type["Number of visas"] /
                 datum_migration_origin[1],
               locale
-            ).format("(0.0 %)")
+            ).format("(0.0%)")
           : "",
       type: text_data_geo_demography_type
         ? text_data_geo_demography_type["Visa Type"]

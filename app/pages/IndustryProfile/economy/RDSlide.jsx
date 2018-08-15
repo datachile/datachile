@@ -86,7 +86,7 @@ class RDSlide extends Section {
         share: numeral(
           datum_industry_rd_exports / datum_total_rd_exports_chile.data,
           locale
-        ).format("0.0 %")
+        ).format("0.0%")
       }
     };
 
@@ -141,7 +141,7 @@ class RDSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={numeral(growth, locale).format("0.0 %")}
+              datum={numeral(growth, locale).format("0.0%")}
               title={t("Growth R&D Spending in ") + industryName}
               subtitle={`${sources.rd_survey.first_year} - ${
                 sources.rd_survey.last_year

@@ -107,7 +107,7 @@ class MigrationSlide extends Section {
               datum={numeral(
                 origin_female / destination.number_visas,
                 locale
-              ).format("(0.0 %)")}
+              ).format("(0.0%)")}
               title={t("Visas for Female immigrants")}
               subtitle={t("granted in {{year}}", sources.immigration)}
             />
