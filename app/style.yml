@@ -23,6 +23,7 @@ pre-bg: "#494952"
 
 # accent
 accent: "#3277DC"
+accent-lighter: "#8CB6DD"
 accent-light: "#4985DE"
 accent-dark: "#3669B5"
 

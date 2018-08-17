@@ -243,6 +243,8 @@ class IndustryProfile extends Component {
       }
     }
 
+    const path = `/${location.pathname}`;
+
     return (
       <Canon>
         <CanonProfile data={this.props.data} topics={topics}>
@@ -312,6 +314,7 @@ class IndustryProfile extends Component {
                         source="tax_data"
                         className=""
                         level={industry.depth > 1 ? "industry_profile" : false}
+                        path={path}
                         name={industry.depth > 1 ? industry.parent : industry}
                       />
                     )}
@@ -328,6 +331,7 @@ class IndustryProfile extends Component {
                         source="tax_data"
                         className=""
                         level={industry.depth > 1 ? "industry_profile" : false}
+                        path={path}
                         name={industry.depth > 1 ? industry.parent : industry}
                       />
                     )}

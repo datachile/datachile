@@ -9,13 +9,11 @@
 
   /* pull section up, depending on how many officials there are */
   @add-mixin from-sm {
-    top: -2vh;
-
-    @for $i from 2 to 6 {
+    /* @for $i from 2 to 6 {
       &.officials-count-$i {
-        margin-top: -$(i)rem;
+        top: -$(i)rem;
       }
-    }
+    } */
   }
 
   /* space out section titles */

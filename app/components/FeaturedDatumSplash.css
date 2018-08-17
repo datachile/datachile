@@ -1,145 +1,118 @@
 @import "../pages/mixins";
 
 .featured-datum-splash {
-  margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  /* center icons */
+  text-align: center;
+  /* subtly darken background */
+  background-image: radial-gradient(
+    closest-side,
+    color(var(--near-black) a(0.25)),
+    transparent
+  );
 
   /* adjust main value margin */
   & .featured-datum-value {
-    margin-bottom: 0.25em;
     line-height: 1;
   }
 
-  /* de-emphasize source */
-  & .featured-datum-source-title {
-    opacity: 0.75;
-  }
+  /* icon container — also used by map */
+  & .featured-datum-icon {
+    height: 80px;
+    margin-bottom: 1rem;
+    display: flex;
 
-  & .featured-datum-subtitle + .featured-datum-source {
-    margin-top: -1em;
-  }
+    /* allow icons to be absolutely positioned */
+    & .featured-datum-img-container {
+      width: 3rem;
+      /* centered within flex container */
+      margin: auto;
+      /* offet absolutely positioned image height (fudged) */
+      top: -0.625rem;
 
-
-  & .featured-datum-icons {
-
-    /* hide icons on small screens */
-    @add-mixin for-md {
-      display: none;
-    }
-
-    /* line up icons horizontally on big screens */
-    @add-mixin from-md {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      max-width: 12rem;
-
-      /* max img size */
+      /* default image positioning */
       & .featured-datum-img {
-        height: 1.625rem;
-        width: 1.625rem;
-        max-width: 15%;
+        position: absolute;
+        top: 0.75em;
+        left: 0;
+        /* hide all by default */
+        opacity: 0;
+        /* transitions */
+        transform: scale(1.5);
+        transition:
+          opacity 0.2s ease-out,
+          transform 0.2s ease-out;
+
+        /* position dummy in front */
+        &.dummy-featured-datum-img {
+          opacity: 1;
+          z-index: 1;
+          /* adjust transition speed */
+          transition:
+            opacity 0.1s ease-out,
+            transform 0.2s ease-out;
+        }
       }
     }
   }
 
-  /* space out tags */
-  & .tag {
-    margin-bottom: 0.5em;
-  }
+  /* position tags and hide by default */
+  & .featured-datum-tags {
+    margin-top: -1.675em;
+    top: -0.5em;
+    /* transitions */
+    opacity: 0;
+    transform: translateY(-150%);
 
-  /* space out source */
-  & .featured-datum-source {
-    @add-mixin body-font-italic;
-    margin-top: 0.25em;
-    line-height: 1.25;
-
-    & .featured-datum-source-label {
-      text-transform: capitalize;
+    /* space out tags */
+    & .tag {
+      margin-bottom: 0.5em;
     }
   }
 
-  /* center on big screens */
-  @add-mixin from-sm {
-    text-align: center;
+  /* this data is in another castle */
+  & .featured-datum-splash-level {
+    margin-top: 1em;
+    line-height: 1.25;
 
-    & .featured-datum-icons {
-      margin-left: auto;
-      margin-right: auto;
+    & .featured-datum-splash-level-note {
+      @add-mixin body-font-italic;
+      opacity: 0.75;
+    }
+
+    & .featured-datum-splash-level-name {
+      @add-mixin body-font-bold;
+    }
+  }
+
+  /* interactions */
+  &:hover {
+
+    /* make decile icons fan out */
+    & .featured-datum-img-container .featured-datum-img {
+      opacity: 1;
+
+      /* move dummy icon up and hide it */
+      &.dummy-featured-datum-img {
+        transform: translateY(-40%);
+        opacity: 0;
+      }
+      /* position individual icons */
+      &:nth-of-type(2) { transform: translateY(-40%) translateX(-150%); }
+      &:nth-of-type(3) { transform: translateY(-40%) translateX(-75%); }
+      &:nth-of-type(4) { transform: translateY(-40%); }
+      &:nth-of-type(5) { transform: translateY(-40%) translateX(75%); }
+      &:nth-of-type(6) { transform: translateY(-40%) translateX(150%); }
+    }
+
+    /* make tag list appear */
+    & .featured-datum-tags {
+      opacity: 1; /* initially 0 */
+      transform: none; /* initially translateY(-100%) */
+      /* transition in only, with opacity delay */
+      transition:
+        opacity 0.2s ease-out 0.05s,
+        transform 0.2s ease-out;
     }
   }
 }
-
-/* .featured-datum-splash {
-  lost-flex-container: column;
-  color: var(--snow);
-  padding-bottom: var(--gutter);
-  & .featured-datum-splash-title {
-    @add-mixin font-xs;
-    @add-mixin heading-font;
-    color: var(--snow);
-    display: flex;
-    align-items: center;
-    & small {
-      @add-mixin font-xs;
-      background-color: var(--accent);
-      padding: 5px 10px;
-      border-radius: 200px;
-      margin-left: 10px;
-      text-transform: lowercase;
-    }
-  }
-  & .featured-datum-splash-source {
-    @add-mixin font-xxs;
-    @add-mixin heading-font;
-    color: var(--snow);
-    margin-bottom: 0px;
-  }
-  & .featured-datum-splash-subtitle {
-    @add-mixin font-md;
-    @add-mixin heading-font;
-    color: var(--snow);
-    margin-bottom: 0;
-  }
-  & .featured-datum-splash-level {
-    margin: 0;
-  }
-  & .featured-datum-splash-icons {
-    lost-flex-container: row;
-    color: var(--snow);
-    margin: 0px;
-    & .icon-img {
-      margin-right: 10px;
-      max-width: 40px;
-      max-height: 40px;
-      &.full {
-      }
-      &.half {
-      }
-      &.empty {
-      }
-    }
-    & .icon-img:last-child {
-      margin-right: 0px;
-    }
-  }
-  & .featured-datum-splash-data {
-    @add-mixin font-xl;
-    @add-mixin heading-font;
-    color: var(--snow);
-    margin-bottom: 0px;
-  }
-  &.population {
-    & .featured-datum-splash-icons {
-      & .icon-img {
-        margin-right: 20px;
-        height: 30px;
-        width: 20px;
-      }
-      & .icon-img:last-child {
-        margin-right: 0px;
-      }
-    }
-  }
-} */

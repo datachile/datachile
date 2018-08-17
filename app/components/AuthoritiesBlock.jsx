@@ -221,7 +221,7 @@ class AuthoritiesBlock extends Component {
 
         {president && (
           <div className="authorities-section">
-            <h3 className="authorities-section-title">{t("President")}</h3>
+            <h3 className="authorities-section-title label font-xs">{t("President")}</h3>
             <PersonItem
               imgpath={
                 "/images/authorities/president/" + president.id + ".png"
@@ -235,7 +235,7 @@ class AuthoritiesBlock extends Component {
         {senators &&
           senators.length > 0 && (
             <div className="authorities-section">
-              <h3 className="authorities-section-title">{t("Senators")}</h3>
+              <h3 className="authorities-section-title label font-xs">{t("Senators")}</h3>
               {senators.map((s, ix) => (
                 <PersonItem
                   imgpath={"/images/authorities/senators/" + s.id + ".jpeg"}
@@ -249,7 +249,7 @@ class AuthoritiesBlock extends Component {
           )}
         {mayor && (
           <div className="authorities-section">
-            <h3 className="authorities-section-title">{t("Mayor")}</h3>
+            <h3 className="authorities-section-title label font-xs">{t("Mayor")}</h3>
             <PersonItem
               imgpath={
                 "/images/authorities/mayors/region-" +

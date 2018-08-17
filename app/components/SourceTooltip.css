@@ -1,0 +1,42 @@
+@import "../pages/mixins";
+
+/* tooltip info icon */
+.source-tooltip-trigger {
+	/* sizing */
+	font-size: 0.5em;
+  /* positioning */
+  position: absolute;
+  top: 0;
+  /* increase target area */
+  padding: 0.5em 0.25em;
+  /* interactions */
+  opacity: 0.333;
+  transition:
+		color 0.25s,
+		opacity 0.2s;
+
+  &:hover,
+	&.pt-popover-open {
+    opacity: 1;
+		color: var(--accent-light);
+  }
+}
+
+/* modified blueprint tooltip */
+.source-tooltip {
+	width: 9rem;
+
+  & p {
+    line-height: 1.25;
+  }
+
+  & .source-tooltip-heading {
+    text-transform: capitalize;
+    margin-top: -0.25em;
+    margin-bottom: 0;
+  }
+
+  & .source-tooltip-name {
+    @add-mixin body-font-italic;
+  }
+}

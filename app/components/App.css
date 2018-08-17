@@ -237,6 +237,22 @@ components
   color: var(--near-black);
 }
 
+/* blueprint override */
+.pt-popover-arrow path {
+  fill: var(--snow) !important;
+}
+.pt-popover-content {
+  @add-mixin font-xs;
+  @add-mixin body-font;
+  background: var(--snow) !important;
+  color: var(--near-black) !important;
+
+  /* reset margin */
+  & *:last-child {
+    margin-bottom: 0;
+  }
+}
+
 table.tooltip-table {
   width: 100%;
   & tr {
@@ -293,6 +309,7 @@ table.tooltip-table {
     vertical-align: middle;
     margin-right: 0.25em;
     margin-left: -0.25em;
+    top: -0.125em;
   }
 
   /* interactions */

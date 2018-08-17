@@ -18,7 +18,8 @@ class PersonItem extends Component {
           />
         </div>
         <figcaption className="person-caption">
-          <h4 className="person-title font-xs">{name}</h4>
+          {/* name converted to title case via css */}
+          <h4 className="person-title font-xs">{name.toLowerCase()}</h4>
           <p className="person-subtitle font-xxs">{subtitle}</p>
         </figcaption>
       </figure>

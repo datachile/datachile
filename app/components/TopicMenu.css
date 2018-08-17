@@ -14,6 +14,7 @@
 			text-transform: uppercase;
 		}
 		& .svg-image {
+			opacity: 0.666;
 			& svg {
 				width: 30px;
 				height: 45px;

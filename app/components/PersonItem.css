@@ -13,8 +13,8 @@
   /* image container */
   & .person-figure {
     /* sizing */
-    width: 3rem;
-    height: 3rem;
+    width: 2.25rem;
+    height: 2.25rem;
     /* crop image to a circle */
     border-radius: 50%;
     overflow: hidden;
@@ -31,12 +31,13 @@
   /* caption placement */
   & .person-caption {
     /* offset img & gutter */
-    width: calc(100% - 3rem - 1rem);
+    width: calc(100% - 2.25rem - 1rem);
     left: 1rem;
 
     /* space out name and affiliation */
     & .person-title {
       line-height: 1.25;
+      text-transform: capitalize; /* requires string to be lowercase */
       margin-bottom: 0.25em;
     }
     & .person-subtitle {

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-
+import { Link } from "react-router";
 import { sources, getI18nSourceObject } from "helpers/consts";
+
+import SourceTooltip from "components/SourceTooltip";
 
 import "./FeaturedDatumSplash.css";
 
@@ -18,7 +20,8 @@ class FeaturedDatumSplash extends Component {
       className,
       rank,
       level,
-      name
+      name,
+      path
     } = this.props;
 
     let full, half, none, rounded;
@@ -34,24 +37,12 @@ class FeaturedDatumSplash extends Component {
     const src = t("about.data", { returnObjects: true });
     const sourceData = getI18nSourceObject(src, source);
 
+    // grab parent URL// get parent path
+    let parentPath = null;
+    path && (parentPath = path.substring(0, path.lastIndexOf("/")));
+
     return (
       <div className={"featured-datum-splash " + className}>
-
-        {/* value */}
-        <h3 className="featured-datum-value font-xl">
-          <span className="u-visually-hidden">{title} </span>
-          {datum ? datum : t("no_datum")}
-        </h3>
-
-        {/* title */}
-        <p className="featured-datum-label label font-xs" aria-hidden="true">
-          {title}
-        </p>
-
-        {/* subtitle */}
-        {subtitle && (
-          <p className="featured-datum-subtitle font-lg heading">{subtitle}</p>
-        )}
 
         {/* decile icons */}
         {decile !== null &&
@@ -59,57 +50,81 @@ class FeaturedDatumSplash extends Component {
           !isNaN(decile) && (
             <div className="featured-datum-decile">
 
-              <div className="featured-datum-icons">
-                {[...Array(full)].map((x, i) => (
+              <div className="featured-datum-icon">
+                <div className="featured-datum-img-container">
+                  {/* make sure filled icon is displayed by default */}
                   <img
-                    className="featured-datum-img full"
+                    className="featured-datum-img dummy-featured-datum-img full"
                     src={`/images/splash-icon/icon-${icon}-full.svg`}
                   />
-                ))}
-                {half == 1 && (
-                  <img
-                    className="featured-datum-img half"
-                    src={`/images/splash-icon/icon-${icon}-half.svg`}
-                  />
-                )}
-                {[...Array(none)].map((x, i) => (
-                  <img
-                    className="featured-datum-img none"
-                    src={`/images/splash-icon/icon-${icon}-none.svg`}
-                  />
-                ))}
+                  {/* create functional decile icons */}
+                  {[...Array(full)].map((x, i) => (
+                    <img key={i}
+                      className="featured-datum-img full"
+                      src={`/images/splash-icon/icon-${icon}-full.svg`}
+                    />
+                  ))}
+                  {half == 1 && (
+                    <img
+                      className="featured-datum-img half"
+                      src={`/images/splash-icon/icon-${icon}-half.svg`}
+                    />
+                  )}
+                  {[...Array(none)].map((x, i) => (
+                    <img key={i}
+                      className="featured-datum-img none"
+                      src={`/images/splash-icon/icon-${icon}-empty.svg`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
         )}
 
-        {/* rank, decile, and/or level tags */}
+        {/* rank, and/or decile tags */}
         <div className="featured-datum-tags">
-          {rank &&
-            <p className="featured-datum-rank tag background-geo font-xxs">{rank}</p>
-          }
+          {rank && (
+            <p className="featured-datum-rank tag background-geo font-xxs">
+              {rank}
+            </p>
+          )}
 
-          { decile &&
+          {decile && (
             <p className="featured-datum-decile tag background-geo font-xxs">
               {rounded} {t("decile")}
-            </p>
-          }
-
-          {level && (
-            <p className="featured-datum-splash-level tag font-xxs">
-              {t(`${level}.warning`, name)}
             </p>
           )}
         </div>
 
-        {/* source */}
-        {sourceData && (
-          <p className="featured-datum-source font-xxs">
-            <span className="featured-datum-source-label">{t("source")}: </span>
-            <span className="featured-datum-source-title">
-              {sourceData.title}, {sourceData.year}
+        {/* title */}
+        <p className="featured-datum-label label font-xs" aria-hidden="true">
+          {title}
+        </p>
+
+        {/* value */}
+        <h3 className="featured-datum-value font-xl">
+          <span className="u-visually-hidden">{title} </span>
+          {datum ? datum : t("no_datum")}
+          <SourceTooltip sourceData={sourceData} />
+        </h3>
+
+        {/* subtitle */}
+        {subtitle && (
+          <p className="featured-datum-subtitle font-sm label">{subtitle}</p>
+        )}
+
+        {/* this data is in another castle */}
+        {level && (
+          <p className="featured-datum-splash-level font-xxs">
+            <span className="featured-datum-splash-level-note">
+              {t(`${level}.warning`)}
             </span>
+            <Link to={parentPath} className="featured-datum-splash-level-name">
+              {name.caption}
+            </Link>
           </p>
         )}
+
       </div>
     );
   }

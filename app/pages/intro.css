@@ -42,12 +42,13 @@
 
     /* main stats container */
     & .header {
-      padding: 2.5vh var(--gutter);
+      padding: 1vh var(--gutter) 2.5vh var(--gutter);
       min-height: 20.5rem;
 
-      /* horizontal layout on big screens */
-      @add-mixin from-sm {
+      /* tweakpoint: horizontal layout on big screens */
+      @media (min-width: 1100px) {
         display: flex;
+        align-items: center;
         justify-content: space-between;
       }
 
@@ -59,10 +60,87 @@
 
     /* geo profile header layout */
     & .geo-header {
-      margin-top: 3rem;
+      margin-top: 0;
+      margin-bottom: 2rem;
+
+      /* place map below authorities on tiny screens */
+      @media (max-width: 659px) {
+        flex-direction: column;
+
+        & .authorities-block {
+          min-width: 100%;
+          max-width: 100%;
+          flex-wrap: wrap;
+        }
+
+        & .map-comuna {
+          margin: 1rem auto !important;
+        }
+      }
+
+      /* tweakpoint to squeeze a bit more before the layout breaks */
+      @media (min-width: 660px) and (max-width: 699px) {
+        & .map-comuna {
+          right: -2rem;
+        }
+      }
+
+      /* adjust layout on small screens */
+      @add-mixin for-lg {
+        display: flex;
+        justify-content: space-around;
+
+        & .featured-datum-splash-container {
+          position: absolute;
+          top: -1rem;
+          left: var(--gutter);
+          right: var(--gutter);
+          margin: 0;
+        }
+
+        & .authorities-block {
+          width: calc(100% - 10rem);
+          display: flex;
+
+          & .authorities-section {
+            min-width: 16rem;
+            max-width: 100%;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem !important;
+
+            & .person-item {
+              display: inline-block;
+              min-width: 16rem;
+              max-width: 100%;
+              margin-right: 0.5rem;
+            }
+          }
+        }
+
+        & .map-comuna {
+          width: 10rem;
+
+          & .map-region {
+            transform: scale(0.5);
+            top: -8rem;
+            right: -5rem;
+          }
+        }
+
+        & .authorities-block,
+        & .map-comuna {
+          /* make space for the stats */
+          margin-top: 11rem;
+        }
+      }
 
       /* big screen layout */
-      @add-mixin from-sm {
+      @add-mixin from-lg {
+
+        & .featured-datum-splash-container {
+          margin-left: 1rem;
+          margin-right: 1rem;
+        }
 
         /* limit width on officals & map */
         & > *:first-child,
@@ -71,34 +149,38 @@
         }
         /* squishy width on centered stats */
         & > *:nth-child(2) {
-          flex: 3 2 auto;
+          flex: 3 2 40rem;
         }
 
         /* offset map */
         & .map-comuna {
-          top: -7vh;
+          max-width: 20rem;
+          /* darken background */
+          background-image: radial-gradient(
+            closest-side,
+            color(var(--near-black) a(0.4)),
+            transparent
+          );
 
           & .map-region {
-            top: 3vh;
+            top: -3rem;
             left: 11vw;
           }
         }
       }
 
       /* horizontal stats layout */
-      @add-mixin from-md {
-        & .featured-datum-splash-container {
-          margin-left: 1rem;
-          margin-right: 1rem;
+      & .featured-datum-splash-container {
+        text-align: center;
 
-          & > .featured-datum-splash {
-            display: inline-block;
-            vertical-align: top; /* override blueprint */
-            width: calc(33.33% - 1rem);
+        & > .featured-datum-splash {
+          display: inline-block;
+          vertical-align: top; /* override blueprint */
+          width: calc(33.33% - 1rem);
+          max-width: 11rem;
 
-            &:not(:last-child) {
-              margin-right: 1rem;
-            }
+          &:not(:last-child) {
+            margin-right: 1rem;
           }
         }
       }

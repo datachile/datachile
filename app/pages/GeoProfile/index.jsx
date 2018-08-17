@@ -391,13 +391,13 @@ class GeoProfile extends Component {
         }
         case "region": {
           if (parseInt(d.id) == parseInt(geoObj.key)) {
-            c = "rgba(75, 113, 181,1)";
+            c = styles["accent"];
           }
           break;
         }
         case "comuna": {
           if (parseInt(d.id) == parseInt(ancestor.key)) {
-            c = "rgba(75, 113, 181,1)";
+            c = styles["accent"];
           }
           break;
         }
@@ -426,6 +426,8 @@ class GeoProfile extends Component {
       "/profile-bg/",
       "/opengraph/"
     );
+
+    const path = `/${location.pathname}`;
 
     return (
       <Canon>
@@ -534,6 +536,7 @@ class GeoProfile extends Component {
                         source="nesi_income"
                         className=""
                         level={geo.depth > 1 ? "geo_profile" : false}
+                        path={path}
                         name={
                           geo.depth > 1
                             ? {
