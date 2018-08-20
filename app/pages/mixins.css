@@ -182,3 +182,19 @@
     opacity: 1;
   }
 }
+
+/* nav link base; used by footer */
+@define-mixin nav-link {
+  /* typography */
+  @add-mixin heading-font;
+  @add-mixin font-smoothing;
+  line-height: 1.625;
+  text-decoration: none;
+  /* theming */
+  color: var(--snow);
+  opacity: 0.8;
+
+  &:hover, &:focus {
+    opacity: 1;
+  }
+}
