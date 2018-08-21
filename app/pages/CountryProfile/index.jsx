@@ -336,7 +336,13 @@ class CountryProfile extends Component {
     const list = this.props.data.country_list_detail;
 
     const bgImage =
-      obj && obj.key ? `url('/images/profile-bg/country/${obj.key}.jpg')` : "";
+      obj && obj.key
+        ? `/images/profile-bg/country/${ids.level2 ? "" : "continent/"}${
+            obj.key
+          }.jpg`
+        : "";
+
+    let opengraphImage = (bgImage || "").replace("/profile-bg/", "/opengraph/");
 
     obj && ids && list
       ? list.map(c => {
@@ -401,9 +407,7 @@ class CountryProfile extends Component {
               />
               <meta
                 property="og:image"
-                content={`https://${locale}.datachile.io/images/opengraph/country/${
-                  obj.key
-                }.jpg`}
+                content={`https://${locale}.datachile.io${opengraphImage}`}
               />
             </Helmet>
           )}
@@ -432,7 +436,7 @@ class CountryProfile extends Component {
                 <div
                   className="image"
                   style={{
-                    backgroundImage: bgImage
+                    backgroundImage: `url('${bgImage}')`
                   }}
                 />
                 <div className="gradient" />
