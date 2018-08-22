@@ -105,7 +105,9 @@ small, .font-xxs { @add-mixin font-xxs; }
 /* default link style */
 p > a,
 li > a,
-.link {
+.link,
+.d3plus-tooltip-body > a,
+.datachile-tooltip > a {
   @add-mixin body-font-bold;
   color: var(--accent-light);
   /* override blueprint */
@@ -235,6 +237,16 @@ components
   background: var(--snow);
   border: 1px solid var(--near-black);
   color: var(--near-black);
+}
+
+.d3plus-tooltip-body {
+  @add-mixin body-font-bold;
+  min-width: 160px;
+
+  &, & > * {
+    font-size: 0.625rem !important; /* font-xxs */
+    line-height: 1.5;
+  }
 }
 
 /* blueprint override */

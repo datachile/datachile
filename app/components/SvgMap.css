@@ -47,17 +47,32 @@
       pointer-events: none;
     }
   }
-  & #svg-map-tooltip {
-    @add-mixin font-xs;
-    transform: scale(0);
+
+  /* extends .datachile-tooltip style in app.css */
+  & .svg-map-tooltip {
+    /* typography */
+    @add-mixin body-font-bold;
+    /* sizing */
+    width: 160px;
+    /* positioning */
     position: absolute;
-    z-index: 100;
+    margin-top: -3rem; /* fudge into place above cursor */
+    z-index: 1;
+    /* theming */
+    border: none;
+    /* prevent from obscuring map target */
     pointer-events: none;
-    text-align: center;
-    padding: 10px;
-    background: var(--snow);
-    border: 1px solid var(--dark);
-    @add-mixin body-font;
-    color: var(--dark);
+
+    /* initial state */
+    &:not([style]) {
+      opacity: 0;
+    }
+
+    /* override default splash style */
+    &, & a {
+      @add-mixin font-xxs;
+      line-height: 1.5;
+      text-shadow: none !important;
+    }
   }
 }

@@ -91,8 +91,8 @@ class SvgMap extends Component {
               t("tooltip.to_profile") +
               "</a>"
           )
-          .style("left", coordinates[0] + "px")
-          .style("top", coordinates[1] - 28 + "px");
+          .style("left", coordinates[0] - 80 + "px")
+          .style("top", coordinates[1] + "px");
       })
       .on("mouseout", function(d, a) {
         select(this).classed("hover", false);
@@ -105,8 +105,8 @@ class SvgMap extends Component {
         var coordinates = mouse(select(".map-comuna").node());
 
         tooltip
-          .style("left", coordinates[0] + "px")
-          .style("top", coordinates[1] - 28 + "px");
+          .style("left", coordinates[0] - 80 + "px")
+          .style("top", coordinates[1] + "px");
       })
       .on("click", function() {
         var d = select(this);
@@ -129,7 +129,8 @@ class SvgMap extends Component {
         tooltip
           .transition()
           .duration(200)
-          .style("transform", "scale(1)");
+          .style("transform", "scale(1)")
+          .style("opacity", 1);
         tooltip
           .html(
             "Región " +
@@ -138,21 +139,22 @@ class SvgMap extends Component {
               t("tooltip.to_profile") +
               "</a>"
           )
-          .style("left", coordinates[0] + "px")
-          .style("top", coordinates[1] - 28 + "px");
+          .style("left", coordinates[0] - 80 + "px")
+          .style("top", coordinates[1] + "px");
       })
       .on("mouseout", function(d, a) {
         select(this).classed("hover", false);
         tooltip
           .transition()
           .duration(200)
-          .style("transform", "scale(0)");
+          .style("transform", "scale(0)")
+          .style("opacity", 0);
       })
       .on("mousemove", function(d, a) {
         var coordinates = mouse(select(".map-comuna").node());
         tooltip
-          .style("left", coordinates[0] + "px")
-          .style("top", coordinates[1] - 28 + "px");
+          .style("left", coordinates[0] - 80 + "px")
+          .style("top", coordinates[1] + "px");
       })
       .on("click", function() {
         var d = select(this);
@@ -165,7 +167,7 @@ class SvgMap extends Component {
 
     return (
       <div className="svg-map">
-        <div id="svg-map-tooltip" className="datachile-tooltip" />
+        <div id="svg-map-tooltip" className="datachile-tooltip svg-map-tooltip" />
         <div
           ref="svgcontainer"
           dangerouslySetInnerHTML={{ __html: this.state.svgFile }}
