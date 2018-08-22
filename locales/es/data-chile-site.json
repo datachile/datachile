@@ -51,6 +51,7 @@
   "Avg anual payment 2016": "Avg anual payment 2016",
   "Back to Map": "Volver al mapa",
   "Blank and Null Votes": "Votos Blancos y Nulos",
+  "Built by": "Built by",
   "By Activity & Visa Type": "Por Actividad y Tipo de Visa",
   "By Industry": "Por Industria",
   "By Occupation": "Por Ocupación",
@@ -339,6 +340,7 @@
   "NEM Performance By Administration": "Desempeño NEM por Tipo de Administración",
   "National": "Nacional",
   "National Profile": "Perfil Nacional",
+  "Navigation": "Navigation",
   "No data": "No data",
   "No datasets selected": "No hay datasets seleccionados",
   "Number of complaints": "Cantidad de denuncias",
@@ -1048,11 +1050,19 @@
               "location": {
                 "n_comunas\n                            }": "geo_profile.education.performance.byPSU.level1.${\n                              text.location.n_comunas\n                            }"
               }
+            },
+            "${\n                            text": {
+              "location": {
+                "n_comunas\n                          }": "geo_profile.education.performance.byPSU.level1.${\n                            text.location.n_comunas\n                          }"
+              }
             }
           },
           "level2": {
             "${\n                              text": {
               "type\n                            }": "geo_profile.education.performance.byPSU.level2.${\n                              text.type\n                            }"
+            },
+            "${\n                            text": {
+              "type\n                          }": "geo_profile.education.performance.byPSU.level2.${\n                            text.type\n                          }"
             },
             "no_data": "<p>No se encontraron escuelas en {{geo.caption}} con datos de desempeño PSU en {{year.last}}.</p>",
             "plural": "<p>Las escuelas de {{geo.caption}} con mejor desempeño PSU en {{year.last}} {{text_joined_schools}}.</p><p>El puntaje promedio PSU* {{text_joined}}.</p>",
@@ -1291,6 +1301,7 @@
   "representative_plural": "{{count}} representantes",
   "senator": "senador",
   "senator_plural": "senadores",
+  "source": "source",
   "students": "students",
   "table": {
     "loading": "Cargando...",

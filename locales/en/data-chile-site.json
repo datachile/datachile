@@ -51,6 +51,7 @@
   "Avg anual payment 2016": "Avg anual payment 2016",
   "Back to Map": "Back to Map",
   "Blank and Null Votes": "Blank and Null Votes",
+  "Built by": "Built by",
   "By Activity & Visa Type": "By Activity & Visa Type",
   "By Industry": "By Industry",
   "By Occupation": "By Occupation",
@@ -340,6 +341,7 @@
   "NEM Performance By Administration": "NEM Performance By Administration",
   "National": "National",
   "National Profile": "National Profile",
+  "Navigation": "Navigation",
   "No data": "No data",
   "No datasets selected": "No datasets selected",
   "Number of complaints": "Number of complaints",
@@ -953,8 +955,8 @@
   },
   "exportar": "export",
   "form": {
-    "data": "Did not find what you were looking for? Suggest data to add",
-    "error": "Did you find an error? Report it"
+    "data": "Suggest a dataset",
+    "error": "Report an error"
   },
   "fue": "fue",
   "geo_profile": {
@@ -1043,11 +1045,19 @@
               "location": {
                 "n_comunas\n                            }": "geo_profile.education.performance.byPSU.level1.${\n                              text.location.n_comunas\n                            }"
               }
+            },
+            "${\n                            text": {
+              "location": {
+                "n_comunas\n                          }": "geo_profile.education.performance.byPSU.level1.${\n                            text.location.n_comunas\n                          }"
+              }
             }
           },
           "level2": {
             "${\n                              text": {
               "type\n                            }": "geo_profile.education.performance.byPSU.level2.${\n                              text.type\n                            }"
+            },
+            "${\n                            text": {
+              "type\n                          }": "geo_profile.education.performance.byPSU.level2.${\n                            text.type\n                          }"
             },
             "no_data": "<p>There is no data for {{geo.caption}} in PSU records {{year.last}}.</p>",
             "plural": "<p>Best PSU performing schools in {{geo.caption}} in {{year.last}} {{text_joined_schools}}.</p><p>The PSU average* score {{text_joined}}.</p>$t(geo_profile.education.performance.byPSU.disclaimer)",
@@ -1287,6 +1297,7 @@
   "representative_plural": "{{count}} representatives",
   "senator": "senator",
   "senator_plural": "senators",
+  "source": "source",
   "students": "students",
   "table": {
     "loading": "Loading...",
