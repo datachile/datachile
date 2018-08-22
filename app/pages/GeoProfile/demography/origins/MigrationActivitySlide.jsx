@@ -152,7 +152,7 @@ class MigrationActivitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Migration")}</div>
+          <h3 className="topic-slide-title">{t("Migration")}</h3>
           <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}

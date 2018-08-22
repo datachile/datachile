@@ -99,7 +99,7 @@ class IDSpendingCategorySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
+          <h3 className="topic-slide-title">
             {t("R&D spending")}
             {geo.depth > 1 ? (
               <div className="topic-slide-subtitle">
@@ -111,7 +111,7 @@ class IDSpendingCategorySlide extends Section {
             ) : (
               ""
             )}
-          </div>
+          </h3>
           <div className="topic-slide-text">
             <p>
               <span

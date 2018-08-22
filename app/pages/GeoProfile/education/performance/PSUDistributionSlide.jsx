@@ -67,7 +67,7 @@ class PSUDistributionSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Score")}</div>
+          <h3 className="topic-slide-title">{t("Score")}</h3>
           <div className="topic-slide-text">
             {text && (
               <p

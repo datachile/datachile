@@ -102,7 +102,7 @@ class IncomeSexAgeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
+          <h3 className="topic-slide-title">
             {t("Income")}
             {this.context.data.geo.depth > 1 ? (
               <div className="topic-slide-subtitle">
@@ -117,7 +117,7 @@ class IncomeSexAgeSlide extends Section {
             ) : (
               ""
             )}
-          </div>
+          </h3>
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{

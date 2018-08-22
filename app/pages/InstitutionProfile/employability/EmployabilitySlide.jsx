@@ -13,7 +13,7 @@ class EmployabilitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Employability")}</div>
+          <h3 className="topic-slide-title">{t("Employability")}</h3>
           <div className="topic-slide-text">
             <p>Lorem ipsum</p>
           </div>

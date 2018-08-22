@@ -123,73 +123,64 @@ class HealthCareSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Healthcare by Type")}
-            {this.context.data.geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t(
-                        "geo_profile.warning",
-                        this.context.data.geo.ancestors[0]
-                      )
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="topic-slide-text">
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t("geo_profile.health.healthcare", text_healthcare)
+          <h3 className="topic-slide-title">{t("Healthcare by Type")}</h3>
+          {this.context.data.geo.depth > 1 && (
+            <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
+              __html: t(
+                "geo_profile.warning",
+                this.context.data.geo.ancestors[0]
+              )
               }}
             />
-          </div>
-          <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="health-dental"
-              datum={
-                datum_health_access.length > 0
-                  ? numeral(
-                      datum_health_access[0][
-                        "Dental Discharges Per 100 inhabitants AVG"
-                      ],
-                      locale
-                    ).format("0,0")
-                  : t("no_datum")
-              }
-              title={t("Dental Discharges")}
-              subtitle={t("Per 100 inhabitants in") + " " + geo.name}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="health-firstaid"
-              datum={numeral(share_specialized_healthcare, locale).format(
-                "0.0%"
-              )}
-              title={t("Specialized Healthcares")}
-              subtitle={t("During") + " " + sources.health_access.year}
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="atencion-servicio-urgencia"
-              datum={
-                datum_health_access.length > 0
-                  ? numeral(
-                      datum_health_access[0]["Urgency Healthcare AVG"],
-                      locale
-                    ).format("0,0")
-                  : t("no_datum")
-              }
-              title={t("Urgency Healthcare")}
-              subtitle={t("in") + " " + geo.name}
-            />
-          </div>
+          )}
+        </div>
+        <div className="topic-slide-text">
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t("geo_profile.health.healthcare", text_healthcare)
+            }}
+          />
+        </div>
+        <div className="topic-slide-data">
+          <FeaturedDatum
+            className="l-1-3"
+            icon="health-dental"
+            datum={
+              datum_health_access.length > 0
+                ? numeral(
+                    datum_health_access[0][
+                      "Dental Discharges Per 100 inhabitants AVG"
+                    ],
+                    locale
+                  ).format("0,0")
+                : t("no_datum")
+            }
+            title={t("Dental Discharges")}
+            subtitle={t("Per 100 inhabitants in") + " " + geo.name}
+          />
+          <FeaturedDatum
+            className="l-1-3"
+            icon="health-firstaid"
+            datum={numeral(share_specialized_healthcare, locale).format(
+              "0.0%"
+            )}
+            title={t("Specialized Healthcares")}
+            subtitle={t("During") + " " + sources.health_access.year}
+          />
+          <FeaturedDatum
+            className="l-1-3"
+            icon="atencion-servicio-urgencia"
+            datum={
+              datum_health_access.length > 0
+                ? numeral(
+                    datum_health_access[0]["Urgency Healthcare AVG"],
+                    locale
+                  ).format("0,0")
+                : t("no_datum")
+            }
+            title={t("Urgency Healthcare")}
+            subtitle={t("in") + " " + geo.name}
+          />
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

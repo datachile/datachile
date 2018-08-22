@@ -71,7 +71,7 @@ class EconomySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Economy")}</div>
+          <h3 className="topic-slide-title">{t("Economy")}</h3>
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{

@@ -52,12 +52,9 @@
       lost-flex-container: row;
 
       & .topic-slide-title {
-        /* styling as a header for now */
-        /* TODO: replace 48 divs with this class 😒 */
         @add-mixin font-lg;
-        @add-mixin heading-font;
         lost-column: 1 flex;
-        margin-top: 1.5em;
+        margin-top: 0.75em;
 
         & .topic-slide-subtitle {
           @add-mixin font-xs;

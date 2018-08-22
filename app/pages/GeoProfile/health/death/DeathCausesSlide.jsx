@@ -66,25 +66,16 @@ class DeathCausesSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Death Causes")}
-            {this.context.data.geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", {
-                        caption:
-                          "Región " + this.context.data.geo.ancestors[0].caption
-                      })
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          <h3 className="topic-slide-title">{t("Death Causes")}</h3>
+          {this.context.data.geo.depth > 1 && (
+            <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
+                __html: t("geo_profile.warning", {
+                  caption:
+                    "Región " + this.context.data.geo.ancestors[0].caption
+                })
+              }}
+            />
+          )}
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{

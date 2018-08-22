@@ -96,23 +96,16 @@ class OccupationSlide extends Section {
       <div className="topic-slide-block">
         {datum_industry_occupation_total > 0 && (
           <div className="topic-slide-intro">
-            <div className="topic-slide-title">
-              {t("Occupation")}
-              {industry.depth > 1 ? (
-                <div className="topic-slide-subtitle">
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t(
-                        "industry_profile.warning",
-                        industry.depth > 1 ? industry.parent : industry
-                      )
-                    }}
-                  />
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
+            <h3 className="topic-slide-title">{t("Occupation")}</h3>
+            {this.context.data.geo.depth > 1 && (
+              <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
+                __html: t(
+                  "industry_profile.warning",
+                  industry.depth > 1 ? industry.parent : industry
+                  )
+                }}
+              />
+            )}
             <div className="topic-slide-text">
               <p
                 dangerouslySetInnerHTML={{

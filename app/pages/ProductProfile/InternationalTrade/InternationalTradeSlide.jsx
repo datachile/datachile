@@ -12,7 +12,7 @@ class InternationalTradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("International Trade")}</div>
+          <h3 className="topic-slide-title">{t("International Trade")}</h3>
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>
