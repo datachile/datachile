@@ -9,9 +9,27 @@
 		justify-content: space-between;
 		padding: 15px;
 		min-width: 125px;
+		/* transitions */
+		transition: transform 0.2s ease-out;
+
+		/* interactions */
+		&:hover, &:focus {
+			transform: scale(1.375);
+
+			& span {
+				transform:
+					scale(0.825)
+					translateY(-0.333em);
+			}
+		}
+
 		& span {
 			color: var(--snow);
 			text-transform: uppercase;
+			/* transitions */
+			transition:
+				transform 0.2s ease-out,
+				color 0.2s ease-out;
 		}
 		& .svg-image {
 			opacity: 0.666;
@@ -26,6 +44,7 @@
 				fill: none;
 				stroke: var(--snow);
 				stroke-width: 1.5;
+				transition: stroke 0.2s ease-out;
 			}
 		}
 		&:hover {

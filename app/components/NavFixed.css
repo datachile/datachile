@@ -116,6 +116,11 @@
       &:focus {
         color: var(--accent);
         opacity: 1;
+        transition: color 0.2s ease-out;
+
+        & .svg-image {
+          transform: translateY(-3px);
+        }
       }
       &.active {
         border-color: var(--accent);
@@ -128,6 +133,7 @@
         @add-mixin from-sm {
           padding-top: 1em;
           padding-bottom: 0.5em;
+          transition: transform 0.2s ease-out;
         }
       }
     }
@@ -163,6 +169,7 @@
             fill: none;
             stroke: var(--snow);
             stroke-width: 1.5;
+            transition: stroke 0.2s ease-out;
           }
         }
 
