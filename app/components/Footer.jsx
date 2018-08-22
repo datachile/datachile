@@ -16,7 +16,6 @@ class Footer extends Component {
 
     // check whether we're on the home page
     const isHome = location.pathname === "/" ? true : false;
-    console.log(isHome);
 
     // footer links
     const footerNavLinks = [
