@@ -265,6 +265,11 @@ table.tooltip-table {
   }
 }
 
+/* blueprint overlay fix */
+.pt-overlay > span {
+  @add-mixin absolute-expand;
+}
+
 
 /* tags */
 .tag {
