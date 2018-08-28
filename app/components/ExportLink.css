@@ -1,7 +1,23 @@
 @import "../pages/mixins";
 
-.export-link {
+.export-controls {
 
+  /* dropdown trigger */
+  & .export-button {
+    /* button overrides */
+    opacity: 0.75;
+    padding: 0.625em 1.5em;
+    transition:
+      background-color 0.2s,
+      opacity 0.2s;
+
+    /* interactions */
+    &:hover, &:focus {
+      opacity: 1;
+    }
+  }
+
+  /* dropdown list of options */
   & .export-list {
     /* positioning */
     position: absolute;
@@ -19,6 +35,7 @@
     opacity: 0;
     transform: scale(0.01);
 
+    /* individual link */
     & .export-link {
       display: block;
       padding: 0.75em 1em;
@@ -29,16 +46,17 @@
       text-decoration: none;
       /* transitions */
       transition:
-        color 0.1s,
-        background 0.1s;
+        color 0.2s,
+        background-color 0.2s;
 
+      /* interactions */
       &:hover,
       &:focus {
-        background-color: var(--snow);
-        color: var(--accent);
+        background-color: var(--accent-light);
       }
 
-      &.disabled {
+      /* disabled state */
+      &.is-disabled {
         display: none;
       }
     }
