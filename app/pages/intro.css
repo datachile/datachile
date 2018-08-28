@@ -63,18 +63,25 @@
       margin-top: 0;
       margin-bottom: 2rem;
 
-      /* place map below authorities on tiny screens */
+      /* tiny screen layout */
       @media (max-width: 659px) {
         flex-direction: column;
 
+        /* enforce 100% width */
         & .authorities-block {
           min-width: 100%;
           max-width: 100%;
-          flex-wrap: wrap;
+
+          /* center authorities section */
+          & .authorities-section {
+            margin-left: auto;
+            margin-right: auto !important;
+          }
         }
 
+        /* hide map */
         & .map-comuna {
-          margin: 1rem auto !important;
+          display: none;
         }
       }
 
@@ -162,9 +169,19 @@
             transparent
           );
 
+          & .svg-map {
+            max-width: 17rem;
+            margin-left: auto;
+          }
+
           & .map-region {
             top: -3rem;
             left: 11vw;
+
+            /* fudge country map into place on huge screens */
+            @add-mixin from-xl {
+              top: -1.5rem;
+            }
           }
         }
       }

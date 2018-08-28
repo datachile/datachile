@@ -13,14 +13,20 @@
   /* image container */
   & .person-figure {
     /* sizing */
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 3rem;
+    height: 3rem;
     /* crop image to a circle */
     border-radius: 50%;
     overflow: hidden;
     /* theming */
     background-color: var(--medium-gray); /* before image loads in */
     box-shadow: 0 1px 1em rgba(0, 0, 0, 0.25);
+
+    /* scale up on big screens */
+    @add-mixin from-lg {
+      width: 4rem;
+      height: 4rem;
+    }
 
     /* make sure the image fills up the container */
     & .person-img {
@@ -31,8 +37,14 @@
   /* caption placement */
   & .person-caption {
     /* offset img & gutter */
-    width: calc(100% - 2.25rem - 1rem);
+    width: calc(100% - 3rem - 1rem);
     left: 1rem;
+
+    /* scale up on big screens */
+    @add-mixin from-lg {
+      width: calc(100% - 4rem - 1rem);
+      left: 1rem;
+    }
 
     /* space out name and affiliation */
     & .person-title {
