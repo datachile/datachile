@@ -1,7 +1,8 @@
 /* BASICS mixins */
 
 /* BREAKPOINTS desktop first */
-@define-mixin for-xl { @media (max-width: 1799px) { @mixin-content; } }
+@define-mixin for-xxl{ @media (max-width: 1799px) { @mixin-content; } }
+@define-mixin for-xl { @media (max-width: 1599px) { @mixin-content; } }
 @define-mixin for-lg { @media (max-width: 1199px) { @mixin-content; } }
 @define-mixin for-md { @media (max-width: 991px)  { @mixin-content; } }
 @define-mixin for-sm { @media (max-width: 767px)  { @mixin-content; } }
@@ -9,7 +10,8 @@
 @define-mixin for-xx { @media (max-width: 319px)  { @mixin-content; } }
 
 /* BREAKPOINTS mobile first */
-@define-mixin from-xl { @media (min-width: 1800px) { @mixin-content; } }
+@define-mixin from-xxl{ @media (min-width: 1800px) { @mixin-content; } }
+@define-mixin from-xl { @media (min-width: 1600px) { @mixin-content; } }
 @define-mixin from-lg { @media (min-width: 1200px) { @mixin-content; } }
 @define-mixin from-md { @media (min-width: 992px)  { @mixin-content; } }
 @define-mixin from-sm { @media (min-width: 768px)  { @mixin-content; } }

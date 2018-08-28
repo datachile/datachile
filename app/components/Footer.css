@@ -131,7 +131,7 @@
   }
 
   /* tweakpoint to move datawheel logo top right on giant screens */
-  @add-mixin from-xl {
+  @add-mixin from-xxl {
     & .footer-dev-logo-container {
       position: absolute;
       top: 0;

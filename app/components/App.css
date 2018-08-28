@@ -61,6 +61,9 @@ html {
   @add-mixin from-xl {
     font-size: 112.5%; /* 1rem = 18px */
   }
+  @add-mixin from-xxl {
+    font-size: 125%; /* 1rem = 18px */
+  }
 }
 
 body {
