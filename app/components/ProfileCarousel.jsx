@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { getGeoObject } from "helpers/dataUtils";
-import FeaturedBox from "components/FeaturedBox";
+import ProfileTile from "components/ProfileTile";
 import "./ProfileCarousel.css";
 
 class ProfileCarousel extends Component {
@@ -25,7 +25,7 @@ class ProfileCarousel extends Component {
             items
               .slice(0, limit)
               .map((f, i) => (
-                <FeaturedBox
+                <ProfileTile
                   item={f}
                   className="profile-carousel-item"
                   key={i}

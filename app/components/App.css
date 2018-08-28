@@ -338,7 +338,7 @@ table.tooltip-table {
   &:hover,
   &:focus {
     box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
-    opacity: 1;
+    opacity: 0.875;
     text-decoration: none;
   }
 }

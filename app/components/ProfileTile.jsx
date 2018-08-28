@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
-import Shiitake from "shiitake";
+// import Shiitake from "shiitake";
 
-import "./FeaturedBox.css";
+import "./ProfileTile.css";
 
-class FeaturedBox extends Component {
+class ProfileTile extends Component {
   render() {
     const { t, item, className } = this.props;
 
@@ -32,10 +32,11 @@ class FeaturedBox extends Component {
         to={item.url}
         title={item.name}
       >
-        <span className="tile-filter" />
-        <span className="col-l">
+        <span className="tile-inner">
           {/* profile title */}
-          <span className="name subhead font-xs">{item.name}</span>
+          <span className="tile-title subhead font-xs">
+            {item.name}
+          </span>
 
           {/* category indicator */}
           {theme && (
@@ -60,4 +61,4 @@ class FeaturedBox extends Component {
   }
 }
 
-export default translate()(FeaturedBox);
+export default translate()(ProfileTile);

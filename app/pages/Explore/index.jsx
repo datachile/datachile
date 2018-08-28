@@ -12,7 +12,7 @@ import { getImageFromMember } from "helpers/formatters";
 import Nav from "components/Nav";
 
 import Search from "components/Search";
-import FeaturedBox from "components/FeaturedBox";
+import ProfileTile from "components/ProfileTile";
 import ComingSoon from "components/ComingSoon";
 
 import ResultsElement from "./results";
@@ -358,7 +358,7 @@ class Explore extends Component {
                               : "level1-filter"
                           }
                         >
-                          <FeaturedBox
+                          <ProfileTile
                             item={f}
                             className="explore-featured-profile"
                           />
