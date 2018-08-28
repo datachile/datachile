@@ -18,7 +18,7 @@
     & input {
       @add-mixin font-sm;
       display: block;
-      padding: 10px 50px;
+      padding: 0.625rem 16px 0.625rem 50px;
       width: 100%;
       /* typography */
       @add-mixin body-font;

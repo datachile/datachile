@@ -65,9 +65,14 @@
       & .nav-search-icon {
         display: inline-block;
         vertical-align: middle;
-        width: 24px;
+        width: 1.5rem;
         /* fudge into place */
         top: -1px;
+
+        /* fudge into place on bigger screens */
+        @add-mixin from-xl {
+          top: -0.25rem;
+        }
       }
 
       /* label theming */
@@ -355,6 +360,11 @@
           /* fudge search input into position */
           & .search-nav {
             top: 0.25em;
+          }
+
+          /* make space for close icon */
+          & .search-nav-main .search-input {
+            padding-right: 50px;
           }
         }
       }
