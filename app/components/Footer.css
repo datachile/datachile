@@ -77,7 +77,7 @@
 
   /* put logos into columns */
   & .footer-logo-list {
-    column-width: 9rem;
+    column-width: 8rem;
     column-gap: 4rem;
 
     /* scale down logos on small screens */
