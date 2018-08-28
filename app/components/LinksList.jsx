@@ -44,7 +44,11 @@ class LinksList extends Component {
           <ul className="links-list u-list-reset">
             {list.map((l, i) => (
               <li className="links-list-item" key={i}>
-                <Link className={categoryClasses} to={l.link}>
+                <Link
+                  className={categoryClasses}
+                  to={l.link}
+                  title={l.label.length > 22 ? l.label : null}
+                >
                   {l.label}
                 </Link>
               </li>
