@@ -16,61 +16,50 @@
   border: 1px solid var(--snow);
   transition: border 0.3s ease-out;
 
+  /* gradient-overlay */
   & .tile-filter {
     position: absolute;
     width: 100%;
     height: 100%;
     background-image: linear-gradient(
-      -180deg,
-      rgba(26, 27, 44, 0.1) 50%,
-      #000000 100%
+      rgba(26, 27, 44, 0.75) 10%,
+      rgba(26, 27, 44, 0.1) 50%
     );
   }
 
-  & .col-r {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-    align-self: stretch;
-    padding-right: var(--gutter-third);
-    padding-bottom: var(--gutter-third);
-
-    & .type {
-      z-index: var(--foreground);
-    }
-  }
-
+  /* profile title */
   & .col-l {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    align-self: stretch;
-    padding: var(--gutter-half);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -1px; /* fudge into place */
+    left: 0;
+    bottom: 0;
+    z-index: 1; /* position above gradient overlay */
+    text-align: left;
+    padding: 0.75rem;
 
     & .name {
-      text-align: left;
-      z-index: var(--foreground);
+      /* position: absolute;
+      left: var(--gutter-half);
+      right: var(--gutter-half);
+      top: var(--gutter-half); */
+      display: block;
     }
-    & .icon-container {
-      background-color: var(--snow);
-      border-radius: 50%;
-      z-index: var(--foreground);
-      width: 26px;
-      height: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0.5em;
-      & .icon {
-        display: block;
-        height: 16px;
-        width: 16px;
-      }
+
+    /* category overrides */
+    & .category {
+      /* positioning */
+      /* position: absolute;
+      left: auto;
+      right: 0.75em;
+      bottom: 0.75em; */
+      /* typography override */
+      font-size: 0.5rem;
     }
   }
 
+  /* overlay */
   &:after {
     background-color: rgba(0, 0, 0, 0.3);
     bottom: 0;
@@ -104,6 +93,10 @@
 
     & .tile-img {
       transform: scale(1.05);
+    }
+
+    & .category {
+      opacity: 1;
     }
   }
 }

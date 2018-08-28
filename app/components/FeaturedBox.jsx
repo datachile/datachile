@@ -34,25 +34,26 @@ class FeaturedBox extends Component {
       >
         <span className="tile-filter" />
         <span className="col-l">
-          <span className="icon-container">
-            <img className="icon" src={`/images/icons/icon-${theme}.svg`} alt="" />
-          </span>
-          <Shiitake
-            tagName="span"
-            className="name subhead font-xs"
-            lines={4}
-            renderFullOnServer={true}
-          >
-            {item.name}
-          </Shiitake>
+          {/* profile title */}
+          <span className="name subhead font-xs">{item.name}</span>
+
+          {/* category indicator */}
+          {theme && (
+            <span className={`category color-${theme} font-xxs`}>
+              {type && (
+                <img
+                  className="category-icon"
+                  src={`/images/icons/icon-${theme}.svg`}
+                />
+              )}
+              <span className="u-visually-hidden">, </span>
+              {type}
+              <span className="u-visually-hidden">.</span>
+            </span>
+          )}
         </span>
-        <span className="col-r">
-          <span className="type label font-xxs">
-            <span className="u-visually-hidden">, </span>
-            {type}
-            <span className="u-visually-hidden">.</span>
-          </span>
-        </span>
+
+        {/* background image */}
         <img className="tile-img" src={item.img} alt="" />
       </Link>
     );
