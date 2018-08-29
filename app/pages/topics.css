@@ -1,7 +1,55 @@
 @import "../pages/mixins";
 
-.topic-block {
+.topics-container {
+  background-color: var(--footer-bg);
+}
+
+/* layout for topic-heading and topic-tabs */
+.topic-header {
+  /* sizing */
+  padding-left: 2.25rem;
+  /* layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  /* line up heading and tab baseline */
+  & .topic-heading {
+    padding-bottom: 0.25rem;
+  }
+}
+
+/* panel style */
+.topic-slide-container {
+  /* extend background */
+  /* margin-left: -1rem;
+  margin-right: -1rem; */
+  padding: 0.5rem 2.25rem 1rem 2.25rem;
+  /* theming */
   background-color: var(--near-black);
+  border-radius: 2px 0 2px 2px;
+
+  /* default / hidden state */
+  & .slick-slide {
+    transform: translateY(10px);
+    opacity: 0;
+    transition:
+      opacity 0.1s ease-in,
+      transform 0.1s ease-in !important;
+  }
+
+  /* active state */
+  & .slick-active {
+    transform: none;
+    opacity: 1;
+    transition:
+      opacity 0.2s ease-in 0.1s,
+      transform 0.2s ease-in 0.1s !important;
+  }
+}
+
+.topic-block {
+  /* background-color: var(--near-black); */
   color: var(--snow);
   padding:
     var(--gutter-half)

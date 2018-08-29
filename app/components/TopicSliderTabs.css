@@ -1,0 +1,54 @@
+@import "../pages/mixins";
+
+.topic-tab-list {
+  /* sizing */
+  padding: 0.625rem 2.25rem 0.75rem 2.25rem;
+  /* theming */
+  background-color: var(--near-black);
+  border-radius: 2px 2px 0 0;
+
+  /* list items */
+  & .topic-tab-item {
+    list-style-type: none;
+    display: inline-block;
+
+    /* space out adjacent tab items */
+    &:not(:last-of-type) {
+      margin-right: 1.25rem;
+    }
+
+    /* clickable button */
+    & .topic-tab-button {
+      /* sizing */
+      line-height: 1.5;
+      /* theming */
+      opacity: 0.666;
+      border-bottom: 0.125em solid transparent;
+      /* transitions */
+      transition:
+        border-color 0.3s ease-out,
+        color 0.3s ease-out,
+        opacity 0.3s ease-out;
+
+      /* interactions */
+      &:hover, &:focus {
+        opacity: 1;
+        color: var(--accent-light);
+      }
+
+      /* active state */
+      &.is-active {
+        border-bottom-color: var(--accent);
+        color: var(--snow);
+        opacity: 1;
+      }
+
+      /* hide outline */
+      &:active,
+      &.is-active:focus {
+        outline: none;
+        border-color: var(--snow);
+      }
+    }
+  }
+}

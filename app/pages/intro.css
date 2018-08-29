@@ -31,11 +31,11 @@
         background:
           linear-gradient(
             color(var(--footer-bg) a(0.666)) -5%,
-            color(var(--near-black) a(0.333) 33.333%),
-            var(--near-black) 100%),
+            color(var(--footer-bg) a(0.333) 33.333%),
+            var(--footer-bg) 100%),
           radial-gradient(
-            color(var(--near-black) a(0.5)) 33.333%,
-            color(var(--near-black) a(0.875))
+            color(var(--footer-bg) a(0.5)) 33.333%,
+            color(var(--footer-bg) a(0.875))
           );
       }
     }

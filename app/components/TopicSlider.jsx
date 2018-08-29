@@ -10,11 +10,11 @@ import { sendEvent } from "helpers/ga";
 const settings = {
   dots: false,
   infinite: true,
-  speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
+  lazyLoad: false,
   adaptiveHeight: true,
-  lazyLoad: false
+  fade: true
 };
 
 class TopicSlider extends Component {
