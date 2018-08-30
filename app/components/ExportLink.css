@@ -5,16 +5,11 @@
   /* dropdown trigger */
   & .export-button {
     /* button overrides */
-    opacity: 0.75;
+    background-color: var(--footer-bg);
     padding: 0.625em 1.5em;
     transition:
       background-color 0.2s,
       opacity 0.2s;
-
-    /* interactions */
-    &:hover, &:focus {
-      opacity: 1;
-    }
   }
 
   /* dropdown list of options */

@@ -364,7 +364,7 @@ table.tooltip-table {
   color: var(--snow);
   /* transitions */
   transition: all 1s ease;
-  transition-property: background-color, box-shadow;
+  transition-property: background-color, box-shadow, color;
 
   /* default theme */
   &:not([class*=background-]) {
@@ -384,10 +384,16 @@ table.tooltip-table {
     width: 1em;
     /* icon offset */
     top: -0.0625em; /* fudge into place */
-    left: 0.125em;
-    margin-right: -0.25em;
     /* transitions */
     transition: transform 0.3s ease;
+
+    &:not(:first-child) {
+      left: 0.125em;
+      margin-right: -0.25em;
+    }
+    & + .btn-text {
+      margin-left: 0.5em;
+    }
   }
 
   /* interactions */
@@ -396,10 +402,53 @@ table.tooltip-table {
     box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
     color: var(--snow);
     text-decoration: none;
-    /* padding-right: calc(var(--gutter)/3); */
 
     &[href] .btn-icon {
       transform: translateX(0.25em);
+    }
+  }
+}
+
+/* button group */
+.btn-group {
+  display: flex;
+
+  & > .btn {
+    flex: 1 0 auto;
+    /* btn overrides */
+    padding: 0.75em 0;
+    color: var(--darker-gray);
+
+    /* set background color */
+    &, &:hover, &:focus {
+      background-color: var(--footer-bg);
+      box-shadow: none;
+    }
+
+    /* active + focus state */
+    &:active,
+    &.is-active:focus {
+      color: var(--snow);
+      outline: none;
+    }
+
+    /* inactive state */
+    &.is-inactive {
+      color: color(var(--snow) a(0.5));
+
+      &:hover, &:focus {
+        color: var(--accent-light);
+      }
+    }
+
+    /* remove radius */
+    &:not(:last-of-type) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 }
