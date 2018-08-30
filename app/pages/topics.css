@@ -32,19 +32,24 @@
   /* default / hidden state */
   & .slick-slide {
     transform: translateY(10px);
-    opacity: 0;
     transition:
       opacity 0.1s ease-in,
       transform 0.1s ease-in !important;
-  }
 
-  /* active state */
-  & .slick-active {
-    transform: none;
-    opacity: 1;
-    transition:
-      opacity 0.2s ease-in 0.1s,
-      transform 0.2s ease-in 0.1s !important;
+    /* prevent click & hover events on inactive slides */
+    &:not(.slick-active) {
+      visibility: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* active state */
+    &.slick-active {
+      transform: none;
+      transition:
+        opacity 0.2s ease-in 0.1s,
+        transform 0.2s ease-in 0.1s !important;
+    }
   }
 }
 

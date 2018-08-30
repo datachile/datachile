@@ -47,7 +47,7 @@
       &:active,
       &.is-active:focus {
         outline: none;
-        border-color: var(--snow);
+        border-color: var(--accent-light);
       }
     }
   }
