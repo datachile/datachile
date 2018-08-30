@@ -1,33 +1,41 @@
 @import "../pages/mixins";
 
 .topics-container {
+  padding-top: 3rem; /* space out from splash */
   background-color: var(--footer-bg);
 }
 
 /* layout for topic-heading and topic-tabs */
 .topic-header {
-  /* sizing */
-  padding-left: 2.25rem;
-  /* layout */
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
 
-  /* line up heading and tab baseline */
-  & .topic-heading {
-    padding-bottom: 0.25rem;
+  /* side by side layout on bigger screens */
+  @add-mixin from-md {
+    /* layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    /* positioning */
+    padding-left: 2.25rem;
   }
 }
 
 /* panel style */
 .topic-slide-container {
-  /* extend background */
-  /* margin-left: -1rem;
-  margin-right: -1rem; */
-  padding: 0.5rem 2.25rem 1rem 2.25rem;
   /* theming */
   background-color: var(--near-black);
   border-radius: 2px 0 2px 2px;
+  /* sizing */
+  padding: 1rem 2.25rem;
+
+  /* less white space on smaller screens */
+  @add-mixin for-md {
+    /* extend background, reduce padding */
+    padding: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    /* remove border */
+    border-top-left-radius: 0;
+  }
 
   /* default / hidden state */
   & .slick-slide {
@@ -53,328 +61,65 @@
   }
 }
 
+/* container for topic title, nav, and slider */
 .topic-block {
-  /* background-color: var(--near-black); */
+  background-color: var(--footer-bg);
   color: var(--snow);
   padding:
     var(--gutter-half)
     var(--gutter)
     var(--gutter)
     var(--gutter);
-  lost-utility: clearfix;
 
-  & + .topic-block,
-  & + .topics-container {
-    border-top: 1px solid var(--footer-bg);
-  }
-
+  /* offset scroll position when using topic anchor links */
   & .topic-anchor-link {
     bottom: 40px;
-
   }
-  & .topic-header {
-    & .topic-heading {
-      lost-flex-container: row;
-      margin-top: var(--gutter);
-      lost-utility: clearfix;
-      & h2 {
-        margin-bottom: 0px;
-        lost-column: 1/2 flex;
+}
 
-        & .pipe {
-          margin: 0 0.5em;
-        }
+/* inside the slide */
+.topic-slide-block {
 
-        &.full-width {
-          lost-column: 1 flex;
-        }
-      }
-      & .topic-slider-bullets {
-        lost-column: 1/2 flex;
-      }
-    }
-  }
-  & .topic-slide-block {
-    & section.section {
-      padding: 0; /* canon override */
-      & .columns {
-        flex-direction: row;
-      }
-    }
+  /* side by side layout */
+  @add-mixin from-md {
+    display: flex;
+    justify-content: space-between;
+
+    /* text content */
     & .topic-slide-intro {
-      lost-flex-container: row;
-
-      & .topic-slide-title {
-        @add-mixin font-lg;
-        lost-column: 1 flex;
-        margin-top: 0.75em;
-
-        & .topic-slide-subtitle {
-          @add-mixin font-xs;
-          color: #ffe0b2;
-          lost-column: 1 flex;
-
-          text-transform: none;
-        }
-      }
-      & .topic-slide-text {
         @add-mixin font-xs;
-        lost-column: 1/3 flex;
-        @add-mixin body-font;
-        & p {
-          margin: 5px 0;
-        }
-      }
-      & .topic-slide-text-full {
-        @add-mixin font-xs;
-        lost-column: 1 1 flex;
-        @add-mixin body-font;
-      }
-      & .topic-slide-link-list {
-        @add-mixin font-xs;
-        lost-column: 1/3 flex;
-        @add-mixin body-font;
-      }
-      & .topic-slide-data {
-        lost-column: 2/3 flex;
-        lost-flex-container: row;
-        & .featured-datum {
-          &.l-1-3 {
-            lost-column: 1/3 flex;
-          }
-          &.l-1-2 {
-            lost-column: 1/2 flex;
-          }
-        }
-        & .l-2-3 {
-          lost-column: 2/3 flex;
-        }
+        width: 25%;
+
+      & + .topic-slide-charts {
+        width: calc(75% - 3rem);
       }
     }
+  }
+
+
+
+
+  /* visualizations */
+  & .topic-slide-charts {
+
+    & .trade-balance-container {
+      width: 100%;
+    }
+
+    /* position chart title and export controls */
     & .chart-title {
-      @add-mixin font-sm;
-      color: var(--snow);
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+    }
+
+    /* canon overrides 😡 */
+    & .section {
+      padding: 0;
     }
     & .viz {
       margin: 0; /* canon override */
       min-height: 400px;
     }
-    & .trade-balance {
-      & .viz {
-        min-height: auto;
-      }
-    }
-    & .chart-text {
-      @add-mixin font-xs;
-      @add-mixin body-font;
-      color: var(--snow);
-      margin-bottom: 5px;
-    }
-    & .footnote {
-      @add-mixin font-xs;
-      & li {
-        @add-mixin font-xs;
-      }
-    }
-    & .topic-slide-charts {
-      & .ticks .d3plus-Rect-text,
-      & .d3plus-Line-text,
-      & .d3plus-Axis-title {
-        & text {
-          fill: var(--snow) !important;
-        }
-      }
-      & .d3plus-plot-x2-axis {
-        & line.bar {
-          stroke: none;
-        }
-      }
-      /* & .d3plus-plot-y-axis {
-        & g:last-child {
-          & line.bar {
-            stroke: none;
-          }
-        }
-      } */
-      & .d3plus-viz-timeline {
-        & .bar {
-          stroke: var(--snow);
-        }
-        & .d3plus-Rect-shape rect {
-          fill: var(--snow);
-          stroke: var(--snow);
-        }
-        & .brushGroup {
-          & .handle {
-            fill: var(--accent);
-          }
-          & .selection {
-            fill: var(--snow);
-          }
-        }
-      }
-      & .info-logo-container {
-        lost-flex-container: row;
-        & .info-logo-item {
-          lost-column: 1/3 flex;
-        }
-      }
-      & .lost-1-2 {
-      }
-    }
   }
-}
-
-@add-mixin for-xl {
-}
-
-@add-mixin for-lg {
-}
-
-@add-mixin for-md {
-  .topic-block {
-    & .topic-header {
-      & .topic-heading {
-        & h2 {
-          lost-column: 1 flex;
-          & .small {
-            @add-mixin font-lg;
-            display: inline-block;
-            & .pipe {
-            }
-          }
-        }
-        & .topic-slider-bullets {
-          lost-column: 1 flex;
-          text-align: center;
-        }
-      }
-    }
-    & .topic-slide-block {
-      & .topic-slide-intro {
-        & .topic-slide-title {
-        }
-        & .topic-slide-text {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-link-list {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-data {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-charts {
-          & .lost-1-2,
-          & .lost-1-3 {
-            lost-column: 1/2 flex;
-          }
-          & .info-logo-container {
-            & .info-logo-item {
-              lost-column: 1/2 flex;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@add-mixin for-sm {
-  .topic-block {
-    & .topic-header {
-      & .topic-heading {
-
-        & .topic-slider-bullets {
-          lost-column: 1 flex;
-          text-align: center;
-        }
-      }
-    }
-    & .topic-slide-block {
-      & section.section {
-        & .columns {
-          flex-direction: row;
-        }
-      }
-      & .chart-title {
-        padding: 0;
-      }
-      & .viz {
-        margin: calc(var(--gutter) / 2) 0;
-      }
-      & .topic-slide-intro {
-        & .topic-slide-title {
-        }
-        & .topic-slide-text {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-link-list {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-data {
-          justify-content: space-around;
-          & .featured-datum {
-            &.l-1-3 {
-              lost-column: 1 1 flex;
-            }
-            &.l-1-2 {
-              lost-column: 1 1 flex;
-            }
-          }
-          & .l-2-3 {
-            lost-column: 1 1 flex;
-          }
-        }
-      }
-      & .topic-slide-charts {
-        & .lost-1-2,
-        & .lost-1-3 {
-          lost-column: 1 flex;
-        }
-        & .info-logo-container {
-          & .info-logo-item {
-            lost-column: 1 flex;
-          }
-        }
-      }
-    }
-  }
-}
-
-@add-mixin for-xs {
-  .topic-block {
-    & .topic-slide-block {
-      & section.section {
-        & .columns {
-          display: block;
-        }
-      }
-      & .topic-slide-intro {
-        & .topic-slide-data {
-          & .featured-datum {
-            margin-left: 32px;
-            &.l-1-3 {
-              lost-column: 1 1 flex;
-            }
-            &.l-1-2 {
-              lost-column: 1 1 flex;
-            }
-          }
-          & .l-2-3 {
-            lost-column: 1 1 flex;
-          }
-        }
-      }
-    }
-  }
-}
-
-.pt-overlay {
-  z-index: 999;
-}
-
-@add-mixin for-xx {
 }

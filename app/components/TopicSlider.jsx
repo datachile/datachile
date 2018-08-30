@@ -12,6 +12,7 @@ const settings = {
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
+  arrows: false,
   lazyLoad: false,
   adaptiveHeight: true,
   fade: true

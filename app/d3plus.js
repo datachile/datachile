@@ -53,6 +53,11 @@ export default {
         fontMax: 18,
         fontWeight: 300
       }
+    },
+    // line charts
+    Line: {
+      // curve: "catmullRom",
+      strokeLinecap: "round"
     }
   },
   // legend defaults

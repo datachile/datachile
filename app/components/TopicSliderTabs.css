@@ -1,11 +1,21 @@
 @import "../pages/mixins";
 
 .topic-tab-list {
-  /* sizing */
-  padding: 0.625rem 2.25rem 0.75rem 2.25rem;
   /* theming */
   background-color: var(--near-black);
   border-radius: 2px 2px 0 0;
+
+  @add-mixin for-md {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @add-mixin from-md {
+    /* sizing */
+    padding: 0.625rem 2.25rem 0.75rem 2.25rem;
+  }
 
   /* list items */
   & .topic-tab-item {
@@ -29,6 +39,10 @@
         border-color 0.3s ease-out,
         color 0.3s ease-out,
         opacity 0.3s ease-out;
+
+        @add-mixin for-sm {
+          @add-mixin font-xs;
+        }
 
       /* interactions */
       &:hover, &:focus {
