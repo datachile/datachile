@@ -10,6 +10,8 @@ import { sendEvent } from "helpers/ga";
 const settings = {
   dots: false,
   infinite: true,
+  swipe: false,
+  touchMove: false,
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
@@ -32,24 +34,24 @@ class TopicSlider extends Component {
     if (this.state.chartsRendered) return;
 
     //disgusting code, just to trigger the new slide's charts render (d3plus).
-    if (!__SERVER__) {
-      setTimeout(() => {
-        window.dispatchEvent(new Event("scroll"));
-        //window.dispatchEvent(new Event("resize"));
-        this.state.chartsRendered = true;
-      }, 100);
-    }
+    // if (!__SERVER__) {
+    //   setTimeout(() => {
+    //     window.dispatchEvent(new Event("scroll"));
+    //     //window.dispatchEvent(new Event("resize"));
+    //     this.state.chartsRendered = true;
+    //   }, 100);
+    // }
   };
 
   render() {
     const { children, selected, goTo, id } = this.props;
 
-    const finalSettings = { ...settings, draggable: isMobile() };
+    // const finalSettings = { ...settings, draggable: isMobile() };
 
     return (
       <div className="topic-slider">
         <Slider
-          {...finalSettings}
+          {...settings}
           ref="topicSlider"
           slickGoTo={selected}
           afterChange={(a, currentSlide) => {

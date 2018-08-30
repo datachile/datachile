@@ -1,5 +1,10 @@
 @import '../pages/mixins';
 
+/* swiping is disabled, so... */
+.slick-slider {
+  user-select: text;
+}
+
 /*
 .topic-slider {
   & .slick-prev,
