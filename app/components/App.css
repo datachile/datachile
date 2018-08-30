@@ -280,9 +280,13 @@ table.tooltip-table {
   }
 }
 
-/* blueprint overlay fix */
-.pt-overlay > span {
-  @add-mixin absolute-expand;
+/* blueprint overlay fixes */
+.pt-overlay {
+  z-index: 999;
+
+  & > span {
+    @add-mixin absolute-expand;
+  }
 }
 
 
@@ -431,10 +435,44 @@ D3plus overrides
   transform: translate(-3px, -5px);
 }
 
-/* override rotated labels for area charts */
-/* .d3plus-Area-text .d3plus-textBox text {
-  font-size: 18px !important;
-} */
+/* style timeline */
+.d3plus-viz-timeline {
+
+  /* main horizontal bar line */
+  & .bar {
+    stroke: var(--medium-gray);
+    opacity: 0.75;
+  }
+
+  /* vertical ticks */
+  & .ticks {
+    opacity: 0.75;
+
+    & .d3plus-Rect {
+      stroke: none;
+      fill: var(--medium-gray);
+    }
+  }
+
+  /* labels */
+  & text {
+    fill: var(--snow);
+  }
+
+  /* active tick */
+  & .handle {
+    /* increase click target */
+    width: 10px;
+    transform: translateX(-2px); /* offset width */
+    /* theming */
+    fill: var(--accent-light);
+    rx: 4px;
+    ry: 4px;
+    /* transitions */
+    will-change: x;
+    transition: x 0.333s ease-out;
+  }
+}
 
 
 /* -----------------------------------
