@@ -8,7 +8,7 @@
     width: 100%;
   }
   & .featured-datum-text {
-    color: var(--snow);
+    color: var(--white);
     flex: 1;
     & .featured-datum-data {
       @add-mixin font-lg;
@@ -18,13 +18,13 @@
       @add-mixin font-sm;
       margin-bottom: 0.2em;
       @add-mixin body-font;
-      color: var(--snow);
+      color: var(--white);
       line-height: 1.1em;
     }
     & .featured-datum-subtitle {
       @add-mixin font-xs;
       @add-mixin body-font;
-      color: var(--gray);
+      color: var(--light-1);
     }
   }
 }

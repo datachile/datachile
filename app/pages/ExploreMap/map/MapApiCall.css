@@ -11,7 +11,7 @@
     & label {
       @add-mixin font-xs;
       text-transform: uppercase;
-      color: var(--gray-dark);
+      color: var(--light-3);
       @add-mixin body-font;
       line-height: 1em;
     }
@@ -23,11 +23,11 @@
       height: 32px;
       width: 90%;
       @add-mixin body-font;
-      background-color: var(--snow);
+      background-color: var(--white);
       text-align: center;
       padding: 5px;
-      border: 1px solid var(--gray-light);
-      color: var(--gray-dark);
+      border: 1px solid var(--light-2);
+      color: var(--light-3);
     }
   }
 }

@@ -7,7 +7,7 @@
   top: 0;
   z-index: 50;
   /* theming */
-  background-color: var(--footer-bg);
+  background-color: var(--black);
   /* sizing */
   width: 100%;
   min-height: 88px;
@@ -102,7 +102,7 @@
     & .topic-link {
       display: block;
       text-decoration: none;
-      color: var(--snow);
+      color: var(--white);
       border-bottom: 2px solid transparent;
       opacity: 0.9;
       transition: opacity 0.2s;
@@ -167,7 +167,7 @@
           & rect,
           & circle {
             fill: none;
-            stroke: var(--snow);
+            stroke: var(--white);
             stroke-width: 1.5;
             transition: stroke 0.2s ease-out;
           }

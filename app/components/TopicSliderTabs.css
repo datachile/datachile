@@ -2,7 +2,7 @@
 
 .topic-tab-list {
   /* theming */
-  background-color: var(--near-black);
+  background-color: var(--dark-3);
   border-radius: 2px 2px 0 0;
 
   @add-mixin for-md {
@@ -53,7 +53,7 @@
       /* active state */
       &.is-active {
         border-bottom-color: var(--accent);
-        color: var(--snow);
+        color: var(--white);
         opacity: 1;
       }
 

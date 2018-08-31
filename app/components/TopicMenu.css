@@ -48,7 +48,7 @@
 		}
 
 		& span {
-			color: var(--snow);
+			color: var(--white);
 			text-transform: uppercase;
 			/* transitions */
 			transition:
@@ -67,7 +67,7 @@
 			& rect,
 			& circle {
 				fill: none;
-				stroke: var(--snow);
+				stroke: var(--white);
 				stroke-width: 1.5;
 				transition: stroke 0.2s ease-out;
 			}

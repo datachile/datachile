@@ -7,7 +7,7 @@
     & a {
       @add-mixin font-xs;
       @add-mixin heading-font;
-      color: var(--snow);
+      color: var(--white);
       text-decoration: none;
       margin: 0 10px 0px 0;
       opacity: 0.8;

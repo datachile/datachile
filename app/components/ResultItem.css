@@ -20,7 +20,7 @@
     margin-right: 5px;
     flex-shrink: 0;
     & .icon-container {
-      background-color: var(--snow);
+      background-color: var(--white);
       border-radius: 50%;
       z-index: var(--foreground);
       width: 36px;
@@ -43,7 +43,7 @@
     & .name {
       @add-mixin font-xs;
       @add-mixin heading-font;
-      color: var(--snow);
+      color: var(--white);
       text-transform: uppercase;
       z-index: var(--foreground);
       text-align: left;
@@ -52,7 +52,7 @@
     & .type {
       @add-mixin font-xxs;
       @add-mixin body-font;
-      color: var(--snow);
+      color: var(--white);
     }
   }
 }

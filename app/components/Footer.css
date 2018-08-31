@@ -2,7 +2,7 @@
 
 .footer {
   width: 100%;
-  background-color: var(--footer-bg);
+  background-color: var(--black);
 
   /* -------------------------------------
   main layout
@@ -150,7 +150,7 @@
     padding: 1.25rem var(--gutter-half); /* make up with link padding */
     text-align: center;
     /* theming */
-    background-color: var(--near-black);
+    background-color: var(--dark-3);
 
     /* feedback list items */
     & .footer-feedback-item {

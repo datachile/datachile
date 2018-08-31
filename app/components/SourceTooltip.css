@@ -24,7 +24,7 @@
   &:hover,
 	&:focus {
     opacity: 1;
-		color: var(--snow);
+		color: var(--white);
 
 		/* style linked tooltip slightly differently */
 		& > a {

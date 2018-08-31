@@ -8,16 +8,16 @@
     @add-mixin font-xxs;
     width: 100%;
     @add-mixin body-font;
-    background-color: var(--snow);
+    background-color: var(--white);
     text-align: center;
     padding: 5px 15px;
     text-transform: uppercase;
     transition: background-color 0.5s, color 0.5s;
-    border: 1px solid var(--gray-light);
-    color: var(--gray-dark);
+    border: 1px solid var(--light-2);
+    color: var(--light-3);
     & select {
       width: 100%;
-      color: var(--gray-dark);
+      color: var(--light-3);
       text-align: center;
       padding: 0;
       background-image: url("/images/profile-icon/icon-arrow-mini-gray.svg");

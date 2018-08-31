@@ -2,7 +2,7 @@
 
 .topics-container {
   padding-top: 3rem; /* space out from splash */
-  background-color: var(--footer-bg);
+  background-color: var(--black);
 }
 
 /* layout for topic-heading and topic-tabs */
@@ -22,7 +22,7 @@
 /* panel style */
 .topic-slide-container {
   /* theming */
-  background-color: var(--near-black);
+  background-color: var(--dark-3);
   border-radius: 2px 0 2px 2px;
   /* sizing */
   padding: 2.25rem;
@@ -63,8 +63,8 @@
 
 /* container for topic title, nav, and slider */
 .topic-block {
-  background-color: var(--footer-bg);
-  color: var(--snow);
+  background-color: var(--black);
+  color: var(--white);
   padding:
     var(--gutter-half)
     var(--gutter)

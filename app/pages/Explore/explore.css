@@ -12,7 +12,7 @@
     margin: calc(var(--gutter)*2) var(--gutter) calc(var(--gutter)*2)
       var(--gutter);
     & h3 {
-      color: var(--snow);
+      color: var(--white);
       @add-mixin heading-font;
       line-height: 1em;
     }
@@ -39,7 +39,7 @@
             & span {
               @add-mixin font-xs;
               margin-left: 15px;
-              color: var(--snow);
+              color: var(--white);
               text-transform: uppercase;
               @add-mixin heading-font;
               padding: 10px 0px 5px 0px;
@@ -55,7 +55,7 @@
         & li.selected {
           & a {
             & span {
-              border-color: var(--snow);
+              border-color: var(--white);
             }
           }
         }
@@ -72,7 +72,7 @@
             lost-waffle: 1/4;
             padding: 5px 0px;
             &.selected {
-              border-color: var(--snow);
+              border-color: var(--white);
             }
           }
         }
@@ -81,12 +81,12 @@
           padding: 0;
           list-style: none;
           & li.level1-filter {
-            color: var(--snow);
+            color: var(--white);
             text-transform: uppercase;
             cursor: pointer;
             &.selected {
               & span {
-                border-color: var(--snow);
+                border-color: var(--white);
               }
             }
           }
@@ -95,7 +95,7 @@
       & .results-block {
         & h3,
         & h4 {
-          color: var(--snow);
+          color: var(--white);
           @add-mixin heading-font;
           line-height: 1em;
           margin: calc(var(--gutter) * 2) 0;
@@ -119,7 +119,7 @@
         & .list-title {
           margin-top: calc(var(--gutter));
           & a {
-            color: var(--snow);
+            color: var(--white);
             text-transform: uppercase;
             @add-mixin heading-font;
           }

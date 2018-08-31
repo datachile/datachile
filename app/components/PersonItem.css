@@ -19,7 +19,7 @@
     border-radius: 50%;
     overflow: hidden;
     /* theming */
-    background-color: var(--medium-gray); /* before image loads in */
+    background-color: var(--gray); /* before image loads in */
     box-shadow: 0 1px 1em rgba(0, 0, 0, 0.25);
 
     /* scale up on big screens */

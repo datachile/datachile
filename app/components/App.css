@@ -44,7 +44,7 @@ fonts & base styles
 
 html {
   /* theming */
-  background-color: var(--near-black);
+  background-color: var(--dark-3);
   /* font scaling */
   font-size: 87.5%; /* 14px; override blueprint */
 
@@ -70,7 +70,7 @@ body {
   /* typography */
   @add-mixin body-font; /* override blueprint */
   /* theming */
-  color: var(--darker-gray);
+  color: var(--light-2);
 
   & * {
     color: inherit;
@@ -121,16 +121,16 @@ li > a,
     opacity 0.25s ease-out;
 
   &:hover, &:focus {
-    color: var(--snow);
+    color: var(--white);
   }
 }
 
 /* white links; link class also required */
 .inverted-link {
-  color: var(--snow);
+  color: var(--white);
 
   &:hover, &:focus {
-    color: var(--snow);
+    color: var(--white);
   }
 }
 
@@ -212,23 +212,23 @@ profile theming
 }
 
 .color-gray {
-  color: var(--darker-gray);
+  color: var(--light-2);
 }
 .border-gray {
-  border-color: var(--darker-gray);
+  border-color: var(--light-2);
 }
 .fill-gray {
-  fill: var(--darker-gray);
+  fill: var(--light-2);
 }
 .background-gray {
-  background-color: var(--darker-gray);
+  background-color: var(--light-2);
 }
 
 /*color-geo: "#4B71B5"
 color-countries: "#1ECBD8"
 color-institutions: "#7777ED"
 color-careers: "#E5C38D"
-color-products: "#FF7474"
+grayroducts: "#FF7474"
 color-industries: "#2A8090"*/
 
 
@@ -242,9 +242,9 @@ components
   @add-mixin font-xs;
   text-align: center;
   padding: 10px;
-  background: var(--snow);
-  border: 1px solid var(--near-black);
-  color: var(--near-black);
+  background: var(--white);
+  border: 1px solid var(--dark-3);
+  color: var(--dark-3);
 }
 
 .d3plus-tooltip-body {
@@ -259,13 +259,13 @@ components
 
 /* blueprint override */
 .pt-popover-arrow path {
-  fill: var(--snow) !important;
+  fill: var(--white) !important;
 }
 .pt-popover-content {
   @add-mixin font-xs;
   @add-mixin body-font;
-  background: var(--snow) !important;
-  color: var(--near-black) !important;
+  background: var(--white) !important;
+  color: var(--dark-3) !important;
 
   /* reset margin */
   & *:last-child {
@@ -298,7 +298,7 @@ table.tooltip-table {
 /* tags */
 .tag {
   display: inline-block;
-  background-color: var(--pre-bg);
+  background-color: var(--dark-1);
   padding: 0 0.5em;
   border-radius: 2px;
   text-shadow: none !important;
@@ -317,7 +317,7 @@ table.tooltip-table {
   text-decoration: none;
   white-space: nowrap;
   /* theming */
-  background-color: var(--snow);
+  background-color: var(--white);
   border-radius: 1em;
   opacity: 0.625;
   /* sizing */
@@ -366,7 +366,7 @@ table.tooltip-table {
   /* theming */
   border-radius: 30px;
   border: none;
-  color: var(--snow);
+  color: var(--white);
   /* transitions */
   transition: all 1s ease;
   transition-property: background-color, box-shadow, color;
@@ -405,7 +405,7 @@ table.tooltip-table {
   &:hover,
   &:focus {
     box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
-    color: var(--snow);
+    color: var(--white);
     text-decoration: none;
 
     &[href] .btn-icon {
@@ -422,24 +422,24 @@ table.tooltip-table {
     flex: 1 0 auto;
     /* btn overrides */
     padding: 0.75em 0;
-    color: var(--darker-gray);
+    color: var(--light-2);
 
     /* set background color */
     &, &:hover, &:focus {
-      background-color: var(--footer-bg);
+      background-color: var(--black);
       box-shadow: none;
     }
 
     /* active + focus state */
     &:active,
     &.is-active:focus {
-      color: var(--snow);
+      color: var(--white);
       outline: none;
     }
 
     /* inactive state */
     &.is-inactive {
-      color: color(var(--snow) a(0.5));
+      color: color(var(--white) a(0.5));
 
       &:hover, &:focus {
         color: var(--accent-light);
@@ -470,14 +470,14 @@ D3plus overrides
 
     /* replace default dark color returned by colorContrast.js */
     &[fill="#444444"] {
-      fill: var(--near-black);
+      fill: var(--dark-3);
     }
   }
 }
 
 /* override default theming for tooltips */
 .d3plus-tooltip {
-  color: var(--pre-bg);
+  color: var(--dark-1);
 
   & a {
     color: var(--accent);
@@ -494,7 +494,7 @@ D3plus overrides
 
   /* main horizontal bar line */
   & .bar {
-    stroke: var(--medium-gray);
+    stroke: var(--gray);
     opacity: 0.75;
   }
 
@@ -504,13 +504,13 @@ D3plus overrides
 
     & .d3plus-Rect {
       stroke: none;
-      fill: var(--medium-gray);
+      fill: var(--gray);
     }
   }
 
   /* labels */
   & text {
-    fill: var(--snow);
+    fill: var(--white);
   }
 
   /* active tick */

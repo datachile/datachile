@@ -7,7 +7,7 @@
   /* subtly darken background */
   background-image: radial-gradient(
     closest-side,
-    color(var(--near-black) a(0.25)),
+    color(var(--dark-3) a(0.25)),
     transparent
   );
 

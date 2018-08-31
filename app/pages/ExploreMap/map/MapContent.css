@@ -5,25 +5,25 @@
 	/* justify-content: center; */
 	& .d3plus-ColorScale-axis {
 		/* lost-column: 1/5 2;
-		background-color: var(--snow); */
+		background-color: var(--white); */
 		background-color: transparent;
 		padding: calc(var(--gutter) / 3);
-		/* border: 1px solid var(--gray-light); */
+		/* border: 1px solid var(--light-2); */
 		min-height: calc(90vh - 150px);
 		& .d3plus-Line-shape path {
-			stroke: var(--snow);
+			stroke: var(--white);
 		}
 		& .d3plus-Rect-shape {
 			& rect.d3plus-Shape {
-				stroke: var(--snow)!important;
+				stroke: var(--white)!important;
 			}
 		}
 		& .ticks {
 			& .d3plus-Line-shape path {
-				stroke: var(--snow);
+				stroke: var(--white);
 			}
 			& .d3plus-Line-text text {
-				fill: var(--snow);
+				fill: var(--white);
 				opacity: 1;
 			}
 		}
@@ -50,12 +50,12 @@
 	}
 }
 #d3plus-tooltip-map {
-	background-color: var(--snow);
+	background-color: var(--white);
 	max-width: 200px;
 	height: auto;
 	padding: 0px !important;
 	& .tooltip-title {
-		color: var(--snow);
+		color: var(--white);
 		padding: calc(var(--gutter) / 3) calc(var(--gutter) / 2);
 		@add-mixin body-font;
 		background-image: url("/images/icons/icon-geo-white.svg");
@@ -75,7 +75,7 @@
 		& .tooltip-data-title {
 			@add-mixin font-xxs;
 			@add-mixin body-font;
-			color: var(--medium-gray);
+			color: var(--gray);
 		}
 		& .tooltip-data-value {
 			@add-mixin font-sm;
@@ -103,7 +103,7 @@
 		color: var(--accent) !important;
 		border: none !important;
 		border-radius: 2px;
-		background-color: var(--snow) !important;
+		background-color: var(--white) !important;
 		opacity: 1 !important;
 		/* sizing */
 		width: 1rem !important;
@@ -122,7 +122,7 @@
 
 		&:hover {
 			background-color: var(--accent) !important;
-			color: var(--snow) !important;
+			color: var(--white) !important;
 		}
 	}
 }

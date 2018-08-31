@@ -8,7 +8,7 @@
 		@add-mixin font-xs;
 		width: 100%;
 		text-transform: uppercase;
-		color: var(--gray-dark);
+		color: var(--light-3);
 		@add-mixin body-font;
 	}
 	& .data-options-container {
@@ -33,25 +33,25 @@
 			margin-left: 5px;
 			text-transform: uppercase;
 			width: auto;
-			background-color: var(--snow);
+			background-color: var(--white);
 			transition: background-color 0.5s, color 0.5s;
-			border: 1px solid var(--gray-light);
-			color: var(--gray-dark);
+			border: 1px solid var(--light-2);
+			color: var(--light-3);
 
 			&.selected {
-				background-color: var(--gray-dark);
+				background-color: var(--light-3);
 			}
 
 			&:active,
 			&:hover {
 				text-decoration: none;
 				background-color: var(--accent);
-				color: var(--snow);
+				color: var(--white);
 			}
 
 			&.disabled {
 				background-color: transparent;
-				color: var(--gray-dark);
+				color: var(--light-3);
 				cursor: not-allowed;
 			}
 		}

@@ -6,9 +6,9 @@
     & path.region {
       stroke-width: 1;
       stroke-opacity: 1;
-      stroke: var(--snow);
+      stroke: var(--white);
 
-      fill: var(--snow);
+      fill: var(--white);
       fill-opacity: 0.7;
 
       cursor: pointer;
@@ -21,9 +21,9 @@
       pointer-events: all;
     }
     & path.comuna {
-      fill: var(--near-black);
+      fill: var(--dark-3);
       fill-opacity: 0.2;
-      stroke: var(--snow);
+      stroke: var(--white);
       cursor: pointer;
       transition: fill 0.4s ease, opacity 0.4s ease;
       &.selected {
@@ -32,20 +32,20 @@
         cursor: pointer;
       }
       &.hover {
-        fill: var(--snow);
+        fill: var(--white);
         fill-opacity: 1;
         cursor: pointer;
       }
     }
     & path.limite {
       fill: none;
-      stroke: var(--snow);
+      stroke: var(--white);
       pointer-events: none;
     }
     & circle.border-circle,
     & clippath {
       fill: none;
-      stroke: var(--snow);
+      stroke: var(--white);
       pointer-events: none;
     }
   }

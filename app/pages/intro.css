@@ -5,7 +5,7 @@
 
   /* contains splash image, header, and stats */
   & .intro {
-    color: var(--snow);
+    color: var(--white);
     margin: 0 auto;
     width: 100%;
 
@@ -30,12 +30,12 @@
         background-color: rgba(25, 25, 40, 0.4);
         background:
           linear-gradient(
-            color(var(--footer-bg) a(0.666)) -5%,
-            color(var(--footer-bg) a(0.333) 33.333%),
-            var(--footer-bg) 100%),
+            color(var(--black) a(0.666)) -5%,
+            color(var(--black) a(0.333) 33.333%),
+            var(--black) 100%),
           radial-gradient(
-            color(var(--footer-bg) a(0.5)) 33.333%,
-            color(var(--footer-bg) a(0.875))
+            color(var(--black) a(0.5)) 33.333%,
+            color(var(--black) a(0.875))
           );
       }
     }
@@ -54,7 +54,7 @@
 
       /* add shadow to text for legibility */
       & * {
-        text-shadow: 0 1px 0.5em var(--footer-bg);
+        text-shadow: 0 1px 0.5em var(--black);
       }
     }
 
@@ -165,7 +165,7 @@
           /* darken background */
           background-image: radial-gradient(
             closest-side,
-            color(var(--near-black) a(0.4)),
+            color(var(--dark-3) a(0.4)),
             transparent
           );
 
@@ -247,7 +247,7 @@
           cursor: pointer;
           transition: fill 0.5s ease;
           &:hover {
-            fill: var(--snow);
+            fill: var(--white);
           }
         }
       }

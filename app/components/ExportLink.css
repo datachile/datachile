@@ -5,7 +5,7 @@
   /* dropdown trigger */
   & .export-button {
     /* button overrides */
-    background-color: var(--footer-bg);
+    background-color: var(--black);
     padding: 0.625em 1.5em;
     transition:
       background-color 0.2s,
@@ -24,7 +24,7 @@
     /* theming */
     background-color: var(--accent);
     border-radius: 2px;
-    box-shadow: 0 1px 2em color(var(--footer-bg) a(0.333));
+    box-shadow: 0 1px 2em color(var(--black) a(0.333));
     /* transitions */
     will-change: opacity, transform, margin-top;
     opacity: 0;
@@ -37,7 +37,7 @@
       min-width: 6em;
       width: 100%;
       /* override default link styles */
-      color: var(--snow);
+      color: var(--white);
       text-decoration: none;
       /* transitions */
       transition:

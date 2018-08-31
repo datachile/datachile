@@ -2,20 +2,20 @@
 
 .data-sidebar {
   & .dataset-list-container {
-    background-color: var(--near-white);
+    background-color: var(--light-1);
     margin: calc(var(--gutter) / 2) 0;
     width: 100%;
     padding: calc(var(--gutter) / 2);
     @add-mixin body-font;
     & h2 {
-      color: var(--snow);
+      color: var(--white);
       @add-mixin body-font;
     }
     & .dataset {
       margin-bottom: calc(var(--gutter) / 2);
       @add-mixin body-font;
       & .dataset-index {
-        color: var(--gray-dark);
+        color: var(--light-3);
         display: block;
         padding-bottom: calc(var(--gutter) / 6);
       }
@@ -24,7 +24,7 @@
         justify-content: space-between;
         flex-direction: row;
         & .dataset-name {
-          color: var(--near-black);
+          color: var(--dark-3);
           width: 90%;
         }
         & .dataset-delete {
@@ -44,18 +44,18 @@
   & .map-csv-btn {
     display: block;
     text-align: center;
-    background-color: var(--near-white);
+    background-color: var(--light-1);
     margin: calc(var(--gutter) / 2) 0;
     width: 100%;
     padding: calc(var(--gutter) / 2);
-    color: var(--gray-dark);
+    color: var(--light-3);
     text-transform: uppercase;
     transition: background-color 0.5s, color 0.5s;
     text-decoration: none;
     @add-mixin body-font;
     &:hover {
       background-color: var(--accent);
-      color: var(--snow);
+      color: var(--white);
     }
   }
 }

@@ -6,7 +6,7 @@
   padding: 0 var(--gutter);
 
   &.nav-dark {
-    background-color: var(--footer-bg);
+    background-color: var(--black);
     margin: 0 auto 0px;
   }
 
@@ -91,7 +91,7 @@
 
         & .nav-search-label {
           opacity: 1;
-          color: var(--snow); /* blueprint override */
+          color: var(--white); /* blueprint override */
         }
       }
     }
@@ -122,7 +122,7 @@
       /* main page title */
       & h1 {
         @add-mixin font-xxl;
-        color: var(--snow);
+        color: var(--white);
       }
 
       & .meta-title {
@@ -134,7 +134,7 @@
           margin-right: 5px;
           width: 30px;
           height: 30px;
-          background-color: var(--snow);
+          background-color: var(--white);
           border-radius: 50%;
 
           & .icon {
@@ -152,8 +152,8 @@
   z-index: 100;
   padding: calc(var(--gutter) * 0.75) var(--gutter);
   width: 100%;
-  color: var(--snow);
-  background-color: var(--footer-bg);
+  color: var(--white);
+  background-color: var(--black);
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.25);
   /* transitions */
   will-change: opacity, transform;
@@ -264,7 +264,7 @@
     @add-mixin body-font;
     line-height: 18px;
     text-transform: uppercase;
-    color: var(--snow);
+    color: var(--white);
 
     & a,
     & .subnav-link {
@@ -277,7 +277,7 @@
       display: block;
       line-height: 2;
       /* theming */
-      color: var(--snow); /* override default link style */
+      color: var(--white); /* override default link style */
       /* border */
       border-left-width: 4px;
       border-left-style: solid;
@@ -293,11 +293,11 @@
 
       /* white border & text color if no theme applied */
       &:not([class*=border]) {
-        border-color: var(--pre-bg);
-        color: var(--snow);
+        border-color: var(--dark-1);
+        color: var(--white);
 
         &:hover, &:focus {
-          border-color: var(--gray-dark);
+          border-color: var(--light-3);
         }
       }
 

@@ -13,7 +13,7 @@
 		border-radius: 0px;
 		padding: 0px 20px 0px 10px;
 		@add-mixin heading-font;
-		color: var(--snow);
+		color: var(--white);
 		text-transform: uppercase;
 		-moz-appearance: none;
 		-webkit-appearance: none;
@@ -33,7 +33,7 @@
 		& option {
 			@add-mixin font-xs;
 			@add-mixin heading-font;
-			color: var(--dark);
+			color: var(--dark-2);
 		}
 	}
 	border-bottom: 2px solid var(--accent);

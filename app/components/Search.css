@@ -24,17 +24,17 @@
       @add-mixin body-font;
       line-height: 24px;
       /* theming */
-      color: var(--snow);
+      color: var(--white);
       background: transparent 14px center no-repeat;
       background-image: url("/images/icons/icon-search.svg");
-      border: 1px solid var(--snow);
+      border: 1px solid var(--white);
       border-radius: 30px;
       opacity: 1;
       transition: background-color 0.5s ease;
 
       &::placeholder {
         @add-mixin font-xs;
-        color: var(--snow);
+        color: var(--white);
         @add-mixin body-font;
         opacity: 0.7;
         line-height: 24px;
@@ -42,11 +42,11 @@
 
       &:focus {
         outline: none;
-        background-color: var(--snow);
+        background-color: var(--white);
         color: var(--accent);
       }
       &:focus::placeholder {
-        color: var(--dark);
+        color: var(--dark-2);
       }
 
       &.loading {
@@ -65,7 +65,7 @@
     position: absolute;
     transition: opacity 0.5s;
     width: 100%;
-    background-color: var(--gray);
+    background-color: var(--light-1);
     top: 66px;
     & .result {
       padding: 2px 15px;
@@ -76,7 +76,7 @@
       & a {
         @add-mixin font-xs;
         width: 100%;
-        color: var(--darker-gray);
+        color: var(--light-2);
         display: block;
         text-decoration: none;
         @add-mixin body-font;
@@ -86,7 +86,7 @@
         display: flex;
         align-items: center;
         & .icon-container {
-          background-color: var(--snow);
+          background-color: var(--white);
           border-radius: 50%;
           z-index: var(--foreground);
           width: 30px;
@@ -136,7 +136,7 @@
       height: 0;
       border-style: solid;
       border-width: 0 15px 15px 15px;
-      border-color: transparent transparent var(--gray) transparent;
+      border-color: transparent transparent var(--light-1) transparent;
     }
     &.available {
       opacity: 1;
