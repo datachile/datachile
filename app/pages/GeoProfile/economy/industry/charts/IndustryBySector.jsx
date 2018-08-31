@@ -12,7 +12,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class IndustryBySector extends Section {
 	static need = [
@@ -35,7 +35,10 @@ class IndustryBySector extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Industry By Output (CLP)")}</span>
+					<span>
+						{t("Industry By Output (CLP)")}
+						<SourceTooltip cube="tax_data" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<Treemap
@@ -119,7 +122,6 @@ class IndustryBySector extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="tax_data" />
 			</div>
 		);
 	}

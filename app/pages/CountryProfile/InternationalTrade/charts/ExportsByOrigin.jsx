@@ -13,7 +13,7 @@ import {
 } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class ExportsByOrigin extends Section {
@@ -71,7 +71,10 @@ class ExportsByOrigin extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Exports By Origin")}</span>
+					<span>
+						{t("Exports By Origin")}
+						<SourceTooltip cube="exports" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 
@@ -136,7 +139,6 @@ class ExportsByOrigin extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="exports" />
 			</div>
 		);
 	}

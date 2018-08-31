@@ -150,12 +150,17 @@ grids
   overflow-x: hidden;
 }
 
-.lost-1 { lost-column: 1; margin-top: 2rem;}
-.lost-1-2 { lost-column: 1/2 flex; margin-top: 2rem;}
-.lost-2-3 { lost-column: 2/3 flex; margin-top: 2rem;}
-.lost-1-3 { lost-column: 1/3 flex; margin-top: 2rem;}
-.lost-1-4 { lost-column: 1/4 flex; margin-top: 2rem;}
+.lost-1 { lost-column: 1; }
+.lost-1-2 { lost-column: 1/2 flex; }
+.lost-2-3 { lost-column: 2/3 flex; }
+.lost-1-3 { lost-column: 1/3 flex; }
+.lost-1-4 { lost-column: 1/4 flex; }
 .lost-row { lost-utility: clearfix; }
+
+/* space out adjacent visualizations */
+.section + .section [class*="lost"] {
+  margin-top: 2rem;
+}
 
 
 /* -----------------------------------

@@ -9,7 +9,7 @@ import { numeral } from "helpers/formatters";
 import { simpleIndustryChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class EmployedByCategory extends Section {
@@ -41,7 +41,10 @@ class EmployedByCategory extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Employment by Category")}</span>
+					<span>
+						{t("Employment by Category")}
+						<SourceTooltip cube="nene" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.lineplot ? (
@@ -125,7 +128,6 @@ class EmployedByCategory extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="nene" />
 			</div>
 		);
 	}

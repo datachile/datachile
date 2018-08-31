@@ -10,7 +10,7 @@ import { getAvailableYears } from "helpers/map";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 import { Switch } from "@blueprintjs/core";
@@ -94,7 +94,10 @@ class Presidential2nd extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Results 2nd Round") + " " + this.state.year}</span>
+          <span>
+            {t("Results 2nd Round") + " " + this.state.year}
+            <SourceTooltip cube="election_results" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
@@ -241,7 +244,6 @@ class Presidential2nd extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="election_results" />
       </div>
     );
   }

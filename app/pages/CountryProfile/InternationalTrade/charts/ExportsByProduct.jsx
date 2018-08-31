@@ -13,7 +13,7 @@ import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class ExportsByProduct extends Section {
@@ -72,7 +72,10 @@ class ExportsByProduct extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Exports by product")}</span>
+          <span>
+            {t("Exports by product")}
+            <SourceTooltip cube="exports" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         {this.state.chart ? (
@@ -126,7 +129,6 @@ class ExportsByProduct extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="exports" />
       </div>
     );
   }

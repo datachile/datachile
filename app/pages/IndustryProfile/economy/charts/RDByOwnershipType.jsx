@@ -8,7 +8,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 class RDByOwnershipType extends Section {
@@ -67,6 +67,7 @@ class RDByOwnershipType extends Section {
                   {industry.parent ? industry.parent.caption : industry.caption}
                 </span>
               )}
+            <SourceTooltip cube="rd_survey" />
           </span>
           <ExportLink path={path} />
         </h3>
@@ -98,8 +99,6 @@ class RDByOwnershipType extends Section {
             }
           }}
         />
-
-        <SourceNote cube="rd_survey" />
       </div>
     );
   }

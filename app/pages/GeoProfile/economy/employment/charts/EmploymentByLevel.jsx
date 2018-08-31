@@ -9,7 +9,7 @@ import { educationLevelColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class EmploymentByLevel extends Section {
 	static need = [
@@ -70,7 +70,10 @@ class EmploymentByLevel extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Employed People By Education Level")}</span>
+					<span>
+						{t("Employed People By Education Level")}
+						<SourceTooltip cube="nene" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<Treemap
@@ -111,7 +114,6 @@ class EmploymentByLevel extends Section {
 						});
 					}}
 				/>
-				<SourceNote cube="nene" />
 			</div>
 		);
 	}

@@ -10,7 +10,7 @@ import { melt, replaceKeyNames } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class TradeBalance extends Section {
 	static need = [
@@ -32,7 +32,10 @@ class TradeBalance extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Trade Balance")}</span>
+					<span>
+						{t("Trade Balance")}
+						<SourceTooltip cube="exports_and_imports" />
+				</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<LinePlot
@@ -84,7 +87,6 @@ class TradeBalance extends Section {
 						return melt(data.data, ["ID Year"], values(tKeys));
 					}}
 				/>
-				<SourceNote cube="exports_and_imports" />
 			</div>
 		);
 	}

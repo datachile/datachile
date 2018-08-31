@@ -13,7 +13,7 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
 // import MiniFilter from "components/MiniFilter";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class MigrationByVisa extends Section {
 	// state = {
@@ -104,7 +104,10 @@ class MigrationByVisa extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Migration By Visa Type")}</span>
+					<span>
+						{t("Migration By Visa Type")}
+						<SourceTooltip cube="immigration" />
+					</span>
 					<ExportLink path={chart_path} className={classSvg} />
 				</h3>
 				{/* <MiniFilter onClick={this.toggleFilter} filters={filters} /> */}
@@ -200,7 +203,6 @@ class MigrationByVisa extends Section {
 						// return orderBy(filtered, ["Number of visas"], ["desc"]);
 					}}
 				/>
-				<SourceNote cube="immigration" />
 			</div>
 		);
 	}

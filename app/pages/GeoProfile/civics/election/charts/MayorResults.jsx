@@ -14,7 +14,7 @@ import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { Switch } from "@blueprintjs/core";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class MayorResults extends Section {
 	static need = [
@@ -112,7 +112,10 @@ class MayorResults extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Mayor Election")}</span>
+					<span>
+						{t("Mayor Election")}
+						<SourceTooltip cube="election_results" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 
@@ -237,7 +240,6 @@ class MayorResults extends Section {
 						/>
 					</div>
 				)}
-				<SourceNote cube="election_results" />
 			</div>
 		);
 	}

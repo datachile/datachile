@@ -8,7 +8,7 @@ import { numeral } from "helpers/formatters";
 
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import CustomStackedArea from "components/CustomStackedArea";
 
 class EmploymentBySex extends Section {
@@ -94,7 +94,10 @@ class EmploymentBySex extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Regional Employment By Sex")}</span>
+          <span>
+            {t("Regional Employment By Sex")}
+            <SourceTooltip cube="nene" />
+          </span>
           <Select
             id="variations"
             options={this.state.chartVariations}
@@ -145,8 +148,6 @@ class EmploymentBySex extends Section {
           }}
           Sex={this.state.selectedObj.sex_id}
         />
-
-        <SourceNote cube="nene" />
       </div>
     );
   }

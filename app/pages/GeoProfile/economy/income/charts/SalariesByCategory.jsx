@@ -9,7 +9,7 @@ import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class SalariesByCategory extends Section {
 	static need = [
@@ -42,7 +42,10 @@ class SalariesByCategory extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Salaries By Category")}</span>
+					<span>
+						{t("Salaries By Category")}
+						<SourceTooltip cube="nesi_income" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<BarChart
@@ -87,7 +90,6 @@ class SalariesByCategory extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="nesi_income" />
 			</div>
 		);
 	}

@@ -8,7 +8,7 @@ import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import InfoLogoItemSNED from "components/InfoLogoItemSNED";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class SNED extends Section {
   static need = [
@@ -126,12 +126,12 @@ class SNED extends Section {
         <h3 className="chart-title">
           <span>
             {t("Performance Evaluation") + " " + t("in") + " "} {geo.name}
+            <SourceTooltip cube="sned" />
           </span>
         </h3>
         <div className="info-logo-container info-logo-container-sned">
           {services.map((d, i) => <InfoLogoItemSNED item={d} key={i} />)}
         </div>
-        <SourceNote cube="sned" />
       </div>
     );
   }

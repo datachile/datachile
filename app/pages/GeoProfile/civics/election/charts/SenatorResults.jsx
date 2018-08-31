@@ -11,7 +11,7 @@ import { getAvailableYears } from "helpers/map";
 import { Switch } from "@blueprintjs/core";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 import maxBy from "lodash/maxBy";
@@ -104,7 +104,10 @@ class SenatorResults extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Senator Election")}</span>
+          <span>
+            {t("Senator Election")}
+            <SourceTooltip cube="election_results" year={this.state.year} />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
@@ -248,7 +251,6 @@ class SenatorResults extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="election_results" year={this.state.year} />
       </div>
     );
   }

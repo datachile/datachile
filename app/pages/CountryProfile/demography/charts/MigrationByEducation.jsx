@@ -9,7 +9,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class MigrationByEducation extends Section {
@@ -68,7 +68,10 @@ class MigrationByEducation extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Migration By Educational Level")}</span>
+					<span>
+						{t("Migration By Educational Level")}
+						<SourceTooltip cube="immigration" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.chart ? (
@@ -112,7 +115,6 @@ class MigrationByEducation extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="immigration" />
 			</div>
 		);
 	}

@@ -12,7 +12,7 @@ import { continentColorScale } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ImportsByOrigin extends Section {
   static need = [
@@ -34,7 +34,10 @@ class ImportsByOrigin extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{title}</span>
+          <span>
+            {title}
+            <SourceTooltip cube="imports" />
+          </span>
           <ExportLink path={path} title={title} className={classSvg} />
         </h3>
         <TreemapStacked
@@ -95,7 +98,6 @@ class ImportsByOrigin extends Section {
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="imports" />
       </div>
     );
   }

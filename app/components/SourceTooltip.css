@@ -15,16 +15,31 @@
 		color 0.25s,
 		opacity 0.2s;
 
+	/* adjust size and placement for smaller heading */
+	&.for-viz {
+		font-size: 0.625em;
+		top: -0.5em;
+	}
+
   &:hover,
-	&.pt-popover-open {
+	&:focus {
     opacity: 1;
-		color: var(--accent-light);
+		color: var(--snow);
+
+		/* style linked tooltip slightly differently */
+		& > a {
+			color: var(--accent-light);
+		}
   }
 }
 
 /* modified blueprint tooltip */
 .source-tooltip {
 	width: 9rem;
+
+	&.for-viz {
+		width: 16rem;
+	}
 
   & p {
     line-height: 1.25;

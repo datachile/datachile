@@ -9,7 +9,7 @@ import { institutionsColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class CollegeByEnrollment extends Section {
   static need = [
@@ -51,7 +51,10 @@ class CollegeByEnrollment extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("School By Enrollment")}</span>
+          <span>
+            {t("School By Enrollment")}
+            <SourceTooltip cube="education_enrollment" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <Treemap
@@ -99,7 +102,6 @@ class CollegeByEnrollment extends Section {
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="education_enrollment" />
       </div>
     );
   }
