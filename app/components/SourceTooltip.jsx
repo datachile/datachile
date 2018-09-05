@@ -58,6 +58,8 @@ class SourceTooltip extends Component {
         className={`source-tooltip-trigger ${ sourceData ? "for-splash" : "for-viz" }`}
         content={sourceTooltipContent}
         placement={sourceData ? "bottom" : "top"}
+        useSmartArrowPositioning={false}
+        useSmartPositioning={true}
       >
         {cubeSource ? (
           <a href={cubeSource.url}>

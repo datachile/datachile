@@ -104,7 +104,7 @@ class SNEDSlide extends Section {
                 )}
               </div>
               <h4 className="topic-slide-context-subhead">
-                About the SNED measurement system
+                {t("About the SNED measurement system")}
                 <SNEDTooltip />
               </h4>
               <p className="font-xxs">{t("geo_profile.education.sned.description")}</p>

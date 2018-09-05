@@ -2,7 +2,6 @@ import React, { Component } from "react";
 // import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { Tooltip2 } from "@blueprintjs/labs";
-import { sources, getI18nSourceObject } from "helpers/consts";
 import SourceNote from "components/SourceNote";
 
 import "./SNEDTooltip.css";
@@ -26,10 +25,9 @@ class SNEDTooltip extends Component {
     // source tooltip
     const SNEDTooltipContent = (
       <div className="source-tooltip sned-tooltip">
-
         {/* loop through measures */}
         {SNEDMeasures.map(measure => (
-          <div className="sned-tooltip-measure">
+          <div key={measure.title} className="sned-tooltip-measure">
             <h4 className="sned-tooltip-subhead font-xs">
               {t(`geo_profile.education.sned.definitions.${measure}.title`)}
             </h4>
@@ -39,14 +37,15 @@ class SNEDTooltip extends Component {
           </div>
         ))}
 
-        <h4 className="sned-tooltip-heading source-tooltip-heading font-xs">{t("source")}:</h4>
+        <h4 className="sned-tooltip-heading source-tooltip-heading font-xs">
+          {t("source")}:
+        </h4>
 
         <SourceNote cube="sned_website" />
 
         <p className="sned-tooltip-disclaimer font-xxs">
           {t("geo_profile.education.sned.disclaimer")}
         </p>
-
       </div>
     );
 
@@ -54,9 +53,15 @@ class SNEDTooltip extends Component {
       <Tooltip2
         className="sned-tooltip-trigger source-tooltip-trigger"
         content={SNEDTooltipContent}
-        placement="right"
+        placement="auto"
+        useSmartArrowPositioning={false}
+        useSmartPositioning={true}
       >
-        <a href="https://www.ayudamineduc.cl/ficha/descripcion-general-sned">
+        <a
+          href="https://www.ayudamineduc.cl/ficha/descripcion-general-sned"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span className="pt-icon pt-icon-info-sign" />
         </a>
       </Tooltip2>

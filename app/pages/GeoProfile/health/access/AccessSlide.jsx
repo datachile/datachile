@@ -13,6 +13,7 @@ import {
 import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import FONASATooltip from "components/FONASATooltip";
 
 class AccessSlide extends Section {
   static need = [
@@ -203,6 +204,10 @@ class AccessSlide extends Section {
                 }
               />
             </div>
+            <h4 className="topic-slide-context-subhead">
+              {t("About the FONASA groups")}
+              <FONASATooltip />
+            </h4>
           </div>
         ) : (
           <div />

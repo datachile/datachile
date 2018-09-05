@@ -1,0 +1,29 @@
+@import "../pages/mixins";
+
+.fonasa-tooltip-trigger {
+	font-size: 0.75em;
+	top: -0.625em;
+}
+
+.fonasa-tooltip {
+	width: 40rem;
+	max-width: 90vw;
+	padding: 0.5rem;
+
+	& .fonasa-tooltip-list {
+		margin-top: 0.75rem;
+		margin-bottom: 0.75rem;
+
+		& ul {
+			padding-left: 1rem;
+
+			& li + li {
+				margin-top: 0.5em;
+			}
+		}
+	}
+
+	& .fonasa-tooltip-heading {
+		margin-top: 1rem;
+	}
+}

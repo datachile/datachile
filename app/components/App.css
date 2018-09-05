@@ -292,6 +292,11 @@ table.tooltip-table {
   & > span {
     @add-mixin absolute-expand;
   }
+
+  /* make sure tooltips appear in front of fixed nav */
+  & .pt-overlay-content {
+    z-index: 50;
+  }
 }
 
 
