@@ -7,7 +7,13 @@
   top: 0;
   z-index: 50;
   /* theming */
-  background-color: var(--black);
+  background-color: color(var(--black) a(0.975)); /* fallback */
+  /* subtle translucence */
+  background: linear-gradient(
+    var(--black),
+    color(var(--black) a(0.975)) 50%,
+    color(var(--black) a(0.95)) 100%
+  );
   /* sizing */
   width: 100%;
   min-height: 88px;
