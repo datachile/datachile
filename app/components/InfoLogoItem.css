@@ -1,29 +1,38 @@
 @import "../pages/mixins";
 
+.info-logo-container {
+  /* layout */
+  columns: 3;
+  column-width: 10rem;
+  column-gap: 2rem;
+  /* offset item margin */
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+
 /* icons found on geo / housing & environment / connectivity */
 .info-logo-item {
-  padding: calc(var(--gutter)/2);
-  min-height: 240px;
+  display: inline-block; /* keep columns together */
+  max-width: 14rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  /* subhead */
+  & .verb {
+    color: var(--light-2);
+    margin-bottom: 0;
+  }
+
+  & .title {
+    color: var(--white);
+    display: block;
+  }
+
+  /* icon */
   & .logo {
-    max-width: 60%;
+    width: 50%;
     margin: 0 auto;
     height: auto;
-  }
-  & .value {
-    @add-mixin font-xxl;
-    text-align: center;
-    display: block;
-    @add-mixin heading-font;
-  }
-  & .verb {
-    text-align: center;
-    @add-mixin body-font;
-    margin-bottom: 0;
-  }
-  & .title {
-    @add-mixin font-sm;
-    text-align: center;
-    @add-mixin body-font;
-    margin-bottom: 0;
   }
 }

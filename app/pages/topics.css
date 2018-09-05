@@ -142,8 +142,21 @@
   /* visualizations */
   & .topic-slide-charts {
 
-    & .trade-balance-container {
-      width: 100%;
+    /* centered icons */
+    &.centered-topic-slide-charts {
+      text-align: center;
+      max-width: calc(50rem);
+      margin-left: auto;
+      margin-right: auto;
+
+      /* offset margin between intro & viz columns on medium screens */
+      @media (min-width: 992px) and (max-width: 1599px) {
+        left: 2.25rem;
+      }
+
+      & .chart-title {
+        display: inline-block;
+      }
     }
 
     /* position chart title and export controls */
