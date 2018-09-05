@@ -1,6 +1,7 @@
 @import "../pages/mixins";
 
 .topic-slider-subsections {
+  top: -1rem;
   & li.sub-section-item {
     list-style-type: none;
     display: inline-block;

@@ -3,6 +3,12 @@
 .topics-container {
   padding-top: 3rem; /* space out from splash */
   background-color: var(--black);
+
+  /* de-emphasize text slightly */
+  & p,
+  & li {
+    color: var(--light-1);
+  }
 }
 
 /* layout for topic-heading and topic-tabs */
@@ -80,6 +86,38 @@
 /* inside the slide */
 .topic-slide-block {
 
+  & .topic-slide-data {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* line up featured data on smaller screens */
+  @media (min-width: 400px) and (max-width: 991px) {
+    & .topic-slide-data {
+      display: flex;
+      justify-content: space-between;
+
+      & .featured-datum {
+        width: 33%;
+        flex-direction: column;
+        text-align: center;
+
+        & .featured-datum-icon {
+          max-width: 3rem;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        & .featured-datum-data {
+          @add-mixin font-xxl;
+          line-height: 1.5;
+          display: block;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
   /* side by side layout */
   @add-mixin from-md {
     display: flex;
@@ -96,8 +134,10 @@
     }
   }
 
-
-
+  /* context info (i.e., SNED) */
+  & .topic-slide-context-subhead {
+    margin-top: 1.5rem;
+  }
 
   /* visualizations */
   & .topic-slide-charts {
@@ -111,6 +151,11 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+    }
+
+    /* space out sned controls from visualization */
+    & .sned-options {
+      margin-top: 1rem;
     }
 
     /* canon overrides 😡 */

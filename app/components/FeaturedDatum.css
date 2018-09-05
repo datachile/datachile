@@ -3,28 +3,30 @@
 .featured-datum {
   lost-flex-container: row;
   & .featured-datum-icon {
-    margin-right: 15px;
-    max-width: 56px;
-    width: 100%;
+    /* sizing */
+    width: 100%; /* necessary because reasons */
+    max-width: 2rem;
+    /* positioning */
+    margin-right: 0.5rem;
+    /* theming */
+    opacity: 0.666;
   }
   & .featured-datum-text {
-    color: var(--white);
-    flex: 1;
+    flex: 1 1 33.333%;
+
     & .featured-datum-data {
-      @add-mixin font-lg;
-      @add-mixin heading-font;
+      margin-right: 0.25em;
     }
+
     & .featured-datum-title {
-      @add-mixin font-sm;
-      margin-bottom: 0.2em;
-      @add-mixin body-font;
-      color: var(--white);
-      line-height: 1.1em;
+      display: inline-block;
+      /* typography resets */
+      line-height: 0.5;
+      margin-bottom: 0;
     }
+
     & .featured-datum-subtitle {
-      @add-mixin font-xs;
-      @add-mixin body-font;
-      color: var(--light-1);
+      color: var(--light-3);
     }
   }
 }

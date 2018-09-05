@@ -8,8 +8,7 @@
   @add-mixin for-md {
     margin-left: -1rem;
     margin-right: -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 1rem;
   }
 
   @add-mixin from-md {
