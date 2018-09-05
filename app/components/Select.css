@@ -1,40 +1,40 @@
 @import "../pages/mixins";
 
-.select-component {
-	& select {
-		@add-mixin font-xs;
-		height: 20px;
-		overflow: hidden;
-		background-color: transparent;
-		background-image: url("/images/profile-icon/icon-arrow-mini.svg");
-		background-repeat: no-repeat;
-		background-position: right center;
-		border: none;
-		border-radius: 0px;
-		padding: 0px 20px 0px 10px;
-		@add-mixin heading-font;
+.select {
+	/* typography */
+	@add-mixin heading-font;
+	/* sizing */
+	display: block;
+	width: 100%;
+	padding: 0.375em 0;
+	/* chevron */
+	background-image: url("/images/profile-icon/icon-arrow-mini.svg");
+	background-size: 1em;
+	background-repeat: no-repeat;
+	background-position: right center;
+	/* strip default select styles */
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+  -webkit-appearance: none;
+	/* theming */
+	border-bottom: 0.125em solid var(--accent);
+	color: var(--light-2);
+	/* transitions */
+	transition:
+		color 0.2s ease-out,
+		border-color 0.2s ease-out;
+
+	/* interactions */
+	&:hover,
+	&:focus,
+	&:active {
+		border-color: var(--accent-light);
 		color: var(--white);
-		text-transform: uppercase;
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		&:-moz-focusring {
-			outline: none;
-			color: transparent;
-			text-shadow: 0 0 0 #fff;
-		}
-		&::-ms-expand {
-			display: none;
-		}
-		&:focus,
-		&:active {
-			outline: none;
-			border: none;
-		}
-		& option {
-			@add-mixin font-xs;
-			@add-mixin heading-font;
-			color: var(--dark-2);
-		}
 	}
-	border-bottom: 2px solid var(--accent);
+
+	&:focus,
+	&:active {
+		outline: none;
+	}
 }
