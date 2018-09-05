@@ -5,7 +5,7 @@ import "./IntroSlider.css";
 
 class IntroSliderItem extends Component {
   handleButtonNext = () => {
-    console.log(this.props.step);
+    // console.log(this.props.step);
     if (this.props.step + 1 == this.props.total) this.props.onSkip();
     else this.props.onNext();
   };
