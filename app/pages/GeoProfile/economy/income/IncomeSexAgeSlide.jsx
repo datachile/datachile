@@ -12,6 +12,7 @@ import { maxMinGrowthByYear } from "helpers/aggregations";
 import { getGeoObject } from "helpers/dataUtils";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import LevelWarning from "components/LevelWarning";
 
 class IncomeSexAgeSlide extends Section {
   static need = [
@@ -76,7 +77,7 @@ class IncomeSexAgeSlide extends Section {
   ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, path, t } = this.props;
 
     const locale = this.props.i18n.language;
 
@@ -104,19 +105,6 @@ class IncomeSexAgeSlide extends Section {
         <div className="topic-slide-intro">
           <h3 className="topic-slide-title">
             {t("Income")}
-            {this.context.data.geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t("geo_profile.warning", {
-                      caption: "Región " + name
-                    })
-                  }}
-                />
-              </div>
-            ) : (
-              ""
-            )}
           </h3>
           <div className="topic-slide-text">
             <p
@@ -144,6 +132,9 @@ class IncomeSexAgeSlide extends Section {
               subtitle={t("in ") + name}
             />
           </div>
+          {this.context.data.geo.depth > 1 && (
+            <LevelWarning name={name} path={path} />
+          )}
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

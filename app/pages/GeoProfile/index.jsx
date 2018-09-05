@@ -536,7 +536,7 @@ class GeoProfile extends Component {
                         source="nesi_income"
                         className=""
                         level={geo.depth > 1 ? "geo_profile" : false}
-                        path={path}
+                        path={location.pathname}
                         name={
                           geo.depth > 1
                             ? {
@@ -766,7 +766,7 @@ class GeoProfile extends Component {
                 </div>
 
                 <div>
-                  <EmploymentSlide>
+                  <EmploymentSlide path={location.pathname}>
                     <SectionColumns>
                       <EmploymentBySex className="lost-2-3" />
                       <EmploymentByLevel className="lost-1-3" />
@@ -775,7 +775,7 @@ class GeoProfile extends Component {
                 </div>
 
                 <div>
-                  <IncomeSexAgeSlide>
+                  <IncomeSexAgeSlide path={location.pathname}>
                     <SectionColumns>
                       <IncomeBySex className="lost-1-2" />
                       <IncomeByAge className="lost-1-2" />
@@ -784,7 +784,7 @@ class GeoProfile extends Component {
                 </div>
 
                 <div>
-                  <IncomeSexAgeSlide>
+                  <IncomeSexAgeSlide path={location.pathname}>
                     <SectionColumns>
                       <SalariesByOccupation className="lost-2-3" />
                       <SalariesByCategory className="lost-1-3" />
@@ -793,7 +793,7 @@ class GeoProfile extends Component {
                 </div>
 
                 <div>
-                  <IDSpendingIndustrySlide>
+                  <IDSpendingIndustrySlide path={location.pathname}>
                     <SectionColumns>
                       <SpendingBySector className="lost-1-3" />
                       <SpendingByIndustry className="lost-2-3" />
@@ -920,7 +920,7 @@ class GeoProfile extends Component {
                   </QualitySlide>
                 </div>
                 <div>
-                  <DevicesSlide>
+                  <DevicesSlide path={location.pathname}>
                     <SectionColumns>
                       <Devices className="lost-1" />
                     </SectionColumns>
@@ -1014,21 +1014,21 @@ class GeoProfile extends Component {
                   </AccessSlide>
                 </div>
                 <div>
-                  <HealthCareSlide>
+                  <HealthCareSlide path={location.pathname}>
                     <SectionColumns>
                       <HealthCare className="lost-1" />
                     </SectionColumns>
                   </HealthCareSlide>
                 </div>
                 <div>
-                  <DisabilitySlide>
+                  <DisabilitySlide path={location.pathname}>
                     <SectionColumns>
                       <DisabilityBySex className="lost-1" />
                     </SectionColumns>
                   </DisabilitySlide>
                 </div>
                 <div>
-                  <DeathCausesSlide>
+                  <DeathCausesSlide path={location.pathname}>
                     <SectionColumns>
                       <DeathCauses className="lost-1-2" />
                       <DeathCausesStacked className="lost-1-2" />

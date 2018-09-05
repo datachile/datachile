@@ -1,0 +1,24 @@
+@import "../pages/mixins";
+
+/* this data is in another castle */
+.level-warning {
+  margin-top: 1em;
+  line-height: 1.25;
+
+  /* warning icon courtesy of blueprint */
+  & .level-warning-icon {
+    /* typography */
+    font-size: 1.25em;
+    /* theming */
+    color: var(--light-3);
+    /* positioning */
+    margin-right: 0.25em;
+    vertical-align: middle;
+    top: -1px;
+  }
+
+  /* de-emphasize text */
+  & .level-warning-text {
+    color: var(--light-2);
+  }
+}

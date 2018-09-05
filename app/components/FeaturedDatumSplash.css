@@ -70,21 +70,6 @@
     }
   }
 
-  /* this data is in another castle */
-  & .featured-datum-splash-level {
-    margin-top: 1em;
-    line-height: 1.25;
-
-    & .featured-datum-splash-level-note {
-      @add-mixin body-font-italic;
-      opacity: 0.75;
-    }
-
-    & .featured-datum-splash-level-name {
-      @add-mixin body-font-bold;
-    }
-  }
-
   /* interactions */
   &:hover {
 
