@@ -12,7 +12,7 @@ const axisConfig = {
   shapeConfig: {
     fill: styles.white,
     labelConfig: {
-      fontColor: styles.white,
+      fontColor: styles["light-1"],
       fontFamily: () => "Roboto Condensed",
       fontMax: 18,
       fontSize: () => 12,
@@ -23,7 +23,7 @@ const axisConfig = {
   tickSize: 4,
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
-    fontColor: styles.white,
+    fontColor: styles["light-1"],
     fontSize: 12
     //fontWeight: 600,
     // textTransform: "uppercase"
@@ -50,7 +50,7 @@ export default {
       labelConfig: {
         fontColor: styles.white,
         fontFamily: () => "Roboto Condensed",
-        fontMax: 18,
+        fontMax: 16,
         fontWeight: 300
       }
     },
@@ -64,7 +64,7 @@ export default {
   legendConfig: {
     // labels are directly in the shape
     shapeConfig: {
-      fontColor: styles.white,
+      fontColor: styles["light-1"],
       fontFamily: "Roboto Condensed",
       fontResize: false,
       fontSize: 12,
@@ -90,7 +90,7 @@ export default {
   // total defaults
   totalConfig: {
     fontSize: 12,
-    fontColor: styles.white,
+    fontColor: styles["light-3"],
     resize: false,
     textAnchor: "left"
   },
