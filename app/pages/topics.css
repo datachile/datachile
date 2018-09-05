@@ -168,3 +168,8 @@
     }
   }
 }
+
+/* prevent mouseover event for hacky legends */
+.prevent-legend-hover .d3plus-Legend .d3plus-HitArea {
+  display: none !important;
+}

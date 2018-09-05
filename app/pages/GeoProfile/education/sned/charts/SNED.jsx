@@ -10,6 +10,8 @@ import { numeral } from "helpers/formatters";
 import InfoLogoItemSNED from "components/InfoLogoItemSNED";
 import SourceTooltip from "components/SourceTooltip";
 
+// NOTE: this component is currently not being used
+
 class SNED extends Section {
   static need = [
     (params, store) =>

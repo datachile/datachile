@@ -528,6 +528,16 @@ D3plus overrides
   }
 }
 
+/* hide tick lines */
+.ticks .d3plus-Line-shape {
+  display: none;
+}
+
+/* make room for the 1px axis bar */
+.d3plus-Bar-group {
+  transform: translateY(-0.5px);
+}
+
 
 /* -----------------------------------
 utilities
@@ -550,4 +560,16 @@ utilities
 
 .u-list-reset {
   @add-mixin list-reset;
+}
+
+/* show/hide content */
+.u-hide-below-xs {
+  @add-mixin for-xs {
+    display: none !important;
+  }
+}
+.u-hide-above-xs {
+  @add-mixin from-xs {
+    display: none !important;
+  }
 }

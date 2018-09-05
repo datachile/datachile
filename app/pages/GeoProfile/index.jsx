@@ -64,7 +64,7 @@ import SpendingByIndustry from "./economy/innovation/charts/SpendingByIndustry";
 
 /*Education*/
 import SNEDSlide from "./education/sned/SNEDSlide";
-import SNED from "./education/sned/charts/SNED";
+// import SNED from "./education/sned/charts/SNED";
 import SNEDSchoolByClusters from "./education/sned/charts/SNEDSchoolByClusters";
 import SNEDCompareByCluster from "./education/sned/charts/SNEDCompareByCluster";
 import SNEDScatter from "./education/sned/charts/SNEDScatter";
@@ -238,7 +238,7 @@ class GeoProfile extends Component {
     /** EDUCATION */
 
     SNEDSlide,
-    SNED,
+    // SNED,
     SNEDSchoolByClusters,
     SNEDCompareByCluster,
     SNEDScatter,
