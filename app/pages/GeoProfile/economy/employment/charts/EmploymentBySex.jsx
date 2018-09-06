@@ -88,8 +88,8 @@ class EmploymentBySex extends Section {
 
     const locale = i18n.language;
 
+    // path for data
     const path = this.context.data.path_employment_by_sex;
-    const classSvg = "employment-by-sex";
 
     return (
       <div className={className}>
@@ -98,10 +98,9 @@ class EmploymentBySex extends Section {
             {t("Regional Employment By Sex")}
             <SourceTooltip cube="nene" />
           </span>
-          <ExportLink path={path} className={classSvg} />
+          <ExportLink path={path} />
         </h3>
         <CustomStackedArea
-          className={classSvg}
           key={key}
           config={{
             height: 400,
@@ -138,7 +137,7 @@ class EmploymentBySex extends Section {
               }
             }
           }}
-          Sex={this.state.selectedObj.sex_id}
+          Sex={selectedObj.sex_id}
         />
 
         <Select
