@@ -37,7 +37,6 @@ class EmploymentBySex extends Section {
 
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
     this.state = {
       selectedOption: 0,
       selectedObj: {
@@ -54,7 +53,7 @@ class EmploymentBySex extends Section {
   componentDidMount() {
     const { t } = this.props;
 
-    var variations = [
+    const variations = [
       {
         id: 0,
         title: t("Female"),
@@ -74,23 +73,12 @@ class EmploymentBySex extends Section {
     });
   }
 
-  handleChange(ev) {
-    this.setState({ key: Math.random() });
-
-    this.setState({
-      selectedOption: ev.newValue,
-      selectedObj: this.state.chartVariations[ev.newValue]
-    });
-  }
-
   render() {
     const { t, className, i18n } = this.props;
-    const { chartVariations, key, selectedObj, selectedOption } = this.state;
+    const { chartVariations, selectedObj, selectedOption } = this.state;
 
-    const locale = i18n.language;
-
-    // path for data
     const path = this.context.data.path_employment_by_sex;
+    const locale = i18n.language;
 
     return (
       <div className={className}>
@@ -195,14 +183,23 @@ class EmploymentBySex extends Section {
           }}
         />
 
-        <Select
-          id="variations"
-          options={chartVariations}
-          value={selectedOption}
-          labelField="title"
-          valueField="id"
-          onChange={this.handleChange}
-        />
+        <div className="btn-group">
+          {chartVariations.map(variation => (
+            <button
+              key={variation.id}
+              className={`btn font-xxs ${
+                selectedOption === variation.id ? "is-active" : "is-inactive"
+              }`}
+              onClick={() => this.setState({
+                  selectedOption: variation.id,
+                  selectedObj: this.state.chartVariations[variation.id]
+                })
+              }
+            >
+              {variation.title}
+            </button>
+          ))}
+        </div>
       </div>
     );
   }
