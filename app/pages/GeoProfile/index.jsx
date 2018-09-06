@@ -768,8 +768,8 @@ class GeoProfile extends Component {
                 <div>
                   <EmploymentSlide path={location.pathname}>
                     <SectionColumns>
-                      <EmploymentBySex className="lost-2-3" />
-                      <EmploymentByLevel className="lost-1-3" />
+                      <EmploymentBySex className="lost-1-2" />
+                      <EmploymentByLevel className="lost-1-2" />
                     </SectionColumns>
                   </EmploymentSlide>
                 </div>
@@ -786,8 +786,8 @@ class GeoProfile extends Component {
                 <div>
                   <IncomeSexAgeSlide path={location.pathname}>
                     <SectionColumns>
-                      <SalariesByOccupation className="lost-2-3" />
-                      <SalariesByCategory className="lost-1-3" />
+                      <SalariesByOccupation className="lost-1-2" />
+                      <SalariesByCategory className="lost-1-2" />
                     </SectionColumns>
                   </IncomeSexAgeSlide>
                 </div>
@@ -795,8 +795,8 @@ class GeoProfile extends Component {
                 <div>
                   <IDSpendingIndustrySlide path={location.pathname}>
                     <SectionColumns>
-                      <SpendingBySector className="lost-1-3" />
-                      <SpendingByIndustry className="lost-2-3" />
+                      <SpendingBySector className="lost-1-2" />
+                      <SpendingByIndustry className="lost-1-2" />
                     </SectionColumns>
                   </IDSpendingIndustrySlide>
                 </div>
