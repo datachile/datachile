@@ -7,6 +7,9 @@
     /* button overrides */
     background-color: var(--black);
     padding: 0.75em 1.5em 0.625em 1.5em;
+    /* prevent flexbox from wrapping icon under text */
+    min-width: 5rem;
+    /* transitions */
     transition:
       background-color 0.2s,
       opacity 0.2s;
