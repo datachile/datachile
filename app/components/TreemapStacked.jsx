@@ -23,7 +23,7 @@ class TreemapStacked extends React.Component {
 
   menuChart(selected) {
     return (
-      <div className="treemap-stacked-options btn-group">
+      <div className="btn-group">
         <button
           className={`btn font-xxs ${selected === "treemap" ? "is-active" : "is-inactive"}`}
           onClick={evt => this.toggleChart("treemap")}

@@ -351,7 +351,7 @@ class SNEDCompareBySchool extends Section {
 
         <div className="sned-options">
           {/* button group; shown on large screens */}
-          <div className="sned-options btn-group u-hide-below-xs" aria-hidden="true">
+          <div className="btn-group u-hide-below-xs" aria-hidden="true">
             {this.state.chartVariations.map(button => (
               <button
                 className={`btn font-xxs ${this.state.selectedOption === button.id ? "is-active" : "is-inactive"}`}

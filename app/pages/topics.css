@@ -161,15 +161,19 @@
 
     /* position chart title and export controls */
     & .chart-title {
+      @add-mixin font-sm;
+      line-height: 1.125;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      /* align with title */
+      margin-top: 0.325rem;
       /* override blueprint */
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
     }
 
-    /* space out sned controls from visualization */
-    & .sned-options {
+    /* space out button group from visualization */
+    & * + .btn-group {
       margin-top: 1rem;
     }
 
