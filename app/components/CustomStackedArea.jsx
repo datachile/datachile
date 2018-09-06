@@ -9,11 +9,17 @@ class CustomStackedArea extends Component {
     const locale = i18n.language;
     return (
       <StackedArea
-        config={this.props.config}
+        config={{
+          ...this.props.config,
+          filter: d => d.Sex === this.props.Sex
+        }}
         dataFormat={data => {
-          var filtered = data.data.filter(d => {
+          var filtered = data.data;
+
+          /*.filter(d => {
             return d["ID Sex"] === this.props.Sex;
-          });
+          });*/
+
           var melted = [];
           var total = {};
           filtered.forEach(f => {

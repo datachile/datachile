@@ -9,7 +9,9 @@ import { numeral } from "helpers/formatters";
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
-import CustomStackedArea from "components/CustomStackedArea";
+// import CustomStackedArea from "components/CustomStackedArea";
+
+import { StackedArea } from "d3plus-react";
 
 class EmploymentBySex extends Section {
   static need = [
@@ -38,7 +40,6 @@ class EmploymentBySex extends Section {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       selectedOption: 0,
-      key: Math.random(),
       selectedObj: {
         path: "",
         groupBy: [],
@@ -100,13 +101,14 @@ class EmploymentBySex extends Section {
           </span>
           <ExportLink path={path} />
         </h3>
-        <CustomStackedArea
-          key={key}
+        <StackedArea
+          forceUpdate={this.state.selectedObj.sex_id}
           config={{
             height: 400,
             data: path,
             groupBy: ["variable"],
             label: d => d["variable"],
+            filter: d => d.__SEX__ === this.state.selectedObj.sex_id,
             x: "month",
             y: "percentage",
             time: "month",
@@ -137,7 +139,60 @@ class EmploymentBySex extends Section {
               }
             }
           }}
-          Sex={selectedObj.sex_id}
+          dataFormat={data => {
+
+            const dataBySex = data.data.reduce(
+              (all, item) => {
+                all[item["ID Sex"]].push(item);
+                return all;
+              },
+              { "1": [], "2": [] }
+            );
+
+            const output = [];
+
+            Object.keys(dataBySex).forEach(d => {
+              var melted = [];
+              var total = {};
+
+              dataBySex[d].forEach(f => {
+                if (total[f["ID Moving Quarter"]]) {
+                  total[f["ID Moving Quarter"]] += f["Expansion factor"];
+                } else {
+                  total[f["ID Moving Quarter"]] = f["Expansion factor"];
+                }
+                var a = f;
+                var date = f["ID Moving Quarter"].split("_");
+                f["month"] = date[0] + "-" + date[1] + "-01";
+                f["quarter"] =
+                  date[0] +
+                  " (" +
+                  date[1] +
+                  "," +
+                  date[2] +
+                  "," +
+                  date[3] +
+                  ")";
+                a["variable"] = f["Occupational Situation"];
+                a["value"] = f["Expansion factor"];
+                melted.push(a);
+              });
+
+              melted = melted
+                .map(m => {
+                  m["percentage"] = m["value"] / total[m["ID Moving Quarter"]];
+                  m.__SEX__ = parseInt(d);
+                  return m;
+                })
+                .sort((a, b) => {
+                  return a["Month"] > b["Month"] ? 1 : -1;
+                });
+
+              output.push(...melted);
+            });
+
+            return output;
+          }}
         />
 
         <Select
