@@ -84,7 +84,7 @@ class EmploymentBySex extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
-    const { selectedObj } = this.state;
+    const { chartVariations, key, selectedObj, selectedOption } = this.state;
 
     const locale = i18n.language;
 
@@ -98,19 +98,11 @@ class EmploymentBySex extends Section {
             {t("Regional Employment By Sex")}
             <SourceTooltip cube="nene" />
           </span>
-          <Select
-            id="variations"
-            options={this.state.chartVariations}
-            value={this.state.selectedOption}
-            labelField="title"
-            valueField="id"
-            onChange={this.handleChange}
-          />
           <ExportLink path={path} className={classSvg} />
         </h3>
         <CustomStackedArea
           className={classSvg}
-          key={this.state.key}
+          key={key}
           config={{
             height: 400,
             data: path,
@@ -147,6 +139,15 @@ class EmploymentBySex extends Section {
             }
           }}
           Sex={this.state.selectedObj.sex_id}
+        />
+
+        <Select
+          id="variations"
+          options={chartVariations}
+          value={selectedOption}
+          labelField="title"
+          valueField="id"
+          onChange={this.handleChange}
         />
       </div>
     );
