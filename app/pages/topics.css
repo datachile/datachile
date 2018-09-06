@@ -164,6 +164,8 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      /* override blueprint */
+      margin-bottom: 0.25rem;
     }
 
     /* space out sned controls from visualization */

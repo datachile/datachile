@@ -94,12 +94,6 @@ class ProductSpace extends Section {
 						}))
 					}
 				/>
-				<p
-					className="chart-text"
-					dangerouslySetInnerHTML={{
-						__html: t("geo_profile.economy.rca")
-					}}
-				/>
 			</div>
 		);
 	}
