@@ -128,6 +128,12 @@
           width: 10rem;
 
           & .map-region {
+            top: -11rem;
+            right: -2.5rem;
+          }
+
+          /* reposition region map, but only when it follows a comuna map (other levels) */
+          & .svg-map + .map-region {
             transform: scale(0.5);
             top: -8rem;
             right: -5rem;
@@ -175,12 +181,24 @@
           }
 
           & .map-region {
-            top: -3rem;
+            transform: scale(0.75);
+            margin-top: -6.75rem;
+
+            /* fudge country map into place on huge screens */
+            @add-mixin from-xl {
+              margin-top: -7rem;
+            }
+          }
+
+          & .svg-map + .map-region {
+            top: 3rem;
             left: 11vw;
 
             /* fudge country map into place on huge screens */
             @add-mixin from-xl {
-              top: -1.5rem;
+              transform: scale(1);
+              top: 4.5rem;
+              left: 12vw;
             }
           }
         }
@@ -234,7 +252,7 @@
     }
 
     /* map */
-    & .map-region {
+    & .map-svg .map-region {
       position: absolute;
       z-index: 0;
       right: 0;
