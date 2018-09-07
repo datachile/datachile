@@ -19,9 +19,14 @@
     /* layout */
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-end;
     /* positioning */
     padding-left: 2.25rem;
+
+    & .topic-heading {
+      padding-right: 2rem;
+      top: -0.25rem; /* align with tab baseline */
+    }
   }
 }
 

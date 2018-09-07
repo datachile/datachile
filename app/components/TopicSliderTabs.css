@@ -14,6 +14,8 @@
   @add-mixin from-md {
     /* sizing */
     padding: 0.625rem 2.25rem 0.75rem 2.25rem;
+    /* prevent tabs from wrapping */
+    white-space: nowrap;
   }
 
   /* list items */
