@@ -103,11 +103,32 @@
 
     /* text content */
     & .topic-slide-intro {
-        @add-mixin font-xs;
-        width: 25%;
+      @add-mixin font-xs;
+      width: 25%;
 
+      /* charts right */
       & + .topic-slide-charts {
         width: calc(75% - 3rem);
+      }
+
+      /* no siblings; use even 2 column layout */
+      /* i.e., products profile intro section */
+      &:first-child:last-child {
+        width: 100%;
+        columns: 2;
+        column-gap: 3rem;
+
+        /* size up text */
+        & .topic-slide-text {
+          @add-mixin font-sm;
+        }
+
+        /* keep contents together */
+        & .topic-slide-text,
+        & .topic-slide-link-list {
+          display: inline-block;
+          break-inside: avoid;
+        }
       }
     }
   }
