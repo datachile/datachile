@@ -86,6 +86,23 @@
 /* inside the slide */
 .topic-slide-block {
 
+  /* side by side layout */
+  @add-mixin from-md {
+    display: flex;
+    justify-content: space-between;
+
+    /* text content */
+    & .topic-slide-intro {
+        @add-mixin font-xs;
+        width: 25%;
+
+      & + .topic-slide-charts {
+        width: calc(75% - 3rem);
+      }
+    }
+  }
+
+  /* space out featured data from other text content */
   & .topic-slide-data {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -114,22 +131,6 @@
           display: block;
           margin-right: 0;
         }
-      }
-    }
-  }
-
-  /* side by side layout */
-  @add-mixin from-md {
-    display: flex;
-    justify-content: space-between;
-
-    /* text content */
-    & .topic-slide-intro {
-        @add-mixin font-xs;
-        width: 25%;
-
-      & + .topic-slide-charts {
-        width: calc(75% - 3rem);
       }
     }
   }
