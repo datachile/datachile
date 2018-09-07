@@ -11,9 +11,9 @@
   }
 }
 
+
 /* layout for topic-heading and topic-tabs */
 .topic-header {
-
   /* side by side layout on bigger screens */
   @add-mixin from-md {
     /* layout */
@@ -25,7 +25,8 @@
   }
 }
 
-/* panel style */
+
+/* panel/slide body style */
 .topic-slide-container {
   /* theming */
   background-color: var(--dark-3);
@@ -67,6 +68,7 @@
   }
 }
 
+
 /* container for topic title, nav, and slider */
 .topic-block {
   background-color: var(--black);
@@ -81,6 +83,14 @@
   & .topic-anchor-link {
     bottom: 40px;
   }
+}
+
+
+/* non-slider, adjacent section blocks */
+.linear-topic-slides .topic-slide + .topic-slide {
+  padding-top: 2.5rem;
+  margin-top: 2.25rem;
+  border-top: 2px solid var(--black);
 }
 
 /* inside the slide */
@@ -102,11 +112,13 @@
     }
   }
 
+
   /* space out featured data from other text content */
   & .topic-slide-data {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
+
 
   /* line up featured data on smaller screens */
   @media (min-width: 400px) and (max-width: 991px) {
@@ -139,54 +151,54 @@
   & .topic-slide-context-subhead {
     margin-top: 1.5rem;
   }
+}
 
-  /* visualizations */
-  & .topic-slide-charts {
+/* visualizations */
+.topic-slide-charts {
 
-    /* centered icons */
-    &.centered-topic-slide-charts {
-      text-align: center;
-      max-width: calc(50rem);
-      margin-left: auto;
-      margin-right: auto;
+  /* centered icons */
+  &.centered-topic-slide-charts {
+    text-align: center;
+    max-width: calc(50rem);
+    margin-left: auto;
+    margin-right: auto;
 
-      /* offset margin between intro & viz columns on medium screens */
-      @media (min-width: 992px) and (max-width: 1599px) {
-        left: 2.25rem;
-      }
-
-      & .chart-title {
-        display: inline-block;
-      }
+    /* offset margin between intro & viz columns on medium screens */
+    @media (min-width: 992px) and (max-width: 1599px) {
+      left: 2.25rem;
     }
 
-    /* position chart title and export controls */
     & .chart-title {
-      @add-mixin font-sm;
-      line-height: 1.125;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      /* align with title */
-      margin-top: 0.325rem;
-      /* override blueprint */
-      margin-bottom: 0.5rem;
+      display: inline-block;
     }
+  }
 
-    /* space out button group & option group from visualization */
-    & * + .btn-group,
-    & * + .option-group {
-      margin-top: 1rem;
-    }
+  /* position chart title and export controls */
+  & .chart-title {
+    @add-mixin font-sm;
+    line-height: 1.125;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    /* align with title */
+    margin-top: 0.325rem;
+    /* override blueprint */
+    margin-bottom: 0.5rem;
+  }
 
-    /* canon overrides 😡 */
-    & .section {
-      padding: 0;
-    }
-    & .viz {
-      margin: 0; /* canon override */
-      min-height: 400px;
-    }
+  /* space out button group & option group from visualization */
+  & * + .btn-group,
+  & * + .option-group {
+    margin-top: 1rem;
+  }
+
+  /* canon overrides 😡 */
+  & .section {
+    padding: 0 0 0.5rem 0; /* keep button groups from getting cut off */
+  }
+  & .viz {
+    margin: 0; /* canon override */
+    min-height: 400px;
   }
 }
 

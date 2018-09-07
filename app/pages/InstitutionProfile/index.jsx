@@ -457,21 +457,21 @@ class InstitutionProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <WagesSlide>
                     <SectionColumns>
                       <WagesByProgram className="lost-1" />
                     </SectionColumns>
                   </WagesSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <AccreditationSlide>
                     <SectionColumns>
                       <AccreditationByProgram className="lost-1" />
                     </SectionColumns>
                   </AccreditationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <RetentionSlide>
                     <SectionColumns>
                       <RetentionByProgram className="lost-1" />
@@ -490,7 +490,7 @@ class InstitutionProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <EmployabilitySlide>
                     <SectionColumns>
                       <EmployabilityByProgram className="lost-1" />

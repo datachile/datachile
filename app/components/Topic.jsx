@@ -73,7 +73,7 @@ class Topic extends Component {
               {children}
             </TopicSlider>
           )}
-          {!slider && <div> {children} </div>}
+          {!slider && <div className="linear-topic-slides"> {children} </div>}
         </div>
       </div>
     );

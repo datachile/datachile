@@ -524,14 +524,14 @@ class CountryProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <MigrationSlide>
                     <SectionColumns>
                       <MigrationByRegion className="lost-1" />
                     </SectionColumns>
                   </MigrationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MigrationDetailsSlide>
                     <SectionColumns>
                       <MigrationBySex className="lost-1-2" />
@@ -539,14 +539,14 @@ class CountryProfile extends Component {
                     </SectionColumns>
                   </MigrationDetailsSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MigrationEducationSlide>
                     <SectionColumns>
                       <MigrationByEducation className="lost-1" />
                     </SectionColumns>
                   </MigrationEducationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MigrationActivitySlide>
                     <SectionColumns>
                       <MigrationByVisa className="lost-1-2" />
@@ -566,7 +566,7 @@ class CountryProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeSlide>
                     <SectionColumns>
                       <ImportsByProduct className="lost-1-2" router={router} />
@@ -574,7 +574,7 @@ class CountryProfile extends Component {
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeOriginDestinationSlide>
                     <SectionColumns>
                       <ImportsByDestination
@@ -585,7 +585,7 @@ class CountryProfile extends Component {
                     </SectionColumns>
                   </InternationalTradeOriginDestinationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeBalanceSlide>
                     <SectionColumns>
                       <TradeBalance className="lost-1" />

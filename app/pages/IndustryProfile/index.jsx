@@ -375,7 +375,7 @@ class IndustryProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <EconomySlide>
                     <SectionColumns>
                       <OutputByLocation className="lost-1-2" router={router} />
@@ -398,7 +398,7 @@ class IndustryProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <RDSlide>
                     <SectionColumns>
                       <RDByBusinessType className="lost-1-2" />
