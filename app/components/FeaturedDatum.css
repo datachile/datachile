@@ -2,6 +2,12 @@
 
 .featured-datum {
   lost-flex-container: row;
+
+  /* for when the title "data" is a category */
+  &.category-featured-datum .featured-datum-data {
+    display: block;
+  }
+
   & .featured-datum-icon {
     /* sizing */
     width: 100%; /* necessary because reasons */
@@ -11,6 +17,7 @@
     /* theming */
     opacity: 0.666;
   }
+
   & .featured-datum-text {
     flex: 1 1 33.333%;
 

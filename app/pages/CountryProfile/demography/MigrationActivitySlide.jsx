@@ -125,7 +125,7 @@ class MigrationActivitySlide extends Section {
           <div className="topic-slide-data">
             {activity.students_number > 0 && (
               <FeaturedDatum
-                className="l-1-3"
+                className="l-1-2 category-featured-datum"
                 icon="visas-entregadas-estudiantes"
                 datum={activity.students_number}
                 title={t("Number of visas granted to students")}
@@ -134,7 +134,7 @@ class MigrationActivitySlide extends Section {
             )}
             {activity.first && (
               <FeaturedDatum
-                className="l-2-3"
+                className="l-1-2 category-featured-datum"
                 icon={activity.first_icon}
                 datum={activity.first}
                 title={t("Most common activity")}

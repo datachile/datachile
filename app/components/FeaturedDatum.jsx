@@ -14,9 +14,9 @@ function FeaturedDatum(props) {
         <img src={`/images/slider-icon/icon-${icon}.svg`} />
       </div>
       <div className="featured-datum-text">
-        <h4 className="featured-datum-title label font-xxs">
+        <h4 className="featured-datum-title font-xxs">
           <span className="featured-datum-data heading font-md">{datum}</span>
-          {title}
+          <span className="label">{title}</span>
         </h4>
         <p className="featured-datum-subtitle font-xxs">{subtitle}</p>
       </div>
