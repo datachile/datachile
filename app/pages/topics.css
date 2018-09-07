@@ -173,8 +173,9 @@
       margin-bottom: 0.5rem;
     }
 
-    /* space out button group from visualization */
-    & * + .btn-group {
+    /* space out button group & option group from visualization */
+    & * + .btn-group,
+    & * + .option-group {
       margin-top: 1rem;
     }
 

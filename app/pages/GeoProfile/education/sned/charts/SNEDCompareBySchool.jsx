@@ -349,7 +349,7 @@ class SNEDCompareBySchool extends Section {
           }}
         />
 
-        <div className="sned-options">
+        <div className="option-group">
           {/* button group; shown on large screens */}
           <div className="btn-group u-hide-below-xs" aria-hidden="true">
             {this.state.chartVariations.map(button => (
