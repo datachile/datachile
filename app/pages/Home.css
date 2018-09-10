@@ -24,7 +24,7 @@
       @add-mixin absolute-expand;
       z-index: -10;
       /* theming */
-      background-color: var(--near-black);
+      background-color: var(--dark-3);
       background-position: 50%;
       background-size: cover;
       /* transitions */
@@ -62,12 +62,12 @@
       background-color: rgba(25, 25, 40, 0.4);
       background:
         linear-gradient(
-          color(var(--footer-bg) a(0.5)) -5%,
+          color(var(--black) a(0.5)) -5%,
           rgba(25, 25, 40, 0.4) 33.333%,
-          var(--near-black) 90%),
+          var(--dark-3) 90%),
         radial-gradient(
           transparent 33.333%,
-          color(var(--near-black) a(0.5))
+          color(var(--dark-3) a(0.5))
         );
     }
 
@@ -102,7 +102,7 @@
         & .lead {
           margin: 0.5em 0;
           text-align: center;
-          color: var(--snow); /* override heading deafult */
+          color: var(--white); /* override heading deafult */
           text-shadow: 0 1px 1.5em rgba(0, 0, 0, 0.3);
         }
       }
@@ -133,6 +133,10 @@
       z-index: 2;
     }
 
+    @mixin from-lg {
+      margin-top: 1.5rem;
+    }
+
     & .home-slide-item {
       flex: 1 1 auto;
 
@@ -160,7 +164,7 @@
       & .home-slide-content {
         border-top-style: solid;
         border-top-width: 3px;
-        background-color: var(--near-black);
+        background-color: var(--dark-3);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -187,7 +191,7 @@
           /* label */
           & .home-slide-label {
             @add-mixin font-xs;
-            color: var(--snow);
+            color: var(--white);
             line-height: 1em;
             /* transitions */
             opacity: 0.75;
@@ -253,11 +257,11 @@
     }
     /* about text */
     & p {
-      color: var(--darker-gray);
+      color: var(--light-2);
       /* highlights */
       & span {
         @add-mixin body-font-bold;
-        color: var(--snow);
+        color: var(--white);
       }
     }
   }
@@ -346,12 +350,12 @@
 
         /* source title */
         &.name {
-          color: var(--snow);
+          color: var(--white);
           margin-bottom: 5px;
         }
         &.source {
           @add-mixin font-xxs;
-          color: var(--gray-light);
+          color: var(--light-2);
         }
       }
     }

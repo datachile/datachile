@@ -10,9 +10,20 @@ class InfoLogoItem extends Component {
     return (
       <div key={item.logo + "-anchor"} className="info-logo-item">
         <img className="logo" src={`/images/info-logo/${item.logo}.png`} />
-        {item.value && <span className="value">{item.value}</span>}
-        {item.verb && <p className="verb">{item.verb}</p>}
-        {item.title && <p className="title">{item.title}</p>}
+        {item.verb && (
+          <p className="verb font-xxs">
+            {item.verb}
+            {item.title && (
+              <span className="title label font-xs"> {item.title} </span>
+            )}
+            <span className="u-visually-hidden">
+              : {item.value ? item.value : null}
+            </span>
+          </p>
+        )}
+        {item.value && (
+          <span className="value heading font-lg">{item.value}</span>
+        )}
       </div>
     );
   }

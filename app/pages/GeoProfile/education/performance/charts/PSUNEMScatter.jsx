@@ -8,7 +8,7 @@ import { sources } from "helpers/consts";
 import { administrationColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
 
@@ -71,6 +71,7 @@ class PSUNEMScatter extends Section {
             {national
               ? t("PSU vs NEM by Comuna & Administration")
               : t("PSU vs NEM by school")}
+              <SourceTooltip cube="education_performance_new" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
@@ -225,7 +226,6 @@ class PSUNEMScatter extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="education_performance_new" />
       </div>
     );
   }

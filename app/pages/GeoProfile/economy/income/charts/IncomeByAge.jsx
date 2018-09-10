@@ -9,7 +9,7 @@ import { numeral, moneyRangeFormat } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class IncomeByAge extends Section {
@@ -51,7 +51,10 @@ class IncomeByAge extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Income By Age")}</span>
+					<span>
+						{t("Income By Age")}
+						<SourceTooltip cube="nesi_income" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.show ? (
@@ -114,7 +117,6 @@ class IncomeByAge extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="nesi_income" />
 			</div>
 		);
 	}

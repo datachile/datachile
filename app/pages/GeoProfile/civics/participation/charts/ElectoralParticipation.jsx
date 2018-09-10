@@ -14,7 +14,7 @@ import { regionsColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ElectoralParticipation extends Section {
   static need = [
@@ -58,7 +58,10 @@ class ElectoralParticipation extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Electoral Participation")}</span>
+          <span>
+            {t("Electoral Participation")}
+            <SourceTooltip cube="election_participation" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <BarChart
@@ -137,7 +140,6 @@ class ElectoralParticipation extends Section {
             return location.concat(country);
           }}
         />
-        <SourceNote cube="election_participation" />
       </div>
     );
   }

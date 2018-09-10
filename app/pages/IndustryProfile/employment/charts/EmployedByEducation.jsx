@@ -8,7 +8,7 @@ import { simpleIndustryChartNeed } from "helpers/MondrianClient";
 import { ordinalColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class EmployedByEducation extends Section {
@@ -41,7 +41,10 @@ class EmployedByEducation extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Employment by Education")}</span>
+					<span>
+						{t("Employment by Education")}
+						<SourceTooltip cube="nene" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.treemap ? (
@@ -96,7 +99,6 @@ class EmployedByEducation extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="nene" />
 			</div>
 		);
 	}

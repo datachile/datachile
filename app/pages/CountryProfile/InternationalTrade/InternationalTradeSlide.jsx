@@ -122,7 +122,7 @@ class InternationalTradeSlide extends Section {
           <div className="topic-slide-data">
             {trade_import.name && (
               <FeaturedDatum
-                className="l-1-2"
+                className="l-1-2 category-featured-datum"
                 icon="principal-producto-importado"
                 datum={trade_import.name}
                 title={t("Main imported product")}
@@ -131,7 +131,7 @@ class InternationalTradeSlide extends Section {
             )}
             {trade_export.name && (
               <FeaturedDatum
-                className="l-1-2"
+                className="l-1-2 category-featured-datum"
                 icon="principal-producto-exportado"
                 datum={trade_export.name}
                 title={t("Main exported product")}

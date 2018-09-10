@@ -9,7 +9,7 @@ import { numeral } from "helpers/formatters";
 import { sources } from "helpers/consts";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ProductSpace extends Section {
 	static need = [
@@ -35,7 +35,10 @@ class ProductSpace extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Product Space")}</span>
+					<span>
+						{t("Product Space")}
+						<SourceTooltip cube="exports" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<Network
@@ -90,13 +93,6 @@ class ProductSpace extends Section {
 							"FOB US": d["FOB US"] ? d["FOB US"] : 0
 						}))
 					}
-				/>
-				<SourceNote cube="exports" />
-				<p
-					className="chart-text"
-					dangerouslySetInnerHTML={{
-						__html: t("geo_profile.economy.rca")
-					}}
 				/>
 			</div>
 		);

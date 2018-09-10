@@ -8,7 +8,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 
 export default translate()(
@@ -50,7 +50,10 @@ export default translate()(
 			return (
 				<div className={className}>
 					<h3 className="chart-title">
-						<span>{t("Migration By Sex")}</span>
+						<span>
+							{t("Migration By Sex")}
+							<SourceTooltip cube="immigration" />
+						</span>
 						<ExportLink path={path} className={classSvg} />
 					</h3>
 					<BarChart
@@ -96,7 +99,6 @@ export default translate()(
 						}}
 						dataFormat={data => data.data}
 					/>
-					<SourceNote cube="immigration" />
 				</div>
 			);
 		}

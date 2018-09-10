@@ -12,7 +12,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 class ExportsByRegion extends Section {
@@ -59,7 +59,10 @@ class ExportsByRegion extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Exports By Region")}</span>
+          <span>
+            {t("Exports By Region")}
+            <SourceTooltip cube="exports" />
+          </span>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
 
@@ -135,8 +138,6 @@ class ExportsByRegion extends Section {
             }
           }}
         />
-
-        <SourceNote cube="exports" />
       </div>
     );
   }

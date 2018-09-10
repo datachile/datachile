@@ -8,7 +8,7 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 
 export default translate()(
@@ -54,7 +54,10 @@ export default translate()(
       return (
         <div className={className}>
           <h3 className="chart-title">
-            <span>{t("Migration By Age")}</span>
+            <span>
+              {t("Migration By Age")}
+              <SourceTooltip cube="immigration" />
+            </span>
             <ExportLink path={path} className={classSvg} />
           </h3>
           <BarChart
@@ -91,7 +94,6 @@ export default translate()(
             }}
             dataFormat={data => data.data}
           />
-          <SourceNote cube="immigration" />
         </div>
       );
     }

@@ -10,7 +10,7 @@ import { melt, getLevelObject, replaceKeyNames } from "helpers/dataUtils";
 import { tradeBalanceColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class TradeBalance extends Section {
@@ -77,7 +77,10 @@ class TradeBalance extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Trade Balance")}</span>
+					<span>
+						{t("Trade Balance")}
+						<SourceTooltip cube="exports_and_imports" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.chart ? (
@@ -126,7 +129,6 @@ class TradeBalance extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="exports_and_imports" />
 			</div>
 		);
 	}

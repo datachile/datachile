@@ -95,16 +95,16 @@ class CongressSlide extends Section {
               />
             )}
           </div>
+          {geo.depth > 0 && (
+            <p
+              className="chart-text font-xxs"
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.civics.congress.note")
+              }}
+            />
+          )}
         </div>
         <div className="topic-slide-charts">{children}</div>
-        {geo.depth > 0 && (
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html: t("geo_profile.civics.congress.note")
-            }}
-          />
-        )}
       </div>
     );
   }

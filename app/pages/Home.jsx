@@ -7,7 +7,7 @@ import Helmet from "react-helmet";
 
 import { featured_profiles } from "helpers/consts";
 
-import FeaturedBox from "components/FeaturedBox";
+import ProfileTile from "components/ProfileTile";
 import Nav from "components/Nav";
 
 import Search from "components/Search";

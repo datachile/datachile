@@ -9,7 +9,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 
 class InternetAccessByZone extends Section {
@@ -63,7 +63,10 @@ class InternetAccessByZone extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Internet Access By Zone in ") + geoChartName}</span>
+					<span>
+						{t("Internet Access By Zone in ") + geoChartName}
+						<SourceTooltip cube="internet_access" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<BarChart
@@ -115,7 +118,6 @@ class InternetAccessByZone extends Section {
 						return data.data;
 					}}
 				/>
-				<SourceNote cube="internet_access" />
 			</div>
 		);
 	}

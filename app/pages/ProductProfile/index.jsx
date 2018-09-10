@@ -556,9 +556,7 @@ class ProductProfile extends Component {
 
             <div className="topic-block" id="about">
               <div className="topic-header">
-                <div className="topic-heading">
-                  <h2 className="full-width font-xxl">{t("About")}</h2>
-                </div>
+                <h2 className="topic-heading font-xxl">{t("About")}</h2>
                 <div className="topic-go-to-targets">
                   <div className="topic-slider-sections" />
                 </div>
@@ -615,7 +613,7 @@ class ProductProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeSlide>
                     <SectionColumns>
                       <ExportsByDestination className="lost-1-2" />
@@ -623,7 +621,7 @@ class ProductProfile extends Component {
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeSlide>
                     <SectionColumns>
                       <ImportsByOrigin className="lost-1-2" router={router} />
@@ -631,7 +629,7 @@ class ProductProfile extends Component {
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <GeoTradeSlide>
                     <SectionColumns>
                       <ExportsByRegion className="lost-1-2" router={router} />
@@ -639,7 +637,7 @@ class ProductProfile extends Component {
                     </SectionColumns>
                   </GeoTradeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeBalanceSlide>
                     <SectionColumns>
                       <TradeBalance className="lost-1" />

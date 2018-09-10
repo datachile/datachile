@@ -50,7 +50,7 @@
       cursor: pointer;
       user-select: none;
       background-color: #7997ca;
-      color: var(--snow);
+      color: var(--white);
       border-radius: 30px;
       padding: 6px 12px;
       &.back {

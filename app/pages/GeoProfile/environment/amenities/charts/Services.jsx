@@ -9,7 +9,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import InfoLogoItem from "components/InfoLogoItem";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class Services extends Section {
@@ -246,12 +246,12 @@ class Services extends Section {
         <h3 className="chart-title">
           <span>
             {t("Main services in ")} {geo.name}
+            <SourceTooltip cube="casen_household" />
           </span>
         </h3>
         <div className="info-logo-container">
           {services.map((d, i) => <InfoLogoItem item={d} key={i} />)}
         </div>
-        <SourceNote cube="casen_household" />
       </div>
     );
   }

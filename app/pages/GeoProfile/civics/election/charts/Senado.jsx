@@ -9,7 +9,7 @@ import { numeral } from "helpers/formatters";
 import { sources } from "helpers/consts";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class Senado extends Section {
   static need = [];
@@ -23,7 +23,10 @@ class Senado extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Composición del Senado 2018-2022")}</span>
+          <span>
+            {t("Composición del Senado 2018-2022")}
+            <SourceTooltip cube="exports" />
+          </span>
           <ExportLink path={path} />
         </h3>
         <Network
@@ -49,7 +52,6 @@ class Senado extends Section {
             legend: false
           }}
         />
-        <SourceNote cube="exports" />
         <p
           className="chart-text"
           dangerouslySetInnerHTML={{

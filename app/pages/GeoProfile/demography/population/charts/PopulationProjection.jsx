@@ -7,7 +7,7 @@ import { simpleGeoChartNeed, simpleGeoDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class PopulationProjection extends Section {
   constructor(props) {
@@ -54,7 +54,10 @@ class PopulationProjection extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Population Projection")}</span>
+          <span>
+            {t("Population Projection")}
+            <SourceTooltip cube="population_estimate" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <LinePlot
@@ -104,7 +107,6 @@ class PopulationProjection extends Section {
             return data.data;
           }}
         />
-        <SourceNote cube="population_estimate" />
       </div>
     );
   }

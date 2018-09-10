@@ -8,7 +8,7 @@ import { crimesColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class CrimeTreemap extends Section {
@@ -33,7 +33,10 @@ class CrimeTreemap extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Complaints By Crime")}</span>
+          <span>
+            {t("Complaints By Crime")}
+            <SourceTooltip cube="crimes" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
@@ -95,7 +98,6 @@ class CrimeTreemap extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="crimes" />
       </div>
     );
   }

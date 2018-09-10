@@ -11,7 +11,7 @@ import { numeral } from "helpers/formatters";
 import { mean } from "d3-array";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class DisabilityBySex extends Section {
   static need = [
@@ -54,7 +54,10 @@ class DisabilityBySex extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Disabilities by Sex")}</span>
+          <span>
+            {t("Disabilities by Sex")}
+            <SourceTooltip cube="disabilities" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <BarChart
@@ -104,7 +107,6 @@ class DisabilityBySex extends Section {
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="disabilities" />
       </div>
     );
   }

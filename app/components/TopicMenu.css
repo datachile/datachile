@@ -2,15 +2,39 @@
 
 .topic-menu {
 	lost-flex-container: row;
-	justify-content: center;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	padding: var(--gutter);
+
+	/* centered links */
+	@add-mixin from-sm {
+		justify-content: center;
+
+		& .topic-link {
+			min-width: 7rem;
+			justify-content: space-between;
+		}
+	}
+
 	& .topic-link {
 		text-align: center;
 		lost-flex-container: column;
 		justify-content: space-between;
-		padding: 15px;
-		min-width: 125px;
+		padding: 0;
 		/* transitions */
 		transition: transform 0.2s ease-out;
+
+		@add-mixin for-sm {
+			flex: 1 1 auto;
+		}
+
+		@add-mixin for-xs {
+			max-width: 1.875rem;
+
+			& .svg-image + span {
+				@add-mixin visually-hidden;
+			}
+		}
 
 		/* interactions */
 		&:hover, &:focus {
@@ -24,7 +48,7 @@
 		}
 
 		& span {
-			color: var(--snow);
+			color: var(--white);
 			text-transform: uppercase;
 			/* transitions */
 			transition:
@@ -32,27 +56,30 @@
 				color 0.2s ease-out;
 		}
 		& .svg-image {
-			opacity: 0.666;
+			opacity: 0.5;
+			transition: opacity 0.2s ease;
 			& svg {
-				width: 30px;
-				height: 45px;
+				width: 1.875rem;
+				height: 2.875rem;
 			}
 			& path,
 			& line,
 			& rect,
 			& circle {
 				fill: none;
-				stroke: var(--snow);
+				stroke: var(--white);
 				stroke-width: 1.5;
 				transition: stroke 0.2s ease-out;
 			}
 		}
-		&:hover {
+		&:hover,
+		&:focus {
 			text-decoration: none;
 			& span {
 				color: var(--accent);
 			}
 			& .svg-image {
+				opacity: 1;
 				& path,
 				& line,
 				& rect,

@@ -5,7 +5,7 @@
 
   /* contains splash image, header, and stats */
   & .intro {
-    color: var(--snow);
+    color: var(--white);
     margin: 0 auto;
     width: 100%;
 
@@ -30,12 +30,12 @@
         background-color: rgba(25, 25, 40, 0.4);
         background:
           linear-gradient(
-            color(var(--footer-bg) a(0.666)) -5%,
-            color(var(--near-black) a(0.333) 33.333%),
-            var(--near-black) 100%),
+            color(var(--black) a(0.666)) -5%,
+            color(var(--black) a(0.333) 33.333%),
+            var(--black) 100%),
           radial-gradient(
-            color(var(--near-black) a(0.5)) 33.333%,
-            color(var(--near-black) a(0.875))
+            color(var(--black) a(0.5)) 33.333%,
+            color(var(--black) a(0.875))
           );
       }
     }
@@ -54,7 +54,7 @@
 
       /* add shadow to text for legibility */
       & * {
-        text-shadow: 0 1px 0.5em var(--footer-bg);
+        text-shadow: 0 1px 0.5em var(--black);
       }
     }
 
@@ -63,18 +63,25 @@
       margin-top: 0;
       margin-bottom: 2rem;
 
-      /* place map below authorities on tiny screens */
+      /* tiny screen layout */
       @media (max-width: 659px) {
         flex-direction: column;
 
+        /* enforce 100% width */
         & .authorities-block {
           min-width: 100%;
           max-width: 100%;
-          flex-wrap: wrap;
+
+          /* center authorities section */
+          & .authorities-section {
+            margin-left: auto;
+            margin-right: auto !important;
+          }
         }
 
+        /* hide map */
         & .map-comuna {
-          margin: 1rem auto !important;
+          display: none;
         }
       }
 
@@ -119,12 +126,6 @@
 
         & .map-comuna {
           width: 10rem;
-
-          & .map-region {
-            transform: scale(0.5);
-            top: -8rem;
-            right: -5rem;
-          }
         }
 
         & .authorities-block,
@@ -153,21 +154,58 @@
         }
 
         /* offset map */
+        & .svg-map {
+          max-width: 17rem;
+          margin-left: auto;
+        }
         & .map-comuna {
           max-width: 20rem;
           /* darken background */
           background-image: radial-gradient(
             closest-side,
-            color(var(--near-black) a(0.4)),
+            color(var(--dark-3) a(0.4)),
             transparent
           );
-
-          & .map-region {
-            top: -3rem;
-            left: 11vw;
-          }
         }
       }
+
+
+      /* 💩💩💩 BEGIN REGIONAL MAP FUDGING 💩💩💩 */
+
+      /* region defaults */
+      & .map-region {
+        position: absolute;
+        transform: scale(0.5);
+        top: -11rem;
+        right: -2.5rem;
+      }
+
+      /* adjust positioning on non-country profile */
+      & .svg-map + .map-region {
+        top: -8rem;
+        right: -5rem;
+      }
+
+      @add-mixin from-lg {
+        & .map-region {
+          transform: scale(0.75);
+        }
+        & .svg-map + .map-region {
+          top: -3rem;
+          left: 11vw;
+        }
+      }
+
+      @add-mixin from-xl {
+        & .map-region {
+          transform: scale(1);
+        }
+        & .svg-map + .map-region {
+          left: 12vw;
+        }
+      }
+      /* 💩💩💩 END REGIONAL MAP FUDGING 💩💩💩 */
+
 
       /* horizontal stats layout */
       & .featured-datum-splash-container {
@@ -230,7 +268,7 @@
           cursor: pointer;
           transition: fill 0.5s ease;
           &:hover {
-            fill: var(--snow);
+            fill: var(--white);
           }
         }
       }

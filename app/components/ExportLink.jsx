@@ -116,20 +116,23 @@ class ExportLink extends React.Component {
 
     return (
       <div
-        className={open ? "export-link is-open" : "export-link"}
+        className={open ? "export-controls is-open" : "export-controls"}
         ref={this.containerRef}
       >
-        <button className="btn font-xxs" onClick={this.toggleMenu}>
-					{t("exportar")}
+        <button
+          className="export-button btn font-xxs"
+          onClick={this.toggleMenu}
+        >
+          {t("exportar")}
           <img className="btn-icon" src={`/images/icons/icon-download.svg`} />
         </button>
-        <ul className="export-list u-list-reset font-xs">
+        <ul className="export-list u-list-reset font-xxs">
           {options.map(o => (
             <li
               key={o.caption}
               className={
                 (o.caption === "PNG" || o.caption === "SVG") && !className
-                  ? "export-item disabled"
+                  ? "export-item is-disabled"
                   : "export-item "
               }
             >

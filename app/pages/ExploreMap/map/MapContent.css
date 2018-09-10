@@ -5,25 +5,25 @@
 	/* justify-content: center; */
 	& .d3plus-ColorScale-axis {
 		/* lost-column: 1/5 2;
-		background-color: var(--snow); */
+		background-color: var(--white); */
 		background-color: transparent;
 		padding: calc(var(--gutter) / 3);
-		/* border: 1px solid var(--gray-light); */
+		/* border: 1px solid var(--light-2); */
 		min-height: calc(90vh - 150px);
 		& .d3plus-Line-shape path {
-			stroke: var(--snow);
+			stroke: var(--white);
 		}
 		& .d3plus-Rect-shape {
 			& rect.d3plus-Shape {
-				stroke: var(--snow)!important;
+				stroke: var(--white)!important;
 			}
 		}
 		& .ticks {
 			& .d3plus-Line-shape path {
-				stroke: var(--snow);
+				stroke: var(--white);
 			}
 			& .d3plus-Line-text text {
-				fill: var(--snow);
+				fill: var(--white);
 				opacity: 1;
 			}
 		}
@@ -50,12 +50,12 @@
 	}
 }
 #d3plus-tooltip-map {
-	background-color: var(--snow);
+	background-color: var(--white);
 	max-width: 200px;
 	height: auto;
 	padding: 0px !important;
 	& .tooltip-title {
-		color: var(--snow);
+		color: var(--white);
 		padding: calc(var(--gutter) / 3) calc(var(--gutter) / 2);
 		@add-mixin body-font;
 		background-image: url("/images/icons/icon-geo-white.svg");
@@ -75,7 +75,7 @@
 		& .tooltip-data-title {
 			@add-mixin font-xxs;
 			@add-mixin body-font;
-			color: var(--medium-gray);
+			color: var(--gray);
 		}
 		& .tooltip-data-value {
 			@add-mixin font-sm;
@@ -100,11 +100,12 @@
 	/* override default inline styles */
 	& .zoom-control {
 		/* theming */
-		color: var(--accent) !important;
+		color: var(--light-1) !important;
 		border: none !important;
 		border-radius: 2px;
-		background-color: var(--snow) !important;
+		background-color: var(--black) !important;
 		opacity: 1 !important;
+		box-shadow: 0 1px 0.5em color(var(--dark-2) a(0.5));
 		/* sizing */
 		width: 1rem !important;
 		height: 1rem !important;
@@ -120,9 +121,53 @@
 			background-color 0.2s,
 			color 0.2s;
 
-		&:hover {
+		/* tooltips */
+		&.zoom-in:after 	 { content: 'Zoom in'; }
+		&.zoom-out:after 	 { content: 'Zoom out'; }
+		&.zoom-reset:after { content: 'Reset zoom'; }
+		&.zoom-brush:after { content: 'Toggle zoom brush'; min-width: 11em; }
+		&:after {
+			/* sizing */
+			display: block;
+			padding: 0.5em 1em;
+			width: auto;
+			/* typography */
+			font-size: 0.75em;
+			/* positioning */
+			@add-mixin absolute-horizontal-center;
+			bottom: 1.25rem;
+			/* theming */
+			background-color: var(--dark-1);
+			border-radius: 2px;
+			box-shadow: 0 1px 1em color(var(--black) a(0.5));
+			/* transitions */
+			z-index: -1;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		/* interactions */
+		&:hover,
+		&:focus,
+		&.active {
 			background-color: var(--accent) !important;
-			color: var(--snow) !important;
+			color: var(--white) !important;
+
+			&:after {
+				opacity: 1;
+				z-index: 1;
+				/* transition in only */
+				transition:
+					background-color 0.1s,
+					opacity 0.2s ease-out 0.2s;
+			}
+		}
+		&:hover:after,
+		&:focus:after {
+			z-index: 2;
+		}
+		&.active:after {
+			background-color: var(--accent);
 		}
 	}
 }

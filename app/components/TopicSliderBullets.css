@@ -17,9 +17,9 @@
 				width: 15px;
 				height: 15px;
 				border-radius: 50%;
-				border: 1px solid var(--snow);
+				border: 1px solid var(--white);
 				display: inline-block;
-				background-color: var(--near-black);
+				background-color: var(--dark-3);
 				margin: 5px;
 			}
 		}

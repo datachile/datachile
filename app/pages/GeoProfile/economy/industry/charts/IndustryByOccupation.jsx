@@ -7,7 +7,7 @@ import { industryOccupationColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
 
@@ -37,7 +37,10 @@ class IndustryByOccupation extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Occupations by workers")}</span>
+					<span>
+						{t("Occupations by workers")}
+						<SourceTooltip cube="nesi_income" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.show ? (
@@ -102,7 +105,6 @@ class IndustryByOccupation extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="nesi_income" />
 			</div>
 		);
 	}

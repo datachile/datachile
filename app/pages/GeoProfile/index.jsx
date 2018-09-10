@@ -64,7 +64,7 @@ import SpendingByIndustry from "./economy/innovation/charts/SpendingByIndustry";
 
 /*Education*/
 import SNEDSlide from "./education/sned/SNEDSlide";
-import SNED from "./education/sned/charts/SNED";
+// import SNED from "./education/sned/charts/SNED";
 import SNEDSchoolByClusters from "./education/sned/charts/SNEDSchoolByClusters";
 import SNEDCompareByCluster from "./education/sned/charts/SNEDCompareByCluster";
 import SNEDScatter from "./education/sned/charts/SNEDScatter";
@@ -238,7 +238,7 @@ class GeoProfile extends Component {
     /** EDUCATION */
 
     SNEDSlide,
-    SNED,
+    // SNED,
     SNEDSchoolByClusters,
     SNEDCompareByCluster,
     SNEDScatter,
@@ -536,7 +536,7 @@ class GeoProfile extends Component {
                         source="nesi_income"
                         className=""
                         level={geo.depth > 1 ? "geo_profile" : false}
-                        path={path}
+                        path={location.pathname}
                         name={
                           geo.depth > 1
                             ? {
@@ -724,7 +724,7 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <TradeSlide TradeBalance={TradeBalance}>
                     <SectionColumns>
                       <ExportsByDestination
@@ -740,7 +740,7 @@ class GeoProfile extends Component {
                   </TradeSlide>
                 </div>
 
-                <div>
+                <div className="topic-slide">
                   <IndustrySlide>
                     <SectionColumns>
                       <IndustryBySector className="lost-1-2" router={router} />
@@ -749,7 +749,7 @@ class GeoProfile extends Component {
                   </IndustrySlide>
                 </div>
 
-                <div>
+                <div className="topic-slide">
                   <IndustrySpaceSlide>
                     <SectionColumns>
                       <IndustrySpace className="lost-1" />
@@ -757,7 +757,7 @@ class GeoProfile extends Component {
                   </IndustrySpaceSlide>
                 </div>
 
-                <div>
+                <div className="topic-slide">
                   <ProductSpaceSlide>
                     <SectionColumns>
                       <ProductSpace className="lost-1" />
@@ -765,17 +765,17 @@ class GeoProfile extends Component {
                   </ProductSpaceSlide>
                 </div>
 
-                <div>
-                  <EmploymentSlide>
+                <div className="topic-slide">
+                  <EmploymentSlide path={location.pathname}>
                     <SectionColumns>
-                      <EmploymentBySex className="lost-2-3" />
-                      <EmploymentByLevel className="lost-1-3" />
+                      <EmploymentBySex className="lost-1-2" />
+                      <EmploymentByLevel className="lost-1-2" />
                     </SectionColumns>
                   </EmploymentSlide>
                 </div>
 
-                <div>
-                  <IncomeSexAgeSlide>
+                <div className="topic-slide">
+                  <IncomeSexAgeSlide path={location.pathname}>
                     <SectionColumns>
                       <IncomeBySex className="lost-1-2" />
                       <IncomeByAge className="lost-1-2" />
@@ -783,20 +783,20 @@ class GeoProfile extends Component {
                   </IncomeSexAgeSlide>
                 </div>
 
-                <div>
-                  <IncomeSexAgeSlide>
+                <div className="topic-slide">
+                  <IncomeSexAgeSlide path={location.pathname}>
                     <SectionColumns>
-                      <SalariesByOccupation className="lost-2-3" />
-                      <SalariesByCategory className="lost-1-3" />
+                      <SalariesByOccupation className="lost-1-2" />
+                      <SalariesByCategory className="lost-1-2" />
                     </SectionColumns>
                   </IncomeSexAgeSlide>
                 </div>
 
-                <div>
-                  <IDSpendingIndustrySlide>
+                <div className="topic-slide">
+                  <IDSpendingIndustrySlide path={location.pathname}>
                     <SectionColumns>
-                      <SpendingBySector className="lost-1-3" />
-                      <SpendingByIndustry className="lost-2-3" />
+                      <SpendingBySector className="lost-1-2" />
+                      <SpendingByIndustry className="lost-1-2" />
                     </SectionColumns>
                   </IDSpendingIndustrySlide>
                 </div>
@@ -828,28 +828,28 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <SNEDSlide>
                     <SectionColumns>
                       <SNEDCompareBySchool className="lost-1" />
                     </SectionColumns>
                   </SNEDSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <SNEDSlide>
                     <SectionColumns>
                       <SNEDScatter className="lost-1" />
                     </SectionColumns>
                   </SNEDSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <PSUDistributionSlide>
                     <SectionColumns>
                       <PSUDistribution className="lost-1" />
                     </SectionColumns>
                   </PSUDistributionSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <PSUDistributionSlide>
                     <SectionColumns>
                       <PSUBySex className="lost-1-2" />
@@ -857,14 +857,14 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </PSUDistributionSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <PSUNEMSlide>
                     <SectionColumns>
                       <PSUNEMScatter className="lost-1" />
                     </SectionColumns>
                   </PSUNEMSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <EnrollmentSlide>
                     <SectionColumns>
                       <CollegeByEnrollment className="lost-1-2" />
@@ -896,7 +896,7 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <CrimeSlide>
                     <SectionColumns>
                       <CrimeTreemap className="lost-1-2" />
@@ -904,14 +904,14 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </CrimeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <ServicesAccessSlide>
                     <SectionColumns>
                       <Services className="lost-1" />
                     </SectionColumns>
                   </ServicesAccessSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <QualitySlide>
                     <SectionColumns>
                       <HousingType className="lost-1-2" />
@@ -919,8 +919,8 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </QualitySlide>
                 </div>
-                <div>
-                  <DevicesSlide>
+                <div className="topic-slide">
+                  <DevicesSlide path={location.pathname}>
                     <SectionColumns>
                       <Devices className="lost-1" />
                     </SectionColumns>
@@ -954,7 +954,7 @@ class GeoProfile extends Component {
                        }*/
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <MigrationSlide>
                     <SectionColumns>
                       <MigrationByOrigin className="lost-1-2" router={router} />
@@ -962,7 +962,7 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </MigrationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MigrationDetailsSlide>
                     <SectionColumns>
                       <MigrationBySex className="lost-1-2" />
@@ -970,7 +970,7 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </MigrationDetailsSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MigrationActivitySlide>
                     <SectionColumns>
                       <MigrationByActivity className="lost-1-2" />
@@ -978,7 +978,7 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </MigrationActivitySlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <PopulationSlide>
                     <SectionColumns>
                       <PopulationPyramid className="lost-1-2" />
@@ -1006,29 +1006,29 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <AccessSlide>
                     <SectionColumns>
                       <HealthInsurance className="lost-1" />
                     </SectionColumns>
                   </AccessSlide>
                 </div>
-                <div>
-                  <HealthCareSlide>
+                <div className="topic-slide">
+                  <HealthCareSlide path={location.pathname}>
                     <SectionColumns>
                       <HealthCare className="lost-1" />
                     </SectionColumns>
                   </HealthCareSlide>
                 </div>
-                <div>
-                  <DisabilitySlide>
+                <div className="topic-slide">
+                  <DisabilitySlide path={location.pathname}>
                     <SectionColumns>
                       <DisabilityBySex className="lost-1" />
                     </SectionColumns>
                   </DisabilitySlide>
                 </div>
-                <div>
-                  <DeathCausesSlide>
+                <div className="topic-slide">
+                  <DeathCausesSlide path={location.pathname}>
                     <SectionColumns>
                       <DeathCauses className="lost-1-2" />
                       <DeathCausesStacked className="lost-1-2" />
@@ -1051,7 +1051,7 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <PresidentSlide>
                     <SectionColumns>
                       <Presidential1st className="lost-1-2" />
@@ -1063,7 +1063,7 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </PresidentSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <CongressSlide>
                     <SectionColumns>
                       <SenatorResults className="lost-1-2" />
@@ -1071,7 +1071,7 @@ class GeoProfile extends Component {
                     </SectionColumns>
                   </CongressSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MayorSlide>
                     <SectionColumns>
                       <MayorResults className="lost-1" />
@@ -1079,7 +1079,7 @@ class GeoProfile extends Component {
                   </MayorSlide>
                 </div>
 
-                <div>
+                <div className="topic-slide">
                   <ParticipationSlide>
                     <SectionColumns>
                       <ParticipationScatter

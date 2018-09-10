@@ -403,9 +403,7 @@ class InstitutionProfile extends Component {
 
             <div className="topic-block" id="about">
               <div className="topic-header">
-                <div className="topic-heading">
-                  <h2 className="full-width font-xxl">{t("About")}</h2>
-                </div>
+                <h2 className="topic-heading font-xxl">{t("About")}</h2>
                 <div className="topic-go-to-targets">
                   <div className="topic-slider-sections" />
                 </div>
@@ -459,21 +457,21 @@ class InstitutionProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <WagesSlide>
                     <SectionColumns>
                       <WagesByProgram className="lost-1" />
                     </SectionColumns>
                   </WagesSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <AccreditationSlide>
                     <SectionColumns>
                       <AccreditationByProgram className="lost-1" />
                     </SectionColumns>
                   </AccreditationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <RetentionSlide>
                     <SectionColumns>
                       <RetentionByProgram className="lost-1" />
@@ -492,7 +490,7 @@ class InstitutionProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <EmployabilitySlide>
                     <SectionColumns>
                       <EmployabilityByProgram className="lost-1" />

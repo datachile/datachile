@@ -12,7 +12,7 @@ import {
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ExportsByDestination extends Section {
   static need = [
@@ -34,7 +34,10 @@ class ExportsByDestination extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{title}</span>
+          <span>
+            {title}
+            <SourceTooltip cube="exports" />
+          </span>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <TreemapStacked
@@ -97,7 +100,6 @@ class ExportsByDestination extends Section {
             }
           }}
         />
-        <SourceNote cube="exports" />
       </div>
     );
   }

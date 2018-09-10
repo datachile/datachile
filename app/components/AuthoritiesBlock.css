@@ -2,18 +2,14 @@
 
 .authorities-block {
 
+  /* fudge officials into alignment on huge screens */
+  @add-mixin from-xl {
+    top: -1rem;
+  }
+
   /* space out different types of officials */
   & .authorities-section:not(:last-of-type) {
     margin-bottom: 2rem;
-  }
-
-  /* pull section up, depending on how many officials there are */
-  @add-mixin from-sm {
-    /* @for $i from 2 to 6 {
-      &.officials-count-$i {
-        top: -$(i)rem;
-      }
-    } */
   }
 
   /* space out section titles */

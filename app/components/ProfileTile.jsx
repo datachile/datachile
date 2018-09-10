@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
-import Shiitake from "shiitake";
+// import Shiitake from "shiitake";
 
-import "./FeaturedBox.css";
+import "./ProfileTile.css";
 
-class FeaturedBox extends Component {
+class ProfileTile extends Component {
   render() {
     const { t, item, className } = this.props;
 
@@ -32,31 +32,33 @@ class FeaturedBox extends Component {
         to={item.url}
         title={item.name}
       >
-        <span className="tile-filter" />
-        <span className="col-l">
-          <span className="icon-container">
-            <img className="icon" src={`/images/icons/icon-${theme}.svg`} alt="" />
-          </span>
-          <Shiitake
-            tagName="span"
-            className="name subhead font-xs"
-            lines={4}
-            renderFullOnServer={true}
-          >
+        <span className="tile-inner">
+          {/* profile title */}
+          <span className="tile-title subhead font-xs">
             {item.name}
-          </Shiitake>
-        </span>
-        <span className="col-r">
-          <span className="type label font-xxs">
-            <span className="u-visually-hidden">, </span>
-            {type}
-            <span className="u-visually-hidden">.</span>
           </span>
+
+          {/* category indicator */}
+          {theme && (
+            <span className={`category color-${theme} font-xxs`}>
+              {type && (
+                <img
+                  className="category-icon"
+                  src={`/images/icons/icon-${theme}.svg`}
+                />
+              )}
+              <span className="u-visually-hidden">, </span>
+              {type}
+              <span className="u-visually-hidden">.</span>
+            </span>
+          )}
         </span>
+
+        {/* background image */}
         <img className="tile-img" src={item.img} alt="" />
       </Link>
     );
   }
 }
 
-export default translate()(FeaturedBox);
+export default translate()(ProfileTile);

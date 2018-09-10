@@ -90,7 +90,7 @@
 
     /* tooltip styling */
     & .tooltip-home {
-      background-color: var(--snow);
+      background-color: var(--white);
       width: 150px;
       height: auto;
       opacity: 0;
@@ -104,7 +104,7 @@
       & .tooltip-title {
         @add-mixin heading-font;
         @add-mixin font-uppercase;
-        color: var(--snow);
+        color: var(--white);
         padding: var(--gutter-half);
       }
       & .tooltip-body {
@@ -112,7 +112,7 @@
         & .tooltip-data-title {
           @add-mixin font-xxs;
           @add-mixin heading-font;
-          color: var(--medium-gray);
+          color: var(--gray);
         }
         & .tooltip-data-value {
           @add-mixin font-sm;

@@ -185,7 +185,9 @@ class ServicesAccessSlide extends Section {
             />
           </div>
         </div>
-        <div className="topic-slide-charts">{children}</div>
+        <div className="topic-slide-charts centered-topic-slide-charts">
+          {children}
+        </div>
       </div>
     );
   }

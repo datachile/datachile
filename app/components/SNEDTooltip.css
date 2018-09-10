@@ -1,0 +1,28 @@
+@import "../pages/mixins";
+
+.sned-tooltip-trigger {
+	font-size: 0.75em;
+	top: -0.625em;
+}
+
+.sned-tooltip {
+	width: 34rem;
+	max-width: 90vw;
+	padding: 0.5rem;
+
+	& .sned-tooltip-measure {
+
+		& + .sned-tooltip-measure {
+			margin-top: 0.5rem;
+		}
+
+		& .sned-tooltip-subhead {
+			margin-bottom: 0;
+		}
+	}
+
+	& .sned-tooltip-heading,
+	& .sned-tooltip-disclaimer {
+		margin-top: 1rem;
+	}
+}

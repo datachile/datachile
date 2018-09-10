@@ -99,7 +99,7 @@ class Footer extends Component {
         id: 3,
         img: "corfo",
         alt: "Corporación de Fomento de la Producción de Chile",
-        link: "www.corfo.cl"
+        link: "http://www.corfo.cl"
       },
       {
         id: 4,
@@ -111,7 +111,7 @@ class Footer extends Component {
         id: 5,
         img: "asech",
         alt: "Asociación de Emprendedores de Chile",
-        link: "https://www.asech.cl/"
+        link: "http://www.asech.cl/"
       }
     ];
     const devLogos = [

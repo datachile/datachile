@@ -1,7 +1,7 @@
 @import "../pages/mixins";
 
 .documentation {
-  color: var(--light);
+  color: var(--white);
   text-align: justify;
 
   & h4 {
@@ -28,7 +28,7 @@
         color: var(--accent);
       }
       & .url {
-        color: var(--medium-gray);
+        color: var(--gray);
         font-style: italic;
       }
     }
@@ -49,7 +49,7 @@
       @add-mixin font-xs;
       margin-top: 8px;
       font-style: italic;
-      color: var(--darker-gray);
+      color: var(--light-2);
     }
   }
 
@@ -129,7 +129,7 @@
     @add-mixin font-xs;
     font-family: Consolas, Menlo, Courier New, monospace, serif;
     color: #f1f2f3;
-    /* background-color: var(--pre-bg); */
+    /* background-color: var(--dark-1); */
     background-color: #424F76;
     padding: 4px 8px;
     border-radius: 5px;
@@ -154,7 +154,7 @@
 pre {
   @add-mixin font-xs;
   background-color: #424F76;
-  /* background-color: var(--pre-bg); */
+  /* background-color: var(--dark-1); */
   color: #f1f2f3;
   width: 100%;
   padding: 0;

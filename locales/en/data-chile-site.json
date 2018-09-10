@@ -1012,15 +1012,15 @@
         "text": "<p>In {{year.last}}, the workforce in {{geo.caption}} was composed by {{total.total}} people, of which {{total.male}} were men and {{total.female}} were women.</p><p>In {{year.last}}, the number of people working in {{geo.caption}} was {{total.empleados}} employees, while the number of unemployed people was {{total.desempleados}}, and the number of non-active people was {{total.inactivos}}.</p><p>Most of the occupied people of {{geo.caption}} has an educational level (according to their last completed grade) {{level.first.caption}}, followed by {{level.second.caption}}.</p>"
       },
       "exports": {
-        "by_destination": "Exports Destination of Companies Based in {{geo.caption}}",
-        "by_product": "Exported Products by Companies Based in {{geo.caption}}",
+        "by_destination": "Export destination",
+        "by_product": "Exported products",
         "default": "<p>In {{exports.latest_year}} firms located in {{geo.caption}} exported <i>{{exports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} exports have <i>{{exports.increased_or_decreased}}</i> at an annual average rate of {{exports.annualized_rate}}, from <i>{{exports.trade_first_year}}</i> in {{first_year}} to <i>{{exports.trade_last_year}}</i> in {{exports.last_year}}. {{geo.caption}} main export is <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>, that represents {{exports.trade_first_share}} of {{geo.caption}} total exports, followed by <a href=\"{{exports.trade_second_product_link}}\">{{exports.trade_second_product}}</a> that represents {{exports.trade_second_share}}.</p>",
         "no_data": "<p>There is no export data about firms located in {{geo.caption}}.</p>",
         "one": "<p>In {{exports.latest_year}} firms located in {{geo.caption}} exported <i>{{exports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} exports have <i>{{exports.increased_or_decreased}}</i> at an annual average rate of {{exports.annualized_rate}}, from <i>{{exports.trade_first_year}}</i> in {{first_year}} to <i>{{exports.trade_last_year}}</i> in {{exports.last_year}}. {{geo.caption}} only export is <a href=\"{{exports.trade_first_product_link}}\">{{exports.trade_first_product}}</a>.</p>"
       },
       "imports": {
-        "by_origin": "Imports Origin of Companies Based in {{geo.caption}}",
-        "by_product": "Imported Products by Companies Based in {{geo.caption}}",
+        "by_origin": "Import origin",
+        "by_product": "Imported products",
         "default": "<p>In {{imports.latest_year}} firms located in {{geo.caption}} imported <i>{{imports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} imports have <i>{{imports.increased_or_decreased}}</i> at an annual average rate of {{imports.annualized_rate}}, from <i>{{imports.trade_first_year}}</i> in {{first_year}} to <i>{{imports.trade_last_year}}</i> in {{imports.last_year}}. {{geo.caption}} main import is <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, that represents {{imports.trade_first_share}} of {{geo.caption}} total imports, followed by <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a> that represents {{imports.trade_second_share}}.</p>",
         "no_data": "<p>There is no import data about firms located in {{geo.caption}}.</p>",
         "one": "<p>In {{imports.latest_year}} firms located in {{geo.caption}} imported <i>{{imports.trade_volume}}</i>. During the last {{number_of_years}} years, {{geo.caption}} imports have <i>{{imports.increased_or_decreased}}</i> at an annual average rate of {{imports.annualized_rate}}, from <i>{{imports.trade_first_year}}</i> in {{first_year}} to <i>{{imports.trade_last_year}}</i> in {{imports.last_year}}. {{geo.caption}} only import is <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>.</p>"

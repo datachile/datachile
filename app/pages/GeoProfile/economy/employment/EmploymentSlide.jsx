@@ -7,6 +7,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { simpleGeoDatumNeed } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import LevelWarning from "components/LevelWarning";
 
 class EmploymentSlide extends Section {
   static need = [
@@ -133,7 +134,7 @@ class EmploymentSlide extends Section {
   ];
 
   render() {
-    const { children, t, i18n } = this.props;
+    const { children, path, t, i18n } = this.props;
 
     const {
       geo,
@@ -204,19 +205,6 @@ class EmploymentSlide extends Section {
         <div className="topic-slide-intro">
           <h3 className="topic-slide-title">
             {t("Employment")}
-            {geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", geo.ancestors[0])
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
           </h3>
           <div className="topic-slide-text">
             <p dangerouslySetInnerHTML={{
@@ -257,6 +245,9 @@ class EmploymentSlide extends Section {
                 subtitle={sources.nene.year + t(" in ") + ancestor}
               />
             </div>
+          )}
+          {geo.depth > 1 && (
+            <LevelWarning name={geo.ancestors[0].caption} path={path} />
           )}
         </div>
         <div className="topic-slide-charts">{children}</div>

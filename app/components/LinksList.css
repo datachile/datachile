@@ -4,7 +4,13 @@
 .links-list {
   & .links-list-item {
     display: inline-block;
-    margin-right: 0.25em;
-    margin-bottom: 0.25em;
+    margin-right: 0.375em;
+    margin-bottom: 0;
+
+    & .category {
+      @add-mixin overflow-ellipsis;
+      display: inline-block;
+      max-width: 12em;
+    }
   }
 }

@@ -4,6 +4,7 @@ import { Section } from "datawheel-canon";
 import { simpleDatumNeed } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import SNEDTooltip from "components/SNEDTooltip";
 import { numeral } from "helpers/formatters";
 import { SNED } from "texts/GeoProfile";
 
@@ -57,7 +58,6 @@ class SNEDSlide extends Section {
         <div className="topic-slide-intro">
           <h3 className="topic-slide-title">{t("Performance Evaluation")}</h3>
           <div className="topic-slide-text">
-            <p>{t("geo_profile.education.sned.description")}</p>
             {text &&
               datum_sned_score && (
                 <p
@@ -72,37 +72,42 @@ class SNEDSlide extends Section {
                   }}
                 />
               )}
-          </div>
-          <div className="topic-slide-data">
-            {text && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="avg-score"
-                datum={String(
-                  numeral(datum_sned_score.data, locale).format("0.00")
+              <div className="topic-slide-data">
+                {text && (
+                  <FeaturedDatum
+                    className="l-1-3"
+                    icon="avg-score"
+                    datum={String(
+                      numeral(datum_sned_score.data, locale).format("0.00")
+                    )}
+                    title={t("Average SNED Score")}
+                    subtitle={t("In") + " " + "2016"}
+                  />
                 )}
-                title={t("Average SNED Score")}
-                subtitle={t("In") + " " + "2016"}
-              />
-            )}
-            {text && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="rural-school"
-                datum={String(text.rural.n)}
-                title={t("Rural Schools")}
-                subtitle={text.rural.perc + " " + t("of") + " " + geo.caption}
-              />
-            )}
-            {text && (
-              <FeaturedDatum
-                className="l-1-3"
-                icon="special-education"
-                datum={String(text.special.n)}
-                title={t("Special Education Schools")}
-                subtitle={text.special.perc + " " + t("of") + " " + geo.caption}
-              />
-            )}
+                {text && (
+                  <FeaturedDatum
+                    className="l-1-3"
+                    icon="rural-school"
+                    datum={String(text.rural.n)}
+                    title={t("Rural Schools")}
+                    subtitle={text.rural.perc + " " + t("of") + " " + geo.caption}
+                  />
+                )}
+                {text && (
+                  <FeaturedDatum
+                    className="l-1-3"
+                    icon="special-education"
+                    datum={String(text.special.n)}
+                    title={t("Special Education Schools")}
+                    subtitle={text.special.perc + " " + t("of") + " " + geo.caption}
+                  />
+                )}
+              </div>
+              <h4 className="topic-slide-context-subhead">
+                {t("About the SNED measurement system")}
+                <SNEDTooltip />
+              </h4>
+              <p className="font-xxs">{t("geo_profile.education.sned.description")}</p>
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

@@ -7,7 +7,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { migrationByEducationColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 
 class MigrationByEducation extends Section {
@@ -34,7 +34,10 @@ class MigrationByEducation extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Migration By Educational Level")}</span>
+					<span>
+						{t("Migration By Educational Level")}
+						<SourceTooltip cube="immigration" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<TreemapStacked
@@ -77,7 +80,6 @@ class MigrationByEducation extends Section {
 						}
 					}}
 				/>
-				<SourceNote cube="immigration" />
 			</div>
 		);
 	}

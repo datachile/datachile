@@ -44,7 +44,7 @@ fonts & base styles
 
 html {
   /* theming */
-  background-color: var(--near-black);
+  background-color: var(--dark-3);
   /* font scaling */
   font-size: 87.5%; /* 14px; override blueprint */
 
@@ -61,13 +61,16 @@ html {
   @add-mixin from-xl {
     font-size: 112.5%; /* 1rem = 18px */
   }
+  @add-mixin from-xxl {
+    font-size: 125%; /* 1rem = 18px */
+  }
 }
 
 body {
   /* typography */
   @add-mixin body-font; /* override blueprint */
   /* theming */
-  color: var(--darker-gray);
+  color: var(--light-2);
 
   & * {
     color: inherit;
@@ -118,16 +121,16 @@ li > a,
     opacity 0.25s ease-out;
 
   &:hover, &:focus {
-    color: var(--snow);
+    color: var(--white);
   }
 }
 
 /* white links; link class also required */
 .inverted-link {
-  color: var(--snow);
+  color: var(--white);
 
   &:hover, &:focus {
-    color: var(--snow);
+    color: var(--white);
   }
 }
 
@@ -147,12 +150,28 @@ grids
   overflow-x: hidden;
 }
 
-.lost-1 { lost-column: 1; margin-top: 2rem;}
-.lost-1-2 { lost-column: 1/2 flex; margin-top: 2rem;}
-.lost-2-3 { lost-column: 2/3 flex; margin-top: 2rem;}
-.lost-1-3 { lost-column: 1/3 flex; margin-top: 2rem;}
-.lost-1-4 { lost-column: 1/4 flex; margin-top: 2rem;}
-.lost-row { lost-utility: clearfix; }
+/* single column layout */
+.lost-1,
+.lost-1-2,
+.lost-2-3,
+.lost-1-3,
+.lost-1-4 {
+  lost-column: 1;
+}
+
+/* multi column layout */
+@add-mixin from-sm {
+  .lost-1-2 { lost-column: 1/2 flex; }
+  .lost-2-3 { lost-column: 2/3 flex; }
+  .lost-1-3 { lost-column: 1/3 flex; }
+  .lost-1-4 { lost-column: 1/4 flex; }
+  .lost-row { lost-utility: clearfix; }
+}
+
+/* space out adjacent visualizations */
+.section + .section [class*="lost"] {
+  margin-top: 2rem;
+}
 
 
 /* -----------------------------------
@@ -204,23 +223,23 @@ profile theming
 }
 
 .color-gray {
-  color: var(--darker-gray);
+  color: var(--light-2);
 }
 .border-gray {
-  border-color: var(--darker-gray);
+  border-color: var(--light-2);
 }
 .fill-gray {
-  fill: var(--darker-gray);
+  fill: var(--light-2);
 }
 .background-gray {
-  background-color: var(--darker-gray);
+  background-color: var(--light-2);
 }
 
 /*color-geo: "#4B71B5"
 color-countries: "#1ECBD8"
 color-institutions: "#7777ED"
 color-careers: "#E5C38D"
-color-products: "#FF7474"
+grayroducts: "#FF7474"
 color-industries: "#2A8090"*/
 
 
@@ -234,9 +253,9 @@ components
   @add-mixin font-xs;
   text-align: center;
   padding: 10px;
-  background: var(--snow);
-  border: 1px solid var(--near-black);
-  color: var(--near-black);
+  background: var(--white);
+  border: 1px solid var(--dark-3);
+  color: var(--dark-3);
 }
 
 .d3plus-tooltip-body {
@@ -251,13 +270,13 @@ components
 
 /* blueprint override */
 .pt-popover-arrow path {
-  fill: var(--snow) !important;
+  fill: var(--white) !important;
 }
 .pt-popover-content {
   @add-mixin font-xs;
   @add-mixin body-font;
-  background: var(--snow) !important;
-  color: var(--near-black) !important;
+  background: var(--white) !important;
+  color: var(--dark-3) !important;
 
   /* reset margin */
   & *:last-child {
@@ -277,16 +296,76 @@ table.tooltip-table {
   }
 }
 
-/* blueprint overlay fix */
-.pt-overlay > span {
-  @add-mixin absolute-expand;
+/* blueprint overlay fixes */
+.pt-overlay {
+  z-index: 999;
+
+  & > span {
+    @add-mixin absolute-expand;
+  }
+
+  /* make sure tooltips appear in front of fixed nav */
+  & .pt-overlay-content {
+    z-index: 50;
+  }
 }
 
+/* pt-switch theming */
+.pt-switch,
+.pt-switch .pt-control-indicator {
+  cursor: default; /* it's a checkbox, not a link */
+}
+/* sizing & typography overrides */
+.pt-control.pt-switch {
+  height: 1em;
+  padding-left: 34px;
+
+  /* thanks blueprint */
+  & strong {
+    /* reset typography */
+    @add-mixin body-font;
+    @add-mixin font-xxs;
+    /* reset positioning */
+    @add-mixin absolute-vertical-center;
+  }
+
+  /* reset box shadow on switch handle */
+  & .pt-control-indicator:before {
+    box-shadow: none !important;
+  }
+}
+
+.pt-switch:active .pt-control-indicator {
+  transform: scale(0.95);
+  background-color: var(--accent-light) !important; /* override the active color */
+}
+.pt-control.pt-switch .pt-control-indicator {
+  background-color: var(--dark-1);
+  transform: background-color 0.2s ease-out;
+}
+.pt-control.pt-switch:hover .pt-control-indicator,
+.pt-control.pt-switch:focus .pt-control-indicator {
+  background-color: var(--gray);
+}
+/* NOTE: this is the type of css that deep nesting creates 😡 */
+.pt-control.pt-switch input:checked ~ .pt-control-indicator,
+.pt-control.pt-switch .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
+.pt-control.pt-checkbox .pt-control.pt-switch input:indeterminate ~ .pt-control-indicator {
+  background-color: var(--accent);
+}
+.pt-control.pt-switch:hover input:checked ~ .pt-control-indicator,
+.pt-control.pt-switch:focus input:checked ~ .pt-control-indicator,
+.pt-control.pt-switch:hover .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
+.pt-control.pt-switch:focus .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
+.pt-control.pt-checkbox .pt-control.pt-switch:hover input:indeterminate ~ .pt-control-indicator,
+.pt-control.pt-checkbox .pt-control.pt-switch:focus input:indeterminate ~ .pt-control-indicator {
+  background-color: var(--accent-light);
+}
 
 /* tags */
 .tag {
   display: inline-block;
-  background-color: var(--pre-bg);
+  background-color: var(--dark-1);
   padding: 0 0.5em;
   border-radius: 2px;
   text-shadow: none !important;
@@ -303,10 +382,11 @@ table.tooltip-table {
   @add-mixin heading-font;
   text-transform: lowercase;
   text-decoration: none;
+  white-space: nowrap;
   /* theming */
-  background-color: var(--snow);
+  background-color: var(--white);
   border-radius: 1em;
-  opacity: 0.875;
+  opacity: 0.625;
   /* sizing */
   padding: 0.125em 1em 0.25em 1em;
   /* transitions */
@@ -333,7 +413,7 @@ table.tooltip-table {
   &:hover,
   &:focus {
     box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
-    opacity: 1;
+    opacity: 0.875;
     text-decoration: none;
   }
 }
@@ -353,10 +433,10 @@ table.tooltip-table {
   /* theming */
   border-radius: 30px;
   border: none;
-  color: var(--snow);
+  color: var(--white);
   /* transitions */
   transition: all 1s ease;
-  transition-property: background-color, box-shadow;
+  transition-property: background-color, box-shadow, color;
 
   /* default theme */
   &:not([class*=background-]) {
@@ -376,22 +456,71 @@ table.tooltip-table {
     width: 1em;
     /* icon offset */
     top: -0.0625em; /* fudge into place */
-    left: 0.125em;
-    margin-right: -0.25em;
     /* transitions */
     transition: transform 0.3s ease;
+
+    &:not(:first-child) {
+      left: 0.125em;
+      margin-right: -0.25em;
+    }
+    & + .btn-text {
+      margin-left: 0.5em;
+    }
   }
 
   /* interactions */
   &:hover,
   &:focus {
     box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
-    color: var(--snow);
+    color: var(--white);
     text-decoration: none;
-    /* padding-right: calc(var(--gutter)/3); */
 
     &[href] .btn-icon {
       transform: translateX(0.25em);
+    }
+  }
+}
+
+/* button group */
+.btn-group {
+  display: flex;
+
+  & > .btn {
+    flex: 1 0 auto;
+    /* btn overrides */
+    padding: 0.75em 0;
+    color: var(--light-2);
+
+    /* set background color */
+    &, &:hover, &:focus {
+      background-color: var(--black);
+      box-shadow: none;
+    }
+
+    /* active + focus state */
+    &:active,
+    &.is-active:focus {
+      color: var(--white);
+      outline: none;
+    }
+
+    /* inactive state */
+    &.is-inactive {
+      color: color(var(--white) a(0.5));
+
+      &:hover, &:focus {
+        color: var(--accent-light);
+      }
+    }
+
+    /* remove radius */
+    &:not(:last-of-type) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 }
@@ -408,14 +537,14 @@ D3plus overrides
 
     /* replace default dark color returned by colorContrast.js */
     &[fill="#444444"] {
-      fill: var(--near-black);
+      fill: var(--dark-3);
     }
   }
 }
 
 /* override default theming for tooltips */
 .d3plus-tooltip {
-  color: var(--pre-bg);
+  color: var(--dark-1);
 
   & a {
     color: var(--accent);
@@ -427,10 +556,54 @@ D3plus overrides
   transform: translate(-3px, -5px);
 }
 
-/* override rotated labels for area charts */
-/* .d3plus-Area-text .d3plus-textBox text {
-  font-size: 18px !important;
-} */
+/* style timeline */
+.d3plus-viz-timeline {
+
+  /* main horizontal bar line */
+  & .bar {
+    stroke: var(--gray);
+    opacity: 0.75;
+  }
+
+  /* vertical ticks */
+  & .ticks {
+    opacity: 0.75;
+
+    & .d3plus-Rect {
+      stroke: none;
+      fill: var(--gray);
+    }
+  }
+
+  /* labels */
+  & text {
+    fill: var(--white);
+  }
+
+  /* active tick */
+  & .handle {
+    /* increase click target */
+    width: 10px;
+    transform: translateX(-2px); /* offset width */
+    /* theming */
+    fill: var(--accent-light);
+    rx: 4px;
+    ry: 4px;
+    /* transitions */
+    will-change: x;
+    transition: x 0.333s ease-out;
+  }
+}
+
+/* hide tick lines */
+.ticks .d3plus-Line-shape {
+  display: none;
+}
+
+/* make room for the 1px axis bar */
+.d3plus-Bar-group {
+  transform: translateY(-0.5px);
+}
 
 
 /* -----------------------------------
@@ -454,4 +627,16 @@ utilities
 
 .u-list-reset {
   @add-mixin list-reset;
+}
+
+/* show/hide content */
+.u-hide-below-xs {
+  @add-mixin for-xs {
+    display: none !important;
+  }
+}
+.u-hide-above-xs {
+  @add-mixin from-xs {
+    display: none !important;
+  }
 }

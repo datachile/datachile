@@ -8,7 +8,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ExportsGeoMap extends Section {
   static need = [
@@ -59,6 +59,7 @@ class ExportsGeoMap extends Section {
               t("in") +
               " " +
               sources.exports.year}
+            <SourceTooltip cube="imports" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
@@ -68,7 +69,6 @@ class ExportsGeoMap extends Section {
           className={"exports"}
           router={router}
         />
-        <SourceNote cube="imports" />
       </div>
     );
   }

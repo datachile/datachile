@@ -1,24 +1,15 @@
 @import '../pages/mixins';
 
-.topic-slider {
-  lost-utility: clearfix;
-  & * {
-    min-height: 0;
-    min-width: 0;
-  }
-  /* Slider */
-  & .slick-list {
-    lost-utility: clearfix;
-    & .slick-slide {
-      height: auto;
-    }
-  }
+/* swiping is disabled, so... */
+.slick-slider {
+  user-select: text;
+}
 
-  /* Arrows */
+/*
+.topic-slider {
   & .slick-prev,
   & .slick-next {
     display: none !important;
-    /*
     position: absolute;
     top: 50%;
 
@@ -61,7 +52,7 @@
 
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-    } */
+    }
   }
 
   & .slick-prev {
@@ -92,7 +83,6 @@
     content: "←";
   }
 
-  /* Dots */
   & .slick-dotted.slick-slider {
     margin-bottom: 30px;
   }
@@ -180,3 +170,4 @@
     color: black;
   }
 }
+*/

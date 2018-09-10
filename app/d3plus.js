@@ -2,7 +2,7 @@ import styles from "style.yml";
 
 const axisConfig = {
   barConfig: {
-    stroke: styles.snow,
+    stroke: styles.white,
     "stroke-width": 1
   },
   gridConfig: {
@@ -10,20 +10,20 @@ const axisConfig = {
     "stroke-width": 0.5
   },
   shapeConfig: {
-    fill: styles.snow,
+    fill: styles.white,
     labelConfig: {
-      fontColor: styles.snow,
+      fontColor: styles["light-1"],
       fontFamily: () => "Roboto Condensed",
       fontMax: 18,
       fontSize: () => 12,
       fontWeight: 300
     },
-    stroke: styles.snow
+    stroke: styles.white
   },
   tickSize: 4,
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
-    fontColor: styles.snow,
+    fontColor: styles["light-1"],
     fontSize: 12
     //fontWeight: 600,
     // textTransform: "uppercase"
@@ -48,18 +48,23 @@ export default {
     // stacked area
     Area: {
       labelConfig: {
-        fontColor: styles.snow,
+        fontColor: styles.white,
         fontFamily: () => "Roboto Condensed",
-        fontMax: 18,
+        fontMax: 16,
         fontWeight: 300
       }
+    },
+    // line charts
+    Line: {
+      // curve: "catmullRom",
+      strokeLinecap: "round"
     }
   },
   // legend defaults
   legendConfig: {
     // labels are directly in the shape
     shapeConfig: {
-      fontColor: styles.snow,
+      fontColor: styles["light-1"],
       fontFamily: "Roboto Condensed",
       fontResize: false,
       fontSize: 12,
@@ -68,7 +73,7 @@ export default {
       width: () => 20,
       // legend icons
       labelConfig: {
-        fontColor: styles.snow
+        fontColor: styles.white
       }
     }
   },
@@ -85,7 +90,7 @@ export default {
   // total defaults
   totalConfig: {
     fontSize: 12,
-    fontColor: styles.snow,
+    fontColor: styles["light-3"],
     resize: false,
     textAnchor: "left"
   },

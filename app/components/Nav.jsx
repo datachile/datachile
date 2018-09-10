@@ -321,7 +321,7 @@ class Nav extends Component {
                     {ancestor && (
                       <span className="parent">
                         <span className="separator">{t("in")}</span>
-                        <Link className="link inverted-link" to={ancestorLink}>
+                        <Link className="link" to={ancestorLink}>
                           {ancestor}
                         </Link>
                       </span>

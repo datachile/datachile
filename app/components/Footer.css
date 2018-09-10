@@ -2,7 +2,7 @@
 
 .footer {
   width: 100%;
-  background-color: var(--footer-bg);
+  background-color: var(--black);
 
   /* -------------------------------------
   main layout
@@ -77,7 +77,7 @@
 
   /* put logos into columns */
   & .footer-logo-list {
-    column-width: 9rem;
+    column-width: 8rem;
     column-gap: 4rem;
 
     /* scale down logos on small screens */
@@ -131,7 +131,7 @@
   }
 
   /* tweakpoint to move datawheel logo top right on giant screens */
-  @add-mixin from-xl {
+  @add-mixin from-xxl {
     & .footer-dev-logo-container {
       position: absolute;
       top: 0;
@@ -150,7 +150,7 @@
     padding: 1.25rem var(--gutter-half); /* make up with link padding */
     text-align: center;
     /* theming */
-    background-color: var(--near-black);
+    background-color: var(--dark-3);
 
     /* feedback list items */
     & .footer-feedback-item {

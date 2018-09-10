@@ -7,7 +7,7 @@ import { institutionsColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 export default translate()(
   class PerformanceByType extends Section {
@@ -36,7 +36,10 @@ export default translate()(
       return (
         <div className={className}>
           <h3 className="chart-title">
-            <span>{t("NEM Performance By Administration")}</span>
+            <span>
+              {t("NEM Performance By Administration")}
+              <SourceTooltip cube="education_performance_new" />
+            </span>
             <ExportLink path={path} className={classSvg} />
           </h3>
           <BarChart
@@ -84,7 +87,6 @@ export default translate()(
             }}
             dataFormat={data => data.data}
           />
-          <SourceNote cube="education_performance_new" />
         </div>
       );
     }

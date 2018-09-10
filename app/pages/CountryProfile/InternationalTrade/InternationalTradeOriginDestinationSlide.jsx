@@ -149,7 +149,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
           <div className="topic-slide-data">
             {trade_destination.first_municipality && (
               <FeaturedDatum
-                className="l-1-2"
+                className="l-1-2 category-featured-datum"
                 icon="principal-comuna-export-import"
                 datum={trade_destination.first_municipality}
                 title={t("Main importing comuna")}
@@ -161,7 +161,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
             )}
             {trade_origin.first_municipality && (
               <FeaturedDatum
-                className="l-1-2"
+                className="l-1-2 category-featured-datum"
                 icon="principal-comuna-export-import"
                 datum={trade_origin.first_municipality}
                 title={t("Main exporting comuna")}

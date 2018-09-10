@@ -12,7 +12,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class SpendingByIndustry extends Section {
 	static need = [
@@ -72,6 +72,7 @@ class SpendingByIndustry extends Section {
 					<span>
 						{t("R&D Spending By Industry")}{" "}
 						{geo && geo.type == "comuna" && t("Regional")}
+						<SourceTooltip cube="rd_survey" />
 					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
@@ -107,7 +108,6 @@ class SpendingByIndustry extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="rd_survey" />
 			</div>
 		);
 	}

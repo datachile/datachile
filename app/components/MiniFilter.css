@@ -1,7 +1,7 @@
 section.section .mini-filter {
   margin: -10px 0 0;
   padding: 0 15px;
-  color: var(--snow);
+  color: var(--white);
   text-transform: none;
 
   & .filter {

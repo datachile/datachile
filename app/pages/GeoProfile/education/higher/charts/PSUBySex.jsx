@@ -9,7 +9,7 @@ import { COLORS_GENDER } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class PSUBySex extends Section {
   static need = [];
@@ -25,7 +25,10 @@ class PSUBySex extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("PSU By Sex")}</span>
+          <span>
+            {t("PSU By Sex")}
+            <SourceTooltip cube="psu" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
@@ -78,7 +81,6 @@ class PSUBySex extends Section {
             return reduced;
           }}
         />
-        <SourceNote cube="psu" />
       </div>
     );
   }

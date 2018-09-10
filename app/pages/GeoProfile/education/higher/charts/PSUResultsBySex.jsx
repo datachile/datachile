@@ -9,7 +9,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class PSUResultsBySex extends Section {
   static need = [
@@ -35,7 +35,10 @@ class PSUResultsBySex extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("PSU Results By Sex")}</span>
+          <span>
+            {t("PSU Results By Sex")}
+            <SourceTooltip cube="psu" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
@@ -95,7 +98,6 @@ class PSUResultsBySex extends Section {
             return reduced;
           }}
         />
-        <SourceNote cube="psu" />
       </div>
     );
   }

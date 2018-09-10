@@ -47,26 +47,24 @@ class ShareData extends React.Component {
     ];
 
     return (
-      <div>
-        <div
-          className={open ? "export-link open" : "export-link"}
-          ref={this.containerRef}
-        >
-          <div className="content">This works with any content</div>
-          <a className="toggle" onClick={this.toggleMenu}>
-            <img src={`/images/icons/icon-download.svg`} />
-          </a>
+      <div
+        className={open ? "export-link open" : "export-link"}
+        ref={this.containerRef}
+      >
+        <div className="content">This works with any content</div>
+        <a className="toggle" onClick={this.toggleMenu}>
+          <img src={`/images/icons/icon-download.svg`} />
+        </a>
 
-          {/*<ul>
-          {options.map(o => (
-            <li key={o.caption}>
-              <a target="_blank" download={""} href={o.path}>
-                {o.caption}
-              </a>
-            </li>
-          ))}
-        </ul>*/}
-        </div>
+        {/*<ul>
+        {options.map(o => (
+          <li key={o.caption}>
+            <a target="_blank" download={""} href={o.path}>
+              {o.caption}
+            </a>
+          </li>
+        ))}
+      </ul>*/}
       </div>
     );
   }

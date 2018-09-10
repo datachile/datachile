@@ -13,7 +13,7 @@ import { mean } from "d3-array";
 
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import { BarChart } from "d3plus-react";
 
 import CustomDialog from "components/CustomDialog";
@@ -138,17 +138,10 @@ class SNEDCompareBySchool extends Section {
           className={this.state.className}
         />
         <h3 className="chart-title">
-          <span>{title}</span>
-
-          <Select
-            id="variations"
-            options={this.state.chartVariations}
-            value={this.state.selectedOption}
-            labelField="title"
-            valueField="id"
-            onChange={this.handleChange}
-          />
-
+          <span>
+            {title}
+            <SourceTooltip cube="sned" />
+          </span>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <BarChart
@@ -171,12 +164,14 @@ class SNEDCompareBySchool extends Section {
             discrete: "x",
             yDomain: [0],
             xConfig: {
+              barConfig: {"stroke-width": 1},
+              gridConfig: {stroke: false},
               labelOffset: false,
               shapeConfig: {
                 labelConfig: {
                   ellipsis: tick => {
                     let number = parseInt(tick.match(/\d/g).join(""));
-                    let newTick = "[" + number + ", " + (number + 2) + "[";
+                    let newTick = number + "–" + (number + 2);
                     return tick, newTick;
                   }
                 }
@@ -290,9 +285,9 @@ class SNEDCompareBySchool extends Section {
             },
             legendConfig: {
               label: d => d["Stage 1a"],
-              shapeConfig: {
-                backgroundImage: "/images/legend/education/type.png"
-              }
+              // shapeConfig: {
+              //   backgroundImage: "/images/legend/education/type.png"
+              // }
             }
           }}
           dataFormat={data => {
@@ -309,7 +304,7 @@ class SNEDCompareBySchool extends Section {
                 min: i - interval,
                 max: iteration === divisor ? 100 : i,
                 name:
-                  "[" + Math.round(i - interval) + ", " + Math.round(i) + "["
+                  Math.round(i - interval) + "–" + Math.round(i)
               };
             });
 
@@ -353,71 +348,31 @@ class SNEDCompareBySchool extends Section {
             }, []);
           }}
         />
-        <SourceNote cube="sned" />
-        <div className="footnote">
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html: t("geo_profile.education.sned.disclaimer")
-            }}
-          />
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html:
-                t("geo_profile.education.sned.definitions.efectiveness.title") +
-                ": " +
-                t("geo_profile.education.sned.definitions.efectiveness.desc")
-            }}
-          />
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html:
-                t("geo_profile.education.sned.definitions.overcoming.title") +
-                ": " +
-                t("geo_profile.education.sned.definitions.overcoming.desc")
-            }}
-          />
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html:
-                t("geo_profile.education.sned.definitions.fairness.title") +
-                ": " +
-                t("geo_profile.education.sned.definitions.fairness.desc")
-            }}
-          />
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html:
-                t("geo_profile.education.sned.definitions.improvement.title") +
-                ": " +
-                t("geo_profile.education.sned.definitions.improvement.desc")
-            }}
-          />
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html:
-                t("geo_profile.education.sned.definitions.initiative.title") +
-                ": " +
-                t("geo_profile.education.sned.definitions.initiative.desc")
-            }}
-          />
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html:
-                t("geo_profile.education.sned.definitions.integration.title") +
-                ": " +
-                t("geo_profile.education.sned.definitions.integration.desc")
-            }}
-          />
-        </div>
 
-        <SourceNote cube="sned_website" />
+        <div className="option-group">
+          {/* button group; shown on large screens */}
+          <div className="btn-group u-hide-below-xs" aria-hidden="true">
+            {this.state.chartVariations.map(button => (
+              <button
+                className={`btn font-xxs ${this.state.selectedOption === button.id ? "is-active" : "is-inactive"}`}
+                onClick={() => this.setState({ selectedOption: button.id })}>
+                {button.title}
+              </button>
+            ))}
+          </div>
+
+          {/* select menu; shown on small screens */}
+          <div className="sned-select-container u-hide-above-xs">
+            <Select
+              id="variations"
+              options={this.state.chartVariations}
+              value={this.state.selectedOption}
+              labelField="title"
+              valueField="id"
+              onChange={this.handleChange}
+            />
+        </div>
+        </div>
       </div>
     );
   }

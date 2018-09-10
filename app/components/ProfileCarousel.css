@@ -8,6 +8,7 @@
   & .profile-carousel-title {
     lost-column: 1 1;
     text-align: center;
+    padding-right: 0.625em;
 
     & .profile-carousel-title-icon {
       display: inline-block;

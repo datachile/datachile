@@ -12,7 +12,7 @@ import {
 import { productsColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ImportsByProduct extends Section {
   static need = [
@@ -34,7 +34,10 @@ class ImportsByProduct extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{title}</span>
+          <span>
+            {title}
+            <SourceTooltip cube="imports" />
+          </span>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <TreemapStacked
@@ -92,7 +95,6 @@ class ImportsByProduct extends Section {
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="imports" />
       </div>
     );
   }

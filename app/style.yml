@@ -1,25 +1,13 @@
-color-title: "#3C3C3B"
-color-p: "#6E7370"
-
-snow: "#ffffff"
-dark: "#2F2F38"
-light: "#fff"
-
-gray: "#F2F2F2"
-darker-gray: "#e6e6e6"
-medium-gray: "#808080"
-footer-bg: "#1E1E26"
-
-subnav-size: "370px"
-
-near-black: "#292935"
-bg-blue: "#263b58"
-
-gray-light: "#D8D8D8"
-gray-dark: "#B3B3B3"
-near-white: "#EFEFEF"
-
-pre-bg: "#494952"
+# grayscale
+white:   "#ffffff"
+light-1: "#F0EFF2"
+light-2: "#CBCBD3"
+light-3: "#A2A2AD"
+gray:    "#666672"
+dark-1:  "#434351"
+dark-2:  "#363644"
+dark-3:  "#292935"
+black:   "#1E1E26"
 
 # accent
 accent: "#3277DC"
@@ -60,6 +48,8 @@ gutter: "32px"
 gutter-half: "16px"
 gutter-third: "11px"
 width: "1148px"
+
+subnav-size: "370px"
 
 break-xl: "1800px"
 break-lg: "1200px"

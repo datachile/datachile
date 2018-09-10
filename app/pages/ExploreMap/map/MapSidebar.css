@@ -16,7 +16,7 @@
         line-height: 1.5rem;
         @add-mixin heading-font;
         color: #fff;
-        background-color: var(--bg-blue);
+        background-color: var(--dark-2);
         border: 0 solid;
         opacity: 0.5;
         cursor: pointer;
@@ -40,15 +40,15 @@
       @add-mixin heading-font;
       line-height: 2.2rem;
       text-transform: uppercase;
-      color: var(--snow);
-      background-color: var(--bg-blue);
+      color: var(--white);
+      background-color: var(--dark-2);
     }
 
     & .pt-input {
       @add-mixin font-xs;
       @add-mixin heading-font;
-      color: var(--snow);
-      background-color: var(--bg-blue);
+      color: var(--white);
+      background-color: var(--dark-2);
       box-shadow: none;
       border-radius: 0;
       cursor: pointer;
@@ -59,7 +59,7 @@
     }
 
     & .input-box {
-      color: var(--snow);
+      color: var(--white);
       font-family: inherit;
       text-transform: uppercase;
 
@@ -137,7 +137,7 @@
     margin: 0.5em 0 0.25em;
     @add-mixin body-font;
     line-height: 1.6em;
-    color: var(--snow);
+    color: var(--white);
     text-transform: uppercase;
     background: left center/1px no-repeat;
 
@@ -149,7 +149,7 @@
       height: 1.5em;
       margin-right: 0.6em;
       border-radius: 50%;
-      background: var(--bg-blue) center/15px no-repeat;
+      background: var(--dark-2) center/15px no-repeat;
       background-image: inherit;
     }
   }

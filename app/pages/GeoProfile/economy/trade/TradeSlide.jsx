@@ -1,6 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section, SectionColumns } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 import mondrianClient, {
@@ -172,10 +172,14 @@ class TradeSlide extends Section {
                 })
               }
             />
-            <TradeBalance className="l-2-3 trade-balance" />
           </div>
         </div>
-        <div className="topic-slide-charts">{children}</div>
+        <div className="topic-slide-charts">
+          <SectionColumns>
+            <TradeBalance className="trade-balance-container lost-1" />
+          </SectionColumns>
+          {children}
+        </div>
       </div>
     );
   }

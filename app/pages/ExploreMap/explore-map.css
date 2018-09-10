@@ -14,7 +14,7 @@
           margin: 0px;
           @add-mixin heading-font;
           line-height: 1.1em;
-          color: var(--snow);
+          color: var(--white);
           text-transform: uppercase;
         }
       }
@@ -49,20 +49,20 @@
           width: 100%;
           height: 100%;
 
-          color: var(--light);
-          background-color: var(--near-black);
+          color: var(--white);
+          background-color: var(--dark-3);
 
           & .pt-non-ideal-state-visual {
             max-width: 200px;
             width: 100%;
             & .pt-progress-meter {
-              background-color: var(--light);
+              background-color: var(--white);
               @add-mixin body-font;
             }
           }
           & .pt-non-ideal-state-title {
             @add-mixin body-font;
-            color: var(--snow);
+            color: var(--white);
           }
           max-width: 0;
           visibility: hidden;

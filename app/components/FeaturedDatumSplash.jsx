@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-import { Link } from "react-router";
 import { sources, getI18nSourceObject } from "helpers/consts";
 
 import SourceTooltip from "components/SourceTooltip";
+import LevelWarning from "components/LevelWarning";
 
 import "./FeaturedDatumSplash.css";
 
@@ -37,9 +37,9 @@ class FeaturedDatumSplash extends Component {
     const src = t("about.data", { returnObjects: true });
     const sourceData = getI18nSourceObject(src, source);
 
-    // grab parent URL// get parent path
-    let parentPath = null;
-    path && (parentPath = path.substring(0, path.lastIndexOf("/")));
+    // grab parent URL / get parent path
+    const parentPath = path ? path.substring(0, path.lastIndexOf("/")) : null;
+    // console.log(parentPath);
 
     return (
       <div className={"featured-datum-splash " + className}>
@@ -115,16 +115,8 @@ class FeaturedDatumSplash extends Component {
 
         {/* this data is in another castle */}
         {level && (
-          <p className="featured-datum-splash-level font-xxs">
-            <span className="featured-datum-splash-level-note">
-              {t(`${level}.warning`)}
-            </span>
-            <Link to={parentPath} className="featured-datum-splash-level-name">
-              {name.caption}
-            </Link>
-          </p>
+          <LevelWarning name={name.caption} path={path} />
         )}
-
       </div>
     );
   }

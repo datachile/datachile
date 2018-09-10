@@ -9,7 +9,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
 
@@ -77,7 +77,10 @@ class HousingType extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Housing Type")}</span>
+					<span>
+						{t("Housing Type")}
+						<SourceTooltip cube="casen_household" />
+					</span>
 					<ExportLink path={path_housing_type} className={classSvg} />
 				</h3>
 				{this.state.chart ? (
@@ -119,7 +122,6 @@ class HousingType extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="casen_household" />
 			</div>
 		);
 	}

@@ -159,7 +159,7 @@ class MigrationActivitySlide extends Section {
           />
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="l-1-2"
+              className="l-1-2 category-featured-datum"
               icon={icon_migration_activity.get(data_slide.id_activity)}
               datum={data_slide.activity}
               title={t("Most Common Visa Activity")}
@@ -171,7 +171,7 @@ class MigrationActivitySlide extends Section {
               }
             />
             <FeaturedDatum
-              className="l-1-2"
+              className="l-1-2 category-featured-datum"
               icon={icon_migration_visatype.get(data_slide.id_type)}
               datum={data_slide.type}
               title={t("Most Common Visa Type")}

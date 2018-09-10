@@ -8,7 +8,7 @@ import { employmentColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class DeathCauses extends Section {
 	static need = [
@@ -33,7 +33,10 @@ class DeathCauses extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Death Causes By Diseases")}</span>
+					<span>
+						{t("Death Causes By Diseases")}
+						<SourceTooltip cube="death_causes" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 
@@ -79,7 +82,6 @@ class DeathCauses extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="death_causes" />
 			</div>
 		);
 	}

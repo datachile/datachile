@@ -7,9 +7,10 @@ import { simpleDatumNeed, getMeasureByGeo } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 
 import { SpendingBySector, SpendingByIndustry } from "texts/GeoProfile";
+import merge from "lodash/merge";
 
 import FeaturedDatum from "components/FeaturedDatum";
-import merge from "lodash/merge";
+import LevelWarning from "components/LevelWarning";
 
 class IDSpendingCategorySlide extends Section {
   static need = [
@@ -64,7 +65,7 @@ class IDSpendingCategorySlide extends Section {
   ];
 
   render() {
-    const { children, t, i18n } = this.props;
+    const { children, path, t, i18n } = this.props;
     const {
       geo,
       datum_spending_by_sector,
@@ -101,16 +102,6 @@ class IDSpendingCategorySlide extends Section {
         <div className="topic-slide-intro">
           <h3 className="topic-slide-title">
             {t("R&D spending")}
-            {geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p dangerouslySetInnerHTML={{
-                    __html: t("geo_profile.warning", geo.ancestors[0])
-                  }}
-                />
-              </div>
-            ) : (
-              ""
-            )}
           </h3>
           <div className="topic-slide-text">
             <p>
@@ -136,6 +127,9 @@ class IDSpendingCategorySlide extends Section {
               />
             )}
           </div>
+          {geo.depth > 1 && (
+            <LevelWarning name={geo.ancestors[0].caption} path={path} />
+          )}
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

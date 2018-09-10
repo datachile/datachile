@@ -2,29 +2,43 @@
 
 .featured-datum {
   lost-flex-container: row;
-  & .featured-datum-icon {
-    margin-right: 15px;
-    max-width: 56px;
-    width: 100%;
+
+  /* for when the title "data" is a category */
+  &.category-featured-datum .featured-datum-data {
+    display: block;
   }
+
+  & .featured-datum-icon {
+    /* sizing */
+    width: 100%; /* necessary because reasons */
+    max-width: 2rem;
+    /* positioning */
+    margin-right: 0.5rem;
+    /* theming */
+    opacity: 0.666;
+  }
+
   & .featured-datum-text {
-    color: var(--snow);
-    flex: 1;
+    flex: 1 1 33.333%;
+
     & .featured-datum-data {
-      @add-mixin font-lg;
-      @add-mixin heading-font;
+      margin-right: 0.25em;
     }
+
     & .featured-datum-title {
-      @add-mixin font-sm;
-      margin-bottom: 0.2em;
-      @add-mixin body-font;
-      color: var(--snow);
-      line-height: 1.1em;
+      display: inline-block;
+      /* typography resets */
+      line-height: 1.25;
+      margin-bottom: 0;
+
+      /* keep inline label close to stat on left-aligned layout */
+      @add-mixin from-md {
+        line-height: 0.5;
+      }
     }
+
     & .featured-datum-subtitle {
-      @add-mixin font-xs;
-      @add-mixin body-font;
-      color: var(--gray);
+      color: var(--light-3);
     }
   }
 }
