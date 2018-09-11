@@ -9,6 +9,10 @@
   "ATM": "ATM",
   "About": "About",
   "About DataChile": "About DataChile",
+  "About the FONASA groups": "About the FONASA groups",
+  "About the PSU average": "About the PSU average",
+  "About the RCA index": "About the RCA index",
+  "About the SNED measurement system": "About the SNED measurement system",
   "Access": "Access",
   "Access to Health Insurance": "Access to Health Insurance",
   "Access to services": "Access to services",
@@ -1036,11 +1040,11 @@
       "enrollment": "In {{year.last}} there were {{enrollment.total}} enrolled students in {{geo.caption}} schools. From these, {{enrollment.municipal}} were enrolled in municipal managed schools, {{enrollment.subvencionado}} in subsidised schools, {{enrollment.particular}} in private schools, and {{enrollment.adm_delegada}} in delegated administration schools.",
       "performance": {
         "byPSU": {
-          "disclaimer": "<p>*The PSU average is the arithmetic mean between the score obtained in the Spanish Language test and the Mathematics test.</p>",
+          "disclaimer": "The PSU average is the arithmetic mean between the score obtained in the Spanish Language test and the Mathematics test.",
           "distribution": "<p>In {{year}}, {{total}} PSU Exams were taken in {{geo}}. The PSU average score in {{geo}} was {{avg}} points in {{year}}.</p>",
           "level1": {
-            "2": "<p>In {{year.last}}, PSU average* in {{geo.caption}} {{text_joined}}.</p><p>The comunas of {{geo.caption}} with best PSU performance are {{location.first.caption}} (with {{location.first.prom}} points), and {{location.second.caption}} (with {{location.second.prom}} points).</p>$t(geo_profile.education.performance.byPSU.disclaimer)",
-            "3": "<p>In {{year.last}}, PSU average* in {{geo.caption}} {{text_joined}}.</p><p>The comunas of {{geo.caption}} with best PSU performance are {{location.first.caption}} ({{location.first.prom}} points), {{location.second.caption}} ({{location.second.prom}} points), and {{location.third.caption}} ({{location.third.prom}} points).</p>$t(geo_profile.education.performance.byPSU.disclaimer)",
+            "2": "<p>In {{year.last}}, PSU average* in {{geo.caption}} {{text_joined}}.</p><p>The comunas of {{geo.caption}} with best PSU performance are {{location.first.caption}} (with {{location.first.prom}} points), and {{location.second.caption}} (with {{location.second.prom}} points).</p>",
+            "3": "<p>In {{year.last}}, PSU average* in {{geo.caption}} {{text_joined}}.</p><p>The comunas of {{geo.caption}} with best PSU performance are {{location.first.caption}} ({{location.first.prom}} points), {{location.second.caption}} ({{location.second.prom}} points), and {{location.third.caption}} ({{location.third.prom}} points).</p>",
             "${\n                              text": {
               "location": {
                 "n_comunas\n                            }": "geo_profile.education.performance.byPSU.level1.${\n                              text.location.n_comunas\n                            }"
@@ -1060,8 +1064,8 @@
               "type\n                          }": "geo_profile.education.performance.byPSU.level2.${\n                            text.type\n                          }"
             },
             "no_data": "<p>There is no data for {{geo.caption}} in PSU records {{year.last}}.</p>",
-            "plural": "<p>Best PSU performing schools in {{geo.caption}} in {{year.last}} {{text_joined_schools}}.</p><p>The PSU average* score {{text_joined}}.</p>$t(geo_profile.education.performance.byPSU.disclaimer)",
-            "singular": "<p>The only school in {{geo.caption}} with PSU results in {{year.last}} {{text_joined_schools}}.</p><p>The PSU average* score {{text_joined}}.</p>$t(geo_profile.education.performance.byPSU.disclaimer)"
+            "plural": "<p>Best PSU performing schools in {{geo.caption}} in {{year.last}} {{text_joined_schools}}.</p><p>The PSU average* score {{text_joined}}.</p>",
+            "singular": "<p>The only school in {{geo.caption}} with PSU results in {{year.last}} {{text_joined_schools}}.</p><p>The PSU average* score {{text_joined}}.</p>"
           }
         }
       },
@@ -1093,7 +1097,7 @@
           }
         },
         "description": "National System of Performance Evaluation (SNED) is a performance index of schools based on the measurement of 6 factors: effectiveness, improvement, initiative, improvement of working conditions, equal opportunities and teacher integration. * Effectiveness and Overcoming come from standarized test SIMCE.",
-        "disclaimer": "* In the case of Special Education, these establishments do not present indicators applicable for the factors effectiveness and overcoming",
+        "disclaimer": "In the case of Special Education, these establishments do not present indicators applicable for the factors effectiveness and overcoming",
         "source": "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
         "text1": "In {{year}}, the average score awarded by SNED for {{geo.caption}} schools was {{score}} over 100. National average score of SNED was 67.48 over 100."
       }

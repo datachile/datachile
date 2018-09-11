@@ -9,6 +9,10 @@
   "ATM": "Cajero Automático",
   "About": "Introducción",
   "About DataChile": "Acerca de DataChile",
+  "About the FONASA groups": "About the FONASA groups",
+  "About the PSU average": "About the PSU average",
+  "About the RCA index": "About the RCA index",
+  "About the SNED measurement system": "About the SNED measurement system",
   "Access": "Acceso",
   "Access to Health Insurance": "Acceso a Previsión de Salud",
   "Access to services": "Acceso a servicios",
@@ -1041,7 +1045,7 @@
       "enrollment": "En {{year.last}} hubo {{enrollment.total}} estudiantes matriculados en establecimientos educacionales de {{geo.caption}}. De éstos, {{enrollment.municipal}} estaban matriculados en colegios municipales, {{enrollment.subvencionado}} en colegios particulares subvencionadas, {{enrollment.particular}} en colegios privados y {{enrollment.adm_delegada}} en colegios de administración delegada.",
       "performance": {
         "byPSU": {
-          "disclaimer": "<p>*El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.</p>",
+          "disclaimer": "El promedio PSU es el promedio calculado a partir del puntaje obtenido en las Pruebas de Lenguaje y Comunicación y de Matemática.",
           "distribution": "<p>En {{year}} se rindieron {{total}} PSU en {{geo}}. El puntaje promedio de PSU en {{geo}} fue de {{avg}} puntos en {{year}}.</p>",
           "level1": {
             "2": "<p>En {{year.last}}, el promedio PSU* en {{geo.caption}} {{text_joined}}.</p>",
@@ -1098,7 +1102,7 @@
           }
         },
         "description": "El Sistema Nacional de Evaluación del Desempeño (SNED), es un índice de desempeño de las escuelas que se construye usando data de 6 factores: efectividad, superación, iniciativa, mejoramiento de condiciones de trabajo, igualdad de oportunidades, e integración de profesores, padres y apoderados. * La data de Efectividad y Superación provienen de la prueba estandarizada SIMCE.",
-        "disclaimer": "* En el caso de Educación Especial, estos establecimientos no presentan indicadores aplicables para los factores efectividad y superación",
+        "disclaimer": "En el caso de Educación Especial, estos establecimientos no presentan indicadores aplicables para los factores efectividad y superación",
         "text1": "En el {{year}} el SNED promedio de las escuelas de {{geo.caption}} fue de {{score}} sobre 100. El promedio nacional de SNED fue de 67.48 sobre 100."
       }
     },
