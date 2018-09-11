@@ -210,6 +210,16 @@
     margin-top: 0.325rem;
     /* override blueprint */
     margin-bottom: 0.5rem;
+
+    /* let the actual title flex as much as needed */
+    & > span {
+      flex: 1 1 auto;
+    }
+
+    /* prevent flexbox from shrinking the button */
+    & .export-controls {
+      flex: 1 0 auto;
+    }
   }
 
   /* space out button group & option group from visualization */
