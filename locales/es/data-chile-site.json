@@ -884,37 +884,37 @@
   "documentation_api": {
     "client-python": {
       "text1": "Para fomentar el uso de la API de DataChile, hemos habilitado en Python un módulo que permite interactuar con todos los datos disponibles.",
-      "text2": "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
+      "text2": "Para instalar, puedes usar pip: <code>pip install datachile</code>",
       "text3": "Mayor información en <a target='_blank' href='https://github.com/datachile/datachile-python-client/'>https://github.com/datachile/datachile-python-client/</a>"
     },
     "complex": {
       "text1": "Estos criterios se pueden combinar para definir consultas robustas. Aquí están algunos ejemplos.",
       "text2": "Seleccionar los valores de las regiones de Valparaíso (ID 5) y de Coquimbo (ID 4)",
-      "text3": "Para realizar cortes por más de un ID, cada cut debe estar separado por <span class='code'>,</span> dentro de <span class='code'>{}</span>.",
+      "text3": "Para realizar cortes por más de un ID, cada cut debe estar separado por <code>,</code> dentro de <code>{}</code>.",
       "text4": "Obtener las importaciones de todas las comunas de Chile entre los años 2013 y 2015."
     },
     "datasets": {
-      "text1": "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+      "text1": "Estos datos son obtenidos directamente desde <code class='url'>https://chilecube.datachile.io/cubes</code>"
     },
     "definitions": {
-      "cube": "Un cubo es una colección de <span class='code'>dimensions</span> y <span class='code'>measures</span>.",
-      "cube2": "En DataChile, cada dataset está agrupado en un cubo. El diseño del lenguaje de consultas a la API está centrado en torno a 3 operaciones: <span class='code'>Drilldown</span>, <span class='code'>Cut</span>, <span class='code'>Measure</span>. Para ejemplificar los conceptos, se utilizará el dataset <span class='code'>exports</span> -que representa las exportaciones de Chile- como referencia.",
-      "cut": "Permite al usuario especificar un filtro, que restringe las tuplas disponibles del cubo. Por ejemplo, en <span class='code'>exports</span>, cortar el cubo en torno al miembro <span class='code'>[Region].[8]</span> en la dimensión <span class='code'>Geography</span>, sólo considerará celdas de la región de Bío-Bío. Múltiples cortes pueden ser especificados en una simple consulta.",
-      "dimension": "Una <span class='code'>dimension</span> es un conjunto de jerarquías que discriminan el mismo atributo (Por ejemplo, el día que se produjo una exportación)",
+      "cube": "Un cubo es una colección de <code>dimensions</code> y <code>measures</code>.",
+      "cube2": "En DataChile, cada dataset está agrupado en un cubo. El diseño del lenguaje de consultas a la API está centrado en torno a 3 operaciones: <code>Drilldown</code>, <code>Cut</code>, <code>Measure</code>. Para ejemplificar los conceptos, se utilizará el dataset <code>exports</code> -que representa las exportaciones de Chile- como referencia.",
+      "cut": "Permite al usuario especificar un filtro, que restringe las tuplas disponibles del cubo. Por ejemplo, en <code>exports</code>, cortar el cubo en torno al miembro <code>[Region].[8]</code> en la dimensión <code>Geography</code>, sólo considerará celdas de la región de Bío-Bío. Múltiples cortes pueden ser especificados en una simple consulta.",
+      "dimension": "Una <code>dimension</code> es un conjunto de jerarquías que discriminan el mismo atributo (Por ejemplo, el día que se produjo una exportación)",
       "distinct": "Evalúa un conjunto específico, elimina tuplas duplicadas del conjunto y devuelve el conjunto resultante.",
-      "drilldown": "Un <span class='code'>drilldown</span> permite pasar de un nivel de detalle al siguiente. La estructura de un drilldown para las consultas en el cubo es <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
-      "hierarchy": "Una <span class='code'>hierarchy</span> es un conjunto de miembros organizados estructuradamente para su análisis. Por ejemplo, la jerarquía Geográfica consiste de nombre de comuna, regiones y país. La jerarquización permite obtener valores intermedios: Total de exportaciones de la región de Valparaíso es la suma de todas las exportaciones de las comunas de dicha región.",
-      "level": "Un <span class='code'>level</span> es un conjunto de miembros que se encuentran a la misma distancia del inicio de la jerarquía. Concepción, Tucapel, Arica, se encuentran en el mismo level.",
+      "drilldown": "Un <code>drilldown</code> permite pasar de un nivel de detalle al siguiente. La estructura de un drilldown para las consultas en el cubo es <code>[Dimension].[Hierarchy].[Level]</code>",
+      "hierarchy": "Una <code>hierarchy</code> es un conjunto de miembros organizados estructuradamente para su análisis. Por ejemplo, la jerarquía Geográfica consiste de nombre de comuna, regiones y país. La jerarquización permite obtener valores intermedios: Total de exportaciones de la región de Valparaíso es la suma de todas las exportaciones de las comunas de dicha región.",
+      "level": "Un <code>level</code> es un conjunto de miembros que se encuentran a la misma distancia del inicio de la jerarquía. Concepción, Tucapel, Arica, se encuentran en el mismo level.",
       "measure": "Variable escalar asociada con un valor particular en los datos del cubo.",
-      "member": "Un <span class='code'>member</span> es un valor dentro de una dimensión determinada por un set de valores. La jerarquía género tiene los miembros 'Masculino' y 'Femenino'. 'Concepción', 'Bío-Bío' y 'Chile' son todos miembros de la jerarquía Geográfica.",
+      "member": "Un <code>member</code> es un valor dentro de una dimensión determinada por un set de valores. La jerarquía género tiene los miembros 'Masculino' y 'Femenino'. 'Concepción', 'Bío-Bío' y 'Chile' son todos miembros de la jerarquía Geográfica.",
       "nonempty": "Devuelve el conjunto de tuplas que no están vacías de un especificado conjunto, basado en el producto cartesiano del conjunto especificado.",
       "parents": "",
       "sparse": ""
     },
     "descriptions": {
-      "cut[]": "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <span class='code'>Level ID</span>. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
+      "cut[]": "Se debe concatenar el drilldown sobre el cuál se desea hacer el corte, con <code>Level ID</code>. <code class='format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></code>",
       "distinct": "",
-      "drilldown[]": "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
+      "drilldown[]": "Para generar un drilldown, se debe tener en cuenta: Dimension, Hierarchy, Level. <code class='format'>[Dimension].[Hierarchy].[Level]</code>",
       "measures[]": "documentation_api.descriptions.measures[]",
       "nonempty": "",
       "pagenote": {
@@ -931,7 +931,7 @@
       "text2": "Para utilizar la API de DataChile, es necesario conocer algunos conceptos que facilitarán su uso, los cuáles explicaremos a continuación."
     },
     "syntax": {
-      "text1": "El punto de entrada para las operaciones de agregación es <span class='code'>/aggregate</span>, que acepta los parámetros descritos a continuación.",
+      "text1": "El punto de entrada para las operaciones de agregación es <code>/aggregate</code>, que acepta los parámetros descritos a continuación.",
       "text2": "Para un cubo en particular, obtiene los miembros pertenecientes a un determinado level presente en una dimension."
     },
     "terms": {

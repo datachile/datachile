@@ -43,6 +43,9 @@
   font-family: var(--visualization-font) !important;
   font-weight: 300;
 }
+@define-mixin code-font {
+  font-family: Consolas, Menlo, Courier New, monospace, serif;
+}
 
 /* type scaling */
 /* NOTE:

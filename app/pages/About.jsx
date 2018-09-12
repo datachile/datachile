@@ -98,7 +98,7 @@ class About extends Component {
             </div>
           </div>
 
-          <div className="section-container">
+          <div className="section-container font-sm">
             {section == "background" && (
               <section className="section" id="background">
                 <h2>{t("about.background.title")}</h2>
@@ -765,9 +765,8 @@ class About extends Component {
 
             {section == "api" && (
               <section className="section" id="api">
-                <h2>{t("about.api.title")}</h2>
+                <h2>{t("about.api.title1")}</h2>
 
-                <h3>{t("about.api.title1")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: t("about.api.text1")
@@ -839,6 +838,7 @@ class About extends Component {
                 <h2>{t("about.terms.title")}</h2>
 
                 <div
+                  className="font-xs"
                   dangerouslySetInnerHTML={{
                     __html: t("about.terms.text")
                   }}

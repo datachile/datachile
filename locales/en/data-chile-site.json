@@ -879,37 +879,37 @@
   "documentation_api": {
     "client-python": {
       "text1": "To encourage the use of the DataChile API, we have enabled in Python a pip module that allows to interact with the cubes.",
-      "text2": "For to install, you can use pip: <span class='code'>pip install datachile</span>",
+      "text2": "For to install, you can use pip: <code>pip install datachile</code>",
       "text3": "More information in <a target='_blank' href='https://github.com/datachile/datachile-python-client/'>https://github.com/datachile/datachile-python-client/</a>"
     },
     "complex": {
       "text1": "These criteria can be combined to define robust queries. Here are a few examples.",
       "text2": "Select values of Valparaiso (ID 5) and Coquimbo (ID 4) regions.",
-      "text3": "For generate cuts for more than an ID, every cut must be separately by <span class='code'>,</span> within <span class='code'>{}</span>.",
+      "text3": "For generate cuts for more than an ID, every cut must be separately by <code>,</code> within <code>{}</code>.",
       "text4": "Get imports from every county in Chile between 2013 and 2015."
     },
     "datasets": {
-      "text1": "This data is provided by <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+      "text1": "This data is provided by <code class='url'>https://chilecube.datachile.io/cubes</code>"
     },
     "definitions": {
-      "cube": "A cube is a collection of <span class='code'>dimensions</span> and <span class='code'>measures</span>.",
-      "cube2": "In DataChile, each dataset is grouped in a cube. The design of the API query language is centered around 3 operations: <span class='code'>Drilldown</span>, <span class='code'>Cut</span> and <span class='code'>Measure</span>. To exemplify the concepts, <span class='code'>exports</span> dataset - which represents Chile's exports - will be used as a reference.",
-      "cut": "Allows the user to specify a filter, which effectively restricts the cube in which the aggregations are performed. Cutting the <span class='code'>exports</span> cube along the [Region] .[8] member in the <span class='code'>Geography</span> dimension, will only consider cells by Bio-Bio. Multiple cuts can be specified in a single query.",
-      "dimension": " A <span class='code'>dimension</span> is a collection of hierarchies which discriminate on the same fact table attribute (say, the day that a sale occurred).",
+      "cube": "A cube is a collection of <code>dimensions</code> and <code>measures</code>.",
+      "cube2": "In DataChile, each dataset is grouped in a cube. The design of the API query language is centered around 3 operations: <code>Drilldown</code>, <code>Cut</code> and <code>Measure</code>. To exemplify the concepts, <code>exports</code> dataset - which represents Chile's exports - will be used as a reference.",
+      "cut": "Allows the user to specify a filter, which effectively restricts the cube in which the aggregations are performed. Cutting the <code>exports</code> cube along the [Region] .[8] member in the <code>Geography</code> dimension, will only consider cells by Bio-Bio. Multiple cuts can be specified in a single query.",
+      "dimension": " A <code>dimension</code> is a collection of hierarchies which discriminate on the same fact table attribute (say, the day that a sale occurred).",
       "distinct": "Evaluates a specified set, removes duplicate tuples from the set, and returns the resulting set.",
-      "drilldown": "A <span class='code'>drilldown</span> allows to move from one level of detail to the next. The drilldown structure for queries in the cube is <span class='code'>[Dimension].[Hierarchy].[Level]</span>",
-      "hierarchy": "A <span class='code'>hierarchy</span> is a set of members organized into a structure for convenient analysis. For example, the geography hierarchy consists of the city, region, and country. The hierarchy allows you to form intermediate sub-totals: the sub-total for a region is the sum of the sub-totals of all of the cities in that region.",
-      "level": "A <span class='code'>level</span> is a collection of members which have the same distance from the root of the hierarchy.",
+      "drilldown": "A <code>drilldown</code> allows to move from one level of detail to the next. The drilldown structure for queries in the cube is <code>[Dimension].[Hierarchy].[Level]</code>",
+      "hierarchy": "A <code>hierarchy</code> is a set of members organized into a structure for convenient analysis. For example, the geography hierarchy consists of the city, region, and country. The hierarchy allows you to form intermediate sub-totals: the sub-total for a region is the sum of the sub-totals of all of the cities in that region.",
+      "level": "A <code>level</code> is a collection of members which have the same distance from the root of the hierarchy.",
       "measure": "Scalar variable associated with a particular fact in the cube data.",
-      "member": "A <span class='code'>member</span> is a point within a dimension determined by a particular set of attribute values. The gender hierarchy has the two members 'Male' and 'Female'. 'Concepcion', 'Bio-Bio' and 'Chile' are all members of the geography hierarchy.",
+      "member": "A <code>member</code> is a point within a dimension determined by a particular set of attribute values. The gender hierarchy has the two members 'Male' and 'Female'. 'Concepcion', 'Bio-Bio' and 'Chile' are all members of the geography hierarchy.",
       "nonempty": "Returns the set of tuples that are not empty from a specified set, based on the cross product of the specified set with a second set.",
       "parents": "",
       "sparse": ""
     },
     "descriptions": {
-      "cut[]": "You must concatenate drilldown where you need to make the cut with specific <span class='code'>Level ID</span> member. <span class='code format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></span>",
+      "cut[]": "You must concatenate drilldown where you need to make the cut with specific <code>Level ID</code> member. <code class='format'>[Dimension].[Hierarchy].[Level].&[member_id]<sup>1</sup></code>",
       "distinct": "",
-      "drilldown[]": "For create a drilldown, you must considerate: Dimension, Hierarchy, Level. <span class='code format'>[Dimension].[Hierarchy].[Level]</span>",
+      "drilldown[]": "For create a drilldown, you must considerate: Dimension, Hierarchy, Level. <code>[Dimension].[Hierarchy].[Level]</code>",
       "measures[]": "documentation_api.descriptions.measures[]",
       "nonempty": "",
       "pagenote": {
@@ -926,7 +926,7 @@
       "text2": "To use the DataChile API, it is necessary to know some concepts that will facilitate its use, which we will be explain then."
     },
     "syntax": {
-      "text1": "The single entry point for aggregation operations in Mondrian-REST is <span class='code'>/aggregate</span>, which accepts the described parameters then.",
+      "text1": "The single entry point for aggregation operations in Mondrian-REST is <code>/aggregate</code>, which accepts the described parameters then.",
       "text2": "For a particular cube, get the members belonging to a certain level in a dimension."
     },
     "terms": {

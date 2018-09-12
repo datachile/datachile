@@ -2,6 +2,26 @@
 
 .about {
 
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6,
+  & th {
+    color: var(--white);
+    margin-top: 1.75em;
+    margin-bottom: 0.5em;
+  }
+
+  & p {
+    color: var(--light-2);
+
+    & img.icon {
+      width: 15px;
+      margin-bottom: -4px;
+    }
+  }
+
   /* fix a bug caused by changing defaults to position: relative */
   &, & .intro {
     position: static;
@@ -51,19 +71,33 @@
     }
 
     & .sublinks {
-      padding-bottom: var(--gutter);
       text-align: center;
-      lost-flex-container: row;
-      lost-align: center;
+      margin: -2.5rem auto 0 auto;
+      padding:
+        3rem
+        calc(var(--gutter)*0.75)
+        var(--gutter-half)
+        calc(var(--gutter)*0.75);
       color: var(--white);
+      width: 100%;
+      background-image: linear-gradient(
+        color(var(--dark-1) a(0)),
+        color(var(--dark-2) a(0.75))
+      );
 
       & .sublink {
-        padding: calc(var(--gutter)/4);
+        padding: 0.25em calc(var(--gutter)/4);
         display: inline-block;
         color: inherit;
         text-decoration: none;
         text-transform: uppercase;
         transition: opacity 0.2s;
+
+        /* stacked layout on small screens */
+        @add-mixin for-xs {
+          display: block;
+          text-align: left;
+        }
 
         &.selected {
           @add-mixin body-font-bold;
@@ -88,44 +122,21 @@
   }
 
   & .section {
-    padding: calc(var(--gutter) * 2) var(--gutter);
+    padding: 0 var(--gutter);
     margin-bottom: var(--gutter);
     lost-center: 2/3;
+    width: 100%;
     max-width: var(--break-md);
     display: block;
 
-    & h2 {
-      color: var(--white);
-      margin-bottom: var(--gutter);
-      lost-column: 1;
-    }
-
-    & h3 {
-      color: var(--white);
-      margin: var(--gutter) 0 calc(var(--gutter)/2) 0;
-      line-height: 1.2em;
-    }
-
-    & div {
-      width: 100%;
-    }
-
-    & p {
-      @add-mixin font-sm;
-      color: var(--light-2);
-      & img.icon {
-        width: 15px;
-
-        margin-bottom: -4px;
-      }
-    }
     & ul {
+      padding-left: 1.25rem;
       & li {
-        @add-mixin font-sm;
-        @add-mixin body-font;
-        color: var(--white);
+        color: var(--light-2);
         line-height: 1.5;
-        text-align: justify;
+      }
+      & li + li {
+        margin-top: 0.25em;
       }
     }
     & .use {
@@ -158,6 +169,11 @@
         }
       }
 
+      /* font reset */
+      & p {
+        line-height: 1;
+      }
+
       /* border between adjacent rows */
       & tr + tr {
         border-top: 1px solid var(--dark-1);
@@ -166,53 +182,49 @@
   }
 }
 
-@add-mixin for-xl {
-}
 
-@add-mixin for-lg {
-}
+/* documentation table */
+.docs-table {
+  background-color: var(--black);
+  overflow: hidden;
+  border-radius: 2px;
 
-@add-mixin for-md {
-  .about {
-    & .intro {
-      & .sublinks {
-        & .sublink {
-          lost-column: 1/3;
-        }
-      }
-    }
-    & .section {
-      lost-column: 1;
-      margin-bottom: 0px;
+  & thead {
+    background-color: var(--dark-2);
+  }
+
+  /* override default about style */
+  & th,
+  & td {
+    padding: var(--gutter-third) !important;
+  }
+  & tbody tr {
+    border-top-color: var(--dark-3) !important;
+
+    & td {
+      vertical-align: top !important;
     }
   }
 }
 
-@add-mixin for-sm {
-  .about {
-    & .intro {
-      & .sublinks {
-        & .sublink {
-          lost-column: 1/2;
-          margin: 0 !important;
-        }
-      }
-    }
+.fixed-table {
+  /* give table heading the appearence of being fixed above the table */
+  & thead {
+    box-shadow: 0 4px 0.5rem color(var(--black) a(0.75));
+    z-index: 1;
   }
-}
-
-@add-mixin for-xs {
-  .about {
-    & .intro {
-      & .sublinks {
-        & .sublink {
-          lost-column: 1;
-          margin: 0 !important;
-        }
-      }
-    }
+  /* equal width columns */
+  & thead,
+  & tbody tr {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
   }
-}
-
-@add-mixin for-xx {
+  /* scrollable overflow */
+  & tbody {
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 32rem;
+  }
 }

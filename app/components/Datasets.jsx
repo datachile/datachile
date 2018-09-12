@@ -62,7 +62,7 @@ class Datasets extends Component {
 
     return (
       <div className="datasets">
-        <table>
+        <table className="docs-table fixed-table">
           <thead>
             <tr>
               <th>{t("Cube")}</th>
@@ -74,15 +74,15 @@ class Datasets extends Component {
             {datasets.map(cube => {
               return (
                 <tr>
-                  <td>{cube.name}</td>
+                  <td><code>{cube.name}</code></td>
                   <td>
                     {cube.dimensions.map(dim => (
-                      <div>
+                      <code>
                         [{dim.dim}].[{dim.hier}].[{dim.level}]
-                      </div>
+                      </code>
                     ))}
                   </td>
-                  <td>{cube.measures.map(ms => <div>{ms.name}</div>)}</td>
+                  <td>{cube.measures.map(ms => <p className="font-xs">{ms.name}</p>)}</td>
                 </tr>
               );
             })}
