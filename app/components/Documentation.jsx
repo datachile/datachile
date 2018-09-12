@@ -87,16 +87,16 @@ class Documentation extends React.Component {
           <h2>{t("documentation_api.title2")}</h2>
 
           <div className="method">
-            <span className="text">URL BASE</span>{" "}
+            <span className="subhead">URL BASE</span>{" "}
             <code className="url">{`https://chilecube.datachile.io`}</code>
           </div>
 
           <div className="method">
-            <span className="text">GET</span>{" "}
+            <span className="subhead">GET</span>{" "}
             <code className="url">
               {`/cubes/{{cube_name}}/dimensions/{{dimension_name}}/levels/{{level_name}}/members`}
             </code>
-            <p
+            <p className="clarification font-xs"
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.syntax.text2")
               }}
@@ -104,9 +104,9 @@ class Documentation extends React.Component {
           </div>
 
           <div className="method">
-            <span className="text">GET</span>{" "}
+            <span className="subhead">GET</span>{" "}
             <code className="url">{`/cubes/{{cube_name}}/aggregate`}</code>{" "}
-            <p
+            <p className="clarification font-xs"
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.syntax.text1")
               }}
@@ -116,14 +116,16 @@ class Documentation extends React.Component {
           <table className="docs-table">
             <thead>
               <tr>
-                <th className="field">{t("Param")}</th>
-                <th>{t("Type")}</th>
-                <th className="description">{t("Description")}</th>
+                <th className="subhead field">{t("Param")}</th>
+                <th className="subhead">{t("Type")}</th>
+                <th className="subhead description">{t("Description")}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>drilldown[]</td>
+                <td>
+                  <code>drilldown[]</code>
+                </td>
                 <td>
                   <code>string</code>
                 </td>
@@ -136,7 +138,9 @@ class Documentation extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td>measures[]</td>
+                <td>
+                  <code>measures[]</code>
+                </td>
                 <td>
                   <code>string</code>
                 </td>
@@ -149,7 +153,9 @@ class Documentation extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td>cut[]</td>
+                <td>
+                  <code>cut[]</code>
+                </td>
                 <td>
                   <code>string</code>
                 </td>
@@ -162,7 +168,9 @@ class Documentation extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td>nonempty</td>
+                <td>
+                  <code>nonempty</code>
+                </td>
                 <td>
                   <code>boolean</code>
                 </td>
@@ -175,7 +183,9 @@ class Documentation extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td>distinct</td>
+                <td>
+                  <code>distinct</code>
+                </td>
                 <td>
                   <code>boolean</code>
                 </td>
@@ -188,7 +198,9 @@ class Documentation extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td>parents</td>
+                <td>
+                  <code>parents</code>
+                </td>
                 <td>
                   <code>boolean</code>
                 </td>
@@ -201,7 +213,9 @@ class Documentation extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td>sparse</td>
+                <td>
+                  <code>sparse</code>
+                </td>
                 <td>
                   <code>boolean</code>
                 </td>
@@ -216,7 +230,7 @@ class Documentation extends React.Component {
             </tbody>
           </table>
 
-          <div className="pagenote">
+          <div className="clarification font-xs">
             <span
               dangerouslySetInnerHTML={{
                 __html: t("documentation_api.descriptions.pagenote.text1")
@@ -228,7 +242,7 @@ class Documentation extends React.Component {
           <h2>{t("documentation_api.title7")}</h2>
           <Datasets />
           <p
-            className="pagenote"
+            className="clarification font-xs"
             dangerouslySetInnerHTML={{
               __html: t("documentation_api.datasets.text1")
             }}
@@ -243,8 +257,10 @@ class Documentation extends React.Component {
             }}
           />
           <h3>Query</h3>
-          <pre className="code left hidden">
-            {`https://chilecube.datachile.io//cubes/casen_health_system/aggregate.json?drilldown[]=[Health System].[Health System]&drilldown[]=[Date].[Date].[Year]&cut[]=[Geography].[Comuna].%26[64]&measures[]=Expansion Factor Comuna&caption[]=[Health System].[Health System].Description ES&caption[]=[Health System].[Health System Group].Description ES&nonempty=true&distinct=false&parents=true&sparse=true`}
+          <pre className="left hidden">
+            <code>
+              {`https://chilecube.datachile.io//cubes/casen_health_system/aggregate.json?drilldown[]=[Health System].[Health System]&drilldown[]=[Date].[Date].[Year]&cut[]=[Geography].[Comuna].%26[64]&measures[]=Expansion Factor Comuna&caption[]=[Health System].[Health System].Description ES&caption[]=[Health System].[Health System Group].Description ES&nonempty=true&distinct=false&parents=true&sparse=true`}
+            </code>
           </pre>
           <h3>Output</h3>
           <pre>
@@ -321,7 +337,7 @@ class Documentation extends React.Component {
             />
 
             <div className="example">
-              <p
+              <h3
                 dangerouslySetInnerHTML={{
                   __html: t("documentation_api.complex.text2")
                 }}
@@ -332,14 +348,14 @@ class Documentation extends React.Component {
                 </code>
               </pre>
               <p
-                className="clarification"
+                className="clarification font-xs"
                 dangerouslySetInnerHTML={{
                   __html: t("documentation_api.complex.text3")
                 }}
               />
             </div>
             <div className="example">
-              <p
+              <h3
                 dangerouslySetInnerHTML={{
                   __html: t("documentation_api.complex.text4")
                 }}
@@ -358,7 +374,7 @@ class Documentation extends React.Component {
                 </code>
               </pre>
               <p
-                className="clarification"
+                className="clarification font-xs"
                 dangerouslySetInnerHTML={{
                   __html: t("documentation_api.complex.text3")
                 }}
@@ -417,7 +433,7 @@ class Documentation extends React.Component {
             `}
             </code>
           </pre>
-          <p
+          <p className="clarification font-xs"
             dangerouslySetInnerHTML={{
               __html: t("documentation_api.client-python.text3")
             }}

@@ -134,6 +134,70 @@ li > a,
   }
 }
 
+
+/* -----------------------------------
+code blocks
+----------------------------------- */
+
+/* code block formatting */
+code,
+pre {
+  @add-mixin code-font;
+  padding: 0.25em 0.5em 0.15em 0.5em;
+  border-radius: 2px;
+  overflow-x: scroll;
+}
+
+/* inline / wrapping code samples */
+code {
+  display: inline-block;
+  vertical-align: bottom;
+  /* typography */
+  font-size: 0.666em;
+  white-space: nowrap; /* keep together */
+  /* theming */
+  background-color: var(--light-2);
+  color: var(--black);
+  box-shadow: 0 1px 1em color(var(--black) a(0.333));
+  top: -1px;
+}
+
+/* make them stack */
+table code {
+  margin-right: 0.375em;
+  margin-bottom: 0.5em;
+  top: 0.25rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+/* big code blocks */
+pre {
+  /* theming */
+  background-color: var(--black);
+  color: var(--light-2);
+  white-space: pre-wrap;
+  overflow: auto;
+  overflow-y: scroll;
+  margin: 10px 0px;
+  max-height: 32rem;
+
+  /* inherit <pre> color & font-size */
+  & > code {
+    background-color: inherit;
+    color: inherit;
+    font-size: 1em;
+  }
+
+  /* print styles */
+  @media print {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+
 /* -----------------------------------
 grids
 ----------------------------------- */

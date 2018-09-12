@@ -1,154 +1,22 @@
 @import "../pages/mixins";
 
 .documentation {
-  color: var(--white);
 
+  /* space out and separate adjacent sections */
   & section + section {
     border-top: 2px solid var(--black);
     margin-top: 3rem;
   }
 
-  & .pagenote {
-    margin-top: 10px;
-    font-style: italic;
-    color: var(--white);
+  /* space out method */
+  & .method {
+    margin-bottom: 1em;
   }
 
-  & .syntax {
-    margin-bottom: 30px;
-
-    & .method {
-      @add-mixin font-sm;
-      margin-bottom: 0px;
-      padding: 10px 0px;
-      line-height: 1.8;
-    }
-  }
-
-  & .code {
-    overflow: auto;
-
-    &.url {
-      text-decoration: underline;
-    }
-
-    &.hidden {
-      overflow: hidden;
-    }
-  }
-
-  & .example {
-    margin: 16px 0px;
-
-    & .clarification {
-      @add-mixin font-xs;
-      margin-top: 8px;
-      font-style: italic;
-      color: var(--light-2);
-    }
-  }
-
-  & ul {
-    list-style: disc;
-  }
-
-  & .param-table {
-    width: auto !important;
-
-    & td {
-      padding: 8px !important;
-      width: auto !important;
-      &.description {
-        width: 100% !important;
-        & .code.format {
-          display: inline-block;
-          vertical-align: baseline;
-          overflow: hidden;
-        }
-      }
-      &.format {
-        width: 200px !important;
-      }
-    }
-
-    & th {
-      width: auto !important;
-      &.description {
-        width: 100px !important;
-      }
-      &.format {
-        width: 200px !important;
-      }
-    }
-  }
-
-  & .def-text {
-    margin: 10px 0px;
-    line-height: 1.5;
-  }
-}
-
-code,
-pre {
-  @add-mixin code-font;
-  padding: 0.25em 0.5em 0.2em 0.5em;
-  border-radius: 2px;
-  overflow-x: scroll;
-}
-
-/* inline / wrapping code samples */
-code {
-  display: inline-block;
-  vertical-align: bottom;
-  /* typography */
-  font-size: 0.666em;
-  white-space: nowrap; /* keep together */
-  /* theming */
-  background-color: var(--light-2);
-  color: var(--black);
-  box-shadow: 0 1px 1em color(var(--black) a(0.333));
-  top: -1px;
-}
-
-/* make them stack */
-table code {
-  margin-right: 0.375em;
-  line-height: 1.25;
-  white-space: normal;
-}
-
-/* fudge baseline alignment */
-.description code {
-  top: 0.375em;
-}
-
-/* big code blocks */
-pre {
-  /* theming */
-  background-color: var(--black);
-  color: var(--light-2);
-  white-space: pre-wrap;
-  overflow: auto;
-  overflow-y: scroll;
-  margin: 10px 0px;
-  max-height: 32rem;
-
-  & code {
-    background-color: inherit;
-    color: inherit;
-    font-size: 1em;
-  }
-}
-
-
-/* print styles */
-@media print {
-  pre {
-    overflow-x: auto;
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap !important;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
+  /* italic text and spacing for clarificatins */
+  & .clarification {
+    @add-mixin body-font-italic;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
   }
 }

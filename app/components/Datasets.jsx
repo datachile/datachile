@@ -65,9 +65,9 @@ class Datasets extends Component {
         <table className="docs-table fixed-table">
           <thead>
             <tr>
-              <th>{t("Cube")}</th>
-              <th>{t("Drilldowns")}</th>
-              <th>{t("Measures")}</th>
+              <th className="subhead">{t("Cube")}</th>
+              <th className="subhead">{t("Drilldowns")}</th>
+              <th className="subhead">{t("Measures")}</th>
             </tr>
           </thead>
           <tbody>

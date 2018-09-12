@@ -132,7 +132,7 @@ class About extends Component {
 
                 <p>{t("about.data.text")}</p>
 
-                <table className="font-xs">
+                <table className="subtle-table font-xs">
                   <thead>
                     <tr>
                       <th className="subhead">{t("about.data.dataset")}</th>
