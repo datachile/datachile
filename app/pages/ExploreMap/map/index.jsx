@@ -143,7 +143,7 @@ class ExploreMap extends React.Component {
                   <NonIdealState
                     className={`explore-map-loading ${loading}`}
                     title={t("loading.map")}
-                    description={t("loading.developed")}
+                    description=""
                     visual={
                       <DatachileProgressBar
                         value={loadingValue / (membersLoading + 1)}

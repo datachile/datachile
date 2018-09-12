@@ -5,18 +5,27 @@ import { ProgressBar } from "@blueprintjs/core";
 import "./DatachileProgressBar.css";
 
 class DatachileProgressBar extends Component {
-	render() {
-		const { value } = this.props;
-		return (
-			<div className="datachile-progress-bar">
-				<img
-					className="logo"
-					src="/images/logos/logo-dc-beta-small.svg"
-				/>
-				<ProgressBar value={value} />
-			</div>
-		);
-	}
+  render() {
+    const { description, t, value } = this.props;
+    return (
+      <div className="datachile-progress-bar">
+        <img className="logo" src="/images/logos/logo-dc-beta-small.svg" />
+        <ProgressBar value={value} />
+        <p>{description}</p>
+        <p className="builtby">
+          {t("loading.developed")}
+          <span className="u-visually-hidden">Datawheel</span>
+          <a className="builtby-link" href="http://datawheel.us">
+            <img
+              className="builtby-img"
+              src="/images/logos/footer/datawheel-logo-white.svg"
+              alt=""
+            />
+          </a>
+        </p>
+      </div>
+    );
+  }
 }
 
 DatachileProgressBar = translate()(DatachileProgressBar);

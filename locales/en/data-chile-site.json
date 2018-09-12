@@ -263,7 +263,7 @@
   "Linear": "Linear",
   "LoadingComponent": {
     "description": "Loading {{progress}} of {{total}} datasets",
-    "developed": "Designed & built by Datawheel",
+    "developed": "Designed & built by ",
     "title": "Please Wait"
   },
   "Log": "Log",
@@ -1211,7 +1211,7 @@
   "is": "is",
   "loading": {
     "description": "Loading {{progress}} of {{total}} datasets",
-    "developed": "Designed and Engineered by Datawheel",
+    "developed": "Designed and engineered by ",
     "map": "Loading information",
     "title": "Please Wait"
   },

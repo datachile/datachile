@@ -262,7 +262,7 @@
   "Linear": "Lineal",
   "LoadingComponent": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
-    "developed": "Diseñado y desarrollado por Datawheel",
+    "developed": "Diseñado y desarrollado por ",
     "title": "Por favor espere"
   },
   "Log": "Log",
@@ -1215,7 +1215,7 @@
   "is": "es",
   "loading": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
-    "developed": "Diseñado y construido por Datawheel",
+    "developed": "Diseñado y construido por ",
     "map": "Cargando información",
     "title": "Por favor espere"
   },
