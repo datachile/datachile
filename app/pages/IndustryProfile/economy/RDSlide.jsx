@@ -94,15 +94,17 @@ class RDSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <h3 className="topic-slide-title">{t("Research & Development")}</h3>
-          {this.context.data.geo.depth > 1 && (
-            <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
-              __html: t(
-                "industry_profile.warning",
-                industry.depth > 1 ? industry.parent : industry
-                )
-              }}
-            />
-          )}
+          {industry &&
+            this.context.data.geo.depth > 1 && (
+              <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
+                __html: t(
+                  "industry_profile.warning",
+                  industry.depth > 1 ? industry.parent : industry
+                  )
+                }}
+              />
+            )
+          }
 
           <div className="topic-slide-text">
             <p
