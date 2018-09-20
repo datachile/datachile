@@ -1,3 +1,5 @@
+@import "../pages/mixins";
+
 .overlay {
   position: fixed;
   top: 0;
@@ -8,10 +10,10 @@
   z-index: 998;
 }
 .intro-slider {
+  @add-mixin body-font;
   position: fixed;
   top: 80px;
   left: 50%;
-  @add-mixin body-font;
   margin: auto;
   width: 600px;
   margin-left: -300px;
