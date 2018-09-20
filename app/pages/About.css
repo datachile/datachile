@@ -2,217 +2,207 @@
 
 .about {
 
-  /* fix a bug caused by changing defaults to position: relative */
+  /* typography & spacing defaults for headings */
+  & h2, & h3, & h4, & h5, & h6, & th,
+  & .heading, & .subhead, & .label {
+    color: var(--white);
+    margin-top: 1.75em;
+    margin-bottom: 0.5em;
+  }
+
+  /* color defaults for paragraphs & list items */
+  & p, & li {
+    color: var(--light-2);
+  }
+
+  /* list defaults */
+  & ul {
+    list-style: disc; /* just in case */
+    padding-left: 1.25rem;
+
+    & li {
+      line-height: 1.5;
+    }
+    & li + li {
+      margin-top: 0.25em;
+    }
+  }
+
+
+  /* fixes a bug caused by changing defaults to position: relative */
   &, & .intro {
     position: static;
   }
 
-  & .glossary {
-    & .definition {
-      margin-top: 0px;
-    }
+  /* intro */
+  & .splash {
+    height: 800px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: var(--background);
 
-    & .term {
-      margin: 0px;
-      padding: 0px;
-    }
-  }
-
-  & .intro {
-
-    & .splash {
+    & .image {
+      background-image: url("/images/profile-bg/about.jpg");
+      background-position: 75%;
+      background-size: cover;
+      filter: saturate(100%) contrast(80%);
       height: 800px;
       left: 0;
       position: absolute;
       top: 0;
       width: 100%;
-      z-index: var(--background);
-
-      & .image {
-        background-image: url("/images/profile-bg/about.jpg");
-        background-position: 75%;
-        background-size: cover;
-        filter: saturate(100%) contrast(80%);
-        height: 800px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-      }
-
-      & .gradient {
-        background: linear-gradient(0deg, var(--dark-2), rgba(0, 0, 0, 0.2));
-        bottom: 0;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-      }
     }
 
-    & .sublinks {
-      padding-bottom: var(--gutter);
-      text-align: center;
-      lost-flex-container: row;
-      lost-align: center;
-      color: var(--white);
+    & .gradient {
+      background: linear-gradient(0deg, var(--dark-2), rgba(0, 0, 0, 0.2));
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
 
-      & .sublink {
-        padding: calc(var(--gutter)/4);
-        display: inline-block;
-        color: inherit;
-        text-decoration: none;
-        text-transform: uppercase;
-        transition: opacity 0.2s;
+  /* anchor links */
+  & .sublinks {
+    text-align: center;
+    margin: -2.5rem auto 0 auto;
+    padding:
+      3rem
+      calc(var(--gutter)*0.75)
+      var(--gutter-half)
+      calc(var(--gutter)*0.75);
+    color: var(--white);
+    width: 100%;
+    background-image: linear-gradient(
+      color(var(--dark-1) a(0)),
+      color(var(--dark-2) a(0.75))
+    );
 
-        &.selected {
-          @add-mixin body-font-bold;
-          text-decoration: underline;
-          margin: 0;
-        }
-        &:hover {
-          text-decoration: underline;
-        }
+    /* individual anchor link */
+    & .sublink {
+      padding: 0.25em calc(var(--gutter)/4);
+      display: inline-block;
+      color: inherit;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
 
-        & img {
-          display: block;
-        }
+      /* stacked layout on small screens */
+      @add-mixin for-xs {
+        display: block;
+        text-align: left;
+      }
+
+      /* states & interactions */
+      &.selected {
+        @add-mixin body-font-bold;
+        text-decoration: underline;
+        margin: 0;
+      }
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
 
+  /* main section layout and theming */
   & .section-container {
     lost-utility: clearfix;
     lost-flex-container: column;
     background-color: var(--dark-3);
   }
 
+  /* individual sections */
   & .section {
-    padding: calc(var(--gutter) * 2) var(--gutter);
+    padding: 0 var(--gutter);
     margin-bottom: var(--gutter);
     lost-center: 2/3;
+    width: 100%;
     max-width: var(--break-md);
     display: block;
+  }
 
-    & h2 {
-      color: var(--white);
-      margin-bottom: var(--gutter);
-      lost-column: 1;
+  /* table defaults;
+  ** NOTE: used as-is by datasets TOC table, inherited by API tables */
+  & table {
+    border-collapse: collapse;
+    text-align: left;
+
+    /* cell padding & alignment */
+    & th,
+    & td {
+      vertical-align: middle;
+      padding:
+        var(--gutter-third)
+        var(--gutter)
+        var(--gutter-third)
+        0;
+
+      &:last-of-type {
+        padding-right: 0;
+      }
     }
 
-    & h3 {
-      color: var(--white);
-      margin: var(--gutter) 0 calc(var(--gutter)/2) 0;
-      line-height: 1.2em;
+    /* font reset */
+    & p {
+      line-height: 1;
     }
 
-    & div {
+    /* border between adjacent rows */
+    & tr + tr {
+      border-top: 1px solid var(--dark-1);
+    }
+  }
+
+
+  /* documentation table */
+  & .docs-table {
+    background-color: var(--black);
+    overflow: hidden;
+    border-radius: 2px;
+
+    & thead {
+      background-color: var(--dark-2);
+    }
+
+    /* override default about table style */
+    & th,
+    & td {
+      padding: var(--gutter-third);
+    }
+    & tbody tr {
+      border-top-color: var(--dark-3);
+
+      & td {
+        vertical-align: top;
+      }
+    }
+  }
+
+
+  /* field list table */
+  & .fixed-table {
+    /* give table heading the appearence of being fixed above the table */
+    & thead {
+      box-shadow: 0 4px 0.5rem color(var(--black) a(0.75));
+      z-index: 1;
+    }
+    /* equal width columns */
+    & thead,
+    & tbody tr {
+      display: table;
+      table-layout: fixed;
       width: 100%;
     }
-
-    & p {
-      @add-mixin font-sm;
-      color: var(--light-2);
-      & img.icon {
-        width: 15px;
-
-        margin-bottom: -4px;
-      }
-    }
-    & ul {
-      & li {
-        @add-mixin font-sm;
-        @add-mixin body-font;
-        color: var(--white);
-        line-height: 1.5;
-        text-align: justify;
-      }
-    }
-    & .use {
-      @add-mixin font-sm;
-      @add-mixin body-font;
-      color: var(--accent);
-      background-color: var(--white);
-      line-height: 1.5;
-      lost-column: 1;
-      padding: calc(var(--gutter)/2);
-    }
-
-    /* dataset table */
-    & table {
-      border-collapse: collapse;
-      text-align: left;
-
-      /* cell padding & alignment */
-      & th,
-      & td {
-        vertical-align: middle;
-        padding:
-          var(--gutter-third)
-          var(--gutter)
-          var(--gutter-third)
-          0;
-
-        &:last-of-type {
-          padding-right: 0;
-        }
-      }
-
-      /* border between adjacent rows */
-      & tr + tr {
-        border-top: 1px solid var(--dark-1);
-      }
+    /* scrollable overflow */
+    & tbody {
+      display: block;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      max-height: 32rem;
     }
   }
-}
-
-@add-mixin for-xl {
-}
-
-@add-mixin for-lg {
-}
-
-@add-mixin for-md {
-  .about {
-    & .intro {
-      & .sublinks {
-        & .sublink {
-          lost-column: 1/3;
-        }
-      }
-    }
-    & .section {
-      lost-column: 1;
-      margin-bottom: 0px;
-    }
-  }
-}
-
-@add-mixin for-sm {
-  .about {
-    & .intro {
-      & .sublinks {
-        & .sublink {
-          lost-column: 1/2;
-          margin: 0 !important;
-        }
-      }
-    }
-  }
-}
-
-@add-mixin for-xs {
-  .about {
-    & .intro {
-      & .sublinks {
-        & .sublink {
-          lost-column: 1;
-          margin: 0 !important;
-        }
-      }
-    }
-  }
-}
-
-@add-mixin for-xx {
 }

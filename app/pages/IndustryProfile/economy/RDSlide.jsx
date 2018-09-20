@@ -70,7 +70,10 @@ class RDSlide extends Section {
     const growth = annualized_growth(datum_industry_rd_spending);
 
     const industryName =
-      industry.depth === 1 ? industry.caption : industry.parent.caption;
+      industry &&
+        industry.depth === 1
+          ? industry.caption
+          : industry.parent.caption;
 
     const locale = i18n.language;
 
@@ -94,15 +97,17 @@ class RDSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <h3 className="topic-slide-title">{t("Research & Development")}</h3>
-          {this.context.data.geo.depth > 1 && (
-            <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
-              __html: t(
-                "industry_profile.warning",
-                industry.depth > 1 ? industry.parent : industry
-                )
-              }}
-            />
-          )}
+          {(industry && this.context.data.geo) &&
+            this.context.data.geo.depth > 1 && (
+              <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
+                __html: t(
+                  "industry_profile.warning",
+                  industry.depth > 1 ? industry.parent : industry
+                  )
+                }}
+              />
+            )
+          }
 
           <div className="topic-slide-text">
             <p

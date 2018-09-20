@@ -147,6 +147,7 @@
         & > *:first-child,
         & > *:last-child {
           flex: 1 0 16rem;
+          max-width: 20rem;
         }
         /* squishy width on centered stats */
         & > *:nth-child(2) {
@@ -159,7 +160,6 @@
           margin-left: auto;
         }
         & .map-comuna {
-          max-width: 20rem;
           /* darken background */
           background-image: radial-gradient(
             closest-side,

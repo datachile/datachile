@@ -236,6 +236,13 @@ class PSUNEMSlide extends Section {
                 />
               ))}
           </div>
+
+          <h4 className="topic-slide-context-subhead">
+            {t("About the PSU average")}
+          </h4>
+          <p className="font-xxs">
+            {t(`geo_profile.education.performance.byPSU.disclaimer`)}
+          </p>
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

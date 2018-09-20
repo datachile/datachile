@@ -21,7 +21,7 @@
     justify-content: space-between;
     align-items: flex-end;
     /* positioning */
-    padding-left: 2.25rem;
+    padding-left: calc(22px + 0.75rem); /* line up with logo */
 
     & .topic-heading {
       padding-right: 2rem;
@@ -37,7 +37,7 @@
   background-color: var(--dark-3);
   border-radius: 2px 0 2px 2px;
   /* sizing */
-  padding: 2.25rem;
+  padding: 2.25rem calc(22px + 0.75rem); /* line up with logo */
 
   /* less white space on smaller screens */
   @add-mixin for-md {
@@ -210,6 +210,16 @@
     margin-top: 0.325rem;
     /* override blueprint */
     margin-bottom: 0.5rem;
+
+    /* let the actual title flex as much as needed */
+    & > span {
+      flex: 1 1 auto;
+    }
+
+    /* prevent flexbox from shrinking the button */
+    & .export-controls {
+      flex: 1 0 auto;
+    }
   }
 
   /* space out button group & option group from visualization */
