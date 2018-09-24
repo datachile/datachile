@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import { request as d3Request } from "d3-request";
 import { select, selectAll, event } from "d3-selection";
-import { translate } from "react-i18next";
 import SVGCache from "helpers/svg";
 
 class SvgImage extends Component {
+  state = {
+    svgFile: ""
+  };
+
   constructor(props) {
     super(props);
     this.cache = SVGCache.instance;
-    this.state = {
-      svgFile: ""
-    };
-
-    this.callbackSvg = this.callbackSvg.bind(this);
   }
 
-  callbackSvg(error, response) {
+  callbackSvg = (error, response) => {
     var xml = response.responseText ? response.responseText : response;
     if (!xml.startsWith("<?xml")) {
       this.setState({
@@ -33,7 +31,7 @@ class SvgImage extends Component {
         this.props.callback();
       }
     }
-  }
+  };
 
   componentDidMount() {
     var cached = this.cache.getSvg(this.props.src);
@@ -60,7 +58,7 @@ class SvgImage extends Component {
   };*/
 
   render() {
-    const { t, extraClass } = this.props;
+    const { extraClass } = this.props;
 
     const clase = extraClass ? extraClass : "";
 
@@ -73,4 +71,4 @@ class SvgImage extends Component {
   }
 }
 
-export default translate()(SvgImage);
+export default SvgImage;

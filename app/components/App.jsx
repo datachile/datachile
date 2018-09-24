@@ -17,15 +17,21 @@ class App extends Component {
 			<div className="main-container">
 				<Helmet titleTemplate="%s — DataChile" defaultTitle="DataChile">
 					<meta name="description" content={t("home.subtitle")} />
-					<meta property="og:locale" content={espanol ? "es_CL" : "en_US"} />
+					<meta
+						property="og:locale"
+						content={espanol ? "es_CL" : "en_US"}
+					/>
 					<meta
 						property="og:locale:alternate"
 						content={espanol ? "en_US" : "es_CL"}
 					/>
 				</Helmet>
-				<StagingIndicator />
 				{children}
-				{this.props.location.pathname === "explore/map" ? <div /> : <Footer />}
+				{this.props.location.pathname === "explore/map" ? (
+					<div />
+				) : (
+					<Footer />
+				)}
 			</div>
 		);
 	}

@@ -155,10 +155,16 @@ export const sources = {
   },
   sned: {
     title: "Sistema Nacional de Evaluación del Desempeño",
-    url: "http://www.sned.mineduc.cl/",
+    url: "http://portales.mineduc.cl/usuarios/sned/File/Sned.pdf",
+    year: 2016
+  },
+  sned_website: {
+    title: "www.ayudamineduc.cl",
+    url: "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
     year: 2016
   }
 };
+
 export const featured_profiles = {
   es: [
     {
@@ -218,7 +224,7 @@ export const featured_profiles = {
       url: "/geo/atacama-3"
     },
     {
-      img: "/images/profile-bg/industry/B.jpg",
+      img: "/images/profile-bg/industry/b.jpg",
       name: "MINING AND QUARRYING",
       type: "industries",
       url: "/industries/mining-and-quarrying-B"
@@ -262,3 +268,133 @@ export const icon_migration_visatype = {
     }
   }
 };
+
+export function getI18nSourceObject(src, cube) {
+  switch (cube) {
+    case "exports":
+    case "imports":
+    case "exports_and_imports":
+      return {
+        ...sources.exports_and_imports,
+        ...src.aduana,
+        year: sources.exports_and_imports.year
+      };
+
+    case "immigration":
+      return {
+        ...sources.immigration,
+        ...src.migracion,
+        year: sources.immigration.year
+      };
+
+    case "tax_data":
+      return {
+        ...sources.tax_data,
+        ...src.costes,
+        year: sources.tax_data.year
+      };
+
+    case "rd_survey":
+      return {
+        ...sources.rd_survey,
+        ...src.iplusd,
+        year: sources.rd_survey.year
+      };
+
+    case "nesi_income":
+      return {
+        ...sources.nesi_income,
+        ...src.nesi,
+        year: sources.nesi_income.year
+      };
+
+    case "crimes":
+      return { ...sources.crimes, ...src.felonies, year: sources.crimes.year };
+
+    case "internet_access":
+      return {
+        ...sources.internet_access,
+        ...src.internet,
+        year: sources.internet_access.year
+      };
+
+    case "nene":
+      return { ...sources.nene, ...src.nene, year: sources.nene.year };
+
+    case "casen_household":
+    case "casen_health_system":
+    case "casen_banking":
+      return {
+        ...sources.casen_banking,
+        ...src.casen,
+        year: sources.casen_household.year
+      };
+
+    case "education_enrollment":
+      return {
+        ...sources.education_enrollment,
+        ...src.enrollment,
+        year: sources.education_enrollment.year
+      };
+
+    case "education_performance":
+    case "education_performance_new":
+      return {
+        ...sources.education_performance_new,
+        ...src.psu,
+        year: sources.education_performance_new.year
+      };
+
+    case "population_estimate":
+      return {
+        ...sources.population_estimate,
+        ...src.poblacion,
+        year: sources.population_estimate.year
+      };
+
+    case "death_causes":
+      return {
+        ...sources.death_causes,
+        ...src.muerte,
+        year: sources.death_causes.year
+      };
+
+    case "disabilities":
+      return {
+        ...sources.disabilities,
+        ...src.discapacidad,
+        year: sources.disabilities.year
+      };
+
+    case "election_results":
+    case "election_results_update":
+    case "election_participation":
+      return {
+        ...sources.election_participation,
+        ...src.servel,
+        year: sources.election_participation.year
+      };
+
+    case "health_access":
+      return {
+        ...sources.health_access,
+        ...src.salud,
+        year: sources.health_access.year
+      };
+
+    case "psu":
+      return { ...sources.psu, ...src.psu, year: sources.psu.year };
+
+    case "sned":
+      return { ...sources.sned, ...src.sned, year: sources.sned.year };
+
+    case "fonasa_website":
+      return sources.fonasa_website;
+
+    case "sned_website":
+      return sources.sned_website;
+
+    default:
+      return undefined;
+  }
+}

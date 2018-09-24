@@ -244,7 +244,7 @@ class IndustryProfile extends Component {
                   <meta property="og:title" content={title + " - DataChile"} />,
                   <meta
                     property="og:url"
-                    content={`https://${locale}.datachile.io${
+                    content={`https://${locale}.datachile.io/${
                       location.pathname
                     }`}
                   />,

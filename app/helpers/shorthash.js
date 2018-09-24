@@ -23,8 +23,13 @@ function table(num) {
   return t[num];
 }
 
-// 10进制转化成62进制以内的进制
-// convert 10 binary to customized binary, max is 62
+/**
+ * 10进制转化成62进制以内的进制
+ * convert 10 binary to customized binary, max is 62
+ * @param {number} integer
+ * @param {number} binary
+ * @returns {string}
+ */
 export function binaryTransfer(integer, binary = 62) {
   var stack = [];
   var num;

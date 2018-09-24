@@ -51,7 +51,6 @@ class Nav extends Component {
     const {
       t,
       i18n,
-      location,
       title,
       type,
       typeTitle,
@@ -83,16 +82,10 @@ class Nav extends Component {
       }, 100);
     }
 
-    var url = location.href;
-    if (canUseDOM) {
-      url = window.location.href;
-    }
-    url = url.replace(locale, otherLang);
+    var location = canUseDOM ? window.location : this.props.location;
 
+    var url = location.origin.replace(locale, otherLang) + location.pathname;
     var hideLogo = location.pathname === "/";
-    if (canUseDOM) {
-      hideLogo = window.location.pathname === "/";
-    }
 
     if (canUseDOM) {
       const nodeSide = select(".search-sidebar input").node();
@@ -128,6 +121,13 @@ class Nav extends Component {
               <div className="close-btn-container">
                 <a onClick={this.toggleSubNav}>
                   <img src="/images/icons/icon-close.svg" />
+                </a>
+              </div>
+              <div className="lang-selector">
+                <span className="lang current">{locale}</span>
+                {" | "}
+                <a className="lang other" href={url}>
+                  {otherLang}
                 </a>
               </div>
             </div>
@@ -259,11 +259,10 @@ class Nav extends Component {
   }
 }
 
-export default translate()(
-  connect(
-    state => ({
-      location: state.location
-    }),
-    {}
-  )(Nav)
-);
+const mapStateToProps = state => {
+  return {
+    location: state.location
+  };
+};
+
+export default translate()(connect(mapStateToProps)(Nav));

@@ -10,7 +10,7 @@ import {
   slugifyItem,
   getNumberFromTotalString
 } from "helpers/formatters";
-import { snedColorScale } from "helpers/colors";
+import { snedComparisonColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
 import SourceNote from "components/SourceNote";
@@ -35,7 +35,7 @@ class SNEDSchoolByClusters extends Section {
     const locale = i18n.language;
     const path = this.context.data.path_sned_indicators;
 
-    const title = t("Number of schools by Cluster");
+    const title = t("Total schools by type");
     const classSvg = "sned-school-by-clusters";
 
     return (
@@ -48,7 +48,7 @@ class SNEDSchoolByClusters extends Section {
           path={path}
           className={classSvg}
           msrName="Number of records"
-          drilldowns={["Stage 1a", "Stage 1b", "Stage 2"]}
+          drilldowns={["Stage 1a"]}
           config={{
             legendConfig: {
               label: false,
@@ -65,15 +65,17 @@ class SNEDSchoolByClusters extends Section {
                 "</div>"
             },
             shapeConfig: {
-              fill: d => snedColorScale("sned" + d["ID Stage 1a"])
+              fill: d => snedComparisonColorScale("sned" + d["ID Stage 1a"])
             },
             tooltipConfig: {
               padding: 0,
               titleStyle: {
                 "background-color": d =>
-                  snedColorScale("sned" + d["ID Stage 1a"]),
+                  snedComparisonColorScale("sned" + d["ID Stage 1a"]),
                 color: d =>
-                  colorContrast(snedColorScale("sned" + d["ID Stage 1a"])),
+                  colorContrast(
+                    snedComparisonColorScale("sned" + d["ID Stage 1a"])
+                  ),
                 padding: "5px 10px 5px 10px"
               },
               bodyStyle: {
@@ -83,7 +85,7 @@ class SNEDSchoolByClusters extends Section {
               },
               title: d =>
                 "<div style='display: flex; align-items: center; justify-content: center;'><img height='30px' src='/images/legend/education/type.png'/>" +
-                d["Stage 2"] +
+                d["Stage 1a"] +
                 "</div>",
               body: d =>
                 numeral(d["Number of records"], locale).format("0") +

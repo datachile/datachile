@@ -1,0 +1,95 @@
+.custom-dialog-psu {
+  & .ReactTable {
+    border-width: 0px;
+    color: #888888;
+    font-size: 11px;
+
+    & .rt-table {
+      overflow-y: scroll;
+      height: 60vh;
+      & .text-center {
+        text-align: center;
+      }
+      & .rt-tbody {
+        overflow: visible;
+
+        & .rt-tr-group {
+          max-height: 30px;
+        }
+      }
+    }
+
+    & .-pageJump {
+      border-radius: 10px;
+      & input {
+        background-color: #44464a;
+        color: #888888;
+      }
+    }
+  }
+
+  &.pt-dialog {
+    background: #2f2f37;
+    width: 650px;
+
+    & .pt-dialog-header {
+      background-color: #843a6a !important;
+      & .pt-dialog-header-title,
+      & .pt-icon-small-cross::before {
+        color: #ffffff;
+      }
+    }
+
+    & .-next,
+    & .-previous {
+      border-radius: 4px;
+      background-color: #843a6a !important;
+      color: #ffffff !important;
+
+      & button {
+        color: #ffffff;
+      }
+
+      & button:disabled {
+        background-color: #2f2f37 !important;
+        opacity: 0.95;
+        color: #222222;
+      }
+    }
+
+    & .rt-thead {
+      background-color: #b04d8d !important;
+      color: #ffffff;
+    }
+  }
+
+  & .pt-dialog-body {
+    max-height: 70vh;
+    margin: 0px;
+
+    p {
+      margin: 0px;
+      padding: 10px 0px;
+    }
+  }
+
+  & hr {
+    margin: 5px 0px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  & .custom-dialog-psu {
+    &.pt-dialog {
+      width: 400px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  & .custom-dialog-psu {
+    &.pt-dialog {
+      width: 300px;
+    }
+  }
+}

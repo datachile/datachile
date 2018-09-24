@@ -76,7 +76,12 @@
       "fitzroya": {
         "description":
           "<p>Nuevo dataset y gráficos en sección de educación: Indicadores SNED</p>",
-        "title": "1.3 - \"Fitzroya\" - 2018-04-09"
+        "title": "1.3.0 - \"Fitzroya\" - 2018-04-20"
+      },
+      "guayacan": {
+        "title": "1.3.1 - \"Guayacán\" - 2018-05-11",
+        "description":
+          "<p>Correcciones visuales menores. Actualización de documentación de API. Ancho corregido para gráficos en la sección de demografía y cívica.</p>"
       },
       "launch": {
         "description":
@@ -245,6 +250,11 @@
         "title": "Resultados electorales y participación",
         "use": "Se usa en los perfiles nacional, regional y comunal.",
         "year": "2009-2013-2016-2017"
+      },
+      "sned": {
+        "source": "Ministerio de Educación (MINEDUC)",
+        "title": "Sistema Nacional de Evaluación del Desempeño (SNED)",
+        "year": "2016"
       },
       "source": "Organismo responsable",
       "text":
@@ -524,7 +534,7 @@
       "text2":
         "Para instalar, puedes usar pip: <span class='code'>pip install datachile</span>",
       "text3":
-        "Mayor información en <a target='_blank' href='https://github.com/Datawheel/datachile-api/'>https://github.com/Datawheel/datachile-api/</a>"
+        "Mayor información en <a target='_blank' href='https://github.com/datachile/datachile-python-client/'>https://github.com/datachile/datachile-python-client/</a>"
     },
     "complex": {
       "text1":
@@ -539,6 +549,12 @@
     "datasets": {
       "text1":
         "Estos datos son obtenidos directamente desde <span class='url code'>https://chilecube.datachile.io/cubes</span>"
+    },
+    "terms": {
+      "cube": "Cubo",
+      "drilldown": "Drilldown",
+      "measure": "Medición",
+      "cut": "Corte"
     },
     "definitions": {
       "cube":
@@ -612,14 +628,26 @@
       "nonempty": "https://docs.microsoft.com/en-us/sql/mdx/nonempty-mdx"
     }
   },
-  "Download CSV file": "Descargar archivo CSV",
-  "Download data": "Descargar datos",
-  "Download documentation": "Descargar documentación",
+  "download": {
+    "csv": "Descargar archivo CSV",
+    "data": "Descargar datos",
+    "docs": "Descargar documentación",
+    "household": "Descargar datos de vivienda",
+    "banking": "Descargar datos de bancarización",
+    "health": "Descargar datos de salud",
+    "income": "Descargar datos de ingresos"
+  },
   "During": "Durante",
   "Economy": "Economía",
   "Education": "Educación",
   "Educational Center": "Centro educacional",
   "Efectiveness": "Efectividad",
+  "Efectiveness & Overcoming": "Efectividad & Superación",
+  "Efectiveness vs Overcoming by Comuna & Type":
+    "Efectividad vs Superación por Comuna & Tipo",
+  "Efectiveness vs Overcoming by School":
+    "Efectividad vs Superación por Escuela",
+
   "Elected Authority": "Autoridades Electas",
   "Election": "Elección",
   "Elections": "Elecciones",
@@ -674,6 +702,7 @@
   "Female percent of visas": "Porcentaje femenino de visas",
   "Female percent with disability": "Población femenina con discapacidad",
   "Field of Science": "Área de Conocimiento",
+  "For more details, click here": "Para mayor información, clic aquí",
   "form": {
     "data":
       "¿No encontraste lo que estabas buscando? Sugiere datos para agregar",
@@ -683,20 +712,85 @@
     "Diferencia PSU Promedio Particular Pagado/Municipal",
   "Gender": "Género",
   "Geo": "Geo",
+  "mayor": "alcalde",
+  "mayor_plural": "alcaldes",
+  "congressperson": "diputado",
+  "congressperson_plural": "diputados",
+  "senator": "senador",
+  "senator_plural": "senadores",
+  "president": "presidente",
+  "president_plural": "presidentes",
+  "representative": "{{count}} representante",
+  "representative_plural": "{{count}} representantes",
+  "vote": "voto",
+  "vote_plural": "votos",
+  "Total amount of votes": "Cantidad total de votos",
+  "Total votes for {{Candidate}}": "Votos totales para {{Candidate}}",
+  "Percentage of valid votes": "Porcentaje de votos válidos",
+  "Higher amount of votes in {{caption}} - Presidential 1st round":
+    "Mayor cantidad de votos en 1ra vuelta presidencial en {{caption}}",
+  "Higher amount of votes in {{caption}} - Presidential 2nd round":
+    "Mayor cantidad de votos en 2da vuelta presidencial en {{caption}}",
   "geo_profile": {
     "civics": {
+      "common": {
+        "participation":
+          "<p>$t(geo_profile.civics.common.total) $t(geo_profile.civics.common.invalid)</p>",
+        "total":
+          "Para la elección de {{position}} de {{year.election}}, en {{geo.caption}} votó un total de {{votes.total}} personas, que representan un {{votes.participation}} del total de votantes habilitados.",
+        "invalid":
+          "Adicionalmente, se registraron {{votes.blank}} votos en blanco y {{votes.null}} votos nulos."
+      },
+      "mayor": {
+        "title": "Elecciones Municipales",
+        "text_nodata":
+          "No hay datos de participación electoral para {{geo.caption}} en la elección municipal de {{year}}.",
+        "text_person":
+          "<p>La población de {{geo.caption}} eligió a {{candidates.0.Candidate}}, de {{candidates.0.Partido}}, como {{position}} para el período {{year.first}}-{{year.last}}, quien recibió {{candidates.0.Votes}} votos válidamente emitidos. En segundo lugar quedó {{candidates.1.Candidate}}, de {{candidates.1.Partido}}, quien recibió {{candidates.1.Votes}} votos.</p>",
+        "text_party_1":
+          "<p>El partido político que logró más puestos de {{position}} en {{geo.caption}} en la eleccion de {{year.election}} fue {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }).</p>",
+        "text_party_2":
+          "<p>Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }), y {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }).</p>",
+        "text_party":
+          "<p>Los partidos políticos que lograron más puestos de {{position}} en {{geo.caption}} en la elección de {{year.election}} fueron {{parties.0.name}}, con $t(representative, {'count': {{parties.0.total}} }). Le sigue {{parties.1.name}}, con $t(representative, {'count': {{parties.1.total}} }), y {{parties.2.name}}, con $t(representative, {'count': {{parties.2.total}} }).</p>"
+      },
       "congress": {
+        "title": "Elecciones Legislativas",
+        "title_senators": "Elecciones para Senador",
+        "title_congresspeople": "Elecciones para Diputado",
         "note":
           "*Los elementos resaltados de los gráficos representan a candidatos electos en dicha elección.",
-        "text":
-          "Los diputados que representan a {{geo.caption}} en el período 2018-2022 son: {{congresspersons}}"
+        "text_nodata":
+          "No hay datos de participación electoral para {{geo.caption}} en la elección legislativa de {{year}}.",
+        "text_party":
+          "<p>Dentro del Senado, los partidos políticos que lograron más escaños en la elección de {{year.election}} fueron {{senparties.0.name}}, con $t(representative, {'count': {{senparties.0.total}} }). Le sigue {{senparties.1.name}}, con $t(representative, {'count': {{senparties.1.total}} }), y {{senparties.2.name}}, con $t(representative, {'count': {{senparties.2.total}} }).</p><p>Mientras tanto, los partidos políticos que lograron más escaños en la Cámara de Diputados en el mismo año fueron {{dipparties.0.name}}, con $t(representative, {'count': {{dipparties.0.total}} }). Le sigue {{dipparties.1.name}}, con $t(representative, {'count': {{dipparties.1.total}} }), y {{dipparties.2.name}}, con $t(representative, {'count': {{dipparties.2.total}} }).</p>",
+        "senate":
+          "senadores que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{senators}}.",
+        "deputy":
+          "diputados que representan a {{geo.caption}} durante el período {{year.first}}-{{year.last}} son {{congresspeople}}.",
+        "text_person": "",
+        "text_person1": "<p>Los $t(geo_profile.civics.congress.senate)</p>",
+        "text_person2": "<p>Los $t(geo_profile.civics.congress.deputy)</p>",
+        "text_person3":
+          "<p>Los $t(geo_profile.civics.congress.senate)</p><p>Por otro lado, los $t(geo_profile.civics.congress.deputy)</p>"
       },
-      "presidential": {
+      "president": {
+        "title": "Elecciones Presidenciales",
+        "text_nodata":
+          "No hay datos de participación electoral para {{geo.caption}} en la elección presidencial de {{year}}.",
+        "text_country":
+          "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, la mayoría de votos la obtuvo el candidato {{round1.0.Candidate}} con un {{round1.0.share}} de los votos, seguido de {{round1.1.Candidate}}, quien obtuvo el segundo lugar con el {{round1.1.share}} de las preferencias, mientras que {{round1.2.Candidate}} obtuvo un {{round1.2.share}} de los votos, quedando fuera de la segunda vuelta.</p><p>Para la segunda vuelta presidencial, el candidato elegido para ser Presidente fue {{round2.0.Candidate}}, quien superó a {{round2.1.Candidate}} con un {{round2.0.share}} contra un {{round2.1.share}} de los votos.</p>",
         "text":
-          "En la elección presidencial de {{year.last}}, el {{candidate.first.share}} de los votantes"
+          "<p>Para la primera vuelta de la elección presidencial de {{year.election}}, los electores de {{geo.caption}} presentaron una preferencia por {{round1.0.Candidate}} con un {{round1.0.share}} de los votos, mientras que {{round1.1.Candidate}} obtuvo el segundo lugar con el {{round1.1.share}}, y {{round1.2.Candidate}} obtuvo el tercer lugar con un {{round1.2.share}} de las preferencias.</p><p>Para la segunda vuelta presidencial, la mayoría de los votantes de {{geo.caption}} se inclinó por {{round2.0.Candidate}}, superando a {{round2.1.Candidate}} con un {{round2.0.share}} contra un {{round2.1.share}} de los votos.</p>"
+      },
+      "participation": {
+        "text":
+          "El mayor porcentaje de participación en {{geo.caption}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores.",
+        "text_nodata":
+          "No hay datos de participación electoral para {{geo.caption}} en la elección presidencial de {{year}}."
       }
     },
-    "demography": {
+    "demographics": {
       "origin_by_activity":
         "<p>En {{last_year}}, el {{percentage_activity}} de las {{visas}} visas entregadas en {{area}} corresponden a la actividad más común entre los inmigrantes: {{activity}}.</p><p>Así mismo, el tipo de visa más popular en {{area}} es {{type}}, con un {{percentage_type}}.</p>",
       "origin_by_country":
@@ -729,7 +823,7 @@
         "by_product":
           "Productos importados por empresas domiciliadas en {{caption}}",
         "default":
-          "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{imports.first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. Las principales importaciones de {{geo.caption}} son <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, que representa {{imports.trade_first_share}} del total de las importaciones de {{geo.caption}}, seguida por, <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a>, que representa el {{imports.trade_second_share}} de éstas</p>",
+          "<p>En {{imports.latest_year}} las importaciones de empresas establecidas en {{geo.caption}} sumaron <i>{{imports.trade_volume}}</i>. Durante los últimos {{number_of_years}} años, éstas han <i>{{imports.increased_or_decreased}}</i> a una tasa promedio anual del {{imports.annualized_rate}}, desde <i>{{imports.trade_first_year}}</i> en {{imports.first_year}} hasta <i>{{imports.trade_last_year}}</i> en {{imports.last_year}}. Las principales importaciones de {{geo.caption}} son <a href=\"{{imports.trade_first_product_link}}\">{{imports.trade_first_product}}</a>, que representa {{imports.trade_first_share}} del total de las importaciones de {{geo.caption}}, seguida por <a href=\"{{imports.trade_second_product_link}}\">{{imports.trade_second_product}}</a>, que representa el {{imports.trade_second_share}} de éstas</p>",
         "no_data":
           "<p>No existen datos de importaciones de empresas establecidas en {{geo.caption}}.</p>",
         "one":
@@ -774,21 +868,43 @@
       },
       "sned": {
         "definitions": {
-          "efectiveness":
-            "Resultado educativo obtenido por el establecimiento en relación con la población atendida.",
-          "fairness":
-            " Igualdad de oportunidades, que corresponde a la accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. ",
-          "improvement":
-            "Mejoramiento de las condiciones de trabajo y adecuado funcionamiento del establecimiento.",
-          "initiative":
-            "Capacidad del establecimiento para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. ",
-          "integration":
-            "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento.",
-          "overcoming":
-            "Diferenciales de logro educativo obtenidos en el tiempo por el establecimiento educacional."
+          "efectiveness": {
+            "desc":
+              "Consiste en el resultado educativo obtenido por el establecimiento en relación con la población atendida. Se mide a través del promedio SIMCE en todos los subsectores de aprendizaje. Ponderación del 37% en el índice SNED.",
+            "title": "<strong>Efectividad</strong>"
+          },
+          "fairness": {
+            "desc":
+              "Indicadores que miden el grado de accesibilidad y permanencia de la población escolar en el establecimiento educacional y la integración de grupos con dificultades de aprendizaje. Ponderación del 22% en el índice SNED.",
+            "title": "<strong>Igualdad de oportunidades</strong>"
+          },
+          "improvement": {
+            "desc":
+              "Se considera en su medición la clasificación del establecimiento en el Sistema de Inspección de Subvenciones y el cumplimiento con los procesos estadísticos demandados por el Ministerio de Educación tales como Matrícula, Idoneidad Docente, Actas de Rendimiento. Ponderación del 2% en el índice SNED.",
+            "title": "<strong>Mejoramiento</strong>"
+          },
+          "initiative": {
+            "desc":
+              "Indicadores que obedecen a la capacidad para incorporar innovaciones educativas y comprometer el apoyo de agentes externos en su quehacer pedagógico. Ponderación del 6% en el índice SNED.",
+            "title": "<strong>Iniciativa</strong>"
+          },
+          "integration": {
+            "desc":
+              "Integración y participación de profesores y profesoras, padres y apoderados en el desarrollo del proyecto educativo del establecimiento. Ponderación del 5% en el índice SNED.",
+            "title": "<strong>Integración</strong>"
+          },
+          "overcoming": {
+            "desc":
+              "Corresponde a las diferencias de logro obtenidos en el tiempo por el establecimiento educacional. Se mide a través de la diferencia promedio SIMCE en todos los subsectores de aprendizaje. Ponderación del 28% en el índice SNED.",
+            "title": "<strong>Superación</strong>"
+          }
         },
+        "description":
+          "El Sistema Nacional de Evaluación del Desempeño (SNED), es un índice de desempeño de las escuelas que se construye usando data de 6 factores: efectividad, superación, iniciativa, mejoramiento de condiciones de trabajo, igualdad de oportunidades, e integración de profesores, padres y apoderados. * La data de Efectividad y Superación provienen de la prueba estandarizada SIMCE.",
+        "disclaimer":
+          "* En el caso de Educación Especial, estos establecimientos no presentan indicadores aplicables para los factores efectividad y superación",
         "text1":
-          "Durante {{year}}, el promedio de puntuación otorgado por el Sistema Nacional de Evaluación del Desempeño (SNED) para las escuelas de {{geo.caption}} fue de {{score}}."
+          "En el {{year}} el SNED promedio de las escuelas de {{geo.caption}} fue de {{score}} sobre 100. El promedio nacional de SNED fue de 67.48 sobre 100."
       }
     },
     "health": {
@@ -800,9 +916,9 @@
         "En {{year.last}}, {{data.total}}{{data.prep}} personas en {{geo.caption}} presentaron algún tipo de discapacidad, donde el {{data.severe.share}} correspondió a una discapacidad severa.",
       "fonasa": {
         "copago":
-          "Sin embargo, la utilidad concreta de esta distribución de la población beneficiaria pasa por el copago que éstos hacen en retribución a las atenciones médicas otorgadas con nuestra cobertura. Copago es el concepto para referirse a un pago por servicios compartido entre el beneficiario y el seguro, donde FONASA financia o bonifica una parte (porcentaje) del costo de una atención de salud cualquiera, y el beneficiario aporta de su bolsillo la parte que no financiamos/bonificamos.",
+          "Sin embargo, la utilidad concreta de esta distribución de la población beneficiaria pasa por el copago que éstos hacen en retribución a las atenciones médicas otorgadas con la cobertura. Copago es el concepto para referirse a un pago por servicios compartido entre el beneficiario y el seguro, donde FONASA financia o bonifica una parte (porcentaje) del costo de una atención de salud cualquiera, y el beneficiario aporta de su bolsillo la parte que no financiamos/bonificamos.”",
         "text":
-          "* Cuando un nuevo beneficiario se incorpora al Seguro Público de Salud, la primera tarea de FONASA es colocarlo en uno de sus 4 tramos de ingreso. Esta clasificación, de tipo escala, permite levantar caracterizaciones socioeconómicas de la población beneficiaria, y están definidos de la siguiente manera:",
+          "* “Cuando un nuevo beneficiario se incorpora al Seguro Público de Salud, la primera tarea de FONASA es colocarlo en uno de sus 4 tramos de ingreso. Esta clasificación, de tipo escala, permite levantar caracterizaciones socioeconómicas de la población beneficiaria, y están definidos de la siguiente manera:",
         "tramos":
           "<ul><li><strong>Grupo A</strong>: Beneficiarios carentes de recursos para cotizar en salud, o en condición de indigencia (no cotizantes).</li><li><strong>Grupo B</strong>: Beneficiarios con ingresos menores a $270.000 al mes (cotizantes). Trabajadores del sector público de salud.</li><li><strong>Grupo C</strong>: Beneficiarios con ingresos de entre $270.000 y $394.200 al mes (cotizantes)</li><li><strong>Grupo D</strong>: Beneficiarios con ingresos de $394.200 y más al mes (cotizantes)</li></ul>"
       },
@@ -867,10 +983,6 @@
     "income_sex_age_slide": {
       "text":
         "En {{last_year}} el ingreso promedio de los habitantes de {{geo.caption}} fue de {{last_year_value}}. Durante los últimos {{number_of_years}} años el ingreso promedio de {{geo.caption}} ha <i>{{increased_or_decreased}}</i> a una tasa anual del {{annualized_rate}}, desde <i>{{first_year_value}}</i> en {{first_year}} hasta <i>{{last_year_value}}</i> en {{last_year}}."
-    },
-    "politics": {
-      "text":
-        "El mayor porcentaje de participación en {{geo.name}} para una elección, fue en {{participation.year}} para escoger {{participation.caption}}, con un {{participation.perc}} de los electores."
     },
     "trade_slide": {
       "text":
@@ -937,9 +1049,9 @@
   "houses": "viviendas",
   "Housing": "Vivienda",
   "Housing & Environment": "Vivienda y Entorno",
-  "Housing and Environment": "Housing and Environment",
+  "Housing and Environment": "Vivienda y Entorno",
   "Housing Conditions": "Condiciones habitacionales",
-  "Housing Type": "Housing Type",
+  "Housing Type": "Tipo de Vivienda",
   "Immigrant visas": "Visas de inmigrante",
   "Imports": "Importaciones",
   "Imports & Exports": "Importaciones y Exportaciones",
@@ -1162,6 +1274,7 @@
   "Number of jobs": "Cantidad de puestos de trabajo",
   "Number of larceny complaints": "Cantidad de denuncias por hurto",
   "Number of schools by Cluster": "Cantidad de escuelas por Cluster",
+  "Number of schools": "Cantidad de escuelas",
   "Number of theft complaints growth":
     "Cambio en cantidad de denuncias por robo",
   "Number of visas": "Cantidad de Visas",
@@ -1197,9 +1310,12 @@
   "People with disabilities": "Personas con discapacidad",
   "Per 100 inhabitants in": "Cada 100 habitantes en",
   "Performance": "Desempeño",
+  "Average Performance By School Type":
+    "Desempeño Promedio por Tipo de Escuela",
   "Performance Evaluation": "Evaluación de Desempeño",
   "Pharmacy": "Farmacia",
   "Pic by": "Foto de",
+  "Points": "Puntos",
   "Politics": "Política",
   "Population": "Población",
   "Population Projection": "Proyección poblacional",
@@ -1210,6 +1326,8 @@
   "President": "Presidente",
   "Presidential": "Presidencial",
   "Presidential 1st - 2nd round": "1ra - 2da vuelta Presidencial",
+  "Presidential 1st round": "1ra vuelta Presidencial",
+  "Presidential 2nd round": "2da vuelta Presidencial",
   "Primary Healthcare": "Atención de Salud Primaria",
   "Product": "Producto",
   "Product Space": "Espacio de Producto",
@@ -1316,9 +1434,12 @@
   "Salaries By Occupation": "Salarios por ocupación",
   "Sales in ": "Ventas en ",
   "School": "Escuela",
+  "School By Type": "Escuela Según Tipo",
   "School By Enrollment": "Escuela según matrícula",
   "Schools": "Escuelas",
   "Score": "Puntaje",
+  "PSU Score": "Puntaje PSU",
+  "Score Range": "Rango de Puntaje",
   "Search a location, industry, product, career, etc":
     "Busque lugares, industrias, productos…",
   "Sector": "Sector",

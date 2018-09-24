@@ -3,15 +3,31 @@
   & #legend {
     position: absolute;
     bottom: 20px;
-    height: 80px;
-    left: 20px;
-    right: 20px;
-    width: calc(100% - 45px);
-    background-color: var(--snow);
-    border: 2px solid var(--gray-dark);
+    height: 100px;
+    left: 16px;
+    right: 0px;
+    width: calc(100% - 35px);
+    //background-color: var(--snow);
+    background-color: #2f2f38;
+    border: 0px solid var(--snow);
 
     & text {
-      fill: #000 !important;
+      fill: #fff !important;
+    }
+
+    & .d3plus-Rect-shape {
+      & rect {
+        stroke: var(--snow) !important;
+      }
+    }
+
+    & .ticks {
+      & .d3plus-Line-shape {
+        & path {
+          stroke: var(--snow) !important;
+          fill: #fff !important;
+        }
+      }
     }
   }
 }

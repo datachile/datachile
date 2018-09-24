@@ -3,72 +3,94 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
+import { sources } from "helpers/consts";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
-import { Congress, Election } from "texts/GeoProfile";
+import { textCivicsCongress } from "texts/GeoProfile";
+
+const election_year = []
+  .concat(sources.election_results_update.senators_election_year)
+  .pop();
 
 class CongressSlide extends Section {
   static need = [
-    (params, store) =>
-      simpleDatumNeed(
-        "datum_congressperson_elected",
-        "election_results_update",
-        ["Number of records", "Votes"],
-        {
-          drillDowns: [
-            ["Candidates", "Candidates", "Candidate"],
-            ["Coalition", "Coalition", "Coalition"]
-          ],
-          options: { parents: true },
-          cuts: [
-            "[Election Type].[Election Type].[Election Type].&[4]",
-            "[Date].[Date].[Year].&[2017]",
-            "[Elected].[Elected].[Elected].&[1]"
-          ]
-        },
-        "geo",
-        false
-      )(params, store)
+    simpleDatumNeed(
+      "datum_election_congressperson",
+      "election_results_update",
+      ["Number of records", "Votes"],
+      {
+        drillDowns: [
+          ["Election Type", "Election Type", "Election Type"],
+          ["Party", "Party", "Partido"],
+          ["Candidates", "Candidates", "Candidate"]
+        ],
+        options: { sparse: true },
+        cuts: [
+          "{[Election Type].[Election Type].[Election Type].&[3],[Election Type].[Election Type].[Election Type].&[4]}",
+          "[Elected].[Elected].[Elected].&[1]",
+          `[Date].[Date].[Year].&[${election_year}]`
+        ]
+      },
+      "geo",
+      false
+    )
   ];
 
   render() {
     const { children, t, i18n } = this.props;
-    const { datum_electoral_participation, geo } = this.context.data;
+    const { datum_election_congressperson, geo } = this.context.data;
 
     const locale = i18n.language;
-    const text = Election(datum_electoral_participation, geo, locale);
+
+    const text = textCivicsCongress(
+      geo,
+      datum_election_congressperson,
+      election_year,
+      locale
+    );
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Election")}</div>
-          <div className="topic-slide-text">
-            <p
-              dangerouslySetInnerHTML={{
-                __html: t("geo_profile.politics.text", text)
-              }}
-            />
+          <div className="topic-slide-title">
+            {t("geo_profile.civics.congress.title")}
           </div>
+          <div
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{
+              __html: t(
+                "geo_profile.civics.congress.text",
+                text || { context: "nodata", geo, year: election_year }
+              )
+            }}
+          />
           <div className="topic-slide-data">
             {text && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="cambio-votacion"
-                datum={numeral(text.growth, locale).format("0.0%")}
-                title={t("Change in participation")}
-                subtitle={t("Presidential 1st - 2nd round") + " " + "2017"}
+                showIf={text.datum.rawSenTotal > 0}
+                datum={text.datum.senTotal}
+                title={t("Total amount of votes")}
+                subtitle={
+                  t("geo_profile.civics.congress.title_senators") +
+                  " - " +
+                  election_year
+                }
               />
             )}
             {text && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="participation"
-                datum={text.participation.perc}
-                title={t("Participation")}
+                showIf={text.datum.rawDipTotal > 0}
+                datum={text.datum.dipTotal}
+                title={t("Total amount of votes")}
                 subtitle={
-                  text.participation.caption + " - " + text.participation.year
+                  t("geo_profile.civics.congress.title_congresspeople") +
+                  " - " +
+                  election_year
                 }
               />
             )}
@@ -76,15 +98,12 @@ class CongressSlide extends Section {
         </div>
         <div className="topic-slide-charts">{children}</div>
         {geo.depth > 0 && (
-          <div>
-            <p
-              className="chart-text"
-              dangerouslySetInnerHTML={{
-                __html: t("geo_profile.civics.congress.note")
-              }}
-            />
-            <br />
-          </div>
+          <p
+            className="chart-text"
+            dangerouslySetInnerHTML={{
+              __html: t("geo_profile.civics.congress.note")
+            }}
+          />
         )}
       </div>
     );

@@ -197,7 +197,7 @@ export function getAvailableYears(data) {
   // remove the undefined key just in case
   delete years.undefined;
   // get an array of keys
-  return Object.keys(years).sort();
+  return Object.keys(years).map(Number).sort();
 }
 
 export function getCutsFullName(obj) {

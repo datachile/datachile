@@ -1,5 +1,5 @@
 import { Client as MondrianClient } from "mondrian-rest-client";
-import { getGeoObject, getLevelObject } from "helpers/dataUtils";
+import { getGeoObject, getLevelObject, getGeoType } from "helpers/dataUtils";
 
 import flattenDeep from "lodash/flattenDeep";
 import rangeRight from "lodash/rangeRight";
@@ -53,6 +53,13 @@ function levelCut(
   }
 }
 
+/**
+ * Set caption for level and language
+ * @param {string} query
+ * @param {string} level Level name
+ * @param {string} lang Language
+ * @returns {string}
+ */
 function setCaptionForLevelAndLang(query, level, lang) {
   const ann = level.annotations[`${lang}_caption`];
   if (ann) {
@@ -61,6 +68,12 @@ function setCaptionForLevelAndLang(query, level, lang) {
   return query;
 }
 
+/**
+ * Set captions by language
+ * @param {string} query
+ * @param {string} lang Language
+ * @returns {string}
+ */
 function setLangCaptions(query, lang) {
   // bail early if lang <> es
   if (lang.substring(0, 2) !== "es") return query;
@@ -82,6 +95,12 @@ function setLangCaptions(query, lang) {
   return query;
 }
 
+/**
+ * Get locale caption
+ * @param {string} level
+ * @param {string} locale Language
+ * @returns {string}
+ */
 function getLocaleCaption(level, locale = "en") {
   const caption = level.annotations[locale.substring(0, 2) + "_caption"];
   if (caption) {
@@ -94,6 +113,15 @@ function getMeasureByGeo(type, countryM, regionM, comunaM) {
   return type == "country" ? countryM : type == "region" ? regionM : comunaM;
 }
 
+/**
+ * Return the members of a level from a cube
+ * @param {string} cube Cube name
+ * @param {string} dimension Dimension name
+ * @param {string} level Level name
+ * @param {string} locale Language
+ * @param {boolean} children
+ * @returns {MondrianClient}
+ */
 function getMembersQuery(
   cube,
   dimension,
@@ -132,7 +160,7 @@ function simpleGeoChartNeed(
   overrideGeo = false
 ) {
   return (params, store) => {
-    let geo = overrideGeo ? overrideGeo : getGeoObject(params);
+    let geo = overrideGeo || getGeoObject(params);
 
     if (
       [
@@ -172,6 +200,13 @@ function simpleGeoChartNeed(
   };
 }
 
+/**
+ * Return URL to use in charts of IndustryProfile
+ * @param {string} key Unique key
+ * @param {string} cube Cube name
+ * @param {Array} measures Measure names
+ * @param {Object} params
+ */
 function simpleIndustryChartNeed(
   key,
   cube,
@@ -526,25 +561,60 @@ function quickQuery(params) {
   });
 }
 
-const COUNTRY_LEVEL_CUBES_CUT = {
-  immigration: {
-    level1: ["Origin Country", "Country", "Continent"],
-    level2: ["Origin Country", "Country", "Country"]
+const CUBES_CUT_BASE = {
+  getLevelDrilldown(cube, level) {
+    return [].concat(this.hierarchies[cube], this.levels[level]);
   },
-  exports: {
-    level1: ["Destination Country", "Country", "Continent"],
-    level2: ["Destination Country", "Country", "Country"]
-  },
-  imports: {
-    level1: ["Origin Country", "Country", "Continent"],
-    level2: ["Origin Country", "Country", "Country"]
+  getLevelCut(cube, params) {
+    const cut = this.getCut(params);
+    if (cut && cube in this.hierarchies) {
+      const hierarchy = this.hierarchies[cube];
+      return `[${hierarchy[0]}].[${hierarchy[1]}].${cut}`;
+    }
   }
 };
 
-function simpleCountryDatumNeed(key, query, postprocess) {
-  const cube = query.cube;
-  const ddcube = COUNTRY_LEVEL_CUBES_CUT[cube] || {};
+const getGeoCut = params => {
+  const lvlComuna = (params.comuna || "").split("-").pop();
+  if (lvlComuna) return `[Comuna].&[${lvlComuna}]`;
+  const lvlRegion = (params.region || "").split("-").pop();
+  if (lvlRegion) return `[Region].&[${lvlRegion}]`;
+};
 
+const CUBES_CUT_GEO = {
+  ...CUBES_CUT_BASE,
+  getCut: getGeoCut,
+  levels: {
+    country: undefined,
+    region: "Region",
+    comuna: "Comuna"
+  },
+  hierarchies: {
+    election_results_update: ["Geography", "Geography"]
+  }
+};
+
+const getCountryCut = params => {
+  const level1 = (params.level1 || "").split("-").pop();
+  const level2 = (params.level2 || "").split("-").pop();
+  return level2 ? `[Country].&[${level2}]` : `[Continent].&[${level1}]`;
+};
+
+const CUBES_CUT_COUNTRY = {
+  ...CUBES_CUT_BASE,
+  getCut: getCountryCut,
+  levels: {
+    level1: "Continent",
+    level2: "Country"
+  },
+  hierarchies: {
+    immigration: ["Origin Country", "Country"],
+    exports: ["Destination Country", "Country"],
+    imports: ["Origin Country", "Country"]
+  }
+};
+
+function simpleGeoDatumNeed2(key, query, postprocess) {
   if ("function" != typeof postprocess) {
     postprocess = function(res, lang, params, store) {
       const data = res.data || {};
@@ -553,32 +623,55 @@ function simpleCountryDatumNeed(key, query, postprocess) {
   }
 
   return (params, store) => {
-    const ddlevel = ddcube[params.level2 ? "level2" : "level1"];
-    const countryCut = `[${ddlevel[0]}].[${ddlevel[1]}].${getCountryCut(
-      params
-    )}`;
+    const cube = query.cube;
+    const levelCut = CUBES_CUT_GEO.getLevelCut(cube, params);
 
     query.locale = store.i18n.locale;
-    query.cuts = [].concat(query.cuts, countryCut).filter(Boolean);
+    query.cuts = [].concat(query.cuts, levelCut).filter(Boolean);
+
     if (query.drillLevel) {
+      const ddlevel = CUBES_CUT_GEO.getLevelDrilldown(cube, getGeoType(params));
       query.drillDowns = [].concat(query.drillDowns, ddlevel);
     }
 
     const promise = quickQuery(query)
       .then(res => postprocess(res, query.locale, params, store))
-      .then(data => {
-        return { key, data };
-      });
+      .then(data => ({ key, data }));
 
     return { type: "GET_DATA", promise, description: key };
   };
 }
 
-const getCountryCut = params => {
-  const level1 = (params.level1 || "").split("-").pop();
-  const level2 = (params.level2 || "").split("-").pop();
-  return level2 ? `[Country].&[${level2}]` : `[Continent].&[${level1}]`;
-};
+function simpleCountryDatumNeed(key, query, postprocess) {
+  if ("function" != typeof postprocess) {
+    postprocess = function(res, lang, params, store) {
+      const data = res.data || {};
+      return data.values ? flattenDeep(data.values) : data.data;
+    };
+  }
+
+  return (params, store) => {
+    const cube = query.cube;
+
+    const countryCut = CUBES_CUT_COUNTRY.getLevelCut(cube, params);
+
+    query.locale = store.i18n.locale;
+    query.cuts = [].concat(query.cuts, countryCut).filter(Boolean);
+    if (query.drillLevel) {
+      const ddlevel = CUBES_CUT_COUNTRY.getLevelDrilldown(
+        cube,
+        params.level2 ? "level2" : "level1"
+      );
+      query.drillDowns = [].concat(query.drillDowns, ddlevel);
+    }
+
+    const promise = quickQuery(query)
+      .then(res => postprocess(res, query.locale, params, store))
+      .then(data => ({ key, data }));
+
+    return { type: "GET_DATA", promise, description: key };
+  };
+}
 
 function simpleDatumNeed(
   key,
@@ -722,12 +815,6 @@ function simpleInstitutionDatumNeed(
     const prm = client
       .cube(cube)
       .then(cube => {
-        const q = createFreshQuery(cube, measures, {
-          drillDowns: drillDowns,
-          options: options,
-          cuts: cuts
-        });
-
         const query = levelCut(
           institution,
           "Higher Institutions",
@@ -766,12 +853,14 @@ export {
   getMemberQuery,
   setLangCaptions,
   getMeasureByGeo,
+  getGeoCut,
   getCountryCut,
   simpleGeoChartNeed,
   simpleIndustryChartNeed,
   simpleGeoDatumNeed,
   simpleFallbackGeoDatumNeed,
   simpleAvailableGeoDatumNeed,
+  simpleGeoDatumNeed2,
   simpleCountryDatumNeed,
   simpleIndustryDatumNeed,
   simpleInstitutionDatumNeed,
