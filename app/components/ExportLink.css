@@ -1,55 +1,78 @@
-.export-link {
-  font-family: var(--font-family-text);
-  position: relative;
-  font-size: 12px;
-  line-height: 1.5;
-  text-align: center;
-  text-transform: uppercase;
+@import "../pages/mixins";
 
-  & .toggle {
-    display: block;
-    color: var(--snow);
-    margin: -5px 0;
-    padding: 5px;
-    background-color: transparent;
-    transition: background-color 0.5s ease;
-    & img {
-      width: 20px;
-    }
-  }
-  &.open .toggle {
-    background-color: var(--accent);
+.export-controls {
+  text-align: right;
+
+  /* dropdown trigger */
+  & .export-button {
+    /* button overrides */
+    background-color: var(--black);
+    padding: 0.75em 1.5em 0.625em 1.5em;
+    /* prevent flexbox from wrapping icon under text */
+    white-space: nowrap;
+    /* transitions */
+    transition:
+      background-color 0.2s,
+      opacity 0.2s;
+
+      & .btn-icon {
+        margin-left: 0.25em;
+      }
   }
 
-  & ul {
+  /* dropdown list of options */
+  & .export-list {
+    /* positioning */
     position: absolute;
+    top: auto;
     z-index: 14;
-    left: -15px;
-    top: 30px;
-    overflow: hidden;
-    display: block;
-    margin: 0;
-    padding: 0;
-    height: auto;
-    width: 60px;
-    max-height: 0;
+    /* sizing */
+    min-width: 100%;
+    margin-top: -20px;
+    /* theming */
     background-color: var(--accent);
-    transition: max-height 0.5s ease;
+    border-radius: 2px;
+    box-shadow: 0 1px 2em color(var(--black) a(0.333));
+    /* transitions */
+    will-change: opacity, transform, margin-top;
+    opacity: 0;
+    transform: scale(0.01);
 
-    & li.disabled {
-      display: none;
-    }
-
-    & a {
+    /* individual link */
+    & .export-link {
       display: block;
-      padding: 5px;
-      color: var(--snow);
-      &:hover {
-        background: var(--nice-blue);
+      padding: 0.75em 1em;
+      min-width: 6em;
+      width: 100%;
+      /* override default link styles */
+      color: var(--white);
+      text-decoration: none;
+      /* transitions */
+      transition:
+        color 0.2s,
+        background-color 0.2s;
+
+      /* interactions */
+      &:hover,
+      &:focus {
+        background-color: var(--accent-light);
+      }
+
+      /* disabled state */
+      &.is-disabled {
+        display: none;
       }
     }
   }
-  &.open ul {
-    max-height: 140px;
+
+  /* open state */
+  &.is-open .export-list {
+    margin-top: 2px;
+    opacity: 1;
+    transform: none;
+    /* transitions */
+    transition:
+      opacity 0.2s ease-out,
+      margin-top 0.2s ease-out;
   }
 }

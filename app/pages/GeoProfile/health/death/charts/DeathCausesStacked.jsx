@@ -8,7 +8,7 @@ import { employmentColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class DeathCausesStacked extends Section {
 	static need = [];
@@ -23,14 +23,17 @@ class DeathCausesStacked extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Death Causes Over Time")}</span>
+					<span>
+						{t("Death Causes Over Time")}
+						<SourceTooltip cube="death_causes" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 
 				<StackedArea
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: ["CIE 10"],
 						label: d => d["CIE 10"],
@@ -56,7 +59,6 @@ class DeathCausesStacked extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="death_causes" />
 			</div>
 		);
 	}

@@ -13,7 +13,7 @@ import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class ExportsByProduct extends Section {
@@ -72,14 +72,17 @@ class ExportsByProduct extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Exports by product")}</span>
+          <span>
+            {t("Exports by product")}
+            <SourceTooltip cube="exports" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         {this.state.chart ? (
           <Treemap
             className={classSvg}
             config={{
-              height: 500,
+              height: 400,
               data: path,
               groupBy: ["ID HS0", "ID HS2"],
               label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
@@ -87,9 +90,9 @@ class ExportsByProduct extends Section {
               total: d => d["FOB US"],
               totalConfig: {
                 text: d =>
-                  "Total: US" +
+                  "Total: US " +
                   numeral(getNumberFromTotalString(d.text), locale).format(
-                    "($ 0.[00] a)"
+                    "($0,.[00]a)"
                   ) +
                   " FOB"
               },
@@ -100,8 +103,6 @@ class ExportsByProduct extends Section {
                   label: d => d["HS0"],
                   backgroundImage: d =>
                     "/images/legend/hs/hs_" + d["ID HS0"] + ".png",
-                  width: 25,
-                  height: 25,
                   fill: d => productsColorScale("hs" + d["ID HS0"])
                 }
               },
@@ -117,7 +118,7 @@ class ExportsByProduct extends Section {
               tooltipConfig: {
                 title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
                 body: d =>
-                  numeral(d["FOB US"], locale).format("(USD 0 a)") +
+                  numeral(d["FOB US"], locale).format("(USD 0a)") +
                   " FOB<br/><a>" +
                   t("tooltip.to_profile") +
                   "</a>"
@@ -128,7 +129,6 @@ class ExportsByProduct extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="exports" />
       </div>
     );
   }

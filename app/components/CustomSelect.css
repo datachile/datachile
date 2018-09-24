@@ -75,7 +75,7 @@
   }
 
   &.multi {
-    position: relative;
+  
 
     & > .pt-icon-standard {
       position: absolute;

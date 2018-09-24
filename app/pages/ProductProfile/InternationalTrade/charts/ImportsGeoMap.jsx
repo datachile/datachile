@@ -9,7 +9,7 @@ import { getLevelObject } from "helpers/dataUtils";
 import { sources } from "helpers/consts";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ExportsGeoMap extends Section {
   static need = [
@@ -60,11 +60,11 @@ class ExportsGeoMap extends Section {
               t("in") +
               " " +
               sources.imports.year}
+            <SourceTooltip cube="imports" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <CustomMap path={path} msrName={"CIF US"} className={"imports"} />
-        <SourceNote cube="imports" />
       </div>
     );
   }

@@ -42,7 +42,8 @@ class MapContent extends React.Component {
       <div class='tooltip-data-value'>${numeral(
         d[msrName],
         i18n.language
-      ).format(msrFormat)}</div>
+      ).format(msrFormat)}
+      </div>
       <div class='tooltip-data-title'>${mapTitle} ${t(" in ")} ${mapYear}</div>
     </div`;
   };

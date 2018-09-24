@@ -10,6 +10,7 @@ import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import LevelWarning from "components/LevelWarning";
 
 class HealthCareSlide extends Section {
   static need = [
@@ -58,7 +59,7 @@ class HealthCareSlide extends Section {
   ];
 
   render() {
-    const { children, t, i18n } = this.props;
+    const { children, path, t, i18n } = this.props;
     const {
       datum_health_access,
       datum_health_access_specialized_per_year
@@ -107,12 +108,12 @@ class HealthCareSlide extends Section {
                           datum_health_access_specialized_per_year
                         ),
                         locale
-                      ).format("0.0 %")
+                      ).format("0.0%")
                     : t("No data"),
                 share:
                   datum_health_access.length > 0
                     ? numeral(share_specialized_healthcare, locale).format(
-                        "0.0 %"
+                        "0.0%"
                       )
                     : t("No data")
               }
@@ -123,27 +124,9 @@ class HealthCareSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Healthcare by Type")}
-            {this.context.data.geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t(
-                        "geo_profile.warning",
-                        this.context.data.geo.ancestors[0]
-                      )
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          <h3 className="topic-slide-title">{t("Healthcare by Type")}</h3>
           <div className="topic-slide-text">
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: t("geo_profile.health.healthcare", text_healthcare)
               }}
@@ -170,7 +153,7 @@ class HealthCareSlide extends Section {
               className="l-1-3"
               icon="health-firstaid"
               datum={numeral(share_specialized_healthcare, locale).format(
-                "0.0 %"
+                "0.0%"
               )}
               title={t("Specialized Healthcares")}
               subtitle={t("During") + " " + sources.health_access.year}
@@ -190,6 +173,9 @@ class HealthCareSlide extends Section {
               subtitle={t("in") + " " + geo.name}
             />
           </div>
+          {this.context.data.geo.depth > 1 && (
+            <LevelWarning name={this.context.data.geo.ancestors[0].caption} path={path} />
+          )}
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

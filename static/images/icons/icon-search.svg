@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="18">
-  <path d="M.5 5.5h4v-2h-4z" fill="#4b71b5" stroke="#f2f4f9"/>
-  <path d="M22.5.5h4v8h-4z" fill="#4b71b5" stroke="#f2f4f9" stroke-linecap="round" paint-order="markers fill stroke"/>
-  <path d="M22.5 7.5l-18-1v-4l18-1z" fill="#4b71b5" stroke="#f2f4f9"/>
-  <path d="M12.6 7.1L9 15.6l1.8.8 2.6-6.3 2.6 6.3 1.8-.8-3.5-8.5z" color="#000" fill="#708bbb" stroke="#f2f4f9" stroke-linejoin="bevel"/>
-  <circle cx="17" cy="16" r="1.5" fill="#708bbb" stroke="#f2f4f9" stroke-linecap="square" paint-order="markers fill stroke"/>
-  <circle cx="10" cy="16" r="1.5" fill="#708bbb" stroke="#f2f4f9" stroke-linecap="square" paint-order="markers fill stroke"/>
-  <circle cx="13.5" cy="7.5" r="2" fill="#708bbb" stroke="#f2f4f9" stroke-linecap="square" paint-order="markers fill stroke"/>
+  <path d="M.5 5.5h4v-2h-4z" fill="#3277dc" stroke="#f2f4f9"/>
+  <path d="M22.5.5h4v8h-4z" fill="#3277dc" stroke="#f2f4f9" stroke-linecap="round" paint-order="markers fill stroke"/>
+  <path d="M22.5 7.5l-18-1v-4l18-1z" fill="#3277dc" stroke="#f2f4f9"/>
+  <path d="M12.6 7.1L9 15.6l1.8.8 2.6-6.3 2.6 6.3 1.8-.8-3.5-8.5z" color="#000" fill="#3277dc" stroke="#f2f4f9" stroke-linejoin="bevel"/>
+  <circle cx="17" cy="16" r="1.5" fill="#3277dc" stroke="#f2f4f9" stroke-linecap="square" paint-order="markers fill stroke"/>
+  <circle cx="10" cy="16" r="1.5" fill="#3277dc" stroke="#f2f4f9" stroke-linecap="square" paint-order="markers fill stroke"/>
+  <circle cx="13.5" cy="7.5" r="2" fill="#3277dc" stroke="#f2f4f9" stroke-linecap="square" paint-order="markers fill stroke"/>
 </svg>

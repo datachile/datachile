@@ -9,7 +9,7 @@ import { Section } from "datawheel-canon";
 import { sources } from "helpers/consts";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class IndustrySpace extends Section {
 	static need = [
@@ -35,13 +35,16 @@ class IndustrySpace extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Industry Space")}</span>
+					<span>
+						{t("Industry Space")}
+						<SourceTooltip cube="tax_data" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<Network
 					className={classSvg}
 					config={{
-						height: 600,
+						height: 400,
 						links: "/json/isic_4_02_links_d3p2.json",
 						nodes: "/json/isic_4_02_nodes_d3p2.json",
 						data: path,
@@ -68,7 +71,7 @@ class IndustrySpace extends Section {
                            <td class='data'>${numeral(
 															d["Output"],
 															locale
-														).format("$ 0 a")}</td></tr>
+														).format("$0, a")}</td></tr>
                            <tr><td class='title'>${t("ISIC")}</td>
                            <td class='data'>${d["ID Level 4"]}</td></tr>
                            <tr><td class='title'>${t(
@@ -89,13 +92,6 @@ class IndustrySpace extends Section {
 							...d
 						}))
 					}
-				/>
-				<SourceNote cube="tax_data" />
-				<p
-					className="chart-text"
-					dangerouslySetInnerHTML={{
-						__html: t("geo_profile.economy.rca")
-					}}
 				/>
 			</div>
 		);

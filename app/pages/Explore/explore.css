@@ -1,8 +1,9 @@
 @import "../mixins";
+
 .explore-page {
   & .search-explore-wrapper {
     lost-flex-container: row;
-    padding: var(--gutter);
+    padding: 0 var(--gutter) var(--gutter) var(--gutter);
     lost-center: 1/3 flex;
     margin-bottom: var(--gutter);
   }
@@ -11,10 +12,8 @@
     margin: calc(var(--gutter)*2) var(--gutter) calc(var(--gutter)*2)
       var(--gutter);
     & h3 {
-      color: var(--snow);
-      text-transform: uppercase;
-      font-family: var(--font-family-title);
-      font-weight: 300;
+      color: var(--white);
+      @add-mixin heading-font;
       line-height: 1em;
     }
   }
@@ -29,22 +28,21 @@
         list-style: none;
         & li {
           margin: 15px 0px var(--gutter) 0px;
-          & a.link {
+          & a.explore-link {
             display: flex;
             align-items: center;
+            text-decoration: none; /* override default */
             & img {
               width: 25px;
               height: 25px;
             }
             & span {
+              @add-mixin font-xs;
               margin-left: 15px;
-              color: var(--snow);
+              color: var(--white);
               text-transform: uppercase;
-              font-family: var(--font-family-title);
+              @add-mixin heading-font;
               padding: 10px 0px 5px 0px;
-              border-bottom: 1px solid var(--dark);
-              font-size: 14px;
-              font-weight: 300;
             }
             &:hover {
               text-decoration: none;
@@ -57,7 +55,7 @@
         & li.selected {
           & a {
             & span {
-              border-color: var(--snow);
+              border-color: var(--white);
             }
           }
         }
@@ -73,9 +71,8 @@
           & .level1-filter {
             lost-waffle: 1/4;
             padding: 5px 0px;
-            border-bottom: 1px solid var(--dark);
             &.selected {
-              border-color: var(--snow);
+              border-color: var(--white);
             }
           }
         }
@@ -84,15 +81,12 @@
           padding: 0;
           list-style: none;
           & li.level1-filter {
-            color: var(--snow);
+            color: var(--white);
             text-transform: uppercase;
             cursor: pointer;
-            & span {
-              border-bottom: 1px solid var(--dark);
-            }
             &.selected {
               & span {
-                border-color: var(--snow);
+                border-color: var(--white);
               }
             }
           }
@@ -101,10 +95,8 @@
       & .results-block {
         & h3,
         & h4 {
-          color: var(--snow);
-          text-transform: uppercase;
-          font-family: var(--font-family-title);
-          font-weight: 300;
+          color: var(--white);
+          @add-mixin heading-font;
           line-height: 1em;
           margin: calc(var(--gutter) * 2) 0;
           padding-top: var(--gutter);
@@ -127,9 +119,9 @@
         & .list-title {
           margin-top: calc(var(--gutter));
           & a {
-            color: var(--snow);
+            color: var(--white);
             text-transform: uppercase;
-            font-family: var(--font-family-title);
+            @add-mixin heading-font;
           }
         }
       }

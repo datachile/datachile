@@ -9,7 +9,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class HealthCare extends Section {
 	static need = [
@@ -58,13 +58,16 @@ class HealthCare extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Healthcare by Type")}</span>
+					<span>
+						{t("Healthcare by Type")}
+						<SourceTooltip cube="health_access" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						label: d => t(d["label"]),
 						time: "ID Year",
@@ -95,11 +98,7 @@ class HealthCare extends Section {
 							fill: d => ordinalColorScale(d["label"])
 						},
 						legendConfig: {
-							label: d => d["label"],
-							shapeConfig: {
-								width: 40,
-								height: 40
-							}
+							label: d => d["label"]
 						}
 					}}
 					dataFormat={data => {
@@ -129,7 +128,6 @@ class HealthCare extends Section {
 						}, []);
 					}}
 				/>
-				<SourceNote cube="health_access" />
 			</div>
 		);
 	}

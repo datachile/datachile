@@ -13,7 +13,7 @@ import {
 } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class ImportsByDestination extends Section {
@@ -71,7 +71,10 @@ class ImportsByDestination extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Imports By Destination")}</span>
+					<span>
+						{t("Imports By Destination")}
+						<SourceTooltip cube="imports" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 
@@ -79,7 +82,7 @@ class ImportsByDestination extends Section {
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: ["ID Region", "ID Comuna"],
 							label: d => d["Comuna"],
@@ -87,11 +90,11 @@ class ImportsByDestination extends Section {
 							total: d => d["CIF US"],
 							totalConfig: {
 								text: d =>
-									"Total: US" +
+									"Total: US " +
 									numeral(
 										getNumberFromTotalString(d.text),
 										locale
-									).format("($ 0.[00] a)") +
+									).format("($0.[00]a)") +
 									" CIF"
 							},
 							time: "ID Year",
@@ -115,7 +118,7 @@ class ImportsByDestination extends Section {
 								title: d => d["Comuna"],
 								body: d =>
 									numeral(d["CIF US"], locale).format(
-										"(USD 0 a)"
+										"(USD 0a)"
 									) +
 									" CIF<br/><a>" +
 									t("tooltip.to_profile") +
@@ -124,8 +127,6 @@ class ImportsByDestination extends Section {
 							legendConfig: {
 								label: false,
 								shapeConfig: {
-									width: 25,
-									height: 25,
 									backgroundImage: d =>
 										"/images/legend/region/" +
 										d["ID Region"] +
@@ -138,7 +139,6 @@ class ImportsByDestination extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="imports" />
 			</div>
 		);
 	}

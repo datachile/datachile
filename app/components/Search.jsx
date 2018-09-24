@@ -191,15 +191,18 @@ class Search extends Component {
       <div
         className={`${className} ${enabled ? "active" : ""} search-component`}
       >
-        <div className="input">
+        <label className="input">
+          <span className="u-visually-hidden">
+            {t("Search a location, industry, product, career, etc")}
+          </span>
           <input
-            className={loading ? "loading" : ""}
+            className={loading ? "loading search-input" : "search-input"}
             type="text"
             ref={input => (this.ref_input = input)}
             onChange={this.onChange.bind(this)}
             placeholder={t("Search a location, industry, product, career, etc")}
           />
-        </div>
+        </label>
         <ul className={`results ${availableClass}`}>
           {results.map((result, i) => {
             var url;

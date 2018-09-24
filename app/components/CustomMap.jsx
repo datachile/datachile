@@ -4,6 +4,7 @@ import { Geomap } from "d3plus-react";
 import NoDataAvailable from "components/NoDataAvailable";
 
 import { COLORS_SCALE_EXPORTS, COLORS_SCALE_IMPORTS } from "helpers/colors";
+import styles from "style.yml";
 
 import {
   numeral,
@@ -28,11 +29,10 @@ class CustomMap extends React.Component {
       <div className="geomap">
         <Geomap
           config={{
-            height: 500,
+            height: 400,
             padding: 3,
             data: path,
             tiles: false,
-
             fitObject: "/geo/countries.json",
             topojson: "/geo/countries.json",
 
@@ -43,15 +43,15 @@ class CustomMap extends React.Component {
             fitKey: "id",
             groupBy: "iso3",
             label: d => d["Country"],
-            ocean: "#2f2f38",
+            ocean: styles["near-black"],
             topojsonId: "id",
             topojsonKey: "id",
             total: d => d[msrName],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             on: {
@@ -77,7 +77,7 @@ class CustomMap extends React.Component {
                   d["ID Country"] instanceof Array
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
-                return numeral(d[msrName], locale).format("(USD 0 a)") + link;
+                return numeral(d[msrName], locale).format("(USD 0a)") + link;
               }
             },
 
@@ -99,7 +99,7 @@ class CustomMap extends React.Component {
                   }
                 },
                 tickFormat: tick => {
-                  return numeral(parseFloat(tick), "es").format("($ 0.[00] a)");
+                  return numeral(parseFloat(tick), "es").format("($0.[00]a)");
                 }
               },
               select: `.geo-${className}`,

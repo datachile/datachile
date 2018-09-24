@@ -67,7 +67,7 @@ export default translate()(
           </h3>
           <BarChart
             config={{
-              height: 500,
+              height: 400,
               data: path,
               groupBy: ["ID Career"],
               label: d => d["ID Avg Income 4th year"],
@@ -82,7 +82,7 @@ export default translate()(
               },
               yConfig: {
                 title: t("Wages"),
-                tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+                tickFormat: tick => numeral(tick, locale).format("(0.0a)")
               },
               xSort: (a, b) => {
                 return a["ID Avg Income 4th year"] > b["ID Avg Income 4th year"]

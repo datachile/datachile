@@ -411,11 +411,11 @@ class ProductProfile extends Component {
       text_about.product.share = numeral(
         total_exports_per_product.value / total_exports_chile.data[0],
         locale
-      ).format("0.0 %");
+      ).format("0.0%");
       text_about.region.share = numeral(
         text_about.region.value / total_exports_per_product.value,
         locale
-      ).format("0.0 %");
+      ).format("0.0%");
     }
 
     const topics = [
@@ -432,6 +432,15 @@ class ProductProfile extends Component {
     let title =
       obj &&
       `${obj.caption}${obj.parent ? " (" + obj.parent.caption + ")" : ""}`;
+
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (obj) {
+      if (obj.caption.length > 40) {
+        titleTruncated = obj.caption.slice(0, 40);
+        titleTruncated += "…";
+      }
+    }
 
     return (
       <Canon>
@@ -453,7 +462,8 @@ class ProductProfile extends Component {
             <div className="intro">
               {obj && (
                 <Nav
-                  title={obj.caption}
+                  title={titleTruncated ? titleTruncated : obj.caption}
+                  fullTitle={obj.caption}
                   typeTitle={obj.parent ? t("Product") : t("Product Type")}
                   type="products"
                   exploreLink={"/explore/products"}
@@ -486,7 +496,7 @@ class ProductProfile extends Component {
                       datum={stats.country.name}
                       subtitle={
                         "US " +
-                        numeral(stats.country.value, locale).format("($ 0,0 a)")
+                        numeral(stats.country.value, locale).format("($0,0a)")
                       }
                       source="exports"
                       className=""
@@ -509,7 +519,7 @@ class ProductProfile extends Component {
                       }
                       datum={
                         "US " +
-                        numeral(stats.exports.value, locale).format("($ 0,0 a)")
+                        numeral(stats.exports.value, locale).format("($0,0a)")
                       }
                       source="exports"
                       className=""
@@ -524,7 +534,7 @@ class ProductProfile extends Component {
                       datum={stats.region.name}
                       subtitle={
                         "US " +
-                        numeral(stats.region.value, locale).format("($ 0,0 a)")
+                        numeral(stats.region.value, locale).format("($0,0a)")
                       }
                       source="exports"
                       className=""
@@ -537,26 +547,16 @@ class ProductProfile extends Component {
                 <TopicMenu topics={topics} />
               </div>
 
-              <div className="arrow-container">
+              {/*<div className="arrow-container">
                 <a href="#about">
                   <SvgImage src="/images/profile-icon/icon-arrow.svg" />
                 </a>
-              </div>
+              </div>*/}
             </div>
 
             <div className="topic-block" id="about">
               <div className="topic-header">
-                <div className="topic-title">
-                  <h2 className="full-width">
-                    {t("About")}
-                    {obj && (
-                      <span className="small">
-                        <span className="pipe"> | </span>
-                        {obj.caption}
-                      </span>
-                    )}
-                  </h2>
-                </div>
+                <h2 className="topic-heading font-xxl">{t("About")}</h2>
                 <div className="topic-go-to-targets">
                   <div className="topic-slider-sections" />
                 </div>
@@ -565,19 +565,17 @@ class ProductProfile extends Component {
                 <div className="topic-slide-block">
                   <div className="topic-slide-intro">
                     <div className="topic-slide-text">
-                      <p>
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: total_exports_per_product
-                              ? t("product_profile.about1.default", text_about)
-                              : t("product_profile.about1.no_data", text_about)
-                          }}
-                        />
-                      </p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: total_exports_per_product
+                            ? t("product_profile.about1.default", text_about)
+                            : t("product_profile.about1.no_data", text_about)
+                        }}
+                      />
                     </div>
                     <div className="topic-slide-text">
                       {text_product.available && (
-                        <span
+                        <p
                           dangerouslySetInnerHTML={{
                             __html:
                               text_product.exports.n_countries > 0
@@ -593,7 +591,11 @@ class ProductProfile extends Component {
                       )}
                     </div>
                     <div className="topic-slide-link-list">
-                      <LinksList title={listTitle} list={list} />
+                      <LinksList
+                        title={listTitle}
+                        list={list}
+                        category="products"
+                      />
                     </div>
                   </div>
                 </div>
@@ -611,7 +613,7 @@ class ProductProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeSlide>
                     <SectionColumns>
                       <ExportsByDestination className="lost-1-2" />
@@ -619,7 +621,7 @@ class ProductProfile extends Component {
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeSlide>
                     <SectionColumns>
                       <ImportsByOrigin className="lost-1-2" router={router} />
@@ -627,7 +629,7 @@ class ProductProfile extends Component {
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <GeoTradeSlide>
                     <SectionColumns>
                       <ExportsByRegion className="lost-1-2" router={router} />
@@ -635,7 +637,7 @@ class ProductProfile extends Component {
                     </SectionColumns>
                   </GeoTradeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeBalanceSlide>
                     <SectionColumns>
                       <TradeBalance className="lost-1" />

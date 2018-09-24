@@ -12,7 +12,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class IndustryBySector extends Section {
 	static need = [
@@ -35,13 +35,16 @@ class IndustryBySector extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Industry By Output (CLP)")}</span>
+					<span>
+						{t("Industry By Output (CLP)")}
+						<SourceTooltip cube="tax_data" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: ["ID Level 1", "ID Level 4"],
 						label: d =>
@@ -56,7 +59,7 @@ class IndustryBySector extends Section {
 								numeral(
 									getNumberFromTotalString(d.text),
 									locale
-								).format("($ 0.[0] a)")
+								).format("($0.[0]a)")
 						},
 						time: "ID Year",
 						shapeConfig: {
@@ -65,8 +68,6 @@ class IndustryBySector extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 20,
-								height: 20,
 								fill: d => industriesColorScale(d["ID Level 1"])
 							}
 						},
@@ -98,7 +99,7 @@ class IndustryBySector extends Section {
 									t("Output") +
 									"</td><td class='data'>" +
 									numeral(d["Output"], locale).format(
-										"($ 0,0.[0] a)"
+										"($0,0.[0]a)"
 									) +
 									"</td></tr>";
 								body +=
@@ -106,7 +107,7 @@ class IndustryBySector extends Section {
 									t("Investment") +
 									"</td><td class='data'>" +
 									numeral(d["Investment"], locale).format(
-										"($ 0,0.[0] a)"
+										"($0,0.[0]a)"
 									) +
 									"</td></tr>";
 								body += "</table>";
@@ -121,7 +122,6 @@ class IndustryBySector extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="tax_data" />
 			</div>
 		);
 	}

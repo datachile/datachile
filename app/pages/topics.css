@@ -1,359 +1,244 @@
 @import "../pages/mixins";
 
+.topics-container {
+  padding-top: 3rem; /* space out from splash */
+  background-color: var(--black);
+
+  /* de-emphasize text slightly */
+  & p,
+  & li {
+    color: var(--light-1);
+  }
+}
+
+
+/* layout for topic-heading and topic-tabs */
+.topic-header {
+  /* side by side layout on bigger screens */
+  @add-mixin from-md {
+    /* layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    /* positioning */
+    padding-left: calc(22px + 0.75rem); /* line up with logo */
+
+    & .topic-heading {
+      padding-right: 2rem;
+      top: -0.25rem; /* align with tab baseline */
+    }
+  }
+}
+
+
+/* panel/slide body style */
+.topic-slide-container {
+  /* theming */
+  background-color: var(--dark-3);
+  border-radius: 2px 0 2px 2px;
+  /* sizing */
+  padding: 2.25rem calc(22px + 0.75rem); /* line up with logo */
+
+  /* less white space on smaller screens */
+  @add-mixin for-md {
+    /* extend background, reduce padding */
+    padding: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    /* remove border */
+    border-top-left-radius: 0;
+  }
+
+  /* default / hidden state */
+  & .slick-slide {
+    transform: translateY(10px);
+    transition:
+      opacity 0.1s ease-in,
+      transform 0.1s ease-in !important;
+
+    /* prevent click & hover events on inactive slides */
+    &:not(.slick-active) {
+      visibility: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* active state */
+    &.slick-active {
+      transform: none;
+      transition:
+        opacity 0.2s ease-in 0.1s,
+        transform 0.2s ease-in 0.1s !important;
+    }
+  }
+}
+
+
+/* container for topic title, nav, and slider */
 .topic-block {
-  background-color: var(--dark);
-  color: var(--snow);
-  padding-top: 0;
-  lost-utility: clearfix;
+  background-color: var(--black);
+  color: var(--white);
+  padding:
+    var(--gutter-half)
+    var(--gutter)
+    var(--gutter)
+    var(--gutter);
+
+  /* offset scroll position when using topic anchor links */
   & .topic-anchor-link {
     bottom: 40px;
-    position: relative;
   }
-  & .topic-header {
-    & .topic-title {
-      lost-flex-container: row;
-      margin: var(--gutter) var(--gutter) 0 var(--gutter);
-      lost-utility: clearfix;
-      & h2 {
-        font-family: var(--font-family-title);
-        font-size: 55px;
-        text-transform: uppercase;
-        font-weight: 300;
-        color: var(--snow);
-        margin-bottom: 0px;
-        lost-column: 1/2 flex;
-        line-height: 1em;
-        & .small {
-          text-transform: none;
-          font-family: var(--font-family-text);
-          font-size: 44px;
-          font-weight: 300;
-          & .pipe {
-            margin: 0 10px;
-          }
-        }
-        &.full-width {
-          lost-column: 1 flex;
-        }
-      }
-      & .topic-slider-bullets {
-        lost-column: 1/2 flex;
-      }
-    }
-  }
-  & .topic-slide-block {
-    & section.section {
-      & .columns {
-        flex-direction: row;
-      }
-    }
-    & .topic-slide-intro {
-      margin: 0 var(--gutter);
-      lost-flex-container: row;
-      & .topic-slide-title {
-        lost-column: 1 flex;
-        font-family: var(--font-family-text);
-        font-size: 24px;
-        font-weight: 300;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        margin-bottom: calc(var(--gutter) / 2);
+}
 
-        & .topic-slide-subtitle {
-          color: #ffe0b2;
-          lost-column: 1 flex;
-          font-size: 14px;
-          font-weight: 300;
-          text-transform: none;
-        }
+
+/* non-slider, adjacent section blocks */
+.linear-topic-slides .topic-slide + .topic-slide {
+  padding-top: 2.5rem;
+  margin-top: 2.25rem;
+  border-top: 2px solid var(--black);
+}
+
+/* inside the slide */
+.topic-slide-block {
+
+  /* side by side layout */
+  @add-mixin from-md {
+    display: flex;
+    justify-content: space-between;
+
+    /* text content */
+    & .topic-slide-intro {
+      @add-mixin font-xs;
+      width: 25%;
+
+      /* charts right */
+      & + .topic-slide-charts {
+        width: calc(75% - 3rem);
       }
-      & .topic-slide-text {
-        lost-column: 1/3 flex;
-        font-family: var(--font-family-text);
-        font-size: 13px;
-        font-weight: 300;
-        letter-spacing: 0;
-        line-height: 18px;
-        & p {
-          margin: 5px 0;
+
+      /* no siblings; use even 2 column layout */
+      /* i.e., products profile intro section */
+      &:first-child:last-child {
+        width: 100%;
+        columns: 2;
+        column-gap: 3rem;
+
+        /* size up text */
+        & .topic-slide-text {
+          @add-mixin font-sm;
         }
-        & a {
-          color: #6099ea;
-        }
-      }
-      & .topic-slide-text-full {
-        lost-column: 1 1 flex;
-        font-family: var(--font-family-text);
-        font-size: 13px;
-        font-weight: 300;
-        letter-spacing: 0;
-        line-height: 22px;
-      }
-      & .topic-slide-link-list {
-        lost-column: 1/3 flex;
-        font-family: var(--font-family-text);
-        font-size: 14px;
-        font-weight: 300;
-        letter-spacing: 0;
-        line-height: 22px;
-      }
-      & .topic-slide-data {
-        lost-column: 2/3 flex;
-        lost-flex-container: row;
-        & .featured-datum {
-          &.l-1-3 {
-            lost-column: 1/3 flex;
-          }
-          &.l-1-2 {
-            lost-column: 1/2 flex;
-          }
-        }
-        & .l-2-3 {
-          lost-column: 2/3 flex;
+
+        /* keep contents together */
+        & .topic-slide-text,
+        & .topic-slide-link-list {
+          display: inline-block;
+          break-inside: avoid;
         }
       }
     }
-    & .chart-title {
-      font-family: var(--font-family-text);
-      font-size: 16px;
-      text-transform: uppercase;
-      color: var(--snow);
-      font-weight: 300;
-      padding: 0 15px;
-      line-height: 1.2em;
+  }
+
+
+  /* space out featured data from other text content */
+  & .topic-slide-data {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+
+  /* line up featured data on smaller screens */
+  @media (min-width: 400px) and (max-width: 991px) {
+    & .topic-slide-data {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-    }
-    & .viz {
-      min-height: 500px;
-    }
-    & .trade-balance {
-      & .viz {
-        min-height: auto;
-      }
-    }
-    & .chart-text {
-      font-family: var(--font-family-text);
-      padding: 0 15px;
-      color: var(--snow);
-      font-size: 13px;
-      font-weight: 300;
-      margin-bottom: 5px;
-    }
-    & .footnote {
-      font-size: 13px;
-      & li {
-        font-size: 13px;
-      }
-    }
-    & .topic-slide-charts {
-      & .ticks .d3plus-Rect-text,
-      & .d3plus-Line-text,
-      & .d3plus-Axis-title {
-        & text {
-          fill: var(--snow) !important;
-        }
-      }
-      & .d3plus-plot-x2-axis {
-        & line.bar {
-          stroke: none;
-        }
-      }
-      & .d3plus-plot-y-axis {
-        & g:last-child {
-          & line.bar {
-            //stroke: none;
-          }
-        }
-      }
-      & .d3plus-viz-timeline {
-        & .bar {
-          stroke: var(--snow);
-        }
-        & .d3plus-Rect-shape rect {
-          fill: var(--snow);
-          stroke: var(--snow);
-        }
-        & .brushGroup {
-          & .handle {
-            fill: var(--accent);
-          }
-          & .selection {
-            fill: var(--snow);
-          }
-        }
-      }
-      & .info-logo-container {
-        lost-flex-container: row;
-        & .info-logo-item {
-          lost-column: 1/3 flex;
-        }
-      }
-      & .lost-1-2 {
-      }
-    }
-  }
-}
 
-@add-mixin for-xl {
-}
+      & .featured-datum {
+        width: 33%;
+        flex-direction: column;
+        text-align: center;
 
-@add-mixin for-lg {
-}
+        & .featured-datum-icon {
+          max-width: 3rem;
+          margin-left: auto;
+          margin-right: auto;
+        }
 
-@add-mixin for-md {
-  .topic-block {
-    & .topic-header {
-      & .topic-title {
-        & h2 {
-          lost-column: 1 flex;
-          font-size: 50px;
-          & .small {
-            font-size: 25px;
-            display: inline-block;
-            & .pipe {
-            }
-          }
-        }
-        & .topic-slider-bullets {
-          lost-column: 1 flex;
-          text-align: center;
-        }
-      }
-    }
-    & .topic-slide-block {
-      & .topic-slide-intro {
-        & .topic-slide-title {
-        }
-        & .topic-slide-text {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-link-list {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-data {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-charts {
-          & .lost-1-2,
-          & .lost-1-3 {
-            lost-column: 1/2 flex;
-          }
-          & .info-logo-container {
-            & .info-logo-item {
-              lost-column: 1/2 flex;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@add-mixin for-sm {
-  .topic-block {
-    & .topic-header {
-      & .topic-title {
-        margin: calc(var(--gutter) / 2) calc(var(--gutter) / 2) 0
-          calc(var(--gutter) / 2);
-        & h2 {
-          font-size: 30px;
-          & .small {
-            font-size: 20px;
-            & .pipe {
-            }
-          }
-        }
-        & .topic-slider-bullets {
-          lost-column: 1 flex;
-          text-align: center;
-        }
-      }
-    }
-    & .topic-slide-block {
-      & section.section {
-        & .columns {
-          flex-direction: row;
-        }
-      }
-      & .chart-title {
-        padding: 0;
-      }
-      & .viz {
-        margin: calc(var(--gutter) / 2) 0;
-      }
-      & .topic-slide-intro {
-        margin: 0 calc(var(--gutter) / 2);
-        & .topic-slide-title {
-        }
-        & .topic-slide-text {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-link-list {
-          lost-column: 1 flex;
-        }
-        & .topic-slide-data {
-          justify-content: space-around;
-          & .featured-datum {
-            &.l-1-3 {
-              lost-column: 1 1 flex;
-            }
-            &.l-1-2 {
-              lost-column: 1 1 flex;
-            }
-          }
-          & .l-2-3 {
-            lost-column: 1 1 flex;
-          }
-        }
-      }
-      & .topic-slide-charts {
-        & .lost-1-2,
-        & .lost-1-3 {
-          lost-column: 1 flex;
-        }
-        & .info-logo-container {
-          & .info-logo-item {
-            lost-column: 1 flex;
-          }
-        }
-      }
-    }
-  }
-}
-
-@add-mixin for-xs {
-  .topic-block {
-    & .topic-slide-block {
-      & section.section {
-        & .columns {
+        & .featured-datum-data {
+          @add-mixin font-xxl;
+          line-height: 1.5;
           display: block;
-        }
-      }
-      & .topic-slide-intro {
-        & .topic-slide-data {
-          & .featured-datum {
-            margin-left: 32px;
-            &.l-1-3 {
-              lost-column: 1 1 flex;
-            }
-            &.l-1-2 {
-              lost-column: 1 1 flex;
-            }
-          }
-          & .l-2-3 {
-            lost-column: 1 1 flex;
-          }
+          margin-right: 0;
         }
       }
     }
   }
+
+  /* context info (i.e., SNED) */
+  & .topic-slide-context-subhead {
+    margin-top: 1.5rem;
+  }
 }
 
-.pt-overlay {
-  z-index: 999;
+/* visualizations */
+.topic-slide-charts {
+
+  /* centered icons */
+  &.centered-topic-slide-charts {
+    text-align: center;
+    max-width: calc(50rem);
+    margin-left: auto;
+    margin-right: auto;
+
+    /* offset margin between intro & viz columns on medium screens */
+    @media (min-width: 992px) and (max-width: 1599px) {
+      left: 2.25rem;
+    }
+
+    & .chart-title {
+      display: inline-block;
+    }
+  }
+
+  /* position chart title and export controls */
+  & .chart-title {
+    @add-mixin font-sm;
+    line-height: 1.125;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    /* align with title */
+    margin-top: 0.325rem;
+    /* override blueprint */
+    margin-bottom: 0.5rem;
+
+    /* let the actual title flex as much as needed */
+    & > span {
+      flex: 1 1 auto;
+    }
+
+    /* prevent flexbox from shrinking the button */
+    & .export-controls {
+      flex: 1 0 auto;
+    }
+  }
+
+  /* space out button group & option group from visualization */
+  & * + .btn-group,
+  & * + .option-group {
+    margin-top: 1rem;
+  }
+
+  /* canon overrides 😡 */
+  & .section {
+    padding: 0 0 0.5rem 0; /* keep button groups from getting cut off */
+  }
+  & .viz {
+    margin: 0; /* canon override */
+    min-height: 400px;
+  }
 }
 
-@add-mixin for-xx {
+/* prevent mouseover event for hacky legends */
+.prevent-legend-hover .d3plus-Legend .d3plus-HitArea {
+  display: none !important;
 }

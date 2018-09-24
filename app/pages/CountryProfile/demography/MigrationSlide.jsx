@@ -86,8 +86,8 @@ class MigrationSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Migration")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Migration")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
@@ -107,7 +107,7 @@ class MigrationSlide extends Section {
               datum={numeral(
                 origin_female / destination.number_visas,
                 locale
-              ).format("(0.0 %)")}
+              ).format("(0.0%)")}
               title={t("Visas for Female immigrants")}
               subtitle={t("granted in {{year}}", sources.immigration)}
             />

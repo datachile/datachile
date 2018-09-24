@@ -9,7 +9,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class MigrationByActivity extends Section {
@@ -68,14 +68,15 @@ class MigrationByActivity extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Migration By Activity")}</span>
+					<span>{t("Migration By Activity")}
+					<SourceTooltip cube="immigration" /></span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.chart ? (
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: "ID Activity",
 							label: d => d["Activity"],
@@ -111,7 +112,6 @@ class MigrationByActivity extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="immigration" />
 			</div>
 		);
 	}

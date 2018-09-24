@@ -1,15 +1,31 @@
 .geomap {
-  position: relative;
+
+
+  /* fudge total into place */
+  & .d3plus-viz-total {
+    transform: translate(-5px, -5px);
+  }
+
+  /* adjust country stroke style */
+  & .d3plus-Path {
+    stroke: var(--dark-3);
+    stroke-width: 0.5px;
+  }
+
   & #legend {
     position: absolute;
     bottom: 20px;
     height: 100px;
-    left: 16px;
-    right: 0px;
-    width: calc(100% - 35px);
-    //background-color: var(--snow);
-    background-color: #2f2f38;
-    border: 0px solid var(--snow);
+    left: 10px;
+    right: 10px;
+    width: 100%;
+    /* background-color: var(--white); */
+    border: none;
+
+    /* assign legend background color once content is loaded */
+    &:not(:empty) {
+      background-color: var(--dark-3);
+    }
 
     & text {
       fill: #fff !important;
@@ -17,17 +33,12 @@
 
     & .d3plus-Rect-shape {
       & rect {
-        stroke: var(--snow) !important;
+        stroke: none;
       }
     }
 
-    & .ticks {
-      & .d3plus-Line-shape {
-        & path {
-          stroke: var(--snow) !important;
-          fill: #fff !important;
-        }
-      }
+    & .ticks .d3plus-Line path {
+      stroke: var(--light-3);
     }
   }
 }

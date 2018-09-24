@@ -10,7 +10,7 @@ import { melt, replaceKeyNames } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class TradeBalance extends Section {
 	static need = [
@@ -32,13 +32,16 @@ class TradeBalance extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Trade Balance")}</span>
+					<span>
+						{t("Trade Balance")}
+						<SourceTooltip cube="exports_and_imports" />
+				</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<LinePlot
 					className={classSvg}
 					config={{
-						height: 200,
+						height: 400,
 						data: path,
 						groupBy: "variable",
 						x: "ID Year",
@@ -49,7 +52,7 @@ class TradeBalance extends Section {
 						},
 						yConfig: {
 							title: t("US$"),
-							tickFormat: tick => numeral(tick, locale).format("(0 a)")
+							tickFormat: tick => numeral(tick, locale).format("(0a)")
 						},
 						shapeConfig: {
 							Line: {
@@ -65,8 +68,8 @@ class TradeBalance extends Section {
 								var body = "";
 								if (!(d["ID Year"] instanceof Array)) {
 									body =
-										"US" +
-										numeral(d.value, locale).format("$ (0.[0] a)") +
+										"US " +
+										numeral(d.value, locale).format("$ (0.[0]a)") +
 										" - " +
 										d["ID Year"];
 								}
@@ -84,7 +87,6 @@ class TradeBalance extends Section {
 						return melt(data.data, ["ID Year"], values(tKeys));
 					}}
 				/>
-				<SourceNote cube="exports_and_imports" />
 			</div>
 		);
 	}

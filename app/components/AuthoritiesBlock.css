@@ -1,33 +1,19 @@
-.splash-authorities {
-  lost-flex-container: column;
-  & .splash-authorities-president {
-    lost-flex-container: row;
-    justify-content: center;
-    & .president {
-      lost-center: 1/3;
-    }
+@import "../pages/mixins";
+
+.authorities-block {
+
+  /* fudge officials into alignment on huge screens */
+  @add-mixin from-xl {
+    top: -1rem;
   }
-  & .splash-authorities-senators {
-    lost-flex-container: row;
-    justify-content: center;
-    & .senator {
-      lost-column: 1/4;
-    }
+
+  /* space out different types of officials */
+  & .authorities-section:not(:last-of-type) {
+    margin-bottom: 2rem;
   }
-  & .splash-authorities-mayor {
-    lost-flex-container: row;
-    justify-content: center;
-    & .mayor {
-      lost-center: 1/4;
-    }
-  }
-  & .title {
-    width: 100%;
-    font-family: var(--font-family-title);
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 18px;
-    letter-spacing: -0.01px;
-    font-weight: 300;
+
+  /* space out section titles */
+  & .authorities-section-title {
+    margin: 0.75rem 0;
   }
 }

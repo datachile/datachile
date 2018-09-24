@@ -73,16 +73,14 @@ class NavFixed extends React.Component {
           <div className={`nav-titles ${search_visible ? "close" : "open"}`}>
             <div className="nav-titles-action">
               <a className="menu-button" onClick={toggleSubNav}>
-                {/* <img src="/images/icons/icon-menu.svg" /> */}
-                <img src={`/images/icons/${search_icon}.svg`} />
+                <img src="/images/icons/icon-menu.svg" />
+                {/*<img src={`/images/icons/${search_icon}.svg`} />*/}
               </a>
             </div>
             <Link className="datachile" to="/">
               <img src="/images/logos/datachile-beta-navbar.svg" />
             </Link>
-            <span className="title" onClick={toggleSubNav}>
-              {title}
-            </span>
+            <span className="title heading font-sm">{title}</span>
           </div>
           <div className="nav-topic">
             {topics &&
@@ -91,7 +89,7 @@ class NavFixed extends React.Component {
                   {topics.map(topic => (
                     <a
                       key={topic.slug}
-                      className={`topic-link ${
+                      className={`topic-link subhead font-xxs ${
                         active == topic.slug ? " active" : ""
                       }`}
                       href={`#${topic.slug}`}

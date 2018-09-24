@@ -100,10 +100,10 @@ class InternationalTradeSlide extends Section {
       level: country.caption,
       year: last_year,
       context: balance_volume == 0 ? "none" : "",
-      total_imports: numeral(import_volume, locale).format("($ 0.00 a)"),
-      total_exports: numeral(export_volume, locale).format("($ 0.00 a)"),
+      total_imports: numeral(import_volume, locale).format("($0.00a)"),
+      total_exports: numeral(export_volume, locale).format("($0.00a)"),
       total_balance: numeral(Math.abs(balance_volume), locale).format(
-        "($ 0.00 a)"
+        "($0,.00a)"
       ),
       behavior: balance_volume > 0 ? t("positive") : t("negative"),
       main_import: trade_import,
@@ -113,8 +113,8 @@ class InternationalTradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Imports & Exports")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Imports & Exports")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
@@ -122,7 +122,7 @@ class InternationalTradeSlide extends Section {
           <div className="topic-slide-data">
             {trade_import.name && (
               <FeaturedDatum
-                className="l-1-2"
+                className="l-1-2 category-featured-datum"
                 icon="principal-producto-importado"
                 datum={trade_import.name}
                 title={t("Main imported product")}
@@ -131,7 +131,7 @@ class InternationalTradeSlide extends Section {
             )}
             {trade_export.name && (
               <FeaturedDatum
-                className="l-1-2"
+                className="l-1-2 category-featured-datum"
                 icon="principal-producto-exportado"
                 datum={trade_export.name}
                 title={t("Main exported product")}

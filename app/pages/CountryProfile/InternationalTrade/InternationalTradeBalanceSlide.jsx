@@ -100,8 +100,8 @@ class InternationalTradeBalanceSlide extends Section {
             ? t("an increment")
             : t("a decrement"),
         growth: numeral(Math.abs(growth_import), locale).format("0.0%"),
-        volume_first: numeral(import_volume_first, locale).format("($ 0.00 a)"),
-        volume_last: numeral(import_volume_last, locale).format("($ 0.00 a)")
+        volume_first: numeral(import_volume_first, locale).format("($0.00a)"),
+        volume_last: numeral(import_volume_last, locale).format("($0.00a)")
       },
       export: {
         behavior:
@@ -113,14 +113,14 @@ class InternationalTradeBalanceSlide extends Section {
             ? t("an increase")
             : t("a decrease"),
         growth: numeral(Math.abs(growth_export), locale).format("0.0%"),
-        volume_first: numeral(export_volume_first, locale).format("($ 0.00 a)"),
-        volume_last: numeral(export_volume_last, locale).format("($ 0.00 a)")
+        volume_first: numeral(export_volume_first, locale).format("($0.00a)"),
+        volume_last: numeral(export_volume_last, locale).format("($0.00a)")
       },
       balance: {
         behavior: balance_volume_last > 0 ? t("positive") : t("negative"),
         beneficiary: balance_volume_last > 0 ? "Chile" : country.caption,
         volume_last: numeral(Math.abs(balance_volume_last), locale).format(
-          "($ 0.00 a)"
+          "($0,.00a)"
         )
       }
     });
@@ -162,13 +162,9 @@ class InternationalTradeBalanceSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
+          <h3 className="topic-slide-title">
             {t("International Trade Balance")}
-          </div>
-          <div
-            className="topic-slide-text"
-            dangerouslySetInnerHTML={{ __html: txt_slide }}
-          />
+          </h3>
 
           <div className="topic-slide-data">
             {featureddatum_volume}
@@ -197,6 +193,10 @@ class InternationalTradeBalanceSlide extends Section {
               />
             )}
           </div>
+          <p
+            className="topic-slide-text"
+            dangerouslySetInnerHTML={{ __html: txt_slide }}
+          />
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

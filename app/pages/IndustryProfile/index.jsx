@@ -234,6 +234,17 @@ class IndustryProfile extends Component {
         (industry.parent ? ` (${industry.parent.caption})` : "")
       : "";
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (industry) {
+      if (industry.caption.length > 40) {
+        titleTruncated = industry.caption.slice(0, 40);
+        titleTruncated += "…";
+      }
+    }
+
+    const path = `/${location.pathname}`;
+
     return (
       <Canon>
         <CanonProfile data={this.props.data} topics={topics}>
@@ -259,7 +270,8 @@ class IndustryProfile extends Component {
             <div className="intro">
               {industry && (
                 <Nav
-                  title={industry.caption}
+                  title={titleTruncated ? titleTruncated : industry.caption}
+                  fullTitle={industry.caption}
                   typeTitle={
                     industry.parent ? t("Industry") : t("Industry Type")
                   }
@@ -302,6 +314,7 @@ class IndustryProfile extends Component {
                         source="tax_data"
                         className=""
                         level={industry.depth > 1 ? "industry_profile" : false}
+                        path={path}
                         name={industry.depth > 1 ? industry.parent : industry}
                       />
                     )}
@@ -313,11 +326,12 @@ class IndustryProfile extends Component {
                         icon={null}
                         decile={null}
                         datum={numeral(stats.employees.data[1], locale).format(
-                          "$ 0,0"
+                          "$0,,0"
                         )}
                         source="tax_data"
                         className=""
                         level={industry.depth > 1 ? "industry_profile" : false}
+                        path={path}
                         name={industry.depth > 1 ? industry.parent : industry}
                       />
                     )}
@@ -329,7 +343,7 @@ class IndustryProfile extends Component {
                       code={stats.region.id}
                       datum={stats.region.name}
                       subtitle={numeral(stats.region.value, locale).format(
-                        "($ 0,0 a)"
+                        "($0,0a)"
                       )}
                       source="tax_data"
                       className=""
@@ -342,11 +356,11 @@ class IndustryProfile extends Component {
                 <TopicMenu topics={topics} />
               </div>
 
-              <div className="arrow-container">
+              {/*<div className="arrow-container">
                 <a href="#about">
                   <SvgImage src="/images/profile-icon/icon-arrow.svg" />
                 </a>
-              </div>
+              </div>*/}
             </div>
 
             <div className="topics-container">
@@ -361,7 +375,7 @@ class IndustryProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <EconomySlide>
                     <SectionColumns>
                       <OutputByLocation className="lost-1-2" router={router} />
@@ -384,7 +398,7 @@ class IndustryProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <RDSlide>
                     <SectionColumns>
                       <RDByBusinessType className="lost-1-2" />

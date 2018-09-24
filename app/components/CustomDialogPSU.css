@@ -1,8 +1,10 @@
+@import "../pages/mixins";
+
 .custom-dialog-psu {
   & .ReactTable {
+    @add-mixin font-xxs;
     border-width: 0px;
     color: #888888;
-    font-size: 11px;
 
     & .rt-table {
       overflow-y: scroll;

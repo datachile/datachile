@@ -13,7 +13,7 @@ import { productsColorScale } from "helpers/colors";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class ImportsByProduct extends Section {
@@ -72,14 +72,17 @@ class ImportsByProduct extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Imports by product")}</span>
+					<span>
+						{t("Imports by product")}
+						<SourceTooltip cube="imports" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.chart ? (
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: ["ID HS0", "ID HS2"],
 							label: d =>
@@ -88,19 +91,17 @@ class ImportsByProduct extends Section {
 							total: d => d["CIF US"],
 							totalConfig: {
 								text: d =>
-									"Total: US" +
+									"Total: US " +
 									numeral(
 										getNumberFromTotalString(d.text),
 										locale
-									).format("($ 0.[00] a)") +
+									).format("($0.[00]a)") +
 									" CIF"
 							},
 							time: "ID Year",
 							legendConfig: {
 								label: false,
 								shapeConfig: {
-									width: 25,
-									height: 25,
 									fill: d =>
 										productsColorScale("hs" + d["ID HS0"]),
 									backgroundImage: d =>
@@ -130,7 +131,7 @@ class ImportsByProduct extends Section {
 										: d["HS2"],
 								body: d =>
 									numeral(d["CIF US"], locale).format(
-										"(USD 0 a)"
+										"(USD 0a)"
 									) +
 									" CIF<br/><a>" +
 									t("tooltip.to_profile") +
@@ -142,7 +143,6 @@ class ImportsByProduct extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="imports" />
 			</div>
 		);
 	}

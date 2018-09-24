@@ -55,18 +55,18 @@ class MigrationDetailsSlide extends Section {
       percentage_female: numeral(
         datum_migration_origin_female / datum_migration_origin[1],
         locale
-      ).format("(0.0 %)"),
+      ).format("(0.0%)"),
       percentage_male: numeral(
         1 - datum_migration_origin_female / datum_migration_origin[1],
         locale
-      ).format("(0.0 %)")
+      ).format("(0.0%)")
     });
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Migration")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Migration")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />

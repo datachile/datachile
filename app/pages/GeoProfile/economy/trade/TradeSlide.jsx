@@ -1,6 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section, SectionColumns } from "datawheel-canon";
 import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 import mondrianClient, {
@@ -131,9 +131,9 @@ class TradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Trade")}</div>
+          <h3 className="topic-slide-title">{t("Trade")}</h3>
           <div className="topic-slide-text">
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: !("trade_volume" in text_data.exports)
                   ? t("geo_profile.economy.exports.no_data", text_data)
@@ -142,7 +142,7 @@ class TradeSlide extends Section {
                     : t("geo_profile.economy.exports.default", text_data)
               }}
             />
-            <span
+            <p
               dangerouslySetInnerHTML={{
                 __html: !("trade_volume" in text_data.imports)
                   ? t("geo_profile.economy.imports.no_data", text_data)
@@ -157,7 +157,7 @@ class TradeSlide extends Section {
               className="l-1-3"
               icon="exportaciones"
               datum={
-                "US" + numeral(datum_trade_exports, locale).format("($ 0.00 a)")
+                "US " + numeral(datum_trade_exports, locale).format("($0.00a)")
               }
               title={t("Exports {{last_year}}", {
                 last_year: sources.exports.year
@@ -167,15 +167,19 @@ class TradeSlide extends Section {
                 ": " +
                 t("US{{imports}}", {
                   imports: numeral(datum_trade_imports, locale).format(
-                    "($ 0.00 a)"
+                    "($0,.00a)"
                   )
                 })
               }
             />
-            <TradeBalance className="l-2-3 trade-balance" />
           </div>
         </div>
-        <div className="topic-slide-charts">{children}</div>
+        <div className="topic-slide-charts">
+          <SectionColumns>
+            <TradeBalance className="trade-balance-container lost-1" />
+          </SectionColumns>
+          {children}
+        </div>
       </div>
     );
   }

@@ -57,8 +57,8 @@ class PopulationSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Population")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Population")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
@@ -69,7 +69,7 @@ class PopulationSlide extends Section {
               datum={numeral(
                 annualized_growth(datum_population_growth, [2005, 2020]),
                 locale
-              ).format("0.0 %")}
+              ).format("0.0%")}
               title={t("Estimate Population Growth")}
               subtitle={
                 sources.population_estimate.first_year +

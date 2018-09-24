@@ -5,6 +5,7 @@ import { Section } from "datawheel-canon";
 import { simpleDatumNeed } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import LevelWarning from "components/LevelWarning";
 
 import { Disability } from "texts/GeoProfile";
 
@@ -29,7 +30,7 @@ class DisabilitySlide extends Section {
   ];
 
   render() {
-    const { children, t, i18n } = this.props;
+    const { children, path, t, i18n } = this.props;
 
     const { datum_health_disabilities, geo } = this.context.data;
 
@@ -43,33 +44,13 @@ class DisabilitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Disability")}
-            {this.context.data.geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", {
-                        caption:
-                          "Región " + this.context.data.geo.ancestors[0].caption
-                      })
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          <h3 className="topic-slide-title">{t("Disability")}</h3>
           <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("geo_profile.health.disability", text)
-                }}
-              />
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.health.disability", text)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             {text && (
@@ -107,6 +88,9 @@ class DisabilitySlide extends Section {
               />
             )}
           </div>
+          {this.context.data.geo.depth > 1 && (
+            <LevelWarning name={this.context.data.geo.ancestors[0].caption} path={path} />
+          )}
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

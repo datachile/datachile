@@ -1,23 +1,70 @@
-.data-chile-loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: var(--foreground);
-  padding: 16px;
+@import "../pages/mixins.css";
+
+/* sizing for Loading component when loading the whole dang page */
+#Canon > .loading {
+  /* take up the whole screen */
   width: 100%;
   height: 100vh;
-  max-width: none;
-  color: var(--light);
-  background-color: var(--near-black);
+  /* center children */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* flex fallback */
+  padding: 1rem var(--gutter) 4rem var(--gutter); /* account for logo whitespace */
+  text-align: center;
+}
 
-  & .pt-non-ideal-state-visual {
-    max-width: 200px;
-    width: 100%;
+/* loading component defaults */
+.loading {
+  z-index: 100;
+
+  /* DataChile logo */
+  & .loading-logo {
+    /* death to beta */
+    width: 200px;
+    height: 121px;
+    margin: 0 0 -24px 15px;
+    clip-path: inset(0 0 40px 0);
+  }
+
+  /* progress bar */
+  & .loading-progress-bar {
+    width: 220px;
+    max-width: 100%;
+    margin: 0 auto 0.5rem auto;
+
     & .pt-progress-meter {
-      background-color: var(--light);
+      background: var(--accent) !important; /* override blueprint */
     }
   }
-  & .pt-non-ideal-state-title {
-    color: var(--snow);
+
+  & .loading-progress-text {
+    color: var(--white);
+    margin-bottom: 1em;
+  }
+
+  /* built by Datawheel */
+  & .loading-builtby-link {
+    /* positioning */
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.25em;
+    /* transitions */
+    opacity: 0.75;
+    transition: opacity 0.2s ease-out;
+
+    /* Datawheel logo */
+    & .loading-builtby-img {
+      /* sizing */
+      width: 7rem;
+      /* fudged baseline alignment */
+      top: 0.05rem;
+    }
+
+    /* interactions */
+    &:hover, &:focus {
+      opacity: 1;
+    }
   }
 }

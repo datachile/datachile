@@ -12,7 +12,7 @@ import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class SpendingByIndustry extends Section {
 	static need = [
@@ -63,7 +63,7 @@ class SpendingByIndustry extends Section {
 			"gasto_region_" + geo.key,
 			"gasto_region_" + regionID
     );
-    
+
     const classSvg = "spending-by-industry";
 
 		return (
@@ -72,13 +72,14 @@ class SpendingByIndustry extends Section {
 					<span>
 						{t("R&D Spending By Industry")}{" "}
 						{geo && geo.type == "comuna" && t("Regional")}
+						<SourceTooltip cube="rd_survey" />
 					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: "ID Level 1",
 						label: d => d["Level 1"],
@@ -87,9 +88,9 @@ class SpendingByIndustry extends Section {
 						total: d => d[measureName],
 						totalConfig: {
 							text: d =>
-								"Total: US" +
+								"Total: US " +
 								numeral(parseInt(d.text.split(": ")[1]), locale).format(
-									"($ 0.[00] a)"
+									"($0,.[00]a)"
 								)
 						},
 						shapeConfig: {
@@ -99,8 +100,6 @@ class SpendingByIndustry extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 25,
-								height: 25,
 								fill: d => ordinalColorScale(d["ID Level 1"]),
 								backgroundImage: d =>
 									"https://datausa.io/static/img/attrs/thing_apple.png"
@@ -109,7 +108,6 @@ class SpendingByIndustry extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="rd_survey" />
 			</div>
 		);
 	}

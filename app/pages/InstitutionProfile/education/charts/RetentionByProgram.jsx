@@ -62,7 +62,7 @@ export default translate()(
           </h3>
           <BarChart
             config={{
-              height: 500,
+              height: 400,
               data: path,
               groupBy: "ID Career Group",
               label: d => d["Avg Retention 1st year"],
@@ -77,7 +77,7 @@ export default translate()(
               },
               yConfig: {
                 title: t("Retention"),
-                tickFormat: tick => numeral(tick, locale).format("0 %")
+                tickFormat: tick => numeral(tick, locale).format("0%")
               },
               xSort: (a, b) => {
                 return a["Avg Retention 1st year"] > b["Avg Retention 1st year"]
@@ -99,7 +99,7 @@ export default translate()(
                       " " +
                       t("careers")
                     : numeral(d["Avg Retention 1st year"], locale).format(
-                        "( 0.0 % )"
+                        "( 0.0% )"
                       )
               },
               legendConfig: {

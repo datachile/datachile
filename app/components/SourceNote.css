@@ -1,26 +1,11 @@
 @import "../pages/mixins";
 
-.source-note {
-  padding: calc(var(--gutter)/2) calc(var(--gutter)/2);
-  font-family: var(--font-family-text);
-  font-size: 10px;
+/* .source-note {
+
   & .source-note-txt {
     margin-right: 5px;
-    font-weight: 300;
-    text-transform: uppercase;
   }
   & .source-note-link {
     margin-top: 2px;
-    font-weight: 700;
-    color: var(--nice-blue);
-    $:hover {
-      text-decoration: underline;
-    }
   }
-}
-
-@add-mixin for-sm {
-  .source-note {
-    padding: calc(var(--gutter)/2) 0;
-  }
-}
+} */

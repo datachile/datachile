@@ -8,7 +8,7 @@ import { simpleIndustryChartNeed } from "helpers/MondrianClient";
 import { ordinalColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class EmployedByEducation extends Section {
@@ -41,14 +41,17 @@ class EmployedByEducation extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Employment by Education")}</span>
+					<span>
+						{t("Employment by Education")}
+						<SourceTooltip cube="nene" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.treemap ? (
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: ["ISCED"],
 							label: d => d["ISCED"],
@@ -59,7 +62,7 @@ class EmployedByEducation extends Section {
 								text: d =>
 									"Total: " +
 									numeral(getNumberFromTotalString(d.text), locale).format(
-										"(0 a)"
+										"(0a)"
 									)
 							},
 							shapeConfig: {
@@ -70,12 +73,6 @@ class EmployedByEducation extends Section {
 									return d["ISCED"];
 								},
 								body: d => d["quarter"]
-							},
-							legendConfig: {
-								shapeConfig: {
-									width: 20,
-									height: 20
-								}
 							}
 						}}
 						dataFormat={data => {
@@ -102,7 +99,6 @@ class EmployedByEducation extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="nene" />
 			</div>
 		);
 	}

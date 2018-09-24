@@ -66,7 +66,7 @@ class OccupationSlide extends Section {
       ? numeral(
           annualized_growth(datum_industry_occupation_growth),
           locale
-        ).format("0.0 %")
+        ).format("0.0%")
       : "";
 
     const text_slide = {
@@ -96,33 +96,22 @@ class OccupationSlide extends Section {
       <div className="topic-slide-block">
         {datum_industry_occupation_total > 0 && (
           <div className="topic-slide-intro">
-            <div className="topic-slide-title">
-              {t("Occupation")}
-              {industry.depth > 1 ? (
-                <div className="topic-slide-subtitle">
-                  <p>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: t(
-                          "industry_profile.warning",
-                          industry.depth > 1 ? industry.parent : industry
-                        )
-                      }}
-                    />
-                  </p>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
+            <h3 className="topic-slide-title">{t("Occupation")}</h3>
+            {this.context.data.geo.depth > 1 && (
+              <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
+                __html: t(
+                  "industry_profile.warning",
+                  industry.depth > 1 ? industry.parent : industry
+                  )
+                }}
+              />
+            )}
             <div className="topic-slide-text">
-              <p>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: t("industry_profile.employment", text_slide)
-                  }}
-                />
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t("industry_profile.employment", text_slide)
+                }}
+              />
             </div>
 
             <div className="topic-slide-data">
@@ -142,7 +131,7 @@ class OccupationSlide extends Section {
                   datum_industry_occupation_female_total /
                     datum_industry_occupation_total,
                   locale
-                ).format("0.0 %")}
+                ).format("0.0%")}
                 title={t("Female percent in ") + industryName}
                 subtitle={t("During") + " " + sources.nene.last_year}
               />

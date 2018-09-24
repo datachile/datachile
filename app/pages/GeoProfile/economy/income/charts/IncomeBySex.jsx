@@ -9,7 +9,7 @@ import { COLORS_GENDER } from "helpers/colors";
 import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class IncomeBySex extends Section {
@@ -51,14 +51,17 @@ class IncomeBySex extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Income By Sex")}</span>
+					<span>
+						{t("Income By Sex")}
+						<SourceTooltip cube="nesi_income" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.show ? (
 					<BarChart
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: "ID Sex",
 							label: d => d["Sex"],
@@ -78,7 +81,7 @@ class IncomeBySex extends Section {
 								a["ID Income Range"] > b["ID Income Range"] ? 1 : -1,
 							yConfig: {
 								title: t("People"),
-								tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
+								tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
 							},
 							barPadding: 0,
 							groupPadding: 5,
@@ -92,15 +95,13 @@ class IncomeBySex extends Section {
 									return title;
 								},
 								body: d =>
-									numeral(d["Expansion Factor"], locale).format("(0.[0] a)") +
+									numeral(d["Expansion Factor"], locale).format("(0.[0]a)") +
 									" " +
 									t("people")
 							},
 							legendConfig: {
 								label: false,
 								shapeConfig: {
-									width: 40,
-									height: 40,
 									backgroundImage: d =>
 										"/images/legend/sex/" + d["ID Sex"] + ".png"
 								}
@@ -117,7 +118,6 @@ class IncomeBySex extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="nesi_income" />
 			</div>
 		);
 	}

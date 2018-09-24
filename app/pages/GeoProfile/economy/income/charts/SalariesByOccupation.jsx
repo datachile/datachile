@@ -9,7 +9,7 @@ import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class SalariesByOccupation extends Section {
 	static need = [
@@ -46,13 +46,16 @@ class SalariesByOccupation extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Salaries By Occupation")}</span>
+					<span>
+						{t("Salaries By Occupation")}
+						<SourceTooltip cube="nesi_income" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<BarChart
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: ["ID Sex"],
 						label: d => d["ISCO"],
@@ -69,15 +72,13 @@ class SalariesByOccupation extends Section {
 						},
 						yConfig: {
 							title: t("Median Income CLP"),
-							tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
+							tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
 						},
 						barPadding: 0,
 						groupPadding: 10,
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 40,
-								height: 40,
 								backgroundImage: d =>
 									"/images/legend/sex/" + d["ID Sex"] + ".png"
 							}
@@ -85,7 +86,6 @@ class SalariesByOccupation extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="nesi_income" />
 			</div>
 		);
 	}

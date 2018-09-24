@@ -117,15 +117,15 @@ class MigrationActivitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Migration")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Migration")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
             {activity.students_number > 0 && (
               <FeaturedDatum
-                className="l-1-3"
+                className="l-1-2 category-featured-datum"
                 icon="visas-entregadas-estudiantes"
                 datum={activity.students_number}
                 title={t("Number of visas granted to students")}
@@ -134,7 +134,7 @@ class MigrationActivitySlide extends Section {
             )}
             {activity.first && (
               <FeaturedDatum
-                className="l-2-3"
+                className="l-1-2 category-featured-datum"
                 icon={activity.first_icon}
                 datum={activity.first}
                 title={t("Most common activity")}

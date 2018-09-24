@@ -70,7 +70,10 @@ class RDSlide extends Section {
     const growth = annualized_growth(datum_industry_rd_spending);
 
     const industryName =
-      industry.depth === 1 ? industry.caption : industry.parent.caption;
+      industry &&
+        industry.depth === 1
+          ? industry.caption
+          : industry.parent.caption;
 
     const locale = i18n.language;
 
@@ -78,49 +81,40 @@ class RDSlide extends Section {
       year: sources.rd_survey.last_year,
       industry: {
         caption: industryName,
-        exports: numeral(datum_industry_rd_exports, locale).format("$ 0.0 a"),
+        exports: numeral(datum_industry_rd_exports, locale).format("$0,.0 a"),
         spending: numeral(
           datum_industry_rd_spending[datum_industry_rd_spending.length - 1],
           locale
-        ).format("$ 0.0 a"),
+        ).format("$0,.0 a"),
         share: numeral(
           datum_industry_rd_exports / datum_total_rd_exports_chile.data,
           locale
-        ).format("0.0 %")
+        ).format("0.0%")
       }
     };
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Research & Development")}
-            {industry.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t(
-                        "industry_profile.warning",
-                        industry.depth > 1 ? industry.parent : industry
-                      )
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-
-          <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("industry_profile.r&d", text_rd)
+          <h3 className="topic-slide-title">{t("Research & Development")}</h3>
+          {(industry && this.context.data.geo) &&
+            this.context.data.geo.depth > 1 && (
+              <p className="topic-slide-subtitle" dangerouslySetInnerHTML={{
+                __html: t(
+                  "industry_profile.warning",
+                  industry.depth > 1 ? industry.parent : industry
+                  )
                 }}
               />
-            </p>
+            )
+          }
+
+          <div className="topic-slide-text">
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("industry_profile.r&d", text_rd)
+              }}
+            />
           </div>
 
           <div className="topic-slide-data">
@@ -128,7 +122,7 @@ class RDSlide extends Section {
               className="l-1-3"
               icon="industria"
               datum={numeral(datum_industry_rd_exports, locale).format(
-                "$ 0.0 a"
+                "$0,.0 a"
               )}
               title={t("Exports in ") + industryName}
               subtitle={t("During") + " " + sources.rd_survey.last_year}
@@ -137,7 +131,7 @@ class RDSlide extends Section {
               className="l-1-3"
               icon="industria"
               datum={numeral(datum_industry_rd_sales_last_year, locale).format(
-                "$ 0.0 a"
+                "$0,.0 a"
               )}
               title={t("Sales in ") + industryName}
               subtitle={t("During") + " " + sources.rd_survey.last_year}
@@ -145,7 +139,7 @@ class RDSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
-              datum={numeral(growth, locale).format("0.0 %")}
+              datum={numeral(growth, locale).format("0.0%")}
               title={t("Growth R&D Spending in ") + industryName}
               subtitle={`${sources.rd_survey.first_year} - ${
                 sources.rd_survey.last_year

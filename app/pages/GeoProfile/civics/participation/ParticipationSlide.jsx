@@ -42,8 +42,8 @@ class ParticipationSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Election")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Election")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
               __html: t(

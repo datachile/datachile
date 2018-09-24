@@ -14,16 +14,11 @@ function FeaturedDatum(props) {
         <img src={`/images/slider-icon/icon-${icon}.svg`} />
       </div>
       <div className="featured-datum-text">
-        <Shiitake
-          lines={3}
-          tagName="p"
-          className="featured-datum-data"
-          renderFullOnServer={true}
-        >
-          {datum}
-        </Shiitake>
-        <h4 className="featured-datum-title">{title}</h4>
-        <p className="featured-datum-subtitle">{subtitle}</p>
+        <h4 className="featured-datum-title font-xxs">
+          <span className="featured-datum-data heading font-md">{datum}</span>
+          <span className="label">{title}</span>
+        </h4>
+        <p className="featured-datum-subtitle font-xxs">{subtitle}</p>
       </div>
     </div>
   );

@@ -28,14 +28,14 @@ class RetentionSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Retention")}</div>
-          <div className="topic-slide-text">Lorem ipsum</div>
+          <h3 className="topic-slide-title">{t("Retention")}</h3>
+          <p className="topic-slide-text">Lorem ipsum</p>
           <div className="topic-slide-data">
             <FeaturedDatum
               className="l-1-3"
               icon="industria"
               datum={numeral(datum_accreditation_avg_retention, locale).format(
-                "0.0 %"
+                "0.0%"
               )}
               title={t("Average Retention")}
               subtitle={t("1st year")}

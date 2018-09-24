@@ -1,72 +1,100 @@
+import styles from "style.yml";
+
 const axisConfig = {
   barConfig: {
-    stroke: "#fff",
+    stroke: styles.white,
     "stroke-width": 1
   },
   gridConfig: {
-    stroke: "#fff",
-    "stroke-width": 0
+    stroke: "rgba(255,255,255,0.1)",
+    "stroke-width": 0.5
   },
   shapeConfig: {
-    fill: "#fff",
+    fill: styles.white,
     labelConfig: {
-      fontColor: "#fff",
-      fontFamily: () => "'Saira Condensed', sans-serif",
-      fontSize: () => 11
+      fontColor: styles["light-1"],
+      fontFamily: () => "Roboto Condensed",
+      fontMax: 18,
+      fontSize: () => 12,
+      fontWeight: 300
     },
-    stroke: "#fff"
+    stroke: styles.white
   },
   tickSize: 4,
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
-    fontColor: "#fff",
-    fontSize: 14,
+    fontColor: styles["light-1"],
+    fontSize: 12
     //fontWeight: 600,
-    textTransform: "uppercase"
+    // textTransform: "uppercase"
   }
 };
 
 export default {
+  // shape defaults
+  shapeConfig: {
+    fontColor: styles["near-black"],
+    fontFamily: "Roboto Condensed",
+    fontSize: 12,
+    fontWeight: 300,
+    // textarea label defaults
+    labelConfig: {
+      fontFamily: () => "Roboto Condensed",
+      fontWeight: 300,
+      padding: 12,
+      fontSize: 12,
+      fontMax: 18
+    },
+    // stacked area
+    Area: {
+      labelConfig: {
+        fontColor: styles.white,
+        fontFamily: () => "Roboto Condensed",
+        fontMax: 16,
+        fontWeight: 300
+      }
+    },
+    // line charts
+    Line: {
+      // curve: "catmullRom",
+      strokeLinecap: "round"
+    }
+  },
+  // legend defaults
   legendConfig: {
+    // labels are directly in the shape
     shapeConfig: {
-      fontColor: "white",
-      fontFamily: "'Saira Condensed', sans-serif",
+      fontColor: styles["light-1"],
+      fontFamily: "Roboto Condensed",
       fontResize: false,
       fontSize: 12,
-      fontWeight: 400,
+      fontWeight: 300,
       height: () => 20,
-      textTransform: "uppercase",
       width: () => 20,
+      // legend icons
       labelConfig: {
-        fontColor: "white"
+        fontColor: styles.white
       }
     }
   },
+  // loading
   loadingHTML:
     "<div style='font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;'>" +
     "<img style='margin: auto; width:80px; height: 80px' src='/images/loading-visualization.gif' />" +
     "<sub style='display: block; margin-top: 15px;'>Powered by Datawheel</sub>" +
     "</div>",
-  shapeConfig: {
-    fontColor: "rgba(0, 0, 0, 0.4)",
-    fontFamily: "'Saira Condensed', sans-serif",
-    labelConfig: {
-      fontFamily: () => "'Saira Condensed', sans-serif",
-      fontWeight: 300,
-      padding: 8,
-      fontMax: 40
-    },
-    fontWeight: 600
-  },
+  // timeline defaults
   timelineConfig: {
     brushing: false
   },
+  // total defaults
   totalConfig: {
-    fontSize: 14,
-    fontColor: "#FFFFFF",
+    fontSize: 12,
+    fontColor: styles["light-3"],
     resize: false,
-    textAnchor: "middle"
+    textAnchor: "left"
   },
+  // axis defaults (see line 1)
   xConfig: axisConfig,
   yConfig: axisConfig
 };

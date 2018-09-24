@@ -10,7 +10,7 @@ import { regionsColorScale } from "helpers/colors";
 import { numeral, slugifyItem } from "helpers/formatters";
 
 import Select from "components/Select";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
 
@@ -114,7 +114,11 @@ class ParticipationScatter extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Electoral Participation")}</span>
+          <span>
+            {t("Electoral Participation")}
+            <SourceTooltip cube="election_participation" />
+          </span>
+          <ExportLink path={path} className={classSvg} />
           <Select
             id="variations"
             options={this.state.chartVariations}
@@ -123,7 +127,6 @@ class ParticipationScatter extends Section {
             valueField="id"
             onChange={this.handleChange}
           />
-          <ExportLink path={path} className={classSvg} />
         </h3>
         {this.state.plot ? (
           <Plot
@@ -133,7 +136,7 @@ class ParticipationScatter extends Section {
               aggs: {
                 "ID Region": mean
               },
-              height: 500,
+              height: 400,
               groupBy: ["Comuna"],
               data: data.reduce((all, item) => {
                 if (
@@ -210,8 +213,6 @@ class ParticipationScatter extends Section {
               legendConfig: {
                 label: false,
                 shapeConfig: {
-                  width: 25,
-                  height: 25,
                   backgroundImage: d =>
                     "/images/legend/region/" + d["ID Region"] + ".png"
                 }
@@ -264,7 +265,6 @@ class ParticipationScatter extends Section {
             LOG
           </a>
         </div>
-        <SourceNote cube="election_participation" />
       </div>
     );
   }

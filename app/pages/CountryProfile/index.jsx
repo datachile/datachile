@@ -391,6 +391,15 @@ class CountryProfile extends Component {
       }
     ];
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (obj) {
+      if (obj.caption.length > 40) {
+        titleTruncated = obj.caption.slice(0, 40);
+        titleTruncated += "…";
+      }
+    }
+
     return (
       <Canon>
         <CanonProfile data={this.props.data} topics={topics}>
@@ -415,7 +424,8 @@ class CountryProfile extends Component {
             <div className="intro">
               {obj && (
                 <Nav
-                  title={obj.caption}
+                  title={titleTruncated ? titleTruncated : obj.caption}
+                  fullTitle={obj.caption}
                   typeTitle={obj.parent ? t("Country") : t("Zone")}
                   type={"countries"}
                   exploreLink={"/explore/countries"}
@@ -450,9 +460,9 @@ class CountryProfile extends Component {
                       icon="ingreso"
                       decile={stats.imports.decile}
                       datum={
-                        "US" +
+                        "US " +
                         numeral(stats.imports.value, locale).format(
-                          "($ 0.0 a)"
+                          "($0,.0a)"
                         ) +
                         " CIF"
                       }
@@ -466,9 +476,9 @@ class CountryProfile extends Component {
                       icon="ingreso"
                       decile={stats.exports.decile}
                       datum={
-                        "US" +
+                        "US " +
                         numeral(stats.exports.value, locale).format(
-                          "($ 0.0 a)"
+                          "($0,.0a)"
                         ) +
                         " FOB"
                       }
@@ -484,7 +494,7 @@ class CountryProfile extends Component {
                       subtitle={`US${numeral(
                         stats.product.value,
                         locale
-                      ).format("$ 0.0 a")} FOB`}
+                      ).format("$0,.0 a")} FOB`}
                       source="exports"
                     />
                   )}
@@ -495,11 +505,11 @@ class CountryProfile extends Component {
                 <TopicMenu topics={topics} />
               </div>
 
-              <div className="arrow-container">
+              {/*<div className="arrow-container">
                 <a href="#about">
                   <SvgImage src="/images/profile-icon/icon-arrow.svg" />
                 </a>
-              </div>
+              </div>*/}
             </div>
 
             <div className="topics-container">
@@ -514,14 +524,14 @@ class CountryProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <MigrationSlide>
                     <SectionColumns>
                       <MigrationByRegion className="lost-1" />
                     </SectionColumns>
                   </MigrationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MigrationDetailsSlide>
                     <SectionColumns>
                       <MigrationBySex className="lost-1-2" />
@@ -529,14 +539,14 @@ class CountryProfile extends Component {
                     </SectionColumns>
                   </MigrationDetailsSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MigrationEducationSlide>
                     <SectionColumns>
                       <MigrationByEducation className="lost-1" />
                     </SectionColumns>
                   </MigrationEducationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <MigrationActivitySlide>
                     <SectionColumns>
                       <MigrationByVisa className="lost-1-2" />
@@ -556,7 +566,7 @@ class CountryProfile extends Component {
                   }
                 ]}
               >
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeSlide>
                     <SectionColumns>
                       <ImportsByProduct className="lost-1-2" router={router} />
@@ -564,7 +574,7 @@ class CountryProfile extends Component {
                     </SectionColumns>
                   </InternationalTradeSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeOriginDestinationSlide>
                     <SectionColumns>
                       <ImportsByDestination
@@ -575,7 +585,7 @@ class CountryProfile extends Component {
                     </SectionColumns>
                   </InternationalTradeOriginDestinationSlide>
                 </div>
-                <div>
+                <div className="topic-slide">
                   <InternationalTradeBalanceSlide>
                     <SectionColumns>
                       <TradeBalance className="lost-1" />

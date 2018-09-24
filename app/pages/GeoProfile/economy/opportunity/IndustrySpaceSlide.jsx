@@ -16,15 +16,22 @@ class IndustrySpaceSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
+          <h3 className="topic-slide-title">
             {t("Opportunity in Industries")}
-          </div>
+          </h3>
           <div
             className="topic-slide-text-full"
             dangerouslySetInnerHTML={{
               __html: t("geo_profile.economy.industry_space", text)
             }}
           />
+
+          <h4 className="topic-slide-context-subhead">
+            {t("About the RCA index")}
+          </h4>
+          <p className="font-xxs">
+            {t("geo_profile.economy.rca")}
+          </p>
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

@@ -9,7 +9,7 @@ import { COLORS_GENDER } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 export default translate()(
@@ -72,14 +72,17 @@ export default translate()(
       return (
         <div className={className}>
           <h3 className="chart-title">
-            <span>{t("Migration By Sex")}</span>
+            <span>
+              {t("Migration By Sex")}
+              <SourceTooltip cube="immigration" />
+            </span>
             <ExportLink path={path} className={classSvg} />
           </h3>
           {this.state.chart ? (
             <BarChart
               className={classSvg}
               config={{
-                height: 500,
+                height: 400,
                 data: path,
                 groupBy: "ID Sex",
                 label: d => d["Sex"],
@@ -96,7 +99,7 @@ export default translate()(
                 },
                 yConfig: {
                   title: t("Visas"),
-                  tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+                  tickFormat: tick => numeral(tick, locale).format("(0.0a)")
                 },
                 barPadding: 20,
                 groupPadding: 40,
@@ -110,8 +113,6 @@ export default translate()(
                 legendConfig: {
                   label: false,
                   shapeConfig: {
-                    width: 40,
-                    height: 40,
                     backgroundImage: d =>
                       "/images/legend/sex/" + d["ID Sex"] + ".png"
                   }
@@ -122,7 +123,6 @@ export default translate()(
           ) : (
             <NoDataAvailable />
           )}
-          <SourceNote cube="immigration" />
         </div>
       );
     }

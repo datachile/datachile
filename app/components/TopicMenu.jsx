@@ -11,7 +11,7 @@ class TopicMenu extends Component {
     return (
       <div id="topic-profile-menu" className="topic-menu">
         {topics.map(topic => (
-          <a key={topic.slug} className="topic-link" href={`#${topic.slug}`}>
+          <a key={topic.slug} className="topic-link subhead font-xxs" href={`#${topic.slug}`}>
             <SvgImage src={`/images/profile-icon/icon-${topic.slug}.svg`} />
             <span>{topic.title}</span>
           </a>

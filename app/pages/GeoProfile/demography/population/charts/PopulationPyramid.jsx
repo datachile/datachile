@@ -8,7 +8,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class PopulationPyramid extends Section {
   static need = [
@@ -57,7 +57,10 @@ class PopulationPyramid extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Population Pyramid")}</span>
+          <span>
+            {t("Population Pyramid")}
+            <SourceTooltip cube="population_estimate" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <BarChart
@@ -68,7 +71,7 @@ class PopulationPyramid extends Section {
               document.querySelector("." + classSvg)
                 ? document.querySelector("." + classSvg).clientWidth
                 : undefined,
-            height: 500,
+            height: 400,
             data: path,
             groupBy: "ID Sex",
             label: d => d["Sex"],
@@ -114,8 +117,6 @@ class PopulationPyramid extends Section {
             legendConfig: {
               label: d => d["Sex"],
               shapeConfig: {
-                width: 20,
-                height: 20,
                 backgroundImage: d =>
                   "/images/legend/sex/" + d["ID Sex"] + ".png"
               }
@@ -133,7 +134,6 @@ class PopulationPyramid extends Section {
             return output;
           }}
         />
-        <SourceNote cube="population_estimate" />
       </div>
     );
   }

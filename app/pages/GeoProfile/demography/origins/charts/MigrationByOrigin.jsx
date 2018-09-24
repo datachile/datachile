@@ -12,7 +12,7 @@ import {
 	slugifyItem
 } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 
 export default translate()(
@@ -54,7 +54,10 @@ export default translate()(
 			return (
 				<div className={className}>
 					<h3 className="chart-title">
-						<span>{t("Migration By Origin")}</span>
+						<span>
+							{t("Migration By Origin")}
+							<SourceTooltip cube="immigration" />
+						</span>
 						<ExportLink path={path} className={classSvg} />
 					</h3>
 					<TreemapStacked
@@ -127,7 +130,7 @@ export default translate()(
 										numeral(
 											d["Number of visas"],
 											locale
-										).format("(0 a)") +
+										).format("(0a)") +
 										" " +
 										t("people") +
 										link
@@ -137,8 +140,6 @@ export default translate()(
 							legendConfig: {
 								label: d => d["Continent"],
 								shapeConfig: {
-									width: 40,
-									height: 40,
 									backgroundImage: d =>
 										"/images/legend/continent/" +
 										d["ID Continent"] +
@@ -152,7 +153,6 @@ export default translate()(
 							}
 						}}
 					/>
-					<SourceNote cube="immigration" />
 				</div>
 			);
 		}

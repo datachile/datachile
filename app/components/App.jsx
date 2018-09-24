@@ -30,7 +30,7 @@ class App extends Component {
 				{this.props.location.pathname === "explore/map" ? (
 					<div />
 				) : (
-					<Footer />
+					<Footer location={this.props.location} />
 				)}
 			</div>
 		);

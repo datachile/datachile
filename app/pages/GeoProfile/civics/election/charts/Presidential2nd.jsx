@@ -10,7 +10,7 @@ import { getAvailableYears } from "helpers/map";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 import { Switch } from "@blueprintjs/core";
@@ -94,7 +94,10 @@ class Presidential2nd extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Results 2nd Round") + " " + this.state.year}</span>
+          <span>
+            {t("Results 2nd Round") + " " + this.state.year}
+            <SourceTooltip cube="election_results" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
@@ -109,7 +112,7 @@ class Presidential2nd extends Section {
                   document.querySelector("." + classSvg)
                     ? document.querySelector("." + classSvg).clientWidth
                     : undefined,
-                height: 500,
+                height: 400,
                 data: path,
                 groupBy: ["ID Candidate"],
                 label: d => d["Candidate"],
@@ -190,14 +193,7 @@ class Presidential2nd extends Section {
                         t("Blank and Null Votes").toUpperCase() +
                         "</div>"
                 },
-                legendConfig: {
-                  label: false,
-                  shapeConfig: {
-                    width: 25,
-                    height: 25,
-                    backgroundImage: d => "/images/legend/civics/civic-icon.png"
-                  }
-                }
+                legend: false
               }}
               dataFormat={data => {
                 if (data.data.length > 0) {
@@ -248,7 +244,6 @@ class Presidential2nd extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="election_results" />
       </div>
     );
   }

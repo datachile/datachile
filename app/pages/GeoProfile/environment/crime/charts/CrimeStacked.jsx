@@ -7,7 +7,7 @@ import { crimesColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class CrimeStacked extends Section {
@@ -27,7 +27,10 @@ class CrimeStacked extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Complaints Over Time")}</span>
+          <span>
+            {t("Complaints Over Time")}
+            <SourceTooltip cube="crimes" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
@@ -35,7 +38,7 @@ class CrimeStacked extends Section {
           <StackedArea
             className={classSvg}
             config={{
-              height: 500,
+              height: 400,
               data: path,
               groupBy: ["ID Crime Group", "ID Crime"],
               label: d => d["Crime"],
@@ -60,8 +63,6 @@ class CrimeStacked extends Section {
               legendConfig: {
                 label: false,
                 shapeConfig: {
-                  width: 25,
-                  height: 25,
                   backgroundImage: d =>
                     "/images/legend/crime/" + d["ID Crime Group"] + ".png"
                 }
@@ -85,7 +86,6 @@ class CrimeStacked extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="crimes" />
       </div>
     );
   }

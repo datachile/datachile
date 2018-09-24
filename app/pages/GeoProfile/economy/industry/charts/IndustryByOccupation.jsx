@@ -7,7 +7,7 @@ import { industryOccupationColorScale } from "helpers/colors";
 import { translate } from "react-i18next";
 import { Section } from "datawheel-canon";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
 
@@ -37,14 +37,17 @@ class IndustryByOccupation extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Occupations by workers")}</span>
+					<span>
+						{t("Occupations by workers")}
+						<SourceTooltip cube="nesi_income" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.show ? (
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: ["ID ISCO"],
 							label: d => d["ISCO"],
@@ -54,7 +57,7 @@ class IndustryByOccupation extends Section {
 								text: d =>
 									"Total: " +
 									numeral(getNumberFromTotalString(d.text), locale).format(
-										"(0.[0] a)"
+										"(0.[0]a)"
 									) +
 									" " +
 									t("people")
@@ -66,8 +69,6 @@ class IndustryByOccupation extends Section {
 							legendConfig: {
 								label: false,
 								shapeConfig: {
-									width: 20,
-									height: 20,
 									backgroundImage: d =>
 										"/images/legend/occupation/occupation.png"
 								}
@@ -104,7 +105,6 @@ class IndustryByOccupation extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="nesi_income" />
 			</div>
 		);
 	}

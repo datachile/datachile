@@ -12,7 +12,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 class ImportsByDestination extends Section {
@@ -62,7 +62,10 @@ class ImportsByDestination extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{title}</span>
+          <span>
+            {title}
+            <SourceTooltip cube="imports" />
+          </span>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
 
@@ -78,9 +81,9 @@ class ImportsByDestination extends Section {
             total: d => d["CIF US"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -112,27 +115,23 @@ class ImportsByDestination extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US" + numeral(d["CIF US"], locale).format("(USD 0 a)") + link
+                  "US " + numeral(d["CIF US"], locale).format("(USD 0a)") + link
                 );
               }
             },
             legendConfig: {
               label: d => d["Continent"],
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: d =>
                   "/images/legend/continent/" + d["ID Continent"] + ".png"
               }
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />
-
-        <SourceNote cube="imports" />
       </div>
     );
   }

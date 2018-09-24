@@ -1,8 +1,10 @@
+@import "../pages/mixins";
+
 .custom-dialog-sned {
   & .ReactTable {
+    @add-mixin font-xxs;
     border-width: 0px;
     color: #888888;
-    font-size: 11px;
     & .rt-table {
       overflow-y: scroll;
       height: 60vh;
@@ -140,10 +142,10 @@
 
   & .pt-dialog-body {
     max-height: 70vh;
-    //overflow-y: hidden;
-    //overflow: scroll!important;
+    /* overflow-y: hidden;
+    overflow: scroll!important; */
     margin: 0px;
-    //padding: 20px;
+    /* padding: 20px; */
 
     p {
       margin: 0px;

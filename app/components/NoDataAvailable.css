@@ -15,10 +15,10 @@
   }
 
   & .no-data-title {
-    font-size: 24px;
+    @add-mixin font-md;
   }
 
   & .no-data-message {
-    font-size: 18px;
+    @add-mixin font-sm;
   }
 }

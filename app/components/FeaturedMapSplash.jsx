@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { text as loadSvgAsString } from "d3-request";
 import { Geomap } from "d3plus-react";
-
 import { sources } from "helpers/consts";
 
 import SVGCache from "helpers/svg";
 
-import "./FeaturedDatumSplash.css";
+import SourceTooltip from "components/SourceTooltip";
+
+// import "./FeaturedDatumSplash.css";
 import "./FeaturedMapSplash.css";
 
 class FeaturedMapSplash extends Component {
@@ -76,12 +77,13 @@ class FeaturedMapSplash extends Component {
 
     return (
       <div className={"featured-datum-splash featured-map-splash " + className}>
-        <h4 className="featured-datum-splash-title">{title}</h4>
-        <div className="featured-datum-splash-icons">
+
+        {/* map */}
+        <div className="featured-datum-icon">
           {type &&
             type == "region" && (
               <div
-                className="svg-mini-map"
+                className="svg-mini-map region-svg-mini-map"
                 ref="svgcontainer"
                 dangerouslySetInnerHTML={{ __html: this.state.svgFile }}
               />
@@ -89,14 +91,14 @@ class FeaturedMapSplash extends Component {
 
           {type &&
             type == "country" && (
-              <div className="svg-mini-geomap">
+              <div className="svg-mini-map country-svg-mini-map">
                 <Geomap
                   config={{
                     data: [],
                     downloadButton: false,
                     groupBy: "key",
-                    height: 80,
-                    width: 80,
+                    height: 100,
+                    width: 100,
                     label: d => "Región ",
                     legend: false,
                     ocean: "transparent",
@@ -105,7 +107,7 @@ class FeaturedMapSplash extends Component {
                       hoverOpacity: 1,
                       Path: {
                         fill: function(d) {
-                          return d.id == code ? "#4B71B5" : "none";
+                          return d.id == code ? "#3277dc" : "none";
                         },
                         stroke: "rgba(255, 255, 255, 1)"
                       }
@@ -122,16 +124,22 @@ class FeaturedMapSplash extends Component {
               </div>
             )}
         </div>
-        <div className="featured-datum-splash-data">
-          <p className="featured-datum-data">{datum}</p>
-        </div>
+
+        {/* title */}
+        <p className="featured-datum-label label font-xs" aria-hidden="true">
+          {title}
+        </p>
+
+        {/* value */}
+        <h3 className="featured-datum-value font-xl">
+          <span className="u-visually-hidden">{title} </span>
+          {datum ? datum : t("no_datum")}
+          <SourceTooltip sourceData={sourceData} />
+        </h3>
+
+        {/* subtitle */}
         {subtitle && (
-          <div className="featured-datum-splash-subtitle">{subtitle}</div>
-        )}
-        {sourceData && (
-          <div className="featured-datum-splash-source">
-            {sourceData.title} - {sourceData.year}
-          </div>
+          <p className="featured-datum-subtitle font-sm label">{subtitle}</p>
         )}
       </div>
     );

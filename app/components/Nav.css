@@ -6,7 +6,7 @@
   padding: 0 var(--gutter);
 
   &.nav-dark {
-    background-color: var(--footer-bg);
+    background-color: var(--black);
     margin: 0 auto 0px;
   }
 
@@ -26,39 +26,29 @@
       padding: var(--gutter) 0 0;
     }
 
-    & .c-col {
-      flex: 0 0 auto;
-      padding: 21px 0 0;
-      text-align: center;
-
-      & .logo {
-        display: block;
-        width: 112px;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
+    /* logo link */
+    & .logo {
+      @add-mixin nav-logo;
+      /* positioning */
+      position: absolute;
+      top: 23px;
+      left: 36px;
     }
 
     & .r-col {
       flex: 1;
       padding: 20px 0 0;
-      line-height: 66px;
       text-align: right;
     }
 
     & .menu-button {
-      & a {
+      & .menu-open-btn {
         display: block;
         width: 22px;
-        text-transform: uppercase;
-        font-family: var(--font-family-title);
-        font-weight: 300;
-        font-size: 30px;
-        line-height: 1;
         transition: opacity 0.2s;
-        color: var(--snow);
         opacity: 0.8;
-        text-decoration: none;
+        /* fudge into place */
+        top: 1px;
 
         &:hover {
           text-decoration: none;
@@ -70,11 +60,44 @@
     & .nav-search-toggle {
       display: block;
       margin-left: auto;
-      width: 25px;
 
-      & img {
-        margin: 14px 0;
+      /* icon placement */
+      & .nav-search-icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 1.5rem;
+        /* fudge into place */
+        top: -1px;
+
+        /* fudge into place on bigger screens */
+        @add-mixin from-xl {
+          top: -0.25rem;
+        }
       }
+
+      /* label theming */
+      & .nav-search-label {
+        /* positioning */
+        line-height: 4; /* vertically align with menu toggle */
+        margin: 0.75em;
+        /* transitions */
+        opacity: 0.75;
+        transition: opacity 0.3s ease;
+      }
+
+      /* interactions */
+      &:hover, &:focus {
+        text-decoration: none;
+
+        & .nav-search-label {
+          opacity: 1;
+          color: var(--white); /* blueprint override */
+        }
+      }
+    }
+
+    & .nav-search-toggle.toggle-nav {
+      margin-top: calc(var(--gutter)/2);
     }
 
     & .nav-search-toggle.toggle-input,
@@ -86,49 +109,24 @@
   & .title-container {
     margin: var(--gutter) auto;
 
+    /* bring closer to nav */
+    @add-mixin from-lg {
+      width: calc(100% - 20rem);
+      margin-top: -0.5rem;
+    }
+
     & .nav-title {
       width: 100%;
       text-align: center;
-      text-transform: uppercase;
 
+      /* main page title */
       & h1 {
-        margin: 0px;
-        font-family: var(--font-family-title);
-        font-size: 30px;
-        font-weight: 300;
-        line-height: 1.1em;
-        color: var(--snow);
+        @add-mixin font-xxl;
+        color: var(--white);
       }
 
       & .meta-title {
-        font-family: var(--font-family-text);
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 30px;
-        letter-spacing: 0.08px;
-        text-transform: uppercase;
         white-space: nowrap;
-
-        & .parent,
-        & .type {
-          display: block;
-
-          & .separator {
-            display: none;
-          }
-
-          & a {
-            cursor: pointer;
-            margin: 0px;
-            opacity: 0.8;
-            text-decoration: none;
-            transition: opacity 0.2s;
-            color: var(--snow);
-            &:hover {
-              opacity: 1;
-            }
-          }
-        }
 
         & .icon-container {
           display: inline-block;
@@ -136,7 +134,7 @@
           margin-right: 5px;
           width: 30px;
           height: 30px;
-          background-color: var(--snow);
+          background-color: var(--white);
           border-radius: 50%;
 
           & .icon {
@@ -150,46 +148,75 @@
   }
 }
 
-.nav .subnav {
+.subnav {
   z-index: 100;
-  padding: 10px 16px;
+  padding: calc(var(--gutter) * 0.75) var(--gutter);
   width: 100%;
-  color: var(--snow);
-  background-color: var(--footer-bg);
-  max-width: 370px;
+  color: var(--white);
+  background-color: var(--black);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.25);
+  /* transitions */
+  will-change: opacity, transform;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.3s ease-out;
+
+  &.hidden {
+    left: 0; /* override canon */
+    opacity: 0;
+    transform:
+      translateX(-100%)
+      rotateY(140deg);
+  }
+
+  /* sidebar layout on bigger screens */
+  @media (min-width: 600px) {
+    max-width: 28rem;
+  }
 
   & .button-set-container {
     display: flex;
     flex-direction: row;
-    padding: 10px;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    top: -1px; /* fudge into place */
   }
 
-  & .close-btn-container {
-    flex: 1 auto;
+  & .menu-close-btn {
+    display: inline-block;
+    padding: 0;
+    margin-right: 1em;
+    width: 22px;
+  }
 
-    & a,
-    & img {
-      display: block;
+  & .home-link {
+    @add-mixin nav-logo;
+    /* positioning */
+    flex: 1 0 auto;
+
+    /* if home page */
+    &.is-active {
+      opacity: 1;
     }
-    & a {
-      padding: 10px;
+
+    /* sizing is fussy because of flex */
+    & .home-link-img {
+      width: 96px;
+      min-width: 96px;
     }
   }
 
   & .lang-selector {
-    font-family: var(--font-family-text);
-    font-weight: 400;
-    font-size: 14px;
+    @add-mixin font-xs;
+    @add-mixin body-font;
     line-height: 42px;
-    text-transform: uppercase;
+    margin-left: auto;
 
     & .lang {
       display: inline-block;
-      margin: 0 2px;
-      padding: 0 10px;
+      padding: 0 0.5em;
       text-decoration: none;
       color: inherit;
-      cursor: pointer;
 
       &.current,
       &:hover {
@@ -214,52 +241,79 @@
     }
   }
 
+  /* subnav search */
+  & .search-sidebar {
+
+    /* remove excess padding */
+    & .search-input {
+      padding-right: 1em;
+    }
+  }
+
+  & .subnav-subtitle {
+    @add-mixin font-uppercase;
+    margin-top: 2em;
+  }
+
+  & .subnav-list,
   & > ul {
+    @add-mixin font-xs;
     list-style: none;
     padding: 0;
-    margin: 0 10px;
-    font-family: var(--font-family-text);
-    font-size: 14px;
-    font-weight: 400;
+    margin: 0;
+    @add-mixin body-font;
     line-height: 18px;
-    letter-spacing: 0.08px;
     text-transform: uppercase;
-    color: var(--snow);
+    color: var(--white);
 
-    & li {
-      margin: 2px 0;
-
-      & a {
-        color: inherit;
-      }
-    }
-
-    & li.title {
-      padding-top: 15px;
-      color: var(--gray);
-    }
-
-    & li.link a,
-    & li.topic a {
-      display: block;
-      padding: 3px 0;
-      padding-left: 16px;
+    & a,
+    & .subnav-link {
+      /* typography */
+      @add-mixin heading-font;
+      @add-mixin font-smoothing;
+      @add-mixin font-uppercase;
       text-decoration: none;
-      opacity: 0.8;
-      transition: opacity 0.2s;
-      cursor: pointer;
+      /* sizing */
+      display: block;
+      line-height: 2;
+      /* theming */
+      color: var(--white); /* override default link style */
+      /* border */
+      border-left-width: 4px;
+      border-left-style: solid;
+      padding-left: 0.75em;
+      /* fudge into place */
+      margin-left: 1px;
+      /* transitions */
+      opacity: 0.75;
+      transition:
+        opacity 0.15s ease-out,
+        border 0.15s ease-out,
+        color 0.15s ease-out;
 
-      &:hover {
-        opacity: 1;
+      /* white border & text color if no theme applied */
+      &:not([class*=border]) {
+        border-color: var(--dark-1);
+        color: var(--white);
+
+        &:hover, &:focus {
+          border-color: var(--light-3);
+        }
+      }
+
+      /* hover effect */
+      &:not(.link-soon) {
+        &:hover, &:focus {
+          opacity: 1;
+        }
       }
     }
 
-    & li.link.link-soon,
-    & li.title.link-soon {
-      & a {
-        opacity: 0.3;
-        cursor: not-allowed;
-      }
+    /* coming soon...? */
+    & .link-soon {
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -1;
     }
   }
 }
@@ -269,16 +323,6 @@
 
 @add-mixin from-xs {
   .nav {
-    & .nav-container {
-      & .c-col {
-        padding: 11px 0 0;
-
-        & .logo {
-          width: 150px;
-        }
-      }
-    }
-
     & .subnav {
       width: 370px;
     }
@@ -288,17 +332,8 @@
 @add-mixin from-sm {
   .nav {
     & .nav-container {
-      & .c-col {
-        padding: 11px 0 0;
-
-        & .logo {
-          width: 170px;
-        }
-      }
-
       & .r-col {
         padding: 20px 0 0;
-        position: relative;
       }
 
       & .nav-search-toggle.toggle-nav {
@@ -318,26 +353,32 @@
 
         & .nav-search-wrapper {
           margin-left: auto;
+          width: 6em;
+          will-change: width;
           transition: all 0.5s ease;
+
+          /* fudge search input into position */
+          & .search-nav {
+            top: 0.25em;
+          }
+
+          /* make space for close icon */
+          & .search-nav-main .search-input {
+            padding-right: 50px;
+          }
         }
       }
 
       & .nav-search {
         &.closed {
-          & .nav-search-toggle img {
-            margin: 14px 0;
-          }
           & .nav-search-wrapper {
-            width: 110px;
             opacity: 0;
           }
         }
 
         &.open {
-          & .nav-search-toggle {
-            & img {
-              margin: 11px 0;
-            }
+          & .nav-search-label {
+            opacity: 0;
           }
           & .nav-search-wrapper {
             margin-right: -15px;
@@ -347,29 +388,16 @@
         }
       }
     }
+  }
+}
 
-    & .title-container {
-      & .nav-title {
-        & h1 {
-          font-size: 30px;
-        }
+/* tags and parent links */
+.title-container .meta-title {
+  text-align: center;
 
-        & .meta-title {
-          text-align: center;
-
-          & .parent,
-          & .type {
-            display: inline-block;
-            vertical-align: center;
-
-            & .separator {
-              display: inline;
-              padding: 0 5px;
-            }
-          }
-        }
-      }
-    }
+  & .separator {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
   }
 }
 
@@ -384,30 +412,9 @@
 }
 
 @add-mixin from-md {
-  .nav {
-    & .nav-container {
-      & .nav-search-container {
-        padding-left: 40px;
-      }
-    }
-    & .title-container {
-      & .nav-title {
-        & h1 {
-          font-size: 60px;
-        }
-      }
-    }
-
-    & .subnav {
-      padding: 16px;
-
-      & .nav-search-wrapper {
-        padding: 0 var(--gutter-half);
-      }
-
-      & > ul {
-        margin: 0 16px;
-      }
+  & .subnav {
+    & .nav-search-wrapper {
+      padding: 0 var(--gutter-half);
     }
   }
 }

@@ -50,10 +50,10 @@ class PresidentSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
+          <h3 className="topic-slide-title">
             {t("geo_profile.civics.president.title")}
-          </div>
-          <div
+          </h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
               __html: t(

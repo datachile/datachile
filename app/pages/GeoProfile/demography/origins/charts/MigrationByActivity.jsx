@@ -13,7 +13,7 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
 // import MiniFilter from "components/MiniFilter";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class MigrationByActivity extends Section {
 	// state = {
@@ -103,14 +103,17 @@ class MigrationByActivity extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Migration By Activity")}</span>
+					<span>
+						{t("Migration By Activity")}
+						<SourceTooltip cube="immigration" />
+					</span>
 					<ExportLink path={chart_path} className={classSvg} />
 				</h3>
 				{/* <MiniFilter onClick={this.toggleFilter} filters={filters} /> */}
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: chart_path,
 						groupBy: ["ID Activity"],
 						label: d => d["Activity"],
@@ -157,7 +160,6 @@ class MigrationByActivity extends Section {
 						return orderBy(filtered, ["Number of visas"], ["desc"]);
 					}}
 				/>
-				<SourceNote cube="immigration" />
 			</div>
 		);
 	}

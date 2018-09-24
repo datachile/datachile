@@ -12,7 +12,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 class InvestmentByLocation extends Section {
@@ -67,6 +67,7 @@ class InvestmentByLocation extends Section {
                   {industry.parent ? industry.parent.caption : industry.caption}
                 </span>
               )}
+            <SourceTooltip cube="tax_data" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
@@ -83,7 +84,7 @@ class InvestmentByLocation extends Section {
               text: d =>
                 "Total: CLP" +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -113,7 +114,7 @@ class InvestmentByLocation extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  numeral(d["Investment"], locale).format("(USD 0 a)") + link
+                  numeral(d["Investment"], locale).format("(USD 0a)") + link
                 );
               }
             },
@@ -124,27 +125,23 @@ class InvestmentByLocation extends Section {
               body: d => {
                 const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  numeral(d["Investment"], locale).format("(USD 0 a)") + link
+                  numeral(d["Investment"], locale).format("(USD 0a)") + link
                 );
               }
             },
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
                 backgroundImage: d =>
                   "/images/legend/region/" + d["ID Region"] + ".png"
               }
             },
             yConfig: {
               title: t("CLP$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />
-
-        <SourceNote cube="tax_data" />
       </div>
     );
   }

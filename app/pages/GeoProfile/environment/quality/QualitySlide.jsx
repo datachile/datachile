@@ -215,8 +215,8 @@ class QualitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Quality")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Quality")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
@@ -228,7 +228,7 @@ class QualitySlide extends Section {
                   icon="hogares-rurales"
                   datum={
                     datum_household_zone_rural.available
-                      ? numeral(rural_number, locale).format("(0.0 a)")
+                      ? numeral(rural_number, locale).format("(0.0a)")
                       : t("no_datum")
                   }
                   title={t("Rural households")}
@@ -249,7 +249,7 @@ class QualitySlide extends Section {
                   datum={
                     datum_less_30mts_sq.available
                       ? numeral(datum_less_30mts_sq.data, locale).format(
-                          "(0.0 a)"
+                          "(0.0a)"
                         )
                       : t("no_datum")
                   }
@@ -274,7 +274,7 @@ class QualitySlide extends Section {
                   datum={
                     datum_credit_banco_estado.available
                       ? numeral(datum_credit_banco_estado.data, locale).format(
-                          "(0.0 a)"
+                          "(0.0a)"
                         )
                       : t("no_datum")
                   }

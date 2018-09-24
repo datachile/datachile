@@ -9,7 +9,7 @@ import { regionsColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class MigrationByRegion extends Section {
 	static need = [
@@ -54,7 +54,10 @@ class MigrationByRegion extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Migration By Region")}</span>
+					<span>
+						{t("Migration By Region")}
+						<SourceTooltip cube="immigration" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 
@@ -91,8 +94,6 @@ class MigrationByRegion extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 25,
-								height: 25,
 								backgroundImage: d =>
 									"/images/legend/region/" + d["ID Region"] + ".png"
 							}
@@ -103,7 +104,6 @@ class MigrationByRegion extends Section {
 						}
 					}}
 				/>
-				<SourceNote cube="immigration" />
 			</div>
 		);
 	}

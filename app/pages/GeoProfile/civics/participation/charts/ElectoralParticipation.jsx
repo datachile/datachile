@@ -14,7 +14,7 @@ import { regionsColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ElectoralParticipation extends Section {
   static need = [
@@ -58,13 +58,16 @@ class ElectoralParticipation extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Electoral Participation")}</span>
+          <span>
+            {t("Electoral Participation")}
+            <SourceTooltip cube="election_participation" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["geo"],
             label: d => d["geo"],
@@ -89,7 +92,7 @@ class ElectoralParticipation extends Section {
             },
             yConfig: {
               title: t("Participation"),
-              tickFormat: tick => numeral(tick, locale).format("0 %")
+              tickFormat: tick => numeral(tick, locale).format("0%")
             },
             xSort: (a, b) =>
               a["ID Year"] > b["ID Year"]
@@ -120,12 +123,6 @@ class ElectoralParticipation extends Section {
             },
             legendTooltip: {
               body: d => "<div></div>"
-            },
-            legendConfig: {
-              shapeConfig: {
-                width: 25,
-                height: 25
-              }
             }
           }}
           dataFormat={data => {
@@ -143,7 +140,6 @@ class ElectoralParticipation extends Section {
             return location.concat(country);
           }}
         />
-        <SourceNote cube="election_participation" />
       </div>
     );
   }

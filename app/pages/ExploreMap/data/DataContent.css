@@ -1,21 +1,21 @@
+@import "../../mixins";
+
 .data-content {
-  font-family: var(--font-family-text);
+  @add-mixin body-font;
   & .no-data-available {
     color: #ffffff;
   }
   & .table {
-    font-size: 12px;
+    @add-mixin font-xs;
     & .rt-thead {
       overflow-x: hidden;
-      //overflow-y: scroll;
+      /* overflow-y: scroll; */
       & .rt-th {
-        background: var(--nice-blue);
-        font-weight: 800;
-        color: var(--snow);
-        text-transform: uppercase;
+        background: var(--accent);
+        color: var(--white);
         padding: 15px;
         text-align: left;
-        font-family: var(--font-family-text);
+        @add-mixin body-font;
       }
     }
     & .rt-tbody {
@@ -23,15 +23,15 @@
         border-width: 0px;
       }
       & .rt-td {
-        font-family: var(--font-family-text);
-        background: var(--snow);
+        @add-mixin body-font;
+        background: var(--white);
         color: #808080;
         padding: 15px;
         border-right: 1px solid rgba(0, 0, 0, .2);
       }
     }
     & .pagination-bottom {
-      background-color: var(--snow);
+      background-color: var(--white);
     }
   }
 }

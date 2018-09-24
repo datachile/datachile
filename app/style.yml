@@ -1,33 +1,33 @@
-color-title: "#3C3C3B"
-color-p: "#6E7370"
+# grayscale
+white:   "#ffffff"
+light-1: "#F0EFF2"
+light-2: "#CBCBD3"
+light-3: "#A2A2AD"
+gray:    "#666672"
+dark-1:  "#434351"
+dark-2:  "#363644"
+dark-3:  "#292935"
+black:   "#1E1E26"
 
-snow: "#ffffff"
-dark: "#2F2F38"
-light: "#fff"
-accent: "#4B71B5"
-gray: "#F2F2F2"
-darker-gray: "#e6e6e6"
-medium-gray: "#808080"
-footer-bg: "#1E1E26"
+# accent
+accent: "#3277DC"
+accent-lighter: "#8CB6DD"
+accent-light: "#4985DE"
+accent-dark: "#3669B5"
 
-subnav-size: "370px"
-
-near-black: "#292935"
-nice-blue: "#708BBB"
-bg-blue: "#263b58"
-
-gray-light: "#D8D8D8"
-gray-dark: "#B3B3B3"
-near-white: "#EFEFEF"
-
-pre-bg: "#494952"
-
-color-geo: "#4B71B5"
+# section theming
+color-geo: "#3277DC"
+color-geo-light: "#4985DE"
 color-countries: "#1ECBD8"
+color-countries-light: "#34D0DB"
 color-institutions: "#7777ED"
+color-institutions-light: "#8484EE"
 color-careers: "#CCA566"
+color-careers-light: "#D1AE75"
 color-products: "#FF7474"
+color-products-light: "#FF8181"
 color-industries: "#2A8090"
+color-industries-light: "#3F8C9B"
 
 border-radius: "6px"
 
@@ -36,10 +36,9 @@ section-article-small: "300px"
 
 nav-height: "60px"
 
-font-family: "Gilroy"
-section-title-family: "Gilroy, sans-serif"
-font-family-title: "Gilroy, sans-serif"
-font-family-text: "Roboto, Helvetica Neue, Helvetica, Arial, sans-serif"
+heading-font: "'Source Sans Pro', Source Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+body-font: "'Roboto', Helvetica Neue, Helvetica, Arial, sans-serif"
+visualization-font: "'Roboto Condensed', Source Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
 
 background: "-10"
 foreground: "10"
@@ -50,10 +49,11 @@ gutter-half: "16px"
 gutter-third: "11px"
 width: "1148px"
 
+subnav-size: "370px"
+
 break-xl: "1800px"
 break-lg: "1200px"
 break-md: "992px"
 break-sm: "768px"
 break-xs: "480px"
 break-xxs: "320px"
-

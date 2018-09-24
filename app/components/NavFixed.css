@@ -1,18 +1,30 @@
 @import "../pages/mixins";
 
 .nav-fixed {
+  /* positioning */
   position: fixed;
   left: 0;
   top: 0;
   z-index: 50;
+  /* theming */
+  background-color: color(var(--black) a(0.975)); /* fallback */
+  /* subtle translucence */
+  background: linear-gradient(
+    var(--black),
+    color(var(--black) a(0.975)) 50%,
+    color(var(--black) a(0.95)) 100%
+  );
+  /* sizing */
   width: 100%;
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 400ms;
+  min-height: 88px;
+  padding: 0 var(--gutter);
+  /* transitions */
+  transform: none;
+  transition: transform 0.4s;
 
   &.hidden {
     opacity: 0;
-    transform: translateY(-200px);
+    transform: translateY(-100%);
     pointer-events: none;
   }
 
@@ -23,12 +35,11 @@
   }
 
   & .nav-entity {
-    position: relative;
+    min-height: 88px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    background-color: var(--footer-bg);
   }
 
   & .nav-titles {
@@ -38,37 +49,25 @@
   }
 
   & .nav-titles-action {
-    width: 56px;
 
     & .menu-button {
       display: block;
-      padding: var(--gutter-half) 0;
+      width: 22px;
+      margin-right: 1em;
     }
   }
 
   & .datachile {
-    width: 80px;
+    @add-mixin nav-logo;
+    /* positioning */
     margin-right: 5px;
-
-    & img {
-      width: 100%;
-    }
+    top: -1px; /* fudge into place */
   }
 
   & .title {
     flex: 1;
     display: block;
-    color: var(--accent);
-    font-family: var(--font-family-title);
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 1.15em;
-    letter-spacing: 0.03px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all 0.5s ease;
+    margin-left: 0.5em;
   }
 
   & a.search-toggle-nav {
@@ -77,58 +76,72 @@
   }
 
   & .nav-topic {
-    font-family: var(--font-family-title);
-    font-size: 9px;
-    font-weight: 300;
     text-align: center;
-    text-transform: uppercase;
 
     & .topics {
-      display: flex;
-      flex-direction: row;
-      align-content: center;
-      justify-content: space-around;
+      /* no icon on small screens */
+      @add-mixin for-sm {
+        text-align: right;
+
+        & .topic-link {
+          display: inline-block;
+
+          & + .topic-link {
+            margin-left: 1em;
+          }
+        }
+      }
+      /* position icons on big screens */
+      @add-mixin from-sm {
+        display: flex;
+        flex-direction: row;
+        align-content: stretch;
+        justify-content: space-around;
+        height: 100%;
+
+        & .topic-link + .topic-link {
+          margin-left: 1em;
+        }
+      }
     }
 
     & .topic-link {
       display: block;
-      padding: 5px 0;
-
       text-decoration: none;
-      color: var(--snow);
-      letter-spacing: 0.5px;
+      color: var(--white);
       border-bottom: 2px solid transparent;
       opacity: 0.9;
       transition: opacity 0.2s;
       cursor: pointer;
+      line-height: 100%;
+      padding: 0.5em;
 
+      /* interactions */
       &.active,
-      &:hover {
+      &:hover,
+      &:focus {
         color: var(--accent);
-        border-color: var(--accent);
         opacity: 1;
+        transition: color 0.2s ease-out;
+
+        & .svg-image {
+          transform: translateY(-3px);
+        }
+      }
+      &.active {
+        border-color: var(--accent);
       }
 
       & .svg-image {
-        display: none;
+        @add-mixin for-sm {
+          display: none;
+        }
+        @add-mixin from-sm {
+          padding-top: 1em;
+          padding-bottom: 0.5em;
+          transition: transform 0.2s ease-out;
+        }
       }
-    }
-  }
-}
-
-@add-mixin from-xs {
-  .nav-fixed {
-    & .nav-titles-action {
-      width: 60px;
-    }
-
-    & .datachile {
-      width: 100px;
-      margin-right: 15px;
-    }
-
-    & .nav-topic {
-      padding: 0 25px;
     }
   }
 }
@@ -143,30 +156,9 @@
       flex: 1;
     }
 
-    & .nav-titles-action {
-      width: auto;
-
-      & .menu-button {
-        display: block;
-        padding: 16px;
-        padding-left: 32px;
-      }
-    }
-
-    & .datachile {
-      width: 110px;
-    }
-
-    & .title {
-      font-size: 20px;
-    }
-
     & .nav-topic {
-      padding: 0 32px 0 var(--gutter-third);
 
       & .topic-link {
-        margin: 0px 5px -1px;
-        padding: 3px 0 2px;
 
         & .svg-image {
           display: block;
@@ -181,8 +173,9 @@
           & rect,
           & circle {
             fill: none;
-            stroke: var(--snow);
+            stroke: var(--white);
             stroke-width: 1.5;
+            transition: stroke 0.2s ease-out;
           }
         }
 
@@ -200,27 +193,5 @@
         }
       }
     }
-  }
-}
-
-@add-mixin from-md {
-  .nav-fixed {
-    & .nav-topic {
-      padding: 0 var(--gutter-half);
-
-      & .topic-link {
-        margin: 0px 8px -1px;
-        padding: 5px 0;
-
-        & .svg-image {
-          margin-bottom: 5px;
-        }
-      }
-    }
-  }
-}
-
-@add-mixin from-lg {
-  .nav-fixed {
   }
 }

@@ -10,6 +10,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { sources } from "helpers/consts";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import LevelWarning from "components/LevelWarning";
 
 class DevicesSlide extends Section {
   static need = [
@@ -101,7 +102,7 @@ class DevicesSlide extends Section {
       var geo = getGeoObject(params);
       const cube = mondrianClient.cube("internet_access");
 
-      //force to region query on comuna profile
+      // force to region query on comuna profile
       if (geo.type == "comuna") {
         geo = geo.ancestor;
       }
@@ -160,7 +161,7 @@ class DevicesSlide extends Section {
   ];
 
   render() {
-    const { children, t, i18n } = this.props;
+    const { children, path, t, i18n } = this.props;
     const locale = i18n.language;
 
     let {
@@ -202,29 +203,14 @@ class DevicesSlide extends Section {
       access_total: numeral(internet_data.total, locale).format("(0,0)")
     });
 
+    // grab parent URL
+    const parentPath = path ? path.substring(0, path.lastIndexOf("/")) : null;
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Devices")}
-            {this.context.data.geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", {
-                        caption:
-                          "Región " + this.context.data.geo.ancestors[0].caption
-                      })
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div
+          <h3 className="topic-slide-title">{t("Devices")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
@@ -232,7 +218,7 @@ class DevicesSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="conectividad-internet"
-              datum={numeral(internet_data.total, locale).format("(0,0 a)")}
+              datum={numeral(internet_data.total, locale).format("(0,0a)")}
               title={t("Internet Access")}
               subtitle={`${t("in")} ${geo.name} - ${
                 sources.internet_access.year
@@ -242,7 +228,7 @@ class DevicesSlide extends Section {
               className="l-1-3"
               icon="celular"
               datum={numeral(datum_household_devices_small, locale).format(
-                "(0,0 a)"
+                "(0,0a)"
               )}
               title={t("Use small screens")}
               subtitle={t("to access the internet")}
@@ -251,14 +237,21 @@ class DevicesSlide extends Section {
               className="l-1-3"
               icon="tv"
               datum={numeral(datum_household_devices_uncommon, locale).format(
-                "(0,0 a)"
+                "(0,0a)"
               )}
               title={t("Use unconventional internet browser")}
               subtitle={t("on Smart TV or Gaming Console")}
             />
           </div>
+
+          {/* this data is in another castle */}
+          {this.context.data.geo.depth > 1 && (
+            <LevelWarning name={geo.name} path={path} />
+          )}
         </div>
-        <div className="topic-slide-charts">{children}</div>
+        <div className="topic-slide-charts centered-topic-slide-charts">
+          {children}
+        </div>
       </div>
     );
   }

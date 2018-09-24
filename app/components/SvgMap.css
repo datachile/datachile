@@ -1,12 +1,14 @@
+@import "../pages/mixins.css";
+
 .svg-map {
   width: 100%;
   & svg {
     & path.region {
       stroke-width: 1;
       stroke-opacity: 1;
-      stroke: var(--snow);
+      stroke: var(--white);
 
-      fill: var(--snow);
+      fill: var(--white);
       fill-opacity: 0.7;
 
       cursor: pointer;
@@ -19,9 +21,9 @@
       pointer-events: all;
     }
     & path.comuna {
-      fill: var(--near-black);
+      fill: var(--dark-3);
       fill-opacity: 0.2;
-      stroke: var(--snow);
+      stroke: var(--white);
       cursor: pointer;
       transition: fill 0.4s ease, opacity 0.4s ease;
       &.selected {
@@ -30,35 +32,49 @@
         cursor: pointer;
       }
       &.hover {
-        fill: var(--snow);
+        fill: var(--white);
         fill-opacity: 1;
         cursor: pointer;
       }
     }
     & path.limite {
       fill: none;
-      stroke: var(--snow);
+      stroke: var(--white);
       pointer-events: none;
     }
     & circle.border-circle,
     & clippath {
       fill: none;
-      stroke: var(--snow);
+      stroke: var(--white);
       pointer-events: none;
     }
   }
-  & #svg-map-tooltip {
-    transform: scale(0);
+
+  /* extends .datachile-tooltip style in app.css */
+  & .svg-map-tooltip {
+    /* typography */
+    @add-mixin body-font-bold;
+    /* sizing */
+    width: 160px;
+    /* positioning */
     position: absolute;
-    z-index: 100;
+    margin-top: -3rem; /* fudge into place above cursor */
+    z-index: 1;
+    /* theming */
+    border: none;
+    /* prevent from obscuring map target */
     pointer-events: none;
 
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    background: var(--snow);
-    border: 1px solid var(--dark);
-    font-family: var(--font-family-text);
-    color: var(--dark);
+    /* initial state */
+    &:not([style]) {
+      opacity: 0;
+    }
+
+    /* override default splash style */
+    &, & a {
+      @add-mixin font-xxs;
+      line-height: 1.5;
+      text-shadow: none !important;
+    }
   }
 }

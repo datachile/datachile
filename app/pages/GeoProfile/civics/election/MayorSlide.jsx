@@ -61,17 +61,17 @@ class MayorSlide extends Section {
         text.votes.participation = numeral(
           participation.Votes / participation.Electors,
           locale
-        ).format("0.0 %");
+        ).format("0.0%");
       }
     }
 
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
+          <h3 className="topic-slide-title">
             {t("geo_profile.civics.mayor.title")}
-          </div>
-          <div
+          </h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{
               __html: t(

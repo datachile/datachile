@@ -14,7 +14,7 @@ import { regionsColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 import groupBy from "lodash/groupBy";
 
@@ -62,13 +62,16 @@ class Presidential2ndBar extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Results 2nd Round")}</span>
+          <span>
+            {t("Results 2nd Round")}
+            <SourceTooltip cube="election_results" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["geo"],
             label: d => d["geo"],
@@ -103,7 +106,7 @@ class Presidential2ndBar extends Section {
             },
             yConfig: {
               title: "% " + t("Votes"),
-              tickFormat: tick => numeral(tick, locale).format("0 %")
+              tickFormat: tick => numeral(tick, locale).format("0%")
             },
             xSort: (a, b) =>
               a["ID Year"] > b["ID Year"]
@@ -126,12 +129,6 @@ class Presidential2ndBar extends Section {
             },
             legendTooltip: {
               body: d => "<div></div>"
-            },
-            legendConfig: {
-              shapeConfig: {
-                width: 25,
-                height: 25
-              }
             }
           }}
           dataFormat={data => {
@@ -185,7 +182,6 @@ class Presidential2ndBar extends Section {
             return location.concat(country);
           }}
         />
-        <SourceNote cube="election_results" />
       </div>
     );
   }

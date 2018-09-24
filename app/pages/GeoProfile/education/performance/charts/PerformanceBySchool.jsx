@@ -8,7 +8,7 @@ import { getTopCategories } from "helpers/dataUtils";
 import { translate } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class PerformanceBySchool extends Section {
   static need = [
@@ -35,13 +35,16 @@ class PerformanceBySchool extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Top Schools By Performance")}</span>
+          <span>
+            {t("Top Schools By Performance")}
+            <SourceTooltip cube="education_performance" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["Institution"],
             //label: d =>
@@ -79,8 +82,6 @@ class PerformanceBySchool extends Section {
             legendConfig: {
               label: d => d["Administration"],
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: d =>
                   "/images/legend/college/administration.png"
               }
@@ -90,7 +91,6 @@ class PerformanceBySchool extends Section {
             getTopCategories(data.data, "Average Score Average (?)")
           }
         />
-        <SourceNote cube="education_performance" />
       </div>
     );
   }

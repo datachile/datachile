@@ -12,6 +12,7 @@ import { maxMinGrowthByYear } from "helpers/aggregations";
 import { getGeoObject } from "helpers/dataUtils";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import LevelWarning from "components/LevelWarning";
 
 class IncomeSexAgeSlide extends Section {
   static need = [
@@ -76,7 +77,7 @@ class IncomeSexAgeSlide extends Section {
   ];
 
   render() {
-    const { children, t } = this.props;
+    const { children, path, t } = this.props;
 
     const locale = this.props.i18n.language;
 
@@ -102,24 +103,9 @@ class IncomeSexAgeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
+          <h3 className="topic-slide-title">
             {t("Income")}
-            {this.context.data.geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", {
-                        caption: "Región " + name
-                      })
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          </h3>
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{
@@ -134,22 +120,21 @@ class IncomeSexAgeSlide extends Section {
             <FeaturedDatum
               className="l-1-2"
               icon="ingreso-femenino"
-              datum={numeral(datum_income_mean_sex[0], locale).format(
-                "($ 0 a)"
-              )}
+              datum={numeral(datum_income_mean_sex[0], locale).format("($0a)")}
               title={t("Female Median Income")}
               subtitle={t("in ") + name}
             />
             <FeaturedDatum
               className="l-1-2"
               icon="ingreso-masculino"
-              datum={numeral(datum_income_mean_sex[1], locale).format(
-                "($ 0 a)"
-              )}
+              datum={numeral(datum_income_mean_sex[1], locale).format("($0a)")}
               title={t("Male Median Income")}
               subtitle={t("in ") + name}
             />
           </div>
+          {this.context.data.geo.depth > 1 && (
+            <LevelWarning name={name} path={path} />
+          )}
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

@@ -1,147 +1,184 @@
 @import "../pages/mixins";
 
-footer {
+.footer {
   width: 100%;
-  font-family: var(--font-family-text);
-  font-weight: 300;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
-  background-color: var(--footer-bg);
+  background-color: var(--black);
 
-  & .footer-container {
+  /* -------------------------------------
+  main layout
+  ------------------------------------- */
+
+  /* main container sizing & layout */
+  & .footer-main-container {
+    /* align children */
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    /* line up content edges */
     padding: var(--gutter);
-  }
 
-  & .footer-title {
-    margin-bottom: var(--gutter);
-    font-size: 12px;
-    letter-spacing: 1px;
+    /* side by side layout on all but tiny screens */
+    @add-mixin from-xs {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
 
-    &::after {
-      content: "";
-      display: block;
-      width: 25px;
-      height: 2px;
-      background-color: rgba(255, 255, 255, 0.75);
-      margin-top: 7px;
+      /* nav column */
+      & .footer-nav {
+        width: 14rem;
+      }
+      /* stretchy logo column */
+      & .footer-logo-container {
+        width: calc(100% - 14rem - var(--gutter));
+      }
     }
   }
 
-  & .collaboration {
-    box-sizing: border-box;
-    padding: var(--gutter) 0px;
+  /* -------------------------------------
+  footer nav
+  ------------------------------------- */
 
-    & .logos {
-      text-align: center;
+  /* link style */
+  & .footer-nav-link {
+    @add-mixin nav-link;
+
+    /* disabled "link"; coming soon */
+    &.is-disabled {
+      opacity: 0.333;
+      pointer-events: none;
+    }
+  }
+
+  /* current page */
+  /* NOTE: there's some silly logic here to work around the way
+  the react-router Link `activeClassname` prop
+  deals with inheritence */
+  & .footer-nav-item:not(:first-of-type) .footer-nav-link.is-active,
+  & .footer-nav-item:first-of-type .footer-nav-link.is-home {
+    color: var(--accent);
+    opacity: 1;
+  }
+
+  /* -------------------------------------
+  logos
+  ------------------------------------- */
+
+  /* adjust logo heading spacing */
+  & .footer-logo-heading {
+    margin-bottom: 0.75em; /* override blueprint */
+
+    /* space out heading from links on tiny screens */
+    @add-mixin for-xs {
+      margin-top: 2rem;
+    }
+    @add-mixin from-md {
+      margin-bottom: 0.25em;
+    }
+  }
+
+  /* put logos into columns */
+  & .footer-logo-list {
+    column-width: 8rem;
+    column-gap: 4rem;
+
+    /* scale down logos on small screens */
+    @add-mixin for-lg {
+      column-width: 6rem;
+      column-gap: 3rem;
+    }
+    @add-mixin for-md {
+      column-width: 5rem;
+      column-gap: 2rem;
+    }
+    @add-mixin for-sm {
+      column-count: 3;
+      column-gap: 15%;
     }
 
-    & .logo {
+    /* space out logos */
+    & .footer-logo-item {
+      margin-bottom: 0.5rem;
+
+      /* tweakpoint to center all but the first logo within columns on big screens */
+      /* WARNING: extremely fudged */
+      @media (min-width: 1371px) {
+        &:not(:first-of-type) {
+          text-align: center;
+        }
+      }
+    }
+
+    /* logo interactions */
+    & .footer-logo-link {
+      opacity: 0.75;
+
+      &:hover, &:focus {
+        opacity: 1;
+      }
+    }
+  }
+
+  /* space out logo blocks */
+  & .footer-partner-logo-container {
+    margin-bottom: 2rem;
+
+    /* space it out moar */
+    @add-mixin from-xs {
+      margin-bottom: 3rem;
+    }
+    @add-mixin from-md {
+      margin-bottom: 4rem;
+    }
+  }
+
+  /* tweakpoint to move datawheel logo top right on giant screens */
+  @add-mixin from-xxl {
+    & .footer-dev-logo-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      text-align: right;
+    }
+  }
+
+  /* -------------------------------------
+  feedback
+  ------------------------------------- */
+
+  /* feedback container */
+  & .footer-feedback-container {
+    /* align with content edge */
+    padding: 1.25rem var(--gutter-half); /* make up with link padding */
+    text-align: center;
+    /* theming */
+    background-color: var(--dark-3);
+
+    /* feedback list items */
+    & .footer-feedback-item {
       display: inline-block;
-      vertical-align: middle;
-      max-height: 94px;
-      margin: 0 var(--gutter-half);
-    }
+      padding: 0 var(--gutter-half);
 
-    & .column.developed .logos {
-      margin-top: -32px;
-    }
-  }
+      /* add bullet between adjacent feedback items */
+      &:not(:last-of-type) {
+        margin-right: 1em; /* increase spacing */
 
-  & .nav-links  {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    padding: 30px 0;
-    font-size: 12px;
-    line-height: 2em;
-
-    & .link {
-      margin-right: 20px;
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-
-      &.link-soon {
-        opacity: 0.5;
-      }
-    }
-
-    & .link-dot {
-      font-weight: 400;
-    }
-  }
-}
-
-@add-mixin from-sm {
-  footer .collaboration {
-    &::after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    & .column {
-      float: left;
-      width: 100%;
-
-      &.sponsored {
-        width: 67%;
-      }
-      &.supported {
-        width: 33%;
-      }
-    }
-
-    & .logos {
-      text-align: left;
-    }
-  }
-}
-
-@add-mixin from-md {
-  footer .collaboration {
-    display: flex;
-    flex-direction: row;
-
-    & .column {
-      lost-column: 1/3;
-    }
-  }
-}
-
-@add-mixin from-lg {
-  footer .collaboration {
-    & .column {
-      &.developed {
-        lost-column: 2/9;
-
-        & .logos {
-          margin-top: 0;
-        }
-
-        & .logo {
-          margin: 0 var(--gutter) 0 0;
+        &:after {
+          content: '•';
+          position: absolute;
+          right: -0.625em;
         }
       }
-      &.sponsored {
-        lost-column: 4/9;
-      }
-      &.supported {
-        lost-column: 3/9;
-      }
     }
-  }
-}
 
-@add-mixin for-sm {
-  footer {
-    & .nav-links  {
-      & .link {
-        margin: 0;
-        padding: var(--gutter-half) 10px;
-      }
+    /* feedback links */
+    & .footer-feedback-link {
+      @add-mixin nav-link;
+    }
+
+    /* move feedback to bottom right corner */
+    @add-mixin from-lg {
+      position: absolute;
+      bottom: 0;
+      right: 0;
     }
   }
 }

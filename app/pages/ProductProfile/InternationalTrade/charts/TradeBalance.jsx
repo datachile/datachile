@@ -10,7 +10,7 @@ import { tradeBalanceColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class TradeBalance extends Section {
 	static need = [];
@@ -63,13 +63,16 @@ class TradeBalance extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Trade Balance")}</span>
+					<span>
+						{t("Trade Balance")}
+						<SourceTooltip cube="imports" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<LinePlot
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: data,
 						groupBy: "variable",
 						x: "year",
@@ -80,7 +83,7 @@ class TradeBalance extends Section {
 						},
 						yConfig: {
 							title: t("USD"),
-							tickFormat: tick => numeral(tick, locale).format("($ 0.[00] a)")
+							tickFormat: tick => numeral(tick, locale).format("($0.[00]a)")
 						},
 						legendConfig: {
 							label: d => t(d["variable"])
@@ -97,12 +100,11 @@ class TradeBalance extends Section {
 								"<div>" +
 								d["year"] +
 								": USD " +
-								numeral(d["value"], locale).format("($ 0.00 a)") +
+								numeral(d["value"], locale).format("($0.00a)") +
 								"</div>"
 						}
 					}}
 				/>
-				<SourceNote cube="imports" />
 			</div>
 		);
 	}

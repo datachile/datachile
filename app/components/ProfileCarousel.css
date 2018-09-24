@@ -3,26 +3,22 @@
 .profile-carousel {
   lost-flex-container: row;
   lost-column: 1 1;
-  lost-utility: clearfix;
   margin: calc(var(--gutter)/2) auto var(--gutter) auto;
-  & .profile-carousel-icon {
+
+  & .profile-carousel-title {
     lost-column: 1 1;
     text-align: center;
-    & img {
-      width: 40px;
+    padding-right: 0.625em;
+
+    & .profile-carousel-title-icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 2em;
     }
-  }
-  & h4 {
-    lost-column: 1 1;
-    color: var(--snow);
-    font-family: var(--font-family-text);
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    line-height: 1em;
-    margin: 0 auto var(--gutter) auto;
+
+    & .profile-carousel-title-text {
+      vertical-align: middle;
+    }
   }
   & .profile-carousel-container {
     lost-flex-container: row;

@@ -12,7 +12,7 @@ import {
 import { productsColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ImportsByProduct extends Section {
   static need = [
@@ -34,7 +34,10 @@ class ImportsByProduct extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{title}</span>
+          <span>
+            {title}
+            <SourceTooltip cube="imports" />
+          </span>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <TreemapStacked
@@ -43,21 +46,19 @@ class ImportsByProduct extends Section {
           drilldowns={["HS0", "HS2"]}
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             total: d => d["CIF US"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
                 fill: d => productsColorScale("hs" + d["ID HS0"]),
                 backgroundImage: d =>
                   "/images/legend/hs/hs_" + d["ID HS0"] + ".png"
@@ -81,20 +82,19 @@ class ImportsByProduct extends Section {
             tooltipConfig: {
               title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               body: d =>
-                "US" +
-                numeral(d["CIF US"], locale).format("$ (0 a)") +
+                "US " +
+                numeral(d["CIF US"], locale).format("$ (0a)") +
                 "<br/><a>" +
                 t("tooltip.to_profile") +
                 "</a>"
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="imports" />
       </div>
     );
   }

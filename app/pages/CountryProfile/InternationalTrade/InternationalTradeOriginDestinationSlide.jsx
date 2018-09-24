@@ -140,8 +140,8 @@ class InternationalTradeOriginDestinationSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Origin & Destination")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Origin & Destination")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
@@ -149,7 +149,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
           <div className="topic-slide-data">
             {trade_destination.first_municipality && (
               <FeaturedDatum
-                className="l-1-2"
+                className="l-1-2 category-featured-datum"
                 icon="principal-comuna-export-import"
                 datum={trade_destination.first_municipality}
                 title={t("Main importing comuna")}
@@ -161,7 +161,7 @@ class InternationalTradeOriginDestinationSlide extends Section {
             )}
             {trade_origin.first_municipality && (
               <FeaturedDatum
-                className="l-1-2"
+                className="l-1-2 category-featured-datum"
                 icon="principal-comuna-export-import"
                 datum={trade_origin.first_municipality}
                 title={t("Main exporting comuna")}

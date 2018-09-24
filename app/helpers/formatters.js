@@ -223,10 +223,10 @@ n.register("locale", "es-cl", {
     decimal: ","
   },
   abbreviations: {
-    thousand: "mil",
-    million: "millones",
-    billion: "miles de millones",
-    trillion: "billones"
+    thousand: " mil",
+    million: " millones",
+    billion: " miles de millones",
+    trillion: " billones"
   },
   ordinal: function(number) {
     var b = number % 10;
@@ -247,10 +247,10 @@ n.register("locale", "en-cl", {
     decimal: "."
   },
   abbreviations: {
-    thousand: "k",
-    million: "m",
-    billion: "b",
-    trillion: "t"
+    thousand: "K",
+    million: "M",
+    billion: "B",
+    trillion: "T"
   },
   ordinal: function(number) {
     var b = number % 10;
@@ -299,7 +299,7 @@ export function moneyRangeFormat(tick, locale = "es") {
   if (!tick) return "";
   var ticks = tick
     .split("-")
-    .map(ti => numeral(ti, locale).format("($0.[0] a)"));
+    .map(ti => numeral(ti, locale).format("($0.[0]a)"));
   if (ticks.length == 1) {
     ticks[0] = "+" + ticks[0];
   }

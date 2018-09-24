@@ -9,7 +9,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { COLORS_SURVEY_RESPONSE } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 
 class InternetAccessByZone extends Section {
@@ -63,13 +63,16 @@ class InternetAccessByZone extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Internet Access By Zone in ") + geoChartName}</span>
+					<span>
+						{t("Internet Access By Zone in ") + geoChartName}
+						<SourceTooltip cube="internet_access" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<BarChart
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						aggs: {
 							["Expansion factor"]: mean
@@ -90,7 +93,7 @@ class InternetAccessByZone extends Section {
 							barConfig: { "stroke-width": 0 },
 							tickSize: 0,
 							title: false,
-							tickFormat: tick => numeral(tick, locale).format("(0.0 a)")
+							tickFormat: tick => numeral(tick, locale).format("(0.0a)")
 						},
 						barPadding: 0,
 						groupPadding: 10,
@@ -104,8 +107,6 @@ class InternetAccessByZone extends Section {
 						legendConfig: {
 							label: false,
 							shapeConfig: {
-								width: 40,
-								height: 40
 								/*backgroundImage: d =>
                   "/images/legend/survey_response/" +
                   d["ID Binary Survey Response"] +
@@ -117,7 +118,6 @@ class InternetAccessByZone extends Section {
 						return data.data;
 					}}
 				/>
-				<SourceNote cube="internet_access" />
 			</div>
 		);
 	}

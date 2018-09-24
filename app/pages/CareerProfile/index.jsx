@@ -209,6 +209,15 @@ class CareerProfile extends Component {
       }
     ];
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (obj) {
+      if (obj.caption.length > 40) {
+        titleTruncated = obj.caption.slice(0, 40);
+        titleTruncated += "…";
+      }
+    }
+
     return (
       <CanonProfile data={this.props.data} topics={topics}>
         <div className="profile">
@@ -216,7 +225,8 @@ class CareerProfile extends Component {
             {obj &&
               obj.caption && (
                 <Nav
-                  title={obj.caption}
+                  title={titleTruncated ? titleTruncated : obj.caption}
+                  fullTitle={obj.caption}
                   typeTitle={obj.parent ? t("Career") : t("Field of Science")}
                   type={"careers"}
                   exploreLink={"/explore/careers"}
@@ -288,26 +298,16 @@ class CareerProfile extends Component {
               <TopicMenu topics={topics} />
             </div>
 
-            <div className="arrow-container">
+            {/*<div className="arrow-container">
               <a href="#about">
                 <SvgImage src="/images/profile-icon/icon-arrow.svg" />
               </a>
-            </div>
+            </div>*/}
           </div>
 
           <div className="topic-block" id="about">
             <div className="topic-header">
-              <div className="topic-title">
-                <h2 className="full-width">
-                  {t("About")}
-                  {obj && (
-                    <span className="small">
-                      <span className="pipe"> | </span>
-                      {obj.caption}
-                    </span>
-                  )}
-                </h2>
-              </div>
+              <h2 className="topic-heading font-xxl">{t("About")}</h2>
               <div className="topic-go-to-targets">
                 <div className="topic-slider-sections" />
               </div>

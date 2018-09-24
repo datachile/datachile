@@ -1,0 +1,81 @@
+@import "../pages/mixins.css";
+
+.tile {
+  /* layout */
+  flex: 1 1 250px;
+  /* set height */
+  min-height: 8rem;
+  padding-top: 12%;
+  /* typography */
+  text-align: center;
+  /* prevent content from spilling out of container */
+  overflow: hidden;
+  /* theming */
+  color: var(--white);
+  border: 1px solid var(--white);
+  /* transitions */
+  transition: border 0.3s ease-out;
+
+  /* overlay */
+  &:after {
+    /* sizing & positioning */
+    @add-mixin absolute-expand;
+    content: "";
+    /* theming */
+    background-color: rgba(26, 27, 44, 0.333);
+    background-image: linear-gradient(
+      rgba(26, 27, 44, 0.25),
+      rgba(26, 27, 44, 0.5) 50%,
+      rgba(26, 27, 44, 0.25) 100%
+    );
+    /* transitions */
+    transition: opacity 0.2s;
+  }
+
+  /* profile title */
+  & .tile-inner {
+    /* sizing & positioning */
+    @add-mixin absolute-expand;
+    z-index: 1; /* position above gradient overlay */
+    padding: 0.75rem;
+    /* vertically center children */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    /* category overrides */
+    & .category {
+      /* typography override */
+      font-size: 0.5rem;
+      /* space out profile title & category */
+      margin-top: 0.5em;
+    }
+  }
+
+  /* position image */
+  & .tile-img {
+    /* sizing & positioning */
+    @add-mixin absolute-expand;
+    object-fit: cover;
+    /* transitions */
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+  }
+
+  /* interactions */
+  &:hover,
+  &:focus {
+    color: var(--white);
+    text-decoration: none;
+
+    /* adjust bg overlay opacity */
+    &:after { opacity: 0.8; }
+
+    /* zoom in on image */
+    & .tile-img { transform: scale(1.05); }
+
+    /* make category tag fully visible */
+    & .category { opacity: 0.875; }
+  }
+}

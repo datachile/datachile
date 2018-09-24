@@ -1,3 +1,5 @@
+@import "../../mixins";
+
 .map-sidebar {
   & .option-group {
     & + .option-group {
@@ -12,9 +14,9 @@
       & > button {
         flex: 1;
         line-height: 1.5rem;
-        font-family: var(--font-family-title);
+        @add-mixin heading-font;
         color: #fff;
-        background-color: var(--bg-blue);
+        background-color: var(--dark-2);
         border: 0 solid;
         opacity: 0.5;
         cursor: pointer;
@@ -34,19 +36,19 @@
     width: 100%;
 
     & .current {
-      font-family: var(--font-family-title);
-      font-size: 13px;
+      @add-mixin font-xs;
+      @add-mixin heading-font;
       line-height: 2.2rem;
       text-transform: uppercase;
-      color: var(--snow);
-      background-color: var(--bg-blue);
+      color: var(--white);
+      background-color: var(--dark-2);
     }
 
     & .pt-input {
-      font-family: var(--font-family-title);
-      font-size: 13px;
-      color: var(--snow);
-      background-color: var(--bg-blue);
+      @add-mixin font-xs;
+      @add-mixin heading-font;
+      color: var(--white);
+      background-color: var(--dark-2);
       box-shadow: none;
       border-radius: 0;
       cursor: pointer;
@@ -57,7 +59,7 @@
     }
 
     & .input-box {
-      color: var(--snow);
+      color: var(--white);
       font-family: inherit;
       text-transform: uppercase;
 
@@ -71,7 +73,7 @@
     display: block;
     width: 100%;
     margin-top: 40px;
-    font-family: var(--font-family-title);
+    @add-mixin heading-font;
     line-height: 2em;
     color: #fff;
     background-color: #708bbb;
@@ -82,7 +84,7 @@
 
 .custom-select {
   & .select-option {
-    font-family: var(--font-family-title);
+    @add-mixin heading-font;
 
     & .icon {
       width: 2em;
@@ -123,21 +125,19 @@
     }
 
     & .select-option-label {
-      font-size: 12px;
-      letter-spacing: 0.5px;
+      @add-mixin font-xs;
     }
   }
 }
 
 .option-group {
   & .option-label {
+    @add-mixin font-xs;
     display: block;
     margin: 0.5em 0 0.25em;
-    font-family: var(--font-family-text);
-    font-size: 13px;
-    font-weight: 300;
+    @add-mixin body-font;
     line-height: 1.6em;
-    color: var(--snow);
+    color: var(--white);
     text-transform: uppercase;
     background: left center/1px no-repeat;
 
@@ -149,7 +149,7 @@
       height: 1.5em;
       margin-right: 0.6em;
       border-radius: 50%;
-      background: var(--bg-blue) center/15px no-repeat;
+      background: var(--dark-2) center/15px no-repeat;
       background-image: inherit;
     }
   }

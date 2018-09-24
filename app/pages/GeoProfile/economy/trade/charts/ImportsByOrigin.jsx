@@ -12,7 +12,7 @@ import { continentColorScale } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ImportsByOrigin extends Section {
   static need = [
@@ -34,7 +34,10 @@ class ImportsByOrigin extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{title}</span>
+          <span>
+            {title}
+            <SourceTooltip cube="imports" />
+          </span>
           <ExportLink path={path} title={title} className={classSvg} />
         </h3>
         <TreemapStacked
@@ -49,9 +52,9 @@ class ImportsByOrigin extends Section {
             total: d => d["CIF US"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             on: {
@@ -77,27 +80,24 @@ class ImportsByOrigin extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US" + numeral(d["CIF US"], locale).format("$ (0 a)") + link
+                  "US " + numeral(d["CIF US"], locale).format("$ (0a)") + link
                 );
               }
             },
             legendConfig: {
               label: d => d["Continent"],
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: d =>
                   "/images/legend/continent/" + d["ID Continent"] + ".png"
               }
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="imports" />
       </div>
     );
   }

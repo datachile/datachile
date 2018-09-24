@@ -7,7 +7,7 @@ import Helmet from "react-helmet";
 
 import { featured_profiles } from "helpers/consts";
 
-import FeaturedBox from "components/FeaturedBox";
+import ProfileTile from "components/ProfileTile";
 import Nav from "components/Nav";
 
 import Search from "components/Search";
@@ -65,21 +65,21 @@ class Home extends Component {
         colors: ["#0b5151", "#143e48", "#205258"],
         slug: "industries",
         available: true
-      },
-      {
-        name: t("Careers"),
-        explore: "/explore/careers",
-        colors: ["#676258", "#9b8365", "#776551"],
-        slug: "careers",
-        available: false
-      },
-      {
-        name: t("Institutions"),
-        explore: "/explore/institutions",
-        colors: ["#595a8f", "#393a6a", "#393954"],
-        slug: "institutions",
-        available: false
       }
+      // {
+      //   name: t("Careers"),
+      //   explore: "/explore/careers",
+      //   colors: ["#676258", "#9b8365", "#776551"],
+      //   slug: "careers",
+      //   available: false
+      // },
+      // {
+      //   name: t("Institutions"),
+      //   explore: "/explore/institutions",
+      //   colors: ["#595a8f", "#393a6a", "#393954"],
+      //   slug: "institutions",
+      //   available: false
+      // }
     ];
     this.state = {
       profiles: profiles,
@@ -154,29 +154,32 @@ class Home extends Component {
                   <h1 className="title">
                     <img
                       title="DataChile"
-                      src="/images/logos/logo-dc-beta-small.svg"
+                      src="/images/logos/datachile-beta-navbar.svg"
                       alt="DataChile"
                     />
                     <Link
                       className="easter"
                       title=";)"
                       to="/geo/valparaiso-5/isla-de-pascua-115"
+                      aria-hidden="true"
                     />
+                    <span className="u-visually-hidden">
+                      DataChile ({t("home")})
+                    </span>
                   </h1>
-                  <p className="lead">{t("home.subtitle")}</p>
-                </div>
-                <div className="search-home-wrapper">
-                  <Search className="search-home" limit={5} />
+                  <p className="lead font-md heading">{t("home.subtitle")}</p>
+                  <div className="search-home-wrapper">
+                    <Search className="search-home" limit={5} />
+                  </div>
                 </div>
               </div>
 
-              <div className="home-header">
-                <DynamicHomeHeader
-                  data={this.props.data}
-                  router={this.props.router}
-                  header={header}
-                />
-              </div>
+              <DynamicHomeHeader
+                data={this.props.data}
+                router={this.props.router}
+                header={header}
+              />
+
             </div>
             <div className="home-slider">
               {profiles &&
@@ -194,69 +197,33 @@ class Home extends Component {
                       className={`home-slide-selected background-${p.slug}`}
                     />
                     <div className={`home-slide-content border-${p.slug}`}>
-                      <div
-                        className="home-slide-clickable"
+                      <button
+                        className={`home-slide-btn u-btn-reset ${
+                          p.slug == header.slug ? "selected" : ""
+                        }`}
                         onClick={() => changeProfileHeader(p)}
                       >
-                        <h3>
-                          <img src={`/images/icons/icon-${p.slug}.svg`} />
-                          <span>{p.name}</span>
-                        </h3>
-                      </div>
+                        <img
+                          className="home-slide-icon"
+                          src={`/images/icons/icon-${p.slug}.svg`}
+                        />
+                      <span className="home-slide-label subhead">{p.name}</span>
+                      </button>
                     </div>
                   </div>
                 ))}
             </div>
 
             <div className="home-content">
-              <div className="home-text">
-                <div className="l-col">
-                  <img src="/images/home/what.png" alt={t("home.what.title")} />
-                  <h2>{t("home.what.title")}</h2>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.what.text1")
-                    }}
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.what.text2")
-                    }}
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.what.text3")
-                    }}
-                  />
-                </div>
-                <div className="r-col">
-                  <img src="/images/home/diff.png" alt={t("home.diff.title")} />
-                  <h2>{t("home.diff.title")}</h2>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.diff.text1")
-                    }}
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.diff.text2")
-                    }}
-                  />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: t("home.diff.text3")
-                    }}
-                  />
-                </div>
-              </div>
-
+              {/* profiles */}
               <div className="home-featured-profiles">
-                <div className="home-section-title">
+                {/*<div className="home-section-title">
                   <div className="home-section-title-img">
                     <img src="/images/icons/icon-search.svg" alt="explore" />
                   </div>
                   <h2>{t("Explore")}</h2>
-                </div>
+                </div>*/}
+                <h2 className="u-visually-hidden">{t("Explore")}</h2>
                 <div className="home-profile-carousels-container">
                   <ProfileCarousel
                     title={t("home.carousel.featured_profiles")}
@@ -289,7 +256,60 @@ class Home extends Component {
                     limit={5}
                   />
                 </div>
+
+                {/* explore link */}
+                <div className="home-btn-container u-text-center">
+                  <Link className="btn font-sm" to="/explore/geo">
+                    {t("Explore profiles")}
+                    <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
+                  </Link>
+                </div>
               </div>
+
+              {/* about section image */}
+              <img
+                className="home-about-img"
+                src="/images/home/about.svg"
+                alt=""
+              />
+
+              {/* about section text */}
+              <div className="home-text font-md">
+                <h2>{t("home.what.title")}</h2>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text1")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text2")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.what.text3")
+                  }}
+                />
+                <h2>{t("home.diff.title")}</h2>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text1")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text2")
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("home.diff.text3")
+                  }}
+                />
+              </div>
+
+              {/* sources section */}
               <div className="home-sources">
                 <div className="home-section-title">
                   <div className="home-section-title-img">
@@ -301,7 +321,7 @@ class Home extends Component {
                 <div className="dataset-list">
                   <div className="l-col">
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.casen.title")}
                       </span>
                       <span className="source">
@@ -309,19 +329,19 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">{t("about.data.nene.title")}</span>
+                      <span className="name heading font-sm">{t("about.data.nene.title")}</span>
                       <span className="source">
                         {t("about.data.nene.source")}
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">{t("about.data.nesi.title")}</span>
+                      <span className="name heading font-sm">{t("about.data.nesi.title")}</span>
                       <span className="source">
                         {t("about.data.nesi.source")}
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.enrollment.title")}
                       </span>
                       <span className="source">
@@ -329,13 +349,13 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">{t("about.data.psu.title")}</span>
+                      <span className="name heading font-sm">{t("about.data.psu.title")}</span>
                       <span className="source">
                         {t("about.data.psu.source")}
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.aduana.title")}
                       </span>
                       <span className="source">
@@ -343,7 +363,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.muerte.title")}
                       </span>
                       <span className="source">
@@ -354,7 +374,7 @@ class Home extends Component {
 
                   <div className="r-col">
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.salud.title")}
                       </span>
                       <span className="source">
@@ -362,13 +382,13 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">{t("about.data.vida.title")}</span>
+                      <span className="name heading font-sm">{t("about.data.vida.title")}</span>
                       <span className="source">
                         {t("about.data.vida.source")}
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.migracion.title")}
                       </span>
                       <span className="source">
@@ -376,7 +396,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.discapacidad.title")}
                       </span>
                       <span className="source">
@@ -384,7 +404,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.iplusd.title")}
                       </span>
                       <span className="source">
@@ -392,7 +412,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.performance.title")}
                       </span>
                       <span className="source">
@@ -400,7 +420,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.poblacion.title")}
                       </span>
                       <span className="source">
@@ -408,7 +428,7 @@ class Home extends Component {
                       </span>
                     </div>
                     <div className="dataset">
-                      <span className="name">
+                      <span className="name heading font-sm">
                         {t("about.data.internet.title")}
                       </span>
                       <span className="source">
@@ -416,10 +436,15 @@ class Home extends Component {
                       </span>
                     </div>
                   </div>
+
+                  {/* more link */}
+                  <div className="home-btn-container u-text-center">
+                    <Link className="btn font-xxs" to="/about/data">
+                      {t("See more")}
+                      <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
+                    </Link>
+                  </div>
                 </div>
-                <Link className="home-link" to="/about/data">
-                  {t("See more")}
-                </Link>
               </div>
             </div>
           </div>

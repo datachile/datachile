@@ -1,46 +1,48 @@
+@import "../../mixins";
+
 .map-switch-options {
   lost-column: 1/3 2;
   lost-align: left;
   lost-flex-container: row;
   & .map-switch-text {
+    @add-mixin font-xs;
     width: 100%;
     text-transform: uppercase;
-    color: var(--gray-dark);
-    font-size: 13px;
-    font-family: var(--font-family-text);
+    color: var(--light-3);
+    @add-mixin body-font;
   }
   & .map-switch-options-container {
     lost-flex-container: row;
     & .toggle {
-      font-family: var(--font-family-text);
-      background-color: var(--snow);
+      @add-mixin font-xxs;
+      @add-mixin body-font;
+      background-color: var(--white);
       text-align: center;
       padding: 5px 15px;
       margin-right: 5px;
       text-transform: uppercase;
       width: auto;
-      font-size: 11px;
       transition: background-color 0.5s, color 0.5s;
-      border: 1px solid var(--gray-light);
-      color: var(--gray-dark);
+      border: 1px solid var(--light-2);
+      color: var(--light-3);
 
       &.selected {
-        background-color: var(--nice-blue);
-        color: var(--snow);
-        border: 1px solid var(--nice-blue);
+        background-color: var(--accent);
+        color: var(--white);
+        border: 1px solid var(--accent);
       }
 
       &:active,
       &:hover {
         text-decoration: none;
-        background-color: var(--nice-blue);
-        color: var(--snow);
+        background-color: var(--accent);
+        color: var(--white);
       }
 
       &.disabled {
         background-color: transparent;
-        color: var(--gray-dark);
-        border: 1px solid var(--gray-light);
+        color: var(--light-3);
+        border: 1px solid var(--light-2);
       }
     }
   }

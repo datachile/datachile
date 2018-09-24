@@ -1,154 +1,137 @@
 @import "../pages/mixins";
 
+.home-header {
+  @add-mixin absolute-expand;
+}
+
 .dynamic-home-header {
-  lost-flex-container: column;
-  & .dynamic-home-explore-btn {
-    lost-flex-container: row;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
+  /* sizing */
+  width: 100%;
+  height: 200px;
+  /* pin to bottom */
+  position: absolute;
+  bottom: 0;
+  left: 0; /* IE fix */
+  z-index: 1;
 
-    & .explore-btn {
-      background-color: #ccc;
-      transition: all 1s ease;
-      transition-property: background-color, padding-right;
-      padding: calc(var(--gutter)/2) calc(var(--gutter)/2) calc(var(--gutter)/2)
-        var(--gutter);
-      border-radius: 30px;
-      text-transform: uppercase;
-      font-family: var(--font-family-title);
-      color: var(--snow);
-      font-size: 14px;
-      min-width: 15%;
+  /* main image container */
+  & .dynamic-home-image {
+    z-index: -1;
 
-      lost-flex-container: row;
-      align-items: center;
-      justify-content: space-between;
-      &:hover {
-        text-decoration: none;
-        padding-right: calc(var(--gutter)/3);
-      }
-    }
-  }
-  & .dynamic-home-illustration {
-    position: relative;
-    & #mountains-home {
-      line-height: 0;
-      width: 100%;
-      & .back {
-        fill: #ccc;
-        transition: fill 1s ease;
-      }
-      & .front {
-        fill: #ddd;
-        transition: fill 2s ease;
-      }
-    }
-    & .dynamic-home-block {
-      height: 75px;
-      width: 100%;
-      display: block;
-      transition: background-color 2s ease;
-    }
     & .dynamic-home-items {
-      position: absolute;
+      /* sizing */
       width: 100%;
-      bottom: 0px;
-      display: block;
-      height: 100%;
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
 
-      & .dynamic-home-hotspots {
-        line-height: 0;
-        position: absolute;
-        top: 3%;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        z-index: 9;
+      & .dynamic-home-hotspots,
+      & .dynamic-home-illustration {
+        /* sizing */
+        width: 80rem;
+        height: 200px;
+        /* positioning */
+        @add-mixin absolute-horizontal-center;
+        /* transitions */
         animation: fadein 2s;
-        -moz-animation: fadein 2s; /* Firefox */
-        -webkit-animation: fadein 2s; /* Safari and Chrome */
-        -o-animation: fadein 2s; /* Opera */
-        & svg {
-          & circle.st0 {
-            opacity: 0.5;
-            transition: opacity 0.5s;
-            cursor: pointer;
-            &:hover {
-              opacity: 1;
-            }
-          }
-          & path.st1 {
+        /* keep home-slider buttons clickable */
+        overflow: hidden;
+
+        /* show entire tooltip when hovering parent */
+        &:hover {
+          overflow: visible;
+        }
+      }
+
+      /* hotspots & tooltip container */
+      & .dynamic-home-hotspots {
+        z-index: 1;
+
+        /* prevent random div from obscuring tabs */
+        & > div {
+          max-height: 200px;
+        }
+
+        /* individual hotspot theming */
+        & .hotspot {
+          /* hotspots = links */
+          cursor: pointer;
+          /* transitions */
+          opacity: 0.666;
+          transition: opacity 0.5s;
+
+          /* prevent "+" from obscuring hover target ¯\_(ツ)_/¯ */
+          & .st1 {
             pointer-events: none;
           }
-        }
-      }
-      & .dynamic-home-image {
-        line-height: 0;
-        position: absolute;
-        top: 14%;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        z-index: 8;
-        pointer-events: none;
-        animation: fadein 2s;
-        -moz-animation: fadein 2s; /* Firefox */
-        -webkit-animation: fadein 2s; /* Safari and Chrome */
-        -o-animation: fadein 2s; /* Opera */
-        & img {
-          width: 100%;
-        }
-        &.grayscale {
-          & img {
-            filter: gray; /* IE6-9 */
-            -webkit-filter: grayscale(
-              1
-            ); /* Google Chrome, Safari 6+ & Opera 15+ */
-            filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+
+          /* prevent tooltips from triggering unnecessarily */
+          & [id*=draw] {
+            display: none;
+          }
+
+          /* interactions */
+          &:hover {
+            opacity: 1;
           }
         }
+
+        /* hide hotspots on small screens */
+        @add-mixin for-sm {
+          display: none;
+        }
+      }
+
+      /* illustration image sizing */
+      & .dynamic-home-illustration-img {
+        width: 100%; /* sized via container */
       }
     }
-    & #tooltip-home {
-      background-color: var(--snow);
+
+    /* tooltip styling */
+    & .tooltip-home {
+      background-color: var(--white);
       width: 150px;
       height: auto;
       opacity: 0;
       position: absolute;
-      z-index: 9;
+      /* prevent from obscuring slider buttons */
       pointer-events: none;
+      z-index: -1;
+      /* transitions */
+      transition: opacity 0.2s ease-out;
+
       & .tooltip-title {
-        color: var(--snow);
-        padding: calc(var(--gutter)/2);
-        font-family: var(--font-family-text);
-        text-transform: uppercase;
-        font-weight: 300;
+        @add-mixin heading-font;
+        @add-mixin font-uppercase;
+        color: var(--white);
+        padding: var(--gutter-half);
       }
       & .tooltip-body {
         padding: calc(var(--gutter)/2);
         & .tooltip-data-title {
-          font-family: var(--font-family-text);
-          font-size: 10px;
-          text-transform: uppercase;
-          color: var(--medium-gray);
-          letter-spacing: 0.08px;
-          font-weight: 700;
+          @add-mixin font-xxs;
+          @add-mixin heading-font;
+          color: var(--gray);
         }
         & .tooltip-data-value {
-          font-family: var(--font-family-text);
-          font-size: 16px;
-          letter-spacing: 0.08px;
-          font-weight: 700;
+          @add-mixin font-sm;
+          @add-mixin body-font;
         }
       }
     }
   }
+
+  /* change bg color as image fades in and out */
+  & + .dynamic-home-bg {
+    @add-mixin absolute-expand;
+    z-index: -11;
+    opacity: 0.4;
+    transition: background-color 1s ease-in;
+  }
 }
+
+/* keyframe animations */
 @keyframes fadein {
   from {
     opacity: 0;
@@ -156,65 +139,4 @@
   to {
     opacity: 1;
   }
-}
-@-moz-keyframes fadein {
-  /* Firefox */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadein {
-  /* Safari and Chrome */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-o-keyframes fadein {
-  /* Opera */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@add-mixin for-xl {
-}
-
-@add-mixin for-lg {
-}
-
-@add-mixin for-md {
-}
-
-@add-mixin for-sm {
-  .dynamic-home-header {
-    & .dynamic-home-illustration {
-      & .dynamic-home-hotspots,
-      & .dynamic-home-image {
-        display: none;
-      }
-      & .dynamic-home-block {
-        height: 30px;
-      }
-    }
-    & .dynamic-home-explore-btn {
-      & .explore-btn {
-        min-width: 50%;
-      }
-    }
-  }
-}
-
-@add-mixin for-xs {
-}
-
-@add-mixin for-xx {
 }

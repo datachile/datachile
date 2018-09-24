@@ -8,8 +8,10 @@ import { numeral } from "helpers/formatters";
 
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
-import CustomStackedArea from "components/CustomStackedArea";
+import SourceTooltip from "components/SourceTooltip";
+// import CustomStackedArea from "components/CustomStackedArea";
+
+import { StackedArea } from "d3plus-react";
 
 class EmploymentBySex extends Section {
   static need = [
@@ -35,10 +37,8 @@ class EmploymentBySex extends Section {
 
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
     this.state = {
       selectedOption: 0,
-      key: Math.random(),
       selectedObj: {
         path: "",
         groupBy: [],
@@ -53,7 +53,7 @@ class EmploymentBySex extends Section {
   componentDidMount() {
     const { t } = this.props;
 
-    var variations = [
+    const variations = [
       {
         id: 0,
         title: t("Female"),
@@ -73,46 +73,30 @@ class EmploymentBySex extends Section {
     });
   }
 
-  handleChange(ev) {
-    this.setState({ key: Math.random() });
-
-    this.setState({
-      selectedOption: ev.newValue,
-      selectedObj: this.state.chartVariations[ev.newValue]
-    });
-  }
-
   render() {
     const { t, className, i18n } = this.props;
-    const { selectedObj } = this.state;
-
-    const locale = i18n.language;
+    const { chartVariations, selectedObj, selectedOption } = this.state;
 
     const path = this.context.data.path_employment_by_sex;
-    const classSvg = "employment-by-sex";
+    const locale = i18n.language;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Regional Employment By Sex")}</span>
-          <Select
-            id="variations"
-            options={this.state.chartVariations}
-            value={this.state.selectedOption}
-            labelField="title"
-            valueField="id"
-            onChange={this.handleChange}
-          />
-          <ExportLink path={path} className={classSvg} />
+          <span>
+            {t("Regional Employment By Sex")}
+            <SourceTooltip cube="nene" />
+          </span>
+          <ExportLink path={path} />
         </h3>
-        <CustomStackedArea
-          className={classSvg}
-          key={this.state.key}
+        <StackedArea
+          forceUpdate={this.state.selectedObj.sex_id}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["variable"],
             label: d => d["variable"],
+            filter: d => d.__SEX__ === this.state.selectedObj.sex_id,
             x: "month",
             y: "percentage",
             time: "month",
@@ -143,10 +127,79 @@ class EmploymentBySex extends Section {
               }
             }
           }}
-          Sex={this.state.selectedObj.sex_id}
+          dataFormat={data => {
+
+            const dataBySex = data.data.reduce(
+              (all, item) => {
+                all[item["ID Sex"]].push(item);
+                return all;
+              },
+              { "1": [], "2": [] }
+            );
+
+            const output = [];
+
+            Object.keys(dataBySex).forEach(d => {
+              var melted = [];
+              var total = {};
+
+              dataBySex[d].forEach(f => {
+                if (total[f["ID Moving Quarter"]]) {
+                  total[f["ID Moving Quarter"]] += f["Expansion factor"];
+                } else {
+                  total[f["ID Moving Quarter"]] = f["Expansion factor"];
+                }
+                var a = f;
+                var date = f["ID Moving Quarter"].split("_");
+                f["month"] = date[0] + "-" + date[1] + "-01";
+                f["quarter"] =
+                  date[0] +
+                  " (" +
+                  date[1] +
+                  "," +
+                  date[2] +
+                  "," +
+                  date[3] +
+                  ")";
+                a["variable"] = f["Occupational Situation"];
+                a["value"] = f["Expansion factor"];
+                melted.push(a);
+              });
+
+              melted = melted
+                .map(m => {
+                  m["percentage"] = m["value"] / total[m["ID Moving Quarter"]];
+                  m.__SEX__ = parseInt(d);
+                  return m;
+                })
+                .sort((a, b) => {
+                  return a["Month"] > b["Month"] ? 1 : -1;
+                });
+
+              output.push(...melted);
+            });
+
+            return output;
+          }}
         />
 
-        <SourceNote cube="nene" />
+        <div className="btn-group">
+          {chartVariations.map(variation => (
+            <button
+              key={variation.id}
+              className={`btn font-xxs ${
+                selectedOption === variation.id ? "is-active" : "is-inactive"
+              }`}
+              onClick={() => this.setState({
+                  selectedOption: variation.id,
+                  selectedObj: this.state.chartVariations[variation.id]
+                })
+              }
+            >
+              {variation.title}
+            </button>
+          ))}
+        </div>
       </div>
     );
   }

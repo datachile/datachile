@@ -11,7 +11,7 @@ import { getAvailableYears } from "helpers/map";
 import { Switch } from "@blueprintjs/core";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class CongresspersonResults extends Section {
@@ -100,7 +100,10 @@ class CongresspersonResults extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Congressperson Election")}</span>
+          <span>
+            {t("Congressperson Election")}
+            <SourceTooltip cube="election_results" year={this.state.year} />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
@@ -109,7 +112,7 @@ class CongresspersonResults extends Section {
             <Treemap
               className={classSvg}
               config={{
-                height: 500,
+                height: 400,
                 data: path,
                 timeFilter: d => d["ID Year"] === this.state.year,
                 filter: this.state.non_electors
@@ -203,19 +206,7 @@ class CongresspersonResults extends Section {
                     (geo.depth > 0 ? t("Votes") : t("Elected Authority")) +
                     "</div>"
                 },
-                legendConfig: {
-                  label: false,
-                  shapeConfig: {
-                    width: 25,
-                    height: 25,
-                    backgroundImage: d => {
-                      return "/images/legend/civics/civic-icon.png";
-                    },
-                    Rect: {
-                      fill: d => "#BDBED6"
-                    }
-                  }
-                }
+                legend: false
               }}
               dataFormat={data => {
                 if (data.data.length > 0) {
@@ -257,7 +248,6 @@ class CongresspersonResults extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <SourceNote cube="election_results" year={this.state.year} />
       </div>
     );
   }

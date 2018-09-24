@@ -157,30 +157,28 @@ class PSUNEMSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Performance")}</div>
+          <h3 className="topic-slide-title">{t("Performance")}</h3>
           <div className="topic-slide-text">
-            <p>
-              {text && (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      geo.depth === 2
-                        ? t(
-                            `geo_profile.education.performance.byPSU.level2.${
-                              text.type
-                            }`,
-                            text
-                          )
-                        : t(
-                            `geo_profile.education.performance.byPSU.level1.${
-                              text.location.n_comunas
-                            }`,
-                            text
-                          )
-                  }}
-                />
-              )}
-            </p>
+            {text && (
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    geo.depth === 2
+                      ? t(
+                          `geo_profile.education.performance.byPSU.level2.${
+                            text.type
+                          }`,
+                          text
+                        )
+                      : t(
+                          `geo_profile.education.performance.byPSU.level1.${
+                            text.location.n_comunas
+                          }`,
+                          text
+                        )
+                }}
+              />
+            )}
           </div>
           <div className="topic-slide-data">
             {text && (
@@ -238,6 +236,13 @@ class PSUNEMSlide extends Section {
                 />
               ))}
           </div>
+
+          <h4 className="topic-slide-context-subhead">
+            {t("About the PSU average")}
+          </h4>
+          <p className="font-xxs">
+            {t(`geo_profile.education.performance.byPSU.disclaimer`)}
+          </p>
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

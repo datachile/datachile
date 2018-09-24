@@ -14,7 +14,7 @@ import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { Switch } from "@blueprintjs/core";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class MayorResults extends Section {
 	static need = [
@@ -112,14 +112,17 @@ class MayorResults extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Mayor Election")}</span>
+					<span>
+						{t("Mayor Election")}
+						<SourceTooltip cube="election_results" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 
 				<Treemap
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						filter: this.state.non_electors
 							? ""
@@ -201,14 +204,7 @@ class MayorResults extends Section {
 						legendTooltip: {
 							title: d => (geo.type === "comuna" ? d["Candidate"] : d["Pacto"])
 						},
-						legendConfig: {
-							label: false,
-							shapeConfig: {
-								width: 25,
-								height: 25,
-								backgroundImage: "/images/legend/civics/civic-icon.png"
-							}
-						}
+						legend: false
 					}}
 					dataFormat={data => {
 						const d = data.data.map(item => {
@@ -244,7 +240,6 @@ class MayorResults extends Section {
 						/>
 					</div>
 				)}
-				<SourceNote cube="election_results" />
 			</div>
 		);
 	}

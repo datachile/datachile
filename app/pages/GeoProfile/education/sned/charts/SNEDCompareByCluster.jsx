@@ -13,7 +13,7 @@ import { snedColorScale, snedComparisonColorScale } from "helpers/colors";
 
 import Select from "components/Select";
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import { BarChart } from "d3plus-react";
 
 class SNEDCompareByCluster extends Section {
@@ -151,7 +151,10 @@ class SNEDCompareByCluster extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{title}</span>
+          <span>
+            {title}
+            <SourceTooltip cube="sned_website" />
+          </span>
           <Select
             id="variations"
             options={this.state.chartVariations}
@@ -165,7 +168,7 @@ class SNEDCompareByCluster extends Section {
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["geo"],
             label: d => d["geo"],
@@ -210,8 +213,6 @@ class SNEDCompareByCluster extends Section {
             legendConfig: {
               label: d => d["geo"] + " - " + d["Stage 1a"],
               shapeConfig: {
-                width: 25,
-                height: 25,
                 backgroundImage: "/images/legend/education/type.png"
               }
             }
@@ -233,7 +234,7 @@ class SNEDCompareByCluster extends Section {
             return location.concat(country);
           }}
         />
-        <SourceNote cube="sned" />
+        <SourceTooltip cube="sned" />
         <p
           className="chart-text"
           dangerouslySetInnerHTML={{
@@ -294,7 +295,6 @@ class SNEDCompareByCluster extends Section {
               t("geo_profile.education.sned.definitions.integration.desc")
           }}
         />
-        <SourceNote cube="sned_website" />
       </div>
     );
   }

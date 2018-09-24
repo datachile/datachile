@@ -9,7 +9,7 @@ import { healthInsuranceColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class HealthInsurance extends Section {
   static need = [
@@ -59,13 +59,16 @@ class HealthInsurance extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Access to Health Insurance")}*</span>
+          <span>
+            {t("Access to Health Insurance")}
+            <SourceTooltip cube="casen_health_system" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <Treemap
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["ID Health System Group", "ID Health System"],
             label: d => d["Health System"],
@@ -96,8 +99,6 @@ class HealthInsurance extends Section {
             legendConfig: {
               label: d => d["Health System Group"],
               shapeConfig: {
-                width: 40,
-                height: 40,
                 backgroundImage: d =>
                   "/images/legend/college/administration.png"
               }
@@ -123,29 +124,6 @@ class HealthInsurance extends Section {
             })
           }
         />
-        <SourceNote cube="casen_health_system" />
-        <div className="footnote">
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html: t("geo_profile.health.fonasa.text")
-            }}
-          />
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html: t("geo_profile.health.fonasa.tramos")
-            }}
-          />
-          <p
-            className="chart-text"
-            dangerouslySetInnerHTML={{
-              __html: t("geo_profile.health.fonasa.copago")
-            }}
-          />
-        </div>
-
-        <SourceNote cube="fonasa_website" />
       </div>
     );
   }

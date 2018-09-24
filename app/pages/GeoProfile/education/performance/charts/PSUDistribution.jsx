@@ -14,7 +14,7 @@ import { sources } from "helpers/consts";
 import { administrationColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
 
@@ -133,14 +133,17 @@ class PSUDistribution extends Section {
           className={this.state.className}
         />
         <h3 className="chart-title">
-          <span>{t("PSU distribution")}</span>
+          <span>
+            {t("PSU distribution")}
+            <SourceTooltip cube="psu" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
 
         <BarChart
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: "geo",
             label: d => d["geo"],
@@ -233,7 +236,7 @@ class PSUDistribution extends Section {
                     d.geo +
                     "<br/>" +
                     numeral(d["Number of records"], locale).format(
-                      "(0.[0] a)"
+                      "(0.[0]a)"
                     ) +
                     " " +
                     t("PSU exams") +
@@ -360,8 +363,6 @@ class PSUDistribution extends Section {
             return total;
           }}
         />
-
-        <SourceNote cube="psu" />
       </div>
     );
   }

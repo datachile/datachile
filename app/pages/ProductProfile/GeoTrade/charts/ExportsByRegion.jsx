@@ -12,7 +12,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 class ExportsByRegion extends Section {
@@ -59,7 +59,10 @@ class ExportsByRegion extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Exports By Region")}</span>
+          <span>
+            {t("Exports By Region")}
+            <SourceTooltip cube="exports" />
+          </span>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
 
@@ -74,9 +77,9 @@ class ExportsByRegion extends Section {
             total: d => d["FOB US"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -107,7 +110,7 @@ class ExportsByRegion extends Section {
                     ? ""
                     : "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US" + numeral(d["FOB US"], locale).format("(USD 0 a)") + link
+                  "US " + numeral(d["FOB US"], locale).format("(USD 0a)") + link
                 );
               }
             },
@@ -118,27 +121,23 @@ class ExportsByRegion extends Section {
               body: d => {
                 const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
                 return (
-                  "US" + numeral(d["FOB US"], locale).format("(USD 0 a)") + link
+                  "US " + numeral(d["FOB US"], locale).format("(USD 0a)") + link
                 );
               }
             },
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
                 backgroundImage: d =>
                   "/images/legend/region/" + d["ID Region"] + ".png"
               }
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />
-
-        <SourceNote cube="exports" />
       </div>
     );
   }

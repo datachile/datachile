@@ -76,20 +76,18 @@ class InternationalTradeBalanceSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
+          <h3 className="topic-slide-title">
             {t("International Trade Balance")}
-          </div>
+          </h3>
           <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t(
-                    `product_profile.balance.${text_product.format}`,
-                    text_product
-                  )
-                }}
-              />
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t(
+                  `product_profile.balance.${text_product.format}`,
+                  text_product
+                )
+              }}
+            />
           </div>
 
           <div className="topic-slide-data">
@@ -122,7 +120,7 @@ class InternationalTradeBalanceSlide extends Section {
             <FeaturedDatum
               className="l-1-3"
               icon="ingresos"
-              datum={"US" + numeral(trade_balance, locale).format("$ 0,0.00 a")}
+              datum={"US " + numeral(trade_balance, locale).format("$0,,0.00 a")}
               title={t("Trade Balance")}
               subtitle={t("In") + " " + sources.imports.year}
             />

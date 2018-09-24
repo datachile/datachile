@@ -9,7 +9,7 @@ import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class SalariesByCategory extends Section {
 	static need = [
@@ -42,13 +42,16 @@ class SalariesByCategory extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Salaries By Category")}</span>
+					<span>
+						{t("Salaries By Category")}
+						<SourceTooltip cube="nesi_income" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<BarChart
 					className={classSvg}
 					config={{
-						height: 500,
+						height: 400,
 						data: path,
 						groupBy: "ID ICSE",
 						label: d => d["ICSE"],
@@ -61,13 +64,13 @@ class SalariesByCategory extends Section {
 						tooltipConfig: {
 							title: d => d["ICSE"],
 							body: d =>
-								numeral(d["Median Income"], locale).format("(0.[0] a)") + " CLP"
+								numeral(d["Median Income"], locale).format("(0.[0]a)") + " CLP"
 						},
 						discrete: "y",
 						xConfig: {
 							tickSize: 0,
 							title: t("Monthly Median Income CLP"),
-							tickFormat: tick => numeral(tick, locale).format("(0.[0] a)")
+							tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
 						},
 						ySort: (a, b) => {
 							return a["Median Income"] > b["Median Income"] ? 1 : -1;
@@ -87,7 +90,6 @@ class SalariesByCategory extends Section {
 					}}
 					dataFormat={data => data.data}
 				/>
-				<SourceNote cube="nesi_income" />
 			</div>
 		);
 	}

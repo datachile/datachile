@@ -11,7 +11,7 @@ import { ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
 
 class MigrationByVisa extends Section {
@@ -73,14 +73,17 @@ class MigrationByVisa extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Migration By Visa")}</span>
+					<span>
+						{t("Migration By Visa")}
+						<SourceTooltip cube="immigration" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				{this.state.chart ? (
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path,
 							groupBy: "ID Visa Type",
 							label: d => d["Visa Type"],
@@ -116,7 +119,6 @@ class MigrationByVisa extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="immigration" />
 			</div>
 		);
 	}

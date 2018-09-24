@@ -1,185 +1,354 @@
-/* FONTS */
-@import url("https://fonts.googleapis.com/css?family=Yantramanav:300,400,500,700");
-@import url("https://fonts.googleapis.com/css?family=Saira+Condensed:300,400,500,700");
-@import url("https://fonts.googleapis.com/css?family=Saira:300,400,500,700");
+@import "../pages/mixins";
+/* importing via helmet.js isn't working ¯\_(ツ)_/¯ */
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300|Roboto:300,300i,500|Source+Sans+Pro:400");
 
-@font-face {
-  font-family: Gilroy;
-  src: url("/fonts/gilroy/Gilroy-Light.otf");
-  font-weight: 300;
+/* -----------------------------------
+resets & quality of life improvements
+----------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
 }
-@font-face {
-  font-family: Gilroy;
-  src: url("/fonts/gilroy/Gilroy-ExtraBold.otf");
-  font-weight: 800;
+/* usually necessary for responsive layouts */
+img, svg, textarea {
+  max-width: 100%;
+}
+/* border box default: http:/*www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+/* position:relative by default */
+body * {
+  position: relative;
+}
+/* hide the spinner on inputs with a type of "number" */
+/* see https://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-input-s-spin-box */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* `display: none` can cause crashes */
+  margin: 0; /* nuke the margin */
+}
+/* textareas can be resized, but only vertically */
+textarea {
+  resize: vertical;
 }
 
-.d3plus-textBox {
-  & text {
-    font-family: "Saira Condensed" !important;
+
+/* -----------------------------------
+fonts & base styles
+----------------------------------- */
+
+html {
+  /* theming */
+  background-color: var(--dark-3);
+  /* font scaling */
+  font-size: 87.5%; /* 14px; override blueprint */
+
+  /* scale up type on big screens */
+  @add-mixin from-sm {
+    font-size: 93.75%; /* 1rem = 15px */
+  }
+  @add-mixin from-md {
+    font-size: 100%; /* 1rem = 16px */
+  }
+  @add-mixin from-lg {
+    font-size: 106.25%; /* 1rem = 17px  */
+  }
+  @add-mixin from-xl {
+    font-size: 112.5%; /* 1rem = 18px */
+  }
+  @add-mixin from-xxl {
+    font-size: 125%; /* 1rem = 18px */
   }
 }
 
-html {
-}
-
 body {
-  background-color: var(--near-black);
+  /* typography */
+  @add-mixin body-font; /* override blueprint */
+  /* theming */
+  color: var(--light-2);
+
+  & * {
+    color: inherit;
+  }
 }
 
-/*
-Yantramanav -> var(--font-family-text)
-font-family: 'Yantramanav', sans-serif;
-light 300
-regular 400
-medium 500
-bold 700
+/* headings */
+h1, h2, h3, h4, h5, h6,
+.heading {
+  @add-mixin heading-font;
+}
 
-Gilroy -> var(--font-family-title)
-font-family: 'Gilroy', sans-serif;
-light 300
-extrabold 800
-*/
+/* default font sizing and line-height */
+.font-xxl        { @add-mixin font-xxl; }
+h1, .font-xl     { @add-mixin font-xl;  }
+h2, .font-lg     { @add-mixin font-lg;  }
+h3, .font-md     { @add-mixin font-md;  }
+h4, .font-sm     { @add-mixin font-sm;  }
+h5, h6, .font-xs { @add-mixin font-xs;  }
+small, .font-xxs { @add-mixin font-xxs; }
 
-/* global classes */
+/* labels */
+.label {
+  @add-mixin body-font;
+  @add-mixin font-uppercase;
+}
+
+/* subheads */
+.subhead {
+  @add-mixin heading-font;
+  @add-mixin font-smoothing;
+  @add-mixin font-uppercase;
+}
+
+/* default link style */
+p > a,
+li > a,
+.link,
+.d3plus-tooltip-body > a,
+.datachile-tooltip > a {
+  @add-mixin body-font-bold;
+  color: var(--accent-light);
+  /* override blueprint */
+  text-decoration: underline;
+  /* transitions */
+  transition:
+    color 0.25s ease-out,
+    opacity 0.25s ease-out;
+
+  &:hover, &:focus {
+    color: var(--white);
+  }
+}
+
+/* white links; link class also required */
+.inverted-link {
+  color: var(--white);
+
+  &:hover, &:focus {
+    color: var(--white);
+  }
+}
+
+
+/* -----------------------------------
+code blocks
+----------------------------------- */
+
+/* code block formatting */
+code,
+pre {
+  @add-mixin code-font;
+  padding: 0.25em 0.5em 0.15em 0.5em;
+  border-radius: 2px;
+  overflow-x: scroll;
+}
+
+/* inline / wrapping code samples */
+code {
+  display: inline-block;
+  vertical-align: bottom;
+  /* typography */
+  font-size: 0.666em;
+  white-space: nowrap; /* keep together */
+  /* theming */
+  background-color: var(--light-2);
+  color: var(--black);
+  box-shadow: 0 1px 1em color(var(--black) a(0.333));
+  top: -1px;
+}
+
+/* make them stack */
+table code {
+  margin-right: 0.375em;
+  margin-bottom: 0.5em;
+  top: 0.25rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+/* big code blocks */
+pre {
+  /* theming */
+  background-color: var(--black);
+  color: var(--light-2);
+  white-space: pre-wrap;
+  overflow: auto;
+  overflow-y: scroll;
+  margin: 10px 0px;
+  max-height: 32rem;
+
+  /* inherit <pre> color & font-size */
+  & > code {
+    background-color: inherit;
+    color: inherit;
+    font-size: 1em;
+  }
+
+  /* print styles */
+  @media print {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+
+/* -----------------------------------
+grids
+----------------------------------- */
+
+/* lost config */
 @lost flexbox flex;
-@lost gutter 32px;
+@lost gutter var(--gutter);
+@lost rounder 99.9999999;
 
 .main-container {
   lost-flex-container: column;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
+/* single column layout */
 .lost-1 {
   lost-column: 1;
 }
-
-.lost-1-2 {
-  lost-column: 1/2 flex;
+@add-mixin for-sm {
+  .lost-1-2,
+  .lost-1-3,
+  .lost-2-3,
+  .lost-1-4 {
+    lost-column: 1;
+  }
 }
 
-.lost-2-3 {
-  lost-column: 2/3 flex;
+/* multi column layout */
+@add-mixin from-sm {
+  .lost-1-2 { lost-column: 1/2; }
+  .lost-1-3 { lost-column: 1/3; }
+  .lost-2-3 { lost-column: 2/3; }
+  .lost-1-4 { lost-column: 1/4; }
 }
 
-.lost-1-3 {
-  lost-column: 1/3 flex;
+/* space out adjacent visualizations */
+.section + .section [class*="lost"] {
+  margin-top: 2rem;
 }
 
-.lost-1-4 {
-  lost-column: 1/4 flex;
-}
 
-.lost-row {
-  lost-utility: clearfix;
-}
+/* -----------------------------------
+profile theming
+----------------------------------- */
 
-/* Helpers profiles */
-.color-geo {
-  color: var(--color-geo);
-}
-.border-geo {
-  border-color: var(--color-geo);
-}
-.fill-geo {
-  fill: var(--color-geo) !important;
-}
-.background-geo {
-  background-color: var(--color-geo) !important;
-}
+@each $theme in
+  geo,
+  countries,
+  institutions,
+  careers,
+  products,
+  industries {
+  .color-$(theme) {
+    color: var(--color-$(theme)) !important;
+  }
+  .color-$(theme)-hover {
+    &:hover, &:focus {
+      color: var(--color-$(theme)) !important;
+    }
+  }
+  .border-$(theme) {
+    border-color: var(--color-$(theme)) !important;
+  }
+  .border-$(theme)-hover {
+    &:hover, &:focus {
+      border-color: var(--color-$(theme)) !important;
+    }
+  }
+  .fill-$(theme) {
+    fill: var(--color-$(theme));
+  }
+  .background-$(theme) {
+    background-color: var(--color-$(theme)) !important;
 
-.color-countries {
-  color: var(--color-countries);
-}
-.border-countries {
-  border-color: var(--color-countries);
-}
-.fill-countries {
-  fill: var(--color-countries) !important;
-}
-.background-countries {
-  background-color: var(--color-countries) !important;
-}
-
-.color-institutions {
-  color: var(--color-institutions);
-}
-.border-institutions {
-  border-color: var(--color-institutions);
-}
-.fill-institutions {
-  fill: var(--color-institutions) !important;
-}
-.background-institutions {
-  background-color: var(--color-institutions) !important;
-}
-
-.color-careers {
-  color: var(--color-careers);
-}
-.border-careers {
-  border-color: var(--color-careers);
-}
-.fill-careers {
-  fill: var(--color-careers) !important;
-}
-.background-careers {
-  background-color: var(--color-careers) !important;
-}
-
-.color-products {
-  color: var(--color-products);
-}
-.border-products {
-  border-color: var(--color-products);
-}
-.fill-products {
-  fill: var(--color-products) !important;
-}
-.background-products {
-  background-color: var(--color-products) !important;
-}
-
-.color-industries {
-  color: var(--color-industries);
-}
-.border-industries {
-  border-color: var(--color-industries);
-}
-.fill-industries {
-  fill: var(--color-industries) !important;
-}
-.background-industries {
-  background-color: var(--color-industries) !important;
+    /* interactions */
+    &[class*=btn],
+    &[class*=category] {
+      &:hover, &:focus {
+        background-color: var(--color-$(theme)-light) !important;
+      }
+    }
+  }
+  .background-$(theme)-hover {
+    &:hover, &:focus {
+      background-color: var(--color-$(theme)-light) !important;
+    }
+  }
 }
 
 .color-gray {
-  color: var(--darker-gray);
+  color: var(--light-2);
 }
 .border-gray {
-  border-color: var(--darker-gray);
+  border-color: var(--light-2);
 }
 .fill-gray {
-  fill: var(--darker-gray) !important;
+  fill: var(--light-2);
 }
 .background-gray {
-  background-color: var(--darker-gray) !important;
+  background-color: var(--light-2);
 }
 
 /*color-geo: "#4B71B5"
 color-countries: "#1ECBD8"
 color-institutions: "#7777ED"
 color-careers: "#E5C38D"
-color-products: "#FF7474"
+grayroducts: "#FF7474"
 color-industries: "#2A8090"*/
 
+
+/* -----------------------------------
+components
+----------------------------------- */
+
+/* tooltips */
+/* TODO: standardize/refactor */
 .datachile-tooltip {
+  @add-mixin font-xs;
   text-align: center;
   padding: 10px;
-  font-size: 12px;
-  background: var(--snow);
-  border: 1px solid var(--near-black);
-  font-family: var(--font-family-text);
-  color: var(--near-black);
+  background: var(--white);
+  border: 1px solid var(--dark-3);
+  color: var(--dark-3);
+}
+
+.d3plus-tooltip-body {
+  @add-mixin body-font-bold;
+  min-width: 160px;
+
+  &, & > * {
+    font-size: 0.625rem !important; /* font-xxs */
+    line-height: 1.5;
+  }
+}
+
+/* blueprint override */
+.pt-popover-arrow path {
+  fill: var(--white) !important;
+}
+.pt-popover-content {
+  @add-mixin font-xs;
+  @add-mixin body-font;
+  background: var(--white) !important;
+  color: var(--dark-3) !important;
+
+  /* reset margin */
+  & *:last-child {
+    margin-bottom: 0;
+  }
 }
 
 table.tooltip-table {
@@ -191,5 +360,350 @@ table.tooltip-table {
         text-align: right;
       }
     }
+  }
+}
+
+/* blueprint overlay fixes */
+.pt-overlay {
+  z-index: 999;
+
+  & > span {
+    @add-mixin absolute-expand;
+  }
+
+  /* make sure tooltips appear in front of fixed nav */
+  & .pt-overlay-content {
+    z-index: 50;
+  }
+}
+
+/* pt-switch theming */
+.pt-switch,
+.pt-switch .pt-control-indicator {
+  cursor: default; /* it's a checkbox, not a link */
+}
+/* sizing & typography overrides */
+.pt-control.pt-switch {
+  height: 1em;
+  padding-left: 34px;
+
+  /* thanks blueprint */
+  & strong {
+    /* reset typography */
+    @add-mixin body-font;
+    @add-mixin font-xxs;
+    /* reset positioning */
+    @add-mixin absolute-vertical-center;
+  }
+
+  /* reset box shadow on switch handle */
+  & .pt-control-indicator:before {
+    box-shadow: none !important;
+  }
+}
+
+.pt-switch:active .pt-control-indicator {
+  transform: scale(0.95);
+  background-color: var(--accent-light) !important; /* override the active color */
+}
+.pt-control.pt-switch .pt-control-indicator {
+  background-color: var(--dark-1);
+  transform: background-color 0.2s ease-out;
+}
+.pt-control.pt-switch:hover .pt-control-indicator,
+.pt-control.pt-switch:focus .pt-control-indicator {
+  background-color: var(--gray);
+}
+/* NOTE: this is the type of css that deep nesting creates 😡 */
+.pt-control.pt-switch input:checked ~ .pt-control-indicator,
+.pt-control.pt-switch .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
+.pt-control.pt-checkbox .pt-control.pt-switch input:indeterminate ~ .pt-control-indicator {
+  background-color: var(--accent);
+}
+.pt-control.pt-switch:hover input:checked ~ .pt-control-indicator,
+.pt-control.pt-switch:focus input:checked ~ .pt-control-indicator,
+.pt-control.pt-switch:hover .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
+.pt-control.pt-switch:focus .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
+.pt-control.pt-checkbox .pt-control.pt-switch:hover input:indeterminate ~ .pt-control-indicator,
+.pt-control.pt-checkbox .pt-control.pt-switch:focus input:indeterminate ~ .pt-control-indicator {
+  background-color: var(--accent-light);
+}
+
+/* tags */
+.tag {
+  display: inline-block;
+  background-color: var(--dark-1);
+  padding: 0 0.5em;
+  border-radius: 2px;
+  text-shadow: none !important;
+
+  &:not(:last-of-type) {
+    margin-right: 0.5em;
+  }
+}
+
+
+/* category link */
+.category {
+  /* typography */
+  @add-mixin heading-font;
+  text-transform: lowercase;
+  text-decoration: none;
+  white-space: nowrap;
+  /* theming */
+  background-color: var(--white);
+  border-radius: 1em;
+  opacity: 0.625;
+  /* sizing */
+  padding: 0.125em 1em 0.25em 1em;
+  /* transitions */
+  transition: all 0.2s ease;
+  transition-property: box-shadow, opacity;
+
+  /* default color */
+  &:not([class*=color-]) {
+    color: var(--accent);
+  }
+
+  /* image right */
+  & img,
+  & svg {
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.25em;
+    margin-left: -0.25em;
+    top: -0.125em;
+  }
+
+  /* interactions */
+  &:hover,
+  &:focus {
+    box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
+    opacity: 0.875;
+    text-decoration: none;
+  }
+}
+
+
+/* buttons */
+.btn {
+  /* typography */
+  @add-mixin heading-font;
+  @add-mixin font-uppercase;
+  text-align: center;
+  /* sizing */
+  padding: 1.125em 2.25em;
+  line-height: 1;
+  /* positioning */
+  display: inline-block;
+  /* theming */
+  border-radius: 30px;
+  border: none;
+  color: var(--white);
+  /* transitions */
+  transition: all 1s ease;
+  transition-property: background-color, box-shadow, color;
+
+  /* default theme */
+  &:not([class*=background-]) {
+    background-color: var(--accent);
+
+    /* interactions */
+    &:hover, &:focus {
+      background-color: var(--accent-light);
+    }
+  }
+
+  /* icon */
+  & .btn-icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: inherit;
+    width: 1em;
+    /* icon offset */
+    top: -0.0625em; /* fudge into place */
+    /* transitions */
+    transition: transform 0.3s ease;
+
+    &:not(:first-child) {
+      left: 0.125em;
+      margin-right: -0.25em;
+    }
+    & + .btn-text {
+      margin-left: 0.5em;
+    }
+  }
+
+  /* interactions */
+  &:hover,
+  &:focus {
+    box-shadow: 0 1px 1.25em rgba(0, 0, 0, 0.25);
+    color: var(--white);
+    text-decoration: none;
+
+    &[href] .btn-icon {
+      transform: translateX(0.25em);
+    }
+  }
+}
+
+/* button group */
+.btn-group {
+  display: flex;
+
+  & > .btn {
+    flex: 1 0 auto;
+    /* btn overrides */
+    padding: 0.75em 0;
+    color: var(--light-2);
+
+    /* set background color */
+    &, &:hover, &:focus {
+      background-color: var(--black);
+      box-shadow: none;
+    }
+
+    /* active + focus state */
+    &:active,
+    &.is-active:focus {
+      color: var(--white);
+      outline: none;
+    }
+
+    /* inactive state */
+    &.is-inactive {
+      color: color(var(--white) a(0.5));
+
+      &:hover, &:focus {
+        color: var(--accent-light);
+      }
+    }
+
+    /* remove radius */
+    &:not(:last-of-type) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+
+
+/* -----------------------------------
+D3plus overrides
+----------------------------------- */
+
+/* the inline style isn't working ¯\_(ツ)_/¯ */
+.d3plus-textBox {
+  & text {
+    @add-mixin visualization-font;
+
+    /* replace default dark color returned by colorContrast.js */
+    &[fill="#444444"] {
+      fill: var(--dark-3);
+    }
+  }
+}
+
+/* override default theming for tooltips */
+.d3plus-tooltip {
+  color: var(--dark-1);
+
+  & a {
+    color: var(--accent);
+  }
+}
+
+/* position total */
+.d3plus-viz-total {
+  transform: translate(-3px, -5px);
+}
+
+/* style timeline */
+.d3plus-viz-timeline {
+
+  /* main horizontal bar line */
+  & .bar {
+    stroke: var(--gray);
+    opacity: 0.75;
+  }
+
+  /* vertical ticks */
+  & .ticks {
+    opacity: 0.75;
+
+    & .d3plus-Rect {
+      stroke: none;
+      fill: var(--gray);
+    }
+  }
+
+  /* labels */
+  & text {
+    fill: var(--white);
+  }
+
+  /* active tick */
+  & .handle {
+    /* increase click target */
+    width: 10px;
+    transform: translateX(-2px); /* offset width */
+    /* theming */
+    fill: var(--accent-light);
+    rx: 4px;
+    ry: 4px;
+    /* transitions */
+    will-change: x;
+    transition: x 0.333s ease-out;
+  }
+}
+
+/* hide tick lines */
+.ticks .d3plus-Line-shape {
+  display: none;
+}
+
+/* make room for the 1px axis bar */
+.d3plus-Bar-group {
+  transform: translateY(-0.5px);
+}
+
+
+/* -----------------------------------
+utilities
+----------------------------------- */
+
+/* accessibly hidden text and elements */
+.u-visually-hidden {
+  @add-mixin visually-hidden;
+}
+
+.u-text-center {
+  text-align: center !important;
+}
+
+.u-btn-reset {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.u-list-reset {
+  @add-mixin list-reset;
+}
+
+/* show/hide content */
+.u-hide-below-xs {
+  @add-mixin for-xs {
+    display: none !important;
+  }
+}
+.u-hide-above-xs {
+  @add-mixin from-xs {
+    display: none !important;
   }
 }

@@ -237,10 +237,11 @@ class DynamicHomeHeader extends Component {
           .duration(500)
           .style("opacity", 1);
 
-        var div = select("#tooltip-home");
+        var tooltip = select(".tooltip-home");
+        const container = document.querySelector(".dynamic-home-illustration");
 
         function getCoords(x, y) {
-          const w = window.innerWidth,
+          const w = container.offsetWidth,
             imgW = 1366,
             imgH = 241;
           const h = imgH * w / imgW;
@@ -255,19 +256,17 @@ class DynamicHomeHeader extends Component {
             var elem = hotspot.select("circle.st0");
             var coords = getCoords(elem.attr("cx"), elem.attr("cy"));
 
-            div
-              .transition()
-              .duration(200)
-              .style("opacity", 1);
-            div
+            tooltip.style("opacity", 1);
+            tooltip
               .style("left", coords[0] - 75 + "px")
-              .style("top", coords[1] + 9 + "px");
+              .style("top", coords[1] + 10 + "px")
+              .style("z-index", 10);
 
             const name = that.getTooltipName(region_id);
-            div.select(".tooltip-title").html(name);
+            tooltip.select(".tooltip-title").html(name);
 
             const data_collection = that.getTooltipData(region_id);
-            div
+            tooltip
               .select(".tooltip-body")
               .html(
                 data_collection
@@ -285,10 +284,9 @@ class DynamicHomeHeader extends Component {
               );
           })
           .on("mouseout", function(d) {
-            div
-              .transition()
-              .duration(500)
-              .style("opacity", 0);
+            tooltip
+              .style("opacity", 0)
+              .style("z-index", -1);
           })
           .on("click", function(d) {
             const id = select(this).attr("id");
@@ -333,6 +331,12 @@ class DynamicHomeHeader extends Component {
         name = data.home_industries_tax_data["industries_" + id]["Level 1"];
         break;
     }
+
+    // truncate & add ellipses if necessary
+    if (name.length > 27) {
+      name = name.slice(0, 27);
+      name += "…";
+    }
     return name;
   }
 
@@ -354,7 +358,7 @@ class DynamicHomeHeader extends Component {
         var obj = data.home_countries_export[header.slug + "_" + id];
         datas.push({
           title: t("Imports from Chile") + " " + obj["Year"],
-          value: numeral(obj["FOB US"], locale).format("($ 0.00 a)")
+          value: numeral(obj["FOB US"], locale).format("($0.00a)")
         });
         break;
       case "institutions":
@@ -371,7 +375,7 @@ class DynamicHomeHeader extends Component {
         datas.push({
           title: t("Avg anual payment 2016"),
           value: numeral(obj["Avg anual payment 2016"], locale).format(
-            "($ 0,0)"
+            "($0,0)"
           )
         });
         break;
@@ -379,14 +383,14 @@ class DynamicHomeHeader extends Component {
         var obj = data.home_product_exports[header.slug + "_" + id];
         datas.push({
           title: t("Chile Exports") + " " + obj["Year"],
-          value: numeral(obj["FOB US"], locale).format("($ 0.00 a)")
+          value: numeral(obj["FOB US"], locale).format("($0.00a)")
         });
         break;
       case "industries":
         var obj = data.home_industries_tax_data[header.slug + "_" + id];
         datas.push({
           title: t("Industry output") + " " + obj["Year"],
-          value: numeral(obj["Output"], locale).format("($ 0.00 a)")
+          value: numeral(obj["Output"], locale).format("($0.00a)")
         });
         break;
     }
@@ -493,55 +497,42 @@ class DynamicHomeHeader extends Component {
     const { t, header } = this.props;
 
     return (
-      <div className="dynamic-home-header">
-        <div className="dynamic-home-explore-btn">
-          <Link
-            className={`explore-btn background-${header.slug}`}
-            to={`${header.available ? "/explore/" + header.slug : ""}`}
-          >
-            <span>{header.available ? t("Explore profiles") : t("Soon")}</span>
-            {header.available && (
-              <span className="pt-icon-standard pt-icon-chevron-right" />
-            )}
-          </Link>
-        </div>
-        <div className="dynamic-home-illustration">
-          <div id="tooltip-home">
-            <div className={`tooltip-title background-${header.slug}`} />
-            <div className={`tooltip-body`} />
-          </div>
-          <div id="mountains-home">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1960 281">
-              <path
-                className="back"
-                d="M1.4 282.6L0 82l154.6 60 267.9-82 485.7 64 261-64 360.2 41L1966 .3l-2.1 279.3"
-                style={{ fill: header.colors[1] }}
-              />
-              <path
-                className="front"
-                d="M.7 283.6L0 224.4l66.2-61.2 185.4 73.5 201.6-110.5 282.7 137.1 267.7-120.6 156.8 32 198.1-60.6 144.3 24.6L1778.6 59 1959 229.6l.1 51"
-                style={{ fill: header.colors[0] }}
-              />
-            </svg>
-          </div>
-          <div
-            className="dynamic-home-block"
-            style={{ backgroundColor: header.colors[2] }}
-          />
-          {header && (
-            <div className={`dynamic-home-items illustration-${header.slug}`}>
-              {header.available && (
-                <div
-                  className="dynamic-home-hotspots"
-                  dangerouslySetInnerHTML={{ __html: this.state.illustration }}
-                />
-              )}
-              <div className={`dynamic-home-image`}>
-                <img src={`/images/home/headers/${header.slug}.png`} />
+      <div className="home-header">
+        <div className="dynamic-home-header">
+          <div className="dynamic-home-image">
+            {header && (
+              <div className={`dynamic-home-items image-${header.slug}`}>
+                {/* hotspots & tooltips */}
+                {header.available && (
+                  <div className="dynamic-home-hotspots">
+                    {/* SVG with hotspots */}
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: this.state.illustration
+                      }}
+                    />
+                    {/* tooltips; NOTE: keep here for positioning relative to parent */}
+                    <div className="tooltip-home">
+                      <div
+                        className={`tooltip-title background-${header.slug}`}
+                      />
+                      <div className={`tooltip-body`} />
+                    </div>
+                  </div>
+                )}
+                {/* background image */}
+                <div className="dynamic-home-illustration">
+                  <img
+                    className="dynamic-home-illustration-img"
+                    src={`/images/home/headers/${header.slug}.png`}
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
+        {/* change bg color as image fades in and out */}
+        <div className={`dynamic-home-bg background-${header.slug}`} />
       </div>
     );
   }

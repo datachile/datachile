@@ -114,7 +114,7 @@ class MigrationActivitySlide extends Section {
               text_data_geo_demography_activity["Number of visas"] /
                 datum_migration_origin[1],
               locale
-            ).format("(0.0 %)")
+            ).format("(0.0%)")
           : "",
       activity: text_data_geo_demography_activity
         ? text_data_geo_demography_activity["Activity"]
@@ -134,7 +134,7 @@ class MigrationActivitySlide extends Section {
               text_data_geo_demography_type["Number of visas"] /
                 datum_migration_origin[1],
               locale
-            ).format("(0.0 %)")
+            ).format("(0.0%)")
           : "",
       type: text_data_geo_demography_type
         ? text_data_geo_demography_type["Visa Type"]
@@ -152,14 +152,14 @@ class MigrationActivitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">{t("Migration")}</div>
-          <div
+          <h3 className="topic-slide-title">{t("Migration")}</h3>
+          <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
           <div className="topic-slide-data">
             <FeaturedDatum
-              className="l-1-2"
+              className="l-1-2 category-featured-datum"
               icon={icon_migration_activity.get(data_slide.id_activity)}
               datum={data_slide.activity}
               title={t("Most Common Visa Activity")}
@@ -171,7 +171,7 @@ class MigrationActivitySlide extends Section {
               }
             />
             <FeaturedDatum
-              className="l-1-2"
+              className="l-1-2 category-featured-datum"
               icon={icon_migration_visatype.get(data_slide.id_type)}
               datum={data_slide.type}
               title={t("Most Common Visa Type")}

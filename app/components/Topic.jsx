@@ -3,8 +3,9 @@ import { translate } from "react-i18next";
 import find from "lodash/find";
 
 import TopicSlider from "components/TopicSlider";
-import TopicSliderBullets from "components/TopicSliderBullets";
-import TopicSliderSections from "components/TopicSliderSections";
+// import TopicSliderBullets from "components/TopicSliderBullets";
+import TopicSliderTabs from "components/TopicSliderTabs";
+import TopicSliderSubsections from "components/TopicSliderSubsections";
 
 class Topic extends Component {
   static need = [];
@@ -44,26 +45,10 @@ class Topic extends Component {
       <div className="topic-block">
         <span id={id} className="topic-anchor-link" />
         <div className="topic-header">
-          <div className="topic-title">
-            <h2>
-              {name}
-              <span className="small">
-                <span className="pipe">|</span>
-                {selectedSection.name}
-              </span>
-            </h2>
-            {slider && (
-              <TopicSliderBullets
-                name={id}
-                slides={children}
-                selected={selected}
-                goTo={this.goTo}
-              />
-            )}
-          </div>
+          <h2 className="topic-heading font-xxl">{name}</h2>
           {slider && (
             <div className="topic-go-to-targets">
-              <TopicSliderSections
+              <TopicSliderTabs
                 name={id}
                 sections={sections}
                 selected={selected}
@@ -73,12 +58,22 @@ class Topic extends Component {
           )}
         </div>
         <div className="topic-slide-container">
+
+          {slider && (
+            <TopicSliderSubsections
+              name={id}
+              sections={sections}
+              selected={selected}
+              goTo={this.goTo}
+            />
+          )}
+
           {slider && (
             <TopicSlider id={id} selected={selected} goTo={this.goTo}>
               {children}
             </TopicSlider>
           )}
-          {!slider && <div> {children} </div>}
+          {!slider && <div className="linear-topic-slides"> {children} </div>}
         </div>
       </div>
     );

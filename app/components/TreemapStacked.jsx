@@ -23,19 +23,21 @@ class TreemapStacked extends React.Component {
 
   menuChart(selected) {
     return (
-      <div className="treemap-stacked-options">
-        <a
-          className={`toggle ${selected === "treemap" ? "selected" : ""}`}
+      <div className="btn-group">
+        <button
+          className={`btn font-xxs ${selected === "treemap" ? "is-active" : "is-inactive"}`}
           onClick={evt => this.toggleChart("treemap")}
         >
-          Treemap
-        </a>
-        <a
-          className={`toggle ${selected === "stacked" ? "selected" : ""}`}
+          <span className="btn-icon pt-icon pt-icon-control" />
+          <span className="btn-text">Treemap</span>
+        </button>
+        <button
+          className={`btn font-xxs ${selected === "stacked" ? "is-active" : "is-inactive"}`}
           onClick={evt => this.toggleChart("stacked")}
         >
-          Stacked
-        </a>
+          <span className="btn-icon pt-icon pt-icon-timeline-area-chart" />
+          <span className="btn-text">Stacked</span>
+        </button>
       </div>
     );
   }
@@ -62,7 +64,7 @@ class TreemapStacked extends React.Component {
             <Treemap
               config={{
                 ...config,
-                height: 500,
+                height: 400,
                 data: path,
                 label: d => d[drilldowns[drilldowns.length - 1]],
                 groupBy: drilldowns.map(dd => "ID " + dd),
@@ -96,7 +98,7 @@ class TreemapStacked extends React.Component {
                 totalConfig: {
                   text: ""
                 },
-                height: 500,
+                height: 400,
                 data: path,
                 groupBy: !depth
                   ? "ID " + drilldowns[0]

@@ -6,9 +6,10 @@ import { simpleDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
-import { DeathCauses } from "texts/GeoProfile";
-
 import FeaturedDatum from "components/FeaturedDatum";
+import LevelWarning from "components/LevelWarning";
+
+import { DeathCauses } from "texts/GeoProfile";
 
 class DeathCausesSlide extends Section {
   static need = [
@@ -49,7 +50,7 @@ class DeathCausesSlide extends Section {
   ];
 
   render() {
-    const { children, t, i18n } = this.props;
+    const { children, path, t, i18n } = this.props;
     const {
       datum_health_death_causes_by_year,
       datum_health_death_causes_tumors,
@@ -66,33 +67,13 @@ class DeathCausesSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <div className="topic-slide-title">
-            {t("Death Causes")}
-            {this.context.data.geo.depth > 1 ? (
-              <div className="topic-slide-subtitle">
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("geo_profile.warning", {
-                        caption:
-                          "Región " + this.context.data.geo.ancestors[0].caption
-                      })
-                    }}
-                  />
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          <h3 className="topic-slide-title">{t("Death Causes")}</h3>
           <div className="topic-slide-text">
-            <p>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t("geo_profile.health.death_causes", text)
-                }}
-              />
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.health.death_causes", text)
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             {text && (
@@ -130,6 +111,9 @@ class DeathCausesSlide extends Section {
               />
             )*/}
           </div>
+          {this.context.data.geo.depth > 1 && (
+            <LevelWarning name={this.context.data.geo.ancestors[0].caption} path={path} />
+          )}
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

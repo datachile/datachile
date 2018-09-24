@@ -9,7 +9,7 @@ import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 class RDByBusinessType extends Section {
@@ -65,6 +65,7 @@ class RDByBusinessType extends Section {
                   {industry.parent ? industry.parent.caption : industry.caption}
                 </span>
               )}
+            <SourceTooltip cube="rd_survey" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
@@ -79,9 +80,9 @@ class RDByBusinessType extends Section {
             total: d => d["Total Spending"],
             totalConfig: {
               text: d =>
-                "Total: US" +
+                "Total: US " +
                 numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($ 0.[00] a)"
+                  "($0,.[00]a)"
                 )
             },
             shapeConfig: {
@@ -90,22 +91,14 @@ class RDByBusinessType extends Section {
             tooltipConfig: {
               title: d => d["Business Type"],
               body: d =>
-                numeral(d["Total Spending"], locale).format("(USD 0 a)")
-            },
-            legendConfig: {
-              shapeConfig: {
-                width: 20,
-                height: 20
-              }
+                numeral(d["Total Spending"], locale).format("(USD 0a)")
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />
-
-        <SourceNote cube="rd_survey" />
       </div>
     );
   }

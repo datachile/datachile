@@ -8,7 +8,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { numeral } from "helpers/formatters";
 
 import InfoLogoItem from "components/InfoLogoItem";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class Devices extends Section {
   static need = [];
@@ -91,10 +91,12 @@ class Devices extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Devices' use in ") + geoChartName}</span>
+          <span>
+            {t("Devices' use in ") + geoChartName}
+            <SourceTooltip cube="internet_access" />
+          </span>
         </h3>
         <div className="info-logo-container">{devices}</div>
-        <SourceNote cube="internet_access" />
       </div>
     );
   }

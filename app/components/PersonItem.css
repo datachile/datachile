@@ -1,45 +1,61 @@
+@import "../pages/mixins";
+
 .person-item {
-  margin: 10px 0;
-  & .person-item-img {
-    text-align: center;
-    width: 80%;
-    border: 1px solid #ffffff;
+  /* override normalize.css, set bottom border */
+  margin: 0 0 0.75rem 0;
+
+  /* figure & caption layout */
+  & > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* image container */
+  & .person-figure {
+    /* sizing */
+    width: 3rem;
+    height: 3rem;
+    /* crop image to a circle */
     border-radius: 50%;
     overflow: hidden;
-    position: relative;
-    margin: 0 auto;
-    & img {
-      width: 100%;
-      position: absolute;
-      left: 0;
+    /* theming */
+    background-color: var(--gray); /* before image loads in */
+    box-shadow: 0 1px 1em rgba(0, 0, 0, 0.25);
+
+    /* scale up on big screens */
+    @add-mixin from-lg {
+      width: 4rem;
+      height: 4rem;
     }
-    &:after {
-      content: "";
-      display: block;
-      padding-bottom: 100%;
-    }
-  }
-  & .person-item-name {
-    letter-spacing: 0.5px;
-    font-family: var(--font-family-title);
-    font-weight: 300;
-    font-size: 10px;
-    color: var(--snow);
-    text-transform: uppercase;
-    text-align: center;
-    margin: 10px auto;
-    &.president {
-      font-size: 12px;
+
+    /* make sure the image fills up the container */
+    & .person-img {
+      object-fit: cover;
     }
   }
-  & .person-item-subtitle {
-    font-family: var(--font-family-title);
-    font-weight: 800;
-    font-size: 9px;
-    letter-spacing: 0.5px;
-    color: var(--snow);
-    text-transform: uppercase;
-    text-align: center;
-    width: 100%;
+
+  /* caption placement */
+  & .person-caption {
+    /* offset img & gutter */
+    width: calc(100% - 3rem - 1rem);
+    left: 1rem;
+
+    /* scale up on big screens */
+    @add-mixin from-lg {
+      width: calc(100% - 4rem - 1rem);
+      left: 1rem;
+    }
+
+    /* space out name and affiliation */
+    & .person-title {
+      line-height: 1.25;
+      text-transform: capitalize; /* requires string to be lowercase */
+      margin-bottom: 0.25em;
+    }
+    & .person-subtitle {
+      line-height: 1;
+      margin-bottom: 0; /* override blueprint */
+      opacity: 0.75;
+    }
   }
 }

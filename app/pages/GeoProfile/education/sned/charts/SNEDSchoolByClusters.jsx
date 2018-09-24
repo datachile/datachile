@@ -13,7 +13,7 @@ import {
 import { snedComparisonColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 class SNEDSchoolByClusters extends Section {
@@ -41,7 +41,10 @@ class SNEDSchoolByClusters extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{title}</span>
+          <span>
+            {title}
+            <SourceTooltip cube="sned" />
+          </span>
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <TreemapStacked
@@ -53,8 +56,6 @@ class SNEDSchoolByClusters extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
-                width: 25,
-                height: 25,
                 backgroundImage: "/images/legend/education/type.png"
               }
             },
@@ -102,11 +103,10 @@ class SNEDSchoolByClusters extends Section {
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0 a)")
+              tickFormat: tick => numeral(tick, locale).format("(0a)")
             }
           }}
         />
-        <SourceNote cube="sned" />
       </div>
     );
   }

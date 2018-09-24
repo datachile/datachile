@@ -9,7 +9,7 @@ import { numeral } from "helpers/formatters";
 import { sources } from "helpers/consts";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class ProductSpace extends Section {
 	static need = [
@@ -35,13 +35,16 @@ class ProductSpace extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Product Space")}</span>
+					<span>
+						{t("Product Space")}
+						<SourceTooltip cube="exports" />
+					</span>
 					<ExportLink path={path} className={classSvg} />
 				</h3>
 				<Network
 					className={classSvg}
 					config={{
-						height: 600,
+						height: 400,
 						links: "/json/pspace_hs2012_links_d3p2.json",
 						nodes: "/json/pspace_hs2012_nodes_d3p2.json",
 						data: path,
@@ -67,7 +70,7 @@ class ProductSpace extends Section {
                            <td class='data'>US${numeral(
 															d["FOB US"],
 															locale
-														).format("$ 0 a")}</td></tr>
+														).format("$0, a")}</td></tr>
                            <tr><td class='title'>${t("HS")}</td>
                            <td class='data'>${d["ID HS2"].slice(2)}</td></tr>
                            <tr><td class='title'>${t(
@@ -90,13 +93,6 @@ class ProductSpace extends Section {
 							"FOB US": d["FOB US"] ? d["FOB US"] : 0
 						}))
 					}
-				/>
-				<SourceNote cube="exports" />
-				<p
-					className="chart-text"
-					dangerouslySetInnerHTML={{
-						__html: t("geo_profile.economy.rca")
-					}}
 				/>
 			</div>
 		);

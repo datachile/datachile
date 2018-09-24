@@ -9,7 +9,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 import NoDataAvailable from "components/NoDataAvailable";
 
@@ -77,7 +77,10 @@ class HousingByConstructionType extends Section {
 		return (
 			<div className={className}>
 				<h3 className="chart-title">
-					<span>{t("Material of Walls")}</span>
+					<span>
+						{t("Material of Walls")}
+						<SourceTooltip cube="casen_household" />
+					</span>
 					<ExportLink
 						path={path_housing_construction_type}
 						className={classSvg}
@@ -87,7 +90,7 @@ class HousingByConstructionType extends Section {
 					<Treemap
 						className={classSvg}
 						config={{
-							height: 500,
+							height: 400,
 							data: path_housing_construction_type,
 							groupBy: ["ID Walls Material"],
 							label: d => d["Walls Material"],
@@ -122,7 +125,6 @@ class HousingByConstructionType extends Section {
 				) : (
 					<NoDataAvailable />
 				)}
-				<SourceNote cube="casen_household" />
 			</div>
 		);
 	}

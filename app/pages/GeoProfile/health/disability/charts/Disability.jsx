@@ -11,7 +11,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
-import SourceNote from "components/SourceNote";
+import SourceTooltip from "components/SourceTooltip";
 
 class Disability extends Section {
   static need = [
@@ -53,13 +53,16 @@ class Disability extends Section {
     return (
       <div className={className}>
         <h3 className="chart-title">
-          <span>{t("Disabilities by Grade")}</span>
+          <span>
+            {t("Disabilities by Grade")}
+            <SourceTooltip cube="disabilities" />
+          </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
         <Treemap
           className={classSvg}
           config={{
-            height: 500,
+            height: 400,
             data: path,
             groupBy: ["ID Disability Grade"],
             label: d => d["Disability Grade"],
@@ -67,17 +70,10 @@ class Disability extends Section {
             time: "ID Year",
             shapeConfig: {
               fill: d => ordinalColorScale(d["ID Disability Grade"])
-            },
-            legendConfig: {
-              shapeConfig: {
-                width: 40,
-                height: 40
-              }
             }
           }}
           dataFormat={data => data.data}
         />
-        <SourceNote cube="disabilities" />
       </div>
     );
   }
