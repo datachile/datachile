@@ -1,5 +1,102 @@
 @import "../mixins";
 
 .explore-page {
-  /* TODO: everything */
+  /* theming */
+  & .explore-header {
+    background-color: var(--black);
+  }
+
+  /* layout */
+  & .explore-category-list,
+  & .tile-list {
+    padding: 0 var(--gutter);
+  }
+  & .tile-list {
+    margin-bottom: 0;
+  }
+  & .explore-title {
+    padding: 2rem var(--gutter) 0.25rem var(--gutter);
+  }
+}
+
+/* category select list layout */
+.explore-category-list {
+  padding: 0 var(--gutter);
+  width: auto;
+  display: flex;
+  justify-content: space-between; /* justify on tiny screens */
+  text-align: center; /* fallback */
+
+  /* center on non-tiny screens */
+  @add-mixin from-xs {
+    justify-content: center;
+
+    /* layout fallback */
+    & .explore-category-item {
+      display: inline-block;
+
+      /* space out adjacent items */
+      &:not(:last-of-type) {
+        margin-right: var(--gutter);
+      }
+    }
+  }
+}
+
+/* category select link theming */
+.explore-category-link {
+  /* sizing */
+  display: block;
+  line-height: 2rem;
+  /* theming */
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  color: var(--white);
+  /* override underline, on hover too */
+  text-decoration: none !important;
+  /* transitions */
+  transition:
+    opacity 0.2s ease-out,
+    border-color 0.2s ease-out;
+
+  /* side by side icon & text */
+  & .explore-category-icon,
+  & .explore-category-text {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  /* icon */
+  & .explore-category-icon {
+    width: 2.5em;
+    height: 2.5em;
+
+    /* scale down on non-tiny screens */
+    @add-mixin from-xs {
+      width: 1.625em;
+      height: 1.625em;
+    }
+  }
+  /* text */
+  & .explore-category-text {
+
+    /* force line break on tiny screens */
+    @add-mixin for-xs {
+      display: block;
+    }
+    /* space out from icon on bigger screens */
+    @add-mixin from-xs {
+      margin-left: 0.5em;
+    }
+  }
+
+  /* inactive state */
+  &.is-inactive {
+    border-bottom-color: transparent !important; /* override theme */
+    opacity: 0.75;
+
+    /* interactions */
+    &:hover, &:focus {
+      opacity: 1;
+    }
+  }
 }

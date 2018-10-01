@@ -193,11 +193,9 @@ class Explore extends Component {
     const members = this.props.data.members;
 
     // console.log(members);
-
     var type = "";
     var title = "";
     var longTitle = "";
-    var mainLink = false;
     switch (entity) {
       /*case undefined: {
         type = "";
@@ -233,7 +231,6 @@ class Explore extends Component {
         type = "region";
         title = t("national");
         longTitle = t("national locations");
-        mainLink = true;
         break;
       }
       default: {
@@ -272,19 +269,26 @@ class Explore extends Component {
 
     // category array
     const categories = [
-      { type: "geo", title: t("national") },
-      { type: "countries", title: t("Countries") },
-      { type: "products", title: t("Products") },
-      { type: "industries", title: t("Industries") }
+      { theme: "geo", type: "region", title: t("national") },
+      { theme: "countries", type: "countries", title: t("Countries") },
+      { theme: "products", type: "products", title: t("Products") },
+      { theme: "industries", type: "industries", title: t("Industries") }
       // { type: "careers", title: t("Careers") },
       // { type: "institutions", title: t("Institutions") }
     ];
 
+    // create category list from category array
     const categoryItems = categories.map(category => (
-      <li key={category.type} className={type == category.type ? "selected" : ""}>
-        <Link className="explore-link" to={`/explore/${category.type}`}>
-          <img src={`/images/icons/icon-${category.type}.svg`} />
-          <span>{category.title}</span>
+      <li key={category.type} className="explore-category-item">
+        <Link
+          to={`/explore/${category.theme}`}
+          className={`explore-category-link label font-xxs border-${category.theme} ${type === category.type ? "is-active" : "is-inactive"}`}
+        >
+          <img
+            className="explore-category-icon"
+            src={`/images/icons/icon-${category.theme}.svg`}
+          />
+          <span className="explore-category-text">{category.title}</span>
         </Link>
       </li>
     ));
@@ -323,12 +327,17 @@ class Explore extends Component {
           />
         </Helmet>
         <div className="explore-page">
-          <Nav
-            title={t("Explore")}
-            typeTitle={t("Home")}
-            type={type != "" ? (type == "region" ? "geo" : type) : false}
-            exploreLink={"/"}
-          />
+          <div className="explore-header">
+            <Nav
+              title={t("Explore")}
+              typeTitle={t("Home")}
+              type={type != "" ? (type == "region" ? "geo" : type) : false}
+              exploreLink={"/"}
+            />
+
+            {/* select category */}
+            <ul className="explore-category-list u-list-reset">{categoryItems}</ul>
+          </div>
 
           {/*<div className="search-explore-wrapper">
             <Search className="search-home" local={true} limit={5} />
@@ -339,8 +348,6 @@ class Explore extends Component {
           </div>
 
           <div className="explore-container">
-            {/* select category */}
-            <ul className="explore-category-list">{categoryItems}</ul>
 
             <div id="explore-results">
               <div className="explore-column">

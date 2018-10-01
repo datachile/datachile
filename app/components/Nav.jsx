@@ -119,7 +119,7 @@ class Nav extends Component {
     }
 
     return (
-      <div id="navs-container">
+      <div className="main-nav-container" id="navs-container">
         <nav className={`nav ${darkClass}`}>
           <SubNav
             type="scroll"
