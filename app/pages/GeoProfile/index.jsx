@@ -478,7 +478,6 @@ class GeoProfile extends Component {
 
               {/* main splash content */}
               <div className="header geo-header">
-
                 {/* elected officials */}
                 <AuthoritiesBlock
                   geo={geoObj}
