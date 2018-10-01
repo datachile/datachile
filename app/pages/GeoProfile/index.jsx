@@ -475,7 +475,6 @@ class GeoProfile extends Component {
 
               {/* main splash content */}
               <div className="header geo-header">
-
                 {/* elected officials */}
                 <AuthoritiesBlock
                   geo={geoObj}
@@ -896,8 +895,7 @@ class GeoProfile extends Component {
                 <div className="topic-slide">
                   <CrimeSlide>
                     <SectionColumns>
-                      <CrimeTreemap className="lost-1-2" />
-                      <CrimeStacked className="lost-1-2" />
+                      <CrimeTreemap className="lost-1" />
                     </SectionColumns>
                   </CrimeSlide>
                 </div>
@@ -1027,8 +1025,7 @@ class GeoProfile extends Component {
                 <div className="topic-slide">
                   <DeathCausesSlide path={location.pathname}>
                     <SectionColumns>
-                      <DeathCauses className="lost-1-2" />
-                      <DeathCausesStacked className="lost-1-2" />
+                      <DeathCauses className="lost-1" />
                     </SectionColumns>
                   </DeathCausesSlide>
                 </div>
