@@ -6,7 +6,7 @@ import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
 import Helmet from "react-helmet";
 
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import { getGeoObject, clearStoreData } from "helpers/dataUtils";
 import styles from "style.yml";
 
@@ -416,10 +416,7 @@ class GeoProfile extends Component {
     // truncate & add ellipses if necessary
     let titleTruncated = null;
     if (geo) {
-      if (geo.caption.length > 40) {
-        titleTruncated = geo.caption.slice(0, 40);
-        titleTruncated += "…";
-      }
+      titleTruncated = shortenProfileName(geo.caption);
     }
 
     let opengraphImage = (geoObj.image || "").replace(

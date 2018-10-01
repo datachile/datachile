@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { CanonProfile } from "datawheel-canon";
 import { translate } from "react-i18next";
 
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMemberQuery,
   levelCut
@@ -212,10 +212,7 @@ class CareerProfile extends Component {
     // truncate & add ellipses if necessary
     let titleTruncated = null;
     if (obj) {
-      if (obj.caption.length > 40) {
-        titleTruncated = obj.caption.slice(0, 40);
-        titleTruncated += "…";
-      }
+      titleTruncated = shortenProfileName(obj.caption);
     }
 
     return (

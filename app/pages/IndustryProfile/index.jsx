@@ -4,7 +4,7 @@ import { CanonProfile, Canon, SectionColumns } from "datawheel-canon";
 import { translate } from "react-i18next";
 import Helmet from "react-helmet";
 
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMemberQuery,
   levelCut,
@@ -237,10 +237,7 @@ class IndustryProfile extends Component {
     // truncate & add ellipses if necessary
     let titleTruncated = null;
     if (industry) {
-      if (industry.caption.length > 40) {
-        titleTruncated = industry.caption.slice(0, 40);
-        titleTruncated += "…";
-      }
+      titleTruncated = shortenProfileName(industry.caption);
     }
 
     const path = `/${location.pathname}`;

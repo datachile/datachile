@@ -5,7 +5,7 @@ import { translate } from "react-i18next";
 import orderBy from "lodash/orderBy";
 import Helmet from "react-helmet";
 
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
   getMemberQuery,
@@ -436,10 +436,7 @@ class ProductProfile extends Component {
     // truncate & add ellipses if necessary
     let titleTruncated = null;
     if (obj) {
-      if (obj.caption.length > 40) {
-        titleTruncated = obj.caption.slice(0, 40);
-        titleTruncated += "…";
-      }
+      titleTruncated = shortenProfileName(obj.caption);
     }
 
     return (
