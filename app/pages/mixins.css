@@ -168,6 +168,13 @@
   overflow: hidden;
 }
 
+@define-mixin reset-visually-hidden {
+  clip: auto;
+  height: auto;
+  width: auto;
+  overflow: auto;
+}
+
 
 /* COMPONENTS mixins */
 

@@ -287,11 +287,18 @@
 
   & .home-featured-profiles {
     lost-flex-container: column;
-    lost-center: var(--width);
     margin: var(--gutter-half) auto var(--gutter) auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+
     & .home-profile-carousels-container {
-      lost-flex-container: row;
-      lost-column: 1;
+
+      /* hide the fifth tile */
+      @media (min-width: 480px) and (max-width: 991px) {
+        & .tile:last-child {
+          display: none;
+        }
+      }
     }
   }
 

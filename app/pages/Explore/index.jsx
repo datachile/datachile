@@ -192,8 +192,11 @@ class Explore extends Component {
 
     const members = this.props.data.members;
 
+    // console.log(members);
+
     var type = "";
     var title = "";
+    var longTitle = "";
     var mainLink = false;
     switch (entity) {
       /*case undefined: {
@@ -202,7 +205,8 @@ class Explore extends Component {
       }*/
       case "countries": {
         type = "countries";
-        title = t("Countries");
+        title = t("countries");
+        longTitle = t("countries");
         break;
       }
       /*case "institutions": {
@@ -215,17 +219,20 @@ class Explore extends Component {
       }*/
       case "products": {
         type = "products";
-        title = t("Products");
+        title = t("products");
+        longTitle = t("products");
         break;
       }
       case "industries": {
         type = "industries";
-        title = t("Industries");
+        title = t("industries");
+        longTitle = t("industries");
         break;
       }
       case "geo": {
         type = "region";
-        title = t("Geographical");
+        title = t("national");
+        longTitle = t("national locations");
         mainLink = true;
         break;
       }
@@ -246,7 +253,8 @@ class Explore extends Component {
               key: m.key,
               name: m.caption,
               type: type,
-              url: "/explore/" + profileType + "/" + m.key + "#results",
+              filterUrl: "/explore/" + profileType + "/" + m.key + "#results",
+              url: profileType + "/" + m.key,
               img: getImageFromMember(profileType, m.key)
             };
           })
@@ -260,6 +268,24 @@ class Explore extends Component {
         url: "/geo/chile",
         img: getImageFromMember("geo", "chile")
       });
+    }
+
+    // default results count & filter name
+    let resultsCount = 0;
+    let filterName = null;
+
+    // console.log(filters);
+    // set filters at top (category) level
+    if (filters.length && !entity_id) {
+      resultsCount = filters.length;
+    }
+    // if we're doing a deeper search, update the results count and filter name
+    else if (members && entity_id) {
+      const member = [].concat(members).find(m => m.key == entity_id);
+      if (member.numChildren) {
+        resultsCount = member.numChildren;
+      }
+      filterName = member.name;
     }
 
     return (
@@ -279,18 +305,18 @@ class Explore extends Component {
         </Helmet>
         <div className="explore-page">
           <Nav
-            title={type != "" ? title : t("Explore")}
+            title={t("Explore")}
             typeTitle={t("Home")}
             type={type != "" ? (type == "region" ? "geo" : type) : false}
             exploreLink={"/"}
           />
 
-          <div className="search-explore-wrapper">
+          {/*<div className="search-explore-wrapper">
             <Search className="search-home" local={true} limit={5} />
-          </div>
+          </div>*/}
 
           <div className="explore-title">
-            <h3>{t("Explore profiles by category")}</h3>
+            <h2>{`${resultsCount} ${filterName ? filterName : ""} ${longTitle}`}</h2>
           </div>
 
           <div className="explore-container">
@@ -345,28 +371,23 @@ class Explore extends Component {
 
             <div id="explore-results">
               <div className="explore-column">
-                <div className="filter-block">
-                  <div className="explore-featured-tiles">
+                <div className="filter-block profile-carousel">
+                  <div className="explore-initial tile-list">
                     {entity &&
                       filters &&
                       filters.map(f => (
-                        <div
+                        <ProfileTile
                           key={f.key}
-                          className={
-                            entity_id == f.key
-                              ? "level1-filter selected"
-                              : "level1-filter"
-                          }
-                        >
-                          <ProfileTile
-                            item={f}
-                            className="explore-featured-profile"
-                          />
-                        </div>
+                          item={f}
+                          filterUrl={f.filterUrl}
+                          className="explore-featured-profile"
+                        />
                       ))}
                   </div>
+                  <div className="explore-results">
+                    {this.renderResultComponent(this.props)}
+                  </div>
                 </div>
-                {this.renderResultComponent(this.props)}
               </div>
             </div>
           </div>
@@ -378,6 +399,8 @@ class Explore extends Component {
   renderResultComponent(props) {
     const { entity, entity_id } = props.routeParams;
     const { data, t } = props;
+
+    // console.log(data);
 
     if (!entity || !entity_id || !data || !t) return null;
 

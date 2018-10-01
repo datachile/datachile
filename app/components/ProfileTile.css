@@ -2,10 +2,9 @@
 
 .tile {
   /* layout */
-  flex: 1 1 250px;
+  flex: 1 1 auto;
   /* set height */
-  min-height: 8rem;
-  padding-top: 12%;
+  padding-top: 12%; /* assumes 5 column layout */
   /* typography */
   text-align: center;
   /* prevent content from spilling out of container */
@@ -63,9 +62,55 @@
     will-change: transform;
   }
 
+  /* filter */
+  & .filter-button {
+    /* positioning */
+    position: absolute;
+    top: 0.75em;
+    right: 0.75em;
+    z-index: 3;
+    /* sizing */
+    padding: 0.35em 0.7em 0.5em 0.7em;
+    /* theming */
+    background: var(--dark-3);
+    border-radius: 5em;
+
+    & .filter-button-icon {
+      margin-right: -1px; /* offset label */
+      transform: scale(1.25);
+      transition: transform 0.2s ease-out;
+    }
+
+    & .filter-button-text {
+      @add-mixin visually-hidden;
+      display: inline-block;
+      vertical-align: middle;
+      position: relative !important;
+      /* transitions */
+      font-size: 0.001px;
+      transition: font-size 0.1s ease-out;
+    }
+
+    /* reveal filter button label */
+    &:hover, &:focus {
+      text-decoration: none;
+      max-width: none;
+
+      & .filter-button-icon {
+        color: var(--white);
+        transform: none;
+      }
+      & .filter-button-text {
+        @add-mixin reset-visually-hidden;
+        font-size: inherit;
+        padding-left: 0.25em;
+      }
+    }
+  }
+
   /* interactions */
   &:hover,
-  &:focus {
+  &:focus-within {
     color: var(--white);
     text-decoration: none;
 

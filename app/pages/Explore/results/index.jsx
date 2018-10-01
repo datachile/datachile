@@ -3,7 +3,7 @@ import ResultsGeo from "./ResultsGeo";
 import ResultsCountries from "./ResultsCountries";
 
 export default {
-  geo: ResultsGeo,
-  countries: ResultsCountries,
+  geo: ResultsGeneric,
+  countries: ResultsGeneric,
   undefined: ResultsGeneric
 };

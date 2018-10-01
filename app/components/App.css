@@ -264,7 +264,7 @@ profile theming
     border-color: var(--color-$(theme)) !important;
   }
   .border-$(theme)-hover {
-    &:hover, &:focus {
+    &:hover, &:focus, &:focus-within {
       border-color: var(--color-$(theme)) !important;
     }
   }
@@ -590,6 +590,12 @@ table.tooltip-table {
       border-bottom-left-radius: 0;
     }
   }
+}
+
+/* cover link */
+.cover-link {
+  @add-mixin absolute-expand;
+  z-index: 2;
 }
 
 

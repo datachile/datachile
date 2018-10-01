@@ -2,18 +2,13 @@ import React from "react";
 
 import ResultItem from "components/ResultItem";
 import { slugifyItem } from "helpers/formatters";
+import { getImageFromMember } from "helpers/formatters";
 
 class TemplateResults extends React.PureComponent {
+
   render() {
-    return (
-      <div id="results" className="results-block">
-        {this.renderTitle.call(this)}
-        {this.renderElementPrepended.call(this)}
-        {this.renderProfile.call(this)}
-        {this.renderChildren.call(this)}
-        {this.renderElementAppended.call(this)}
-      </div>
-    );
+    // console.log(this.props.profile);
+    return this.renderChildren.call(this);
   }
 
   renderTitle() {
@@ -39,8 +34,8 @@ class TemplateResults extends React.PureComponent {
     const { t, profile, entity } = this.props;
 
     return (
-      <div className="list-title">
-        {this.renderProfileTitle.call(this)}
+      <div className="tile-list">
+        {/*{this.renderProfileTitle.call(this)}*/}
         <ResultItem
           item={{
             key: profile.key,
@@ -61,28 +56,25 @@ class TemplateResults extends React.PureComponent {
     const { t, profile, entity } = this.props;
 
     return (
-      <div className="list-title">
-        {this.renderChildrenTitle.call(this)}
-        <ul className="explore-list">
-          {profile.children.map(c => (
-            <li key={c.key}>
-              <ResultItem
-                item={{
-                  key: c.key,
-                  name: c.caption,
-                  type: entity,
-                  url: slugifyItem(
-                    entity,
-                    profile.key,
-                    profile.caption,
-                    c.key,
-                    c.caption
-                  )
-                }}
-              />
-            </li>
-          ))}
-        </ul>
+      <div className="tile-list">
+        {profile.children.map(c => (
+          <ResultItem
+            key={c.key}
+            item={{
+              img: getImageFromMember(entity, c.key),
+              key: c.key,
+              name: c.caption,
+              type: entity,
+              url: slugifyItem(
+                entity,
+                profile.key,
+                profile.caption,
+                c.key,
+                c.caption
+              )
+            }}
+          />
+        ))}
       </div>
     );
   }

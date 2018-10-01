@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
+import { shortenProfileName } from "helpers/formatters";
 // import Shiitake from "shiitake";
 
 import "./ProfileTile.css";
 
 class ProfileTile extends Component {
   render() {
-    const { t, item, className } = this.props;
+    const { t, item, img, filterUrl, className } = this.props;
 
     const theme =
       ["national", "region", "comuna"].indexOf(item.type) > -1
@@ -20,22 +21,42 @@ class ProfileTile extends Component {
       comuna: t("Comuna"),
       countries: t("Country"),
       industries: t("Industry"),
-      products: t("Product")
+      products: t("Product"),
+      geo: t("Municipal") // all other geo tags accounted for
     };
 
-    const type = i18nType[item.type] ? i18nType[item.type] : item.type;
+    let type = i18nType[item.type] ? i18nType[item.type] : item.type;
+
+    // continents aren't countries
+    const continents = [ "Africa", "Oceania", "Americas", "Asia", "Europe", "Other" ]
+    if (continents.indexOf(item.name) > -1) {
+      type = t("Continent");
+    }
+
+    // get truncated name & label id
+    let titleTruncated = null;
+    let labelId = "";
+    if (item) {
+      titleTruncated = shortenProfileName(item.name);
+      labelId = `${item.name}-label`;
+    }
+
+
+    // console.log(item);
 
     return (
-      <Link
-        key={item.name + "anchor"}
-        className={`tile ${className} border-${theme}-hover`}
-        to={item.url}
-        title={item.name}
-      >
-        <span className="tile-inner">
+      <div className={`tile ${className ? className : ""} border-${theme}-hover`}>
+        <Link
+          className="cover-link"
+          key={item.name + "anchor"}
+          to={item.url}
+          title={item.name}
+          aria-labelledby={labelId}
+        />
+        <span className="tile-inner" id={labelId}>
           {/* profile title */}
           <span className="tile-title subhead font-xs">
-            {item.name}
+            {titleTruncated ? titleTruncated : item.name}
           </span>
 
           {/* category indicator */}
@@ -54,9 +75,20 @@ class ProfileTile extends Component {
           )}
         </span>
 
+        {/* explore filter button */}
+        {filterUrl && (
+          <Link
+            to={filterUrl}
+            className={`filter-button font-xxs background-${theme}-hover`}
+          >
+            <span className="filter-button-icon pt-icon pt-icon-graph" />
+            <span className="filter-button-text inverted-link"> related profiles</span>
+          </Link>
+        )}
+
         {/* background image */}
         <img className="tile-img" src={item.img} alt="" />
-      </Link>
+      </div>
     );
   }
 }
