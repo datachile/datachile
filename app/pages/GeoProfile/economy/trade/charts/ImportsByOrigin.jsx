@@ -41,6 +41,7 @@ class ImportsByOrigin extends Section {
           <ExportLink path={path} title={title} className={classSvg} />
         </h3>
         <TreemapStacked
+          depth={true}
           path={path}
           msrName="CIF US"
           drilldowns={["Continent", "Country"]}

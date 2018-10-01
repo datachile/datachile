@@ -41,6 +41,7 @@ class ExportsByDestination extends Section {
           <ExportLink path={path} className={classSvg} title={title} />
         </h3>
         <TreemapStacked
+          depth={true}
           path={path}
           msrName="FOB US"
           drilldowns={["Continent", "Country"]}
