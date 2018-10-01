@@ -9,14 +9,9 @@ import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
-import NoDataAvailable from "components/NoDataAvailable";
 import TreemapStacked from "../../../../components/TreemapStacked";
 
 class MigrationByEducation extends Section {
-  state = {
-    chart: true
-  };
-
   static need = [
     (params, store) => {
       const country = getLevelObject(params);
@@ -66,45 +61,42 @@ class MigrationByEducation extends Section {
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
-        {this.state.chart ? (
-          <TreemapStacked
-            depth={true}
-            path={path}
-            msrName="Number of visas"
-            drilldowns={["Education"]}
-            className={classSvg}
-            config={{
-              sum: d => d["Number of visas"],
-              shapeConfig: {
-                fill: d => ordinalColorScale(d["ID Education"])
-              },
-              total: d => d["Number of visas"],
-              totalConfig: {
-                text: d =>
-                  "Total: " +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "0,0"
-                  ) +
-                  " " +
-                  t("visas")
-              },
-              tooltipConfig: {
-                title: d => d["Education"],
-                body: d =>
-                  numeral(d["Number of visas"], locale).format("0,0") +
-                  " " +
-                  t("visas")
-              },
-              legend: false,
-              legendConfig: {
-                label: false,
-                shapeConfig: false
-              }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+
+        <TreemapStacked
+          depth={true}
+          path={path}
+          msrName="Number of visas"
+          drilldowns={["Education"]}
+          className={classSvg}
+          config={{
+            sum: d => d["Number of visas"],
+            shapeConfig: {
+              fill: d => ordinalColorScale(d["ID Education"])
+            },
+            total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0,0"
+                ) +
+                " " +
+                t("visas")
+            },
+            tooltipConfig: {
+              title: d => d["Education"],
+              body: d =>
+                numeral(d["Number of visas"], locale).format("0,0") +
+                " " +
+                t("visas")
+            },
+            legend: false,
+            legendConfig: {
+              label: false,
+              shapeConfig: false
+            }
+          }}
+        />
       </div>
     );
   }

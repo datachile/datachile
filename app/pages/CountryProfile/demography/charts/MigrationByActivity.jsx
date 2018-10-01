@@ -9,14 +9,9 @@ import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
-import NoDataAvailable from "components/NoDataAvailable";
 import TreemapStacked from "components/TreemapStacked";
 
 class MigrationByActivity extends Section {
-  state = {
-    chart: true
-  };
-
   static need = [
     (params, store) => {
       const country = getLevelObject(params);
@@ -49,14 +44,6 @@ class MigrationByActivity extends Section {
     }
   ];
 
-  prepareData = data => {
-    if (data.data && data.data.length) {
-      return data.data;
-    } else {
-      this.setState({ chart: false });
-    }
-  };
-
   render() {
     const { t, className, i18n } = this.props;
 
@@ -74,48 +61,44 @@ class MigrationByActivity extends Section {
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
-        {this.state.chart ? (
-          <TreemapStacked
-            depth={true}
-            path={path}
-            msrName="Number of visas"
-            drilldowns={["Activity"]}
-            className={classSvg}
-            config={{
-              height: 400,
-              data: path,
-              groupBy: "ID Activity",
-              label: d => d["Activity"],
-              total: d => d["Number of visas"],
-              totalConfig: {
-                text: d =>
-                  "Total: " +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "0,0"
-                  ) +
-                  " " +
-                  t("visas")
-              },
-              shapeConfig: {
-                fill: d => ordinalColorScale(d["ID Activity"])
-              },
-              tooltipConfig: {
-                title: d => d["Activity"],
-                body: d =>
-                  numeral(d["Number of visas"], locale).format("( 0,0 )") +
-                  " " +
-                  t("visas")
-              },
-              legendConfig: {
-                label: false,
-                shapeConfig: false
-              }
-            }}
-            dataFormat={this.prepareData}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+
+        <TreemapStacked
+          depth={true}
+          path={path}
+          msrName="Number of visas"
+          drilldowns={["Activity"]}
+          className={classSvg}
+          config={{
+            height: 400,
+            data: path,
+            groupBy: "ID Activity",
+            label: d => d["Activity"],
+            total: d => d["Number of visas"],
+            totalConfig: {
+              text: d =>
+                "Total: " +
+                numeral(getNumberFromTotalString(d.text), locale).format(
+                  "0,0"
+                ) +
+                " " +
+                t("visas")
+            },
+            shapeConfig: {
+              fill: d => ordinalColorScale(d["ID Activity"])
+            },
+            tooltipConfig: {
+              title: d => d["Activity"],
+              body: d =>
+                numeral(d["Number of visas"], locale).format("( 0,0 )") +
+                " " +
+                t("visas")
+            },
+            legendConfig: {
+              label: false,
+              shapeConfig: false
+            }
+          }}
+        />
       </div>
     );
   }
