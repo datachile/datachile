@@ -270,6 +270,25 @@ class Explore extends Component {
       });
     }
 
+    // category array
+    const categories = [
+      { type: "geo", title: t("national") },
+      { type: "countries", title: t("Countries") },
+      { type: "products", title: t("Products") },
+      { type: "industries", title: t("Industries") }
+      // { type: "careers", title: t("Careers") },
+      // { type: "institutions", title: t("Institutions") }
+    ];
+
+    const categoryItems = categories.map(category => (
+      <li key={category.type} className={type == category.type ? "selected" : ""}>
+        <Link className="explore-link" to={`/explore/${category.type}`}>
+          <img src={`/images/icons/icon-${category.type}.svg`} />
+          <span>{category.title}</span>
+        </Link>
+      </li>
+    ));
+
     // default results count & filter name
     let resultsCount = 0;
     let filterName = null;
@@ -320,54 +339,8 @@ class Explore extends Component {
           </div>
 
           <div className="explore-container">
-            <div id="explore-sidebar">
-              <div className="explore-column">
-                <ul>
-                  <li className={type == "geo" ? "selected" : ""}>
-                    <Link className="explore-link" to="/explore/geo">
-                      <img src="/images/icons/icon-geo.svg" />
-                      <span>{t("Geo")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "countries" ? "selected" : ""}>
-                    <Link className="explore-link" to="/explore/countries">
-                      <img src="/images/icons/icon-countries.svg" />
-                      <span>{t("Countries")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "products" ? "selected" : ""}>
-                    <Link className="explore-link" to="/explore/products">
-                      <img src="/images/icons/icon-products.svg" />
-                      <span>{t("Products")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "industries" ? "selected" : ""}>
-                    <Link className="explore-link" to="/explore/industries">
-                      <img src="/images/icons/icon-industries.svg" />
-                      <span>{t("Industries")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "careers" ? "selected" : ""}>
-                    <Link className="explore-link link-soon" to="">
-                      <img src="/images/icons/icon-careers.svg" />
-                      <span>
-                        {t("Careers")}
-                        <ComingSoon />
-                      </span>
-                    </Link>
-                  </li>
-                  <li className={type == "institutions" ? "selected" : ""}>
-                    <Link className="explore-link link-soon" to="">
-                      <img src="/images/icons/icon-institutions.svg" />
-                      <span>
-                        {t("Institutions")}
-                        <ComingSoon />
-                      </span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            {/* select category */}
+            <ul className="explore-category-list">{categoryItems}</ul>
 
             <div id="explore-results">
               <div className="explore-column">
