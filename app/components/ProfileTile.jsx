@@ -81,8 +81,8 @@ class ProfileTile extends Component {
             to={filterUrl}
             className={`filter-button font-xxs background-${theme}-hover`}
           >
-            <span className="filter-button-icon pt-icon pt-icon-graph" />
-            <span className="filter-button-text inverted-link"> related profiles</span>
+            <span className="filter-button-icon pt-icon pt-icon-multi-select" />
+            <span className="filter-button-text inverted-link">  {t("related profiles")}</span>
           </Link>
         )}
 
