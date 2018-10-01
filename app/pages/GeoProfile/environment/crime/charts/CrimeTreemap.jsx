@@ -1,6 +1,5 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -8,8 +7,9 @@ import { crimesColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
-import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
+import SourceTooltip from "components/SourceTooltip";
+import TreemapStacked from "components/TreemapStacked";
 
 class CrimeTreemap extends Section {
   state = {
@@ -41,15 +41,14 @@ class CrimeTreemap extends Section {
         </h3>
 
         {this.state.show ? (
-          <Treemap
+          <TreemapStacked
+            defaultChart="stacked"
+            depth={true}
             className={classSvg}
+            path={path}
+            msrName="Cases"
+            drilldowns={["Crime Group", "Crime"]}
             config={{
-              height: 400,
-              data: path,
-              groupBy: ["ID Crime Group", "ID Crime"],
-              label: d => d["Crime"],
-              sum: d => d["Cases"],
-              time: "Year",
               shapeConfig: {
                 fill: d => crimesColorScale("CRIME" + d["ID Crime Group"])
               },
@@ -81,17 +80,6 @@ class CrimeTreemap extends Section {
               },
               legendTooltip: {
                 title: d => d["Crime Group"]
-              }
-            }}
-            dataFormat={data => {
-              if (
-                data.data.reduce((all, item) => {
-                  return all + item["Cases"];
-                }, 0)
-              ) {
-                return data.data;
-              } else {
-                this.setState({ show: false });
               }
             }}
           />
