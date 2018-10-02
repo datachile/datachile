@@ -57,6 +57,18 @@ class TemplateResults extends React.PureComponent {
 
     return (
       <div className="tile-list">
+        {/* filtered parent */}
+        <ResultItem
+          item={{
+            img: getImageFromMember(entity, profile.key),
+            key: profile.key,
+            name: profile.caption,
+            type: entity,
+            url: slugifyItem(entity, profile.key, profile.caption)
+          }}
+        />
+
+        {/* children */}
         {profile.children.map(c => (
           <ResultItem
             key={c.key}
