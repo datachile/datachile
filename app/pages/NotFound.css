@@ -14,15 +14,13 @@
     & .header {
       lost-flex-container: column;
       & .search-container {
-        lost-column: 1/2;
-        lost-offset: 1/4;
+        lost-center: 3/4;
         margin: var(--gutter) 0 calc(var(--gutter)*10) 0;
       }
       & .text-container {
         margin-top: var(--gutter);
         margin-top: var(--gutter-half);
-        lost-column: 1/2;
-        lost-offset: 1/4;
+        lost-center: 1/2;
         text-align: center;
       }
     }
