@@ -24,6 +24,10 @@
   & .tile-list {
     margin-bottom: 0;
   }
+  /* set min-height for transitions */
+  & .explore-container {
+    min-height: 35vh; /* super fudged */
+  }
 }
 
 /* category select list layout */
@@ -158,5 +162,23 @@
       left: var(--gutter);
       top: 2.375rem;
     }
+  }
+}
+
+/* Show/Hide panels */
+.explore-panel {
+  transition:
+    opacity 0.2s ease-in 0.01s,
+    transform 0.2s ease-in 0.01s;
+
+  &.is-hidden {
+    @add-mixin visually-hidden;
+    transform: scale(1.01) translateY(-5px);
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &:last-of-type.is-hidden {
+    transform: scale(0.99) translateY(5px);
   }
 }

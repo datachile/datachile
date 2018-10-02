@@ -21,7 +21,8 @@ import "./explore.css";
 
 class Explore extends Component {
   state = {
-    level1ID: false
+    level1ID: false,
+    transitioning: true // removed onmount; toggled when switching categories
   };
 
   static need = [
@@ -179,14 +180,31 @@ class Explore extends Component {
 
   componentDidMount() {
     this.setState({
-      level1ID: false
+      level1ID: false,
+      transitioning: false
     });
+  }
+
+  // used to transition panels in and out
+  categoryTransition() {
+    // transitioning
+    this.setState({
+      transitioning: true
+    });
+
+    // more or less when things are done loading
+    setTimeout(() => {
+      this.setState({
+        transitioning: false
+      })}, 900
+    );
   }
 
   render() {
     const { entity, entity_id } = this.props.routeParams;
 
     const { t, i18n, location, router } = this.props;
+    const { transitioning } = this.state;
 
     const locale = i18n.language;
 
@@ -282,6 +300,9 @@ class Explore extends Component {
       <li key={category.type} className="explore-category-item">
         <Link
           to={`/explore/${category.theme}`}
+          onClick={ entity !== category.theme &&
+            this.categoryTransition.bind(this)
+          }
           className={`explore-category-link label font-xxs border-${category.theme} ${type === category.type ? "is-active" : "is-inactive"}`}
         >
           <img
@@ -308,7 +329,7 @@ class Explore extends Component {
       const member = [].concat(members).find(m => m.key == entity_id);
       if (member) {
         if (member.numChildren) {
-          resultsCount = member.numChildren;
+          resultsCount = member.numChildren + 1;
         }
         filterName = member.name;
       }
@@ -347,7 +368,9 @@ class Explore extends Component {
           </div>*/}
 
           <div className="explore-title-container">
-            <h2 className="explore-title">{`${resultsCount} ${filterName ? filterName : ""} ${longTitle}`}</h2>
+            <h2 className="explore-title">{!transitioning &&
+                `${resultsCount} ${filterName ? filterName : ""} ${(longTitle === "countries" && resultsCount === 6) ? t("continents") : longTitle}`
+              }</h2>
 
             {/* back link */}
             {filterName &&
@@ -359,7 +382,7 @@ class Explore extends Component {
           </div>
 
           <div className="explore-container">
-            <div className={`explore-initial tile-list${!filterName ? " is-visible" : " is-hidden"}`}>
+            <div className={`explore-panel tile-list${!filterName && !transitioning ? " is-visible" : " is-hidden"}`}>
               {entity &&
                 filters &&
                 filters.map(f => (
@@ -371,7 +394,7 @@ class Explore extends Component {
                   />
                 ))}
             </div>
-            <div className={`explore-results${filterName ? " is-visible" : " is-hidden"}`}>
+            <div className={`explore-panel${filterName ? " is-visible" : " is-hidden"}`}>
               {this.renderResultComponent(this.props)}
             </div>
           </div>
