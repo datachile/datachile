@@ -410,7 +410,7 @@ class InstitutionProfile extends Component {
 
             <div className="topic-block" id="about">
               <div className="topic-header">
-                <h2 className="topic-heading font-xxl">{t("About")}</h2>
+                <h2 className="topic-heading font-xl">{t("About")}</h2>
                 <div className="topic-go-to-targets">
                   <div className="topic-slider-sections" />
                 </div>
