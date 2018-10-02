@@ -300,25 +300,27 @@ class Nav extends Component {
                 </h1>
                 { showMeta &&
                   <p className="meta-title">
-                    <span className="type">
-                      {typeTitle &&
-                        exploreLink && (
-                          <Link
-                            className={`category color-${type}`}
-                            to={exploreLink}
-                          >
-                            {type && (
-                              <img
-                                className="category-icon"
-                                src={`/images/icons/icon-${type}.svg`}
-                              />
-                            )}
-                            {typeTitle}
-                          </Link>
-                        )}
-                      {type && !exploreLink && <span>{typeTitle}</span>}
-                    </span>
-                    {ancestor && (
+                    {type &&
+                      <span className="type">
+                        {typeTitle &&
+                          exploreLink && (
+                            <Link
+                              className={`category color-${type}`}
+                              to={exploreLink}
+                            >
+                              {type && (
+                                <img
+                                  className="category-icon"
+                                  src={`/images/icons/icon-${type}.svg`}
+                                />
+                              )}
+                              {typeTitle}
+                            </Link>
+                          )}
+                        {type && !exploreLink && <span>{typeTitle}</span>}
+                      </span>
+                    }
+                    {type && ancestor && (
                       <span className="parent">
                         <span className="separator">{t("in")}</span>
                         <Link className="link" to={ancestorLink}>
