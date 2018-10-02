@@ -4,6 +4,13 @@
   /* theming */
   & .explore-header {
     background-color: var(--black);
+
+    /* page title is always short, so move it up! */
+    & .title-container {
+      @media (min-width: 600px) {
+        margin-top: -1rem;
+      }
+    }
   }
 
   /* layout */
@@ -11,11 +18,11 @@
   & .tile-list {
     padding: 0 var(--gutter);
   }
-  & .tile-list {
-    margin-bottom: 0;
-  }
   & .explore-title-container {
     padding: 2rem var(--gutter) 1rem var(--gutter);
+  }
+  & .tile-list {
+    margin-bottom: 0;
   }
 }
 
@@ -97,6 +104,59 @@
     /* interactions */
     &:hover, &:focus {
       opacity: 1;
+    }
+  }
+}
+
+/* filter indicator title & reset button */
+.explore-title-container {
+
+  /* reset link theming */
+  & .explore-reset-link {
+    display: block; /* full width by default */
+
+    & .explore-reset-icon {
+      /* sizing */
+      font-size: 1.125em;
+      /* transitions */
+      transition: transform 0.2s ease-out;
+    }
+    & .explore-reset-text {
+      /* positioning */
+      margin-left: 0.25em;
+      /* transitions */
+      opacity: 0.875;
+      transition: opacity 0.2s ease-out;
+    }
+
+    /* interactions */
+    &:hover, &:focus {
+      text-decoration: none;
+
+      & .explore-reset-icon {
+        transform: translateX(-2px);
+      }
+      & .explore-reset-text {
+        opacity: 1;
+      }
+    }
+  }
+
+
+  /* title & reset link layout */
+  @add-mixin from-sm {
+    /* make space for reset link and center */
+    & .explore-title {
+      max-width: calc(100% - 16rem);
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    /* fudge into place */
+    & .explore-reset-link {
+      position: absolute;
+      left: var(--gutter);
+      top: 2.375rem;
     }
   }
 }

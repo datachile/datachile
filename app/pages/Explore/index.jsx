@@ -306,10 +306,12 @@ class Explore extends Component {
     // NOTE: filterName is also used to determine whether to display the back button
     else if (members && entity_id) {
       const member = [].concat(members).find(m => m.key == entity_id);
-      if (member.numChildren) {
-        resultsCount = member.numChildren;
+      if (member) {
+        if (member.numChildren) {
+          resultsCount = member.numChildren;
+        }
+        filterName = member.name;
       }
-      filterName = member.name;
     }
 
     return (
@@ -345,12 +347,12 @@ class Explore extends Component {
           </div>*/}
 
           <div className="explore-title-container">
-            <h2 className="explore-title u-text-center">{`${resultsCount} ${filterName ? filterName : ""} ${longTitle}`}</h2>
+            <h2 className="explore-title">{`${resultsCount} ${filterName ? filterName : ""} ${longTitle}`}</h2>
 
             {/* back link */}
             {filterName &&
-              <Link className="explore-reset-link" to={`explore/${entity}`}>
-                <span className="explore-reset-icon pt-icon pt-icon-arrow-left" />
+              <Link className="explore-reset-link inverted-link font-xs" to={`explore/${entity}`}>
+                <span className={`explore-reset-icon pt-icon pt-icon-arrow-left color-${entity}`} />
                 <span className="explore-reset-text">{t("All")} {longTitle}</span>
               </Link>
             }
