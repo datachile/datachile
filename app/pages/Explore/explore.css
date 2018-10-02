@@ -14,8 +14,8 @@
   & .tile-list {
     margin-bottom: 0;
   }
-  & .explore-title {
-    padding: 2rem var(--gutter) 0.25rem var(--gutter);
+  & .explore-title-container {
+    padding: 2rem var(--gutter) 1rem var(--gutter);
   }
 }
 

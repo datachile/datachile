@@ -303,6 +303,7 @@ class Explore extends Component {
       resultsCount = filters.length;
     }
     // if we're doing a deeper search, update the results count and filter name
+    // NOTE: filterName is also used to determine whether to display the back button
     else if (members && entity_id) {
       const member = [].concat(members).find(m => m.key == entity_id);
       if (member.numChildren) {
@@ -343,32 +344,33 @@ class Explore extends Component {
             <Search className="search-home" local={true} limit={5} />
           </div>*/}
 
-          <div className="explore-title">
-            <h2>{`${resultsCount} ${filterName ? filterName : ""} ${longTitle}`}</h2>
+          <div className="explore-title-container">
+            <h2 className="explore-title u-text-center">{`${resultsCount} ${filterName ? filterName : ""} ${longTitle}`}</h2>
+
+            {/* back link */}
+            {filterName &&
+              <Link className="explore-reset-link" to={`explore/${entity}`}>
+                <span className="explore-reset-icon pt-icon pt-icon-arrow-left" />
+                <span className="explore-reset-text">{t("All")} {longTitle}</span>
+              </Link>
+            }
           </div>
 
           <div className="explore-container">
-
-            <div id="explore-results">
-              <div className="explore-column">
-                <div className="filter-block profile-carousel">
-                  <div className="explore-initial tile-list">
-                    {entity &&
-                      filters &&
-                      filters.map(f => (
-                        <ProfileTile
-                          key={f.key}
-                          item={f}
-                          filterUrl={f.filterUrl}
-                          className="explore-featured-profile"
-                        />
-                      ))}
-                  </div>
-                  <div className="explore-results">
-                    {this.renderResultComponent(this.props)}
-                  </div>
-                </div>
-              </div>
+            <div className={`explore-initial tile-list${!filterName ? " is-visible" : " is-hidden"}`}>
+              {entity &&
+                filters &&
+                filters.map(f => (
+                  <ProfileTile
+                    key={f.key}
+                    item={f}
+                    filterUrl={f.filterUrl}
+                    className="explore-featured-profile"
+                  />
+                ))}
+            </div>
+            <div className={`explore-results${filterName ? " is-visible" : " is-hidden"}`}>
+              {this.renderResultComponent(this.props)}
             </div>
           </div>
         </div>
