@@ -156,6 +156,7 @@ class Home extends Component {
                       title="DataChile"
                       src="/images/logos/datachile-beta-navbar.svg"
                       alt="DataChile"
+                      draggable="false"
                     />
                     <Link
                       className="easter"
