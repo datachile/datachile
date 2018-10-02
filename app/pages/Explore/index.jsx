@@ -247,8 +247,8 @@ class Explore extends Component {
       }
       case "geo": {
         type = "region";
-        title = t("national");
-        longTitle = t("national locations");
+        title = "Chile";
+        longTitle = t("locations");
         break;
       }
       default: {
@@ -287,7 +287,7 @@ class Explore extends Component {
 
     // category array
     const categories = [
-      { theme: "geo", type: "region", title: t("national") },
+      { theme: "geo", type: "region", title: "Chile" },
       { theme: "countries", type: "countries", title: t("Countries") },
       { theme: "products", type: "products", title: t("Products") },
       { theme: "industries", type: "industries", title: t("Industries") }

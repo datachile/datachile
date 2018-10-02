@@ -59,6 +59,7 @@
   /* sizing */
   display: block;
   line-height: 2rem;
+  min-width: 4rem; /* chile is shorter than the others */
   /* theming */
   border-bottom-width: 2px;
   border-bottom-style: solid;
