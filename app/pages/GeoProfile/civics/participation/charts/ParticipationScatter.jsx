@@ -119,14 +119,6 @@ class ParticipationScatter extends Section {
             <SourceTooltip cube="election_participation" />
           </span>
           <ExportLink path={path} className={classSvg} />
-          <Select
-            id="variations"
-            options={this.state.chartVariations}
-            value={this.state.selectedOption}
-            labelField="title"
-            valueField="id"
-            onChange={this.handleChange}
-          />
         </h3>
         {this.state.plot ? (
           <Plot
@@ -251,19 +243,40 @@ class ParticipationScatter extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <div className="treemap-stacked-options">
-          <a
-            className={`toggle ${!this.state.log ? "selected" : ""}`}
-            onClick={() => this.toggleChart(false)}
-          >
-            {t("LINEAR")}
-          </a>
-          <a
-            className={`toggle ${this.state.log ? "selected" : ""}`}
-            onClick={() => this.toggleChart(true)}
-          >
-            LOG
-          </a>
+
+
+        <div className="viz-controls">
+          {/* time range select */}
+          <Select
+            id="variations"
+            options={this.state.chartVariations}
+            value={this.state.selectedOption}
+            labelField="title"
+            valueField="id"
+            onChange={this.handleChange}
+          />
+
+          {/* linear/log toggle */}
+          <div className="btn-group">
+            <button
+              className={`btn font-xxs ${
+                !this.state.log ? "is-active" : "is-inactive"
+              }`}
+              onClick={() => this.toggleChart(false)}
+            >
+              <span className="btn-icon pt-icon pt-icon-scatter-plot" />
+              <span className="btn-text">{t("LINEAR")}</span>
+            </button>
+            <button
+              className={`btn font-xxs ${
+                this.state.log ? "is-active" : "is-inactive"
+              }`}
+              onClick={() => this.toggleChart(true)}
+            >
+              <span className="btn-icon pt-icon pt-icon-scatter-plot" />
+              <span className="btn-text">LOG</span>
+            </button>
+          </div>
         </div>
       </div>
     );

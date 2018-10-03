@@ -1077,10 +1077,10 @@ class GeoProfile extends Component {
                   <ParticipationSlide>
                     <SectionColumns>
                       <ParticipationScatter
-                        className="lost-2-3"
+                        className="lost-1-2"
                         router={router}
                       />
-                      <ElectoralParticipation className="lost-1-3" />
+                      <ElectoralParticipation className="lost-1-2" />
                     </SectionColumns>
                   </ParticipationSlide>
                 </div>
