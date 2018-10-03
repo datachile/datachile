@@ -4,8 +4,8 @@
 .topic-slider-subsections {
   /* positioning */
   padding-top: 0;
-  padding-bottom: 1rem;
-  margin-top: -0.5rem;
+  padding-bottom: 1.5rem;
+  margin-top: -1.5rem;
   /* override topic-tab-list */
   background: none;
 
@@ -13,8 +13,7 @@
   @add-mixin from-md {
     text-align: right;
     padding: 0;
-    margin-top: -1.5rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 1.5rem;
   }
 
   /* adjust underline size */
