@@ -82,19 +82,20 @@ class FeaturedDatumSplash extends Component {
         )}
 
         {/* rank, and/or decile tags */}
-        <div className="featured-datum-tags">
-          {rank && (
-            <p className="featured-datum-rank tag background-geo font-xxs">
-              {rank}
-            </p>
-          )}
-
-          {decile && (
-            <p className="featured-datum-decile tag background-geo font-xxs">
-              {rounded} {t("decile")}
-            </p>
-          )}
-        </div>
+        {(rank || decile) && (
+          <div className="featured-datum-tags">
+            {rank && (
+              <p className="featured-datum-rank tag background-geo font-xxs">
+                {rank}
+              </p>
+            )}
+            {decile && (
+              <p className="featured-datum-decile tag background-geo font-xxs">
+                {rounded} {t("decile")}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* title */}
         <p className="featured-datum-label label font-xs" aria-hidden="true">
