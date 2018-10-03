@@ -165,6 +165,10 @@ import ParticipationScatter from "./civics/participation/charts/ParticipationSca
 
 import "../intro.css";
 import "../topics.css";
+import InfantMortalitySlide from "./health/infancy/InfantMortalitySlide";
+import MortalityOneToTen from "./health/infancy/charts/MortalityOneToTen";
+import MortalityUnderOne from "./health/infancy/charts/MortalityUnderOne";
+import MortalityTreemap from "./health/infancy/charts/MortalityTreemap";
 
 const chileObj = {
   key: "chile",
@@ -274,6 +278,13 @@ class GeoProfile extends Component {
     PopulationSlide,
     PopulationProjection,
     PopulationPyramid,
+
+    // HEALTH TOPIC
+
+    InfantMortalitySlide,
+    MortalityUnderOne,
+    MortalityOneToTen,
+    MortalityTreemap,
 
     AccessSlide,
     HealthCareSlide,
@@ -988,6 +999,10 @@ class GeoProfile extends Component {
                 id="health"
                 sections={[
                   {
+                    name: t("Infancy"),
+                    slides: [t("Infant Mortality")]
+                  },
+                  {
                     name: t("Healthcare"),
                     slides: [t("Health Insurance"), t("Healthcare")]
                   },
@@ -1001,6 +1016,17 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
+                <div className="topic-slide">
+                  <InfantMortalitySlide>
+                    <SectionColumns>
+                      <MortalityTreemap className="lost-1" />
+                    </SectionColumns>
+                    <SectionColumns>
+                      <MortalityUnderOne className="lost-1-2" />
+                      <MortalityOneToTen className="lost-1-2" />
+                    </SectionColumns>
+                  </InfantMortalitySlide>
+                </div>
                 <div className="topic-slide">
                   <AccessSlide>
                     <SectionColumns>
