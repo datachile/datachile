@@ -85,27 +85,27 @@ class Footer extends Component {
     const partnerLogos = [
       {
         id: 1,
+        img: "gobierno",
+        alt: "Gobierno de Chile: Ministerio de Economía, Fomento y Turismo; DIRECON Ministerio de Relaciones Exteriores",
+        link: "http://www.economia.gob.cl"
+      },
+      {
+        id: 2,
         img: "antofagasta",
         alt: "Antiofagasta Minerals",
         link: "http://www.aminerals.cl"
       },
       {
-        id: 2,
+        id: 3,
         img: "explora",
         alt: "Explora Labs",
         link: "http://www.exploralab.cl"
       },
       {
-        id: 3,
+        id: 4,
         img: "corfo",
         alt: "Corporación de Fomento de la Producción de Chile",
         link: "http://www.corfo.cl"
-      },
-      {
-        id: 4,
-        img: "gobierno",
-        alt: "Gobierno de Chile: Ministerio de Economía, Fomento y Turismo; DIRECON Ministerio de Relaciones Exteriores",
-        link: "http://www.economia.gob.cl"
       },
       {
         id: 5,
