@@ -37,8 +37,6 @@ class MortalityOneToTen extends Section {
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
 
-    console.log(geo);
-
     const locale = i18n.language;
     const classSvg = "infant-mortality-one-to-ten";
 
@@ -47,7 +45,7 @@ class MortalityOneToTen extends Section {
         <h3 className="chart-title">
           <span>
             {t("Childhood Mortality")}
-            <SourceTooltip cube="disabilities" />
+            <SourceTooltip cube="mortality_one_to_ten" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>

@@ -44,7 +44,7 @@ class MortalityUnderOne extends Section {
         <h3 className="chart-title">
           <span>
             {t("Infant Mortality")}
-            <SourceTooltip cube="disabilities" />
+            <SourceTooltip cube="mortality_under_one" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>

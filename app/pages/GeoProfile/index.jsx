@@ -1000,7 +1000,7 @@ class GeoProfile extends Component {
                 sections={[
                   {
                     name: t("Infancy"),
-                    slides: [t("Infant Mortality")]
+                    slides: [t("Infant & Childhood Mortality")]
                   },
                   {
                     name: t("Healthcare"),
