@@ -114,6 +114,22 @@ export const sources = {
       "http://www.subtel.gob.cl/subtel-dio-a-conocer-los-resultados-de-las-septima-encuesta-nacional-de-uso-y-acceso-a-internet/",
     year: 2016
   },
+  mortality_one_to_ten: {
+    title:
+      "Defunciones y Mortalidad de la niñez, por región y comuna de residencia.",
+    url:
+      "http://www.deis.cl/defunciones-y-mortalidad-general-y-por-grupos-de-edad/",
+    min_year: 2011,
+    year: 2014
+  },
+  mortality_under_one: {
+    title:
+      "Defunciones y Mortalidad Infantil, por región y comuna de residencia.",
+    url:
+      "http://www.deis.cl/defunciones-y-mortalidad-general-y-por-grupos-de-edad/",
+    min_year: 2012,
+    year: 2014
+  },
   nene: {
     title: "Nueva Encuesta Nacional de Empleo (NENE)",
     url: "http://www.ine.cl/estadisticas/laborales/ene",
