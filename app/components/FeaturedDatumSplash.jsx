@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { sources, getI18nSourceObject } from "helpers/consts";
+import { shortenProfileName } from "helpers/formatters";
 
 import SourceTooltip from "components/SourceTooltip";
 import LevelWarning from "components/LevelWarning";
@@ -37,9 +38,11 @@ class FeaturedDatumSplash extends Component {
     const src = t("about.data", { returnObjects: true });
     const sourceData = getI18nSourceObject(src, source);
 
-    // grab parent URL / get parent path
-    const parentPath = path ? path.substring(0, path.lastIndexOf("/")) : null;
-    // console.log(parentPath);
+    // truncate long data titles
+    let datumTruncated = null;
+    if (datum !== null) {
+      datumTruncated = shortenProfileName(datum);
+    }
 
     return (
       <div className={"featured-datum-splash " + className}>
@@ -105,7 +108,11 @@ class FeaturedDatumSplash extends Component {
         {/* value */}
         <h3 className="featured-datum-value font-xl">
           <span className="u-visually-hidden">{title} </span>
-          {datum ? datum : t("no_datum")}
+          {datumTruncated
+            ? datumTruncated
+            : datum
+              ? datum
+              : t("no_datum")}
           <SourceTooltip sourceData={sourceData} />
         </h3>
 
