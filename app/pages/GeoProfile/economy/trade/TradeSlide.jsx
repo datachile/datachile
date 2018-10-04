@@ -175,10 +175,10 @@ class TradeSlide extends Section {
           </div>
         </div>
         <div className="topic-slide-charts">
-          <SectionColumns>
-            <TradeBalance className="trade-balance-container lost-1" />
-          </SectionColumns>
-          {children}
+          {TradeBalance
+            ? <TradeBalance className="trade-balance-container lost-1" />
+            : children
+          }
         </div>
       </div>
     );
