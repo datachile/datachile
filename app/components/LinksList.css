@@ -1,7 +1,40 @@
 @import "../pages/mixins";
 
 /* list of tags found at the top of products profiles */
-.links-list {
+.links-list-inner {
+  /* overflow container */
+  max-height: 16rem;
+  overflow-y: auto;
+  /* "shadow" */
+  background-image:
+    linear-gradient(-180deg,
+      color(var(--black) a(0.5)) 0%,
+      var(--dark-3) 3%,
+      var(--dark-3) 97%,
+      color(var(--black) a(0.5)) 100%);
+  z-index: 1; /* allow shadow to be hidden by :before/:after without obscuring links */
+
+  /* cover up the "shadow" when scrolled to top or bottom */
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    height: 1rem;
+    background: var(--dark-3);
+    /* positioning */
+    position: relative;
+    z-index: -1;
+  }
+  &:before {
+    margin-top: -1rem;
+    top: 0.5rem;
+  }
+  &:after {
+    margin-bottom: -1rem;
+    bottom: 0.5rem;
+  }
+
+  /* each item */
   & .links-list-item {
     display: inline-block;
     margin-right: 0.375em;
