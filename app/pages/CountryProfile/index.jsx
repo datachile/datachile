@@ -383,7 +383,7 @@ class CountryProfile extends Component {
     const topics = [
       {
         slug: "demographics",
-        title: t("Demographics")
+        title: t("Migration")
       },
       {
         slug: "trade",
@@ -511,13 +511,24 @@ class CountryProfile extends Component {
 
             <div className="topics-container">
               <Topic
-                name={t("Demographics")}
+                name={t("Migration")}
                 id="demographics"
-                slider={false}
                 sections={[
                   {
-                    name: t("Migration"),
-                    slides: [t("")]
+                    name: t("By region"),
+                    slides: [t("Migration by region")]
+                  },
+                  {
+                    name: t("By sex and age"),
+                    slides: [t("Migration by sex and age")]
+                  },
+                  {
+                    name: t("By education"),
+                    slides: [t("Migration by educational level")]
+                  },
+                  {
+                    name: t("By visa"),
+                    slides: [t("Migration by visa and activity")]
                   }
                 ]}
               >
@@ -555,11 +566,18 @@ class CountryProfile extends Component {
               <Topic
                 name={t("Trade")}
                 id="trade"
-                slider={false}
                 sections={[
                   {
-                    name: t("Products"),
-                    slides: [t("")]
+                    name: t("Imports & exports"),
+                    slides: [t("Imports & exports")]
+                  },
+                  {
+                    name: t("Origin & destination"),
+                    slides: [t("Origin & destination")]
+                  },
+                  {
+                    name: t("Trade balance"),
+                    slides: [t("Trade balance")]
                   }
                 ]}
               >
