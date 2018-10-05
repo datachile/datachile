@@ -8,6 +8,7 @@
     /* button overrides */
     background-color: var(--black);
     padding: 0.75em 1.5em 0.625em 1.5em;
+    margin-left: 1rem;
     /* prevent flexbox from wrapping icon under text */
     white-space: nowrap;
     /* transitions */
