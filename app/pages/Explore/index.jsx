@@ -180,9 +180,11 @@ class Explore extends Component {
 
   componentDidMount() {
     this.setState({
-      level1ID: false,
-      transitioning: false
+      level1ID: false
     });
+
+    // transition in
+    this.categoryTransition();
   }
 
   // used to transition panels in and out
@@ -196,8 +198,8 @@ class Explore extends Component {
     setTimeout(() => {
       this.setState({
         transitioning: false
-      })}, 900
-    );
+      });
+    }, 300);
   }
 
   render() {
