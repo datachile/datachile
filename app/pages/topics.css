@@ -145,6 +145,11 @@
     }
   }
 
+  /* adjust topic slide text when the topic slide title is hidden */
+  & .topic-slide-title.u-visually-hidden + .topic-slide-text {
+    margin-top: 0.375rem;
+  }
+
 
   /* space out featured data from other text content */
   & .topic-slide-data {

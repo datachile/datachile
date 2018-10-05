@@ -36,7 +36,7 @@ class CrimeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("Crimes")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">{t("Crimes")}</h3>
           <div className="topic-slide-text">
             {text && (
               <p

@@ -126,7 +126,7 @@ class ServicesAccessSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("Services Access")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">{t("Services Access")}</h3>
           <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}

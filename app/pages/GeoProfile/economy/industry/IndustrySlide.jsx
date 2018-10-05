@@ -103,7 +103,9 @@ class IndustrySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("Industry")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">
+            {t("Industry")}
+          </h3>
           <div className="topic-slide-text">
             <span
               dangerouslySetInnerHTML={{

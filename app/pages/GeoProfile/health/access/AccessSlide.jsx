@@ -163,7 +163,7 @@ class AccessSlide extends Section {
         {typeof members_casen_health_system !== "undefined" &&
         members_casen_health_system.length > 0 ? (
           <div className="topic-slide-intro">
-            <h3 className="topic-slide-title">{t("Access")}</h3>
+            <h3 className="topic-slide-title">{t("Access to Health Insurance")}</h3>
             <div className="topic-slide-text">
               <p
                 dangerouslySetInnerHTML={{

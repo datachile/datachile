@@ -11,7 +11,7 @@ class GeoTradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">Geo trade</h3>
+          <h3 className="topic-slide-title u-visually-hidden">Geo trade</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore dolorem, libero ipsum voluptatibus dolorum blanditiis quidem sint aspernatur laboriosam, pariatur sunt ducimus expedita facilis est cumque, iure molestias similique autem.</p>
         </div>
         <div className="topic-slide-charts">{children}</div>

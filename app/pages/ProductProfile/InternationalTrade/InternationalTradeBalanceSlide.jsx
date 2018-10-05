@@ -76,7 +76,7 @@ class InternationalTradeBalanceSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">
+          <h3 className="topic-slide-title u-visually-hidden">
             {t("International Trade Balance")}
           </h3>
           <div className="topic-slide-text">

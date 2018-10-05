@@ -952,7 +952,7 @@ class GeoProfile extends Component {
                 id="demographics"
                 sections={[
                   {
-                    name: t("Origins"),
+                    name: t("Migration"),
                     slides: [
                       t("By Origin Country"),
                       t("By Sex & Age"),
