@@ -169,6 +169,7 @@ import InfantMortalitySlide from "./health/infancy/InfantMortalitySlide";
 import MortalityOneToTen from "./health/infancy/charts/MortalityOneToTen";
 import MortalityUnderOne from "./health/infancy/charts/MortalityUnderOne";
 import MortalityTreemap from "./health/infancy/charts/MortalityTreemap";
+import MortalityBarchart from "./health/infancy/charts/MortalityBarchart";
 
 const chileObj = {
   key: "chile",
@@ -285,6 +286,7 @@ class GeoProfile extends Component {
     MortalityUnderOne,
     MortalityOneToTen,
     MortalityTreemap,
+    MortalityBarchart,
 
     AccessSlide,
     HealthCareSlide,
@@ -1026,11 +1028,8 @@ class GeoProfile extends Component {
                 <div className="topic-slide">
                   <InfantMortalitySlide>
                     <SectionColumns>
-                      <MortalityTreemap className="lost-1" />
-                    </SectionColumns>
-                    <SectionColumns>
-                      <MortalityUnderOne className="lost-1-2" />
-                      <MortalityOneToTen className="lost-1-2" />
+                      <MortalityTreemap className="lost-1-2" />
+                      <MortalityBarchart className="lost-1-2" />
                     </SectionColumns>
                   </InfantMortalitySlide>
                 </div>
