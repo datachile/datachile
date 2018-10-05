@@ -120,19 +120,26 @@
       /* i.e., products profile intro section */
       &:first-child:last-child {
         width: 100%;
-        columns: 2;
-        column-gap: 3rem;
+
+        /* side by side layout */
+        @add-mixin from-sm {
+          display: flex;
+
+          /* NOTE: exactly two children are expected */
+          & > * {
+            flex: 1 0 50%;
+            flex: 1 0 calc(50% - 1rem);
+
+            /* space out adjacent columns */
+            & + * {
+              margin-left: 2rem;
+            }
+          }
+        }
 
         /* size up text */
         & .topic-slide-text {
           @add-mixin font-sm;
-        }
-
-        /* keep contents together */
-        & .topic-slide-text,
-        & .topic-slide-link-list {
-          display: inline-block;
-          break-inside: avoid;
         }
       }
     }
