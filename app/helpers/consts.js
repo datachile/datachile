@@ -1,43 +1,22 @@
 export const sources = {
-  exports: {
-    title: "Servicio Nacional de Aduanas",
-    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    year: 2016,
-    min_year: 2011
+  casen: {
+    available: [2000, 2003, 2006, 2009, 2011, 2013, 2015]
   },
-  imports: {
-    title: "Servicio Nacional de Aduanas",
-    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    year: 2016,
-    min_year: 2011
-  },
-  exports_and_imports: {
-    title: "Servicio Nacional de Aduanas",
-    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
-    year: 2016
-  },
-  immigration: {
-    title: "Estadísticas Migratorias — Departamento de Extranjería y Migración",
-    url: "http://www.extranjeria.gob.cl/estadisticas-migratorias/",
-    year: 2016
-  },
-  tax_data: {
-    title: "Datos de Costes y Producción",
-    url: "http://homer.sii.cl/",
-    first_year: 2004,
-    last_year: 2014,
-    year: 2014
-  },
-  rd_survey: {
-    title: "Encuesta Sobre Gasto y Personal en I+D",
+  casen_banking: {
+    title: "Encuesta CASEN",
     url:
-      "http://www.economia.gob.cl/estudios-y-encuestas/encuestas/encuestas-de-innovacion-e-id/encuestas-de-innovacion",
-    first_year: 2009,
-    last_year: 2014
+      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php"
   },
-  nesi_income: {
-    title: "Nueva Encuesta Suplementaria de Ingresos (NESI)",
-    url: "http://www.ine.cl/estadisticas/ingresos-y-gastos/esi",
+  casen_health_system: {
+    title: "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
+    url:
+      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
+    year: 2015
+  },
+  casen_household: {
+    title: "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
+    url:
+      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
     year: 2015
   },
   crimes: {
@@ -46,63 +25,6 @@ export const sources = {
       "http://www.seguridadpublica.gov.cl/media/2017/08/frec_casos_dmcs_mensual_2001_2017w.xlsx",
     first_year: 2005,
     year: 2016
-  },
-  internet_access: {
-    title: "Encuesta Nacional de Acceso y Usos de Internet — SUBTEL",
-    url:
-      "http://www.subtel.gob.cl/subtel-dio-a-conocer-los-resultados-de-las-septima-encuesta-nacional-de-uso-y-acceso-a-internet/",
-    year: "2016"
-  },
-  nene: {
-    title: "Nueva Encuesta Nacional de Empleo (NENE)",
-    url: "http://www.ine.cl/estadisticas/laborales/ene",
-    year: 2016,
-    last_quarter: "2016_12_01_02",
-    last_year: 2016,
-    first_year: 2010
-  },
-  casen: {
-    available: [2000, 2003, 2006, 2009, 2011, 2013, 2015]
-  },
-  casen_household: {
-    title: "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
-    url:
-      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
-    year: 2015
-  },
-  casen_health_system: {
-    title: "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
-    url:
-      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
-    year: 2015
-  },
-  casen_banking: {
-    title: "Encuesta CASEN",
-    url:
-      "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php"
-  },
-  education_enrollment: {
-    title: "Matricula escolar - MINEDUC",
-    url:
-      "http://datosabiertos.mineduc.cl/informacion-investigadores-establecimientos/",
-    year: 2015
-  },
-  education_performance_new: {
-    title: "Rendimiento escolar y PSU - DEMRE",
-    url: "http://psu.demre.cl/",
-    year: 2016
-  },
-  education_performance: {
-    title: "Rendimiento escolar y PSU - DEMRE",
-    url: "http://psu.demre.cl/",
-    year: 2016
-  },
-  population_estimate: {
-    title: "Proyecciones de Población - INE",
-    url: "http://www.ine.cl/estadisticas/demograficas-y-vitales",
-    year: 2018,
-    first_year: 2005,
-    last_year: 2020
   },
   death_causes: {
     title: "Causas de Muerte",
@@ -115,6 +37,28 @@ export const sources = {
     url:
       "http://www.senadis.cl/pag/355/1197/ii_estudio_nacional_de_discapacidad",
     year: 2015
+  },
+  education_enrollment: {
+    title: "Matricula escolar - MINEDUC",
+    url:
+      "http://datosabiertos.mineduc.cl/informacion-investigadores-establecimientos/",
+    year: 2015
+  },
+  education_performance: {
+    title: "Rendimiento escolar y PSU - DEMRE",
+    url: "http://psu.demre.cl/",
+    year: 2016
+  },
+  education_performance_new: {
+    title: "Rendimiento escolar y PSU - DEMRE",
+    url: "http://psu.demre.cl/",
+    year: 2016
+  },
+  election_participation: {
+    title: "Participación Electoral",
+    url: "http://www.servel.cl/",
+    min_year: 2010,
+    year: 2017
   },
   election_results: {
     title: "Resultados Electorales - SERVEL",
@@ -131,20 +75,15 @@ export const sources = {
     senators_election_year: [2013, 2017],
     mayor_election_year: 2016
   },
-  election_participation: {
-    title: "Participación Electoral",
-    url: "http://www.servel.cl/",
-    min_year: 2010,
-    year: 2017
+  exports: {
+    title: "Servicio Nacional de Aduanas",
+    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
+    year: 2016,
+    min_year: 2011
   },
-  health_access: {
-    title: "Indicadores de Acceso a la Salud",
-    url: "http://www.deis.cl/",
-    year: 2014
-  },
-  psu: {
-    title: "Prueba de Selección Universitaria (PSU) - DEMRE",
-    url: "http://demre.cl/",
+  exports_and_imports: {
+    title: "Servicio Nacional de Aduanas",
+    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
     year: 2016
   },
   fonasa_website: {
@@ -152,6 +91,76 @@ export const sources = {
     url:
       "https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos",
     year: 2017
+  },
+  health_access: {
+    title: "Indicadores de Acceso a la Salud",
+    url: "http://www.deis.cl/",
+    year: 2014
+  },
+  immigration: {
+    title: "Estadísticas Migratorias — Departamento de Extranjería y Migración",
+    url: "http://www.extranjeria.gob.cl/estadisticas-migratorias/",
+    year: 2016
+  },
+  imports: {
+    title: "Servicio Nacional de Aduanas",
+    url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
+    year: 2016,
+    min_year: 2011
+  },
+  internet_access: {
+    title: "Encuesta Nacional de Acceso y Usos de Internet — SUBTEL",
+    url:
+      "http://www.subtel.gob.cl/subtel-dio-a-conocer-los-resultados-de-las-septima-encuesta-nacional-de-uso-y-acceso-a-internet/",
+    year: 2016
+  },
+  mortality_one_to_ten: {
+    title:
+      "Defunciones y Mortalidad de la niñez, por región y comuna de residencia.",
+    url:
+      "http://www.deis.cl/defunciones-y-mortalidad-general-y-por-grupos-de-edad/",
+    min_year: 2011,
+    year: 2014
+  },
+  mortality_under_one: {
+    title:
+      "Defunciones y Mortalidad Infantil, por región y comuna de residencia.",
+    url:
+      "http://www.deis.cl/defunciones-y-mortalidad-general-y-por-grupos-de-edad/",
+    min_year: 2012,
+    year: 2014
+  },
+  nene: {
+    title: "Nueva Encuesta Nacional de Empleo (NENE)",
+    url: "http://www.ine.cl/estadisticas/laborales/ene",
+    year: 2016,
+    last_quarter: "2016_12_01_02",
+    last_year: 2016,
+    first_year: 2010
+  },
+  nesi_income: {
+    title: "Nueva Encuesta Suplementaria de Ingresos (NESI)",
+    url: "http://www.ine.cl/estadisticas/ingresos-y-gastos/esi",
+    year: 2015
+  },
+  population_estimate: {
+    title: "Proyecciones de Población - INE",
+    url: "http://www.ine.cl/estadisticas/demograficas-y-vitales",
+    year: 2018,
+    first_year: 2005,
+    last_year: 2020
+  },
+  psu: {
+    title: "Prueba de Selección Universitaria (PSU) - DEMRE",
+    url: "http://demre.cl/",
+    year: 2016
+  },
+  rd_survey: {
+    title: "Encuesta Sobre Gasto y Personal en I+D",
+    url:
+      "http://www.economia.gob.cl/estudios-y-encuestas/encuestas/encuestas-de-innovacion-e-id/encuestas-de-innovacion",
+    first_year: 2009,
+    last_year: 2014
   },
   sned: {
     title: "Sistema Nacional de Evaluación del Desempeño",
@@ -162,6 +171,13 @@ export const sources = {
     title: "www.ayudamineduc.cl",
     url: "https://www.ayudamineduc.cl/ficha/descripcion-general-sned",
     year: 2016
+  },
+  tax_data: {
+    title: "Datos de Costes y Producción",
+    url: "http://homer.sii.cl/",
+    first_year: 2004,
+    last_year: 2014,
+    year: 2014
   }
 };
 

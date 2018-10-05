@@ -36,19 +36,25 @@ class ParticipationScatter extends Section {
       )(mirror, store);
     }
   ];
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      plot: true,
+      log: false,
+      selectedOption: 5,
+      selectedObj: {
+        path: "",
+        groupBy: [],
+        label: () => "",
+        sum: () => ""
+      },
+      chartVariations: []
+    };
 
-  state = {
-    plot: true,
-    log: false,
-    selectedOption: 5,
-    selectedObj: {
-      path: "",
-      groupBy: [],
-      label: () => "",
-      sum: () => ""
-    },
-    chartVariations: []
-  };
+    this.handleChange = this.handleChange.bind(this);
+    this.toggleChart = this.toggleChart.bind(this);
+  }
 
   componentDidMount() {
     const { t } = this.props;
@@ -82,9 +88,10 @@ class ParticipationScatter extends Section {
   }
 
   handleChange(ev) {
+    const newValue = parseInt(ev.newValue);
     this.setState({
-      selectedOption: ev.newValue,
-      selectedObj: this.state.chartVariations[ev.newValue]
+      selectedOption: newValue,
+      selectedObj: this.state.chartVariations[newValue]
     });
   }
 
@@ -199,7 +206,7 @@ class ParticipationScatter extends Section {
               xConfig: {
                 labelRotation: false,
                 scale: this.state.log ? "log" : "linear",
-                title: t("Electors")
+                title: t("Electors") + (this.state.log ? " (Log)" : "")
               },
               x2Config: {
                 barConfig: {
