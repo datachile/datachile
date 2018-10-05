@@ -23,6 +23,7 @@
 
     & .featured-datum-data {
       margin-right: 0.25em;
+      line-height: 1;
     }
 
     & .featured-datum-title {
@@ -30,6 +31,10 @@
       /* typography resets */
       line-height: 1.25;
       margin-bottom: 0;
+
+      & .label {
+        line-height: 1.5;
+      }
 
       /* keep inline label close to stat on left-aligned layout */
       @add-mixin from-md {

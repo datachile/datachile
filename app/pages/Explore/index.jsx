@@ -368,9 +368,10 @@ class Explore extends Component {
           </div>*/}
 
           <div className="explore-title-container">
-            <h2 className="explore-title">{!transitioning &&
-                `${resultsCount} ${filterName ? filterName : ""} ${(longTitle === "countries" && resultsCount === 6) ? t("continents") : longTitle}`
-              }</h2>
+            <h2 className="explore-title">{!transitioning
+                ? `${resultsCount} ${filterName ? filterName : ""} ${(longTitle === "countries" && resultsCount === 6) ? t("continents") : longTitle}`
+                : t("table.loading")}
+            </h2>
 
             {/* back link */}
             {filterName &&

@@ -63,7 +63,7 @@ class TemplateResults extends React.PureComponent {
             img: getImageFromMember(entity, profile.key),
             key: profile.key,
             name: profile.caption,
-            type: entity,
+            type: entity === "geo" ? "region" : entity,
             url: slugifyItem(entity, profile.key, profile.caption)
           }}
         />

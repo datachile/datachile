@@ -5,6 +5,10 @@
   user-select: text;
 }
 
+.topic-slider {
+  margin-top: -0.5rem;
+}
+
 /*
 .topic-slider {
   & .slick-prev,

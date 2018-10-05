@@ -19,9 +19,14 @@ class LevelWarning extends Component {
       ? path.substring(0, path.lastIndexOf("/"))
       : null;
     // grab parent category
-    const parentCategory = parentPath
+    let parentCategory = parentPath
       ? parentPath.substring(0, parentPath.lastIndexOf("/"))
       : null;
+
+    // industry warning catch
+    if (parentCategory === "/industries") {
+      parentCategory = "industry";
+    }
 
     return (
       <p className="level-warning font-xxs">

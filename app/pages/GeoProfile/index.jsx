@@ -707,7 +707,7 @@ class GeoProfile extends Component {
                 sections={[
                   {
                     name: t("Trade"),
-                    slides: [t("International trade")]
+                    slides: [t("Exports"), t("Imports"), t("Trade balance")]
                   },
                   {
                     name: t("Industry"),
@@ -732,7 +732,7 @@ class GeoProfile extends Component {
                 ]}
               >
                 <div className="topic-slide">
-                  <TradeSlide TradeBalance={TradeBalance}>
+                  <TradeSlide>
                     <SectionColumns>
                       <ExportsByDestination
                         className="lost-1-2"
@@ -740,11 +740,18 @@ class GeoProfile extends Component {
                       />
                       <ExportsByProduct className="lost-1-2" router={router} />
                     </SectionColumns>
+                  </TradeSlide>
+                </div>
+                <div className="topic-slide">
+                  <TradeSlide>
                     <SectionColumns>
                       <ImportsByOrigin className="lost-1-2" router={router} />
                       <ImportsByProduct className="lost-1-2" router={router} />
                     </SectionColumns>
                   </TradeSlide>
+                </div>
+                <div className="topic-slide">
+                  <TradeSlide TradeBalance={TradeBalance} />
                 </div>
 
                 <div className="topic-slide">
@@ -1103,10 +1110,10 @@ class GeoProfile extends Component {
                   <ParticipationSlide>
                     <SectionColumns>
                       <ParticipationScatter
-                        className="lost-2-3"
+                        className="lost-1-2"
                         router={router}
                       />
-                      <ElectoralParticipation className="lost-1-3" />
+                      <ElectoralParticipation className="lost-1-2" />
                     </SectionColumns>
                   </ParticipationSlide>
                 </div>

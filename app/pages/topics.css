@@ -153,9 +153,21 @@
       justify-content: space-between;
 
       & .featured-datum {
-        width: 33%;
         flex-direction: column;
         text-align: center;
+        width: 100%;
+
+        /* two items */
+        &:first-child:nth-last-child(2),
+        &:first-child:nth-last-child(2) ~ .featured-datum {
+          width: 45%;
+        }
+
+        /* three items */
+        &:first-child:nth-last-child(3),
+        &:first-child:nth-last-child(3) ~ .featured-datum {
+          width: 33%;
+        }
 
         & .featured-datum-icon {
           max-width: 3rem;
@@ -164,8 +176,7 @@
         }
 
         & .featured-datum-data {
-          @add-mixin font-xxl;
-          line-height: 1.5;
+          @add-mixin font-xl;
           display: block;
           margin-right: 0;
         }

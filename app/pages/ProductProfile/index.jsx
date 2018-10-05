@@ -602,11 +602,22 @@ class ProductProfile extends Component {
               <Topic
                 name={t("Trade")}
                 id="trade"
-                slider={false}
                 sections={[
                   {
-                    name: t("Products"),
-                    slides: [t("Trade")]
+                    name: t("Exports"),
+                    slides: [t("Exports")]
+                  },
+                  {
+                    name: t("Imports"),
+                    slides: [t("Imports")]
+                  },
+                  {
+                    name: t("Geo trade"),
+                    slides: [t("Geo trade")]
+                  },
+                  {
+                    name: t("Trade balance"),
+                    slides: [t("Trade balance")]
                   }
                 ]}
               >
