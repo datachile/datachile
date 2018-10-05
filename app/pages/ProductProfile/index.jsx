@@ -569,8 +569,6 @@ class ProductProfile extends Component {
                             : t("product_profile.about1.no_data", text_about)
                         }}
                       />
-                    </div>
-                    <div className="topic-slide-text">
                       {text_product.available && (
                         <p
                           dangerouslySetInnerHTML={{

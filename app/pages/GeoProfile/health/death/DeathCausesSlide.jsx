@@ -67,7 +67,7 @@ class DeathCausesSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("Death Causes")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">{t("Death Causes")}</h3>
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{

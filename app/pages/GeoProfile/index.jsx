@@ -170,6 +170,8 @@ import MortalityOneToTen from "./health/infancy/charts/MortalityOneToTen";
 import MortalityUnderOne from "./health/infancy/charts/MortalityUnderOne";
 import MortalityTreemap from "./health/infancy/charts/MortalityTreemap";
 import MortalityBarchart from "./health/infancy/charts/MortalityBarchart";
+import PresidentialTreemap from "./civics/election/charts/PresidentialTreemap";
+import PresidentialBarchart from "./civics/election/charts/PresidentialBarchart";
 
 const chileObj = {
   key: "chile",
@@ -311,6 +313,10 @@ class GeoProfile extends Component {
     Presidential1st,
     Presidential1stBar,
     Presidential2ndBar,
+
+    PresidentialTreemap,
+    PresidentialBarchart,
+
     CongresspersonResults,
     ElectoralParticipation,
     ParticipationScatter
@@ -948,7 +954,7 @@ class GeoProfile extends Component {
                 id="demographics"
                 sections={[
                   {
-                    name: t("Origins"),
+                    name: t("Migration"),
                     slides: [
                       t("By Origin Country"),
                       t("By Sex & Age"),
@@ -1080,12 +1086,8 @@ class GeoProfile extends Component {
                 <div className="topic-slide">
                   <PresidentSlide>
                     <SectionColumns>
-                      <Presidential1st className="lost-1-2" />
-                      <Presidential2nd className="lost-1-2" />
-                    </SectionColumns>
-                    <SectionColumns>
-                      <Presidential1stBar className="lost-1-2" />
-                      <Presidential2ndBar className="lost-1-2" />
+                      <PresidentialTreemap className="lost-1-2" />
+                      <PresidentialBarchart className="lost-1-2" />
                     </SectionColumns>
                   </PresidentSlide>
                 </div>

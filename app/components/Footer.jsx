@@ -33,7 +33,7 @@ class Footer extends Component {
       },
       {
         id: 3,
-        text: t("Regions & Comunas"),
+        text: "Chile",
         link: "/explore/geo",
         soon: false
       },
@@ -85,8 +85,8 @@ class Footer extends Component {
     const partnerLogos = [
       {
         id: 1,
-        img: "gobierno",
-        alt: "Gobierno de Chile: Ministerio de Economía, Fomento y Turismo; DIRECON Ministerio de Relaciones Exteriores",
+        img: "gobierno-2",
+        alt: "Gobierno de Chile: Ministerio Secretaría General de la Presidencia; División de Gobierno Digital",
         link: "http://www.economia.gob.cl"
       },
       {

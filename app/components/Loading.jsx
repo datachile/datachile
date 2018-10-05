@@ -26,6 +26,15 @@ class Loading extends Component {
         <ProgressBar className="loading-progress-bar" value={value} />
         <p className="loading-progress-text font-md heading">{description}</p>
 
+        {/* needs moar logos */}
+        <div className="loading-gobierno">
+          <img
+            className="loading-gobierno-img"
+            src="/images/logos/gobierno-2-logo-fill.svg"
+            alt="Gobierno de Chile: Ministerio Secretaría General de la Presidencia; División de Gobierno Digital"
+          />
+        </div>
+
         {/* built by Datawheel */}
         <p className="loading-builtby">
           {t("loading.developed")}
@@ -38,7 +47,7 @@ class Loading extends Component {
           >
             <img
               className="loading-builtby-img font-xxs"
-              src="/images/logos/footer/datawheel-logo-white.svg"
+              src="/images/logos/logo-datawheel.svg"
               alt=""
             />
           </a>
