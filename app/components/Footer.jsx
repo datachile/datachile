@@ -85,8 +85,8 @@ class Footer extends Component {
     const partnerLogos = [
       {
         id: 1,
-        img: "gobierno",
-        alt: "Gobierno de Chile: Ministerio de Economía, Fomento y Turismo; DIRECON Ministerio de Relaciones Exteriores",
+        img: "gobierno-2",
+        alt: "Gobierno de Chile: Ministerio Secretaría General de la Presidencia; División de Gobierno Digital",
         link: "http://www.economia.gob.cl"
       },
       {
