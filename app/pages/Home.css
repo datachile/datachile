@@ -141,7 +141,7 @@
     }
 
     & .home-slide-item {
-      flex: 1 1 auto;
+      flex: 1 1 25%;
 
       /* hide labels on small screens */
       @add-mixin for-sm {

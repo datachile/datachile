@@ -39,7 +39,7 @@ class Home extends Component {
 
     const profiles = [
       {
-        name: t("Geographical"),
+        name: "Chile",
         explore: "/explore/geo",
         colors: ["#445e81", "#263b58", "#1B2E44"],
         slug: "geo",

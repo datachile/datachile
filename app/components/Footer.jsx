@@ -33,7 +33,7 @@ class Footer extends Component {
       },
       {
         id: 3,
-        text: t("Regions & Comunas"),
+        text: "Chile",
         link: "/explore/geo",
         soon: false
       },
