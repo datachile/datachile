@@ -96,7 +96,14 @@ class MortalityTreemap extends Section {
           drilldowns={["Age Bucket", "Age Range"]}
           className={classSvg}
           config={{
-            label: d => d["Age Range"]
+            label: d => d["Age Range"],
+            legendConfig: {
+              label: false,
+              shapeConfig: {
+                //backgroundImage: d =>
+                //  "/images/legend/sex/" + d["ID Sex"] + ".png"
+              }
+            }
           }}
         />
       </div>
