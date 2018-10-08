@@ -45,7 +45,7 @@ class Topic extends Component {
       <div className="topic-block">
         <span id={id} className="topic-anchor-link" />
         <div className="topic-header">
-          <h2 className="topic-heading font-xxl">{name}</h2>
+          <h2 className="topic-heading font-xl">{name}</h2>
           {slider && (
             <div className="topic-go-to-targets">
               <TopicSliderTabs

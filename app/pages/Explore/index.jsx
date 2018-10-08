@@ -21,7 +21,8 @@ import "./explore.css";
 
 class Explore extends Component {
   state = {
-    level1ID: false
+    level1ID: false,
+    transitioning: true // removed onmount; toggled when switching categories
   };
 
   static need = [
@@ -181,20 +182,40 @@ class Explore extends Component {
     this.setState({
       level1ID: false
     });
+
+    // transition in
+    this.categoryTransition();
+  }
+
+  // used to transition panels in and out
+  categoryTransition() {
+    // transitioning
+    this.setState({
+      transitioning: true
+    });
+
+    // more or less when things are done loading
+    setTimeout(() => {
+      this.setState({
+        transitioning: false
+      });
+    }, 300);
   }
 
   render() {
     const { entity, entity_id } = this.props.routeParams;
 
     const { t, i18n, location, router } = this.props;
+    const { transitioning } = this.state;
 
     const locale = i18n.language;
 
     const members = this.props.data.members;
 
+    // console.log(members);
     var type = "";
     var title = "";
-    var mainLink = false;
+    var longTitle = "";
     switch (entity) {
       /*case undefined: {
         type = "";
@@ -202,7 +223,8 @@ class Explore extends Component {
       }*/
       case "countries": {
         type = "countries";
-        title = t("Countries");
+        title = t("countries");
+        longTitle = t("countries");
         break;
       }
       /*case "institutions": {
@@ -215,18 +237,20 @@ class Explore extends Component {
       }*/
       case "products": {
         type = "products";
-        title = t("Products");
+        title = t("products");
+        longTitle = t("products");
         break;
       }
       case "industries": {
         type = "industries";
-        title = t("Industries");
+        title = t("industries");
+        longTitle = t("industries");
         break;
       }
       case "geo": {
         type = "region";
-        title = t("Geographical");
-        mainLink = true;
+        title = "Chile";
+        longTitle = t("locations");
         break;
       }
       default: {
@@ -246,7 +270,8 @@ class Explore extends Component {
               key: m.key,
               name: m.caption,
               type: type,
-              url: "/explore/" + profileType + "/" + m.key + "#results",
+              filterUrl: "/explore/" + profileType + "/" + m.key + "#results",
+              url: profileType + "/" + m.key,
               img: getImageFromMember(profileType, m.key)
             };
           })
@@ -260,6 +285,56 @@ class Explore extends Component {
         url: "/geo/chile",
         img: getImageFromMember("geo", "chile")
       });
+    }
+
+    // category array
+    const categories = [
+      { theme: "geo", type: "region", title: "Chile" },
+      { theme: "countries", type: "countries", title: t("Countries") },
+      { theme: "products", type: "products", title: t("Products") },
+      { theme: "industries", type: "industries", title: t("Industries") }
+      // { type: "careers", title: t("Careers") },
+      // { type: "institutions", title: t("Institutions") }
+    ];
+
+    // create category list from category array
+    const categoryItems = categories.map(category => (
+      <li key={category.type} className="explore-category-item">
+        <Link
+          to={`/explore/${category.theme}`}
+          onClick={ entity !== category.theme &&
+            this.categoryTransition.bind(this)
+          }
+          className={`explore-category-link label font-xxs border-${category.theme} ${type === category.type ? "is-active" : "is-inactive"}`}
+        >
+          <img
+            className="explore-category-icon"
+            src={`/images/icons/icon-${category.theme}.svg`}
+          />
+          <span className="explore-category-text">{category.title}</span>
+        </Link>
+      </li>
+    ));
+
+    // default results count & filter name
+    let resultsCount = 0;
+    let filterName = null;
+
+    // console.log(filters);
+    // set filters at top (category) level
+    if (filters.length && !entity_id) {
+      resultsCount = filters.length;
+    }
+    // if we're doing a deeper search, update the results count and filter name
+    // NOTE: filterName is also used to determine whether to display the back button
+    else if (members && entity_id) {
+      const member = [].concat(members).find(m => m.key == entity_id);
+      if (member) {
+        if (member.numChildren) {
+          resultsCount = member.numChildren + 1;
+        }
+        filterName = member.name;
+      }
     }
 
     return (
@@ -278,96 +353,52 @@ class Explore extends Component {
           />
         </Helmet>
         <div className="explore-page">
-          <Nav
-            title={type != "" ? title : t("Explore")}
-            typeTitle={t("Home")}
-            type={type != "" ? (type == "region" ? "geo" : type) : false}
-            exploreLink={"/"}
-          />
+          <div className="explore-header">
+            <Nav
+              title={t("Explore")}
+              typeTitle={t("Home")}
+              type={type != "" ? (type == "region" ? "geo" : type) : false}
+              exploreLink={"/"}
+            />
 
-          <div className="search-explore-wrapper">
-            <Search className="search-home" local={true} limit={5} />
+            {/* select category */}
+            <ul className="explore-category-list u-list-reset">{categoryItems}</ul>
           </div>
 
-          <div className="explore-title">
-            <h3>{t("Explore profiles by category")}</h3>
+          {/*<div className="search-explore-wrapper">
+            <Search className="search-home" local={true} limit={5} />
+          </div>*/}
+
+          <div className="explore-title-container">
+            <h2 className="explore-title">{!transitioning
+                ? `${resultsCount} ${filterName ? filterName : ""} ${(longTitle === "countries" && resultsCount === 6) ? t("continents") : longTitle}`
+                : t("table.loading")}
+            </h2>
+
+            {/* back link */}
+            {filterName &&
+              <Link className="explore-reset-link inverted-link font-xs" to={`explore/${entity}`}>
+                <span className={`explore-reset-icon pt-icon pt-icon-arrow-left color-${entity}`} />
+                <span className="explore-reset-text">{t("All")} {longTitle}</span>
+              </Link>
+            }
           </div>
 
           <div className="explore-container">
-            <div id="explore-sidebar">
-              <div className="explore-column">
-                <ul>
-                  <li className={type == "geo" ? "selected" : ""}>
-                    <Link className="explore-link" to="/explore/geo">
-                      <img src="/images/icons/icon-geo.svg" />
-                      <span>{t("Geo")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "countries" ? "selected" : ""}>
-                    <Link className="explore-link" to="/explore/countries">
-                      <img src="/images/icons/icon-countries.svg" />
-                      <span>{t("Countries")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "products" ? "selected" : ""}>
-                    <Link className="explore-link" to="/explore/products">
-                      <img src="/images/icons/icon-products.svg" />
-                      <span>{t("Products")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "industries" ? "selected" : ""}>
-                    <Link className="explore-link" to="/explore/industries">
-                      <img src="/images/icons/icon-industries.svg" />
-                      <span>{t("Industries")}</span>
-                    </Link>
-                  </li>
-                  <li className={type == "careers" ? "selected" : ""}>
-                    <Link className="explore-link link-soon" to="">
-                      <img src="/images/icons/icon-careers.svg" />
-                      <span>
-                        {t("Careers")}
-                        <ComingSoon />
-                      </span>
-                    </Link>
-                  </li>
-                  <li className={type == "institutions" ? "selected" : ""}>
-                    <Link className="explore-link link-soon" to="">
-                      <img src="/images/icons/icon-institutions.svg" />
-                      <span>
-                        {t("Institutions")}
-                        <ComingSoon />
-                      </span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+            <div className={`explore-panel tile-list${!filterName && !transitioning ? " is-visible" : " is-hidden"}`}>
+              {entity &&
+                filters &&
+                filters.map(f => (
+                  <ProfileTile
+                    key={f.key}
+                    item={f}
+                    filterUrl={f.filterUrl}
+                    className="explore-featured-profile"
+                  />
+                ))}
             </div>
-
-            <div id="explore-results">
-              <div className="explore-column">
-                <div className="filter-block">
-                  <div className="explore-featured-tiles">
-                    {entity &&
-                      filters &&
-                      filters.map(f => (
-                        <div
-                          key={f.key}
-                          className={
-                            entity_id == f.key
-                              ? "level1-filter selected"
-                              : "level1-filter"
-                          }
-                        >
-                          <ProfileTile
-                            item={f}
-                            className="explore-featured-profile"
-                          />
-                        </div>
-                      ))}
-                  </div>
-                </div>
-                {this.renderResultComponent(this.props)}
-              </div>
+            <div className={`explore-panel${filterName ? " is-visible" : " is-hidden"}`}>
+              {this.renderResultComponent(this.props)}
             </div>
           </div>
         </div>
@@ -378,6 +409,8 @@ class Explore extends Component {
   renderResultComponent(props) {
     const { entity, entity_id } = props.routeParams;
     const { data, t } = props;
+
+    // console.log(data);
 
     if (!entity || !entity_id || !data || !t) return null;
 

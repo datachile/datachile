@@ -13,7 +13,7 @@ class IncomeOccupationSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("Income")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">{t("Income")}</h3>
           <p className="topic-slide-text">
             Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non
             orci commodo lobortis. Proin neque massa, cursus ut, gravida ut,

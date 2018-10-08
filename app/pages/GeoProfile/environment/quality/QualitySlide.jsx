@@ -215,7 +215,7 @@ class QualitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("Quality")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">{t("Quality")}</h3>
           <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}

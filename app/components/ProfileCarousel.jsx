@@ -20,17 +20,11 @@ class ProfileCarousel extends Component {
           <span className="profile-carousel-title-text">{title}</span>
         </h3>
         {description && <p>{description}</p>}
-        <div className="profile-carousel-container">
+        <div className="tile-list">
           {items &&
             items
               .slice(0, limit)
-              .map((f, i) => (
-                <ProfileTile
-                  item={f}
-                  className="profile-carousel-item"
-                  key={i}
-                />
-              ))}
+              .map((f, i) => <ProfileTile item={f} key={i} />)}
         </div>
       </div>
     );

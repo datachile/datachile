@@ -264,7 +264,7 @@ profile theming
     border-color: var(--color-$(theme)) !important;
   }
   .border-$(theme)-hover {
-    &:hover, &:focus {
+    &:hover, &:focus, &:focus-within {
       border-color: var(--color-$(theme)) !important;
     }
   }
@@ -590,6 +590,38 @@ table.tooltip-table {
       border-bottom-left-radius: 0;
     }
   }
+}
+
+/* space out button groups & select menus */
+.viz-controls {
+
+  & > * {
+    margin-top: 1rem;
+  }
+
+  /* side by side layout */
+  @add-mixin from-xs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+
+    /* space out items */
+    & > * {
+      flex: 1 0 50%;
+      flex: 1 0 calc(50% - var(--gutter-half));
+
+      &:last-child {
+        margin-left: var(--gutter);
+      }
+    }
+  }
+}
+
+/* cover link */
+.cover-link {
+  @add-mixin absolute-expand;
+  z-index: 2;
 }
 
 

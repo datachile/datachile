@@ -41,19 +41,21 @@ class LinksList extends Component {
       render && (
         <div className="links-list-container">
           <h3>{title}</h3>
-          <ul className="links-list u-list-reset">
-            {list.map((l, i) => (
-              <li className="links-list-item" key={i}>
-                <Link
-                  className={categoryClasses}
-                  to={l.link}
-                  title={l.label.length > 22 ? l.label : null}
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="links-list-inner">
+            <ul className="links-list u-list-reset">
+              {list.map((l, i) => (
+                <li className="links-list-item" key={i}>
+                  <Link
+                    className={categoryClasses}
+                    to={l.link}
+                    title={l.label.length > 22 ? l.label : null}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )
     );

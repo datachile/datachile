@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { SectionColumns, Canon, CanonProfile } from "datawheel-canon";
 import { translate } from "react-i18next";
 
-import { slugifyItem } from "helpers/formatters";
+import { slugifyItem, shortenProfileName } from "helpers/formatters";
 import mondrianClient, {
   getMemberQuery,
   levelCut
@@ -320,6 +320,12 @@ class InstitutionProfile extends Component {
       }
     ];
 
+    // truncate & add ellipses if necessary
+    let titleTruncated = null;
+    if (obj) {
+      titleTruncated = shortenProfileName(obj.caption);
+    }
+
     return (
       <Canon>
         <CanonProfile data={this.props.data} topics={topics}>
@@ -327,7 +333,8 @@ class InstitutionProfile extends Component {
             <div className="intro">
               {obj && (
                 <Nav
-                  title={obj.caption}
+                  title={titleTruncated ? titleTruncated : obj.caption}
+                  fullTitle={obj.caption}
                   typeTitle={
                     obj.parent ? t("Institution") : t("Institution Type")
                   }
@@ -403,7 +410,7 @@ class InstitutionProfile extends Component {
 
             <div className="topic-block" id="about">
               <div className="topic-header">
-                <h2 className="topic-heading font-xxl">{t("About")}</h2>
+                <h2 className="topic-heading font-xl">{t("About")}</h2>
                 <div className="topic-go-to-targets">
                   <div className="topic-slider-sections" />
                 </div>

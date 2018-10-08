@@ -95,7 +95,7 @@ export default translate()(
 								},
 								yConfig: {
 									title: t("Visas"),
-									tickFormat: tick => numeral(tick, locale).format("(0.0a)")
+									tickFormat: tick => numeral(tick, locale).format("(0a)")
 								},
 								barPadding: 20,
 								groupPadding: 40,

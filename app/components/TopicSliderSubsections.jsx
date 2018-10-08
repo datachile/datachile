@@ -16,17 +16,18 @@ class TopicSliderSubsections extends Component {
     const subsections = selectedSection ? selectedSection.slides : [];
 
     return (
-      <ul id={name + "-sub-sections"} className="topic-slider-subsections u-list-reset">
-        {subsections &&
-          subsections.map((ss, ix) => (
-            <li className={
-                "sub-section-item " + (ss.ix == selected ? "selected" : "")
-              }
-            >
-              <a onClick={() => goTo(ss.ix)}>{ss.name}</a>
+      subsections.length > 1 &&
+        <ul id={name + "-sub-sections"} className="topic-tab-list topic-slider-subsections u-list-reset">
+          {subsections.map((ss, ix) => (
+            <li className="topic-tab-item">
+              <button
+                className={ "topic-tab-button font-sm subhead u-btn-reset font-xs" + (selected == ss.ix ? " is-active" : "") }
+                onClick={() => goTo(ss.ix)}>
+                {ss.name}
+              </button>
             </li>
           ))}
-      </ul>
+        </ul>
     );
   }
 }

@@ -241,6 +241,7 @@
         max-width: 50rem;
         margin: 1rem auto;
         justify-content: space-around;
+        align-items: center;
 
         /* even width columns */
         & .featured-datum-splash {

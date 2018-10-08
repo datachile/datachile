@@ -25,7 +25,7 @@
 
     & .topic-heading {
       padding-right: 2rem;
-      top: -0.25rem; /* align with tab baseline */
+      top: -0.15rem; /* align with tab baseline */
     }
   }
 }
@@ -120,22 +120,34 @@
       /* i.e., products profile intro section */
       &:first-child:last-child {
         width: 100%;
-        columns: 2;
-        column-gap: 3rem;
+
+        /* side by side layout */
+        @add-mixin from-sm {
+          display: flex;
+
+          /* NOTE: exactly two children are expected */
+          & > * {
+            flex: 1 0 50%;
+            flex: 1 0 calc(50% - 1rem);
+
+            /* space out adjacent columns */
+            & + * {
+              margin-left: 2rem;
+            }
+          }
+        }
 
         /* size up text */
         & .topic-slide-text {
           @add-mixin font-sm;
         }
-
-        /* keep contents together */
-        & .topic-slide-text,
-        & .topic-slide-link-list {
-          display: inline-block;
-          break-inside: avoid;
-        }
       }
     }
+  }
+
+  /* adjust topic slide text when the topic slide title is hidden */
+  & .topic-slide-title.u-visually-hidden + .topic-slide-text {
+    margin-top: 0.375rem;
   }
 
 
@@ -153,9 +165,21 @@
       justify-content: space-between;
 
       & .featured-datum {
-        width: 33%;
         flex-direction: column;
         text-align: center;
+        width: 100%;
+
+        /* two items */
+        &:first-child:nth-last-child(2),
+        &:first-child:nth-last-child(2) ~ .featured-datum {
+          width: 45%;
+        }
+
+        /* three items */
+        &:first-child:nth-last-child(3),
+        &:first-child:nth-last-child(3) ~ .featured-datum {
+          width: 33%;
+        }
 
         & .featured-datum-icon {
           max-width: 3rem;
@@ -164,8 +188,7 @@
         }
 
         & .featured-datum-data {
-          @add-mixin font-xxl;
-          line-height: 1.5;
+          @add-mixin font-xl;
           display: block;
           margin-right: 0;
         }

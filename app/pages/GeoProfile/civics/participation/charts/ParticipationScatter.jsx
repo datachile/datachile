@@ -36,17 +36,13 @@ class ParticipationScatter extends Section {
       )(mirror, store);
     }
   ];
-
+  
   constructor(props) {
     super(props);
-    this.toggleChart = this.toggleChart.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = {
       plot: true,
       log: false,
       selectedOption: 5,
-      key: Math.random(),
       selectedObj: {
         path: "",
         groupBy: [],
@@ -55,6 +51,9 @@ class ParticipationScatter extends Section {
       },
       chartVariations: []
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.toggleChart = this.toggleChart.bind(this);
   }
 
   componentDidMount() {
@@ -89,11 +88,10 @@ class ParticipationScatter extends Section {
   }
 
   handleChange(ev) {
-    this.setState({ key: Math.random() });
-
+    const newValue = parseInt(ev.newValue);
     this.setState({
-      selectedOption: ev.newValue,
-      selectedObj: this.state.chartVariations[ev.newValue]
+      selectedOption: newValue,
+      selectedObj: this.state.chartVariations[newValue]
     });
   }
 
@@ -106,10 +104,10 @@ class ParticipationScatter extends Section {
     const classSvg = "participation-in-municipal-election";
 
     const data = election_participation_by_territory.data.filter(
-      item => item["ID Comuna"] !== 345
+      item =>
+        item["ID Comuna"] !== 345 &&
+        item["ID Election Type"] === this.state.selectedOption
     );
-
-    let customTick = "";
 
     return (
       <div className={className}>
@@ -119,44 +117,25 @@ class ParticipationScatter extends Section {
             <SourceTooltip cube="election_participation" />
           </span>
           <ExportLink path={path} className={classSvg} />
-          <Select
-            id="variations"
-            options={this.state.chartVariations}
-            value={this.state.selectedOption}
-            labelField="title"
-            valueField="id"
-            onChange={this.handleChange}
-          />
         </h3>
         {this.state.plot ? (
           <Plot
+            forceUpdate={true}
             className={classSvg}
-            key={Math.random()}
             config={{
               aggs: {
                 "ID Region": mean
               },
               height: 400,
               groupBy: ["Comuna"],
-              data: data.reduce((all, item) => {
-                if (
-                  item["ID Election Type"] ==
-                  parseInt(this.state.selectedOption)
-                )
-                  all.push({
-                    ...item,
-                    ElectorsLOG: Math.log10(item.Electors)
-                  });
-                return all;
-              }, []),
+              data,
               shapeConfig: {
-                fill: d => {
-                  if (geo.depth === 2) {
-                    return geo.key === d["ID Comuna"] ? "#86396B" : "#CCC";
-                  } else {
-                    return regionsColorScale("c" + d["ID Region"]);
-                  }
-                }
+                fill: d =>
+                  geo.depth === 2
+                    ? geo.key === d["ID Comuna"]
+                      ? "#86396B"
+                      : "#CCC"
+                    : regionsColorScale("c" + d["ID Region"])
               },
               on: {
                 click: d => {
@@ -223,22 +202,11 @@ class ParticipationScatter extends Section {
                 tickFormat: tick =>
                   numeral(parseFloat(tick), locale).format("0%")
               },
-              x: this.state.log ? "ElectorsLOG" : "Electors",
+              x: "Electors",
               xConfig: {
-                title: t("Electors"),
-                tickFormat: tick => {
-                  let value = this.state.log
-                    ? Math.pow(10, parseInt(tick))
-                    : parseInt(tick);
-
-                  let newTick = numeral(value, locale).format("0a");
-                  if (newTick !== customTick) {
-                    customTick = newTick;
-                    return newTick;
-                  } else {
-                    return " ";
-                  }
-                }
+                labelRotation: false,
+                scale: this.state.log ? "log" : "linear",
+                title: t("Electors") + (this.state.log ? " (Log)" : "")
               },
               x2Config: {
                 barConfig: {
@@ -251,19 +219,39 @@ class ParticipationScatter extends Section {
         ) : (
           <NoDataAvailable />
         )}
-        <div className="treemap-stacked-options">
-          <a
-            className={`toggle ${!this.state.log ? "selected" : ""}`}
-            onClick={() => this.toggleChart(false)}
-          >
-            {t("LINEAR")}
-          </a>
-          <a
-            className={`toggle ${this.state.log ? "selected" : ""}`}
-            onClick={() => this.toggleChart(true)}
-          >
-            LOG
-          </a>
+
+        <div className="viz-controls">
+          {/* time range select */}
+          <Select
+            id="variations"
+            options={this.state.chartVariations}
+            value={this.state.selectedOption}
+            labelField="title"
+            valueField="id"
+            onChange={this.handleChange}
+          />
+
+          {/* linear/log toggle */}
+          <div className="btn-group">
+            <button
+              className={`btn font-xxs ${
+                !this.state.log ? "is-active" : "is-inactive"
+              }`}
+              onClick={() => this.toggleChart(false)}
+            >
+              <span className="btn-icon pt-icon pt-icon-scatter-plot" />
+              <span className="btn-text">{t("LINEAR")}</span>
+            </button>
+            <button
+              className={`btn font-xxs ${
+                this.state.log ? "is-active" : "is-inactive"
+              }`}
+              onClick={() => this.toggleChart(true)}
+            >
+              <span className="btn-icon pt-icon pt-icon-scatter-plot" />
+              <span className="btn-text">LOG</span>
+            </button>
+          </div>
         </div>
       </div>
     );

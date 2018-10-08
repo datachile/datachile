@@ -141,7 +141,7 @@ class MigrationEducationSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("Migration")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">{t("Migration")}</h3>
           <p
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}

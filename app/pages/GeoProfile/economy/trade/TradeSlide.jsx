@@ -131,7 +131,7 @@ class TradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("Trade")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">{t("Exports")}</h3>
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{
@@ -175,10 +175,10 @@ class TradeSlide extends Section {
           </div>
         </div>
         <div className="topic-slide-charts">
-          <SectionColumns>
-            <TradeBalance className="trade-balance-container lost-1" />
-          </SectionColumns>
-          {children}
+          {TradeBalance
+            ? <TradeBalance className="trade-balance-container lost-1" />
+            : children
+          }
         </div>
       </div>
     );

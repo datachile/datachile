@@ -12,7 +12,7 @@ class InternationalTradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">{t("International Trade")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">{t("International Trade")}</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia earum doloremque repellat expedita. Aliquam esse porro dolorem aspernatur ipsam corporis similique, iusto, minus architecto iure suscipit nam ea, expedita in.</p>
         </div>
         <div className="topic-slide-charts">{children}</div>

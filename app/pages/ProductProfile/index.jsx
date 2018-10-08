@@ -5,7 +5,7 @@ import { translate } from "react-i18next";
 import orderBy from "lodash/orderBy";
 import Helmet from "react-helmet";
 
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
   getMembersQuery,
   getMemberQuery,
@@ -436,10 +436,7 @@ class ProductProfile extends Component {
     // truncate & add ellipses if necessary
     let titleTruncated = null;
     if (obj) {
-      if (obj.caption.length > 40) {
-        titleTruncated = obj.caption.slice(0, 40);
-        titleTruncated += "…";
-      }
+      titleTruncated = shortenProfileName(obj.caption);
     }
 
     return (
@@ -556,7 +553,7 @@ class ProductProfile extends Component {
 
             <div className="topic-block" id="about">
               <div className="topic-header">
-                <h2 className="topic-heading font-xxl">{t("About")}</h2>
+                <h2 className="topic-heading font-xl">{t("About")}</h2>
                 <div className="topic-go-to-targets">
                   <div className="topic-slider-sections" />
                 </div>
@@ -572,8 +569,6 @@ class ProductProfile extends Component {
                             : t("product_profile.about1.no_data", text_about)
                         }}
                       />
-                    </div>
-                    <div className="topic-slide-text">
                       {text_product.available && (
                         <p
                           dangerouslySetInnerHTML={{
@@ -605,11 +600,22 @@ class ProductProfile extends Component {
               <Topic
                 name={t("Trade")}
                 id="trade"
-                slider={false}
                 sections={[
                   {
-                    name: t("Products"),
-                    slides: [t("Trade")]
+                    name: t("Exports"),
+                    slides: [t("Exports")]
+                  },
+                  {
+                    name: t("Imports"),
+                    slides: [t("Imports")]
+                  },
+                  {
+                    name: t("Geo trade"),
+                    slides: [t("Geo trade")]
+                  },
+                  {
+                    name: t("Trade balance"),
+                    slides: [t("Trade balance")]
                   }
                 ]}
               >

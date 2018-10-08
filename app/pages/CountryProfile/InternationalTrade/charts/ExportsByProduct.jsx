@@ -1,7 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
 import { translate } from "react-i18next";
-import { Treemap } from "d3plus-react";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import {
@@ -15,6 +14,7 @@ import { getLevelObject } from "helpers/dataUtils";
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
+import TreemapStacked from "components/TreemapStacked";
 
 class ExportsByProduct extends Section {
   state = {
@@ -54,14 +54,6 @@ class ExportsByProduct extends Section {
     }
   ];
 
-  prepareData = data => {
-    if (data.data && data.data.length) {
-      return data.data;
-    } else {
-      this.setState({ chart: false });
-    }
-  };
-
   render() {
     const { t, className, i18n, router } = this.props;
 
@@ -79,14 +71,14 @@ class ExportsByProduct extends Section {
           <ExportLink path={path} className={classSvg} />
         </h3>
         {this.state.chart ? (
-          <Treemap
+          <TreemapStacked
+            depth={true}
+            path={path}
+            msrName="FOB US"
+            drilldowns={["HS0", "HS2"]}
             className={classSvg}
             config={{
-              height: 400,
-              data: path,
-              groupBy: ["ID HS0", "ID HS2"],
               label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
-              sum: d => d["FOB US"],
               total: d => d["FOB US"],
               totalConfig: {
                 text: d =>
@@ -96,7 +88,6 @@ class ExportsByProduct extends Section {
                   ) +
                   " FOB"
               },
-              time: "ID Year",
               legendConfig: {
                 label: false,
                 shapeConfig: {
@@ -124,7 +115,6 @@ class ExportsByProduct extends Section {
                   "</a>"
               }
             }}
-            dataFormat={this.prepareData}
           />
         ) : (
           <NoDataAvailable />

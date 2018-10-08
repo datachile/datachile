@@ -119,7 +119,7 @@ class Nav extends Component {
     }
 
     return (
-      <div id="navs-container">
+      <div className="main-nav-container" id="navs-container">
         <nav className={`nav ${darkClass}`}>
           <SubNav
             type="scroll"
@@ -172,14 +172,16 @@ class Nav extends Component {
                 <Link
                   className="subnav-link subhead border-geo color-geo-hover"
                   to="/explore/geo"
+                  onClick={this.toggleSubNav}
                 >
-                  {t("Regions & Comunas")}
+                  Chile
                 </Link>
               </li>
               <li className="subnav-item">
                 <Link
                   className="subnav-link subhead border-countries color-countries-hover"
                   to="/explore/countries"
+                  onClick={this.toggleSubNav}
                 >
                   {t("Countries")}
                 </Link>
@@ -188,6 +190,7 @@ class Nav extends Component {
                 <Link
                   className="subnav-link subhead border-products color-products-hover"
                   to="/explore/products"
+                  onClick={this.toggleSubNav}
                 >
                   {t("Products")}
                 </Link>
@@ -196,6 +199,7 @@ class Nav extends Component {
                 <Link
                   className="subnav-link subhead border-industries color-industries-hover"
                   to="/explore/industries"
+                  onClick={this.toggleSubNav}
                 >
                   {t("Industries")}
                 </Link>
@@ -225,7 +229,11 @@ class Nav extends Component {
             <h3 className="subnav-subtitle font-sm">{t("About")}</h3>
             <ul className="subnav-list">
               <li className="subnav-item">
-                <Link className="subnav-link subhead" to="/about">
+                <Link
+                  className="subnav-link subhead"
+                  to="/about"
+                  onClick={this.toggleSubNav}
+                >
                   {t("About DataChile")}
                 </Link>
               </li>
@@ -300,25 +308,27 @@ class Nav extends Component {
                 </h1>
                 { showMeta &&
                   <p className="meta-title">
-                    <span className="type">
-                      {typeTitle &&
-                        exploreLink && (
-                          <Link
-                            className={`category color-${type}`}
-                            to={exploreLink}
-                          >
-                            {type && (
-                              <img
-                                className="category-icon"
-                                src={`/images/icons/icon-${type}.svg`}
-                              />
-                            )}
-                            {typeTitle}
-                          </Link>
-                        )}
-                      {type && !exploreLink && <span>{typeTitle}</span>}
-                    </span>
-                    {ancestor && (
+                    {type &&
+                      <span className="type">
+                        {typeTitle &&
+                          exploreLink && (
+                            <Link
+                              className={`category color-${type}`}
+                              to={exploreLink}
+                            >
+                              {type && (
+                                <img
+                                  className="category-icon"
+                                  src={`/images/icons/icon-${type}.svg`}
+                                />
+                              )}
+                              {typeTitle}
+                            </Link>
+                          )}
+                        {type && !exploreLink && <span>{typeTitle}</span>}
+                      </span>
+                    }
+                    {type && ancestor && (
                       <span className="parent">
                         <span className="separator">{t("in")}</span>
                         <Link className="link" to={ancestorLink}>

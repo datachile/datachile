@@ -1,24 +1,23 @@
 @import "../pages/mixins";
 
+/* NOTE: many styles inherited from TopicSliderTabs.css */
 .topic-slider-subsections {
-  top: -1rem;
-  & li.sub-section-item {
-    list-style-type: none;
-    display: inline-block;
-    & a {
-      @add-mixin font-xs;
-      @add-mixin heading-font;
-      color: var(--white);
-      text-decoration: none;
-      margin: 0 10px 0px 0;
-      opacity: 0.8;
-    }
-    &.selected {
-      & a {
-        @add-mixin body-font-bold;
-        padding-bottom: 5px;
-        opacity: 1;
-      }
-    }
+  /* positioning */
+  padding-top: 0;
+  padding-bottom: 1.5rem;
+  margin-top: -1.5rem;
+  /* override topic-tab-list */
+  background: none;
+
+  /* right align and reposition on big screens */
+  @add-mixin from-md {
+    text-align: right;
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  /* adjust underline size */
+  & .topic-tab-item .topic-tab-button {
+    border-bottom-width: 1px;
   }
 }

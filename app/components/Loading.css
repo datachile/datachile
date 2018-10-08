@@ -13,6 +13,17 @@
   /* flex fallback */
   padding: 1rem var(--gutter) 4rem var(--gutter); /* account for logo whitespace */
   text-align: center;
+
+  /* fudge logo into place on tall screens */
+  @media (min-height: 500px) {
+    margin-top: 6rem;
+    & .loading-gobierno-img {
+      margin-top: 10rem;
+    }
+  }
+  @media (min-height: 800px) {
+    margin-top: 8em;
+  }
 }
 
 /* loading component defaults */
@@ -42,6 +53,14 @@
   & .loading-progress-text {
     color: var(--white);
     margin-bottom: 1em;
+  }
+
+  /* Gobierno */
+  & .loading-gobierno-img {
+    display: block;
+    width: 10.5rem;
+    max-width: 100%;
+    margin-top: 3rem; /* small screens only */
   }
 
   /* built by Datawheel */

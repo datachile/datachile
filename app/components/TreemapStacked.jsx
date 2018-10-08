@@ -9,7 +9,7 @@ class TreemapStacked extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chart: "treemap",
+      chart: props.defaultChart || "treemap",
       show: true
     };
     this.toggleChart = this.toggleChart.bind(this);
@@ -25,15 +25,19 @@ class TreemapStacked extends React.Component {
     return (
       <div className="btn-group">
         <button
-          className={`btn font-xxs ${selected === "treemap" ? "is-active" : "is-inactive"}`}
-          onClick={evt => this.toggleChart("treemap")}
+          className={`btn font-xxs ${
+            selected === "treemap" ? "is-active" : "is-inactive"
+          }`}
+          onClick={() => this.toggleChart("treemap")}
         >
           <span className="btn-icon pt-icon pt-icon-control" />
           <span className="btn-text">Treemap</span>
         </button>
         <button
-          className={`btn font-xxs ${selected === "stacked" ? "is-active" : "is-inactive"}`}
-          onClick={evt => this.toggleChart("stacked")}
+          className={`btn font-xxs ${
+            selected === "stacked" ? "is-active" : "is-inactive"
+          }`}
+          onClick={() => this.toggleChart("stacked")}
         >
           <span className="btn-icon pt-icon pt-icon-timeline-area-chart" />
           <span className="btn-text">Stacked</span>
@@ -93,7 +97,9 @@ class TreemapStacked extends React.Component {
             <StackedArea
               config={{
                 ...config,
-                label: !depth ? d => d[drilldowns[0]] : config.label,
+                label: !depth
+                  ? d => d[drilldowns[0]]
+                  : d => d[drilldowns[drilldowns.length - 1]],
                 total: false,
                 totalConfig: {
                   text: ""
@@ -101,8 +107,8 @@ class TreemapStacked extends React.Component {
                 height: 400,
                 data: path,
                 groupBy: !depth
-                  ? "ID " + drilldowns[0]
-                  : drilldowns.map(dd => "ID " + dd),
+                  ? `ID ${drilldowns[0]}`
+                  : drilldowns.map(dd => `ID ${dd}`),
                 y: d => d[msrName],
                 x: d => d["Year"],
 

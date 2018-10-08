@@ -6,7 +6,7 @@ import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
 import Helmet from "react-helmet";
 
-import { numeral, slugifyItem } from "helpers/formatters";
+import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import { getGeoObject, clearStoreData } from "helpers/dataUtils";
 import styles from "style.yml";
 
@@ -165,6 +165,13 @@ import ParticipationScatter from "./civics/participation/charts/ParticipationSca
 
 import "../intro.css";
 import "../topics.css";
+import InfantMortalitySlide from "./health/infancy/InfantMortalitySlide";
+import MortalityOneToTen from "./health/infancy/charts/MortalityOneToTen";
+import MortalityUnderOne from "./health/infancy/charts/MortalityUnderOne";
+import MortalityTreemap from "./health/infancy/charts/MortalityTreemap";
+import MortalityBarchart from "./health/infancy/charts/MortalityBarchart";
+import PresidentialTreemap from "./civics/election/charts/PresidentialTreemap";
+import PresidentialBarchart from "./civics/election/charts/PresidentialBarchart";
 
 const chileObj = {
   key: "chile",
@@ -275,6 +282,14 @@ class GeoProfile extends Component {
     PopulationProjection,
     PopulationPyramid,
 
+    // HEALTH TOPIC
+
+    InfantMortalitySlide,
+    MortalityUnderOne,
+    MortalityOneToTen,
+    MortalityTreemap,
+    MortalityBarchart,
+
     AccessSlide,
     HealthCareSlide,
     HealthInsurance,
@@ -298,6 +313,10 @@ class GeoProfile extends Component {
     Presidential1st,
     Presidential1stBar,
     Presidential2ndBar,
+
+    PresidentialTreemap,
+    PresidentialBarchart,
+
     CongresspersonResults,
     ElectoralParticipation,
     ParticipationScatter
@@ -416,10 +435,7 @@ class GeoProfile extends Component {
     // truncate & add ellipses if necessary
     let titleTruncated = null;
     if (geo) {
-      if (geo.caption.length > 40) {
-        titleTruncated = geo.caption.slice(0, 40);
-        titleTruncated += "…";
-      }
+      titleTruncated = shortenProfileName(geo.caption);
     }
 
     let opengraphImage = (geoObj.image || "").replace(
@@ -478,7 +494,6 @@ class GeoProfile extends Component {
 
               {/* main splash content */}
               <div className="header geo-header">
-
                 {/* elected officials */}
                 <AuthoritiesBlock
                   geo={geoObj}
@@ -700,7 +715,7 @@ class GeoProfile extends Component {
                 sections={[
                   {
                     name: t("Trade"),
-                    slides: [t("International trade")]
+                    slides: [t("Exports"), t("Imports"), t("Trade balance")]
                   },
                   {
                     name: t("Industry"),
@@ -725,7 +740,7 @@ class GeoProfile extends Component {
                 ]}
               >
                 <div className="topic-slide">
-                  <TradeSlide TradeBalance={TradeBalance}>
+                  <TradeSlide>
                     <SectionColumns>
                       <ExportsByDestination
                         className="lost-1-2"
@@ -733,11 +748,18 @@ class GeoProfile extends Component {
                       />
                       <ExportsByProduct className="lost-1-2" router={router} />
                     </SectionColumns>
+                  </TradeSlide>
+                </div>
+                <div className="topic-slide">
+                  <TradeSlide>
                     <SectionColumns>
                       <ImportsByOrigin className="lost-1-2" router={router} />
                       <ImportsByProduct className="lost-1-2" router={router} />
                     </SectionColumns>
                   </TradeSlide>
+                </div>
+                <div className="topic-slide">
+                  <TradeSlide TradeBalance={TradeBalance} />
                 </div>
 
                 <div className="topic-slide">
@@ -899,8 +921,7 @@ class GeoProfile extends Component {
                 <div className="topic-slide">
                   <CrimeSlide>
                     <SectionColumns>
-                      <CrimeTreemap className="lost-1-2" />
-                      <CrimeStacked className="lost-1-2" />
+                      <CrimeTreemap className="lost-1" />
                     </SectionColumns>
                   </CrimeSlide>
                 </div>
@@ -933,7 +954,7 @@ class GeoProfile extends Component {
                 id="demographics"
                 sections={[
                   {
-                    name: t("Origins"),
+                    name: t("Migration"),
                     slides: [
                       t("By Origin Country"),
                       t("By Sex & Age"),
@@ -993,6 +1014,10 @@ class GeoProfile extends Component {
                 id="health"
                 sections={[
                   {
+                    name: t("Infancy"),
+                    slides: [t("Infant & Childhood Mortality")]
+                  },
+                  {
                     name: t("Healthcare"),
                     slides: [t("Health Insurance"), t("Healthcare")]
                   },
@@ -1006,6 +1031,14 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
+                <div className="topic-slide">
+                  <InfantMortalitySlide>
+                    <SectionColumns>
+                      <MortalityTreemap className="lost-1-2" />
+                      <MortalityBarchart className="lost-1-2" />
+                    </SectionColumns>
+                  </InfantMortalitySlide>
+                </div>
                 <div className="topic-slide">
                   <AccessSlide>
                     <SectionColumns>
@@ -1030,8 +1063,7 @@ class GeoProfile extends Component {
                 <div className="topic-slide">
                   <DeathCausesSlide path={location.pathname}>
                     <SectionColumns>
-                      <DeathCauses className="lost-1-2" />
-                      <DeathCausesStacked className="lost-1-2" />
+                      <DeathCauses className="lost-1" />
                     </SectionColumns>
                   </DeathCausesSlide>
                 </div>
@@ -1054,12 +1086,8 @@ class GeoProfile extends Component {
                 <div className="topic-slide">
                   <PresidentSlide>
                     <SectionColumns>
-                      <Presidential1st className="lost-1-2" />
-                      <Presidential2nd className="lost-1-2" />
-                    </SectionColumns>
-                    <SectionColumns>
-                      <Presidential1stBar className="lost-1-2" />
-                      <Presidential2ndBar className="lost-1-2" />
+                      <PresidentialTreemap className="lost-1-2" />
+                      <PresidentialBarchart className="lost-1-2" />
                     </SectionColumns>
                   </PresidentSlide>
                 </div>
@@ -1083,10 +1111,10 @@ class GeoProfile extends Component {
                   <ParticipationSlide>
                     <SectionColumns>
                       <ParticipationScatter
-                        className="lost-2-3"
+                        className="lost-1-2"
                         router={router}
                       />
-                      <ElectoralParticipation className="lost-1-3" />
+                      <ElectoralParticipation className="lost-1-2" />
                     </SectionColumns>
                   </ParticipationSlide>
                 </div>
