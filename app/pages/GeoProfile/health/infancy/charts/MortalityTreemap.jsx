@@ -91,12 +91,17 @@ class MortalityTreemap extends Section {
         </h3>
         <TreemapStacked
           depth={true}
+          forceUpdate={true}
           path={processData}
           msrName="Number of deaths"
           drilldowns={["Age Bucket", "Age Range"]}
           className={classSvg}
           config={{
             label: d => d["Age Range"],
+            width:
+              typeof window !== "undefined"
+                ? document.querySelector(".lost-1-2").offsetWidth
+                : undefined,
             legendConfig: {
               label: false,
               shapeConfig: {

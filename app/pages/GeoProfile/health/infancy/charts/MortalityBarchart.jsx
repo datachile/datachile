@@ -76,6 +76,10 @@ class MortalityBarchart extends Section {
           className={classSvg}
           config={{
             height: 400,
+            width:
+              typeof window !== "undefined"
+                ? document.querySelector(".lost-1-2").offsetWidth
+                : undefined,
             data:
               selected === "infancy"
                 ? path_infant_mortality_under_one
