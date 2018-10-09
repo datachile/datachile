@@ -285,8 +285,8 @@ class GeoProfile extends Component {
     // HEALTH TOPIC
 
     InfantMortalitySlide,
-    MortalityUnderOne,
-    MortalityOneToTen,
+    // MortalityUnderOne,
+    // MortalityOneToTen,
     MortalityTreemap,
     MortalityBarchart,
 
