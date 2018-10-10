@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "datawheel-canon";
-import { BarChart } from "d3plus-react";
+import { BarChart, LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
 
 import mondrianClient, {
@@ -32,9 +32,12 @@ class MortalityBarchart extends Section {
       )(params, store)
   ];
 
-  state = {
-    selected: "infancy"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: "infancy"
+    };
+  }
 
   toggleChart(chart) {
     this.setState({
@@ -72,21 +75,18 @@ class MortalityBarchart extends Section {
             className={classSvg}
           />
         </h3>
-        <BarChart
+        <LinePlot
           className={classSvg}
           config={{
             height: 400,
-            width:
-              typeof window !== "undefined"
-                ? document.querySelector(".lost-1-2").offsetWidth
-                : undefined,
+            // width,
             data:
               selected === "infancy"
                 ? path_infant_mortality_under_one
                 : path_infant_mortality_one_to_ten,
             groupBy: ["ID Age Range"],
             label: d => d["Age Range"],
-            x: "ID Age Range",
+            x: "ID Year",
             y:
               geo.depth === 0
                 ? "Rate Country"
@@ -95,6 +95,10 @@ class MortalityBarchart extends Section {
                   : "Rate Comuna",
             time: "ID Year",
             shapeConfig: {
+              Line: {
+                strokeLinecap: "round",
+                strokeWidth: 4
+              }
               // fill: d => COLORS_GENDER[d["ID Sex"]]
             },
             legendConfig: {
@@ -105,13 +109,7 @@ class MortalityBarchart extends Section {
               }
             }
           }}
-          dataFormat={data => {
-            const processData = data.data.reduce((all, d) => {
-              all.push(d);
-              return all;
-            }, []);
-            return data.data;
-          }}
+          dataFormat={data => data.data}
         />
         <div className="btn-group">
           <button

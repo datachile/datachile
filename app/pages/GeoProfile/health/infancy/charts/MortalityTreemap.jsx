@@ -56,6 +56,7 @@ class MortalityTreemap extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
+
     const path = this.context.data.path_infant_mortality_one_to_ten;
 
     const oneToTenData = this.context.data
@@ -98,16 +99,9 @@ class MortalityTreemap extends Section {
           className={classSvg}
           config={{
             label: d => d["Age Range"],
-            width:
-              typeof window !== "undefined"
-                ? document.querySelector(".lost-1-2").offsetWidth
-                : undefined,
+            // width,
             legendConfig: {
-              label: false,
-              shapeConfig: {
-                //backgroundImage: d =>
-                //  "/images/legend/sex/" + d["ID Sex"] + ".png"
-              }
+              label: false
             }
           }}
         />
