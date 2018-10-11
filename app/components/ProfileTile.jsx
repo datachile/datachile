@@ -45,7 +45,7 @@ class ProfileTile extends Component {
     // console.log(item);
 
     return (
-      <div className={`tile ${className ? className : ""} border-${theme}-hover`}>
+      <div className={`tile ${className ? className : ""} border-${theme}-hover background-${theme}-dark-2`}>
         <Link
           className="cover-link"
           key={item.name + "anchor"}
