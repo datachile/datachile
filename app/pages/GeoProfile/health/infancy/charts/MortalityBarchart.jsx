@@ -17,6 +17,20 @@ class MortalityBarchart extends Section {
   static need = [
     (params, store) =>
       simpleGeoChartNeed(
+        "path_infant_mortality_under_one",
+        "mortality_under_one",
+        ["Number of deaths", "Rate Comuna", "Rate Region", "Rate Country"],
+        {
+          drillDowns: [
+            ["Age Range", "Age Range DEIS", "Age Range"],
+            ["Date", "Date", "Year"]
+          ],
+          options: { parents: true },
+          cuts: []
+        }
+      )(params, store),
+    (params, store) =>
+      simpleGeoChartNeed(
         "path_infant_mortality_one_to_ten",
         "mortality_one_to_ten",
         ["Number of deaths", "Rate Comuna", "Rate Region", "Rate Country"],
@@ -32,12 +46,9 @@ class MortalityBarchart extends Section {
       )(params, store)
   ];
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: "infancy"
-    };
-  }
+  state = {
+    selected: "infancy"
+  };
 
   toggleChart(chart) {
     this.setState({
@@ -62,8 +73,8 @@ class MortalityBarchart extends Section {
         <h3 className="chart-title">
           <span>
             {selected === "infancy"
-              ? t("Infant Mortality")
-              : t("Childhood Mortality")}
+              ? t("Infant Mortality Rate")
+              : t("Childhood Mortality Rate")}
             <SourceTooltip cube="mortality_one_to_ten" />
           </span>
           <ExportLink
@@ -79,7 +90,6 @@ class MortalityBarchart extends Section {
           className={classSvg}
           config={{
             height: 400,
-            // width,
             data:
               selected === "infancy"
                 ? path_infant_mortality_under_one
@@ -93,20 +103,14 @@ class MortalityBarchart extends Section {
                 : geo.depth === 1
                   ? "Rate Region"
                   : "Rate Comuna",
-            time: "ID Year",
             shapeConfig: {
               Line: {
                 strokeLinecap: "round",
                 strokeWidth: 4
               }
-              // fill: d => COLORS_GENDER[d["ID Sex"]]
             },
             legendConfig: {
-              label: false,
-              shapeConfig: {
-                //backgroundImage: d =>
-                //  "/images/legend/sex/" + d["ID Sex"] + ".png"
-              }
+              label: false
             }
           }}
           dataFormat={data => data.data}
