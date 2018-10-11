@@ -10,8 +10,8 @@ import { sendEvent } from "helpers/ga";
 const settings = {
   dots: false,
   infinite: true,
-  // swipe: false,
-  // touchMove: false,
+  swipe: false,
+  touchMove: false,
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
