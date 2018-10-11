@@ -1,7 +1,7 @@
 import React from "react";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 
 import { numeral, moneyRangeFormat } from "helpers/formatters";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";

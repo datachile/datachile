@@ -5,7 +5,7 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { industriesColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import { sources } from "helpers/consts";
 
 import ExportLink from "components/ExportLink";

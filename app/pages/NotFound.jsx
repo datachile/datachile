@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-import { Canon, CanonProfile } from "datawheel-canon";
+import { Canon, CanonProfile } from "@datawheel/canon-core";
 
 import Nav from "components/Nav";
 import Search from "components/Search";

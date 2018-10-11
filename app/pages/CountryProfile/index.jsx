@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonProfile, Canon } from "datawheel-canon";
+import { SectionColumns, CanonProfile, Canon } from "@datawheel/canon-core";
 import orderBy from "lodash/orderBy";
 import { translate } from "react-i18next";
 import Helmet from "react-helmet";

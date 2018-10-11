@@ -1,6 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 
 import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
 import { sources } from "helpers/consts";

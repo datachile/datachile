@@ -1,6 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import { sources } from "helpers/consts";
 import { numeral } from "helpers/formatters";
 
@@ -48,7 +48,7 @@ class InfantMortalitySlide extends Section {
       path_infant_mortality_one_to_ten_data,
       path_infant_mortality_under_one_data
     } = this.context.data;
-    console.log(path_infant_mortality_one_to_ten_data);
+
     const locale = i18n.language;
 
     return (

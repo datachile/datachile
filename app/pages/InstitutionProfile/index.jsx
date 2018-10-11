@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, Canon, CanonProfile } from "datawheel-canon";
+import { SectionColumns, Canon, CanonProfile } from "@datawheel/canon-core";
 import { translate } from "react-i18next";
 
 import { slugifyItem, shortenProfileName } from "helpers/formatters";

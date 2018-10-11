@@ -39,6 +39,8 @@ export const COLORS_REGIONS = [
 export const COLORS_SCALE_EXPORTS = ["#ccd5f1", "#5076C4"];
 export const COLORS_SCALE_IMPORTS = ["#f8d8db", "#E56671"];
 
+export const COLORS_SCALE_INFANT_MORTALITY = ["#eee", "#80CBC4", "#009688"];
+
 export const COLORS_TRADE_BALANCE = ["#E5656C", "#4E6FD0", "#ccc"];
 export const tradeBalanceColorScale = scaleOrdinal().range(
   COLORS_TRADE_BALANCE

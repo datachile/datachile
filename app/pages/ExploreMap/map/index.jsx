@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { browserHistory } from "react-router";
-import { CanonProfile, Canon } from "datawheel-canon";
+import { CanonProfile, Canon } from "@datawheel/canon-core";
 
 import { translate } from "react-i18next";
 import isEqual from "lodash/isEqual";
