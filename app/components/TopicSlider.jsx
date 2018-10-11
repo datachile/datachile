@@ -16,8 +16,8 @@ const settings = {
   slidesToScroll: 1,
   arrows: false,
   lazyLoad: false,
-  adaptiveHeight: true
-  // fade: false
+  adaptiveHeight: true,
+  fade: true
 };
 
 class TopicSlider extends Component {

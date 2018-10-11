@@ -49,6 +49,13 @@
     border-top-left-radius: 0;
   }
 
+  /* account for slides with no subtabs */
+  & .topic-slider:first-child {
+    @add-mixin from-md {
+      margin-top: 0.75rem;
+    }
+  }
+
   /* default / hidden state */
   & .slick-slide {
     transform: translateY(10px);
