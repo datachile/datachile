@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-import { Canon, CanonProfile } from "@datawheel/canon-core";
+import { CanonProfile } from "@datawheel/canon-core";
 
 import Nav from "components/Nav";
 import Search from "components/Search";
@@ -11,7 +11,7 @@ class NotFound extends Component {
   render() {
     const { t } = this.props;
     return (
-      <Canon>
+      <div>
         <CanonProfile data={this.props.data} topics={[]}>
           <div className="profile not-found">
             <div className="intro">
@@ -39,7 +39,7 @@ class NotFound extends Component {
             </div>
           </div>
         </CanonProfile>
-      </Canon>
+      </div>
     );
   }
 }

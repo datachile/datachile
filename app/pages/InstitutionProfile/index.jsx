@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, Canon, CanonProfile } from "@datawheel/canon-core";
+import { SectionColumns, CanonProfile } from "@datawheel/canon-core";
 import { translate } from "react-i18next";
 
 import { slugifyItem, shortenProfileName } from "helpers/formatters";
@@ -327,7 +327,7 @@ class InstitutionProfile extends Component {
     }
 
     return (
-      <Canon>
+      <div>
         <CanonProfile data={this.props.data} topics={topics}>
           <div className="profile">
             <div className="intro">
@@ -508,7 +508,7 @@ class InstitutionProfile extends Component {
             </div>
           </div>
         </CanonProfile>
-      </Canon>
+      </div>
     );
   }
 }

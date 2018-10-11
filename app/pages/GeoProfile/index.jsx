@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonProfile, Canon } from "@datawheel/canon-core";
+import { SectionColumns, CanonProfile } from "@datawheel/canon-core";
 import { Geomap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
@@ -446,7 +446,7 @@ class GeoProfile extends Component {
     const path = `/${location.pathname}`;
 
     return (
-      <Canon>
+      <div>
         <CanonProfile data={this.props.data} topics={topics}>
           <Helmet>
             <title>{title}</title>
@@ -1122,7 +1122,7 @@ class GeoProfile extends Component {
             </div>
           </div>
         </CanonProfile>
-      </Canon>
+      </div>
     );
   }
 }
