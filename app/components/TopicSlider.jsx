@@ -17,7 +17,6 @@ const settings = {
   arrows: false,
   lazyLoad: false,
   adaptiveHeight: true
-  // fade: false
 };
 
 class TopicSlider extends Component {
