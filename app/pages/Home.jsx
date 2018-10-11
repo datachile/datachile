@@ -101,7 +101,10 @@ class Home extends Component {
     const { profiles, header, focus } = this.state;
 
     const changeProfileHeader = p => {
-      this.setState({ header: p });
+      // don't update if active button is clicked
+      if (p.slug !== header.slug) {
+        this.setState({ header: p });
+      }
     };
 
     const {

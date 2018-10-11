@@ -214,7 +214,8 @@ class DynamicHomeHeader extends Component {
     super(props);
     this.cache = SVGCache.instance;
     this.state = {
-      illustration: ""
+      illustration: "",
+      transitioning: true
     };
   }
 
@@ -232,13 +233,15 @@ class DynamicHomeHeader extends Component {
     this.cache.setSvg(src, xml);
     this.setState({ illustration: xml }, () => {
       if (typeof document != "undefined") {
-        select(".dynamic-home-image")
-          .transition()
-          .duration(500)
-          .style("opacity", 1);
 
         var tooltip = select(".tooltip-home");
         const container = document.querySelector(".dynamic-home-illustration");
+
+        // add transitioning class, then quickly remove it
+        this.setState({ transitioning: true });
+        setTimeout(() => {
+          this.setState({ transitioning: false });
+        }, 10);
 
         function getCoords(x, y) {
           const w = container.offsetWidth,
@@ -458,7 +461,11 @@ class DynamicHomeHeader extends Component {
     this.loadHeader(this.props.header);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({
+      transitioning: false
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.header) {
@@ -471,14 +478,6 @@ class DynamicHomeHeader extends Component {
       const src = "/images/home/hotspots/" + header.slug + ".svg";
       const cb = this.callbackSvg;
       var cached = this.cache.getSvg(src);
-      /*select(".dynamic-home-hotspots")
-        .transition()
-        .duration(500)
-        .style("opacity", 0);*/
-      select(".dynamic-home-image")
-        .transition()
-        .duration(500)
-        .style("opacity", 0);
       if (cached) {
         cb(false, cached, src);
       } else {
@@ -495,13 +494,16 @@ class DynamicHomeHeader extends Component {
 
   render() {
     const { t, header } = this.props;
+    const { transitioning } = this.state;
 
     return (
       <div className="home-header">
         <div className="dynamic-home-header">
           <div className="dynamic-home-image">
             {header && (
-              <div className={`dynamic-home-items image-${header.slug}`}>
+              <div
+                className={`dynamic-home-items image-${header.slug} ${ transitioning ? "is-transitioning": ""}`}
+              >
                 {/* hotspots & tooltips */}
                 {header.available && (
                   <div className="dynamic-home-hotspots">
