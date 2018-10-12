@@ -2,7 +2,7 @@ import React from "react";
 import { translate } from "react-i18next";
 
 import { Treemap } from "d3plus-react";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import groupBy from "lodash/groupBy";
 import orderBy from "lodash/orderBy";
 

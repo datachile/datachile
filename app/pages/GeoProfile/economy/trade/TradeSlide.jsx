@@ -1,6 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
-import { Section, SectionColumns } from "datawheel-canon";
+import { Section, SectionColumns } from "@datawheel/canon-core";
 import { numeral } from "helpers/formatters";
 import { getGeoObject } from "helpers/dataUtils";
 import mondrianClient, {

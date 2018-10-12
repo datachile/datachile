@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonProfile, Canon } from "datawheel-canon";
+import { SectionColumns, CanonProfile } from "@datawheel/canon-core";
 import orderBy from "lodash/orderBy";
 import { translate } from "react-i18next";
 import Helmet from "react-helmet";
@@ -398,7 +398,7 @@ class CountryProfile extends Component {
     }
 
     return (
-      <Canon>
+      <div>
         <CanonProfile data={this.props.data} topics={topics}>
           {obj && (
             <Helmet>
@@ -611,7 +611,7 @@ class CountryProfile extends Component {
             </div>
           </div>
         </CanonProfile>
-      </Canon>
+      </div>
     );
   }
 }

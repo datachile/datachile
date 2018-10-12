@@ -1,11 +1,13 @@
 import React from "react";
-import { Section } from "datawheel-canon";
-import { BarChart } from "d3plus-react";
+import { Section } from "@datawheel/canon-core";
+import { BarChart, LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import mondrianClient, {
   geoCut,
-  simpleGeoChartNeed
+  simpleGeoChartNeed,
+  simpleDatumNeed
 } from "helpers/MondrianClient";
 
 import { COLORS_GENDER } from "helpers/colors";
@@ -15,6 +17,20 @@ import SourceTooltip from "components/SourceTooltip";
 
 class MortalityBarchart extends Section {
   static need = [
+    (params, store) =>
+      simpleGeoChartNeed(
+        "path_infant_mortality_under_one",
+        "mortality_under_one",
+        ["Number of deaths", "Rate Comuna", "Rate Region", "Rate Country"],
+        {
+          drillDowns: [
+            ["Age Range", "Age Range DEIS", "Age Range"],
+            ["Date", "Date", "Year"]
+          ],
+          options: { parents: true },
+          cuts: []
+        }
+      )(params, store),
     (params, store) =>
       simpleGeoChartNeed(
         "path_infant_mortality_one_to_ten",
@@ -29,7 +45,50 @@ class MortalityBarchart extends Section {
           options: { parents: true },
           cuts: []
         }
-      )(params, store)
+      )(params, store),
+    (params, store) => {
+      let mirror = { ...params };
+      mirror.comuna = undefined;
+
+      return simpleDatumNeed(
+        "path_infant_mortality_one_to_ten_data_plot",
+        "mortality_one_to_ten",
+        ["Number of deaths", "Rate Comuna", "Rate Region", "Rate Country"],
+        {
+          drillDowns: [
+            ["Age Range", "Age Range DEIS", "Age Range"],
+            ["Date", "Date", "Year"],
+            ["Geography", "Geography", "Comuna"],
+            ["Sex", "Sex", "Sex"]
+          ],
+          options: { parents: true },
+          cuts: []
+        },
+        "geo",
+        false
+      )(mirror, store);
+    },
+    (params, store) => {
+      let mirror = { ...params };
+      mirror.comuna = undefined;
+
+      return simpleDatumNeed(
+        "path_infant_mortality_under_one_data_plot",
+        "mortality_under_one",
+        ["Number of deaths", "Rate Comuna", "Rate Region", "Rate Country"],
+        {
+          drillDowns: [
+            ["Age Range", "Age Range DEIS", "Age Range"],
+            ["Date", "Date", "Year"],
+            ["Geography", "Geography", "Comuna"]
+          ],
+          options: { parents: true },
+          cuts: []
+        },
+        "geo",
+        false
+      )(mirror, store);
+    }
   ];
 
   state = {
@@ -48,20 +107,96 @@ class MortalityBarchart extends Section {
     const {
       geo,
       path_infant_mortality_under_one,
-      path_infant_mortality_one_to_ten
+      path_infant_mortality_one_to_ten,
+      path_infant_mortality_one_to_ten_data_plot,
+      path_infant_mortality_under_one_data_plot
     } = this.context.data;
 
     const locale = i18n.language;
     const classSvg = "infant-mortality-one-to-ten";
+
+    let availableYears = [];
+    const filteredData =
+      selected === "infancy"
+        ? path_infant_mortality_under_one_data_plot
+        : path_infant_mortality_one_to_ten_data_plot;
+
+    let data = filteredData.data
+      // .filter(item => item["ID Age Range"] === 5 && item["ID Sex"] === 1)
+      .reduce((all, d, i) => {
+        all.push({
+          ...d,
+          Rate: d["Rate Comuna"],
+          Geo: "Comuna",
+          "ID Geography": `comuna_${d["ID Comuna"]}`,
+          Geography: d["Comuna"]
+        });
+        if (availableYears.indexOf(d["ID Year"]) === -1) {
+          all.push({
+            ...d,
+            Rate: d["Rate Region"],
+            Geo: "Region",
+            "ID Geography": `region_${d["ID Region"]}`,
+            Geography: d["Region"]
+          });
+          all.push({
+            ...d,
+            Rate: d["Rate Country"],
+            Geo: "Country",
+            "ID Geography": `country_${d["ID Country"]}`,
+            Geography: "Chile"
+          });
+          availableYears.push(d["ID Year"]);
+        }
+        // all.push({ ...d, Rate: d["Rate Region"], Geo: "Region" });
+        return all;
+      }, []);
+
+    if (geo.type === "country") {
+      availableYears = [];
+      let availableRegions = [];
+      data = filteredData.data.reduce((all, d) => {
+        if (
+          availableRegions.indexOf(`${d["ID Region"]}_${d["ID Year"]}`) === -1
+        ) {
+          availableRegions.push(`${d["ID Region"]}_${d["ID Year"]}`);
+          all.push({
+            Region: d["Region"],
+            "ID Year": d["ID Year"],
+            Rate: d["Rate Region"],
+            Geo: "Region",
+            "ID Geography": `region_${d["ID Region"]}`,
+            Geography: d["Region"]
+          });
+        }
+
+        if (availableYears.indexOf(d["ID Year"]) === -1) {
+          all.push({
+            ...d,
+            Rate: d["Rate Country"],
+            Geo: "Country",
+            "ID Geography": `country_${d["ID Country"]}`,
+            Geography: "Chile"
+          });
+          availableYears.push(d["ID Year"]);
+        }
+
+        return all;
+      }, []);
+    }
+
+    /**selected === "infancy"
+                ? path_infant_mortality_under_one
+                : path_infant_mortality_one_to_ten, */
 
     return (
       <div className={className}>
         <h3 className="chart-title">
           <span>
             {selected === "infancy"
-              ? t("Infant Mortality")
-              : t("Childhood Mortality")}
-            <SourceTooltip cube="mortality_one_to_ten" />
+              ? t("Infant Mortality Rate")
+              : t("Childhood Mortality Rate")}
+            <SourceTooltip cube="mortality_under_one" />
           </span>
           <ExportLink
             path={
@@ -72,41 +207,60 @@ class MortalityBarchart extends Section {
             className={classSvg}
           />
         </h3>
-        <BarChart
+        <LinePlot
           className={classSvg}
           config={{
             height: 400,
-            data:
-              selected === "infancy"
-                ? path_infant_mortality_under_one
-                : path_infant_mortality_one_to_ten,
-            groupBy: ["ID Age Range"],
-            label: d => d["Age Range"],
-            x: "ID Age Range",
-            y:
-              geo.depth === 0
-                ? "Rate Country"
-                : geo.depth === 1
-                  ? "Rate Region"
-                  : "Rate Comuna",
-            time: "ID Year",
+            data,
+            groupBy: ["ID Geography"],
+            label: d => d["Geography"],
+            x: "ID Year",
+            y: "Rate",
             shapeConfig: {
-              // fill: d => COLORS_GENDER[d["ID Sex"]]
+              Line: {
+                strokeLinecap: "round",
+                strokeWidth: d =>
+                  `comuna_${geo.key}` === d["ID Geography"] ||
+                  d["Geo"] === "Country" ||
+                  d["Geo"] === "Region"
+                    ? 5
+                    : 1,
+                stroke: d =>
+                  d["Geo"] === "Country"
+                    ? "#EE293E"
+                    : d["Geo"] === "Region"
+                      ? "#11A29B"
+                      : `comuna_${geo.key}` === d["ID Geography"]
+                        ? "#335CB5"
+                        : "gray"
+              }
+            },
+            tooltipConfig: {
+              title: d => d["Geography"],
+              body: d =>
+                "<div>" +
+                (selected === "infancy"
+                  ? t("Infant Mortality Rate")
+                  : t("Childhood Mortality Rate")) +
+                " " +
+                numeral(d["Rate"], locale).format("0.00") +
+                "<div>" +
+                d["ID Year"] +
+                "</div>" +
+                "</div>"
             },
             legendConfig: {
-              label: false,
-              shapeConfig: {
-                //backgroundImage: d =>
-                //  "/images/legend/sex/" + d["ID Sex"] + ".png"
-              }
+              label: false
+            },
+            legendTooltip: {
+              title: d =>
+                d["Geography"] instanceof Array
+                  ? geo.type === "country"
+                    ? t("Regions")
+                    : t("Other Comunas")
+                  : d["Geography"],
+              body: "<div></div>"
             }
-          }}
-          dataFormat={data => {
-            const processData = data.data.reduce((all, d) => {
-              all.push(d);
-              return all;
-            }, []);
-            return data.data;
           }}
         />
         <div className="btn-group">

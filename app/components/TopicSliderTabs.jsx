@@ -17,15 +17,20 @@ class TopicSliderTabs extends Component {
 
     return (
       <ul id={name + "-sections"} className="topic-tab-list u-list-reset">
-        {sections && sections.map((s, ix) => (
-          <li className="topic-tab-item">
-            <button
-              className={ "topic-tab-button font-sm subhead u-btn-reset" + (selectedSection == s ? " is-active" : "") }
-              onClick={() => goTo(s.slides[0].ix)}>
-              {s.name}
-            </button>
-          </li>
-        ))}
+        {sections &&
+          sections.map((s, ix) => (
+            <li className="topic-tab-item" key={ix}>
+              <button
+                className={
+                  "topic-tab-button font-sm subhead u-btn-reset" +
+                  (selectedSection == s ? " is-active" : "")
+                }
+                onClick={() => goTo(s.slides[0].ix)}
+              >
+                {s.name}
+              </button>
+            </li>
+          ))}
       </ul>
     );
   }

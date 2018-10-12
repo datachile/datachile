@@ -1,6 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import groupBy from "lodash/groupBy";
 import maxBy from "lodash/maxBy";
 import sortBy from "lodash/sortBy";

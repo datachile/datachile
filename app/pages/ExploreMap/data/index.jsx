@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { CanonProfile, Canon } from "datawheel-canon";
+import { CanonProfile } from "@datawheel/canon-core";
 
 import { translate } from "react-i18next";
 import isEqual from "lodash/isEqual";
@@ -25,7 +25,7 @@ class ExploreMap extends React.Component {
     const { data, t, status } = this.props;
 
     return (
-      <Canon>
+      <div>
         <CanonProfile id="explore-map" data={data} topics={[]}>
           <div className="explore-map-page">
             <Nav title="" typeTitle="" type={false} dark={true} />
@@ -46,7 +46,7 @@ class ExploreMap extends React.Component {
             </div>
           </div>
         </CanonProfile>
-      </Canon>
+      </div>
     );
   }
 }

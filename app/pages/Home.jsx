@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Canon, CanonProfile } from "datawheel-canon";
+import { CanonProfile } from "@datawheel/canon-core";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
 import Helmet from "react-helmet";
@@ -101,7 +101,10 @@ class Home extends Component {
     const { profiles, header, focus } = this.state;
 
     const changeProfileHeader = p => {
-      this.setState({ header: p });
+      // don't update if active button is clicked
+      if (p.slug !== header.slug) {
+        this.setState({ header: p });
+      }
     };
 
     const {
@@ -112,7 +115,7 @@ class Home extends Component {
     } = this.props.data;
 
     return (
-      <Canon>
+      <div>
         <CanonProfile id="home" data={this.props.data} topics={[]}>
           <Helmet>
             <meta
@@ -450,7 +453,7 @@ class Home extends Component {
             </div>
           </div>
         </CanonProfile>
-      </Canon>
+      </div>
     );
   }
 }

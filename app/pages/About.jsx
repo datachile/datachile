@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router";
-import { CanonProfile } from "datawheel-canon";
+import { CanonProfile } from "@datawheel/canon-core";
 import Helmet from "react-helmet";
 
 import Documentation from "components/Documentation";

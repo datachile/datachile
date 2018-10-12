@@ -1,5 +1,5 @@
 import React from "react";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
 import { mean } from "d3-array";
 import { translate } from "react-i18next";

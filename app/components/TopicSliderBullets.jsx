@@ -13,7 +13,10 @@ class TopicSliderBullets extends Component {
         <ul id={name + "-bullets"}>
           {slides &&
             slides.map((m, ix) => (
-              <li className={"bullet " + (selected == ix ? "selected" : "")}>
+              <li
+                className={"bullet " + (selected == ix ? "selected" : "")}
+                key={ix}
+              >
                 <a onClick={() => goTo(ix)} />
               </li>
             ))}

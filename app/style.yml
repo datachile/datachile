@@ -18,18 +18,35 @@ accent-dark: "#3669B5"
 # section theming
 color-geo: "#3277DC"
 color-geo-light: "#4985DE"
+color-geo-dark: "#3669B5"
+color-geo-dark-2: "#234475"
+
 color-countries: "#1ECBD8"
 color-countries-light: "#34D0DB"
+color-countries-dark: "#25A9B3"
+color-countries-dark-2: "#14595E"
+
 color-institutions: "#7777ED"
 color-institutions-light: "#8484EE"
+color-institutions-dark: "#6969C7"
+color-institutions-dark-2: "#444480"
+
 color-careers: "#CCA566"
 color-careers-light: "#D1AE75"
+color-careers-dark: "#A68A5E"
+color-careers-dark-2: "#594B33"
+
 color-products: "#FF7474"
 color-products-light: "#FF8181"
+color-products-dark: "#CC6464"
+color-products-dark-2: "#733838"
+
 color-industries: "#2A8090"
 color-industries-light: "#3F8C9B"
+color-industries-dark: "#265F69"
+color-industries-dark-2: "#183C42"
 
-border-radius: "6px"
+border-radius: "4px"
 
 section-article-large: "600px"
 section-article-small: "300px"

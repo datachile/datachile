@@ -25,6 +25,33 @@
       margin-left: auto;
       margin-right: auto;
 
+      /* hidden elements during transition */
+      &.is-transitioning {
+        /* illustration and hotspots hidden */
+        & .dynamic-home-illustration-img,
+        & .dynamic-home-hotspots {
+          opacity: 0;
+        }
+        /* illustration will float up from underneath */
+        & .dynamic-home-illustration-img {
+          transform: translateY(5px);
+        }
+      }
+
+      /* transition in */
+      &:not(.is-transitioning) {
+        & .dynamic-home-illustration-img,
+        & .dynamic-home-hotspots {
+          transition:
+            opacity 0.5s ease-out,
+            transform 0.5s ease-out;
+        }
+        /* hotspots fade in more gradually */
+        & .dynamic-home-hotspots {
+          transition-duration: 1s;
+        }
+      }
+
       & .dynamic-home-hotspots,
       & .dynamic-home-illustration {
         /* sizing */

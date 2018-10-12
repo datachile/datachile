@@ -1,6 +1,6 @@
 import React from "react";
 import orderBy from "lodash/orderBy";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import { Treemap } from "d3plus-react";
 import { translate } from "react-i18next";
 
