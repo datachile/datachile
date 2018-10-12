@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
+import Slider, { SlickGoTo } from "react-slick";
 import { translate } from "react-i18next";
 import "./TopicSlider.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
@@ -16,8 +16,7 @@ const settings = {
   slidesToScroll: 1,
   arrows: false,
   lazyLoad: false,
-  adaptiveHeight: true,
-  fade: true
+  adaptiveHeight: true
 };
 
 class TopicSlider extends Component {
@@ -30,30 +29,20 @@ class TopicSlider extends Component {
 
   afterChange = (d, id, currentSlide) => {
     sendEvent(id, d);
-
     if (this.state.chartsRendered) return;
-
-    //disgusting code, just to trigger the new slide's charts render (d3plus).
-    // if (!__SERVER__) {
-    //   setTimeout(() => {
-    //     window.dispatchEvent(new Event("scroll"));
-    //     //window.dispatchEvent(new Event("resize"));
-    //     this.state.chartsRendered = true;
-    //   }, 100);
-    // }
   };
 
+  componentWillReceiveProps(nextProps) {
+    this.slider.slickGoTo(nextProps.selected, true);
+  }
   render() {
-    const { children, selected, goTo, id } = this.props;
-
-    // const finalSettings = { ...settings, draggable: isMobile() };
+    const { children, id } = this.props;
 
     return (
       <div className="topic-slider">
         <Slider
+          ref={slider => (this.slider = slider)}
           {...settings}
-          ref="topicSlider"
-          slickGoTo={selected}
           afterChange={(a, currentSlide) => {
             this.afterChange(a, id, currentSlide);
           }}

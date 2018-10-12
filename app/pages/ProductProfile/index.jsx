@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonProfile, Canon } from "datawheel-canon";
+import { SectionColumns, CanonProfile } from "@datawheel/canon-core";
 import { translate } from "react-i18next";
 import orderBy from "lodash/orderBy";
 import Helmet from "react-helmet";
@@ -440,7 +440,7 @@ class ProductProfile extends Component {
     }
 
     return (
-      <Canon>
+      <div>
         <CanonProfile data={this.props.data} topics={topics}>
           <Helmet>
             <title>{title}</title>
@@ -654,7 +654,7 @@ class ProductProfile extends Component {
             </div>
           </div>
         </CanonProfile>
-      </Canon>
+      </div>
     );
   }
 }

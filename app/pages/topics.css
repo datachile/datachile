@@ -49,27 +49,29 @@
     border-top-left-radius: 0;
   }
 
+  /* account for slides with no subtabs */
+  & .topic-slider:first-child {
+    @add-mixin from-md {
+      margin-top: 0.75rem;
+    }
+  }
+
   /* default / hidden state */
-  & .slick-slide {
+  & .slick-slide:not(.slick-active) {
+    /* prevent click & hover events */
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -1;
+    /* transitions */
+    opacity: 0;
     transform: translateY(10px);
+  }
+
+  /* active state; transition in */
+  & .slick-slide.slick-active {
     transition:
-      opacity 0.1s ease-in,
-      transform 0.1s ease-in !important;
-
-    /* prevent click & hover events on inactive slides */
-    &:not(.slick-active) {
-      visibility: hidden;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* active state */
-    &.slick-active {
-      transform: none;
-      transition:
-        opacity 0.2s ease-in 0.1s,
-        transform 0.2s ease-in 0.1s !important;
-    }
+      opacity 0.2s ease-in,
+      transform 0.2s ease-in;
   }
 }
 

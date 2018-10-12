@@ -1,5 +1,5 @@
 import React from "react";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
 
@@ -9,7 +9,7 @@ import mondrianClient, {
   simpleGeoChartNeed
 } from "helpers/MondrianClient";
 
-import { COLORS_GENDER } from "helpers/colors";
+import { COLORS_SCALE_INFANT_MORTALITY } from "helpers/colors";
 
 import TreemapStacked from "components/TreemapStacked";
 
@@ -56,6 +56,7 @@ class MortalityTreemap extends Section {
 
   render() {
     const { t, className, i18n } = this.props;
+
     const path = this.context.data.path_infant_mortality_one_to_ten;
 
     const oneToTenData = this.context.data
@@ -66,11 +67,11 @@ class MortalityTreemap extends Section {
       data: underOneData.data
         .filter(d => [2, 3].includes(d["ID Age Range"]))
         .map(d => {
-          return { ...d, "ID Age Bucket": 1, "Age Bucket": t("Infancy") };
+          return { ...d, "ID Age Group": 1, "Age Group": t("Infancy") };
         })
         .concat(
           oneToTenData.data.map(d => {
-            return { ...d, "ID Age Bucket": 2, "Age Bucket": t("Childhood") };
+            return { ...d, "ID Age Group": 2, "Age Group": t("Childhood") };
           })
         )
     };
@@ -91,18 +92,19 @@ class MortalityTreemap extends Section {
         </h3>
         <TreemapStacked
           depth={true}
+          forceUpdate={true}
           path={processData}
           msrName="Number of deaths"
-          drilldowns={["Age Bucket", "Age Range"]}
+          drilldowns={["Age Group", "Age Range"]}
           className={classSvg}
           config={{
             label: d => d["Age Range"],
+            // width,
             legendConfig: {
-              label: false,
-              shapeConfig: {
-                //backgroundImage: d =>
-                //  "/images/legend/sex/" + d["ID Sex"] + ".png"
-              }
+              label: false
+            },
+            shapeConfig: {
+              fill: d => COLORS_SCALE_INFANT_MORTALITY[d["ID Age Group"]]
             }
           }}
         />

@@ -1,6 +1,6 @@
 import React from "react";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import sumBy from "lodash/sumBy";
 
 import FeaturedDatum from "components/FeaturedDatum";

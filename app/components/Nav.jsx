@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { connect } from "react-redux";
-import { SubNav } from "datawheel-canon";
+import { SubNav } from "@datawheel/canon-core";
 import { select } from "d3-selection";
 
 import NavFixed from "components/NavFixed";

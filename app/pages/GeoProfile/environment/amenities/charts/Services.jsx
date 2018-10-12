@@ -1,7 +1,7 @@
 import React from "react";
 import keyBy from "lodash/keyBy";
 import sumBy from "lodash/sumBy";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import { translate } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";

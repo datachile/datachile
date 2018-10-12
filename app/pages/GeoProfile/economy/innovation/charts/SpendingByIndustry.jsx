@@ -9,7 +9,7 @@ import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 import { translate } from "react-i18next";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";

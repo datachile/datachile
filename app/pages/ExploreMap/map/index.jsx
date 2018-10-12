@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { browserHistory } from "react-router";
-import { CanonProfile, Canon } from "datawheel-canon";
+import { CanonProfile } from "@datawheel/canon-core";
 
 import { translate } from "react-i18next";
 import isEqual from "lodash/isEqual";
@@ -128,7 +128,7 @@ class ExploreMap extends React.Component {
     const loading = loadingValue > 0 || this.state.cutHash ? "loading" : "";
 
     return (
-      <Canon>
+      <div>
         <CanonProfile id="explore-map" data={data} topics={[]}>
           <IntroSlider />
           <div className="explore-map-page">
@@ -160,7 +160,7 @@ class ExploreMap extends React.Component {
             </div>
           </div>
         </CanonProfile>
-      </Canon>
+      </div>
     );
   }
 }

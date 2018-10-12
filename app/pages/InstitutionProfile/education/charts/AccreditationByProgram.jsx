@@ -1,7 +1,7 @@
 import React from "react";
 import filter from "lodash/filter";
 import orderBy from "lodash/orderBy";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Section } from "datawheel-canon";
+import { Section } from "@datawheel/canon-core";
 import { translate } from "react-i18next";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
