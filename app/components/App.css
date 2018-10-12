@@ -287,6 +287,9 @@ profile theming
       background-color: var(--color-$(theme)-light) !important;
     }
   }
+  .background-$(theme)-dark-2 {
+    background-color: var(--color-$(theme)-dark-2) !important;
+  }
 }
 
 .color-gray {
