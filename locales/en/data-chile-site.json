@@ -1208,6 +1208,10 @@
     "r&d": "<p>In {{year}}, {{industry.name}} exports was {{industry.exports}}, with {{industry.share}} of total. Moreover, spending level of {{industry.caption}} in Research & Development was {{industry.spending}}.</p>",
     "warning": "Showing data about {{caption}}"
   },
+  "infancy": {
+    "about_childhood": "The childhood mortality rate is the number of deaths between one year to ten years of age occurring among the live births in a given geographical area during a given year, per 10,000 live births occurring among the population of the given geographical area during the same year.",
+    "about_infancy": "The infant mortality rate is the number of deaths under one year of age occurring among the live births in a given geographical area during a given year, per 1,000 live births occurring among the population of the given geographical area during the same year."
+  },
   "is": "is",
   "loading": {
     "description": "Loading {{progress}} of {{total}} datasets",

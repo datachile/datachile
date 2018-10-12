@@ -2,6 +2,7 @@ import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { BarChart, LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
+import { numeral, getNumberFromTotalString } from "helpers/formatters";
 
 import mondrianClient, {
   geoCut,
@@ -114,7 +115,7 @@ class MortalityBarchart extends Section {
     const locale = i18n.language;
     const classSvg = "infant-mortality-one-to-ten";
 
-    const availableYears = [];
+    let availableYears = [];
     const filteredData =
       selected === "infancy"
         ? path_infant_mortality_under_one_data_plot
@@ -135,14 +136,14 @@ class MortalityBarchart extends Section {
             ...d,
             Rate: d["Rate Region"],
             Geo: "Region",
-            "ID Geography": `region_${d["ID Comuna"]}`,
+            "ID Geography": `region_${d["ID Region"]}`,
             Geography: d["Region"]
           });
           all.push({
             ...d,
             Rate: d["Rate Country"],
             Geo: "Country",
-            "ID Geography": `country_${d["ID Comuna"]}`,
+            "ID Geography": `country_${d["ID Country"]}`,
             Geography: "Chile"
           });
           availableYears.push(d["ID Year"]);
@@ -151,7 +152,39 @@ class MortalityBarchart extends Section {
         return all;
       }, []);
 
-    console.log(data);
+    if (geo.type === "country") {
+      availableYears = [];
+      let availableRegions = [];
+      data = filteredData.data.reduce((all, d) => {
+        if (
+          availableRegions.indexOf(`${d["ID Region"]}_${d["ID Year"]}`) === -1
+        ) {
+          availableRegions.push(`${d["ID Region"]}_${d["ID Year"]}`);
+          all.push({
+            Region: d["Region"],
+            "ID Year": d["ID Year"],
+            Rate: d["Rate Region"],
+            Geo: "Region",
+            "ID Geography": `region_${d["ID Region"]}`,
+            Geography: d["Region"]
+          });
+        }
+
+        if (availableYears.indexOf(d["ID Year"]) === -1) {
+          all.push({
+            ...d,
+            Rate: d["Rate Country"],
+            Geo: "Country",
+            "ID Geography": `country_${d["ID Country"]}`,
+            Geography: "Chile"
+          });
+          availableYears.push(d["ID Year"]);
+        }
+
+        return all;
+      }, []);
+    }
+
     /**selected === "infancy"
                 ? path_infant_mortality_under_one
                 : path_infant_mortality_one_to_ten, */
@@ -202,8 +235,31 @@ class MortalityBarchart extends Section {
                         : "gray"
               }
             },
+            tooltipConfig: {
+              title: d => d["Geography"],
+              body: d =>
+                "<div>" +
+                (selected === "infancy"
+                  ? t("Infant Mortality Rate")
+                  : t("Childhood Mortality Rate")) +
+                " " +
+                numeral(d["Rate"], locale).format("0.00") +
+                "<div>" +
+                d["ID Year"] +
+                "</div>" +
+                "</div>"
+            },
             legendConfig: {
               label: false
+            },
+            legendTooltip: {
+              title: d =>
+                d["Geography"] instanceof Array
+                  ? geo.type === "country"
+                    ? t("Regions")
+                    : t("Other Comunas")
+                  : d["Geography"],
+              body: "<div></div>"
             }
           }}
         />

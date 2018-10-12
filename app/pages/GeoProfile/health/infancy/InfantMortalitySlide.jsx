@@ -61,24 +61,22 @@ class InfantMortalitySlide extends Section {
             <h4 className="topic-slide-context-subhead">
               {t("About the Infant Mortality Rate")}
             </h4>
-            <p className="font-xxs">
-              The infant mortality rate is the number of deaths under one year
-              of age occurring among the live births in a given geographical
-              area during a given year, per 1,000 live births occurring among
-              the population of the given geographical area during the same
-              year.
-            </p>
+            <p
+              className="font-xxs"
+              dangerouslySetInnerHTML={{
+                __html: t("infancy.about_infancy")
+              }}
+            />
 
             <h4 className="topic-slide-context-subhead">
               {t("About the Childhood Mortality Rate")}
             </h4>
-            <p className="font-xxs">
-              The childhood mortality rate is the number of deaths between one
-              year to ten years of age occurring among the live births in a
-              given geographical area during a given year, per 10,000 live
-              births occurring among the population of the given geographical
-              area during the same year.
-            </p>
+            <p
+              className="font-xxs"
+              dangerouslySetInnerHTML={{
+                __html: t("infancy.about_childhood")
+              }}
+            />
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
