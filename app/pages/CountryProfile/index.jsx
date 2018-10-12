@@ -423,7 +423,7 @@ class CountryProfile extends Component {
                 <Nav
                   title={titleTruncated ? titleTruncated : obj.caption}
                   fullTitle={obj.caption}
-                  typeTitle={obj.parent ? t("Country") : t("Zone")}
+                  typeTitle={obj.parent ? t("Country") : t("Continent")}
                   type={"countries"}
                   exploreLink={"/explore/countries"}
                   ancestor={obj.parent ? obj.parent.caption : ""}
