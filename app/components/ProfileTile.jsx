@@ -9,7 +9,7 @@ import "./ProfileTile.css";
 
 class ProfileTile extends Component {
   render() {
-    const { t, item, img, filterUrl, className } = this.props;
+    const { t, item, filterUrl, className } = this.props;
 
     const theme =
       ["national", "region", "comuna"].indexOf(item.type) > -1
@@ -29,7 +29,14 @@ class ProfileTile extends Component {
     let type = i18nType[item.type] ? i18nType[item.type] : item.type;
 
     // continents aren't countries
-    const continents = [ "Africa", "Oceania", "Americas", "Asia", "Europe", "Other" ]
+    const continents = [
+      "Africa",
+      "Oceania",
+      "Americas",
+      "Asia",
+      "Europe",
+      "Other"
+    ];
     if (continents.indexOf(item.name) > -1) {
       type = t("Continent");
     }
@@ -42,11 +49,14 @@ class ProfileTile extends Component {
       labelId = `${item.name}-label`;
     }
 
-
     // console.log(item);
 
     return (
-      <div className={`tile ${className ? className : ""} border-${theme}-hover background-${theme}-dark-2`}>
+      <div
+        className={`tile ${
+          className ? className : ""
+        } border-${theme}-hover background-${theme}-dark-2`}
+      >
         <Link
           className="cover-link"
           key={item.name + "anchor"}
@@ -83,13 +93,20 @@ class ProfileTile extends Component {
             className={`filter-button font-xxs background-${theme}-hover`}
           >
             <span className="filter-button-icon pt-icon pt-icon-multi-select" />
-            <span className="filter-button-text inverted-link">  {t("related profiles")}</span>
+            <span className="filter-button-text inverted-link">
+              {" "}
+               {t("related profiles")}
+            </span>
           </Link>
         )}
 
         {/* background image */}
         <LazyLoad offset={100}>
-          <img className="tile-img" src={item.img} alt="" />
+          <img
+            className="tile-img"
+            src={item.img.replace("profile-bg", "thumbs")}
+            alt=""
+          />
         </LazyLoad>
       </div>
     );
