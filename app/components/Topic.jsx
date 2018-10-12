@@ -42,8 +42,8 @@ class Topic extends Component {
     });
 
     return (
-      <div className="topic-block">
-        <span id={id} className="topic-anchor-link" />
+      <div id={id} className="topic-block">
+        <span className="topic-anchor-link" />
         <div className="topic-header">
           <h2 className="topic-heading font-xl">{name}</h2>
           {slider && (
