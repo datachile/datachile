@@ -92,7 +92,7 @@ class InfantMortalitySlide extends Section {
                 ),
                 locale
               ).format("0.00")}
-              title={t("Mortality Rate Female")}
+              title={t("Childhood Mortality Rate Female")}
               subtitle={
                 t("1 to 4 years") + " " + sources.mortality_one_to_ten.year
               }
@@ -110,7 +110,7 @@ class InfantMortalitySlide extends Section {
                 ),
                 locale
               ).format("0.00")}
-              title={t("Mortality Rate Male")}
+              title={t("Childhood Mortality Rate Male")}
               subtitle={
                 t("1 to 4 years") + " " + sources.mortality_one_to_ten.year
               }
