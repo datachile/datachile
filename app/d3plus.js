@@ -60,6 +60,9 @@ export default {
       strokeLinecap: "round"
     }
   },
+  timelineConfig: {
+    buttonBehavior: "buttons"
+  },
   // legend defaults
   legendConfig: {
     // labels are directly in the shape
