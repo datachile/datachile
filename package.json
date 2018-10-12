@@ -32,6 +32,7 @@
     "pluralize": "^3.1.0",
     "react-csv": "^1.0.12",
     "react-image-fallback": "^7.0.1",
+    "react-lazyload": "^2.3.0",
     "react-slick": "^0.23.1",
     "react-table": "^6.7.6",
     "shiitake": "^2.2.1",
