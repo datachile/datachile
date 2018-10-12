@@ -7,6 +7,7 @@ import Search from "components/Search";
 import SvgImage from "components/SvgImage";
 
 import "./NavFixed.css";
+import { AnchorLink } from "@datawheel/canon-core";
 
 class NavFixed extends React.Component {
   state = { visible: false, active: "about", search_visible: false };
@@ -87,18 +88,18 @@ class NavFixed extends React.Component {
               topics.length > 0 && (
                 <div className="topics">
                   {topics.map(topic => (
-                    <a
+                    <AnchorLink
                       key={topic.slug}
                       className={`topic-link subhead font-xxs ${
                         active == topic.slug ? " active" : ""
                       }`}
-                      href={`#${topic.slug}`}
+                      to={topic.slug}
                     >
                       <SvgImage
                         src={`/images/profile-icon/icon-${topic.slug}.svg`}
                       />
                       {topic.title}
-                    </a>
+                    </AnchorLink>
                   ))}
                 </div>
               )}

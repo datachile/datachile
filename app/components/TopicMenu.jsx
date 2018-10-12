@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import SvgImage from "components/SvgImage";
 import "./TopicMenu.css";
 
+import { AnchorLink } from "@datawheel/canon-core";
+
 class TopicMenu extends Component {
   render() {
     const { topics } = this.props;
@@ -11,10 +13,14 @@ class TopicMenu extends Component {
     return (
       <div id="topic-profile-menu" className="topic-menu">
         {topics.map(topic => (
-          <a key={topic.slug} className="topic-link subhead font-xxs" href={`#${topic.slug}`}>
+          <AnchorLink
+            className="topic-link subhead font-xxs"
+            to={topic.slug}
+            key={topic.slug}
+          >
             <SvgImage src={`/images/profile-icon/icon-${topic.slug}.svg`} />
             <span>{topic.title}</span>
-          </a>
+          </AnchorLink>
         ))}
       </div>
     );
