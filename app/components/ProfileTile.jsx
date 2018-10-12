@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LazyLoad from "react-lazyload";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { shortenProfileName } from "helpers/formatters";
@@ -87,7 +88,9 @@ class ProfileTile extends Component {
         )}
 
         {/* background image */}
-        <img className="tile-img" src={item.img} alt="" />
+        <LazyLoad offset={100}>
+          <img className="tile-img" src={item.img} alt="" />
+        </LazyLoad>
       </div>
     );
   }
