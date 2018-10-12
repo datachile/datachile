@@ -1,13 +1,9 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
+import { numeral } from "helpers/formatters";
 
-import mondrianClient, {
-  geoCut,
-  simpleDatumNeed,
-  simpleGeoChartNeed
-} from "helpers/MondrianClient";
+import { simpleDatumNeed } from "helpers/MondrianClient";
 
 import { COLORS_SCALE_INFANT_MORTALITY } from "helpers/colors";
 
@@ -86,7 +82,7 @@ class MortalityTreemap extends Section {
         <h3 className="chart-title">
           <span>
             {t("Infant & Childhood Mortality")}
-            <SourceTooltip cube="disabilities" />
+            <SourceTooltip cube="mortality_under_one" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
@@ -102,6 +98,18 @@ class MortalityTreemap extends Section {
             // width,
             legendConfig: {
               label: false
+            },
+            tooltipConfig: {
+              title: d => d["Age Range"],
+              body: d =>
+                "<div>" +
+                `${numeral(d["Number of deaths"], locale).format("0,0")} ${t(
+                  "deaths"
+                )}` +
+                "</div>"
+            },
+            legendTooltip: {
+              title: d => d["Age Group"]
             },
             shapeConfig: {
               fill: d => COLORS_SCALE_INFANT_MORTALITY[d["ID Age Group"]]

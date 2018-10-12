@@ -196,7 +196,7 @@ class MortalityBarchart extends Section {
             {selected === "infancy"
               ? t("Infant Mortality Rate")
               : t("Childhood Mortality Rate")}
-            <SourceTooltip cube="mortality_one_to_ten" />
+            <SourceTooltip cube="mortality_under_one" />
           </span>
           <ExportLink
             path={

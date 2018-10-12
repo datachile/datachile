@@ -93,9 +93,9 @@ class InfantMortalitySlide extends Section {
                 locale
               ).format("0.00")}
               title={t("Childhood Mortality Rate Female")}
-              subtitle={
-                t("1 to 4 years") + " " + sources.mortality_one_to_ten.year
-              }
+              subtitle={`${t("1 to 4 Years")} ${t("in")} ${
+                sources.mortality_one_to_ten.year
+              }`}
             />
             <FeaturedDatum
               className="l-1-3"
@@ -111,9 +111,9 @@ class InfantMortalitySlide extends Section {
                 locale
               ).format("0.00")}
               title={t("Childhood Mortality Rate Male")}
-              subtitle={
-                t("1 to 4 years") + " " + sources.mortality_one_to_ten.year
-              }
+              subtitle={`${t("1 to 4 Years")} ${t("in")} ${
+                sources.mortality_one_to_ten.year
+              }`}
             />
           </div>
         </div>
