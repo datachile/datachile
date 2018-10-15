@@ -661,45 +661,17 @@ D3plus overrides
 /* style timeline */
 .d3plus-viz-timeline {
 
-  /* main horizontal bar line */
-  & .bar {
-    stroke: var(--gray);
-    opacity: 0.75;
-  }
-
-  /* vertical ticks */
-  & .ticks {
-    opacity: 0.75;
-
-    & .d3plus-Rect {
-      stroke: none;
-      fill: var(--gray);
-    }
-  }
-
-  /* labels */
-  & text {
-    fill: var(--white);
-  }
-
-  /* active tick */
+  /* enhance active tick handle */
   & .handle {
-    /* increase click target */
-    width: 10px;
+    /* fudge handle into position */
     transform: translateX(-2px); /* offset width */
     /* theming */
-    fill: var(--accent-light);
     rx: 4px;
     ry: 4px;
     /* transitions */
     will-change: x;
     transition: x 0.333s ease-out;
   }
-}
-
-/* hide tick lines */
-.ticks .d3plus-Line-shape {
-  display: none;
 }
 
 /* make room for the 1px axis bar */
