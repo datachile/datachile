@@ -26,7 +26,7 @@ class CustomMap extends React.Component {
 
   render() {
     const { t, path, msrName, className, locale, router } = this.props;
-    console.log(geoMillerRaw);
+    // console.log(geoMillerRaw);
 
     return this.state.show ? (
       <div className="geomap">
