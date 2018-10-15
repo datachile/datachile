@@ -2,6 +2,8 @@ import React from "react";
 import { translate } from "react-i18next";
 import { Geomap } from "d3plus-react";
 import NoDataAvailable from "components/NoDataAvailable";
+import { geoProjection } from "d3-geo";
+import { geoMillerRaw } from "d3-geo-projection";
 
 import { COLORS_SCALE_EXPORTS, COLORS_SCALE_IMPORTS } from "helpers/colors";
 import styles from "style.yml";
@@ -24,6 +26,7 @@ class CustomMap extends React.Component {
 
   render() {
     const { t, path, msrName, className, locale, router } = this.props;
+    console.log(geoMillerRaw);
 
     return this.state.show ? (
       <div className="geomap">
@@ -31,6 +34,7 @@ class CustomMap extends React.Component {
           config={{
             height: 400,
             padding: 3,
+            projection: geoProjection(geoMillerRaw),
             data: path,
             tiles: false,
             fitObject: "/geo/countries.json",
