@@ -10,12 +10,6 @@ import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 
 class PopulationProjection extends Section {
-  constructor(props) {
-    super(props);
-    this.state = {
-      minValue: 99999999
-    };
-  }
   static need = [
     simpleGeoDatumNeed(
       "datum_population_projection",
@@ -63,11 +57,6 @@ class PopulationProjection extends Section {
         <LinePlot
           className={classSvg}
           config={{
-            width:
-              typeof window !== "undefined" &&
-              document.querySelector("." + classSvg)
-                ? document.querySelector("." + classSvg).clientWidth
-                : undefined,
             height: 400,
             data: path,
             x: "Year",
@@ -85,18 +74,17 @@ class PopulationProjection extends Section {
               }
             ],
             xConfig: {
-              tickSize: 0,
               title: false
             },
             yConfig: {
-              title: t("Population"),
-              tickFormat: tick => numeral(tick, locale).format("0.[0] a")
+              title: t("Population")
+              // tickFormat: tick => numeral(tick, locale).format("0.[0] a")
             },
             tooltipConfig: {
               title: d => d["Year"],
               body: d => numeral(d["Population"], locale).format("0")
             },
-            padding: 3,
+            // padding: 3,
             shapeConfig: {
               Line: {
                 strokeWidth: 2

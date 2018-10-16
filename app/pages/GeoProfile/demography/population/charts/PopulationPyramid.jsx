@@ -66,11 +66,6 @@ class PopulationPyramid extends Section {
         <BarChart
           className={classSvg}
           config={{
-            width:
-              typeof window !== "undefined" &&
-              document.querySelector("." + classSvg)
-                ? document.querySelector("." + classSvg).clientWidth
-                : undefined,
             height: 400,
             data: path,
             groupBy: "ID Sex",

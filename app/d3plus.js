@@ -15,16 +15,16 @@ const axisConfig = {
       fontColor: styles["light-1"],
       fontFamily: () => "Roboto Condensed",
       fontMax: 18,
-      fontSize: () => 12,
+      // fontSize: () => 12,
       fontWeight: 300
     },
     stroke: styles.white
   },
-  tickSize: 0, // death to ticks
+  // tickSize: 0, // death to ticks
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
     fontColor: styles["light-1"],
-    fontSize: 12
+    // fontSize: 12
     //fontWeight: 600,
     // textTransform: "uppercase"
   }
@@ -35,14 +35,14 @@ export default {
   shapeConfig: {
     fontColor: styles["near-black"],
     fontFamily: "Roboto Condensed",
-    fontSize: 12,
+    // fontSize: 12,
     fontWeight: 300,
     // textarea label defaults
     labelConfig: {
       fontFamily: () => "Roboto Condensed",
       fontWeight: 300,
       padding: 12,
-      fontSize: 12,
+      // fontSize: 12,
       fontMax: 18
     },
     // stacked area
