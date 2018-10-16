@@ -1,7 +1,7 @@
-version: '3'
+version: "3"
 services:
   db:
-    image: 'postgres:9.6'
+    image: "postgres:9.6"
     volumes:
       - "db-data:/var/lib/postgresql/data"
       - ./dockerfiles/postgresql.conf:/etc/postgresql.conf
@@ -10,7 +10,7 @@ services:
     command: postgres -c config_file=/etc/postgresql.conf
 
   datachile-mondrian:
-    image: 'datachile-mondrian:latest'
+    image: "datachile-mondrian:latest"
     environment:
       - APP_HOME=/datachile/
       - MONDRIAN_REST_CONF=/datachile-mondrian.yaml
@@ -40,8 +40,8 @@ services:
       - ROOT=/datachile
       - CANON_CONST_API=https://chilecube.datawheel.us/
       - CANON_GOOGLE_ANALYTICS=UA-109603240-1
-      - CANON_LANGUAGES=es
-      - CANON_LANGUAGES_DEFAULT=en
+      - CANON_LANGUAGES=es,en
+      - CANON_LANGUAGE_DEFAULT=es
       - APP_HOME=/datachile
       - VIRTUAL_HOST=datachile.io,en.datachile.io,es.datachile.io,www.datachile.io
       - LETSENCRYPT_HOST=datachile.io,en.datachile.io,es.datachile.io,www.datachile.io
@@ -60,8 +60,8 @@ services:
     environment:
       - VIRTUAL_HOST=docs.datachile.io
       - HTTPS_METHOD=nohttps
-#      - LETSENCRYPT_HOST=docs.datachile.io
-#      - LETSENCRYPT_EMAIL=datachile@datawheel.us
+    #      - LETSENCRYPT_HOST=docs.datachile.io
+    #      - LETSENCRYPT_EMAIL=datachile@datawheel.us
     volumes:
       - /home/manuel/datachile-docs:/datachile-docs
       - /home/manuel/datachile/dockerfiles/docs.datachile.io-nginx-static.conf:/etc/nginx/conf.d/default.conf
@@ -100,7 +100,6 @@ services:
       - ./dockerfiles/nginx/certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
-
   nginx-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-letsencrypt
@@ -120,5 +119,4 @@ volumes:
     driver: local-persist
     driver_opts:
       mountpoint: /data/postgres
-  canon-static:
-    
+  ? canon-static
