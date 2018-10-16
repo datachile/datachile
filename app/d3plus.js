@@ -20,7 +20,7 @@ const axisConfig = {
     },
     stroke: styles.white
   },
-  // tickSize: 0, // death to ticks
+  tickSize: 0, // death to ticks
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
     fontColor: styles["light-1"]
