@@ -23,9 +23,9 @@ const axisConfig = {
   // tickSize: 0, // death to ticks
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
-    fontColor: styles["light-1"],
+    fontColor: styles["light-1"]
     // fontSize: 12
-    //fontWeight: 600,
+    // fontWeight: 600,
     // textTransform: "uppercase"
   }
 };
