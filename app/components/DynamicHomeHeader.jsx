@@ -277,7 +277,7 @@ class DynamicHomeHeader extends Component {
                     d =>
                       "<div class='tooltip-data-value color-" +
                       that.props.header.slug +
-                      "'>" +
+                      "-light'>" +
                       d.value +
                       "</div><div class='tooltip-data-title'>" +
                       d.title +

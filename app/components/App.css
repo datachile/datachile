@@ -255,6 +255,9 @@ profile theming
   .color-$(theme) {
     color: var(--color-$(theme)) !important;
   }
+  .color-$(theme)-light {
+    color: var(--color-$(theme)-light) !important;
+  }
   .color-$(theme)-hover {
     &:hover, &:focus {
       color: var(--color-$(theme)) !important;
@@ -323,11 +326,16 @@ components
   @add-mixin font-xs;
   text-align: center;
   padding: 10px;
-  background: var(--white);
+  background-color: var(--dark-2);
   border: 1px solid var(--dark-3);
-  color: var(--dark-3);
+  color: var(--light-1);
 }
 
+/* override inline style */
+.d3plus-tooltip {
+  background-color: var(--dark-2) !important;
+  color: var(--light-1) !important;
+}
 .d3plus-tooltip-body {
   @add-mixin body-font-bold;
   min-width: 160px;
@@ -340,13 +348,15 @@ components
 
 /* blueprint override */
 .pt-popover-arrow path {
-  fill: var(--white) !important;
+  fill: var(--dark-2) !important;
 }
 .pt-popover-content {
   @add-mixin font-xs;
   @add-mixin body-font;
-  background: var(--white) !important;
-  color: var(--dark-3) !important;
+  /* blueprint overrides */
+  background-color: var(--dark-2) !important;
+  color: var(--light-1) !important;
+  padding: 1rem !important;
 
   /* reset margin */
   & *:last-child {
@@ -633,15 +643,6 @@ D3plus overrides
     &[fill="#444444"] {
       fill: var(--dark-3);
     }
-  }
-}
-
-/* override default theming for tooltips */
-.d3plus-tooltip {
-  color: var(--dark-1);
-
-  & a {
-    color: var(--accent);
   }
 }
 

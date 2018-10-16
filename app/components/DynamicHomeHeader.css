@@ -117,7 +117,7 @@
 
     /* tooltip styling */
     & .tooltip-home {
-      background-color: var(--white);
+      background-color: var(--dark-2);
       width: 150px;
       height: auto;
       opacity: 0;
@@ -139,7 +139,7 @@
         & .tooltip-data-title {
           @add-mixin font-xxs;
           @add-mixin heading-font;
-          color: var(--gray);
+          color: var(--light-1);
         }
         & .tooltip-data-value {
           @add-mixin font-sm;
