@@ -2,6 +2,7 @@ import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { translate } from "react-i18next";
 import { BarChart } from "d3plus-react";
+import { Switch } from "@blueprintjs/core";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
@@ -15,7 +16,8 @@ import NoDataAvailable from "components/NoDataAvailable";
 export default translate()(
   class MigrationBySex extends Section {
     state = {
-      chart: true
+      chart: true,
+      stacked: true
     };
 
     static need = [
@@ -62,8 +64,16 @@ export default translate()(
       }
     };
 
+    // to stack, or not to stack
+    toggleStacked() {
+      this.setState({
+        stacked: !this.state.stacked
+      });
+    }
+
     render() {
       const { t, className, i18n } = this.props;
+      const { stacked } = this.state;
 
       const path = this.context.data.path_country_migration_by_sex;
       const locale = i18n.language;
@@ -90,7 +100,7 @@ export default translate()(
                 label: d => d["Sex"],
                 x: "Year",
                 y: "Number of visas",
-                stacked: true, // TODO: toggle me
+                stacked: stacked,
                 shapeConfig: {
                   fill: d => COLORS_GENDER[d["ID Sex"]]
                 },
@@ -123,6 +133,12 @@ export default translate()(
           ) : (
             <NoDataAvailable />
           )}
+          {/* stacked bar toggle */}
+          <Switch
+            onClick={this.toggleStacked.bind(this)}
+            label={t("Stacked bars")}
+            defaultChecked={stacked}
+          />
         </div>
       );
     }
