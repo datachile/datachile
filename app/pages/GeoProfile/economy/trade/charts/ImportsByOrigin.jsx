@@ -46,6 +46,7 @@ class ImportsByOrigin extends Section {
           msrName="CIF US"
           drilldowns={["Continent", "Country"]}
           className={classSvg}
+          defaultChart={"stacked"}
           config={{
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])

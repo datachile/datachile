@@ -77,6 +77,7 @@ class ExportsByProduct extends Section {
             msrName="FOB US"
             drilldowns={["HS0", "HS2"]}
             className={classSvg}
+            defaultChart={"stacked"}
             config={{
               label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               total: d => d["FOB US"],

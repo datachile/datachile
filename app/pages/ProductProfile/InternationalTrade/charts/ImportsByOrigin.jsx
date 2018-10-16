@@ -74,6 +74,7 @@ class ImportsByDestination extends Section {
           msrName="CIF US"
           drilldowns={["Continent", "Country"]}
           className={classSvg}
+          defaultChart={"stacked"}
           config={{
             label: d =>
               d["Country"] instanceof Array ? d["Continent"] : d["Country"],

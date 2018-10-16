@@ -77,6 +77,7 @@ class ImportsByProduct extends Section {
             msrName="CIF US"
             drilldowns={["HS0", "HS2"]}
             className={classSvg}
+            defaultChart={"stacked"}
             config={{
               label: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               sum: d => d["CIF US"],

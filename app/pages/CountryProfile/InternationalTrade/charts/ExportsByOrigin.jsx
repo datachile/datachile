@@ -77,6 +77,7 @@ class ExportsByOrigin extends Section {
             msrName="FOB US"
             drilldowns={["Region", "Comuna"]}
             className={classSvg}
+            defaultChart={"stacked"}
             config={{
               total: d => d["FOB US"],
               totalConfig: {

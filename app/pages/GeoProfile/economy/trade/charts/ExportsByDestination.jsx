@@ -46,6 +46,7 @@ class ExportsByDestination extends Section {
           msrName="FOB US"
           drilldowns={["Continent", "Country"]}
           className={classSvg}
+          defaultChart={"stacked"}
           config={{
             total: d => d["FOB US"],
             totalConfig: {

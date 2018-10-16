@@ -77,6 +77,7 @@ class ImportsByDestination extends Section {
             msrName="CIF US"
             drilldowns={["Region", "Comuna"]}
             className={classSvg}
+            defaultChart={"stacked"}
             config={{
               label: d => d["Comuna"],
               total: d => d["CIF US"],

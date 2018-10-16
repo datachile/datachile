@@ -45,6 +45,7 @@ class ImportsByProduct extends Section {
           msrName="CIF US"
           drilldowns={["HS0", "HS2"]}
           className={classSvg}
+          defaultChart={"stacked"}
           config={{
             height: 400,
             data: path,
