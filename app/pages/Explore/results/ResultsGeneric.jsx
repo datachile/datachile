@@ -73,7 +73,7 @@ class TemplateResults extends React.PureComponent {
           <ResultItem
             key={c.key}
             item={{
-              img: getImageFromMember(entity, c.key),
+              img: getImageFromMember(entity, profile.key, c.key),
               key: c.key,
               name: c.caption,
               type: entity,

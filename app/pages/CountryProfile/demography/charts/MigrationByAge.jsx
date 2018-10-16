@@ -98,7 +98,7 @@ export default translate()(
 									tickFormat: tick => numeral(tick, locale).format("(0a)")
 								},
 								barPadding: 20,
-								groupPadding: 40,
+								groupPadding: 10,
 								tooltipConfig: {
 									title: d => d["Calculated Age Range"],
 									body: d =>

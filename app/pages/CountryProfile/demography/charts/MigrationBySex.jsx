@@ -69,6 +69,8 @@ export default translate()(
       const locale = i18n.language;
       const classSvg = "migration-by-sex";
 
+      // console.log(path); // it's a URL
+
       return (
         <div className={className}>
           <h3 className="chart-title">
@@ -86,23 +88,21 @@ export default translate()(
                 data: path,
                 groupBy: "ID Sex",
                 label: d => d["Sex"],
-                time: "ID Year",
-                x: "Sex",
+                x: "Year",
                 y: "Number of visas",
+                stacked: true, // TODO: toggle me
                 shapeConfig: {
                   fill: d => COLORS_GENDER[d["ID Sex"]]
                 },
                 xConfig: {
-                  tickSize: 0,
-                  title: false,
-                  tickFormat: tick => ""
+                  title: false
                 },
                 yConfig: {
                   title: t("Visas"),
                   tickFormat: tick => numeral(tick, locale).format("(0a)")
                 },
-                barPadding: 20,
-                groupPadding: 40,
+                barPadding: 0,
+                groupPadding: 10,
                 tooltipConfig: {
                   title: d => d["Sex"],
                   body: d =>

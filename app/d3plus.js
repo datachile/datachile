@@ -20,7 +20,7 @@ const axisConfig = {
     },
     stroke: styles.white
   },
-  tickSize: 4,
+  tickSize: 0, // death to ticks
   titleConfig: {
     fontFamily: () => "Roboto, sans-serif",
     fontColor: styles["light-1"],
@@ -85,7 +85,26 @@ export default {
     "</div>",
   // timeline defaults
   timelineConfig: {
-    brushing: false
+    brushing: false,
+    // handle
+    handleConfig: {
+      width: 9,
+      fill: styles["accent-light"]
+    },
+    // main horizontal bar line
+    barConfig: {
+      stroke: styles.gray,
+      opacity: 0.75
+    },
+    shapeConfig: {
+      // ticks and/or button bg
+      fill: styles.gray,
+      stroke: "none",
+      // label and/or button text
+      labelConfig: {
+        fontColor: styles.white
+      }
+    }
   },
   // total defaults
   totalConfig: {

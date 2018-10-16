@@ -82,8 +82,8 @@ export default translate()(
                 title: t("Visas"),
                 tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
               },
-              //barPadding: 10,
-              //groupPadding: 20,
+              barPadding: 20,
+              groupPadding: 10,
               tooltipConfig: {
                 title: d => d["Age Range"],
                 body: d =>
