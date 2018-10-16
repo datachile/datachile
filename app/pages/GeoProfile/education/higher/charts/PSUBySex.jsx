@@ -2,6 +2,7 @@ import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
+import { Switch } from "@blueprintjs/core";
 
 import { numeral } from "helpers/formatters";
 
@@ -12,10 +13,21 @@ import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 
 class PSUBySex extends Section {
+  state = {
+    stacked: true
+  };
   static need = [];
+
+  // to stack, or not to stack
+  toggleStacked() {
+    this.setState({
+      stacked: !this.state.stacked
+    });
+  }
 
   render() {
     const { t, className, i18n } = this.props;
+    const { stacked } = this.state;
 
     const locale = i18n.language;
     const classSvg = "psu-by-sex";
@@ -39,11 +51,10 @@ class PSUBySex extends Section {
             data: path,
             groupBy: "id_sex",
             label: d => t(d["sex"]),
-            x: "item",
+            x: "year",
             y: "value",
-            time: "year",
+            stacked: stacked,
             shapeConfig: {
-              width: 40,
               fill: d => COLORS_GENDER[d["id_sex"]],
               label: d => d["sex"]
             },
@@ -59,6 +70,8 @@ class PSUBySex extends Section {
                 backgroundImage: d => "/images/legend/sex/" + d.id_sex + ".png"
               }
             },
+            barPadding: 0,
+            groupPadding: 10,
             tooltipConfig: {
               body: d => {
                 return (
@@ -80,6 +93,12 @@ class PSUBySex extends Section {
             }, []);
             return reduced;
           }}
+        />
+        {/* stacked bar toggle */}
+        <Switch
+          onClick={this.toggleStacked.bind(this)}
+          label={t("Stacked bars")}
+          defaultChecked={stacked}
         />
       </div>
     );
