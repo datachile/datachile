@@ -235,7 +235,7 @@ class MayorResults extends Section {
 					<div>
 						<Switch
 							onClick={this.toggleElectors}
-							labelElement={<strong>{t("Total Electors")}</strong>}
+							label={t("Total Electors")}
 							defaultChecked={this.state.non_electors}
 						/>
 					</div>

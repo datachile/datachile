@@ -216,7 +216,7 @@ class PresidentialTreemap extends Section {
             <Switch
               key={`${uuid}_switch`}
               onClick={this.toggleElectors}
-              labelElement={<strong>{t("Total Electors")}</strong>}
+              label={t("Total Electors")}
               defaultChecked={this.state.non_electors}
             />
           ]

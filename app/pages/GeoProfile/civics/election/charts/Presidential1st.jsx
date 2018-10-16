@@ -200,7 +200,7 @@ class Presidential1st extends Section {
             />,
             <Switch
               onClick={this.toggleElectors}
-              labelElement={<strong>{t("Total Electors")}</strong>}
+              label={t("Total Electors")}
               defaultChecked={this.state.non_electors}
             />
           ]
