@@ -6,7 +6,6 @@ import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { employmentBySexColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
 
-import Select from "components/Select";
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 // import CustomStackedArea from "components/CustomStackedArea";
@@ -196,7 +195,10 @@ class EmploymentBySex extends Section {
                 })
               }
             >
-              {variation.title}
+              <span className="btn-icon">
+                <img src={`/images/legend/sex/${variation.id + 1}.png`} alt=""/>
+              </span>
+              <span className="btn-text">{variation.title}</span>
             </button>
           ))}
         </div>

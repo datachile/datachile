@@ -561,7 +561,6 @@ table.tooltip-table {
     flex: 1 0 auto;
     /* btn overrides */
     padding: 0.75em 0;
-    color: var(--light-2);
 
     /* set background color */
     &, &:hover, &:focus {
@@ -579,6 +578,11 @@ table.tooltip-table {
     /* inactive state */
     &.is-inactive {
       color: color(var(--white) a(0.5));
+
+      /* used for gender icons */
+      & img {
+        opacity: 0.5;
+      }
 
       &:hover, &:focus {
         color: var(--accent-light);
