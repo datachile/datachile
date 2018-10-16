@@ -829,6 +829,10 @@ class GeoProfile extends Component {
                 id="education"
                 sections={[
                   {
+                    name: t("Enrollment"),
+                    slides: [t("By School Type")]
+                  },
+                  {
                     name: t("Performance"),
                     slides: [
                       t("Performance Evaluation"),
@@ -843,13 +847,17 @@ class GeoProfile extends Component {
                       t("PSU By Sex"),
                       t("PSU & NEM")
                     ]
-                  },
-                  {
-                    name: t("Enrollment"),
-                    slides: [t("By School Type")]
                   }
                 ]}
               >
+                <div className="topic-slide">
+                  <EnrollmentSlide>
+                    <SectionColumns>
+                      <CollegeByEnrollment className="lost-1-2" />
+                      <SNEDSchoolByClusters className="lost-1-2" />
+                    </SectionColumns>
+                  </EnrollmentSlide>
+                </div>
                 <div className="topic-slide">
                   <SNEDSlide>
                     <SectionColumns>
@@ -885,14 +893,6 @@ class GeoProfile extends Component {
                       <PSUNEMScatter className="lost-1" />
                     </SectionColumns>
                   </PSUNEMSlide>
-                </div>
-                <div className="topic-slide">
-                  <EnrollmentSlide>
-                    <SectionColumns>
-                      <CollegeByEnrollment className="lost-1-2" />
-                      <SNEDSchoolByClusters className="lost-1-2" />
-                    </SectionColumns>
-                  </EnrollmentSlide>
                 </div>
               </Topic>
 
