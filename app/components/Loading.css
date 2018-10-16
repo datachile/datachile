@@ -17,7 +17,7 @@
   /* fudge logo into place on tall screens */
   @media (min-height: 500px) {
     margin-top: 6rem;
-    & .loading-gobierno-img {
+    & .loading-gobierno-label {
       margin-top: 10rem;
     }
   }
@@ -56,11 +56,13 @@
   }
 
   /* Gobierno */
+  & .loading-gobierno-label {
+    margin-top: 3rem; /* small screens only */
+  }
   & .loading-gobierno-img {
     display: block;
     width: 10.5rem;
     max-width: 100%;
-    margin-top: 3rem; /* small screens only */
   }
 
   /* built by Datawheel */

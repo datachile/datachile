@@ -28,10 +28,15 @@ class Loading extends Component {
 
         {/* needs moar logos */}
         <div className="loading-gobierno">
+          <p className="loading-gobierno-label font-xs">{t("loading.by")}</p>
+          <span className="u-visually-hidden">
+            Gobierno de Chile: Ministerio Secretaría General de la Presidencia;
+            División de Gobierno Digital
+          </span>
           <img
             className="loading-gobierno-img"
             src="/images/logos/gobierno-2-logo-fill.svg"
-            alt="Gobierno de Chile: Ministerio Secretaría General de la Presidencia; División de Gobierno Digital"
+            alt=""
           />
         </div>
 
