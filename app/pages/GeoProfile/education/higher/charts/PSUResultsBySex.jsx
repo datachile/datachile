@@ -2,6 +2,7 @@ import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
 import { translate } from "react-i18next";
+import { Switch } from "@blueprintjs/core";
 
 import { COLORS_GENDER } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -12,6 +13,9 @@ import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 
 class PSUResultsBySex extends Section {
+  state = {
+    stacked: true
+  };
   static need = [
     simpleGeoChartNeed(
       "path_higher_psu_by_sex",
@@ -24,8 +28,16 @@ class PSUResultsBySex extends Section {
     )
   ];
 
+  // to stack, or not to stack
+  toggleStacked() {
+    this.setState({
+      stacked: !this.state.stacked
+    });
+  }
+
   render() {
     const { t, className, i18n } = this.props;
+    const { stacked } = this.state;
 
     const locale = i18n.language;
     const classSvg = "psu-results-by-sex";
@@ -49,9 +61,9 @@ class PSUResultsBySex extends Section {
             data: path,
             groupBy: "id_sex",
             label: d => t(d["sex"]),
-            x: "item",
+            x: "year",
             y: "value",
-            time: "year",
+            stacked: stacked,
             shapeConfig: {
               fill: d => COLORS_GENDER[d["id_sex"]],
               label: d => d["sex"]
@@ -62,6 +74,8 @@ class PSUResultsBySex extends Section {
             yConfig: {
               title: "PSU"
             },
+            barPadding: 0,
+            groupPadding: 10,
             legendConfig: {
               label: false,
               shapeConfig: {
@@ -97,6 +111,12 @@ class PSUResultsBySex extends Section {
             }, []);
             return reduced;
           }}
+        />
+        {/* stacked bar toggle */}
+        <Switch
+          onClick={this.toggleStacked.bind(this)}
+          label={t("Stacked bars")}
+          defaultChecked={stacked}
         />
       </div>
     );

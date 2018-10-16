@@ -240,7 +240,7 @@ class CongresspersonResults extends Section {
             geo.depth > 0 && (
               <Switch
                 onClick={this.toggleElectors}
-                labelElement={<strong>{t("Total Electors")}</strong>}
+                label={t("Total Electors")}
                 defaultChecked={this.state.non_electors}
               />
             )

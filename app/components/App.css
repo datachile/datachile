@@ -387,17 +387,9 @@ table.tooltip-table {
 }
 /* sizing & typography overrides */
 .pt-control.pt-switch {
+  @add-mixin font-xxs; /* label text */
   height: 1em;
   padding-left: 34px;
-
-  /* thanks blueprint */
-  & strong {
-    /* reset typography */
-    @add-mixin body-font;
-    @add-mixin font-xxs;
-    /* reset positioning */
-    @add-mixin absolute-vertical-center;
-  }
 
   /* reset box shadow on switch handle */
   & .pt-control-indicator:before {
