@@ -63,7 +63,7 @@ class ExportsByProduct extends Section {
               title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               body: d =>
                 "US " +
-                numeral(d["FOB US"], locale).format("$ (USD 0a)") +
+                numeral(d["FOB US"], locale).format("$ (USD 0.[0]a)") +
                 "<br/><a>" +
                 t("tooltip.to_profile") +
                 "</a>"
@@ -86,7 +86,7 @@ class ExportsByProduct extends Section {
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
             }
           }}
         />

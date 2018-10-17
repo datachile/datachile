@@ -80,14 +80,14 @@ class ImportsByProduct extends Section {
               title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               body: d =>
                 "US " +
-                numeral(d["CIF US"], locale).format("$ (0a)") +
+                numeral(d["CIF US"], locale).format("$ (0.[0]a)") +
                 "<br/><a>" +
                 t("tooltip.to_profile") +
                 "</a>"
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
             }
           }}
           dataFormat={data => data.data}
