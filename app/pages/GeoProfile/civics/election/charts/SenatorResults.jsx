@@ -124,10 +124,7 @@ class SenatorResults extends Section {
                 total: d => (geo.depth > 0 ? d["Votes"] : d["count"]),
                 totalConfig: {
                   text: d =>
-                    "Total: " +
-                    numeral(getNumberFromTotalString(d.text), locale).format(
-                      "(0,0)"
-                    ) +
+                    d.text +
                     " " +
                     (geo.depth > 0
                       ? !this.state.non_electors || this.state.maxYear < 2016

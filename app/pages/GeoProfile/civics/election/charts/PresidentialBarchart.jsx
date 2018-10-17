@@ -152,13 +152,7 @@ class PresidentialBarchart extends Section {
                   : 0
                 : d["Votes"],
             totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "(0,0)"
-                ) +
-                " " +
-                t("Votes")
+              text: d => d.text + " " + t("Votes")
             },
             shapeConfig: {
               fill: d =>

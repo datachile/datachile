@@ -147,14 +147,6 @@ import PresidentSlide from "./civics/election/PresidentSlide";
 import MayorResults from "./civics/election/charts/MayorResults";
 import SenatorResults from "./civics/election/charts/SenatorResults";
 
-import Presidential2nd from "./civics/election/charts/Presidential2nd";
-import Presidential1st from "./civics/election/charts/Presidential1st";
-
-import Presidential2ndBar from "./civics/election/charts/Presidential2ndBar";
-import Presidential1stBar from "./civics/election/charts/Presidential1stBar";
-
-import Senado from "./civics/election/charts/Senado";
-
 import CongresspersonResults from "./civics/election/charts/CongresspersonResults";
 
 import ParticipationSlide from "./civics/participation/ParticipationSlide";
@@ -166,8 +158,7 @@ import ParticipationScatter from "./civics/participation/charts/ParticipationSca
 import "../intro.css";
 import "../topics.css";
 import InfantMortalitySlide from "./health/infancy/InfantMortalitySlide";
-import MortalityOneToTen from "./health/infancy/charts/MortalityOneToTen";
-import MortalityUnderOne from "./health/infancy/charts/MortalityUnderOne";
+
 import MortalityTreemap from "./health/infancy/charts/MortalityTreemap";
 import MortalityBarchart from "./health/infancy/charts/MortalityBarchart";
 import PresidentialTreemap from "./civics/election/charts/PresidentialTreemap";
@@ -308,11 +299,6 @@ class GeoProfile extends Component {
     ParticipationSlide,
     MayorResults,
     SenatorResults,
-    Senado,
-    Presidential2nd,
-    Presidential1st,
-    Presidential1stBar,
-    Presidential2ndBar,
 
     PresidentialTreemap,
     PresidentialBarchart,
