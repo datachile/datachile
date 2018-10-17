@@ -3,8 +3,7 @@ import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
 import mondrianClient, {
   simpleGeoChartNeed,
-  setLangCaptions,
-  queryBuilder
+  setLangCaptions
 } from "helpers/MondrianClient";
 import { translate } from "react-i18next";
 
@@ -16,7 +15,6 @@ import { numeral } from "helpers/formatters";
 
 import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
-import NoDataAvailable from "components/NoDataAvailable";
 
 import CustomDialogPSU from "components/CustomDialogPSU";
 
@@ -32,18 +30,7 @@ class PSUDistribution extends Section {
         options: { parents: true, sparse: false, nonempty: false }
       }
     ),
-    /*simpleGeoChartNeed(
-      "path_education_psu_distribution",
-      "psu",
-      ["Number of records"],
-      {
-        drillDowns: [
-          ["Calculated PSU Bucket", "Calculated PSU Bucket", "Bucket"]
-        ],
-        cuts: [`[Date].[Date].[Year].&[${sources.psu.year}]`],
-        options: { parents: true, sparse: false, nonempty: false }
-      }
-    ),*/
+
     (params, store) => {
       const prm = mondrianClient
         .cube("psu")

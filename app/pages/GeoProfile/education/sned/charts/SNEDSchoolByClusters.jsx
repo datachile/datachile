@@ -95,11 +95,7 @@ class SNEDSchoolByClusters extends Section {
             },
             total: d => d["Number of records"],
             totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(getNumberFromTotalString(d.text), locale).format("0") +
-                " " +
-                t("Schools")
+              text: d => d.text + " " + t("Schools")
             },
             yConfig: {
               title: t("US$"),
