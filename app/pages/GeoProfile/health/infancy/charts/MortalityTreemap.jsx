@@ -98,13 +98,13 @@ class MortalityTreemap extends Section {
             label: d => d["Age Range"],
             // width,
             legendConfig: {
-              label: false
+              label: false // TODO: display these labels correctly
             },
             tooltipConfig: {
               title: d => d["Age Range"],
               body: d =>
                 "<div>" +
-                `${numeral(d["Number of deaths"], locale).format("0,0")} ${t(
+                `${numeral(d["Number of deaths"], locale).format("0")} ${t(
                   "deaths"
                 )}` +
                 "</div>"
@@ -114,6 +114,9 @@ class MortalityTreemap extends Section {
             },
             shapeConfig: {
               fill: d => COLORS_SCALE_INFANT_MORTALITY[d["ID Age Group"]]
+            },
+            yConfig: {
+              tickFormat: tick => numeral(tick, locale).format("(0)")
             }
           }}
         />
