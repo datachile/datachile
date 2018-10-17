@@ -106,7 +106,7 @@ class ImportsByDestination extends Section {
                 body: d =>
                   numeral(d["CIF US"], locale).format("(USD 0a)") +
                   " CIF<br/><a>" +
-                  t("tooltip.to_profile") +
+                  t("tooltip.view_profile") +
                   "</a>"
               },
               legendConfig: {

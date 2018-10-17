@@ -82,7 +82,7 @@ class ImportsByProduct extends Section {
                 "US " +
                 numeral(d["CIF US"], locale).format("$ (0.[0]a)") +
                 "<br/><a>" +
-                t("tooltip.to_profile") +
+                t("tooltip.view_profile") +
                 "</a>"
             },
             yConfig: {

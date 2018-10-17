@@ -108,7 +108,7 @@ class ExportsByRegion extends Section {
                 const link =
                   d["ID Comuna"] instanceof Array
                     ? ""
-                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                    : "<br/><a>" + t("tooltip.view_profile") + "</a>";
                 return (
                   "US " + numeral(d["FOB US"], locale).format("(USD 0a)") + link
                 );
@@ -119,7 +119,7 @@ class ExportsByRegion extends Section {
                 return d["Region"];
               },
               body: d => {
-                const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                const link = "<br/><a>" + t("tooltip.view_profile") + "</a>";
                 return (
                   "US " + numeral(d["FOB US"], locale).format("(USD 0a)") + link
                 );

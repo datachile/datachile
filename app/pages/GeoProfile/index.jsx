@@ -652,7 +652,7 @@ class GeoProfile extends Component {
                               "Región " +
                               d.name +
                               "<br/><a>" +
-                              t("tooltip.to_profile") +
+                              t("tooltip.view_profile") +
                               "</a>"
                             );
                           },

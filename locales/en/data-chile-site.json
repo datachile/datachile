@@ -1373,7 +1373,8 @@
   },
   "to access the internet": "to access the internet",
   "tooltip": {
-    "to_profile": "Click to see the full profile"
+    "to_profile": "Click to see the full profile",
+    "view_profile": "View full profile"
   },
   "trade_balance": {
     "cif": "Imports",

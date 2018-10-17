@@ -112,7 +112,7 @@ class InvestmentByLocation extends Section {
                 const link =
                   d["ID Comuna"] instanceof Array
                     ? ""
-                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                    : "<br/><a>" + t("tooltip.view_profile") + "</a>";
                 return (
                   numeral(d["Investment"], locale).format("(USD 0a)") + link
                 );
@@ -123,7 +123,7 @@ class InvestmentByLocation extends Section {
                 return d["Region"];
               },
               body: d => {
-                const link = "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                const link = "<br/><a>" + t("tooltip.view_profile") + "</a>";
                 return (
                   numeral(d["Investment"], locale).format("(USD 0a)") + link
                 );

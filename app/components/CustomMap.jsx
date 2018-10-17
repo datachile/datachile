@@ -80,7 +80,7 @@ class CustomMap extends React.Component {
                 const link =
                   d["ID Country"] instanceof Array
                     ? ""
-                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                    : "<br/><a>" + t("tooltip.view_profile") + "</a>";
                 return numeral(d[msrName], locale).format("(USD 0a)") + link;
               }
             },

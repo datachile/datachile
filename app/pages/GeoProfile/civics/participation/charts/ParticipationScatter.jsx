@@ -157,7 +157,7 @@ class ParticipationScatter extends Section {
                   const link =
                     d["ID Country"] instanceof Array
                       ? ""
-                      : "<a>" + t("tooltip.to_profile") + "</a>";
+                      : "<a>" + t("tooltip.view_profile") + "</a>";
                   return (
                     "<div>" +
                     t("Electors") +

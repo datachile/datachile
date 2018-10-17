@@ -95,7 +95,7 @@ class IndustryBySector extends Section {
                   "</td></tr>";
                 body += "</table>";
                 if (!(d["Level 4"] instanceof Array))
-                  body += "<a>" + t("tooltip.to_profile") + "</a>";
+                  body += "<a>" + t("tooltip.view_profile") + "</a>";
                 return body;
               }
             }

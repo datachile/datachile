@@ -79,7 +79,7 @@ class ExportsByDestination extends Section {
                 const link =
                   d["ID Country"] instanceof Array
                     ? ""
-                    : "<br/><a>" + t("tooltip.to_profile") + "</a>";
+                    : "<br/><a>" + t("tooltip.view_profile") + "</a>";
                 return (
                   "US " + numeral(d["FOB US"], locale).format("$ (0a)") + link
                 );

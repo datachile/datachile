@@ -112,7 +112,7 @@ class ExportsByProduct extends Section {
                 body: d =>
                   numeral(d["FOB US"], locale).format("(USD 0a)") +
                   " FOB<br/><a>" +
-                  t("tooltip.to_profile") +
+                  t("tooltip.view_profile") +
                   "</a>"
               }
             }}

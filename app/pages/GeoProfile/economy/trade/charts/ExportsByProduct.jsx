@@ -65,7 +65,7 @@ class ExportsByProduct extends Section {
                 "US " +
                 numeral(d["FOB US"], locale).format("$ (USD 0.[0]a)") +
                 "<br/><a>" +
-                t("tooltip.to_profile") +
+                t("tooltip.view_profile") +
                 "</a>"
             },
             on: {

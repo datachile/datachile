@@ -88,7 +88,7 @@ class SvgMap extends Component {
             "Comuna " +
               d.attr("name") +
               "<br/><a>" +
-              t("tooltip.to_profile") +
+              t("tooltip.view_profile") +
               "</a>"
           )
           .style("left", coordinates[0] - 80 + "px")
@@ -136,7 +136,7 @@ class SvgMap extends Component {
             "Región " +
               d.attr("name") +
               "<br/><a>" +
-              t("tooltip.to_profile") +
+              t("tooltip.view_profile") +
               "</a>"
           )
           .style("left", coordinates[0] - 80 + "px")

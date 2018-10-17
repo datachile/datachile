@@ -1377,7 +1377,8 @@
   },
   "to access the internet": "para acceder a Internet",
   "tooltip": {
-    "to_profile": "Clic para ver el perfil completo"
+    "to_profile": "Clic para ver el perfil completo",
+    "view_profile": "Ver perfil completo"
   },
   "trade_balance": {
     "cif": "Importaciones",
