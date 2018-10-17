@@ -170,30 +170,9 @@ class PSUDistribution extends Section {
               title: d => d["geo"]
             },
             tooltipConfig: {
-              arrow: " ",
-              arrowStyle: {
-                "background-color": "#F2F2F2"
-              },
-              width: "300px",
-              background: d => {
-                if ("tooltip" in d) return administrationColorScale();
-                else return "#ccc";
-              },
-              title: d => "<div>" + d["Bucket"] + " " + d["geo"] + "</div>",
-              padding: 0,
-              titleStyle: {
-                "background-color": d => {
-                  if ("tooltip" in d) return administrationColorScale();
-                  else return "#ccc";
-                },
-                color: d => {
-                  if ("tooltip" in d)
-                    return colorContrast(administrationColorScale());
-                  else return colorContrast("#ccc");
-                },
-
-                padding: "10px"
-              },
+              title: d =>
+                `<h4 class="tooltip-title">${d["geo"]}</h4>
+                <h5 class="tooltip-subhead">${d["Bucket"]}</h5>`,
               body: d => {
                 let body = "";
                 let n_schools = 0;
@@ -203,21 +182,15 @@ class PSUDistribution extends Section {
                     return d["tooltip"][key];
                   });
 
-                  body =
-                    "<div style='background-color: #f2f2f2; padding: 5px 10px'>" +
-                    t("Schools").toUpperCase() +
-                    "</div>";
+                  body = `<h5>${t("Schools")}</h5><ul class="tooltip-list u-list-reset">`;
 
                   query.forEach(item => {
                     n_schools += 1;
-                    body +=
-                      "<div style='padding: 5px 10px'>" +
-                      item["Institution"] +
-                      "</div>";
+                    body += `<li style='text-transform: capitalize;'>${item["Institution"].toLowerCase()}</li>`
                   });
                 } else {
                   body =
-                    "<div style='padding: 5px 10px'>" +
+                    "<div>" +
                     numeral(d["percentage"], locale).format("0%") +
                     t(" in ") +
                     d.geo +
@@ -233,40 +206,19 @@ class PSUDistribution extends Section {
                 }
 
                 return (
-                  "<div style='overflow: hidden; max-height: 200px'>" +
-                  body +
-                  "</div>" +
-                  (n_schools > 7
-                    ? "<div style='padding: 5px 10px'>...</div>"
-                    : "<div />")
+                  "<div style='overflow: hidden; max-height: 200px'>" + body + "</ul></div>"
                 );
               },
               bodyStyle: {
                 "max-height": "235px",
-                overflow: "hidden",
-                //"text-overflow": "ellipsis",
-                "background-color": "#fff",
-                color: "#333"
+                overflow: "hidden"
               },
               footer: d => {
                 if ("tooltip" in d)
                   return (
-                    "<img style='margin: 0px 0px 0px 7px; height:18px' src='/images/icons/icon-ver-mas.svg' />" +
-                    t("For more details, click here")
+                    `<div class='tooltip-button btn'>${t("See more")}</div>`
                   );
                 else return "<div />";
-              },
-
-              footerStyle: {
-                "background-color": "#F2F2F2",
-                padding: "10px",
-                color: "#555",
-                "text-align": "right",
-                display: "flex",
-                "flex-direction": "row",
-                "justify-items": "center",
-                "margin-left": "auto",
-                "flex-flow": "row-reverse"
               }
             },
             legendConfig: {}

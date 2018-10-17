@@ -210,74 +210,30 @@ class SNEDCompareBySchool extends Section {
               }
             },
             tooltipConfig: {
-              arrow: " ",
-              arrowStyle: {
-                "background-color": "#F2F2F2"
-              },
-              width: "300px",
-              background: d => snedColorScale("sned" + d["ID Stage 1a"]),
               title: d =>
-                "<div>" +
-                "<div>" +
-                t(this.state.selectedObj.subtitle) +
-                " (SIMCE) </div>" +
-                "<div>" +
-                d["interval"] +
-                "</div>" +
-                "</div>",
-              padding: 0,
-              titleStyle: {
-                "background-color": d =>
-                  snedColorScale("sned" + d["ID Stage 1a"]),
-                color: d =>
-                  colorContrast(snedColorScale("sned" + d["ID Stage 1a"])),
-                padding: "10px"
-              },
+                `<h4 class="tooltip-title">
+                  ${t(this.state.selectedObj.subtitle)}
+                  (${d["Stage 1a"]})
+                </h4>
+                <h5 class="tooltip-subhead">${d["interval"]}</h5>`,
               body: d => {
-                let body =
-                  "<div style='background-color: #f2f2f2; padding: 5px 10px'>" +
-                  t("Schools").toUpperCase() +
-                  "</div>";
+                let body = `<h5>${t("Schools")}</h5><ul class="tooltip-list u-list-reset">`;
                 d["Institution"] instanceof Array
                   ? d["Institution"].forEach(item => {
-                      body +=
-                        "<div style='padding: 5px 10px'>" + item + "</div>";
+                      body += `<li style='text-transform: capitalize;'>${item.toLowerCase()}</li>`;
                     })
-                  : (body +=
-                      "<div style='padding: 5px 10px'>" +
-                      d["Institution"] +
-                      "</div>");
+                  : (body += `<li>${d["Institution"]}</li>`);
                 return (
                   "<div style='overflow: hidden; max-height: 200px'>" +
                   body +
-                  "</div>" +
-                  (d["Institution"].length > 7
-                    ? "<div style='padding: 5px 10px'>...</div>"
-                    : "<div />")
+                  "</ul></div>"
                 );
               },
               bodyStyle: {
                 "max-height": "235px",
-                overflow: "hidden",
-                //"text-overflow": "ellipsis",
-                "background-color": "#fff",
-                color: "#333"
+                overflow: "hidden"
               },
-              footer: d =>
-                "<img style='margin: 0px 0px 0px 7px; height:18px' src='/images/icons/icon-ver-mas.svg' />" +
-                t("For more details, click here"),
-
-              footerStyle: {
-                "background-color": "#F2F2F2",
-                padding: "10px",
-                color: "#555",
-                "text-align": "right",
-                display: "flex",
-                "flex-direction": "row",
-                "justify-items": "center",
-                "margin-left": "auto",
-                "flex-flow": "row-reverse"
-              }
+              footer: () => `<div class='tooltip-button btn'>${t("See more")}</div>`
             },
             legendTooltip: {
               title: d => d["Stage 1a"],

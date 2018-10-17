@@ -336,9 +336,14 @@ components
   background-color: var(--dark-2) !important;
   color: var(--light-1) !important;
   padding: 0.75rem !important;
+  z-index: 99; /* above fixed nav, behind drawer nav */
+
+  & .tooltip-title + .tooltip-subhead {
+    margin-top: -0.75rem;
+  }
 }
 .d3plus-tooltip-body {
-  @add-mixin body-font-bold;
+  @add-mixin body-font;
   min-width: 160px;
 
   &, & > * {
@@ -363,6 +368,29 @@ components
   & *:last-child {
     margin-bottom: 0;
   }
+}
+
+.d3plus-tooltip .tooltip-list {
+  margin-top: -1em !important;
+  & li {
+    @add-mixin body-font;
+    color: var(--light-2);
+    display: block;
+    line-height: 2.25;
+    & + li {
+      border-top: 1px solid var(--dark-3);
+    }
+  }
+}
+
+.d3plus-tooltip .tooltip-button {
+  display: block;
+  padding: 0.5em;
+  margin-top: 1em;
+}
+
+.tooltip-ellipsis {
+  color: var(--black);
 }
 
 table.tooltip-table {
