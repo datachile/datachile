@@ -89,7 +89,6 @@ class PSUBySex extends Section {
               });
               return all;
             }, []);
-            console.log(reduced)
             return reduced;
           }}
         />
