@@ -154,20 +154,9 @@ class PresidentialTreemap extends Section {
                 totalConfig: {
                   text:
                     this.state.year < 2016
-                      ? d =>
-                          "Total: " +
-                          numeral(
-                            getNumberFromTotalString(d.text),
-                            locale
-                          ).format("(0,0)") +
-                          " " +
-                          t("Votes")
+                      ? d => d.text + " " + t("Votes")
                       : d =>
-                          "Total: " +
-                          numeral(
-                            getNumberFromTotalString(d.text),
-                            locale
-                          ).format("(0,0)") +
+                          d.text +
                           " " +
                           (this.state.non_electors
                             ? t("Enabled Voters")
@@ -211,7 +200,6 @@ class PresidentialTreemap extends Section {
                 },
                 legend: false
               }}
-
             />,
             <Switch
               key={`${uuid}_switch`}

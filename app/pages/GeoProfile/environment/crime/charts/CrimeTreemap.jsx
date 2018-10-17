@@ -12,10 +12,6 @@ import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 class CrimeTreemap extends Section {
-  state = {
-    show: true
-  };
-
   static need = [
     simpleGeoChartNeed("path_crimes_by_crime", "crimes", ["Cases"], {
       drillDowns: [["Crime", "Crime", "Crime"], ["Date", "Date", "Year"]],
@@ -40,52 +36,42 @@ class CrimeTreemap extends Section {
           <ExportLink path={path} className={classSvg} />
         </h3>
 
-        {this.state.show ? (
-          <TreemapStacked
-            defaultChart="stacked"
-            depth={true}
-            className={classSvg}
-            path={path}
-            msrName="Cases"
-            drilldowns={["Crime Group", "Crime"]}
-            config={{
+        <TreemapStacked
+          defaultChart="stacked"
+          depth={true}
+          className={classSvg}
+          path={path}
+          msrName="Cases"
+          drilldowns={["Crime Group", "Crime"]}
+          config={{
+            shapeConfig: {
+              fill: d => crimesColorScale("CRIME" + d["ID Crime Group"])
+            },
+            tooltipConfig: {
+              title: d => d["Crime"],
+              body: d =>
+                "<div>" +
+                numeral(d["Cases"], locale).format("0,0") +
+                " " +
+                t("complaints") +
+                "<div>"
+            },
+            total: d => d["Cases"],
+            totalConfig: {
+              text: d => `${d.text} ${t("complaints")}`
+            },
+            legendConfig: {
+              label: false,
               shapeConfig: {
-                fill: d => crimesColorScale("CRIME" + d["ID Crime Group"])
-              },
-              tooltipConfig: {
-                title: d => d["Crime"],
-                body: d =>
-                  "<div>" +
-                  numeral(d["Cases"], locale).format("0,0") +
-                  " " +
-                  t("complaints") +
-                  "<div>"
-              },
-              total: d => d["Cases"],
-              totalConfig: {
-                text: d =>
-                  "Total: " +
-                  numeral(getNumberFromTotalString(d.text), locale).format(
-                    "( 0,0 )"
-                  ) +
-                  " " +
-                  t("complaints")
-              },
-              legendConfig: {
-                label: false,
-                shapeConfig: {
-                  backgroundImage: d =>
-                    "/images/legend/crime/" + d["ID Crime Group"] + ".png"
-                }
-              },
-              legendTooltip: {
-                title: d => d["Crime Group"]
+                backgroundImage: d =>
+                  "/images/legend/crime/" + d["ID Crime Group"] + ".png"
               }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+            },
+            legendTooltip: {
+              title: d => d["Crime Group"]
+            }
+          }}
+        />
       </div>
     );
   }

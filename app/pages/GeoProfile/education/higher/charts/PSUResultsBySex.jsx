@@ -1,8 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { BarChart } from "d3plus-react";
+import { LinePlot } from "d3plus-react";
 import { translate } from "react-i18next";
-import { Switch } from "@blueprintjs/core";
 
 import { COLORS_GENDER } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -13,9 +12,6 @@ import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 
 class PSUResultsBySex extends Section {
-  state = {
-    stacked: true
-  };
   static need = [
     simpleGeoChartNeed(
       "path_higher_psu_by_sex",
@@ -28,16 +24,20 @@ class PSUResultsBySex extends Section {
     )
   ];
 
-  // to stack, or not to stack
-  toggleStacked() {
+  state = {
+    selected: "lang"
+  };
+
+  toggleChart(chart) {
     this.setState({
-      stacked: !this.state.stacked
+      selected: chart
     });
   }
 
+  // to stack, or not to stack
   render() {
     const { t, className, i18n } = this.props;
-    const { stacked } = this.state;
+    const { selected } = this.state;
 
     const locale = i18n.language;
     const classSvg = "psu-results-by-sex";
@@ -54,19 +54,27 @@ class PSUResultsBySex extends Section {
           <ExportLink path={path} className={classSvg} />
         </h3>
 
-        <BarChart
+        <LinePlot
           className={classSvg}
+          forceUpdate={true}
           config={{
             height: 400,
             data: path,
-            groupBy: "id_sex",
-            label: d => t(d["sex"]),
-            x: "year",
-            y: "value",
-            stacked: stacked,
+            filter: d =>
+              this.state.selected === "lang"
+                ? d["ID Test"] === 1
+                : d["ID Test"] === 2,
+            groupBy: ["ID Test", "ID Sex"],
+            label: d => t(d["Sex"]),
+            x: "ID Year",
+            y: "AVG Test",
             shapeConfig: {
-              fill: d => COLORS_GENDER[d["id_sex"]],
-              label: d => d["sex"]
+              Line: {
+                stroke: d => COLORS_GENDER[d["ID Sex"]],
+                strokeLinecap: "round",
+                strokeWidth: 5
+              },
+              label: d => d["Sex"]
             },
             xConfig: {
               title: false
@@ -74,50 +82,61 @@ class PSUResultsBySex extends Section {
             yConfig: {
               title: "PSU"
             },
-            barPadding: 0,
             groupPadding: 10,
             legendConfig: {
               label: false,
               shapeConfig: {
-                backgroundImage: d => "/images/legend/sex/" + d.id_sex + ".png"
+                backgroundImage: d =>
+                  "/images/legend/sex/" + d["ID Sex"] + ".png"
               }
             },
             tooltipConfig: {
               body: d =>
-                d.item +
+                d.Test +
                 ": " +
-                numeral(d.value, locale).format("0,0.[0]") +
+                numeral(d["AVG Test"], locale).format("0,0.[0]") +
                 " " +
                 t("Points")
             }
           }}
           dataFormat={data => {
-            const reduced = data.data.reduce((all, item) => {
+            const reduced = data.data.reduce((all, d) => {
               all.push({
-                value: item["Avg language test"],
-                item: t("Language_PSU"),
-                sex: item["Sex"],
-                id_sex: item["ID Sex"],
-                year: item["Year"]
+                ...d,
+                "AVG Test": d["Avg language test"],
+                Test: t("Language_PSU"),
+                "ID Test": 1
               });
+
               all.push({
-                value: item["Avg math test"],
-                item: t("Math"),
-                sex: item["Sex"],
-                id_sex: item["ID Sex"],
-                year: item["Year"]
+                ...d,
+                "AVG Test": d["Avg math test"],
+                Test: t("Math"),
+                "ID Test": 2
               });
               return all;
             }, []);
             return reduced;
           }}
         />
-        {/* stacked bar toggle */}
-        <Switch
-          onClick={this.toggleStacked.bind(this)}
-          label={t("Stacked bars")}
-          defaultChecked={stacked}
-        />
+        <div className="btn-group">
+          <button
+            className={`btn font-xxs ${
+              selected === "math" ? "is-active" : "is-inactive"
+            }`}
+            onClick={() => this.toggleChart("math")}
+          >
+            <span className="btn-text">{t("Math")}</span>
+          </button>
+          <button
+            className={`btn font-xxs ${
+              selected === "lang" ? "is-active" : "is-inactive"
+            }`}
+            onClick={() => this.toggleChart("lang")}
+          >
+            <span className="btn-text">{t("Language_PSU")}</span>
+          </button>
+        </div>
       </div>
     );
   }

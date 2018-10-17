@@ -74,11 +74,7 @@ class CollegeByEnrollment extends Section {
             time: "ID Year",
             total: d => d["Number of records"],
             totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(d.text.split(": ")[1], locale).format("(0,0)") +
-                " " +
-                t("Students")
+              text: d => d.text + " " + t("Students")
             },
             shapeConfig: {
               fill: d => institutionsColorScale(d["ID Administration"])

@@ -81,13 +81,7 @@ class PopulationPyramid extends Section {
             timeFilter: d => d.Year === "2018",
             total: d => Math.abs(d["Population"]),
             totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "0,0"
-                ) +
-                " " +
-                t("people")
+              text: d => d.text + " " + t("people")
             },
             yConfig: {
               title: t("Age Range"),

@@ -50,11 +50,7 @@ class ExportsByDestination extends Section {
           config={{
             total: d => d["FOB US"],
             totalConfig: {
-              text: d =>
-                "Total: US " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00]a)"
-                )
+              text: d => "Total: US $ " + d.text.split(": ")[1]
             },
             shapeConfig: {
               fill: d => continentColorScale("c" + d["ID Continent"])
@@ -98,7 +94,7 @@ class ExportsByDestination extends Section {
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
             }
           }}
         />

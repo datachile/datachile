@@ -51,11 +51,7 @@ class ImportsByProduct extends Section {
             data: path,
             total: d => d["CIF US"],
             totalConfig: {
-              text: d =>
-                "Total: US " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00]a)"
-                )
+              text: d => "Total: US $ " + d.text.split(": ")[1]
             },
             legendConfig: {
               label: false,
@@ -84,14 +80,14 @@ class ImportsByProduct extends Section {
               title: d => (d["HS2"] instanceof Array ? d["HS0"] : d["HS2"]),
               body: d =>
                 "US " +
-                numeral(d["CIF US"], locale).format("$ (0a)") +
+                numeral(d["CIF US"], locale).format("$ (0.[0]a)") +
                 "<br/><a>" +
                 t("tooltip.to_profile") +
                 "</a>"
             },
             yConfig: {
               title: t("US$"),
-              tickFormat: tick => numeral(tick, locale).format("(0a)")
+              tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
             }
           }}
           dataFormat={data => data.data}
