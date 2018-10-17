@@ -51,11 +51,7 @@ class ImportsByProduct extends Section {
             data: path,
             total: d => d["CIF US"],
             totalConfig: {
-              text: d =>
-                "Total: US " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00]a)"
-                )
+              text: d => "Total: US $ " + d.text.split(": ")[1]
             },
             legendConfig: {
               label: false,

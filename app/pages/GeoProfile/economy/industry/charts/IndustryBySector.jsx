@@ -54,13 +54,8 @@ class IndustryBySector extends Section {
 						sum: d => d["Output"],
 						total: d => d["Output"],
 						totalConfig: {
-							text: d =>
-								"Total: " +
-								numeral(
-									getNumberFromTotalString(d.text),
-									locale
-								).format("($0.[0]a)")
-						},
+              text: d => "Total: CLP $ " + d.text.split(": ")[1]
+            },
 						time: "ID Year",
 						shapeConfig: {
 							fill: d => industriesColorScale(d["ID Level 1"])

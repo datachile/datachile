@@ -82,11 +82,7 @@ class ExportsByProduct extends Section {
             },
             total: d => d["FOB US"],
             totalConfig: {
-              text: d =>
-                "Total: US " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "($0,.[00]a)"
-                )
+              text: d => "Total: US $ " + d.text.split(": ")[1]
             },
             yConfig: {
               title: t("US$"),

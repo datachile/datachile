@@ -127,7 +127,6 @@ class EmploymentBySex extends Section {
             }
           }}
           dataFormat={data => {
-
             const dataBySex = data.data.reduce(
               (all, item) => {
                 all[item["ID Sex"]].push(item);
