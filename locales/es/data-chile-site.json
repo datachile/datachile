@@ -295,7 +295,7 @@
   "Linear": "Lineal",
   "LoadingComponent": {
     "description": "Cargando {{progress}} de {{total}} series de datos",
-    "developed": "Diseñado y desarrollado por ",
+    "developed": "Diseñado y construido por ",
     "title": "Por favor espere"
   },
   "Log": "Log",
@@ -601,6 +601,7 @@
   "Votes": "Votos",
   "Wages": "Salarios",
   "Wages by Program": "Salarios por programa",
+  "With support from": "Con el apoyo de",
   "Year": "Año",
   "Yearly growth in deaths by ": "Tasa crecimiento anual de muertes por ",
   "Years of Studies": "Años de estudio",

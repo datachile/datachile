@@ -82,13 +82,15 @@ class Footer extends Component {
     ];
 
     // footer logos
-    const partnerLogos = [
+    const gobiernoLogos = [
       {
         id: 1,
         img: "gobierno-2",
         alt: "Gobierno de Chile: Ministerio Secretaría General de la Presidencia; División de Gobierno Digital",
         link: "http://www.economia.gob.cl"
-      },
+      }
+    ];
+    const partnerLogos = [
       {
         id: 2,
         img: "antofagasta",
@@ -159,6 +161,18 @@ class Footer extends Component {
     ));
 
     // loop through footer logo arrays and create corresponding list items
+    const gobiernoLogoItems = gobiernoLogos.map(gobiernoLogo => (
+      <li className="footer-logo-item" key={gobiernoLogo.id}>
+        <a className="footer-logo-link" href={gobiernoLogo.link}>
+          <span className="u-visually-hidden">{gobiernoLogo.alt}</span>
+          <img
+            className="footer-logo-img"
+            src={`/images/logos/footer/${gobiernoLogo.img}-logo-white.svg`}
+            alt={gobiernoLogo.alt}
+          />
+        </a>
+      </li>
+    ));
     const partnerLogoItems = partnerLogos.map(partnerLogo => (
       <li className="footer-logo-item" key={partnerLogo.id}>
         <a className="footer-logo-link" href={partnerLogo.link}>
@@ -199,16 +213,23 @@ class Footer extends Component {
 
           {/* logos */}
           <div className="footer-logo-container">
+            {/* gobierno */}
+            <div className="footer-gobierno-logo-container">
+              <h2 className="footer-logo-heading font-md">{t("loading.by")}</h2>
+              <ul className="footer-logo-list u-list-reset">
+                { gobiernoLogoItems }
+              </ul>
+            </div>
             {/* partners */}
             <div className="footer-partner-logo-container">
-              <h2 className="footer-logo-heading font-md">{t("Supported by")}</h2>
+              <h2 className="footer-logo-heading font-md">{t("With support from")}</h2>
               <ul className="footer-logo-list u-list-reset">
                 { partnerLogoItems }
               </ul>
             </div>
             {/* datawheel */}
             <div className="footer-dev-logo-container">
-              <h2 className="footer-logo-heading font-md">{t("Built by")}</h2>
+              <h2 className="footer-logo-heading font-md">{t("LoadingComponent.developed")}</h2>
               <ul className="footer-logo-list u-list-reset">
                 { devLogoItems }
               </ul>

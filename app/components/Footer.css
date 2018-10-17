@@ -10,15 +10,30 @@
 
   /* main container sizing & layout */
   & .footer-main-container {
-    /* align children */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     /* line up content edges */
     padding: var(--gutter);
 
     /* side by side layout on all but tiny screens */
+    @add-mixin from-xx {
+      & .footer-logo-item {
+        padding-right: 2rem;
+      }
+      & .footer-partner-logo-container .footer-logo-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        & .footer-logo-item {
+          flex: 1 0 50%;
+        }
+      }
+    }
+
     @add-mixin from-xs {
+      /* align children */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      /* give the container more breathing room */
       padding-top: 3rem;
       padding-bottom: 3rem;
 
@@ -26,9 +41,89 @@
       & .footer-nav {
         width: 14rem;
       }
+
       /* stretchy logo column */
       & .footer-logo-container {
         width: calc(100% - 14rem - var(--gutter));
+        /* max-width: 66rem; */
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap
+      }
+    }
+
+    /* bring dev logo up on small/medium screens */
+    @media (min-width: 480px) and (max-width: 1199px) {
+      /* move project by / built by to top row, equal width */
+      & .footer-gobierno-logo-container,
+      & .footer-dev-logo-container {
+        flex: 1 0 50%;
+
+        /* line up with nav heading */
+        & .footer-logo-heading {
+          margin-top: 0;
+        }
+      }
+      /* partner logos fill up 100% of the space */
+      & .footer-partner-logo-container {
+        order: 1;
+        width: 100%;
+      }
+    }
+
+    /* enough room for four columns of partner logos */
+    @mixin from-sm {
+      /* stupidly long selector required due to specificity from nesting */
+      & .footer-partner-logo-container .footer-logo-list .footer-logo-item {
+        flex: 1 0 25%;
+      }
+    }
+
+    /* enough room for everything to be in its own column */
+    @add-mixin from-lg {
+      /* scale down links because reasons */
+      & .footer-nav-list {
+        @add-mixin font-xs;
+
+        & .footer-nav-item {
+          line-height: 1;
+          margin-top: -0.25em;
+        }
+      }
+
+      /* prevent wrapping; size columns */
+      & .footer-logo-container {
+        flex-wrap: nowrap;
+
+        /* 1st & last column sizing */
+        & .footer-gobierno-logo-container,
+        & .footer-dev-logo-container {
+          flex: 1 1 20%;
+        }
+        /* middle column sizing */
+        & .footer-partner-logo-container {
+          flex: 6 6 60%;
+          /* spacing */
+          margin-left: 3rem;
+          margin-right: 1rem;
+          /* center with middle column */
+          text-align: center;
+        }
+        /* right aligned dev label */
+        & .footer-dev-logo-container {
+          text-align: right;
+
+          /* reset padding to align with right content edge */
+          & .footer-logo-item {
+            padding-right: 0;
+          }
+        }
+      }
+      /* align & scale down headings */
+      & .footer-nav-heading,
+      & .footer-logo-heading {
+        @add-mixin font-sm;
+        margin-top: 0;
       }
     }
   }
@@ -65,78 +160,30 @@
   /* adjust logo heading spacing */
   & .footer-logo-heading {
     margin-bottom: 0.75em; /* override blueprint */
+    margin-top: 2rem; /* space out headings */
 
-    /* space out heading from links on tiny screens */
-    @add-mixin for-xs {
-      margin-top: 2rem;
-    }
     @add-mixin from-md {
       margin-bottom: 0.25em;
     }
   }
 
-  /* put logos into columns */
-  & .footer-logo-list {
-    column-width: 8rem;
-    column-gap: 4rem;
-
-    /* scale down logos on small screens */
-    @add-mixin for-lg {
-      column-width: 6rem;
-      column-gap: 3rem;
-    }
-    @add-mixin for-md {
-      column-width: 5rem;
-      column-gap: 2rem;
-    }
-    @add-mixin for-sm {
-      column-count: 3;
-      column-gap: 15%;
-    }
-
-    /* space out logos */
-    & .footer-logo-item {
-      margin-bottom: 0.5rem;
-
-      /* tweakpoint to center all but the first logo within columns on big screens */
-      /* WARNING: extremely fudged */
-      @media (min-width: 1371px) {
-        &:not(:first-of-type) {
-          text-align: center;
-        }
-      }
-    }
-
-    /* logo interactions */
-    & .footer-logo-link {
-      opacity: 0.75;
-
-      &:hover, &:focus {
-        opacity: 1;
-      }
-    }
+  /* space out logos */
+  & .footer-logo-item {
+    margin-bottom: 0.5rem;
   }
 
-  /* space out logo blocks */
-  & .footer-partner-logo-container {
-    margin-bottom: 2rem;
-
-    /* space it out moar */
-    @add-mixin from-xs {
-      margin-bottom: 3rem;
-    }
-    @add-mixin from-md {
-      margin-bottom: 4rem;
-    }
+  /* limit logo size */
+  & .footer-logo-img {
+    width: 8rem;
+    max-width: 100%;
   }
 
-  /* tweakpoint to move datawheel logo top right on giant screens */
-  @add-mixin from-xxl {
-    & .footer-dev-logo-container {
-      position: absolute;
-      top: 0;
-      right: 0;
-      text-align: right;
+  /* logo interactions */
+  & .footer-logo-link {
+    opacity: 0.666;
+
+    &:hover, &:focus {
+      opacity: 1;
     }
   }
 
