@@ -1,7 +1,7 @@
 @import "../pages/mixins";
 
 .export-controls {
-  text-align: right;
+  text-align: right; /* button right */
 
   /* dropdown trigger */
   & .export-button {
@@ -26,12 +26,14 @@
     /* positioning */
     position: absolute;
     top: auto;
+    right: 0;
     z-index: 14;
+    text-align: left; /* text left */
     /* sizing */
-    min-width: 100%;
+    min-width: min-content;
     margin-top: -20px;
     /* theming */
-    background-color: var(--accent);
+    background-color: var(--dark-2);
     border-radius: 2px;
     box-shadow: 0 1px 2em color(var(--black) a(0.333));
     /* transitions */
@@ -43,7 +45,7 @@
     & .export-link {
       display: block;
       padding: 0.75em 1em;
-      min-width: 6em;
+      min-width: 10em;
       width: 100%;
       /* override default link styles */
       color: var(--white);
