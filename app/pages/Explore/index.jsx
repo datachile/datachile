@@ -270,7 +270,7 @@ class Explore extends Component {
               key: m.key,
               name: m.caption,
               type: type,
-              filterUrl: "/explore/" + profileType + "/" + m.key + "#results",
+              filterUrl: "/explore/" + profileType + "/" + m.key,
               url: profileType + "/" + m.key,
               img: getImageFromMember(profileType, m.key)
             };
@@ -302,10 +302,12 @@ class Explore extends Component {
       <li key={category.type} className="explore-category-item">
         <Link
           to={`/explore/${category.theme}`}
-          onClick={ entity !== category.theme &&
-            this.categoryTransition.bind(this)
+          onClick={
+            entity !== category.theme && this.categoryTransition.bind(this)
           }
-          className={`explore-category-link label font-xxs border-${category.theme} ${type === category.type ? "is-active" : "is-inactive"}`}
+          className={`explore-category-link label font-xxs border-${
+            category.theme
+          } ${type === category.type ? "is-active" : "is-inactive"}`}
         >
           <img
             className="explore-category-icon"
@@ -362,7 +364,9 @@ class Explore extends Component {
             />
 
             {/* select category */}
-            <ul className="explore-category-list u-list-reset">{categoryItems}</ul>
+            <ul className="explore-category-list u-list-reset">
+              {categoryItems}
+            </ul>
           </div>
 
           {/*<div className="search-explore-wrapper">
@@ -370,22 +374,38 @@ class Explore extends Component {
           </div>*/}
 
           <div className="explore-title-container">
-            <h2 className="explore-title">{!transitioning
-                ? `${resultsCount} ${filterName ? filterName : ""} ${(longTitle === "countries" && resultsCount === 6) ? t("continents") : longTitle}`
+            <h2 className="explore-title">
+              {!transitioning
+                ? `${resultsCount} ${filterName ? filterName : ""} ${
+                    longTitle === "countries" && resultsCount === 6
+                      ? t("continents")
+                      : longTitle
+                  }`
                 : t("table.loading")}
             </h2>
 
             {/* back link */}
-            {filterName &&
-              <Link className="explore-reset-link inverted-link font-xs" to={`explore/${entity}`}>
-                <span className={`explore-reset-icon pt-icon pt-icon-arrow-left color-${entity}`} />
-                <span className="explore-reset-text">{t("All")} {longTitle}</span>
+            {filterName && (
+              <Link
+                className="explore-reset-link inverted-link font-xs"
+                to={`explore/${entity}`}
+              >
+                <span
+                  className={`explore-reset-icon pt-icon pt-icon-arrow-left color-${entity}`}
+                />
+                <span className="explore-reset-text">
+                  {t("All")} {longTitle}
+                </span>
               </Link>
-            }
+            )}
           </div>
 
           <div className="explore-container">
-            <div className={`explore-panel tile-list${!filterName && !transitioning ? " is-visible" : " is-hidden"}`}>
+            <div
+              className={`explore-panel tile-list${
+                !filterName && !transitioning ? " is-visible" : " is-hidden"
+              }`}
+            >
               {entity &&
                 filters &&
                 filters.map(f => (
@@ -397,7 +417,11 @@ class Explore extends Component {
                   />
                 ))}
             </div>
-            <div className={`explore-panel${filterName ? " is-visible" : " is-hidden"}`}>
+            <div
+              className={`explore-panel${
+                filterName ? " is-visible" : " is-hidden"
+              }`}
+            >
               {this.renderResultComponent(this.props)}
             </div>
           </div>
