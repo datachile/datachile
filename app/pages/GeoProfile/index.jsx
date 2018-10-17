@@ -101,7 +101,6 @@ import Services from "./environment/amenities/charts/Services";
 
 import CrimeSlide from "./environment/crime/CrimeSlide";
 import CrimeTreemap from "./environment/crime/charts/CrimeTreemap";
-import CrimeStacked from "./environment/crime/charts/CrimeStacked";
 
 /* end Housing and Environment */
 
@@ -230,7 +229,6 @@ class GeoProfile extends Component {
     Services,
 
     CrimeSlide,
-    CrimeStacked,
     CrimeTreemap,
 
     /** EDUCATION */
