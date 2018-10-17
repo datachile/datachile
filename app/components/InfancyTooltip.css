@@ -1,0 +1,11 @@
+@import "../pages/mixins";
+
+.infancy-tooltip-trigger {
+	font-size: 0.75em;
+	top: -0.625em;
+}
+
+.infancy-tooltip {
+	width: 18rem;
+	max-width: 90vw;
+}

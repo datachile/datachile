@@ -7,6 +7,7 @@ import { numeral } from "helpers/formatters";
 import { simpleDatumNeed } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import InfancyTooltip from "components/InfancyTooltip";
 
 import { Disability } from "texts/GeoProfile";
 
@@ -54,29 +55,11 @@ class InfantMortalitySlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title">
+          <h3 className="topic-slide-title u-visually-hidden">
             {t("Infant & Childhood Mortality")}
           </h3>
           <div className="topic-slide-text">
-            <h4 className="topic-slide-context-subhead">
-              {t("About the Infant Mortality Rate")}
-            </h4>
-            <p
-              className="font-xxs"
-              dangerouslySetInnerHTML={{
-                __html: t("infancy.about_infancy")
-              }}
-            />
-
-            <h4 className="topic-slide-context-subhead">
-              {t("About the Childhood Mortality Rate")}
-            </h4>
-            <p
-              className="font-xxs"
-              dangerouslySetInnerHTML={{
-                __html: t("infancy.about_childhood")
-              }}
-            />
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem reiciendis, explicabo, suscipit iste voluptate aliquid debitis asperiores nesciunt ex voluptatibus blanditiis quisquam unde impedit nobis odio accusamus, fuga dignissimos officiis.</p>
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
@@ -116,6 +99,16 @@ class InfantMortalitySlide extends Section {
               }`}
             />
           </div>
+
+          <h4 className="topic-slide-context-subhead">
+            {t("About the Infant Mortality Rate")}
+            <InfancyTooltip />
+          </h4>
+
+          <h4>
+            {t("About the Childhood Mortality Rate")}
+            <InfancyTooltip context="childhood" />
+          </h4>
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

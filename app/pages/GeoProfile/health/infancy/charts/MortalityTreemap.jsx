@@ -93,6 +93,7 @@ class MortalityTreemap extends Section {
           msrName="Number of deaths"
           drilldowns={["Age Group", "Age Range"]}
           className={classSvg}
+          defaultChart="stacked"
           config={{
             label: d => d["Age Range"],
             // width,
