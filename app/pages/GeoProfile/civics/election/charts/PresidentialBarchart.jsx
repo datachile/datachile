@@ -154,6 +154,7 @@ class PresidentialBarchart extends Section {
             totalConfig: {
               text: d => d.text + " " + t("Votes")
             },
+            ySort: (a, b) => (a.Votes > b.Votes ? 1 : -1),
             shapeConfig: {
               fill: d =>
                 geo.type === "country"
