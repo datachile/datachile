@@ -49,14 +49,14 @@ class PSUBySex extends Section {
           config={{
             height: 400,
             data: path,
-            groupBy: "id_sex",
-            label: d => t(d["sex"]),
-            x: "year",
-            y: "value",
+            groupBy: "ID Sex",
+            label: d => t(d["Sex"]),
+            x: "ID Year",
+            y: "Number of records",
             stacked: stacked,
             shapeConfig: {
-              fill: d => COLORS_GENDER[d["id_sex"]],
-              label: d => d["sex"]
+              fill: d => COLORS_GENDER[d["ID Sex"]],
+              label: d => d["Sex"]
             },
             xConfig: {
               title: false
@@ -67,7 +67,8 @@ class PSUBySex extends Section {
             legendConfig: {
               label: false,
               shapeConfig: {
-                backgroundImage: d => "/images/legend/sex/" + d.id_sex + ".png"
+                backgroundImage: d =>
+                  "/images/legend/sex/" + d["ID Sex"] + ".png"
               }
             },
             barPadding: 0,
@@ -81,16 +82,14 @@ class PSUBySex extends Section {
             }
           }}
           dataFormat={data => {
-            const reduced = data.data.reduce((all, item) => {
+            const reduced = data.data.reduce((all, d) => {
               all.push({
-                value: item["Number of records"],
-                item: t("Sex"),
-                sex: item["Sex"],
-                id_sex: item["ID Sex"],
-                year: item["Year"]
+                ...d,
+                item: t("Sex")
               });
               return all;
             }, []);
+            console.log(reduced)
             return reduced;
           }}
         />
