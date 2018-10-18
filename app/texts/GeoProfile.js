@@ -237,6 +237,7 @@ function PerformanceByPSUComuna(data, locale) {
 }
 
 function PerformanceByPSU(data, geo, locale, t) {
+  locale = locale ? locale : "es";
   const last_year = sources.education_performance_new.year;
   const lang = {
     en: {
@@ -288,11 +289,13 @@ function PerformanceByPSU(data, geo, locale, t) {
       ).format("0,0")
     };
 
+    let adm = "";
     let output = data.data.map(item => {
+      adm = lang[locale] ? lang[locale][item["ID Administration"]] : "";
       return (
         "de escuelas" +
         " " +
-        lang[locale][item["ID Administration"]] +
+        adm +
         " " +
         t("fue") +
         " " +
@@ -684,7 +687,7 @@ function textCivicsParticipation(geo, source, locale) {
   const growth = first_round
     ? (second_round.Votes - first_round.Votes) / first_round.Votes
     : false;
-  
+
   return {
     geo,
     growth,
@@ -692,7 +695,9 @@ function textCivicsParticipation(geo, source, locale) {
       ? {
           caption: top_participation["Election Type"],
           year: top_participation["Year"],
-          perc: numeral(top_participation["Participation"], locale).format("0.00%")
+          perc: numeral(top_participation["Participation"], locale).format(
+            "0.00%"
+          )
         }
       : {}
   };

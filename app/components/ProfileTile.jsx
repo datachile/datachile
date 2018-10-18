@@ -3,6 +3,7 @@ import LazyLoad from "react-lazyload";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { shortenProfileName } from "helpers/formatters";
+import ReactImageFallback from "react-image-fallback";
 // import Shiitake from "shiitake";
 
 import "./ProfileTile.css";
@@ -102,10 +103,16 @@ class ProfileTile extends Component {
 
         {/* background image */}
         <LazyLoad offset={100}>
-          <img
-            className="tile-img"
+          <ReactImageFallback
             src={item.img.replace("profile-bg", "thumbs")}
+            fallbackImage={
+              item.parentImg
+                ? item.parentImg.replace("profile-bg", "thumbs")
+                : "/images/authorities/dummy.jpg"
+            }
+            initialImage="/images/loader.gif"
             alt=""
+            className="tile-img"
           />
         </LazyLoad>
       </div>
