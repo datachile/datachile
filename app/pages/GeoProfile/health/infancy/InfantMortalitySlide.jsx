@@ -52,6 +52,17 @@ class InfantMortalitySlide extends Section {
 
     const locale = i18n.language;
 
+    const total = path_infant_mortality_under_one_data.data.reduce((all, d) => {
+      if ([2, 3].includes(d["ID Age Range"])) all += d["Number of deaths"];
+      return all;
+    }, 0);
+
+    const text = {
+      year: sources.mortality_one_to_ten.year,
+      name: geo.name,
+      total
+    };
+
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -59,7 +70,12 @@ class InfantMortalitySlide extends Section {
             {t("Infant & Childhood Mortality")}
           </h3>
           <div className="topic-slide-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem reiciendis, explicabo, suscipit iste voluptate aliquid debitis asperiores nesciunt ex voluptatibus blanditiis quisquam unde impedit nobis odio accusamus, fuga dignissimos officiis.</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t("geo_profile.health.infancy", text)
+              }}
+            />
+            <p></p>
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum

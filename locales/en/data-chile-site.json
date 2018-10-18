@@ -1161,7 +1161,8 @@
         "text": "* “When a new beneficiary joins the Public Health Insurance, the first task of FONASA is to place them in one of its 4 income segments. This classification, of scale type, allows to gather socioeconomic characterizations of the beneficiary population, and they are defined in the following way:",
         "tramos": "<ul><li><strong>A Group</strong>: Beneficiaries lacking the resources to pay contributions in health, or in conditions of indigence (non-contributors).</li><li><strong>B Group</strong>: Beneficiaries with incomes under CLP$270,000 per month (contributors). Workers in the public health sector.</li><li><strong>C Group</strong>: Beneficiaries with incomes between CLP$270,000 and CLP$394,200 per month (contributors).</li><li><strong>D Group</strong>: Beneficiaries with income equal or higher than CLP$394,200 per month (contributors).</li></ul>"
       },
-      "healthcare": "<p>In {{year.last}}, there were reports for {{healthcare.urgency.total}} emergency medical treatments in {{geo.name}}.</p><p>Also, {{healthcare.specialized.share}} of these medical treatments were for specialized care, reporting an annual growth of {{healthcare.specialized.rate}} in the period {{year.first}}-{{year.last}}</p>"
+      "healthcare": "<p>In {{year.last}}, there were reports for {{healthcare.urgency.total}} emergency medical treatments in {{geo.name}}.</p><p>Also, {{healthcare.specialized.share}} of these medical treatments were for specialized care, reporting an annual growth of {{healthcare.specialized.rate}} in the period {{year.first}}-{{year.last}}</p>",
+      "infancy": "In {{year}}, the number of deaths of children under 1 year in {{name}} was {{total}}."
     },
     "housing": {
       "amenities": {
