@@ -75,7 +75,6 @@ class InfantMortalitySlide extends Section {
                 __html: t("geo_profile.health.infancy", text)
               }}
             />
-            <p></p>
           </div>
           <div className="topic-slide-data">
             <FeaturedDatum
