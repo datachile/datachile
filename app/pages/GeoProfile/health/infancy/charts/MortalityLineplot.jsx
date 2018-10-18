@@ -16,7 +16,7 @@ import { COLORS_GENDER } from "helpers/colors";
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 
-class MortalityBarchart extends Section {
+class MortalityLineplot extends Section {
   static need = [
     (params, store) =>
       simpleGeoChartNeed(
@@ -356,4 +356,4 @@ class MortalityBarchart extends Section {
   }
 }
 
-export default translate()(MortalityBarchart);
+export default translate()(MortalityLineplot);

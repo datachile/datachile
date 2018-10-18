@@ -159,7 +159,7 @@ import "../topics.css";
 import InfantMortalitySlide from "./health/infancy/InfantMortalitySlide";
 
 import MortalityTreemap from "./health/infancy/charts/MortalityTreemap";
-import MortalityBarchart from "./health/infancy/charts/MortalityBarchart";
+import MortalityLineplot from "./health/infancy/charts/MortalityLineplot";
 import PresidentialTreemap from "./civics/election/charts/PresidentialTreemap";
 import PresidentialBarchart from "./civics/election/charts/PresidentialBarchart";
 
@@ -277,7 +277,7 @@ class GeoProfile extends Component {
     // MortalityUnderOne,
     // MortalityOneToTen,
     MortalityTreemap,
-    MortalityBarchart,
+    MortalityLineplot,
 
     AccessSlide,
     HealthCareSlide,
@@ -1019,7 +1019,7 @@ class GeoProfile extends Component {
                   <InfantMortalitySlide>
                     <SectionColumns>
                       <MortalityTreemap className="lost-1-2" />
-                      <MortalityBarchart className="lost-1-2" />
+                      <MortalityLineplot className="lost-1-2" />
                     </SectionColumns>
                   </InfantMortalitySlide>
                 </div>
