@@ -36,7 +36,7 @@ class ParticipationScatter extends Section {
       )(mirror, store);
     }
   ];
-  
+
   constructor(props) {
     super(props);
     this.state = {
