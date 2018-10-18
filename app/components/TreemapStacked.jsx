@@ -47,13 +47,14 @@ class TreemapStacked extends React.Component {
   }
   render() {
     const {
-      t,
-      path,
-      msrName,
-      drilldowns,
+      className,
       config,
+      dataFormat,
       depth,
-      className
+      drilldowns,
+      msrName,
+      path,
+      t
     } = this.props;
     const chart = this.state.chart;
 
@@ -78,7 +79,7 @@ class TreemapStacked extends React.Component {
               }}
               dataFormat={data => {
                 if (data.data && data.data.length > 0) {
-                  return data.data;
+                  return dataFormat ? dataFormat(data) : data.data;
                 } else {
                   this.setState({ show: false });
                 }
@@ -119,7 +120,8 @@ class TreemapStacked extends React.Component {
               }}
               dataFormat={data => {
                 if (data.data && data.data.length > 0) {
-                  return data.data;
+                  if (dataFormat) console.log(dataFormat(data))
+                  return dataFormat ? dataFormat(data) : data.data;
                 } else {
                   this.setState({ show: false });
                 }
