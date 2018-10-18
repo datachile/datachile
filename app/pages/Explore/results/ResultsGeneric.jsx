@@ -5,7 +5,6 @@ import { slugifyItem } from "helpers/formatters";
 import { getImageFromMember } from "helpers/formatters";
 
 class TemplateResults extends React.PureComponent {
-
   render() {
     // console.log(this.props.profile);
     return this.renderChildren.call(this);
@@ -74,6 +73,7 @@ class TemplateResults extends React.PureComponent {
             key={c.key}
             item={{
               img: getImageFromMember(entity, profile.key, c.key),
+              parentImg: getImageFromMember(entity, profile.key),
               key: c.key,
               name: c.caption,
               type: entity,

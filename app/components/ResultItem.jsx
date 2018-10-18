@@ -7,18 +7,16 @@ import ProfileTile from "components/ProfileTile";
 import "./ResultItem.css";
 
 class ResultItem extends Component {
-  render() {
-    const { t, item } = this.props;
+	render() {
+		const { t, item } = this.props;
 
-    const icon =
-      ["country", "region", "comuna"].indexOf(item.type) > -1
-        ? "geo"
-        : item.type;
+		const icon =
+			["country", "region", "comuna"].indexOf(item.type) > -1
+				? "geo"
+				: item.type;
 
-    // console.log(item);
-
-    return <ProfileTile key={item.name} item={item} />;
-  }
+		return <ProfileTile key={item.name} item={item} />;
+	}
 }
 
 export default translate()(ResultItem);
