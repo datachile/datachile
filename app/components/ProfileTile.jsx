@@ -108,9 +108,8 @@ class ProfileTile extends Component {
             fallbackImage={
               item.parentImg
                 ? item.parentImg.replace("profile-bg", "thumbs")
-                : "/images/authorities/dummy.jpg"
+                : "/images/thumbs/geo/chile.jpg"
             }
-            initialImage="/images/loader.gif"
             alt=""
             className="tile-img"
           />
