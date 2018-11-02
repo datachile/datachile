@@ -63,11 +63,11 @@
       background:
         linear-gradient(
           color(var(--black) a(0.5)) -5%,
-          rgba(25, 25, 40, 0.4) 33.333%,
+          rgba(25, 25, 40, 0.5) 33.333%,
           var(--dark-3) 90%),
         radial-gradient(
-          transparent 33.333%,
-          color(var(--dark-3) a(0.5))
+          transparent,
+          var(--dark-3) 75%
         );
     }
 
@@ -114,6 +114,11 @@
         width: 23rem;
         max-width: 100%;
         margin: 2.5em auto;
+
+        /* progressively enhance with background blur where supported */
+        & input {
+          backdrop-filter: blur(10px);
+        }
       }
     }
   }
