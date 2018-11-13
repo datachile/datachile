@@ -14,6 +14,7 @@ import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import ExportLink from "components/ExportLink";
 // import MiniFilter from "components/MiniFilter";
 import SourceTooltip from "components/SourceTooltip";
+import TreemapStacked from "components/TreemapStacked";
 
 class MigrationByVisa extends Section {
   // state = {
@@ -111,14 +112,17 @@ class MigrationByVisa extends Section {
           <ExportLink path={chart_path} className={classSvg} />
         </h3>
         {/* <MiniFilter onClick={this.toggleFilter} filters={filters} /> */}
-        <Treemap
+        <TreemapStacked
+          path={chart_path}
           className={classSvg}
+          msrName="Number of visas"
+          drilldowns={["Continent", "Visa Type"]}
+          depth={2}
           config={{
             height: 400,
             data: chart_path,
             groupBy: ["ID Continent", "ID Visa Type"],
             label: d => d["Visa Type"],
-            time: "ID Year",
             //stacked: true,
             sum: d => d["Number of visas"],
             //x: "Visa Type",

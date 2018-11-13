@@ -9,7 +9,7 @@ import { Section } from "@datawheel/canon-core";
 
 import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
-import NoDataAvailable from "components/NoDataAvailable";
+import TreemapStacked from "components/TreemapStacked";
 
 class IndustryByOccupation extends Section {
   state = {
@@ -43,62 +43,48 @@ class IndustryByOccupation extends Section {
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
-        {this.state.show ? (
-          <Treemap
-            className={classSvg}
-            config={{
-              height: 400,
-              data: path,
-              groupBy: ["ID ISCO"],
-              label: d => d["ISCO"],
-              sum: d => d["Expansion Factor"],
-              total: d => d["Expansion Factor"],
-              totalConfig: {
-                text: d => d.text + " " + t("people")
-              },
-              time: "ID Year",
+
+        <TreemapStacked
+          path={path}
+          className={classSvg}
+          msrName="Expansion Factor"
+          drilldowns={["ISCO"]}
+          defaultChart={"stacked"}
+          config={{
+            totalConfig: {
+              text: d => d.text + " " + t("people")
+            },
+            shapeConfig: {
+              fill: d => industryOccupationColorScale("isco" + d["ID ISCO"])
+            },
+            legendConfig: {
+              label: false,
               shapeConfig: {
-                fill: d => industryOccupationColorScale("isco" + d["ID ISCO"])
-              },
-              legendConfig: {
-                label: false,
-                shapeConfig: {
-                  backgroundImage: d =>
-                    "/images/legend/occupation/occupation.png"
-                }
-              },
-              tooltipConfig: {
-                title: d => d["ISCO"],
-                body: d => {
-                  var body = "<table class='tooltip-table'>";
-                  body +=
-                    "<tr><td class='title'>" +
-                    t("People") +
-                    "</td><td class='data'>" +
-                    numeral(d["Expansion Factor"], locale).format("(0,0)") +
-                    "</td></tr>";
-                  body +=
-                    "<tr><td class='title'>" +
-                    t("Average Income") +
-                    "</td><td class='data'>" +
-                    numeral(d["Median Income"], locale).format("$ (0,0)") +
-                    "</td></tr>";
-                  body += "</table>";
-                  return body;
-                }
+                backgroundImage: d => "/images/legend/occupation/occupation.png"
               }
-            }}
-            dataFormat={data => {
-              if (data.data && data.data.length > 0) {
-                return data.data;
-              } else {
-                this.setState({ show: false });
+            },
+            tooltipConfig: {
+              title: d => d["ISCO"],
+              body: d => {
+                var body = "<table class='tooltip-table'>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("People") +
+                  "</td><td class='data'>" +
+                  numeral(d["Expansion Factor"], locale).format("(0,0)") +
+                  "</td></tr>";
+                body +=
+                  "<tr><td class='title'>" +
+                  t("Average Income") +
+                  "</td><td class='data'>" +
+                  numeral(d["Median Income"], locale).format("$ (0,0)") +
+                  "</td></tr>";
+                body += "</table>";
+                return body;
               }
-            }}
-          />
-        ) : (
-          <NoDataAvailable />
-        )}
+            }
+          }}
+        />
       </div>
     );
   }

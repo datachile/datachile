@@ -120,7 +120,6 @@ class TreemapStacked extends React.Component {
               }}
               dataFormat={data => {
                 if (data.data && data.data.length > 0) {
-                  if (dataFormat) console.log(dataFormat(data))
                   return dataFormat ? dataFormat(data) : data.data;
                 } else {
                   this.setState({ show: false });

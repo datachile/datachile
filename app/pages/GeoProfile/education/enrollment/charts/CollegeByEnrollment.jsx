@@ -10,6 +10,7 @@ import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
+import TreemapStacked from "components/TreemapStacked";
 
 class CollegeByEnrollment extends Section {
   static need = [
@@ -57,11 +58,13 @@ class CollegeByEnrollment extends Section {
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
-        <Treemap
+        <TreemapStacked
+          path={path}
           className={classSvg}
+          msrName="Number of records"
+          drilldowns={["Administration", "Institution"]}
+          defaultChart={"treemap"}
           config={{
-            height: 400,
-            data: path,
             groupBy:
               geo.type != "comuna"
                 ? ["ID Administration"]
@@ -70,9 +73,6 @@ class CollegeByEnrollment extends Section {
               d["Institution"] instanceof Array || geo.type != "comuna"
                 ? d["Administration"]
                 : d["Institution"],
-            sum: d => d["Number of records"],
-            time: "ID Year",
-            total: d => d["Number of records"],
             totalConfig: {
               text: d => d.text + " " + t("Students")
             },

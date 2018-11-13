@@ -13,6 +13,7 @@ import { Section } from "@datawheel/canon-core";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
+import TreemapStacked from "components/TreemapStacked";
 
 class IndustryBySector extends Section {
   static need = [
@@ -41,20 +42,18 @@ class IndustryBySector extends Section {
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
-        <Treemap
+        <TreemapStacked
+          path={path}
           className={classSvg}
+          msrName="Output"
+          drilldowns={["Level 1", "Level 4"]}
+          defaultChart={"stacked"}
           config={{
-            height: 400,
-            data: path,
-            groupBy: ["ID Level 1", "ID Level 4"],
             label: d =>
               d["Level 4"] instanceof Array ? d["Level 1"] : d["Level 4"],
-            sum: d => d["Output"],
-            total: d => d["Output"],
             totalConfig: {
               text: d => "Total: CLP $ " + d.text.split(": ")[1]
             },
-            time: "ID Year",
             shapeConfig: {
               fill: d => industriesColorScale(d["ID Level 1"])
             },
@@ -100,7 +99,6 @@ class IndustryBySector extends Section {
               }
             }
           }}
-          dataFormat={data => data.data}
         />
       </div>
     );
