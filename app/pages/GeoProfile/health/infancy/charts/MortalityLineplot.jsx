@@ -97,11 +97,13 @@ class MortalityLineplot extends Section {
     this.state = {
       chartVariations: [],
       selected: "infancy",
-      selectedOption: 1
+      selectedOption: 1,
+      selectedSex: 1
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.toggleChart = this.toggleChart.bind(this);
+    this.toggleSex = this.toggleSex.bind(this);
   }
 
   componentDidMount() {
@@ -159,8 +161,12 @@ class MortalityLineplot extends Section {
     });
   }
 
+  toggleSex(selectedSex) {
+    this.setState({ selectedSex });
+  }
+
   render() {
-    const { selected } = this.state;
+    const { selected, selectedSex } = this.state;
     const { t, className, i18n } = this.props;
     const {
       geo,
@@ -182,14 +188,26 @@ class MortalityLineplot extends Section {
     let data = filteredData.data
       .filter(item => item["ID Age Range"] === this.state.selectedOption)
       .reduce((all, d, i) => {
-        all.push({
+        const item = {
           ...d,
           Rate: d["Rate Comuna"],
           Geo: "Comuna",
           "ID Geography": `comuna_${d["ID Comuna"]}`,
           Geography: d["Comuna"]
-        });
-        if (availableYears.indexOf(d["ID Year"]) === -1) {
+        };
+
+        if (!("Sex" in item)) {
+          item["ID Sex"] = 0;
+        }
+
+        all.push(item);
+
+        const slug =
+          selected === "infancy"
+            ? d["ID Year"]
+            : `${d["ID Year"]}_${d["ID Sex"]}`;
+
+        if (availableYears.indexOf(slug) === -1) {
           all.push({
             ...d,
             Rate: d["Rate Region"],
@@ -204,49 +222,53 @@ class MortalityLineplot extends Section {
             "ID Geography": `country_${d["ID Country"]}`,
             Geography: "Chile"
           });
-          availableYears.push(d["ID Year"]);
+          availableYears.push(slug);
         }
-        // all.push({ ...d, Rate: d["Rate Region"], Geo: "Region" });
         return all;
       }, []);
 
     if (geo.type === "country") {
       availableYears = [];
       let availableRegions = [];
-      data = filteredData.data.reduce((all, d) => {
-        if (
-          availableRegions.indexOf(`${d["ID Region"]}_${d["ID Year"]}`) === -1
-        ) {
-          availableRegions.push(`${d["ID Region"]}_${d["ID Year"]}`);
-          all.push({
-            Region: d["Region"],
-            "ID Year": d["ID Year"],
-            Rate: d["Rate Region"],
-            Geo: "Region",
-            "ID Geography": `region_${d["ID Region"]}`,
-            Geography: d["Region"]
-          });
-        }
 
-        if (availableYears.indexOf(d["ID Year"]) === -1) {
-          all.push({
-            ...d,
-            Rate: d["Rate Country"],
-            Geo: "Country",
-            "ID Geography": `country_${d["ID Country"]}`,
-            Geography: "Chile"
-          });
-          availableYears.push(d["ID Year"]);
-        }
+      data = filteredData.data
+        .filter(item => item["ID Age Range"] === this.state.selectedOption)
+        .reduce((all, d) => {
+          if (
+            availableRegions.indexOf(`${d["ID Region"]}_${d["ID Year"]}`) === -1
+          ) {
+            availableRegions.push(`${d["ID Region"]}_${d["ID Year"]}`);
+            all.push({
+              Region: d["Region"],
+              "ID Year": d["ID Year"],
+              Rate: d["Rate Region"],
+              Geo: "Region",
+              "ID Geography": `region_${d["ID Region"]}`,
+              Geography: d["Region"]
+            });
+          }
 
-        return all;
-      }, []);
+          if (availableYears.indexOf(d["ID Year"]) === -1) {
+            all.push({
+              ...d,
+              Rate: d["Rate Country"],
+              Geo: "Country",
+              "ID Geography": `country_${d["ID Country"]}`,
+              Geography: "Chile"
+            });
+            availableYears.push(d["ID Year"]);
+          }
+
+          return all;
+        }, []);
     }
 
+    if (selected === "childhood") {
+      data = data.filter(d => d["ID Sex"] === selectedSex);
+    }
     /**selected === "infancy"
                 ? path_infant_mortality_under_one
                 : path_infant_mortality_one_to_ten, */
-
     return (
       <div className={className}>
         <h3 className="chart-title">
@@ -270,7 +292,7 @@ class MortalityLineplot extends Section {
           config={{
             height: 400,
             data,
-            groupBy: ["ID Geography"],
+            groupBy: ["ID Sex", "ID Geography"],
             label: d => d["Geography"],
             x: "ID Year",
             y: "Rate",
@@ -287,10 +309,10 @@ class MortalityLineplot extends Section {
                   d["Geo"] === "Country"
                     ? "#EE293E"
                     : d["Geo"] === "Region"
-                      ? "#11A29B"
-                      : `comuna_${geo.key}` === d["ID Geography"]
-                        ? "#335CB5"
-                        : "gray"
+                    ? "#11A29B"
+                    : `comuna_${geo.key}` === d["ID Geography"]
+                    ? "#335CB5"
+                    : "gray"
               }
             },
             tooltipConfig: {
@@ -350,6 +372,29 @@ class MortalityLineplot extends Section {
               <span className="btn-text">{t("Childhood")}</span>
             </button>
           </div>
+        </div>
+
+        <div style={{ height: 30 }}>
+          {selected === "childhood" && (
+            <div className="btn-group">
+              <button
+                className={`btn font-xxs ${
+                  selectedSex === 2 ? "is-active" : "is-inactive"
+                }`}
+                onClick={() => this.toggleSex(2)}
+              >
+                <span className="btn-text">{t("Male")}</span>
+              </button>
+              <button
+                className={`btn font-xxs ${
+                  selectedSex === 1 ? "is-active" : "is-inactive"
+                }`}
+                onClick={() => this.toggleSex(1)}
+              >
+                <span className="btn-text">{t("Female")}</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );
