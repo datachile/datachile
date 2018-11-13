@@ -21,7 +21,7 @@
   "homepage": "https://github.com/datawheel/datachile#readme",
   "dependencies": {
     "@blueprintjs/labs": "^0.14.4",
-    "@datawheel/canon-core": "^0.16.12",
+    "@datawheel/canon-core": "^0.16.17",
     "d3-format": "^1.0.2",
     "d3-geo-projection": "^2.4.1",
     "d3-scale": "^1.0.4",
