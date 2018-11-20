@@ -36,8 +36,24 @@ export const COLORS_REGIONS = [
   "#ffbe46"
 ];
 
-export const COLORS_SCALE_EXPORTS = ["#ccd5f1", "#5076C4"];
-export const COLORS_SCALE_IMPORTS = ["#f8d8db", "#E56671"];
+export const COLORS_SCALE_EXPORTS = [
+  "#ccd5f1",
+  "#B7C5EA",
+  "#A3B5E2",
+  "#8EA6DB",
+  "#7996D3",
+  "#6586CC",
+  "#5076C4"
+];
+export const COLORS_SCALE_IMPORTS = [
+  "#f8d8db",
+  "#F5C5C9",
+  "#F2B2B8",
+  "#EF9FA6",
+  "#EB8C94",
+  "#E87983",
+  "#E56671"
+];
 
 export const COLORS_SCALE_INFANT_MORTALITY = ["#eee", "#80CBC4", "#009688"];
 

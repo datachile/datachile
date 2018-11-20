@@ -455,6 +455,7 @@
   "Profiles": "Perfiles",
   "Public Transport": "Transporte Público",
   "Quality": "Calidad",
+  "Quarter": "Trimestre",
   "R&D Spending By Industry": "Gasto en I+D por Industria",
   "R&D Spending By Sector": "Gasto en I+D por Sector",
   "R&D spending": "Gasto en I+D",
@@ -536,6 +537,7 @@
     },
     "success": "Successfully Signed Up"
   },
+  "Share": "Porcentaje",
   "Smart TV": "Smart TV",
   "Sned_score": "Puntuación SNED",
   "Some previous definitions": "Algunas definiciones previas",

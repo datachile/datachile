@@ -1,14 +1,18 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { Treemap } from "d3plus-react";
+import { Treemap, StackedArea } from "d3plus-react";
 import { translate } from "react-i18next";
 
+import { numeral } from "helpers/formatters";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { educationLevelColorScale } from "helpers/colors";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
+
+import { nest } from "d3-collection";
+import { sum } from "d3-array";
 
 class EmploymentByLevel extends Section {
   static need = [
@@ -75,15 +79,24 @@ class EmploymentByLevel extends Section {
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
-        <Treemap
+        <StackedArea
           className={classSvg}
           config={{
             height: 400,
             data: path,
             groupBy: "ID ISCED",
             label: d => d["ISCED"],
+            x: "month",
+            y: "share",
+            yConfig: {
+              tickFormat: d => `${d * 100}%`
+            },
+            xConfig: {
+              //labels: [2010, 2011, 2012, 2013, 2014, 2015, 2016]
+            },
             time: "month",
-            sum: d => d["Expansion factor"],
+            timeline: false,
+            scale: "time",
             shapeConfig: {
               fill: d => educationLevelColorScale(d["ID ISCED"]),
               label: d => d["ISCED"]
@@ -92,7 +105,11 @@ class EmploymentByLevel extends Section {
               title: d => {
                 return d["ISCED"];
               },
-              body: d => d["quarter"]
+              tbody: [
+                [t("Quarter"), d => d["quarter"]],
+                [t("Share"), d => numeral(d["share"], locale).format("0.0%")],
+                [t("Employees"), d => numeral(d["Expansion factor"], locale).format("0.0a")]
+              ]
             },
             legend: false,
             legendConfig: {
@@ -102,14 +119,26 @@ class EmploymentByLevel extends Section {
               }
             }
           }}
-          dataFormat={data => {
-            return data.data.map(f => {
-              var date = f["ID Moving Quarter"].split("_");
+          dataFormat={resp => {
+            const data = resp.data.map(f => {
+              const date = f["ID Moving Quarter"].split("_");
               f["month"] = date[0] + "-" + date[1] + "-01";
               f["quarter"] =
                 date[0] + " (" + date[1] + "," + date[2] + "," + date[3] + ")";
               return f;
             });
+
+            nest()
+              .key(d => d.month)
+              .entries(data)
+              .forEach(group => {
+                const total = sum(group.values, d => d["Expansion factor"]);
+                group.values.forEach(
+                  d => (d.share = d["Expansion factor"] / total)
+                );
+              });
+
+            return data;
           }}
         />
       </div>

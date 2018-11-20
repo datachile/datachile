@@ -107,7 +107,8 @@ class CustomMap extends React.Component {
                 }
               },
               select: `.geo-${className}`,
-              align: "start"
+              align: "start",
+              scale: "jenks"
             }
           }}
           dataFormat={data => {
