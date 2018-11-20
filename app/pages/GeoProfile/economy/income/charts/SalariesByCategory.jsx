@@ -68,6 +68,7 @@ class SalariesByCategory extends Section {
             },
             discrete: "y",
             xConfig: {
+              labelRotation: false,
               tickSize: 0,
               title: t("Monthly Median Income CLP"),
               tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")

@@ -14,7 +14,7 @@ import SourceTooltip from "components/SourceTooltip";
 
 class SalariesByOccupation extends Section {
   state = {
-    stacked: true
+    stacked: false
   };
   static need = [
     (params, store) => {
@@ -72,18 +72,26 @@ class SalariesByOccupation extends Section {
             groupBy: ["ID Sex"],
             label: d => d["ISCO"],
             time: "ID Year",
-            x: "ISCO",
-            y: "Median Income",
+            discrete: "y",
+            y: "ISCO",
+            x: "Median Income",
             stacked: stacked,
             shapeConfig: {
               fill: d => COLORS_GENDER[d["ID Sex"]],
               label: () => ""
             },
-            xConfig: {
-              tickSize: 0,
-              title: false
-            },
             yConfig: {
+              labelRotation: false,
+              tickSize: 0,
+              title: false,
+              width: 10,
+              shapeConfig: {
+                width: 10
+              }
+            },
+            ySort: (a, b) => a["Median Income"] - b["Median Income"],
+            xConfig: {
+              labelRotation: false,
               title: t("Median Income CLP"),
               tickFormat: tick => numeral(tick, locale).format("(0.[0]a)")
             },
@@ -100,11 +108,11 @@ class SalariesByOccupation extends Section {
           dataFormat={data => data.data}
         />
         {/* stacked bar toggle */}
-        <Switch
+        {/*<Switch
           onClick={this.toggleStacked.bind(this)}
           label={t("Stacked bars")}
           defaultChecked={stacked}
-        />
+        />*/}
       </div>
     );
   }
