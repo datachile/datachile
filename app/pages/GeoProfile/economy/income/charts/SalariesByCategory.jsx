@@ -59,6 +59,9 @@ class SalariesByCategory extends Section {
             x: "Median Income",
             y: "ICSE",
             shapeConfig: {
+              Bar: {
+                align: "start"
+              },
               fill: d => ordinalColorScale(d["ID ICSE"])
             },
             tooltipConfig: {

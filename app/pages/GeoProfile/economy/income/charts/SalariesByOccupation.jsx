@@ -84,12 +84,7 @@ class SalariesByOccupation extends Section {
               labelRotation: false,
               tickSize: 0,
               title: false,
-              // width: 100,
-              shapeConfig: {
-                labelConfig: {
-                  width: 100
-                }
-              }
+              maxSize: 120
             },
             ySort: (a, b) => a["Median Income"] - b["Median Income"],
             xConfig: {
