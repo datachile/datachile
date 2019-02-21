@@ -163,6 +163,10 @@ import MortalityLineplot from "./health/infancy/charts/MortalityLineplot";
 import PresidentialTreemap from "./civics/election/charts/PresidentialTreemap";
 import PresidentialBarchart from "./civics/election/charts/PresidentialBarchart";
 
+import VulnerabilitySlide from "./education/vulnerability/VulnerabilitySlide";
+import VulnerabilityByZone from "./education/vulnerability/charts/VulnerabilityByZone";
+import VulnerabilityByAdministration from "./education/vulnerability/charts/VulnerabilityByAdministration";
+
 const chileObj = {
   key: "chile",
   name: "Chile",
@@ -303,7 +307,9 @@ class GeoProfile extends Component {
 
     CongresspersonResults,
     ElectoralParticipation,
-    ParticipationScatter
+    ParticipationScatter,
+
+    VulnerabilitySlide
   ];
 
   render() {
@@ -813,6 +819,10 @@ class GeoProfile extends Component {
                 id="education"
                 sections={[
                   {
+                    name: t("Vulnerability"),
+                    slides: [t("By School Type")]
+                  },
+                  {
                     name: t("Enrollment"),
                     slides: [t("By School Type")]
                   },
@@ -834,6 +844,14 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
+                <div className="topic-slide">
+                  <VulnerabilitySlide>
+                    <SectionColumns>
+                      <VulnerabilityByZone className="lost-1-2" />
+                      <VulnerabilityByAdministration className="lost-1-2" />
+                    </SectionColumns>
+                  </VulnerabilitySlide>
+                </div>
                 <div className="topic-slide">
                   <EnrollmentSlide>
                     <SectionColumns>
