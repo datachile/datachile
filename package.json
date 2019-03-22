@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/datawheel/datachile#readme",
   "dependencies": {
-    "@blueprintjs/core": "^3.10.0",
-    "@blueprintjs/labs": "^0.14.4",
-    "@datawheel/canon-core": "^0.17.6",
+    "@blueprintjs/core": "^3.14.1",
+    "@blueprintjs/labs": "^0.16.3",
+    "@datawheel/canon-core": "^0.17.9",
     "@datawheel/canon-logiclayer": "^0.3.11",
     "d3-geo-projection": "^2.5.0",
     "normalize.css": "^5.0.0",
@@ -34,7 +34,7 @@
     "react-lazyload": "^2.3.0",
     "react-slick": "^0.23.1",
     "react-table": "^6.7.6",
-    "react-transition-group": "^1.2.1",
+    "react-transition-group": "^2.7.0",
     "shiitake": "^2.2.1",
     "slick-carousel": "^1.7.1"
   },
