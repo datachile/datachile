@@ -10,6 +10,8 @@ import { COLORS_GENDER } from "helpers/colors";
 import TreemapStacked from "components/TreemapStacked";
 import { LinePlot } from "d3plus-react";
 
+import numeral from "numeral";
+
 class PopulationByAge extends Section {
   render() {
     const { t, className, i18n } = this.props;
@@ -21,7 +23,9 @@ class PopulationByAge extends Section {
     const geoType =
       geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
 
-    const path = `/api/data?measures=People&drilldowns=Sex,Age&parents=true&${ geoType }=${ geo.key }&captions=${locale}`;
+    const path = `/api/data?measures=People&drilldowns=Sex,Age&parents=true&${geoType}=${
+      geo.key
+    }&captions=${locale}`;
 
     return (
       <div className={className}>
@@ -40,11 +44,19 @@ class PopulationByAge extends Section {
             label: d => d["Sex"],
             xConfig: {
               labelRotation: 0,
-              tickFormat: d => (d * 1) % 5 === 0 ? d : "",
+              tickFormat: d => ((d * 1) % 5 === 0 ? d : ""),
               title: t("Age")
             },
             yConfig: {
               title: t("Population")
+            },
+            tooltipConfig: {
+              tbody: [
+                [
+                  t("Count"),
+                  d => numeral(d["People"]).format("0,0") + " " + t("People")
+                ]
+              ]
             },
             shapeConfig: {
               Line: {

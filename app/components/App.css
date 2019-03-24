@@ -606,7 +606,7 @@ table.tooltip-table {
 
     /* inactive state */
     &.is-inactive {
-      color: color(var(--white) a(0.5));
+      color: #656569;
 
       /* used for gender icons */
       & img {

@@ -11,8 +11,17 @@ import { annualized_growth } from "helpers/calculator";
 import mondrianClient, { simpleGeoDatumNeed } from "helpers/MondrianClient";
 
 import FeaturedDatum from "components/FeaturedDatum";
+import Axios from "axios";
 
 class PopulationSlide extends Section {
+  constructor(props) {
+    super(props);
+    this.state = {
+      female: undefined,
+      male: undefined,
+      total: undefined
+    };
+  }
   static need = [
     simpleGeoDatumNeed(
       "datum_population_growth",
@@ -29,6 +38,22 @@ class PopulationSlide extends Section {
       }
     )
   ];
+
+  componentDidMount() {
+    const { geo } = this.context.data;
+    const geoType =
+      geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
+    const path = `/api/data?measures=People&drilldowns=Sex&parents=true&${geoType}=${
+      geo.key
+    }`;
+    Axios.get(path).then(resp => {
+      const data = resp.data.data;
+      const female = data.find(d => d["ID Sex"] === 1) || {};
+      const male = data.find(d => d["ID Sex"] === 2) || {};
+      const total = female["People"] + male["People"];
+      this.setState({ female: female["People"], male: male["People"], total });
+    });
+  }
 
   render() {
     const { children, t, i18n } = this.props;
@@ -54,6 +79,7 @@ class PopulationSlide extends Section {
       data_slide
     );
 
+    const { male, female, total } = this.state;
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
@@ -64,7 +90,31 @@ class PopulationSlide extends Section {
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
+          <p>
+            {t(
+              "En el CENSO 2017, la población efectivamente censada en {{name}}, fue de {{total}} personas, siendo {{female}} mujeres y {{male}} hombres.",
+              { name: geo.caption, total: numeral(total, locale).format("0,0"), female:  numeral(female, locale).format("0,0"), male:  numeral(male, locale).format("0,0") }
+            )}
+          </p>
           <div className="topic-slide-data">
+            {male && (
+              <FeaturedDatum
+                className="l-1-2"
+                icon="poblacion-estimada"
+                datum={numeral(male / total, locale).format("0.0%")}
+                title={t("Male Rate")}
+                subtitle="Census 2017"
+              />
+            )}
+            {female && (
+              <FeaturedDatum
+                className="l-1-2"
+                icon="poblacion-estimada"
+                datum={numeral(female / total, locale).format("0.0%")}
+                title={t("Female Rate")}
+                subtitle="Census 2017"
+              />
+            )}
             <FeaturedDatum
               className="l-1-2"
               icon="poblacion-estimada"

@@ -7,6 +7,9 @@ import SourceTooltip from "components/SourceTooltip";
 
 import { LinePlot } from "d3plus-react";
 import axios from "axios";
+import numeral from "numeral";
+
+import { EDUCATION_COLORS } from "helpers/colors";
 
 class AbandonmentRate extends Section {
   constructor(props) {
@@ -43,7 +46,7 @@ class AbandonmentRate extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("Abandonment Percentage")}
+            {t("School Abandonment Rate")}
             <SourceTooltip cube="mds_abandonment_rate" />
           </span>
           <ExportLink path={path} className={classSvg} />
@@ -58,14 +61,14 @@ class AbandonmentRate extends Section {
             groupBy: "Education Level",
             shapeConfig: {
               Line: {
-                stroke: d => d["ID Comuna"] === geo.key ? "red" : "gray"
+                stroke: d => EDUCATION_COLORS[d["ID Education Level"] - 1]
               }
             },
             // label: d => d["Activity"],
             y: "Abandonment Percentage",
             yConfig: {
               title: t("Total"),
-              tickFormat: d => `${d * 100}%`
+              tickFormat: d => numeral(d).format("0.[0]%")
             },
             x: "Year",
             xConfig: {

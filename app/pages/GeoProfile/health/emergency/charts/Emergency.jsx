@@ -15,16 +15,15 @@ class Emergency extends Section {
     const locale = i18n.language;
     const classSvg = "emergency-care";
 
-    console.log(geo);
     const geoType =
       geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
-    const path = `/api/data?measures=Total&drilldowns=Name-L3,Year&parents=true`;
+    const path = `/api/data?measures=Total&drilldowns=Name-L3,Year&parents=true&Year=2009,2010,2011,2012,2013,2014,2015,2016,2017,2018`;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("Migration By Activity")}
+            {t("Emergency Care by Patology")}
             <SourceTooltip cube="immigration" />
           </span>
           <ExportLink path={path} className={classSvg} />

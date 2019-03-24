@@ -576,6 +576,8 @@ export const PRIORITY_COLORS = [
   "#A4C2FC"
 ];
 
+export const EDUCATION_COLORS = ["#0958A7", "#DB2C46"];
+
 export const independentColorScale = scaleOrdinal().range(INDEPENDENT_COLORS);
 
 export const snedColorScale = scaleOrdinal().range([

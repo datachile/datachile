@@ -8,6 +8,8 @@ import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 import axios from "axios";
 
+import { EDUCATION_COLORS } from "helpers/colors";
+
 class AbandonmentTotal extends Section {
   constructor(props) {
     super(props);
@@ -43,7 +45,7 @@ class AbandonmentTotal extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {t("Abandonment Total")}
+            {t("School Abandonment Total")}
             <SourceTooltip cube="mds_abandonment_rate" />
           </span>
           <ExportLink path={path} className={classSvg} />
@@ -59,7 +61,10 @@ class AbandonmentTotal extends Section {
           config={{
             height: 400,
             data: path,
-            // filter: d => d["ID Education Level"] === selected,
+            legend: false,
+            shapeConfig: {
+              fill: d => EDUCATION_COLORS[d["ID Education Level"] - 1]
+            },
             legendConfig: {
               label: false,
               shapeConfig: false
