@@ -1072,7 +1072,7 @@ class GeoProfile extends Component {
                 ]}
               >
                 <div className="topic-slide">
-                  <InfantMortalitySlide>
+                  <InfantMortalitySlide path={location.pathname}>
                     <SectionColumns>
                       <MortalityTreemap className="lost-1-2" />
                       <MortalityLineplot className="lost-1-2" />
@@ -1080,7 +1080,7 @@ class GeoProfile extends Component {
                   </InfantMortalitySlide>
                 </div>
                 <div className="topic-slide">
-                  <EmergencySlide>
+                  <EmergencySlide path={location.pathname}>
                     <SectionColumns>
                       <Emergency className="lost-1-2" />
                       <EmergencyByAge className="lost-1-2" />
@@ -1088,7 +1088,7 @@ class GeoProfile extends Component {
                   </EmergencySlide>
                 </div>
                 <div className="topic-slide">
-                  <AccessSlide>
+                  <AccessSlide path={location.pathname}>
                     <SectionColumns>
                       <HealthInsurance className="lost-1" />
                     </SectionColumns>

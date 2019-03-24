@@ -15,16 +15,21 @@ class EmergencyByAge extends Section {
     const locale = i18n.language;
     const classSvg = "emergency-care";
 
-    const geoType =
-      geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
-    const path = `/api/data?measures=Total&drilldowns=Age,Year&parents=true&Year=2009,2010,2011,2012,2013,2014,2015,2016,2017,2018`;
+    let dd = undefined;
+    let key = undefined;
+    if (geo.depth > 0) {
+      dd = "Region";
+      key = geo.depth === 2 ? geo.ancestor.key : geo.key;
+    }
+    let path = `/api/data?measures=Total&drilldowns=Age,Year&parents=true&Year=2009,2010,2011,2012,2013,2014,2015,2016,2017,2018`;
+    if (dd) path += `&${dd}=${key}`;
 
     return (
       <div className={className}>
         <h3 className="chart-title">
           <span>
             {t("Emergency Care by Age Range")}
-            <SourceTooltip cube="immigration" />
+            <SourceTooltip cube="emergency_care" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>

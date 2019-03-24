@@ -20,27 +20,6 @@ class PerformanceSlide extends Section {
             <p />
           </div>
           <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

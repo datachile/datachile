@@ -75,6 +75,12 @@ export const sources = {
     senators_election_year: [2013, 2017],
     mayor_election_year: 2016
   },
+  emergency_care: {
+    title: "Atenciones de Urgencias - MINSAL",
+    url: "http://cognos.deis.cl/ibmcognos/cgi-bin/cognos.cgi",
+    year: 2018,
+    min_year: 2008
+  },
   exports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",

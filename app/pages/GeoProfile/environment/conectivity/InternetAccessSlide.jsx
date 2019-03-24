@@ -55,29 +55,7 @@ class InternetAccessSlide extends Section {
             className="topic-slide-text"
             dangerouslySetInnerHTML={{ __html: txt_slide }}
           />
-          <div className="topic-slide-data">
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="empleo"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-            <FeaturedDatum
-              className="l-1-3"
-              icon="industria"
-              datum="xx"
-              title="Lorem ipsum"
-              subtitle="Lorem blabla"
-            />
-          </div>
+          <div className="topic-slide-data"></div>
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>

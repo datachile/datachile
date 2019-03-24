@@ -27,13 +27,16 @@ class EmergencySlide extends Section {
       dd = "Region";
       key = geo.depth === 2 ? geo.ancestor.key : geo.key;
     }
-    let path = `/api/data?measures=Total&drilldowns=Name-L3,Year&parents=true&Year=2018`;
+    let path = `/api/data?measures=Total&drilldowns=Age,Year&parents=true&Year=2018`;
     if (dd) path += `&${dd}=${key}`;
 
     Axios.get(path).then(resp => {
       const data = resp.data.data.filter(d => d["ID Year"] === 2018);
       const total = data.reduce((all, d) => all + d["Total"], 0);
-      this.setState({ total, childhood: 0 });
+      const childhood = data
+        .filter(d => [1, 2].includes(d["ID Age"]))
+        .reduce((all, d) => all + d["Total"], 0);
+      this.setState({ total, childhood });
     });
   }
 
@@ -59,8 +62,12 @@ class EmergencySlide extends Section {
           <div className="topic-slide-text">
             <p>
               {t(
-                "En 2018 se realizaron {{total}} atenciones de Urgencia en {{name}}.",
-                { total: numeral(total).format("0,0"), name }
+                "En 2018 se realizaron {{total}} atenciones de Urgencia en {{name}}, siendo el {{rate}} de las atenciones para niños entre 0 a 4 años.",
+                {
+                  total: numeral(total).format("0,0"),
+                  name,
+                  rate: numeral(childhood / total).format("0.0%")
+                }
               )}
             </p>
           </div>
