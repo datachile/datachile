@@ -1,2 +1,7 @@
+.editorconfig
+.git
+.gitignore
+Dockerfile
 dockerfiles
 node_modules
+scripts
