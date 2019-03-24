@@ -40,7 +40,7 @@ class AbandonmentRate extends Section {
     // ${geoType}=${geo.key}
 
     let path = `/api/data?measures=Abandonment Percentage&drilldowns=Education Level,Year&parents=true`;
-    path += `&${geoType}=${geo.key}`;
+    if (geo.depth > 0) path += `&${geoType}=${geo.key}`;
 
     return (
       <div className={className}>

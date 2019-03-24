@@ -7,6 +7,8 @@ import SourceTooltip from "components/SourceTooltip";
 
 import TreemapStacked from "components/TreemapStacked";
 
+import { EMERGENCY_CARE } from "helpers/colors";
+
 class Emergency extends Section {
   render() {
     const { t, className, i18n } = this.props;
@@ -21,7 +23,7 @@ class Emergency extends Section {
       dd = "Region";
       key = geo.depth === 2 ? geo.ancestor.key : geo.key;
     }
-    let path = `/api/data?measures=Total&drilldowns=Name-L3,Year&parents=true&Year=2009,2010,2011,2012,2013,2014,2015,2016,2017,2018`;
+    let path = `/api/data?measures=Total&drilldowns=Name-L3,Year&parents=true&Year=2009,2010,2011,2012,2013,2014,2015,2016,2017,2018&captions=en`;
     if (dd) path += `&${dd}=${key}`;
 
     return (
@@ -36,18 +38,21 @@ class Emergency extends Section {
         <TreemapStacked
           path={path}
           msrName="Total"
-          drilldowns={["Action-L1", "Name-L3"]}
+          drilldowns={["Cause-L2", "Name-L3"]}
           className={classSvg}
           config={{
             height: 400,
             data: path,
-            groupBy: "Name-L3",
-            // label: d => d["Activity"],
+            shapeConfig: {
+              fill: d => EMERGENCY_CARE[d["ID Cause-L2"]] || "gray"
+            },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: false
             }
           }}
+          dataFormat={resp => resp.data.filter(d => d["ID Year"] > 2009 && d["ID Year"] < 2019)}
         />
       </div>
     );

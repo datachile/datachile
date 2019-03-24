@@ -6,6 +6,7 @@ import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 
 import TreemapStacked from "components/TreemapStacked";
+import { AGE_RANGE } from "../../../../../helpers/colors";
 
 class EmergencyByAge extends Section {
   render() {
@@ -41,13 +42,17 @@ class EmergencyByAge extends Section {
           config={{
             height: 400,
             data: path,
-            groupBy: "Name-L3",
             // label: d => d["Activity"],
+            shapeConfig: {
+              fill: d => AGE_RANGE[d["ID Age"]]
+            },
+            legend: false,
             legendConfig: {
               label: false,
               shapeConfig: false
             }
           }}
+          dataFormat={resp => resp.data.filter(d => d["ID Year"] > 2009 && d["ID Year"] < 2019)}
         />
       </div>
     );

@@ -43,9 +43,10 @@ class PopulationSlide extends Section {
     const { geo } = this.context.data;
     const geoType =
       geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
-    const path = `/api/data?measures=People&drilldowns=Sex&parents=true&${geoType}=${
-      geo.key
-    }`;
+
+    let path = `/api/data?measures=People&drilldowns=Sex&parents=true`;
+
+    if (geo.depth > 0) path += `&${geoType}=${geo.key}`;
     Axios.get(path).then(resp => {
       const data = resp.data.data;
       const female = data.find(d => d["ID Sex"] === 1) || {};
@@ -86,14 +87,15 @@ class PopulationSlide extends Section {
           <h3 className="topic-slide-title u-visually-hidden">
             {t("Population")}
           </h3>
-          <p
-            className="topic-slide-text"
-            dangerouslySetInnerHTML={{ __html: txt_slide }}
-          />
           <p>
             {t(
-              "En el CENSO 2017, la población efectivamente censada en {{name}}, fue de {{total}} personas, siendo {{female}} mujeres y {{male}} hombres.",
-              { name: geo.caption, total: numeral(total, locale).format("0,0"), female:  numeral(female, locale).format("0,0"), male:  numeral(male, locale).format("0,0") }
+              "For the CENSO 2017, the population effectively surveyed in {{name}} were {{total}} people, being {{female}} women and {{male}} men.",
+              {
+                name: geo.caption,
+                total: numeral(total, locale).format("0,0"),
+                female: numeral(female, locale).format("0,0"),
+                male: numeral(male, locale).format("0,0")
+              }
             )}
           </p>
           <div className="topic-slide-data">

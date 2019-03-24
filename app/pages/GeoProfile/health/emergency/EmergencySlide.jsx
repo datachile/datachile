@@ -42,8 +42,7 @@ class EmergencySlide extends Section {
 
   render() {
     const { children, path, t, i18n } = this.props;
-
-    const { datum_health_disabilities, geo } = this.context.data;
+    const { geo } = this.context.data;
 
     let name = "Chile";
     if (geo.depth > 0) {
@@ -61,8 +60,7 @@ class EmergencySlide extends Section {
           </h3>
           <div className="topic-slide-text">
             <p>
-              {t(
-                "En 2018 se realizaron {{total}} atenciones de Urgencia en {{name}}, siendo el {{rate}} de las atenciones para niños entre 0 a 4 años.",
+              {t("In 2018 there were {{total}} Emergency Care attentions in {{name}}, with a {{rate}} of the attentions being children between 0 to 4 years old.",
                 {
                   total: numeral(total).format("0,0"),
                   name,

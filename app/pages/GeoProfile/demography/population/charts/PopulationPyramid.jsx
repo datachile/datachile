@@ -57,7 +57,8 @@ class PopulationPyramid extends Section {
     const geoType =
       geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
 
-    const path = `/api/data?measures=People&drilldowns=Sex,Age&parents=true&${ geoType }=${ geo.key }&captions=${locale}`;
+    let path = `/api/data?measures=People&drilldowns=Sex,Age&parents=true&captions=${locale}`;
+    if (geo.depth > 0) path += `&${geoType}=${geo.key}`;
     const age_range = [
       "0 - 4",
       "5 - 9",

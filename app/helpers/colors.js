@@ -591,3 +591,26 @@ export const snedComparisonColorScale = scaleOrdinal().range([
   "#4CCCCC",
   "#8AC1A5"
 ]);
+
+export const EMERGENCY_CARE = [
+  "gray",
+  "#FE453F",
+  "#95065A",
+  "#0A56BD",
+  "#F78427",
+  "#0C71C9",
+  "#1CE9EF",
+  "#C90C61",
+  "#3B57FE",
+  "#0CC991",
+  "#A30724"
+];
+
+export const AGE_RANGE = [
+  "gray",
+  "#E4B0AE",
+  "#843835",
+  "#E56F6A",
+  "#1D8CA1",
+  "#3FB8C9"
+];

@@ -26,11 +26,10 @@ class AbandonmentSlide extends Section {
     const geoType =
       geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
 
-    Axios.get(
-      `/api/data?measures=Number of Students&drilldowns=Promotion Status,Education Level&captions=es&Year=latest&${geoType}=${
-        geo.key
-      }`
-    ).then(resp => {
+    let path = "/api/data?measures=Number of Students&drilldowns=Promotion Status,Education Level&captions=es&Year=latest";
+    if (geo.depth > 0) path += `&${geoType}=${geo.key}`;
+
+    Axios.get(path).then(resp => {
       const data = resp.data.data;
       const primary = data.find(d => d["ID Education Level"] === 1) || {};
       const secondary = data.find(d => d["ID Education Level"] === 2) || {};
@@ -57,7 +56,7 @@ class AbandonmentSlide extends Section {
           <div className="topic-slide-text">
             <p>
               {t(
-                "En 2017, la deserción escolar en {{name}} fue de {{total}} estudiantes, siendo {{primary}} de Educación Básica y {{secondary}} de Educación Media.",
+                "In 2017, school dropout in {{name}} were {{total}} students, being {{primary}} from Elementary and Secondary School, and {{secondary}} from High School",
                 {
                   name: geo.caption,
                   total: numeral(primary + secondary).format("0,0"),
