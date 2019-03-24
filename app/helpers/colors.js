@@ -568,6 +568,14 @@ export const INDEPENDENT_COLORS = [
   "#9AEBC6"
 ];
 
+export const PRIORITY_COLORS = [
+  "gray",
+  "#0082A7",
+  "#0096C4",
+  "#04A2DB",
+  "#A4C2FC"
+];
+
 export const independentColorScale = scaleOrdinal().range(INDEPENDENT_COLORS);
 
 export const snedColorScale = scaleOrdinal().range([

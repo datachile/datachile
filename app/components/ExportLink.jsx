@@ -149,7 +149,7 @@ class ExportLink extends React.Component {
                           title ? title : className,
                           o.caption.toLowerCase()
                         )
-                    : ""
+                    : undefined
                 }
               >
                 {o.caption}

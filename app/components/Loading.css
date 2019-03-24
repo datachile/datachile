@@ -29,6 +29,7 @@
 /* loading component defaults */
 .loading {
   z-index: 100;
+  color: var(--white);
 
   /* DataChile logo */
   & .loading-logo {

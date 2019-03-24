@@ -32,7 +32,7 @@ class TopicSlider extends Component {
     if (this.state.chartsRendered) return;
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.slider.slickGoTo(nextProps.selected, true);
   }
   render() {

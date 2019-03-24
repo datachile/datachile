@@ -69,7 +69,7 @@ class Topic extends Component {
           )}
 
           {slider && (
-            <TopicSlider id={id} selected={selected} goTo={this.goTo}>
+            <TopicSlider key={id} id={id} selected={selected} goTo={this.goTo}>
               {children}
             </TopicSlider>
           )}

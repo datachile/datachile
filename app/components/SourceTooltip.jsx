@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 // import { Link } from "react-router";
 import { translate } from "react-i18next";
-import { Tooltip2 } from "@blueprintjs/labs";
+//import { Tooltip2 } from "@blueprintjs/labs";
 import { sources, getI18nSourceObject } from "helpers/consts";
+
+import { Tooltip } from "@blueprintjs/core";
 
 import "./SourceTooltip.css";
 
@@ -53,27 +55,25 @@ class SourceTooltip extends Component {
       </div>
     );
 
-    return (
-      <Tooltip2
-        className={`source-tooltip-trigger ${ sourceData ? "for-splash" : "for-viz" }`}
-        content={sourceTooltipContent}
-        placement={sourceData ? "bottom" : "top"}
-        useSmartArrowPositioning={false}
-        useSmartPositioning={true}
-      >
-        {cubeSource ? (
-          <a href={cubeSource.url}>
-            <span className="pt-icon pt-icon-info-sign">
-              <span className="u-visually-hidden">{t("Data source")}</span>
-            </span>
-          </a>
-        ) : (
+    return <Tooltip
+      className={`source-tooltip-trigger ${ sourceData ? "for-splash" : "for-viz" }`}
+      content={sourceTooltipContent}
+      placement={sourceData ? "bottom" : "top"}
+      useSmartArrowPositioning={false}
+      useSmartPositioning={true}
+    >
+      {cubeSource ? (
+        <a href={cubeSource.url}>
           <span className="pt-icon pt-icon-info-sign">
             <span className="u-visually-hidden">{t("Data source")}</span>
           </span>
-        )}
-      </Tooltip2>
-    );
+        </a>
+      ) : (
+        <span className="pt-icon pt-icon-info-sign">
+          <span className="u-visually-hidden">{t("Data source")}</span>
+        </span>
+      )}
+      </Tooltip>;
   }
 }
 

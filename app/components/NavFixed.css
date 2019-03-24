@@ -9,11 +9,12 @@
   /* theming */
   background-color: color(var(--black) a(0.975)); /* fallback */
   /* subtle translucence */
-  background: linear-gradient(
+  /* background: linear-gradient(
     var(--black),
     color(var(--black) a(0.975)) 50%,
     color(var(--black) a(0.95)) 100%
-  );
+  ); */
+  background: var(--black);
   /* sizing */
   width: 100%;
   min-height: 88px;

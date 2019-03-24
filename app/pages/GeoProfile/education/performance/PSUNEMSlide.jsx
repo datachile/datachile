@@ -161,7 +161,7 @@ class PSUNEMSlide extends Section {
             {t("Performance")}
           </h3>
           <div className="topic-slide-text">
-            {text && (
+            {text && text.location && (
               <p
                 dangerouslySetInnerHTML={{
                   __html:

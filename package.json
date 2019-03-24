@@ -36,7 +36,7 @@
     "react-table": "^6.7.6",
     "react-transition-group": "^2.7.0",
     "shiitake": "^2.2.1",
-    "slick-carousel": "^1.7.1"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/react-i18next": "^7.3.2",

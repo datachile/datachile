@@ -56,8 +56,9 @@ export default {
     },
     // line charts
     Line: {
-      // curve: "catmullRom",
-      strokeLinecap: "round"
+      curve: "monotoneX",
+      strokeLinecap: "round",
+      strokeWidth: 3
     }
   },
   // legend defaults

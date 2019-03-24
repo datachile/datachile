@@ -5,7 +5,8 @@ import escapeRegExp from "lodash/escapeRegExp";
 import { Icon } from "@blueprintjs/core";
 import { Select, MultiSelect } from "@blueprintjs/labs";
 
-import "@blueprintjs/labs/dist/blueprint-labs.css";
+// import "@blueprintjs/labs/src/blueprint-labs.scss";
+
 import "./CustomSelect.css";
 
 CustomSelect.defaultProps = {

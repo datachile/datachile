@@ -46,7 +46,7 @@ class SvgMap extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.region.key !== this.props.region.key) {
       loadSvgAsString(
         "/images/maps/zoom/comunas-" + this.props.region.key + ".svg"
@@ -166,8 +166,11 @@ class SvgMap extends Component {
     const { t, slug, active } = this.props;
 
     return (
-      <div className="svg-map">
-        <div id="svg-map-tooltip" className="datachile-tooltip svg-map-tooltip" />
+      <div className="svg-map" key={slug}>
+        <div
+          id="svg-map-tooltip"
+          className="datachile-tooltip svg-map-tooltip"
+        />
         <div
           ref="svgcontainer"
           dangerouslySetInnerHTML={{ __html: this.state.svgFile }}

@@ -166,6 +166,13 @@ import PresidentialBarchart from "./civics/election/charts/PresidentialBarchart"
 import VulnerabilitySlide from "./education/vulnerability/VulnerabilitySlide";
 import VulnerabilityByZone from "./education/vulnerability/charts/VulnerabilityByZone";
 import VulnerabilityByAdministration from "./education/vulnerability/charts/VulnerabilityByAdministration";
+import EmergencySlide from "./health/emergency/EmergencySlide";
+import Emergency from "./health/emergency/charts/Emergency";
+import EmergencyByAge from "./health/emergency/charts/EmergencyByAge";
+import PopulationByAge from "./demography/population/charts/PopulationByAge";
+import AbandonmentSlide from "./education/abandonment/AbandonmentSlide";
+import AbandonmentRate from "./education/abandonment/charts/AbandonmentRate";
+import AbandonmentTotal from "./education/abandonment/charts/AbandonmentTotal";
 
 const chileObj = {
   key: "chile",
@@ -274,12 +281,17 @@ class GeoProfile extends Component {
     PopulationSlide,
     PopulationProjection,
     PopulationPyramid,
+    PopulationByAge,
 
     // HEALTH TOPIC
 
     InfantMortalitySlide,
     // MortalityUnderOne,
     // MortalityOneToTen,
+    EmergencySlide,
+    Emergency,
+    EmergencyByAge,
+
     MortalityTreemap,
     MortalityLineplot,
 
@@ -309,7 +321,10 @@ class GeoProfile extends Component {
     ElectoralParticipation,
     ParticipationScatter,
 
-    VulnerabilitySlide
+    VulnerabilitySlide,
+    AbandonmentSlide,
+    AbandonmentRate,
+    AbandonmentTotal
   ];
 
   render() {
@@ -819,6 +834,10 @@ class GeoProfile extends Component {
                 id="education"
                 sections={[
                   {
+                    name: t("Abandonment"),
+                    slides: [t("Abandonment Percentage")]
+                  },
+                  {
                     name: t("Vulnerability"),
                     slides: [t("By School Type")]
                   },
@@ -844,6 +863,14 @@ class GeoProfile extends Component {
                   }
                 ]}
               >
+                <div className="topic-slide">
+                  <AbandonmentSlide>
+                    <SectionColumns>
+                      <AbandonmentRate className="lost-1-2" />
+                      <AbandonmentTotal className="lost-1-2" />
+                    </SectionColumns>
+                  </AbandonmentSlide>
+                </div>
                 <div className="topic-slide">
                   <VulnerabilitySlide>
                     <SectionColumns>
@@ -969,7 +996,7 @@ class GeoProfile extends Component {
                        },*/,
                   {
                     name: t("Population"),
-                    slides: [t("By Sex & Age")]
+                    slides: [t("By Sex & Age"), t("By Sex & Age")]
                   } /*,
                        {
                        name: t("Ethnicity"),
@@ -1004,6 +1031,13 @@ class GeoProfile extends Component {
                 <div className="topic-slide">
                   <PopulationSlide>
                     <SectionColumns>
+                      <PopulationByAge className="lost-1" />
+                    </SectionColumns>
+                  </PopulationSlide>
+                </div>
+                <div className="topic-slide">
+                  <PopulationSlide>
+                    <SectionColumns>
                       <PopulationPyramid className="lost-1-2" />
                       <PopulationProjection className="lost-1-2" />
                     </SectionColumns>
@@ -1018,6 +1052,10 @@ class GeoProfile extends Component {
                   {
                     name: t("Infancy"),
                     slides: [t("Infant & Childhood Mortality")]
+                  },
+                  {
+                    name: t("Emergency Care"),
+                    slides: [t("Emergency Care")]
                   },
                   {
                     name: t("Healthcare"),
@@ -1040,6 +1078,14 @@ class GeoProfile extends Component {
                       <MortalityLineplot className="lost-1-2" />
                     </SectionColumns>
                   </InfantMortalitySlide>
+                </div>
+                <div className="topic-slide">
+                  <EmergencySlide>
+                    <SectionColumns>
+                      <Emergency className="lost-1-2" />
+                      <EmergencyByAge className="lost-1-2" />
+                    </SectionColumns>
+                  </EmergencySlide>
                 </div>
                 <div className="topic-slide">
                   <AccessSlide>

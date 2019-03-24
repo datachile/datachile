@@ -231,7 +231,7 @@ class Home extends Component {
                 <div className="home-profile-carousels-container">
                   <ProfileCarousel
                     title={t("home.carousel.featured_profiles")}
-                    type="star"
+                    type="geo"
                     items={featured}
                     limit={5}
                   />
