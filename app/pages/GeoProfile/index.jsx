@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonProfile } from "@datawheel/canon-core";
+import { SectionColumns, CanonProfile, fetchData } from "@datawheel/canon-core";
 import { Geomap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
 import Helmet from "react-helmet";
+import Axios from "axios";
 
 import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import { getGeoObject, clearStoreData } from "helpers/dataUtils";
@@ -14,6 +15,7 @@ import styles from "style.yml";
 import {
   needGetGeo,
   needGetPopulationDatum,
+  needPopulationCENSUS,
   needGetIncomeDatum,
   needGetPSUDatum
 } from "./index_needs";
@@ -181,11 +183,18 @@ const chileObj = {
 };
 
 class GeoProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      population: undefined
+    };
+  }
   static preneed = [clearStoreData];
 
   static need = [
     needGetGeo,
     needGetPopulationDatum,
+    needPopulationCENSUS,
     needGetIncomeDatum,
     needGetPSUDatum,
 
@@ -340,8 +349,8 @@ class GeoProfile extends Component {
       geo && geo.ancestors && geo.ancestors.length > 1
         ? geo.ancestors[0]
         : geoObj.type == "region"
-          ? chileObj
-          : false;
+        ? chileObj
+        : false;
 
     if (geo) {
       this.props.data.geo.type = geoObj.type;
@@ -468,25 +477,24 @@ class GeoProfile extends Component {
           </Helmet>
           <div className="profile">
             <div className="intro">
-              {geo &&
-                geoObj && (
-                  <Nav
-                    title={titleTruncated ? titleTruncated : geo.caption}
-                    fullTitle={geo.caption}
-                    typeTitle={
-                      geoObj.type !== "country" ? geoObj.type : t("Country")
-                    }
-                    type={"geo"}
-                    exploreLink={"/explore/geo"}
-                    ancestor={ancestor ? ancestor.caption : ""}
-                    ancestorLink={slugifyItem(
-                      "geo",
-                      ancestor ? ancestor.key : "",
-                      ancestor ? ancestor.name : ""
-                    )}
-                    topics={topics}
-                  />
-                )}
+              {geo && geoObj && (
+                <Nav
+                  title={titleTruncated ? titleTruncated : geo.caption}
+                  fullTitle={geo.caption}
+                  typeTitle={
+                    geoObj.type !== "country" ? geoObj.type : t("Country")
+                  }
+                  type={"geo"}
+                  exploreLink={"/explore/geo"}
+                  ancestor={ancestor ? ancestor.caption : ""}
+                  ancestorLink={slugifyItem(
+                    "geo",
+                    ancestor ? ancestor.key : "",
+                    ancestor ? ancestor.name : ""
+                  )}
+                  topics={topics}
+                />
+              )}
               <div className="splash">
                 <div
                   className="image"
@@ -524,49 +532,46 @@ class GeoProfile extends Component {
                             stats.population.total
                           : false
                       }
-                      datum={numeral(stats.population.value, locale).format(
+                      datum={numeral(this.props.data.population_census.value, locale).format(
                         "(0,0)"
                       )}
-                      source="population_estimate"
+                      source="census_population"
                       className="population"
                     />
                   )}
-                  {geo &&
-                    stats.income && (
-                      <FeaturedDatumSplash
-                        title={t("Median Income")}
-                        icon="ingreso"
-                        decile={stats.income.value ? stats.income.decile : 0}
-                        rank={
-                          showRanking
-                            ? numeral(stats.income.rank, locale).format("0o") +
-                              " " +
-                              t("of") +
-                              " " +
-                              stats.income.total
-                            : false
-                        }
-                        datum={
-                          stats.income.value
-                            ? numeral(stats.income.value, locale).format(
-                                "($0,0)"
-                              )
-                            : false
-                        }
-                        source="nesi_income"
-                        className=""
-                        level={geo.depth > 1 ? "geo_profile" : false}
-                        path={location.pathname}
-                        name={
-                          geo.depth > 1
-                            ? {
-                                caption: "Región " + ancestor.caption
-                              }
-                            : geo
-                        }
-                      />
-                    )}
-                  {stats.psu && (
+                  {geo && stats.income && (
+                    <FeaturedDatumSplash
+                      title={t("Median Income")}
+                      icon="ingreso"
+                      decile={stats.income.value ? stats.income.decile : 0}
+                      rank={
+                        showRanking
+                          ? numeral(stats.income.rank, locale).format("0o") +
+                            " " +
+                            t("of") +
+                            " " +
+                            stats.income.total
+                          : false
+                      }
+                      datum={
+                        stats.income.value
+                          ? numeral(stats.income.value, locale).format("($0,0)")
+                          : false
+                      }
+                      source="nesi_income"
+                      className=""
+                      level={geo.depth > 1 ? "geo_profile" : false}
+                      path={location.pathname}
+                      name={
+                        geo.depth > 1
+                          ? {
+                              caption: "Región " + ancestor.caption
+                            }
+                          : geo
+                      }
+                    />
+                  )}
+                  {stats.psu && geo.type !== "country" && (
                     <FeaturedDatumSplash
                       title={t("Education")}
                       icon="psu"
@@ -996,7 +1001,7 @@ class GeoProfile extends Component {
                        },*/,
                   {
                     name: t("Population"),
-                    slides: [t("By Sex & Age"), t("By Sex & Age")]
+                    slides: [t("By Sex & Age"), t("Population Pyramid")]
                   } /*,
                        {
                        name: t("Ethnicity"),

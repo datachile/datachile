@@ -5,9 +5,8 @@ import { translate } from "react-i18next";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { presidentialColorScale } from "helpers/colors";
-import { getAvailableYears } from "helpers/map";
 
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import { numeral } from "helpers/formatters";
 import { Switch } from "@blueprintjs/core";
 
 import ExportLink from "components/ExportLink";

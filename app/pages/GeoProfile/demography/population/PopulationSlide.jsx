@@ -61,24 +61,7 @@ class PopulationSlide extends Section {
 
     const locale = i18n.language;
 
-    const { geo, population, datum_population_growth } = this.context.data;
-
-    const data_slide = {
-      year: sources.population_estimate.year,
-      area: geo.caption,
-      total: population
-        ? numeral(population.value, locale).format("(0,0)")
-        : "",
-      year_max: sources.population_estimate.last_year,
-      projected: datum_population_growth
-        ? numeral(datum_population_growth[1], locale).format("+0,0")
-        : ""
-    };
-
-    const txt_slide = t(
-      "geo_profile.demographics.population_by_sex_age",
-      data_slide
-    );
+    const { geo, datum_population_growth } = this.context.data;
 
     const { male, female, total } = this.state;
     return (
@@ -105,7 +88,7 @@ class PopulationSlide extends Section {
                 icon="poblacion-estimada"
                 datum={numeral(male / total, locale).format("0.0%")}
                 title={t("Male Rate")}
-                subtitle="Census 2017"
+                subtitle="CENSO 2017"
               />
             )}
             {female && (
@@ -114,7 +97,7 @@ class PopulationSlide extends Section {
                 icon="poblacion-estimada"
                 datum={numeral(female / total, locale).format("0.0%")}
                 title={t("Female Rate")}
-                subtitle="Census 2017"
+                subtitle="CENSO 2017"
               />
             )}
             <FeaturedDatum

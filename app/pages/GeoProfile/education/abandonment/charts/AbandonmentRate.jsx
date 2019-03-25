@@ -64,6 +64,9 @@ class AbandonmentRate extends Section {
                 stroke: d => EDUCATION_COLORS[d["ID Education Level"] - 1]
               }
             },
+            tooltipConfig: {
+              tbody: [[t("Abandonment Rate"), d => d["Abandonment Rate"]]]
+            },
             // label: d => d["Activity"],
             y: "Abandonment Percentage",
             yConfig: {

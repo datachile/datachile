@@ -16,27 +16,17 @@ import isEmpty from "lodash/isEmpty";
 class TradeSlide extends Section {
   static need = [
     (params, store) =>
-      simpleGeoDatumNeed(
-        "datum_trade_exports",
-        "exports_and_imports",
-        ["FOB"],
-        {
-          drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: false },
-          cuts: [`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`]
-        }
-      )(params, store),
+      simpleGeoDatumNeed("datum_trade_exports", "exports", ["FOB US"], {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false },
+        cuts: [`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`]
+      })(params, store),
     (params, store) =>
-      simpleGeoDatumNeed(
-        "datum_trade_imports",
-        "exports_and_imports",
-        ["CIF"],
-        {
-          drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: false },
-          cuts: [`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`]
-        }
-      )(params, store),
+      simpleGeoDatumNeed("datum_trade_imports", "imports", ["CIF US"], {
+        drillDowns: [["Date", "Date", "Year"]],
+        options: { parents: false },
+        cuts: [`[Date].[Date].[Year].&[${sources.exports_and_imports.year}]`]
+      })(params, store),
     (params, store) => {
       const geo = getGeoObject(params);
       const promise = mondrianClient
@@ -131,15 +121,17 @@ class TradeSlide extends Section {
     return (
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
-          <h3 className="topic-slide-title u-visually-hidden">{t("Exports")}</h3>
+          <h3 className="topic-slide-title u-visually-hidden">
+            {t("Exports")}
+          </h3>
           <div className="topic-slide-text">
             <p
               dangerouslySetInnerHTML={{
                 __html: !("trade_volume" in text_data.exports)
                   ? t("geo_profile.economy.exports.no_data", text_data)
                   : text_data.exports.trade_first_share === "100%"
-                    ? t("geo_profile.economy.exports.one", text_data)
-                    : t("geo_profile.economy.exports.default", text_data)
+                  ? t("geo_profile.economy.exports.one", text_data)
+                  : t("geo_profile.economy.exports.default", text_data)
               }}
             />
             <p
@@ -147,8 +139,8 @@ class TradeSlide extends Section {
                 __html: !("trade_volume" in text_data.imports)
                   ? t("geo_profile.economy.imports.no_data", text_data)
                   : text_data.imports.trade_first_share === "100%"
-                    ? t("geo_profile.economy.imports.one", text_data)
-                    : t("geo_profile.economy.imports.default", text_data)
+                  ? t("geo_profile.economy.imports.one", text_data)
+                  : t("geo_profile.economy.imports.default", text_data)
               }}
             />
           </div>
@@ -175,10 +167,11 @@ class TradeSlide extends Section {
           </div>
         </div>
         <div className="topic-slide-charts">
-          {TradeBalance
-            ? <TradeBalance className="trade-balance-container lost-1" />
-            : children
-          }
+          {TradeBalance ? (
+            <TradeBalance className="trade-balance-container lost-1" />
+          ) : (
+            children
+          )}
         </div>
       </div>
     );

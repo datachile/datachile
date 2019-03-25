@@ -65,6 +65,9 @@ class AbandonmentTotal extends Section {
             shapeConfig: {
               fill: d => EDUCATION_COLORS[d["ID Education Level"] - 1]
             },
+            tooltipConfig: {
+              tbody: [[t("Number of Students"), d => d["Number of Students"]]]
+            },
             legendConfig: {
               label: false,
               shapeConfig: false

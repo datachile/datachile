@@ -19,6 +19,13 @@ export const sources = {
       "http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php",
     year: 2015
   },
+  census_population: {
+    title: "CENSO 2017 - INE",
+    url: "https://resultados.censo2017.cl/",
+    year: 2017,
+    first_year: 2017,
+    last_year: 2017
+  },
   crimes: {
     title: "Carabineros de Chile",
     url:

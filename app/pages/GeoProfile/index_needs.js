@@ -1,4 +1,5 @@
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
+import Axios from "axios";
 import { getGeoObject } from "helpers/dataUtils";
 import { sources } from "helpers/consts";
 
@@ -85,6 +86,37 @@ export function needGetPopulationDatum(params, store) {
           total: res.data.data[0]["Population Rank Total"],
           year: store.population_year,
           source: "INE projection"
+        }
+      };
+    });
+
+  return {
+    type: "GET_DATA",
+    promise: prm
+  };
+}
+
+export function needPopulationCENSUS(params, store) {
+  const geo = getGeoObject(params);
+
+  const prm = mondrianClient
+    .cube("census_population")
+    .then(cube => {
+      var q = geoCut(
+        geo,
+        "Geography",
+        cube.query.drilldown("Sex", "Sex").measure("People"),
+        store.i18n.locale
+      );
+
+      return mondrianClient.query(q, "jsonrecords");
+    })
+    .then(res => {
+      return {
+        key: "population_census",
+        data: {
+          value: res.data.data.reduce((all, d) => all + d["People"], 0),
+          source: "CENSO 2017"
         }
       };
     });
