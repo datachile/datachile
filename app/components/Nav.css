@@ -83,6 +83,7 @@
         /* transitions */
         opacity: 0.75;
         transition: opacity 0.3s ease;
+        color: var(--white) !important; /* blueprint override */
       }
 
       /* interactions */

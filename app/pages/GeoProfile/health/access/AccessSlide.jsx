@@ -210,7 +210,7 @@ class AccessSlide extends Section {
             </h4>
           </div>
         ) : (
-          <div />
+          <div className="topic-slide-intro" />
         )}
         <div className="topic-slide-charts">{children}</div>
       </div>

@@ -183,7 +183,6 @@ class PopulationPyramid extends Section {
                 ]
               )
             };
-            console.log(buckets);
             const results = data.data;
             nest()
               .key(d => d["ID Sex"])
@@ -193,7 +192,6 @@ class PopulationPyramid extends Section {
                   const i = buckets[group.key].findIndex(
                     d => d.range[0] <= h["ID Age"] && d.range[1] >= h["ID Age"]
                   );
-                  console.log(buckets[group.key][i]);
                   buckets[group.key][i].value += h["People"];
                 });
               });
@@ -214,9 +212,6 @@ class PopulationPyramid extends Section {
                 output.push(item);
               });
             });
-
-            console.log(output);
-
             return output;
           }}
         />

@@ -292,7 +292,7 @@ export function joinWithAnd(list, locale) {
 }
 
 export function getNumberFromTotalString(str) {
-  return parseFloat(str.split(": ")[1]);
+  return str;
 }
 
 export function moneyRangeFormat(tick, locale = "es") {

@@ -82,13 +82,9 @@ class HealthInsurance extends Section {
                 ? d["Expansion Factor Comuna"]
                 : d["Expansion Factor Region"],
             totalConfig: {
-              text: d =>
-                "Total: " +
-                numeral(getNumberFromTotalString(d.text), locale).format(
-                  "0,0"
-                ) +
-                " " +
-                t("people")
+              tickFormat: d => numeral(getNumberFromTotalString(d), locale).format(
+                "0,0"
+              )
             },
             shapeConfig: {
               fill: d =>

@@ -71,15 +71,12 @@ class PopulationSlide extends Section {
             {t("Population")}
           </h3>
           <p>
-            {t(
-              "For the CENSO 2017, the population effectively surveyed in {{name}} were {{total}} people, being {{female}} women and {{male}} men.",
-              {
-                name: geo.caption,
-                total: numeral(total, locale).format("0,0"),
-                female: numeral(female, locale).format("0,0"),
-                male: numeral(male, locale).format("0,0")
-              }
-            )}
+            {t("population_census", {
+              name: geo.caption,
+              total: numeral(total, locale).format("0,0"),
+              female: numeral(female, locale).format("0,0"),
+              male: numeral(male, locale).format("0,0")
+            })}
           </p>
           <div className="topic-slide-data">
             {male && (

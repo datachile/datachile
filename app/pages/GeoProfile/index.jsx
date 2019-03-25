@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SectionColumns, CanonProfile, fetchData } from "@datawheel/canon-core";
+import { SectionColumns, CanonProfile } from "@datawheel/canon-core";
 import { Geomap } from "d3plus-react";
 import { translate } from "react-i18next";
 import { selectAll } from "d3-selection";
 import Helmet from "react-helmet";
-import Axios from "axios";
 
 import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import { getGeoObject, clearStoreData } from "helpers/dataUtils";

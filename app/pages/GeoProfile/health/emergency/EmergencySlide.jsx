@@ -60,13 +60,11 @@ class EmergencySlide extends Section {
           </h3>
           <div className="topic-slide-text">
             <p>
-              {t("In 2018 there were {{total}} Emergency Care attentions in {{name}}, with a {{rate}} of the attentions being children between 0 to 4 years old.",
-                {
-                  total: numeral(total).format("0,0"),
-                  name,
-                  rate: numeral(childhood / total).format("0.0%")
-                }
-              )}
+              {t("emergency_care", {
+                total: numeral(total, locale).format("0,0"),
+                name,
+                rate: numeral(childhood / total, locale).format("0.0%")
+              })}
             </p>
           </div>
           <div className="topic-slide-data">

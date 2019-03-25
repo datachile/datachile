@@ -65,13 +65,20 @@ class AbandonmentRate extends Section {
               }
             },
             tooltipConfig: {
-              tbody: [[t("Abandonment Rate"), d => d["Abandonment Rate"]]]
+              tbody: [
+                [
+                  t("Abandonment Rate"),
+                  d =>
+                    numeral(d["Abandonment Percentage"], locale).format(
+                      "0.[0]%"
+                    )
+                ]
+              ]
             },
-            // label: d => d["Activity"],
             y: "Abandonment Percentage",
             yConfig: {
               title: t("Total"),
-              tickFormat: d => numeral(d).format("0.[0]%")
+              tickFormat: d => numeral(d, locale).format("0.[0]%")
             },
             x: "Year",
             xConfig: {
