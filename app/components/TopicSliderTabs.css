@@ -30,6 +30,7 @@
 
     /* clickable button */
     & .topic-tab-button {
+      cursor: pointer;
       /* sizing */
       line-height: 1.5;
       /* theming */
