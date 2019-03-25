@@ -116,6 +116,10 @@
 /* filter indicator title & reset button */
 .explore-title-container {
 
+  & .explore-title {
+    color: var(--white);
+  }
+
   /* reset link theming */
   & .explore-reset-link {
     display: block; /* full width by default */

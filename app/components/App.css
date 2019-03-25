@@ -522,6 +522,7 @@ table.tooltip-table {
 
 /* buttons */
 .btn {
+  cursor: pointer;
   /* typography */
   @add-mixin heading-font;
   @add-mixin font-uppercase;

@@ -620,20 +620,20 @@ class ProductProfile extends Component {
                 ]}
               >
                 <div className="topic-slide">
-                  <InternationalTradeSlide>
+                  <InternationalTradeBalanceSlide>
                     <SectionColumns>
                       <ExportsByDestination className="lost-1-2" />
                       <ExportsGeoMap className="lost-1-2" router={router} />
                     </SectionColumns>
-                  </InternationalTradeSlide>
+                  </InternationalTradeBalanceSlide>
                 </div>
                 <div className="topic-slide">
-                  <InternationalTradeSlide>
+                  <InternationalTradeBalanceSlide>
                     <SectionColumns>
                       <ImportsByOrigin className="lost-1-2" router={router} />
                       <ImportsGeoMap className="lost-1-2" router={router} />
                     </SectionColumns>
-                  </InternationalTradeSlide>
+                  </InternationalTradeBalanceSlide>
                 </div>
                 <div className="topic-slide">
                   <GeoTradeSlide>
