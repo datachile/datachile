@@ -116,6 +116,8 @@ class PSUNEMSlide extends Section {
   ];
 
   render() {
+    if (!this.context) return null;
+
     const { children, t, i18n } = this.props;
     let {
       geo,

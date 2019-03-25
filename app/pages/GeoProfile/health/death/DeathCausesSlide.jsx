@@ -50,6 +50,8 @@ class DeathCausesSlide extends Section {
   ];
 
   render() {
+    if (!this.context) return null;
+
     const { children, path, t, i18n } = this.props;
     const {
       datum_health_death_causes_by_year,

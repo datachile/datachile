@@ -23,7 +23,7 @@ class Emergency extends Section {
       dd = "Region";
       key = geo.depth === 2 ? geo.ancestor.key : geo.key;
     }
-    let path = `/api/data?measures=Total&drilldowns=Name-L3,Year&parents=true&Year=2009,2010,2011,2012,2013,2014,2015,2016,2017,2018&captions=en`;
+    let path = `/api/data?measures=Total&drilldowns=Name-L3,Year&parents=true&Year=2009,2010,2011,2012,2013,2014,2015,2016,2017,2018&captions=${locale}`;
     if (dd) path += `&${dd}=${key}`;
 
     return (

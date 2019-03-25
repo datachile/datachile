@@ -71,6 +71,7 @@ class CollegeByEnrollment extends Section {
           config={{
             label: d =>
               geo.type !== "comuna" ? d["Administration"] : d["Institution"],
+            total: d => d["Number of records"],
             totalConfig: {
               text: d => d.text + " " + t("Students")
             },
@@ -88,6 +89,7 @@ class CollegeByEnrollment extends Section {
                 t("Students")
             },
             legendConfig: {
+              label: "",
               shapeConfig: {
                 backgroundImage: () =>
                   "/images/legend/college/administration.png"

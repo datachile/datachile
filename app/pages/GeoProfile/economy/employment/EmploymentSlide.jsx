@@ -134,6 +134,8 @@ class EmploymentSlide extends Section {
   ];
 
   render() {
+    if (!this.context.data) return null;
+
     const { children, path, t, i18n } = this.props;
 
     const {
@@ -150,9 +152,11 @@ class EmploymentSlide extends Section {
 
     const ancestor = geo.depth > 1 ? geo.ancestors[0].caption : geo.caption;
 
-    const levels = datum_employment_text_isced.sort(
-      (a, b) => b["Expansion factor"] - a["Expansion factor"]
-    );
+    const levels = datum_employment_text_isced
+      ? datum_employment_text_isced.sort(
+          (a, b) => b["Expansion factor"] - a["Expansion factor"]
+        )
+      : [];
 
     const total_female = datum_employment_text_sex.find(
       item => item["ID Sex"] === 1
@@ -207,7 +211,8 @@ class EmploymentSlide extends Section {
             {t("Employment")}
           </h3>
           <div className="topic-slide-text">
-            <p dangerouslySetInnerHTML={{
+            <p
+              dangerouslySetInnerHTML={{
                 __html: t("geo_profile.economy.employment.text", text)
               }}
             />
