@@ -596,7 +596,6 @@
   "Total R&D spending by Ownership Type": "Total gasto I+D por Tipo de Propiedad",
   "Total Students": "Cantidad de estudiantes",
   "Total amount of votes": "Cantidad total de votos",
-  "Total schools by type": "Total schools by type",
   "Total votes for {{Candidate}}": "Votos totales para {{Candidate}}",
   "Trade": "Comercio",
   "Trade Balance": "Balanza comercial",
@@ -1405,6 +1404,7 @@
     "to_profile": "Clic para ver el perfil completo",
     "view_profile": "Ver perfil completo"
   },
+  "Total schools by type": "Total Escuelas según tipo",
   "trade_balance": {
     "cif": "Importaciones",
     "fob": "Exportaciones",

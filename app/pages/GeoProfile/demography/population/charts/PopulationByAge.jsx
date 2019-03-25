@@ -43,7 +43,28 @@ class PopulationByAge extends Section {
             label: d => d["Sex"],
             xConfig: {
               labelRotation: 0,
-              tickFormat: d => ((d * 1) % 5 === 0 ? d : ""),
+              ticks: [
+                5,
+                10,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50,
+                55,
+                60,
+                65,
+                70,
+                75,
+                80,
+                85,
+                90,
+                95,
+                100
+              ],
               title: t("Age")
             },
             yConfig: {

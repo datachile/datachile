@@ -25,7 +25,7 @@ class EnrollmentSlide extends Section {
         drillDowns: [["Date", "Date", "Year"]],
         options: { parents: false },
         cuts: [
-          "Special Education Teachings",
+          "{[Teachings].[Teaching].[Teaching].&[211],[Teachings].[Teaching].[Teaching].&[212],[Teachings].[Teaching].[Teaching].&[213],[Teachings].[Teaching].[Teaching].&[214],[Teachings].[Teaching].[Teaching].&[215],[Teachings].[Teaching].[Teaching].&[216],[Teachings].[Teaching].[Teaching].&[217]}",
           `[Date].[Date].[Year].&[${sources.education_enrollment.year}]`
         ]
       }

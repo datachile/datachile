@@ -76,7 +76,7 @@ class PSUBySex extends Section {
             tooltipConfig: {
               body: d => {
                 return (
-                  numeral(d.value, locale).format("0,0") + " " + t("PSU exams")
+                  numeral(d["Number of records"], locale).format("0,0") + " " + t("PSU exams")
                 );
               }
             }

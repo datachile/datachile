@@ -62,17 +62,15 @@ class CollegeByEnrollment extends Section {
           path={path}
           className={classSvg}
           msrName="Number of records"
-          drilldowns={["Administration", "Institution"]}
+          drilldowns={
+            geo.type !== "comuna"
+              ? ["Administration"]
+              : ["Administration", "Institution"]
+          }
           defaultChart={"treemap"}
           config={{
-            groupBy:
-              geo.type != "comuna"
-                ? ["ID Administration"]
-                : ["ID Administration", "ID Institution"],
             label: d =>
-              d["Institution"] instanceof Array || geo.type != "comuna"
-                ? d["Administration"]
-                : d["Institution"],
+              geo.type !== "comuna" ? d["Administration"] : d["Institution"],
             totalConfig: {
               text: d => d.text + " " + t("Students")
             },
