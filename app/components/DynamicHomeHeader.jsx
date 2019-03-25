@@ -457,7 +457,7 @@ class DynamicHomeHeader extends Component {
     return url;
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.loadHeader(this.props.header);
   }
 
@@ -467,7 +467,7 @@ class DynamicHomeHeader extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.header) {
       this.loadHeader(nextProps.header);
     }
