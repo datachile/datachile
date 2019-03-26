@@ -112,7 +112,7 @@ class PopulationPyramid extends Section {
             },
             yConfig: {
               title: t("Age Range"),
-              tickFormat: tick => t(age_range[tick - 1])
+              tickFormat: d => d["Age Range"]
             },
             xConfig: {
               tickFormat: tick =>

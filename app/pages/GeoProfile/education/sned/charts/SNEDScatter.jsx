@@ -72,12 +72,37 @@ class SNEDScatter extends Section {
       path_sned_efectiveness_vs_overcoming_by_school_chile
     } = this.context.data;
 
-    const national = geo.key == "chile" ? true : false;
+    // const path =
+    //   geo && national
+    //     ? path_sned_efectiveness_vs_overcoming_by_school_chile
+    //     : path_sned_efectiveness_vs_overcoming_by_school;
 
-    const path =
-      geo && national
-        ? path_sned_efectiveness_vs_overcoming_by_school_chile
-        : path_sned_efectiveness_vs_overcoming_by_school;
+    const measures = [
+      "Avg efectiveness",
+      "Avg overcoming",
+      "Avg initiative",
+      "Avg integration",
+      "Avg improvement",
+      "Avg fairness",
+      "Avg sned_score"
+    ];
+
+    let path =
+      geo.type == "comuna"
+        ? `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 1a,Institution,Year&Comuna=${
+            geo.key
+          }&parents=true`
+        : geo.type == "region"
+        ? `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 1a,Institution,Year&Region=${
+            geo.key
+          }&parents=true`
+        : `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 1a,Comuna,Year&parents=true`;
 
     const locale = i18n.language;
     const classSvg = "psu-nem-scatter";
@@ -86,10 +111,10 @@ class SNEDScatter extends Section {
       <div className={className + " prevent-legend-hover"}>
         <h3 className="chart-title">
           <span>
-            {national
+            {geo.key === "chile"
               ? t("Efectiveness vs Overcoming by Comuna & Type")
               : t("Efectiveness vs Overcoming by School")}
-              <SourceTooltip cube="sned" />
+            <SourceTooltip cube="sned" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>
@@ -102,7 +127,7 @@ class SNEDScatter extends Section {
               aggs: {
                 "ID Stage 1a": mean
               },
-              groupBy: national
+              groupBy: geo.key === "chile"
                 ? ["ID Comuna", "ID Stage 1a"]
                 : ["ID Institution", "ID Stage 1a"],
               label: d => d["Institution"],
@@ -187,17 +212,13 @@ class SNEDScatter extends Section {
                         "<tr><td class='title'>" +
                         t("Integration") +
                         "</td><td class='data'>" +
-                        numeral(d["Avg integration"], locale).format(
-                          "(0.0)"
-                        ) +
+                        numeral(d["Avg integration"], locale).format("(0.0)") +
                         "</td></tr>";
                       body +=
                         "<tr><td class='title'>" +
                         t("Improvement") +
                         "</td><td class='data'>" +
-                        numeral(d["Avg improvement"], locale).format(
-                          "(0.0)"
-                        ) +
+                        numeral(d["Avg improvement"], locale).format("(0.0)") +
                         "</td></tr>";
                       body +=
                         "<tr><td class='title'>" +
@@ -237,7 +258,7 @@ class SNEDScatter extends Section {
                     }
                     return label;
                   }
-                },
+                }
                 // label: d => d["ID Institution"],
                 // shapeConfig: {
                 //   backgroundImage: d =>

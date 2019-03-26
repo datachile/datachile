@@ -76,8 +76,8 @@ class SNEDCompareBySchool extends Section {
     ];
 
     const variations = selector.map((item, key) => {
-      let subtitle: string = t(this.capitalizeFirstLetter(item.split(" ")[1]));
-      let ms: string = subtitle;
+      let subtitle = t(this.capitalizeFirstLetter(item.split(" ")[1]));
+      let ms = subtitle;
       return { id: item, title: ms, value: item, subtitle };
     });
 
@@ -120,10 +120,36 @@ class SNEDCompareBySchool extends Section {
   render() {
     const { t, className, i18n } = this.props;
     const locale = i18n.language;
-    const { path_sned_compare_by_school } = this.context.data;
-    const path = path_sned_compare_by_school;
+    const { geo, path_sned_compare_by_school } = this.context.data;
 
-    const title = t("Average Performance By School Type");
+    const measures = [
+      "Avg efectiveness",
+      "Avg overcoming",
+      "Avg initiative",
+      "Avg integration",
+      "Avg improvement",
+      "Avg fairness",
+      "Avg sned_score"
+    ];
+
+    const path =
+      geo.type == "comuna"
+        ? `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 1a,Institution,Year&Year=2016&Comuna=${geo.key}&parents=true&captions=${locale}`
+        : geo.type == "region"
+        ? `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 1a,Institution,Year&Year=2016&Region=${geo.key}&parents=true&captions=${locale}`
+        : `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 1a,Comuna,Year&Year=2016&parents=true&captions=${locale}`;
+
+    // const path = path_sned_compare_by_school;
+
+    const title = geo.depth === 0 
+      ? t("Average Performance By Comuna") 
+      : t("Average Performance By School Type");
     const classSvg = "sned-performance-by-school-type";
 
     let customTick = "";
@@ -217,12 +243,12 @@ class SNEDCompareBySchool extends Section {
                 </h4>
                 <h5 class="tooltip-subhead">${d["interval"]}</h5>`,
               body: d => {
-                let body = `<h5>${t("Schools")}</h5><ul class="tooltip-list u-list-reset">`;
-                d["Institution"] instanceof Array
-                  ? d["Institution"].forEach(item => {
+                let body = `<h5>${d["Institution"] ? t("Schools") : t("Comunas")}</h5><ul class="tooltip-list u-list-reset">`;
+                (d["Institution"] || d["Comuna"]) instanceof Array
+                  ? (d["Institution"] || d["Comuna"]).forEach(item => {
                       body += `<li style='text-transform: capitalize;'>${item.toLowerCase()}</li>`;
                     })
-                  : (body += `<li>${d["Institution"]}</li>`);
+                  : (body += `<li>${(d["Institution"] || d["Comuna"])}</li>`);
                 return (
                   "<div style='overflow: hidden; max-height: 200px'>" +
                   body +
@@ -280,7 +306,7 @@ class SNEDCompareBySchool extends Section {
                         Math.round(item["Avg initiative"] * 100) / 100,
                       integration:
                         Math.round(item["Avg integration"] * 100) / 100,
-                      school: item["Institution"],
+                      school: item["Institution"] || item["Comuna"],
                       overcoming:
                         Math.round(item["Avg overcoming"] * 100) / 100,
                       sned_score: Math.round(item["Avg sned_score"] * 100) / 100
@@ -308,8 +334,9 @@ class SNEDCompareBySchool extends Section {
         <div className="option-group">
           {/* button group; shown on large screens */}
           <div className="btn-group u-hide-below-xs" aria-hidden="true">
-            {this.state.chartVariations.map(button => (
+            {this.state.chartVariations.map((button, i) => (
               <button
+                key={`button_sned_${i}`}
                 className={`btn font-xxs ${this.state.selectedOption === button.id ? "is-active" : "is-inactive"}`}
                 onClick={() => this.setState({ selectedOption: button.id })}>
                 {button.title}

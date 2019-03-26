@@ -139,11 +139,34 @@ class SNEDCompareByCluster extends Section {
   }
 
   render() {
+    const measures = [
+      "Avg efectiveness",
+      "Avg overcoming",
+      "Avg initiative",
+      "Avg integration",
+      "Avg improvement",
+      "Avg fairness",
+      "Avg sned_score"
+    ];
+
+    let path =
+      geo.type == "comuna"
+        ? `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 2,Year&Comuna=${geo.key}&parents=true`
+        : geo.type == "region"
+        ? `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 2,Year&Region=${geo.key}&parents=true`
+        : `/api/data?measures=${measures.join(
+            ","
+          )}&drilldowns=Stage 2,Year&parents=true`;
+
     const { t, className, i18n } = this.props;
     const geo = this.context.data.geo;
     const locale = i18n.language;
     const { datum_sned_compare_with_parent } = this.context.data;
-    const path = this.context.data.path_sned_compare;
+    // const path = this.context.data.path_sned_compare;
 
     const title = t("Comparison by Cluster");
     const classSvg = "sned-compare-by-cluster";
@@ -177,8 +200,8 @@ class SNEDCompareByCluster extends Section {
                 geo.type === "country"
                   ? snedColorScale("sned" + d["ID Stage 1a"])
                   : geo.name === d["geo"]
-                    ? snedColorScale("sned" + d["ID Stage 1a"])
-                    : snedComparisonColorScale("sned" + d["ID Stage 1a"]),
+                  ? snedColorScale("sned" + d["ID Stage 1a"])
+                  : snedComparisonColorScale("sned" + d["ID Stage 1a"]),
               label: false
             },
             //label: d => d["Election Type"] + " - " + d["Year"],

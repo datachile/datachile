@@ -29,15 +29,15 @@
     }
   }
 
-  &.pt-dialog {
-    background: #2f2f37;
+  &.bp3-dialog {
+    background: #2f2f37 !important;
     width: 950px;
     &.sned-1 {
-      & .pt-dialog-header {
+      & .bp3-dialog-header {
         background-color: #0d659d !important;
-        & .pt-dialog-header-title,
-        & .pt-icon-small-cross::before {
-          color: #ffffff;
+        & .bp3-dialog-header-title,
+        & .bp3-icon-small-cross::before {
+          color: #ffffff !important;
         }
       }
 
@@ -64,10 +64,10 @@
       }
     }
     &.sned-2 {
-      & .pt-dialog-header {
+      & .bp3-dialog-header {
         background-color: #00acbc !important;
-        & .pt-dialog-header-title,
-        & .pt-icon-small-cross::before {
+        & .bp3-dialog-header-title,
+        & .bp3-icon-small-cross::before {
           color: #444444;
         }
       }
@@ -102,10 +102,10 @@
       }
     }
     &.sned-3 {
-      & .pt-dialog-header {
+      & .bp3-dialog-header {
         background-color: #8debcc !important;
-        & .pt-dialog-header-title,
-        & .pt-icon-small-cross::before {
+        & .bp3-dialog-header-title,
+        & .bp3-icon-small-cross::before {
           color: #444444;
         }
       }
@@ -140,7 +140,7 @@
     }
   }
 
-  & .pt-dialog-body {
+  & .bp3-dialog-body {
     max-height: 70vh;
     /* overflow-y: hidden;
     overflow: scroll!important; */
@@ -160,7 +160,7 @@
 
 @media (max-width: 950px) {
   .custom-dialog-sned {
-    &.pt-dialog {
+    &.bp3-dialog {
       width: 700px;
     }
   }
@@ -168,7 +168,7 @@
 
 @media (max-width: 800px) {
   .custom-dialog-sned {
-    &.pt-dialog {
+    &.bp3-dialog {
       width: 500px;
     }
   }
@@ -176,7 +176,7 @@
 
 @media (max-width: 650px) {
   .custom-dialog-sned {
-    &.pt-dialog {
+    &.bp3-dialog {
       width: 400px;
     }
   }
@@ -184,7 +184,7 @@
 
 @media (max-width: 400px) {
   .custom-dialog-sned {
-    &.pt-dialog {
+    &.bp3-dialog {
       width: 300px;
     }
   }

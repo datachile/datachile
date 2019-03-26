@@ -20,12 +20,14 @@ class CollegeByEnrollment extends Section {
         var query = cube.query
           .option("parents", true)
           .drilldown("Date", "Date", "Year")
-          .drilldown("Administration", "Administration", "Administration")
           .measure("Number of records");
 
         if (geo.type == "comuna") {
           query.drilldown("Institutions", "Institution", "Institution");
+        } else {
+          query.drilldown("Administration", "Administration", "Administration");
         }
+
         var q = geoCut(geo, "Geography", query, store.i18n.locale);
 
         return {
@@ -42,12 +44,23 @@ class CollegeByEnrollment extends Section {
   ];
 
   render() {
-    const path = this.context.data.path_college_by_enrollment;
+    // const path = this.context.data.path_college_by_enrollment;
     const { t, className, i18n } = this.props;
-    const geo = this.context.data.geo;
+    const { geo } = this.context.data;
 
     const locale = i18n.language;
     const classSvg = "college-by-enrollment";
+
+    let path =
+      geo.type == "comuna"
+        ? `/api/data?measures=Number of records&drilldowns=Institution&Comuna=${
+            geo.key
+          }&parents=true`
+        : geo.type == "region"
+        ? `/api/data?measures=Number of records&drilldowns=Administration&Region=${
+            geo.key
+          }&parents=true`
+        : `/api/data?measures=Number of records&drilldowns=Administration&parents=true`;
 
     return (
       <div className={className}>

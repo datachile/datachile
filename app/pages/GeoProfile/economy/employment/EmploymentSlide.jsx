@@ -134,7 +134,7 @@ class EmploymentSlide extends Section {
   ];
 
   render() {
-    if (!this.context.data) return null;
+    if (!this.context) return null;
 
     const { children, path, t, i18n } = this.props;
 
@@ -153,9 +153,7 @@ class EmploymentSlide extends Section {
     const ancestor = geo.depth > 1 ? geo.ancestors[0].caption : geo.caption;
 
     const levels = datum_employment_text_isced
-      ? datum_employment_text_isced.sort(
-          (a, b) => b["Expansion factor"] - a["Expansion factor"]
-        )
+      ? datum_employment_text_isced.sort((a, b) => b["Expansion factor"] - a["Expansion factor"])
       : [];
 
     const total_female = datum_employment_text_sex.find(

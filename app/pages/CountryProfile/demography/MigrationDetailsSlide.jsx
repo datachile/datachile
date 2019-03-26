@@ -48,7 +48,7 @@ class MigrationDetailsSlide extends Section {
             const max_by_year = available_years.map(year =>
               maxBy(data[year], "Number of visas")
             );
-            const max_first = max_by_year[0];
+            const max_first = max_by_year ? max_by_year[0] : 0;
             const max_last = max_by_year.pop();
 
             let max_prev,

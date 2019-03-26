@@ -27,7 +27,12 @@ class PSUDistribution extends Section {
       {
         drillDowns: [["Institution", "Institution", "Institution"]],
         cuts: [`[Year].[Year].[Year].&[${sources.psu.year}]`],
-        options: { parents: true, sparse: false, nonempty: false }
+        options: {
+          parents: true,
+          sparse: false,
+          nonempty: false,
+          distinct: true
+        }
       }
     ),
 

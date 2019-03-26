@@ -115,7 +115,7 @@ class IDSpendingCategorySlide extends Section {
             </p>
           </div>
           <div className="topic-slide-data">
-            {text && (
+            {text && text.industry && (
               <FeaturedDatum
                 className="l-1-2"
                 icon="crecimiento-inversion-r-mas-d"
