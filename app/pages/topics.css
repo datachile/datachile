@@ -1,7 +1,7 @@
 @import "../pages/mixins";
 
 .topics-container {
-  padding-top: 3rem; /* space out from splash */
+  /* padding-top: 3rem; space out from splash */
   background-color: var(--black);
 
   /* de-emphasize text slightly */
@@ -81,9 +81,9 @@
   background-color: var(--black);
   color: var(--white);
   padding:
-    var(--gutter-half)
+    88px
     var(--gutter)
-    var(--gutter)
+    0
     var(--gutter);
 
   /* offset scroll position when using topic anchor links */
