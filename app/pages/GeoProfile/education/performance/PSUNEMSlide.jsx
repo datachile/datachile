@@ -132,26 +132,18 @@ class PSUNEMSlide extends Section {
     const locale = i18n.language;
 
     const perf = PerformanceByPSU(datum_performance_by_psu, geo, locale, t);
-    let rank = "";
-    if (datum_performance_by_psu_comuna) {
-      rank = PerformanceByPSUComuna(datum_performance_by_psu_comuna, locale);
-    } else {
-      rank = PerformanceByHighSchool(
-        datum_performance_by_highschool,
-        locale,
-        t
-      );
-    }
 
-    let gap = false;
-    if (geo.type === "country") {
+    const rank = datum_performance_by_psu_comuna
+      ? PerformanceByPSUComuna(datum_performance_by_psu_comuna, locale)
+      : PerformanceByHighSchool(datum_performance_by_highschool, locale, t);
+
+    let gap = undefined;
+    const check = datum_performance_by_psu && datum_performance_by_psu.data;
+
+    if (geo.type === "country" && check) {
       gap =
-        datum_performance_by_psu.data.find(
-          item => item["ID Administration"] === 3
-        )["Average PSU"] -
-        datum_performance_by_psu.data.find(
-          item => item["ID Administration"] === 1
-        )["Average PSU"];
+        datum_performance_by_psu.data.find(d => d["ID Administration"] === 3)["Average PSU"] -
+        datum_performance_by_psu.data.find(d => d["ID Administration"] === 1)["Average PSU"];
     }
 
     const text = merge(perf, rank);

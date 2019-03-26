@@ -87,6 +87,8 @@ class PresidentialTreemap extends Section {
 
     const { t, className, i18n } = this.props;
 
+    if (!path_civics_presidential_tmap) return null;
+
     const data = path_civics_presidential_tmap.data.filter(
       d => d["ID Election Type"] === this.state.electionType
     );
