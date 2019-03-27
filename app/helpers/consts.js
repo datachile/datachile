@@ -115,6 +115,12 @@ export const sources = {
     url: "http://www.extranjeria.gob.cl/estadisticas-migratorias/",
     year: 2016
   },
+  junaeb_vulnerability: {
+    title: "Índice de Vulnerabilidad Escolar - JUNAEB",
+    url:
+      "http://junaebabierta.junaeb.cl/catalogo-de-datos/indicadores-de-vulnerabilidad/",
+    year: 2018
+  },
   imports: {
     title: "Servicio Nacional de Aduanas",
     url: "http://www.aduana.cl/aduana/site/edic/base/port/inicio.html",
@@ -126,6 +132,12 @@ export const sources = {
     url:
       "http://www.subtel.gob.cl/subtel-dio-a-conocer-los-resultados-de-las-septima-encuesta-nacional-de-uso-y-acceso-a-internet/",
     year: 2016
+  },
+  mds_abandonment_rate: {
+    title: "Creciendo con Derechos. Ministerio de Desarrollo Social",
+    url: "http://www.creciendoconderechos.gob.cl/",
+    min_year: 2010,
+    year: 2017
   },
   mortality_one_to_ten: {
     title:

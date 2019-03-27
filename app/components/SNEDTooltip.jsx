@@ -28,12 +28,22 @@ class SNEDTooltip extends Component {
         {/* loop through measures */}
         {SNEDMeasures.map(measure => (
           <div key={measure.title} className="sned-tooltip-measure">
-            <h4 className="sned-tooltip-subhead font-xs">
-              {t(`geo_profile.education.sned.definitions.${measure}.title`)}
-            </h4>
-            <p className="sned-tooltip-body font-xxs">
-              {t(`geo_profile.education.sned.definitions.${measure}.desc`)}
-            </p>
+            <h4
+              className="sned-tooltip-subhead font-xs"
+              dangerouslySetInnerHTML={{
+                __html: t(
+                  `geo_profile.education.sned.definitions.${measure}.title`
+                )
+              }}
+            />
+            <p
+              className="sned-tooltip-body font-xxs"
+              dangerouslySetInnerHTML={{
+                __html: t(
+                  `geo_profile.education.sned.definitions.${measure}.desc`
+                )
+              }}
+            />
           </div>
         ))}
 
