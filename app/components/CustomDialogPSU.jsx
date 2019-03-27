@@ -66,7 +66,7 @@ class CustomDialogPSU extends React.Component {
           title={dialogHeader}
           className={`${className} custom-dialog-psu`}
         >
-          <div className="pt-dialog-body">
+          <div className="bp3-dialog-body">
             <ReactTable
               className="table"
               data={flattenedData}

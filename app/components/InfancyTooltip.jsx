@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from "react-router";
 import { translate } from "react-i18next";
-import { Tooltip2 } from "@blueprintjs/labs";
+import { Tooltip } from "@blueprintjs/core";
 import SourceNote from "components/SourceNote";
 
 import "./InfancyTooltip.css";
@@ -26,15 +26,15 @@ class InfancyTooltip extends Component {
     );
 
     return (
-      <Tooltip2
+      <Tooltip
         className="infancy-tooltip-trigger source-tooltip-trigger"
         content={InfancyTooltipContent}
         placement="auto"
         useSmartArrowPositioning={false}
         useSmartPositioning={true}
       >
-        <span className="pt-icon pt-icon-info-sign" />
-      </Tooltip2>
+        <span className="bp3-icon bp3-icon-info-sign" />
+      </Tooltip>
     );
   }
 }

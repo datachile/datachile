@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from "react-router";
 import { translate } from "react-i18next";
-import { Tooltip2 } from "@blueprintjs/labs";
+import { Tooltip } from "@blueprintjs/core";
 import SourceNote from "components/SourceNote";
 
 import "./SNEDTooltip.css";
@@ -50,7 +50,7 @@ class SNEDTooltip extends Component {
     );
 
     return (
-      <Tooltip2
+      <Tooltip
         className="sned-tooltip-trigger source-tooltip-trigger"
         content={SNEDTooltipContent}
         placement="auto"
@@ -62,9 +62,9 @@ class SNEDTooltip extends Component {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="pt-icon pt-icon-info-sign" />
+          <span className="bp3-icon bp3-icon-info-sign" />
         </a>
-      </Tooltip2>
+      </Tooltip>
     );
   }
 }

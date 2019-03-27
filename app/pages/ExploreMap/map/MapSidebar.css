@@ -44,7 +44,7 @@
       background-color: var(--dark-2);
     }
 
-    & .pt-input {
+    & .bp3-input {
       @add-mixin font-xs;
       @add-mixin heading-font;
       color: var(--white);
@@ -54,7 +54,7 @@
       cursor: pointer;
     }
 
-    & .pt-tag {
+    & .bp3-tag {
       background-color: #708bbb;
     }
 
@@ -93,11 +93,11 @@
   }
 }
 
-.pt-popover.custom-select {
+.bp3-popover.custom-select {
   min-width: 240px;
 
-  & .pt-popover-content,
-  & .pt-menu {
+  & .bp3-popover-content,
+  & .bp3-menu {
     padding: 0;
     background-color: #ccc;
   }

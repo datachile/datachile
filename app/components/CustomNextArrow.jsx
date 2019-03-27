@@ -10,7 +10,7 @@ class CustomNextArrow extends Component {
         className={this.props.className}
         onClick={this.props.onClick}
       >
-        <span className="pt-icon-standard pt-icon-chevron-right" />
+        <span className="bp3-icon-standard bp3-icon-chevron-right" />
       </a>
     );
   }

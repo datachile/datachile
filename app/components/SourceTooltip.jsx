@@ -32,7 +32,9 @@ class SourceTooltip extends Component {
 
     // source tooltip
     const sourceTooltipContent = (
-      <div className={`source-tooltip ${ sourceData ? "for-splash" : "for-viz" }`}>
+      <div
+        className={`source-tooltip ${sourceData ? "for-splash" : "for-viz"}`}
+      >
         <h4 className="source-tooltip-heading font-xs">{t("source")}:</h4>
 
         {/* splash stats */}
@@ -49,31 +51,31 @@ class SourceTooltip extends Component {
             {cubeSource.title}
             {cubeSource.source && `, ${cubeSource.source}`}
             {cubeSource.year && `, ${cubeSource.year}`}
-            <span className="pt-icon pt-icon-chevron-right" />
+            <span className="bp3-icon bp3-icon-chevron-right" />
           </p>
         )}
       </div>
     );
 
-    return <Tooltip
-      className={`source-tooltip-trigger ${ sourceData ? "for-splash" : "for-viz" }`}
-      content={sourceTooltipContent}
-      placement={sourceData ? "bottom" : "top"}
-      useSmartArrowPositioning={false}
-      useSmartPositioning={true}
-    >
-      {cubeSource ? (
-        <a href={cubeSource.url}>
-          <span className="pt-icon pt-icon-info-sign">
-            <span className="u-visually-hidden">{t("Data source")}</span>
-          </span>
-        </a>
-      ) : (
-        <span className="pt-icon pt-icon-info-sign">
-          <span className="u-visually-hidden">{t("Data source")}</span>
-        </span>
-      )}
-      </Tooltip>;
+    return (
+      <Tooltip
+        className={`source-tooltip-trigger ${
+          sourceData ? "for-splash" : "for-viz"
+        }`}
+        content={sourceTooltipContent}
+        placement={sourceData ? "bottom" : "top"}
+        useSmartArrowPositioning={false}
+        useSmartPositioning={true}
+      >
+        {cubeSource ? (
+          <a href={cubeSource.url}>
+            <span className="bp3-icon bp3-icon-info-sign" />
+          </a>
+        ) : (
+          <span className="bp3-icon bp3-icon-info-sign" />
+        )}
+      </Tooltip>
+    );
   }
 }
 

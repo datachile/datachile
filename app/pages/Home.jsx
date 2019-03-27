@@ -265,7 +265,7 @@ class Home extends Component {
                 <div className="home-btn-container u-text-center">
                   <Link className="btn font-sm" to="/explore/geo">
                     {t("Explore profiles")}
-                    <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
+                    <span className="btn-icon bp3-icon-standard bp3-icon-chevron-right" />
                   </Link>
                 </div>
               </div>
@@ -445,7 +445,7 @@ class Home extends Component {
                   <div className="home-btn-container u-text-center">
                     <Link className="btn font-xxs" to="/about/data">
                       {t("See more")}
-                      <span className="btn-icon pt-icon-standard pt-icon-chevron-right" />
+                      <span className="btn-icon bp3-icon-standard bp3-icon-chevron-right" />
                     </Link>
                   </div>
                 </div>

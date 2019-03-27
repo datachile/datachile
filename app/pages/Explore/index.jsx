@@ -391,7 +391,7 @@ class Explore extends Component {
                 to={`explore/${entity}`}
               >
                 <span
-                  className={`explore-reset-icon pt-icon pt-icon-arrow-left color-${entity}`}
+                  className={`explore-reset-icon bp3-icon bp3-icon-arrow-left color-${entity}`}
                 />
                 <span className="explore-reset-text">
                   {t("All")} {longTitle}

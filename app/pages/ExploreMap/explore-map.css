@@ -52,15 +52,15 @@
           color: var(--white);
           background-color: var(--dark-3);
 
-          & .pt-non-ideal-state-visual {
+          & .bp3-non-ideal-state-visual {
             max-width: 200px;
             width: 100%;
-            & .pt-progress-meter {
+            & .bp3-progress-meter {
               background-color: var(--white);
               @add-mixin body-font;
             }
           }
-          & .pt-non-ideal-state-title {
+          & .bp3-non-ideal-state-title {
             @add-mixin body-font;
             color: var(--white);
           }

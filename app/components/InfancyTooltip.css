@@ -2,7 +2,8 @@
 
 .infancy-tooltip-trigger {
 	font-size: 0.75em;
-	top: -0.625em;
+	position: relative;
+	top: -5px;
 }
 
 .infancy-tooltip {

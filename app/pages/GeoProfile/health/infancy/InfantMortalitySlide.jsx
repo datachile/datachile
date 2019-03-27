@@ -120,6 +120,8 @@ class InfantMortalitySlide extends Section {
             <InfancyTooltip />
           </h4>
 
+          {/* Mortalidad infantil: se compone del conciente entre el número de menores de 1 año fallecidos´entre enero y diciembre de cada año y el número de nacidos vivos inscritos de cada año multiplicado por un factor 1.000 de ampliación.  */}
+
           <h4>
             {t("About the Childhood Mortality Rate")}
             <InfancyTooltip context="childhood" />

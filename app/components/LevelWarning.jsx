@@ -30,7 +30,7 @@ class LevelWarning extends Component {
 
     return (
       <p className="level-warning font-xxs">
-        <span className="level-warning-icon pt-icon pt-icon-warning-sign" />
+        <span className="level-warning-icon bp3-icon bp3-icon-warning-sign" />
         <span className="level-warning-text">
           {t(`${parentCategory}_profile.warning`)}
         </span>

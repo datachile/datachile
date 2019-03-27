@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from "react-router";
 import { translate } from "react-i18next";
-import { Tooltip2 } from "@blueprintjs/labs";
+import { Tooltip } from "@blueprintjs/core";
 import SourceNote from "components/SourceNote";
 
 import "./FONASATooltip.css";
@@ -45,7 +45,7 @@ class FONASATooltip extends Component {
     );
 
     return (
-      <Tooltip2
+      <Tooltip
         className="fonasa-tooltip-trigger source-tooltip-trigger"
         content={FONASATooltipContent}
         placement="auto"
@@ -57,9 +57,9 @@ class FONASATooltip extends Component {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="pt-icon pt-icon-info-sign" />
+          <span className="bp3-icon bp3-icon-info-sign" />
         </a>
-      </Tooltip2>
+      </Tooltip>
     );
   }
 }

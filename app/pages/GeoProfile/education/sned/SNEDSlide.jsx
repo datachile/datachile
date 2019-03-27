@@ -60,20 +60,19 @@ class SNEDSlide extends Section {
             {t("Performance Evaluation")}
           </h3>
           <div className="topic-slide-text">
-            {text &&
-              datum_sned_score && (
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t(`geo_profile.education.sned.text1`, {
-                      score: numeral(datum_sned_score.data, locale).format(
-                        "0.00"
-                      ),
-                      year: 2016,
-                      geo
-                    })
-                  }}
-                />
-              )}
+            {text && datum_sned_score && (
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t(`geo_profile.education.sned.text1`, {
+                    score: numeral(datum_sned_score.data, locale).format(
+                      "0.00"
+                    ),
+                    year: 2016,
+                    geo
+                  })
+                }}
+              />
+            )}
             <div className="topic-slide-data">
               {text && (
                 <FeaturedDatum
@@ -101,7 +100,9 @@ class SNEDSlide extends Section {
                   icon="special-education"
                   datum={String(text.special.n)}
                   title={t("Special Education Schools")}
-                  subtitle={text.special.perc + " " + t("of") + " " + geo.caption}
+                  subtitle={
+                    text.special.perc + " " + t("of") + " " + geo.caption
+                  }
                 />
               )}
             </div>
@@ -109,7 +110,9 @@ class SNEDSlide extends Section {
               {t("About the SNED measurement system")}
               <SNEDTooltip />
             </h4>
-            <p className="font-xxs">{t("geo_profile.education.sned.description")}</p>
+            <p className="font-xxs">
+              {t("geo_profile.education.sned.description")}
+            </p>
           </div>
         </div>
         <div className="topic-slide-charts">{children}</div>

@@ -35,7 +35,7 @@ CustomSelect.defaultProps = {
   multiple: false,
   noResults: <span className="select-noresults">No results</span>,
   popoverProps: {
-    popoverClassName: "custom-select pt-minimal"
+    popoverClassName: "custom-select bp3-minimal"
   },
   resetOnSelect: true,
   tagRenderer: item => item.name,
@@ -50,7 +50,7 @@ CustomSelect.defaultProps = {
 
 function CustomSelect(props) {
   props = Object.assign({}, props, {
-    className: classnames("custom-select", "pt-fill", props.className, {
+    className: classnames("custom-select", "bp3-fill", props.className, {
       disabled: props.disabled,
       multi: props.multiple
     })

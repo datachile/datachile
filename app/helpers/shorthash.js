@@ -6,7 +6,7 @@
 	shorthash may be freely distributed under the MIT license.
 */
 
-// refer to: http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
+// refer to: http://werxltd.com/wp/2010/05/13/javascribp3-implementation-of-javas-string-hashcode-method/
 export function bitwise(str) {
   var hash = 0;
   if (str.length == 0) return hash;

@@ -46,7 +46,7 @@
     max-width: 100%;
     margin: 0 auto 0.5rem auto;
 
-    & .pt-progress-meter {
+    & .bp3-progress-meter {
       background: var(--accent) !important; /* override blueprint */
     }
   }

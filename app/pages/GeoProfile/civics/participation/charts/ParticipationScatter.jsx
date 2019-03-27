@@ -239,7 +239,7 @@ class ParticipationScatter extends Section {
               }`}
               onClick={() => this.toggleChart(false)}
             >
-              <span className="btn-icon pt-icon pt-icon-scatter-plot" />
+              <span className="btn-icon bp3-icon bp3-icon-scatter-plot" />
               <span className="btn-text">{t("LINEAR")}</span>
             </button>
             <button
@@ -248,7 +248,7 @@ class ParticipationScatter extends Section {
               }`}
               onClick={() => this.toggleChart(true)}
             >
-              <span className="btn-icon pt-icon pt-icon-scatter-plot" />
+              <span className="btn-icon bp3-icon bp3-icon-scatter-plot" />
               <span className="btn-text">LOG</span>
             </button>
           </div>

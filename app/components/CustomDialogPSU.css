@@ -30,14 +30,14 @@
     }
   }
 
-  &.pt-dialog {
+  &.bp3-dialog {
     background: #2f2f37;
     width: 650px;
 
-    & .pt-dialog-header {
+    & .bp3-dialog-header {
       background-color: #843a6a !important;
-      & .pt-dialog-header-title,
-      & .pt-icon-small-cross::before {
+      & .bp3-dialog-header-title,
+      & .bp3-icon-small-cross::before {
         color: #ffffff;
       }
     }
@@ -65,7 +65,7 @@
     }
   }
 
-  & .pt-dialog-body {
+  & .bp3-dialog-body {
     max-height: 70vh;
     margin: 0px;
 
@@ -82,7 +82,7 @@
 
 @media (max-width: 650px) {
   & .custom-dialog-psu {
-    &.pt-dialog {
+    &.bp3-dialog {
       width: 400px;
     }
   }
@@ -90,7 +90,7 @@
 
 @media (max-width: 400px) {
   & .custom-dialog-psu {
-    &.pt-dialog {
+    &.bp3-dialog {
       width: 300px;
     }
   }

@@ -353,10 +353,10 @@ components
 }
 
 /* blueprint override */
-.pt-popover-arrow path {
+.bp3-popover-arrow path {
   fill: var(--dark-2) !important;
 }
-.pt-popover-content {
+.bp3-popover-content {
   @add-mixin font-xs;
   @add-mixin body-font;
   /* blueprint overrides */
@@ -406,7 +406,7 @@ table.tooltip-table {
 }
 
 /* blueprint overlay fixes */
-.pt-overlay {
+.bp3-overlay {
   z-index: 999;
 
   & > span {
@@ -414,52 +414,52 @@ table.tooltip-table {
   }
 
   /* make sure tooltips appear in front of fixed nav */
-  & .pt-overlay-content {
+  & .bp3-overlay-content {
     z-index: 50;
   }
 }
 
-/* pt-switch theming */
-.pt-switch,
-.pt-switch .pt-control-indicator {
+/* bp3-switch theming */
+.bp3-switch,
+.bp3-switch .bp3-control-indicator {
   cursor: default; /* it's a checkbox, not a link */
 }
 /* sizing & typography overrides */
-.pt-control.pt-switch {
+.bp3-control.bp3-switch {
   @add-mixin font-xxs; /* label text */
   height: 1em;
   padding-left: 34px;
 
   /* reset box shadow on switch handle */
-  & .pt-control-indicator:before {
+  & .bp3-control-indicator:before {
     box-shadow: none !important;
   }
 }
 
-.pt-switch:active .pt-control-indicator {
+.bp3-switch:active .bp3-control-indicator {
   transform: scale(0.95);
   background-color: var(--accent-light) !important; /* override the active color */
 }
-.pt-control.pt-switch .pt-control-indicator {
+.bp3-control.bp3-switch .bp3-control-indicator {
   background-color: var(--dark-1);
   transform: background-color 0.2s ease-out;
 }
-.pt-control.pt-switch:hover .pt-control-indicator,
-.pt-control.pt-switch:focus .pt-control-indicator {
+.bp3-control.bp3-switch:hover .bp3-control-indicator,
+.bp3-control.bp3-switch:focus .bp3-control-indicator {
   background-color: var(--gray);
 }
 /* NOTE: this is the type of css that deep nesting creates 😡 */
-.pt-control.pt-switch input:checked ~ .pt-control-indicator,
-.pt-control.pt-switch .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
-.pt-control.pt-checkbox .pt-control.pt-switch input:indeterminate ~ .pt-control-indicator {
+.bp3-control.bp3-switch input:checked ~ .bp3-control-indicator,
+.bp3-control.bp3-switch .bp3-control.bp3-checkbox input:indeterminate ~ .bp3-control-indicator,
+.bp3-control.bp3-checkbox .bp3-control.bp3-switch input:indeterminate ~ .bp3-control-indicator {
   background-color: var(--accent);
 }
-.pt-control.pt-switch:hover input:checked ~ .pt-control-indicator,
-.pt-control.pt-switch:focus input:checked ~ .pt-control-indicator,
-.pt-control.pt-switch:hover .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
-.pt-control.pt-switch:focus .pt-control.pt-checkbox input:indeterminate ~ .pt-control-indicator,
-.pt-control.pt-checkbox .pt-control.pt-switch:hover input:indeterminate ~ .pt-control-indicator,
-.pt-control.pt-checkbox .pt-control.pt-switch:focus input:indeterminate ~ .pt-control-indicator {
+.bp3-control.bp3-switch:hover input:checked ~ .bp3-control-indicator,
+.bp3-control.bp3-switch:focus input:checked ~ .bp3-control-indicator,
+.bp3-control.bp3-switch:hover .bp3-control.bp3-checkbox input:indeterminate ~ .bp3-control-indicator,
+.bp3-control.bp3-switch:focus .bp3-control.bp3-checkbox input:indeterminate ~ .bp3-control-indicator,
+.bp3-control.bp3-checkbox .bp3-control.bp3-switch:hover input:indeterminate ~ .bp3-control-indicator,
+.bp3-control.bp3-checkbox .bp3-control.bp3-switch:focus input:indeterminate ~ .bp3-control-indicator {
   background-color: var(--accent-light);
 }
 

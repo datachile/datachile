@@ -30,7 +30,7 @@ class TreemapStacked extends React.Component {
           }`}
           onClick={() => this.toggleChart("treemap")}
         >
-          <span className="btn-icon pt-icon pt-icon-control" />
+          <span className="btn-icon bp3-icon bp3-icon-control" />
           <span className="btn-text">Treemap</span>
         </button>
         <button
@@ -39,7 +39,7 @@ class TreemapStacked extends React.Component {
           }`}
           onClick={() => this.toggleChart("stacked")}
         >
-          <span className="btn-icon pt-icon pt-icon-timeline-area-chart" />
+          <span className="btn-icon bp3-icon bp3-icon-timeline-area-chart" />
           <span className="btn-text">Stacked</span>
         </button>
       </div>
