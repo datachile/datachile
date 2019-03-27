@@ -15,6 +15,7 @@ const axisConfig = {
       fontColor: styles["light-1"],
       fontFamily: () => "Roboto Condensed",
       fontMax: 18,
+      fontMin: 12,
       // fontSize: () => 12,
       fontWeight: 300
     },
