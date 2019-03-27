@@ -66,7 +66,12 @@ class AbandonmentTotal extends Section {
               fill: d => EDUCATION_COLORS[d["ID Education Level"] - 1]
             },
             tooltipConfig: {
-              tbody: [[t("Number of Students"), d => d["Number of Students"]]]
+              // tbody: [[t("Number of Students"), d => d["Number of Students"]]],
+              body: d =>
+                "<div>" +
+                `<div>${t("Number of Students")}: ${d["Number of Students"]} ${t("dropouts")}</div>` +
+                `<div>${t("Year")}: ${d["Year"]}</div>` +
+                "</div>"
             },
             legendConfig: {
               label: false,

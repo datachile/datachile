@@ -111,8 +111,8 @@ class PopulationPyramid extends Section {
               text: d => d.text + " " + t("people")
             },
             yConfig: {
-              title: t("Age Range"),
-              tickFormat: d => d["Age Range"]
+              title: t("Age Range")
+              // tickFormat: d => d["Age Range"]
             },
             xConfig: {
               tickFormat: tick =>
