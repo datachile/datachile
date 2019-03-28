@@ -161,6 +161,7 @@
   & .footer-logo-heading {
     margin-bottom: 0.75em; /* override blueprint */
     margin-top: 2rem; /* space out headings */
+    color: var(--white);
 
     @add-mixin from-md {
       margin-bottom: 0.25em;

@@ -698,6 +698,10 @@
         "description": "<p>Correcciones visuales menores. Actualización de documentación de API. Ancho corregido para gráficos en la sección de demografía y cívica.</p>",
         "title": "1.3.1 - \"Guayacán\" - 2018-05-11"
       },
+      "huachimingo": {
+        "description": "",
+        "title": "2.0.0 - \"Hualle\" - 2019-03-27"
+      },
       "launch": {
         "description": "<p>Página principal. Exploración por perfiles. Buscador de entidades. Perfiles: geográfico, países, industrias y productos. Más de 15 datasets sobre los tópicos: Economía, demografía, educación, salud y vivienda.</p>",
         "title": "1.0.0 - Lanzamiento beta - 2018-01-08"
@@ -718,6 +722,13 @@
         "title": "Encuesta de Caracterización Socioeconómica Nacional (CASEN)",
         "use": "Los datos de la encuesta CASEN se encuentran en los perfiles nacional, regional y comunal, y en las dimensiones de economía, vivienda y entorno, y salud.",
         "year": "1990 - 2015"
+      },
+      "censo": {
+        "source": "Instituto Nacional de Estadísticas (INE)",
+        "text": "<p>El Censo de Población y Vivienda consiste en el conteo y caracterización de todas las viviendas y habitantes de un territorio delimitado, en un momento determinado.</p>",
+        "title": "Censo Nacional de Población y Vivienda",
+        "use": "Los datos de la encuesta CASEN se encuentran en los perfiles nacional, regional y comunal; en la dimensión demografía.",
+        "year": "2017"
       },
       "costes": {
         "source": "Servicio de Impuestos Internos (SII)",

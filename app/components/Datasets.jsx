@@ -71,9 +71,9 @@ class Datasets extends Component {
             </tr>
           </thead>
           <tbody>
-            {datasets.map(cube => {
+            {datasets.map((cube, i) => {
               return (
-                <tr>
+                <tr key={`dataset_${i}`}>
                   <td><code>{cube.name}</code></td>
                   <td>
                     {cube.dimensions.map(dim => (

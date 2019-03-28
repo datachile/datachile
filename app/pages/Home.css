@@ -437,3 +437,7 @@
     }
   }
 }
+
+.subtle-table {
+  color: var(--white);
+}
