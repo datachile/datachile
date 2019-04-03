@@ -341,6 +341,10 @@ components
   & .tooltip-title + .tooltip-subhead {
     margin-top: -0.75rem;
   }
+
+  & td {
+    padding: 2px 10px !important;
+  }
 }
 .d3plus-tooltip-body {
   @add-mixin body-font;

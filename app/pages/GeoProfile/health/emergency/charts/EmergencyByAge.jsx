@@ -8,6 +8,8 @@ import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 import { AGE_RANGE } from "../../../../../helpers/colors";
 
+import { numeral } from "helpers/formatters";
+
 class EmergencyByAge extends Section {
   render() {
     const { t, className, i18n } = this.props;
@@ -46,13 +48,24 @@ class EmergencyByAge extends Section {
             shapeConfig: {
               fill: d => AGE_RANGE[d["ID Age"]]
             },
+            tooltipConfig: {
+              tbody: [
+                [
+                  t("Emergency Care"),
+                  d => numeral(d["Total"], locale).format("0,0")
+                ],
+                [t("Year"), d => d["Year"]]
+              ]
+            },
             legend: false,
             legendConfig: {
               label: false,
               shapeConfig: false
             }
           }}
-          dataFormat={resp => resp.data.filter(d => d["ID Year"] > 2009 && d["ID Year"] < 2019)}
+          dataFormat={resp =>
+            resp.data.filter(d => d["ID Year"] > 2009 && d["ID Year"] < 2019)
+          }
         />
       </div>
     );

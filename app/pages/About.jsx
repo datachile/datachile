@@ -211,6 +211,15 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
+                        <a className="link" href="#dataset_junaeb">
+                          {t("about.data.junaeb_vulnerability.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.junaeb_vulnerability.year")}</td>
+                      <td>{t("about.data.junaeb_vulnerability.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
                         <a className="link" href="#dataset_performance">
                           {t("about.data.performance.title")}
                         </a>
@@ -859,10 +868,10 @@ class About extends Component {
               <section className="section" id="terms">
                 <h2>{t("about.changelog.title")}</h2>
 
-                <h3>{t("about.changelog.huachimingo.title")}</h3>
+                <h3>{t("about.changelog.hualle.title")}</h3>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: t("about.changelog.huachimingo.description")
+                    __html: t("about.changelog.hualle.description")
                   }}
                 />
 

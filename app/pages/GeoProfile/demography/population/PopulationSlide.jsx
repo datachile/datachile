@@ -47,6 +47,7 @@ class PopulationSlide extends Section {
     let path = `/api/data?measures=People&drilldowns=Sex&parents=true`;
 
     if (geo.depth > 0) path += `&${geoType}=${geo.key}`;
+
     Axios.get(path).then(resp => {
       const data = resp.data.data;
       const female = data.find(d => d["ID Sex"] === 1) || {};

@@ -8,6 +8,7 @@ import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
 
 import { EMERGENCY_CARE } from "helpers/colors";
+import { numeral } from "helpers/formatters";
 
 class Emergency extends Section {
   render() {
@@ -45,6 +46,15 @@ class Emergency extends Section {
             data: path,
             shapeConfig: {
               fill: d => EMERGENCY_CARE[d["ID Cause-L2"]] || "gray"
+            },
+            tooltipConfig: {
+              tbody: [
+                [
+                  t("Emergency Care"),
+                  d => numeral(d["Total"], locale).format("0,0")
+                ],
+                [t("Year"), d => d["Year"]]
+              ]
             },
             legend: false,
             legendConfig: {
