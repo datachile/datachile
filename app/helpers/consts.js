@@ -435,6 +435,24 @@ export function getI18nSourceObject(src, cube) {
     case "sned_website":
       return sources.sned_website;
 
+    case "junaeb_vulnerability":
+      return src.junaeb_vulnerability;
+
+    case "census":
+      return src.censo;
+
+    case "mds_abandonment_rate":
+      return sources.mds_abandonment_rate;
+
+    case "mortality_under_one":
+      return sources.mortality_under_one;
+
+    case "mortality_one_to_ten":
+      return sources.mortality_one_to_ten;
+
+    case "emergency_care":
+      return sources.emergency_care;
+
     default:
       return undefined;
   }

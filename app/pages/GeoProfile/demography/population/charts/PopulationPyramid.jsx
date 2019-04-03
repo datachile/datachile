@@ -13,26 +13,6 @@ import SourceTooltip from "components/SourceTooltip";
 import { nest } from "d3-collection";
 import { sum } from "d3-array";
 
-const age_bucket = [
-  { title: "0 - 4", range: [0, 4], value: 0 },
-  { title: "5 - 9", range: [5, 9], value: 0 },
-  { title: "10 - 14", range: [10, 14], value: 0 },
-  { title: "15 - 19", range: [15, 19], value: 0 },
-  { title: "20 - 24", range: [20, 24], value: 0 },
-  { title: "25 - 29", range: [25, 29], value: 0 },
-  { title: "30 - 34", range: [30, 34], value: 0 },
-  { title: "35 - 39", range: [35, 39], value: 0 },
-  { title: "40 - 44", range: [40, 44], value: 0 },
-  { title: "45 - 49", range: [45, 49], value: 0 },
-  { title: "50 - 54", range: [50, 54], value: 0 },
-  { title: "55 - 59", range: [55, 59], value: 0 },
-  { title: "60 - 64", range: [60, 64], value: 0 },
-  { title: "65 - 69", range: [65, 69], value: 0 },
-  { title: "70 - 74", range: [70, 74], value: 0 },
-  { title: "75 - 79", range: [75, 79], value: 0 },
-  { title: "80 - +", range: [80, Infinity], value: 0 }
-];
-
 class PopulationPyramid extends Section {
   static need = [
     simpleGeoChartNeed(
@@ -59,25 +39,6 @@ class PopulationPyramid extends Section {
 
     let path = `/api/data?measures=People&drilldowns=Sex,Age&parents=true&captions=${locale}`;
     if (geo.depth > 0) path += `&${geoType}=${geo.key}`;
-    const age_range = [
-      "0 - 4",
-      "5 - 9",
-      "10 - 14",
-      "15 - 19",
-      "20 - 24",
-      "25 - 29",
-      "30 - 34",
-      "35 - 39",
-      "40 - 44",
-      "45 - 49",
-      "50 - 54",
-      "55 - 59",
-      "60 - 64",
-      "65 - 69",
-      "70 - 74",
-      "75 - 79",
-      "80 +"
-    ];
 
     const classSvg = "population-pyramid";
 
@@ -86,7 +47,7 @@ class PopulationPyramid extends Section {
         <h3 className="chart-title">
           <span>
             {t("Population Pyramid")}
-            <SourceTooltip cube="population_estimate" />
+            <SourceTooltip cube="census" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>

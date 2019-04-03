@@ -32,13 +32,6 @@ class AbandonmentRate extends Section {
     const geoType =
       geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
 
-    let filter = "";
-    if (geo.type === "comuna") {
-      filter = `&Region=${geo.ancestor.key}`;
-    }
-
-    // ${geoType}=${geo.key}
-
     let path = `/api/data?measures=Abandonment Percentage&drilldowns=Education Level,Year&parents=true`;
     if (geo.depth > 0) path += `&${geoType}=${geo.key}`;
 

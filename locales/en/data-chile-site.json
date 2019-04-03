@@ -751,6 +751,13 @@
         "use": "This dataset is used in the nation, region, and comuna profiles, in the housing section. ",
         "year": "2016"
       },
+      "infant_mortality": {
+        "source": "Health Statististics and Information Department (DEIS)",
+        "text": "<p>Data published by the Health Statistics and Information Department (DEIS) with the aim of providing a general picture of the rate of infant and childhood mortality in the country.</p>",
+        "title": "Infant Mortality",
+        "use": "This dataset is used in the nation, region, and comuna profiles, in the housing section. ",
+        "year": "2010 - 2014"
+      },
       "iplusd": {
         "source": "Ministry of Economy (MINECON)",
         "text": "<p>Data created by the Ministry of Economy (MINECON) and provided by the Internal Tax Service (SII). The aim of this survey is to gather information on financial and human resources dedicated to research and development activities in private companies.</p>",

@@ -220,6 +220,15 @@ class About extends Component {
                     </tr>
                     <tr>
                       <td>
+                        <a className="link" href="#dataset_infant_mortality">
+                          {t("about.data.infant_mortality.title")}
+                        </a>
+                      </td>
+                      <td>{t("about.data.infant_mortality.year")}</td>
+                      <td>{t("about.data.infant_mortality.source")}</td>
+                    </tr>
+                    <tr>
+                      <td>
                         <a className="link" href="#dataset_performance">
                           {t("about.data.performance.title")}
                         </a>
@@ -672,6 +681,34 @@ class About extends Component {
                     {t("download.data")}
                   </a>
                 </p>
+
+                <h3 id="dataset_censo">{t("about.data.censo.title")}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.censo.text")
+                  }}
+                />
+
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.censo.use")
+                  }}
+                />
+
+                <h3 id="dataset_infant_mortality">
+                  {t("about.data.infant_mortality.title")}
+                </h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.infant_mortality.text")
+                  }}
+                />
+
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.data.infant_mortality.use")
+                  }}
+                />
 
                 <h3 id="dataset_migracion">
                   {t("about.data.migracion.title")}

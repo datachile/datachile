@@ -31,7 +31,7 @@ class PopulationByAge extends Section {
         <h3 className="chart-title">
           <span>
             {t("Population by Age")}
-            <SourceTooltip cube="immigration" />
+            <SourceTooltip cube="census" />
           </span>
           <ExportLink path={path} className={classSvg} />
         </h3>

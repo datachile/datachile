@@ -31,11 +31,6 @@ class AbandonmentTotal extends Section {
     const geoType =
       geo.type.substring(0, 1).toUpperCase() + geo.type.substring(1);
 
-    let filter = "";
-    if (geo.type === "comuna") {
-      filter = `&Region=${geo.ancestor.key}`;
-    }
-
     // ${geoType}=${geo.key}
 
     let path = `/api/data?measures=Number of Students&drilldowns=Promotion Status,Education Level,Year&parents=true`;

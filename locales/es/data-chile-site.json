@@ -836,6 +836,13 @@
         "use": "Se usa en los perfiles nacional, regional y comunal en la dimensión de educación.",
         "year": "2004 - 2016"
       },
+      "infant_mortality": {
+        "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
+        "text": "<p> Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el objetivo de proporcionar una visión general de la tasa de mortalidad infantil y de la niñez en el país. </p>",
+        "title": "Mortalidad Infantil y de la Niñez",
+        "use": "Se usa en los perfiles nacional, regional y comunal en las dimensiones de salud.",
+        "year": "2010 - 2014"
+      },
       "salud": {
         "source": "Departamento de Estadísticas e Información de Salud (DEIS)",
         "text": "<p>Datos publicados por el Departamento de Estadísticas e Información de Salud (DEIS) con el fin de ofrecer un panorama general de la situación de salud del país y que dan cuenta de la atención en medicina general, especialidades y odontología.</p>",
