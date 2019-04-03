@@ -44,7 +44,7 @@ class EmergencyByAge extends Section {
           config={{
             height: 400,
             data: path,
-            // label: d => d["Activity"],
+            total: "Total",
             shapeConfig: {
               fill: d => AGE_RANGE[d["ID Age"]]
             },

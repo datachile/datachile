@@ -42,8 +42,9 @@ class Emergency extends Section {
           drilldowns={["Cause-L2", "Name-L3"]}
           className={classSvg}
           config={{
-            height: 400,
             data: path,
+            height: 400,
+            total: "Total",
             shapeConfig: {
               fill: d => EMERGENCY_CARE[d["ID Cause-L2"]] || "gray"
             },
