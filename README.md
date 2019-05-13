@@ -4,13 +4,17 @@ Sitio web de DataChile
 
 ## Repositorios relacionados de DataChile
 
-*   [ETL para DataChile](https://github.com/Datawheel/datachile-etl)
-*   [API Mondrian para DataChile](https://github.com/Datawheel/datachile-mondrian)
-*   [Sitio web para DataChile](https://github.com/Datawheel/datachile)
+*   [Sitio web para DataChile](https://github.com/datachile/datachile)
+*   [ETL para DataChile](https://github.com/datachile/datachile-etl)
+*   [API Mondrian para DataChile](https://github.com/datachile/datachile-mondrian)
+*   [Procedimiento de deployment](https://github.com/datachile/deploy)
+*   [Cliente Python para la API de Datachile](https://github.com/datachile/datachile-python-client)
+*   [Cliente R para la API de Datachile](https://github.com/Datawheel/datachile-r)
 
 ## Documentación
 
 *   [Documentación general](docs/general.md)
+*   [Contribuciones](docs/contributing.md)
 *   [Ambiente de desarrollo](docs/development.md)
 *   [Introducción a Canon](docs/canon.md)
 *   [Introducción a D3Plus-React en Canon](docs/d3plus.md)
