@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { translate } from "react-i18next";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {translate} from "react-i18next";
 
 import "./Select.css";
 
@@ -12,13 +13,13 @@ class Select extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  propTypes: {
-    id: React.PropTypes.string.isRequired,
-    options: React.PropTypes.array.isRequired,
-    value: React.PropTypes.string,
-    valueField: React.PropTypes.string,
-    labelField: React.PropTypes.string,
-    onChange: React.PropTypes.func
+  propTypes = {
+    id: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
+    value: PropTypes.string,
+    valueField: PropTypes.string,
+    labelField: PropTypes.string,
+    onChange: PropTypes.func
   };
 
   static get defaultProps() {
@@ -41,7 +42,8 @@ class Select extends Component {
     var selected;
     if (props.value === null && props.options.length !== 0) {
       selected = props.options[0][props.valueField];
-    } else {
+    }
+    else {
       selected = props.value;
     }
     return selected;
@@ -52,8 +54,8 @@ class Select extends Component {
       return null;
     }
 
-    const { id, options, valueField, labelField } = this.props;
-    const { selected } = this.state;
+    const {id, options, valueField, labelField} = this.props;
+    const {selected} = this.state;
 
     return (
       <select className="select" id={id} value={selected} onChange={this.handleChange}>
@@ -69,8 +71,8 @@ class Select extends Component {
   }
 
   handleChange(e) {
-    const { onChange } = this.props;
-    const { selected } = this.state;
+    const {onChange} = this.props;
+    const {selected} = this.state;
 
     if (onChange) {
       var change = {
@@ -79,7 +81,7 @@ class Select extends Component {
       };
       onChange(change);
     }
-    this.setState({ selected: e.target.value });
+    this.setState({selected: e.target.value});
   }
 }
 

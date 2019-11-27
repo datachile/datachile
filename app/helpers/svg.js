@@ -12,8 +12,8 @@ class svgImageCache {
 }
 
 class SVGImageCacheSingleton {
-  singleton: false;
-  constructor() {}
+  singleton = false;
+
   static get instance() {
     if (!this.singleton) {
       this.singleton = new svgImageCache();
