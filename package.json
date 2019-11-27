@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "canon-dev",
     "build": "canon-build",
-    "start": "canon-start",
+    "start": "node index.js",
     "locales": "canon-locales"
   },
   "repository": {
