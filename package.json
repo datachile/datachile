@@ -22,7 +22,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.14.1",
     "@blueprintjs/labs": "^0.16.3",
-    "@datawheel/canon-core": "^0.17.12",
+    "@datawheel/canon-core": "~0.17.12",
     "@datawheel/canon-logiclayer": "^0.3.13",
     "d3-geo-projection": "^2.5.0",
     "normalize.css": "^5.0.0",
