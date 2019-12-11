@@ -8,4 +8,4 @@ ADD . $APP_HOME
 RUN npm ci && npm run build
 
 EXPOSE 4444
-CMD ["npm", "run", "start"]
+CMD ["node", "index.js"]
