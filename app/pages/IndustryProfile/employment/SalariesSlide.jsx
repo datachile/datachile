@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import FeaturedDatum from "components/FeaturedDatum";
@@ -54,4 +54,4 @@ class SalariesSlide extends Section {
   }
 }
 
-export default translate()(SalariesSlide);
+export default withNamespaces()(SalariesSlide);

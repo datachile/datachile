@@ -4,12 +4,12 @@ import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { institutionsColorScale } from "helpers/colors";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 
-export default translate()(
+export default withNamespaces()(
   class PerformanceByType extends Section {
     static need = [
       simpleGeoChartNeed(

@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Treemap } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { simpleGeoChartNeed, simpleDatumNeed } from "helpers/MondrianClient";
 import { presidentialColorScale } from "helpers/colors";
@@ -249,4 +249,4 @@ class Presidential2nd extends Section {
   }
 }
 
-export default translate()(Presidential2nd);
+export default withNamespaces()(Presidential2nd);

@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Treemap, StackedArea } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { numeral } from "helpers/formatters";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
@@ -146,4 +146,4 @@ class EmploymentByLevel extends Section {
   }
 }
 
-export default translate()(EmploymentByLevel);
+export default withNamespaces()(EmploymentByLevel);

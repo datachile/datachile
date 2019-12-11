@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
@@ -112,4 +112,4 @@ class DisabilityBySex extends Section {
   }
 }
 
-export default translate()(DisabilityBySex);
+export default withNamespaces()(DisabilityBySex);

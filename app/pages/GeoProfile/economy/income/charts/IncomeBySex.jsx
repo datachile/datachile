@@ -1,6 +1,6 @@
 import React from "react";
 import { BarChart } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 import { Switch } from "@blueprintjs/core";
 
@@ -140,4 +140,4 @@ class IncomeBySex extends Section {
   }
 }
 
-export default translate()(IncomeBySex);
+export default withNamespaces()(IncomeBySex);

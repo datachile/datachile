@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
 import { getLevelObject } from "helpers/dataUtils";
@@ -126,4 +126,4 @@ class ImportsByDestination extends Section {
   }
 }
 
-export default translate()(ImportsByDestination);
+export default withNamespaces()(ImportsByDestination);

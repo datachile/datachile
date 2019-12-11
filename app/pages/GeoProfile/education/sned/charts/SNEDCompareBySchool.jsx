@@ -1,22 +1,16 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
-
-import { colorContrast } from "d3plus-color";
-
-import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
-import { snedColorScale } from "helpers/colors";
-import { sources } from "helpers/consts";
-
-import { mean } from "d3-array";
-
-import Select from "components/Select";
-import ExportLink from "components/ExportLink";
-import SourceTooltip from "components/SourceTooltip";
-import { BarChart } from "d3plus-react";
-
+import {Section} from "@datawheel/canon-core";
 import CustomDialog from "components/CustomDialog";
+import ExportLink from "components/ExportLink";
+import Select from "components/Select";
+import SourceTooltip from "components/SourceTooltip";
+import {mean} from "d3-array";
+import {BarChart} from "d3plus-react";
+import {snedColorScale} from "helpers/colors";
+import {sources} from "helpers/consts";
+import {numeral} from "helpers/formatters";
+import {simpleGeoChartNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class SNEDCompareBySchool extends Section {
   static need = [
@@ -38,7 +32,7 @@ class SNEDCompareBySchool extends Section {
           ["Cluster", "Cluster", "Stage 2"]
         ],
         cuts: [`[Date].[Date].[Year].&[${sources.sned.year}]`],
-        options: { parents: true }
+        options: {parents: true}
       }
     )
   ];
@@ -52,7 +46,7 @@ class SNEDCompareBySchool extends Section {
       dialogBody: [],
       isOpen: false,
       key: Math.random(),
-      selectedObj: { value: "Avg efectiveness", subtitle: "Efectiveness" },
+      selectedObj: {value: "Avg efectiveness", subtitle: "Efectiveness"},
       selectedOption: "Avg efectiveness"
     };
     this.handleChange = this.handleChange.bind(this);
@@ -64,7 +58,7 @@ class SNEDCompareBySchool extends Section {
   }
 
   componentDidMount() {
-    const { t } = this.props;
+    const {t} = this.props;
     const selector = [
       "Avg sned_score",
       "Avg efectiveness",
@@ -78,7 +72,7 @@ class SNEDCompareBySchool extends Section {
     const variations = selector.map((item, key) => {
       let subtitle = t(this.capitalizeFirstLetter(item.split(" ")[1]));
       let ms = subtitle;
-      return { id: item, title: ms, value: item, subtitle };
+      return {id: item, title: ms, value: item, subtitle};
     });
 
     this.setState({
@@ -96,11 +90,9 @@ class SNEDCompareBySchool extends Section {
   }
 
   handleChange(ev) {
-    this.setState({ key: Math.random() });
+    this.setState({key: Math.random()});
 
-    const obj = this.state.chartVariations.find(
-      item => item.id === ev.newValue
-    );
+    const obj = this.state.chartVariations.find(item => item.id === ev.newValue);
     this.setState({
       isOpen: false,
       selectedOption: obj.value,
@@ -118,9 +110,9 @@ class SNEDCompareBySchool extends Section {
   }
 
   render() {
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
     const locale = i18n.language;
-    const { geo, path_sned_compare_by_school } = this.context.data;
+    const {geo, path_sned_compare_by_school} = this.context.data;
 
     const measures = [
       "Avg efectiveness",
@@ -138,18 +130,19 @@ class SNEDCompareBySchool extends Section {
             ","
           )}&drilldowns=Stage 1a,Institution,Year&Year=2016&Comuna=${geo.key}&parents=true&captions=${locale}`
         : geo.type == "region"
-        ? `/api/data?measures=${measures.join(
-            ","
-          )}&drilldowns=Stage 1a,Institution,Year&Year=2016&Region=${geo.key}&parents=true&captions=${locale}`
-        : `/api/data?measures=${measures.join(
-            ","
-          )}&drilldowns=Stage 1a,Comuna,Year&Year=2016&parents=true&captions=${locale}`;
+          ? `/api/data?measures=${measures.join(
+              ","
+            )}&drilldowns=Stage 1a,Institution,Year&Year=2016&Region=${geo.key}&parents=true&captions=${locale}`
+          : `/api/data?measures=${measures.join(
+              ","
+            )}&drilldowns=Stage 1a,Comuna,Year&Year=2016&parents=true&captions=${locale}`;
 
     // const path = path_sned_compare_by_school;
 
-    const title = geo.depth === 0 
-      ? t("Average Performance By Comuna") 
-      : t("Average Performance By School Type");
+    const title =
+      geo.depth === 0
+        ? t("Average Performance By Comuna")
+        : t("Average Performance By School Type");
     const classSvg = "sned-performance-by-school-type";
 
     let customTick = "";
@@ -203,10 +196,7 @@ class SNEDCompareBySchool extends Section {
                 }
               },
               title:
-                t("Score Range") +
-                " " +
-                t(this.state.selectedObj.subtitle) +
-                " (SIMCE)"
+                t("Score Range") + " " + t(this.state.selectedObj.subtitle) + " (SIMCE)"
             },
             yConfig: {
               title: t("Number of schools"),
@@ -215,15 +205,14 @@ class SNEDCompareBySchool extends Section {
                 if (newTick !== customTick) {
                   customTick = newTick;
                   return newTick;
-                } else {
+                }
+                else {
                   return " ";
                 }
               }
             },
             xSort: (a, b) =>
-              b[this.state.selectedOption] > a[this.state.selectedOption]
-                ? -1
-                : 1,
+              b[this.state.selectedOption] > a[this.state.selectedOption] ? -1 : 1,
             on: {
               click: d => {
                 let body = d.tooltip,
@@ -243,12 +232,14 @@ class SNEDCompareBySchool extends Section {
                 </h4>
                 <h5 class="tooltip-subhead">${d["interval"]}</h5>`,
               body: d => {
-                let body = `<h5>${d["Institution"] ? t("Schools") : t("Comunas")}</h5><ul class="tooltip-list u-list-reset">`;
+                let body = `<h5>${d["Institution"]
+                  ? t("Schools")
+                  : t("Comunas")}</h5><ul class="tooltip-list u-list-reset">`;
                 (d["Institution"] || d["Comuna"]) instanceof Array
                   ? (d["Institution"] || d["Comuna"]).forEach(item => {
                       body += `<li style='text-transform: capitalize;'>${item.toLowerCase()}</li>`;
                     })
-                  : (body += `<li>${(d["Institution"] || d["Comuna"])}</li>`);
+                  : (body += `<li>${d["Institution"] || d["Comuna"]}</li>`);
                 return (
                   "<div style='overflow: hidden; max-height: 200px'>" +
                   body +
@@ -266,7 +257,7 @@ class SNEDCompareBySchool extends Section {
               body: d => "<div />"
             },
             legendConfig: {
-              label: d => d["Stage 1a"],
+              label: d => d["Stage 1a"]
               // shapeConfig: {
               //   backgroundImage: "/images/legend/education/type.png"
               // }
@@ -285,8 +276,7 @@ class SNEDCompareBySchool extends Section {
               return {
                 min: i - interval,
                 max: iteration === divisor ? 100 : i,
-                name:
-                  Math.round(i - interval) + "–" + Math.round(i)
+                name: Math.round(i - interval) + "–" + Math.round(i)
               };
             });
 
@@ -297,18 +287,13 @@ class SNEDCompareBySchool extends Section {
                   count: 1,
                   tooltip: {
                     [Math.random().toString()]: {
-                      efectiveness:
-                        Math.round(item["Avg efectiveness"] * 100) / 100,
+                      efectiveness: Math.round(item["Avg efectiveness"] * 100) / 100,
                       fairness: Math.round(item["Avg fairness"] * 100) / 100,
-                      improvement:
-                        Math.round(item["Avg improvement"] * 100) / 100,
-                      initiative:
-                        Math.round(item["Avg initiative"] * 100) / 100,
-                      integration:
-                        Math.round(item["Avg integration"] * 100) / 100,
+                      improvement: Math.round(item["Avg improvement"] * 100) / 100,
+                      initiative: Math.round(item["Avg initiative"] * 100) / 100,
+                      integration: Math.round(item["Avg integration"] * 100) / 100,
                       school: item["Institution"] || item["Comuna"],
-                      overcoming:
-                        Math.round(item["Avg overcoming"] * 100) / 100,
+                      overcoming: Math.round(item["Avg overcoming"] * 100) / 100,
                       sned_score: Math.round(item["Avg sned_score"] * 100) / 100
                     }
                   },
@@ -337,8 +322,11 @@ class SNEDCompareBySchool extends Section {
             {this.state.chartVariations.map((button, i) => (
               <button
                 key={`button_sned_${i}`}
-                className={`btn font-xxs ${this.state.selectedOption === button.id ? "is-active" : "is-inactive"}`}
-                onClick={() => this.setState({ selectedOption: button.id })}>
+                className={`btn font-xxs ${this.state.selectedOption === button.id
+                  ? "is-active"
+                  : "is-inactive"}`}
+                onClick={() => this.setState({selectedOption: button.id})}
+              >
                 {button.title}
               </button>
             ))}
@@ -354,11 +342,11 @@ class SNEDCompareBySchool extends Section {
               valueField="id"
               onChange={this.handleChange}
             />
-        </div>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default translate()(SNEDCompareBySchool);
+export default withNamespaces()(SNEDCompareBySchool);

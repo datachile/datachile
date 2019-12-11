@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import { sources } from "helpers/consts";
@@ -142,4 +142,4 @@ class IncomeSexAgeSlide extends Section {
   }
 }
 
-export default translate()(IncomeSexAgeSlide);
+export default withNamespaces()(IncomeSexAgeSlide);

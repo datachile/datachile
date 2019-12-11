@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Treemap } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { RDTypesColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
@@ -104,4 +104,4 @@ class RDByBusinessType extends Section {
   }
 }
 
-export default translate()(RDByBusinessType);
+export default withNamespaces()(RDByBusinessType);

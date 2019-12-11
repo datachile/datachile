@@ -26,7 +26,7 @@ Dentro de la carpeta, debes crear el archivo `index.jsx`, que será el esqueleto
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, Canon, CanonProfile } from "datawheel-canon";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 // Employment Topic
 import EmploymentSlide from "./employment/EmploymentSlide";
@@ -105,7 +105,7 @@ class InstitutionProfile extends Component {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     state => ({
       data: state.data,

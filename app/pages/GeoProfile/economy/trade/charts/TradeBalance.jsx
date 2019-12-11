@@ -2,7 +2,7 @@ import React from "react";
 import { Section } from "@datawheel/canon-core";
 import values from "lodash/values";
 import { LinePlot } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { tradeBalanceColorScale } from "helpers/colors";
@@ -92,4 +92,4 @@ class TradeBalance extends Section {
   }
 }
 
-export default translate()(TradeBalance);
+export default withNamespaces()(TradeBalance);

@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 
 import "./PivotSelector.css";
@@ -57,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-PivotSelector = translate()(
+PivotSelector = withNamespaces()(
   connect(mapStateToProps, mapDispatchToProps)(PivotSelector)
 );
 

@@ -8,7 +8,7 @@ import {
   slugifyItem
 } from "helpers/formatters";
 import { industriesColorScale } from "helpers/colors";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import ExportLink from "components/ExportLink";
@@ -105,4 +105,4 @@ class IndustryBySector extends Section {
   }
 }
 
-export default translate()(IndustryBySector);
+export default withNamespaces()(IndustryBySector);

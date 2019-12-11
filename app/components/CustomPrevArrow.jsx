@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 class CustomPrevArrow extends Component {
   render() {
@@ -16,4 +16,4 @@ class CustomPrevArrow extends Component {
   }
 }
 
-export default translate()(CustomPrevArrow);
+export default withNamespaces()(CustomPrevArrow);

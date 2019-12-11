@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { browserHistory } from "react-router";
 import { CanonProfile } from "@datawheel/canon-core";
 
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import isEqual from "lodash/isEqual";
 
 import Nav from "components/Nav";
@@ -182,4 +182,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default translate()(connect(mapStateToProps)(ExploreMap));
+export default withNamespaces()(connect(mapStateToProps)(ExploreMap));

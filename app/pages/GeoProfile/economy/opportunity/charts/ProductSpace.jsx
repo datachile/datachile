@@ -3,7 +3,7 @@ import React from "react";
 import { Network } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { productsColorScale } from "helpers/colors";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 import { numeral } from "helpers/formatters";
 import { sources } from "helpers/consts";
@@ -99,4 +99,4 @@ class ProductSpace extends Section {
 	}
 }
 
-export default translate()(ProductSpace);
+export default withNamespaces()(ProductSpace);

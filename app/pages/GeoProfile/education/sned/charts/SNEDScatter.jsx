@@ -2,7 +2,7 @@ import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Plot } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { sources } from "helpers/consts";
 import { snedColorScale } from "helpers/colors";
@@ -304,4 +304,4 @@ class SNEDScatter extends Section {
     );
   }
 }
-export default translate()(SNEDScatter);
+export default withNamespaces()(SNEDScatter);

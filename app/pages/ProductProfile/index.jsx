@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonProfile } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import orderBy from "lodash/orderBy";
 import Helmet from "react-helmet";
 
@@ -659,7 +659,7 @@ class ProductProfile extends Component {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     state => ({
       data: state.data

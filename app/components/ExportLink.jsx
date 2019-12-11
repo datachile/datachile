@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { saveElement } from "d3plus-export";
 
 import "./ExportLink.css";
@@ -162,4 +162,4 @@ class ExportLink extends React.Component {
   }
 }
 
-export default translate()(ExportLink);
+export default withNamespaces()(ExportLink);

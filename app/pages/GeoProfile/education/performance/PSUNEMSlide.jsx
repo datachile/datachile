@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
@@ -246,4 +246,4 @@ class PSUNEMSlide extends Section {
   }
 }
 
-export default translate()(PSUNEMSlide);
+export default withNamespaces()(PSUNEMSlide);

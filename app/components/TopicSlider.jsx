@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider, { SlickGoTo } from "react-slick";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import "./TopicSlider.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
 import { isMobile } from "helpers/responsiveUtils";
@@ -54,4 +54,4 @@ class TopicSlider extends Component {
   }
 }
 
-export default translate()(TopicSlider);
+export default withNamespaces()(TopicSlider);

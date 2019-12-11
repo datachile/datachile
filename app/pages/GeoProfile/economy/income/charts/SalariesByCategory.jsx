@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { BarChart } from "d3plus-react";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -99,4 +99,4 @@ class SalariesByCategory extends Section {
   }
 }
 
-export default translate()(SalariesByCategory);
+export default withNamespaces()(SalariesByCategory);

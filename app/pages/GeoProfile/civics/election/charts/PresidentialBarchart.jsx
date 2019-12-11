@@ -1,19 +1,12 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { BarChart } from "d3plus-react";
-import { translate } from "react-i18next";
-
-import { simpleDatumNeed } from "helpers/MondrianClient";
-import { regionsColorScale } from "helpers/colors";
-import { getAvailableYears } from "helpers/map";
-
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
-import { Switch } from "@blueprintjs/core";
-
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
-import NoDataAvailable from "components/NoDataAvailable";
-import { uuid } from "d3plus-common";
+import {BarChart} from "d3plus-react";
+import {regionsColorScale} from "helpers/colors";
+import {numeral} from "helpers/formatters";
+import {simpleDatumNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class PresidentialBarchart extends Section {
   static need = [
@@ -27,7 +20,7 @@ class PresidentialBarchart extends Section {
           ["Date", "Date", "Year"],
           ["Election Type", "Election Type", "Election Type"]
         ],
-        options: { parents: true },
+        options: {parents: true},
         cuts: [
           "{[Election Type].[Election Type].[Election Type].&[1],[Election Type].[Election Type].[Election Type].&[2]}"
         ]
@@ -64,9 +57,9 @@ class PresidentialBarchart extends Section {
       path_electoral_presidential_1st
     } = this.context.data;
 
-    const { electionType, year } = this.state;
+    const {electionType, year} = this.state;
 
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
 
     let data = path_civics_presidential_tmap.data.filter(
       d => d["ID Election Type"] === this.state.electionType
@@ -112,17 +105,12 @@ class PresidentialBarchart extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {`${
-              electionType === 1
-                ? t("Results 1st Round")
-                : t("Results 2nd Round")
-            } ${year}`}
+            {`${electionType === 1
+              ? t("Results 1st Round")
+              : t("Results 2nd Round")} ${year}`}
             <SourceTooltip cube="election_results" />
           </span>
-          <ExportLink
-            path={path_electoral_presidential_1st}
-            className={classSvg}
-          />
+          <ExportLink path={path_electoral_presidential_1st} className={classSvg} />
         </h3>
 
         <BarChart
@@ -147,9 +135,7 @@ class PresidentialBarchart extends Section {
             },
             total: d =>
               geo.type !== "country"
-                ? d["Geo"] !== "Chile"
-                  ? d["Votes"]
-                  : 0
+                ? d["Geo"] !== "Chile" ? d["Votes"] : 0
                 : d["Votes"],
             totalConfig: {
               text: d => d.text + " " + t("Votes")
@@ -161,9 +147,7 @@ class PresidentialBarchart extends Section {
                   ? "#86396B"
                   : d["Geo"] == "Chile"
                     ? "#7986CB"
-                    : geo.type === "region"
-                      ? regionsColorScale(d["geo"])
-                      : "#86396B",
+                    : geo.type === "region" ? regionsColorScale(d["geo"]) : "#86396B",
               label: d => false
             },
             time: "ID Year",
@@ -196,17 +180,17 @@ class PresidentialBarchart extends Section {
 
         <div className="btn-group">
           <button
-            className={`btn font-xxs ${
-              this.state.electionType === 1 ? "is-active" : "is-inactive"
-            }`}
+            className={`btn font-xxs ${this.state.electionType === 1
+              ? "is-active"
+              : "is-inactive"}`}
             onClick={() => this.toggleChart(1)}
           >
             <span className="btn-text">{t("1st Round")}</span>
           </button>
           <button
-            className={`btn font-xxs ${
-              this.state.electionType === 2 ? "is-active" : "is-inactive"
-            }`}
+            className={`btn font-xxs ${this.state.electionType === 2
+              ? "is-active"
+              : "is-inactive"}`}
             onClick={() => this.toggleChart(2)}
           >
             <span className="btn-text">{t("2nd Round")}</span>
@@ -217,4 +201,4 @@ class PresidentialBarchart extends Section {
   }
 }
 
-export default translate()(PresidentialBarchart);
+export default withNamespaces()(PresidentialBarchart);

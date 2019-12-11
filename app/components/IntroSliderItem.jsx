@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import "./IntroSlider.css";
 
@@ -56,4 +56,4 @@ class IntroSliderItem extends Component {
   }
 }
 
-export default translate()(IntroSliderItem);
+export default withNamespaces()(IntroSliderItem);

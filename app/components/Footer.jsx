@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import ComingSoon from "components/ComingSoon";
 
@@ -248,4 +248,4 @@ class Footer extends Component {
   }
 }
 
-export default translate()(Footer);
+export default withNamespaces()(Footer);

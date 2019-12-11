@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { employmentColorScale } from "helpers/colors";
@@ -84,4 +84,4 @@ class DeathCauses extends Section {
   }
 }
 
-export default translate()(DeathCauses);
+export default withNamespaces()(DeathCauses);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Link } from "react-router";
 import { CanonProfile } from "@datawheel/canon-core";
 import Helmet from "react-helmet";
@@ -976,4 +976,4 @@ class About extends Component {
   }
 }
 
-export default translate()(About);
+export default withNamespaces()(About);

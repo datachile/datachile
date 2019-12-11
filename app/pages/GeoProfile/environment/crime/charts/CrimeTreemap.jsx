@@ -1,26 +1,23 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
-
-import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import { crimesColorScale } from "helpers/colors";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
-
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
-import NoDataAvailable from "components/NoDataAvailable";
 import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
+import {crimesColorScale} from "helpers/colors";
+import {numeral} from "helpers/formatters";
+import {simpleGeoChartNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class CrimeTreemap extends Section {
   static need = [
     simpleGeoChartNeed("path_crimes_by_crime", "crimes", ["Cases"], {
       drillDowns: [["Crime", "Crime", "Crime"], ["Date", "Date", "Year"]],
-      options: { parents: true }
+      options: {parents: true}
     })
   ];
 
   render() {
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
 
     const path = this.context.data.path_crimes_by_crime;
     const locale = i18n.language;
@@ -77,4 +74,4 @@ class CrimeTreemap extends Section {
   }
 }
 
-export default translate()(CrimeTreemap);
+export default withNamespaces()(CrimeTreemap);

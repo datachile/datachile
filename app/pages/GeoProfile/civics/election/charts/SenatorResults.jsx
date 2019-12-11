@@ -1,11 +1,11 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Treemap } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
 import { coalitionColorScale } from "helpers/colors";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
+import { numeral } from "helpers/formatters";
 import { getAvailableYears } from "helpers/map";
 
 import { Switch } from "@blueprintjs/core";
@@ -253,4 +253,4 @@ class SenatorResults extends Section {
   }
 }
 
-export default translate()(SenatorResults);
+export default withNamespaces()(SenatorResults);

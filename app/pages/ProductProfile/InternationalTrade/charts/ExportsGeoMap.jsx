@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import CustomMap from "components/CustomMap";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { sources } from "helpers/consts";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
@@ -74,4 +74,4 @@ class ExportsGeoMap extends Section {
   }
 }
 
-export default translate()(ExportsGeoMap);
+export default withNamespaces()(ExportsGeoMap);

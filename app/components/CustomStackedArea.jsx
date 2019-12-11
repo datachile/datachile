@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StackedArea } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 class CustomStackedArea extends Component {
   render() {
@@ -53,4 +53,4 @@ class CustomStackedArea extends Component {
   }
 }
 
-export default translate()(CustomStackedArea);
+export default withNamespaces()(CustomStackedArea);

@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import { annualized_growth } from "helpers/calculator";
@@ -153,4 +153,4 @@ class RDSlide extends Section {
   }
 }
 
-export default translate()(RDSlide);
+export default withNamespaces()(RDSlide);

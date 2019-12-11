@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { Button, Dialog, Intent } from "@blueprintjs/core";
 
@@ -123,4 +123,4 @@ class CustomDialog extends React.Component {
   }
 }
 
-export default translate()(CustomDialog);
+export default withNamespaces()(CustomDialog);

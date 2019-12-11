@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import "./ComingSoon.css";
 
@@ -9,4 +9,4 @@ function ComingSoon(props) {
   return <small className="coming-soon">{t("Soon")}</small>;
 }
 
-export default translate()(ComingSoon);
+export default withNamespaces()(ComingSoon);

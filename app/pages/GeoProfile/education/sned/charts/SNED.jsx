@@ -2,7 +2,7 @@ import React from "react";
 import keyBy from "lodash/keyBy";
 import sumBy from "lodash/sumBy";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
 import { numeral } from "helpers/formatters";
@@ -139,4 +139,4 @@ class SNED extends Section {
   }
 }
 
-export default translate()(SNED);
+export default withNamespaces()(SNED);

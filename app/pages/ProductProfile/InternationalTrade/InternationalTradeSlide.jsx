@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 class InternationalTradeSlide extends Section {
@@ -20,4 +20,4 @@ class InternationalTradeSlide extends Section {
   }
 }
 
-export default translate()(InternationalTradeSlide);
+export default withNamespaces()(InternationalTradeSlide);

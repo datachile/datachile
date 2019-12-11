@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { getGeoObject } from "helpers/dataUtils";
 import ProfileTile from "components/ProfileTile";
 import "./ProfileCarousel.css";
@@ -31,4 +31,4 @@ class ProfileCarousel extends Component {
   }
 }
 
-export default translate()(ProfileCarousel);
+export default withNamespaces()(ProfileCarousel);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import TreemapStacked from "components/TreemapStacked";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -81,4 +81,4 @@ class MigrationByEducation extends Section {
   }
 }
 
-export default translate()(MigrationByEducation);
+export default withNamespaces()(MigrationByEducation);

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { CanonProfile } from "@datawheel/canon-core";
 
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import isEqual from "lodash/isEqual";
 
 import { mapCommonNeed } from "helpers/map";
@@ -51,4 +51,4 @@ class ExploreMap extends React.Component {
   }
 }
 
-export default translate()(connect()(ExploreMap));
+export default withNamespaces()(connect()(ExploreMap));

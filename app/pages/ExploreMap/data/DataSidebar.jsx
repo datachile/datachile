@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { CSVLink } from "react-csv";
@@ -89,7 +89,7 @@ const mapDispatchToProps = dispatch => ({
 	}
 });
 
-DataSidebar = translate()(
+DataSidebar = withNamespaces()(
 	connect(mapStateToProps, mapDispatchToProps)(DataSidebar)
 );
 

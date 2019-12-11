@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import "./LinksList.css";
 
@@ -62,4 +62,4 @@ class LinksList extends Component {
   }
 }
 
-export default translate()(LinksList);
+export default withNamespaces()(LinksList);

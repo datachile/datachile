@@ -4,7 +4,7 @@ import { Treemap } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { industryOccupationColorScale } from "helpers/colors";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import SourceTooltip from "components/SourceTooltip";
@@ -90,4 +90,4 @@ class IndustryByOccupation extends Section {
   }
 }
 
-export default translate()(IndustryByOccupation);
+export default withNamespaces()(IndustryByOccupation);

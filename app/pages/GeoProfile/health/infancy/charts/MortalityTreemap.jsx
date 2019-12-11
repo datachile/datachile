@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { numeral } from "helpers/formatters";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
@@ -125,4 +125,4 @@ class MortalityTreemap extends Section {
   }
 }
 
-export default translate()(MortalityTreemap);
+export default withNamespaces()(MortalityTreemap);

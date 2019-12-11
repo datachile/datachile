@@ -4,7 +4,7 @@ import { Network } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { industriesColorScale } from "helpers/colors";
 import { numeral } from "helpers/formatters";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 import { sources } from "helpers/consts";
 
@@ -98,4 +98,4 @@ class IndustrySpace extends Section {
 	}
 }
 
-export default translate()(IndustrySpace);
+export default withNamespaces()(IndustrySpace);

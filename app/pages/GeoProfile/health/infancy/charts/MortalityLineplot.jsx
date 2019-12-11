@@ -1,20 +1,12 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { BarChart, LinePlot } from "d3plus-react";
-import { translate } from "react-i18next";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
-
-import Select from "components/Select";
-import mondrianClient, {
-  geoCut,
-  simpleGeoChartNeed,
-  simpleDatumNeed
-} from "helpers/MondrianClient";
-
-import { COLORS_GENDER } from "helpers/colors";
-
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
+import Select from "components/Select";
 import SourceTooltip from "components/SourceTooltip";
+import {LinePlot} from "d3plus-react";
+import {numeral} from "helpers/formatters";
+import {simpleDatumNeed, simpleGeoChartNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class MortalityLineplot extends Section {
   static need = [
@@ -28,7 +20,7 @@ class MortalityLineplot extends Section {
             ["Age Range", "Age Range DEIS", "Age Range"],
             ["Date", "Date", "Year"]
           ],
-          options: { parents: true },
+          options: {parents: true},
           cuts: []
         }
       )(params, store),
@@ -43,12 +35,12 @@ class MortalityLineplot extends Section {
             ["Date", "Date", "Year"],
             ["Sex", "Sex", "Sex"]
           ],
-          options: { parents: true },
+          options: {parents: true},
           cuts: []
         }
       )(params, store),
     (params, store) => {
-      let mirror = { ...params };
+      let mirror = {...params};
       mirror.comuna = undefined;
 
       return simpleDatumNeed(
@@ -62,7 +54,7 @@ class MortalityLineplot extends Section {
             ["Geography", "Geography", "Comuna"],
             ["Sex", "Sex", "Sex"]
           ],
-          options: { parents: true },
+          options: {parents: true},
           cuts: []
         },
         "geo",
@@ -70,7 +62,7 @@ class MortalityLineplot extends Section {
       )(mirror, store);
     },
     (params, store) => {
-      let mirror = { ...params };
+      let mirror = {...params};
       mirror.comuna = undefined;
 
       return simpleDatumNeed(
@@ -83,7 +75,7 @@ class MortalityLineplot extends Section {
             ["Date", "Date", "Year"],
             ["Geography", "Geography", "Comuna"]
           ],
-          options: { parents: true },
+          options: {parents: true},
           cuts: []
         },
         "geo",
@@ -107,7 +99,7 @@ class MortalityLineplot extends Section {
   }
 
   componentDidMount() {
-    const { t } = this.props;
+    const {t} = this.props;
 
     const {
       path_infant_mortality_one_to_ten_data_plot,
@@ -131,9 +123,7 @@ class MortalityLineplot extends Section {
             id: d["ID Age Range"],
             title: d["Age Range"],
             __type:
-              childhoodIDs.indexOf(d["ID Age Range"]) === -1
-                ? "infancy"
-                : "childhood"
+              childhoodIDs.indexOf(d["ID Age Range"]) === -1 ? "infancy" : "childhood"
           });
           membersIdTemp.push(d["ID Age Range"]);
         }
@@ -162,12 +152,12 @@ class MortalityLineplot extends Section {
   }
 
   toggleSex(selectedSex) {
-    this.setState({ selectedSex });
+    this.setState({selectedSex});
   }
 
   render() {
-    const { selected, selectedSex } = this.state;
-    const { t, className, i18n } = this.props;
+    const {selected, selectedSex} = this.state;
+    const {t, className, i18n} = this.props;
     const {
       geo,
       path_infant_mortality_under_one,
@@ -203,9 +193,7 @@ class MortalityLineplot extends Section {
         all.push(item);
 
         const slug =
-          selected === "infancy"
-            ? d["ID Year"]
-            : `${d["ID Year"]}_${d["ID Sex"]}`;
+          selected === "infancy" ? d["ID Year"] : `${d["ID Year"]}_${d["ID Sex"]}`;
 
         if (availableYears.indexOf(slug) === -1) {
           all.push({
@@ -234,9 +222,7 @@ class MortalityLineplot extends Section {
       data = filteredData.data
         .filter(item => item["ID Age Range"] === this.state.selectedOption)
         .reduce((all, d) => {
-          if (
-            availableRegions.indexOf(`${d["ID Region"]}_${d["ID Year"]}`) === -1
-          ) {
+          if (availableRegions.indexOf(`${d["ID Region"]}_${d["ID Year"]}`) === -1) {
             availableRegions.push(`${d["ID Region"]}_${d["ID Year"]}`);
             all.push({
               Region: d["Region"],
@@ -273,16 +259,20 @@ class MortalityLineplot extends Section {
       <div className={className}>
         <h3 className="chart-title">
           <span>
-            {selected === "infancy"
-              ? t("Infant Mortality Rate")
-              : t("Childhood Mortality Rate")}
+            {selected === "infancy" ? (
+              t("Infant Mortality Rate")
+            ) : (
+              t("Childhood Mortality Rate")
+            )}
             <SourceTooltip cube="mortality_under_one" />
           </span>
           <ExportLink
             path={
-              selected === "infancy"
-                ? path_infant_mortality_under_one
-                : path_infant_mortality_one_to_ten
+              selected === "infancy" ? (
+                path_infant_mortality_under_one
+              ) : (
+                path_infant_mortality_one_to_ten
+              )
             }
             className={classSvg}
           />
@@ -309,10 +299,8 @@ class MortalityLineplot extends Section {
                   d["Geo"] === "Country"
                     ? "#EE293E"
                     : d["Geo"] === "Region"
-                    ? "#11A29B"
-                    : `comuna_${geo.key}` === d["ID Geography"]
-                    ? "#335CB5"
-                    : "gray"
+                      ? "#11A29B"
+                      : `comuna_${geo.key}` === d["ID Geography"] ? "#335CB5" : "gray"
               }
             },
             tooltipConfig: {
@@ -335,9 +323,7 @@ class MortalityLineplot extends Section {
             legendTooltip: {
               title: d =>
                 d["Geography"] instanceof Array
-                  ? geo.type === "country"
-                    ? t("Regions")
-                    : t("Other Comunas")
+                  ? geo.type === "country" ? t("Regions") : t("Other Comunas")
                   : d["Geography"],
               body: "<div></div>"
             }
@@ -356,17 +342,17 @@ class MortalityLineplot extends Section {
           />
           <div className="btn-group">
             <button
-              className={`btn font-xxs ${
-                selected === "infancy" ? "is-active" : "is-inactive"
-              }`}
+              className={`btn font-xxs ${selected === "infancy"
+                ? "is-active"
+                : "is-inactive"}`}
               onClick={() => this.toggleChart("infancy")}
             >
               <span className="btn-text">{t("Infancy")}</span>
             </button>
             <button
-              className={`btn font-xxs ${
-                selected === "childhood" ? "is-active" : "is-inactive"
-              }`}
+              className={`btn font-xxs ${selected === "childhood"
+                ? "is-active"
+                : "is-inactive"}`}
               onClick={() => this.toggleChart("childhood")}
             >
               <span className="btn-text">{t("Childhood")}</span>
@@ -374,21 +360,21 @@ class MortalityLineplot extends Section {
           </div>
         </div>
 
-        <div style={{ height: 30 }}>
+        <div style={{height: 30}}>
           {selected === "childhood" && (
             <div className="btn-group">
               <button
-                className={`btn font-xxs ${
-                  selectedSex === 2 ? "is-active" : "is-inactive"
-                }`}
+                className={`btn font-xxs ${selectedSex === 2
+                  ? "is-active"
+                  : "is-inactive"}`}
                 onClick={() => this.toggleSex(2)}
               >
                 <span className="btn-text">{t("Male")}</span>
               </button>
               <button
-                className={`btn font-xxs ${
-                  selectedSex === 1 ? "is-active" : "is-inactive"
-                }`}
+                className={`btn font-xxs ${selectedSex === 1
+                  ? "is-active"
+                  : "is-inactive"}`}
                 onClick={() => this.toggleSex(1)}
               >
                 <span className="btn-text">{t("Female")}</span>
@@ -401,4 +387,4 @@ class MortalityLineplot extends Section {
   }
 }
 
-export default translate()(MortalityLineplot);
+export default withNamespaces()(MortalityLineplot);

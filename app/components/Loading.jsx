@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { ProgressBar } from "@blueprintjs/core";
 
 import "./Loading.css";
@@ -62,7 +62,7 @@ class Loading extends Component {
   }
 }
 
-Loading = translate()(
+Loading = withNamespaces()(
   connect(state => ({
     total: state.loadingProgress.requests,
     progress: state.loadingProgress.fulfilled

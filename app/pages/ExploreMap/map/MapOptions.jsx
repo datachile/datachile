@@ -1,22 +1,18 @@
 import React from "react";
-import { translate } from "react-i18next";
-import { Link } from "react-router";
-import { connect } from "react-redux";
-
-import MapTitle from "./MapTitle";
-
-import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
-
+import {withNamespaces} from "react-i18next";
+import {connect} from "react-redux";
+import {Link} from "react-router";
 import "./MapOptions.css";
+import MapTitle from "./MapTitle";
 
 class MapOptions extends React.Component {
   getDatasetsQueries() {
-    const { datasets = [] } = this.props;
+    const {datasets = []} = this.props;
     return [...new Set(datasets.map(ds => ds.data.region.query))];
   }
 
   canSave() {
-    const { mapData, datasets = [] } = this.props;
+    const {mapData} = this.props;
     if (mapData) {
       if (this.getDatasetsQueries().indexOf(mapData.region.query) == -1) {
         return true;
@@ -26,15 +22,8 @@ class MapOptions extends React.Component {
   }
 
   render() {
-    const {
-      datasets = [],
-      mapLevel,
-      measure,
-      mapData,
-      mapTitle,
-      topic
-    } = this.props;
-    const { t, saveDataset } = this.props;
+    const {datasets = [], mapLevel, measure, mapData, mapTitle, topic} = this.props;
+    const {t, saveDataset} = this.props;
 
     const canSave = this.canSave();
 
@@ -53,10 +42,9 @@ class MapOptions extends React.Component {
             <a
               className={`${canSave ? "option" : "option disabled"}`}
               onClick={
-                canSave
-                  ? evt =>
-                      saveDataset(mapTitle, mapData, mapLevel, measure, topic)
-                  : null
+                canSave ? (
+                  evt => saveDataset(mapTitle, mapData, mapLevel, measure, topic)
+                ) : null
               }
             >
               <img src="/images/icons/icon-save-data.svg" />
@@ -109,6 +97,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default translate()(
-  connect(mapStateToProps, mapDispatchToProps)(MapOptions)
-);
+export default withNamespaces()(connect(mapStateToProps, mapDispatchToProps)(MapOptions));

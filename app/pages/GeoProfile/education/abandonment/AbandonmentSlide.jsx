@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 import { numeral } from "helpers/formatters";
 
@@ -65,4 +65,4 @@ class AbandonmentSlide extends Section {
   }
 }
 
-export default translate()(AbandonmentSlide);
+export default withNamespaces()(AbandonmentSlide);

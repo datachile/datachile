@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import "./ShareData.css";
 
@@ -70,7 +70,7 @@ class ShareData extends React.Component {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     state => ({
       sources: state.sources

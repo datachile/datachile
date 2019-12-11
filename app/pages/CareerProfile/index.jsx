@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CanonProfile } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { numeral, shortenProfileName, slugifyItem } from "helpers/formatters";
 import mondrianClient, {
@@ -349,7 +349,7 @@ class CareerProfile extends Component {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     state => ({
       data: state.data,

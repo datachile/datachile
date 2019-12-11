@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Geomap } from "d3plus-react";
 import NoDataAvailable from "components/NoDataAvailable";
 import { geoProjection } from "d3-geo";
@@ -129,4 +129,4 @@ class CustomMap extends React.Component {
   }
 }
 
-export default translate()(CustomMap);
+export default withNamespaces()(CustomMap);

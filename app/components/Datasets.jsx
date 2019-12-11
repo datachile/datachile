@@ -1,14 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import keyBy from "lodash/keyBy";
-import { translate } from "react-i18next";
-import { request as d3Request } from "d3-request";
-import { select, selectAll } from "d3-selection";
-import { sources } from "helpers/consts";
-
-import { numeral, slugifyItem } from "helpers/formatters";
-import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
-import SVGCache from "helpers/svg";
+import mondrianClient from "helpers/MondrianClient";
+import React, {Component} from "react";
+import {withNamespaces} from "react-i18next";
+import {connect} from "react-redux";
 
 import "./Datasets.css";
 
@@ -16,7 +9,7 @@ class Datasets extends Component {
   static need = [
     (params, store) => {
       let prm;
-      const r = { key: "__all_cubes__" };
+      const r = {key: "__all_cubes__"};
       // force population of the internal MondrianClient cache.
       prm = mondrianClient.cubes().then(cubes => {
         const result = cubes.map(cube => {
@@ -46,7 +39,7 @@ class Datasets extends Component {
             measures: measures
           };
         });
-        return { ...r, data: result };
+        return {...r, data: result};
       });
 
       return {
@@ -57,7 +50,7 @@ class Datasets extends Component {
   ];
 
   render() {
-    const { t } = this.props;
+    const {t} = this.props;
     const datasets = this.props.data.__all_cubes__;
 
     return (
@@ -74,7 +67,9 @@ class Datasets extends Component {
             {datasets.map((cube, i) => {
               return (
                 <tr key={`dataset_${i}`}>
-                  <td><code>{cube.name}</code></td>
+                  <td>
+                    <code>{cube.name}</code>
+                  </td>
                   <td>
                     {cube.dimensions.map(dim => (
                       <code>
@@ -93,7 +88,7 @@ class Datasets extends Component {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     state => ({
       data: state.data

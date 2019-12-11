@@ -1,14 +1,12 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { StackedArea, BarChart } from "d3plus-react";
-import { translate } from "react-i18next";
+import { BarChart } from "d3plus-react";
+import { withNamespaces } from "react-i18next";
 
-import mondrianClient, {
-  geoCut,
+import {
   simpleGeoChartNeed,
   simpleDatumNeed
 } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
 import { regionsColorScale } from "helpers/colors";
 
 import { numeral } from "helpers/formatters";
@@ -145,4 +143,4 @@ class ElectoralParticipation extends Section {
   }
 }
 
-export default translate()(ElectoralParticipation);
+export default withNamespaces()(ElectoralParticipation);

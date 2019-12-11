@@ -1,20 +1,14 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { Treemap } from "d3plus-react";
-import { translate } from "react-i18next";
-
-import mondrianClient, {
-  simpleDatumNeed,
-  simpleGeoChartNeed
-} from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-import { coalitionColorScale, independentColorScale } from "helpers/colors";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
-
-import { Switch } from "@blueprintjs/core";
-
+import {Switch} from "@blueprintjs/core";
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
+import {Treemap} from "d3plus-react";
+import {coalitionColorScale, independentColorScale} from "helpers/colors";
+import {getGeoObject} from "helpers/dataUtils";
+import {numeral} from "helpers/formatters";
+import {simpleDatumNeed, simpleGeoChartNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class MayorResults extends Section {
   static need = [
@@ -25,7 +19,7 @@ class MayorResults extends Section {
         ["Electors", "Votes"],
         {
           drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: true },
+          options: {parents: true},
           cuts: ["[Election Type].[Election Type].[Election Type].&[5]"]
         },
         "geo",
@@ -45,21 +39,19 @@ class MayorResults extends Section {
               ["Party", "Party", "Partido"],
               ["Date", "Date", "Year"]
             ],
-            options: { parents: true },
+            options: {parents: true},
             cuts: ["[Election Type].[Election Type].[Election Type].&[5]"]
           }
         )(params, store);
-      } else {
+      }
+      else {
         return simpleGeoChartNeed(
           "path_mayor_results",
           "election_results_update",
           ["Number of records", "Votes"],
           {
-            drillDowns: [
-              ["Party", "Party", "Partido"],
-              ["Date", "Date", "Year"]
-            ],
-            options: { parents: true },
+            drillDowns: [["Party", "Party", "Partido"], ["Date", "Date", "Year"]],
+            options: {parents: true},
             cuts: [
               "[Election Type].[Election Type].[Election Type].&[5]",
               "[Elected].[Elected].[Elected].&[1]"
@@ -88,14 +80,13 @@ class MayorResults extends Section {
 
   render() {
     const path = this.context.data.path_mayor_results;
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
     const geo = this.context.data.geo;
     let non_electors = null;
     let data_election = this.context.data.need_mayor_participation;
 
     if (geo.depth === 2) {
-      non_electors =
-        data_election.data[0].Electors - data_election.data[0].Votes;
+      non_electors = data_election.data[0].Electors - data_election.data[0].Votes;
     }
 
     const locale = i18n.language;
@@ -103,10 +94,10 @@ class MayorResults extends Section {
     let i = 0;
 
     const pactos = [
-      { key: 4, name: "Chile Vamos", ids: [3, 6, 7, 23] },
-      { key: 13, name: "Nueva Mayoría", ids: [1, 2, 9, 10, 11, 14] },
+      {key: 4, name: "Chile Vamos", ids: [3, 6, 7, 23]},
+      {key: 13, name: "Nueva Mayoría", ids: [1, 2, 9, 10, 11, 14]},
       //{ key: 2, name: "Otras coaliciones", ids: [4, 12, 13, 15, 25, 16, 5] },
-      { key: 2, name: "Independiente", ids: [] }
+      {key: 2, name: "Independiente", ids: []}
     ];
 
     return (
@@ -124,20 +115,15 @@ class MayorResults extends Section {
           config={{
             height: 400,
             data: path,
-            filter: this.state.non_electors
-              ? ""
-              : d => d["ID Candidate"] !== 9999,
-            total: d =>
-              geo.type === "comuna" ? d["Votes"] : d["Number of records"],
+            filter: this.state.non_electors ? "" : d => d["ID Candidate"] !== 9999,
+            total: d => (geo.type === "comuna" ? d["Votes"] : d["Number of records"]),
             totalConfig: {
               text:
                 !this.state.non_electors && geo.type === "comuna"
                   ? d =>
                       d.text +
                       " " +
-                      (geo.type === "comuna"
-                        ? t("Votes")
-                        : t("Elected Authority"))
+                      (geo.type === "comuna" ? t("Votes") : t("Elected Authority"))
                   : d =>
                       d.text +
                       " " +
@@ -146,29 +132,20 @@ class MayorResults extends Section {
                         : t("Elected Authority"))
             },
             groupBy:
-              geo.type === "comuna"
-                ? ["ID Candidate"]
-                : ["ID Coalition", "ID Partido"],
+              geo.type === "comuna" ? ["ID Candidate"] : ["ID Coalition", "ID Partido"],
             label: d => (geo.type === "comuna" ? d["Candidate"] : d["Partido"]),
-            sum: d =>
-              geo.type === "comuna" ? d["Votes"] : d["Number of records"],
+            sum: d => (geo.type === "comuna" ? d["Votes"] : d["Number of records"]),
             time: "ID Year",
             shapeConfig: {
               fill: d => {
                 const coalition =
                   [4, 13].includes(d["ID Coalition"]) ||
                   (d["ID Coalition"] === 0 && d["ID Partido"] === 0)
-                    ? coalitionColorScale.find(co =>
-                        co.keys.includes(d["ID Coalition"])
-                      )
+                    ? coalitionColorScale.find(co => co.keys.includes(d["ID Coalition"]))
                     : {
                         keys: [],
-                        elected: independentColorScale(
-                          "ca" + d["ID Candidate"]
-                        ),
-                        no_elected: independentColorScale(
-                          "ca" + d["ID Candidate"]
-                        ),
+                        elected: independentColorScale("ca" + d["ID Candidate"]),
+                        no_elected: independentColorScale("ca" + d["ID Candidate"]),
                         base: independentColorScale("ca" + d["ID Candidate"]),
                         slug: "sin-asignar"
                       };
@@ -188,9 +165,7 @@ class MayorResults extends Section {
                 (geo.type === "comuna" ? t("Votes") : t("Elected Authority")) +
                 "</div>" +
                 "<div>" +
-                (geo.type === "comuna" && d["Partido"] !== "#null"
-                  ? d["Partido"]
-                  : "") +
+                (geo.type === "comuna" && d["Partido"] !== "#null" ? d["Partido"] : "") +
                 " " +
                 "</div>" +
                 "</div>"
@@ -239,4 +214,4 @@ class MayorResults extends Section {
   }
 }
 
-export default translate()(MayorResults);
+export default withNamespaces()(MayorResults);

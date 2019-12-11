@@ -1,11 +1,6 @@
+import {Section} from "@datawheel/canon-core";
 import React from "react";
-import { translate } from "react-i18next";
-import { Section } from "@datawheel/canon-core";
-
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-
-import FeaturedDatum from "components/FeaturedDatum";
+import {withNamespaces} from "react-i18next";
 
 class InternetAccessSlide extends Section {
   static need = [
@@ -43,7 +38,7 @@ class InternetAccessSlide extends Section {
   ];
 
   render() {
-    const { children, t } = this.props;
+    const {children, t} = this.props;
 
     const txt_slide = t("geo_profile.housing.internet_access.text", {});
 
@@ -51,11 +46,8 @@ class InternetAccessSlide extends Section {
       <div className="topic-slide-block">
         <div className="topic-slide-intro">
           <h3 className="topic-slide-title">{t("Internet Access")}</h3>
-          <p
-            className="topic-slide-text"
-            dangerouslySetInnerHTML={{ __html: txt_slide }}
-          />
-          <div className="topic-slide-data"></div>
+          <p className="topic-slide-text" dangerouslySetInnerHTML={{__html: txt_slide}} />
+          <div className="topic-slide-data" />
         </div>
         <div className="topic-slide-charts">{children}</div>
       </div>
@@ -63,4 +55,4 @@ class InternetAccessSlide extends Section {
   }
 }
 
-export default translate()(InternetAccessSlide);
+export default withNamespaces()(InternetAccessSlide);

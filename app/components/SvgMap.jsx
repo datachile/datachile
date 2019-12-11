@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { text as loadSvgAsString } from "d3-request";
 import { select, selectAll, event, mouse } from "d3-selection";
 import { GEOMAP } from "helpers/GeoData";
@@ -180,4 +180,4 @@ class SvgMap extends Component {
   }
 }
 
-export default translate()(SvgMap);
+export default withNamespaces()(SvgMap);

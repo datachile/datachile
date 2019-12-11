@@ -1,17 +1,10 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { BarChart } from "d3plus-react";
-import { translate } from "react-i18next";
-
-import mondrianClient, {
-  geoCut,
-  simpleGeoChartNeed
-} from "helpers/MondrianClient";
-
-import { COLORS_GENDER } from "helpers/colors";
-
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
+import {BarChart} from "d3plus-react";
+import {simpleGeoChartNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class MortalityOneToTen extends Section {
   static need = [
@@ -26,7 +19,7 @@ class MortalityOneToTen extends Section {
             ["Date", "Date", "Year"],
             ["Sex", "Sex", "Sex"]
           ],
-          options: { parents: true },
+          options: {parents: true},
           cuts: []
         }
       )(params, store)
@@ -34,7 +27,7 @@ class MortalityOneToTen extends Section {
 
   render() {
     const path = this.context.data.path_infant_mortality_one_to_ten;
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
     const geo = this.context.data.geo;
 
     const locale = i18n.language;
@@ -60,9 +53,7 @@ class MortalityOneToTen extends Section {
             y:
               geo.depth === 0
                 ? "Rate Country"
-                : geo.depth === 1
-                  ? "Rate Region"
-                  : "Rate Comuna",
+                : geo.depth === 1 ? "Rate Region" : "Rate Comuna",
             time: "ID Year",
             shapeConfig: {
               // fill: d => COLORS_GENDER[d["ID Sex"]]
@@ -88,4 +79,4 @@ class MortalityOneToTen extends Section {
   }
 }
 
-export default translate()(MortalityOneToTen);
+export default withNamespaces()(MortalityOneToTen);

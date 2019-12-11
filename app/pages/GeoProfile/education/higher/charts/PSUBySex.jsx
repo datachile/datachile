@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Switch } from "@blueprintjs/core";
 
 import { numeral } from "helpers/formatters";
@@ -103,4 +103,4 @@ class PSUBySex extends Section {
   }
 }
 
-export default translate()(PSUBySex);
+export default withNamespaces()(PSUBySex);

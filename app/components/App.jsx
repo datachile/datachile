@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import Helmet from "react-helmet";
 
 import Footer from "components/Footer";
@@ -37,4 +37,4 @@ class App extends Component {
 	}
 }
 
-export default translate()(App);
+export default withNamespaces()(App);

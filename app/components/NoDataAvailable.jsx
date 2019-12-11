@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import "./NoDataAvailable.css";
 
@@ -23,4 +23,4 @@ class NoDataAvailable extends Component {
 	}
 }
 
-export default translate()(NoDataAvailable);
+export default withNamespaces()(NoDataAvailable);

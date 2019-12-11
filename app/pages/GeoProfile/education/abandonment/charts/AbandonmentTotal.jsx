@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
@@ -82,4 +82,4 @@ class AbandonmentTotal extends Section {
   }
 }
 
-export default translate()(AbandonmentTotal);
+export default withNamespaces()(AbandonmentTotal);

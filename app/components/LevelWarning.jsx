@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import "./LevelWarning.css";
 
 // Displays a warning about the data coming from the parent profile and links to it
@@ -42,4 +42,4 @@ class LevelWarning extends Component {
   }
 }
 
-export default translate()(LevelWarning);
+export default withNamespaces()(LevelWarning);

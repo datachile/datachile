@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import keyBy from "lodash/keyBy";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { request as d3Request } from "d3-request";
 import { select, selectAll } from "d3-selection";
 import { sources } from "helpers/consts";
@@ -540,4 +540,4 @@ class DynamicHomeHeader extends Component {
   }
 }
 
-export default translate()(DynamicHomeHeader);
+export default withNamespaces()(DynamicHomeHeader);

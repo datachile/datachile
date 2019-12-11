@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { LinePlot } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { sources } from "helpers/consts";
 import { joinDataByYear } from "helpers/dataUtils";
@@ -110,4 +110,4 @@ class TradeBalance extends Section {
 	}
 }
 
-export default translate()(TradeBalance);
+export default withNamespaces()(TradeBalance);

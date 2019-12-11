@@ -1,20 +1,13 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
-
-import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
-import {
-  numeral,
-  slugifyItem,
-  getNumberFromTotalString
-} from "helpers/formatters";
-import { getGeoObject } from "helpers/dataUtils";
-import { snedColorScale, snedComparisonColorScale } from "helpers/colors";
-
-import Select from "components/Select";
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
+import Select from "components/Select";
 import SourceTooltip from "components/SourceTooltip";
-import { BarChart } from "d3plus-react";
+import {BarChart} from "d3plus-react";
+import {snedColorScale, snedComparisonColorScale} from "helpers/colors";
+import {numeral} from "helpers/formatters";
+import {simpleDatumNeed, simpleGeoChartNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class SNEDCompareByCluster extends Section {
   static need = [
@@ -31,11 +24,8 @@ class SNEDCompareByCluster extends Section {
         "Avg sned_score"
       ],
       {
-        drillDowns: [
-          ["Date", "Date", "Year"],
-          ["Cluster", "Cluster", "Stage 2"]
-        ],
-        options: { parents: true }
+        drillDowns: [["Date", "Date", "Year"], ["Cluster", "Cluster", "Stage 2"]],
+        options: {parents: true}
       }
     ),
     (params, store) => {
@@ -53,16 +43,14 @@ class SNEDCompareByCluster extends Section {
             "Avg sned_score"
           ],
           {
-            drillDowns: [
-              ["Date", "Date", "Year"],
-              ["Cluster", "Cluster", "Stage 2"]
-            ],
-            options: { parents: true }
+            drillDowns: [["Date", "Date", "Year"], ["Cluster", "Cluster", "Stage 2"]],
+            options: {parents: true}
           },
           "geo_no_cut",
           false
         )(params, store);
-      } else {
+      }
+      else {
         return simpleDatumNeed(
           "datum_sned_compare_with_parent",
           "education_sned",
@@ -76,11 +64,8 @@ class SNEDCompareByCluster extends Section {
             "Avg sned_score"
           ],
           {
-            drillDowns: [
-              ["Date", "Date", "Year"],
-              ["Cluster", "Cluster", "Stage 2"]
-            ],
-            options: { parents: true }
+            drillDowns: [["Date", "Date", "Year"], ["Cluster", "Cluster", "Stage 2"]],
+            options: {parents: true}
           },
           "geo_by_region",
           false
@@ -94,7 +79,7 @@ class SNEDCompareByCluster extends Section {
     this.state = {
       selectedOption: 0,
       key: Math.random(),
-      selectedObj: { value: "Avg sned_score" },
+      selectedObj: {value: "Avg sned_score"},
       chartVariations: []
     };
     this.handleChange = this.handleChange.bind(this);
@@ -105,7 +90,7 @@ class SNEDCompareByCluster extends Section {
   }
 
   componentDidMount() {
-    const { t } = this.props;
+    const {t} = this.props;
     const selector = [
       "Avg sned_score",
       "Avg efectiveness",
@@ -117,9 +102,8 @@ class SNEDCompareByCluster extends Section {
     ];
 
     const variations = selector.map((item, key) => {
-      let ms =
-        t("Average") + " " + t(this.capitalizeFirstLetter(item.split(" ")[1]));
-      return { id: key, title: ms, value: item };
+      let ms = t("Average") + " " + t(this.capitalizeFirstLetter(item.split(" ")[1]));
+      return {id: key, title: ms, value: item};
     });
 
     this.setState({
@@ -130,7 +114,7 @@ class SNEDCompareByCluster extends Section {
   }
 
   handleChange(ev) {
-    this.setState({ key: Math.random() });
+    this.setState({key: Math.random()});
 
     this.setState({
       selectedOption: ev.newValue,
@@ -155,17 +139,17 @@ class SNEDCompareByCluster extends Section {
             ","
           )}&drilldowns=Stage 2,Year&Comuna=${geo.key}&parents=true`
         : geo.type == "region"
-        ? `/api/data?measures=${measures.join(
-            ","
-          )}&drilldowns=Stage 2,Year&Region=${geo.key}&parents=true`
-        : `/api/data?measures=${measures.join(
-            ","
-          )}&drilldowns=Stage 2,Year&parents=true`;
+          ? `/api/data?measures=${measures.join(
+              ","
+            )}&drilldowns=Stage 2,Year&Region=${geo.key}&parents=true`
+          : `/api/data?measures=${measures.join(
+              ","
+            )}&drilldowns=Stage 2,Year&parents=true`;
 
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
     const geo = this.context.data.geo;
     const locale = i18n.language;
-    const { datum_sned_compare_with_parent } = this.context.data;
+    const {datum_sned_compare_with_parent} = this.context.data;
     // const path = this.context.data.path_sned_compare;
 
     const title = t("Comparison by Cluster");
@@ -200,8 +184,8 @@ class SNEDCompareByCluster extends Section {
                 geo.type === "country"
                   ? snedColorScale("sned" + d["ID Stage 1a"])
                   : geo.name === d["geo"]
-                  ? snedColorScale("sned" + d["ID Stage 1a"])
-                  : snedComparisonColorScale("sned" + d["ID Stage 1a"]),
+                    ? snedColorScale("sned" + d["ID Stage 1a"])
+                    : snedComparisonColorScale("sned" + d["ID Stage 1a"]),
               label: false
             },
             //label: d => d["Election Type"] + " - " + d["Year"],
@@ -242,7 +226,7 @@ class SNEDCompareByCluster extends Section {
           }}
           dataFormat={data => {
             const location = data.data.map(item => {
-              return { ...item, geo: geo.caption };
+              return {...item, geo: geo.caption};
             });
             const country =
               geo.type !== "country"
@@ -323,4 +307,4 @@ class SNEDCompareByCluster extends Section {
   }
 }
 
-export default translate()(SNEDCompareByCluster);
+export default withNamespaces()(SNEDCompareByCluster);

@@ -1,21 +1,20 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import TreemapStacked from "components/TreemapStacked";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { continentColorScale } from "helpers/colors";
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import {
   numeral,
-  getNumberFromTotalString,
   slugifyItem
 } from "helpers/formatters";
 
 import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 
-export default translate()(
+export default withNamespaces()(
   class MigrationByOrigin extends Section {
     static need = [
       (params, store) => {

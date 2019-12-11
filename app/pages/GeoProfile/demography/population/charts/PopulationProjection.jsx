@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { LinePlot } from "d3plus-react";
 
 import { simpleGeoChartNeed, simpleGeoDatumNeed } from "helpers/MondrianClient";
@@ -100,4 +100,4 @@ class PopulationProjection extends Section {
   }
 }
 
-export default translate()(PopulationProjection);
+export default withNamespaces()(PopulationProjection);

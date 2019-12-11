@@ -1,8 +1,6 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
-
-import { numeral } from "helpers/formatters";
 
 import FeaturedDatum from "components/FeaturedDatum";
 
@@ -50,4 +48,4 @@ class AccreditationSlide extends Section {
   }
 }
 
-export default translate()(AccreditationSlide);
+export default withNamespaces()(AccreditationSlide);

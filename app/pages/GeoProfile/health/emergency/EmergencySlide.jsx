@@ -1,10 +1,7 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
-import { simpleDatumNeed } from "helpers/MondrianClient";
-
-import FeaturedDatum from "components/FeaturedDatum";
 import LevelWarning from "components/LevelWarning";
 
 import Axios from "axios";
@@ -82,4 +79,4 @@ class EmergencySlide extends Section {
   }
 }
 
-export default translate()(EmergencySlide);
+export default withNamespaces()(EmergencySlide);

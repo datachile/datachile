@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import ReactTable from "react-table";
@@ -77,4 +77,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default translate()(connect(state => mapStateToProps)(DataContent));
+export default withNamespaces()(connect(state => mapStateToProps)(DataContent));

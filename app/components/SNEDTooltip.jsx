@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Tooltip } from "@blueprintjs/core";
 import SourceNote from "components/SourceNote";
 
@@ -83,4 +83,4 @@ class SNEDTooltip extends Component {
 //   key: "value"
 // };
 
-export default translate()(SNEDTooltip);
+export default withNamespaces()(SNEDTooltip);

@@ -1,8 +1,6 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
-
-import FeaturedDatum from "components/FeaturedDatum";
 
 class PerformanceSlide extends Section {
   static need = [];
@@ -28,4 +26,4 @@ class PerformanceSlide extends Section {
   }
 }
 
-export default translate()(PerformanceSlide);
+export default withNamespaces()(PerformanceSlide);

@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { sources, getI18nSourceObject } from "helpers/consts";
 
@@ -33,4 +33,4 @@ function SourceNote(props) {
   );
 }
 
-export default translate()(SourceNote);
+export default withNamespaces()(SourceNote);

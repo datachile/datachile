@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import mondrianClient, {
@@ -193,4 +193,4 @@ class EnrollmentSlide extends Section {
   }
 }
 
-export default translate()(EnrollmentSlide);
+export default withNamespaces()(EnrollmentSlide);

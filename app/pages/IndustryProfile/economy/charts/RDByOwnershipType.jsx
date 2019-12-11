@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { RDTypesColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
@@ -104,4 +104,4 @@ class RDByOwnershipType extends Section {
   }
 }
 
-export default translate()(RDByOwnershipType);
+export default withNamespaces()(RDByOwnershipType);

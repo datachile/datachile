@@ -1,36 +1,23 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
-
-import { colorContrast } from "d3plus-color";
-
-import { simpleGeoChartNeed } from "helpers/MondrianClient";
-import {
-  numeral,
-  slugifyItem,
-  getNumberFromTotalString
-} from "helpers/formatters";
-import { snedComparisonColorScale } from "helpers/colors";
-
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
+import {snedComparisonColorScale} from "helpers/colors";
+import {numeral} from "helpers/formatters";
+import {simpleGeoChartNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class SNEDSchoolByClusters extends Section {
   static need = [
-    simpleGeoChartNeed(
-      "path_sned_indicators",
-      "education_sned",
-      ["Number of records"],
-      {
-        drillDowns: [["Cluster", "Cluster", "Stage 2"], ["Date", "Year"]],
-        options: { parents: true }
-      }
-    )
+    simpleGeoChartNeed("path_sned_indicators", "education_sned", ["Number of records"], {
+      drillDowns: [["Cluster", "Cluster", "Stage 2"], ["Date", "Year"]],
+      options: {parents: true}
+    })
   ];
 
   render() {
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
     const geo = this.context.data.geo;
     const locale = i18n.language;
     const path = this.context.data.path_sned_indicators;
@@ -70,9 +57,7 @@ class SNEDSchoolByClusters extends Section {
             },
             tooltipConfig: {
               body: d =>
-                numeral(d["Number of records"], locale).format("0") +
-                " " +
-                t("Schools")
+                numeral(d["Number of records"], locale).format("0") + " " + t("Schools")
             },
             total: d => d["Number of records"],
             totalConfig: {
@@ -89,4 +74,4 @@ class SNEDSchoolByClusters extends Section {
   }
 }
 
-export default translate()(SNEDSchoolByClusters);
+export default withNamespaces()(SNEDSchoolByClusters);

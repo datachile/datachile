@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import TreemapStacked from "components/TreemapStacked";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
@@ -108,4 +108,4 @@ class MigrationByRegion extends Section {
     );
   }
 }
-export default translate()(MigrationByRegion);
+export default withNamespaces()(MigrationByRegion);

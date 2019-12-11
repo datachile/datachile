@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import find from "lodash/find";
 
 import TopicSlider from "components/TopicSlider";
@@ -84,4 +84,4 @@ Topic.defaultProps = {
   slider: true
 };
 
-export default translate()(Topic);
+export default withNamespaces()(Topic);

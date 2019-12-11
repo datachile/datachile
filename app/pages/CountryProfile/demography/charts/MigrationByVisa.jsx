@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
@@ -108,4 +108,4 @@ class MigrationByVisa extends Section {
   }
 }
 
-export default translate()(MigrationByVisa);
+export default withNamespaces()(MigrationByVisa);

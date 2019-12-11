@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 //import { Tooltip2 } from "@blueprintjs/labs";
 import { sources, getI18nSourceObject } from "helpers/consts";
 
@@ -83,4 +83,4 @@ class SourceTooltip extends Component {
 //   key: "value"
 // };
 
-export default translate()(SourceTooltip);
+export default withNamespaces()(SourceTooltip);

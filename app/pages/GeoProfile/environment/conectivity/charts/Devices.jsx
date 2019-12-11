@@ -1,26 +1,20 @@
-import React from "react";
-import { translate } from "react-i18next";
-import { Section } from "@datawheel/canon-core";
-import sumBy from "lodash/sumBy";
-
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-import { numeral } from "helpers/formatters";
-
+import {Section} from "@datawheel/canon-core";
 import InfoLogoItem from "components/InfoLogoItem";
 import SourceTooltip from "components/SourceTooltip";
+import {numeral} from "helpers/formatters";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class Devices extends Section {
   static need = [];
 
   render() {
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
     const locale = i18n.language;
 
-    const { geo, internet_data } = this.context.data;
+    const {geo, internet_data} = this.context.data;
 
-    const geoChartName =
-      geo.type == "comuna" ? geo.ancestors[0].caption : geo.caption;
+    const geoChartName = geo.type == "comuna" ? geo.ancestors[0].caption : geo.caption;
 
     const devices = [
       {
@@ -75,8 +69,7 @@ class Devices extends Section {
       },
       {
         logo: "console",
-        raw_value:
-          internet_data["Games or Consoles Access"].response_2["Percentage"],
+        raw_value: internet_data["Games or Consoles Access"].response_2["Percentage"],
         value: numeral(
           internet_data["Games or Consoles Access"].response_2["Percentage"],
           locale
@@ -102,4 +95,4 @@ class Devices extends Section {
   }
 }
 
-export default translate()(Devices);
+export default withNamespaces()(Devices);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { CanonProfile } from "@datawheel/canon-core";
 
 import Nav from "components/Nav";
@@ -44,4 +44,4 @@ class NotFound extends Component {
   }
 }
 
-export default translate()(NotFound);
+export default withNamespaces()(NotFound);

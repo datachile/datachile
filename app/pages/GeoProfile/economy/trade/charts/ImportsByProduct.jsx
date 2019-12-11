@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import TreemapStacked from "components/TreemapStacked";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import {
@@ -97,4 +97,4 @@ class ImportsByProduct extends Section {
   }
 }
 
-export default translate()(ImportsByProduct);
+export default withNamespaces()(ImportsByProduct);

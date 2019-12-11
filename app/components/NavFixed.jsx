@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Link } from "react-router";
 import { select } from "d3-selection";
 import Search from "components/Search";
@@ -110,4 +110,4 @@ class NavFixed extends React.Component {
   }
 }
 
-export default translate()(NavFixed);
+export default withNamespaces()(NavFixed);

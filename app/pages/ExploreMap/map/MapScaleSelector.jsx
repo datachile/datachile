@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 
 import "./MapScaleSelector.css";
@@ -68,7 +68,7 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
-MapScaleSelector = translate()(
+MapScaleSelector = withNamespaces()(
 	connect(mapStateToProps, mapDispatchToProps)(MapScaleSelector)
 );
 

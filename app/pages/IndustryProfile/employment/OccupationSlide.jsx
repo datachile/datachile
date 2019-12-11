@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import { simpleIndustryDatumNeed } from "helpers/MondrianClient";
@@ -153,4 +153,4 @@ class OccupationSlide extends Section {
   }
 }
 
-export default translate()(OccupationSlide);
+export default withNamespaces()(OccupationSlide);

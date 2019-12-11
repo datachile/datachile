@@ -1,18 +1,15 @@
-import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { Treemap } from "d3plus-react";
-import { translate } from "react-i18next";
-
-import { simpleDatumNeed, simpleGeoChartNeed } from "helpers/MondrianClient";
-import { coalitionColorScale } from "helpers/colors";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
-import { getAvailableYears } from "helpers/map";
-
-import { Switch } from "@blueprintjs/core";
-
+import {Switch} from "@blueprintjs/core";
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
-import SourceTooltip from "components/SourceTooltip";
 import NoDataAvailable from "components/NoDataAvailable";
+import SourceTooltip from "components/SourceTooltip";
+import {Treemap} from "d3plus-react";
+import {coalitionColorScale} from "helpers/colors";
+import {numeral} from "helpers/formatters";
+import {getAvailableYears} from "helpers/map";
+import {simpleGeoChartNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class CongresspersonResults extends Section {
   static need = [
@@ -31,14 +28,15 @@ class CongresspersonResults extends Section {
               ["Date", "Date", "Year"],
               ["Elected", "Elected", "Elected"]
             ],
-            options: { parents: true },
+            options: {parents: true},
             cuts: [
               "[Election Type].[Election Type].[Election Type].&[4]",
               "{[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2016],[Date].[Date].[Year].&[2017]}"
             ]
           }
         )(geo, store);
-      } else {
+      }
+      else {
         return simpleGeoChartNeed(
           "path_congressperson_results",
           "election_results_update",
@@ -50,7 +48,7 @@ class CongresspersonResults extends Section {
               ["Coalition", "Coalition", "Coalition"],
               ["Date", "Date", "Year"]
             ],
-            options: { parents: true },
+            options: {parents: true},
             cuts: [
               "[Election Type].[Election Type].[Election Type].&[4]",
               "{[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2016],[Date].[Date].[Year].&[2017]}",
@@ -85,7 +83,7 @@ class CongresspersonResults extends Section {
 
   render() {
     const path = this.context.data.path_congressperson_results;
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
     const geo = this.context.data.geo;
     const participation = this.context.data.need_presidential_participation;
 
@@ -115,9 +113,7 @@ class CongresspersonResults extends Section {
                 height: 400,
                 data: path,
                 timeFilter: d => d["ID Year"] === this.state.year,
-                filter: this.state.non_electors
-                  ? ""
-                  : d => d["ID Candidate"] !== 9999,
+                filter: this.state.non_electors ? "" : d => d["ID Candidate"] !== 9999,
                 total: d => (geo.depth > 0 ? d["Votes"] : d["count"]),
                 totalConfig: {
                   text: d =>
@@ -140,9 +136,7 @@ class CongresspersonResults extends Section {
                 sum: d =>
                   geo.type === "comuna"
                     ? d["Votes"]
-                    : geo.type === "region"
-                      ? d["Votes"]
-                      : d["count"],
+                    : geo.type === "region" ? d["Votes"] : d["count"],
                 time: "ID Year",
                 shapeConfig: {
                   fill: d => {
@@ -157,9 +151,7 @@ class CongresspersonResults extends Section {
                     };
                     return d["ID Candidate"] !== 9999
                       ? geo.depth > 0
-                        ? d["ID Elected"] === 1
-                          ? coalition.elected
-                          : coalition.no_elected
+                        ? d["ID Elected"] === 1 ? coalition.elected : coalition.no_elected
                         : coalition.base
                       : "#BDBED6";
                   }
@@ -170,16 +162,12 @@ class CongresspersonResults extends Section {
                       ? d["Candidate"]
                       : `<small>${d["Coalition"]}</small><br/>${d["Partido"]}`,
                   body: d => `<div>
-  <p>${
-    geo.depth > 0
-      ? `${numeral(d.Votes, locale).format("0,0")} ${t("Votes")}`
-      : `${numeral(d.count, locale).format("0,0")} ${t("Elected Authority")}`
-  }</p>
-  <small>${
-    geo.depth > 0 && d["Partido"] !== "#null"
-      ? ""
-      : [].concat(d["Candidate"]).join("<br/>")
-  }</small>`
+  <p>${geo.depth > 0
+    ? `${numeral(d.Votes, locale).format("0,0")} ${t("Votes")}`
+    : `${numeral(d.count, locale).format("0,0")} ${t("Elected Authority")}`}</p>
+  <small>${geo.depth > 0 && d["Partido"] !== "#null"
+    ? ""
+    : [].concat(d["Candidate"]).join("<br/>")}</small>`
                 },
                 legendTooltip: {
                   title: d =>
@@ -191,9 +179,7 @@ class CongresspersonResults extends Section {
                         d["Elected"] +
                         "</div>" +
                         "</div>"
-                      : "<div>" +
-                        t("Blank and Null Votes").toUpperCase() +
-                        "</div>",
+                      : "<div>" + t("Blank and Null Votes").toUpperCase() + "</div>",
                   body: d =>
                     "<div>" +
                     (geo.depth > 0
@@ -208,10 +194,10 @@ class CongresspersonResults extends Section {
               dataFormat={data => {
                 if (data.data.length > 0) {
                   let d = data.data.map(item => {
-                    return { ...item, count: 1 };
+                    return {...item, count: 1};
                   });
 
-                  this.setState({ year: getAvailableYears(d).pop() });
+                  this.setState({year: getAvailableYears(d).pop()});
 
                   if (geo.type !== "country")
                     participation.data.map(item => {
@@ -229,8 +215,9 @@ class CongresspersonResults extends Section {
                       });
                     });
                   return d;
-                } else {
-                  this.setState({ show: false });
+                }
+                else {
+                  this.setState({show: false});
                 }
               }}
             />,
@@ -250,4 +237,4 @@ class CongresspersonResults extends Section {
   }
 }
 
-export default translate()(CongresspersonResults);
+export default withNamespaces()(CongresspersonResults);

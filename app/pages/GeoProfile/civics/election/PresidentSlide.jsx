@@ -1,9 +1,8 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import { simpleGeoDatumNeed2 } from "helpers/MondrianClient";
-import { numeral } from "helpers/formatters";
 import { sources } from "helpers/consts";
 
 import FeaturedDatum from "components/FeaturedDatum";
@@ -95,4 +94,4 @@ class PresidentSlide extends Section {
   }
 }
 
-export default translate()(PresidentSlide);
+export default withNamespaces()(PresidentSlide);

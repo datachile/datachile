@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import "./Documentation.css";
 
 import Datasets from "components/Datasets";
@@ -443,4 +443,4 @@ class Documentation extends React.Component {
     );
   }
 }
-export default translate()(Documentation);
+export default withNamespaces()(Documentation);

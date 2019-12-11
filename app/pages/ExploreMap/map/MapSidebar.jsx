@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { Icon } from "@blueprintjs/core";
@@ -245,6 +245,6 @@ const mapDispatchToProps = dispatch => ({
 	}
 });
 
-export default translate()(
+export default withNamespaces()(
 	connect(mapStateToProps, mapDispatchToProps)(MapSidebar)
 );

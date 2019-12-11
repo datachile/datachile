@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PersonItem from "components/PersonItem";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import mondrianClient, { setLangCaptions } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
 import { sources } from "helpers/consts";
@@ -269,4 +269,4 @@ class AuthoritiesBlock extends Component {
   }
 }
 
-export default translate()(AuthoritiesBlock);
+export default withNamespaces()(AuthoritiesBlock);

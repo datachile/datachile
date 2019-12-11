@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { employmentBySexColorScale } from "helpers/colors";
@@ -206,4 +206,4 @@ class EmploymentBySex extends Section {
   }
 }
 
-export default translate()(EmploymentBySex);
+export default withNamespaces()(EmploymentBySex);

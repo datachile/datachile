@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 import { numeral } from "helpers/formatters";
 
@@ -85,4 +85,4 @@ class CrimeSlide extends Section {
   }
 }
 
-export default translate()(CrimeSlide);
+export default withNamespaces()(CrimeSlide);

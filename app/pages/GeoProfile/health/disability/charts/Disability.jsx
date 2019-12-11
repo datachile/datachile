@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Treemap } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import mondrianClient, {
   geoCut,
@@ -79,4 +79,4 @@ class Disability extends Section {
   }
 }
 
-export default translate()(Disability);
+export default withNamespaces()(Disability);

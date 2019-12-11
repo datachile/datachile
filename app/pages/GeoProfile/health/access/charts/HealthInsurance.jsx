@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Treemap } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
@@ -125,4 +125,4 @@ class HealthInsurance extends Section {
   }
 }
 
-export default translate()(HealthInsurance);
+export default withNamespaces()(HealthInsurance);

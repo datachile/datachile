@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { text as loadSvgAsString } from "d3-request";
 import { Geomap } from "d3plus-react";
 import { sources } from "helpers/consts";
@@ -146,4 +146,4 @@ class FeaturedMapSplash extends Component {
   }
 }
 
-export default translate()(FeaturedMapSplash);
+export default withNamespaces()(FeaturedMapSplash);

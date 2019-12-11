@@ -2,7 +2,7 @@ import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
 import { mean } from "d3-array";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
@@ -123,4 +123,4 @@ class InternetAccessByZone extends Section {
 	}
 }
 
-export default translate()(InternetAccessByZone);
+export default withNamespaces()(InternetAccessByZone);

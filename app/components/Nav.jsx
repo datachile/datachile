@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import { SubNav } from "@datawheel/canon-core";
 import { select } from "d3-selection";
@@ -358,4 +358,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default translate()(connect(mapStateToProps)(Nav));
+export default withNamespaces()(connect(mapStateToProps)(Nav));

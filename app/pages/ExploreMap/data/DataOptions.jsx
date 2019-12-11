@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 
@@ -23,7 +23,7 @@ class DataOptions extends React.Component {
   }
 }
 
-DataOptions = translate()(connect()(DataOptions));
+DataOptions = withNamespaces()(connect()(DataOptions));
 
 export default DataOptions;
 export { DataOptions };

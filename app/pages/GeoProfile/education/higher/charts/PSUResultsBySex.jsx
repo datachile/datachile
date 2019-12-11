@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { LinePlot } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { COLORS_GENDER } from "helpers/colors";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
@@ -142,4 +142,4 @@ class PSUResultsBySex extends Section {
   }
 }
 
-export default translate()(PSUResultsBySex);
+export default withNamespaces()(PSUResultsBySex);

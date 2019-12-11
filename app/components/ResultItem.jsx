@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import ProfileTile from "components/ProfileTile";
 
@@ -19,4 +19,4 @@ class ResultItem extends Component {
 	}
 }
 
-export default translate()(ResultItem);
+export default withNamespaces()(ResultItem);

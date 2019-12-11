@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import { simpleDatumNeed } from "helpers/MondrianClient";
@@ -81,4 +81,4 @@ class ParticipationSlide extends Section {
   }
 }
 
-export default translate()(ParticipationSlide);
+export default withNamespaces()(ParticipationSlide);

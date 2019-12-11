@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
@@ -70,4 +70,4 @@ class Emergency extends Section {
   }
 }
 
-export default translate()(Emergency);
+export default withNamespaces()(Emergency);

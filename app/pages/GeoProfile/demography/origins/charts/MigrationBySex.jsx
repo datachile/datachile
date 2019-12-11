@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { BarChart } from "d3plus-react";
 import { Switch } from "@blueprintjs/core";
 
@@ -12,7 +12,7 @@ import { numeral } from "helpers/formatters";
 import SourceTooltip from "components/SourceTooltip";
 import ExportLink from "components/ExportLink";
 
-export default translate()(
+export default withNamespaces()(
   class MigrationBySex extends Section {
     state = {
       stacked: true

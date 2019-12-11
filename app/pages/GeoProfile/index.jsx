@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SectionColumns, CanonProfile } from "@datawheel/canon-core";
 import { Geomap } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { selectAll } from "d3-selection";
 import Helmet from "react-helmet";
 
@@ -1179,7 +1179,7 @@ class GeoProfile extends Component {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     state => ({
       data: state.data

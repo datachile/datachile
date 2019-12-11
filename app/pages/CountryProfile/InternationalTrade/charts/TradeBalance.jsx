@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import values from "lodash/values";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { LinePlot } from "d3plus-react";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
@@ -134,4 +134,4 @@ class TradeBalance extends Section {
 	}
 }
 
-export default translate()(TradeBalance);
+export default withNamespaces()(TradeBalance);

@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { StackedArea } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { employmentColorScale } from "helpers/colors";
 
@@ -133,4 +133,4 @@ class EmployedByCategory extends Section {
 	}
 }
 
-export default translate()(EmployedByCategory);
+export default withNamespaces()(EmployedByCategory);

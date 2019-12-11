@@ -2,7 +2,7 @@ import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Plot } from "d3plus-react";
 import { simpleDatumNeed } from "helpers/MondrianClient";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { mean } from "d3-array";
 
@@ -257,4 +257,4 @@ class ParticipationScatter extends Section {
     );
   }
 }
-export default translate()(ParticipationScatter);
+export default withNamespaces()(ParticipationScatter);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import "./InfoLogoItemSNED.css";
 
@@ -21,4 +21,4 @@ class InfoLogoItemSNED extends Component {
   }
 }
 
-export default translate()(InfoLogoItemSNED);
+export default withNamespaces()(InfoLogoItemSNED);

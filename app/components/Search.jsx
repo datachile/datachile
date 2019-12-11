@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { toggleSearch } from "actions/index";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Link } from "react-router";
 import debounce from "lodash/debounce";
 
@@ -249,7 +249,7 @@ Search.defaultProps = {
   className: "search-nav"
 };
 
-export default translate()(
+export default withNamespaces()(
   connect(
     state => ({
       searchActive: state.search.searchActive

@@ -3,7 +3,7 @@ import filter from "lodash/filter";
 import orderBy from "lodash/orderBy";
 
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { BarChart } from "d3plus-react";
 
 import mondrianClient, { levelCut } from "helpers/MondrianClient";
@@ -13,7 +13,7 @@ import { numeral } from "helpers/formatters";
 
 import ExportLink from "components/ExportLink";
 
-export default translate()(
+export default withNamespaces()(
   class RetentionByProgram extends Section {
     static need = [
       (params, store) => {

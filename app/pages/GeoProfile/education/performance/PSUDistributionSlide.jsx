@@ -1,19 +1,10 @@
-import React from "react";
-import { translate } from "react-i18next";
-import { Section } from "@datawheel/canon-core";
-import { simpleDatumNeed } from "helpers/MondrianClient";
-import { getGeoObject } from "helpers/dataUtils";
-
+import {Section} from "@datawheel/canon-core";
 import FeaturedDatum from "components/FeaturedDatum";
-import { numeral } from "helpers/formatters";
-import { sources } from "helpers/consts";
-import {
-  PerformanceByPSU,
-  PerformanceByPSUComuna,
-  PerformanceByHighSchool
-} from "texts/GeoProfile";
-
-import merge from "lodash/merge";
+import {sources} from "helpers/consts";
+import {numeral} from "helpers/formatters";
+import {simpleDatumNeed} from "helpers/MondrianClient";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class PSUDistributionSlide extends Section {
   static need = [
@@ -24,7 +15,7 @@ class PSUDistributionSlide extends Section {
         ["PSU Average"],
         {
           drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: false },
+          options: {parents: false},
           cuts: [`[Date].[Date].[Year].&[${sources.psu.year}]`]
         },
         "geo"
@@ -36,7 +27,7 @@ class PSUDistributionSlide extends Section {
         ["Number of records"],
         {
           drillDowns: [["Date", "Date", "Year"]],
-          options: { parents: false },
+          options: {parents: false},
           cuts: [`[Date].[Date].[Year].&[${sources.psu.year}]`]
         },
         "geo"
@@ -44,7 +35,7 @@ class PSUDistributionSlide extends Section {
   ];
 
   render() {
-    const { children, t, i18n } = this.props;
+    const {children, t, i18n} = this.props;
     let {
       geo,
       datum_distribution_psu_average,
@@ -72,61 +63,41 @@ class PSUDistributionSlide extends Section {
             {text && (
               <p
                 dangerouslySetInnerHTML={{
-                  __html: t(
-                    `geo_profile.education.performance.byPSU.distribution`,
-                    text
-                  )
+                  __html: t(`geo_profile.education.performance.byPSU.distribution`, text)
                 }}
               />
             )}
           </div>
           <div className="topic-slide-data">
             {text &&
-              datum_distribution_psu_total && (
-                <FeaturedDatum
-                  className="l-1-2"
-                  icon="estudiantes-cantidad"
-                  datum={numeral(
-                    datum_distribution_psu_total.data,
-                    locale
-                  ).format("0,0")}
-                  title={t("Students that took the PSU")}
-                  subtitle={
-                    t("In") +
-                    " " +
-                    sources.psu.year +
-                    " " +
-                    t(" in ") +
-                    geo.caption
-                  }
-                />
-              )}
+            datum_distribution_psu_total && (
+              <FeaturedDatum
+                className="l-1-2"
+                icon="estudiantes-cantidad"
+                datum={numeral(datum_distribution_psu_total.data, locale).format("0,0")}
+                title={t("Students that took the PSU")}
+                subtitle={
+                  t("In") + " " + sources.psu.year + " " + t(" in ") + geo.caption
+                }
+              />
+            )}
             {datum_distribution_psu_average && (
               <FeaturedDatum
                 className="l-1-3"
                 icon="promedio-nem"
                 datum={numeral(
-                  geo.type == "country"
-                    ? 500
-                    : datum_distribution_psu_average.data,
+                  geo.type == "country" ? 500 : datum_distribution_psu_average.data,
                   locale
                 ).format("0")}
                 title={t("Average PSU")}
                 subtitle={
-                  t("In") +
-                  " " +
-                  sources.psu.year +
-                  " " +
-                  t(" in ") +
-                  geo.caption
+                  t("In") + " " + sources.psu.year + " " + t(" in ") + geo.caption
                 }
               />
             )}
           </div>
 
-          <h4 className="topic-slide-context-subhead">
-            {t("About the PSU average")}
-          </h4>
+          <h4 className="topic-slide-context-subhead">{t("About the PSU average")}</h4>
           <p className="font-xxs">
             {t(`geo_profile.education.performance.byPSU.disclaimer`)}
           </p>
@@ -137,4 +108,4 @@ class PSUDistributionSlide extends Section {
   }
 }
 
-export default translate()(PSUDistributionSlide);
+export default withNamespaces()(PSUDistributionSlide);

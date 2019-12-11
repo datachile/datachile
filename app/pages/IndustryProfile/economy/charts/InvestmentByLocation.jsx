@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { regionsColorScale } from "helpers/colors";
 import {
@@ -147,4 +147,4 @@ class InvestmentByLocation extends Section {
   }
 }
 
-export default translate()(InvestmentByLocation);
+export default withNamespaces()(InvestmentByLocation);

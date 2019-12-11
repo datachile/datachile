@@ -1,20 +1,16 @@
-import React from "react";
-import { translate } from "react-i18next";
-
-import { Treemap } from "d3plus-react";
-import { Section } from "@datawheel/canon-core";
-import groupBy from "lodash/groupBy";
-import orderBy from "lodash/orderBy";
-
-import { continentColorScale } from "helpers/colors";
-import { getGeoObject } from "helpers/dataUtils";
-import { numeral, getNumberFromTotalString } from "helpers/formatters";
-import mondrianClient, { geoCut } from "helpers/MondrianClient";
-
+import {Section} from "@datawheel/canon-core";
 import ExportLink from "components/ExportLink";
 // import MiniFilter from "components/MiniFilter";
 import SourceTooltip from "components/SourceTooltip";
 import TreemapStacked from "components/TreemapStacked";
+import {continentColorScale} from "helpers/colors";
+import {getGeoObject} from "helpers/dataUtils";
+import {numeral} from "helpers/formatters";
+import mondrianClient, {geoCut} from "helpers/MondrianClient";
+import groupBy from "lodash/groupBy";
+import orderBy from "lodash/orderBy";
+import React from "react";
+import {withNamespaces} from "react-i18next";
 
 class MigrationByVisa extends Section {
   // state = {
@@ -46,8 +42,7 @@ class MigrationByVisa extends Section {
         return {
           key: "path_migration_by_visa_type",
           data:
-            __API__ +
-            geoCut(geo, "Geography", q, store.i18n.locale).path("jsonrecords")
+            __API__ + geoCut(geo, "Geography", q, store.i18n.locale).path("jsonrecords")
         };
       });
       // .then(res => {
@@ -63,7 +58,7 @@ class MigrationByVisa extends Section {
       //   };
       // });
 
-      return { type: "GET_DATA", promise };
+      return {type: "GET_DATA", promise};
     }
   ];
 
@@ -72,7 +67,7 @@ class MigrationByVisa extends Section {
   // };
 
   render() {
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
     // const { filter_sex, filter_age } = this.state;
     const locale = i18n.language;
 
@@ -151,9 +146,7 @@ class MigrationByVisa extends Section {
               title: d => d["Visa Type"] + " - " + d["Continent"],
               body: d =>
                 t("{{number}} visas", {
-                  number: numeral(d["Number of visas"], locale).format(
-                    "( 0,0 )"
-                  )
+                  number: numeral(d["Number of visas"], locale).format("( 0,0 )")
                 })
             },
             legendConfig: {
@@ -171,11 +164,7 @@ class MigrationByVisa extends Section {
 
             let grouped = groupBy(resp, "ID Year");
             return Object.keys(grouped).reduce(function(all, year) {
-              let children = orderBy(
-                grouped[year],
-                ["Number of visas"],
-                ["desc"]
-              );
+              let children = orderBy(grouped[year], ["Number of visas"], ["desc"]);
 
               if (children.length > 20) {
                 children = children.slice(0, 19).concat({
@@ -206,4 +195,4 @@ class MigrationByVisa extends Section {
   }
 }
 
-export default translate()(MigrationByVisa);
+export default withNamespaces()(MigrationByVisa);

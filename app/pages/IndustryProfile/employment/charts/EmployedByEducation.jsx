@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { Treemap } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
 import { simpleIndustryChartNeed } from "helpers/MondrianClient";
@@ -104,4 +104,4 @@ class EmployedByEducation extends Section {
 	}
 }
 
-export default translate()(EmployedByEducation);
+export default withNamespaces()(EmployedByEducation);

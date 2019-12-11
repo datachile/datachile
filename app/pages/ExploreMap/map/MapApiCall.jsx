@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 import Select from "components/Select";
 
@@ -35,7 +35,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-MapApiCall = translate()(connect(mapStateToProps)(MapApiCall));
+MapApiCall = withNamespaces()(connect(mapStateToProps)(MapApiCall));
 
 export default MapApiCall;
 export { MapApiCall };

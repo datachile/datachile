@@ -2,7 +2,7 @@ import React from "react";
 import keyBy from "lodash/keyBy";
 import sumBy from "lodash/sumBy";
 import { Section } from "@datawheel/canon-core";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import mondrianClient, { geoCut } from "helpers/MondrianClient";
 import { getGeoObject } from "helpers/dataUtils";
@@ -257,4 +257,4 @@ class Services extends Section {
   }
 }
 
-export default translate()(Services);
+export default withNamespaces()(Services);

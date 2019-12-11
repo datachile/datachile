@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { ProgressBar } from "@blueprintjs/core";
 import "./DatachileProgressBar.css";
 
@@ -28,7 +28,7 @@ class DatachileProgressBar extends Component {
   }
 }
 
-DatachileProgressBar = translate()(DatachileProgressBar);
+DatachileProgressBar = withNamespaces()(DatachileProgressBar);
 
 export default DatachileProgressBar;
 export { DatachileProgressBar };

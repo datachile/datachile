@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { shortenProfileName } from "helpers/formatters";
 import ReactImageFallback from "react-image-fallback";
 // import Shiitake from "shiitake";
@@ -119,4 +119,4 @@ class ProfileTile extends Component {
   }
 }
 
-export default translate()(ProfileTile);
+export default withNamespaces()(ProfileTile);

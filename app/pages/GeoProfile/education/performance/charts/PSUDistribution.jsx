@@ -5,9 +5,7 @@ import mondrianClient, {
   simpleGeoChartNeed,
   setLangCaptions
 } from "helpers/MondrianClient";
-import { translate } from "react-i18next";
-
-import { colorContrast } from "d3plus-color";
+import { withNamespaces } from "react-i18next";
 
 import { sources } from "helpers/consts";
 import { administrationColorScale } from "helpers/colors";
@@ -311,4 +309,4 @@ class PSUDistribution extends Section {
     );
   }
 }
-export default translate()(PSUDistribution);
+export default withNamespaces()(PSUDistribution);

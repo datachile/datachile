@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Treemap, StackedArea } from "d3plus-react";
 import NoDataAvailable from "components/NoDataAvailable";
 
@@ -136,4 +136,4 @@ class TreemapStacked extends React.Component {
   }
 }
 
-export default translate()(TreemapStacked);
+export default withNamespaces()(TreemapStacked);

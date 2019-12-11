@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { sources, getI18nSourceObject } from "helpers/consts";
 import { shortenProfileName } from "helpers/formatters";
 
@@ -130,4 +130,4 @@ class FeaturedDatumSplash extends Component {
   }
 }
 
-export default translate()(FeaturedDatumSplash);
+export default withNamespaces()(FeaturedDatumSplash);

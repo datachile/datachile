@@ -5,7 +5,7 @@ import { BarChart } from "d3plus-react";
 import { simpleGeoChartNeed } from "helpers/MondrianClient";
 import { institutionsColorScale } from "helpers/colors";
 import { getTopCategories } from "helpers/dataUtils";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
@@ -95,4 +95,4 @@ class PerformanceBySchool extends Section {
     );
   }
 }
-export default translate()(PerformanceBySchool);
+export default withNamespaces()(PerformanceBySchool);

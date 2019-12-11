@@ -8,7 +8,7 @@ import mondrianClient, {
 import { getGeoObject } from "helpers/dataUtils";
 import { ordinalColorScale } from "helpers/colors";
 import { numeral, getNumberFromTotalString } from "helpers/formatters";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import ExportLink from "components/ExportLink";
@@ -110,4 +110,4 @@ class SpendingBySector extends Section {
   }
 }
 
-export default translate()(SpendingBySector);
+export default withNamespaces()(SpendingBySector);

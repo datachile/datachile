@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { connect } from "react-redux";
 
 import "./MapTitle.css";
@@ -75,6 +75,6 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default translate()(
+export default withNamespaces()(
   connect(mapStateToProps, mapDispatchToProps)(MapTitle)
 );

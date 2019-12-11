@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@datawheel/canon-core";
 import { BarChart } from "d3plus-react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import mondrianClient, {
   geoCut,
@@ -86,4 +86,4 @@ class MortalityUnderOne extends Section {
   }
 }
 
-export default translate()(MortalityUnderOne);
+export default withNamespaces()(MortalityUnderOne);

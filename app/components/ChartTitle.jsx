@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import ExportLink from "components/ExportLink";
 import SourceTooltip from "components/SourceTooltip";
@@ -19,4 +19,4 @@ class ChartTitle extends React.Component {
   }
 }
 
-export default translate()(ChartTitle);
+export default withNamespaces()(ChartTitle);

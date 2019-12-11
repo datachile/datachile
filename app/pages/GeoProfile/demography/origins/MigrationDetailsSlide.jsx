@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 
 import { sources } from "helpers/consts";
@@ -103,4 +103,4 @@ class MigrationDetailsSlide extends Section {
   }
 }
 
-export default translate()(MigrationDetailsSlide);
+export default withNamespaces()(MigrationDetailsSlide);

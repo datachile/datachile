@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import { Section } from "@datawheel/canon-core";
 import groupBy from "lodash/groupBy";
 import maxBy from "lodash/maxBy";
@@ -265,4 +265,4 @@ class MigrationDetailsSlide extends Section {
   }
 }
 
-export default translate()(MigrationDetailsSlide);
+export default withNamespaces()(MigrationDetailsSlide);
