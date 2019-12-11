@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import Slider, { SlickGoTo } from "react-slick";
-import { withNamespaces } from "react-i18next";
+import {sendEvent} from "helpers/ga";
+import React, {Component} from "react";
+import {withNamespaces} from "react-i18next";
+import Slider from "react-slick";
 import "./TopicSlider.css";
 import "../../node_modules/slick-carousel/slick/slick.css";
-import { isMobile } from "helpers/responsiveUtils";
-
-import { sendEvent } from "helpers/ga";
 
 const settings = {
   dots: false,
@@ -35,8 +33,9 @@ class TopicSlider extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.slider.slickGoTo(nextProps.selected, true);
   }
+
   render() {
-    const { children, id } = this.props;
+    const {children, id} = this.props;
 
     return (
       <div className="topic-slider">

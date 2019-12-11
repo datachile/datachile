@@ -1,7 +1,7 @@
 /** GA helper */
 function sendEvent(group, param) {
   if (!__SERVER__) {
-    window.ga("send", "event", group, param);
+    typeof window.ga === "function" && window.ga("send", "event", group, param);
   }
 }
 

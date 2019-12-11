@@ -10,7 +10,7 @@ import "./App.css";
 
 class App extends Component {
 	render() {
-		const { children, t } = this.props;
+		const { children, t, location } = this.props;
 		const espanol = this.props.i18n.language == "es";
 
 		return (
@@ -26,12 +26,8 @@ class App extends Component {
 						content={espanol ? "en_US" : "es_CL"}
 					/>
 				</Helmet>
-				{children}
-				{this.props.location.pathname === "explore/map" ? (
-					<div />
-				) : (
-					<Footer location={this.props.location} />
-				)}
+				<div>{children}</div>
+				{location.pathname === "explore/map" && <Footer location={location} />}
 			</div>
 		);
 	}

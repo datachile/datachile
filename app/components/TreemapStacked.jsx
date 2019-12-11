@@ -1,6 +1,6 @@
 import React from "react";
-import { withNamespaces } from "react-i18next";
-import { Treemap, StackedArea } from "d3plus-react";
+import {withNamespaces} from "react-i18next";
+import {Treemap, StackedArea} from "d3plus-react";
 import NoDataAvailable from "components/NoDataAvailable";
 
 import "./TreemapStacked.css";
@@ -9,35 +9,32 @@ class TreemapStacked extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chart: props.defaultChart || "treemap",
+      chart: props.defaultChart,
       show: true
     };
-    this.toggleChart = this.toggleChart.bind(this);
+
+    this.setTreemap = this.toggleChart.bind(this, "treemap");
+    this.setStacked = this.toggleChart.bind(this, "stacked");
   }
 
   toggleChart(chart) {
-    this.setState({
-      chart
-    });
+    this.setState({chart});
   }
 
   menuChart(selected) {
+    const isStacked = selected === "stacked";
     return (
       <div className="btn-group">
         <button
-          className={`btn font-xxs ${
-            selected === "treemap" ? "is-active" : "is-inactive"
-          }`}
-          onClick={() => this.toggleChart("treemap")}
+          className={`btn font-xxs ${!isStacked ? "is-active" : "is-inactive"}`}
+          onClick={this.setTreemap}
         >
           <span className="btn-icon bp3-icon bp3-icon-control" />
           <span className="btn-text">Treemap</span>
         </button>
         <button
-          className={`btn font-xxs ${
-            selected === "stacked" ? "is-active" : "is-inactive"
-          }`}
-          onClick={() => this.toggleChart("stacked")}
+          className={`btn font-xxs ${isStacked ? "is-active" : "is-inactive"}`}
+          onClick={this.setStacked}
         >
           <span className="btn-icon bp3-icon bp3-icon-timeline-area-chart" />
           <span className="btn-text">Stacked</span>
@@ -45,6 +42,7 @@ class TreemapStacked extends React.Component {
       </div>
     );
   }
+
   render() {
     const {
       className,
@@ -56,84 +54,83 @@ class TreemapStacked extends React.Component {
       path,
       t
     } = this.props;
-    const chart = this.state.chart;
+    const {chart, show} = this.state;
 
-    if (!chart) {
-      return null;
+    if (!chart || !show) {
+      return <NoDataAvailable />;
     }
 
-    switch (chart) {
-      case "treemap": {
-        return this.state.show ? (
-          <div className={className}>
-            <Treemap
-              config={{
-                ...config,
-                height: 400,
-                data: path,
-                label: d => d[drilldowns[drilldowns.length - 1]],
-                groupBy: drilldowns.map(dd => "ID " + dd),
-                //groupBy: ["ID " + drilldowns[0], "ID " + drilldowns[1]],
-                sum: d => d[msrName],
-                time: "Year"
-              }}
-              dataFormat={data => {
-                if (data.data && data.data.length > 0) {
-                  return dataFormat ? dataFormat(data) : data.data;
-                } else {
-                  this.setState({ show: false });
-                }
-              }}
-            />
-            {this.menuChart(chart)}
-          </div>
-        ) : (
-          <NoDataAvailable />
-        );
+    const label = d => {
+      let i = drilldowns.length;
+      while (i--) {
+        const drilldown = drilldowns[i];
+        if (Array.isArray(d[drilldown])) continue;
+        return "" + d[drilldown];
       }
-
-      case "stacked": {
-        return this.state.show ? (
-          <div className={className}>
-            <StackedArea
-              config={{
-                ...config,
-                label: !depth
-                  ? d => d[drilldowns[0]]
-                  : d => d[drilldowns[drilldowns.length - 1]],
-                total: false,
-                totalConfig: {
-                  text: ""
-                },
-                height: 400,
-                data: path,
-                groupBy: !depth
-                  ? `ID ${drilldowns[0]}`
-                  : drilldowns.map(dd => `ID ${dd}`),
-                y: d => d[msrName],
-                x: d => d["Year"],
-
-                xConfig: {
-                  title: t("Year")
-                }
-                //legend: false
-              }}
-              dataFormat={data => {
-                if (data.data && data.data.length > 0) {
-                  return dataFormat ? dataFormat(data) : data.data;
-                } else {
-                  this.setState({ show: false });
-                }
-              }}
-            />
-            {this.menuChart(chart)}
-          </div>
-        ) : (
-          <NoDataAvailable />
-        );
+      return "" + d[drilldowns[0]];
+    };
+    const dataPreformat = typeof path === "string" ? data => {
+      if (data.data && data.data.length > 0) {
+        return dataFormat ? dataFormat(data) : data.data;
       }
+      else {
+        this.setState({show: false});
+      }
+    } : undefined;
+
+    if (chart === "treemap") {
+      return (
+        <div className={className}>
+          <Treemap
+            config={{
+              ...config,
+              height: 400,
+              data: path,
+              label,
+              groupBy: drilldowns.map(dd => "ID " + dd),
+              //groupBy: ["ID " + drilldowns[0], "ID " + drilldowns[1]],
+              sum: d => d[msrName],
+              time: "Year"
+            }}
+            dataFormat={dataPreformat}
+          />
+          {this.menuChart(chart)}
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className={className}>
+          <StackedArea
+            config={{
+              ...config,
+              label: !depth ? d => d[drilldowns[0]] : label,
+              total: false,
+              totalConfig: {
+                text: ""
+              },
+              height: 400,
+              data: path,
+              groupBy: !depth ? `ID ${drilldowns[0]}` : drilldowns.map(dd => `ID ${dd}`),
+              y: d => d[msrName],
+              x: d => d["Year"],
+
+              xConfig: {
+                title: t("Year")
+              }
+              //legend: false
+            }}
+            dataFormat={dataPreformat}
+          />
+          {this.menuChart(chart)}
+        </div>
+      );
     }
   }
 }
+
+TreemapStacked.defaultProps = {
+  defaultChart: "treemap"
+};
 
 export default withNamespaces()(TreemapStacked);

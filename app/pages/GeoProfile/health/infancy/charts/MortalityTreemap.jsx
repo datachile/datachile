@@ -1,11 +1,11 @@
 import React from "react";
-import { Section } from "@datawheel/canon-core";
-import { withNamespaces } from "react-i18next";
-import { numeral } from "helpers/formatters";
+import {Section} from "@datawheel/canon-core";
+import {withNamespaces} from "react-i18next";
+import {numeral} from "helpers/formatters";
 
-import { simpleDatumNeed } from "helpers/MondrianClient";
+import {simpleDatumNeed} from "helpers/MondrianClient";
 
-import { COLORS_SCALE_INFANT_MORTALITY } from "helpers/colors";
+import {COLORS_SCALE_INFANT_MORTALITY} from "helpers/colors";
 
 import TreemapStacked from "components/TreemapStacked";
 
@@ -23,7 +23,7 @@ class MortalityTreemap extends Section {
           ["Age Range", "Age Range DEIS", "Age Range"],
           ["Date", "Date", "Year"]
         ],
-        options: { parents: true },
+        options: {parents: true},
         cuts: [
           "{[Date].[Date].[Year].&[2012],[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2014]}"
         ]
@@ -40,7 +40,7 @@ class MortalityTreemap extends Section {
           ["Age Range", "Age Range DEIS", "Age Range"],
           ["Date", "Date", "Year"]
         ],
-        options: { parents: true },
+        options: {parents: true},
         cuts: [
           "{[Date].[Date].[Year].&[2012],[Date].[Date].[Year].&[2013],[Date].[Date].[Year].&[2014]}"
         ]
@@ -51,26 +51,24 @@ class MortalityTreemap extends Section {
   ];
 
   render() {
-    const { t, className, i18n } = this.props;
+    const {t, className, i18n} = this.props;
 
-    const path = this.context.data.path_infant_mortality_one_to_ten;
+    const {
+      path_infant_mortality_one_to_ten: path,
+      path_infant_mortality_one_to_ten_data: oneToTenData,
+      path_infant_mortality_under_one_data: underOneData
+    } = this.context.data;
 
-    const oneToTenData = this.context.data
-      .path_infant_mortality_one_to_ten_data;
-    const underOneData = this.context.data.path_infant_mortality_under_one_data;
-
-    const processData = {
-      data: underOneData.data
-        .filter(d => [2, 3].includes(d["ID Age Range"]))
-        .map(d => {
-          return { ...d, "ID Age Group": 1, "Age Group": t("Infancy") };
+    const processData = underOneData.data
+      .filter(d => [2, 3].includes(d["ID Age Range"]))
+      .map(d => {
+        return {...d, "ID Age Group": 1, "Age Group": t("Infancy")};
+      })
+      .concat(
+        oneToTenData.data.map(d => {
+          return {...d, "ID Age Group": 2, "Age Group": t("Childhood")};
         })
-        .concat(
-          oneToTenData.data.map(d => {
-            return { ...d, "ID Age Group": 2, "Age Group": t("Childhood") };
-          })
-        )
-    };
+      );
 
     const geo = this.context.data.geo;
 
@@ -104,9 +102,7 @@ class MortalityTreemap extends Section {
               title: d => d["Age Range"],
               body: d =>
                 "<div>" +
-                `${numeral(d["Number of deaths"], locale).format("0")} ${t(
-                  "deaths"
-                )}` +
+                `${numeral(d["Number of deaths"], locale).format("0")} ${t("deaths")}` +
                 "</div>"
             },
             legendTooltip: {

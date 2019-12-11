@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { toggleSearch } from "actions/index";
-import { withNamespaces } from "react-i18next";
-import { Link } from "react-router";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {toggleSearch} from "actions/index";
+import {withNamespaces} from "react-i18next";
+import {Link} from "react-router";
 import debounce from "lodash/debounce";
 
-import { request } from "d3-request";
+import {request} from "d3-request";
 
 import "./Search.css";
 
-import { slugifyItem } from "helpers/formatters";
+import {slugifyItem} from "helpers/formatters";
 
 class Search extends Component {
   constructor(props) {
@@ -24,11 +24,11 @@ class Search extends Component {
   handleChange(userQuery) {
     if (userQuery.length <= 3) {
       // bail out early on empty query
-      this.setState({ active: true, results: [] });
+      this.setState({active: true, results: []});
       return;
     }
 
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     request(
       `${__API__}/search?q=${encodeURIComponent(
@@ -54,8 +54,8 @@ class Search extends Component {
     document.addEventListener(
       "keydown",
       event => {
-        const { local, searchActive, toggleSearch } = this.props;
-        const { active } = this.state;
+        const {local, searchActive, toggleSearch} = this.props;
+        const {active} = this.state;
         const key = event.keyCode;
         const DOWN = 40,
           ENTER = 13,
@@ -64,9 +64,7 @@ class Search extends Component {
           UP = 38;
 
         const enabled = local ? active : searchActive;
-        const toggle = local
-          ? () => this.setState({ active: !active })
-          : toggleSearch;
+        const toggle = local ? () => this.setState({active: !active}) : toggleSearch;
 
         if (
           !local &&
@@ -76,10 +74,12 @@ class Search extends Component {
         ) {
           event.preventDefault();
           toggle();
-        } else if (enabled && key === ESC && event.target === this.ref_input) {
+        }
+        else if (enabled && key === ESC && event.target === this.ref_input) {
           event.preventDefault();
           toggle();
-        } else if (enabled && event.target === this.ref_input) {
+        }
+        else if (enabled && event.target === this.ref_input) {
           const highlighted = document.querySelector(".highlighted");
 
           if (key === ENTER && highlighted) {
@@ -88,13 +88,15 @@ class Search extends Component {
             setTimeout(() => {
               //do nothing
             }, 500);
-          } else if (key === DOWN || key === UP) {
+          }
+          else if (key === DOWN || key === UP) {
             if (!highlighted) {
               if (key === DOWN)
                 document
                   .querySelector(".results > li:first-child")
                   .classList.add("highlighted");
-            } else {
+            }
+            else {
               const results = document.querySelectorAll(".results > li");
 
               const currentIndex = [].indexOf.call(results, highlighted);
@@ -102,7 +104,8 @@ class Search extends Component {
               if (key === DOWN && currentIndex < results.length - 1) {
                 results[currentIndex + 1].classList.add("highlighted");
                 highlighted.classList.remove("highlighted");
-              } else if (key === UP) {
+              }
+              else if (key === UP) {
                 if (currentIndex > 0)
                   results[currentIndex - 1].classList.add("highlighted");
                 highlighted.classList.remove("highlighted");
@@ -116,7 +119,7 @@ class Search extends Component {
   }
 
   getProfileType(result) {
-    const { t } = this.props;
+    const {t} = this.props;
     var profileType = "";
     switch (result.index_as) {
       case undefined: {
@@ -128,9 +131,7 @@ class Search extends Component {
         break;
       }
       case "institutions": {
-        profileType = result.ancestor_key
-          ? t("Institution")
-          : t("Institution Type");
+        profileType = result.ancestor_key ? t("Institution") : t("Institution Type");
         break;
       }
       case "careers": {
@@ -148,7 +149,8 @@ class Search extends Component {
       case "geo": {
         if (result.name.toLowerCase() == "chile") {
           profileType = t("National Profile");
-        } else {
+        }
+        else {
           profileType = result.ancestor_key ? t("Comuna") : t("Region");
         }
         break;
@@ -158,12 +160,11 @@ class Search extends Component {
   }
 
   render() {
-    const { className, searchActive, local, t } = this.props;
-    const { active, results, loading } = this.state;
+    const {className, searchActive, local, t} = this.props;
+    const {active, results, loading} = this.state;
     const enabled = local ? active : searchActive;
 
-    const availableClass =
-      results && results.length > 0 ? "available" : "not-available";
+    const availableClass = results && results.length > 0 ? "available" : "not-available";
 
     if (this.ref_input) {
       if (enabled) this.ref_input.focus();
@@ -188,9 +189,7 @@ class Search extends Component {
     }
 
     return (
-      <div
-        className={`${className} ${enabled ? "active" : ""} search-component`}
-      >
+      <div className={`${className} ${enabled ? "active" : ""} search-component`}>
         <label className="input">
           <span className="u-visually-hidden">
             {t("Search a location, industry, product, career, etc")}
@@ -208,7 +207,8 @@ class Search extends Component {
             var url;
             if (result.ancestor_key === 0 || result.ancestor_key === null) {
               url = slugifyItem(result.index_as, result.key, result.content);
-            } else {
+            }
+            else {
               url = slugifyItem(
                 result.index_as,
                 result.ancestor_key,
@@ -218,10 +218,7 @@ class Search extends Component {
               );
             }
             return (
-              <li
-                key={`${result.index_as}-${result.key}-${i}`}
-                className="result"
-              >
+              <li key={`${result.index_as}-${result.key}-${i}`} className="result">
                 <Link to={url}>
                   <span className="icon-container">
                     <img
@@ -254,6 +251,6 @@ export default withNamespaces()(
     state => ({
       searchActive: state.search.searchActive
     }),
-    { toggleSearch }
+    {toggleSearch}
   )(Search)
 );

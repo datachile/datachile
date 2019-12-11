@@ -1,5 +1,5 @@
-import { Client as MondrianClient } from "mondrian-rest-client";
-import { getGeoObject, getLevelObject, getGeoType } from "helpers/dataUtils";
+import {Client as MondrianClient} from "mondrian-rest-client";
+import {getGeoObject, getLevelObject, getGeoType} from "helpers/dataUtils";
 
 import flattenDeep from "lodash/flattenDeep";
 import rangeRight from "lodash/rangeRight";
@@ -18,13 +18,16 @@ function geoCut(geo, dimensionName, query, lang = "en") {
 
   if (geo.type === "country") {
     return query; // no region provided, don't cut
-  } else if (geo.type === "region") {
+  }
+  else if (geo.type === "region") {
     //query.drilldown(dimensionName, "Region");
     return query.cut(`[${dimensionName}].[Region].&[${geo.key}]`);
-  } else if (geo.type === "comuna") {
+  }
+  else if (geo.type === "comuna") {
     //query.drilldown(dimensionName, "Comuna");
     return query.cut(`[${dimensionName}].[Comuna].&[${geo.key}]`);
-  } else {
+  }
+  else {
     throw new Error(`Geo '${geo}' unknown`);
   }
 }
@@ -45,7 +48,8 @@ function levelCut(
     return query.cut(
       `[${dimensionName}].[${hierarchyName}].[${level1}].&[${object.level1}]`
     );
-  } else {
+  }
+  else {
     if (drilldown) query.drilldown(dimensionName, hierarchyName, level2);
     return query.cut(
       `[${dimensionName}].[${hierarchyName}].[${level2}].&[${object.level2}]`
@@ -122,13 +126,7 @@ function getMeasureByGeo(type, countryM, regionM, comunaM) {
  * @param {boolean} children
  * @returns {MondrianClient}
  */
-function getMembersQuery(
-  cube,
-  dimension,
-  level,
-  locale = "en",
-  children = false
-) {
+function getMembersQuery(cube, dimension, level, locale = "en", children = false) {
   return client
     .cube(cube)
     .then(cube => {
@@ -156,22 +154,17 @@ function simpleGeoChartNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] },
+  {drillDowns = [], options = {}, cuts = []},
   overrideGeo = false
 ) {
   return (params, store) => {
     let geo = overrideGeo || getGeoObject(params);
 
     if (
-      [
-        "death_causes",
-        "disabilities",
-        "health_access",
-        "nene_quarter"
-      ].includes(cube) &&
+      ["death_causes", "disabilities", "health_access", "nene_quarter"].includes(cube) &&
       geo.type === "comuna"
     ) {
-      geo = { ...geo.ancestor };
+      geo = {...geo.ancestor};
     }
 
     const prm = client.cube(cube).then(cube => {
@@ -187,9 +180,7 @@ function simpleGeoChartNeed(
 
       return {
         key: key,
-        data:
-          __API__ +
-          geoCut(geo, "Geography", q, store.i18n.locale).path("jsonrecords")
+        data: __API__ + geoCut(geo, "Geography", q, store.i18n.locale).path("jsonrecords")
       };
     });
 
@@ -211,7 +202,7 @@ function simpleIndustryChartNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  {drillDowns = [], options = {}, cuts = []}
 ) {
   return (params, store) => {
     const industry = getLevelObject(params);
@@ -254,7 +245,7 @@ function getGeoMembersDimension(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  {drillDowns = [], options = {}, cuts = []}
 ) {
   return (params, store) => {
     let geo = getGeoObject(params);
@@ -274,9 +265,8 @@ function getGeoMembersDimension(
         if (res.data.values && res.data.values.length > 0) {
           const data = res.data || null;
           const level = drillDowns[0][2];
-          const customKey = data.axis_dimensions.find(
-            item => item.level === level
-          ).level_depth;
+          const axis = data.axis_dimensions || data.axes;
+          const customKey = axis.find(item => item.level === level).level_depth;
 
           return {
             key: key,
@@ -284,7 +274,8 @@ function getGeoMembersDimension(
               .map(item => item.name)
               .sort((a, b) => a - b)
           };
-        } else {
+        }
+        else {
           return {
             key: key,
             data: []
@@ -303,7 +294,7 @@ function simpleGeoDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] },
+  {drillDowns = [], options = {}, cuts = []},
   byValues = true,
   overrideGeo = false
 ) {
@@ -311,7 +302,7 @@ function simpleGeoDatumNeed(
     let geo = overrideGeo ? overrideGeo : getGeoObject(params);
 
     if (cube === "health_access" && geo.type === "comuna") {
-      geo = { ...geo.ancestor };
+      geo = {...geo.ancestor};
     }
 
     const prm = client
@@ -325,16 +316,12 @@ function simpleGeoDatumNeed(
 
         var query = geoCut(geo, "Geography", q, store.i18n.locale);
 
-        return byValues
-          ? client.query(query)
-          : client.query(query, "jsonrecords");
+        return byValues ? client.query(query) : client.query(query, "jsonrecords");
       })
       .then(res => {
         return {
           key: key,
-          data: byValues
-            ? flattenDeep(res.data.values)
-            : flattenDeep(res.data.data)
+          data: byValues ? flattenDeep(res.data.values) : flattenDeep(res.data.data)
         };
       });
 
@@ -345,11 +332,7 @@ function simpleGeoDatumNeed(
   };
 }
 
-function createFreshQuery(
-  cube,
-  measures,
-  { drillDowns = [], options = {}, cuts = [] }
-) {
+function createFreshQuery(cube, measures, {drillDowns = [], options = {}, cuts = []}) {
   const q = cube.query;
 
   measures.forEach(m => {
@@ -369,7 +352,7 @@ function simpleFallbackGeoDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  {drillDowns = [], options = {}, cuts = []}
 ) {
   return (params, store) => {
     const geo = getGeoObject(params);
@@ -389,9 +372,10 @@ function simpleFallbackGeoDatumNeed(
         if (res.data.values && res.data.values.length > 0) {
           return {
             key: key,
-            data: { data: flattenDeep(res.data.values), fallback: false }
+            data: {data: flattenDeep(res.data.values), fallback: false}
           };
-        } else {
+        }
+        else {
           return client
             .cube(cube)
             .then(cube => {
@@ -400,18 +384,13 @@ function simpleFallbackGeoDatumNeed(
                 options: options,
                 cuts: cuts
               });
-              var query = geoCut(
-                geo.ancestor,
-                "Geography",
-                q,
-                store.i18n.locale
-              );
+              var query = geoCut(geo.ancestor, "Geography", q, store.i18n.locale);
               return client.query(query);
             })
             .then(res => {
               return {
                 key: key,
-                data: { data: flattenDeep(res.data.values), fallback: true }
+                data: {data: flattenDeep(res.data.values), fallback: true}
               };
             });
         }
@@ -429,7 +408,7 @@ function simpleAvailableGeoDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] },
+  {drillDowns = [], options = {}, cuts = []},
   byValues = true
 ) {
   return (params, store) => {
@@ -444,9 +423,7 @@ function simpleAvailableGeoDatumNeed(
           cuts: cuts
         });
         var query = geoCut(geo, "Geography", q, store.i18n.locale);
-        return byValues
-          ? client.query(query)
-          : client.query(query, "jsonrecords");
+        return byValues ? client.query(query) : client.query(query, "jsonrecords");
       })
       .then(res => {
         if (
@@ -456,16 +433,15 @@ function simpleAvailableGeoDatumNeed(
           return {
             key: key,
             data: {
-              data: byValues
-                ? flattenDeep(res.data.values)
-                : flattenDeep(res.data.data),
+              data: byValues ? flattenDeep(res.data.values) : flattenDeep(res.data.data),
               available: true
             }
           };
-        } else {
+        }
+        else {
           return {
             key: key,
-            data: { data: [], available: false }
+            data: {data: [], available: false}
           };
         }
       });
@@ -481,7 +457,7 @@ function simpleIndustryDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] },
+  {drillDowns = [], options = {}, cuts = []},
   byValues = true
 ) {
   return (params, store) => {
@@ -507,16 +483,12 @@ function simpleIndustryDatumNeed(
           "Level 2",
           store.i18n.locale
         );
-        return byValues
-          ? client.query(query)
-          : client.query(query, "jsonrecords");
+        return byValues ? client.query(query) : client.query(query, "jsonrecords");
       })
       .then(res => {
         return {
           key: key,
-          data: byValues
-            ? flattenDeep(res.data.values)
-            : flattenDeep(res.data.data)
+          data: byValues ? flattenDeep(res.data.values) : flattenDeep(res.data.data)
         };
       });
 
@@ -636,9 +608,9 @@ function simpleGeoDatumNeed2(key, query, postprocess) {
 
     const promise = quickQuery(query)
       .then(res => postprocess(res, query.locale, params, store))
-      .then(data => ({ key, data }));
+      .then(data => ({key, data}));
 
-    return { type: "GET_DATA", promise, description: key };
+    return {type: "GET_DATA", promise, description: key};
   };
 }
 
@@ -667,9 +639,9 @@ function simpleCountryDatumNeed(key, query, postprocess) {
 
     const promise = quickQuery(query)
       .then(res => postprocess(res, query.locale, params, store))
-      .then(data => ({ key, data }));
+      .then(data => ({key, data}));
 
-    return { type: "GET_DATA", promise, description: key };
+    return {type: "GET_DATA", promise, description: key};
   };
 }
 
@@ -677,27 +649,25 @@ function simpleDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] },
+  {drillDowns = [], options = {}, cuts = []},
   profile,
   byValues = true
 ) {
   return (params, store) => {
     let obj = {};
     if (profile !== "rd_survey") {
-      obj = profile.includes("geo")
-        ? getGeoObject(params)
-        : getLevelObject(params);
+      obj = profile.includes("geo") ? getGeoObject(params) : getLevelObject(params);
     }
 
     if (
       ["death_causes", "disabilities", "health_access"].includes(cube) &&
       obj.type === "comuna"
     ) {
-      obj = { ...obj.ancestor };
+      obj = {...obj.ancestor};
     }
 
     if (profile === "geo_by_region") {
-      obj = { ...obj.ancestor };
+      obj = {...obj.ancestor};
     }
 
     const prm = client
@@ -741,26 +711,10 @@ function simpleDatumNeed(
             );
             break;
           case "product.export":
-            query = levelCut(
-              obj,
-              "Export HS",
-              "HS",
-              q,
-              "HS0",
-              "HS2",
-              store.i18n.locale
-            );
+            query = levelCut(obj, "Export HS", "HS", q, "HS0", "HS2", store.i18n.locale);
             break;
           case "product.import":
-            query = levelCut(
-              obj,
-              "Import HS",
-              "HS",
-              q,
-              "HS0",
-              "HS2",
-              store.i18n.locale
-            );
+            query = levelCut(obj, "Import HS", "HS", q, "HS0", "HS2", store.i18n.locale);
             break;
           case "no_cut":
           case "geo_no_cut":
@@ -771,9 +725,7 @@ function simpleDatumNeed(
             break;
         }
 
-        return byValues
-          ? client.query(query)
-          : client.query(query, "jsonrecords");
+        return byValues ? client.query(query) : client.query(query, "jsonrecords");
       })
       .then(res => {
         if (
@@ -783,16 +735,15 @@ function simpleDatumNeed(
           return {
             key: key,
             data: {
-              data: byValues
-                ? flattenDeep(res.data.values)
-                : flattenDeep(res.data.data),
+              data: byValues ? flattenDeep(res.data.values) : flattenDeep(res.data.data),
               available: true
             }
           };
-        } else {
+        }
+        else {
           return {
             key: key,
-            data: { data: [], available: false }
+            data: {data: [], available: false}
           };
         }
       });
@@ -808,7 +759,7 @@ function simpleInstitutionDatumNeed(
   key,
   cube,
   measures,
-  { drillDowns = [], options = {}, cuts = [] }
+  {drillDowns = [], options = {}, cuts = []}
 ) {
   return (params, store) => {
     const institution = getLevelObject(params);

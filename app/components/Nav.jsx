@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Link } from "react-router";
-import { withNamespaces } from "react-i18next";
-import { connect } from "react-redux";
-import { SubNav } from "@datawheel/canon-core";
-import { select } from "d3-selection";
+import React, {Component} from "react";
+import {Link} from "react-router";
+import {withNamespaces} from "react-i18next";
+import {connect} from "react-redux";
+import {SubNav} from "@datawheel/canon-core";
+import {select} from "d3-selection";
 
 import NavFixed from "components/NavFixed";
 import Search from "components/Search";
@@ -36,7 +36,7 @@ class Nav extends Component {
   manageOutsideClick = evt => {
     const subnav = this._nodeSubNav;
     if (!subnav.isSameNode(evt.target) && !subnav.contains(evt.target))
-      this.setState({ subnav_visible: false });
+      this.setState({subnav_visible: false});
   };
 
   componentDidMount() {
@@ -61,13 +61,13 @@ class Nav extends Component {
       dark
     } = this.props;
 
-    let { fullTitle } = this.props;
+    let {fullTitle} = this.props;
 
     const locale = i18n.language;
 
     const otherLang = locale === "es" ? "en" : "es";
 
-    const { subnav_visible, search_visible } = this.state;
+    const {subnav_visible, search_visible} = this.state;
 
     const search_icon = search_visible ? "icon-close-black" : "icon-search";
 
@@ -94,7 +94,8 @@ class Nav extends Component {
       if (nodeSide) {
         if (subnav_visible) {
           nodeSide.focus();
-        } else {
+        }
+        else {
           nodeSide.blur();
         }
       }
@@ -102,7 +103,8 @@ class Nav extends Component {
       if (nodeNav) {
         if (search_visible) {
           nodeNav.focus();
-        } else {
+        }
+        else {
           nodeNav.blur();
         }
       }
@@ -128,28 +130,26 @@ class Nav extends Component {
             ref={this.refSubNav}
           >
             <div className="button-set-container">
-              <a
-                className="menu-close-btn"
-                onClick={this.toggleSubNav}
-              >
+              <a className="menu-close-btn" onClick={this.toggleSubNav}>
                 <img src="/images/icons/icon-close.svg" />
               </a>
-              { isHomePage ?
+              {isHomePage ? (
                 <div className="home-link is-active">
                   <img
                     className="home-link-img"
                     src="/images/logos/datachile-beta-navbar.svg"
                     alt=""
                   />
-              </div>
-                : <Link className="home-link" to="/">
+                </div>
+              ) : (
+                <Link className="home-link" to="/">
                   <img
                     className="home-link-img"
                     src="/images/logos/datachile-beta-navbar.svg"
                     alt="home"
                   />
                 </Link>
-              }
+              )}
               <div className="lang-selector">
                 <span className="lang current">{locale}</span>
                 |
@@ -224,7 +224,6 @@ class Nav extends Component {
               </li>
             </ul>
 
-
             {/* sitewide nav */}
             <h3 className="subnav-subtitle font-sm">{t("About")}</h3>
             <ul className="subnav-list">
@@ -239,11 +238,8 @@ class Nav extends Component {
               </li>
             </ul>
 
-
             {/* subnav */}
-            {topics &&
-              <h3 className="subnav-subtitle font-sm">{t("Topics")}</h3>
-            }
+            {topics && <h3 className="subnav-subtitle font-sm">{t("Topics")}</h3>}
           </SubNav>
 
           <div className="nav-container">
@@ -263,16 +259,9 @@ class Nav extends Component {
               )}
             </div>
 
-            <div
-              className={`r-col nav-search ${
-                search_visible ? "open" : "closed"
-              }`}
-            >
+            <div className={`r-col nav-search ${search_visible ? "open" : "closed"}`}>
               {/* mobile search - triggers nav */}
-              <a
-                className="nav-search-toggle toggle-nav"
-                onClick={this.toggleSubNav}
-              >
+              <a className="nav-search-toggle toggle-nav" onClick={this.toggleSubNav}>
                 <img
                   className="nav-search-icon"
                   src={`/images/icons/${search_icon}.svg`}
@@ -280,11 +269,10 @@ class Nav extends Component {
               </a>
               {/* desktop search with label */}
               <div className="nav-search-container">
-                <a
-                  className="nav-search-toggle toggle-input"
-                  onClick={this.toggleSearch}
-                >
-                  <span className="nav-search-label label font-xs">{t("SearchLabel")}</span>
+                <a className="nav-search-toggle toggle-input" onClick={this.toggleSearch}>
+                  <span className="nav-search-label label font-xs">
+                    {t("SearchLabel")}
+                  </span>
                   <img
                     className="nav-search-icon"
                     src={`/images/icons/${search_icon}.svg`}
@@ -306,29 +294,27 @@ class Nav extends Component {
                   {/* full title for screen readers, hidden from screen */}
                   <span className="u-visually-hidden">{fullTitle}</span>
                 </h1>
-                { showMeta &&
+                {showMeta && (
                   <p className="meta-title">
-                    {type &&
+                    {type && (
                       <span className="type">
                         {typeTitle &&
-                          exploreLink && (
-                            <Link
-                              className={`category color-${type}`}
-                              to={exploreLink}
-                            >
-                              {type && (
-                                <img
-                                  className="category-icon"
-                                  src={`/images/icons/icon-${type}.svg`}
-                                />
-                              )}
-                              {typeTitle}
-                            </Link>
-                          )}
+                        exploreLink && (
+                          <Link className={`category color-${type}`} to={exploreLink}>
+                            {type && (
+                              <img
+                                className="category-icon"
+                                src={`/images/icons/icon-${type}.svg`}
+                              />
+                            )}
+                            {typeTitle}
+                          </Link>
+                        )}
                         {type && !exploreLink && <span>{typeTitle}</span>}
                       </span>
-                    }
-                    {type && ancestor && (
+                    )}
+                    {type &&
+                    ancestor && (
                       <span className="parent">
                         <span className="separator">{t("in")}</span>
                         <Link className="link" to={ancestorLink}>
@@ -337,16 +323,12 @@ class Nav extends Component {
                       </span>
                     )}
                   </p>
-                }
+                )}
               </div>
             </div>
           )}
         </nav>
-        <NavFixed
-          topics={topics}
-          title={title}
-          toggleSubNav={this.toggleSubNav}
-        />
+        <NavFixed topics={topics} title={title} toggleSubNav={this.toggleSubNav} />
       </div>
     );
   }
